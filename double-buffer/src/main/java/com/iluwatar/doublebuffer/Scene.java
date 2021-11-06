@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,18 +24,16 @@
 package com.iluwatar.doublebuffer;
 
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Scene class. Render the output frame.
  */
+@Slf4j
 public class Scene {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Scene.class);
-
-  private Buffer[] frameBuffers;
+  private final Buffer[] frameBuffers;
 
   private int current;
 

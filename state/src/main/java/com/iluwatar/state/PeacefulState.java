@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,15 @@
 
 package com.iluwatar.state;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Peaceful state.
  */
+@Slf4j
 public class PeacefulState implements State {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(PeacefulState.class);
-
-  private Mammoth mammoth;
+  private final Mammoth mammoth;
 
   public PeacefulState(Mammoth mammoth) {
     this.mammoth = mammoth;

@@ -4,33 +4,11 @@ package com.iluwatar.command {
     + App()
     + main(args : String[]) {static}
   }
-  abstract class Command {
-    + Command()
-    + execute(Target) {abstract}
-    + redo() {abstract}
-    + toString() : String {abstract}
-    + undo() {abstract}
-  }
   class Goblin {
     + Goblin()
     + toString() : String
-  }
-  class InvisibilitySpell {
-    - target : Target
-    + InvisibilitySpell()
-    + execute(target : Target)
-    + redo()
-    + toString() : String
-    + undo()
-  }
-  class ShrinkSpell {
-    - oldSize : Size
-    - target : Target
-    + ShrinkSpell()
-    + execute(target : Target)
-    + redo()
-    + toString() : String
-    + undo()
+    + changeSize()
+    + changeVisibility()
   }
   enum Size {
     + NORMAL {static}
@@ -62,22 +40,19 @@ package com.iluwatar.command {
   }
   class Wizard {
     - LOGGER : Logger {static}
-    - redoStack : Deque<Command>
-    - undoStack : Deque<Command>
+    - redoStack : Deque<Runnable>
+    - undoStack : Deque<Runnable>
     + Wizard()
-    + castSpell(command : Command, target : Target)
+    + castSpell(Runnable : runnable)
     + redoLastSpell()
     + toString() : String
     + undoLastSpell()
   }
 }
 Target -->  "-size" Size
-Wizard -->  "-undoStack" Command
-ShrinkSpell -->  "-oldSize" Size
-InvisibilitySpell -->  "-target" Target
-ShrinkSpell -->  "-target" Target
+Wizard -->  "-changeSize" Goblin
+Wizard -->  "-changeVisibility" Goblin
 Target -->  "-visibility" Visibility
-Goblin --|> Target 
-InvisibilitySpell --|> Command 
-ShrinkSpell --|> Command 
+Goblin --|> Target
+App --> "castSpell" Wizard
 @enduml

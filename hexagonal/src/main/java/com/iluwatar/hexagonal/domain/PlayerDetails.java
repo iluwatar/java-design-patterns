@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,98 +23,22 @@
 
 package com.iluwatar.hexagonal.domain;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.ToString;
+
 /**
  * Immutable value object containing lottery player details.
  */
+@EqualsAndHashCode
+@ToString
+@Getter
+@RequiredArgsConstructor
 public class PlayerDetails {
 
-  private final String emailAddress;
-  private final String bankAccountNumber;
+  private final String email;
+  private final String bankAccount;
   private final String phoneNumber;
 
-  /**
-   * Constructor.
-   */
-  public PlayerDetails(String email, String bankAccount, String phone) {
-    emailAddress = email;
-    bankAccountNumber = bankAccount;
-    phoneNumber = phone;
-  }
-
-  /**
-   * Get email.
-   *
-   * @return email
-   */
-  public String getEmail() {
-    return emailAddress;
-  }
-
-  /**
-   * Get back account number.
-   *
-   * @return bank account number
-   */
-  public String getBankAccount() {
-    return bankAccountNumber;
-  }
-
-  /**
-   * Get phone number.
-   *
-   * @return phone number
-   */
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  @Override
-  public String toString() {
-    return "PlayerDetails{" + "emailAddress='" + emailAddress + '\''
-        + ", bankAccountNumber='" + bankAccountNumber + '\''
-        + ", phoneNumber='" + phoneNumber + '\'' + '}';
-  }
-
-  @Override
-  public int hashCode() {
-    final var prime = 31;
-    var result = 1;
-    result = prime * result + ((bankAccountNumber == null) ? 0 : bankAccountNumber.hashCode());
-    result = prime * result + ((emailAddress == null) ? 0 : emailAddress.hashCode());
-    result = prime * result + ((phoneNumber == null) ? 0 : phoneNumber.hashCode());
-    return result;
-  }
-
-  @Override
-  public boolean equals(Object obj) {
-    if (this == obj) {
-      return true;
-    }
-    if (obj == null) {
-      return false;
-    }
-    if (getClass() != obj.getClass()) {
-      return false;
-    }
-    var other = (PlayerDetails) obj;
-    if (bankAccountNumber == null) {
-      if (other.bankAccountNumber != null) {
-        return false;
-      }
-    } else if (!bankAccountNumber.equals(other.bankAccountNumber)) {
-      return false;
-    }
-    if (emailAddress == null) {
-      if (other.emailAddress != null) {
-        return false;
-      }
-    } else if (!emailAddress.equals(other.emailAddress)) {
-      return false;
-    }
-    if (phoneNumber == null) {
-      return other.phoneNumber == null;
-    } else {
-      return phoneNumber.equals(other.phoneNumber);
-    }
-  }
 }

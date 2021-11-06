@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,21 +23,17 @@
 
 package com.iluwatar.bridge;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Sword.
  */
+@Slf4j
+@AllArgsConstructor
 public class Sword implements Weapon {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Sword.class);
-
   private final Enchantment enchantment;
-
-  public Sword(Enchantment enchantment) {
-    this.enchantment = enchantment;
-  }
 
   @Override
   public void wield() {
@@ -47,7 +43,7 @@ public class Sword implements Weapon {
 
   @Override
   public void swing() {
-    LOGGER.info("The sword is swinged.");
+    LOGGER.info("The sword is swung.");
     enchantment.apply();
   }
 

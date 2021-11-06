@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 package com.iluwatar.factory.method;
 
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 /**
@@ -32,10 +32,10 @@ import java.util.Map;
  */
 public class ElfBlacksmith implements Blacksmith {
 
-  private static Map<WeaponType, ElfWeapon> ELFARSENAL;
+  private static final Map<WeaponType, ElfWeapon> ELFARSENAL;
 
   static {
-    ELFARSENAL = new HashMap<>(WeaponType.values().length);
+    ELFARSENAL = new EnumMap<>(WeaponType.class);
     Arrays.stream(WeaponType.values()).forEach(type -> ELFARSENAL.put(type, new ElfWeapon(type)));
   }
 
@@ -44,4 +44,8 @@ public class ElfBlacksmith implements Blacksmith {
     return ELFARSENAL.get(weaponType);
   }
 
+  @Override
+  public String toString() {
+    return "The elf blacksmith";
+  }
 }

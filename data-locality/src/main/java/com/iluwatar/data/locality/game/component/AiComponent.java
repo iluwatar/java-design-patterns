@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,15 +23,13 @@
 
 package com.iluwatar.data.locality.game.component;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation of AI component for Game.
  */
+@Slf4j
 public class AiComponent implements Component {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AiComponent.class);
 
   /**
    * Update ai component.
@@ -43,6 +41,6 @@ public class AiComponent implements Component {
 
   @Override
   public void render() {
-
+    // Do Nothing.
   }
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,7 +41,7 @@ public class WorkerTest {
    * Verify if a worker does the actual job
    */
   @Test
-  public void testRun() {
+  void testRun() {
     final var task = mock(Task.class);
     final var worker = new Worker(task);
     verifyZeroInteractions(task);

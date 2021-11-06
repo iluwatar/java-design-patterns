@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +23,17 @@
 
 package com.iluwatar.leaderelection.bully;
 
-import com.iluwatar.leaderelection.*;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import java.lang.reflect.Field;
+import com.iluwatar.leaderelection.AbstractInstance;
+import com.iluwatar.leaderelection.Instance;
+import com.iluwatar.leaderelection.Message;
+import com.iluwatar.leaderelection.MessageType;
 import java.util.Map;
 import java.util.Queue;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * BullyMessageManager unit test.
@@ -38,7 +41,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class BullyMessageManagerTest {
 
   @Test
-  public void testSendHeartbeatMessage() {
+  void testSendHeartbeatMessage() {
     var instance1 = new BullyInstance(null, 1, 1);
     Map<Integer, Instance> instanceMap = Map.of(1, instance1);
     var messageManager = new BullyMessageManager(instanceMap);
@@ -46,7 +49,7 @@ public class BullyMessageManagerTest {
   }
 
   @Test
-  public void testSendElectionMessageNotAccepted() {
+  void testSendElectionMessageNotAccepted() {
     try {
       var instance1 = new BullyInstance(null, 1, 1);
       var instance2 = new BullyInstance(null, 1, 2);
@@ -71,7 +74,7 @@ public class BullyMessageManagerTest {
   }
 
   @Test
-  public void testElectionMessageAccepted() {
+  void testElectionMessageAccepted() {
     var instance1 = new BullyInstance(null, 1, 1);
     var instance2 = new BullyInstance(null, 1, 2);
     var instance3 = new BullyInstance(null, 1, 3);
@@ -84,7 +87,7 @@ public class BullyMessageManagerTest {
   }
 
   @Test
-  public void testSendLeaderMessage() {
+  void testSendLeaderMessage() {
     try {
       var instance1 = new BullyInstance(null, 1, 1);
       var instance2 = new BullyInstance(null, 1, 2);
@@ -108,7 +111,7 @@ public class BullyMessageManagerTest {
   }
 
   @Test
-  public void testSendHeartbeatInvokeMessage() {
+  void testSendHeartbeatInvokeMessage() {
     try {
       var instance1 = new BullyInstance(null, 1, 1);
       var instance2 = new BullyInstance(null, 1, 2);

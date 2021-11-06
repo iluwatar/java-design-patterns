@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,33 +24,16 @@
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * GHobbits.
  */
+@Slf4j
 public class GHobbits implements Race {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(GHobbits.class);
 
   @Override
   public void update(GWeather weather, WeatherType weatherType) {
-    switch (weatherType) {
-      case COLD:
-        LOGGER.info("The hobbits are shivering in the cold weather.");
-        break;
-      case RAINY:
-        LOGGER.info("The hobbits look for cover from the rain.");
-        break;
-      case SUNNY:
-        LOGGER.info("The happy hobbits bade in the warm sun.");
-        break;
-      case WINDY:
-        LOGGER.info("The hobbits hold their hats tightly in the windy weather.");
-        break;
-      default:
-        break;
-    }
+    LOGGER.info("The hobbits are facing " + weatherType.getDescription() + " weather now");
   }
 }

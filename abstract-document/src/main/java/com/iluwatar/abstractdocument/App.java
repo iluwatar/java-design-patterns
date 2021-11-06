@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,8 +27,7 @@ import com.iluwatar.abstractdocument.domain.Car;
 import com.iluwatar.abstractdocument.domain.enums.Property;
 import java.util.List;
 import java.util.Map;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Abstract Document pattern enables handling additional, non-static properties. This pattern
@@ -38,14 +37,15 @@ import org.slf4j.LoggerFactory;
  * <p>In Abstract Document pattern,({@link AbstractDocument}) fully implements {@link Document})
  * interface. Traits are then defined to enable access to properties in usual, static way.
  */
+@Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
   /**
-   * Executes the App.
+   * Program entry point.
+   *
+   * @param args command line args
    */
-  public App() {
+  public static void main(String[] args) {
     LOGGER.info("Constructing parts and car");
 
     var wheelProperties = Map.of(
@@ -75,14 +75,4 @@ public class App {
         p.getPrice().orElse(null))
     );
   }
-
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
-    new App();
-  }
-
 }

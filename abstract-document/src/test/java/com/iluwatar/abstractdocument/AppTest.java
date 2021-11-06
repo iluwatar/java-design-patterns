@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,14 +25,23 @@ package com.iluwatar.abstractdocument;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
  * Simple App test
  */
-public class AppTest {
+class AppTest {
+
+  /**
+   * Issue: Add at least one assertion to this test case.
+   *
+   * Solution: Inserted assertion to check whether the execution of the main method in {@link App}
+   * throws an exception.
+   */
 
   @Test
-  public void shouldExecuteAppWithoutException() {
-    App.main(null);
+  void shouldExecuteAppWithoutException() {
+    assertDoesNotThrow(() -> App.main(null));
   }
 
 }

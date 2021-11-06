@@ -1,0 +1,36 @@
+@startuml
+package com.iluwatar.separatedinterface {
+  class App {
+    - LOGGER : Logger {static}
+    + PRODUCT_COST : double {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.separatedinterface.taxes {
+  class DomesticTaxCalculator {
+    + TAX_PERCENTAGE : double {static}
+    + DomesticTaxCalculator()
+    + calculate(amount : double) : double
+  }
+  class ForeignTaxCalculator {
+    + TAX_PERCENTAGE : double {static}
+    + ForeignTaxCalculator()
+    + calculate(amount : double) : double
+  }
+}
+package com.iluwatar.separatedinterface.invoice {
+  class InvoiceGenerator {
+    - amount : double
+    - taxCalculator : TaxCalculator
+    + InvoiceGenerator(amount : double, taxCalculator : TaxCalculator)
+    + getAmountWithTax() : double
+  }
+  interface TaxCalculator {
+    + calculate(double) : double {abstract}
+  }
+}
+InvoiceGenerator -->  "-taxCalculator" TaxCalculator
+DomesticTaxCalculator ..|> TaxCalculator 
+ForeignTaxCalculator ..|> TaxCalculator 
+@enduml

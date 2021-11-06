@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,38 +23,41 @@
 
 package com.iluwatar.object.pool;
 
-import org.junit.jupiter.api.Test;
+import static java.time.Duration.ofMillis;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotSame;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
-
-import static java.time.Duration.ofMillis;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/27/15 - 1:05 AM
  *
  * @author Jeroen Meulemeester
  */
-public class OliphauntPoolTest {
+class OliphauntPoolTest {
 
   /**
    * Use the same object 100 times subsequently. This should not take much time since the heavy
    * object instantiation is done only once. Verify if we get the same object each time.
    */
   @Test
-  public void testSubsequentCheckinCheckout() {
+  void testSubsequentCheckinCheckout() {
     assertTimeout(ofMillis(5000), () -> {
-      final OliphauntPool pool = new OliphauntPool();
+      final var pool = new OliphauntPool();
       assertEquals("Pool available=0 inUse=0", pool.toString());
 
-      final Oliphaunt expectedOliphaunt = pool.checkOut();
+      final var expectedOliphaunt = pool.checkOut();
       assertEquals("Pool available=0 inUse=1", pool.toString());
 
       pool.checkIn(expectedOliphaunt);
       assertEquals("Pool available=1 inUse=0", pool.toString());
 
       for (int i = 0; i < 100; i++) {
-        final Oliphaunt oliphaunt = pool.checkOut();
+        final var oliphaunt = pool.checkOut();
         assertEquals("Pool available=0 inUse=1", pool.toString());
         assertSame(expectedOliphaunt, oliphaunt);
         assertEquals(expectedOliphaunt.getId(), oliphaunt.getId());
@@ -71,15 +74,15 @@ public class OliphauntPoolTest {
    * object instantiation is done only once. Verify if we get the same object each time.
    */
   @Test
-  public void testConcurrentCheckinCheckout() {
+  void testConcurrentCheckinCheckout() {
     assertTimeout(ofMillis(5000), () -> {
-      final OliphauntPool pool = new OliphauntPool();
+      final var pool = new OliphauntPool();
       assertEquals(pool.toString(), "Pool available=0 inUse=0");
 
-      final Oliphaunt firstOliphaunt = pool.checkOut();
+      final var firstOliphaunt = pool.checkOut();
       assertEquals(pool.toString(), "Pool available=0 inUse=1");
 
-      final Oliphaunt secondOliphaunt = pool.checkOut();
+      final var secondOliphaunt = pool.checkOut();
       assertEquals(pool.toString(), "Pool available=0 inUse=2");
 
       assertNotSame(firstOliphaunt, secondOliphaunt);
@@ -89,7 +92,7 @@ public class OliphauntPoolTest {
       pool.checkIn(secondOliphaunt);
       assertEquals(pool.toString(), "Pool available=1 inUse=1");
 
-      final Oliphaunt oliphaunt3 = pool.checkOut();
+      final var oliphaunt3 = pool.checkOut();
       assertEquals(pool.toString(), "Pool available=0 inUse=2");
       assertSame(secondOliphaunt, oliphaunt3);
 
@@ -97,7 +100,7 @@ public class OliphauntPoolTest {
       pool.checkIn(firstOliphaunt);
       assertEquals(pool.toString(), "Pool available=1 inUse=1");
 
-      final Oliphaunt oliphaunt4 = pool.checkOut();
+      final var oliphaunt4 = pool.checkOut();
       assertEquals(pool.toString(), "Pool available=0 inUse=2");
       assertSame(firstOliphaunt, oliphaunt4);
 
@@ -110,7 +113,7 @@ public class OliphauntPoolTest {
 
       // The order of the returned instances is not determined, so just put them in a list
       // and verify if both expected instances are in there.
-      final List<Oliphaunt> oliphaunts = List.of(pool.checkOut(), pool.checkOut());
+      final var oliphaunts = List.of(pool.checkOut(), pool.checkOut());
       assertEquals(pool.toString(), "Pool available=0 inUse=2");
       assertTrue(oliphaunts.contains(firstOliphaunt));
       assertTrue(oliphaunts.contains(secondOliphaunt));

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests {@link Customer}.
  */
-public class CustomerTest {
+class CustomerTest {
 
   private Customer customer;
   private static final int ID = 1;
@@ -40,33 +40,33 @@ public class CustomerTest {
   private static final String LASTNAME = "Churchill";
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     customer = new Customer(ID, FIRSTNAME, LASTNAME);
   }
 
   @Test
-  public void getAndSetId() {
+  void getAndSetId() {
     final var newId = 2;
     customer.setId(newId);
     assertEquals(newId, customer.getId());
   }
 
   @Test
-  public void getAndSetFirstname() {
+  void getAndSetFirstname() {
     final var newFirstname = "Bill";
     customer.setFirstName(newFirstname);
     assertEquals(newFirstname, customer.getFirstName());
   }
 
   @Test
-  public void getAndSetLastname() {
+  void getAndSetLastname() {
     final var newLastname = "Clinton";
     customer.setLastName(newLastname);
     assertEquals(newLastname, customer.getLastName());
   }
 
   @Test
-  public void notEqualWithDifferentId() {
+  void notEqualWithDifferentId() {
     final var newId = 2;
     final var otherCustomer = new Customer(newId, FIRSTNAME, LASTNAME);
     assertNotEquals(customer, otherCustomer);
@@ -74,21 +74,21 @@ public class CustomerTest {
   }
 
   @Test
-  public void equalsWithSameObjectValues() {
+  void equalsWithSameObjectValues() {
     final var otherCustomer = new Customer(ID, FIRSTNAME, LASTNAME);
     assertEquals(customer, otherCustomer);
     assertEquals(customer.hashCode(), otherCustomer.hashCode());
   }
 
   @Test
-  public void equalsWithSameObjects() {
+  void equalsWithSameObjects() {
     assertEquals(customer, customer);
     assertEquals(customer.hashCode(), customer.hashCode());
   }
 
   @Test
-  public void testToString() {
-    assertEquals(String.format("Customer{id=%s, firstName='%s', lastName='%s'}",
+  void testToString() {
+    assertEquals(String.format("Customer(id=%s, firstName=%s, lastName=%s)",
         customer.getId(), customer.getFirstName(), customer.getLastName()), customer.toString());
   }
 }

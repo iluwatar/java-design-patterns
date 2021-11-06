@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,7 @@
 
 package com.iluwatar.datamapper;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Data Mapper (DM) is a layer of software that separates the in-memory objects from the
@@ -36,11 +35,10 @@ import org.slf4j.LoggerFactory;
  *
  * <p>The below example demonstrates basic CRUD operations: Create, Read, Update, and Delete.
  */
+@Slf4j
 public final class App {
 
-  private static Logger log = LoggerFactory.getLogger(App.class);
   private static final String STUDENT_STRING = "App.main(), student : ";
-
 
   /**
    * Program entry point.
@@ -58,12 +56,12 @@ public final class App {
     /* Add student in respectibe store */
     mapper.insert(student);
 
-    log.debug(STUDENT_STRING + student + ", is inserted");
+    LOGGER.debug(STUDENT_STRING + student + ", is inserted");
 
     /* Find this student */
     final var studentToBeFound = mapper.find(student.getStudentId());
 
-    log.debug(STUDENT_STRING + studentToBeFound + ", is searched");
+    LOGGER.debug(STUDENT_STRING + studentToBeFound + ", is searched");
 
     /* Update existing student object */
     student = new Student(student.getStudentId(), "AdamUpdated", 'A');
@@ -71,8 +69,8 @@ public final class App {
     /* Update student in respectibe db */
     mapper.update(student);
 
-    log.debug(STUDENT_STRING + student + ", is updated");
-    log.debug(STUDENT_STRING + student + ", is going to be deleted");
+    LOGGER.debug(STUDENT_STRING + student + ", is updated");
+    LOGGER.debug(STUDENT_STRING + student + ", is going to be deleted");
 
     /* Delete student in db */
     mapper.delete(student);

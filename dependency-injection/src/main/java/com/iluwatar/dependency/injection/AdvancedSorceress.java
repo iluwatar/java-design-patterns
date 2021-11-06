@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,16 @@
 
 package com.iluwatar.dependency.injection;
 
+import lombok.Setter;
+
 /**
  * AdvancedSorceress implements inversion of control. It depends on abstraction that can be injected
  * through its setter.
  */
+@Setter
 public class AdvancedSorceress implements Wizard {
 
   private Tobacco tobacco;
-
-  public void setTobacco(Tobacco tobacco) {
-    this.tobacco = tobacco;
-  }
 
   @Override
   public void smoke() {

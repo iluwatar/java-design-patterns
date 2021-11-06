@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,20 +24,16 @@
 package com.iluwatar.commander.messagingservice;
 
 import com.iluwatar.commander.Database;
-import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.messagingservice.MessagingService.MessageRequest;
 import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * The MessagingDatabase is where the MessageRequest is added.
  */
 
 public class MessagingDatabase extends Database<MessageRequest> {
-  private Hashtable<String, MessageRequest> data;
-
-  public MessagingDatabase() {
-    this.data = new Hashtable<>();
-  }
+  private final Map<String, MessageRequest> data = new Hashtable<>();
 
   @Override
   public MessageRequest add(MessageRequest r) {

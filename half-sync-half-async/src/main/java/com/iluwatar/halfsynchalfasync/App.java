@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,7 @@
 package com.iluwatar.halfsynchalfasync;
 
 import java.util.concurrent.LinkedBlockingQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This application demonstrates Half-Sync/Half-Async pattern. Key parts of the pattern are {@link
@@ -60,9 +59,8 @@ import org.slf4j.LoggerFactory;
  * tasks are executed. Our implementation is just one simple way of implementing this pattern, there
  * are many variants possible as described in its applications.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -95,7 +93,7 @@ public class App {
    * ArithmeticSumTask.
    */
   static class ArithmeticSumTask implements AsyncTask<Long> {
-    private long numberOfElements;
+    private final long numberOfElements;
 
     public ArithmeticSumTask(long numberOfElements) {
       this.numberOfElements = numberOfElements;

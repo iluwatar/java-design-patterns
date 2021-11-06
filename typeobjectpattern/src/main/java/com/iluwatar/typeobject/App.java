@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,11 +23,9 @@
 
 package com.iluwatar.typeobject;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * <p>Type object pattern is the pattern we use when the OOP concept of creating a base class and
@@ -47,16 +45,15 @@ import org.slf4j.LoggerFactory;
  * the game and the {@link App} class has the game itself.</p>
  */
 
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
    *
    * @param args command line args
    */
-  public static void main(String[] args) throws FileNotFoundException, IOException, ParseException {
+  public static void main(String[] args) throws IOException, ParseException {
     var givenTime = 50; //50ms
     var toWin = 500; //points
     var pointsWon = 0;

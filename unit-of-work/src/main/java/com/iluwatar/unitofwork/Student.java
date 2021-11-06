@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,36 +23,18 @@
 
 package com.iluwatar.unitofwork;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 /**
  * {@link Student} is an entity.
  */
+@Getter
+@RequiredArgsConstructor
 public class Student {
+
   private final Integer id;
   private final String name;
   private final String address;
 
-  /**
-   * Constructor.
-   *
-   * @param id      student unique id
-   * @param name    name of student
-   * @param address address of student
-   */
-  public Student(Integer id, String name, String address) {
-    this.id = id;
-    this.name = name;
-    this.address = address;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public Integer getId() {
-    return id;
-  }
-
-  public String getAddress() {
-    return address;
-  }
 }

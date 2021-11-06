@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,11 +29,7 @@ package com.iluwatar.adapter;
  */
 public class FishingBoatAdapter implements RowingBoat {
 
-  private FishingBoat boat;
-
-  public FishingBoatAdapter() {
-    boat = new FishingBoat();
-  }
+  private final FishingBoat boat = new FishingBoat();
 
   public final void row() {
     boat.sail();

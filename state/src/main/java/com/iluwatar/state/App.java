@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,7 @@
 package com.iluwatar.state;
 
 /**
- * In State pattern the container object has an internal state object that defines the current
+ * In the State pattern, the container object has an internal state object that defines the current
  * behavior. The state object can be changed to alter the behavior.
  *
  * <p>This can be a cleaner way for an object to change its behavior at runtime without resorting

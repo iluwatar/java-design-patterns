@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
  *
  * @author Paul Campbell (pcampbell@kemitix.net)
  */
-public class MessageCollectorMemberTest {
+class MessageCollectorMemberTest {
 
   @Test
-  public void collectMessageFromMessageData() {
+  void collectMessageFromMessageData() {
     //given
     final var message = "message";
     final var messageData = new MessageData(message);
@@ -51,7 +51,7 @@ public class MessageCollectorMemberTest {
   }
 
   @Test
-  public void collectIgnoresMessageFromOtherDataTypes() {
+  void collectIgnoresMessageFromOtherDataTypes() {
     //given
     final var startingData = new StartingData(LocalDateTime.now());
     final var collector = new MessageCollectorMember("collector");

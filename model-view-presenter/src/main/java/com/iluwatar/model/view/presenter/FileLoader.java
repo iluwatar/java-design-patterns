@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,6 +27,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.Serializable;
+import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,18 +60,11 @@ public class FileLoader implements Serializable {
    * Loads the data of the file specified.
    */
   public String loadData() {
-    String dataFileName = this.fileName;
-    try (BufferedReader br = new BufferedReader(new FileReader(new File(dataFileName)))) {
-      StringBuilder sb = new StringBuilder();
-      String line;
-
-      while ((line = br.readLine()) != null) {
-        sb.append(line).append('\n');
-      }
-
+    var dataFileName = this.fileName;
+    try (var br = new BufferedReader(new FileReader(new File(dataFileName)))) {
+      var result = br.lines().collect(Collectors.joining("\n"));
       this.loaded = true;
-
-      return sb.toString();
+      return result;
     } catch (Exception e) {
       LOGGER.error("File {} does not exist", dataFileName);
     }

@@ -1,0 +1,65 @@
+@startuml
+package com.ashishtrivedi16.transaction-script {
+  class App {
+    - H2_DB_URL : String {static}
+    - LOGGER : Logger {static}
+    - addRooms(hotelDaoImpl : HotelDaoImpl) {static}
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteSchema(dataSource : DataSource) {static}
+    - getRoomsStatus(hotelDaoImpl : HotelDaoImpl) {static}
+    - generateSampleRooms() : List<Room> {static}
+    + main(args : String[]) {static}
+  }
+  class Room {
+    - id: Int
+    - roomType: String
+    - price: Int
+    - booked: Boolean
+    + Customer(id : int, roomType : String, price: Int, booked: Boolean)
+    + getId() : int
+    + getRoomType() : String
+    + getPrice() : Int
+    + isBooked() : Boolean
+    + setId(id : int)
+    + setRoomType(roomType : String)
+    + setPrice(price : Int)
+    + setBooked(booked : boolean)
+    + equals(that : Object) : boolean
+    + hashCode() : int
+    + toString() : String
+  }
+  interface HotelDao {
+    + add(Room) : boolean {abstract}
+    + delete(Room) : boolean {abstract}
+    + getAll() : Stream<Room> {abstract}
+    + getById(int) : Optional<Room> {abstract}
+    + update(Room) : boolean {abstract}
+  }
+  class RoomSchemaSql {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    - RoomSchemaSql()
+  }
+  class HotelDaoImpl {
+    - dataSource : DataSource
+    + HotelDaoImpl(dataSource : DataSource)
+    + add(room : Room) : boolean
+    - createRoom(resultSet : ResultSet) : Room
+    + delete(room : Room) : boolean
+    + getAll() : Stream<Room>
+    + getById(id : int) : Optional<Room>
+    - getConnection() : Connection
+    - mutedClose(connection : Connection, statement : PreparedStatement, resultSet : ResultSet)
+    + update(room : Room) : boolean
+  }
+  class Hotel {
+  - LOGGER : Logger {static}
+  - hotelDao: HotelDaoImpl
+  + Hotel(hotelDao: HotelDaoImpl)
+  + bookRoom(roomNumber: Int)
+  + cancelRoomBooking(roomNumber: Int)
+  }
+}
+HotelDaoImpl ..|> HotelDao
+@enduml

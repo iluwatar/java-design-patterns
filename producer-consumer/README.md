@@ -4,6 +4,7 @@ title: Producer Consumer
 folder: producer-consumer
 permalink: /patterns/producer-consumer/
 categories: Concurrency
+language: en
 tags:
  - Reactive
 ---

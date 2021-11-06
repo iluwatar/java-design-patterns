@@ -1,0 +1,52 @@
+@startuml
+package com.iluwatar.parameter.object {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class ParameterObject {
+    + DEFAULT_SORT_BY : String {static}
+    + DEFAULT_SORT_ORDER : SortOrder {static}
+    - sortBy : String
+    - sortOrder : SortOrder
+    - type : String
+    - ParameterObject(builder : Builder)
+    + getSortBy() : String
+    + getSortOrder() : SortOrder
+    + getType() : String
+    + newBuilder() : Builder {static}
+    + setSortBy(sortBy : String)
+    + setSortOrder(sortOrder : SortOrder)
+    + setType(type : String)
+  }
+  class Builder {
+    - sortBy : String
+    - sortOrder : SortOrder
+    - type : String
+    - Builder()
+    + build() : ParameterObject
+    + sortBy(sortBy : String) : Builder
+    + sortOrder(sortOrder : SortOrder) : Builder
+    + withType(type : String) : Builder
+  }
+  class SearchService {
+    + SearchService()
+    - getQuerySummary(type : String, sortBy : String, sortOrder : SortOrder) : String
+    + search(parameterObject : ParameterObject) : String
+    + search(type : String, sortBy : String) : String
+    + search(type : String, sortOrder : SortOrder) : String
+  }
+  enum SortOrder {
+    + ASC {static}
+    + DESC {static}
+    - value : String
+    + getValue() : String
+    + valueOf(name : String) : SortOrder {static}
+    + values() : SortOrder[] {static}
+  }
+}
+Builder -->  "-sortOrder" SortOrder
+Builder ..+ ParameterObject
+ParameterObject -->  "-DEFAULT_SORT_ORDER" SortOrder
+@enduml

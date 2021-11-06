@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -66,9 +66,6 @@ public class Queen implements Royalty {
    * @return A value which describes if the flirt was successful or not.
    */
   public boolean getFlirted(King king) {
-    if (this.isFlirty && king.isHappy && !king.isDrunk) {
-      return true;
-    }
-    return false;
+    return this.isFlirty && king.isHappy && !king.isDrunk;
   }
 }

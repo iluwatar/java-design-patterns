@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,29 +23,27 @@
 
 package org.dirty.flag;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.iluwatar.dirtyflag.DataFetcher;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
  * Application test
  */
-public class DirtyFlagTest {
+class DirtyFlagTest {
 
   @Test
-  public void testIsDirty() {
+  void testIsDirty() {
     var df = new DataFetcher();
     var countries = df.fetch();
-    assertFalse(countries.isEmpty());
+    Assertions.assertFalse(countries.isEmpty());
   }
 
   @Test
-  public void testIsNotDirty() {
+  void testIsNotDirty() {
     var df = new DataFetcher();
     df.fetch();
     var countries = df.fetch();
-    assertTrue(countries.isEmpty());
+    Assertions.assertTrue(countries.isEmpty());
   }
 }

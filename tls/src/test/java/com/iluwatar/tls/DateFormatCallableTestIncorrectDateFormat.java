@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -54,18 +54,18 @@ public class DateFormatCallableTestIncorrectDateFormat {
   /**
    * Expected number of date values in the date value list created by the run of DateFormatRunnalbe
    */
-  private int expectedCounterDateValues = 0;
+  private final int expectedCounterDateValues = 0;
 
   /**
    * Expected number of exceptions in the exception list created by the run of DateFormatRunnalbe.
    */
-  private int expectedCounterExceptions = 5;
+  private final int expectedCounterExceptions = 5;
 
   /**
    * Expected content of the list containing the exceptions created by the run of
    * DateFormatRunnalbe
    */
-  private List<String> expectedExceptions = List.of(
+  private final List<String> expectedExceptions = List.of(
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
       "class java.text.ParseException: Unparseable date: \"15.12.2015\"",
@@ -96,7 +96,7 @@ public class DateFormatCallableTestIncorrectDateFormat {
    * same exception
    */
   @Test
-  public void testExceptions() {
+  void testExceptions() {
     assertEquals(expectedExceptions, result.getExceptionList());
   }
 
@@ -105,7 +105,7 @@ public class DateFormatCallableTestIncorrectDateFormat {
    * deliver no date values
    */
   @Test
-  public void testCounterDateValues() {
+  void testCounterDateValues() {
     assertEquals(expectedCounterDateValues, result.getDateList().size());
   }
 
@@ -114,7 +114,7 @@ public class DateFormatCallableTestIncorrectDateFormat {
    * deliver 5 exceptions
    */
   @Test
-  public void testCounterExceptions() {
+  void testCounterExceptions() {
     assertEquals(expectedCounterExceptions, result.getExceptionList().size());
   }
 }

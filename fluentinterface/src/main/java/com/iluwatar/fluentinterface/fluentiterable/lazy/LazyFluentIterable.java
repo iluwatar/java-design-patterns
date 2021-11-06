@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import lombok.RequiredArgsConstructor;
 
 /**
  * This is a lazy implementation of the FluentIterable interface. It evaluates all chained
@@ -37,18 +38,10 @@ import java.util.function.Predicate;
  *
  * @param <E> the type of the objects the iteration is about
  */
+@RequiredArgsConstructor
 public class LazyFluentIterable<E> implements FluentIterable<E> {
 
   private final Iterable<E> iterable;
-
-  /**
-   * This constructor creates a new LazyFluentIterable. It wraps the given iterable.
-   *
-   * @param iterable the iterable this FluentIterable works on.
-   */
-  protected LazyFluentIterable(Iterable<E> iterable) {
-    this.iterable = iterable;
-  }
 
   /**
    * This constructor can be used to implement anonymous subclasses of the LazyFluentIterable.
@@ -70,7 +63,7 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
     return new LazyFluentIterable<>() {
       @Override
       public Iterator<E> iterator() {
-        return new DecoratingIterator<E>(iterable.iterator()) {
+        return new DecoratingIterator<>(iterable.iterator()) {
           @Override
           public E computeNext() {
             while (fromIterator.hasNext()) {
@@ -107,10 +100,10 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public FluentIterable<E> first(int count) {
-    return new LazyFluentIterable<E>() {
+    return new LazyFluentIterable<>() {
       @Override
       public Iterator<E> iterator() {
-        return new DecoratingIterator<E>(iterable.iterator()) {
+        return new DecoratingIterator<>(iterable.iterator()) {
           int currentIndex;
 
           @Override
@@ -149,10 +142,10 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public FluentIterable<E> last(int count) {
-    return new LazyFluentIterable<E>() {
+    return new LazyFluentIterable<>() {
       @Override
       public Iterator<E> iterator() {
-        return new DecoratingIterator<E>(iterable.iterator()) {
+        return new DecoratingIterator<>(iterable.iterator()) {
           private int stopIndex;
           private int totalElementsCount;
           private List<E> list;
@@ -194,11 +187,11 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
    */
   @Override
   public <T> FluentIterable<T> map(Function<? super E, T> function) {
-    return new LazyFluentIterable<T>() {
+    return new LazyFluentIterable<>() {
       @Override
       public Iterator<T> iterator() {
-        return new DecoratingIterator<T>(null) {
-          Iterator<E> oldTypeIterator = iterable.iterator();
+        return new DecoratingIterator<>(null) {
+          final Iterator<E> oldTypeIterator = iterable.iterator();
 
           @Override
           public T computeNext() {
@@ -226,7 +219,7 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
 
   @Override
   public Iterator<E> iterator() {
-    return new DecoratingIterator<E>(iterable.iterator()) {
+    return new DecoratingIterator<>(iterable.iterator()) {
       @Override
       public E computeNext() {
         return fromIterator.hasNext() ? fromIterator.next() : null;

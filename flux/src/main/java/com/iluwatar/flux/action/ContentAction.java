@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,7 +28,7 @@ package com.iluwatar.flux.action;
  */
 public class ContentAction extends Action {
 
-  private Content content;
+  private final Content content;
 
   public ContentAction(Content content) {
     super(ActionType.CONTENT_CHANGED);

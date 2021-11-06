@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,17 @@
 
 package com.iluwatar.observer;
 
-import com.iluwatar.observer.utils.InMemoryAppender;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.InOrder;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.verifyZeroInteractions;
+
+import com.iluwatar.observer.utils.InMemoryAppender;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/27/15 - 11:08 AM
@@ -60,10 +59,10 @@ public class WeatherTest {
    * observer again and verify that there are no more notifications.
    */
   @Test
-  public void testAddRemoveObserver() {
-    final WeatherObserver observer = mock(WeatherObserver.class);
+  void testAddRemoveObserver() {
+    final var observer = mock(WeatherObserver.class);
 
-    final Weather weather = new Weather();
+    final var weather = new Weather();
     weather.addObserver(observer);
     verifyZeroInteractions(observer);
 
@@ -83,14 +82,14 @@ public class WeatherTest {
    * Verify if the weather passes in the order of the {@link WeatherType}s
    */
   @Test
-  public void testTimePasses() {
-    final WeatherObserver observer = mock(WeatherObserver.class);
-    final Weather weather = new Weather();
+  void testTimePasses() {
+    final var observer = mock(WeatherObserver.class);
+    final var weather = new Weather();
     weather.addObserver(observer);
 
-    final InOrder inOrder = inOrder(observer);
-    final WeatherType[] weatherTypes = WeatherType.values();
-    for (int i = 1; i < 20; i++) {
+    final var inOrder = inOrder(observer);
+    final var weatherTypes = WeatherType.values();
+    for (var i = 1; i < 20; i++) {
       weather.timePasses();
       inOrder.verify(observer).update(weatherTypes[i % weatherTypes.length]);
     }

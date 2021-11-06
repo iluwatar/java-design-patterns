@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,8 +38,8 @@ public class LoadBalancer {
   private static int lastServedId;
 
   static {
-    int id = 0;
-    for (int port : new int[]{8080, 8081, 8082, 8083, 8084}) {
+    var id = 0;
+    for (var port : new int[]{8080, 8081, 8082, 8083, 8084}) {
       SERVERS.add(new Server("localhost", port, ++id));
     }
   }
@@ -69,7 +69,7 @@ public class LoadBalancer {
     if (lastServedId >= SERVERS.size()) {
       lastServedId = 0;
     }
-    Server server = SERVERS.get(lastServedId++);
+    var server = SERVERS.get(lastServedId++);
     server.serve(request);
   }
 

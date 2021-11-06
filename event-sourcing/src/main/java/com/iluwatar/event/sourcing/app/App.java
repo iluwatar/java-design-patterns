@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,8 +30,7 @@ import com.iluwatar.event.sourcing.processor.DomainEventProcessor;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
 import java.util.Date;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Event Sourcing : Instead of storing just the current state of the data in a domain, use an
@@ -50,9 +49,8 @@ import org.slf4j.LoggerFactory;
  *
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   /**
    * The constant ACCOUNT OF DAENERYS.
    */

@@ -4,6 +4,7 @@ title: Service Locator
 folder: service-locator
 permalink: /patterns/service-locator/
 categories: Architectural
+language: en
 tags:
  - Game programming
  - Performance
@@ -40,4 +41,4 @@ to a number of services that they don't potentially need.
 
 ## Credits
 
-* [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)
+* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)

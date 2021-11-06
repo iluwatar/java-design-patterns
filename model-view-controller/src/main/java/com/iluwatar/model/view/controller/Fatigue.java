@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,10 +27,11 @@ package com.iluwatar.model.view.controller;
  * Fatigue enumeration.
  */
 public enum Fatigue {
+  ALERT("alert"),
+  TIRED("tired"),
+  SLEEPING("sleeping");
 
-  ALERT("alert"), TIRED("tired"), SLEEPING("sleeping");
-
-  private String title;
+  private final String title;
 
   Fatigue(String title) {
     this.title = title;

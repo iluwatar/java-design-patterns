@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,9 +26,8 @@ package com.iluwatar.dao;
 import java.sql.SQLException;
 import java.util.List;
 import javax.sql.DataSource;
+import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Data Access Object (DAO) is an object that provides an abstract interface to some type of
@@ -42,9 +41,9 @@ import org.slf4j.LoggerFactory;
  * without directly interacting with the data source. The below example demonstrates basic CRUD
  * operations: select, add, update, and delete.
  */
+@Slf4j
 public class App {
   private static final String DB_URL = "jdbc:h2:~/dao";
-  private static Logger log = LoggerFactory.getLogger(App.class);
   private static final String ALL_CUSTOMERS = "customerDao.getAllCustomers(): ";
 
   /**
@@ -86,23 +85,23 @@ public class App {
 
   private static void performOperationsUsing(final CustomerDao customerDao) throws Exception {
     addCustomers(customerDao);
-    log.info(ALL_CUSTOMERS);
+    LOGGER.info(ALL_CUSTOMERS);
     try (var customerStream = customerDao.getAll()) {
-      customerStream.forEach((customer) -> log.info(customer.toString()));
+      customerStream.forEach(customer -> LOGGER.info(customer.toString()));
     }
-    log.info("customerDao.getCustomerById(2): " + customerDao.getById(2));
+    LOGGER.info("customerDao.getCustomerById(2): " + customerDao.getById(2));
     final var customer = new Customer(4, "Dan", "Danson");
     customerDao.add(customer);
-    log.info(ALL_CUSTOMERS + customerDao.getAll());
+    LOGGER.info(ALL_CUSTOMERS + customerDao.getAll());
     customer.setFirstName("Daniel");
     customer.setLastName("Danielson");
     customerDao.update(customer);
-    log.info(ALL_CUSTOMERS);
+    LOGGER.info(ALL_CUSTOMERS);
     try (var customerStream = customerDao.getAll()) {
-      customerStream.forEach((cust) -> log.info(cust.toString()));
+      customerStream.forEach(cust -> LOGGER.info(cust.toString()));
     }
     customerDao.delete(customer);
-    log.info(ALL_CUSTOMERS + customerDao.getAll());
+    LOGGER.info(ALL_CUSTOMERS + customerDao.getAll());
   }
 
   private static void addCustomers(CustomerDao customerDao) throws Exception {

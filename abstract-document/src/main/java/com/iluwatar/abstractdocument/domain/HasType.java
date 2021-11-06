@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,6 @@ import java.util.Optional;
  * HasType trait for static access to 'type' property.
  */
 public interface HasType extends Document {
-
 
   default Optional<String> getType() {
     return Optional.ofNullable((String) get(Property.TYPE.toString()));

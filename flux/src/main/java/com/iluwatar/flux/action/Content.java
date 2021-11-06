@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,18 @@
 
 package com.iluwatar.flux.action;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * Content items.
  */
+@RequiredArgsConstructor
 public enum Content {
 
-  PRODUCTS("Products - This page lists the company's products."), COMPANY(
-      "Company - This page displays information about the company.");
+  PRODUCTS("Products - This page lists the company's products."),
+  COMPANY("Company - This page displays information about the company.");
 
-  private String title;
-
-  Content(String title) {
-    this.title = title;
-  }
+  private final String title;
 
   @Override
   public String toString() {

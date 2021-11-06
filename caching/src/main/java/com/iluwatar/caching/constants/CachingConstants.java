@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,11 +26,27 @@ package com.iluwatar.caching.constants;
 /**
  * Constant class for defining constants.
  */
-public class CachingConstants {
-
+public final class CachingConstants {
+  /**
+   * User Account.
+   */
   public static final String USER_ACCOUNT = "user_accounts";
+  /**
+   * User ID.
+   */
   public static final String USER_ID = "userID";
+  /**
+   * User Name.
+   */
   public static final String USER_NAME = "userName";
+  /**
+   * Additional Info.
+   */
   public static final String ADD_INFO = "additionalInfo";
 
+  /**
+   * Constructor.
+   */
+  private CachingConstants() {
+  }
 }

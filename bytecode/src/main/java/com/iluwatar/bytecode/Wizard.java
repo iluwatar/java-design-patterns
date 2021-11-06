@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,47 +23,26 @@
 
 package com.iluwatar.bytecode;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class represent game objects which properties can be changed by instructions interpreted by
  * virtual machine.
  */
+@AllArgsConstructor
+@Setter
+@Getter
+@Slf4j
 public class Wizard {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
 
   private int health;
-
   private int agility;
   private int wisdom;
-
   private int numberOfPlayedSounds;
   private int numberOfSpawnedParticles;
-
-  public int getHealth() {
-    return health;
-  }
-
-  public void setHealth(int health) {
-    this.health = health;
-  }
-
-  public int getAgility() {
-    return agility;
-  }
-
-  public void setAgility(int agility) {
-    this.agility = agility;
-  }
-
-  public int getWisdom() {
-    return wisdom;
-  }
-
-  public void setWisdom(int wisdom) {
-    this.wisdom = wisdom;
-  }
 
   public void playSound() {
     LOGGER.info("Playing sound");
@@ -73,13 +52,5 @@ public class Wizard {
   public void spawnParticles() {
     LOGGER.info("Spawning particles");
     numberOfSpawnedParticles++;
-  }
-
-  public int getNumberOfPlayedSounds() {
-    return numberOfPlayedSounds;
-  }
-
-  public int getNumberOfSpawnedParticles() {
-    return numberOfSpawnedParticles;
   }
 }

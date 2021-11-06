@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,16 +36,12 @@ public final class ThreadSafeDoubleCheckLocking {
 
   private static volatile ThreadSafeDoubleCheckLocking instance;
 
-  private static boolean flag = true;
-
   /**
    * private constructor to prevent client from instantiating.
    */
   private ThreadSafeDoubleCheckLocking() {
     // to prevent instantiating by Reflection call
-    if (flag) {
-      flag = false;
-    } else {
+    if (instance != null) {
       throw new IllegalStateException("Already initialized.");
     }
   }
@@ -58,7 +54,7 @@ public final class ThreadSafeDoubleCheckLocking {
   public static ThreadSafeDoubleCheckLocking getInstance() {
     // local variable increases performance by 25 percent
     // Joshua Bloch "Effective Java, Second Edition", p. 283-284
-    
+
     var result = instance;
     // Check if singleton instance is initialized.
     // If it is initialized then we can return the instance.

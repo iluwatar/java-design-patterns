@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +23,14 @@
 
 package com.iluwatar.sharding;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * ShardManager with range strategy. This strategy groups related items together in the same shard,
  * and orders them by shard key.
  */
+@Slf4j
 public class RangeShardManager extends ShardManager {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(RangeShardManager.class);
 
   @Override
   public int storeData(Data data) {
@@ -47,11 +45,11 @@ public class RangeShardManager extends ShardManager {
   protected int allocateShard(Data data) {
     var type = data.getType();
     switch (type) {
-      case type1:
+      case TYPE_1:
         return 1;
-      case type2:
+      case TYPE_2:
         return 2;
-      case type3:
+      case TYPE_3:
         return 3;
       default:
         return -1;

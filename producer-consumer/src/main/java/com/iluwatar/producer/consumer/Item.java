@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,9 +28,9 @@ package com.iluwatar.producer.consumer;
  */
 public class Item {
 
-  private String producer;
+  private final String producer;
 
-  private int id;
+  private final int id;
 
   public Item(String producer, int id) {
     this.id = id;

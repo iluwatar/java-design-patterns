@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,12 +38,12 @@ import org.junit.jupiter.api.Test;
 /**
  * Integration test of IQueryService and ICommandService with h2 data
  */
-public class IntegrationTest {
+class IntegrationTest {
 
   private static IQueryService queryService;
 
   @BeforeAll
-  public static void initializeAndPopulateDatabase() {
+  static void initializeAndPopulateDatabase() {
     var commandService = new CommandServiceImpl();
     queryService = new QueryServiceImpl();
 
@@ -67,7 +67,7 @@ public class IntegrationTest {
   }
 
   @Test
-  public void testGetAuthorByUsername() {
+  void testGetAuthorByUsername() {
     var author = queryService.getAuthorByUsername("username1");
     assertEquals("username1", author.getUsername());
     assertEquals("name1", author.getName());
@@ -75,7 +75,7 @@ public class IntegrationTest {
   }
 
   @Test
-  public void testGetUpdatedAuthorByUsername() {
+  void testGetUpdatedAuthorByUsername() {
     var author = queryService.getAuthorByUsername("new_username2");
     var expectedAuthor = new Author("new_name2", "new_email2", "new_username2");
     assertEquals(expectedAuthor, author);
@@ -83,14 +83,14 @@ public class IntegrationTest {
   }
 
   @Test
-  public void testGetBook() {
+  void testGetBook() {
     var book = queryService.getBook("title1");
     assertEquals("title1", book.getTitle());
     assertEquals(10, book.getPrice(), 0.01);
   }
 
   @Test
-  public void testGetAuthorBooks() {
+  void testGetAuthorBooks() {
     var books = queryService.getAuthorBooks("username1");
     assertEquals(2, books.size());
     assertTrue(books.contains(new Book("title1", 10)));
@@ -98,13 +98,13 @@ public class IntegrationTest {
   }
 
   @Test
-  public void testGetAuthorBooksCount() {
+  void testGetAuthorBooksCount() {
     var bookCount = queryService.getAuthorBooksCount("username1");
     assertEquals(new BigInteger("2"), bookCount);
   }
 
   @Test
-  public void testGetAuthorsCount() {
+  void testGetAuthorsCount() {
     var authorCount = queryService.getAuthorsCount();
     assertEquals(new BigInteger("2"), authorCount);
   }

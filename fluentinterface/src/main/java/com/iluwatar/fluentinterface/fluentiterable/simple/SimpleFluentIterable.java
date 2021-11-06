@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,6 +32,7 @@ import java.util.Spliterator;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import lombok.RequiredArgsConstructor;
 
 /**
  * This is a simple implementation of the FluentIterable interface. It evaluates all chained
@@ -39,18 +40,10 @@ import java.util.function.Predicate;
  *
  * @param <E> the type of the objects the iteration is about
  */
+@RequiredArgsConstructor
 public class SimpleFluentIterable<E> implements FluentIterable<E> {
 
   private final Iterable<E> iterable;
-
-  /**
-   * This constructor creates a copy of a given iterable's contents.
-   *
-   * @param iterable the iterable this interface copies to work on.
-   */
-  protected SimpleFluentIterable(Iterable<E> iterable) {
-    this.iterable = iterable;
-  }
 
   /**
    * Filters the contents of Iterable using the given predicate, leaving only the ones which satisfy

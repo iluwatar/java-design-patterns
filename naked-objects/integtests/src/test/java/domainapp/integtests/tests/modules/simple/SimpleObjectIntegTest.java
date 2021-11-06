@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,18 +26,16 @@ package domainapp.integtests.tests.modules.simple;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+import domainapp.dom.modules.simple.SimpleObject;
+import domainapp.fixture.scenarios.RecreateSimpleObjects;
+import domainapp.integtests.tests.SimpleAppIntegTest;
 import javax.inject.Inject;
-
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.fixturescripts.FixtureScripts;
 import org.apache.isis.applib.services.wrapper.DisabledException;
 import org.apache.isis.applib.services.wrapper.InvalidException;
 import org.junit.Before;
 import org.junit.Test;
-
-import domainapp.dom.modules.simple.SimpleObject;
-import domainapp.fixture.scenarios.RecreateSimpleObjects;
-import domainapp.integtests.tests.SimpleAppIntegTest;
 
 /**
  * Test Fixtures with Simple Objects
@@ -52,11 +50,11 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
   RecreateSimpleObjects fs;
   SimpleObject simpleObjectPojo;
   SimpleObject simpleObjectWrapped;
-  
+
   private static final String NEW_NAME = "new name";
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     // given
     fs = new RecreateSimpleObjects().setNumber(1);
     fixtureScripts.runFixtureScript(fs, null);
@@ -66,17 +64,17 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
     assertNotNull(simpleObjectPojo);
     simpleObjectWrapped = wrap(simpleObjectPojo);
   }
-  
+
   @Test
-  public void testNameAccessible() throws Exception {
-    // when
-    final String name = simpleObjectWrapped.getName();
+  public void testNameAccessible() {
+    /* when */
+    final var name = simpleObjectWrapped.getName();
     // then
     assertEquals(fs.names.get(0), name);
   }
-  
+
   @Test
-  public void testNameCannotBeUpdatedDirectly() throws Exception {
+  public void testNameCannotBeUpdatedDirectly() {
 
     // expect
     expectedExceptions.expect(DisabledException.class);
@@ -84,9 +82,9 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
     // when
     simpleObjectWrapped.setName(NEW_NAME);
   }
-  
+
   @Test
-  public void testUpdateName() throws Exception {
+  public void testUpdateName() {
 
     // when
     simpleObjectWrapped.updateName(NEW_NAME);
@@ -94,9 +92,9 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
     // then
     assertEquals(NEW_NAME, simpleObjectWrapped.getName());
   }
-  
+
   @Test
-  public void testUpdateNameFailsValidation() throws Exception {
+  public void testUpdateNameFailsValidation() {
 
     // expect
     expectedExceptions.expect(InvalidException.class);
@@ -105,15 +103,15 @@ public class SimpleObjectIntegTest extends SimpleAppIntegTest {
     // when
     simpleObjectWrapped.updateName(NEW_NAME + "!");
   }
-  
+
   @Test
-  public void testInterpolatesName() throws Exception {
+  public void testInterpolatesName() {
 
     // given
-    final String name = simpleObjectWrapped.getName();
+    final var name = simpleObjectWrapped.getName();
 
     // when
-    final String title = container.titleOf(simpleObjectWrapped);
+    final var title = container.titleOf(simpleObjectWrapped);
 
     // then
     assertEquals("Object: " + name, title);

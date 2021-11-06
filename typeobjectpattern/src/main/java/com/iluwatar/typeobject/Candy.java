@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,22 +23,29 @@
 
 package com.iluwatar.typeobject;
 
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * The Candy class has a field type, which represents the 'type' of candy. The objects are created
  * by parsing the candy.json file.
  */
+@Getter(AccessLevel.PACKAGE)
 public class Candy {
 
   enum Type {
-    crushableCandy,
-    rewardFruit
+    CRUSHABLE_CANDY,
+    REWARD_FRUIT
   }
 
   String name;
   Candy parent;
   String parentName;
+
+  @Setter
   private int points;
-  private Type type;
+  private final Type type;
 
   Candy(String name, String parentName, Type type, int points) {
     this.name = name;
@@ -48,15 +55,4 @@ public class Candy {
     this.parentName = parentName;
   }
 
-  int getPoints() {
-    return this.points;
-  }
-
-  void setPoints(int a) {
-    this.points = a;
-  }
-
-  Type getType() {
-    return this.type;
-  }
 }

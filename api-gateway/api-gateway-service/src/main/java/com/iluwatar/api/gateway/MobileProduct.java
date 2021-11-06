@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,20 +23,17 @@
 
 package com.iluwatar.api.gateway;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Encapsulates all of the information that mobile client needs to display a product.
  */
+@Getter
+@Setter
 public class MobileProduct {
   /**
    * The price of the product.
    */
   private String price;
-
-  public String getPrice() {
-    return price;
-  }
-
-  public void setPrice(String price) {
-    this.price = price;
-  }
 }

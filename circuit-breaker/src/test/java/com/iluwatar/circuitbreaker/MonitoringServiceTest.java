@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,33 +30,50 @@ import org.junit.jupiter.api.Test;
 /**
  * Monitoring Service test
  */
-public class MonitoringServiceTest {
+class MonitoringServiceTest {
 
   //long timeout, int failureThreshold, long retryTimePeriod
   @Test
-  public void testLocalResponse() {
-    var monitoringService = new MonitoringService();
+  void testLocalResponse() {
+    var monitoringService = new MonitoringService(null,null);
     var response = monitoringService.localResourceResponse();
     assertEquals(response, "Local Service is working");
   }
 
   @Test
-  public void testRemoteResponse() {
-    var monitoringService = new MonitoringService();
-    var circuitBreaker = new CircuitBreaker(1, 1, 100);
+  void testDelayedRemoteResponseSuccess() {
+    var delayedService = new DelayedRemoteService(System.nanoTime()-2*1000*1000*1000, 2);
+    var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000,
+        1,
+        2 * 1000 * 1000 * 1000);
+
+    var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,null);
     //Set time in past to make the server work
-    var serverStartTime = System.nanoTime() / 10;
-    var response = monitoringService.remoteResourceResponse(circuitBreaker, serverStartTime);
+    var response = monitoringService.delayedServiceResponse();
     assertEquals(response, "Delayed service is working");
   }
 
   @Test
-  public void testRemoteResponse2() {
-    var monitoringService = new MonitoringService();
-    var circuitBreaker = new CircuitBreaker(1, 1, 100);
+  void testDelayedRemoteResponseFailure() {
+    var delayedService = new DelayedRemoteService(System.nanoTime(), 2);
+    var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000,
+        1,
+        2 * 1000 * 1000 * 1000);
+    var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,null);
     //Set time as current time as initially server fails
-    var serverStartTime = System.nanoTime();
-    var response = monitoringService.remoteResourceResponse(circuitBreaker, serverStartTime);
-    assertEquals(response, "Remote service not responding");
+    var response = monitoringService.delayedServiceResponse();
+    assertEquals(response, "Delayed service is down");
+  }
+
+  @Test
+  void testQuickRemoteServiceResponse() {
+    var delayedService = new QuickRemoteService();
+    var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000,
+        1,
+        2 * 1000 * 1000 * 1000);
+    var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,null);
+    //Set time as current time as initially server fails
+    var response = monitoringService.delayedServiceResponse();
+    assertEquals(response, "Quick Service is working");
   }
 }

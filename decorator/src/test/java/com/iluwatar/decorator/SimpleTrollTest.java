@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,22 +38,22 @@ import org.slf4j.LoggerFactory;
 /**
  * Tests for {@link SimpleTroll}
  */
-public class SimpleTrollTest {
+class SimpleTrollTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(SimpleTroll.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
   @Test
-  public void testTrollActions() {
+  void testTrollActions() {
     final var troll = new SimpleTroll();
     assertEquals(10, troll.getAttackPower());
 
@@ -68,9 +68,9 @@ public class SimpleTrollTest {
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
-    public InMemoryAppender(Class clazz) {
+    InMemoryAppender(Class clazz) {
       ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
       start();
     }
@@ -80,11 +80,11 @@ public class SimpleTrollTest {
       log.add(eventObject);
     }
 
-    public String getLastMessage() {
+    String getLastMessage() {
       return log.get(log.size() - 1).getMessage();
     }
 
-    public int getLogSize() {
+    int getLogSize() {
       return log.size();
     }
   }

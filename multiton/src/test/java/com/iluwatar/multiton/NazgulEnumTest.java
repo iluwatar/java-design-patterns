@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,10 @@
 
 package com.iluwatar.multiton;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 /**
  * @author anthony
@@ -34,18 +35,17 @@ import org.junit.jupiter.api.Test;
 class NazgulEnumTest {
 
   /**
-   * Check that multiple calls to any one of the instances in the multiton returns 
+   * Check that multiple calls to any one of the instances in the multiton returns
    * only that one particular instance, and do that for all instances in multiton
    */
-  @Test
-  public void testTheSameObjectIsReturnedWithMultipleCalls() {
-    for (int i = 0; i < NazgulEnum.values().length; i++) {
-      NazgulEnum instance1 = NazgulEnum.values()[i];
-      NazgulEnum instance2 = NazgulEnum.values()[i];
-      NazgulEnum instance3 = NazgulEnum.values()[i];
-      assertSame(instance1, instance2);
-      assertSame(instance1, instance3);
-      assertSame(instance2, instance3);
-    }
+  @ParameterizedTest
+  @EnumSource
+  void testTheSameObjectIsReturnedWithMultipleCalls(NazgulEnum nazgulEnum) {
+    var instance1 = nazgulEnum;
+    var instance2 = nazgulEnum;
+    var instance3 = nazgulEnum;
+    assertSame(instance1, instance2);
+    assertSame(instance1, instance3);
+    assertSame(instance2, instance3);
   }
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,6 +26,7 @@ package com.iluwatar.featuretoggle.pattern.propertiesversion;
 import com.iluwatar.featuretoggle.pattern.Service;
 import com.iluwatar.featuretoggle.user.User;
 import java.util.Properties;
+import lombok.Getter;
 
 /**
  * This example of the Feature Toogle pattern is less dynamic version than {@link
@@ -40,9 +41,15 @@ import java.util.Properties;
  * @see com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersion
  * @see User
  */
+@Getter
 public class PropertiesFeatureToggleVersion implements Service {
 
-  private boolean isEnhanced;
+  /**
+   * True if the welcome message to be returned is the enhanced venison or not. For
+   * this service it will see the value of the boolean that was set in the constructor {@link
+   * PropertiesFeatureToggleVersion#PropertiesFeatureToggleVersion(Properties)}
+   */
+  private final boolean enhanced;
 
   /**
    * Creates an instance of {@link PropertiesFeatureToggleVersion} using the passed {@link
@@ -59,7 +66,7 @@ public class PropertiesFeatureToggleVersion implements Service {
       throw new IllegalArgumentException("No Properties Provided.");
     } else {
       try {
-        isEnhanced = (boolean) properties.get("enhancedWelcome");
+        enhanced = (boolean) properties.get("enhancedWelcome");
       } catch (Exception e) {
         throw new IllegalArgumentException("Invalid Enhancement Settings Provided.");
       }
@@ -86,17 +93,5 @@ public class PropertiesFeatureToggleVersion implements Service {
     }
 
     return "Welcome to the application.";
-  }
-
-  /**
-   * Method that checks if the welcome message to be returned is the enhanced venison or not. For
-   * this service it will see the value of the boolean that was set in the constructor {@link
-   * PropertiesFeatureToggleVersion#PropertiesFeatureToggleVersion(Properties)}
-   *
-   * @return Boolean value {@code true} if enhanced.
-   */
-  @Override
-  public boolean isEnhanced() {
-    return isEnhanced;
   }
 }

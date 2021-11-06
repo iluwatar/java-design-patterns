@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -71,14 +71,14 @@ public class Data {
   }
 
   enum DataType {
-    type1, type2, type3
+    TYPE_1, TYPE_2, TYPE_3
   }
 
   @Override
   public String toString() {
     return "Data {" + "key="
-      + key + ", value='" + value
-      + '\'' + ", type=" + type + '}';
+        + key + ", value='" + value
+        + '\'' + ", type=" + type + '}';
   }
 }
 

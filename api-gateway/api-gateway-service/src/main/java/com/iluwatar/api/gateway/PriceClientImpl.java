@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,14 +27,19 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+
 
 /**
  * An adapter to communicate with the Price microservice.
  */
+@Slf4j
 @Component
 public class PriceClientImpl implements PriceClient {
+
   /**
    * Makes a simple HTTP Get request to the Price microservice.
    *
@@ -49,12 +54,29 @@ public class PriceClientImpl implements PriceClient {
         .build();
 
     try {
+      LOGGER.info("Sending request to fetch price info");
       var httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
+      logResponse(httpResponse);
       return httpResponse.body();
-    } catch (IOException | InterruptedException e) {
-      e.printStackTrace();
+    } catch (IOException e) {
+      LOGGER.error("Failure occurred while getting price info", e);
+    } catch (InterruptedException e) {
+      LOGGER.error("Failure occurred while getting price info", e);
+      Thread.currentThread().interrupt();
     }
 
     return null;
+  }
+
+  private void logResponse(HttpResponse<String> httpResponse) {
+    if (isSuccessResponse(httpResponse.statusCode())) {
+      LOGGER.info("Price info received successfully");
+    } else {
+      LOGGER.warn("Price info request failed");
+    }
+  }
+
+  private boolean isSuccessResponse(int responseCode) {
+    return responseCode >= 200 && responseCode <= 299;
   }
 }

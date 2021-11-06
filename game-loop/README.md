@@ -4,38 +4,252 @@ title: Game Loop
 folder:  game-loop  
 permalink: /patterns/game-loop/  
 categories: Behavioral
+language: en
 tags:  
  - Game programming
 ---  
   
-## Intent  
-A game loop runs continuously during gameplay. Each turn of the loop, it processes user input without blocking, updates the game state, and renders the game. It tracks the passage of time to control the rate of gameplay.
+## Intent
+  
+A game loop runs continuously during gameplay. Each turn of the loop, it processes user input 
+without blocking, updates the game state, and renders the game. It tracks the passage of time to 
+control the rate of gameplay.
 
-This pattern decouple the progression of game time from user input and processor speed.
+This pattern decouples progression of game time from user input and processor speed.
 
-## Applicability  
+## Applicability
+  
 This pattern is used in every game engine. 
 
 ## Explanation
-Game loop is the main process of all the game rendering threads. It drives input process, internal status update, rendering, AI and all the other processes. 
 
-There are a lot of implementations of game loop:
+Real world example
 
-- Frame-based game loop
+> Game loop is the main process of all the game rendering threads. It's present in all modern games. 
+> It drives input process, internal status update, rendering, AI and all the other processes.
 
-Frame-based game loop is the easiest implementation. The loop always keeps spinning for the following three processes: processInput, update and render. The problem with it is you have no control over how fast the game runs. On a fast machine, that loop will spin so fast users won’t be able to see what’s going on. On a slow machine, the game will crawl. If you have a part of the game that’s content-heavy or does more AI or physics, the game will actually play slower there.
+In plain words
 
-- Variable-step game loop
+> Game Loop pattern ensures that game time progresses in equal speed in all different hardware 
+> setups. 
 
-The variable-step game loop chooses a time step to advance based on how much real time passed since the last frame. The longer the frame takes, the bigger steps the game takes. It always keeps up with real time because it will take bigger and bigger steps to get there.
+Wikipedia says
 
-- Fixed-step game loop
+> The central component of any game, from a programming standpoint, is the game loop. The game loop 
+> allows the game to run smoothly regardless of a user's input, or lack thereof.
 
-For fixed-step game loop, a certain amount of real time has elapsed since the last turn of the game loop. This is how much game time need to be simulated for the game’s “now” to catch up with the player’s.
+**Programmatic Example**
+
+Let's start with something simple. Here's `Bullet` class. Bullets will move in our game. For 
+demonstration purposes it's enough that it has 1-dimensional position.
+
+```java
+public class Bullet {
+
+  private float position;
+
+  public Bullet() {
+    position = 0.0f;
+  }
+
+  public float getPosition() {
+    return position;
+  }
+
+  public void setPosition(float position) {
+    this.position = position;
+  }
+}
+```
+
+`GameController` is responsible for moving objects in the game, including the aforementioned bullet.
+
+```java
+public class GameController {
+
+  protected final Bullet bullet;
+
+  public GameController() {
+    bullet = new Bullet();
+  }
+
+  public void moveBullet(float offset) {
+    var currentPosition = bullet.getPosition();
+    bullet.setPosition(currentPosition + offset);
+  }
+
+  public float getBulletPosition() {
+    return bullet.getPosition();
+  }
+}
+```
+
+Now we introduce the game loop. Or actually in this demo we have 3 different game loops. Let's see
+the base class `GameLoop` first.
+
+```java
+public enum GameStatus {
+
+  RUNNING, STOPPED
+}
+
+public abstract class GameLoop {
+
+  protected final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+  protected volatile GameStatus status;
+
+  protected GameController controller;
+
+  private Thread gameThread;
+
+  public GameLoop() {
+    controller = new GameController();
+    status = GameStatus.STOPPED;
+  }
+
+  public void run() {
+    status = GameStatus.RUNNING;
+    gameThread = new Thread(this::processGameLoop);
+    gameThread.start();
+  }
+
+  public void stop() {
+    status = GameStatus.STOPPED;
+  }
+
+  public boolean isGameRunning() {
+    return status == GameStatus.RUNNING;
+  }
+
+  protected void processInput() {
+    try {
+      var lag = new Random().nextInt(200) + 50;
+      Thread.sleep(lag);
+    } catch (InterruptedException e) {
+      logger.error(e.getMessage());
+    }
+  }
+
+  protected void render() {
+    var position = controller.getBulletPosition();
+    logger.info("Current bullet position: " + position);
+  }
+
+  protected abstract void processGameLoop();
+}
+```
+
+Here's the first game loop implementation, `FrameBasedGameLoop`:
+
+```java
+public class FrameBasedGameLoop extends GameLoop {
+
+  @Override
+  protected void processGameLoop() {
+    while (isGameRunning()) {
+      processInput();
+      update();
+      render();
+    }
+  }
+
+  protected void update() {
+    controller.moveBullet(0.5f);
+  }
+}
+```
+
+Finally, we show all the game loops in action.
+
+```java
+    try {
+      LOGGER.info("Start frame-based game loop:");
+      var frameBasedGameLoop = new FrameBasedGameLoop();
+      frameBasedGameLoop.run();
+      Thread.sleep(GAME_LOOP_DURATION_TIME);
+      frameBasedGameLoop.stop();
+      LOGGER.info("Stop frame-based game loop.");
+
+      LOGGER.info("Start variable-step game loop:");
+      var variableStepGameLoop = new VariableStepGameLoop();
+      variableStepGameLoop.run();
+      Thread.sleep(GAME_LOOP_DURATION_TIME);
+      variableStepGameLoop.stop();
+      LOGGER.info("Stop variable-step game loop.");
+
+      LOGGER.info("Start fixed-step game loop:");
+      var fixedStepGameLoop = new FixedStepGameLoop();
+      fixedStepGameLoop.run();
+      Thread.sleep(GAME_LOOP_DURATION_TIME);
+      fixedStepGameLoop.stop();
+      LOGGER.info("Stop variable-step game loop.");
+      
+    } catch (InterruptedException e) {
+      LOGGER.error(e.getMessage());
+    }
+```
+
+Program output:
+
+```java
+Start frame-based game loop:
+Current bullet position: 0.5
+Current bullet position: 1.0
+Current bullet position: 1.5
+Current bullet position: 2.0
+Current bullet position: 2.5
+Current bullet position: 3.0
+Current bullet position: 3.5
+Current bullet position: 4.0
+Current bullet position: 4.5
+Current bullet position: 5.0
+Current bullet position: 5.5
+Current bullet position: 6.0
+Stop frame-based game loop.
+Start variable-step game loop:
+Current bullet position: 6.5
+Current bullet position: 0.038
+Current bullet position: 0.084
+Current bullet position: 0.145
+Current bullet position: 0.1805
+Current bullet position: 0.28
+Current bullet position: 0.32
+Current bullet position: 0.42549998
+Current bullet position: 0.52849996
+Current bullet position: 0.57799995
+Current bullet position: 0.63199997
+Current bullet position: 0.672
+Current bullet position: 0.778
+Current bullet position: 0.848
+Current bullet position: 0.8955
+Current bullet position: 0.9635
+Stop variable-step game loop.
+Start fixed-step game loop:
+Current bullet position: 0.0
+Current bullet position: 1.086
+Current bullet position: 0.059999995
+Current bullet position: 0.12999998
+Current bullet position: 0.24000004
+Current bullet position: 0.33999994
+Current bullet position: 0.36999992
+Current bullet position: 0.43999985
+Current bullet position: 0.5399998
+Current bullet position: 0.65999967
+Current bullet position: 0.68999964
+Current bullet position: 0.7299996
+Current bullet position: 0.79999954
+Current bullet position: 0.89999944
+Current bullet position: 0.98999935
+Stop variable-step game loop.
+```
 
 ## Class diagram
+
 ![alt text](./etc/game-loop.urm.png "Game Loop pattern class diagram")
 
-## Credits  
+## Credits
   
 * [Game Programming Patterns - Game Loop](http://gameprogrammingpatterns.com/game-loop.html)
+* [Game Programming Patterns](https://www.amazon.com/gp/product/0990582906/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0990582906&linkId=1289749a703b3fe0e24cd8d604d7c40b)
+* [Game Engine Architecture, Third Edition](https://www.amazon.com/gp/product/1138035459/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1138035459&linkId=94502746617211bc40e0ef49d29333ac)

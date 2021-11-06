@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,8 +23,7 @@
 
 package com.iluwatar.circuitbreaker;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>
@@ -36,17 +35,18 @@ import org.slf4j.LoggerFactory;
  * operational again, so that we can use it
  * </p>
  * <p>
- * In this example, the circuit breaker pattern is demonstrated by using two services: {@link
- * MonitoringService} and {@link DelayedService}. The monitoring service is responsible for calling
- * two services: a local service and a remote service {@link DelayedService} , and by using the
- * circuit breaker construction we ensure that if the call to remote service is going to fail, we
- * are going to save our resources and not make the function call at all, by wrapping our call to
- * the remote service in the circuit breaker object.
+ * In this example, the circuit breaker pattern is demonstrated by using three services: {@link
+ * DelayedRemoteService}, {@link QuickRemoteService} and {@link MonitoringService}. The monitoring
+ * service is responsible for calling three services: a local service, a quick remove service
+ * {@link QuickRemoteService} and a delayed remote service {@link DelayedRemoteService} , and by
+ * using the circuit breaker construction we ensure that if the call to remote service is going to
+ * fail, we are going to save our resources and not make the function call at all, by wrapping our
+ * call to the remote services in the {@link DefaultCircuitBreaker} implementation object.
  * </p>
  * <p>
- * This works as follows: The {@link CircuitBreaker} object can be in one of three states:
- * <b>Open</b>, <b>Closed</b> and <b>Half-Open</b>, which represents the real world circuits. If the
- * state is closed (initial), we assume everything is alright and perform the function call.
+ * This works as follows: The {@link DefaultCircuitBreaker} object can be in one of three states:
+ * <b>Open</b>, <b>Closed</b> and <b>Half-Open</b>, which represents the real world circuits. If
+ * the state is closed (initial), we assume everything is alright and perform the function call.
  * However, every time the call fails, we note it and once it crosses a threshold, we set the state
  * to Open, preventing any further calls to the remote server. Then, after a certain retry period
  * (during which we expect thee service to recover), we make another call to the remote server and
@@ -54,31 +54,58 @@ import org.slf4j.LoggerFactory;
  * recovers, it goes back to the closed state and the cycle continues.
  * </p>
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
    *
    * @param args command line args
    */
-  @SuppressWarnings("squid:S2189")
   public static void main(String[] args) {
-    //Create an object of monitoring service which makes both local and remote calls
-    var obj = new MonitoringService();
-    //Set the circuit Breaker parameters
-    var circuitBreaker = new CircuitBreaker(3000, 1, 2000 * 1000 * 1000);
+
     var serverStartTime = System.nanoTime();
-    while (true) {
-      LOGGER.info(obj.localResourceResponse());
-      LOGGER.info(obj.remoteResourceResponse(circuitBreaker, serverStartTime));
-      LOGGER.info(circuitBreaker.getState());
-      try {
-        Thread.sleep(5 * 1000);
-      } catch (InterruptedException e) {
-        LOGGER.error(e.getMessage());
-      }
+
+    var delayedService = new DelayedRemoteService(serverStartTime, 5);
+    var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000, 2,
+        2000 * 1000 * 1000);
+
+    var quickService = new QuickRemoteService();
+    var quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, 2,
+        2000 * 1000 * 1000);
+
+    //Create an object of monitoring service which makes both local and remote calls
+    var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,
+        quickServiceCircuitBreaker);
+
+    //Fetch response from local resource
+    LOGGER.info(monitoringService.localResourceResponse());
+
+    //Fetch response from delayed service 2 times, to meet the failure threshold
+    LOGGER.info(monitoringService.delayedServiceResponse());
+    LOGGER.info(monitoringService.delayedServiceResponse());
+
+    //Fetch current state of delayed service circuit breaker after crossing failure threshold limit
+    //which is OPEN now
+    LOGGER.info(delayedServiceCircuitBreaker.getState());
+
+    //Meanwhile, the delayed service is down, fetch response from the healthy quick service
+    LOGGER.info(monitoringService.quickServiceResponse());
+    LOGGER.info(quickServiceCircuitBreaker.getState());
+
+    //Wait for the delayed service to become responsive
+    try {
+      LOGGER.info("Waiting for delayed service to become responsive");
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
+    //Check the state of delayed circuit breaker, should be HALF_OPEN
+    LOGGER.info(delayedServiceCircuitBreaker.getState());
+
+    //Fetch response from delayed service, which should be healthy by now
+    LOGGER.info(monitoringService.delayedServiceResponse());
+    //As successful response is fetched, it should be CLOSED again.
+    LOGGER.info(delayedServiceCircuitBreaker.getState());
   }
 }

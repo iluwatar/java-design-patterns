@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,16 +29,15 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class implements the Event Queue pattern.
  *
  * @author mkuprivecz
  */
+@Slf4j
 public class Audio {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Audio.class);
   private static final Audio INSTANCE = new Audio();
 
   private static final int MAX_PENDING = 16;
@@ -49,7 +48,7 @@ public class Audio {
 
   private volatile Thread updateThread = null;
 
-  private PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
+  private final PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
 
   // Visible only for testing purposes
   Audio() {

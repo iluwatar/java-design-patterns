@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,25 +23,21 @@
 
 package com.iluwatar.twin;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class represents a Ball which extends {@link GameItem} and implements the logic for ball
  * item, like move and draw. It hold a reference of {@link BallThread} to delegate the suspend and
  * resume task.
  */
+@Slf4j
 public class BallItem extends GameItem {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(BallItem.class);
 
   private boolean isSuspended;
 
+  @Setter
   private BallThread twin;
-
-  public void setTwin(BallThread twin) {
-    this.twin = twin;
-  }
 
   @Override
   public void doDraw() {

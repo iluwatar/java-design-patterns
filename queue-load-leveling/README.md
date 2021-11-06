@@ -4,9 +4,11 @@ title: Queue based load leveling
 folder: queue-load-leveling
 permalink: /patterns/queue-load-leveling/
 categories: Concurrency
+language: en
 tags:
  - Decoupling
  - Performance
+ - Cloud distributed
 ---
 
 ## Intent
@@ -32,4 +34,4 @@ for both the task and the service.
 
 ## Credits
 
-* [Microsoft Cloud Design Patterns: Queue-Based Load Leveling Pattern](https://msdn.microsoft.com/en-us/library/dn589783.aspx)
+* [Queue-Based Load Leveling pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/queue-based-load-leveling)

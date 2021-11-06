@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,17 +25,16 @@ package com.iluwatar.leaderelection;
 
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Abstract class of all the instance implementation classes.
  */
+@Slf4j
 public abstract class AbstractInstance implements Instance, Runnable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(AbstractInstance.class);
-
   protected static final int HEARTBEAT_INTERVAL = 5000;
+  private static final String INSTANCE = "Instance ";
 
   protected MessageManager messageManager;
   protected Queue<Message> messageQueue;
@@ -106,27 +105,27 @@ public abstract class AbstractInstance implements Instance, Runnable {
   private void processMessage(Message message) {
     switch (message.getType()) {
       case ELECTION:
-        LOGGER.info("Instance " + localId + " - Election Message handling...");
+        LOGGER.info(INSTANCE + localId + " - Election Message handling...");
         handleElectionMessage(message);
         break;
       case LEADER:
-        LOGGER.info("Instance " + localId + " - Leader Message handling...");
+        LOGGER.info(INSTANCE + localId + " - Leader Message handling...");
         handleLeaderMessage(message);
         break;
       case HEARTBEAT:
-        LOGGER.info("Instance " + localId + " - Heartbeat Message handling...");
+        LOGGER.info(INSTANCE + localId + " - Heartbeat Message handling...");
         handleHeartbeatMessage(message);
         break;
       case ELECTION_INVOKE:
-        LOGGER.info("Instance " + localId + " - Election Invoke Message handling...");
+        LOGGER.info(INSTANCE + localId + " - Election Invoke Message handling...");
         handleElectionInvokeMessage();
         break;
       case LEADER_INVOKE:
-        LOGGER.info("Instance " + localId + " - Leader Invoke Message handling...");
+        LOGGER.info(INSTANCE + localId + " - Leader Invoke Message handling...");
         handleLeaderInvokeMessage();
         break;
       case HEARTBEAT_INVOKE:
-        LOGGER.info("Instance " + localId + " - Heartbeat Invoke Message handling...");
+        LOGGER.info(INSTANCE + localId + " - Heartbeat Invoke Message handling...");
         handleHeartbeatInvokeMessage();
         break;
       default:

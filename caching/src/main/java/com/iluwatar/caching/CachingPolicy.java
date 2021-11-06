@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,19 +23,34 @@
 
 package com.iluwatar.caching;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 /**
  * Enum class containing the four caching strategies implemented in the pattern.
  */
+@AllArgsConstructor
+@Getter
 public enum CachingPolicy {
-  THROUGH("through"), AROUND("around"), BEHIND("behind"), ASIDE("aside");
+  /**
+   * Through.
+   */
+  THROUGH("through"),
+  /**
+   * AROUND.
+   */
+  AROUND("around"),
+  /**
+   * BEHIND.
+   */
+  BEHIND("behind"),
+  /**
+   * ASIDE.
+   */
+  ASIDE("aside");
 
-  private String policy;
-
-  CachingPolicy(String policy) {
-    this.policy = policy;
-  }
-
-  public String getPolicy() {
-    return policy;
-  }
+  /**
+   * Policy value.
+   */
+  private final String policy;
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,14 +23,20 @@
 
 package com.iluwatar.combinator;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
-public class CombinatorAppTest {
+class CombinatorAppTest {
 
+  /**
+   * Issue: Add at least one assertion to this test case.
+   * <p>
+   * Solution: Inserted assertion to check whether the execution of the main method in {@link CombinatorApp#main(String[])}
+   * throws an exception.
+   */
   @Test
-  public void main() {
-    CombinatorApp.main(new String[]{});
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> CombinatorApp.main(new String[]{}));
   }
 }

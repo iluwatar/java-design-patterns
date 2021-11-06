@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     The MIT License
-    Copyright © 2014-2019 Ilkka Seppälä
+    Copyright © 2014-2021 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,15 @@
     THE SOFTWARE.
 
 -->
-<!DOCTYPE hibernate-configuration SYSTEM
-"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
-
+<!DOCTYPE hibernate-configuration SYSTEM "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
-        <property name="connection.driver_class">org.h2.Driver</property>
-        <property name="connection.url">jdbc:h2:mem:test</property>
-        <property name="connection.username">sa</property>
-        <property name="hbm2ddl.auto">create</property>
-        <mapping class="com.iluwatar.cqrs.domain.model.Author" />
-        <mapping class="com.iluwatar.cqrs.domain.model.Book" />
-    </session-factory>
+  <session-factory>
+    <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+    <property name="connection.driver_class">org.h2.Driver</property>
+    <property name="connection.url">jdbc:h2:mem:test</property>
+    <property name="connection.username">sa</property>
+    <property name="hbm2ddl.auto">create</property>
+    <mapping class="com.iluwatar.cqrs.domain.model.Author" />
+    <mapping class="com.iluwatar.cqrs.domain.model.Book" />
+  </session-factory>
 </hibernate-configuration>

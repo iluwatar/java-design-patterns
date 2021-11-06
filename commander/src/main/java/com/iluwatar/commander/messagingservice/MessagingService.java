@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,8 +25,8 @@ package com.iluwatar.commander.messagingservice;
 
 import com.iluwatar.commander.Service;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The MessagingService is used to send messages to user regarding their order and payment status.
@@ -34,21 +34,19 @@ import org.slf4j.LoggerFactory;
  * is added to the {@link com.iluwatar.commander.employeehandle.EmployeeDatabase}.
  */
 
+@Slf4j
 public class MessagingService extends Service {
-  private static final Logger LOGGER = LoggerFactory.getLogger(MessagingService.class);
 
   enum MessageToSend {
-    PaymentFail, PaymentTrying, PaymentSuccessful
+    PAYMENT_FAIL,
+    PAYMENT_TRYING,
+    PAYMENT_SUCCESSFUL
   }
 
-  class MessageRequest {
-    String reqId;
-    MessageToSend msg;
-
-    MessageRequest(String reqId, MessageToSend msg) {
-      this.reqId = reqId;
-      this.msg = msg;
-    }
+  @RequiredArgsConstructor
+  static class MessageRequest {
+    final String reqId;
+    final MessageToSend msg;
   }
 
   public MessagingService(MessagingDatabase db, Exception... exc) {
@@ -63,11 +61,11 @@ public class MessagingService extends Service {
     var id = generateId();
     MessageToSend msg;
     if (messageToSend == 0) {
-      msg = MessageToSend.PaymentFail;
+      msg = MessageToSend.PAYMENT_FAIL;
     } else if (messageToSend == 1) {
-      msg = MessageToSend.PaymentTrying;
+      msg = MessageToSend.PAYMENT_TRYING;
     } else { //messageToSend == 2
-      msg = MessageToSend.PaymentSuccessful;
+      msg = MessageToSend.PAYMENT_SUCCESSFUL;
     }
     var req = new MessageRequest(id, msg);
     return updateDb(req);
@@ -84,10 +82,10 @@ public class MessagingService extends Service {
   }
 
   String sendMessage(MessageToSend m) {
-    if (m.equals(MessageToSend.PaymentSuccessful)) {
+    if (m.equals(MessageToSend.PAYMENT_SUCCESSFUL)) {
       return "Msg: Your order has been placed and paid for successfully!"
           + " Thank you for shopping with us!";
-    } else if (m.equals(MessageToSend.PaymentTrying)) {
+    } else if (m.equals(MessageToSend.PAYMENT_TRYING)) {
       return "Msg: There was an error in your payment process,"
           + " we are working on it and will return back to you shortly."
           + " Meanwhile, your order has been placed and will be shipped.";

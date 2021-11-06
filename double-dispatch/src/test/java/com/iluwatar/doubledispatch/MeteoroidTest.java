@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class MeteoroidTest extends CollisionTest<Meteoroid> {
+class MeteoroidTest extends CollisionTest<Meteoroid> {
 
   @Override
   final Meteoroid getTestedObject() {
@@ -44,7 +44,7 @@ public class MeteoroidTest extends CollisionTest<Meteoroid> {
    * Test the constructor parameters
    */
   @Test
-  public void testConstructor() {
+  void testConstructor() {
     final var meteoroid = new Meteoroid(1, 2, 3, 4);
     assertEquals(1, meteoroid.getLeft());
     assertEquals(2, meteoroid.getTop());
@@ -59,7 +59,7 @@ public class MeteoroidTest extends CollisionTest<Meteoroid> {
    * Test what happens we collide with an asteroid
    */
   @Test
-  public void testCollideFlamingAsteroid() {
+  void testCollideFlamingAsteroid() {
     testCollision(
         new FlamingAsteroid(1, 1, 3, 4),
         false, true,
@@ -71,7 +71,7 @@ public class MeteoroidTest extends CollisionTest<Meteoroid> {
    * Test what happens we collide with an meteoroid
    */
   @Test
-  public void testCollideMeteoroid() {
+  void testCollideMeteoroid() {
     testCollision(
         new Meteoroid(1, 1, 3, 4),
         false, false,
@@ -83,7 +83,7 @@ public class MeteoroidTest extends CollisionTest<Meteoroid> {
    * Test what happens we collide with ISS
    */
   @Test
-  public void testCollideSpaceStationIss() {
+  void testCollideSpaceStationIss() {
     testCollision(
         new SpaceStationIss(1, 1, 3, 4),
         true, false,
@@ -95,7 +95,7 @@ public class MeteoroidTest extends CollisionTest<Meteoroid> {
    * Test what happens we collide with MIR
    */
   @Test
-  public void testCollideSpaceStationMir() {
+  void testCollideSpaceStationMir() {
     testCollision(
         new SpaceStationMir(1, 1, 3, 4),
         true, false,

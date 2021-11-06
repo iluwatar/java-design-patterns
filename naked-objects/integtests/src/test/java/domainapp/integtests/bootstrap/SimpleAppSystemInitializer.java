@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -40,7 +40,7 @@ public final class SimpleAppSystemInitializer {
    * Init test system
    */
   public static void initIsft() {
-    IsisSystemForTest isft = IsisSystemForTest.getElseNull();
+    var isft = IsisSystemForTest.getElseNull();
     if (isft == null) {
       isft = new SimpleAppSystemBuilder().build().setUpSystem();
       IsisSystemForTest.set(isft);
@@ -58,8 +58,7 @@ public final class SimpleAppSystemInitializer {
     }
 
     private static IsisConfiguration testConfiguration() {
-      final IsisConfigurationForJdoIntegTests testConfiguration =
-          new IsisConfigurationForJdoIntegTests();
+      final var testConfiguration = new IsisConfigurationForJdoIntegTests();
 
       testConfiguration.addRegisterEntitiesPackagePrefix("domainapp.dom.modules");
       return testConfiguration;

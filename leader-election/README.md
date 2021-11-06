@@ -4,12 +4,13 @@ title: Leader Election
 folder: leader-election
 permalink: /patterns/leader-election/
 categories: Behavioral
+language: en
 tags:
  - Cloud distributed
 ---
 
 ## Intent
-Leader Election pattern is commonly used in cloud system design. It can help to ensure that task instances selec the leader instance correctly and do not conflict with each other, cause contention for shared resources, or inadvertently interfere with the work that other task instances are performing.
+Leader Election pattern is commonly used in cloud system design. It can help to ensure that task instances select the leader instance correctly and do not conflict with each other, cause contention for shared resources, or inadvertently interfere with the work that other task instances are performing.
 
 ## Class diagram
 ![alt text](./etc/leader-election.urm.png "Leader Election pattern class diagram")
@@ -30,4 +31,4 @@ Do not use this pattern when
 
 ## Credits
 
-* [ Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/dn568104(v=pandp.10))
+* [Leader Election pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/leader-election)

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +26,7 @@ package com.iluwatar.doublechecked.locking;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Double Checked Locking is a concurrency design pattern used to reduce the overhead of acquiring a
@@ -40,9 +39,8 @@ import org.slf4j.LoggerFactory;
  * locking to add item to inventory. In this method, the thread which gets the lock first adds the
  * item.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -63,6 +61,7 @@ public class App {
       executorService.awaitTermination(5, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
       LOGGER.error("Error waiting for ExecutorService shutdown");
+      Thread.currentThread().interrupt();
     }
   }
 }

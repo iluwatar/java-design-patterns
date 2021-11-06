@@ -4,6 +4,7 @@ title: EIP Aggregator
 folder: eip-aggregator
 permalink: /patterns/eip-aggregator/
 categories: Integration
+language: en
 tags:
  - Enterprise Integration Pattern
 ---
@@ -29,3 +30,4 @@ Use the Aggregator pattern when
 
 * [Gregor Hohpe, Bobby Woolf - Enterprise Integration Patterns](http://www.enterpriseintegrationpatterns.com/patterns/messaging/Aggregator.html)
 * [Apache Camel - Documentation](http://camel.apache.org/aggregator2.html)
+* [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://www.amazon.com/gp/product/0321200683/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321200683&linkCode=as2&tag=javadesignpat-20&linkId=122e0cff74eedd004cc81a3ecfa623cf)

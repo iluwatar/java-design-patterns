@@ -4,6 +4,7 @@ title: Saga
 folder: saga
 permalink: /patterns/saga/
 categories: Concurrency
+language: en
 tags:
  - Cloud distributed
 ---
@@ -46,3 +47,4 @@ Use the Saga pattern, if:
 ## Credits
 
 - [Pattern: Saga](https://microservices.io/patterns/data/saga.html)
+- [Saga distributed transactions pattern](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/saga/saga)

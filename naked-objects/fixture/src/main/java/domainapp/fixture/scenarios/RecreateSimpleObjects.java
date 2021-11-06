@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,6 @@ import com.google.common.collect.Lists;
 import domainapp.dom.modules.simple.SimpleObject;
 import domainapp.fixture.modules.simple.SimpleObjectCreate;
 import domainapp.fixture.modules.simple.SimpleObjectsTearDown;
-import java.util.Collections;
 import java.util.List;
 import org.apache.isis.applib.fixturescripts.FixtureScript;
 
@@ -37,8 +36,18 @@ import org.apache.isis.applib.fixturescripts.FixtureScript;
  */
 public class RecreateSimpleObjects extends FixtureScript {
 
-  public final List<String> names = Collections.unmodifiableList(List.of("Foo", "Bar", "Baz",
-      "Frodo", "Froyo", "Fizz", "Bip", "Bop", "Bang", "Boo"));
+  public final List<String> names = List.of(
+      "Foo",
+      "Bar",
+      "Baz",
+      "Frodo",
+      "Froyo",
+      "Fizz",
+      "Bip",
+      "Bop",
+      "Bang",
+      "Boo"
+  );
 
   // region > number (optional input)
   private Integer number;
@@ -77,7 +86,7 @@ public class RecreateSimpleObjects extends FixtureScript {
   protected void execute(final ExecutionContext ec) {
 
     // defaults
-    final int paramNumber = defaultParam("number", ec, 3);
+    final var paramNumber = defaultParam("number", ec, 3);
 
     // validate
     if (paramNumber < 0 || paramNumber > names.size()) {
@@ -90,8 +99,8 @@ public class RecreateSimpleObjects extends FixtureScript {
     //
     ec.executeChild(this, new SimpleObjectsTearDown());
 
-    for (int i = 0; i < paramNumber; i++) {
-      final SimpleObjectCreate fs = new SimpleObjectCreate().setName(names.get(i));
+    for (var i = 0; i < paramNumber; i++) {
+      final var fs = new SimpleObjectCreate().setName(names.get(i));
       ec.executeChild(this, fs.getName(), fs);
       simpleObjects.add(fs.getSimpleObject());
     }

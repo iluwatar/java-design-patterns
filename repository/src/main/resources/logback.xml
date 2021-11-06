@@ -1,7 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     The MIT License
-    Copyright © 2014-2019 Ilkka Seppälä
+    Copyright © 2014-2021 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -23,30 +24,26 @@
 
 -->
 <configuration>
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>repository.log</file>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>repository-%d.log</fileNamePattern>
-            <maxHistory>5</maxHistory>
-        </rollingPolicy>
-        <encoder>
-            <pattern>%-5p [%d{ISO8601,UTC}] %c: %m%n</pattern>
-        </encoder>
-    </appender>
-
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
-            <pattern>%-5p [%d{ISO8601,UTC}] %c: %m%n</pattern>
-        </encoder>
-    </appender>
-
-    <logger name="com.iluwatar" additivity="false">
-        <level value="DEBUG"/>
-        <appender-ref ref="STDOUT"/>
-    </logger>
-
-    <root level="WARN">
-        <appender-ref ref="FILE"/>
-    </root>
-
+  <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <file>repository.log</file>
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>repository-%d.log</fileNamePattern>
+      <maxHistory>5</maxHistory>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%-5p [%d{ISO8601,UTC}] %c: %m%n</pattern>
+    </encoder>
+  </appender>
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%-5p [%d{ISO8601,UTC}] %c: %m%n</pattern>
+    </encoder>
+  </appender>
+  <logger name="com.iluwatar" additivity="false">
+    <level value="DEBUG" />
+    <appender-ref ref="STDOUT" />
+  </logger>
+  <root level="WARN">
+    <appender-ref ref="FILE" />
+  </root>
 </configuration>

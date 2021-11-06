@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,34 +35,34 @@ import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 /**
  * ConfigureForDosVisitor test class
  */
-public class ConfigureForDosVisitorTest {
+class ConfigureForDosVisitorTest {
 
-  private TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForDosVisitor.class);
-  
+  private final TestLogger logger = TestLoggerFactory.getTestLogger(ConfigureForDosVisitor.class);
+
   @Test
-  public void testVisitForZoom() {    
+  void testVisitForZoom() {
     var conDos = new ConfigureForDosVisitor();
     var zoom = new Zoom();
-    
+
     conDos.visit(zoom);
-    
+
     assertThat(logger.getLoggingEvents())
         .extracting("level", "message")
         .contains(tuple(INFO, zoom + " used with Dos configurator."));
   }
-  
+
   @Test
-  public void testVisitForHayes() {
+  void testVisitForHayes() {
     var conDos = new ConfigureForDosVisitor();
     var hayes = new Hayes();
-    
+
     conDos.visit(hayes);
-    
+
     assertThat(logger.getLoggingEvents())
         .extracting("level", "message")
         .contains(tuple(INFO, hayes + " used with Dos configurator."));
   }
-  
+
   @AfterEach
   public void clearLoggers() {
     TestLoggerFactory.clear();

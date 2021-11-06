@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -50,9 +50,9 @@ import org.apache.isis.applib.util.ObjectContracts;
     strategy = javax.jdo.annotations.IdGeneratorStrategy.IDENTITY, column = "id")
 @javax.jdo.annotations.Version(strategy = VersionStrategy.VERSION_NUMBER, column = "version")
 @javax.jdo.annotations.Queries({
-    @javax.jdo.annotations.Query(name = "find", language = "JDOQL", value = "SELECT "
+    @javax.jdo.annotations.Query(name = "find", value = "SELECT "
         + "FROM domainapp.dom.modules.simple.SimpleObject "),
-    @javax.jdo.annotations.Query(name = "findByName", language = "JDOQL", value = "SELECT "
+    @javax.jdo.annotations.Query(name = "findByName", value = "SELECT "
         + "FROM domainapp.dom.modules.simple.SimpleObject " + "WHERE name.indexOf(:name) >= 0 ")})
 @javax.jdo.annotations.Unique(name = "SimpleObject_name_UNQ", members = {"name"})
 @DomainObject

@@ -5,32 +5,52 @@ package com.iluwatar.circuitbreaker {
     + App()
     + main(args : String[]) {static}
   }
-  class CircuitBreaker {
+  interface CircuitBreaker {
+    + attemptRequest() : String {abstract}
+    + getState() : String {abstract}
+    + recordFailure(String) {abstract}
+    + recordSuccess() {abstract}
+    + setState(State) {abstract}
+  }
+  class DefaultCircuitBreaker {
     ~ failureCount : int
     - failureThreshold : int
     - futureTime : long
+    - lastFailureResponse : String
     ~ lastFailureTime : long
     - retryTimePeriod : long
+    - service : RemoteService
     - state : State
     - timeout : long
-    ~ CircuitBreaker(timeout : long, failureThreshold : int, retryTimePeriod : long)
-    + call(serviceToCall : String, serverStartTime : long) : String
+    ~ DefaultCircuitBreaker(serviceToCall : RemoteService, timeout : long, failureThreshold : int, retryTimePeriod : long)
+    + attemptRequest() : String
+    # evaluateState()
     + getState() : String
-    - recordFailure()
-    - reset()
-    # setState()
-    + setStateForBypass(state : State)
+    + recordFailure(response : String)
+    + recordSuccess()
+    + setState(state : State)
   }
-  class DelayedService {
+  class DelayedRemoteService {
     - delay : int
-    + DelayedService()
-    + DelayedService(delay : int)
-    + response(serverStartTime : long) : String
+    - serverStartTime : long
+    + DelayedRemoteService()
+    + DelayedRemoteService(serverStartTime : long, delay : int)
+    + call() : String
   }
   class MonitoringService {
-    + MonitoringService()
+    - delayedService : CircuitBreaker
+    - quickService : CircuitBreaker
+    + MonitoringService(delayedService : CircuitBreaker, quickService : CircuitBreaker)
+    + delayedServiceResponse() : String
     + localResourceResponse() : String
-    + remoteResourceResponse(circuitBreaker : CircuitBreaker, serverStartTime : long) : String
+    + quickServiceResponse() : String
+  }
+  class QuickRemoteService {
+    + QuickRemoteService()
+    + call() : String
+  }
+  interface RemoteService {
+    + call() : String {abstract}
   }
   enum State {
     + CLOSED {static}
@@ -40,5 +60,10 @@ package com.iluwatar.circuitbreaker {
     + values() : State[] {static}
   }
 }
-CircuitBreaker -->  "-state" State
+DefaultCircuitBreaker -->  "-state" State
+MonitoringService -->  "-delayedService" CircuitBreaker
+DefaultCircuitBreaker -->  "-service" RemoteService
+DefaultCircuitBreaker ..|> CircuitBreaker 
+DelayedRemoteService ..|> RemoteService 
+QuickRemoteService ..|> RemoteService 
 @enduml

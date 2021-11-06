@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,27 +23,23 @@
 
 package com.iluwatar.balking;
 
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * In Balking Design Pattern if an object’s method is invoked when it is in an inappropriate state,
  * then the method will return without doing anything. Objects that use this pattern are generally
  * only in a state that is prone to balking temporarily but for an unknown amount of time
  *
- * <p>In this example implementation WashingMachine is an object that has two states in which it
- * can be: ENABLED and WASHING. If the machine is ENABLED the state is changed into WASHING that any
- * other thread can't invoke this action on this and then do the job. On the other hand if it have
- * been already washing and any other thread execute wash() it can't do that once again and returns
- * doing nothing.
+ * <p>In this example implementation, {@link WashingMachine} is an object that has two states in
+ * which it can be: ENABLED and WASHING. If the machine is ENABLED, the state changes to WASHING
+ * using a thread-safe method. On the other hand, if it already has been washing and any other
+ * thread executes {@link WashingMachine#wash()} it won't do that and returns without doing
+ * anything.
  */
-
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Entry Point.
@@ -58,10 +54,12 @@ public class App {
     }
     executorService.shutdown();
     try {
-      executorService.awaitTermination(10, TimeUnit.SECONDS);
+      if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
+        executorService.shutdownNow();
+      }
     } catch (InterruptedException ie) {
       LOGGER.error("ERROR: Waiting on executor service shutdown!");
+      Thread.currentThread().interrupt();
     }
   }
-
 }

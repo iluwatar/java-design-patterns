@@ -4,6 +4,7 @@ title: Type-Object
 folder: typeobjectpattern
 permalink: /patterns/typeobjectpattern/
 categories: Behavioral
+language: en
 tags:
  - Game programming
  - Extensibility
@@ -30,5 +31,5 @@ This pattern can be used when:
  
 ## Credits
 
-* [Game Programming Patterns/Type Object](http://gameprogrammingpatterns.com/type-object.html) by Robert Nystrom
-* [http://www.cs.sjsu.edu/~pearce/modules/patterns/analysis/top.htm]
+* [Game Programming Patterns - Type Object](http://gameprogrammingpatterns.com/type-object.html)
+* [Types as Objects Pattern](http://www.cs.sjsu.edu/~pearce/modules/patterns/analysis/top.htm)

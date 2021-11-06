@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,9 +23,7 @@
 
 package com.iluwatar.abstractfactory;
 
-import com.iluwatar.abstractfactory.App.FactoryMaker.KingdomType;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Abstract Factory pattern provides a way to encapsulate a group of individual factories that
@@ -39,86 +37,15 @@ import org.slf4j.LoggerFactory;
  *
  * <p>The essence of the Abstract Factory pattern is a factory interface ({@link KingdomFactory})
  * and its implementations ( {@link ElfKingdomFactory}, {@link OrcKingdomFactory}). The example uses
- * both concrete implementations to create a king, a castle and an army.
+ * both concrete implementations to create a king, a castle, and an army.
  */
-public class App {
+@Slf4j
+public class App implements Runnable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  private final Kingdom kingdom = new Kingdom();
 
-  private King king;
-  private Castle castle;
-  private Army army;
-
-  /**
-   * Creates kingdom.
-   */
-  public void createKingdom(final KingdomFactory factory) {
-    setKing(factory.createKing());
-    setCastle(factory.createCastle());
-    setArmy(factory.createArmy());
-  }
-
-  King getKing(final KingdomFactory factory) {
-    return factory.createKing();
-  }
-
-  public King getKing() {
-    return king;
-  }
-
-  private void setKing(final King king) {
-    this.king = king;
-  }
-
-  Castle getCastle(final KingdomFactory factory) {
-    return factory.createCastle();
-  }
-
-  public Castle getCastle() {
-    return castle;
-  }
-
-  private void setCastle(final Castle castle) {
-    this.castle = castle;
-  }
-
-  Army getArmy(final KingdomFactory factory) {
-    return factory.createArmy();
-  }
-
-  public Army getArmy() {
-    return army;
-  }
-
-  private void setArmy(final Army army) {
-    this.army = army;
-  }
-
-  /**
-   * The factory of kingdom factories.
-   */
-  public static class FactoryMaker {
-
-    /**
-     * Enumeration for the different types of Kingdoms.
-     */
-    public enum KingdomType {
-      ELF, ORC
-    }
-
-    /**
-     * The factory method to create KingdomFactory concrete objects.
-     */
-    public static KingdomFactory makeFactory(KingdomType type) {
-      switch (type) {
-        case ELF:
-          return new ElfKingdomFactory();
-        case ORC:
-          return new OrcKingdomFactory();
-        default:
-          throw new IllegalArgumentException("KingdomType not supported.");
-      }
-    }
+  public Kingdom getKingdom() {
+    return kingdom;
   }
 
   /**
@@ -127,19 +54,33 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-
     var app = new App();
+    app.run();
+  }
 
-    LOGGER.info("Elf Kingdom");
-    app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
-    LOGGER.info(app.getArmy().getDescription());
-    LOGGER.info(app.getCastle().getDescription());
-    LOGGER.info(app.getKing().getDescription());
+  @Override
+  public void run() {
+    LOGGER.info("elf kingdom");
+    createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
+    LOGGER.info(kingdom.getArmy().getDescription());
+    LOGGER.info(kingdom.getCastle().getDescription());
+    LOGGER.info(kingdom.getKing().getDescription());
 
-    LOGGER.info("Orc Kingdom");
-    app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
-    LOGGER.info(app.getArmy().getDescription());
-    LOGGER.info(app.getCastle().getDescription());
-    LOGGER.info(app.getKing().getDescription());
+    LOGGER.info("orc kingdom");
+    createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
+    LOGGER.info(kingdom.getArmy().getDescription());
+    LOGGER.info(kingdom.getCastle().getDescription());
+    LOGGER.info(kingdom.getKing().getDescription());
+  }
+
+  /**
+   * Creates kingdom.
+   * @param kingdomType type of Kingdom
+   */
+  public void createKingdom(final Kingdom.FactoryMaker.KingdomType kingdomType) {
+    final KingdomFactory kingdomFactory = Kingdom.FactoryMaker.makeFactory(kingdomType);
+    kingdom.setKing(kingdomFactory.createKing());
+    kingdom.setCastle(kingdomFactory.createCastle());
+    kingdom.setArmy(kingdomFactory.createArmy());
   }
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,17 +23,19 @@
 
 package com.iluwatar.layers.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.iluwatar.layers.dto.CakeInfo;
 import com.iluwatar.layers.dto.CakeLayerInfo;
 import com.iluwatar.layers.dto.CakeToppingInfo;
 import com.iluwatar.layers.exception.CakeBakingException;
-import com.iluwatar.layers.service.CakeBakingServiceImpl;
-import org.junit.jupiter.api.Test;
-
 import java.util.Collections;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/15/15 - 9:55 PM
@@ -43,7 +45,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CakeBakingServiceImplTest {
 
   @Test
-  public void testLayers() {
+  void testLayers() {
     final var service = new CakeBakingServiceImpl();
 
     final var initialLayers = service.getAvailableLayers();
@@ -66,7 +68,7 @@ public class CakeBakingServiceImplTest {
   }
 
   @Test
-  public void testToppings() {
+  void testToppings() {
     final var service = new CakeBakingServiceImpl();
 
     final var initialToppings = service.getAvailableToppings();
@@ -89,7 +91,7 @@ public class CakeBakingServiceImplTest {
   }
 
   @Test
-  public void testBakeCakes() throws CakeBakingException {
+  void testBakeCakes() throws CakeBakingException {
     final var service = new CakeBakingServiceImpl();
 
     final var initialCakes = service.getAllCakes();
@@ -126,7 +128,7 @@ public class CakeBakingServiceImplTest {
   }
 
   @Test
-  public void testBakeCakeMissingTopping() {
+  void testBakeCakeMissingTopping() {
     final var service = new CakeBakingServiceImpl();
 
     final var layer1 = new CakeLayerInfo("Layer1", 1000);
@@ -141,7 +143,7 @@ public class CakeBakingServiceImplTest {
   }
 
   @Test
-  public void testBakeCakeMissingLayer() {
+  void testBakeCakeMissingLayer() {
     final var service = new CakeBakingServiceImpl();
 
     final var initialCakes = service.getAllCakes();
@@ -161,7 +163,7 @@ public class CakeBakingServiceImplTest {
   }
 
   @Test
-  public void testBakeCakesUsedLayer() throws CakeBakingException {
+  void testBakeCakesUsedLayer() throws CakeBakingException {
     final var service = new CakeBakingServiceImpl();
 
     final var initialCakes = service.getAllCakes();

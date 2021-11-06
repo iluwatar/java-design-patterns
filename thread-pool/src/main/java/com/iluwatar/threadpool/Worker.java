@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,16 +23,14 @@
 
 package com.iluwatar.threadpool;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Worker implements {@link Runnable} and thus can be executed by {@link
  * java.util.concurrent.ExecutorService}.
  */
+@Slf4j
 public class Worker implements Runnable {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
   private final Task task;
 

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,9 @@
 
 package com.iluwatar.spatialpartition;
 
-import java.util.Hashtable;
-import java.util.Random;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.security.SecureRandom;
+import java.util.HashMap;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * <p>The idea behind the <b>Spatial Partition</b> design pattern is to enable efficient location
@@ -44,11 +43,11 @@ import org.slf4j.LoggerFactory;
  * <b>{@link Rect}</b> class to define the boundary of the quadtree. We use an abstract class
  * <b>{@link Point}</b>
  * with x and y coordinate fields and also an id field so that it can easily be put and looked up in
- * the hashtable. This class has abstract methods to define how the object moves (move()), when to
+ * the hashmap. This class has abstract methods to define how the object moves (move()), when to
  * check for collision with any object (touches(obj)) and how to handle collision
  * (handleCollision(obj)), and will be extended by any object whose position has to be kept track of
  * in the quadtree. The <b>{@link SpatialPartitionGeneric}</b> abstract class has 2 fields - a
- * hashtable containing all objects (we use hashtable for faster lookups, insertion and deletion)
+ * hashmap containing all objects (we use hashmap for faster lookups, insertion and deletion)
  * and a quadtree, and contains an abstract method which defines how to handle interactions between
  * objects using the quadtree.</p>
  * <p>Using the quadtree data structure will reduce the time complexity of finding the objects
@@ -57,10 +56,11 @@ import org.slf4j.LoggerFactory;
  * speed of the game.</p>
  */
 
+@Slf4j
 public class App {
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  private static final String BUBBLE = "Bubble ";
 
-  static void noSpatialPartition(int numOfMovements, Hashtable<Integer, Bubble> bubbles) {
+  static void noSpatialPartition(int numOfMovements, HashMap<Integer, Bubble> bubbles) {
     //all bubbles have to be checked for collision for all bubbles
     var bubblesToCheck = bubbles.values();
 
@@ -76,13 +76,13 @@ public class App {
       numOfMovements--;
     }
     //bubbles not popped
-    bubbles.keySet().stream().map(key -> "Bubble " + key + " not popped").forEach(LOGGER::info);
+    bubbles.keySet().stream().map(key -> BUBBLE + key + " not popped").forEach(LOGGER::info);
   }
 
   static void withSpatialPartition(
-      int height, int width, int numOfMovements, Hashtable<Integer, Bubble> bubbles) {
+      int height, int width, int numOfMovements, HashMap<Integer, Bubble> bubbles) {
     //creating quadtree
-    var rect = new Rect(width / 2, height / 2, width, height);
+    var rect = new Rect(width / 2D, height / 2D, width, height);
     var quadTree = new QuadTree(rect, 4);
 
     //will run numOfMovement times or till all bubbles have popped
@@ -99,7 +99,7 @@ public class App {
       numOfMovements--;
     }
     //bubbles not popped
-    bubbles.keySet().stream().map(key -> "Bubble " + key + " not popped").forEach(LOGGER::info);
+    bubbles.keySet().stream().map(key -> BUBBLE + key + " not popped").forEach(LOGGER::info);
   }
 
   /**
@@ -109,15 +109,15 @@ public class App {
    */
 
   public static void main(String[] args) {
-    var bubbles1 = new Hashtable<Integer, Bubble>();
-    var bubbles2 = new Hashtable<Integer, Bubble>();
-    var rand = new Random();
+    var bubbles1 = new HashMap<Integer, Bubble>();
+    var bubbles2 = new HashMap<Integer, Bubble>();
+    var rand = new SecureRandom();
     for (int i = 0; i < 10000; i++) {
       var b = new Bubble(rand.nextInt(300), rand.nextInt(300), i, rand.nextInt(2) + 1);
       bubbles1.put(i, b);
       bubbles2.put(i, b);
-      LOGGER.info("Bubble " + i + " with radius " + b.radius
-          + " added at (" + b.coordinateX + "," + b.coordinateY + ")");
+      LOGGER.info(BUBBLE, i, " with radius ", b.radius,
+          " added at (", b.coordinateX, ",", b.coordinateY + ")");
     }
 
     var start1 = System.currentTimeMillis();
@@ -126,8 +126,8 @@ public class App {
     var start2 = System.currentTimeMillis();
     App.withSpatialPartition(300, 300, 20, bubbles2);
     var end2 = System.currentTimeMillis();
-    LOGGER.info("Without spatial partition takes " + (end1 - start1) + "ms");
-    LOGGER.info("With spatial partition takes " + (end2 - start2) + "ms");
+    LOGGER.info("Without spatial partition takes ", (end1 - start1), "ms");
+    LOGGER.info("With spatial partition takes ", (end2 - start2), "ms");
   }
 }
 

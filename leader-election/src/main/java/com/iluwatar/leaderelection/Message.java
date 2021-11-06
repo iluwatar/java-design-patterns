@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,55 +23,23 @@
 
 package com.iluwatar.leaderelection;
 
-import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Message used to transport data between instances.
  */
+@Setter
+@Getter
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 public class Message {
 
   private MessageType type;
-
   private String content;
 
-  public Message() {
-  }
-
-  public Message(MessageType type, String content) {
-    this.type = type;
-    this.content = content;
-  }
-
-  public MessageType getType() {
-    return type;
-  }
-
-  public void setType(MessageType type) {
-    this.type = type;
-  }
-
-  public String getContent() {
-    return content;
-  }
-
-  public void setContent(String content) {
-    this.content = content;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    var message = (Message) o;
-    return type == message.type && Objects.equals(content, message.content);
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(type, content);
-  }
 }

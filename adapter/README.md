@@ -4,6 +4,7 @@ title: Adapter
 folder: adapter
 permalink: /patterns/adapter/
 categories: Structural
+language: en
 tags:
  - Gang of Four
 ---
@@ -12,9 +13,8 @@ tags:
 Wrapper
 
 ## Intent
-Convert the interface of a class into another interface the clients
-expect. Adapter lets classes work together that couldn't otherwise because of
-incompatible interfaces.
+Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that 
+couldn't otherwise because of incompatible interfaces.
 
 ## Explanation
 
@@ -43,8 +43,8 @@ public interface RowingBoat {
   void row();
 }
 
+@Slf4j
 public class FishingBoat {
-  private static final Logger LOGGER = LoggerFactory.getLogger(FishingBoat.class);
   public void sail() {
     LOGGER.info("The fishing boat is sailing");
   }
@@ -56,7 +56,7 @@ And captain expects an implementation of `RowingBoat` interface to be able to mo
 ```java
 public class Captain {
 
-  private RowingBoat rowingBoat;
+  private final RowingBoat rowingBoat;
   // default constructor and setter for rowingBoat
   public Captain(RowingBoat rowingBoat) {
     this.rowingBoat = rowingBoat;
@@ -71,11 +71,10 @@ public class Captain {
 Now let's say the pirates are coming and our captain needs to escape but there is only fishing boat available. We need to create an adapter that allows the captain to operate the fishing boat with his rowing boat skills.
 
 ```java
+@Slf4j
 public class FishingBoatAdapter implements RowingBoat {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(FishingBoatAdapter.class);
-
-  private FishingBoat boat;
+  private final FishingBoat boat;
 
   public FishingBoatAdapter() {
     boat = new FishingBoat();
@@ -106,7 +105,13 @@ Use the Adapter pattern when
 * you need to use several existing subclasses, but it's impractical to adapt their interface by subclassing every one. An object adapter can adapt the interface of its parent class.
 * most of the applications using third party libraries use adapters as a middle layer between the application and the 3rd party library to decouple the application from the library. If another library has to be used only an adapter for the new library is required without having to change the application code.
 
-## Consequences:
+## Tutorials
+
+* [Dzone](https://dzone.com/articles/adapter-design-pattern-in-java)
+* [Refactoring Guru](https://refactoring.guru/design-patterns/adapter/java/example)
+* [Baeldung](https://www.baeldung.com/java-adapter-pattern)
+
+## Consequences
 Class and object adapters have different trade-offs. A class adapter
 
 *	adapts Adaptee to Target by committing to a concrete Adaptee class. As a consequence, a class adapter won’t work when we want to adapt a class and all its subclasses.
@@ -119,7 +124,7 @@ An object adapter
 *	makes it harder to override Adaptee behavior. It will require subclassing Adaptee and making Adapter refer to the subclass rather than the Adaptee itself.
 
 
-## Real world examples
+## Known uses
 
 * [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList%28T...%29)
 * [java.util.Collections#list()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#list-java.util.Enumeration-)
@@ -129,5 +134,7 @@ An object adapter
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
-* [J2EE Design Patterns](http://www.amazon.com/J2EE-Design-Patterns-William-Crawford/dp/0596004273/ref=sr_1_2)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
+* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
+* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+* [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)

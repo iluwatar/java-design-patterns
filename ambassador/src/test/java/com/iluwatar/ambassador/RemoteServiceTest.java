@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,7 +37,7 @@ class RemoteServiceTest {
   void testFailedCall() {
     var remoteService = new RemoteService(new StaticRandomProvider(0.21));
     var result = remoteService.doRemoteFunction(10);
-    assertEquals(RemoteServiceInterface.FAILURE, result);
+    assertEquals(RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue(), result);
   }
 
   @Test
@@ -48,7 +48,7 @@ class RemoteServiceTest {
   }
 
   private static class StaticRandomProvider implements RandomProvider {
-    private double value;
+    private final double value;
 
     StaticRandomProvider(double value) {
       this.value = value;

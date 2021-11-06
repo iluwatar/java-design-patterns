@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,23 +24,37 @@
 package com.iluwatar.bytecode;
 
 import java.util.Stack;
+import java.util.concurrent.ThreadLocalRandom;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation of virtual machine.
  */
+@Getter
+@Slf4j
 public class VirtualMachine {
 
-  private Stack<Integer> stack = new Stack<>();
+  private final Stack<Integer> stack = new Stack<>();
 
-  private Wizard[] wizards = new Wizard[2];
+  private final Wizard[] wizards = new Wizard[2];
 
   /**
-   * Constructor.
+   * No-args constructor.
    */
   public VirtualMachine() {
-    for (var i = 0; i < wizards.length; i++) {
-      wizards[i] = new Wizard();
-    }
+    wizards[0] = new Wizard(randomInt(3, 32), randomInt(3, 32), randomInt(3, 32),
+        0, 0);
+    wizards[1] = new Wizard(randomInt(3, 32), randomInt(3, 32), randomInt(3, 32),
+        0, 0);
+  }
+
+  /**
+   * Constructor taking the wizards as arguments.
+   */
+  public VirtualMachine(Wizard wizard1, Wizard wizard2) {
+    wizards[0] = wizard1;
+    wizards[1] = wizard2;
   }
 
   /**
@@ -55,6 +69,7 @@ public class VirtualMachine {
         case LITERAL:
           // Read the next byte from the bytecode.
           int value = bytecode[++i];
+          // Push the next value to stack
           stack.push(value);
           break;
         case SET_AGILITY:
@@ -105,11 +120,8 @@ public class VirtualMachine {
         default:
           throw new IllegalArgumentException("Invalid instruction value");
       }
+      LOGGER.info("Executed " + instruction.name() + ", Stack contains " + getStack());
     }
-  }
-
-  public Stack<Integer> getStack() {
-    return stack;
   }
 
   public void setHealth(int wizard, int amount) {
@@ -136,7 +148,7 @@ public class VirtualMachine {
     return wizards[wizard].getAgility();
   }
 
-  public Wizard[] getWizards() {
-    return wizards;
+  private int randomInt(int min, int max) {
+    return ThreadLocalRandom.current().nextInt(min, max + 1);
   }
 }

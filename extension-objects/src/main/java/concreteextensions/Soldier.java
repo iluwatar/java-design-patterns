@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,24 +24,24 @@
 package concreteextensions;
 
 import abstractextensions.SoldierExtension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import units.SoldierUnit;
 
 /**
  * Class defining Soldier.
  */
+@Getter
+@RequiredArgsConstructor
+@Slf4j
 public class Soldier implements SoldierExtension {
-  private static final Logger LOGGER = LoggerFactory.getLogger(Soldier.class);
 
-  private SoldierUnit unit;
-
-  public Soldier(SoldierUnit soldierUnit) {
-    this.unit = soldierUnit;
-  }
+  private final SoldierUnit unit;
 
   @Override
   public void soldierReady() {
-    LOGGER.info("[Solider] " + unit.getName() + "  is ready!");
+    LOGGER.info("[Soldier] " + unit.getName() + " is ready!");
   }
+
 }

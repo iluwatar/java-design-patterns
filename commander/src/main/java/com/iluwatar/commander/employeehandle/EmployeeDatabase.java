@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,18 +26,16 @@ package com.iluwatar.commander.employeehandle;
 import com.iluwatar.commander.Database;
 import com.iluwatar.commander.Order;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
-import java.util.Hashtable;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The Employee Database is where orders which have encountered some issue(s) are added.
  */
 
 public class EmployeeDatabase extends Database<Order> {
-  private Hashtable<String, Order> data;
-
-  public EmployeeDatabase() {
-    this.data = new Hashtable<>();
-  }
+  private final Map<String, Order> data = new HashMap<>();
 
   @Override
   public Order add(Order o) throws DatabaseUnavailableException {

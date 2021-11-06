@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@ package com.iluwatar.event.sourcing.event;
 
 import com.iluwatar.event.sourcing.domain.Account;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
+import lombok.Getter;
 
 /**
  * This is the class that implements account create event. Holds the necessary info for an account
@@ -33,6 +34,7 @@ import com.iluwatar.event.sourcing.state.AccountAggregate;
  *
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
+@Getter
 public class AccountCreateEvent extends DomainEvent {
 
   private final int accountNo;
@@ -50,24 +52,6 @@ public class AccountCreateEvent extends DomainEvent {
     super(sequenceId, createdTime, "AccountCreateEvent");
     this.accountNo = accountNo;
     this.owner = owner;
-  }
-
-  /**
-   * Gets account no.
-   *
-   * @return the account no
-   */
-  public int getAccountNo() {
-    return accountNo;
-  }
-
-  /**
-   * Gets owner.
-   *
-   * @return the owner
-   */
-  public String getOwner() {
-    return owner;
   }
 
   @Override

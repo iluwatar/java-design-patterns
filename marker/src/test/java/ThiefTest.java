@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,17 +21,19 @@
  * THE SOFTWARE.
  */
 
-import org.junit.jupiter.api.Test;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import org.junit.jupiter.api.Test;
 
 /**
  * Thief test
  */
 public class ThiefTest {
   @Test
-  public void testThief() {
-    Thief thief = new Thief();
-    assertFalse(thief instanceof Permission);
+  void testThief() {
+    var thief = new Thief();
+    assertThat(thief, not(instanceOf(Permission.class)));
   }
 }

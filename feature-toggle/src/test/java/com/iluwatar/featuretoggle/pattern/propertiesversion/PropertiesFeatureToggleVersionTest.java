@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,17 +35,17 @@ import org.junit.jupiter.api.Test;
 /**
  * Test Properties Toggle
  */
-public class PropertiesFeatureToggleVersionTest {
+class PropertiesFeatureToggleVersionTest {
 
   @Test
-  public void testNullPropertiesPassed() {
+  void testNullPropertiesPassed() {
     assertThrows(IllegalArgumentException.class, () -> {
       new PropertiesFeatureToggleVersion(null);
     });
   }
 
   @Test
-  public void testNonBooleanProperty() {
+  void testNonBooleanProperty() {
     assertThrows(IllegalArgumentException.class, () -> {
       final var properties = new Properties();
       properties.setProperty("enhancedWelcome", "Something");
@@ -54,7 +54,7 @@ public class PropertiesFeatureToggleVersionTest {
   }
 
   @Test
-  public void testFeatureTurnedOn() {
+  void testFeatureTurnedOn() {
     final var properties = new Properties();
     properties.put("enhancedWelcome", true);
     var service = new PropertiesFeatureToggleVersion(properties);
@@ -64,7 +64,7 @@ public class PropertiesFeatureToggleVersionTest {
   }
 
   @Test
-  public void testFeatureTurnedOff() {
+  void testFeatureTurnedOff() {
     final var properties = new Properties();
     properties.put("enhancedWelcome", false);
     var service = new PropertiesFeatureToggleVersion(properties);

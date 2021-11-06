@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
+import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -63,11 +63,11 @@ class BubbleTest {
   void popTest() {
     var b1 = new Bubble(10, 10, 1, 2);
     var b2 = new Bubble(0, 0, 2, 2);
-    var bubbles = new Hashtable<Integer, Bubble>();
+    var bubbles = new HashMap<Integer, Bubble>();
     bubbles.put(1, b1);
     bubbles.put(2, b2);
     b1.pop(bubbles);
-    //after popping, bubble no longer in hashtable containing all bubbles
+    //after popping, bubble no longer in hashMap containing all bubbles
     assertNull(bubbles.get(1));
     assertNotNull(bubbles.get(2));
   }
@@ -77,7 +77,7 @@ class BubbleTest {
     var b1 = new Bubble(0, 0, 1, 2);
     var b2 = new Bubble(1, 1, 2, 1);
     var b3 = new Bubble(10, 10, 3, 1);
-    var bubbles = new Hashtable<Integer, Bubble>();
+    var bubbles = new HashMap<Integer, Bubble>();
     bubbles.put(1, b1);
     bubbles.put(2, b2);
     bubbles.put(3, b3);

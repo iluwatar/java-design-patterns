@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -35,7 +35,7 @@ import com.iluwatar.masterworker.system.systemmaster.Master;
 public abstract class Worker extends Thread {
   private final Master master;
   private final int workerId;
-  private Input receivedData;
+  private Input<?> receivedData;
 
   Worker(Master master, int id) {
     this.master = master;
@@ -47,23 +47,23 @@ public abstract class Worker extends Thread {
     return this.workerId;
   }
 
-  Input getReceivedData() {
+  Input<?> getReceivedData() {
     return this.receivedData;
   }
 
-  public void setReceivedData(Master m, Input i) {
+  public void setReceivedData(Master m, Input<?> i) {
     //check if ready to receive..if yes:
     this.receivedData = i;
   }
 
-  abstract Result executeOperation();
+  abstract Result<?> executeOperation();
 
-  private void sendToMaster(Result data) {
+  private void sendToMaster(Result<?> data) {
     this.master.receiveData(data, this);
   }
 
   public void run() { //from Thread class
-    Result work = executeOperation();
+    var work = executeOperation();
     sendToMaster(work);
   }
 }

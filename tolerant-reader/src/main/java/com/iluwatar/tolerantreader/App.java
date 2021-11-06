@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,7 @@
 package com.iluwatar.tolerantreader;
 
 import java.io.IOException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Tolerant Reader is an integration pattern that helps creating robust communication systems. The
@@ -40,9 +39,8 @@ import org.slf4j.LoggerFactory;
  * schema. Fortunately the reading method has been designed with the Tolerant Reader pattern and
  * does not break even though {@link RainbowFishV2} has new fields that are serialized.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
@@ -63,7 +61,7 @@ public class App {
     LOGGER.info(
         "fishV2 name={} age={} length={} weight={} sleeping={} hungry={} angry={}",
         fishV2.getName(), fishV2.getAge(), fishV2.getLengthMeters(), fishV2.getWeightTons(),
-        fishV2.getHungry(), fishV2.getAngry(), fishV2.getSleeping());
+        fishV2.isHungry(), fishV2.isAngry(), fishV2.isSleeping());
     RainbowFishSerializer.writeV2(fishV2, "fish2.out");
     // Read V2 with V1 method
     var deserializedFishV2 = RainbowFishSerializer.readV1("fish2.out");

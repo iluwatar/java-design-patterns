@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,7 +34,7 @@ public enum Role {
 
   Borrower(BorrowerRole.class), Investor(InvestorRole.class);
 
-  private Class<? extends CustomerRole> typeCst;
+  private final Class<? extends CustomerRole> typeCst;
 
   Role(Class<? extends CustomerRole> typeCst) {
     this.typeCst = typeCst;

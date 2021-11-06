@@ -4,6 +4,7 @@ title: Collection Pipeline
 folder: collection-pipeline
 permalink: /patterns/collection-pipeline/
 categories: Functional
+language: en
 tags:
  - Reactive
 ---

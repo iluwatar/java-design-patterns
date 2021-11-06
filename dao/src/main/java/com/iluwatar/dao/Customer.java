@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,70 +23,25 @@
 
 package com.iluwatar.dao;
 
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 /**
  * A customer POJO that represents the data that will be read from the data source.
  */
+@Setter
+@Getter
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
 public class Customer {
 
+  @EqualsAndHashCode.Include
   private int id;
   private String firstName;
   private String lastName;
 
-  /**
-   * Creates an instance of customer.
-   */
-  public Customer(final int id, final String firstName, final String lastName) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public void setId(final int id) {
-    this.id = id;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(final String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(final String lastName) {
-    this.lastName = lastName;
-  }
-
-  @Override
-  public String toString() {
-    return "Customer{" + "id=" + getId() + ", firstName='" + getFirstName() + '\'' + ", lastName='"
-        + getLastName() + '\'' + '}';
-  }
-
-  @Override
-  public boolean equals(final Object that) {
-    var isEqual = false;
-    if (this == that) {
-      isEqual = true;
-    } else if (that != null && getClass() == that.getClass()) {
-      final var customer = (Customer) that;
-      if (getId() == customer.getId()) {
-        isEqual = true;
-      }
-    }
-    return isEqual;
-  }
-
-  @Override
-  public int hashCode() {
-    return getId();
-  }
 }

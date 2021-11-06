@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -89,8 +89,8 @@ import java.util.List;
 public class App {
 
   private NioReactor reactor;
-  private List<AbstractNioChannel> channels = new ArrayList<>();
-  private Dispatcher dispatcher;
+  private final List<AbstractNioChannel> channels = new ArrayList<>();
+  private final Dispatcher dispatcher;
 
   /**
    * Creates an instance of App which will use provided dispatcher for dispatching events on
@@ -131,9 +131,10 @@ public class App {
      * log requests.
      */
     reactor
-        .registerChannel(tcpChannel(6666, loggingHandler))
-        .registerChannel(tcpChannel(6667, loggingHandler))
-        .registerChannel(udpChannel(6668, loggingHandler))
+        .registerChannel(tcpChannel(16666, loggingHandler))
+        .registerChannel(tcpChannel(16667, loggingHandler))
+        .registerChannel(udpChannel(16668, loggingHandler))
+        .registerChannel(udpChannel(16669, loggingHandler))
         .start();
   }
 

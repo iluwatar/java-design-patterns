@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This is the asynchronous layer which does not block when a new request arrives. It just passes
@@ -39,16 +38,15 @@ import org.slf4j.LoggerFactory;
  * thread picks up the task and executes it synchronously in background and the result is posted
  * back to the caller via callback.
  */
+@Slf4j
 public class AsynchronousService {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(AsynchronousService.class);
   /*
    * This represents the queuing layer as well as synchronous layer of the pattern. The thread pool
    * contains worker threads which execute the tasks in blocking/synchronous manner. Long running
    * tasks should be performed in the background which does not affect the performance of main
    * thread.
    */
-  private ExecutorService service;
+  private final ExecutorService service;
 
   /**
    * Creates an asynchronous service using {@code workQueue} as communication channel between

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,25 +24,23 @@
 package com.iluwatar.hexagonal.domain;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * Lottery ticked id.
  */
+@Getter
+@EqualsAndHashCode
+@RequiredArgsConstructor
 public class LotteryTicketId {
 
-  private static AtomicInteger numAllocated = new AtomicInteger(0);
+  private static final AtomicInteger numAllocated = new AtomicInteger(0);
   private final int id;
 
   public LotteryTicketId() {
     this.id = numAllocated.incrementAndGet();
-  }
-
-  public LotteryTicketId(int id) {
-    this.id = id;
-  }
-
-  public int getId() {
-    return id;
   }
 
   @Override
@@ -50,22 +48,4 @@ public class LotteryTicketId {
     return String.format("%d", id);
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-
-    var that = (LotteryTicketId) o;
-
-    return id == that.id;
-  }
-
-  @Override
-  public int hashCode() {
-    return id;
-  }
 }

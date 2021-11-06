@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,11 @@
 
 package com.iluwatar.gameloop;
 
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  * FixedStepGameLoop unit test class.
@@ -35,20 +36,20 @@ public class FixedStepGameLoopTest {
 
   private FixedStepGameLoop gameLoop;
 
-  @Before
+  @BeforeEach
   public void setup() {
     gameLoop = new FixedStepGameLoop();
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     gameLoop = null;
   }
 
   @Test
-  public void testUpdate() {
+  void testUpdate() {
     gameLoop.update();
-    Assert.assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
+    assertEquals(0.01f, gameLoop.controller.getBulletPosition(), 0);
   }
 
 }

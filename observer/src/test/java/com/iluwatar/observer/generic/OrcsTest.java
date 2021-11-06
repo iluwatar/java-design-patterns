@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -38,10 +38,10 @@ public class OrcsTest extends ObserverTest<GOrcs> {
   @Override
   public Collection<Object[]> dataProvider() {
     return List.of(
-            new Object[]{WeatherType.SUNNY, "The sun hurts the orcs' eyes."},
-            new Object[]{WeatherType.RAINY, "The orcs are dripping wet."},
-            new Object[]{WeatherType.WINDY, "The orc smell almost vanishes in the wind."},
-            new Object[]{WeatherType.COLD, "The orcs are freezing cold."}
+        new Object[]{WeatherType.SUNNY, "The orcs are facing Sunny weather now"},
+        new Object[]{WeatherType.RAINY, "The orcs are facing Rainy weather now"},
+        new Object[]{WeatherType.WINDY, "The orcs are facing Windy weather now"},
+        new Object[]{WeatherType.COLD, "The orcs are facing Cold weather now"}
     );
   }
 

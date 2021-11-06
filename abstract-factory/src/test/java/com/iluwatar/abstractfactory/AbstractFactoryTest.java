@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,65 +23,71 @@
 
 package com.iluwatar.abstractfactory;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.iluwatar.abstractfactory.App.FactoryMaker;
-import com.iluwatar.abstractfactory.App.FactoryMaker.KingdomType;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 /**
- * Test for abstract factory.
+ * Tests for abstract factory.
  */
-public class AbstractFactoryTest {
+class AbstractFactoryTest {
 
-  private App app = new App();
-  private KingdomFactory elfFactory;
-  private KingdomFactory orcFactory;
-
-  @BeforeEach
-  public void setUp() {
-    elfFactory = FactoryMaker.makeFactory(KingdomType.ELF);
-    orcFactory = FactoryMaker.makeFactory(KingdomType.ORC);
-  }
+  private final App app = new App();
 
   @Test
-  public void king() {
-    final var elfKing = app.getKing(elfFactory);
+  void verifyKingCreation() {
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
+    final var kingdom = app.getKingdom();
+
+    final var elfKing = kingdom.getKing();
     assertTrue(elfKing instanceof ElfKing);
     assertEquals(ElfKing.DESCRIPTION, elfKing.getDescription());
-    final var orcKing = app.getKing(orcFactory);
+
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
+    final var orcKing = kingdom.getKing();
     assertTrue(orcKing instanceof OrcKing);
     assertEquals(OrcKing.DESCRIPTION, orcKing.getDescription());
   }
 
   @Test
-  public void castle() {
-    final var elfCastle = app.getCastle(elfFactory);
+  void verifyCastleCreation() {
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
+    final var kingdom = app.getKingdom();
+
+    final var elfCastle = kingdom.getCastle();
     assertTrue(elfCastle instanceof ElfCastle);
     assertEquals(ElfCastle.DESCRIPTION, elfCastle.getDescription());
-    final var orcCastle = app.getCastle(orcFactory);
+
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
+    final var orcCastle = kingdom.getCastle();
     assertTrue(orcCastle instanceof OrcCastle);
     assertEquals(OrcCastle.DESCRIPTION, orcCastle.getDescription());
   }
 
   @Test
-  public void army() {
-    final var elfArmy = app.getArmy(elfFactory);
+  void verifyArmyCreation() {
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
+    final var kingdom = app.getKingdom();
+
+    final var elfArmy = kingdom.getArmy();
     assertTrue(elfArmy instanceof ElfArmy);
     assertEquals(ElfArmy.DESCRIPTION, elfArmy.getDescription());
-    final var orcArmy = app.getArmy(orcFactory);
+
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
+    final var orcArmy = kingdom.getArmy();
     assertTrue(orcArmy instanceof OrcArmy);
     assertEquals(OrcArmy.DESCRIPTION, orcArmy.getDescription());
   }
 
   @Test
-  public void createElfKingdom() {
-    app.createKingdom(elfFactory);
-    final var king = app.getKing();
-    final var castle = app.getCastle();
-    final var army = app.getArmy();
+  void verifyElfKingdomCreation() {
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
+    final var kingdom = app.getKingdom();
+
+    final var king = kingdom.getKing();
+    final var castle = kingdom.getCastle();
+    final var army = kingdom.getArmy();
     assertTrue(king instanceof ElfKing);
     assertEquals(ElfKing.DESCRIPTION, king.getDescription());
     assertTrue(castle instanceof ElfCastle);
@@ -91,11 +97,13 @@ public class AbstractFactoryTest {
   }
 
   @Test
-  public void createOrcKingdom() {
-    app.createKingdom(orcFactory);
-    final var king = app.getKing();
-    final var castle = app.getCastle();
-    final var army = app.getArmy();
+  void verifyOrcKingdomCreation() {
+    app.createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
+    final var kingdom = app.getKingdom();
+
+    final var king = kingdom.getKing();
+    final var castle = kingdom.getCastle();
+    final var army = kingdom.getArmy();
     assertTrue(king instanceof OrcKing);
     assertEquals(OrcKing.DESCRIPTION, king.getDescription());
     assertTrue(castle instanceof OrcCastle);

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,9 +37,9 @@ import java.util.List;
  */
 public class MagicServiceImpl implements MagicService {
 
-  private WizardDao wizardDao;
-  private SpellbookDao spellbookDao;
-  private SpellDao spellDao;
+  private final WizardDao wizardDao;
+  private final SpellbookDao spellbookDao;
+  private final SpellDao spellDao;
 
   /**
    * Constructor.

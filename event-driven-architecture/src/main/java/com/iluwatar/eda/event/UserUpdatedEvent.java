@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,21 +24,17 @@
 package com.iluwatar.eda.event;
 
 import com.iluwatar.eda.model.User;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * The {@link UserUpdatedEvent} should should be dispatched whenever a user has been updated. This
  * class can be extended to contain details about the user has been updated. In this example, the
  * entire {@link User} object is passed on as data with the event.
  */
+@RequiredArgsConstructor
+@Getter
 public class UserUpdatedEvent extends AbstractEvent {
 
-  private User user;
-
-  public UserUpdatedEvent(User user) {
-    this.user = user;
-  }
-
-  public User getUser() {
-    return user;
-  }
+  private final User user;
 }

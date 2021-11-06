@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -41,17 +41,17 @@ import org.slf4j.LoggerFactory;
  *
  * @author Jeroen Meulemeester
  */
-public class KingJoffreyTest {
+class KingJoffreyTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(KingJoffrey.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -59,7 +59,7 @@ public class KingJoffreyTest {
    * Test if {@link KingJoffrey} tells us what event he received
    */
   @Test
-  public void testOnEvent() {
+  void testOnEvent() {
     final var kingJoffrey = new KingJoffrey();
 
     IntStream.range(0, Event.values().length).forEach(i -> {
@@ -74,7 +74,7 @@ public class KingJoffreyTest {
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender(Class<?> clazz) {
       ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);

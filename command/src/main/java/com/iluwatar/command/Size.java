@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,18 +23,18 @@
 
 package com.iluwatar.command;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * Enumeration for target size.
  */
+@RequiredArgsConstructor
 public enum Size {
 
-  SMALL("small"), NORMAL("normal");
+  SMALL("small"),
+  NORMAL("normal");
 
-  private String title;
-
-  Size(String title) {
-    this.title = title;
-  }
+  private final String title;
 
   @Override
   public String toString() {

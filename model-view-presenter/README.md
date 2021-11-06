@@ -4,6 +4,7 @@ title: Model-View-Presenter
 folder: model-view-presenter
 permalink: /patterns/model-view-presenter/
 categories: Architectural
+language: en
 tags:
  - Decoupling
 ---

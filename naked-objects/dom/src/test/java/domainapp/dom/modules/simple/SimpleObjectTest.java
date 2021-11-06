@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -37,12 +37,12 @@ public class SimpleObjectTest {
   SimpleObject simpleObject;
 
   @Before
-  public void setUp() throws Exception {
+  public void setUp() {
     simpleObject = new SimpleObject();
   }
-  
+
   @Test
-  public void testName() throws Exception {
+  public void testName() {
     // given
     String name = "Foobar";
     assertNull(simpleObject.getName());

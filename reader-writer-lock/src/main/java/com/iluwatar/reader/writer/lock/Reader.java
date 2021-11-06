@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,21 +24,19 @@
 package com.iluwatar.reader.writer.lock;
 
 import java.util.concurrent.locks.Lock;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Reader class, read when it acquired the read lock.
  */
+@Slf4j
 public class Reader implements Runnable {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Reader.class);
+  private final Lock readLock;
 
-  private Lock readLock;
+  private final String name;
 
-  private String name;
-
-  private long readingTime;
+  private final long readingTime;
 
   /**
    * Create new Reader.

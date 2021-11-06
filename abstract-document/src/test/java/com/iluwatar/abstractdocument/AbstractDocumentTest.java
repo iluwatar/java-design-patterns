@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,40 +23,39 @@
 
 package com.iluwatar.abstractdocument;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * AbstractDocument test class
  */
-public class AbstractDocumentTest {
+class AbstractDocumentTest {
 
   private static final String KEY = "key";
   private static final String VALUE = "value";
 
-  private class DocumentImplementation extends AbstractDocument {
+  private static class DocumentImplementation extends AbstractDocument {
 
     DocumentImplementation(Map<String, Object> properties) {
       super(properties);
     }
   }
 
-  private DocumentImplementation document = new DocumentImplementation(new HashMap<>());
+  private final DocumentImplementation document = new DocumentImplementation(new HashMap<>());
 
   @Test
-  public void shouldPutAndGetValue() {
+  void shouldPutAndGetValue() {
     document.put(KEY, VALUE);
     assertEquals(VALUE, document.get(KEY));
   }
 
   @Test
-  public void shouldRetrieveChildren() {
+  void shouldRetrieveChildren() {
     var children = List.of(Map.of(), Map.of());
 
     document.put(KEY, children);
@@ -67,14 +66,14 @@ public class AbstractDocumentTest {
   }
 
   @Test
-  public void shouldRetrieveEmptyStreamForNonExistingChildren() {
+  void shouldRetrieveEmptyStreamForNonExistingChildren() {
     var children = document.children(KEY, DocumentImplementation::new);
     assertNotNull(children);
     assertEquals(0, children.count());
   }
 
   @Test
-  public void shouldIncludePropsInToString() {
+  void shouldIncludePropsInToString() {
     var props = Map.of(KEY, (Object) VALUE);
     var document = new DocumentImplementation(props);
     assertTrue(document.toString().contains(KEY));

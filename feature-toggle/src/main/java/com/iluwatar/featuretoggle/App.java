@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,8 +29,7 @@ import com.iluwatar.featuretoggle.pattern.tieredversion.TieredFeatureToggleVersi
 import com.iluwatar.featuretoggle.user.User;
 import com.iluwatar.featuretoggle.user.UserGroup;
 import java.util.Properties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Feature Toggle pattern allows for complete code executions to be turned on or off with ease.
@@ -45,9 +44,8 @@ import org.slf4j.LoggerFactory;
  * <p>Note that this pattern can easily introduce code complexity, and if not kept in check can
  * result in redundant unmaintained code within the codebase.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Block 1 shows the {@link PropertiesFeatureToggleVersion} being run with {@link Properties}

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,13 @@
 
 package com.iluwatar.lazy.loading;
 
-import org.junit.jupiter.api.Test;
-
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Date: 12/19/15 - 11:58 AM
@@ -56,7 +56,7 @@ public abstract class AbstractHolderTest {
    * This test shows that the heavy field is not instantiated until the method getHeavy is called
    */
   @Test
-  public void testGetHeavy() throws Exception {
+  void testGetHeavy() throws Exception {
     assertTimeout(ofMillis(3000), () -> {
       assertNull(getInternalHeavyValue());
       assertNotNull(getHeavy());

@@ -4,21 +4,25 @@ title: Converter
 folder: converter
 permalink: /patterns/converter/
 categories: Creational
+language: en
 tags:
  - Decoupling
 ---
 
 ## Intent
-The purpose of the Converter Pattern is to provide a generic, common way of bidirectional
+
+The purpose of the Converter pattern is to provide a generic, common way of bidirectional
 conversion between corresponding types, allowing a clean implementation in which the types do not
-need to be aware of each other. Moreover, the Converter Pattern introduces bidirectional collection
+need to be aware of each other. Moreover, the Converter pattern introduces bidirectional collection
 mapping, reducing a boilerplate code to minimum.
 
 ## Explanation
 
 Real world example
 
-> In real world applications it is often the case that database layer consists of entities that need to be mapped into DTOs for use on the business logic layer. Similar mapping is done for potentially huge amount of classes and we need a generic way to achieve this.
+> In real world applications it is often the case that database layer consists of entities that need 
+> to be mapped into DTOs for use on the business logic layer. Similar mapping is done for 
+> potentially huge amount of classes and we need a generic way to achieve this.
 
 In plain words
 
@@ -26,7 +30,8 @@ In plain words
 
 **Programmatic Example**
 
-We need a generic solution for the mapping problem. To achieve this, let's introduce a generic converter.
+We need a generic solution for the mapping problem. To achieve this, let's introduce a generic 
+converter.
 
 ```java
 public class Converter<T, U> {
@@ -77,7 +82,7 @@ public class UserConverter extends Converter<UserDto, User> {
 }
 ```
 
-Now mapping between User and UserDto becomes trivial.
+Now mapping between `User` and `UserDto` becomes trivial.
 
 ```java
 var userConverter = new UserConverter();
@@ -86,15 +91,19 @@ var user = userConverter.convertFromDto(dtoUser);
 ```
 
 ## Class diagram
+
 ![alt text](./etc/converter.png "Converter Pattern")
 
 ## Applicability
+
 Use the Converter Pattern in the following situations:
 
-* When you have types that logically correspond which other and you need to convert entities between them
-* When you want to provide different ways of types conversions depending on a context
-* Whenever you introduce a DTO (Data transfer object), you will probably need to convert it into the domain equivalence
+* When you have types that logically correspond with each other and you need to convert entities 
+between them.
+* When you want to provide different ways of types conversions depending on the context.
+* Whenever you introduce a DTO (Data transfer object), you will probably need to convert it into the 
+domain equivalence.
 
 ## Credits
 
-* [Converter](http://www.xsolve.pl/blog/converter-pattern-in-java-8/)
+* [Converter Pattern in Java 8](http://www.xsolve.pl/blog/converter-pattern-in-java-8/)

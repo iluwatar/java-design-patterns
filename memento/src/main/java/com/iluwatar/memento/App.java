@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,8 +24,7 @@
 package com.iluwatar.memento;
 
 import java.util.Stack;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Memento pattern is a software design pattern that provides the ability to restore an object
@@ -44,17 +43,16 @@ import org.slf4j.LoggerFactory;
  * contains the state of the object. Later on the memento can be set back to the object restoring
  * the state.
  */
+@Slf4j
 public class App {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Program entry point.
    */
   public static void main(String[] args) {
-    Stack<StarMemento> states = new Stack<>();
+    var states = new Stack<StarMemento>();
 
-    Star star = new Star(StarType.SUN, 10000000, 500000);
+    var star = new Star(StarType.SUN, 10000000, 500000);
     LOGGER.info(star.toString());
     states.add(star.getMemento());
     star.timePasses();

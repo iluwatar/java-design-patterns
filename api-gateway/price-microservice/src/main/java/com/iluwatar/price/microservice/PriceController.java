@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,15 @@
 
 package com.iluwatar.price.microservice;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 /**
  * Exposes the Price microservice's endpoints.
  */
+@Slf4j
 @RestController
 public class PriceController {
 
@@ -38,8 +40,9 @@ public class PriceController {
    *
    * @return A product's price
    */
-  @RequestMapping(value = "/price", method = RequestMethod.GET)
+  @GetMapping("/price")
   public String getPrice() {
+    LOGGER.info("Successfully found price info");
     return "20";
   }
 }

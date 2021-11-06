@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,32 +24,32 @@
 package com.iluwatar.acyclicvisitor;
 
 
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.mock;
-
 import org.junit.jupiter.api.Test;
+
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 /**
  * Zoom test class
  */
-public class ZoomTest {
-  
+class ZoomTest {
+
   @Test
-  public void testAcceptForDos() {  
+  void testAcceptForDos() {
     var zoom = new Zoom();
     var mockVisitor = mock(ConfigureForDosVisitor.class);
-    
+
     zoom.accept(mockVisitor);
-    verify((ZoomVisitor)mockVisitor).visit(eq(zoom));
+    verify((ZoomVisitor) mockVisitor).visit(eq(zoom));
   }
-  
+
   @Test
-  public void testAcceptForUnix() {
+  void testAcceptForUnix() {
     var zoom = new Zoom();
     var mockVisitor = mock(ConfigureForUnixVisitor.class);
-    
+
     zoom.accept(mockVisitor);
-    verify((ZoomVisitor)mockVisitor).visit(eq(zoom));
+    verify((ZoomVisitor) mockVisitor).visit(eq(zoom));
   }
 }

@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,10 +34,10 @@ import org.junit.jupiter.api.Test;
  */
 public class B2BServiceTest {
 
-  private CallsCount callsCount = new CallsCount();
+  private final CallsCount callsCount = new CallsCount();
 
   @Test
-  public void dummyCustomerApiTest() {
+  void dummyCustomerApiTest() {
     var tenant = new Tenant("testTenant", 2, callsCount);
     // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
     var timer = (Throttler) () -> {

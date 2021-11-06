@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,23 +31,19 @@ import com.google.inject.name.Names;
 import com.google.inject.util.Modules;
 import com.google.inject.util.Providers;
 import de.agilecoders.wicket.core.Bootstrap;
-import de.agilecoders.wicket.core.settings.IBootstrapSettings;
 import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchTheme;
 import de.agilecoders.wicket.themes.markup.html.bootswatch.BootswatchThemeProvider;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.isis.viewer.wicket.viewer.IsisWicketApplication;
 import org.apache.isis.viewer.wicket.viewer.integration.wicket.AuthenticatedWebSessionForIsis;
 import org.apache.wicket.Session;
-import org.apache.wicket.request.IRequestParameters;
 import org.apache.wicket.request.Request;
 import org.apache.wicket.request.Response;
 import org.apache.wicket.request.http.WebRequest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 
 /**
@@ -66,9 +62,8 @@ import org.slf4j.LoggerFactory;
  * &lt;/filter&gt;
  * </pre>
  */
+@Slf4j
 public class SimpleApplication extends IsisWicketApplication {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(SimpleApplication.class);
   private static final long serialVersionUID = 1L;
 
   /**
@@ -85,7 +80,7 @@ public class SimpleApplication extends IsisWicketApplication {
   protected void init() {
     super.init();
 
-    IBootstrapSettings settings = Bootstrap.getSettings();
+    var settings = Bootstrap.getSettings();
     settings.setThemeProvider(new BootswatchThemeProvider(BootswatchTheme.Flatly));
   }
 
@@ -96,13 +91,10 @@ public class SimpleApplication extends IsisWicketApplication {
     }
 
     // else demo mode
-    final AuthenticatedWebSessionForIsis s =
-        (AuthenticatedWebSessionForIsis) super.newSession(request, response);
-    IRequestParameters requestParameters = request.getRequestParameters();
-    final org.apache.wicket.util.string.StringValue user =
-        requestParameters.getParameterValue("user");
-    final org.apache.wicket.util.string.StringValue password =
-        requestParameters.getParameterValue("pass");
+    final var s = (AuthenticatedWebSessionForIsis) super.newSession(request, response);
+    var requestParameters = request.getRequestParameters();
+    final var user = requestParameters.getParameterValue("user");
+    final var password = requestParameters.getParameterValue("pass");
     s.signIn(user.toString(), password.toString());
     return s;
   }
@@ -115,7 +107,7 @@ public class SimpleApplication extends IsisWicketApplication {
 
     // else demo mode
     try {
-      String uname = servletRequest.getParameter("user");
+      var uname = servletRequest.getParameter("user");
       if (uname != null) {
         servletRequest.getSession().invalidate();
       }
@@ -127,7 +119,7 @@ public class SimpleApplication extends IsisWicketApplication {
 
   @Override
   protected Module newIsisWicketModule() {
-    final Module isisDefaults = super.newIsisWicketModule();
+    final var isisDefaults = super.newIsisWicketModule();
 
     final Module overrides = new AbstractModule() {
       @Override
@@ -148,11 +140,11 @@ public class SimpleApplication extends IsisWicketApplication {
     return Modules.override(isisDefaults).with(overrides);
   }
 
+  @SuppressWarnings({"UnstableApiUsage", "SameParameterValue"})
   private static String readLines(final Class<?> contextClass, final String resourceName) {
     try {
-      List<String> readLines =
-          Resources.readLines(Resources.getResource(contextClass, resourceName),
-              Charset.defaultCharset());
+      var resource = Resources.getResource(contextClass, resourceName);
+      var readLines = Resources.readLines(resource, Charset.defaultCharset());
       return Joiner.on("\n").join(readLines);
     } catch (IOException e) {
       return "This is a simple app";

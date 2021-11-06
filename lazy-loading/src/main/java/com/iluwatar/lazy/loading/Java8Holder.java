@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,16 +24,14 @@
 package com.iluwatar.lazy.loading;
 
 import java.util.function.Supplier;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This lazy loader is thread safe and more efficient than {@link HolderThreadSafe}. It utilizes
  * Java 8 functional interface {@link Supplier} as {@link Heavy} factory.
  */
+@Slf4j
 public class Java8Holder {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(Java8Holder.class);
 
   private Supplier<Heavy> heavy = this::createAndCacheHeavy;
 
@@ -55,7 +53,7 @@ public class Java8Holder {
       }
     }
 
-    if (!HeavyFactory.class.isInstance(heavy)) {
+    if (!(heavy instanceof HeavyFactory)) {
       heavy = new HeavyFactory();
     }
 

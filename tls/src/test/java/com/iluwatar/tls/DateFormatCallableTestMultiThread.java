@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -55,7 +55,7 @@ public class DateFormatCallableTestMultiThread {
    * Result object given back by DateFormatCallable, one for each thread -- Array with converted
    * date values -- Array with thrown exceptions
    */
-  private static Result[] result = new Result[4];
+  private static final Result[] result = new Result[4];
 
   /**
    * The date values created by the run of of DateFormatRunnalbe. List will be filled in the setup()
@@ -66,22 +66,22 @@ public class DateFormatCallableTestMultiThread {
     /* nothing needed here */
   }
 
-  private static List<String>[] createdDateValues = new StringArrayList[4];
+  private static final List<String>[] createdDateValues = new StringArrayList[4];
 
   /**
    * Expected number of date values in the date value list created by each thread
    */
-  private int expectedCounterDateValues = 5;
+  private final int expectedCounterDateValues = 5;
 
   /**
    * Expected number of exceptions in the exception list created by each thread
    */
-  private int expectedCounterExceptions = 0;
+  private final int expectedCounterExceptions = 0;
 
   /**
    * Expected content of the list containing the date values created by each thread
    */
-  private List<String> expectedDateValues =
+  private final List<String> expectedDateValues =
       List.of("15.11.2015", "15.11.2015", "15.11.2015", "15.11.2015", "15.11.2015");
 
   /**
@@ -134,7 +134,7 @@ public class DateFormatCallableTestMultiThread {
    * 15.12.2015 by each thread
    */
   @Test
-  public void testDateValues() {
+  void testDateValues() {
     for (var createdDateValue : createdDateValues) {
       assertEquals(expectedDateValues, createdDateValue);
     }
@@ -145,7 +145,7 @@ public class DateFormatCallableTestMultiThread {
    * deliver 5 date values by each thread
    */
   @Test
-  public void testCounterDateValues() {
+  void testCounterDateValues() {
     for (var value : result) {
       assertEquals(expectedCounterDateValues, value.getDateList().size());
     }
@@ -156,7 +156,7 @@ public class DateFormatCallableTestMultiThread {
    * deliver no exceptions
    */
   @Test
-  public void testCounterExceptions() {
+  void testCounterExceptions() {
     for (var value : result) {
       assertEquals(expectedCounterExceptions, value.getExceptionList().size());
     }

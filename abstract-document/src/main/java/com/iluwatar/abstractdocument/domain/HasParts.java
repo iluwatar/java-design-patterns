@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,6 @@ import java.util.stream.Stream;
  * HasParts trait for static access to 'parts' property.
  */
 public interface HasParts extends Document {
-
 
   default Stream<Part> getParts() {
     return children(Property.PARTS.toString(), Part::new);

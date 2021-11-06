@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -70,22 +70,18 @@ public class Star {
   }
 
   StarMemento getMemento() {
-
-    StarMementoInternal state = new StarMementoInternal();
+    var state = new StarMementoInternal();
     state.setAgeYears(ageYears);
     state.setMassTons(massTons);
     state.setType(type);
     return state;
-
   }
 
   void setMemento(StarMemento memento) {
-
-    StarMementoInternal state = (StarMementoInternal) memento;
+    var state = (StarMementoInternal) memento;
     this.type = state.getType();
     this.ageYears = state.getAgeYears();
     this.massTons = state.getMassTons();
-
   }
 
   @Override

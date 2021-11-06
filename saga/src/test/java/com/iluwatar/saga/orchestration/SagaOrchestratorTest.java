@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,24 +20,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.saga.orchestration;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * test to check general logic
  */
-public class SagaOrchestratorTest {
+class SagaOrchestratorTest {
 
   @Test
-  public void execute() {
+  void execute() {
     SagaOrchestrator sagaOrchestrator = new SagaOrchestrator(newSaga(), serviceDiscovery());
     Saga.Result badOrder = sagaOrchestrator.execute("bad_order");
     Saga.Result crashedOrder = sagaOrchestrator.execute("crashed_order");
 
-    Assert.assertEquals(badOrder, Saga.Result.ROLLBACK);
-    Assert.assertEquals(crashedOrder, Saga.Result.CRASHED);
+    assertEquals(Saga.Result.ROLLBACK, badOrder);
+    assertEquals(Saga.Result.CRASHED, crashedOrder);
   }
 
   private static Saga newSaga() {

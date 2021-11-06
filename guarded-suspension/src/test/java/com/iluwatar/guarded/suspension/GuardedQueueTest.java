@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ public class GuardedQueueTest {
   private volatile Integer value;
 
   @Test
-  public void testGet() {
+  void testGet() {
     var g = new GuardedQueue();
     var executorService = Executors.newFixedThreadPool(2);
     executorService.submit(() -> value = g.get());
@@ -51,7 +51,7 @@ public class GuardedQueueTest {
   }
 
   @Test
-  public void testPut() {
+  void testPut() {
     var g = new GuardedQueue();
     g.put(12);
     assertEquals(Integer.valueOf(12), g.get());

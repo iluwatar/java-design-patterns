@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,7 +31,7 @@ package com.iluwatar.servicelocator;
  */
 public final class ServiceLocator {
 
-  private static ServiceCache serviceCache = new ServiceCache();
+  private static final ServiceCache serviceCache = new ServiceCache();
 
   private ServiceLocator() {
   }
@@ -50,7 +50,7 @@ public final class ServiceLocator {
       return serviceObj;
     } else {
       /*
-       * If we are unable to retrive anything from cache, then lookup the service and add it in the
+       * If we are unable to retrieve anything from cache, then lookup the service and add it in the
        * cache map
        */
       var ctx = new InitContext();

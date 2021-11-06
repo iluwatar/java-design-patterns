@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,10 +24,11 @@
 package com.iluwatar.commander;
 
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
+
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Service class is an abstract class extended by all services in this example. They all have a
@@ -42,7 +43,7 @@ public abstract class Service {
 
   protected final Database database;
   public ArrayList<Exception> exceptionsList;
-  private static final Random RANDOM = new Random();
+  private static final SecureRandom RANDOM = new SecureRandom();
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   private static final Hashtable<String, Boolean> USED_IDS = new Hashtable<>();
 

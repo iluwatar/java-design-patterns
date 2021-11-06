@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,17 +29,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A mock database manager -- Fetches data from a raw file.
  *
  * @author swaisuan
  */
+@Slf4j
 public class DataFetcher {
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(DataFetcher.class);
 
   private final String filename = "world.txt";
   private long lastFetched;

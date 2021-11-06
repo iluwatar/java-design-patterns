@@ -4,6 +4,7 @@ title: Half-Sync/Half-Async
 folder: half-sync-half-async
 permalink: /patterns/half-sync-half-async/
 categories: Concurrency
+language: en
 tags:
  - Performance
 ---
@@ -29,9 +30,9 @@ Use Half-Sync/Half-Async pattern when
 
 * [BSD Unix networking subsystem](https://www.dre.vanderbilt.edu/~schmidt/PDF/PLoP-95.pdf)
 * [Real Time CORBA](http://www.omg.org/news/meetings/workshops/presentations/realtime2001/4-3_Pyarali_thread-pool.pdf)
-* [Android AsyncTask framework](http://developer.android.com/reference/android/os/AsyncTask.html)
+* [Android AsyncTask framework](https://developer.android.com/reference/android/os/AsyncTask)
 
 ## Credits
 
 * [Douglas C. Schmidt and Charles D. Cranor - Half Sync/Half Async](https://www.dre.vanderbilt.edu/~schmidt/PDF/PLoP-95.pdf)
-* [Pattern Oriented Software Architecture Vol I-V](http://www.amazon.com/Pattern-Oriented-Software-Architecture-Volume-Patterns/dp/0471958697)
+* [Pattern Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://www.amazon.com/gp/product/0471606952/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0471606952&linkCode=as2&tag=javadesignpat-20&linkId=889e4af72dca8261129bf14935e0f8dc)

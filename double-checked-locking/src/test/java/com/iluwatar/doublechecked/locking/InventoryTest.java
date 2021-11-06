@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2019 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -47,17 +47,17 @@ import org.slf4j.LoggerFactory;
  *
  * @author Jeroen Meulemeester
  */
-public class InventoryTest {
+class InventoryTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(Inventory.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -79,7 +79,7 @@ public class InventoryTest {
    * item limit.
    */
   @Test
-  public void testAddItem() throws Exception {
+  void testAddItem() throws Exception {
     assertTimeout(ofMillis(10000), () -> {
       // Create a new inventory with a limit of 1000 items and put some load on the add method
       final var inventory = new Inventory(INVENTORY_SIZE);
@@ -109,7 +109,7 @@ public class InventoryTest {
 
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
-    private List<ILoggingEvent> log = new LinkedList<>();
+    private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender(Class clazz) {
       ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
