@@ -57,9 +57,11 @@ public class Worker implements Runnable {
       try {
         if (workCenter.getLeader() != null && !workCenter.getLeader().equals(this)) {
           synchronized (workCenter) {
-            workCenter.wait();
+            if (workCenter.getLeader() != null && !workCenter.getLeader().equals(this)) {
+              workCenter.wait();
+              continue;
+            }
           }
-          continue;
         }
         final Task task = taskSet.getTask();
         synchronized (workCenter) {
