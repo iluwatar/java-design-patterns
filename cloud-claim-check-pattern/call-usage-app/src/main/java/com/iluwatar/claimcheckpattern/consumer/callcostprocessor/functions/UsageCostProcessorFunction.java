@@ -143,7 +143,6 @@ public class UsageCostProcessorFunction {
       }
     } catch (Exception e) {
       context.getLogger().warning(e.getMessage());
-      e.printStackTrace();
     }
 
     return request.createResponseBuilder(HttpStatus.INTERNAL_SERVER_ERROR).body(null).build();
