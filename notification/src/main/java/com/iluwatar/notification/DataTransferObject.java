@@ -7,7 +7,4 @@ public class DataTransferObject {
         return notification;
     }
 
-    public void setNotification() {
-       // TODO
-    }
 }

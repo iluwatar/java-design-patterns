@@ -1,24 +1,28 @@
 package com.iluwatar.notification;
 
 public class FormRegisterCourse {
-    RegisterCourseDTO course;
-    CourseService service = new CourseService();
+    private RegisterCourseDTO course;
+    private CourseService service;
 
-    private ErrorProvider errorProvider = new ErrorProvider();
+    private ErrorProvider errorProvider;
     private String courseID;
     private String semester;
     private String department;
 
     public FormRegisterCourse(String courseID, String semester, String department) {
+
         this.courseID = courseID;
         this.semester = semester;
         this.department = department;
+
+        this.service = new CourseService();
+        this.errorProvider = new ErrorProvider();
     }
 
     public String Submit() {
         String registrationError = null;
         saveToCourse();
-        service.registerCourse(this.course);
+        this.service.registerCourse(this.course);
         if (this.course.getNotification().hasErrors()) {
             registrationError = "Not registered, see errors";
             indicateErrors();
@@ -30,10 +34,10 @@ public class FormRegisterCourse {
         return registrationError;
     }
     private void saveToCourse() {
-        course = new RegisterCourseDTO();
-        course.setCourseID(this.courseID);
-        course.setSemester(this.semester);
-        course.setDepartment(this.department);
+        this.course = new RegisterCourseDTO();
+        this.course.setCourseID(this.courseID);
+        this.course.setSemester(this.semester);
+        this.course.setDepartment(this.department);
     }
 
     private void indicateErrors() {
@@ -42,12 +46,12 @@ public class FormRegisterCourse {
         checkError(RegisterCourseDTO.MISSING_DEPARTMENT, this.department);
     }
     private void checkError (Error error, String courseID) {
-        if (course.getNotification().getErrors().contains(error))
+        if (this.course.getNotification().getErrors().contains(error))
             showError(courseID, error.getErrorMessage());
     }
 
     void showError (String arg, String message) {
-        errorProvider.setError(arg, message);
+        this.errorProvider.setError(arg, message);
     }
 
 }
