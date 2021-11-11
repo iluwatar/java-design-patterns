@@ -32,11 +32,11 @@
   <parent>
     <artifactId>java-design-patterns</artifactId>
     <groupId>com.iluwatar</groupId>
-    <version>1.25.0-SNAPSHOT</version>
+    <version>1.25.0</version>
   </parent>
   <groupId>com.iluwatar</groupId>
   <artifactId>model-view-viewmodel</artifactId>
-  <version>1.25.0-SNAPSHOT</version>
+  <version>1.25.0</version>
   <properties>
     <zk.version>9.0.0</zk.version>
     <guava.version>19.0</guava.version>
