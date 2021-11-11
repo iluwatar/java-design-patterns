@@ -15,16 +15,19 @@ public class FormRegisterCourse {
         this.department = department;
     }
 
-    public void Submit() {
+    public String Submit() {
+        String registrationError = null;
         saveToCourse();
-        service.registerCourse(course);
-        if (course.getNotification().hasErrors()) {
-            System.out.println("Not registered, see errors");
+        service.registerCourse(this.course);
+        if (this.course.getNotification().hasErrors()) {
+            registrationError = "Not registered, see errors";
             indicateErrors();
         }
         else{
-            System.out.println("Registration Succeeded");
+            registrationError ="Registration Succeeded";
         }
+        System.out.println(registrationError);
+        return registrationError;
     }
     private void saveToCourse() {
         course = new RegisterCourseDTO();
