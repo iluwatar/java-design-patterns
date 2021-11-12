@@ -231,47 +231,26 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderVanilla() throws Exception {
-        for (double d = 0.1; d < 2; d = d + 0.1) {
-            paymentTime *= d;
-            queueTaskTime *= d;
-            messageTime *= d;
-            employeeTime *= d;
-            queueTime *= d;
-            Commander c = buildCommanderObjectVanilla();
-            var order = new Order(new User("K", "J"), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
-        }
+        Commander c = buildCommanderObjectVanilla();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
     }
 
     @Test
     void testPlaceOrder() throws Exception {
-        for (double d = 0.1; d < 2; d = d + 0.1) {
-            paymentTime *= d;
-            queueTaskTime *= d;
-            messageTime *= d;
-            employeeTime *= d;
-            queueTime *= d;
-            Commander c = buildCommanderObject(true);
-            var order = new Order(new User("K", "J"), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
-        }
+        Commander c = buildCommanderObject(true);
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
     }
 
     @Test
     void testPlaceOrder2() throws Exception {
-        for (double d = 0.1; d < 2; d = d + 0.1) {
-            paymentTime *= d;
-            queueTaskTime *= d;
-            messageTime *= d;
-            employeeTime *= d;
-            queueTime *= d;
-            Commander c = buildCommanderObject(false);
-            var order = new Order(new User("K", "J"), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
-        }
+        Commander c = buildCommanderObject(false);
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
     }
 
     @Test
