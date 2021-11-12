@@ -1,7 +1,7 @@
 ---
 layout: pattern
 title: Claim Check Pattern
-folder: Cloud-Claim-Check-Pattern
+folder: cloud-claim-check-pattern
 permalink: /patterns/cloud-claim-check-pattern/
 categories: Cloud
 tags:
