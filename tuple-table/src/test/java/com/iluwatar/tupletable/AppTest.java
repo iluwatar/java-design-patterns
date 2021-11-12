@@ -20,7 +20,7 @@ public class AppTest {
   /**
    * Test for findMember and saveMember methods for MemberTupleDAO
    *
-   * @throws SQLException
+   * @throws SQLException something
    */
 
   @Test
@@ -28,14 +28,14 @@ public class AppTest {
     MemberTupleDao mtd = new MemberTupleDao();
     mtd.createTableIfNotExists();
     MemberDto member = mtd.findMember(1);
-    LOGGER.info(member.getFirstname() + " " + member.getLastname());
+    LOGGER.info(member.getFirstName() + " " + member.getLastName());
     LOGGER.info(String.valueOf(member.getFreePasses()));
     LOGGER.info(member.getCity());
     LOGGER.info(member.getAddress1());
     member.setMemberNumber(4);
-    member.setFirstname("Atif");
+    member.setFirstName("Atif");
     mtd.saveMember(member);
     member = mtd.findMember(4);
-    LOGGER.info(member.getFirstname() + " " + member.getLastname());
+    LOGGER.info(member.getFirstName() + " " + member.getLastName());
   }
 }

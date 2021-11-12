@@ -33,7 +33,7 @@ public class App {
    * This demonstrates the capability of the tuple table java pattern implementation for
    * saving and retrieving data
    *
-   * @throws SQLException
+   * @throws SQLException for sql
    */
   public static void main(String[] args) throws SQLException {
     //Instantiate the MemberTupleDAO
@@ -42,14 +42,14 @@ public class App {
     //Retrieve the information saved in DB already - first time it should show null
     MemberDto member = mtd.findMember(1);
     //Access and display the information based on the search criteria
-    LOGGER.info(member.getFirstname() + " " + member.getLastname());
+    LOGGER.info(member.getFirstName() + " " + member.getLastName());
     LOGGER.info(String.valueOf(member.getFreePasses()));
     LOGGER.info(member.getAddress1());
     LOGGER.info(member.getCity());
     //Set a different member information using the tuple pattern implementation
     member.setMemberNumber(4);
-    member.setFirstname("Atif");
-    member.setLastname("Ahmed");
+    member.setFirstName("Atif");
+    member.setLastName("Ahmed");
     member.setAddress1("USA");
     member.setAddress2("USA");
     member.setCity("Columbus");
@@ -58,7 +58,7 @@ public class App {
     mtd.saveMember(member);
     //Find and display above saved information
     member = mtd.findMember(4);
-    LOGGER.info(member.getFirstname() + " " + member.getLastname());
+    LOGGER.info(member.getFirstName() + " " + member.getLastName());
     LOGGER.info(member.getAddress1());
     LOGGER.info(member.getAddress2());
     LOGGER.info(member.getCity());
