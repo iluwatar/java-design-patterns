@@ -36,7 +36,16 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-public class App {
+final class App {
+
+  /**
+   * Prevent instantiation
+   * Optional: throw an exception e.g. AssertionError
+   * if this ever *is* called
+   */
+  private App() {
+  }
+
   /**
    * The entry void main function to build MemberTupleDAO and for the usage of findMember()
    * different set methods within the tuple available as setMemberNumber, setAddress1, etc.
