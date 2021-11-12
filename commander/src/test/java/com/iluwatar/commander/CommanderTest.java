@@ -222,11 +222,7 @@ class CommanderTest {
     }
 
     private void sleep(long millis) {
-        try {
-            Thread.sleep(millis);
-        } catch (InterruptedException e) {
-            //no-op
-        }
+        // no-op
     }
 
     @Test
