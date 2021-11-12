@@ -236,8 +236,10 @@ class CommanderTest {
             queueTaskTime *= d;
             Commander c = buildCommanderObjectVanilla();
             var order = new Order(new User("K", "J"), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -248,8 +250,10 @@ class CommanderTest {
             queueTaskTime *= d;
             Commander c = buildCommanderObject(true);
             var order = new Order(new User("K", "J"), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -260,8 +264,10 @@ class CommanderTest {
             queueTaskTime *= d;
             Commander c = buildCommanderObject(false);
             var order = new Order(new User("K", "J"), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -272,8 +278,10 @@ class CommanderTest {
             queueTaskTime *= d;
             Commander c = buildCommanderObjectNoPaymentException1();
             var order = new Order(new User("K", "J"), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -284,8 +292,10 @@ class CommanderTest {
             queueTaskTime *= d;
             Commander c = buildCommanderObjectNoPaymentException2();
             var order = new Order(new User("K", "J"), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -296,8 +306,10 @@ class CommanderTest {
             queueTaskTime *= d;
             Commander c = buildCommanderObjectNoPaymentException3();
             var order = new Order(new User("K", "J"), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -309,10 +321,12 @@ class CommanderTest {
             Commander c = buildCommanderObjectNoPaymentException3();
             var order = new Order(new User("K", "J"), "pen", 1f);
             sleep(queueTaskTime / 10);
-            c.placeOrder(order);
-            c.placeOrder(order);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                c.placeOrder(order);
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -326,8 +340,10 @@ class CommanderTest {
             queueTime *= d;
             Commander c = buildCommanderObjectUnknownException();
             var order = new Order(new User("K", "J"), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -342,8 +358,10 @@ class CommanderTest {
             Commander c = buildCommanderObject(true);
             var order = new Order(new User("K", "J"), "pen", 1f);
             sleep(paymentTime);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -358,8 +376,10 @@ class CommanderTest {
             Commander c = buildCommanderObject(false);
             var order = new Order(new User("K", "J"), "pen", 1f);
             sleep(paymentTime);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -374,8 +394,10 @@ class CommanderTest {
             Commander c = buildCommanderObjectNoPaymentException1();
             var order = new Order(new User("K", "J"), "pen", 1f);
             sleep(messageTime);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -390,8 +412,10 @@ class CommanderTest {
             Commander c = buildCommanderObjectUnknownException();
             var order = new Order(new User("K", "J"), "pen", 1f);
             sleep(queueTime);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -405,8 +429,10 @@ class CommanderTest {
             queueTime *= d;
             Commander c = buildCommanderObjectWithDB();
             var order = new Order(new User("K", null), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -423,23 +449,31 @@ class CommanderTest {
 
                 Commander c = buildCommanderObjectWithDB(true, true, e);
                 var order = new Order(new User("K", null), "pen", 1f);
-                c.placeOrder(order);
-                assertFalse(StringUtils.isBlank(order.id));
+                for (Order.MessageSent ms : Order.MessageSent.values()) {
+                    c.placeOrder(order);
+                    assertFalse(StringUtils.isBlank(order.id));
+                }
 
                 c = buildCommanderObjectWithDB(true, false, e);
                 order = new Order(new User("K", null), "pen", 1f);
-                c.placeOrder(order);
-                assertFalse(StringUtils.isBlank(order.id));
+                for (Order.MessageSent ms : Order.MessageSent.values()) {
+                    c.placeOrder(order);
+                    assertFalse(StringUtils.isBlank(order.id));
+                }
 
                 c = buildCommanderObjectWithDB(false, false, e);
                 order = new Order(new User("K", null), "pen", 1f);
-                c.placeOrder(order);
-                assertFalse(StringUtils.isBlank(order.id));
+                for (Order.MessageSent ms : Order.MessageSent.values()) {
+                    c.placeOrder(order);
+                    assertFalse(StringUtils.isBlank(order.id));
+                }
 
                 c = buildCommanderObjectWithDB(false, true, e);
                 order = new Order(new User("K", null), "pen", 1f);
-                c.placeOrder(order);
-                assertFalse(StringUtils.isBlank(order.id));
+                for (Order.MessageSent ms : Order.MessageSent.values()) {
+                    c.placeOrder(order);
+                    assertFalse(StringUtils.isBlank(order.id));
+                }
             }
         }
     }
@@ -454,8 +488,10 @@ class CommanderTest {
             queueTime *= d;
             Commander c = buildCommanderObjectWithoutDB();
             var order = new Order(new User("K", null), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+            for (Order.MessageSent ms : Order.MessageSent.values()) {
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
@@ -472,23 +508,31 @@ class CommanderTest {
 
                 Commander c = buildCommanderObjectWithoutDB(true, true, e);
                 var order = new Order(new User("K", null), "pen", 1f);
-                c.placeOrder(order);
-                assertFalse(StringUtils.isBlank(order.id));
+                for (Order.MessageSent ms : Order.MessageSent.values()) {
+                    c.placeOrder(order);
+                    assertFalse(StringUtils.isBlank(order.id));
+                }
 
                 c = buildCommanderObjectWithoutDB(true, false, e);
                 order = new Order(new User("K", null), "pen", 1f);
-                c.placeOrder(order);
-                assertFalse(StringUtils.isBlank(order.id));
+                for (Order.MessageSent ms : Order.MessageSent.values()) {
+                    c.placeOrder(order);
+                    assertFalse(StringUtils.isBlank(order.id));
+                }
 
                 c = buildCommanderObjectWithoutDB(false, false, e);
                 order = new Order(new User("K", null), "pen", 1f);
-                c.placeOrder(order);
-                assertFalse(StringUtils.isBlank(order.id));
+                for (Order.MessageSent ms : Order.MessageSent.values()) {
+                    c.placeOrder(order);
+                    assertFalse(StringUtils.isBlank(order.id));
+                }
 
                 c = buildCommanderObjectWithoutDB(false, true, e);
                 order = new Order(new User("K", null), "pen", 1f);
-                c.placeOrder(order);
-                assertFalse(StringUtils.isBlank(order.id));
+                for (Order.MessageSent ms : Order.MessageSent.values()) {
+                    c.placeOrder(order);
+                    assertFalse(StringUtils.isBlank(order.id));
+                }
             }
         }
     }
