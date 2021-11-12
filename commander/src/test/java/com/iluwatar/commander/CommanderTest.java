@@ -28,8 +28,8 @@ class CommanderTest {
     private final int numOfRetries = 1;
     private final long retryDuration = 1_000;
     private final long queueTime = 1_00;
-    private final long queueTaskTime = 1_000;
-    private final long paymentTime = 6_000;
+    private long queueTaskTime = 1_000;
+    private long paymentTime = 6_000;
     private final long messageTime = 5_000;
     private final long employeeTime = 2_000;
 
@@ -267,6 +267,18 @@ class CommanderTest {
         var order = new Order(new User("K", "J"), "pen", 1f);
         c.placeOrder(order);
         assertFalse(StringUtils.isBlank(order.id));
+    }
+
+    @Test
+    void testPlaceOrderNoException2a() throws Exception {
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            Commander c = buildCommanderObjectNoPaymentException2();
+            var order = new Order(new User("K", "J"), "pen", 1f);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
     }
 
     @Test
