@@ -45,33 +45,35 @@ public class App {
    * @throws SQLException from MemberTupleDao
    */
   public static void main(String[] args) throws SQLException {
-    //Instantiate the MemberTupleDAO
-    MemberTupleDao mtd = new MemberTupleDao();
-    mtd.createTableIfNotExists();
-    //Retrieve the information saved in DB already - first time it should show null
-    MemberDto member = mtd.findMember(1);
-    //Access and display the information based on the search criteria
-    LOGGER.info(member.getFirstName() + " " + member.getLastName());
-    LOGGER.info(String.valueOf(member.getFreePasses()));
-    LOGGER.info(member.getAddress1());
-    LOGGER.info(member.getCity());
-    //Set a different member information using the tuple pattern implementation
-    member.setMemberNumber(4);
-    member.setFirstName("Atif");
-    member.setLastName("Ahmed");
-    member.setAddress1("USA");
-    member.setAddress2("USA");
-    member.setCity("Columbus");
-    member.setState("Ohio");
-    member.setZip("12345");
-    mtd.saveMember(member);
-    //Find and display above saved information
-    member = mtd.findMember(4);
-    LOGGER.info(member.getFirstName() + " " + member.getLastName());
-    LOGGER.info(member.getAddress1());
-    LOGGER.info(member.getAddress2());
-    LOGGER.info(member.getCity());
-    LOGGER.info(member.getState());
-    LOGGER.info(member.getZip());
+    if (LOGGER.isInfoEnabled()) {
+      //Instantiate the MemberTupleDAO
+      MemberTupleDao mtd = new MemberTupleDao();
+      mtd.createTableIfNotExists();
+      //Retrieve the information saved in DB already - first time it should show null
+      MemberDto member = mtd.findMember(1);
+      //Access and display the information based on the search criteria
+      LOGGER.info(member.getFirstName() + " " + member.getLastName());
+      LOGGER.info(String.valueOf(member.getFreePasses()));
+      LOGGER.info(member.getAddress1());
+      LOGGER.info(member.getCity());
+      //Set a different member information using the tuple pattern implementation
+      member.setMemberNumber(4);
+      member.setFirstName("Atif");
+      member.setLastName("Ahmed");
+      member.setAddress1("USA");
+      member.setAddress2("USA");
+      member.setCity("Columbus");
+      member.setState("Ohio");
+      member.setZip("12345");
+      mtd.saveMember(member);
+      //Find and display above saved information
+      member = mtd.findMember(4);
+      LOGGER.info(member.getFirstName() + " " + member.getLastName());
+      LOGGER.info(member.getAddress1());
+      LOGGER.info(member.getAddress2());
+      LOGGER.info(member.getCity());
+      LOGGER.info(member.getState());
+      LOGGER.info(member.getZip());
+    }
   }
 }

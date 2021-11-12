@@ -20,46 +20,42 @@ public class MemberTupleDao {
    * @return member retrieved from the database
    */
   public MemberDto findMember(long memberNo) throws SQLException {
-    Connection con = null;
-    PreparedStatement ps = null;
-    ResultSet rs;
+    Database db = new Database();
     MemberDto member = new MemberDto();
     member.setMemberNumber(memberNo);
-    Database db = new Database();
 
-    try {
-      con = db.getConnection();
-      ps = con.prepareStatement("select fieldname, numerical, string "
-              + "from object_data where obj_pk = ?");
+    try (Connection con = db.getConnection();
+         PreparedStatement ps = con.prepareStatement("select fieldname, numerical, string "
+                 + "from object_data where obj_pk = ?")) {
+      // create a new table
       ps.setLong(1, memberNo);
-      rs = ps.executeQuery();
-
-      while (rs.next()) {
-        String fieldName = rs.getString(1);
-        String strVal = rs.getString(3);
-        if (strVal != null) {
-          setVal(fieldName, member, strVal);
-        } else {
-          //we do this indirectly to make database typecasting more reliable
-          long lngVal = rs.getLong(2);
-          if (!rs.wasNull()) {
-            setVal(fieldName, member, lngVal);
+      try (ResultSet rs = ps.executeQuery()) {
+        while (rs.next()) {
+          String fieldName = rs.getString(1);
+          String strVal = rs.getString(3);
+          if (strVal != null) {
+            setVal(fieldName, member, strVal);
+          } else {
+            //we do this indirectly to make database typecasting more reliable
+            long lngVal = rs.getLong(2);
+            if (!rs.wasNull()) {
+              setVal(fieldName, member, lngVal);
+            }
           }
         }
       }
     } catch (SQLException | ClassNotFoundException e) {
-      LOGGER.error(e.getMessage());
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(e.getMessage());
+      }
       return null;
-    } finally {
-      db.closeConnection(con);
-      db.closeStatement(ps);
     }
-    rs.close();
     return member;
   }
 
   /**
    * Method to create the table if not exist (for demo purpose).
+   *
    * @should create the object_data table when called
    */
   public void createTableIfNotExists() {
@@ -75,44 +71,49 @@ public class MemberTupleDao {
       // create a new table
       stmt.execute(sql);
     } catch (SQLException | ClassNotFoundException e) {
-      LOGGER.error(e.getMessage());
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(e.getMessage());
+      }
     }
   }
 
   /**
    * Method implemented to save the member in database.
+   *
    * @param member object
    * @should save member in the DB
    */
   public void saveMember(MemberDto member) {
-    Connection con = null;
-    PreparedStatement ps = null;
     Database db = new Database();
-
     long memberNo = member.getMemberNumber();
     if (memberNo >= 1) {
-      try {
-        con = db.getConnection();
-        ps = con.prepareStatement("delete from object_data where obj_pk = ?");
-        ps.setLong(1, memberNo);
-        ps.executeUpdate();
-        ps = con.prepareStatement("insert into object_data (obj_pk, fieldname, "
-                + "numerical, string) values (?,?,?,?);");
-        ps.setLong(1, memberNo);
-        extracted(member, ps);
+      try (Connection con = db.getConnection()) {
+        // create a new table
+        try (PreparedStatement ps = con.prepareStatement(
+                "delete from object_data where obj_pk = ?");) {
+          ps.setLong(1, memberNo);
+          ps.executeUpdate();
+          try (PreparedStatement ps1 = con.prepareStatement(
+                  "insert into object_data (obj_pk, fieldname, "
+                          + "numerical, string) values (?,?,?,?);");
+          ) {
+            ps1.setLong(1, memberNo);
+            extracted(member, ps1);
+          }
+        }
       } catch (SQLException | ClassNotFoundException e) {
-        LOGGER.error(e.getMessage());
-      } finally {
-        db.closeConnection(con);
-        db.closeStatement(ps);
+        if (LOGGER.isErrorEnabled()) {
+          LOGGER.error(e.getMessage());
+        }
       }
     }
   }
 
   /**
    * Extracted method for saveMember method.
+   *
    * @param member object
-   * @param ps as prepared statement
+   * @param ps     as prepared statement
    * @throws SQLException if encounters any violation while updating record in database.
    * @should execute the prepared statement
    */
@@ -121,7 +122,6 @@ public class MemberTupleDao {
     for (Method method : methods) {
       String methodName = method.getName();
       if (methodName.startsWith("get")) {
-        System.out.println(methodName);
         try {
           if (method.getReturnType() == String.class) {
             ps.setString(2, methodName.substring(3));
@@ -135,7 +135,9 @@ public class MemberTupleDao {
             ps.executeUpdate();
           }
         } catch (IllegalAccessException | InvocationTargetException e) {
-          LOGGER.error(e.getMessage());
+          if (LOGGER.isErrorEnabled()) {
+            LOGGER.error(e.getMessage());
+          }
         }
       }
     }
@@ -144,9 +146,10 @@ public class MemberTupleDao {
 
   /**
    * Method implemented to set the value for a field name.
+   *
    * @param fieldName as name of the field for a tuple
-   * @param target as member object
-   * @param param as value of the field
+   * @param target    as member object
+   * @param param     as value of the field
    * @should set the value of the filed name
    */
   private void setVal(String fieldName, Object target, Object param) {
@@ -155,7 +158,9 @@ public class MemberTupleDao {
       Method setter = targetClass.getMethod("set" + fieldName, param.getClass());
       setter.invoke(target, param);
     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-      LOGGER.error(e.getMessage());
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(e.getMessage());
+      }
     }
   }
 }

@@ -1,7 +1,6 @@
 package com.iluwatar.tupletable;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
@@ -17,12 +16,9 @@ class DatabaseTest {
 
   @Test
   void testDBConnectionAndClose() throws SQLException, ClassNotFoundException {
-    Connection con = null;
-    PreparedStatement ps = null;
     Database db = new Database();
-    con = db.getConnection();
-    assertNotNull(con);
-    db.closeConnection(con);
-    db.closeStatement(ps);
+    try (Connection con = db.getConnection()) {
+      assertNotNull(con);
+    }
   }
 }

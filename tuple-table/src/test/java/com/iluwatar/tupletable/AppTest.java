@@ -25,18 +25,20 @@ class AppTest {
 
   @Test
   void testFindSetSave() throws SQLException {
-    MemberTupleDao mtd = new MemberTupleDao();
-    mtd.createTableIfNotExists();
-    MemberDto member = mtd.findMember(1);
-    LOGGER.info(member.getFirstName() + " " + member.getLastName());
-    LOGGER.info(String.valueOf(member.getFreePasses()));
-    LOGGER.info(member.getCity());
-    LOGGER.info(member.getAddress1());
-    member.setMemberNumber(4);
-    member.setFirstName("Atif");
-    mtd.saveMember(member);
-    member = mtd.findMember(4);
-    LOGGER.info(member.getFirstName() + " " + member.getLastName());
-    assertEquals(member.getFirstName(), "Atif");
+    if (LOGGER.isInfoEnabled()) {
+      MemberTupleDao mtd = new MemberTupleDao();
+      mtd.createTableIfNotExists();
+      MemberDto member = mtd.findMember(1);
+      LOGGER.info(member.getFirstName() + " " + member.getLastName());
+      LOGGER.info(String.valueOf(member.getFreePasses()));
+      LOGGER.info(member.getCity());
+      LOGGER.info(member.getAddress1());
+      member.setMemberNumber(4);
+      member.setFirstName("Atif");
+      mtd.saveMember(member);
+      member = mtd.findMember(4);
+      LOGGER.info(member.getFirstName() + " " + member.getLastName());
+      assertEquals(member.getFirstName(), "Atif");
+    }
   }
 }
