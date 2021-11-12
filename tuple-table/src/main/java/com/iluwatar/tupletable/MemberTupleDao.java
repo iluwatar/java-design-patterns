@@ -19,7 +19,7 @@ public class MemberTupleDao {
    * @param memberNo is key with which tuple record is looked up
    * @return member retrieved from the database
    */
-  public MemberDto findMember(long memberNo) throws SQLException {
+  public MemberDto findMember(long memberNo) throws SQLException, ClassNotFoundException {
     Database db = new Database();
     MemberDto member = new MemberDto();
     member.setMemberNumber(memberNo);
@@ -44,11 +44,6 @@ public class MemberTupleDao {
           }
         }
       }
-    } catch (SQLException | ClassNotFoundException e) {
-      if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
-      }
-      return null;
     }
     return member;
   }
@@ -58,7 +53,7 @@ public class MemberTupleDao {
    *
    * @should create the object_data table when called
    */
-  public void createTableIfNotExists() {
+  public void createTableIfNotExists() throws SQLException, ClassNotFoundException {
     String sql = "CREATE TABLE IF NOT EXISTS object_data (\n"
             + "OBJ_PK int NOT NULL,\n"
             + "FIELDNAME varchar(20) NOT NULL,\n"
@@ -70,10 +65,6 @@ public class MemberTupleDao {
          Statement stmt = con.createStatement()) {
       // create a new table
       stmt.execute(sql);
-    } catch (SQLException | ClassNotFoundException e) {
-      if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
-      }
     }
   }
 
@@ -83,7 +74,8 @@ public class MemberTupleDao {
    * @param member object
    * @should save member in the DB
    */
-  public void saveMember(MemberDto member) {
+  public void saveMember(MemberDto member) throws SQLException, ClassNotFoundException,
+          InvocationTargetException, IllegalAccessException {
     Database db = new Database();
     long memberNo = member.getMemberNumber();
     if (memberNo >= 1) {
@@ -101,10 +93,6 @@ public class MemberTupleDao {
             extracted(member, ps1);
           }
         }
-      } catch (SQLException | ClassNotFoundException e) {
-        if (LOGGER.isErrorEnabled()) {
-          LOGGER.error(e.getMessage());
-        }
       }
     }
   }
@@ -117,27 +105,22 @@ public class MemberTupleDao {
    * @throws SQLException if encounters any violation while updating record in database.
    * @should execute the prepared statement
    */
-  private void extracted(MemberDto member, PreparedStatement ps) throws SQLException {
+  private void extracted(MemberDto member, PreparedStatement ps) throws SQLException,
+          IllegalAccessException, InvocationTargetException {
     Method[] methods = member.getClass().getMethods();
     for (Method method : methods) {
       String methodName = method.getName();
       if (methodName.startsWith("get")) {
-        try {
-          if (method.getReturnType() == String.class) {
-            ps.setString(2, methodName.substring(3));
-            ps.setNull(3, Types.NUMERIC);
-            ps.setString(4, (String) method.invoke(member, new Object[]{}));
-            ps.executeUpdate();
-          } else if (method.getReturnType() == long.class) {
-            ps.setString(2, methodName.substring(3));
-            ps.setObject(3, method.invoke(member), Types.NUMERIC);
-            ps.setNull(4, Types.VARCHAR);
-            ps.executeUpdate();
-          }
-        } catch (IllegalAccessException | InvocationTargetException e) {
-          if (LOGGER.isErrorEnabled()) {
-            LOGGER.error(e.getMessage());
-          }
+        if (method.getReturnType() == String.class) {
+          ps.setString(2, methodName.substring(3));
+          ps.setNull(3, Types.NUMERIC);
+          ps.setString(4, (String) method.invoke(member, new Object[]{}));
+          ps.executeUpdate();
+        } else if (method.getReturnType() == long.class) {
+          ps.setString(2, methodName.substring(3));
+          ps.setObject(3, method.invoke(member), Types.NUMERIC);
+          ps.setNull(4, Types.VARCHAR);
+          ps.executeUpdate();
         }
       }
     }

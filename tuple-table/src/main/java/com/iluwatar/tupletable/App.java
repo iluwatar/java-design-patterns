@@ -1,5 +1,6 @@
 package com.iluwatar.tupletable;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.SQLException;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +45,8 @@ public class App {
    *
    * @throws SQLException from MemberTupleDao
    */
-  public static void main(String[] args) throws SQLException {
+  public static void main(String[] args) throws SQLException, ClassNotFoundException,
+          InvocationTargetException, IllegalAccessException {
     if (LOGGER.isInfoEnabled()) {
       //Instantiate the MemberTupleDAO
       MemberTupleDao mtd = new MemberTupleDao();
