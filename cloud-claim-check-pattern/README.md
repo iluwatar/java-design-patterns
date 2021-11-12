@@ -20,7 +20,7 @@ tags:
 ## Intent
 
 - Reduce the load of data transfer through the Internet. Instead of sending actual data directly, just send the message reference.
-- Data security - As only message reference is shared, no data is exposed to the internet.
+- Improve data security. As only message reference is shared, no data is exposed to the Internet.
 
 ## Explanation
 
