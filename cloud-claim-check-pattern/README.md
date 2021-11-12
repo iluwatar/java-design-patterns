@@ -44,7 +44,7 @@ Use the Claim Check Pattern when
 - To secure your data transfer by storing in common persistent storage.
 - Using a cloud platform - Azure Functions or AWS Lambda, Azure EventGrid or AWS Event Bridge, Azure Blob Storage or AWS S3 Bucket.
 - Each service must be independent and idempotent. Output data is dropped to persistent storage by the service.
-- Publish-Subscribe Model must be followed by the use case.
+- Publish-subscribe messaging pattern needs to be used.
 
 ## Consequences
 
