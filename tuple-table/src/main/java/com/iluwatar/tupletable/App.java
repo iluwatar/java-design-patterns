@@ -29,6 +29,9 @@ import lombok.extern.slf4j.Slf4j;
  * <p>This solution uses java reflection with DAO object to retrieve an object from a tuple table
  * or write it back to the table, we can retrieve field names directly form the object we are
  * persisting.</p>
+ *
+ * <p>The OBJECT_DATA table doesn't know about the particular object types; its counting on the
+ * application to ensure that no two objects share a primary key.</p>
  */
 
 @Slf4j
