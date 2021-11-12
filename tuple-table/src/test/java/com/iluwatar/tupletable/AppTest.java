@@ -6,14 +6,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-public class AppTest {
+class AppTest {
   /**
    * Test for testing the connection ensuring the code works as per design
    */
   @Test
-  public void shouldExecuteWithoutException() {
+  void shouldExecuteWithoutException() {
     assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 
@@ -23,7 +24,7 @@ public class AppTest {
    */
 
   @Test
-  public void testFindSetSave() throws SQLException {
+  void testFindSetSave() throws SQLException {
     MemberTupleDao mtd = new MemberTupleDao();
     mtd.createTableIfNotExists();
     MemberDto member = mtd.findMember(1);
@@ -36,5 +37,6 @@ public class AppTest {
     mtd.saveMember(member);
     member = mtd.findMember(4);
     LOGGER.info(member.getFirstName() + " " + member.getLastName());
+    assertEquals(member.getFirstName(), "Atif");
   }
 }

@@ -121,15 +121,16 @@ public class MemberTupleDao {
     for (Method method : methods) {
       String methodName = method.getName();
       if (methodName.startsWith("get")) {
+        System.out.println(methodName);
         try {
           if (method.getReturnType() == String.class) {
             ps.setString(2, methodName.substring(3));
             ps.setNull(3, Types.NUMERIC);
             ps.setString(4, (String) method.invoke(member, new Object[]{}));
             ps.executeUpdate();
-          } else if (method.getReturnType() == Long.class) {
+          } else if (method.getReturnType() == long.class) {
             ps.setString(2, methodName.substring(3));
-            ps.setObject(3, (Long) method.invoke(member, new Object[]{}), Types.NUMERIC);
+            ps.setObject(3, method.invoke(member), Types.NUMERIC);
             ps.setNull(4, Types.VARCHAR);
             ps.executeUpdate();
           }

@@ -1,26 +1,27 @@
 package com.iluwatar.tupletable;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.junit.jupiter.api.Test;
 
-public class DatabaseTest {
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+class DatabaseTest {
 
   /**
    * Test for public methods for MemberTupleDAO
-   *
-   * @throws SQLException
+   * @throws SQLException for database connection and closing
    */
 
   @Test
-  public void testDBConnectionAndClose() throws SQLException, IOException, ClassNotFoundException {
+  void testDBConnectionAndClose() throws SQLException, ClassNotFoundException {
     Connection con = null;
     PreparedStatement ps = null;
     Database db = new Database();
-    db.getConnection();
+    con = db.getConnection();
+    assertNotNull(con);
     db.closeConnection(con);
     db.closeStatement(ps);
   }
