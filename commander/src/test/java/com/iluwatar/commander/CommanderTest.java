@@ -79,6 +79,28 @@ class CommanderTest {
                 queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     }
 
+    private Commander buildCommanderObjectVanilla() {
+        PaymentService paymentService = new PaymentService
+                (new PaymentDatabase(), new DatabaseUnavailableException(),
+                        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+                        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+                        new DatabaseUnavailableException());
+        var shippingService = new ShippingService(new ShippingDatabase());
+        var messagingService = new MessagingService(new MessagingDatabase());
+        var employeeHandle = new EmployeeHandle
+                (new EmployeeDatabase(), new DatabaseUnavailableException(),
+                        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+                        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+                        new DatabaseUnavailableException());
+        var qdb = new QueueDatabase
+                (new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+                        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
+                        new DatabaseUnavailableException(), new DatabaseUnavailableException());
+        return new Commander(employeeHandle, paymentService, shippingService,
+                messagingService, qdb, numOfRetries, retryDuration,
+                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    }
+
     private Commander buildCommanderObjectUnknownException() {
         PaymentService paymentService = new PaymentService
                 (new PaymentDatabase(), new IllegalStateException());
@@ -205,6 +227,14 @@ class CommanderTest {
         } catch (InterruptedException e) {
             //no-op
         }
+    }
+
+    @Test
+    void testPlaceOrderVanilla() throws Exception {
+        Commander c = buildCommanderObjectVanilla();
+        var order = new Order(new User("K", "J"), "pen", 1f);
+        c.placeOrder(order);
+        assertFalse(StringUtils.isBlank(order.id));
     }
 
     @Test

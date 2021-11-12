@@ -250,7 +250,7 @@ public class Commander {
         || qt.order.messageSent.equals(MessageSent.PAYMENT_FAIL)
         || qt.order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL))
         || qt.taskType.equals(TaskType.EMPLOYEE_DB) && qt.order.addedToEmployeeHandle) {
-      LOG.trace(ORDER_ID + ": Not queueing task since task already done..", qt.order.id);
+      LOG.trace("Order " + qt.order.id + ": Not queueing task since task already done..");
       return;
     }
     var list = queue.exceptionsList;
@@ -420,8 +420,8 @@ public class Commander {
         && System.currentTimeMillis() - o.createdTime < messageTime) {
       var qt = new QueueTask(order, TaskType.MESSAGING, 0);
       updateQueue(qt);
-      LOG.warn(ORDER_ID + ": Error in sending Payment Failure message, "
-          + "trying to queue task and add to employee handle..", order.id);
+      LOG.warn("Order " + order.id + ": Error in sending Payment Failure message, "
+          + "trying to queue task and add to employee handle..");
       employeeHandleIssue(o);
     }
   }
