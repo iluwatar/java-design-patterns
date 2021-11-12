@@ -1,4 +1,0 @@
-Dname=com.mysql.jdbc.Driver
-URL=jdbc:mysql://localhost:3306/test?createDatabaseIfNotExist=true
-Uname=
-password=

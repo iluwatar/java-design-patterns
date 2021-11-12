@@ -1,12 +1,22 @@
-package com.iluwatar.tuppletable;
+package com.iluwatar.tupletable;
+
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
-import java.lang.reflect.*;
-import java.sql.*;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Types;
 
+@Slf4j
 public class MemberTupleDAO {
     /**
      * method to find the member based on the input param
+     *
      * @param memberNo
      * @return member
      */
@@ -38,18 +48,40 @@ public class MemberTupleDAO {
                 }
             }
         } catch (SQLException | ClassNotFoundException | IOException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
             return null;
         } finally {
-            db.closeConnection(con, ps);
+            db.closeConnection(con);
+            db.closeStatement(ps);
         }
         rs.close();
         return member;
     }
 
     /**
+     * @param
      * @should save member in the DB
+     */
+    public void createTableIfNotExists() {
+        String sql = "CREATE TABLE IF NOT EXISTS object_data (\n" +
+                "OBJ_PK int NOT NULL,\n" +
+                "FIELDNAME varchar(20) NOT NULL,\n" +
+                "NUMERICAL int,\n" +
+                "STRING varchar(255)\n" +
+                ");";
+        DBConnection db = new DBConnection();
+        try (Connection con = db.getConnection();
+             Statement stmt = con.createStatement()) {
+            // create a new table
+            stmt.execute(sql);
+        } catch (SQLException | ClassNotFoundException | IOException e) {
+            LOGGER.error(e.getMessage());
+        }
+    }
+
+    /**
      * @param member
+     * @should save member in the DB
      */
     public void saveMember(MemberDTO member) {
         Connection con = null;
@@ -67,18 +99,19 @@ public class MemberTupleDAO {
                 ps.setLong(1, memberNo);
                 extracted(member, ps);
             } catch (SQLException | ClassNotFoundException | IOException e) {
-                e.printStackTrace();
+                LOGGER.error(e.getMessage());
             } finally {
-                db.closeConnection(con, ps);
+                db.closeConnection(con);
+                db.closeStatement(ps);
             }
         }
     }
 
     /**
-     * @should execute the prepared statement
      * @param member
      * @param ps
      * @throws SQLException
+     * @should execute the prepared statement
      */
     private void extracted(MemberDTO member, PreparedStatement ps) throws SQLException {
         Method[] methods = member.getClass().getMethods();
@@ -98,7 +131,7 @@ public class MemberTupleDAO {
                         ps.executeUpdate();
                     }
                 } catch (IllegalAccessException | InvocationTargetException e) {
-                    e.printStackTrace();
+                    LOGGER.error(e.getMessage());
                 }
             }
         }
@@ -106,10 +139,10 @@ public class MemberTupleDAO {
 
 
     /**
-     * @should set the value of the filed name
      * @param fieldName
      * @param target
      * @param param
+     * @should set the value of the filed name
      */
     private void setVal(String fieldName, Object target, Object param) {
         try {
@@ -118,7 +151,7 @@ public class MemberTupleDAO {
             setter.invoke(target, param);
         } catch (NoSuchMethodException ignored) {
         } catch (IllegalAccessException | InvocationTargetException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
         }
     }
 }

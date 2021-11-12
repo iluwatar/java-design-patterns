@@ -1,4 +1,4 @@
-package com.iluwatar.tuppletable;
+package com.iluwatar.tupletable;
 
 public class MemberDTO {
 
