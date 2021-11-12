@@ -40,7 +40,7 @@ In Plain words
 
 Use the Claim Check Pattern when
 
-- Huge processing data causes a lot of bandwidth consumption to transfer data through the internet.
+- Huge processing data causes a lot of bandwidth consumption to transfer data through the Internet.
 - To secure your data transfer by storing in common persistent storage.
 - Using a cloud platform - Azure Functions or AWS Lambda, Azure EventGrid or AWS Event Bridge, Azure Blob Storage or AWS S3 Bucket.
 - Each service must be independent and idempotent. Output data is dropped to persistent storage by the service.
