@@ -19,8 +19,7 @@ public class AppTest {
 
   /**
    * Test for findMember and saveMember methods for MemberTupleDAO
-   *
-   * @throws SQLException something
+   * @throws SQLException for db interaction of connection, save or get information
    */
 
   @Test

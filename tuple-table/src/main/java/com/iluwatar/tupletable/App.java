@@ -5,24 +5,30 @@ import java.sql.SQLException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The Tuple table pattern stores an object in the database in a highly flexible format that can
+ * <p>The Tuple table pattern stores an object in the database in a highly flexible format that can
  * be manipulated at the database level by normal human beings and can be easily extended
  * without having to convert existing data.  Much of the data used in an enterprise application
  * can be condensed into sets of fields. We can use this approach to persist objects to the
  * database by assigning each object instance a primary key and then storing labeled values for
- * each key (a tuple).
- * The primary advantage of this approach is extreme flexibility. By storing object fields as
- * name and value pairs, we can modify te application to include new fields without changing
- * the underlying database structure.
- * The primary disadvantage of the tuple table pattern is in its integrity enforcement. Relational
- * databased are very good at enforcing rules at the column level, but aren't so good at enforcing
- * rules as the data level.
+ * each key (a tuple).</p>
  *
- * Here the APP is demo class or housing entry point void main.
+ * <p>The primary advantage of this approach is extreme flexibility. By storing object fields as
+ * name and value pairs, we can modify te application to include new fields without changing
+ * the underlying database structure.</p>
+ *
+ * <p>The primary disadvantage of the tuple table pattern is in its integrity enforcement.
+ * Relational databased are very good at enforcing rules at the column level, but aren't so good
+ * at enforcing rules as the data level.</p>
+ *
+ * <p>Here the APP is demo class or housing entry point void main.
  * In this method, an instance of MemberTupleDAO is created which is implementation based on tuple
  * pattern, having methods such as find member, save member.
  * This App class demonstrates the usage of the implementation by retrieving/querying, saving and
- * displaying to logger
+ * displaying to logger.</p>
+ *
+ * <p>This solution uses java reflection with DAO object to retrieve an object from a tuple table
+ * or write it back to the table, we can retrieve field names directly form the object we are
+ * persisting.</p>
  */
 
 @Slf4j
@@ -31,9 +37,9 @@ public class App {
    * The entry void main function to build MemberTupleDAO and for the usage of findMember()
    * different set methods within the tuple available as setMemberNumber, setAddress1, etc.
    * This demonstrates the capability of the tuple table java pattern implementation for
-   * saving and retrieving data
+   * saving and retrieving data.
    *
-   * @throws SQLException for sql
+   * @throws SQLException from MemberTupleDao
    */
   public static void main(String[] args) throws SQLException {
     //Instantiate the MemberTupleDAO

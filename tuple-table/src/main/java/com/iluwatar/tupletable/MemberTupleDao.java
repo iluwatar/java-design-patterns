@@ -1,7 +1,5 @@
 package com.iluwatar.tupletable;
 
-import java.io.IOException;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
@@ -16,10 +14,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class MemberTupleDao {
   /**
-   * method to find the member based on the input param
+   * Method implemented to find the member based on the input param.
    *
-   * @param memberNo
-   * @return member
+   * @param memberNo is key with which tuple record is looked up
+   * @return member retrieved from the database
    */
   public MemberDto findMember(long memberNo) throws SQLException {
     Connection con = null;
@@ -49,7 +47,7 @@ public class MemberTupleDao {
           }
         }
       }
-    } catch (SQLException | ClassNotFoundException | IOException e) {
+    } catch (SQLException | ClassNotFoundException e) {
       LOGGER.error(e.getMessage());
       return null;
     } finally {
@@ -61,8 +59,8 @@ public class MemberTupleDao {
   }
 
   /**
-   * @param
-   * @should save member in the DB
+   * Method to create the table if not exist (for demo purpose).
+   * @should create the object_data table when called
    */
   public void createTableIfNotExists() {
     String sql = "CREATE TABLE IF NOT EXISTS object_data (\n"
@@ -76,13 +74,14 @@ public class MemberTupleDao {
          Statement stmt = con.createStatement()) {
       // create a new table
       stmt.execute(sql);
-    } catch (SQLException | ClassNotFoundException | IOException e) {
+    } catch (SQLException | ClassNotFoundException e) {
       LOGGER.error(e.getMessage());
     }
   }
 
   /**
-   * @param member
+   * Method implemented to save the member in database.
+   * @param member object
    * @should save member in the DB
    */
   public void saveMember(MemberDto member) {
@@ -101,7 +100,7 @@ public class MemberTupleDao {
                 + "numerical, string) values (?,?,?,?);");
         ps.setLong(1, memberNo);
         extracted(member, ps);
-      } catch (SQLException | ClassNotFoundException | IOException e) {
+      } catch (SQLException | ClassNotFoundException e) {
         LOGGER.error(e.getMessage());
       } finally {
         db.closeConnection(con);
@@ -111,9 +110,10 @@ public class MemberTupleDao {
   }
 
   /**
-   * @param member
-   * @param ps
-   * @throws SQLException
+   * Extracted method for saveMember method.
+   * @param member object
+   * @param ps as prepared statement
+   * @throws SQLException if encounters any violation while updating record in database.
    * @should execute the prepared statement
    */
   private void extracted(MemberDto member, PreparedStatement ps) throws SQLException {
@@ -142,9 +142,10 @@ public class MemberTupleDao {
 
 
   /**
-   * @param fieldName
-   * @param target
-   * @param param
+   * Method implemented to set the value for a field name.
+   * @param fieldName as name of the field for a tuple
+   * @param target as member object
+   * @param param as value of the field
    * @should set the value of the filed name
    */
   private void setVal(String fieldName, Object target, Object param) {

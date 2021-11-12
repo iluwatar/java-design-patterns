@@ -1,6 +1,5 @@
 package com.iluwatar.tupletable;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -12,9 +11,12 @@ import lombok.extern.slf4j.Slf4j;
 public class Database {
 
   /**
-   * Method for connecting to database
+   * Method implements connecting to in memory sqlite database.
+   * @return conn
+   * @throws SQLException if encounters connecting to sql.
+   * @throws ClassNotFoundException if org.sqlite.JDBC is not found class.
    */
-  public Connection getConnection() throws SQLException, ClassNotFoundException, IOException {
+  public Connection getConnection() throws SQLException, ClassNotFoundException {
     Class.forName("org.sqlite.JDBC");
     String url = "jdbc:sqlite::memory:test.db";
     Connection conn = DriverManager.getConnection(url);
@@ -23,9 +25,9 @@ public class Database {
   }
 
   /**
-   * Close the prepared statement and the connection in a proper way
+   * Close the prepared statement and the connection in a proper way.
    *
-   * @param conn
+   * @param conn is passed as connection for closing
    * @should close the connection and prepared statement
    */
   public void closeConnection(Connection conn) {
@@ -39,9 +41,9 @@ public class Database {
   }
 
   /**
-   * Close the prepared statement and the connection in a proper way
+   * Close the prepared statement and the connection in a proper way.
    *
-   * @param ps
+   * @param ps is passed as prepared statement argument for closing
    * @should close the connection and prepared statement
    */
   public void closeStatement(PreparedStatement ps) {
