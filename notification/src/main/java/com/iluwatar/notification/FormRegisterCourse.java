@@ -1,5 +1,8 @@
 package com.iluwatar.notification;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 
+@Slf4j
 public class FormRegisterCourse {
     private RegisterCourseDTO course;
     private CourseService service;
@@ -19,19 +22,19 @@ public class FormRegisterCourse {
         this.errorProvider = new ErrorProvider();
     }
 
-    public String Submit() {
-        String registrationError = null;
+    public String submit() {
+        String registrationInfo = null;
         saveToCourse();
         this.service.registerCourse(this.course);
         if (this.course.getNotification().hasErrors()) {
-            registrationError = "Not registered, see errors";
+            registrationInfo = "Not registered, see errors";
             indicateErrors();
         }
         else{
-            registrationError ="Registration Succeeded";
+            registrationInfo ="Registration Succeeded";
         }
-        System.out.println(registrationError);
-        return registrationError;
+        LOGGER.info(registrationInfo);
+        return registrationInfo;
     }
     private void saveToCourse() {
         this.course = new RegisterCourseDTO();

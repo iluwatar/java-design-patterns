@@ -6,10 +6,8 @@ public class RegisterCourseDTO extends DataTransferObject {
     private String semester;
 
     public static Error MISSING_COURSE_ID = new Error("Course ID is missing");
-    public static Error UNKNOWN_COURSE_ID = new Error("This course ID is unknown");
     public static Error MISSING_DEPARTMENT = new Error("Department is missing");
     public static Error MISSING_SEMESTER = new Error("Semester is missing");
-    public static Error DATE_BEFORE_COURSE_START = new Error("Semester Date is before we started providing this course");
 
     public String getCourseID() {
         return this.courseID;

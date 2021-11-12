@@ -8,7 +8,7 @@ public class App {
      */
     public static void main(String[] args) {
         FormRegisterCourse form = new FormRegisterCourse("CSE427", "Fall21", "Engineering");
-        form.Submit();
+        form.submit();
 
     }
 }
