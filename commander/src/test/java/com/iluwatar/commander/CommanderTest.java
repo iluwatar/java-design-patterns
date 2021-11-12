@@ -27,11 +27,11 @@ class CommanderTest {
 
     private final int numOfRetries = 1;
     private final long retryDuration = 1_000;
-    private final long queueTime = 1_00;
+    private long queueTime = 1_00;
     private long queueTaskTime = 1_000;
     private long paymentTime = 6_000;
-    private final long messageTime = 5_000;
-    private final long employeeTime = 2_000;
+    private long messageTime = 5_000;
+    private long employeeTime = 2_000;
 
     private static List<Exception> exceptionList = new ArrayList<>();
 
@@ -255,22 +255,18 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderNoException1() throws Exception {
-        Commander c = buildCommanderObjectNoPaymentException1();
-        var order = new Order(new User("K", "J"), "pen", 1f);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            Commander c = buildCommanderObjectNoPaymentException1();
+            var order = new Order(new User("K", "J"), "pen", 1f);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
     }
 
     @Test
     void testPlaceOrderNoException2() throws Exception {
-        Commander c = buildCommanderObjectNoPaymentException2();
-        var order = new Order(new User("K", "J"), "pen", 1f);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
-    }
-
-    @Test
-    void testPlaceOrderNoException2a() throws Exception {
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -283,134 +279,205 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderNoException3() throws Exception {
-        Commander c = buildCommanderObjectNoPaymentException3();
-        var order = new Order(new User("K", "J"), "pen", 1f);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
-    }
-
-    @Test
-    void testPlaceOrderNoException4() throws Exception {
-        Commander c = buildCommanderObjectNoPaymentException3();
-        var order = new Order(new User("K", "J"), "pen", 1f);
-        sleep(queueTaskTime / 10);
-        c.placeOrder(order);
-        c.placeOrder(order);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
-    }
-
-    @Test
-    void testPlaceOrderUnknownException() throws Exception {
-        Commander c = buildCommanderObjectUnknownException();
-        var order = new Order(new User("K", "J"), "pen", 1f);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
-    }
-
-    @Test
-    void testPlaceOrderShortDuration() throws Exception {
-        Commander c = buildCommanderObject(true);
-        var order = new Order(new User("K", "J"), "pen", 1f);
-        sleep(paymentTime);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
-    }
-
-    @Test
-    void testPlaceOrderShortDuration2() throws Exception {
-        Commander c = buildCommanderObject(false);
-        var order = new Order(new User("K", "J"), "pen", 1f);
-        sleep(paymentTime);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
-    }
-
-    @Test
-    void testPlaceOrderNoExceptionShortMsgDuration() throws Exception {
-        Commander c = buildCommanderObjectNoPaymentException1();
-        var order = new Order(new User("K", "J"), "pen", 1f);
-        sleep(messageTime);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
-    }
-
-    @Test
-    void testPlaceOrderNoExceptionShortQueueDuration() throws Exception {
-        Commander c = buildCommanderObjectUnknownException();
-        var order = new Order(new User("K", "J"), "pen", 1f);
-        sleep(queueTime);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
-    }
-
-    @Test
-    void testPlaceOrderWithDatabase() throws Exception {
-        Commander c = buildCommanderObjectWithDB();
-        var order = new Order(new User("K", null), "pen", 1f);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
-    }
-
-    @Test
-    void testPlaceOrderWithDatabaseAndExceptions() throws Exception {
-
-        for (Exception e : exceptionList) {
-
-            Commander c = buildCommanderObjectWithDB(true, true, e);
-            var order = new Order(new User("K", null), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
-
-            c = buildCommanderObjectWithDB(true, false, e);
-            order = new Order(new User("K", null), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
-
-            c = buildCommanderObjectWithDB(false, false, e);
-            order = new Order(new User("K", null), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
-
-            c = buildCommanderObjectWithDB(false, true, e);
-            order = new Order(new User("K", null), "pen", 1f);
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            Commander c = buildCommanderObjectNoPaymentException3();
+            var order = new Order(new User("K", "J"), "pen", 1f);
             c.placeOrder(order);
             assertFalse(StringUtils.isBlank(order.id));
         }
     }
 
     @Test
+    void testPlaceOrderNoException4() throws Exception {
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            Commander c = buildCommanderObjectNoPaymentException3();
+            var order = new Order(new User("K", "J"), "pen", 1f);
+            sleep(queueTaskTime / 10);
+            c.placeOrder(order);
+            c.placeOrder(order);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
+    }
+
+    @Test
+    void testPlaceOrderUnknownException() throws Exception {
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            messageTime *= d;
+            employeeTime *= d;
+            queueTime *= d;
+            Commander c = buildCommanderObjectUnknownException();
+            var order = new Order(new User("K", "J"), "pen", 1f);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
+    }
+
+    @Test
+    void testPlaceOrderShortDuration() throws Exception {
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            messageTime *= d;
+            employeeTime *= d;
+            queueTime *= d;
+            Commander c = buildCommanderObject(true);
+            var order = new Order(new User("K", "J"), "pen", 1f);
+            sleep(paymentTime);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
+    }
+
+    @Test
+    void testPlaceOrderShortDuration2() throws Exception {
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            messageTime *= d;
+            employeeTime *= d;
+            queueTime *= d;
+            Commander c = buildCommanderObject(false);
+            var order = new Order(new User("K", "J"), "pen", 1f);
+            sleep(paymentTime);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
+    }
+
+    @Test
+    void testPlaceOrderNoExceptionShortMsgDuration() throws Exception {
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            messageTime *= d;
+            employeeTime *= d;
+            queueTime *= d;
+            Commander c = buildCommanderObjectNoPaymentException1();
+            var order = new Order(new User("K", "J"), "pen", 1f);
+            sleep(messageTime);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
+    }
+
+    @Test
+    void testPlaceOrderNoExceptionShortQueueDuration() throws Exception {
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            messageTime *= d;
+            employeeTime *= d;
+            queueTime *= d;
+            Commander c = buildCommanderObjectUnknownException();
+            var order = new Order(new User("K", "J"), "pen", 1f);
+            sleep(queueTime);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
+    }
+
+    @Test
+    void testPlaceOrderWithDatabase() throws Exception {
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            messageTime *= d;
+            employeeTime *= d;
+            queueTime *= d;
+            Commander c = buildCommanderObjectWithDB();
+            var order = new Order(new User("K", null), "pen", 1f);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
+    }
+
+    @Test
+    void testPlaceOrderWithDatabaseAndExceptions() throws Exception {
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            messageTime *= d;
+            employeeTime *= d;
+            queueTime *= d;
+
+            for (Exception e : exceptionList) {
+
+                Commander c = buildCommanderObjectWithDB(true, true, e);
+                var order = new Order(new User("K", null), "pen", 1f);
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+
+                c = buildCommanderObjectWithDB(true, false, e);
+                order = new Order(new User("K", null), "pen", 1f);
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+
+                c = buildCommanderObjectWithDB(false, false, e);
+                order = new Order(new User("K", null), "pen", 1f);
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+
+                c = buildCommanderObjectWithDB(false, true, e);
+                order = new Order(new User("K", null), "pen", 1f);
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
+        }
+    }
+
+    @Test
     void testPlaceOrderWithoutDatabase() throws Exception {
-        Commander c = buildCommanderObjectWithoutDB();
-        var order = new Order(new User("K", null), "pen", 1f);
-        c.placeOrder(order);
-        assertFalse(StringUtils.isBlank(order.id));
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            messageTime *= d;
+            employeeTime *= d;
+            queueTime *= d;
+            Commander c = buildCommanderObjectWithoutDB();
+            var order = new Order(new User("K", null), "pen", 1f);
+            c.placeOrder(order);
+            assertFalse(StringUtils.isBlank(order.id));
+        }
     }
 
     @Test
     void testPlaceOrderWithoutDatabaseAndExceptions() throws Exception {
+        for (double d = 0.1; d < 2; d = d + 0.1) {
+            paymentTime *= d;
+            queueTaskTime *= d;
+            messageTime *= d;
+            employeeTime *= d;
+            queueTime *= d;
 
-        for (Exception e : exceptionList) {
+            for (Exception e : exceptionList) {
 
-            Commander c = buildCommanderObjectWithoutDB(true, true, e);
-            var order = new Order(new User("K", null), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+                Commander c = buildCommanderObjectWithoutDB(true, true, e);
+                var order = new Order(new User("K", null), "pen", 1f);
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
 
-            c = buildCommanderObjectWithoutDB(true, false, e);
-            order = new Order(new User("K", null), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+                c = buildCommanderObjectWithoutDB(true, false, e);
+                order = new Order(new User("K", null), "pen", 1f);
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
 
-            c = buildCommanderObjectWithoutDB(false, false, e);
-            order = new Order(new User("K", null), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+                c = buildCommanderObjectWithoutDB(false, false, e);
+                order = new Order(new User("K", null), "pen", 1f);
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
 
-            c = buildCommanderObjectWithoutDB(false, true, e);
-            order = new Order(new User("K", null), "pen", 1f);
-            c.placeOrder(order);
-            assertFalse(StringUtils.isBlank(order.id));
+                c = buildCommanderObjectWithoutDB(false, true, e);
+                order = new Order(new User("K", null), "pen", 1f);
+                c.placeOrder(order);
+                assertFalse(StringUtils.isBlank(order.id));
+            }
         }
     }
 
