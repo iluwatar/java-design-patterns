@@ -242,7 +242,7 @@ public class Commander {
     if (System.currentTimeMillis() - qt.order.createdTime >= this.queueTime) {
       // since payment time is lesser than queuetime it would have already failed..
       // additional check not needed
-      LOG.trace(ORDER_ID + ": Queue time for order over, failed..", qt.order.id);
+      LOG.trace("Order " + qt.order.id + ": Queue time for order over, failed..");
       return;
     } else if (qt.taskType.equals(TaskType.PAYMENT) && !qt.order.paid.equals(PaymentStatus.TRYING)
         || qt.taskType.equals(TaskType.MESSAGING) && (qt.messageType == 1
@@ -476,8 +476,8 @@ public class Commander {
         && System.currentTimeMillis() - o.createdTime < messageTime) {
       var qt = new QueueTask(order, TaskType.MESSAGING, 1);
       updateQueue(qt);
-      LOG.warn(ORDER_ID + ": Error in sending Payment Error message, "
-          + "trying to queue task and add to employee handle..", order.id);
+      LOG.warn("Order " + order.id + ": Error in sending Payment Error message, "
+              + "trying to queue task and add to employee handle..");
       employeeHandleIssue(o);
     }
   }
