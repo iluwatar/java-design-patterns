@@ -45,6 +45,6 @@ class AppTest {
     if (LOGGER.isInfoEnabled()) {
       LOGGER.info(member.getFirstName() + " " + member.getLastName());
     }
-    assertEquals(member.getFirstName(), "Atif");
+    assertEquals("Atif", member.getFirstName());
   }
 }

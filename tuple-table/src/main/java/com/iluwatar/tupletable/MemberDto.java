@@ -1,8 +1,10 @@
 package com.iluwatar.tupletable;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 public class MemberDto {
 
   private long memberNumber;

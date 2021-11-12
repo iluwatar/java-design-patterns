@@ -114,7 +114,7 @@ public class MemberTupleDao {
         if (method.getReturnType() == String.class) {
           ps.setString(2, methodName.substring(3));
           ps.setNull(3, Types.NUMERIC);
-          ps.setString(4, (String) method.invoke(member, new Object[]{}));
+          ps.setString(4, (String) method.invoke(member));
           ps.executeUpdate();
         } else if (method.getReturnType() == long.class) {
           ps.setString(2, methodName.substring(3));
