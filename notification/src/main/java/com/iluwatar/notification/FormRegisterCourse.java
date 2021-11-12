@@ -33,7 +33,7 @@ public class FormRegisterCourse {
         else{
             registrationInfo ="Registration Succeeded";
         }
-        LOGGER.info(registrationInfo);
+//        LOGGER.info(registrationInfo);
         return registrationInfo;
     }
     private void saveToCourse() {
