@@ -1,0 +1,55 @@
+@startuml
+package com.iluwatar.tupletable {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class DBConnection {
+    - LOGGER : Logger {static}
+    + DBConnection()
+    + closeConnection(conn : Connection)
+    + closeStatement(ps : PreparedStatement)
+    + getConnection() : Connection
+  }
+  class MemberDTO {
+    - address1 : String
+    - address2 : String
+    - city : String
+    - firstName : String
+    - freePasses : long
+    - lastName : String
+    - memberNumber : long
+    - state : String
+    - zip : String
+    + MemberDTO()
+    + getAddress1() : String
+    + getAddress2() : String
+    + getCity() : String
+    + getFirstname() : String
+    + getFreePasses() : Long
+    + getLastname() : String
+    + getMemberNumber() : long
+    + getState() : String
+    + getZip() : String
+    + setAddress1(newAddress1 : String)
+    + setAddress2(newAddress2 : String)
+    + setCity(newCity : String)
+    + setFirstname(newFirstname : String)
+    + setFreePasses(passes : Long)
+    + setLastname(newLastname : String)
+    + setMemberNumber(newMembernumber : long)
+    + setState(newState : String)
+    + setZip(newZip : String)
+  }
+  class MemberTupleDAO {
+    - LOGGER : Logger {static}
+    + MemberTupleDAO()
+    + createTableIfNotExists()
+    - extracted(member : MemberDTO, ps : PreparedStatement)
+    + findMember(memberNo : long) : MemberDTO
+    + saveMember(member : MemberDTO)
+    - setVal(fieldName : String, target : Object, param : Object)
+  }
+}
+@enduml
