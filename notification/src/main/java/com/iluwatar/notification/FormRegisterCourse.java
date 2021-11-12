@@ -53,7 +53,7 @@ public class FormRegisterCourse {
             showError(courseID, error.getErrorMessage());
     }
 
-    void showError (String arg, String message) {
+    private void showError (String arg, String message) {
         this.errorProvider.setError(arg, message);
     }
 
