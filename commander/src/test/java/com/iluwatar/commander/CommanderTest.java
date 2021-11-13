@@ -221,10 +221,6 @@ class CommanderTest {
                 queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
     }
 
-    private void sleep(long millis) {
-        // no-op
-    }
-
     @Test
     void testPlaceOrderVanilla() throws Exception {
         for (double d = 0.1; d < 2; d = d + 0.1) {
@@ -316,7 +312,6 @@ class CommanderTest {
             queueTaskTime *= d;
             Commander c = buildCommanderObjectNoPaymentException3();
             var order = new Order(new User("K", "J"), "pen", 1f);
-            sleep(queueTaskTime / 10);
             for (Order.MessageSent ms : Order.MessageSent.values()) {
                 c.placeOrder(order);
                 c.placeOrder(order);
@@ -353,7 +348,6 @@ class CommanderTest {
             queueTime *= d;
             Commander c = buildCommanderObject(true);
             var order = new Order(new User("K", "J"), "pen", 1f);
-            sleep(paymentTime);
             for (Order.MessageSent ms : Order.MessageSent.values()) {
                 c.placeOrder(order);
                 assertFalse(StringUtils.isBlank(order.id));
@@ -371,7 +365,6 @@ class CommanderTest {
             queueTime *= d;
             Commander c = buildCommanderObject(false);
             var order = new Order(new User("K", "J"), "pen", 1f);
-            sleep(paymentTime);
             for (Order.MessageSent ms : Order.MessageSent.values()) {
                 c.placeOrder(order);
                 assertFalse(StringUtils.isBlank(order.id));
@@ -389,7 +382,6 @@ class CommanderTest {
             queueTime *= d;
             Commander c = buildCommanderObjectNoPaymentException1();
             var order = new Order(new User("K", "J"), "pen", 1f);
-            sleep(messageTime);
             for (Order.MessageSent ms : Order.MessageSent.values()) {
                 c.placeOrder(order);
                 assertFalse(StringUtils.isBlank(order.id));
@@ -407,7 +399,6 @@ class CommanderTest {
             queueTime *= d;
             Commander c = buildCommanderObjectUnknownException();
             var order = new Order(new User("K", "J"), "pen", 1f);
-            sleep(queueTime);
             for (Order.MessageSent ms : Order.MessageSent.values()) {
                 c.placeOrder(order);
                 assertFalse(StringUtils.isBlank(order.id));
