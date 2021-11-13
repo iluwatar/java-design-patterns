@@ -33,7 +33,7 @@ class CommanderTest {
     private long messageTime = 5_000;
     private long employeeTime = 2_000;
 
-    private static List<Exception> exceptionList = new ArrayList<>();
+    private static final List<Exception> exceptionList = new ArrayList<>();
 
     static {
         exceptionList.add(new DatabaseUnavailableException());
