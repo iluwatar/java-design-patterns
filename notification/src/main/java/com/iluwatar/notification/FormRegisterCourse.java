@@ -1,6 +1,6 @@
 package com.iluwatar.notification;
+
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 
 @Slf4j
 public class FormRegisterCourse {
@@ -12,6 +12,13 @@ public class FormRegisterCourse {
     private String semester;
     private String department;
 
+    /**
+     * Creates a form for registering a course.
+     *
+     * @param courseID the course to be added.
+     * @param semester  semester of this course
+     * @param department department of this course
+     */
     public FormRegisterCourse(String courseID, String semester, String department) {
 
         this.courseID = courseID;
@@ -22,6 +29,12 @@ public class FormRegisterCourse {
         this.errorProvider = new ErrorProvider();
     }
 
+    /**
+     * Submits a form for registering a course.
+     *
+     * @return "Registration Succeeded" if customer is successfully added,
+     *         "Not registered, see errors" if customer already exists.
+     */
     public String submit() {
         String registrationInfo = null;
         saveToCourse();
@@ -31,11 +44,12 @@ public class FormRegisterCourse {
             indicateErrors();
         }
         else{
-            registrationInfo ="Registration Succeeded";
+            registrationInfo = "Registration Succeeded";
         }
-//        LOGGER.info(registrationInfo);
+        LOGGER.info(registrationInfo);
         return registrationInfo;
     }
+
     private void saveToCourse() {
         this.course = new RegisterCourseDTO();
         this.course.setCourseID(this.courseID);
@@ -48,13 +62,15 @@ public class FormRegisterCourse {
         checkError(RegisterCourseDTO.MISSING_SEMESTER, this.semester);
         checkError(RegisterCourseDTO.MISSING_DEPARTMENT, this.department);
     }
+
     private void checkError (Error error, String courseID) {
-        if (this.course.getNotification().getErrors().contains(error))
+        if (this.course.getNotification().getErrors().contains(error)) {
             showError(courseID, error.getErrorMessage());
+        }
     }
 
-    private void showError (String arg, String message) {
-        this.errorProvider.setError(arg, message);
+    private void showError (String courseID, String message) {
+        this.errorProvider.setError(courseID, message);
     }
 
 }

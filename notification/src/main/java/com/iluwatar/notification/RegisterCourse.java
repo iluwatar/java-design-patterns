@@ -2,10 +2,13 @@ package com.iluwatar.notification;
 
 public class RegisterCourse extends ServerCommand {
 
-    public RegisterCourse(RegisterCourseDTO course) {
+    protected RegisterCourse(RegisterCourseDTO course) {
         super(course);
     }
 
+    /**
+     * Runs this service to validate registration forms
+     */
     public void run() {
         validate();
         if (!super.getNotification().hasErrors()) {
@@ -19,16 +22,16 @@ public class RegisterCourse extends ServerCommand {
         failIfNullOrBlank(((RegisterCourseDTO)this.data).getSemester(), RegisterCourseDTO.MISSING_SEMESTER);
     }
 
-    protected Boolean isNullOrBlank(String s) {
-        return (s == null || s == "");
+    protected Boolean isNullOrBlank(String inputString) {
+        return inputString == null || inputString == "";
     }
 
-    protected void failIfNullOrBlank (String s, Error error) {
-        fail (isNullOrBlank(s), error);
+    protected void failIfNullOrBlank (String inputString, Error error) {
+        fail (isNullOrBlank(inputString), error);
     }
 
     protected void fail(Boolean condition, Error error) {
-        if (condition == true) {
+        if (condition) {
             this.getNotification().setErrors(error);
         }
     }
