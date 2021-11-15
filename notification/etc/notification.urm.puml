@@ -1,0 +1,88 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+package com.iluwatar.notification {
+    class App {
+        + App()
+        + main(args : String[]) {static}
+      }
+  class CourseService {
+    + CourseService()
+    + registerCourse (course: RegisterCourseDTO)
+  }
+  class DataTransferObject {
+    - notification : Notification
+    + DataTransferObject()
+    + getNotification()
+  }
+  class Error {
+    - message : String
+    + Error(message : String)
+    + getErrorMessage()
+  }
+  class ErrorProvider {
+      + ErrorProvider()
+      + setError(courseID : String, message : String)
+    }
+  class FormRegisterCourse {
+      - course : RegisterCourseDTO
+      - service : CourseService
+      - errorProvider : ErrorProvider
+      - courseID : String
+      - semester : String
+      - department : String
+      + FormRegisterCourse(courseID : String, semester : String, department : String)
+      + submit()
+      + saveToCourse()
+      + indicateErrors()
+      + checkError (error : Error, courseID : String)
+      + showError (courseID : String, message : String)
+    }
+  class Notification {
+      - errors : List<Error>
+      + Notification()
+      + getErrors()
+      + setErrors(error : Error)
+      + hasErrors()
+    }
+  class RegisterCourse extends ServerCommand {
+        + RegisterCourse(course : RegisterCourseDTO)
+        + run()
+        + validate()
+        + isNullOrBlank(inputString : String)
+        + failIfNullOrBlank (inputString : String, error : Error)
+        + fail(condition : Boolean, error : Error)
+      }
+   class RegisterCourseDTO extends DataTransferObject{
+         - courseID : String
+         - semester : String
+         - department : String
+         - MISSING_COURSE_ID : Error
+         - MISSING_DEPARTMENT : Error
+         - MISSING_SEMESTER : Error
+         + RegisterCourseDTO()
+         + getCourseID()
+         + getSemester()
+         + getDepartment()
+         + setCourseID(id : int)
+         + setSemester(semester : String)
+         + setDepartment(department : String)
+       }
+   class ServerCommand {
+         - data : DataTransferObject
+         + ServerCommand(data : DataTransferObject)
+         + getNotification()
+       }
+  App"1" -- "many"FormRegisterCourse
+  FormRegisterCourse -- ErrorProvider
+  FormRegisterCourse - RegisterCourse
+  DataTransferObject"1" o-- "1"Notification
+  RegisterCourse o-- RegisterCourseDTO
+  Notification "1" o-- "many" Error
+  ServerCommand"1" o-- "1"DataTransferObject
+  FormRegisterCourse o--  RegisterCourseDTO
+  FormRegisterCourse o-- CourseService
+
+}
+
+@enduml

@@ -7,7 +7,7 @@ public class RegisterCourse extends ServerCommand {
     }
 
     /**
-     * Runs this service to validate registration forms
+     * Runs this service to validate registration forms, if no errors reported, save to backend
      */
     public void run() {
         validate();
