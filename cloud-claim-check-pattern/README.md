@@ -74,11 +74,6 @@ We are building a call cost calculator system. Producer class( `UsageDetailPubli
 The data is stored in the Azure blob storage in the container `callusageapp`. For every trigger, one GUID is created. Under the `GUID folder`, 2 files will be created `input.json` and `output.json`.
 `Input.json` is dropped `producer` azure function which contains call usage details.` Output.json` contains call cost details which are dropped by the `consumer` azure function.
 
-## Known uses
-
-1. Extract-Transform-Load workflow
-2. Input-Process-Output workflow
-
 ## Credits
 
 - [Messaging Pattern - Claim Check](https://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html)
