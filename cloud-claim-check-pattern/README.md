@@ -67,7 +67,7 @@ We are building a call cost calculator system. Producer class( `UsageDetailPubli
 - Install Java JDK 11 and set up Java environmental variables.
 - Install Git.
 - Install Visual Studio Code.
-- Install [extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) for Azure function in Visual studio code to deploy.
+- Install [ Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) to be able to deploy using Visual studio.
 
 ### Storage Data
 
