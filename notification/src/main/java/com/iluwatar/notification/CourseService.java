@@ -7,9 +7,14 @@ public class CourseService {
      * Register a Course.
      *
      * @param course the course to be registered.
+     * @return true if course is registered successfully, else false
      */
-    public void registerCourse (RegisterCourseDTO course) {
+    public Boolean registerCourse (RegisterCourseDTO course) {
+        Boolean isRegistered = false;
         RegisterCourse cmd = new RegisterCourse(course);
-        cmd.run();
+        if (!cmd.run()){
+            isRegistered = true;
+        }
+        return isRegistered;
     }
 }

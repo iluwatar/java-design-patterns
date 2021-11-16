@@ -9,10 +9,11 @@ public class ErrorProvider {
     /**
      * set an Error message.
      *
-     * @param courseID the course which contains error.
-     * @param message the error message.
+     * @param error the error to display.
+     *
      */
-    public void setError(String courseID, String message){
-        LOGGER.error(message + " " + courseID);
+    public String setError(Error error){
+        LOGGER.error(error.getErrorMessage());
+        return error.getErrorMessage();
     }
 }

@@ -8,12 +8,18 @@ public class RegisterCourse extends ServerCommand {
 
     /**
      * Runs this service to validate registration forms, if no errors reported, save to backend
+     *
+     * @return true if Notification contains errors, else false
      */
-    public void run() {
+    public Boolean run() {
+        Boolean containsErrors = false;
         validate();
         if (!super.getNotification().hasErrors()) {
 //            RegisterCourseInBackendSystems();
+        }else{
+            containsErrors = true;
         }
+        return containsErrors;
     }
 
     private void validate() {

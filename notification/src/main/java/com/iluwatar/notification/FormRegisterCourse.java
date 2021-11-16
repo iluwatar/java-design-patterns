@@ -70,7 +70,8 @@ public class FormRegisterCourse {
     }
 
     private void showError (String courseID, String message) {
-        this.errorProvider.setError(courseID, message);
+        Error error = new Error(message + " " + courseID);
+        this.errorProvider.setError(error);
     }
 
 }

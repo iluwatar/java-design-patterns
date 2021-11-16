@@ -154,7 +154,7 @@ The program output:
 
 ## Class diagram
 
-![alt text](./etc/dao.png "Data Access Object")
+![alt text](./etc/notification.urm.png "Notification")
 
 ## Applicability
 
