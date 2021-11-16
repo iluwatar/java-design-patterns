@@ -1,0 +1,60 @@
+@startuml
+package com.iluwatar.serialized.lob {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Position {
+    - id : int
+    - name : String
+    - departments : List<Department>
+    ~ Consumer(id : int, name : String, departments : List<Department>)
+  }
+  class Department {
+    - name : String
+    - subsidiaries : List<Department>
+    ~ Department(name : String, subsidiaries : List<Department>)
+  }
+  class Serialization {
+    - LOGGER : Logger {static}
+    - dataSource : DataSource
+    - position : Position
+    ~ Consumer(position : Position, dataSource : DataSource)
+    + insert()
+    + read()
+    + update(updatePosition : Position)
+    + delete()
+  }
+
+  object devDept
+  object testDept
+  object devManageDept
+  object testManageDept
+  object engineeringManageDept
+  object CTO
+  object director
+  object developer
+  object tester
+  diamond database
+}
+
+App --> Serialization
+Serialization --> engineeringManageDept
+Serialization --> "Postions are initialized with departments" devManageDept
+Serialization --> testManageDept
+Serialization --> devDept
+Serialization -->  testDept
+
+engineeringManageDept --> CTO
+devManageDept --> director
+testManageDept --> director
+devDept --> developer
+testDept --> tester
+
+CTO --> "Stored in database" database
+director --> database
+developer --> database
+tester --> database
+database --> "Operate CRUD" Position
+@enduml
