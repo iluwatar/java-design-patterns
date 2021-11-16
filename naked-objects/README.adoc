@@ -1,0 +1,244 @@
+= SimpleApp
+:toc:
+:toc-placement!:
+
+image:https://github.com/apache/isis-app-simpleapp/workflows/Build%20w/%20Maven%20+%20Jdk%208/badge.svg[]
+image:https://github.com/apache/isis-app-simpleapp/workflows/Build%20w/%20Maven%20+%20Jdk%2015/badge.svg[]
+
+This is a simple link:http://isis.apache.org[Apache Isis] application, structured so it can be used as a starting point for developing your own applications.
+
+[TIP]
+====
+If all you want is get a feel for what the framework is all about, then take a look at the link:https://github.com/apache/isis-app-helloworld[HelloWorld] starter app, which is even simpler.
+====
+
+toc::[]
+
+== Quick start
+
+* install prereqs:
+
+** Java 8 LTS (eg link:https://adoptopenjdk.net/[Adopt OpenJDK] distribution)
+** Maven 3.6 or later (http://maven.apache.org/download.cgi[download])
+* download and unzip
++
+[source,bash]
+----
+APP=simpleapp
+BRANCH=master
+
+REPO=isis-app-$APP
+curl "https://codeload.github.com/apache/$REPO/zip/$BRANCH" | jar xv
+mv $REPO-$BRANCH $REPO
+cd $REPO
+----
+
+* Build using Maven:
++
+[source,bash]
+----
+mvn clean install
+----
+
+* Run using Maven:
++
+[source,bash]
+----
+mvn -pl webapp spring-boot:run
+----
+
+* Browse to http://localhost:8080.
+
+* Login to using:
+
+** username: `sven`
+** password: `pass`
+
++
+The app runs with H2 running in-memory, with sample data set up using fixture scripts.
+
+* Build a Docker image
++
+[source,bash]
+----
+export REVISION=...                 #<.>
+export DOCKER_REGISTRY_USERNAME     #<.>
+export DOCKER_REGISTRY_PASSWORD     #<.>
+
+mvn -pl webapp jib:build
+----
+<.> used as the image tag
+<.> Docker Hub registry username
+<.> Docker Hub registry password
++
+To push to another container registry, change the `<image>` tag in the pom.xml
+
+== Application Structure
+
+The following table explains the contents of each of the directories:
+
+[width="100%",options="header,footer",stripes="none",cols="2a,4a"]
+|====================
+|Directory
+|Description
+
+|`module-simple`
+|Holds the "simple" module, consisting of the `SimpleObject` entity and supporting services.
+It also contains module-specific unit- and integration tests.
+
+[TIP]
+====
+Larger applications should consist of multiple modules; each such module can be copied from this starter module.
+====
+
+|`webapp`
+|Holds the bootstrapping classes, along with application-level scoped services and home page.
+It also contains application-wide integration tests/BDD specs, and lockdown tests.
+
+The `pom.xml` also provides goals to run the app from the command line, or to be assembled into a Docker image.
+
+|====================
+
+
+== Development
+
+Apache Isis uses DataNucleus as its ORM, which requires that any entities are "enhanced", a post-compile process.
+
+Normally this is done as part of a "mvn clean install", but the entities can also be enhanced explicity using:
+
+[source,bash]
+----
+mvn -pl module-simple datanucleus:enhance -o
+----
+
+This is useful to know if the application or integration test fails to bootstrap, complaining of "unenhanced entities".
+
+TIP: You can also use `enhance-all.sh`
+
+
+== Testing
+
+The application has three types of tests.
+Each of these generates its own set of tests, and each can be disabled through a system property.
+
+.Testing types
+[cols="5a,12a,6a,3a", options="header"]
+|===
+
+| Test type
+| Report
+| Phase
+| Skip using
+
+
+| Unit test
+| `target/surefire-unittest-reports`
+| `test`
+| `-DskipUTs`
+
+| Integ test
+| `target/surefire-integtest-reports`
+| `integration-test`
+| `-DskipITs`
+
+| BDD (Cucumber) specs
+| `target/surefire-integbddspecs-reports` and +
+`target/cucumber-html-reports/overview-features.html`
+
+| `integration-test`
+| `-DskipBS`
+
+
+|===
+
+
+These outputs can for example be processed within/published by a continuous pipeline pipeline.
+
+
+=== Lockdown Tests
+
+Lockdown tests capture the state of the system, so that changes to that system can be captured and confirmed.
+There are two lockdown tests:
+
+* the metamodel (serialized as XML)
++
+This is expected to change whenever the domain logic is changed, but generally should _not_ change when the Apache Isis framework is upgraded.
+
+* Maven dependencies (serialized as flat files)
++
+This should only change when dependencies are bumped or new dependencies added.
+
+The lockdown tests are implemented as link:https://approvaltests.com/[approval test]s, meaning that the current state is compared to an "approved" state.
+If there are no differences then the test passes.
+If there are differences then the test fails, and a diff is shown using any available `diff` tool.
+
+The lockdown tests are disabled by default, and are enabled with system properties.
+
+* to compare the current metamodel with the previously approved metamodel:
++
+[source,bash]
+----
+mvn integration-test -Dmetamodel.lockdown
+----
+
+* to compare the current Maven dependencies with the previously approved dependencies:
++
+[source,bash]
+----
+mvn test -Dmavendeps.lockdown
+----
+
+When there are differences, the current state is written to the `current` subdirectory.
+If the current state is approved, it should be copied over to the corresponding `approved` subdirectory.
+
+
+
+
+== Translations
+
+Apache Isis supports i18n using link:https://www.gnu.org/software/gettext/manual/html_node/PO-Files.html[GNU .po file]s.
+The `WEB-INF/translations.po` is the fallback (an empty value means that the key is used "as-is"), while `WEB-INF/translations-XX.po` files provide translations for each "XX" locale.
+
+Translations are required for all domain classes and all members (actions, properties and collections) of all classes.
+This information is available from the metamodel, and so a new template `translations.po` is generated as a side-effect of running the integration tests (through a log4j2 logger).
+A good integration test to run is `ValidateDomainModel_IntegTest`.
+
+In addition, translations are required for any validation messages triggered by the test.
+Running an integration tests that trigger validations will result in these messages being captured as keys, for example `Smoke_IntegTest`.
+
+The generated file should be merged with any existing translations in `WEB-INF/translations.po`, and translations obtained for any new keys (there are numerous online services that support the format).
+
+
+== Flyway
+
+The application also demonstrates how to use Flyway to migrate the database schema.
+
+By default the app runs using an in-memory database.
+The Flyway example is activated using the "SQLSERVER" Spring Boot profile, eg:
+
+[source,bash]
+----
+mvn -Dspring.profiles.active=SQLSERVER -pl webapp install
+mvn -Dspring.profiles.active=SQLSERVER -pl webapp spring-boot:run
+----
+
+This causes the properties defined in  `config/application-SQLSERVER.properties` file to be used in preference to those in the default `config/application.properties` file.
+It defines the following:
+
+* `spring.flyway.url`, `spring.flyway.user` and `spring.flyway.password`
++
+The presence of these is enough to enable the Flyway integration
+
+* `spring.flyway.enabled`
++
+This is explicitly set to `true`, to override the value in the default `config/application.properties`.
+
+* `isis.persistence.jdo-datanucleus.impl.datanucleus.schema.autoCreateAll`
++
+This is set to `false`, also overriding the value in the default `config/application.properties`.
+It instructs the JDO/DataNucleus object store not to automatically create any tables etc.
+
+The Spring Boot profile is also used to add the dependency to the SQL Server driver is included (it is hidden behind a Maven profile).
+
+The prerequisites to try this out are a SQL Server database running on `localhost` and with the credentials as specified in `config/application-SQLSERVER.properties`; adjust as necessary.
+

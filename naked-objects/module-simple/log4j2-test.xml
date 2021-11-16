@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="PID">????</Property>
+        <Property name="LOG_EXCEPTION_CONVERSION_WORD">%xwEx</Property>
+        <Property name="LOG_LEVEL_PATTERN">%5p</Property>
+        <Property name="LOG_DATEFORMAT_PATTERN">yyyy-MM-dd HH:mm:ss.SSS</Property>
+        <Property name="CONSOLE_LOG_PATTERN">%clr{%d{${LOG_DATEFORMAT_PATTERN}}}{faint} %clr{${LOG_LEVEL_PATTERN}} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+        <Property name="FILE_LOG_PATTERN">%d{${LOG_DATEFORMAT_PATTERN}} ${LOG_LEVEL_PATTERN} ${sys:PID} --- [%t] %-40.40c{1.} : %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="org.apache.catalina.startup.DigesterFactory" level="error" />
+        <Logger name="org.apache.catalina.util.LifecycleBase" level="error" />
+        <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="warn" />
+        <logger name="org.apache.sshd.common.util.SecurityUtils" level="warn"/>
+        <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="warn" />
+        <Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error" />
+        <Logger name="org.hibernate.validator.internal.util.Version" level="warn" />
+        <logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>
+
+        <logger name="org.apache.directory" level="warn"/>
+        <logger name="org.apache.directory.api.ldap.model.entry.Value" level="off"/>
+
+        <logger name="DataNucleus.Persistence" level="info"/>
+        <logger name="DataNucleus.Transaction" level="info"/>
+        <logger name="DataNucleus.Datastore.Schema" level="info"/>
+        <logger name="DataNucleus.Datastore.Native" level="info"/>
+
+        <Root level="info">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>
+
+<!-- # DataNucleus Logging Categories -->
+<!-- DataNucleus.Persistence - All messages relating to the persistence process -->
+<!-- DataNucleus.Transaction - All messages relating to transactions -->
+<!-- DataNucleus.Connection - All messages relating to Connections. -->
+<!-- DataNucleus.Query - All messages relating to queries -->
+<!-- DataNucleus.Cache - All messages relating to the DataNucleus Cache -->
+<!-- DataNucleus.MetaData - All messages relating to MetaData -->
+<!-- DataNucleus.Datastore - All general datastore messages -->
+<!-- DataNucleus.Datastore.Schema - All schema related datastore log messages -->
+<!-- DataNucleus.Datastore.Persist - All datastore persistence messages -->
+<!-- DataNucleus.Datastore.Retrieve - All datastore retrieval messages -->
+<!-- DataNucleus.Datastore.Native - Log of all 'native' statements sent to the datastore -->
+<!-- DataNucleus.General - All general operational messages -->
+<!-- DataNucleus.Lifecycle - All messages relating to object lifecycle changes -->
+<!-- DataNucleus.ValueGeneration - All messages relating to value generation -->
+<!-- DataNucleus.Enhancer - All messages from the DataNucleus Enhancer. -->
+<!-- DataNucleus.SchemaTool - All messages from DataNucleus SchemaTool -->
+<!-- DataNucleus.JDO - All messages general to JDO -->
+<!-- DataNucleus.JPA - All messages general to JPA -->
+<!-- DataNucleus.JCA - All messages relating to Connector JCA. -->
+<!-- DataNucleus.IDE - Messages from the DataNucleus IDE. -->

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bs3:grid xsi:schemaLocation="http://isis.apache.org/applib/layout/component http://isis.apache.org/applib/layout/component/component.xsd http://isis.apache.org/applib/layout/grid/bootstrap3 http://isis.apache.org/applib/layout/grid/bootstrap3/bootstrap3.xsd" xmlns="http://isis.apache.org/applib/layout/component" xmlns:bs3="http://isis.apache.org/applib/layout/grid/bootstrap3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <bs3:row>
+        <bs3:col span="3">
+            <bs3:row>
+                <bs3:col span="12" unreferencedActions="true">
+                    <domainObject/>
+                    <action id="clearHints"/>
+                    <action id="downloadLayoutXml" hidden="EVERYWHERE"/>
+                    <action id="inspectMetamodel" hidden="EVERYWHERE"/>
+                    <action id="rebuildMetamodel" hidden="EVERYWHERE"/>
+                    <action id="downloadMetamodelXml" hidden="EVERYWHERE"/>
+                    <action id="openRestApi" hidden="EVERYWHERE"/>
+                </bs3:col>
+            </bs3:row>
+        </bs3:col>
+        <bs3:col span="6" unreferencedCollections="true">
+            <bs3:row>
+                <bs3:col span="12">
+                    <collection id="objects" defaultView="table"/>
+                </bs3:col>
+            </bs3:row>
+        </bs3:col>
+        <bs3:col span="3">
+        </bs3:col>
+    </bs3:row>
+    <bs3:row>
+
+    </bs3:row>
+    <bs3:row>
+        <bs3:col span="0">
+            <fieldSet name="General" id="general" unreferencedProperties="true"/>
+        </bs3:col>
+    </bs3:row>
+</bs3:grid>

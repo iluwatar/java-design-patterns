@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<mml:domainClassDto id="domainapp.webapp.application.fixture.DomainAppFixtureScriptsSpecificationProvider" service="true" xmlns:mml="http://isis.apache.org/schema/metamodel">
+    <mml:facets>
+        <mml:facet id="org.apache.isis.core.metamodel.authorization.standard.AuthorizationFacet" fqcn="org.apache.isis.core.metamodel.authorization.standard.AuthorizationFacetImpl">
+            <mml:attr name="disabling">true</mml:attr>
+            <mml:attr name="hiding">true</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.all.named.NamedFacet" fqcn="org.apache.isis.core.metamodel.facets.all.named.NamedFacetInferred">
+            <mml:attr name="escaped">true</mml:attr>
+            <mml:attr name="value">Domain App Fixture Scripts Specification Provider</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.audit.AuditableFacet" fqcn="org.apache.isis.core.metamodel.facets.object.domainobject.auditing.AuditableFacetFromConfiguration">
+            <mml:attr name="enablement">ENABLED</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.bookmarkpolicy.BookmarkPolicyFacet" fqcn="org.apache.isis.core.metamodel.facets.object.bookmarkpolicy.BookmarkPolicyFacetFallback">
+            <mml:attr name="bookmarkPolicy">NEVER</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.domainservice.DomainServiceFacet" fqcn="org.apache.isis.core.metamodel.facets.object.domainservice.annotation.DomainServiceFacetAnnotation">
+            <mml:attr name="natureOfService">DOMAIN</mml:attr>
+            <mml:attr name="repositoryFor">java.lang.Object</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.domainservicelayout.DomainServiceLayoutFacet" fqcn="org.apache.isis.core.metamodel.facets.object.domainservicelayout.annotation.DomainServiceLayoutFacetAnnotation">
+            <mml:attr name="menuBar">PRIMARY</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.grid.GridFacet" fqcn="org.apache.isis.core.metamodel.facets.object.grid.GridFacetDefault"/>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.icon.IconFacet" fqcn="org.apache.isis.core.metamodel.facets.object.domainservice.annotation.IconFacetDerivedFromDomainServiceAnnotation">
+            <mml:attr name="repositoryFor">java.lang.Object</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.immutable.ImmutableFacet" fqcn="org.apache.isis.core.metamodel.facets.object.domainobject.editing.ImmutableFacetFromConfiguration">
+            <mml:attr name="disabling">true</mml:attr>
+            <mml:attr name="reason">Disabled</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.layout.LayoutFacet" fqcn="org.apache.isis.core.metamodel.facets.object.layout.LayoutFacetFallback">
+            <mml:attr name="derived">true</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.objectspecid.ObjectSpecIdFacet" fqcn="org.apache.isis.core.metamodel.facets.object.objectspecid.classname.ObjectSpecIdFacetDerivedFromIoCNamingStrategy">
+            <mml:attr name="value">domainAppFixtureScriptsSpecificationProvider</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.objectvalidprops.ObjectValidPropertiesFacet" fqcn="org.apache.isis.core.metamodel.facets.object.objectvalidprops.impl.ObjectValidPropertiesFacetImpl">
+            <mml:attr name="validating">true</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.paged.PagedFacet" fqcn="org.apache.isis.core.metamodel.facets.fallback.PagedFacetFromConfiguration">
+            <mml:attr name="derived">true</mml:attr>
+            <mml:attr name="value">25</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.plural.PluralFacet" fqcn="org.apache.isis.core.metamodel.facets.object.plural.inferred.PluralFacetInferred">
+            <mml:attr name="derived">true</mml:attr>
+            <mml:attr name="value">Domain App Fixture Scripts Specification Providers</mml:attr>
+        </mml:facet>
+        <mml:facet id="org.apache.isis.core.metamodel.facets.object.publishedobject.PublishedObjectFacet" fqcn="org.apache.isis.core.metamodel.facets.object.domainobject.publishing.PublishedObjectFacetFromConfiguration"/>
+    </mml:facets>
+</mml:domainClassDto>

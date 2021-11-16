@@ -11,6 +11,8 @@ logs/
 .idea
 *.iml
 
+build/
+
 JArchitectOut/
 *.jdproj
 
@@ -23,7 +25,6 @@ i18n-po.log
 hs_err_pid*.log
 
 # Package Files #
-*.jar
 *.war
 *.ear
 
@@ -34,9 +35,9 @@ pom.xml.releaseBackup
 pom.xml.versionsBackup
 
 .clover/
-*.jdproj
-JArchitectOut/
 
 
 rebel.xml
-/translations.pot
+translations.pot
+
+.flattened-pom.xml

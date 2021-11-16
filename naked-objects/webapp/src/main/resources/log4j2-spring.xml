@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <Property name="PID">????</Property>
+        <Property name="LOG_EXCEPTION_CONVERSION_WORD">%xwEx</Property>
+        <Property name="LOG_LEVEL_PATTERN">%5p</Property>
+        <Property name="LOG_DATEFORMAT_PATTERN">yyyy-MM-dd HH:mm:ss.SSS</Property>
+        <Property name="CONSOLE_LOG_PATTERN">%clr{%d{${LOG_DATEFORMAT_PATTERN}}}{faint} %clr{${LOG_LEVEL_PATTERN}} %clr{${sys:PID}}{magenta} %clr{---}{faint} %clr{[%15.15t]}{faint} %clr{%-40.40c{1.}}{cyan} %clr{:}{faint} %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+        <Property name="FILE_LOG_PATTERN">%d{${LOG_DATEFORMAT_PATTERN}} ${LOG_LEVEL_PATTERN} ${sys:PID} --- [%t] %-40.40c{1.} : %m%n${sys:LOG_EXCEPTION_CONVERSION_WORD}</Property>
+    </Properties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" />
+        </Console>
+    </Appenders>
+    <Loggers>
+
+        <!-- silence Wicket -->
+        <Logger name="org.apache.wicket.page.PartialPageUpdate" level="error" />
+
+        <Logger name="org.apache.catalina.startup.DigesterFactory" level="error" />
+        <Logger name="org.apache.catalina.util.LifecycleBase" level="error" />
+        <Logger name="org.apache.coyote.http11.Http11NioProtocol" level="warn" />
+        <logger name="org.apache.sshd.common.util.SecurityUtils" level="warn"/>
+        <Logger name="org.apache.tomcat.util.net.NioSelectorPool" level="warn" />
+        <Logger name="org.eclipse.jetty.util.component.AbstractLifeCycle" level="error" />
+        <Logger name="org.hibernate.validator.internal.util.Version" level="warn" />
+        <logger name="org.springframework.boot.actuate.endpoint.jmx" level="warn"/>
+
+        <logger name="org.apache.directory" level="warn"/>
+        <logger name="org.apache.directory.api.ldap.model.entry.Value" level="off"/>
+
+        <logger name="DataNucleus.Persistence" level="info"/>
+        <logger name="DataNucleus.Transaction" level="info"/>
+        <logger name="DataNucleus.Datastore.Schema" level="info"/>
+        <logger name="DataNucleus.Datastore.Native" level="info"/>
+
+        <logger name="org.apache.isis.applib.services.audit.AuditerServiceLogging" level="debug"/>
+        <logger name="org.apache.isis.applib.services.publish.PublisherServiceLogging" level="debug"/>
+
+        <!-- request scoped -->
+        <logger name="org.apache.isis.viewer.restfulobjects.rendering.service.acceptheader.AcceptHeaderServiceForRest" level="debug"/>
+        <logger name="org.apache.isis.applib.services.command.CommandContext" level="debug"/>
+        <logger name="org.apache.isis.applib.services.iactn.InteractionContext" level="debug"/>
+        <logger name="org.apache.isis.applib.services.scratchpad.Scratchpad" level="debug"/>
+        <logger name="org.apache.isis.core.runtimeservices.publish.PublisherDispatchServiceDefault" level="debug"/>
+
+        <!-- transaction scoped -->
+        <logger name="org.apache.isis.persistence.jdo.datanucleus5.metrics.MetricsServiceDefault" level="debug"/>
+        <logger name="org.apache.isis.core.runtimeservices.queryresultscache.QueryResultsCacheDefault" level="debug"/>
+        <logger name="org.apache.isis.core.runtime.persistence.transaction.ChangedObjectsService" level="debug"/>
+
+        <Root level="info">
+            <AppenderRef ref="Console" />
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,27 @@
+body {
+    background-color: #1A467B;
+    font-family: Verdana, Helvetica, Arial, serif;
+    font-size: 90%;
+}
+
+li {
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+    border: 1px;
+    border-style: solid;
+    border-color: lightgray;
+}
+th, td {
+    padding: 10px;
+}
+#wrapper {
+    background-color: #ffffff;
+    width: 900px;
+    margin: 8px auto;
+    padding: 12px;
+}

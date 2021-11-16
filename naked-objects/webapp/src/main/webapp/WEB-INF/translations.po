@@ -1,3 +1,5 @@
+
+
 ##############################################################################
 #
 # .pot file
@@ -17,190 +19,569 @@
 #
 ##############################################################################
 
-#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#downloadTranslations(java.lang.String)
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2019-12-02 18:55:20+\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModelCsv(java.lang.String)
+msgid ".csv file name"
+msgstr ""
+
+
+#: org.apache.isis.core.runtimeservices.i18n.po.TranslationServicePoMenu#downloadTranslations(java.lang.String)
 msgid ".pot file name"
 msgstr ""
 
 
-#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#resetTranslationCache()
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModelXml(java.lang.String,java.util.List,boolean)
+msgid ".xml file name"
+msgstr ""
+
+
+#: org.apache.isis.applib.mixins.dto.Dto_downloadXml#act()
+#: org.apache.isis.applib.mixins.dto.Dto_downloadXsd#act()
+#: org.apache.isis.applib.mixins.layout.Object_downloadLayoutXml#act()
+#: org.apache.isis.applib.mixins.layout.Object_openRestApi#act()
+#: org.apache.isis.applib.mixins.layout.Object_rebuildMetamodel#act()
+#: org.apache.isis.applib.mixins.metamodel.Object_downloadMetaModelXml#act()
+#: org.apache.isis.applib.services.bookmark.BookmarkHolder_lookup#act()
+#: org.apache.isis.jdo.jdosupport.mixins.Persistable_downloadJdoMetadata#act()
+msgid "Act"
+msgstr ""
+
+
+#: org.apache.isis.applib.domain.DomainObjectList#actionArguments
+msgid "Action Arguments"
+msgstr ""
+
+
+#: org.apache.isis.applib.domain.DomainObjectList#actionId
+msgid "Action Id"
+msgstr ""
+
+
+#: org.apache.isis.applib.domain.DomainObjectList#actionOwningType
+msgid "Action Owning Type"
+msgstr ""
+
+
+#: org.apache.isis.core.runtime.system.session.IsisSessionFactory
+msgid "Are you sure?"
+msgstr ""
+
+
+#: BeanAdapterSpring#beanClass
+msgid "Bean Class"
+msgstr ""
+
+
+#: BeanAdapterSpring#beanProvider
+msgid "Bean Provider"
+msgstr ""
+
+
+#: org.apache.isis.core.runtime.system.session.IsisSessionFactory
+msgid "Cancel"
+msgstr ""
+
+
+#: org.apache.isis.core.runtimeservices.i18n.po.TranslationServicePoMenu#resetTranslationCache()
 msgid "Clear translation cache"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObjects#create()
+#: org.apache.isis.schema.cmd.v1.CommandsDto#commandDto
+msgid "Command Dto"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.layout.LayoutService$Style#COMPLETE
+msgid "Complete"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.confview.ConfigurationMenu#configuration()
+msgid "Configuration"
+msgstr ""
+
+
+#: org.apache.isis.core.runtime.system.session.IsisSessionFactory
+msgid "Confirm"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObjects#create()
 msgid "Create"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixturescripts.FixtureScript#discoverable
-msgid "Discoverable"
+#: org.apache.isis.applib.services.layout.LayoutService$Style#CURRENT
+msgid "Current"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixtures.FixtureType#DOMAIN_OBJECTS
-msgid "Domain Objects"
+#: org.apache.isis.applib.services.menu.MenuBarsService$Type#DEFAULT
+msgid "Default"
 msgstr ""
 
 
-#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#downloadTranslations()
+#: domainapp.modules.simple.dom.impl.SimpleObject#delete()
+msgid "Delete"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObject#downloadJdoMetadata()
+msgid "Download Jdo Metadata"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObject#downloadLayoutXml()
+#: domainapp.webapp.application.services.homepage.HomePageViewModel#downloadLayoutXml()
+#: org.apache.isis.applib.domain.DomainObjectList#downloadLayoutXml()
+#: org.apache.isis.applib.services.confview.ConfigurationProperty#downloadLayoutXml()
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureResult#downloadLayoutXml()
+#: org.apache.isis.schema.cmd.v1.CommandDto#downloadLayoutXml()
+#: org.apache.isis.schema.cmd.v1.CommandsDto#downloadLayoutXml()
+msgid "Download Layout Xml"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.layout.LayoutServiceMenu#downloadMenuBarsLayout()
+msgid "Download Menu Bars Layout (XML)"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModelCsv()
+msgid "Download Meta Model (CSV)"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModelXml()
+msgid "Download Meta Model (XML)"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObject#downloadMetaModelXml()
+#: domainapp.webapp.application.services.homepage.HomePageViewModel#downloadMetaModelXml()
+#: org.apache.isis.applib.domain.DomainObjectList#downloadMetaModelXml()
+#: org.apache.isis.applib.services.confview.ConfigurationProperty#downloadMetaModelXml()
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureResult#downloadMetaModelXml()
+#: org.apache.isis.schema.cmd.v1.CommandDto#downloadMetaModelXml()
+#: org.apache.isis.schema.cmd.v1.CommandsDto#downloadMetaModelXml()
+msgid "Download Meta Model Xml"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.layout.LayoutServiceMenu#downloadLayouts()
+msgid "Download Object Layouts (ZIP)"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu#downloadSwaggerSchemaDefinition()
+msgid "Download Swagger Schema Definition"
+msgstr ""
+
+
+#: org.apache.isis.core.runtimeservices.i18n.po.TranslationServicePoMenu#downloadTranslations()
 msgid "Download Translations"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObject#updateName()
+#: org.apache.isis.applib.domain.DomainObjectList#elementObjectType
+msgid "Element Object Type"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObject#updateName()
 msgid "Exclamation mark is not allowed"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObjects#findByName()
+#: org.apache.isis.applib.services.menu.MenuBarsService$Type#FALLBACK
+msgid "Fallback"
+msgstr ""
+
+
+#: org.apache.isis.applib.mixins.dto.Dto_downloadXml#act(java.lang.String)
+#: org.apache.isis.applib.mixins.dto.Dto_downloadXsd#act(java.lang.String,org.apache.isis.applib.services.jaxb.JaxbService$IsisSchemas)
+#: org.apache.isis.applib.mixins.layout.Object_downloadLayoutXml#act(java.lang.String,org.apache.isis.applib.services.layout.LayoutService$Style)
+#: org.apache.isis.applib.mixins.metamodel.Object_downloadMetaModelXml#act(java.lang.String)
+#: org.apache.isis.applib.services.layout.LayoutServiceMenu#downloadMenuBarsLayout(java.lang.String,org.apache.isis.applib.services.menu.MenuBarsService$Type)
+#: org.apache.isis.jdo.jdosupport.mixins.Persistable_downloadJdoMetadata#act(java.lang.String)
+msgid "File name"
+msgstr ""
+
+
+#: org.apache.isis.applib.mixins.dto.Dto_downloadXml#act(java.lang.String)
+#: org.apache.isis.applib.mixins.dto.Dto_downloadXsd#act(java.lang.String,org.apache.isis.applib.services.jaxb.JaxbService$IsisSchemas)
+#: org.apache.isis.applib.mixins.layout.Object_downloadLayoutXml#act(java.lang.String,org.apache.isis.applib.services.layout.LayoutService$Style)
+#: org.apache.isis.applib.mixins.metamodel.Object_downloadMetaModelXml#act(java.lang.String)
+msgid "File name extension can be omitted."
+msgstr ""
+
+
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu#downloadSwaggerSchemaDefinition(java.lang.String,org.apache.isis.applib.services.swagger.SwaggerService$Visibility,org.apache.isis.applib.services.swagger.SwaggerService$Format)
+msgid "Filename"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObjects#findByName()
 msgid "Find By Name"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixturescripts.FixtureResult#fixtureScriptClassName
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts#fixtureScriptByFriendlyName
+msgid "Fixture Script By Friendly Name"
+msgstr ""
+
+
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureResult#fixtureScriptClassName
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts#runFixtureScript(java.lang.String,java.lang.String)
 msgid "Fixture script"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixturescripts.FixtureScript#friendlyName
-msgid "Friendly Name"
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu#downloadSwaggerSchemaDefinition(java.lang.String,org.apache.isis.applib.services.swagger.SwaggerService$Visibility,org.apache.isis.applib.services.swagger.SwaggerService$Format)
+msgid "Format"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObject
-msgid "General"
-msgstr "Common"
-
-
-#: domainapp.dom.app.homepage.HomePageService#homePage()
-msgid "Home Page"
+#: domainapp.modules.simple.dom.impl.SimpleObject#datanucleusIdLong()
+#: BeanAdapterSpring#id
+#: org.apache.isis.jdo.jdosupport.mixins.Persistable_datanucleusIdLong#prop()
+msgid "Id"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObjects#listAll()
+#: org.apache.isis.applib.services.jaxb.JaxbService$IsisSchemas#IGNORE
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts$NonPersistedObjectsStrategy#IGNORE
+msgid "Ignore"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModelXml(java.lang.String,java.util.List,boolean)
+msgid "Ignore Interfaces"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.jaxb.JaxbService$IsisSchemas#INCLUDE
+msgid "Include"
+msgstr ""
+
+
+#: BeanAdapterSpring#instance
+msgid "Instance"
+msgstr ""
+
+
+#: org.apache.isis.applib.mixins.dto.Dto_downloadXsd#act(java.lang.String,org.apache.isis.applib.services.jaxb.JaxbService$IsisSchemas)
+msgid "Isis Schemas"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.swagger.SwaggerService$Format#JSON
+msgid "Json"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.confview.ConfigurationProperty#key
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureResult#key
+msgid "Key"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObjects#listAll()
 msgid "List All"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixturescripts.FixtureScript#localName
-msgid "Local Name"
+#: org.apache.isis.schema.cmd.v1.CommandDto#majorVersion
+msgid "Major Version"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixturescripts.FixtureScript#lookup()
-#: org.apache.isis.applib.services.bookmark.BookmarkHolderActionContributions#lookup()
-msgid "Lookup"
+#: org.apache.isis.schema.cmd.v1.CommandDto#member
+msgid "Member"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObject#name
-#: domainapp.dom.modules.simple.SimpleObjects#create(java.lang.String)
-#: domainapp.dom.modules.simple.SimpleObjects#findByName(java.lang.String)
+#: org.apache.isis.applib.services.layout.LayoutService$Style#MINIMAL
+msgid "Minimal"
+msgstr ""
+
+
+#: org.apache.isis.schema.cmd.v1.CommandDto#minorVersion
+msgid "Minor Version"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObject#name
+#: domainapp.modules.simple.dom.impl.SimpleObject#updateName(java.lang.String)
+#: domainapp.modules.simple.dom.impl.SimpleObjects#create(java.lang.String)
+#: domainapp.modules.simple.dom.impl.SimpleObjects#findByName(java.lang.String)
 msgid "Name"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObject#updateName(java.lang.String)
-msgid "New name"
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts#nonPersistedObjectsStrategy
+msgid "Non Persisted Objects Strategy"
 msgstr ""
 
 
-#: org.apache.isis.applib.services.bookmark.BookmarkHolderAssociationContributions#object()
-msgid "Object"
+#: org.apache.isis.applib.services.layout.LayoutService$Style#NORMALIZED
+msgid "Normalized"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObject#title()
-msgid "Object: {name}"
+#: domainapp.modules.simple.dom.impl.SimpleObject#notes
+msgid "Notes"
 msgstr ""
 
 
-#: domainapp.dom.app.homepage.HomePageViewModel#objects
+#: domainapp.modules.simple.dom.impl.SimpleObject#objectIdentifier()
+#: domainapp.webapp.application.services.homepage.HomePageViewModel#objectIdentifier()
+#: org.apache.isis.applib.domain.DomainObjectList#objectIdentifier()
+#: org.apache.isis.applib.services.confview.ConfigurationProperty#objectIdentifier()
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureResult#objectIdentifier()
+#: org.apache.isis.schema.cmd.v1.CommandDto#objectIdentifier()
+#: org.apache.isis.schema.cmd.v1.CommandsDto#objectIdentifier()
+msgid "Object Identifier"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObject#objectType()
+#: domainapp.webapp.application.services.homepage.HomePageViewModel#objectType()
+#: org.apache.isis.applib.domain.DomainObjectList#objectType()
+#: org.apache.isis.applib.services.confview.ConfigurationProperty#objectType()
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureResult#objectType()
+#: org.apache.isis.schema.cmd.v1.CommandDto#objectType()
+#: org.apache.isis.schema.cmd.v1.CommandsDto#objectType()
+msgid "Object Type"
+msgstr ""
+
+
+#: domainapp.webapp.application.services.homepage.HomePageViewModel#objects
+#: org.apache.isis.applib.domain.DomainObjectList#objects
 msgid "Objects"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixtures.FixtureType#OTHER
-msgid "Other"
+#: domainapp.modules.simple.dom.impl.SimpleObject#openRestApi()
+#: domainapp.webapp.application.services.homepage.HomePageViewModel#openRestApi()
+#: org.apache.isis.applib.domain.DomainObjectList#openRestApi()
+#: org.apache.isis.applib.services.confview.ConfigurationProperty#openRestApi()
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu#openRestApi()
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureResult#openRestApi()
+#: org.apache.isis.schema.cmd.v1.CommandDto#openRestApi()
+#: org.apache.isis.schema.cmd.v1.CommandsDto#openRestApi()
+msgid "Open Rest Api"
 msgstr ""
 
 
-#: domainapp.fixture.DomainAppFixturesService#runFixtureScript(org.apache.isis.applib.fixturescripts.FixtureScript,java.lang.String)
-#: org.apache.isis.applib.fixturescripts.FixtureScripts#runFixtureScript(org.apache.isis.applib.fixturescripts.FixtureScript,java.lang.String)
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu#openSwaggerUi()
+msgid "Open Swagger Ui"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModelXml(java.lang.String,java.util.List,boolean)
+msgid "Packages"
+msgstr ""
+
+
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts#runFixtureScript(java.lang.String,java.lang.String)
 msgid "Parameters"
 msgstr ""
 
 
-#: domainapp.fixture.DomainAppFixturesService
-#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts$NonPersistedObjectsStrategy#PERSIST
+msgid "Persist"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.swagger.SwaggerService$Visibility#PRIVATE
+msgid "Private"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.swagger.SwaggerService$Visibility#PRIVATE_WITH_PROTOTYPING
+msgid "Private With Prototyping"
+msgstr ""
+
+
+#: org.apache.isis.applib.mixins.metamodel.Object_objectIdentifier#prop()
+#: org.apache.isis.applib.mixins.metamodel.Object_objectType#prop()
+#: org.apache.isis.applib.services.bookmark.BookmarkHolder_object#prop()
+msgid "Prop"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.layout.LayoutServiceMenu
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts
+#: org.apache.isis.core.runtimeservices.i18n.po.TranslationServicePoMenu
 msgid "Prototyping"
 msgstr ""
 
 
-#: domainapp.fixture.DomainAppFixturesService#recreateObjectsAndReturnFirst()
+#: org.apache.isis.applib.services.swagger.SwaggerService$Visibility#PUBLIC
+msgid "Public"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObject#rebuildMetamodel()
+#: domainapp.webapp.application.services.homepage.HomePageViewModel#rebuildMetamodel()
+#: org.apache.isis.applib.domain.DomainObjectList#rebuildMetamodel()
+#: org.apache.isis.applib.services.confview.ConfigurationProperty#rebuildMetamodel()
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureResult#rebuildMetamodel()
+#: org.apache.isis.schema.cmd.v1.CommandDto#rebuildMetamodel()
+#: org.apache.isis.schema.cmd.v1.CommandsDto#rebuildMetamodel()
+msgid "Rebuild Metamodel"
+msgstr ""
+
+
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts#recreateObjectsAndReturnFirst()
 msgid "Recreate Objects And Return First"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixturescripts.FixtureResult#object
+#: org.apache.isis.extensions.fixtures.modules.ModuleFixtureService#refDataSetupFixture
+msgid "Ref Data Setup Fixture"
+msgstr ""
+
+
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureResult#object
 msgid "Result"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixturescripts.FixtureResult#className
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureResult#className
 msgid "Result class"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixturescripts.FixtureResult#key
-msgid "Result key"
-msgstr ""
-
-
-#: domainapp.fixture.DomainAppFixturesService#runFixtureScript()
-#: org.apache.isis.applib.fixturescripts.FixtureScripts#runFixtureScript()
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts#runFixtureScript()
 msgid "Run Fixture Script"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixturescripts.FixtureScript
-msgid "Script"
-msgstr ""
-
-
-#: domainapp.fixture.DomainAppFixturesService#runFixtureScript(org.apache.isis.applib.fixturescripts.FixtureScript,java.lang.String)
-#: org.apache.isis.applib.fixturescripts.FixtureScripts#runFixtureScript(org.apache.isis.applib.fixturescripts.FixtureScript,java.lang.String)
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts#runFixtureScript(java.lang.String,java.lang.String)
 msgid "Script-specific parameters (if any).  The format depends on the script implementation (eg key=value, CSV, JSON, XML etc)"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObjects#title()
-msgid "Simple Objects"
+#: org.apache.isis.extensions.fixtures.fixturescripts.FixtureScripts#specification
+msgid "Specification"
 msgstr ""
 
 
-#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#switchToReadingTranslations()
+#: org.apache.isis.applib.mixins.layout.Object_downloadLayoutXml#act(java.lang.String,org.apache.isis.applib.services.layout.LayoutService$Style)
+#: org.apache.isis.applib.services.layout.LayoutServiceMenu#downloadLayouts(org.apache.isis.applib.services.layout.LayoutService$Style)
+msgid "Style"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.metamodel.MetaModelServicesMenu#downloadMetaModelXml(java.lang.String,java.util.List,boolean)
+msgid "Subset of the complete meta model, only including packages starting with given prefix."
+msgstr ""
+
+
+#: org.apache.isis.core.runtimeservices.i18n.po.TranslationServicePoMenu#switchToReadingTranslations()
 msgid "Switch To Reading Translations"
 msgstr ""
 
 
-#: org.apache.isis.core.runtime.services.i18n.po.TranslationServicePoMenu#switchToWritingTranslations()
+#: org.apache.isis.core.runtimeservices.i18n.po.TranslationServicePoMenu#switchToWritingTranslations()
 msgid "Switch To Writing Translations"
 msgstr ""
 
 
-#: org.apache.isis.applib.fixturescripts.FixtureScript#type
+#: org.apache.isis.schema.cmd.v1.CommandDto#targets
+msgid "Targets"
+msgstr ""
+
+
+#: org.apache.isis.extensions.fixtures.modules.ModuleFixtureService#teardownFixture
+msgid "Teardown Fixture"
+msgstr ""
+
+
+#: org.apache.isis.schema.cmd.v1.CommandDto#timestamp
+msgid "Timestamp"
+msgstr ""
+
+
+#: org.apache.isis.schema.cmd.v1.CommandDto#timings
+msgid "Timings"
+msgstr ""
+
+
+#: org.apache.isis.schema.cmd.v1.CommandDto#transactionId
+msgid "Transaction Id"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.layout.LayoutServiceMenu#downloadMenuBarsLayout(java.lang.String,org.apache.isis.applib.services.menu.MenuBarsService$Type)
 msgid "Type"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObject#updateName()
+#: domainapp.modules.simple.dom.impl.SimpleObject#updateName()
 msgid "Update Name"
 msgstr ""
 
 
-#: domainapp.dom.modules.simple.SimpleObject
-msgid "name"
+#: org.apache.isis.schema.cmd.v1.CommandDto#user
+msgid "User"
+msgstr ""
+
+
+#: org.apache.isis.schema.cmd.v1.CommandDto#userData
+msgid "User Data"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.confview.ConfigurationProperty#value
+msgid "Value"
+msgstr ""
+
+
+#: domainapp.modules.simple.dom.impl.SimpleObject#datanucleusVersionLong()
+#: domainapp.modules.simple.dom.impl.SimpleObject#datanucleusVersionTimestamp()
+#: org.apache.isis.jdo.jdosupport.mixins.Persistable_datanucleusVersionLong#prop()
+#: org.apache.isis.jdo.jdosupport.mixins.Persistable_datanucleusVersionTimestamp#prop()
+msgid "Version"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.swagger.SwaggerServiceMenu#downloadSwaggerSchemaDefinition(java.lang.String,org.apache.isis.applib.services.swagger.SwaggerService$Visibility,org.apache.isis.applib.services.swagger.SwaggerService$Format)
+msgid "Visibility"
+msgstr ""
+
+
+#: org.apache.isis.applib.services.swagger.SwaggerService$Format#YAML
+msgid "Yaml"
+msgstr ""
+
+
+#: org.apache.isis.applib.mixins.layout.Object_downloadLayoutXml
+#: org.apache.isis.applib.mixins.layout.Object_openRestApi
+#: org.apache.isis.applib.mixins.layout.Object_rebuildMetamodel
+#: org.apache.isis.applib.mixins.metamodel.Object_downloadMetaModelXml
+#: org.apache.isis.applib.mixins.metamodel.Object_objectIdentifier
+#: org.apache.isis.applib.mixins.metamodel.Object_objectType
+#: org.apache.isis.jdo.jdosupport.mixins.Persistable_datanucleusIdLong
+#: org.apache.isis.jdo.jdosupport.mixins.Persistable_datanucleusVersionLong
+#: org.apache.isis.jdo.jdosupport.mixins.Persistable_datanucleusVersionTimestamp
+#: org.apache.isis.jdo.jdosupport.mixins.Persistable_downloadJdoMetadata
+msgid "metadata"
 msgstr ""
 
 

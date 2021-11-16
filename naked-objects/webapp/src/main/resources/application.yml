@@ -1,0 +1,109 @@
+#
+# Recommend use for static configuration that does not change between environments.
+#
+# See also config/application.properties
+#
+isis:
+
+  applib:
+    annotation:
+      action:
+        explicit: true
+        command: ignore_safe
+        publishing: all
+      action-layout:
+        css-class:
+          patterns:
+            delete.*:btn-danger,
+            discard.*:btn-warning,
+            remove.*:btn-warning
+      domain-object:
+        auditing: all
+        publishing: all
+      property:
+        command: all
+        publishing: all
+
+  core:
+    meta-model:
+      introspector:
+        lock-after-full-introspection: true
+      validator:
+        allow-deprecated: false
+        no-params-only: true
+        explicit-object-type: true
+
+    runtime-services:
+      translation:
+        po:
+          mode: disabled
+
+  viewer:
+    wicket:
+      application:
+        about: Simple App
+        brand-logo-header: images/apache-isis/logo-48x48.png
+        css: css/application.css
+        favicon-url: images/favicon.png
+        js: scripts/application.js
+        menubars-layout-xml: menubars.layout.xml
+        name: Simple App
+        # https://stackoverflow.com/a/38983935/56880
+        version: @project.version@
+
+      credit:
+        - url:  http://isis.apache.org
+          image: images/apache-isis/logo-48x48.png
+          name: Apache Isis
+
+      themes:
+        show-chooser: true
+
+      max-title-length-in-standalone-tables: 0
+      max-title-length-in-parented-tables: 0
+
+      bookmarked-pages:
+        show-chooser: true
+        show-drop-down-on-footer: true
+
+
+  persistence:
+    jdo-datanucleus:
+      impl:
+        # note that properties under 'isis.persistence.jdo-datanucleus.impl' are passed through directly
+        # to DataNucleus, and use variously camelCase or PascalCase rather than kebab-case
+        datanucleus:
+          schema:
+            validateTables: true
+            validateConstraints: true
+
+          persistenceByReachabilityAtCommit: false
+          identifier:
+            case: MixedCase
+
+          cache:
+            level2:
+              type: none
+              mode: ENABLE_SELECTIVE
+
+resteasy:
+  jaxrs:
+    app:
+      registration: beans
+    defaultPath: "/restful"
+
+server:
+  max-http-header-size: 16KB
+
+spring:
+  banner:
+    location: banner.txt
+
+app:
+  simple-module:
+    types:
+      name:
+        validation:
+          message: "'{character}' is invalid."
+          prohibited-characters: "&%$!"
+
