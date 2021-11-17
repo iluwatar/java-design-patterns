@@ -1,17 +1,17 @@
 package com.iluwatar.notification;
 
 public class DataTransferObject {
-    protected DataTransferObject () {}
+  protected DataTransferObject() {}
 
-    private Notification notification = new Notification();
+  public Notification notification = new Notification();
 
-    /**
-     * Get a Notification object.
-     *
-     * @return Notification object.
-     */
-    public Notification getNotification() {
-        return notification;
-    }
+  /**
+  * Get a Notification object.
+  *
+  * @return Notification object.
+  */
+  public Notification getNotification() {
+    return notification;
+  }
 
 }
