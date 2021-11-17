@@ -2,7 +2,7 @@ package com.iluwatar.notification;
 
 public class RegisterCourse extends ServerCommand {
 
-  protected RegisterCourse(RegisterCourseDTO course) {
+  protected RegisterCourse(RegisterCourseDto course) {
     super(course);
   }
 
@@ -23,12 +23,12 @@ public class RegisterCourse extends ServerCommand {
   }
 
   private void validate() {
-    failIfNullOrBlank(((RegisterCourseDTO) this.data).getCourseId(),
-        RegisterCourseDTO.MISSING_COURSE_ID);
-    failIfNullOrBlank(((RegisterCourseDTO) this.data).getDepartment(),
-        RegisterCourseDTO.MISSING_DEPARTMENT);
-    failIfNullOrBlank(((RegisterCourseDTO) this.data).getSemester(),
-        RegisterCourseDTO.MISSING_SEMESTER);
+    failIfNullOrBlank(((RegisterCourseDto) this.data).getCourseId(),
+        RegisterCourseDto.MISSING_COURSE_ID);
+    failIfNullOrBlank(((RegisterCourseDto) this.data).getDepartment(),
+        RegisterCourseDto.MISSING_DEPARTMENT);
+    failIfNullOrBlank(((RegisterCourseDto) this.data).getSemester(),
+        RegisterCourseDto.MISSING_SEMESTER);
   }
 
   protected Boolean isNullOrBlank(String inputString) {

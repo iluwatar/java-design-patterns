@@ -9,9 +9,9 @@ public class CourseServiceTest {
 
     @Test
     void testCourseServiceTest() {
-        RegisterCourseDTO registerDTO = new RegisterCourseDTO();
+        RegisterCourseDto registerDTO = new RegisterCourseDto();
         registerDTO.setDepartment("English");
-        registerDTO.setCourseID("CS444");
+        registerDTO.setCourseId("CS444");
         registerDTO.setSemester("Fall21");
         CourseService course = new CourseService();
         Boolean isRegistered = course.registerCourse(registerDTO);

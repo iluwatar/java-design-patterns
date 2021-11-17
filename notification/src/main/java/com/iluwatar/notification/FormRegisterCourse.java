@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class FormRegisterCourse {
-  private RegisterCourseDTO course;
+  private RegisterCourseDto course;
   private CourseService service;
 
   private ErrorProvider errorProvider;
@@ -50,16 +50,16 @@ public class FormRegisterCourse {
   }
 
   private void saveToCourse() {
-    this.course = new RegisterCourseDTO();
+    this.course = new RegisterCourseDto();
     this.course.setCourseId(this.courseId);
     this.course.setSemester(this.semester);
     this.course.setDepartment(this.department);
   }
 
   private void indicateErrors() {
-    checkError(RegisterCourseDTO.MISSING_COURSE_ID, this.courseId);
-    checkError(RegisterCourseDTO.MISSING_SEMESTER, this.semester);
-    checkError(RegisterCourseDTO.MISSING_DEPARTMENT, this.department);
+    checkError(RegisterCourseDto.MISSING_COURSE_ID, this.courseId);
+    checkError(RegisterCourseDto.MISSING_SEMESTER, this.semester);
+    checkError(RegisterCourseDto.MISSING_DEPARTMENT, this.department);
   }
 
   private void checkError(Error error, String courseId) {
