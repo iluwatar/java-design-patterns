@@ -31,7 +31,25 @@ class SimpleObject_Test {
         object.messageService = mockMessageService;
         object.repositoryService = mockRepositoryService;
     }
+    @Nested
+    public class withName {
+        
+        @Test
+        void happy_case() {
+            // expecting
+            assertThat(object.getName()).isEqualTo("Foo");
+        }
+    }
 
+    @Nested
+    public class title {
+        
+        @Test
+        void happy_case() {
+            // expecting
+            assertThat(object.title()).isEqualTo("Object: Foo");
+        }
+    }
     @Nested
     public class updateName {
 
