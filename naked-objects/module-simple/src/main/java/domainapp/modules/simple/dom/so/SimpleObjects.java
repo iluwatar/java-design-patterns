@@ -25,6 +25,14 @@ public class SimpleObjects {
     public static class ActionDomainEvent extends SimpleModule.ActionDomainEvent<SimpleObjects> {}
 
     public static class CreateActionDomainEvent extends ActionDomainEvent {}
+
+
+    /**
+     * create() register and create a new SimpleObject
+     * 
+     * @param name  name of SimpleObject
+     * @return      SimpleObject
+     */
     @Action(semantics = SemanticsOf.NON_IDEMPOTENT, domainEvent = CreateActionDomainEvent.class)
     @ActionLayout(promptStyle = PromptStyle.DIALOG_SIDEBAR)
     public SimpleObject create(
@@ -32,6 +40,13 @@ public class SimpleObjects {
         return repositoryService.persist(SimpleObject.withName(name));
     }
 
+
+    /**
+     * findByName() search SimpleObject by name in DB - return list
+     * 
+     * @param name  name of SimpleObject
+     * @return      List of SimpleObject
+     */
     public static class FindByNameActionDomainEvent extends ActionDomainEvent {}
     @Action(semantics = SemanticsOf.SAFE, domainEvent = FindByNameActionDomainEvent.class)
     @ActionLayout(bookmarking = BookmarkPolicy.AS_ROOT, promptStyle = PromptStyle.DIALOG_SIDEBAR)
@@ -46,7 +61,12 @@ public class SimpleObjects {
         return q.setParameter("name", name)
                 .executeList();
     }
-
+    /**
+     * findByNameExact() search SimpleObject by name in DB - return exact one
+     * 
+     * @param name  name of SimpleObject
+     * @return      SimpleObject
+     */
     @Programmatic
     public SimpleObject findByNameExact(final String name) {
         JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);

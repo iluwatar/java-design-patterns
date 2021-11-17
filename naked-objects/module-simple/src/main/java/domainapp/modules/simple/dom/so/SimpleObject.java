@@ -40,6 +40,12 @@ import lombok.val;
 @ToString(onlyExplicitlyIncluded = true)
 public class SimpleObject implements Comparable<SimpleObject> {
 
+    /**
+     * withName() is more like a constructor for SimpleObject
+     * 
+     * @param name  the name of SimpleObject
+     * @return      SimpleObject
+     */
     public static SimpleObject withName(String name) {
         val simpleObject = new SimpleObject();
         simpleObject.setName(name);
@@ -55,6 +61,11 @@ public class SimpleObject implements Comparable<SimpleObject> {
     private SimpleObject() {
     }
 
+    /**
+     * title() is like a getter of SimpleObject name
+     * 
+     * @return      name of SimpleObject
+     */
     public String title() {
         return "Object: " + getName();
     }
@@ -72,6 +83,13 @@ public class SimpleObject implements Comparable<SimpleObject> {
     @Action(semantics = IDEMPOTENT,
             command = CommandReification.ENABLED, publishing = Publishing.ENABLED,
             associateWith = "name", domainEvent = UpdateNameActionDomainEvent.class)
+
+    /**
+     * updateName() is more like a setter for SimpleObject name
+     * 
+     * @param name  the updated name of SimpleObject
+     * @return      SimpleObject
+     */
     public SimpleObject updateName(
             @Name final String name) {
         setName(name);
@@ -84,6 +102,12 @@ public class SimpleObject implements Comparable<SimpleObject> {
 
     public static class DeleteActionDomainEvent extends SimpleObject.ActionDomainEvent {}
     @Action(semantics = NON_IDEMPOTENT_ARE_YOU_SURE, domainEvent = DeleteActionDomainEvent.class)
+
+    /**
+     * delete() deletes the SimpleObject and inform users
+     * 
+     * @return      <code>null</code>
+     */
     public void delete() {
         final String title = titleService.titleOf(this);
         messageService.informUser(String.format("'%s' deleted", title));
