@@ -55,7 +55,9 @@ Use the Claim Check Pattern when
 
 ### Workflow
 
-We are building a call cost calculator system. Producer class( `UsageDetailPublisherFunction` Azure Function) will generate call usage details and send them to the Event Grid topic. The consumer class(`UsageCostProcessorFunction`) will get triggered by this Event Grid topic event and calculate the cost. It then stores its result in storage. First, `UsageDetailPublisherFunction` creates a message, sends a message header to Event Grid topic `usage-detail`, and drops an entire message to the blob storage. Event Grid then sent this message header to the `UsageCostProcessorFunction` Azure function. It will read the entire message with the help of the header, perform its operation, and drop the result to the blob storage.
+Suppose a telecom company wants to build call cost calculator system which generate the call cost daily. At the end of each day, details of the calls made by the consumers are stored somewhere. The call calculator system will read this data and generate call cost data for each user. Consumers will be billed using this generated data in case of postpaid service.
+
+Producer class( `UsageDetailPublisherFunction` Azure Function) will generate call usage details (here we are generating call data in producer class itself. In real world scenario, it will read from storage). `UsageDetailPublisherFunction` creates a message. Message consists of message header and message body. Message header is basically an event grid event or claim or message reference. Message body contains actual data. `UsageDetailPublisherFunction` sends a message header to Event Grid topic `usage-detail` and drops an entire message to the blob storage. Event Grid then sent this message header to the `UsageCostProcessorFunction` Azure function. It will read the entire message from blob storage with the help of the header, will calculate call cost and drop the result to the blob storage.
 
 ### Class Diagrams
 
