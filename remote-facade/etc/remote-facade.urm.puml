@@ -1,0 +1,31 @@
+@startuml
+package com.iluwatar.remotefacade {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Order {
+    - socket : Socket
+    + Order()
+    + getDrink()
+    + getEntree()
+    + getSide()
+    + setDrink(drink : String)
+    + setEntree(entree : String)
+    + setSide(side : String)
+  }
+  class OrderFacade {
+    - socket : Socket
+    + OrderFacade()
+    + getOrder()
+    + setOrder(drink : String, entree : String, side : String)
+  }
+  class Server {
+    - server : ServerSocket {static}
+    + Server()
+    + main(args : String[]) {static}
+  }
+}
+Order --> App
+OrderFacade --> App
+@enduml
