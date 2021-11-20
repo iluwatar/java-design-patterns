@@ -11,89 +11,105 @@ import java.util.List;
 
 public class OwnedParrotFinder {
 
-    private final String findAllStatement = "Select * from ParrotDataModel.OwnedParrot";
+	private static final String FIND_ALL = "Select * from OwnedParrot";
+	private static final String FIND_BY_ID = "Select * from OwnedParrot where OwnedParrotId=?";
+	private static final String COUNT_FROM_OWNED_PARROT = "Select Count(*) as count from OwnedParrot";
 
-    private final String parrotTypeId = "ParrotTypeId";
-    private final String parrotName = "ParrotName";
-    private final String parrotAge = "ParrotAge";
-    private final String color = "Color";
-    private final String tamed = "Tamed";
+	public static final String OWNED_PARROT_ID = "OwnedParrotId";
+	public static final String PARROT_TYPE_ID = "ParrotTypeId";
+	public static final String PARROT_NAME = "ParrotName";
+	public static final String PARROT_AGE = "ParrotAge";
+	public static final String COLOR = "Color";
+	public static final String TAMED = "Tamed";
 
-    public OwnedParrotGateWay findById(Integer id) throws SQLException {
-        OwnedParrotGateWay ownedParrotGateWay = ParrotRegistry.getOwnedParrot(id);
+	private DataBaseConnection db;
 
-        if (ownedParrotGateWay != null) {
-            return ownedParrotGateWay;
-        }
+	public OwnedParrotFinder() {
 
-        DataBaseConnection db = new DataBaseConnection();
-        Connection connection = db.getConnection();
-        PreparedStatement getStmt;
+	}
 
-        if (connection != null) {
-            String findByIdStatement = "Select * from OwnedParrot where OwnedParrotId=?";
-            getStmt = connection.prepareStatement(findByIdStatement);
-            getStmt.setInt(1, id);
+	public OwnedParrotFinder(DataBaseConnection db) {
+		this.db = db;
+	}
 
-            ResultSet rs = getStmt.executeQuery();
+	public OwnedParrotGateWay findById(Integer id) throws SQLException {
+		OwnedParrotGateWay ownedParrotGateWay = ParrotRegistry.getOwnedParrot(id);
 
-            if (rs != null && rs.next()) {
-                ownedParrotGateWay = new OwnedParrotGateWay(rs.getInt("OwnedParrotId"),
-                        rs.getInt(parrotTypeId),
-                        rs.getString(parrotName),
-                        rs.getInt(parrotAge),
-                        rs.getString(color),
-                        rs.getBoolean(tamed));
-                ParrotRegistry.addOwnedParrot(ownedParrotGateWay);
-                db.closeConnection(connection);
-                return ownedParrotGateWay;
-            }
+		if (ownedParrotGateWay != null) {
+			return ownedParrotGateWay;
+		}
 
-        }
-        return null;
-    }
+		if (db == null) {
+			db = new DataBaseConnection();
+		}
+		try (Connection connection = db.getConnection()) {
+			PreparedStatement getStmt;
 
-    public List<OwnedParrotGateWay> findAll() throws SQLException {
+			if (connection != null) {
 
-        DataBaseConnection db = new DataBaseConnection();
-        Connection connection = db.getConnection();
-        PreparedStatement getSizeStmt = null;
-        PreparedStatement getAllOwnedParrotsStmt = null;
+				getStmt = connection.prepareStatement(FIND_BY_ID);
+				getStmt.setInt(1, id);
 
-        List<OwnedParrotGateWay> ownedParrotGateWayList = new ArrayList<>();
+				ResultSet rs = getStmt.executeQuery();
 
-        if (connection != null) {
-            String getNumberOfOwnedParrots = "Select Count(*) as count from OwnedParrot";
-            getSizeStmt = connection.prepareStatement(getNumberOfOwnedParrots);
-            ResultSet rs = getSizeStmt.executeQuery();
+				if (rs != null && rs.next()) {
+					ownedParrotGateWay = new OwnedParrotGateWay(rs.getInt(OWNED_PARROT_ID),
+							rs.getInt(PARROT_TYPE_ID),
+							rs.getString(PARROT_NAME),
+							rs.getInt(PARROT_AGE),
+							rs.getString(COLOR),
+							rs.getBoolean(TAMED));
+					ParrotRegistry.addOwnedParrot(ownedParrotGateWay);
+					db.closeConnection(connection);
+					return ownedParrotGateWay;
+				}
+			}
+		}
+		return null;
+	}
 
-            if (rs != null && rs.next()) {
-                int numberOfOwnedParrots = rs.getInt("count");
-                if(ParrotRegistry.getParrotRegistrySize() == numberOfOwnedParrots) {
-                    ownedParrotGateWayList = ParrotRegistry.getAllOwnedParrotsInRegistry();
-                } else {
-                    String getAllOwnedParrots = "Select * as count from OwnedParrot";
-                    getAllOwnedParrotsStmt = connection.prepareStatement(getAllOwnedParrots);
-                    ResultSet ownedParrotsResult = getAllOwnedParrotsStmt.executeQuery();
+	public List<OwnedParrotGateWay> findAll() throws SQLException {
 
-                    if(ownedParrotsResult != null) {
-                        while (ownedParrotsResult.next()) {
-                            OwnedParrotGateWay ownedParrotGateWay = new OwnedParrotGateWay(rs.getInt("OwnedParrotId"),
-                                    rs.getInt(parrotTypeId),
-                                    rs.getString(parrotName),
-                                    rs.getInt(parrotAge),
-                                    rs.getString(color),
-                                    rs.getBoolean(tamed));
-                            ParrotRegistry.addOwnedParrot(ownedParrotGateWay);
-                        }
-                        db.closeConnection(connection);
-                        ownedParrotGateWayList = ParrotRegistry.getAllOwnedParrotsInRegistry();
-                    }
-                }
-            }
-        }
+		if (db == null) {
+			db = new DataBaseConnection();
+		}
+		Connection connection = db.getConnection();
+		PreparedStatement getSizeStmt = null;
+		PreparedStatement getAllOwnedParrotsStmt = null;
 
-        return ownedParrotGateWayList;
-    }
+		List<OwnedParrotGateWay> ownedParrotGateWayList = new ArrayList<>();
+
+		if (connection != null) {
+
+			getSizeStmt = connection.prepareStatement(COUNT_FROM_OWNED_PARROT);
+			ResultSet rs = getSizeStmt.executeQuery();
+
+			if (rs != null && rs.next()) {
+				int numberOfOwnedParrots = rs.getInt("count");
+				if (ParrotRegistry.getParrotRegistrySize() == numberOfOwnedParrots) {
+					ownedParrotGateWayList = ParrotRegistry.getAllOwnedParrotsInRegistry();
+				} else {
+					getAllOwnedParrotsStmt = connection.prepareStatement(FIND_ALL);
+					ResultSet ownedParrotsResult = getAllOwnedParrotsStmt.executeQuery();
+
+					if (ownedParrotsResult != null) {
+						while (ownedParrotsResult.next()) {
+							OwnedParrotGateWay ownedParrotGateWay = new OwnedParrotGateWay(rs.getInt(OWNED_PARROT_ID),
+									rs.getInt(PARROT_TYPE_ID),
+									rs.getString(PARROT_NAME),
+									rs.getInt(PARROT_AGE),
+									rs.getString(COLOR),
+									rs.getBoolean(TAMED));
+							ParrotRegistry.addOwnedParrot(ownedParrotGateWay);
+						}
+						db.closeConnection(connection);
+						ownedParrotGateWayList = ParrotRegistry.getAllOwnedParrotsInRegistry();
+					}
+				}
+			}
+		}
+
+		return ownedParrotGateWayList;
+	}
 
 }

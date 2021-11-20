@@ -13,125 +13,145 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 @Getter
-@Setter
 public class OwnedParrotGateWay {
 
-    private final static Logger LOGGER =
-            Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    public OwnedParrotGateWay(Integer ownedParrotId, Integer parrotTypeId, String parrotName,
-                              Integer parrotAge, String color, boolean tamed) {
-        this.ownedParrotId = ownedParrotId;
-        this.parrotTypeId = parrotTypeId;
-        this.parrotName = parrotName;
-        this.parrotAge = parrotAge;
-        this.color = color;
-        this.tamed = tamed;
-    }
+	private DataBaseConnection db;
 
-    public OwnedParrotGateWay(OwnedParrot ownedParrot) {
-        this.ownedParrotId = ownedParrot.getOwnedParrotId();
-        this.parrotTypeId = ownedParrot.getParrotTypeId();
-        this.parrotName = ownedParrot.getParrotName();
-        this.parrotAge = ownedParrot.getParrotAge();
-        this.color = ownedParrot.getColor();
-        this.tamed = ownedParrot.getTamed();
-    }
+	public OwnedParrotGateWay(DataBaseConnection db, OwnedParrot ownedParrot) {
+		this.db = db;
+		this.ownedParrotId = ownedParrot.getOwnedParrotId();
+		this.parrotTypeId = ownedParrot.getParrotTypeId();
+		this.parrotName = ownedParrot.getParrotName();
+		this.parrotAge = ownedParrot.getParrotAge();
+		this.color = ownedParrot.getColor();
+		this.tamed = ownedParrot.getTamed();
+	}
 
-    private Integer ownedParrotId;
+	private final static Logger LOGGER =
+			Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
-    private Integer parrotTypeId;
+	public OwnedParrotGateWay(Integer ownedParrotId, Integer parrotTypeId, String parrotName,
+							  Integer parrotAge, String color, boolean tamed) {
+		this.ownedParrotId = ownedParrotId;
+		this.parrotTypeId = parrotTypeId;
+		this.parrotName = parrotName;
+		this.parrotAge = parrotAge;
+		this.color = color;
+		this.tamed = tamed;
+	}
 
-    private String parrotName;
+	public OwnedParrotGateWay(OwnedParrot ownedParrot) {
+		this.ownedParrotId = ownedParrot.getOwnedParrotId();
+		this.parrotTypeId = ownedParrot.getParrotTypeId();
+		this.parrotName = ownedParrot.getParrotName();
+		this.parrotAge = ownedParrot.getParrotAge();
+		this.color = ownedParrot.getColor();
+		this.tamed = ownedParrot.getTamed();
+	}
 
-    private Integer parrotAge;
+	private Integer ownedParrotId;
 
-    private String color;
+	private Integer parrotTypeId;
 
-    private Boolean tamed;
+	private String parrotName;
 
-    public void insert() throws SQLException {
-        DataBaseConnection db = new DataBaseConnection();
-        Connection connection = db.getConnection();
-        PreparedStatement insertStmt = null;
+	private Integer parrotAge;
 
-        if (connection != null) {
-            String getAllParrotTypes = "INSERT INTO OwnedParrot (ParrotTypeId, ParrotName, ParrotAge, Color, Tamed) " +
-                    "VALUES (?, ?, ?, ?, ?);";
-            insertStmt = connection.prepareStatement(getAllParrotTypes);
-            insertStmt.setInt(1, parrotTypeId);
-            insertStmt.setString(2, parrotName);
-            insertStmt.setInt(3, parrotAge);
-            insertStmt.setString(4, color);
-            insertStmt.setBoolean(5, tamed);
+	private String color;
 
-            Integer insertResults = insertStmt.executeUpdate();
+	private Boolean tamed;
 
-            // get id after insert and update this object
-            String findByIdStatement = "Select MAX(OwnedParrotId) as OwnedParrotId from OwnedParrot";
-            PreparedStatement getStmt = connection.prepareStatement(findByIdStatement);
+	public void insert() throws SQLException {
 
-            ResultSet rs = getStmt.executeQuery();
+		if (db == null) {
+			db = new DataBaseConnection();
+		}
 
-            if (rs != null && rs.next()) {
-                this.ownedParrotId = rs.getInt("OwnedParrotId");
-            }
+		Connection connection = db.getConnection();
+		PreparedStatement insertStmt = null;
 
-            if (insertResults == 1) {
-                ParrotRegistry.addOwnedParrot(this);
-                LOGGER.log(Level.INFO, "Successfully inserted into OwnedParrots Table");
-            } else {
-                LOGGER.log(Level.INFO, "Failed to insert id: " + ownedParrotId);
-            }
-        }
-    }
+		if (connection != null) {
+			String getAllParrotTypes = "INSERT INTO OwnedParrot (ParrotTypeId, ParrotName, ParrotAge, Color, Tamed) " +
+					"VALUES (?, ?, ?, ?, ?);";
+			insertStmt = connection.prepareStatement(getAllParrotTypes);
+			insertStmt.setInt(1, parrotTypeId);
+			insertStmt.setString(2, parrotName);
+			insertStmt.setInt(3, parrotAge);
+			insertStmt.setString(4, color);
+			insertStmt.setBoolean(5, tamed);
 
-    public void update() throws SQLException {
-        DataBaseConnection db = new DataBaseConnection();
-        Connection connection = db.getConnection();
-        PreparedStatement updateStmt = null;
+			Integer insertResults = insertStmt.executeUpdate();
 
-        if (connection != null) {
-            String getAllParrotTypes = "UPDATE OwnedParrot " +
-                    "SET ParrotName=?, ParrotAge=?, Color=?, Tamed=? " +
-                    "WHERE ParrotTypeId=?";
-            updateStmt = connection.prepareStatement(getAllParrotTypes);
-            updateStmt.setString(1, parrotName);
-            updateStmt.setInt(2, parrotAge);
-            updateStmt.setString(3, color);
-            updateStmt.setBoolean(4, tamed);
-            updateStmt.setInt(5, parrotTypeId);
+			// get id after insert and update this object
+			String findByIdStatement = "Select MAX(OwnedParrotId) as OwnedParrotId from OwnedParrot";
+			PreparedStatement getStmt = connection.prepareStatement(findByIdStatement);
 
-            Integer insertResults = updateStmt.executeUpdate();
-            if (insertResults == 1) {
-                ParrotRegistry.updateOwnedParrot(this);
-                LOGGER.log(Level.INFO, "Successfully updated OwnedParrots Table");
-            } else {
-                LOGGER.log(Level.INFO, "Failed to update id: " + ownedParrotId);
-            }
-        }
-    }
+			ResultSet rs = getStmt.executeQuery();
 
-    public void delete() throws SQLException {
-        DataBaseConnection db = new DataBaseConnection();
-        Connection connection = db.getConnection();
-        PreparedStatement deleteStmt = null;
+			if (rs != null && rs.next()) {
+				this.ownedParrotId = rs.getInt("OwnedParrotId");
+			}
 
-        if (connection != null) {
-            String getAllParrotTypes = "DELETE FROM OwnedParrot " +
-                    "WHERE ParrotTypeId=?";
-            deleteStmt = connection.prepareStatement(getAllParrotTypes);
-            deleteStmt.setInt(1, parrotTypeId);
+			if (insertResults == 1) {
+				ParrotRegistry.addOwnedParrot(this);
+				LOGGER.log(Level.INFO, "Successfully inserted into OwnedParrots Table");
+			} else {
+				LOGGER.log(Level.INFO, "Failed to insert id: " + ownedParrotId);
+			}
+		}
+	}
 
-            Integer insertResults = deleteStmt.executeUpdate();
-            if (insertResults == 1) {
-                ParrotRegistry.removeOwnedParrot(this);
-                LOGGER.log(Level.INFO, "Successfully deleted OwnedParrots Table");
-            } else {
-                LOGGER.log(Level.INFO, "Failed to delete id: " + ownedParrotId);
-            }
-        }
+	public void update() throws SQLException {
+		if (db == null) {
+			db = new DataBaseConnection();
+		}
+		Connection connection = db.getConnection();
+		PreparedStatement updateStmt = null;
 
-    }
+		if (connection != null) {
+			String getAllParrotTypes = "UPDATE OwnedParrot " +
+					"SET ParrotName=?, ParrotAge=?, Color=?, Tamed=? " +
+					"WHERE ParrotTypeId=?";
+			updateStmt = connection.prepareStatement(getAllParrotTypes);
+			updateStmt.setString(1, parrotName);
+			updateStmt.setInt(2, parrotAge);
+			updateStmt.setString(3, color);
+			updateStmt.setBoolean(4, tamed);
+			updateStmt.setInt(5, parrotTypeId);
+
+			Integer insertResults = updateStmt.executeUpdate();
+			if (insertResults == 1) {
+				ParrotRegistry.updateOwnedParrot(this);
+				LOGGER.log(Level.INFO, "Successfully updated OwnedParrots Table");
+			} else {
+				LOGGER.log(Level.INFO, "Failed to update id: " + ownedParrotId);
+			}
+		}
+	}
+
+	public void delete() throws SQLException {
+		if (db == null) {
+			db = new DataBaseConnection();
+		}
+		Connection connection = db.getConnection();
+		PreparedStatement deleteStmt = null;
+
+		if (connection != null) {
+			String getAllParrotTypes = "DELETE FROM OwnedParrot " +
+					"WHERE ParrotTypeId=?";
+			deleteStmt = connection.prepareStatement(getAllParrotTypes);
+			deleteStmt.setInt(1, parrotTypeId);
+
+			Integer insertResults = deleteStmt.executeUpdate();
+			if (insertResults == 1) {
+				ParrotRegistry.removeOwnedParrot(this);
+				LOGGER.log(Level.INFO, "Successfully deleted OwnedParrots Table");
+			} else {
+				LOGGER.log(Level.INFO, "Failed to delete id: " + ownedParrotId);
+			}
+		}
+
+	}
 
 }
