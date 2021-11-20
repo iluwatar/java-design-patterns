@@ -34,7 +34,7 @@ import org.h2.jdbcx.JdbcDataSource;
 import java.util.List;
 
 /**
- *
+ * App.
  */
 @Slf4j
 public final class App {
@@ -62,44 +62,52 @@ public final class App {
     // Create table Positions if not exists
     createSchema(dataSource);
 
-    // Initialize five departments and access the database using Serialization.
+    // Initialize five departments for different positions.
     var devDept = new Department("Developing", null);
     var testDept = new Department("Testing", null);
     var devManageDept = new Department("Development Management", List.of(devDept));
     var testManageDept = new Department("Testing Management", List.of(testDept));
     var engineeringManageDept = new Department("Engineering Management", List.of(devManageDept, testManageDept));
 
-    // Initialize five departments and access the database using Serialization.
+    // Initialize four positions.
     var CTO = new Position(1, "CTO", List.of(engineeringManageDept));
     var director = new Position(2, "Director", List.of(devManageDept, testManageDept));
     var developer = new Position(3, "Developer", List.of(devDept));
     var tester = new Position(5, "Tester", List.of(testDept));
 
+    // Initialize Serializations to perform CRUD operations on these positions.
     var serializationCTO = new Serialization(CTO, dataSource);
     var serializationDirector = new Serialization(director, dataSource);
     var serializationDeveloper = new Serialization(developer, dataSource);
     var serializationTester = new Serialization(tester, dataSource);
 
+    // Insert serialized LOB into database.
     serializationCTO.insert();
     serializationDirector.insert();
     serializationDeveloper.insert();
     serializationTester.insert();
 
+    // Read serialized LOB from database.
     serializationCTO.read();
 
+    // Update serialized LOB in database and observe the difference from before and after update.
     serializationDirector.read();
     serializationDirector.update(CTO);
     serializationDirector.read();
 
+    // Read serialized LOB from database.
     serializationDeveloper.read();
     serializationTester.read();
 
+    // Delete serialized LOB into database.
     serializationDeveloper.delete();
     serializationTester.delete();
-
-    deleteSchema(dataSource);
   }
 
+  /**
+   * Private helper method for deleting SQL schema.
+   *
+   */
   @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE")
   private static void deleteSchema(final DataSource dataSource) throws SQLException {
     try (var connection = dataSource.getConnection();
@@ -108,6 +116,10 @@ public final class App {
     }
   }
 
+  /**
+   * Private helper method for creating SQL schema.
+   *
+   */
   @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE")
   private static void createSchema(final DataSource dataSource) throws SQLException {
     try (var connection = dataSource.getConnection();
@@ -116,6 +128,10 @@ public final class App {
     }
   }
 
+  /**
+   * Private helper method for creating SQL data source.
+   *
+   */
   private static DataSource createDataSource() {
     var dataSource = new JdbcDataSource();
     dataSource.setURL(DB_URL);

@@ -27,6 +27,9 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+/**
+ * Tests that the serialized LOB example works smoothly.
+ */
 class AppTest {
 
     @Test

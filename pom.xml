@@ -227,6 +227,7 @@
     <module>lockable-object</module>
     <module>fanout-fanin</module>
     <module>domain-model</module>
+    <module>serialized-lob</module>
   </modules>
   <repositories>
     <repository>

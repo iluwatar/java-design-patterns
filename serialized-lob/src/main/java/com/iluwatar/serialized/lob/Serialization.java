@@ -30,6 +30,7 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.sql.DataSource;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -61,8 +62,9 @@ public class Serialization {
      * @param dataSource datasource
      * @param position position
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public Serialization(Position position, final DataSource dataSource) {
-        this.position = position;
+        this.position = new Position(position.getId(), position.getName(), position.getDepartments());
         this.dataSource = dataSource;
     }
 
@@ -72,20 +74,25 @@ public class Serialization {
      * @throws SQLException if any
      * @throws IOException if any
      */
-    public void insert() throws SQLException, IOException {
+    public int insert() throws SQLException, IOException {
         var sql = "insert into POSITIONS (ID, NAME, DEPARTMENTS) values (?, ?, ?)";
         try (var connection = dataSource.getConnection();
              var preparedStatement = connection.prepareStatement(sql);
              ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+
             objectOutputStream.writeObject(position.getDepartments());
             objectOutputStream.flush();
+
             preparedStatement.setInt(1, position.getId());
             preparedStatement.setString(2, position.getName());
             preparedStatement.setBlob(3, new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
             preparedStatement.execute();
+
             LOGGER.info(String.format("Insert Position: Id = %d | Name = %s | Departments = %s",
                         position.getId(), position.getName(), position.getDepartments()));
+
+            return position.getId();
         }
     }
 
@@ -96,23 +103,31 @@ public class Serialization {
      * @throws IOException if any
      * @throws ClassNotFoundException if any
      */
-    public void read () throws SQLException, IOException, ClassNotFoundException {
+    @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE")
+    public int read () throws SQLException, IOException, ClassNotFoundException {
         var sql = "select ID, NAME, DEPARTMENTS from POSITIONS where ID = ?";
-        ObjectInputStream objectInputStream;
-        ByteArrayInputStream byteArrayInputStream;
         List<Department> departments = null;
         try (var connection = dataSource.getConnection();
              var preparedStatement = connection.prepareStatement(sql)) {
+
+            // This value retrieval can't be included in the first try ()
             preparedStatement.setInt(1, position.getId());
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                Blob departmentsBlob = resultSet.getBlob("departments");
-                byteArrayInputStream = new ByteArrayInputStream(departmentsBlob.getBytes(1, (int) departmentsBlob.length()));
-                objectInputStream = new ObjectInputStream(byteArrayInputStream);
-                departments = (List<Department>) objectInputStream.readObject();
+
+            // Make sure ResultSet auto-closes
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    Blob departmentsBlob = resultSet.getBlob("departments");
+                    ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(departmentsBlob.getBytes(1, (int) departmentsBlob.length()));
+                    ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+                    departments = (List<Department>) objectInputStream.readObject();
+                }
+
+                LOGGER.info(String.format("Read Position: Id = %d | Name = %s | Departments = %s",
+                        resultSet.getInt("id"), resultSet.getString("name"), departments));
+
+                return resultSet.getInt("id");
             }
-            LOGGER.info(String.format("Read Position: Id = %d | Name = %s | Departments = %s",
-                    resultSet.getInt("id"), resultSet.getString("name"), departments));
         }
     }
 
@@ -124,21 +139,25 @@ public class Serialization {
      * @throws SQLException if any
      * @throws IOException if any
      */
-    public void update(Position updatePosition) throws SQLException, IOException {
+    public int update(Position updatePosition) throws SQLException, IOException {
         var sql = "update POSITIONS set NAME = ?, DEPARTMENTS = ? where ID = ?";
         try (var connection = dataSource.getConnection();
              var preparedStatement = connection.prepareStatement(sql);
              ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)
-        ) {
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
+
             objectOutputStream.writeObject(updatePosition.getDepartments());
             objectOutputStream.flush();
+
             preparedStatement.setString(1, updatePosition.getName());
             preparedStatement.setBlob(2, new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
             preparedStatement.setInt(3, position.getId());
             preparedStatement.executeUpdate();
+
             LOGGER.info(String.format("Update Position: Id = %d | Name = %s | Departments = %s",
                     position.getId(), updatePosition.getName(), updatePosition.getDepartments()));
+
+            return position.getId();
         }
     }
 
@@ -147,14 +166,19 @@ public class Serialization {
      *
      * @throws SQLException if any
      */
-    public void delete() throws SQLException {
+    @SuppressFBWarnings("RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE")
+    public int delete() throws SQLException {
         var sql = "delete from POSITIONS where ID = ?";
         try (var connection = dataSource.getConnection();
-             var preparedStatement = connection.prepareStatement(sql)) {
+            var preparedStatement = connection.prepareStatement(sql)) {
+
             preparedStatement.setInt(1, position.getId());
             preparedStatement.executeUpdate();
+
             LOGGER.info(String.format("Delete Position: Id = %d | Name = %s | Departments = %s",
                     position.getId(), position.getName(), position.getDepartments()));
+
+            return position.getId();
         }
     }
 }

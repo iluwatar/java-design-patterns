@@ -26,6 +26,7 @@ package com.iluwatar.serialized.lob;
 import java.io.Serializable;
 import java.util.List;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -43,5 +44,6 @@ import lombok.ToString;
 public class Position implements Serializable {
     private int id;
     private String name;
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     private List<Department> departments;
 }

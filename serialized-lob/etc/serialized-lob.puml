@@ -1,15 +1,19 @@
 @startuml
 package com.iluwatar.serialized.lob {
   class App {
+    - DB_URL : String {static}
     - LOGGER : Logger {static}
     + App()
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteSchema(dataSource : DataSource) {static}
     + main(args : String[]) {static}
   }
   class Position {
     - id : int
     - name : String
     - departments : List<Department>
-    ~ Consumer(id : int, name : String, departments : List<Department>)
+    ~ Position(id : int, name : String, departments : List<Department>)
   }
   class Department {
     - name : String
@@ -17,44 +21,59 @@ package com.iluwatar.serialized.lob {
     ~ Department(name : String, subsidiaries : List<Department>)
   }
   class Serialization {
+    - CREATE_SCHEMA_SQL : String {static}
+    - DELETE_SCHEMA_SQL : String {static}
     - LOGGER : Logger {static}
     - dataSource : DataSource
     - position : Position
-    ~ Consumer(position : Position, dataSource : DataSource)
+    ~ Serialization(position : Position, dataSource : DataSource)
     + insert()
     + read()
     + update(updatePosition : Position)
     + delete()
   }
 
-  object devDept
-  object testDept
-  object devManageDept
-  object testManageDept
-  object engineeringManageDept
-  object CTO
-  object director
-  object developer
-  object tester
+  object devDept {
+    - name : "Development Department"
+    - subsidiaries : []
+  }
+  object testDept {
+    - name : "Testing Department"
+    - subsidiaries : []
+  }
+  object devManageDept {
+    - name : "Development Management Department"
+    - subsidiaries : [Development Department]
+  }
+  object testManageDept {
+    - name : "Testing Management Department"
+    - subsidiaries : [Testing Department]
+  }
+  object engineeringManageDept {
+    - name : "Engineering Management Department"
+    - subsidiaries : [Development Management Department, Testing Management Department]
+  }
+  object CTO {
+      - id : 1
+      - name : "CTO"
+      - departments : [engineeringManageDept]
+  }
   diamond database
 }
 
-App --> Serialization
-Serialization --> engineeringManageDept
-Serialization --> "Postions are initialized with departments" devManageDept
-Serialization --> testManageDept
-Serialization --> devDept
-Serialization -->  testDept
+App --> "Initialize departments" Department
+Department <--> engineeringManageDept
+Department --> "Initialize position with departments" Position
+
+devDept --> devManageDept
+testDept --> testManageDept
+devManageDept --> engineeringManageDept
+testManageDept --> engineeringManageDept
 
 engineeringManageDept --> CTO
-devManageDept --> director
-testManageDept --> director
-devDept --> developer
-testDept --> tester
-
+Position <--> CTO
 CTO --> "Stored in database" database
-director --> database
-developer --> database
-tester --> database
-database --> "Operate CRUD" Position
+Position --> Serialization
+Serialization --> "Performe CRUD operations" database
+
 @enduml
