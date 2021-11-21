@@ -11,7 +11,7 @@ import org.apache.isis.persistence.jdo.applib.services.IsisJdoSupport_v3_2;
 
 import domainapp.modules.simple.SimpleModule;
 import domainapp.modules.simple.types.Name;
-
+import java.io.IOException;
 @DomainService(
         nature = NatureOfService.VIEW,
         objectType = "simple.SimpleObjects"
@@ -60,7 +60,7 @@ public class SimpleObjects {
                 );
         List<SimpleObject> listOfSimpleObjects = q.setParameter("name", name)
                 .executeList();
-        q.close();
+        try {q.close();} catch(java.io.IOException e) {e.printStackTrace();}
         return listOfSimpleObjects;
     }
     /**
@@ -78,7 +78,7 @@ public class SimpleObjects {
                 );
         SimpleObject simpleObject = q.setParameter("name", name)
                 .executeUnique();
-        q.close();
+        try {q.close();} catch(java.io.IOException e) {e.printStackTrace();}
         return simpleObject;
     }
 
@@ -96,8 +96,8 @@ public class SimpleObjects {
         q.range(0,2);
         q.orderBy(candidate.name.asc());
         q.executeList();
-        q.close();
-    }
+        try {q.close();} catch(java.io.IOException e) {e.printStackTrace();}
+        }
 
 
 }
