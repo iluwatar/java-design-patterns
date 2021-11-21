@@ -34,8 +34,8 @@ but db needs to be set up first.
 
 <span style="color: orange"> These scripts can be found in /src/main/resources/db-scripts </span>
 
-- ParrotDataModel.ParrotType.sql > Contains a list of different types of parrots
-- ParrotDataModel.OwnedParrot.sql > Owner's parrot(s) (name, age, color, tamed, reference to ParrotDataModel.ParrotType, 
+- ParrotType.sql > Contains a list of different types of parrots
+- OwnedParrot.sql > Owner's parrot(s) (name, age, color, tamed, reference to ParrotType, 
 reference to ParrotOwner) and foreign key to Parrots table
 for parrot specific species.
 
