@@ -78,7 +78,7 @@ public class SimpleObjects {
                 );
         SimpleObject simpleObject = q.setParameter("name", name)
                 .executeUnique();
-        q.close()
+        q.close();
         return simpleObject;
     }
 
