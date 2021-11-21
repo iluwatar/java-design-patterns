@@ -66,9 +66,7 @@ public class SimpleObjects {
             try {
                 q.close();
             } catch (java.io.IOException e) {}
-            finally {
-                return listOfSimpleObjects;
-            }
+            return listOfSimpleObjects;
         }
     }
     /**
@@ -92,9 +90,7 @@ public class SimpleObjects {
             try {
                 q.close();
             } catch (java.io.IOException e) {}
-            finally {
-                return simpleObject;
-            }
+            return simpleObject;
         }
     }
 
