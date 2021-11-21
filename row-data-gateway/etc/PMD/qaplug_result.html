@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>QAPlug scan results</title>
+    <meta name="description" content="QAPlug scan results">
+</head>
+<body>
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+        style="font-family:verdana; font-weight:bold; color:#005555; size = 3">Project:</font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>java-design-patterns</b><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+        style="font-family:verdana; font-weight:bold; color:#005555; size = 3">Scope:</font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Module
+    'row-data-gateway'</b><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+        style="font-family:verdana; font-weight:bold; color:#005555; size = 3">Profile:</font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Default</b><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font
+        style="font-family:verdana; font-weight:bold; color:#005555; size = 3">Results:</font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Enabled
+    coding rules: 429</b><br/>
+<ul>
+    <li>FindBugs: 346</li>
+    <li>PMD: 83</li>
+</ul>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Problems found: 24</b><br/>
+<ul>
+    <li>FindBugs: 0</li>
+    <li>PMD: 24</li>
+</ul>
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-family:verdana; font-weight:bold; color:#005555; size = 3">Time
+    statistics:</font>
+<ul>
+    <li>Started: Sat Nov 20 23:11:47 CST 2021</li>
+    <ul>
+        <li>Initialization: 00:00:00.011</li>
+        <li>FindBugs: 00:00:04.700</li>
+        <li>PMD: 00:00:00.432</li>
+        <li>Gathering results: 00:00:00.008</li>
+    </ul>
+    <li>Finished: Sat Nov 20 23:11:52 CST 2021</li>
+</ul>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font style="font-family:verdana; font-weight:bold; color:#005555; size = 3">Detailed
+    Results:</font><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>java-design-patterns</b><br/>
+<ul>
+    <li>Efficiency</li>
+    <ul>
+        <li>Inefficient String Buffering</li>
+        <ul>
+            <li>OwnedParrot</li>
+            <ul>
+                <li>Avoid concatenating nonliterals in a StringBuffer/StringBuilder constructor or append(). - line:
+                    51
+                </li>
+            </ul>
+        </ul>
+    </ul>
+    <li>Reliability</li>
+    <ul>
+        <li>Close Resource</li>
+        <ul>
+            <li>OwnedParrotFinder</li>
+            <ul>
+                <li>Ensure that resources like this PreparedStatement object are closed after use - line: 55</li>
+                <li>Ensure that resources like this ResultSet object are closed after use - line: 62</li>
+                <li>Ensure that resources like this Connection object are closed after use - line: 92</li>
+                <li>Ensure that resources like this PreparedStatement object are closed after use - line: 93</li>
+                <li>Ensure that resources like this PreparedStatement object are closed after use - line: 94</li>
+                <li>Ensure that resources like this ResultSet object are closed after use - line: 101</li>
+                <li>Ensure that resources like this ResultSet object are closed after use - line: 109</li>
+            </ul>
+            <li>OwnedParrotGateWay</li>
+            <ul>
+                <li>Ensure that resources like this Connection object are closed after use - line: 69</li>
+                <li>Ensure that resources like this PreparedStatement object are closed after use - line: 70</li>
+                <li>Ensure that resources like this PreparedStatement object are closed after use - line: 86</li>
+                <li>Ensure that resources like this ResultSet object are closed after use - line: 88</li>
+                <li>Ensure that resources like this Connection object are closed after use - line: 110</li>
+                <li>Ensure that resources like this PreparedStatement object are closed after use - line: 111</li>
+                <li>Ensure that resources like this Connection object are closed after use - line: 139</li>
+                <li>Ensure that resources like this PreparedStatement object are closed after use - line: 140</li>
+            </ul>
+            <li>ParrotTypeRegistry</li>
+            <ul>
+                <li>Ensure that resources like this Connection object are closed after use - line: 21</li>
+                <li>Ensure that resources like this PreparedStatement object are closed after use - line: 22</li>
+                <li>Ensure that resources like this ResultSet object are closed after use - line: 27</li>
+            </ul>
+        </ul>
+    </ul>
+    <li>Usability</li>
+    <ul>
+        <li>Naming - Class naming conventions</li>
+        <ul>
+            <li>ParrotRegistry</li>
+            <ul>
+                <li>The utility class name 'ParrotRegistry' doesn't match '[A-Z][a-zA-Z0-9]+(Utils?|Helper)' - line: 8
+                </li>
+            </ul>
+            <li>ParrotTypeRegistry</li>
+            <ul>
+                <li>The utility class name 'ParrotTypeRegistry' doesn't match '[A-Z][a-zA-Z0-9]+(Utils?|Helper)' - line:
+                    12
+                </li>
+            </ul>
+        </ul>
+        <li>System Println</li>
+        <ul>
+            <li>App</li>
+            <ul>
+                <li>System.out.println is used - line: 25</li>
+            </ul>
+            <li>OwnedParrot</li>
+            <ul>
+                <li>System.out.println is used - line: 55</li>
+            </ul>
+            <li>ParrotTypeRegistry</li>
+            <ul>
+                <li>System.out.println is used - line: 55</li>
+            </ul>
+        </ul>
+    </ul>
+</ul>
+<br/>
+</body>
+</html>
