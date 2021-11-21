@@ -31,8 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 class AppTest {
 
   /**
-     * Verify application can be started.
-     */
+    * Verify application can be started.
+    */
   @Test
   void shouldExecuteApplicationWithoutException() {
     assertDoesNotThrow(() -> App.main(new String[]{}));
