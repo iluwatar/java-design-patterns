@@ -57,7 +57,7 @@ of the following approaches
  - Using pattern categories, `Creational`, `Behavioral`, and others.
 
 Hopefully, you find the object-oriented solutions presented on this site useful
-in your architectures and have as much fun learning them as we had when we were developing them.
+in your architectures and have as much fun learning them as we had while developing them.
 
 # How to contribute
 
