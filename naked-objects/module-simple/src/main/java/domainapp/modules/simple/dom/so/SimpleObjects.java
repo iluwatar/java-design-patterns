@@ -58,8 +58,10 @@ public class SimpleObjects {
         q = q.filter(
                 cand.name.indexOf(q.stringParameter("name")).ne(-1)
                 );
-        return q.setParameter("name", name)
+        List<SimpleObject> listOfSimpleObjects = q.setParameter("name", name)
                 .executeList();
+        q.close();
+        return listOfSimpleObjects;
     }
     /**
      * findByNameExact() search SimpleObject by name in DB - return exact one
@@ -74,8 +76,10 @@ public class SimpleObjects {
         q = q.filter(
                 cand.name.eq(q.stringParameter("name"))
                 );
-        return q.setParameter("name", name)
+        SimpleObject simpleObject = q.setParameter("name", name)
                 .executeUnique();
+        q.close()
+        return simpleObject;
     }
 
     public static class ListAllActionDomainEvent extends ActionDomainEvent {}
@@ -92,6 +96,7 @@ public class SimpleObjects {
         q.range(0,2);
         q.orderBy(candidate.name.asc());
         q.executeList();
+        q.close();
     }
 
 
