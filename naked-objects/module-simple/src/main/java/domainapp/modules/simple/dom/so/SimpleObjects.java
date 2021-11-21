@@ -56,16 +56,19 @@ public class SimpleObjects {
         JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
         List<SimpleObject> listOfSimpleObjects = null;
         try {
-            final QSimpleObject cand = QSimpleObject.candidate();
-            q = q.filter(
+        final QSimpleObject cand = QSimpleObject.candidate();
+        q = q.filter(
                 cand.name.indexOf(q.stringParameter("name")).ne(-1)
                 );
-            listOfSimpleObjects = q.setParameter("name", name)
+        listOfSimpleObjects = q.setParameter("name", name)
                 .executeList();
-        } catch(java.io.IOException e) {}
-        finally{
-            q.close();
-            return listOfSimpleObjects;
+        } finally {
+            try {
+                q.close();
+            } catch (java.io.IOException e) {}
+            finally {
+                return listOfSimpleObjects;
+            }
         }
     }
     /**
@@ -77,18 +80,21 @@ public class SimpleObjects {
     @Programmatic
     public SimpleObject findByNameExact(final String name) {
         JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
+        final QSimpleObject cand = QSimpleObject.candidate();
         SimpleObject simpleObject = null;
         try {
-            final QSimpleObject cand = QSimpleObject.candidate();
             q = q.filter(
-                    cand.name.eq(q.stringParameter("name"))
-                    );
+                cand.name.eq(q.stringParameter("name"))
+                );
             simpleObject = q.setParameter("name", name)
-                    .executeUnique();
-        } catch(java.io.IOException e) {}
-        finally {
-            q.close();
-            return simpleObject;
+                .executeUnique();
+        } finally {
+            try {
+                q.close();
+            } catch (java.io.IOException e) {}
+            finally {
+                return simpleObject;
+            }
         }
     }
 
@@ -106,8 +112,8 @@ public class SimpleObjects {
         q.range(0,2);
         q.orderBy(candidate.name.asc());
         q.executeList();
-        try {q.close();} catch(java.io.IOException e) {e.printStackTrace();}
-        }
+        try{q.close();}catch(java.io.IOException e){}
+    }
 
 
 }
