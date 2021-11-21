@@ -25,15 +25,14 @@ package com.iluwatar.application.controller;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-//import org.junit.Test;
-//import static org.junit.Assert.assertEquals;
-
 /**
  * Application test: verify that the application can be started.
  */
-
 class AppTest {
 
+  /**
+     * Verify application can be started.
+     */
   @Test
   void shouldExecuteApplicationWithoutException() {
     assertDoesNotThrow(() -> App.main(new String[]{}));
