@@ -24,7 +24,7 @@
 package com.iluwatar.application.controller;
 
 /**
- * Model-View-Controller is a pattern that is commonly used when implementing user interfaces.
+ * Application-Controller is a pattern that is commonly used when implementing user interfaces.
  * It centralizes action and view management in an application controller class.
  *
  * <p>In this example we have an application controller ({@link ApplicationController}) that

@@ -24,16 +24,15 @@
 package com.iluwatar.application.controller;
 
 /**
- * Model-View-Controller is a pattern that is commonly used when implementing user interfaces.
+ * Application-Controller is a pattern that is commonly used when implementing user interfaces.
  * It centralizes action and view management in an application controller class.
  *
  * <p>In this example we have an application controller ({@link ApplicationController}) that
  * coordinates user input and the display of different pages. {@link SiteMapper} maintains a map 
- * that links characters to the {@link Target} objects: {@link Home}, {@link About} and
+ * that links characters to the {@link Target} objects: {@link Home}, {@link About} and 
  * {@link Contact}. The ApplicationController's method, "handler", retrives references to the 
  * target objects from the map and invokes the targets' "invoke" methods.
  */
-import java.util.Scanner;
 
 /**
  * The sample application.
@@ -52,20 +51,20 @@ public class App {
     char page = 'h';
     char escape = 'x';
 
-    // Navigate to Home page
-    controller.handler(Character.toString(Character.toUpperCase(page)));
-
-    //Navigate to About Us page
-    page = 'a';
-    controller.handler(Character.toString(Character.toUpperCase(page)));
-
-    //Navigate to Contact Us page
-    page = 'c';
-    controller.handler(Character.toString(Character.toUpperCase(page)));
-
-    //Exit the application
-    page = 'x';
     try {
+      // Navigate to Home page
+      controller.handler(Character.toString(Character.toUpperCase(page)));
+
+      //Navigate to About Us page
+      page = 'a';
+      controller.handler(Character.toString(Character.toUpperCase(page)));
+
+      //Navigate to Contact Us page
+      page = 'c';
+      controller.handler(Character.toString(Character.toUpperCase(page)));
+
+      //Exit the application
+      page = 'x';
       controller.handler(Character.toString(Character.toUpperCase(page)));
     } catch (NullPointerException e) {
       Target.clearScreen();
