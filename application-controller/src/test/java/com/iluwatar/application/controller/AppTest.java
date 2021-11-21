@@ -21,51 +21,21 @@
  * THE SOFTWARE.
  */
 
-
 package com.iluwatar.application.controller;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 //import org.junit.Test;
 //import static org.junit.Assert.assertEquals;
 
-public class ApplicationControllerTest {
+/**
+ * Application test: verify that the application can be started.
+ */
 
-    /**
-     * Verify Application controller can be instantiated.
-     */
-    @Test
-    void shouldInstantiateControllerWithoutException() {
-        assertDoesNotThrow(() -> new ApplicationController());
-    }
+class AppTest {
 
-    /**
-     * Verify all defined pages can be reached.
-     */
-    @Test
-    void testExistingPages() {
-        ApplicationController controller = new ApplicationController();
-        controller.handler("H");
-        controller.handler("A");
-        controller.handler("C");
-        try {
-          controller.handler("X");
-        } catch (NullPointerException e) {
-          Target.clearScreen();
-        }
-        
-    }
-
-  /**
-   * Verify non-existent page throws null pointer exception.
-   */
   @Test
-  void testInvalidPage() {
-      ApplicationController controller = new ApplicationController();
-      assertThrows(NullPointerException.class,() -> controller.handler("P"));
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
-
 }

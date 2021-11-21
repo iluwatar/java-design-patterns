@@ -38,7 +38,7 @@ import java.util.Scanner;
 /**
  * The sample application.
  */
-public class App {
+public class ConsoleApp {
 
   /**
    * Program entry point.
@@ -47,27 +47,32 @@ public class App {
    */
   public static void main(String[] args) {
 
+    Scanner scanner = new Scanner(System.in);
     ApplicationController controller = new ApplicationController();
 
     char page = 'h';
     char escape = 'x';
 
-    // Navigate to Home page
-    controller.handler(Character.toString(Character.toUpperCase(page)));
-
-    //Navigate to About Us page
-    page = 'a';
-    controller.handler(Character.toString(Character.toUpperCase(page)));
-
-    //Navigate to Contact Us page
-    page = 'c';
-    controller.handler(Character.toString(Character.toUpperCase(page)));
-
-    //Exit the application
-    page = 'x';
     try {
-      controller.handler(Character.toString(Character.toUpperCase(page)));
-    } catch (NullPointerException e) {
+
+      while (Character.toUpperCase(page) != Character.toUpperCase(escape)) {
+        
+        try {
+          controller.handler(Character.toString(Character.toUpperCase(page)));
+        } catch (NullPointerException f) {
+          System.out.println();
+          System.out.println("There is no page that corresponds to character '" 
+              + Character.toString(Character.toUpperCase(page)) + "'. Please try again.");
+          System.out.println();
+        }
+        
+        page = scanner.nextLine().charAt(0);
+      }
+
+    } catch (Exception e) {
+      e.printStackTrace();
+    } finally {
+      scanner.close();
       Target.clearScreen();
     }
   }
