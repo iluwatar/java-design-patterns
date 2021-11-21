@@ -83,6 +83,7 @@
     <sonar.projectName>Java Design Patterns</sonar.projectName>
   </properties>
   <modules>
+    <module>application-controller</module>
     <module>abstract-factory</module>
     <module>tls</module>
     <module>builder</module>

@@ -1,0 +1,42 @@
+@startuml 
+package com.iluwatar.application.controller {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class ApplicationController {
+    - mapper : SiteMapper
+    + ApplicationController()
+    + handler(key : String)
+  }
+  abstract class Mapper {
+    # map : HashMap<String, Target>
+    + build() {abstract}
+    + Mapper()
+    + resolve(key : String) : Target
+  }
+  class SiteMapper {
+    + build()
+  }
+  abstract class Target {
+    # body : String
+    # title : String
+    + clearScreen() {static}
+    + invoke()
+  }
+  class Home {
+    + Home()
+  }
+  class About {
+    + About()
+  }
+  class Contact {
+    + Contact()
+  }
+}
+ApplicationController --> "-mapper" SiteMapper
+SiteMapper --|> Mapper
+Home --|> Target
+About --|> Target
+Contact --|> Target
+@enduml
