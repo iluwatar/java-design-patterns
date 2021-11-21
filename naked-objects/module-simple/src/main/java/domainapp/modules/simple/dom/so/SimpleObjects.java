@@ -54,12 +54,13 @@ public class SimpleObjects {
             @Name final String name
             ) {
         JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
+        List<SimpleObject> listOfSimpleObjects = null;
         try {
             final QSimpleObject cand = QSimpleObject.candidate();
             q = q.filter(
                 cand.name.indexOf(q.stringParameter("name")).ne(-1)
                 );
-            List<SimpleObject> listOfSimpleObjects = q.setParameter("name", name)
+            listOfSimpleObjects = q.setParameter("name", name)
                 .executeList();
         } catch(java.io.IOException e) {}
         finally{
@@ -76,12 +77,13 @@ public class SimpleObjects {
     @Programmatic
     public SimpleObject findByNameExact(final String name) {
         JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
+        SimpleObject simpleObject = null;
         try {
             final QSimpleObject cand = QSimpleObject.candidate();
             q = q.filter(
                     cand.name.eq(q.stringParameter("name"))
                     );
-            SimpleObject simpleObject = q.setParameter("name", name)
+            simpleObject = q.setParameter("name", name)
                     .executeUnique();
         } catch(java.io.IOException e) {}
         finally {
