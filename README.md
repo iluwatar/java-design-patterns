@@ -21,7 +21,7 @@ Read in different language : [**zh**](localization/zh/README.md), [**ko**](local
 
 # Introduction
 
-Design patterns are the best-formalized practices a programmer can use to
+Design patterns are the best, formalized practices a programmer can use to
 solve common problems when designing an application or system.
 
 Design patterns can speed up the development process by providing tested, proven
