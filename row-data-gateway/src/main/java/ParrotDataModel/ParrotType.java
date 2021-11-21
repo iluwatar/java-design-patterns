@@ -7,6 +7,12 @@ import lombok.Setter;
 @Setter
 public class ParrotType {
 
+    /**
+     * Class constructor
+     *
+     * @param parrotTypeId
+     * @param species
+     */
     public ParrotType(Integer parrotTypeId, String species) {
         this.parrotTypeId = parrotTypeId;
         this.species = species;

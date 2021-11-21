@@ -25,21 +25,32 @@ public class OwnedParrot {
 
     private Boolean tamed;
 
+    /**
+     * Print out all Parrot information
+     *
+     * @throws SQLException
+     */
     public void printParrotInformation() throws SQLException {
         StringBuilder sb = new StringBuilder();
         sb.append("My parrot information: \n");
-        if(ownedParrotId != null)
+        if (ownedParrotId != null) {
             sb.append("ParrotId: " + ownedParrotId + "\n");
-        if(this.parrotTypeId != null)
+        }
+        if (this.parrotTypeId != null) {
             sb.append("Species: " + ParrotTypeRegistry.getParrotTypeById(parrotTypeId).getSpecies() + "\n");
-        if(!StringUtils.isNullOrEmpty(parrotName))
+        }
+        if (!StringUtils.isNullOrEmpty(parrotName)) {
             sb.append("Name: " + parrotName + "\n");
-        if(parrotAge != null)
+        }
+        if (parrotAge != null) {
             sb.append("Age: " + parrotAge + "\n");
-        if(StringUtils.isNullOrEmpty(color))
+        }
+        if (StringUtils.isNullOrEmpty(color)) {
             sb.append("Name: " + color + "\n");
-        if(tamed != null)
+        }
+        if (tamed != null) {
             sb.append("Tamed: " + BooleanUtils.toStringYesNo(tamed));
+        }
 
         String parrotInformation = sb.toString();
         System.out.println(parrotInformation);

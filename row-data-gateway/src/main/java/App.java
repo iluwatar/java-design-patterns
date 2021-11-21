@@ -1,11 +1,8 @@
 import ParrotDataModel.OwnedParrot;
 import ParrotRowGateWay.OwnedParrotFinder;
 import ParrotRowGateWay.OwnedParrotGateWay;
-import ParrotRowGateWay.ParrotRegistry;
 import ParrotRowGateWay.ParrotTypeRegistry;
-import db.DataBaseConnection;
 
-import java.sql.Connection;
 import java.sql.SQLException;
 
 public class App {

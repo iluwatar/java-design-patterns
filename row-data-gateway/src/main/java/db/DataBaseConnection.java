@@ -6,16 +6,26 @@ import java.sql.SQLException;
 
 public class DataBaseConnection {
 
-    private final String DATABASE_CONNECTION = "jdbc:mysql://localhost:3306/parrot?user=admin&password=admin123";
+    private final static String DATABASE_CONNECTION = "jdbc:mysql://localhost:3306/parrot?user=admin&password=admin123";
 
+    /**
+     * Get Database connection
+     *
+     * @return Connection
+     * @throws SQLException
+     */
     public Connection getConnection() throws SQLException {
-        Connection connection = DriverManager.getConnection(DATABASE_CONNECTION);
-
-        return connection;
+        return DriverManager.getConnection(DATABASE_CONNECTION);
     }
 
+    /**
+     * Closes the Database connection
+     *
+     * @param connection
+     * @throws SQLException
+     */
     public void closeConnection(Connection connection) throws SQLException {
-        if(connection != null) {
+        if (connection != null) {
             connection.close();
         }
     }

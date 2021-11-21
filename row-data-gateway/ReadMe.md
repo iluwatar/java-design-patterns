@@ -16,7 +16,7 @@ requirements, adding database logic to these objects increases the code complexi
 
 ## UML for this implementation of Row Data Gateway Pattern
 
-![alt text](./etc/parrotUML.png "SQL CRUD Operations")
+![alt text](./etc/ParrotUML.png "SQL CRUD Operations")
 
 ## Database (MySQL)
 

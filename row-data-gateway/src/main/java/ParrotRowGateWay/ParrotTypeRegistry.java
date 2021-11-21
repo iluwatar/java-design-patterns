@@ -38,6 +38,13 @@ public final class ParrotTypeRegistry {
         }
     }
 
+    /**
+     * Get Parrot Type by Id from Registry
+     *
+     * @param id
+     * @return
+     * @throws SQLException
+     */
     public static ParrotType getParrotTypeById(int id) throws SQLException {
         if (parrotTypeMap.isEmpty()) {
             loadParrotTypeRegistry();
@@ -51,9 +58,13 @@ public final class ParrotTypeRegistry {
         return parrotType;
     }
 
+    /**
+     * Print each Parrot Type that is in Registry
+     */
     public static void printParrotTypeInformation() {
-        for (Map.Entry<Integer,ParrotType> entry : parrotTypeMap.entrySet())
+        for (Map.Entry<Integer, ParrotType> entry : parrotTypeMap.entrySet()) {
             System.out.println("Id = " + entry.getKey() + ", Species = " + entry.getValue().getSpecies());
+        }
     }
 
 }
