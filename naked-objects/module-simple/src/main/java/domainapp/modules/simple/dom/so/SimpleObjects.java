@@ -53,15 +53,19 @@ public class SimpleObjects {
     public List<SimpleObject> findByName(
             @Name final String name
             ) {
-        JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
-        final QSimpleObject cand = QSimpleObject.candidate();
-        q = q.filter(
+        try {
+            JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
+            final QSimpleObject cand = QSimpleObject.candidate();
+            q = q.filter(
                 cand.name.indexOf(q.stringParameter("name")).ne(-1)
                 );
-        List<SimpleObject> listOfSimpleObjects = q.setParameter("name", name)
+            List<SimpleObject> listOfSimpleObjects = q.setParameter("name", name)
                 .executeList();
-        try {q.close();} catch(java.io.IOException e) {e.printStackTrace();}
-        return listOfSimpleObjects;
+        } catch(java.io.IOException e) {}
+        finally{
+            q.close();
+            return listOfSimpleObjects;
+        }
     }
     /**
      * findByNameExact() search SimpleObject by name in DB - return exact one
@@ -71,15 +75,19 @@ public class SimpleObjects {
      */
     @Programmatic
     public SimpleObject findByNameExact(final String name) {
-        JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
-        final QSimpleObject cand = QSimpleObject.candidate();
-        q = q.filter(
-                cand.name.eq(q.stringParameter("name"))
-                );
-        SimpleObject simpleObject = q.setParameter("name", name)
-                .executeUnique();
-        try {q.close();} catch(java.io.IOException e) {e.printStackTrace();}
-        return simpleObject;
+        try {
+            JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
+            final QSimpleObject cand = QSimpleObject.candidate();
+            q = q.filter(
+                    cand.name.eq(q.stringParameter("name"))
+                    );
+            SimpleObject simpleObject = q.setParameter("name", name)
+                    .executeUnique();
+        } catch(java.io.IOException e) {}
+        finally {
+            q.close();
+            return simpleObject;
+        }
     }
 
     public static class ListAllActionDomainEvent extends ActionDomainEvent {}
