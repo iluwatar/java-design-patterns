@@ -53,8 +53,8 @@ public class SimpleObjects {
     public List<SimpleObject> findByName(
             @Name final String name
             ) {
+        JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
         try {
-            JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
             final QSimpleObject cand = QSimpleObject.candidate();
             q = q.filter(
                 cand.name.indexOf(q.stringParameter("name")).ne(-1)
@@ -75,8 +75,8 @@ public class SimpleObjects {
      */
     @Programmatic
     public SimpleObject findByNameExact(final String name) {
+        JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
         try {
-            JDOQLTypedQuery<SimpleObject> q = isisJdoSupport.newTypesafeQuery(SimpleObject.class);
             final QSimpleObject cand = QSimpleObject.candidate();
             q = q.filter(
                     cand.name.eq(q.stringParameter("name"))
