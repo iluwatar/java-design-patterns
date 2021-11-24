@@ -1,8 +1,7 @@
 package com.iluwatar.compositeview;
 
 import java.io.Serializable;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * A Java beans class that parses a http request and stores parameters.
@@ -44,7 +43,7 @@ public class ClientPropertiesBean implements Serializable {
 
   public ClientPropertiesBean(HttpServletRequest req) {
     worldNewsInterest = Boolean.parseBoolean(req.getParameter(WORLD_PARAM));
-    sportsInterest = Boolean.parseBoolean(req.getParameter(WORLD_PARAM));
+    sportsInterest = Boolean.parseBoolean(req.getParameter(SPORTS_PARAM));
     businessInterest = Boolean.parseBoolean(req.getParameter(BUSINESS_PARAM));
     scienceNewsInterest = Boolean.parseBoolean(req.getParameter(SCIENCE_PARAM));
     String temp_name = req.getParameter(NAME_PARAM);
