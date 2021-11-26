@@ -31,8 +31,8 @@ public class LordVarys extends EventEmitter {
   public LordVarys() {
   }
 
-  public LordVarys(EventObserver obs) {
-    super(obs);
+  public LordVarys(EventObserver obs, Event e) {
+    super(obs, e);
   }
 
   @Override

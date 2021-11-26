@@ -31,8 +31,8 @@ public class KingsHand extends EventEmitter implements EventObserver {
   public KingsHand() {
   }
 
-  public KingsHand(EventObserver obs) {
-    super(obs);
+  public KingsHand(EventObserver obs, Event e) {
+    super(obs, e);
   }
 
   @Override

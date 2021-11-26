@@ -31,8 +31,8 @@ public class Scout extends EventEmitter {
   public Scout() {
   }
 
-  public Scout(EventObserver obs) {
-    super(obs);
+  public Scout(EventObserver obs, Event e) {
+    super(obs, e);
   }
 
   @Override
