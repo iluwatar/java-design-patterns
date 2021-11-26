@@ -49,13 +49,13 @@ public class App {
   public static void main(String[] args) {
 
     var kingJoffrey = new KingJoffrey();
-    var kingsHand = new KingsHand(kingJoffrey);
+    var kingsHand = new KingsHand(kingJoffrey, Event.STARK_SIGHTED);
 
     var emitters = List.of(
         kingsHand,
-        new LordBaelish(kingsHand),
-        new LordVarys(kingsHand),
-        new Scout(kingsHand)
+        new LordBaelish(kingsHand, Event.TRAITOR_DETECTED),
+        new LordVarys(kingsHand, Event.WARSHIPS_APPROACHING),
+        new Scout(kingsHand, Event.STARK_SIGHTED)
     );
 
     Arrays.stream(Weekday.values())
