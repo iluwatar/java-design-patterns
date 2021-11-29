@@ -9,7 +9,7 @@
   </head>
   <body>
     <h1>Welcome To The Composite Patterns Mock News Site</h1>
-    <h2>Send a GET request to the "/news" path to see the composite view</h2>
+    <h2>Send a GET request to the "/news" path to see the composite view with mock news</h2>
     <h2>Use the following parameters:</h2>
     <h3>name: string name to be dynamically displayed</h3>
     <h3>bus: boolean for whether you want to see the mock business news</h3>

@@ -18,16 +18,39 @@
 <body>
     <%ClientPropertiesBean propertiesBean = (ClientPropertiesBean) request.getAttribute("properties");%>
     <h1>Welcome <%= propertiesBean.getName()%></h1>
+    <jsp:include page="header.jsp"></jsp:include>
     <table class="centerTable">
+
         <tr>
             <td></td>
-            <td>Ad Number 1</td>
+            <% if(propertiesBean.isWorldNewsInterest()) { %>
+                <td><%@include file="worldNews.jsp"%></td>
+            <% } else { %>
+                <td><%@include file="localNews.jsp"%></td>
+            <% } %>
             <td></td>
         </tr>
         <tr>
-            <td>Ad Number 2</td>
-            <td>Ad Number 3</td>
-            <td>Ad Number 4</td>
+            <% if(propertiesBean.isBusinessInterest()) { %>
+                <td><%@include file="businessNews.jsp"%></td>
+            <% } else { %>
+                <td><%@include file="localNews.jsp"%></td>
+            <% } %>
+            <td></td>
+            <% if(propertiesBean.isSportsInterest()) { %>
+                <td><%@include file="sportsNews.jsp"%></td>
+            <% } else { %>
+                <td><%@include file="localNews.jsp"%></td>
+            <% } %>
+        </tr>
+        <tr>
+            <td></td>
+            <% if(propertiesBean.isScienceNewsInterest()) { %>
+                <td><%@include file="scienceNews.jsp"%></td>
+            <% } else { %>
+                <td><%@include file="localNews.jsp"%></td>
+            <% } %>
+            <td></td>
         </tr>
     </table>
 </body>
