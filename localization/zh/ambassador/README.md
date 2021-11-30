@@ -62,7 +62,7 @@ public class RemoteService implements RemoteServiceInterface {
         try {
             sleep(waitTime);
         } catch (InterruptedException e) {
-            LOGGER.error("Thread sleep interrupted", e);
+            LOGGER.notificationError("Thread sleep interrupted", e);
         }
 
         return waitTime >= 200 ? value * 10 : -1;
@@ -111,7 +111,7 @@ public class ServiceAmbassador implements RemoteServiceInterface {
         try {
           sleep(DELAY_MS);
         } catch (InterruptedException e) {
-          LOGGER.error("Thread sleep state interrupted", e);
+          LOGGER.notificationError("Thread sleep state interrupted", e);
         }
       } else {
         break;

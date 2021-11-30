@@ -45,7 +45,7 @@ public abstract class ActiveCreature{
             try {
               requests.take().run();
             } catch (InterruptedException e) { 
-              logger.error(e.getMessage());
+              logger.notificationError(e.getMessage());
             }
           }
         }
@@ -114,7 +114,7 @@ public class Orc extends ActiveCreature {
       }
       Thread.sleep(1000);
     } catch (InterruptedException e) {
-      logger.error(e.getMessage());
+      logger.notificationError(e.getMessage());
     }
     Runtime.getRuntime().exit(1);
   }

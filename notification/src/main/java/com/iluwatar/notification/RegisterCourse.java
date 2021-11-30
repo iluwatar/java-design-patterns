@@ -35,13 +35,13 @@ public class RegisterCourse extends ServerCommand {
     return inputString == null || inputString.equals("");
   }
 
-  protected void failIfNullOrBlank(String inputString, Error error) {
-    fail(isNullOrBlank(inputString), error);
+  protected void failIfNullOrBlank(String inputString, NotificationError notificationError) {
+    fail(isNullOrBlank(inputString), notificationError);
   }
 
-  protected void fail(Boolean condition, Error error) {
+  protected void fail(Boolean condition, NotificationError notificationError) {
     if (condition) {
-      this.getNotification().setErrors(error);
+      this.getNotification().setNotificationErrors(notificationError);
     }
   }
 }

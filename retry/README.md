@@ -21,7 +21,7 @@ Retry pattern consists retrying operations on remote resources over the network 
 times. It closely depends on both business and technical requirements: How much time will the 
 business allow the end user to wait while the operation finishes? What are the performance 
 characteristics of the remote resource during peak loads as well as our application as more threads
-are waiting for the remote resource's availability? Among the errors returned by the remote service, 
+are waiting for the remote resource's availability? Among the notificationErrors returned by the remote service, 
 which can be safely ignored in order to retry? Is the operation 
 [idempotent](https://en.wikipedia.org/wiki/Idempotence)?
 
@@ -43,7 +43,7 @@ the simple example that accompanies this `README.md`.
 Real world example
 
 > Our application uses a service providing customer information. Once in a while the service seems 
-> to be flaky and can return errors or sometimes it just times out. To circumvent these problems we 
+> to be flaky and can return notificationErrors or sometimes it just times out. To circumvent these problems we 
 > apply the retry pattern. 
 
 In plain words
@@ -81,9 +81,9 @@ public final class FindCustomer implements BusinessOperation<String> {
 Our `FindCustomer` implementation can be configured to throw `BusinessException`s before returning 
 the customer's ID, thereby simulating a flaky service that intermittently fails. Some exceptions, 
 like the `CustomerNotFoundException`, are deemed to be recoverable after some hypothetical analysis 
-because the root cause of the error stems from "some database locking issue". However, the 
+because the root cause of the notificationError stems from "some database locking issue". However, the 
 `DatabaseNotAvailableException` is considered to be a definite showstopper - the application should 
-not attempt to recover from this error.
+not attempt to recover from this notificationError.
 
 We can model a recoverable scenario by instantiating `FindCustomer` like this:
 
@@ -101,7 +101,7 @@ which it will consistently return the customer's ID (`12345`).
 
 In our hypothetical scenario, our analysts indicate that this operation typically fails 2-4 times 
 for a given input during peak hours, and that each worker thread in the database subsystem typically 
-needs 50ms to "recover from an error". Applying these policies would yield something like this:
+needs 50ms to "recover from an notificationError". Applying these policies would yield something like this:
 
 ```java
 final var op = new Retry<>(
@@ -124,7 +124,7 @@ and 3 additional retries before finally returning the desired result `12345`.
 
 If our `FindCustomer` operation were instead to throw a fatal `DatabaseNotFoundException`, which we 
 were instructed not to ignore, but more importantly we did not instruct our `Retry` to ignore, then 
-the operation would have failed immediately upon receiving the error, not matter how many attempts 
+the operation would have failed immediately upon receiving the notificationError, not matter how many attempts 
 were left.
 
 ## Class diagram

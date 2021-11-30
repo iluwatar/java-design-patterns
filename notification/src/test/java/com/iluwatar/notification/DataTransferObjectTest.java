@@ -10,10 +10,10 @@ public class DataTransferObjectTest {
     void testGetNotification() {
 
         DataTransferObject data = new DataTransferObject();
-        Error error = new Error("error");
+        NotificationError notificationError = new NotificationError("error");
         Notification notification = data.getNotification();
-        notification.setErrors(error);
-        Error output = data.getNotification().getErrors().get(0);
-        assertEquals(error, output);
+        notification.setNotificationErrors(notificationError);
+        NotificationError output = data.getNotification().getNotificationErrors().get(0);
+        assertEquals(notificationError, output);
     }
 }

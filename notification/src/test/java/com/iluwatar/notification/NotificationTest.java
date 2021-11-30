@@ -17,16 +17,16 @@ public class NotificationTest {
 
     @Test
     void setAndGetErrorsTest() {
-        Error err = new Error("This is an error");
-        notification.setErrors(err);
-        List<Error> errors = notification.getErrors();
-        assertEquals(err, errors.get(0));
+        NotificationError err = new NotificationError("This is an error");
+        notification.setNotificationErrors(err);
+        List<NotificationError> notificationErrors = notification.getNotificationErrors();
+        assertEquals(err, notificationErrors.get(0));
     }
 
     @Test
     void hasErrorTest() {
-        Error err = new Error("This is an error");
-        notification.setErrors(err);
+        NotificationError err = new NotificationError("This is an error");
+        notification.setNotificationErrors(err);
         Boolean hasErrors = notification.hasErrors();
         assertEquals(hasErrors, true);
     }

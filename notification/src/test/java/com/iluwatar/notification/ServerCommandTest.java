@@ -11,10 +11,10 @@ public class ServerCommandTest {
 
         DataTransferObject data = new DataTransferObject();
         ServerCommand server = new ServerCommand(data);
-        Error error = new Error("error");
+        NotificationError notificationError = new NotificationError("error");
         Notification notification = data.getNotification();
-        notification.setErrors(error);
-        Error output = server.getNotification().getErrors().get(0);
-        assertEquals(error, output);
+        notification.setNotificationErrors(notificationError);
+        NotificationError output = server.getNotification().getNotificationErrors().get(0);
+        assertEquals(notificationError, output);
     }
 }

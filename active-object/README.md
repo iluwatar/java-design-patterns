@@ -46,7 +46,7 @@ public abstract class ActiveCreature{
             try {
               requests.take().run();
             } catch (InterruptedException e) { 
-              logger.error(e.getMessage());
+              logger.notificationError(e.getMessage());
             }
           }
         }
@@ -115,7 +115,7 @@ Now, we can create multiple creatures such as Orcs, tell them to eat and roam, a
       }
       Thread.sleep(1000);
     } catch (InterruptedException e) {
-      logger.error(e.getMessage());
+      logger.notificationError(e.getMessage());
     }
     Runtime.getRuntime().exit(1);
   }

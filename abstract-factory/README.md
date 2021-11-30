@@ -210,7 +210,7 @@ Example use cases
 
 ## Consequences
 
-* Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
+* Dependency injection in java hides the service class dependencies that can lead to runtime notificationErrors that would have been caught at compile time.
 * While the pattern is great when creating predefined objects, adding the new ones might be challenging.
 * The code becomes more complicated than it should be since a lot of new interfaces and classes are introduced along with the pattern.
 

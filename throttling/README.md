@@ -127,7 +127,7 @@ class B2BService {
     var count = callsCount.getCount(tenantName);
     LOGGER.debug("Counter for {} : {} ", tenant.getName(), count);
     if (count >= tenant.getAllowedCallsPerSecond()) {
-      LOGGER.error("API access per second limit reached for: {}", tenantName);
+      LOGGER.notificationError("API access per second limit reached for: {}", tenantName);
       return -1;
     }
     callsCount.incrementCount(tenantName);
@@ -157,7 +157,7 @@ second and Nike to 6.
     try {
       executorService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      LOGGER.error("Executor Service terminated: {}", e.getMessage());
+      LOGGER.notificationError("Executor Service terminated: {}", e.getMessage());
     }
   }
 
@@ -170,7 +170,7 @@ second and Nike to 6.
       try {
         Thread.sleep(1);
       } catch (InterruptedException e) {
-        LOGGER.error("Thread interrupted: {}", e.getMessage());
+        LOGGER.notificationError("Thread interrupted: {}", e.getMessage());
       }
     });
   }

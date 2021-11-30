@@ -8,7 +8,7 @@ public class RegisterCourseTest {
 
     @Test
     void testValidate() {
-        FormRegisterCourse form = new FormRegisterCourse("CSE427", "Fall21", "Engineering");
+        RegisterCourseForm form = new RegisterCourseForm("CSE427", "Fall21", "Engineering");
         String output = form.submit();
         assertEquals("Registration Succeeded", output);
     }

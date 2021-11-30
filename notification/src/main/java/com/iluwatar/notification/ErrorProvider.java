@@ -9,11 +9,11 @@ public class ErrorProvider {
   /**
   * set an Error message.
   *
-  * @param error the error to display.
+  * @param notificationError the error to display.
   *
   */
-  public String setError(Error error) {
-    LOGGER.error(error.getErrorMessage());
-    return error.getErrorMessage();
+  public String setError(NotificationError notificationError) {
+    LOGGER.error(notificationError.getMessage());
+    return notificationError.getMessage();
   }
 }

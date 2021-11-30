@@ -145,7 +145,7 @@ public class Producer {
       queue.put(msg);
     } catch (InterruptedException e) {
       // allow thread to exit
-      LOGGER.error("Exception caught.", e);
+      LOGGER.notificationError("Exception caught.", e);
     }
   }
 
@@ -155,7 +155,7 @@ public class Producer {
       queue.put(Message.POISON_PILL);
     } catch (InterruptedException e) {
       // allow thread to exit
-      LOGGER.error("Exception caught.", e);
+      LOGGER.notificationError("Exception caught.", e);
     }
   }
 }
@@ -177,7 +177,7 @@ public class Consumer {
         LOGGER.info("Message [{}] from [{}] received by [{}]", body, sender, name);
       } catch (InterruptedException e) {
         // allow thread to exit
-        LOGGER.error("Exception caught.", e);
+        LOGGER.notificationError("Exception caught.", e);
         return;
       }
     }

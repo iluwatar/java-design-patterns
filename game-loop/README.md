@@ -127,7 +127,7 @@ public abstract class GameLoop {
       var lag = new Random().nextInt(200) + 50;
       Thread.sleep(lag);
     } catch (InterruptedException e) {
-      logger.error(e.getMessage());
+      logger.notificationError(e.getMessage());
     }
   }
 
@@ -186,7 +186,7 @@ Finally, we show all the game loops in action.
       LOGGER.info("Stop variable-step game loop.");
       
     } catch (InterruptedException e) {
-      LOGGER.error(e.getMessage());
+      LOGGER.notificationError(e.getMessage());
     }
 ```
 

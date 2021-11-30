@@ -23,7 +23,7 @@ implementation is that a Null Object is very predictable and has no side effects
 Real world example
 
 > We are building a binary tree from nodes. There are ordinary nodes and "empty" nodes. Traversing 
-> the tree normally should not cause errors, so we use null object pattern where necessary.            
+> the tree normally should not cause notificationErrors, so we use null object pattern where necessary.            
 
 In plain words
 
@@ -144,7 +144,7 @@ public final class NullNode implements Node {
 }
 ```
 
-Then we can construct and traverse the binary tree without errors as follows.
+Then we can construct and traverse the binary tree without notificationErrors as follows.
 
 ```java
     var root = new NodeImpl("1",

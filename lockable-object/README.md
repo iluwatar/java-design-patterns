@@ -262,7 +262,7 @@ public class App implements Runnable {
         LOGGER.info("The master of the sword is now {}.", sword.getLocker().getName());
       }
     } catch (InterruptedException e) {
-      LOGGER.error(e.getMessage());
+      LOGGER.notificationError(e.getMessage());
       Thread.currentThread().interrupt();
     } finally {
       service.shutdown();

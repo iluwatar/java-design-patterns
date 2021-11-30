@@ -60,7 +60,7 @@ public class UserTableModule {
    * @param username the username of a user
    * @param password the password of a user
    * @return the execution result of the method
-   * @throws SQLException if any error
+   * @throws SQLException if any notificationError
    */
   public int login(final String username, final String password) throws SQLException {
   		// Method implementation.
@@ -72,7 +72,7 @@ public class UserTableModule {
    *
    * @param user a user instance
    * @return the execution result of the method
-   * @throws SQLException if any error
+   * @throws SQLException if any notificationError
    */
   public int registerUser(final User user) throws SQLException {
   		// Method implementation.

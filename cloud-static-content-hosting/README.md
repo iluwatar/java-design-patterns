@@ -76,13 +76,13 @@ the content globally.
 
 8. Configure the bucket as a web site with command `aws s3 website` as described in the [instructions](https://docs.aws.amazon.com/cli/latest/reference/s3/website.html).
 
-   * E.g. `aws s3 website s3://my-static-website-jh34jsjmg --index-document index.html --error-document error.html`
+   * E.g. `aws s3 website s3://my-static-website-jh34jsjmg --index-document index.html --notificationError-document notificationError.html`
 
 9. Upload content to the bucket.
 
-   * First create the content, at least `index.html` and `error.html` documents.
+   * First create the content, at least `index.html` and `notificationError.html` documents.
    * Upload the content to your bucket as described [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-copy)
-   * E.g. `aws s3 cp index.html s3://my-static-website-jh34jsjmg` and `aws s3 cp error.html s3://my-static-website-jh34jsjmg`
+   * E.g. `aws s3 cp index.html s3://my-static-website-jh34jsjmg` and `aws s3 cp notificationError.html s3://my-static-website-jh34jsjmg`
 
 10. Next we need to set the bucket policy to allow read access.
 

@@ -8,15 +8,15 @@ public class ErrorTest {
 
     @Test
     void testGetErrorMessage() {
-        Error error = new Error("hello this is a test message");
-        String output = error.getErrorMessage();
+        NotificationError notificationError = new NotificationError("hello this is a test message");
+        String output = notificationError.getMessage();
         assertEquals("hello this is a test message", output);
     }
 
     @Test
     void testEmptyError() {
-        Error error = new Error("");
-        String output = error.getErrorMessage();
+        NotificationError notificationError = new NotificationError("");
+        String output = notificationError.getMessage();
         assertEquals("", output);
     }
 }

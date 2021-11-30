@@ -3,7 +3,7 @@ package com.iluwatar.notification;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class FormRegisterCourse {
+public class RegisterCourseForm {
   private RegisterCourseDto course;
   private CourseService service;
 
@@ -19,7 +19,7 @@ public class FormRegisterCourse {
   * @param semester  semester of this course
   * @param department department of this course
   */
-  public FormRegisterCourse(String courseId, String semester, String department) {
+  public RegisterCourseForm(String courseId, String semester, String department) {
 
     this.courseId = courseId;
     this.semester = semester;
@@ -62,15 +62,15 @@ public class FormRegisterCourse {
     checkError(RegisterCourseDto.MISSING_DEPARTMENT, this.department);
   }
 
-  private void checkError(Error error, String courseId) {
-    if (this.course.getNotification().getErrors().contains(error)) {
-      showError(courseId, error.getErrorMessage());
+  private void checkError(NotificationError notificationError, String courseId) {
+    if (this.course.getNotification().getNotificationErrors().contains(notificationError)) {
+      showError(courseId, notificationError.getMessage());
     }
   }
 
   private void showError(String courseId, String message) {
-    Error error = new Error(message + " " + courseId);
-    this.errorProvider.setError(error);
+    NotificationError notificationError = new NotificationError(message + " " + courseId);
+    this.errorProvider.setError(notificationError);
   }
 
 }

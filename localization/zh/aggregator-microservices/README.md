@@ -61,10 +61,10 @@ public class Aggregator {
     var productTitle = informationClient.getProductTitle();
     var productInventory = inventoryClient.getProductInventories();
 
-    //Fallback to error message
+    //Fallback to notificationError message
     product.setTitle(requireNonNullElse(productTitle, "Error: Fetching Product Title Failed"));
 
-    //Fallback to default error inventory
+    //Fallback to default notificationError inventory
     product.setProductInventories(requireNonNullElse(productInventory, -1));
 
     return product;

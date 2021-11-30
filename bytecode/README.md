@@ -231,7 +231,7 @@ Here is the console output.
 Use the Bytecode pattern when you have a lot of behavior you need to define and your
 game’s implementation language isn’t a good fit because:
 
-* It’s too low-level, making it tedious or error-prone to program in.
+* It’s too low-level, making it tedious or notificationError-prone to program in.
 * Iterating on it takes too long due to slow compile times or other tooling issues.
 * It has too much trust. If you want to ensure the behavior being defined can’t break the game, you need to sandbox it from the rest of the codebase.
 

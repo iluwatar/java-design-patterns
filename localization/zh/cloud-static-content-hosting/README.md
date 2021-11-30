@@ -63,12 +63,12 @@ tags:
 
 8. 使用命令`aws s3 website`来配置bucket作为web站点。  [说明书](https://docs.aws.amazon.com/cli/latest/reference/s3/website.html).
 
-   * 比如`aws s3 website s3://my-static-website-jh34jsjmg --index-document index.html --error-document error.html`
+   * 比如`aws s3 website s3://my-static-website-jh34jsjmg --index-document index.html --notificationError-document notificationError.html`
 
 9. 上传内容到bucket中。
-   * 首先创建内容，至少包含`index.html`和`error.html`文档。
+   * 首先创建内容，至少包含`index.html`和`notificationError.html`文档。
    * 上传内容到你的bucket中。 [说明书](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-managing-objects-copy)
-   * 比如`aws s3 cp index.html s3://my-static-website-jh34jsjmg` and `aws s3 cp error.html s3://my-static-website-jh34jsjmg`
+   * 比如`aws s3 cp index.html s3://my-static-website-jh34jsjmg` and `aws s3 cp notificationError.html s3://my-static-website-jh34jsjmg`
 
 10. 然后我们需要设置bucket的策略以允许读取访问。
 

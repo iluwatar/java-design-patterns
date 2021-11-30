@@ -1,17 +1,11 @@
 package com.iluwatar.notification;
 
+import lombok.Getter;
+
 public class DataTransferObject {
   protected DataTransferObject() {}
-
+  @Getter
   public Notification notification = new Notification();
 
-  /**
-  * Get a Notification object.
-  *
-  * @return Notification object.
-  */
-  public Notification getNotification() {
-    return notification;
-  }
 
 }

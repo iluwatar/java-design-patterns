@@ -92,7 +92,7 @@ public class SquareNumberRequest {
       // this will make the thread sleep from 5-7s.
       Thread.sleep(minTimeOut + randomTimeOut);
     } catch (InterruptedException e) {
-      LOGGER.error("Exception while sleep ", e);
+      LOGGER.notificationError("Exception while sleep ", e);
       Thread.currentThread().interrupt();
     } finally {
       consumer.add(number * number);

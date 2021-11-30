@@ -54,7 +54,7 @@ public class WashingMachine {
       var machineState = getWashingMachineState();
       LOGGER.info("{}: Actual machine state: {}", Thread.currentThread().getName(), machineState);
       if (this.washingMachineState == WashingMachineState.WASHING) {
-        LOGGER.error("Cannot wash if the machine has been already washing!");
+        LOGGER.notificationError("Cannot wash if the machine has been already washing!");
         return;
       }
       this.washingMachineState = WashingMachineState.WASHING;
@@ -91,7 +91,7 @@ public interface DelayProvider {
     try {
       executorService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException ie) {
-      LOGGER.error("ERROR: Waiting on executor service shutdown!");
+      LOGGER.notificationError("ERROR: Waiting on executor service shutdown!");
       Thread.currentThread().interrupt();
     }
   }

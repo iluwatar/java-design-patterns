@@ -7,11 +7,13 @@ categories: Behavioural
 language: en
 tags:
 - Notification
+- Decoupling
+- Presentation
 ---
 
 ## Intent
 
-A Notification is an object that collects information about errors during validation of data. When an error appears the Notification is sent back to the view to display further information about the errors.
+A Notification is an object that collects information about notificationErrors during validation of data. When an notificationError appears the Notification is sent back to the view to display further information about the notificationErrors.
 
 
 ## Explanation
@@ -23,7 +25,7 @@ Real world example
 
 In plain words
 
-> An object that collects together information about errors and other information and communicates it to the presentation.
+> An object that collects together information about notificationErrors and other information and communicates it to the presentation.
 
 **Programmatic Example**
 
@@ -61,7 +63,7 @@ public class FormRegisterCourse {
      * Submits a form for registering a course.
      *
      * @return "Registration Succeeded" if customer is successfully added,
-     *         "Not registered, see errors" if customer already exists.
+     *         "Not registered, see notificationErrors" if customer already exists.
      */
     public String submit() {
         // submit the form to RegisterCourse
@@ -84,7 +86,7 @@ public class RegisterCourse extends ServerCommand {
     }
 
     /**
-     * Runs this service to validate registration forms, if no errors reported, save to backend
+     * Runs this service to validate registration forms, if no notificationErrors reported, save to backend
      */
     public void run() {
         validate();
@@ -94,7 +96,7 @@ public class RegisterCourse extends ServerCommand {
     }
 
     private void validate() {
-        // checks for input errors. If errors are present, save it to the Notification object
+        // checks for input notificationErrors. If notificationErrors are present, save it to the Notification object
     }
 ```
 
@@ -102,20 +104,20 @@ Finally here's our Notification object.
 
 ```java
 public class Notification {
-    private List<Error> errors = new ArrayList();
+    private List<Error> notificationErrors = new ArrayList();
 
     protected Notification() {}
 
     public List<Error> getErrors() {
-        return this.errors;
+        return this.notificationErrors;
     }
 
-    public void setErrors(Error error) {
-        this.errors.add(error);
+    public void setErrors(Error notificationError) {
+        this.notificationErrors.add(notificationError);
     }
 
     public boolean hasErrors() {
-        return this.errors.size() != 0;
+        return this.notificationErrors.size() != 0;
     }
 
 
@@ -133,10 +135,10 @@ form.submit();
 ```
 The program output:
 ```java
-22:25:50.947 [main] INFO com.iluwatar.notification.FormRegisterCourse - Registration Succeeded
+22:25:50.947 [main] INFO com.iluwatar.notification.RegisterCourseForm - Registration Succeeded
 ```
 
-Here's the an example with errors.
+Here's the an example with notificationErrors.
 
 ```java
 final String courseID = "";
@@ -149,7 +151,7 @@ The program output:
 ```java
         22:26:30.471 [main] ERROR com.iluwatar.notification.ErrorProvider - Course ID is missing 
         22:26:30.474 [main] ERROR com.iluwatar.notification.ErrorProvider - Semester is missing
-        22:26:30.474 [main] INFO com.iluwatar.notification.FormRegisterCourse - Not registered, see errors
+        22:26:30.474 [main] INFO com.iluwatar.notification.RegisterCourseForm - Not registered, see notificationErrors
 ```
 
 ## Class diagram
@@ -160,7 +162,7 @@ The program output:
 
 Use the Notification pattern in any of the following situation:
 
-* The most obvious alternative to using Notification is for the domain to use exception handling to indicate errors. Such an approach has the domain throw an exception if a validation check fails. The problem with this is that it only indicates the first validation error. It's usually more helpful to show every validation error, particular if validation requires a round trip to a remote domain layer.
+* The most obvious alternative to using Notification is for the domain to use exception handling to indicate notificationErrors. Such an approach has the domain throw an exception if a validation check fails. The problem with this is that it only indicates the first validation notificationError. It's usually more helpful to show every validation notificationError, particular if validation requires a round trip to a remote domain layer.
 
 ## Credits
 

@@ -24,7 +24,7 @@ a loop with the cost of writing code that is more difficult to understand.
 
 However recursion type solutions have one big caveat. For each recursive call it typically needs 
 an intermediate value stored and there is a limited amount of stack memory available. Running out of 
-stack memory creates a stack overflow error and halts the program execution.
+stack memory creates a stack overflow notificationError and halts the program execution.
 
 Trampoline pattern is a trick that allows us define recursive algorithms in Java without blowing the 
 stack. 

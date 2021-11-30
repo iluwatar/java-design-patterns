@@ -26,7 +26,7 @@ The Promise object is used for asynchronous computations. A Promise represents a
 hasn't completed yet, but is expected in the future.
 
 Promises provide a few advantages over callback objects:
- * Functional composition and error handling.
+ * Functional composition and notificationError handling.
  * Prevents callback hell and provides callback aggregation.
 
 Real world example
@@ -288,7 +288,7 @@ Promise pattern is applicable in concurrent programming when some work needs to 
 asynchronously and:
 
 * Code maintainability and readability suffers due to callback hell.
-* You need to compose promises and need better error handling for asynchronous tasks.
+* You need to compose promises and need better notificationError handling for asynchronous tasks.
 * You want to use functional style of programming.
 
 

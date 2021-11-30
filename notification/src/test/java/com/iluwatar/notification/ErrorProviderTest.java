@@ -10,9 +10,9 @@ public class ErrorProviderTest {
     @Test
     void testErrorProviderTest() {
         ErrorProvider provider = new ErrorProvider();
-        Error error = new Error("Error");
-        String err = provider.setError(error);
-        assertEquals(err, error.getErrorMessage());
+        NotificationError notificationError = new NotificationError("Error");
+        String err = provider.setError(notificationError);
+        assertEquals(err, notificationError.getMessage());
     }
 
 

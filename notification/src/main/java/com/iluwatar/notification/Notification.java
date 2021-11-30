@@ -1,31 +1,26 @@
 package com.iluwatar.notification;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Notification {
-  private List<Error> errors = new ArrayList();
+
+  @Getter
+  private List<NotificationError> notificationErrors = new ArrayList();
 
   protected Notification() {}
 
-  /**
-  * Get errors of this Notification.
-  *
-  * @return the list of errors in this Notification
-  */
-  public List<Error> getErrors() {
-    List<Error> errorsToReturn = new ArrayList<>(this.errors);
-    return errorsToReturn;
-  }
 
   /**
   * Set errors in this Notification.
   *
-  * @param error the error to be added.
+  * @param notificationError the error to be added.
   */
-  public void setErrors(Error error) {
+  public void setNotificationErrors(NotificationError notificationError) {
 
-    this.errors.add(error);
+    this.notificationErrors.add(notificationError);
   }
 
   /**
@@ -35,7 +30,7 @@ public class Notification {
   */
   public boolean hasErrors() {
 
-    return this.errors.size() != 0;
+    return this.notificationErrors.size() != 0;
   }
 
 }

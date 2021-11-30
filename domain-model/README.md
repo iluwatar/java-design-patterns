@@ -57,7 +57,7 @@ public class Product {
                 productDao.save(this);
             }
         } catch (SQLException ex) {
-            LOGGER.error(ex.getMessage());
+            LOGGER.notificationError(ex.getMessage());
         }
     }
 
@@ -106,7 +106,7 @@ public class Customer {
                 customerDao.save(this);
             }
         } catch (SQLException ex) {
-            LOGGER.error(ex.getMessage());
+            LOGGER.notificationError(ex.getMessage());
         }
     }
 
@@ -123,7 +123,7 @@ public class Customer {
         try {
             withdraw(product.getSalePrice());
         } catch (IllegalArgumentException ex) {
-            LOGGER.error(ex.getMessage());
+            LOGGER.notificationError(ex.getMessage());
             return;
         }
         try {
@@ -132,7 +132,7 @@ public class Customer {
             LOGGER.info(String.format("%s bought %s!", name, product.getName()));
         } catch (SQLException exception) {
             receiveMoney(product.getSalePrice());
-            LOGGER.error(exception.getMessage());
+            LOGGER.notificationError(exception.getMessage());
         }
     }
 
@@ -153,10 +153,10 @@ public class Customer {
                 receiveMoney(product.getSalePrice());
                 LOGGER.info(String.format("%s returned %s!", name, product.getName()));
             } catch (SQLException ex) {
-                LOGGER.error(ex.getMessage());
+                LOGGER.notificationError(ex.getMessage());
             }
         } else {
-            LOGGER.error(String.format("%s didn't buy %s...", name, product.getName()));
+            LOGGER.notificationError(String.format("%s didn't buy %s...", name, product.getName()));
         }
     }
 
