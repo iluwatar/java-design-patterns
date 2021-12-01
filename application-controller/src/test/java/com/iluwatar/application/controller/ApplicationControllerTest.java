@@ -41,7 +41,7 @@ class ApplicationControllerTest {
      * Verify all defined pages can be reached.
      */
     @Test
-    void testExistingPages() {
+    void testExistingPages() throws Exception {
         ApplicationController controller = new ApplicationController();
         controller.handler("H");
         controller.handler("A");
