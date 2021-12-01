@@ -41,22 +41,32 @@ public abstract class Target {
    * Invoke the target and display the page with the appropriate text.
    */
   public void invoke() {
-    
+
+    final String divider = "-------------------------------------------------------------";
+
     clearScreen();
     //Print Title
-    System.out.println("-------------------------------------------------------------");
-    System.out.println(title + " Page");
-    System.out.println("-------------------------------------------------------------");
+    print(divider);
+    print(title + " Page");
+    print(divider);
      
     //Print Body
-    System.out.println("");
-    System.out.println(body);
-    System.out.println("");
+    print("");
+    print(body);
+    print("");
 
     //Print Navigation
-    System.out.println("-------------------------------------------------------------");
-    System.out.println("Enter one of the following letters to navigate the site:");
-    System.out.println("H (Home Page)  |  A (About Us)  |  C (Contact Us)  |  X (Exit)\n");
+    print(divider);
+    print("Enter one of the following letters to navigate the site:");
+    print("H (Home Page)  |  A (About Us)  |  C (Contact Us)  |  X (Exit)\n");
+  }
+
+  /**
+   * Display the input text in the console.
+   * @param text the text to be displayed
+   */
+  public static void print(String text) {
+    System.out.println(text);
   }
 
   /**

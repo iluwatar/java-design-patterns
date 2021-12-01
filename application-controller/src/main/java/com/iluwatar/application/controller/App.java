@@ -34,6 +34,8 @@ package com.iluwatar.application.controller;
  * target objects from the map and invokes the targets' "invoke" methods.
  */
 
+import static java.lang.Thread.sleep;
+
 /**
  * The sample application.
  */
@@ -42,7 +44,7 @@ public class App {
   /**
    * Program entry point.
    *
-   * @param args command line args
+   * @param args command line arguments
    */
   public static void main(String[] args) {
 
@@ -52,22 +54,64 @@ public class App {
     char escape = 'x';
 
     try {
-      // Navigate to Home page
-      controller.handler(Character.toString(Character.toUpperCase(page)));
 
-      //Navigate to About Us page
+      // Navigate to the Home page
+      controller.handler(sanitizeInput(page));
+
+      // Navigate to the About Us Page
+      pause();
+      print("(User presses the {A} key)");
+      pause();
       page = 'a';
-      controller.handler(Character.toString(Character.toUpperCase(page)));
+      controller.handler(sanitizeInput(page));
 
-      //Navigate to Contact Us page
+      // Navigate to the Contact Us Page
+      pause();
+      print("(User presses the {C} key)");
+      pause();
       page = 'c';
-      controller.handler(Character.toString(Character.toUpperCase(page)));
+      controller.handler(sanitizeInput(page));
 
       //Exit the application
+      pause();
+      print("(User presses the {X} key)");
+      pause();
       page = 'x';
-      controller.handler(Character.toString(Character.toUpperCase(page)));
+      controller.handler(sanitizeInput(page));
     } catch (NullPointerException e) {
       Target.clearScreen();
+    }
+  }
+
+  /**
+   * Function for sanitizing keyboard input to ensure all characters are uppercase.
+   *
+   * @param input keyboard key that was pressed
+   * @return lowercase version of input character
+   */
+  public static String sanitizeInput(char input) {
+    return Character.toString(Character.toUpperCase(input));
+  }
+
+  /**
+   * Display the input text in the console.
+   * @param text the text to be displayed
+   */
+  public static void print(String text) {
+    System.out.println(text);
+  }
+
+  /**
+   * Delay execution of the current thread.
+   *
+   */
+  public static void pause() {
+    final long duration = 3000;
+
+    try {
+      sleep(duration);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
     }
   }
 }
