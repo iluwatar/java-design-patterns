@@ -27,7 +27,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
-public class ApplicationControllerTest {
+class ApplicationControllerTest {
 
     /**
      * Verify Application controller can be instantiated.
@@ -46,12 +46,13 @@ public class ApplicationControllerTest {
         controller.handler("H");
         controller.handler("A");
         controller.handler("C");
+        
         try {
           controller.handler("X");
+          throw new Exception("Did not throw NullPointerException");
         } catch (NullPointerException e) {
-          Target.clearScreen();
-        }
-        
+          assertDoesNotThrow(() -> Target.clearScreen());
+        } 
     }
 
   /**
