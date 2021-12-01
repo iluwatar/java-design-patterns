@@ -50,34 +50,22 @@ public class App {
 
     ApplicationController controller = new ApplicationController();
 
-    char page = 'h';
-    char escape = 'x';
-
     try {
 
       // Navigate to the Home page
-      controller.handler(sanitizeInput(page));
+      controller.handler(sanitizeInput('h'));
 
       // Navigate to the About Us Page
-      pause();
       print("(User presses the {A} key)");
-      pause();
-      page = 'a';
-      controller.handler(sanitizeInput(page));
+      controller.handler(sanitizeInput('a'));
 
       // Navigate to the Contact Us Page
-      pause();
       print("(User presses the {C} key)");
-      pause();
-      page = 'c';
-      controller.handler(sanitizeInput(page));
+      controller.handler(sanitizeInput('c'));
 
       //Exit the application
-      pause();
       print("(User presses the {X} key)");
-      pause();
-      page = 'x';
-      controller.handler(sanitizeInput(page));
+      controller.handler(sanitizeInput('x'));
     } catch (NullPointerException e) {
       Target.clearScreen();
     }
@@ -98,7 +86,9 @@ public class App {
    * @param text the text to be displayed
    */
   public static void print(String text) {
+    pause();
     System.out.println(text);
+    pause();
   }
 
   /**
