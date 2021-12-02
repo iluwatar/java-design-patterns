@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 
 public class JavaBeansTest {
     @Test
-    public void testConstructor() {
+    public void testDefaultConstructor() {
         ClientPropertiesBean newBean = new ClientPropertiesBean();
         assertEquals("DEFAULT_NAME", newBean.getName());
         assertTrue(newBean.isBusinessInterest());
