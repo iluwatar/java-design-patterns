@@ -30,7 +30,7 @@ package com.iluwatar.application.controller;
  * <p>In this example we have an application controller ({@link ApplicationController}) that
  * coordinates user input and the display of different pages. {@link SiteMapper} maintains a map 
  * that links characters to the {@link Target} objects: {@link Home}, {@link About} and 
- * {@link Contact}. The ApplicationController's method, "handler", retrives references to the 
+ * {@link Contact}. The ApplicationController's method, "handler", retrieves references to the 
  * target objects from the map and invokes the targets' "invoke" methods.
  */
 

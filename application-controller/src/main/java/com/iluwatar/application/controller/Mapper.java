@@ -39,7 +39,7 @@ public abstract class Mapper {
    * Instantiates a new Mapper.
    */
   protected Mapper() {
-    map = new HashMap<String, Target>();
+    map = new HashMap<>();
     build();
   }
 
