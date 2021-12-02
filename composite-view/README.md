@@ -3,15 +3,14 @@ layout: pattern
 title: Composite View 
 folder: composite-view
 permalink: /patterns/composite-view/
-categories:
-- creational # usable categories and tags are listed here: https://github.com/iluwatar/java-design-patterns/wiki/07.-Categories-and-Tags
-  language: en # Provide the language in which the pattern is done. Mostly it is in English, so we would put *en* over here.
-  tags:
-- awesome # usable categories and tags are listed here: https://github.com/iluwatar/java-design-patterns/wiki/07.-Categories-and-Tags
+categories: structural
+language: en
+tags:
+- Enterprise Integration Pattern
 ---
 
-## Name / classification
-Composite View Pattern
+## Name
+**Composite View Pattern**
 
 ## Intent
 The purpose of the Composite View Pattern is to increase re-usability and flexibility when creating views for websites/webapps. 
@@ -26,7 +25,7 @@ Real World Example
 > to see a certain type of news.
 
 In Plain Words
-> Composite View Pattern is having a main view being composed of smaller subviews
+> Composite View Pattern is having a main view being composed of smaller subviews.
 > The layout of this composite view is based on a template and which subview components
 > are included is decided by a view manager.
 
@@ -201,7 +200,7 @@ The template for the news page is in `newsDisplay.jsp`
 ```
 This JSP page is the template, declaring a table with three rows, with one component in the first row,
 two components in the second row, and one component in the third row. The scriplets in the file are part of the
-java beans view management, that include different atomic subviews based on the user preferences in the Javabean.
+view management strategy that include different atomic subviews based on the user preferences in the Javabean.
 
 Here are two examples of the mock atomic subviews used in the composite:
 `businessNews.jsp`
@@ -261,9 +260,9 @@ Here are two examples of the mock atomic subviews used in the composite:
 The results are as such:
 
 1) The user has put their name as `Tammy` in the request parameters and no preferences: 
-![alt text](./images/noparam.png)
+![alt text](etc/images/noparam.png)
 2) The user has put their name as `Johnny` in the request parameters and has a preference for world, business, and science news:
-![alt text](./images/threeparams.png)
+![alt text](etc/images/threeparams.png)
 
 As can be seen, the different subviews such as `worldNews.jsp`, `businessNews.jsp`, etc. are included conditionally
 based on the request parameters.
@@ -286,21 +285,37 @@ follow instructions on that page to continue.
 
 ![alt text](./etc/composite_view.png)
 
-The class diagram here displays the Javabean and is the view manager
-the views are JSP's held inside the web directory.
+The class diagram here displays the Javabean and is the view manager.
+The views are JSP's held inside the web directory.
 
 ## Applicability
 
 This pattern is applicable to most websites that require content to be displayed dynamically/conditionally.
-If you have components that need to be re-used for multiple views, or reusing a template, or needing to include content Depending on
-certain conditions then consider using this pattern.
-
-## Tutorials
+If you have components that need to be re-used for multiple views, or reusing a template, or needing to include content depending on
+certain conditions, then consider using this pattern.
 
 ## Known uses
+Most modern websites use composite views in some shape or form, as they have templates for views and small atomic components
+that are included in the page dynamically. Most modern Javascript libraries, like React, support this design pattern 
+with components.
 
 ## Consequences
+**Pros**
+* Easy to re-use components
+* Change layout/content without affecting the other
+* Reduce code duplication
+* Code is more maintainable and modular
+
+**Cons**
+* Overhead cost at runtime
+* Slower response compared to directly embedding elements
+* Increases potential for display errors 
 
 ## Related patterns
+* Composite (GoF)
+* View Helper
 
 ## Credits
+* [Core J2EE Patterns - Composite View](https://www.oracle.com/java/technologies/composite-view.html)
+* [Composite View Design Pattern – Core J2EE Patterns](https://www.dineshonjava.com/composite-view-design-pattern/)
+
