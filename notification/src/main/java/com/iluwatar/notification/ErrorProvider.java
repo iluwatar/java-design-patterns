@@ -20,7 +20,7 @@ public class ErrorProvider {
   * @param notificationError the error to display.
   *
   */
-  public String setError(final NotificationError notificationError) {
+  public String displayErrorMessage(final NotificationError notificationError) {
     LOGGER.error(notificationError.getMessage());
     return notificationError.getMessage();
   }

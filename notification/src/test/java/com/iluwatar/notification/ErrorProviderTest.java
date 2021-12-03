@@ -11,7 +11,7 @@ public class ErrorProviderTest {
     void testErrorProviderTest() {
         ErrorProvider provider = new ErrorProvider();
         NotificationError notificationError = new NotificationError("Error");
-        String err = provider.setError(notificationError);
+        String err = provider.displayErrorMessage(notificationError);
         assertEquals(err, notificationError.getMessage());
     }
 

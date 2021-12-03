@@ -1,8 +1,12 @@
 package com.iluwatar.notification;
 
+import lombok.extern.slf4j.Slf4j;
+
+
 /**
  * Registers a course and validate the registration forms.
  */
+@Slf4j
 public class RegisterCourse extends ServerCommand {
 
   /**
@@ -21,10 +25,10 @@ public class RegisterCourse extends ServerCommand {
   public Boolean run() {
     Boolean containsErrors = false;
     validate();
-    if (!super.getNotification().hasErrors()) {
-    //       RegisterCourseInBackendSystems();
-    } else {
+    if (super.getNotification().hasErrors()) {
       containsErrors = true;
+    } else {
+      LOGGER.info("Register course in backend systems.");
     }
     return containsErrors;
   }

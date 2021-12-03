@@ -19,7 +19,7 @@ public class CourseService {
   */
   public Boolean registerCourse(final RegisterCourseDto course) {
     Boolean isRegistered = false;
-    RegisterCourse cmd = new RegisterCourse(course);
+    final RegisterCourse cmd = new RegisterCourse(course);
     if (!cmd.run()) {
       isRegistered = true;
     }

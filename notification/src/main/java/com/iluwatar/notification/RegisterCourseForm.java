@@ -16,27 +16,27 @@ public class RegisterCourseForm {
   /**
    * service for RegisterCourseForm
    */
-  private CourseService service;
+  private final CourseService service;
 
   /**
    * errorProvider for RegisterCourseForm
    */
-  private ErrorProvider errorProvider;
+  private final ErrorProvider errorProvider;
 
   /**
    * courseId for RegisterCourseForm
    */
-  private String courseId;
+  private final String courseId;
 
   /**
    * semester for RegisterCourseForm
    */
-  private String semester;
+  private final String semester;
 
   /**
    * department for RegisterCourseForm
    */
-  private String department;
+  private final String department;
 
   /**
   * Creates a form for registering a course.
@@ -95,8 +95,8 @@ public class RegisterCourseForm {
   }
 
   private void showError(final String courseId, final String message) {
-    NotificationError notificationError = new NotificationError(message + " " + courseId);
-    this.errorProvider.setError(notificationError);
+    final NotificationError notificationError = new NotificationError(message + " " + courseId);
+    this.errorProvider.displayErrorMessage(notificationError);
   }
 
 }

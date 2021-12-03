@@ -44,7 +44,7 @@ public class RegisterCourseDto extends DataTransferObject {
    * Instantiates a RegisterCourseDto
    */
   protected RegisterCourseDto() {
-    // This constructor is intentionally empty. Nothing special is needed here.
+    super();
   }
 
 
