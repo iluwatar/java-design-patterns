@@ -5,18 +5,18 @@ import java.util.List;
 import lombok.Getter;
 
 /**
- * A notification contains a list of NotificationError
+ * A notification contains a list of NotificationError.
  */
 public class Notification {
 
   /**
-   * notificationErrors is a list of NotificationError
+   * notificationErrors is a list of NotificationError.
    */
   @Getter
   private List<NotificationError> errors = new ArrayList();
 
   /**
-   * Instantiates a Notification
+   * Instantiates a Notification.
    */
   protected Notification() {
     // This constructor is intentionally empty. Nothing special is needed here.

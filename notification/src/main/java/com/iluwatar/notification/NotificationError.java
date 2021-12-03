@@ -3,12 +3,12 @@ package com.iluwatar.notification;
 import lombok.Getter;
 
 /**
- * A NotificationError with a error message
+ * A NotificationError with a error message.
  */
 public class NotificationError {
 
   /**
-   * Error message of a NotificationError
+   * Error message of a NotificationError.
    */
   @Getter
   private String message;

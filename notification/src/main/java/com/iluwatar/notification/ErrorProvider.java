@@ -3,12 +3,12 @@ package com.iluwatar.notification;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Error Provider displays the errors
+ * Error Provider displays the errors.
  */
 @Slf4j
 public class ErrorProvider {
   /**
-   * Instantiates a ErrorProvider
+   * Instantiates a ErrorProvider.
    */
   public ErrorProvider() {
     // This constructor is intentionally empty. Nothing special is needed here.

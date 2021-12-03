@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RegisterCourse extends ServerCommand {
 
   /**
-   * Instantiates a RegisterCourse
+   * Instantiates a RegisterCourse.
    */
   protected RegisterCourse(final RegisterCourseDto course) {
     super(course);
@@ -42,28 +42,30 @@ public class RegisterCourse extends ServerCommand {
   }
 
   /**
-   * Checks is the input is null or blank
+   * Checks is the input is null or blank.
    *
    * @param inputString
-   * @return true if the inputString is null or blank, else false
+   * @return true if the inputString is null or blank, else false.
    */
   protected Boolean isNullOrBlank(final String inputString) {
     return inputString == null || inputString.equals("");
   }
 
   /**
-   * Fails if the inputString is null or blank
+   * Fails if the inputString is null or blank.
    *
-   * @param inputString, notificationError
+   * @param inputString
+   * @param notificationError
    */
   protected void failIfNullOrBlank(final String inputString, final NotificationError notificationError) {
     fail(isNullOrBlank(inputString), notificationError);
   }
 
   /**
-   * Sets NotificationError to the Notification
+   * Sets NotificationError to the Notification.
    *
-   * @param condition, notificationError
+   * @param condition
+   * @param notificationError
    */
   protected void fail(final Boolean condition, final NotificationError notificationError) {
     if (condition) {

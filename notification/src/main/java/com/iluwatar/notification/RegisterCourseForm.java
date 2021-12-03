@@ -9,32 +9,32 @@ import lombok.extern.slf4j.Slf4j;
 public class RegisterCourseForm {
 
   /**
-   * course for RegisterCourseForm
+   * course for RegisterCourseForm.
    */
   private transient RegisterCourseDto course;
 
   /**
-   * service for RegisterCourseForm
+   * service for RegisterCourseForm.
    */
   private transient final CourseService service;
 
   /**
-   * errorProvider for RegisterCourseForm
+   * errorProvider for RegisterCourseForm.
    */
   private transient final ErrorProvider errorProvider;
 
   /**
-   * courseId for RegisterCourseForm
+   * courseId for RegisterCourseForm.
    */
   private transient final String courseId;
 
   /**
-   * semester for RegisterCourseForm
+   * semester for RegisterCourseForm.
    */
   private transient final String semester;
 
   /**
-   * department for RegisterCourseForm
+   * department for RegisterCourseForm.
    */
   private transient final String department;
 
@@ -42,8 +42,8 @@ public class RegisterCourseForm {
   * Creates a form for registering a course.
   *
   * @param courseId the course to be added.
-  * @param semester  semester of this course
-  * @param department department of this course
+  * @param semester  semester of this course.
+  * @param department department of this course.
   */
   public RegisterCourseForm(final String courseId, final String semester, final String department) {
 

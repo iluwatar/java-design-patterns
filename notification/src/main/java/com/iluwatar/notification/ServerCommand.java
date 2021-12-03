@@ -1,12 +1,12 @@
 package com.iluwatar.notification;
 
 /**
- * ServerCommand contains DTO
+ * ServerCommand contains DTO.
  */
 public class ServerCommand {
 
   /**
-   * data for this ServerCommand
+   * data for this ServerCommand.
    */
   protected transient DataTransferObject data;
 
@@ -20,7 +20,7 @@ public class ServerCommand {
   }
 
   /**
-   * Get Notification for this ServerCommand
+   * Get Notification for this ServerCommand.
    *
    * @return Notification
    */

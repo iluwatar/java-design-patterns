@@ -14,7 +14,7 @@ public final class App {
   /**
    * Program entry point. Example of creating a form and registering a course.
    *
-   * @param args command line args
+   * @param args command line args.
    */
   public static void main(final String[] args) {
     final var courseId = "CSE427";
