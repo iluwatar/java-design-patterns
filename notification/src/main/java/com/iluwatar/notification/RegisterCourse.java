@@ -44,7 +44,7 @@ public class RegisterCourse extends ServerCommand {
   /**
    * Checks is the input is null or blank.
    *
-   * @param inputString
+   * @param inputString represents inputString
    * @return true if the inputString is null or blank, else false.
    */
   protected Boolean isNullOrBlank(final String inputString) {
@@ -54,18 +54,19 @@ public class RegisterCourse extends ServerCommand {
   /**
    * Fails if the inputString is null or blank.
    *
-   * @param inputString
-   * @param notificationError
+   * @param inputString represents inputString
+   * @param notificationError represents notificationError
    */
-  protected void failIfNullOrBlank(final String inputString, final NotificationError notificationError) {
+  protected void failIfNullOrBlank(final String inputString,
+                                   final NotificationError notificationError) {
     fail(isNullOrBlank(inputString), notificationError);
   }
 
   /**
    * Sets NotificationError to the Notification.
    *
-   * @param condition
-   * @param notificationError
+   * @param condition  represents condition
+   * @param notificationError represents notificationError
    */
   protected void fail(final Boolean condition, final NotificationError notificationError) {
     if (condition) {

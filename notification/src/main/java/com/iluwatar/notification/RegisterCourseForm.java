@@ -16,27 +16,27 @@ public class RegisterCourseForm {
   /**
    * service for RegisterCourseForm.
    */
-  private transient final CourseService service;
+  private final transient CourseService service;
 
   /**
    * errorProvider for RegisterCourseForm.
    */
-  private transient final ErrorProvider errorProvider;
+  private final transient ErrorProvider errorProvider;
 
   /**
    * courseId for RegisterCourseForm.
    */
-  private transient final String courseId;
+  private final transient String courseId;
 
   /**
    * semester for RegisterCourseForm.
    */
-  private transient final String semester;
+  private final transient String semester;
 
   /**
    * department for RegisterCourseForm.
    */
-  private transient final String department;
+  private final transient String department;
 
   /**
   * Creates a form for registering a course.
