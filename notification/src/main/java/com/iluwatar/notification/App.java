@@ -1,12 +1,12 @@
 package com.iluwatar.notification;
 
+/**
+ * A Notification is an object that collects information about notificationErrors
+ * during validation of data. When an notificationError appears the Notification
+ * is sent back to the view to display further information about the notificationErrors.
+ */
 public final class App {
 
-  /**
-   * A Notification is an object that collects information about errors during
-   * validation of data.When an error appears the Notification is sent back to
-   * the view to display further information about the errors.
-   */
   private App() {
   }
 

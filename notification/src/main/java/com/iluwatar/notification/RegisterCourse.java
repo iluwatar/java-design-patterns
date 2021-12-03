@@ -1,13 +1,20 @@
 package com.iluwatar.notification;
 
+/**
+ * Registers a course and validate the registration forms.
+ */
 public class RegisterCourse extends ServerCommand {
 
-  protected RegisterCourse(RegisterCourseDto course) {
+  /**
+   * Instantiates a RegisterCourse
+   */
+  protected RegisterCourse(final RegisterCourseDto course) {
     super(course);
   }
 
   /**
-  * Runs this service to validate registration forms, if no errors reported, save to backend.
+  * Runs this service to validate registration forms,
+   * if no errors reported, save to backend.
   *
   * @return true if Notification contains errors, else false
   */
@@ -31,15 +38,31 @@ public class RegisterCourse extends ServerCommand {
         RegisterCourseDto.MISSING_SEMESTER);
   }
 
-  protected Boolean isNullOrBlank(String inputString) {
+  /**
+   * Checks is the input is null or blank
+   *
+   * @param inputString
+   * @return true if the inputString is null or blank, else false
+   */
+  protected Boolean isNullOrBlank(final String inputString) {
     return inputString == null || inputString.equals("");
   }
 
-  protected void failIfNullOrBlank(String inputString, NotificationError notificationError) {
+  /**
+   * Fails if the inputString is null or blank
+   *
+   * @param inputString, notificationError
+   */
+  protected void failIfNullOrBlank(final String inputString, final NotificationError notificationError) {
     fail(isNullOrBlank(inputString), notificationError);
   }
 
-  protected void fail(Boolean condition, NotificationError notificationError) {
+  /**
+   * Sets NotificationError to the Notification
+   *
+   * @param condition, notificationError
+   */
+  protected void fail(final Boolean condition, final NotificationError notificationError) {
     if (condition) {
       this.getNotification().setNotificationErrors(notificationError);
     }

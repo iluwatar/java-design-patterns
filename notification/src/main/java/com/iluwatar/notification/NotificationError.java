@@ -2,8 +2,14 @@ package com.iluwatar.notification;
 
 import lombok.Getter;
 
+/**
+ * A NotificationError with a error message
+ */
 public class NotificationError {
 
+  /**
+   * Error message of a NotificationError
+   */
   @Getter
   private String message;
 
@@ -12,7 +18,7 @@ public class NotificationError {
   *
   * @param message the message of this NotificationError.
   */
-  public NotificationError(String message) {
+  public NotificationError(final String message) {
     this.message = message;
   }
 

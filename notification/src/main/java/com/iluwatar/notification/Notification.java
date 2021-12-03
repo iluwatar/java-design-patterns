@@ -4,12 +4,23 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 
+/**
+ * A notification contains a list of NotificationError
+ */
 public class Notification {
 
+  /**
+   * notificationErrors is a list of NotificationError
+   */
   @Getter
   private List<NotificationError> notificationErrors = new ArrayList();
 
-  protected Notification() {}
+  /**
+   * Instantiates a Notification
+   */
+  protected Notification() {
+    // This constructor is intentionally empty. Nothing special is needed here.
+  }
 
 
   /**
@@ -17,7 +28,7 @@ public class Notification {
   *
   * @param notificationError the error to be added.
   */
-  public void setNotificationErrors(NotificationError notificationError) {
+  public void setNotificationErrors(final NotificationError notificationError) {
 
     this.notificationErrors.add(notificationError);
   }

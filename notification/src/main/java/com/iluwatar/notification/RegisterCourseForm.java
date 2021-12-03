@@ -2,14 +2,40 @@ package com.iluwatar.notification;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * A form that users fill in to register a course.
+ */
 @Slf4j
 public class RegisterCourseForm {
+
+  /**
+   * course for RegisterCourseForm
+   */
   private RegisterCourseDto course;
+
+  /**
+   * service for RegisterCourseForm
+   */
   private CourseService service;
 
+  /**
+   * errorProvider for RegisterCourseForm
+   */
   private ErrorProvider errorProvider;
+
+  /**
+   * courseId for RegisterCourseForm
+   */
   private String courseId;
+
+  /**
+   * semester for RegisterCourseForm
+   */
   private String semester;
+
+  /**
+   * department for RegisterCourseForm
+   */
   private String department;
 
   /**
@@ -19,7 +45,7 @@ public class RegisterCourseForm {
   * @param semester  semester of this course
   * @param department department of this course
   */
-  public RegisterCourseForm(String courseId, String semester, String department) {
+  public RegisterCourseForm(final String courseId, final String semester, final String department) {
 
     this.courseId = courseId;
     this.semester = semester;
@@ -62,13 +88,13 @@ public class RegisterCourseForm {
     checkError(RegisterCourseDto.MISSING_DEPARTMENT, this.department);
   }
 
-  private void checkError(NotificationError notificationError, String courseId) {
+  private void checkError(final NotificationError notificationError, final String courseId) {
     if (this.course.getNotification().getNotificationErrors().contains(notificationError)) {
       showError(courseId, notificationError.getMessage());
     }
   }
 
-  private void showError(String courseId, String message) {
+  private void showError(final String courseId, final String message) {
     NotificationError notificationError = new NotificationError(message + " " + courseId);
     this.errorProvider.setError(notificationError);
   }

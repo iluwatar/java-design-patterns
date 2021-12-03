@@ -1,7 +1,15 @@
 package com.iluwatar.notification;
 
+/**
+ * Service to register a course
+ */
 public class CourseService {
-  protected CourseService() {}
+  /**
+   * Instantiates a CourseService
+   */
+  protected CourseService() {
+    // This constructor is intentionally empty. Nothing special is needed here.
+  }
 
   /**
   * Register a Course.
@@ -9,7 +17,7 @@ public class CourseService {
   * @param course the course to be registered.
   * @return true if course is registered successfully, else false
   */
-  public Boolean registerCourse(RegisterCourseDto course) {
+  public Boolean registerCourse(final RegisterCourseDto course) {
     Boolean isRegistered = false;
     RegisterCourse cmd = new RegisterCourse(course);
     if (!cmd.run()) {
