@@ -23,14 +23,13 @@ public class RegisterCourse extends ServerCommand {
   * @return true if Notification contains errors, else false
   */
   public Boolean run() {
-    Boolean containsErrors = false;
     validate();
     if (super.getNotification().hasErrors()) {
-      containsErrors = true;
-    } else {
-      LOGGER.info("Register course in backend systems.");
+      return true;
     }
-    return containsErrors;
+    LOGGER.info("Register course in backend systems.");
+
+    return false;
   }
 
   private void validate() {
@@ -68,7 +67,7 @@ public class RegisterCourse extends ServerCommand {
    */
   protected void fail(final Boolean condition, final NotificationError notificationError) {
     if (condition) {
-      this.getNotification().setNotificationErrors(notificationError);
+      this.getNotification().setErrors(notificationError);
     }
   }
 }

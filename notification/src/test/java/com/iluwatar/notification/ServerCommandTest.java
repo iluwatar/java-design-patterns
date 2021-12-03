@@ -13,8 +13,8 @@ public class ServerCommandTest {
         ServerCommand server = new ServerCommand(data);
         NotificationError notificationError = new NotificationError("error");
         Notification notification = data.getNotification();
-        notification.setNotificationErrors(notificationError);
-        NotificationError output = server.getNotification().getNotificationErrors().get(0);
+        notification.setErrors(notificationError);
+        NotificationError output = server.getNotification().getErrors().get(0);
         assertEquals(notificationError, output);
     }
 }

@@ -18,15 +18,15 @@ public class NotificationTest {
     @Test
     void setAndGetErrorsTest() {
         NotificationError err = new NotificationError("This is an error");
-        notification.setNotificationErrors(err);
-        List<NotificationError> notificationErrors = notification.getNotificationErrors();
+        notification.setErrors(err);
+        List<NotificationError> notificationErrors = notification.getErrors();
         assertEquals(err, notificationErrors.get(0));
     }
 
     @Test
     void hasErrorTest() {
         NotificationError err = new NotificationError("This is an error");
-        notification.setNotificationErrors(err);
+        notification.setErrors(err);
         Boolean hasErrors = notification.hasErrors();
         assertEquals(hasErrors, true);
     }

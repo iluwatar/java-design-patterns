@@ -18,11 +18,10 @@ public class CourseService {
   * @return true if course is registered successfully, else false
   */
   public Boolean registerCourse(final RegisterCourseDto course) {
-    Boolean isRegistered = false;
     final RegisterCourse cmd = new RegisterCourse(course);
     if (!cmd.run()) {
-      isRegistered = true;
+      return true;
     }
-    return isRegistered;
+    return false;
   }
 }

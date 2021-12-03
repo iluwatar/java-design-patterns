@@ -12,8 +12,8 @@ public class DataTransferObjectTest {
         DataTransferObject data = new DataTransferObject();
         NotificationError notificationError = new NotificationError("error");
         Notification notification = data.getNotification();
-        notification.setNotificationErrors(notificationError);
-        NotificationError output = data.getNotification().getNotificationErrors().get(0);
+        notification.setErrors(notificationError);
+        NotificationError output = data.getNotification().getErrors().get(0);
         assertEquals(notificationError, output);
     }
 }

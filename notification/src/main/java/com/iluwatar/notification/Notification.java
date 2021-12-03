@@ -13,7 +13,7 @@ public class Notification {
    * notificationErrors is a list of NotificationError
    */
   @Getter
-  private List<NotificationError> notificationErrors = new ArrayList();
+  private List<NotificationError> errors = new ArrayList();
 
   /**
    * Instantiates a Notification
@@ -28,9 +28,9 @@ public class Notification {
   *
   * @param notificationError the error to be added.
   */
-  public void setNotificationErrors(final NotificationError notificationError) {
+  public void setErrors(final NotificationError notificationError) {
 
-    this.notificationErrors.add(notificationError);
+    this.errors.add(notificationError);
   }
 
   /**
@@ -40,7 +40,7 @@ public class Notification {
   */
   public boolean hasErrors() {
 
-    return this.notificationErrors.size() != 0;
+    return !this.errors.isEmpty();
   }
 
 }

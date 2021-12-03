@@ -11,32 +11,32 @@ public class RegisterCourseForm {
   /**
    * course for RegisterCourseForm
    */
-  private RegisterCourseDto course;
+  private transient RegisterCourseDto course;
 
   /**
    * service for RegisterCourseForm
    */
-  private final CourseService service;
+  private transient final CourseService service;
 
   /**
    * errorProvider for RegisterCourseForm
    */
-  private final ErrorProvider errorProvider;
+  private transient final ErrorProvider errorProvider;
 
   /**
    * courseId for RegisterCourseForm
    */
-  private final String courseId;
+  private transient final String courseId;
 
   /**
    * semester for RegisterCourseForm
    */
-  private final String semester;
+  private transient final String semester;
 
   /**
    * department for RegisterCourseForm
    */
-  private final String department;
+  private transient final String department;
 
   /**
   * Creates a form for registering a course.
@@ -62,7 +62,7 @@ public class RegisterCourseForm {
   *         "Not registered, see errors" if customer already exists.
   */
   public String submit() {
-    String registrationInfo = null;
+    String registrationInfo;
     saveToCourse();
     this.service.registerCourse(this.course);
     if (this.course.getNotification().hasErrors()) {
@@ -89,7 +89,7 @@ public class RegisterCourseForm {
   }
 
   private void checkError(final NotificationError notificationError, final String courseId) {
-    if (this.course.getNotification().getNotificationErrors().contains(notificationError)) {
+    if (this.course.getNotification().getErrors().contains(notificationError)) {
       showError(courseId, notificationError.getMessage());
     }
   }

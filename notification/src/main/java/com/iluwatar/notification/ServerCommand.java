@@ -8,7 +8,7 @@ public class ServerCommand {
   /**
    * data for this ServerCommand
    */
-  protected DataTransferObject data;
+  protected transient DataTransferObject data;
 
   /**
   * Creates a Server Command with DTO.

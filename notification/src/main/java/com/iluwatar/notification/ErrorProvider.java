@@ -21,7 +21,9 @@ public class ErrorProvider {
   *
   */
   public String displayErrorMessage(final NotificationError notificationError) {
-    LOGGER.error(notificationError.getMessage());
+    if (LOGGER.isErrorEnabled()) {
+      LOGGER.error(notificationError.getMessage());
+    }
     return notificationError.getMessage();
   }
 }
