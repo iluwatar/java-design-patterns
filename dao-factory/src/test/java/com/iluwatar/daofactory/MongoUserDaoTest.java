@@ -5,13 +5,13 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
-public class MongoUserDAOTest {
-  MongoUserDAO dao;
+public class MongoUserDaoTest {
+  MongoUserDao dao;
   User u;
   @BeforeEach
   public void init() {
-    AbstractDAOFactory mongoFactory = AbstractDAOFactory.getDAOFactory(AbstractDAOFactory.MONGO);
-    dao = (MongoUserDAO) mongoFactory.getUserDAO();
+    AbstractDaoFactory mongoFactory = AbstractDaoFactory.getDAOFactory(AbstractDaoFactory.MONGO);
+    dao = (MongoUserDao) mongoFactory.getUserDAO();
     u = new User();
     u.setUserId(1);
     u.setName("John Smith");

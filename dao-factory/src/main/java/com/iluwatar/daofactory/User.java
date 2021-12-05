@@ -11,22 +11,22 @@ import lombok.Setter;
 public class User implements java.io.Serializable {
 
   /**
-   * UserId for this User
+   * UserId for this User.
    */
   private int userId;
 
   /**
-   * Name for this User
+   * Name for this User.
    */
   private String name;
 
   /**
-   * Address for this User
+   * Address for this User.
    */
   private String streetAddress;
 
   /**
-   * city for this User
+   * city for this User.
    */
   private String city;
 

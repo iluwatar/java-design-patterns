@@ -7,7 +7,7 @@ package com.iluwatar.daofactory;
 
 import java.util.Collection;
 
-public interface UserDAO {
+public interface UserDao {
   /**
    * Insert user to the database.
    */

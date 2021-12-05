@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DerbyUserDaoTest {
-  private DerbyUserDAO dao;
+  private DerbyUserDao dao;
   private User user = new User();
   private Connection con;
   /**
@@ -29,7 +29,7 @@ public class DerbyUserDaoTest {
    */
   @BeforeEach
   void createSchema() throws SQLException {
-    this.con = DerbyDAOFactory.createConnection();
+    this.con = DerbyDaoFactory.createConnection();
     String SQL_CREATE = "CREATE TABLE DERBYUSER"
       + "("
       + " ID INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY(Start with 1, Increment by 1),"
@@ -66,8 +66,8 @@ public class DerbyUserDaoTest {
      */
     @BeforeEach
     public void setUp() throws Exception {
-      AbstractDAOFactory derbyFactory = AbstractDAOFactory.getDAOFactory(AbstractDAOFactory.DERBY);
-      dao = (DerbyUserDAO) derbyFactory.getUserDAO();
+      AbstractDaoFactory derbyFactory = AbstractDaoFactory.getDAOFactory(AbstractDaoFactory.DERBY);
+      dao = (DerbyUserDao) derbyFactory.getUserDAO();
       user.setName("Sam Doe");
       user.setStreetAddress("333 4th Street");
       user.setCity("Seattle");
@@ -181,7 +181,7 @@ public class DerbyUserDaoTest {
   @AfterEach
   void deleteSchema() throws SQLException {
     final String DELETE_SCHEMA_SQL = "DROP TABLE DERBYUSER";
-    try (Connection con = DerbyDAOFactory.createConnection();
+    try (Connection con = DerbyDaoFactory.createConnection();
          var statement = con.createStatement()) {
       statement.execute(DELETE_SCHEMA_SQL);
     }

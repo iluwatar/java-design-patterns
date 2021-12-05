@@ -1,26 +1,25 @@
 package com.iluwatar.daofactory;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This concrete factory extends DAOFactory.
  */
 @Slf4j
-public class DerbyDAOFactory extends AbstractDAOFactory {
+public class DerbyDaoFactory extends AbstractDaoFactory {
 
   /**
    * Instantiates a DerbyDAOFactory.
    */
-  public DerbyDAOFactory() {
+  public DerbyDaoFactory() {
     super();
   }
 
   /**
-   * method to create Derby connections
+   * method to create Derby connections.
    *
    * @return a Connection
    */
@@ -29,8 +28,8 @@ public class DerbyDAOFactory extends AbstractDAOFactory {
     Connection conn1 = null;
     try {
       Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-      final String dbURL1 = "jdbc:derby:dao-factory/DerbyDB;create=true";
-      conn1 = DriverManager.getConnection(dbURL1);
+      final String dbUrl = "jdbc:derby:dao-factory/DerbyDB;create=true";
+      conn1 = DriverManager.getConnection(dbUrl);
       if (conn1 != null && LOGGER.isInfoEnabled()) {
         LOGGER.info("Connected to database #1");
       }
@@ -44,14 +43,14 @@ public class DerbyDAOFactory extends AbstractDAOFactory {
   }
 
   /**
-   * Override getUserDAO method
+   * Override getUserDAO method.
    *
    * @return DerbyUserDAO
    */
   @Override
-  public UserDAO getUserDAO() {
+  public UserDao getUserDAO() {
     // DerbyUserDAO implements UserDAO
-    return new DerbyUserDAO();
+    return new DerbyUserDao();
   }
 
 }

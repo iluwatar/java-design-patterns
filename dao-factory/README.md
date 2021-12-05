@@ -204,7 +204,7 @@ public static void main(String[] args) {
 ```
 The program output:
 ```java
-    22:43:08.631 [main] INFO com.iluwatar.daofactory.DerbyDAOFactory - Connected to database #1
+    22:43:08.631 [main] INFO com.iluwatar.daofactory.DerbyDaoFactory - Connected to database #1
     22:43:09.132 [main] INFO com.iluwatar.daofactory.App - User Created: 4401
     22:43:09.168 [main] INFO com.iluwatar.daofactory.App - User Updated: 4401
     22:43:09.181 [main] INFO com.iluwatar.daofactory.App - User Deleted: 4401

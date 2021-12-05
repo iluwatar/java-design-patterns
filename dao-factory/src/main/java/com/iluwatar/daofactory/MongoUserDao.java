@@ -1,8 +1,6 @@
 package com.iluwatar.daofactory;
-import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
+
+
 import de.bwaldvogel.mongo.MongoServer;
 import org.bson.Document;
 import org.bson.conversions.Bson;
@@ -14,6 +12,10 @@ import java.util.Collection;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
+import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 
 /**
  * MongoUserDAO implementation of the
@@ -23,7 +25,7 @@ import static com.mongodb.client.model.Updates.set;
  * these implementation details.
  *
  */
-public class MongoUserDAO implements UserDAO {
+public class MongoUserDao implements UserDao {
   /**
    * MongoClient for connecting to the database.
    */
@@ -40,30 +42,30 @@ public class MongoUserDAO implements UserDAO {
   public transient MongoCollection<Document> collection;
 
   /**
-   * Variable for name literal
+   * Variable for name literal.
    */
   private static final String NAME = "name";
 
   /**
-   * Variable for userid literal
+   * Variable for userid literal.
    */
   private static final String USERID = "userid";
 
   /**
-   * Variable for city literal
+   * Variable for city literal.
    */
   private static final String CITY = "city";
 
   /**
-   * Variable for streetaddress literal
+   * Variable for streetaddress literal.
    */
   private static final String STREETADDRES = "streetAddress";
 
   /**
-   * Creates and connect to Mongo
+   * Creates and connect to Mongo.
    */
-  public MongoUserDAO() {
-    final Object[] clientAndServer = com.iluwatar.daofactory.MongoDAOFactory.create();
+  public MongoUserDao() {
+    final Object[] clientAndServer = MongoDaoFactory.create();
     client = (MongoClient) clientAndServer[0];
     server = (MongoServer) clientAndServer[1];
     collection = client.getDatabase("mongo").getCollection("coll");
@@ -72,7 +74,7 @@ public class MongoUserDAO implements UserDAO {
   /**
    * Insert user to mongo.
    *
-   * @param user
+   * @param user user to insert
    * @return newly created user number or -1 on error
    */
   @Override
@@ -89,7 +91,7 @@ public class MongoUserDAO implements UserDAO {
   /**
    * Delete user in mongo.
    *
-   * @param user
+   * @param user user to delete
    * @return true on success, false on failure
    */
   @Override
@@ -102,7 +104,7 @@ public class MongoUserDAO implements UserDAO {
   /**
    * Find a user in mongo using userId.
    *
-   * @param userId
+   * @param userId userId to find
    * @return a User Object if found, return null on error or if not found
    */
   @Override
@@ -117,9 +119,9 @@ public class MongoUserDAO implements UserDAO {
   }
 
   /**
-   * Update record here using data from the User Object
+   * Update record here using data from the User Object.
    *
-   * @param user
+   * @param user user to update
    * @return true on success, false on failure or error
    */
   @Override
@@ -137,7 +139,8 @@ public class MongoUserDAO implements UserDAO {
   /**
    * Search users here using the supplied criteria.
    *
-   * @param criteriaCol, criteria
+   * @param criteriaCol criteria column
+   * @param criteria criteria
    * @return Collection of users found using the criteria
    */
   @Override

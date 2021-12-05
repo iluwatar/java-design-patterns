@@ -1,7 +1,5 @@
 package com.iluwatar.daofactory;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.PreparedStatement;
@@ -10,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -21,28 +21,29 @@ import java.util.Collection;
  *
  */
 @Slf4j
-public class DerbyUserDAO implements UserDAO{
+public class DerbyUserDao implements UserDao {
 
   /**
    * Connection to Derby database.
    */
-  public transient Connection con = DerbyDAOFactory.createConnection();
+  public transient Connection con = DerbyDaoFactory.createConnection();
 
   /**
   * Creates a table DERBYUSER in DerbyDB.
   */
-  public DerbyUserDAO() {
+  public DerbyUserDao() {
     final String sqlCreate = "CREATE TABLE DERBYUSER"
-      + "("
-      + " ID INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY(Start with 1, Increment by 1),"
-      + " NAME VARCHAR(140) NOT NULL,"
-      + " ADDRESS VARCHAR(140) NOT NULL,"
-      + " CITY VARCHAR(140) NOT NULL"
-      + ")";
+        + "("
+        + " ID INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY(Start with 1, Increment by 1),"
+        + " NAME VARCHAR(140) NOT NULL,"
+        + " ADDRESS VARCHAR(140) NOT NULL,"
+        + " CITY VARCHAR(140) NOT NULL"
+        + ")";
 
     try (Statement stmt = con.createStatement();) {
       final DatabaseMetaData dbm = con.getMetaData();
-      final ResultSet res = dbm.getTables(null, "APP", "DERBYUSER", null);
+      final ResultSet res = dbm.getTables(null,
+          "APP", "DERBYUSER", null);
 
       if (res.next()) {
         if (LOGGER.isInfoEnabled()) {
@@ -66,14 +67,15 @@ public class DerbyUserDAO implements UserDAO{
   /**
    * Insert user to DerbyUser.
    *
-   * @param user
+   * @param user user to insert
    * @return newly created user number or -1 on error
    */
   @Override
   public int insertUser(final User user) {
     int lastInsertedId = -1;
-    try (PreparedStatement statement = con.prepareStatement("INSERT INTO DERBYUSER(NAME, ADDRESS, CITY) " +
-      "VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);) {
+    try (PreparedStatement statement = con.prepareStatement(
+        "INSERT INTO DERBYUSER(NAME, ADDRESS, CITY) " +
+        "VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);) {
 
       statement.setString(1, user.getName());
       statement.setString(2, user.getStreetAddress());
@@ -96,7 +98,7 @@ public class DerbyUserDAO implements UserDAO{
   /**
    * Delete user in DerbyUser.
    *
-   * @param user
+   * @param user user to delete
    * @return true on success, false on failure
    */
   @Override
@@ -120,7 +122,7 @@ public class DerbyUserDAO implements UserDAO{
   /**
    * Find a user in DerbyUser using userId.
    *
-   * @param userId
+   * @param userId userId to find
    * @return a User Object if found, return null on error or if not found
    */
   @Override
@@ -157,14 +159,15 @@ public class DerbyUserDAO implements UserDAO{
   /**
    * Update record here using data from the User Object
    *
-   * @param user
+   * @param user user to update
    * @return true on success, false on failure or error
    */
   @Override
   public boolean updateUser(final User user) {
     try (Statement stmt = con.createStatement();
-      PreparedStatement preparedStatement = con.prepareStatement("UPDATE DERBYUSER SET NAME = ? , " +
-          "ADDRESS = ?, CITY = ? WHERE ID = ?");) {
+      PreparedStatement preparedStatement = con.prepareStatement(
+            "UPDATE DERBYUSER SET NAME = ? , " +
+            "ADDRESS = ?, CITY = ? WHERE ID = ?");) {
       final int userId = user.getUserId();
       final String newName = user.getName();
       final String newAddress = user.getStreetAddress();
@@ -176,7 +179,7 @@ public class DerbyUserDAO implements UserDAO{
       preparedStatement.setInt(4, userId);
       return preparedStatement.executeUpdate() > 0;
 
-    }catch (SQLException throwables) {
+    } catch (SQLException throwables) {
       if (LOGGER.isErrorEnabled()) {
         LOGGER.error(throwables.getMessage());
       }
@@ -188,7 +191,8 @@ public class DerbyUserDAO implements UserDAO{
   /**
    * Search users here using the supplied criteria.
    *
-   * @param criteriaCol, criteria
+   * @param criteriaCol criteria column
+   * @param criteria criteria
    * @return Collection of users found using the criteria
    */
   @Override
@@ -197,7 +201,7 @@ public class DerbyUserDAO implements UserDAO{
 
     try (Statement sta = con.createStatement();
          ResultSet res = sta.executeQuery("SELECT ID, Address, Name, City " +
-         "FROM DERBYUSER WHERE "+criteriaCol+" = '" + criteria + "'");) {
+         "FROM DERBYUSER WHERE " + criteriaCol + " = '" + criteria + "'");) {
 
       while (res.next()) {
         final User user = new User();

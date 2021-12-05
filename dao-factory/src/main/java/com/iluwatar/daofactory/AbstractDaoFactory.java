@@ -5,7 +5,7 @@ package com.iluwatar.daofactory;
  * This strategy uses the Factory Method implementation
  * in the factories produced by the Abstract Factory.
  */
-public abstract class AbstractDAOFactory {
+public abstract class AbstractDaoFactory {
 
   /**
    * Integer switcher for Derby
@@ -20,14 +20,14 @@ public abstract class AbstractDAOFactory {
   /**
    * Instantiates a DAOFactory.
    */
-  public AbstractDAOFactory() {
+  public AbstractDaoFactory() {
     // This constructor is intentionally empty. Nothing special is needed here.
   }
 
   /**
    * Concrete classes need to implement this method
    */
-  public abstract UserDAO getUserDAO();
+  public abstract UserDao getUserDAO();
 
   /**
    * There will be a method for each DAO that can be
@@ -36,14 +36,14 @@ public abstract class AbstractDAOFactory {
    *
    * @return a DAOFactory
    */
-  public static AbstractDAOFactory getDAOFactory(final int whichFactory) {
-      switch (whichFactory) {
-        case DERBY    :
-          return new DerbyDAOFactory();
-        case MONGO    :
-          return new MongoDAOFactory();
-        default        :
-          return null;
+  public static AbstractDaoFactory getDAOFactory(final int whichFactory) {
+    switch (whichFactory) {
+      case DERBY    :
+        return new DerbyDaoFactory();
+      case MONGO    :
+        return new MongoDaoFactory();
+      default        :
+        return null;
     }
   }
 }

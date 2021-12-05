@@ -10,17 +10,17 @@ import java.net.InetSocketAddress;
 /**
  * This concrete factory extends DAOFactory.
  */
-public class MongoDAOFactory extends AbstractDAOFactory {
+public class MongoDaoFactory extends AbstractDaoFactory {
 
   /**
    * Instantiates a MongoDAOFactory.
    */
-  public MongoDAOFactory() {
+  public MongoDaoFactory() {
     super();
   }
 
   /**
-   * method to create Mongo connections
+   * method to create Mongo connections.
    *
    * @return a Connection
    */
@@ -32,12 +32,12 @@ public class MongoDAOFactory extends AbstractDAOFactory {
   }
 
   /**
-   * Override getUserDAO method
+   * Override getUserDAO method.
    *
    * @return MongoUserDAO
    */
   @Override
-  public UserDAO getUserDAO() {
-        return new MongoUserDAO();
-    }
+  public UserDao getUserDAO() {
+    return new MongoUserDao();
+  }
 }
