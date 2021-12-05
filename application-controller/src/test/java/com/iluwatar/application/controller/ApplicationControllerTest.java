@@ -42,7 +42,7 @@ class ApplicationControllerTest {
      */
     @Test
     void testExistingPages() {
-      final ApplicationController controller = new ApplicationController();
+      ApplicationController controller = new ApplicationController();
       controller.handler("H");
       controller.handler("A");
       controller.handler("C");
@@ -51,7 +51,7 @@ class ApplicationControllerTest {
         controller.handler("X");
         fail("Did not throw NullPointerException");
       } catch (NullPointerException e) {
-        assertDoesNotThrow(() -> AbstractTarget.clearScreen());
+        assertDoesNotThrow(() -> Target.clearScreen());
       } 
   }
 
