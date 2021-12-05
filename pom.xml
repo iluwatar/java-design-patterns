@@ -227,6 +227,7 @@
     <module>lockable-object</module>
     <module>fanout-fanin</module>
     <module>domain-model</module>
+    <module>dao-factory</module>
   </modules>
   <repositories>
     <repository>

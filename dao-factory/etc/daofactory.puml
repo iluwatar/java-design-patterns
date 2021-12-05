@@ -1,0 +1,64 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+abstract class DAOFactory
+interface UserDAO
+class App
+class User implements java.io.Serializable
+class DerbyDAOFactory
+class DerbyUserDAO
+class MongoDAOFactory
+class MongoUserDAO
+
+abstract class DAOFactory {
+    + getUserDAO()
+    + getDAOFactory(whichFactory : int)
+}
+class DerbyDAOFactory extends DAOFactory{
+    + createConnection()
+    + getUserDAO()
+}
+class MongoDAOFactory extends DAOFactory {
+    + create()
+    + getUserDAO()
+}
+class DerbyUserDAO implements UserDAO{
+    - connection : Connection
+    + insertUser(user : User)
+    + deleteUser(user : User)
+    + findUser(userId : int)
+    + updateUser(user : User)
+    + selectUsersTO(criteriaCol : String, criteria : String)
+}
+
+class MongoUserDAO implements UserDAO{
+    - client : MongoClient
+    - server : MongoServer
+    - collection : MongoCollection<Document>
+    + insertUser(user : User)
+    + deleteUser(user : User)
+    + findUser(userId : int)
+    + updateUser(user : User)
+    + selectUsersTO(criteriaCol : String, criteria : String)
+}
+
+class User{
+    - UserId : int
+    - name : String
+    - streetAddress : String
+    - city : String
+}
+
+interface UserDAO{
+    + insertUser(user : User)
+    + deleteUser(user : User)
+    + findUser(userId : int)
+    + updateUser(user : User)
+    + selectUsersTO(criteriaCol : String, criteria : String)
+}
+
+App"1" -- "many"DAOFactory
+DAOFactory"1" -- "1"UserDAO
+UserDAO -- User
+
+@enduml
