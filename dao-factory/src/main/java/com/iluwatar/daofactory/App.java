@@ -36,9 +36,9 @@ public final class App {
     final User user = findUser(userId, derbyUserDAO);
     updateUser(user, derbyUserDAO);
     deleteUser(user, derbyUserDAO);
-    final String criteriaCol = "City";
-    final String criteria = "Seattle";
-    findUserWithCriteria(derbyUserDAO, criteriaCol, criteria);
+//    final String criteriaCol = "City";
+//    final String criteria = "Seattle";
+    findUserWithCriteria(derbyUserDAO, "City", "Seattle");
 
   }
 

@@ -55,7 +55,6 @@ public class DerbyUserDao implements UserDao {
           LOGGER.info("Table created");
         }
       }
-      res.close();
 
     } catch (SQLException e) {
       if (LOGGER.isErrorEnabled()) {
@@ -75,7 +74,8 @@ public class DerbyUserDao implements UserDao {
     int lastInsertedId = -1;
     try (PreparedStatement statement = con.prepareStatement(
         "INSERT INTO DERBYUSER(NAME, ADDRESS, CITY) " +
-        "VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);) {
+        "VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
+    ) {
 
       statement.setString(1, user.getName());
       statement.setString(2, user.getStreetAddress());

@@ -10,6 +10,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class DerbyDaoFactory extends AbstractDaoFactory {
+  /**
+   * Database Url.
+   */
+  private static final String DBURL = "jdbc:derby:dao-factory/DerbyDB;create=true";
 
   /**
    * Instantiates a DerbyDAOFactory.
@@ -28,8 +32,7 @@ public class DerbyDaoFactory extends AbstractDaoFactory {
     Connection conn1 = null;
     try {
       Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-      final String dbUrl = "jdbc:derby:dao-factory/DerbyDB;create=true";
-      conn1 = DriverManager.getConnection(dbUrl);
+      conn1 = DriverManager.getConnection(DBURL);
       if (conn1 != null && LOGGER.isInfoEnabled()) {
         LOGGER.info("Connected to database #1");
       }
