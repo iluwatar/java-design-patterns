@@ -24,9 +24,20 @@ import static com.mongodb.client.model.Updates.set;
  *
  */
 public class MongoUserDAO implements UserDAO {
-    MongoClient client;
-    MongoServer server;
-    MongoCollection<Document> collection;
+    /**
+     * MongoClient for connecting to the database.
+     */
+    public MongoClient client;
+
+    /**
+     * MongoServer for connecting to the database.
+     */
+    public MongoServer server;
+
+    /**
+     * Collection of documents.
+     */
+    public MongoCollection<Document> collection;
 
     /**
      * Creates and connect to Mongo

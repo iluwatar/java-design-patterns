@@ -22,7 +22,7 @@ import java.util.Collection;
  */
 @Slf4j
 public class DerbyUserDAO implements UserDAO{
-    Connection con = DerbyDAOFactory.createConnection();
+    public Connection con = DerbyDAOFactory.createConnection();
 
     /**
      * Creates a table DERBYUSER in DerbyDB.

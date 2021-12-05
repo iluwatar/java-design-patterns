@@ -6,9 +6,24 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User implements java.io.Serializable {
-    private int UserId;
+    /**
+     * UserId for this User
+     */
+    private int userId;
+
+    /**
+     * Name for this User
+     */
     private String name;
+
+    /**
+     * Address for this User
+     */
     private String streetAddress;
+
+    /**
+     * city for this User
+     */
     private String city;
 
 }

@@ -14,7 +14,7 @@ public class DerbyDAOFactory extends DAOFactory {
      *
      * @return a Connection
      */
-    static Connection createConnection() {
+    public static Connection createConnection() {
 
         Connection conn1 = null;
         try {
