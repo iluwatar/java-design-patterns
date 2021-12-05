@@ -8,12 +8,12 @@ package com.iluwatar.daofactory;
 public abstract class AbstractDaoFactory {
 
   /**
-   * Integer switcher for Derby
+   * Integer switcher for Derby.
    */
   public static final int DERBY = 1;
 
   /**
-   * Integer switcher for Mongo
+   * Integer switcher for Mongo.
    */
   public static final int MONGO = 2;
 
@@ -25,9 +25,9 @@ public abstract class AbstractDaoFactory {
   }
 
   /**
-   * Concrete classes need to implement this method
+   * Concrete classes need to implement this method.
    */
-  public abstract UserDao getUserDAO();
+  public abstract UserDao getUserDao();
 
   /**
    * There will be a method for each DAO that can be
@@ -36,7 +36,7 @@ public abstract class AbstractDaoFactory {
    *
    * @return a DAOFactory
    */
-  public static AbstractDaoFactory getDAOFactory(final int whichFactory) {
+  public static AbstractDaoFactory getDaoFactory(final int whichFactory) {
     switch (whichFactory) {
       case DERBY    :
         return new DerbyDaoFactory();

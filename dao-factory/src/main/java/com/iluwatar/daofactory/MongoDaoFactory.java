@@ -37,7 +37,7 @@ public class MongoDaoFactory extends AbstractDaoFactory {
    * @return MongoUserDAO
    */
   @Override
-  public UserDao getUserDAO() {
+  public UserDao getUserDao() {
     return new MongoUserDao();
   }
 }

@@ -51,7 +51,7 @@ public class DerbyDaoFactory extends AbstractDaoFactory {
    * @return DerbyUserDAO
    */
   @Override
-  public UserDao getUserDAO() {
+  public UserDao getUserDao() {
     // DerbyUserDAO implements UserDAO
     return new DerbyUserDao();
   }

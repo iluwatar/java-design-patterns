@@ -8,7 +8,7 @@ public class AbstractDaoFactoryTest {
 
   @Test
   void getDAOFactoryTest() {
-    var derbyFactory = AbstractDaoFactory.getDAOFactory(AbstractDaoFactory.DERBY);
+    var derbyFactory = AbstractDaoFactory.getDaoFactory(AbstractDaoFactory.DERBY);
     assertTrue(derbyFactory instanceof AbstractDaoFactory);
     assertTrue(derbyFactory instanceof DerbyDaoFactory);
   }

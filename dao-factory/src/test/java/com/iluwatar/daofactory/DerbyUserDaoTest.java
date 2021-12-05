@@ -66,8 +66,8 @@ public class DerbyUserDaoTest {
      */
     @BeforeEach
     public void setUp() throws Exception {
-      AbstractDaoFactory derbyFactory = AbstractDaoFactory.getDAOFactory(AbstractDaoFactory.DERBY);
-      dao = (DerbyUserDao) derbyFactory.getUserDAO();
+      AbstractDaoFactory derbyFactory = AbstractDaoFactory.getDaoFactory(AbstractDaoFactory.DERBY);
+      dao = (DerbyUserDao) derbyFactory.getUserDao();
       user.setName("Sam Doe");
       user.setStreetAddress("333 4th Street");
       user.setCity("Seattle");

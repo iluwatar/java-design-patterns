@@ -25,45 +25,45 @@ public final class App {
   public static void main(final String[] args) {
     // create the required DAO Factory
     final AbstractDaoFactory derbyFactory =
-      AbstractDaoFactory.getDAOFactory(AbstractDaoFactory.DERBY);
+        AbstractDaoFactory.getDaoFactory(AbstractDaoFactory.DERBY);
 
     // Create a DAO for Derby
-    final UserDao derbyUserDAO = derbyFactory.getUserDAO();
+    final UserDao derbyUserDao = derbyFactory.getUserDao();
     DerbyDaoFactory.createConnection();
 
     // create, update, find a customer, or search by criteria
-    final int userId = createUser(derbyUserDAO);
-    final User user = findUser(userId, derbyUserDAO);
-    updateUser(user, derbyUserDAO);
-    deleteUser(user, derbyUserDAO);
+    final int userId = createUser(derbyUserDao);
+    final User user = findUser(userId, derbyUserDao);
+    updateUser(user, derbyUserDao);
+    deleteUser(user, derbyUserDao);
 //    final String criteriaCol = "City";
 //    final String criteria = "Seattle";
-    findUserWithCriteria(derbyUserDAO, "City", "Seattle");
+    findUserWithCriteria(derbyUserDao, "City", "Seattle");
 
   }
 
-  private static int createUser(final UserDao userDAO) {
+  private static int createUser(final UserDao userDao) {
     final User user = new User();
     user.setName("Sam Doe");
     user.setStreetAddress("333 4th Street");
     user.setCity("Seattle");
 
-    return userDAO.insertUser(user);
+    return userDao.insertUser(user);
   }
 
-  private static User findUser(final int userId, final UserDao userDAO) {
-    final User user = userDAO.findUser(userId);
+  private static User findUser(final int userId, final UserDao userDao) {
+    final User user = userDao.findUser(userId);
     if (LOGGER.isInfoEnabled()) {
       LOGGER.info("User Created: " + user.getUserId());
     }
     return user;
   }
 
-  private static User updateUser(final User user, final UserDao userDAO) {
+  private static User updateUser(final User user, final UserDao userDao) {
     user.setStreetAddress("12345 8th Street");
     user.setName("Sam Smith");
     user.setCity("York");
-    userDAO.updateUser(user);
+    userDao.updateUser(user);
     if (LOGGER.isInfoEnabled()) {
       LOGGER.info("User Updated: " + user.getUserId());
     }
@@ -71,19 +71,20 @@ public final class App {
     return user;
   }
 
-  private static void deleteUser(final User user, final UserDao userDAO) {
-    userDAO.deleteUser(user);
+  private static void deleteUser(final User user, final UserDao userDao) {
+    userDao.deleteUser(user);
     if (LOGGER.isInfoEnabled()) {
       LOGGER.info("User Deleted: " + user.getUserId());
     }
   }
 
-  private static void findUserWithCriteria(final UserDao userDAO,
+  private static void findUserWithCriteria(final UserDao userDao,
                                            final String criteriaCol,
                                            final String criteria) {
-    final Collection<User> userList = userDAO.selectUsersTO(criteriaCol, criteria);
+    final Collection<User> userList = userDao.selectUsersTO(criteriaCol, criteria);
     if (LOGGER.isInfoEnabled()) {
-      LOGGER.info("Found " + userList.size() + " Users With " + criteriaCol + " = " + criteria + ":");
+      LOGGER.info("Found " + userList.size() +
+          " Users With " + criteriaCol + " = " + criteria + ":");
     }
     for (final User i: userList) {
       if (LOGGER.isInfoEnabled()) {

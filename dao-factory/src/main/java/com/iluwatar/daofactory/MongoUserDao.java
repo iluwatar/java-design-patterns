@@ -2,20 +2,23 @@ package com.iluwatar.daofactory;
 
 
 import de.bwaldvogel.mongo.MongoServer;
-import org.bson.Document;
-import org.bson.conversions.Bson;
-import org.bson.types.ObjectId;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static com.mongodb.client.model.Filters.eq;
-import static com.mongodb.client.model.Updates.combine;
-import static com.mongodb.client.model.Updates.set;
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
+
+import static com.mongodb.client.model.Filters.eq;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
+
+import org.bson.Document;
+import org.bson.conversions.Bson;
+import org.bson.types.ObjectId;
+
 
 /**
  * MongoUserDAO implementation of the
@@ -148,7 +151,7 @@ public class MongoUserDao implements UserDao {
     final FindIterable<Document> iterable = collection.find(eq(criteriaCol, criteria));
     final MongoCursor<Document> cursor = iterable.iterator();
     final ArrayList<User> selectedUsers = new ArrayList<>();
-    while(cursor.hasNext()) {
+    while (cursor.hasNext()) {
       final User user = new User();
       final Document document = cursor.next();
       user.setUserId((Integer) document.get(USERID));

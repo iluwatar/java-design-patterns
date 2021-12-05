@@ -73,8 +73,8 @@ public class DerbyUserDao implements UserDao {
   public int insertUser(final User user) {
     int lastInsertedId = -1;
     try (PreparedStatement statement = con.prepareStatement(
-        "INSERT INTO DERBYUSER(NAME, ADDRESS, CITY) " +
-        "VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        "INSERT INTO DERBYUSER(NAME, ADDRESS, CITY) "
+            + "VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);
     ) {
 
       statement.setString(1, user.getName());
@@ -105,7 +105,7 @@ public class DerbyUserDao implements UserDao {
   public boolean deleteUser(final User user) {
 
     final int userId = user.getUserId();
-    try (PreparedStatement stmt =con.prepareStatement("DELETE FROM DERBYUSER WHERE ID = ?");) {
+    try (PreparedStatement stmt = con.prepareStatement("DELETE FROM DERBYUSER WHERE ID = ?");) {
 
       stmt.setInt(1, userId);
       return stmt.executeUpdate() > 0;
@@ -134,7 +134,7 @@ public class DerbyUserDao implements UserDao {
     String name = "";
     String city = "";
     try (Statement sta = con.createStatement();
-      ResultSet res = sta.executeQuery("SELECT * FROM DERBYUSER WHERE ID = " + userId);) {
+        ResultSet res = sta.executeQuery("SELECT * FROM DERBYUSER WHERE ID = " + userId);) {
 
       while (res.next()) {
         foundId = res.getInt("ID");
@@ -165,9 +165,9 @@ public class DerbyUserDao implements UserDao {
   @Override
   public boolean updateUser(final User user) {
     try (Statement stmt = con.createStatement();
-      PreparedStatement preparedStatement = con.prepareStatement(
-            "UPDATE DERBYUSER SET NAME = ? , " +
-            "ADDRESS = ?, CITY = ? WHERE ID = ?");) {
+        PreparedStatement preparedStatement = con.prepareStatement(
+            "UPDATE DERBYUSER SET NAME = ? , "
+                + "ADDRESS = ?, CITY = ? WHERE ID = ?");) {
       final int userId = user.getUserId();
       final String newName = user.getName();
       final String newAddress = user.getStreetAddress();
@@ -200,8 +200,8 @@ public class DerbyUserDao implements UserDao {
     final ArrayList<User> selectedUsers = new ArrayList<>();
 
     try (Statement sta = con.createStatement();
-         ResultSet res = sta.executeQuery("SELECT ID, Address, Name, City " +
-         "FROM DERBYUSER WHERE " + criteriaCol + " = '" + criteria + "'");) {
+         ResultSet res = sta.executeQuery("SELECT ID, Address, Name, City "
+            + "FROM DERBYUSER WHERE " + criteriaCol + " = '" + criteria + "'");) {
 
       while (res.next()) {
         final User user = new User();
