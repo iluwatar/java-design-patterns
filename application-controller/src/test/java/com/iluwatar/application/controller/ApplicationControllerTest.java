@@ -41,19 +41,19 @@ class ApplicationControllerTest {
      * Verify all defined pages can be reached.
      */
     @Test
-    void testExistingPages() throws Exception {
-        ApplicationController controller = new ApplicationController();
-        controller.handler("H");
-        controller.handler("A");
-        controller.handler("C");
-        
-        try {
-          controller.handler("X");
-          throw new Exception("Did not throw NullPointerException");
-        } catch (NullPointerException e) {
-          assertDoesNotThrow(() -> Target.clearScreen());
-        } 
-    }
+    void testExistingPages() {
+      final ApplicationController controller = new ApplicationController();
+      controller.handler("H");
+      controller.handler("A");
+      controller.handler("C");
+      
+      try {
+        controller.handler("X");
+        fail("Did not throw NullPointerException");
+      } catch (NullPointerException e) {
+        assertDoesNotThrow(() -> AbstractTarget.clearScreen());
+      } 
+  }
 
   /**
    * Verify non-existent page throws null pointer exception.
