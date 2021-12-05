@@ -12,32 +12,32 @@ import java.net.InetSocketAddress;
  */
 public class MongoDAOFactory extends AbstractDAOFactory {
 
-    /**
-     * Instantiates a MongoDAOFactory.
-     */
-    public MongoDAOFactory() {
-        super();
-    }
+  /**
+   * Instantiates a MongoDAOFactory.
+   */
+  public MongoDAOFactory() {
+    super();
+  }
 
-    /**
-     * method to create Mongo connections
-     *
-     * @return a Connection
-     */
-    public static Object[] create() {
-        final MongoServer server = new MongoServer(new MemoryBackend());
-        final InetSocketAddress serverAddress = server.bind();
-        final MongoClient client = new MongoClient(new ServerAddress(serverAddress));
-        return new Object[]{client, server};
-    }
+  /**
+   * method to create Mongo connections
+   *
+   * @return a Connection
+   */
+  public static Object[] create() {
+    final MongoServer server = new MongoServer(new MemoryBackend());
+    final InetSocketAddress serverAddress = server.bind();
+    final MongoClient client = new MongoClient(new ServerAddress(serverAddress));
+    return new Object[]{client, server};
+  }
 
-    /**
-     * Override getUserDAO method
-     *
-     * @return MongoUserDAO
-     */
-    @Override
-    public UserDAO getUserDAO() {
+  /**
+   * Override getUserDAO method
+   *
+   * @return MongoUserDAO
+   */
+  @Override
+  public UserDAO getUserDAO() {
         return new MongoUserDAO();
     }
 }

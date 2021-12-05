@@ -10,30 +10,30 @@ import lombok.Setter;
 @Setter
 public class User implements java.io.Serializable {
 
-    /**
-     * UserId for this User
-     */
-    private int userId;
+  /**
+   * UserId for this User
+   */
+  private int userId;
 
-    /**
-     * Name for this User
-     */
-    private String name;
+  /**
+   * Name for this User
+   */
+  private String name;
 
-    /**
-     * Address for this User
-     */
-    private String streetAddress;
+  /**
+   * Address for this User
+   */
+  private String streetAddress;
 
-    /**
-     * city for this User
-     */
-    private String city;
+  /**
+   * city for this User
+   */
+  private String city;
 
-    /**
-     * Instantiates a User.
-     */
-    public User() {
-        // This constructor is intentionally empty. Nothing special is needed here.
-    }
+  /**
+   * Instantiates a User.
+   */
+  public User() {
+    // This constructor is intentionally empty. Nothing special is needed here.
+  }
 }
