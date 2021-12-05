@@ -1,4 +1,4 @@
-package iluwater.com.daofactory;
+package com.iluwatar.daofactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -78,12 +78,6 @@ public class MongoUserDAOTest {
             dao.insertUser(u);
             dao.insertUser(u2);
             dao.insertUser(u3);
-        }
-
-        @Test
-        void selectRSTest() {
-            String jsonOutput = dao.selectUserRS("city", "Somewhere");
-            assertEquals(jsonOutput, "[{ \"userid\" : 1, \"name\" : \"John Smith\", \"city\" : \"Somewhere\", \"streetAddress\" : \"123 Anywhere Street\" },{ \"userid\" : 2, \"name\" : \"Sam Smith\", \"city\" : \"Somewhere\", \"streetAddress\" : \"456 Nowhere Street\" }]");
         }
 
         @Test

@@ -1,4 +1,4 @@
-package iluwater.com.daofactory;
+package com.iluwatar.daofactory;
 
 public abstract class DAOFactory {
     public static final int DERBY = 1;

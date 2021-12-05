@@ -1,4 +1,4 @@
-package iluwater.com.daofactory;
+package com.iluwatar.daofactory;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;

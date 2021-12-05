@@ -1,4 +1,4 @@
-package iluwater.com.daofactory;
+package com.iluwatar.daofactory;
 
 import lombok.extern.slf4j.Slf4j;
 

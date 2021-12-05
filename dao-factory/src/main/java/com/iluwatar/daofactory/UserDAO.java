@@ -1,4 +1,4 @@
-package iluwater.com.daofactory;
+package com.iluwatar.daofactory;
 
 /**
  * Interface that all UserDAOs must support

@@ -1,11 +1,5 @@
-package iluwater.com.daofactory;
-import com.mongodb.MongoClient;
-import com.mongodb.ServerAddress;
-import de.bwaldvogel.mongo.MongoServer;
-import de.bwaldvogel.mongo.backend.memory.MemoryBackend;
+package com.iluwatar.daofactory;
 import org.junit.jupiter.api.Test;
-
-import java.net.InetSocketAddress;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

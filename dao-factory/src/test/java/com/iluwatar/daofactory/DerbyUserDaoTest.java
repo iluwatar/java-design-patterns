@@ -1,6 +1,7 @@
-package iluwater.com.daofactory;
+package com.iluwatar.daofactory;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Collection;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -100,7 +100,7 @@ public class DerbyUserDaoTest {
                 nonExistingUser.setName("Robert True");
                 var result = dao.deleteUser(nonExistingUser);
 
-                assertFalse(result);
+                Assertions.assertFalse(result);
             }
 
             @Test
@@ -110,7 +110,7 @@ public class DerbyUserDaoTest {
                 final var user = new User();
                 user.setName(newName);
                 var result = dao.updateUser(user);
-                assertFalse(result);
+                Assertions.assertFalse(result);
             }
 
             @Test
@@ -129,7 +129,7 @@ public class DerbyUserDaoTest {
             @Test
             void deletionShouldBeSuccessAndUserShouldBeNonAccessible() throws Exception {
                 var result = dao.deleteUser(user);
-                assertTrue(result);
+                Assertions.assertTrue(result);
             }
 
             @Test
@@ -164,7 +164,7 @@ public class DerbyUserDaoTest {
                 newUser.setCity(newCity);
                 var result = dao.updateUser(newUser);
 
-                assertTrue(result);
+                Assertions.assertTrue(result);
 
                 final var u = dao.findUser(user.getUserId());
                 assertEquals(newName, u.getName());

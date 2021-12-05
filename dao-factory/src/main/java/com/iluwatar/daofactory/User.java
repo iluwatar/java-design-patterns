@@ -1,4 +1,4 @@
-package iluwater.com.daofactory;
+package com.iluwatar.daofactory;
 
 import lombok.Getter;
 import lombok.Setter;
