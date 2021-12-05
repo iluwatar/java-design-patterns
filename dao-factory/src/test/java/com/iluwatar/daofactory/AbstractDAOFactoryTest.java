@@ -4,12 +4,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class DAOFactoryTest {
+public class AbstractDAOFactoryTest {
 
     @Test
     void getDAOFactoryTest() {
-        var derbyFactory = DAOFactory.getDAOFactory(DAOFactory.DERBY);
-        assertTrue(derbyFactory instanceof DAOFactory);
+        var derbyFactory = AbstractDAOFactory.getDAOFactory(AbstractDAOFactory.DERBY);
+        assertTrue(derbyFactory instanceof AbstractDAOFactory);
         assertTrue(derbyFactory instanceof DerbyDAOFactory);
     }
 }

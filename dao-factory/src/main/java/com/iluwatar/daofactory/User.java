@@ -9,6 +9,14 @@ import lombok.Setter;
 @Getter
 @Setter
 public class User implements java.io.Serializable {
+
+    /**
+     * Instantiates a User.
+     */
+    public User() {
+        // This constructor is intentionally empty. Nothing special is needed here.
+    }
+
     /**
      * UserId for this User
      */

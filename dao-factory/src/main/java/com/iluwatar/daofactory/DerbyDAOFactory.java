@@ -10,7 +10,14 @@ import java.sql.SQLException;
  * This concrete factory extends DAOFactory.
  */
 @Slf4j
-public class DerbyDAOFactory extends DAOFactory {
+public class DerbyDAOFactory extends AbstractDAOFactory {
+
+    /**
+     * Instantiates a DerbyDAOFactory.
+     */
+    public DerbyDAOFactory() {
+        // This constructor is intentionally empty. Nothing special is needed here.
+    }
 
     /**
      * method to create Derby connections
@@ -22,12 +29,10 @@ public class DerbyDAOFactory extends DAOFactory {
         Connection conn1 = null;
         try {
             Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-            String dbURL1 = "jdbc:derby:dao-factory/DerbyDB;create=true";
+            final String dbURL1 = "jdbc:derby:dao-factory/DerbyDB;create=true";
             conn1 = DriverManager.getConnection(dbURL1);
-            if (conn1 != null) {
-                if (LOGGER.isInfoEnabled()) {
-                    LOGGER.info("Connected to database #1");
-                }
+            if (conn1 != null && LOGGER.isInfoEnabled()) {
+                LOGGER.info("Connected to database #1");
             }
 
         } catch (SQLException | ClassNotFoundException ex) {

@@ -10,7 +10,7 @@ public class MongoUserDAOTest {
     User u;
     @BeforeEach
     public void init() {
-        DAOFactory mongoFactory = DAOFactory.getDAOFactory(DAOFactory.MONGO);
+        AbstractDAOFactory mongoFactory = AbstractDAOFactory.getDAOFactory(AbstractDAOFactory.MONGO);
         dao = (MongoUserDAO) mongoFactory.getUserDAO();
         u = new User();
         u.setUserId(1);

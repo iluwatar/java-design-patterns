@@ -10,7 +10,14 @@ import java.net.InetSocketAddress;
 /**
  * This concrete factory extends DAOFactory.
  */
-public class MongoDAOFactory extends DAOFactory {
+public class MongoDAOFactory extends AbstractDAOFactory {
+
+    /**
+     * Instantiates a MongoDAOFactory.
+     */
+    public MongoDAOFactory() {
+        // This constructor is intentionally empty. Nothing special is needed here.
+    }
 
     /**
      * method to create Mongo connections
@@ -21,8 +28,7 @@ public class MongoDAOFactory extends DAOFactory {
         final MongoServer server = new MongoServer(new MemoryBackend());
         final InetSocketAddress serverAddress = server.bind();
         final MongoClient client = new MongoClient(new ServerAddress(serverAddress));
-        final Object[] clientAndServer = {client, server};
-        return clientAndServer;
+        return new Object[]{client, server};
     }
 
     /**

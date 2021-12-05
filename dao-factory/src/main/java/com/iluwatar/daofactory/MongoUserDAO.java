@@ -108,8 +108,8 @@ public class MongoUserDAO implements UserDAO {
         final Bson updateUserId = set("userid", user.getUserId());
         final Bson updateName = set("name", user.getName());
         final Bson updateCity = set("city", user.getCity());
-        final Bson updateStreetAddress = set("streetAddress", user.getStreetAddress());
-        final Bson updates = combine(updateUserId, updateName, updateCity, updateStreetAddress);
+        final Bson updateStreetAddr = set("streetAddress", user.getStreetAddress());
+        final Bson updates = combine(updateUserId, updateName, updateCity, updateStreetAddr);
         collection.updateOne(filter, updates);
         return true;
     }

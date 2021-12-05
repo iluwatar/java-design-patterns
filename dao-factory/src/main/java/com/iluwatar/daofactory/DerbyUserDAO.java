@@ -32,7 +32,7 @@ public class DerbyUserDAO implements UserDAO{
      * Creates a table DERBYUSER in DerbyDB.
      */
     public DerbyUserDAO() {
-        final String SQL_CREATE = "CREATE TABLE DERBYUSER"
+        final String sqlCreate = "CREATE TABLE DERBYUSER"
                 + "("
                 + " ID INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY(Start with 1, Increment by 1),"
                 + " NAME VARCHAR(140) NOT NULL,"
@@ -43,14 +43,15 @@ public class DerbyUserDAO implements UserDAO{
         try (Statement stmt = con.createStatement();) {
             final DatabaseMetaData dbm = con.getMetaData();
             final ResultSet res = dbm.getTables(null, "APP", "DERBYUSER", null);
-            if (!res.next()) {
-                stmt.execute(SQL_CREATE);
-                if (LOGGER.isInfoEnabled()) {
-                    LOGGER.info("Table created");
-                }
-            }else{
+
+            if (res.next()) {
                 if (LOGGER.isInfoEnabled()) {
                     LOGGER.info("Table already exists");
+                }
+            } else {
+                stmt.execute(sqlCreate);
+                if (LOGGER.isInfoEnabled()) {
+                    LOGGER.info("Table created");
                 }
             }
 
@@ -69,7 +70,7 @@ public class DerbyUserDAO implements UserDAO{
      */
     @Override
     public int insertUser(final User user) {
-        int last_inserted_id = -1;
+        int lastInsertedId = -1;
         try (PreparedStatement statement = con.prepareStatement("INSERT INTO DERBYUSER(NAME, ADDRESS, CITY) " +
             "VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);) {
 
@@ -79,7 +80,7 @@ public class DerbyUserDAO implements UserDAO{
             statement.execute();
             final ResultSet res = statement.getGeneratedKeys();
             if (res.next()) {
-                last_inserted_id = res.getInt(1);
+                lastInsertedId = res.getInt(1);
             }
 
         } catch (SQLException e) {
@@ -87,7 +88,7 @@ public class DerbyUserDAO implements UserDAO{
                 LOGGER.error(e.getMessage());
             }
         }
-        return last_inserted_id;
+        return lastInsertedId;
     }
 
     /**
@@ -140,7 +141,7 @@ public class DerbyUserDAO implements UserDAO{
             }
             res.close();
             sta.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             if (LOGGER.isErrorEnabled()) {
                 LOGGER.error(e.getMessage());
             }
@@ -209,7 +210,7 @@ public class DerbyUserDAO implements UserDAO{
             }
             res.close();
             sta.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             if (LOGGER.isErrorEnabled()) {
                 LOGGER.error(e.getMessage());
             }

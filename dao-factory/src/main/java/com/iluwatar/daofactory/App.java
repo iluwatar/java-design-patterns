@@ -13,6 +13,10 @@ import java.util.Collection;
  */
 @Slf4j
 public class App {
+
+    private App() {
+    }
+
     /**
      * Program entry point.
      *
@@ -20,7 +24,7 @@ public class App {
      */
     public static void main(final String[] args) {
         // create the required DAO Factory
-        final DAOFactory derbyFactory = DAOFactory.getDAOFactory(DAOFactory.DERBY);
+        final AbstractDAOFactory derbyFactory = AbstractDAOFactory.getDAOFactory(AbstractDAOFactory.DERBY);
 
         // Create a DAO for Derby
         final UserDAO derbyUserDAO = derbyFactory.getUserDAO();
@@ -31,8 +35,8 @@ public class App {
         final User user = findUser(userId, derbyUserDAO);
         updateUser(user, derbyUserDAO);
         deleteUser(user, derbyUserDAO);
-        final String criteriaCol = "City"; //NOPMD - suppressed AvoidFinalLocalVariable - TODO explain reason for suppression
-        final String criteria = "Seattle"; //NOPMD - suppressed AvoidFinalLocalVariable - TODO explain reason for suppression //NOPMD - suppressed AvoidFinalLocalVariable - TODO explain reason for suppression
+        final String criteriaCol = "City";
+        final String criteria = "Seattle";
         findUserWithCriteria(derbyUserDAO, criteriaCol, criteria);
 
     }

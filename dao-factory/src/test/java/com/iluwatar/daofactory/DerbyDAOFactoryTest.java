@@ -8,7 +8,7 @@ public class DerbyDAOFactoryTest {
 
     @Test
     void getUserDAOTest() {
-        DAOFactory derbyFactory = DAOFactory.getDAOFactory(DAOFactory.DERBY);
+        AbstractDAOFactory derbyFactory = AbstractDAOFactory.getDAOFactory(AbstractDAOFactory.DERBY);
         UserDAO userDAO = derbyFactory.getUserDAO();
         assertTrue(userDAO instanceof DerbyUserDAO);
     }
