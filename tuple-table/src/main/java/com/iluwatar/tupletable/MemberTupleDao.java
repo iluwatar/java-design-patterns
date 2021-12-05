@@ -1,18 +1,26 @@
 package com.iluwatar.tupletable;
 
 import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * This class implements MemberTupleDao. The class contains following methods:
+ * findMember() - is used to find the member stored in the databased based on the query.
+ * createTableIfNotExists() - creates the table for storing object_data if not exists.
+ * saveMember() - is used to store the value of the fields being passed.
+ * extracted() - is an extension of the saveMember() method.
+ * setVal() - uses reflection to invoke the target method.
+ */
+
 @Slf4j
 public class MemberTupleDao {
+
+  private final Database db = new Database();
+
   /**
    * Method implemented to find the member based on the input param.
    *
@@ -20,24 +28,22 @@ public class MemberTupleDao {
    * @return member retrieved from the database
    */
   public MemberDto findMember(long memberNo) throws SQLException, ClassNotFoundException {
-    Database db = new Database();
-    MemberDto member = new MemberDto();
+    var member = new MemberDto();
     member.setMemberNumber(memberNo);
 
-    try (Connection con = db.getConnection();
-         PreparedStatement ps = con.prepareStatement("select fieldname, numerical, string "
+    try (var con = db.getConnection();
+         var ps = con.prepareStatement("select fieldname, numerical, string "
                  + "from object_data where obj_pk = ?")) {
-      // create a new table
       ps.setLong(1, memberNo);
-      try (ResultSet rs = ps.executeQuery()) {
+      try (var rs = ps.executeQuery()) {
         while (rs.next()) {
-          String fieldName = rs.getString(1);
-          String strVal = rs.getString(3);
+          var fieldName = rs.getString(1);
+          var strVal = rs.getString(3);
           if (strVal != null) {
             setVal(fieldName, member, strVal);
           } else {
             //we do this indirectly to make database typecasting more reliable
-            long lngVal = rs.getLong(2);
+            var lngVal = rs.getLong(2);
             if (!rs.wasNull()) {
               setVal(fieldName, member, lngVal);
             }
@@ -60,10 +66,9 @@ public class MemberTupleDao {
             + "NUMERICAL int,\n"
             + "STRING varchar(255)\n"
             + ");";
-    Database db = new Database();
-    try (Connection con = db.getConnection();
-         Statement stmt = con.createStatement()) {
-      // create a new table
+
+    try (var con = db.getConnection();
+         var stmt = con.createStatement()) {
       stmt.execute(sql);
     }
   }
@@ -76,21 +81,19 @@ public class MemberTupleDao {
    */
   public void saveMember(MemberDto member) throws SQLException, ClassNotFoundException,
           InvocationTargetException, IllegalAccessException {
-    Database db = new Database();
-    long memberNo = member.getMemberNumber();
+    var memberNo = member.getMemberNumber();
     if (memberNo >= 1) {
-      try (Connection con = db.getConnection()) {
-        // create a new table
-        try (PreparedStatement ps = con.prepareStatement(
+      try (var con = db.getConnection()) {
+        try (var ps = con.prepareStatement(
                 "delete from object_data where obj_pk = ?");) {
           ps.setLong(1, memberNo);
           ps.executeUpdate();
-          try (PreparedStatement ps1 = con.prepareStatement(
+          try (var ps1 = con.prepareStatement(
                   "insert into object_data (obj_pk, fieldname, "
                           + "numerical, string) values (?,?,?,?);");
           ) {
             ps1.setLong(1, memberNo);
-            extracted(member, ps1);
+            saveMemberBaseOnDtoClass(member, ps1);
           }
         }
       }
@@ -98,18 +101,19 @@ public class MemberTupleDao {
   }
 
   /**
-   * Extracted method for saveMember method.
+   * Extracted method for saveMember method. Here based on the class method of DTO the ps statement is set differently
+   * for long and string
    *
    * @param member object
    * @param ps     as prepared statement
    * @throws SQLException if encounters any violation while updating record in database.
    * @should execute the prepared statement
    */
-  private void extracted(MemberDto member, PreparedStatement ps) throws SQLException,
+  private void saveMemberBaseOnDtoClass(MemberDto member, PreparedStatement ps) throws SQLException,
           IllegalAccessException, InvocationTargetException {
-    Method[] methods = member.getClass().getMethods();
-    for (Method method : methods) {
-      String methodName = method.getName();
+    var methods = member.getClass().getMethods();
+    for (var method : methods) {
+      var methodName = method.getName();
       if (methodName.startsWith("get")) {
         if (method.getReturnType() == String.class) {
           ps.setString(2, methodName.substring(3));
@@ -129,6 +133,8 @@ public class MemberTupleDao {
 
   /**
    * Method implemented to set the value for a field name.
+   * Set a value on the target object, by searching for a set<fieldName> method which takes a parameter of the same
+   * value as the "param" parameter.
    *
    * @param fieldName as name of the field for a tuple
    * @param target    as member object
@@ -137,13 +143,11 @@ public class MemberTupleDao {
    */
   private void setVal(String fieldName, Object target, Object param) {
     try {
-      Class<?> targetClass = target.getClass();
-      Method setter = targetClass.getMethod("set" + fieldName, param.getClass());
+      var targetClass = target.getClass();
+      var setter = targetClass.getMethod("set" + fieldName, param.getClass());
       setter.invoke(target, param);
     } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
-      if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
-      }
+      LOGGER.error(e.getMessage());
     }
   }
 }

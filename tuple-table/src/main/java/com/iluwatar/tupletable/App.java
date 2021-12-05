@@ -39,9 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 final class App {
 
   /**
-   * Prevent instantiation
-   * Optional: throw an exception e.g. AssertionError
-   * if this ever *is* called
+   * Private constructor to prevent instantiation
    */
   private App() {
   }
@@ -56,35 +54,33 @@ final class App {
    */
   public static void main(String[] args) throws SQLException, ClassNotFoundException,
           InvocationTargetException, IllegalAccessException {
-    if (LOGGER.isInfoEnabled()) {
-      //Instantiate the MemberTupleDAO
-      MemberTupleDao mtd = new MemberTupleDao();
-      mtd.createTableIfNotExists();
-      //Retrieve the information saved in DB already - first time it should show null
-      MemberDto member = mtd.findMember(1);
-      //Access and display the information based on the search criteria
-      LOGGER.info(member.getFirstName() + " " + member.getLastName());
-      LOGGER.info(String.valueOf(member.getFreePasses()));
-      LOGGER.info(member.getAddress1());
-      LOGGER.info(member.getCity());
-      //Set a different member information using the tuple pattern implementation
-      member.setMemberNumber(4);
-      member.setFirstName("Atif");
-      member.setLastName("Ahmed");
-      member.setAddress1("USA");
-      member.setAddress2("USA");
-      member.setCity("Columbus");
-      member.setState("Ohio");
-      member.setZip("12345");
-      mtd.saveMember(member);
-      //Find and display above saved information
-      member = mtd.findMember(4);
-      LOGGER.info(member.getFirstName() + " " + member.getLastName());
-      LOGGER.info(member.getAddress1());
-      LOGGER.info(member.getAddress2());
-      LOGGER.info(member.getCity());
-      LOGGER.info(member.getState());
-      LOGGER.info(member.getZip());
-    }
+    //Instantiate the MemberTupleDAO
+    var memberTupleDao = new MemberTupleDao();
+    memberTupleDao.createTableIfNotExists();
+    //Retrieve the information saved in DB already - first time it should show null
+    var member = memberTupleDao.findMember(1);
+    //Access and display the information based on the search criteria
+    LOGGER.info(member.getFirstName() + " " + member.getLastName());
+    LOGGER.info(String.valueOf(member.getFreePasses()));
+    LOGGER.info(member.getAddress1());
+    LOGGER.info(member.getCity());
+    //Set a different member information using the tuple pattern implementation
+    member.setMemberNumber(4);
+    member.setFirstName("Atif");
+    member.setLastName("Ahmed");
+    member.setAddress1("USA");
+    member.setAddress2("USA");
+    member.setCity("Columbus");
+    member.setState("Ohio");
+    member.setZip("12345");
+    memberTupleDao.saveMember(member);
+    //Find and display above saved information
+    member = memberTupleDao.findMember(4);
+    LOGGER.info(member.getFirstName() + " " + member.getLastName());
+    LOGGER.info(member.getAddress1());
+    LOGGER.info(member.getAddress2());
+    LOGGER.info(member.getCity());
+    LOGGER.info(member.getState());
+    LOGGER.info(member.getZip());
   }
 }

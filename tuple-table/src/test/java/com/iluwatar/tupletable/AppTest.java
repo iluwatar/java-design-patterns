@@ -28,23 +28,19 @@ class AppTest {
   @Test
   void testFindSetSave() throws SQLException, ClassNotFoundException, InvocationTargetException,
           IllegalAccessException {
-    MemberTupleDao mtd = new MemberTupleDao();
+    var mtd = new MemberTupleDao();
     mtd.createTableIfNotExists();
-    MemberDto member = mtd.findMember(1);
+    var member = mtd.findMember(1);
 
-    if (LOGGER.isInfoEnabled()) {
-      LOGGER.info(member.getFirstName() + " " + member.getLastName()
-              + "\n" + member.getFreePasses()
-              + "\n" + member.getCity()
-              + "\n" + member.getAddress1());
-    }
+    LOGGER.info(member.getFirstName() + " " + member.getLastName()
+            + "\n" + member.getFreePasses()
+            + "\n" + member.getCity()
+            + "\n" + member.getAddress1());
     member.setMemberNumber(4);
     member.setFirstName("Atif");
     mtd.saveMember(member);
     member = mtd.findMember(4);
-    if (LOGGER.isInfoEnabled()) {
-      LOGGER.info(member.getFirstName() + " " + member.getLastName());
-    }
+    LOGGER.info(member.getFirstName() + " " + member.getLastName());
     assertEquals("Atif", member.getFirstName());
   }
 }
