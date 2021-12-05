@@ -126,13 +126,13 @@ public class MongoUserDAO implements UserDAO {
         final MongoCursor<Document> cursor = iterable.iterator();
         final ArrayList<User> selectedUsers = new ArrayList<>();
         while(cursor.hasNext()) {
-            final User u = new User();
-            final Document d = cursor.next();
-            u.setUserId((Integer) d.get("userid"));
-            u.setName((String) d.get("name"));
-            u.setCity((String) d.get("city"));
-            u.setStreetAddress((String) d.get("streetAddress"));
-            selectedUsers.add(u);
+            final User user = new User();
+            final Document document = cursor.next();
+            user.setUserId((Integer) document.get("userid"));
+            user.setName((String) document.get("name"));
+            user.setCity((String) document.get("city"));
+            user.setStreetAddress((String) document.get("streetAddress"));
+            selectedUsers.add(user);
         }
         cursor.close();
         return selectedUsers;

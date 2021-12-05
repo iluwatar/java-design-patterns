@@ -31,23 +31,23 @@ public class App {
         final User user = findUser(userId, derbyUserDAO);
         updateUser(user, derbyUserDAO);
         deleteUser(user, derbyUserDAO);
-        final String criteriaCol = "City";
-        final String criteria = "Seattle";
+        final String criteriaCol = "City"; //NOPMD - suppressed AvoidFinalLocalVariable - TODO explain reason for suppression
+        final String criteria = "Seattle"; //NOPMD - suppressed AvoidFinalLocalVariable - TODO explain reason for suppression //NOPMD - suppressed AvoidFinalLocalVariable - TODO explain reason for suppression
         findUserWithCriteria(derbyUserDAO, criteriaCol, criteria);
 
     }
 
     private static int createUser(final UserDAO userDAO){
-        final User u = new User();
-        u.setName("Sam Doe");
-        u.setStreetAddress("333 4th Street");
-        u.setCity("Seattle");
+        final User user = new User();
+        user.setName("Sam Doe");
+        user.setStreetAddress("333 4th Street");
+        user.setCity("Seattle");
 
-        return userDAO.insertUser(u);
+        return userDAO.insertUser(user);
     }
 
-    private static User findUser(final int id, final UserDAO userDAO){
-        final User user = userDAO.findUser(id);
+    private static User findUser(final int userId, final UserDAO userDAO){
+        final User user = userDAO.findUser(userId);
         if (LOGGER.isInfoEnabled()){
             LOGGER.info("User Created: " + user.getUserId());
         }
