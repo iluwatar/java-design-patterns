@@ -9,17 +9,17 @@ package com.iluwatar.notification;
 public final class App {
 
   /**
-   * Course Id of the course to register
+   * Course Id of the course to register.
    */
   private static final String COURSEID = "CSE427";
 
   /**
-   * Semester of the course to register
+   * Semester of the course to register.
    */
   private static final String SEMESTER = "Fall21";
 
   /**
-   * Department of the course to register
+   * Department of the course to register.
    */
   private static final String DEPARTMENT = "Engineering";
 
