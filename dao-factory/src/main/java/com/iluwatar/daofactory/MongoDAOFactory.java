@@ -16,7 +16,7 @@ public class MongoDAOFactory extends AbstractDAOFactory {
      * Instantiates a MongoDAOFactory.
      */
     public MongoDAOFactory() {
-        // This constructor is intentionally empty. Nothing special is needed here.
+        super();
     }
 
     /**

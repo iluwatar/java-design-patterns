@@ -12,7 +12,7 @@ import java.util.Collection;
  * implementation.
  */
 @Slf4j
-public class App {
+public final class App {
 
     private App() {
     }

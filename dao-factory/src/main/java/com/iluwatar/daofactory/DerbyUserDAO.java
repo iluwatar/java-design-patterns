@@ -23,200 +23,197 @@ import java.util.Collection;
 @Slf4j
 public class DerbyUserDAO implements UserDAO{
 
-    /**
-     * Connection to Derby database.
-     */
-    public Connection con = DerbyDAOFactory.createConnection();
+  /**
+   * Connection to Derby database.
+   */
+  public Connection con = DerbyDAOFactory.createConnection();
 
-    /**
-     * Creates a table DERBYUSER in DerbyDB.
-     */
-    public DerbyUserDAO() {
-        final String sqlCreate = "CREATE TABLE DERBYUSER"
-                + "("
-                + " ID INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY(Start with 1, Increment by 1),"
-                + " NAME VARCHAR(140) NOT NULL,"
-                + " ADDRESS VARCHAR(140) NOT NULL,"
-                + " CITY VARCHAR(140) NOT NULL"
-                + ")";
+  /**
+  * Creates a table DERBYUSER in DerbyDB.
+  */
+  public DerbyUserDAO() {
+    final String sqlCreate = "CREATE TABLE DERBYUSER"
+      + "("
+      + " ID INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY(Start with 1, Increment by 1),"
+      + " NAME VARCHAR(140) NOT NULL,"
+      + " ADDRESS VARCHAR(140) NOT NULL,"
+      + " CITY VARCHAR(140) NOT NULL"
+      + ")";
 
-        try (Statement stmt = con.createStatement();) {
-            final DatabaseMetaData dbm = con.getMetaData();
-            final ResultSet res = dbm.getTables(null, "APP", "DERBYUSER", null);
+    try (Statement stmt = con.createStatement();) {
+      final DatabaseMetaData dbm = con.getMetaData();
+      final ResultSet res = dbm.getTables(null, "APP", "DERBYUSER", null);
 
-            if (res.next()) {
-                if (LOGGER.isInfoEnabled()) {
-                    LOGGER.info("Table already exists");
-                }
-            } else {
-                stmt.execute(sqlCreate);
-                if (LOGGER.isInfoEnabled()) {
-                    LOGGER.info("Table created");
-                }
-            }
-
-        } catch (SQLException e) {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error(e.getMessage());
-            }
+      if (res.next()) {
+        if (LOGGER.isInfoEnabled()) {
+          LOGGER.info("Table already exists");
         }
+      } else {
+        stmt.execute(sqlCreate);
+        if (LOGGER.isInfoEnabled()) {
+          LOGGER.info("Table created");
+        }
+      }
+
+    } catch (SQLException e) {
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(e.getMessage());
+      }
+    }
+  }
+
+  /**
+   * Insert user to DerbyUser.
+   *
+   * @param user
+   * @return newly created user number or -1 on error
+   */
+  @Override
+  public int insertUser(final User user) {
+    int lastInsertedId = -1;
+    try (PreparedStatement statement = con.prepareStatement("INSERT INTO DERBYUSER(NAME, ADDRESS, CITY) " +
+      "VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);) {
+
+      statement.setString(1, user.getName());
+      statement.setString(2, user.getStreetAddress());
+      statement.setString(3, user.getCity());
+      statement.execute();
+      final ResultSet res = statement.getGeneratedKeys();
+      if (res.next()) {
+        lastInsertedId = res.getInt(1);
+      }
+
+    } catch (SQLException e) {
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(e.getMessage());
+      }
+    }
+    return lastInsertedId;
+  }
+
+  /**
+   * Delete user in DerbyUser.
+   *
+   * @param user
+   * @return true on success, false on failure
+   */
+  @Override
+  public boolean deleteUser(final User user) {
+
+    final int userId = user.getUserId();
+    try (PreparedStatement stmt =con.prepareStatement("DELETE FROM DERBYUSER WHERE ID = ?");) {
+
+      stmt.setInt(1, userId);
+      return stmt.executeUpdate() > 0;
+
+    } catch (SQLException e) {
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(e.getMessage());
+      }
     }
 
-    /**
-     * Insert user to DerbyUser.
-     *
-     * @param user
-     * @return newly created user number or -1 on error
-     */
-    @Override
-    public int insertUser(final User user) {
-        int lastInsertedId = -1;
-        try (PreparedStatement statement = con.prepareStatement("INSERT INTO DERBYUSER(NAME, ADDRESS, CITY) " +
-            "VALUES (?,?,?)", Statement.RETURN_GENERATED_KEYS);) {
+    return false;
+  }
 
-            statement.setString(1, user.getName());
-            statement.setString(2, user.getStreetAddress());
-            statement.setString(3, user.getCity());
-            statement.execute();
-            final ResultSet res = statement.getGeneratedKeys();
-            if (res.next()) {
-                lastInsertedId = res.getInt(1);
-            }
+  /**
+   * Find a user in DerbyUser using userId.
+   *
+   * @param userId
+   * @return a User Object if found, return null on error or if not found
+   */
+  @Override
+  public User findUser(final int userId) {
 
-        } catch (SQLException e) {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error(e.getMessage());
-            }
-        }
-        return lastInsertedId;
+    final User user = new User();
+    int foundId = -1;
+    String address = "";
+    String name = "";
+    String city = "";
+    try (Statement sta = con.createStatement();
+      ResultSet res = sta.executeQuery("SELECT * FROM DERBYUSER WHERE ID = " + userId);) {
+
+      while (res.next()) {
+        foundId = res.getInt("ID");
+        address = res.getString("ADDRESS");
+        name = res.getString("NAME");
+        city = res.getString("CITY");
+      }
+      res.close();
+      sta.close();
+    } catch (SQLException e) {
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(e.getMessage());
+      }
+    }
+    user.setUserId(foundId);
+    user.setName(name);
+    user.setStreetAddress(address);
+    user.setCity(city);
+    return user;
+  }
+
+  /**
+   * Update record here using data from the User Object
+   *
+   * @param user
+   * @return true on success, false on failure or error
+   */
+  @Override
+  public boolean updateUser(final User user) {
+    try (Statement stmt = con.createStatement();
+      PreparedStatement preparedStatement = con.prepareStatement("UPDATE DERBYUSER SET NAME = ? , " +
+          "ADDRESS = ?, CITY = ? WHERE ID = ?");) {
+      final int userId = user.getUserId();
+      final String newName = user.getName();
+      final String newAddress = user.getStreetAddress();
+      final String newCity = user.getCity();
+
+      preparedStatement.setString(1, newName);
+      preparedStatement.setString(2, newAddress);
+      preparedStatement.setString(3, newCity);
+      preparedStatement.setInt(4, userId);
+      return preparedStatement.executeUpdate() > 0;
+
+    }catch (SQLException throwables) {
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(throwables.getMessage());
+      }
     }
 
-    /**
-     * Delete user in DerbyUser.
-     *
-     * @param user
-     * @return true on success, false on failure
-     */
-    @Override
-    public boolean deleteUser(final User user) {
+    return false;
+  }
 
-        final int userId = user.getUserId();
-        try (PreparedStatement stmt =con.prepareStatement("DELETE FROM DERBYUSER WHERE ID = ?");) {
+  /**
+   * Search users here using the supplied criteria.
+   *
+   * @param criteriaCol, criteria
+   * @return Collection of users found using the criteria
+   */
+  @Override
+  public Collection selectUsersTO(final String criteriaCol, final String criteria) {
+    final ArrayList<User> selectedUsers = new ArrayList<>();
 
-            stmt.setInt(1, userId);
-            return stmt.executeUpdate() > 0;
+    try (Statement sta = con.createStatement();
+         ResultSet res = sta.executeQuery("SELECT ID, Address, Name, City " +
+         "FROM DERBYUSER WHERE "+criteriaCol+" = '" + criteria + "'");) {
 
-        } catch (SQLException e) {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error(e.getMessage());
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Find a user in DerbyUser using userId.
-     *
-     * @param userId
-     * @return a User Object if found, return null on error or if not found
-     */
-    @Override
-    public User findUser(final int userId) {
-
+      while (res.next()) {
         final User user = new User();
-        int foundId = -1;
-        String address = "";
-        String name = "";
-        String city = "";
-        try (Statement sta = con.createStatement();
-             ResultSet res = sta.executeQuery(
-            "SELECT * FROM DERBYUSER WHERE ID = " + userId);) {
-
-            while (res.next()) {
-                foundId = res.getInt("ID");
-                address = res.getString("ADDRESS");
-                name = res.getString("NAME");
-                city = res.getString("CITY");
-            }
-            res.close();
-            sta.close();
-        } catch (SQLException e) {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error(e.getMessage());
-            }
-        }
-        user.setUserId(foundId);
-        user.setName(name);
-        user.setStreetAddress(address);
-        user.setCity(city);
-        return user;
+        user.setUserId(res.getInt("ID"));
+        user.setStreetAddress(res.getString("ADDRESS"));
+        user.setName(res.getString("NAME"));
+        user.setCity(res.getString("CITY"));
+        selectedUsers.add(user);
+      }
+      res.close();
+      sta.close();
+    } catch (SQLException e) {
+      if (LOGGER.isErrorEnabled()) {
+        LOGGER.error(e.getMessage());
+      }
     }
 
-    /**
-     * Update record here using data from the User Object
-     *
-     * @param user
-     * @return true on success, false on failure or error
-     */
-    @Override
-    public boolean updateUser(final User user) {
-        try (Statement stmt = con.createStatement();
-             PreparedStatement preparedStatement =
-                 con.prepareStatement("UPDATE DERBYUSER SET NAME = ? , " +
-                 "ADDRESS = ?, CITY = ? WHERE ID = ?");) {
-            final int userId = user.getUserId();
-            final String newName = user.getName();
-            final String newAddress = user.getStreetAddress();
-            final String newCity = user.getCity();
-
-            preparedStatement.setString(1, newName);
-            preparedStatement.setString(2, newAddress);
-            preparedStatement.setString(3, newCity);
-            preparedStatement.setInt(4, userId);
-            return preparedStatement.executeUpdate() > 0;
-
-        }catch (SQLException throwables) {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error(throwables.getMessage());
-            }
-        }
-
-        return false;
-    }
-
-    /**
-     * Search users here using the supplied criteria.
-     *
-     * @param criteriaCol, criteria
-     * @return Collection of users found using the criteria
-     */
-    @Override
-    public Collection selectUsersTO(final String criteriaCol, final String criteria) {
-        final ArrayList<User> selectedUsers = new ArrayList<>();
-
-        try (Statement sta = con.createStatement();
-             ResultSet res = sta.executeQuery("SELECT ID, Address, Name, City " +
-            "FROM DERBYUSER WHERE "+criteriaCol+" = '" + criteria + "'");) {
-
-            while (res.next()) {
-                final User user = new User();
-                user.setUserId(res.getInt("ID"));
-                user.setStreetAddress(res.getString("ADDRESS"));
-                user.setName(res.getString("NAME"));
-                user.setCity(res.getString("CITY"));
-                selectedUsers.add(user);
-
-            }
-            res.close();
-            sta.close();
-        } catch (SQLException e) {
-            if (LOGGER.isErrorEnabled()) {
-                LOGGER.error(e.getMessage());
-            }
-        }
-
-        return selectedUsers;
-    }
+    return selectedUsers;
+  }
 
 }

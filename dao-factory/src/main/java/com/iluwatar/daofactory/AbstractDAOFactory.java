@@ -6,12 +6,6 @@ package com.iluwatar.daofactory;
  * in the factories produced by the Abstract Factory.
  */
 public abstract class AbstractDAOFactory {
-    /**
-     * Instantiates a DAOFactory.
-     */
-    public AbstractDAOFactory() {
-        // This constructor is intentionally empty. Nothing special is needed here.
-    }
 
     /**
      * Integer switcher for Derby
@@ -22,6 +16,13 @@ public abstract class AbstractDAOFactory {
      * Integer switcher for Mongo
      */
     public static final int MONGO = 2;
+
+    /**
+     * Instantiates a DAOFactory.
+     */
+    public AbstractDAOFactory() {
+        // This constructor is intentionally empty. Nothing special is needed here.
+    }
 
     /**
      * Concrete classes need to implement this method

@@ -16,7 +16,7 @@ public class DerbyDAOFactory extends AbstractDAOFactory {
      * Instantiates a DerbyDAOFactory.
      */
     public DerbyDAOFactory() {
-        // This constructor is intentionally empty. Nothing special is needed here.
+        super();
     }
 
     /**
