@@ -8,9 +8,28 @@ package com.iluwatar.daofactory;
 import java.util.Collection;
 
 public interface UserDAO {
+    /**
+     * Insert user to the database.
+     */
     int insertUser(User user);
+
+    /**
+     * Delete user from the database.
+     */
     boolean deleteUser(User user);
-    User findUser(int newUserNo);
+
+    /**
+     * Find user from the database.
+     */
+    User findUser(int userId);
+
+    /**
+     * Update user from the database.
+     */
     boolean updateUser(User user);
+
+    /**
+     * Select collection of users from the database according to the criteria.
+     */
     Collection selectUsersTO(String criteriaCol, String criteria);
 }

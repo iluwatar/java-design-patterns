@@ -1,5 +1,10 @@
 package com.iluwatar.daofactory;
 
+/**
+ * This factory produces DAOs such as UserDAO.
+ * This strategy uses the Factory Method implementation
+ * in the factories produced by the Abstract Factory.
+ */
 public abstract class DAOFactory {
     /**
      * Integer switcher for Derby

@@ -6,6 +6,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * This concrete factory extends DAOFactory.
+ */
 @Slf4j
 public class DerbyDAOFactory extends DAOFactory {
 

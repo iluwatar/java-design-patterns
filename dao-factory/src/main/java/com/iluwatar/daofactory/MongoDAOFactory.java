@@ -7,6 +7,9 @@ import de.bwaldvogel.mongo.backend.memory.MemoryBackend;
 
 import java.net.InetSocketAddress;
 
+/**
+ * This concrete factory extends DAOFactory.
+ */
 public class MongoDAOFactory extends DAOFactory {
 
     /**

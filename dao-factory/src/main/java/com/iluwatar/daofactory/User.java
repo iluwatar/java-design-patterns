@@ -3,6 +3,9 @@ package com.iluwatar.daofactory;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * User entity.
+ */
 @Getter
 @Setter
 public class User implements java.io.Serializable {

@@ -4,6 +4,13 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.util.Collection;
 
+/**
+ * The Dao Factory Pattern provides an abstract DAO
+ * factory object (Abstract Factory) that can construct
+ * various types of concrete DAO factories, each factory
+ * supporting a different type of persistent storage
+ * implementation.
+ */
 @Slf4j
 public class App {
     /**

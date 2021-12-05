@@ -22,6 +22,10 @@ import java.util.Collection;
  */
 @Slf4j
 public class DerbyUserDAO implements UserDAO{
+
+    /**
+     * Connection to Derby database.
+     */
     public Connection con = DerbyDAOFactory.createConnection();
 
     /**
