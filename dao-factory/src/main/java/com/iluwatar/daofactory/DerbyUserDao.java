@@ -157,7 +157,7 @@ public class DerbyUserDao implements UserDao {
   }
 
   /**
-   * Update record here using data from the User Object
+   * Update record here using data from the User Object.
    *
    * @param user user to update
    * @return true on success, false on failure or error

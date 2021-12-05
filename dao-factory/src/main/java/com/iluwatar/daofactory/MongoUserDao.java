@@ -1,10 +1,6 @@
 package com.iluwatar.daofactory;
 
-
 import de.bwaldvogel.mongo.MongoServer;
-
-import java.util.ArrayList;
-import java.util.Collection;
 
 import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
@@ -14,6 +10,9 @@ import com.mongodb.client.MongoCursor;
 import static com.mongodb.client.model.Filters.eq;
 import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.bson.Document;
 import org.bson.conversions.Bson;

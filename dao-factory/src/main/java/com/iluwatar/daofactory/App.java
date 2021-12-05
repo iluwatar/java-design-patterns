@@ -36,8 +36,6 @@ public final class App {
     final User user = findUser(userId, derbyUserDao);
     updateUser(user, derbyUserDao);
     deleteUser(user, derbyUserDao);
-//    final String criteriaCol = "City";
-//    final String criteria = "Seattle";
     findUserWithCriteria(derbyUserDao, "City", "Seattle");
 
   }
@@ -83,8 +81,8 @@ public final class App {
                                            final String criteria) {
     final Collection<User> userList = userDao.selectUsersTO(criteriaCol, criteria);
     if (LOGGER.isInfoEnabled()) {
-      LOGGER.info("Found " + userList.size() +
-          " Users With " + criteriaCol + " = " + criteria + ":");
+      LOGGER.info("Found " + userList.size()
+          + " Users With " + criteriaCol + " = " + criteria + ":");
     }
     for (final User i: userList) {
       if (LOGGER.isInfoEnabled()) {
