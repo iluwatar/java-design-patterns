@@ -30,6 +30,9 @@ public class User implements java.io.Serializable {
    */
   private String city;
 
+  private static final long serialVersionUID = 42L;
+
+
   /**
    * Instantiates a User.
    */

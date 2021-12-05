@@ -26,7 +26,7 @@ public class DerbyUserDAO implements UserDAO{
   /**
    * Connection to Derby database.
    */
-  public Connection con = DerbyDAOFactory.createConnection();
+  public transient Connection con = DerbyDAOFactory.createConnection();
 
   /**
   * Creates a table DERBYUSER in DerbyDB.
@@ -54,6 +54,7 @@ public class DerbyUserDAO implements UserDAO{
           LOGGER.info("Table created");
         }
       }
+      res.close();
 
     } catch (SQLException e) {
       if (LOGGER.isErrorEnabled()) {
@@ -82,7 +83,8 @@ public class DerbyUserDAO implements UserDAO{
       if (res.next()) {
         lastInsertedId = res.getInt(1);
       }
-
+      statement.close();
+      res.close();
     } catch (SQLException e) {
       if (LOGGER.isErrorEnabled()) {
         LOGGER.error(e.getMessage());
