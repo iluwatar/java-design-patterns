@@ -39,7 +39,7 @@ import lombok.extern.slf4j.Slf4j;
 final class App {
 
   /**
-   * Private constructor to prevent instantiation
+   * Private constructor to prevent instantiation.
    */
   private App() {
   }

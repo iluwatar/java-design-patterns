@@ -101,8 +101,8 @@ public class MemberTupleDao {
   }
 
   /**
-   * Extracted method for saveMember method. Here based on the class method of DTO the ps statement is set differently
-   * for long and string
+   * Extracted method for saveMember method. Here based on the class method of DTO the
+   * ps statement is set differently for long and string
    *
    * @param member object
    * @param ps     as prepared statement
@@ -133,8 +133,8 @@ public class MemberTupleDao {
 
   /**
    * Method implemented to set the value for a field name.
-   * Set a value on the target object, by searching for a set<fieldName> method which takes a parameter of the same
-   * value as the "param" parameter.
+   * Set a value on the target object, by searching for a set (fieldName) method which
+   * takes a parameter of the same value as the "param" parameter.
    *
    * @param fieldName as name of the field for a tuple
    * @param target    as member object
