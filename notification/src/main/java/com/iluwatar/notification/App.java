@@ -8,6 +8,21 @@ package com.iluwatar.notification;
  */
 public final class App {
 
+  /**
+   * Course Id of the course to register
+   */
+  private static final String COURSEID = "CSE427";
+
+  /**
+   * Semester of the course to register
+   */
+  private static final String SEMESTER = "Fall21";
+
+  /**
+   * Department of the course to register
+   */
+  private static final String DEPARTMENT = "Engineering";
+
   private App() {
   }
 
@@ -17,10 +32,7 @@ public final class App {
    * @param args command line args.
    */
   public static void main(final String[] args) {
-    final var courseId = "CSE427";
-    final var semester = "Fall21";
-    final var department = "Engineering";
-    final RegisterCourseForm form = new RegisterCourseForm(courseId, semester, department);
+    final RegisterCourseForm form = new RegisterCourseForm(COURSEID, SEMESTER, DEPARTMENT);
     form.submit();
 
   }
