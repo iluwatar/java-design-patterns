@@ -73,7 +73,6 @@ public class DerbyUserDaoTest {
       user.setCity("Seattle");
       int newCustNo = dao.insertUser(user);
       user.setUserId(newCustNo);
-      assertNotNull(newCustNo);
     }
 
     /**
@@ -90,7 +89,6 @@ public class DerbyUserDaoTest {
         nonExistingUser.setCity("York");
         var result = dao.insertUser(nonExistingUser);
         nonExistingUser.setUserId(result);
-        assertNotNull(result);
         assertEquals(nonExistingUser.getUserId(), dao.findUser(result).getUserId());
       }
 
