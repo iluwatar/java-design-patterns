@@ -22,13 +22,12 @@ public class MongoDaoFactory extends AbstractDaoFactory {
   /**
    * method to create Mongo connections.
    *
-   * @return a Connection
+   * @return an Object array containing the MongoServer and the InetSocketAddress it is bound to
    */
   public static Object[] create() {
     final MongoServer server = new MongoServer(new MemoryBackend());
     final InetSocketAddress serverAddress = server.bind();
-    final MongoClient client = new MongoClient(new ServerAddress(serverAddress));
-    return new Object[]{client, server};
+    return new Object[]{server, serverAddress};
   }
 
   /**

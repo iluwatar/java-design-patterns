@@ -1,9 +1,14 @@
 package com.iluwatar.daofactory;
+import com.mongodb.MongoClient;
+import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoCollection;
+import org.bson.Document;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 public class MongoUserDaoTest {
   MongoUserDao dao;
@@ -27,11 +32,15 @@ public class MongoUserDaoTest {
         }
       @Test
       public void insert() {
-        assertEquals(1, dao.collection.count());
-        assertEquals(u.getUserId(), dao.collection.find().first().get("userid"));
-        assertEquals(u.getName(), dao.collection.find().first().get("name"));
-        assertEquals(u.getCity(), dao.collection.find().first().get("city"));
-        assertEquals(u.getStreetAddress(), dao.collection.find().first().get("streetAddress"));
+        try (MongoClient client = new MongoClient(new ServerAddress(dao.serverAddress))) {
+          final MongoCollection<Document> collection =
+              client.getDatabase("mongo").getCollection("coll");
+          assertEquals(1, collection.count());
+          assertEquals(u.getUserId(), collection.find().first().get("userid"));
+          assertEquals(u.getName(), collection.find().first().get("name"));
+          assertEquals(u.getCity(), collection.find().first().get("city"));
+          assertEquals(u.getStreetAddress(), collection.find().first().get("streetAddress"));
+        }
     }
     @Test
     public void find() {
@@ -49,16 +58,28 @@ public class MongoUserDaoTest {
       updated.setCity("Atlantis");
       updated.setStreetAddress("2000 Coral Drive");
       dao.updateUser(updated);
-      assertEquals(updated.getUserId(), dao.collection.find().first().get("userid"));
-      assertEquals(updated.getName(), dao.collection.find().first().get("name"));
-      assertEquals(updated.getCity(), dao.collection.find().first().get("city"));
-      assertEquals(updated.getStreetAddress(), dao.collection.find().first().get("streetAddress"));
+      try (MongoClient client = new MongoClient(new ServerAddress(dao.serverAddress))) {
+        final MongoCollection<Document> collection =
+            client.getDatabase("mongo").getCollection("coll");
+        assertEquals(updated.getUserId(), collection.find().first().get("userid"));
+        assertEquals(updated.getName(), collection.find().first().get("name"));
+        assertEquals(updated.getCity(), collection.find().first().get("city"));
+        assertEquals(updated.getStreetAddress(), collection.find().first().get("streetAddress"));
+      }
     }
     @Test
     public void delete() {
-      assertEquals(1, dao.collection.count());
+      try (MongoClient client = new MongoClient(new ServerAddress(dao.serverAddress))) {
+        final MongoCollection<Document> collection =
+            client.getDatabase("mongo").getCollection("coll");
+        assertEquals(1, collection.count());
+      }
       dao.deleteUser(u);
-      assertEquals(0, dao.collection.count());
+      try (MongoClient client = new MongoClient(new ServerAddress(dao.serverAddress))) {
+        final MongoCollection<Document> collection =
+            client.getDatabase("mongo").getCollection("coll");
+        assertEquals(0, collection.count());
+      }
     }
   }
   @Nested
@@ -90,7 +111,6 @@ public class MongoUserDaoTest {
   }
   @AfterEach
   void cleanup() {
-    dao.client.close();
     dao.server.shutdown();
   }
 }

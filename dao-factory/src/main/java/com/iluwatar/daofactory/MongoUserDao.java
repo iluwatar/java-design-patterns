@@ -5,12 +5,14 @@ import static com.mongodb.client.model.Updates.combine;
 import static com.mongodb.client.model.Updates.set;
 
 import com.mongodb.MongoClient;
+import com.mongodb.ServerAddress;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 
 import de.bwaldvogel.mongo.MongoServer;
 
+import java.net.InetSocketAddress;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -28,19 +30,14 @@ import org.bson.types.ObjectId;
  */
 public class MongoUserDao implements UserDao {
   /**
-   * MongoClient for connecting to the database.
+   * InetSocketAddress for connecting to the database.
    */
-  public transient MongoClient client;
+  public transient InetSocketAddress serverAddress;
 
   /**
    * MongoServer for connecting to the database.
    */
   public transient MongoServer server;
-
-  /**
-   * Collection of documents.
-   */
-  public transient MongoCollection<Document> collection;
 
   /**
    * Variable for name literal.
@@ -60,17 +57,17 @@ public class MongoUserDao implements UserDao {
   /**
    * Variable for streetaddress literal.
    */
-  private static final String STREETADDRES = "streetAddress";
+  private static final String STREETADDRESS = "streetAddress";
 
   /**
    * Creates and connect to Mongo.
    */
   public MongoUserDao() {
     final Object[] clientAndServer = MongoDaoFactory.create();
-    client = (MongoClient) clientAndServer[0];
-    server = (MongoServer) clientAndServer[1];
-    collection = client.getDatabase("mongo").getCollection("coll");
+    server = (MongoServer) clientAndServer[0];
+    serverAddress = (InetSocketAddress) clientAndServer[1];
   }
+
 
   /**
    * Insert user to mongo.
@@ -80,12 +77,16 @@ public class MongoUserDao implements UserDao {
    */
   @Override
   public int insertUser(final User user) {
-    final Document insUser = new Document("_id", new ObjectId());
-    insUser.append(NAME, user.getName())
-           .append(USERID, user.getUserId())
-           .append(CITY, user.getCity())
-           .append(STREETADDRES, user.getStreetAddress());
-    collection.insertOne(insUser);
+    try (MongoClient client = new MongoClient(new ServerAddress(serverAddress))) {
+      final MongoCollection<Document> collection =
+          client.getDatabase("mongo").getCollection("coll");
+      final Document insUser = new Document("_id", new ObjectId());
+      insUser.append(NAME, user.getName())
+            .append(USERID, user.getUserId())
+            .append(CITY, user.getCity())
+            .append(STREETADDRESS, user.getStreetAddress());
+      collection.insertOne(insUser);
+    }
     return user.getUserId();
   }
 
@@ -97,8 +98,12 @@ public class MongoUserDao implements UserDao {
    */
   @Override
   public boolean deleteUser(final User user) {
-    final Bson filter = eq(USERID, user.getUserId());
-    collection.deleteOne(filter);
+    try (MongoClient client = new MongoClient(new ServerAddress(serverAddress))) {
+      final MongoCollection<Document> collection =
+          client.getDatabase("mongo").getCollection("coll");
+      final Bson filter = eq(USERID, user.getUserId());
+      collection.deleteOne(filter);
+    }
     return true;
   }
 
@@ -111,11 +116,15 @@ public class MongoUserDao implements UserDao {
   @Override
   public User findUser(final int userId) {
     final User user = new User();
-    final Document dbuser = collection.find(new Document(USERID, userId)).first();
-    user.setUserId((Integer) dbuser.get(USERID));
-    user.setName((String) dbuser.get(NAME));
-    user.setCity((String) dbuser.get(CITY));
-    user.setStreetAddress((String) dbuser.get(STREETADDRES));
+    try (MongoClient client = new MongoClient(new ServerAddress(serverAddress))) {
+      final MongoCollection<Document> collection =
+          client.getDatabase("mongo").getCollection("coll");
+      final Document dbuser = collection.find(new Document(USERID, userId)).first();
+      user.setUserId((Integer) dbuser.get(USERID));
+      user.setName((String) dbuser.get(NAME));
+      user.setCity((String) dbuser.get(CITY));
+      user.setStreetAddress((String) dbuser.get(STREETADDRESS));
+    }
     return user;
   }
 
@@ -127,13 +136,17 @@ public class MongoUserDao implements UserDao {
    */
   @Override
   public boolean updateUser(final User user) {
-    final Bson filter = eq(USERID, user.getUserId());
-    final Bson updateUserId = set(USERID, user.getUserId());
-    final Bson updateName = set(NAME, user.getName());
-    final Bson updateCity = set(CITY, user.getCity());
-    final Bson updateStreetAddr = set(STREETADDRES, user.getStreetAddress());
-    final Bson updates = combine(updateUserId, updateName, updateCity, updateStreetAddr);
-    collection.updateOne(filter, updates);
+    try (MongoClient client = new MongoClient(new ServerAddress(serverAddress))) {
+      final MongoCollection<Document> collection =
+          client.getDatabase("mongo").getCollection("coll");
+      final Bson filter = eq(USERID, user.getUserId());
+      final Bson updateUserId = set(USERID, user.getUserId());
+      final Bson updateName = set(NAME, user.getName());
+      final Bson updateCity = set(CITY, user.getCity());
+      final Bson updateStreetAddr = set(STREETADDRESS, user.getStreetAddress());
+      final Bson updates = combine(updateUserId, updateName, updateCity, updateStreetAddr);
+      collection.updateOne(filter, updates);
+    }
     return true;
   }
 
@@ -146,19 +159,23 @@ public class MongoUserDao implements UserDao {
    */
   @Override
   public Collection selectUsersTO(final String criteriaCol, final String criteria) {
-    final FindIterable<Document> iterable = collection.find(eq(criteriaCol, criteria));
-    final MongoCursor<Document> cursor = iterable.iterator();
     final ArrayList<User> selectedUsers = new ArrayList<>();
-    while (cursor.hasNext()) {
-      final User user = new User();
-      final Document document = cursor.next();
-      user.setUserId((Integer) document.get(USERID));
-      user.setName((String) document.get(NAME));
-      user.setCity((String) document.get(CITY));
-      user.setStreetAddress((String) document.get(STREETADDRES));
-      selectedUsers.add(user);
+    try (MongoClient client = new MongoClient(new ServerAddress(serverAddress))) {
+      final MongoCollection<Document> collection =
+          client.getDatabase("mongo").getCollection("coll");
+      final FindIterable<Document> iterable = collection.find(eq(criteriaCol, criteria));
+      final MongoCursor<Document> cursor = iterable.iterator();
+      while (cursor.hasNext()) {
+        final User user = new User();
+        final Document document = cursor.next();
+        user.setUserId((Integer) document.get(USERID));
+        user.setName((String) document.get(NAME));
+        user.setCity((String) document.get(CITY));
+        user.setStreetAddress((String) document.get(STREETADDRESS));
+        selectedUsers.add(user);
+      }
+      cursor.close();
     }
-    cursor.close();
     return selectedUsers;
   }
 }
