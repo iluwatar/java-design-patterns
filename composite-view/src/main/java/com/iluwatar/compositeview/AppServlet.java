@@ -38,8 +38,9 @@ public final class AppServlet extends HttpServlet {
   public void doPost(HttpServletRequest req, HttpServletResponse resp)
           throws ServletException, IOException {
     resp.setContentType("text/html");
-    PrintWriter out = resp.getWriter();
-    out.println(msgPartOne + " Post " + msgPartTwo);
+    try (PrintWriter out = resp.getWriter()) {
+      out.println(msgPartOne + " Post " + msgPartTwo);
+    }
 
   }
 
@@ -47,17 +48,17 @@ public final class AppServlet extends HttpServlet {
   public void doDelete(HttpServletRequest req, HttpServletResponse resp)
           throws ServletException, IOException {
     resp.setContentType("text/html");
-    PrintWriter out = resp.getWriter();
-    out.println(msgPartOne + " Delete " + msgPartTwo);
-
+    try (PrintWriter out = resp.getWriter()) {
+      out.println(msgPartOne + " Delete " + msgPartTwo);
+    }
   }
 
   @Override
   public void doPut(HttpServletRequest req, HttpServletResponse resp)
           throws ServletException, IOException {
     resp.setContentType("text/html");
-    PrintWriter out = resp.getWriter();
-    out.println(msgPartOne + " Put " + msgPartTwo);
-
+    try (PrintWriter out = resp.getWriter()) {
+      out.println(msgPartOne + " Put " + msgPartTwo);
+    }
   }
 }
