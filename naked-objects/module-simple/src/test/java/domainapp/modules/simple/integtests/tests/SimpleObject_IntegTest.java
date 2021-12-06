@@ -37,6 +37,9 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
 
     public static class name extends SimpleObject_IntegTest {
 
+        /**
+         * Test that the name of fixture objects are assessible 
+         */
         @Test
         public void accessible() {
             // when
@@ -46,6 +49,9 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
             assertThat(name).isEqualTo(simpleObject.getName());
         }
 
+        /**
+         * Test that the name of predifined fixture objects cannot be updated
+         */
         @Test
         public void not_editable() {
 
@@ -76,7 +82,9 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
         @Inject
         UpdateNameListener updateNameListener;
 
-
+        /**
+         * Test that given an empty action queue, when there is an "updatedName" action, then SimpleObject will be updated
+         */
         @Test
         public void can_be_updated_directly() {
 
@@ -92,6 +100,9 @@ public class SimpleObject_IntegTest extends SimpleModuleIntegTestAbstract {
             assertThat(updateNameListener.getEvents()).hasSize(5);
         }
 
+        /**
+         * Test that the updated name contains invalid operator. Assert throwing excepiton
+         */
         @Test
         public void fails_validation() {
 

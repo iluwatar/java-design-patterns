@@ -29,11 +29,17 @@ class SimpleObjects_Test {
 
     SimpleObjects objects;
 
+    /**
+     * Initialize SimpleObjects 
+     */
     @BeforeEach
     public void setUp() {
         objects = new SimpleObjects(mockRepositoryService, mockIsisJdoSupport_v3_2);
     }
-
+    /**
+     * Test the constructor that SimpleObject can store the attribute (e.g. name) correctly 
+     * Test the SimpleObject return the correct title (with its name) for the viewModel 
+     */
     @Nested
     class create {
 
@@ -56,7 +62,9 @@ class SimpleObjects_Test {
             assertThat(obj.getName()).isEqualTo(someName);
         }
     }
-
+    /**
+     * Test that listall() function returns the same output as allinstances from the mock repository service 
+     */
     @Nested
     class ListAll {
 

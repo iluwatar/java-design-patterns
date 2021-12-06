@@ -24,6 +24,9 @@ class SimpleObject_Test {
 
     SimpleObject object;
 
+    /**
+     * Initialize a SimpleObject with name "Foo", and set up titleService, messageService, and repositoryService 
+     */
     @BeforeEach
     public void setUp() throws Exception {
         object = SimpleObject.withName("Foo");
@@ -31,6 +34,9 @@ class SimpleObject_Test {
         object.messageService = mockMessageService;
         object.repositoryService = mockRepositoryService;
     }
+    /**
+     * Test that name is properly set 
+     */
     @Nested
     public class withName {
         
@@ -40,7 +46,9 @@ class SimpleObject_Test {
             assertThat(object.getName()).isEqualTo("Foo");
         }
     }
-
+    /**
+     * Test that object title field is set properly as ("Object: [name]") 
+     */
     @Nested
     public class title {
         
@@ -50,6 +58,9 @@ class SimpleObject_Test {
             assertThat(object.title()).isEqualTo("Object: Foo");
         }
     }
+    /**
+     * Test that SimpleObject returns the correct name when name field is updated 
+     */
     @Nested
     public class updateName {
 
@@ -66,6 +77,9 @@ class SimpleObject_Test {
         }
 
     }
+    /**
+     * Test that notification of user is successful when object is deleted 
+     */
     @Nested
     class delete {
 
