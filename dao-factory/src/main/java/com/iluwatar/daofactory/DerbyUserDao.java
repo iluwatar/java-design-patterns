@@ -40,10 +40,10 @@ public class DerbyUserDao implements UserDao {
   * Creates a table DERBYUSER in DerbyDB.
   */
   public DerbyUserDao() {
-    this.sqlMapping.put("CITY", "SELECT ID, Address, Name, " +
-        "City FROM DERBYUSER WHERE CITY = ? ");
-    this.sqlMapping.put("ADDRESS", "SELECT ID, Address, Name, " +
-        "City FROM DERBYUSER WHERE ADDRESS = ? ");
+    this.sqlMapping.put("CITY", "SELECT ID, Address, Name, "
+        + "City FROM DERBYUSER WHERE CITY = ? ");
+    this.sqlMapping.put("ADDRESS", "SELECT ID, Address, Name, "
+        + "City FROM DERBYUSER WHERE ADDRESS = ? ");
     this.sqlMapping.put("NAME", "SELECT ID, Address, Name, City FROM DERBYUSER WHERE NAME = ? ");
 
     final String sqlCreate = "CREATE TABLE DERBYUSER"
@@ -143,9 +143,8 @@ public class DerbyUserDao implements UserDao {
     String name = "";
     String city = "";
     try (PreparedStatement stmt = con.prepareStatement("SELECT * FROM DERBYUSER WHERE ID = ?")) {
-
-        stmt.setInt(1, userId);
-        ResultSet res = stmt.executeQuery();
+      stmt.setInt(1, userId);
+      ResultSet res = stmt.executeQuery();
       while (res.next()) {
         foundId = res.getInt("ID");
         address = res.getString("ADDRESS");
