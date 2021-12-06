@@ -2,7 +2,6 @@ package com.iluwatar.compositeview;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -14,7 +13,7 @@ import java.io.PrintWriter;
  * Runs on Tomcat 10 and handles Http requests
  */
 
-public class AppServlet extends HttpServlet {
+public final class AppServlet extends HttpServlet {
   private String msgPartOne = "<h1>This Server Doesn't Support";
   private String msgPartTwo = "Requests</h1>\n"
       + "<h2>Use a GET request with boolean values for the following parameters<h2>\n"

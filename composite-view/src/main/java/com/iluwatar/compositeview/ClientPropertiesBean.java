@@ -52,7 +52,7 @@ public class ClientPropertiesBean implements Serializable {
     businessInterest = Boolean.parseBoolean(req.getParameter(BUSINESS_PARAM));
     scienceNewsInterest = Boolean.parseBoolean(req.getParameter(SCIENCE_PARAM));
     String tempName = req.getParameter(NAME_PARAM);
-    if (tempName == null || tempName == "") {
+    if (tempName == null || tempName.equals("")) {
       tempName = DEFAULT_NAME;
     }
     name = tempName;
@@ -70,11 +70,11 @@ public class ClientPropertiesBean implements Serializable {
   /**
    * Setter for name.
    *
-   * @param name the string to set as the name
+   * @param toName the string to set as the name
    */
 
-  public void setName(String name) {
-    this.name = name;
+  public void setName(String toName) {
+    this.name = toName;
   }
 
   /**
@@ -90,11 +90,11 @@ public class ClientPropertiesBean implements Serializable {
   /**
    * Setter for businessInterest.
    *
-   * @param businessInterest boolean to set businessInterest to
+   * @param toBusinessInterest boolean to set businessInterest to
    */
 
-  public void setBusinessInterest(boolean businessInterest) {
-    this.businessInterest = businessInterest;
+  public void setBusinessInterest(boolean toBusinessInterest) {
+    this.businessInterest = toBusinessInterest;
   }
 
   /**
@@ -110,11 +110,11 @@ public class ClientPropertiesBean implements Serializable {
   /**
    * Setter for worldNewsInterest.
    *
-   * @param worldNewsInterest boolean to set worldNewsInterest to
+   * @param toWorldNewsInterest boolean to set worldNewsInterest to
    */
 
-  public void setWorldNewsInterest(boolean worldNewsInterest) {
-    this.worldNewsInterest = worldNewsInterest;
+  public void setWorldNewsInterest(boolean toWorldNewsInterest) {
+    this.worldNewsInterest = toWorldNewsInterest;
   }
 
   /**
@@ -130,11 +130,11 @@ public class ClientPropertiesBean implements Serializable {
   /**
    * Setter for sportsInterest.
    *
-   * @param sportsInterest boolean to set sportsInterest to
+   * @param toSportsInterest boolean to set sportsInterest to
    */
 
-  public void setSportsInterest(boolean sportsInterest) {
-    this.sportsInterest = sportsInterest;
+  public void setSportsInterest(boolean toSportsInterest) {
+    this.sportsInterest = toSportsInterest;
   }
 
   /**
@@ -150,10 +150,10 @@ public class ClientPropertiesBean implements Serializable {
   /**
    * Setter for scienceNewsInterest.
    *
-   * @param scienceNewsInterest the boolean to set scienceNewsInterest to
+   * @param toScienceNewsInterest the boolean to set scienceNewsInterest to
    */
 
-  public void setScienceNewsInterest(boolean scienceNewsInterest) {
-    this.scienceNewsInterest = scienceNewsInterest;
+  public void setScienceNewsInterest(boolean toScienceNewsInterest) {
+    this.scienceNewsInterest = toScienceNewsInterest;
   }
 }
