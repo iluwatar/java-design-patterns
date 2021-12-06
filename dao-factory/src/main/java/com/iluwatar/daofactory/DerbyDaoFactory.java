@@ -33,7 +33,7 @@ public class DerbyDaoFactory extends AbstractDaoFactory {
     try {
       Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
       conn1 = DriverManager.getConnection(DBURL);
-      if (conn1 != null && LOGGER.isInfoEnabled()) {
+      if (LOGGER.isInfoEnabled()) {
         LOGGER.info("Connected to database #1");
       }
 

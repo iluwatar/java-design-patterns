@@ -26,7 +26,7 @@ public class DerbyUserDao implements UserDao {
   /**
    * Connection to Derby database.
    */
-  public transient Connection con = DerbyDaoFactory.createConnection();
+  protected Connection con = DerbyDaoFactory.createConnection();
 
   /**
   * Creates a table DERBYUSER in DerbyDB.
@@ -46,20 +46,17 @@ public class DerbyUserDao implements UserDao {
           "APP", "DERBYUSER", null);
 
       if (res.next()) {
-        if (LOGGER.isInfoEnabled()) {
-          LOGGER.info("Table already exists");
-        }
+        LOGGER.info("Table already exists");
+
       } else {
         stmt.execute(sqlCreate);
-        if (LOGGER.isInfoEnabled()) {
-          LOGGER.info("Table created");
-        }
+        LOGGER.info("Table created");
+
       }
 
     } catch (SQLException e) {
-      if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
-      }
+      LOGGER.error(e.getMessage());
+
     }
   }
 
@@ -88,9 +85,8 @@ public class DerbyUserDao implements UserDao {
       statement.close();
       res.close();
     } catch (SQLException e) {
-      if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
-      }
+      LOGGER.error(e.getMessage());
+
     }
     return lastInsertedId;
   }
@@ -111,9 +107,8 @@ public class DerbyUserDao implements UserDao {
       return stmt.executeUpdate() > 0;
 
     } catch (SQLException e) {
-      if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
-      }
+      LOGGER.error(e.getMessage());
+
     }
 
     return false;
@@ -145,9 +140,8 @@ public class DerbyUserDao implements UserDao {
       res.close();
       sta.close();
     } catch (SQLException e) {
-      if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
-      }
+      LOGGER.error(e.getMessage());
+
     }
     user.setUserId(foundId);
     user.setName(name);
@@ -180,9 +174,8 @@ public class DerbyUserDao implements UserDao {
       return preparedStatement.executeUpdate() > 0;
 
     } catch (SQLException throwables) {
-      if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(throwables.getMessage());
-      }
+      LOGGER.error(throwables.getMessage());
+
     }
 
     return false;
@@ -214,9 +207,8 @@ public class DerbyUserDao implements UserDao {
       res.close();
       sta.close();
     } catch (SQLException e) {
-      if (LOGGER.isErrorEnabled()) {
-        LOGGER.error(e.getMessage());
-      }
+      LOGGER.error(e.getMessage());
+
     }
 
     return selectedUsers;
