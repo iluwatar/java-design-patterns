@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,8 +22,14 @@ import lombok.extern.slf4j.Slf4j;
  * these implementation details.
  *
  */
+
 @Slf4j
 public class DerbyUserDao implements UserDao {
+
+  /**
+   * Sql Mapping for column selection.
+   */
+  private Map<String, String> sqlMapping = new HashMap<String, String>();
 
   /**
    * Connection to Derby database.
@@ -32,6 +40,12 @@ public class DerbyUserDao implements UserDao {
   * Creates a table DERBYUSER in DerbyDB.
   */
   public DerbyUserDao() {
+    this.sqlMapping.put("CITY", "SELECT ID, Address, Name, " +
+        "City FROM DERBYUSER WHERE CITY = ? ");
+    this.sqlMapping.put("ADDRESS", "SELECT ID, Address, Name, " +
+        "City FROM DERBYUSER WHERE ADDRESS = ? ");
+    this.sqlMapping.put("NAME", "SELECT ID, Address, Name, City FROM DERBYUSER WHERE NAME = ? ");
+
     final String sqlCreate = "CREATE TABLE DERBYUSER"
         + "("
         + " ID INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY(Start with 1, Increment by 1),"
@@ -128,9 +142,10 @@ public class DerbyUserDao implements UserDao {
     String address = "";
     String name = "";
     String city = "";
-    try (Statement sta = con.createStatement();
-        ResultSet res = sta.executeQuery("SELECT * FROM DERBYUSER WHERE ID = " + userId);) {
+    try (PreparedStatement stmt = con.prepareStatement("SELECT * FROM DERBYUSER WHERE ID = ?")) {
 
+        stmt.setInt(1, userId);
+        ResultSet res = stmt.executeQuery();
       while (res.next()) {
         foundId = res.getInt("ID");
         address = res.getString("ADDRESS");
@@ -138,7 +153,6 @@ public class DerbyUserDao implements UserDao {
         city = res.getString("CITY");
       }
       res.close();
-      sta.close();
     } catch (SQLException e) {
       LOGGER.error(e.getMessage());
 
@@ -192,9 +206,11 @@ public class DerbyUserDao implements UserDao {
   public Collection selectUsersTO(final String criteriaCol, final String criteria) {
     final ArrayList<User> selectedUsers = new ArrayList<>();
 
-    try (Statement sta = con.createStatement();
-         ResultSet res = sta.executeQuery("SELECT ID, Address, Name, City "
-            + "FROM DERBYUSER WHERE " + criteriaCol + " = '" + criteria + "'");) {
+    String query = this.sqlMapping.get(criteriaCol);
+    try (PreparedStatement stmt = con.prepareStatement(query)) {
+
+      stmt.setString(1, criteria);
+      ResultSet res = stmt.executeQuery();
 
       while (res.next()) {
         final User user = new User();
@@ -205,7 +221,6 @@ public class DerbyUserDao implements UserDao {
         selectedUsers.add(user);
       }
       res.close();
-      sta.close();
     } catch (SQLException e) {
       LOGGER.error(e.getMessage());
 
