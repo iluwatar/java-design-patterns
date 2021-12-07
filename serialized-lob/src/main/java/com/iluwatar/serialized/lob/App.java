@@ -23,17 +23,23 @@
 
 package com.iluwatar.serialized.lob;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 import javax.sql.DataSource;
 
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
-import java.util.List;
-
 /**
+ * Serialized LOB design pattern.
+ * Saves a graph of objects by serializing them into a single large object (LOB), which is then stored in database.
+ *
+ * The following code will implement this pattern by instantiating two entities: Department and Position.
+ * Then serializing them into a LOB, which will be inserted into a testing database,
+ * followed by reading, updating, and deleting as one would normally manipulate a database object.
+ *
  * App.
  */
 @Slf4j

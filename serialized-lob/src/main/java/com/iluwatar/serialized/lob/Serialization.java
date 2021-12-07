@@ -33,6 +33,12 @@ import javax.sql.DataSource;
 import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * A class that performs serialization by first instantiating DataSource to crete a testing database and Position to
+ * create a Position object that represents the graph relationship between Positions and Departments. Then, the class
+ * serializes the Position object and stores it as a BLOB into the database. Next, the class manipulates this stored
+ * database object by reading, updating, and eventually deleting it.
+ */
 @Slf4j
 public class Serialization {
     /**
@@ -146,18 +152,18 @@ public class Serialization {
              ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
              ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream)) {
 
-            objectOutputStream.writeObject(updatePosition.getDepartments());
-            objectOutputStream.flush();
+        objectOutputStream.writeObject(updatePosition.getDepartments());
+        objectOutputStream.flush();
 
-            preparedStatement.setString(1, updatePosition.getName());
-            preparedStatement.setBlob(2, new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
-            preparedStatement.setInt(3, position.getId());
-            preparedStatement.executeUpdate();
+        preparedStatement.setString(1, updatePosition.getName());
+        preparedStatement.setBlob(2, new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
+        preparedStatement.setInt(3, position.getId());
+        preparedStatement.executeUpdate();
 
-            LOGGER.info(String.format("Update Position: Id = %d | Name = %s | Departments = %s",
-                    position.getId(), updatePosition.getName(), updatePosition.getDepartments()));
+        LOGGER.info(String.format("Update Position: Id = %d | Name = %s | Departments = %s",
+                position.getId(), updatePosition.getName(), updatePosition.getDepartments()));
 
-            return position.getId();
+        return position.getId();
         }
     }
 

@@ -42,12 +42,6 @@
           <groupId>com.h2database</groupId>
           <artifactId>h2</artifactId>
       </dependency>
-      <dependency>
-          <groupId>com.github.spotbugs</groupId>
-          <artifactId>spotbugs-annotations</artifactId>
-          <version>RELEASE</version>
-          <scope>compile</scope>
-      </dependency>
   </dependencies>
   <build>
     <plugins>

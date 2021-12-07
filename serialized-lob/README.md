@@ -77,8 +77,4 @@ public class Serialization {
 ```
 
 ## Related patterns
-- [memento](https://github.com/iluwatar/java-design-patterns/tree/master/memento)
-
-## Credits
-* [Serialized LOB](https://martinfowler.com/eaaCatalog/serializedLOB.html)
-* [A Different Implementation for the Same Pattern](https://github.com/iluwatar/java-design-patterns/pull/1765/files)
+- [Memento](https://github.com/iluwatar/java-design-patterns/tree/master/memento)
