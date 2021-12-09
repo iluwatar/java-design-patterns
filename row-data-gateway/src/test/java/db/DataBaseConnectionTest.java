@@ -22,6 +22,12 @@ public class DataBaseConnectionTest {
 	@Mock
 	private Connection connection;
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link DataBaseConnection} getConnection
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testGetConnection() throws SQLException {
 		DataBaseConnection dataBaseConnection = new DataBaseConnection();
@@ -32,6 +38,12 @@ public class DataBaseConnectionTest {
 	}
 
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Test {@link DataBaseConnection} closeConnection
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testCloseConnection() throws SQLException {
 		DataBaseConnection dataBaseConnection = new DataBaseConnection();

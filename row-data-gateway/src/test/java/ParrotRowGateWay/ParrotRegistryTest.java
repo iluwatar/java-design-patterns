@@ -2,8 +2,6 @@ package ParrotRowGateWay;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.mockito.Mock;
@@ -11,6 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import static org.junit.Assert.assertEquals;
@@ -28,6 +27,10 @@ public class ParrotRegistryTest {
 	@Mock
 	private HashMap<Integer, OwnedParrotGateWay> parrotRegistry;
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link ParrotRegistry} getParrotRegistrySize
+	 */
 	@Test
 	public void getParrotRegistrySize() {
 		OwnedParrotGateWay ownedParrotGateWay = new OwnedParrotGateWay(1, 1, "Name", 2, "Red", false);
@@ -37,6 +40,10 @@ public class ParrotRegistryTest {
 		assertEquals(2, ParrotRegistry.getParrotRegistrySize());
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link ParrotRegistry} getAllOwnedParrotsInRegistry
+	 */
 	@Test
 	public void getAllOwnedParrotsInRegistry() {
 		OwnedParrotGateWay ownedParrotGateWay = new OwnedParrotGateWay(1, 1, "Name", 2, "Red", false);
@@ -44,6 +51,12 @@ public class ParrotRegistryTest {
 		assertEquals(1, ParrotRegistry.getAllOwnedParrotsInRegistry().size());
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link ParrotRegistry} addOwnedParrot
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testAddOwnedParrot() throws Exception {
 		setFinalStatic(ParrotRegistry.class.getDeclaredField("parrotRegistry"), parrotRegistry);
@@ -52,6 +65,12 @@ public class ParrotRegistryTest {
 		verify(ownedParrotGateWay, times(3)).getOwnedParrotId();
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link ParrotRegistry} removeOwnedParrot
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testRemoveOwnedParrot() throws Exception {
 		setFinalStatic(ParrotRegistry.class.getDeclaredField("parrotRegistry"), parrotRegistry);
@@ -61,6 +80,12 @@ public class ParrotRegistryTest {
 	}
 
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link ParrotRegistry} updateOwnedParrot
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testUpdateOwnedParrot() throws Exception {
 		setFinalStatic(ParrotRegistry.class.getDeclaredField("parrotRegistry"), parrotRegistry);
@@ -70,6 +95,12 @@ public class ParrotRegistryTest {
 		verify(ownedParrotGateWay, times(3)).getOwnedParrotId();
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link ParrotRegistry} getOwnedParrot by ID
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testGetOwnedParrot() throws Exception {
 		setFinalStatic(ParrotRegistry.class.getDeclaredField("parrotRegistry"), parrotRegistry);
@@ -79,12 +110,21 @@ public class ParrotRegistryTest {
 		assertNotNull(ownedParrot);
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link ParrotRegistry} getParrotRegistrySize with empty
+	 */
 	@Test
 	public void testGetParrotRegistryEmptySize() {
 		assertEquals(0, ParrotRegistry.getParrotRegistrySize());
 	}
 
-
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Helper method for setting final statics
+	 *
+	 * @throws Exception If any error occurs
+	 */
 	public static void setFinalStatic(Field field, Object newValue) throws Exception {
 		field.setAccessible(true);
 		Field modifiersField = Field.class.getDeclaredField("modifiers");

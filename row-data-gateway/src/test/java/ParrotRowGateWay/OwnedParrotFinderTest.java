@@ -14,7 +14,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -35,16 +34,32 @@ public class OwnedParrotFinderTest {
 
 	private OwnedParrotFinder ownedParrotFinder;
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Setting up the test requirements.
+	 */
 	@Before
 	public void setUp() {
 		ownedParrotFinder = new OwnedParrotFinder();
 	}
 
-	@Test(expected=SQLException.class)
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Negative test {@link OwnedParrotFinder} findById for SQLException
+	 *
+	 * @throws SQLException If any error occurs
+	 */
+	@Test(expected = SQLException.class)
 	public void findByIdWithExceptionTest() throws SQLException {
 		ownedParrotFinder.findById(2);
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link OwnedParrotFinder} findById for Null object
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void findByIdWithNoExceptionAndReturnNULLTest() throws SQLException {
 		ownedParrotFinder = new OwnedParrotFinder(dataBaseConnection);
@@ -53,6 +68,12 @@ public class OwnedParrotFinderTest {
 		assertNull(ownedParrotFinder.findById(2));
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link OwnedParrotFinder} findById
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void findByIdWithReturnObjectTest() throws SQLException {
 		ownedParrotFinder = new OwnedParrotFinder(dataBaseConnection);
@@ -67,10 +88,16 @@ public class OwnedParrotFinderTest {
 		when(connection.prepareStatement(any(String.class))).thenReturn(statement);
 		when(statement.executeQuery()).thenReturn(resultSet);
 		assertNotNull(ownedParrotFinder.findById(2));
-		assertEquals(ownedParrotFinder.findById(2).getParrotName(),"Mikey");
+		assertEquals(ownedParrotFinder.findById(2).getParrotName(), "Mikey");
 	}
 
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link OwnedParrotFinder} findAll
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void findAllWithReturnObjectTest() throws SQLException {
 		ownedParrotFinder = new OwnedParrotFinder(dataBaseConnection);

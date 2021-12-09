@@ -35,6 +35,10 @@ public class OwnedParrotGateWayTest {
 	private DataBaseConnection dataBaseConnection;
 
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link OwnedParrotGateWay} all fields
+	 */
 	@Test
 	public void testFields() {
 		OwnedParrot ownedParrot = new OwnedParrot();
@@ -54,6 +58,10 @@ public class OwnedParrotGateWayTest {
 	}
 
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link OwnedParrotGateWay} overloaded constructor
+	 */
 	@Test
 	public void testFieldsOverloadedConstructor() {
 		OwnedParrotGateWay ownedParrotGateWay = new OwnedParrotGateWay(1, 1, "Mikey", 10, "Blue and Gold", false);
@@ -66,6 +74,12 @@ public class OwnedParrotGateWayTest {
 	}
 
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link OwnedParrotGateWay} insert
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testInsert() throws SQLException {
 		when(dataBaseConnection.getConnection()).thenReturn(connection);
@@ -84,12 +98,24 @@ public class OwnedParrotGateWayTest {
 		verify(resultSet, times(1)).getInt("OwnedParrotId");
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Negative test {@link OwnedParrotGateWay} insert for SQLException
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test(expected = SQLException.class)
 	public void testInsertException() throws SQLException {
 		OwnedParrotGateWay ownedParrotGateWay = new OwnedParrotGateWay(ownedParrot);
 		ownedParrotGateWay.insert();
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Negative test {@link OwnedParrotGateWay} insert for no records
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testInsertZero() throws SQLException {
 		when(dataBaseConnection.getConnection()).thenReturn(connection);
@@ -108,6 +134,12 @@ public class OwnedParrotGateWayTest {
 		verify(resultSet, times(1)).getInt("OwnedParrotId");
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link OwnedParrotGateWay} update
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testUpdate() throws SQLException {
 		when(dataBaseConnection.getConnection()).thenReturn(connection);
@@ -123,6 +155,12 @@ public class OwnedParrotGateWayTest {
 		verify(statement, times(1)).executeUpdate();
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Negative test {@link OwnedParrotGateWay} update for no records
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testUpdateZero() throws SQLException {
 		when(dataBaseConnection.getConnection()).thenReturn(connection);
@@ -138,12 +176,24 @@ public class OwnedParrotGateWayTest {
 		verify(statement, times(1)).executeUpdate();
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Negative test {@link OwnedParrotGateWay} update for SQLException
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test(expected = SQLException.class)
 	public void testUpdateException() throws SQLException {
 		OwnedParrotGateWay ownedParrotGateWay = new OwnedParrotGateWay(ownedParrot);
 		ownedParrotGateWay.update();
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link OwnedParrotGateWay} delete
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testDelete() throws SQLException {
 		when(dataBaseConnection.getConnection()).thenReturn(connection);
@@ -159,6 +209,12 @@ public class OwnedParrotGateWayTest {
 		verify(statement, times(1)).executeUpdate();
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Negative test {@link OwnedParrotGateWay} delete for no records
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testDeleteZero() throws SQLException {
 		when(dataBaseConnection.getConnection()).thenReturn(connection);
@@ -174,6 +230,12 @@ public class OwnedParrotGateWayTest {
 		verify(statement, times(1)).executeUpdate();
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Negative test {@link OwnedParrotGateWay} delete for SQLException
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test(expected = SQLException.class)
 	public void testDeleteException() throws SQLException {
 		OwnedParrotGateWay ownedParrotGateWay = new OwnedParrotGateWay(ownedParrot);

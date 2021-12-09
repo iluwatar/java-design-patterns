@@ -18,6 +18,10 @@ public class OwnedParrotTest {
 	@InjectMocks
 	private OwnedParrot injectOwnedParrot;
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests all fields of {@link OwnedParrot}
+	 */
 	@Test
 	public void testFields() {
 
@@ -37,6 +41,12 @@ public class OwnedParrotTest {
 		assertEquals(true, myNewParrot.getTamed());
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Tests {@link OwnedParrot} printParrotInformation
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test
 	public void testPrintParrotInformation() throws SQLException {
 		try (MockedStatic<ParrotTypeRegistry> mockedParrotTypeRegistry = Mockito.mockStatic(ParrotTypeRegistry.class)) {
@@ -47,6 +57,12 @@ public class OwnedParrotTest {
 		}
 	}
 
+	/**
+	 * CS427 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1312
+	 * Negative test {@link OwnedParrot} printParrotInformation for SQLException
+	 *
+	 * @throws SQLException If any error occurs
+	 */
 	@Test(expected = SQLException.class)
 	public void testPrintParrotInformationWithException() throws SQLException {
 		try (MockedStatic<ParrotTypeRegistry> mockedParrotTypeRegistry = Mockito.mockStatic(ParrotTypeRegistry.class)) {
