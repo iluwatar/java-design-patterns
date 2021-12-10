@@ -1,0 +1,31 @@
+@startuml
+package com.iluwatar.serialized.entity {
+  class App {
+    - DB_URL : String {static}
+    - LOGGER : Logger {static}
+    + App()
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteSchema(dataSource : DataSource) {static}
+    + main(args : String[]) {static}
+  }
+  class Taxonomy {
+    - speciesId : int
+    - name : String
+    - departments : List<Department>
+    ~ Position(id : int, name : String, departments : List<Department>)
+  }
+  class Serialization {
+    - CREATE_SCHEMA_SQL : String {static}
+    - DELETE_SCHEMA_SQL : String {static}
+    - LOGGER : Logger {static}
+    - dataSource : DataSource
+    - position : Position
+    ~ Serialization(position : Position, dataSource : DataSource)
+    + insert()
+    + read()
+    + update(updatePosition : Position)
+    + delete()
+  }
+}
+@enduml
