@@ -16,10 +16,10 @@ tags:
 ---
 
 ## Intent
-Saves an object to a database
+Saves an object to a database in an efficient serialized form and retrieves/updates/deletes as needed.
 
 ## Explanation
-Objects are often stored in a database for persistence. For efficiency, Java object serialization is used translate 
+Objects can be stored in a database for persistence. For efficiency, Java object serialization is used to translate 
 the object into a set of bytes. The bytes are then stored in a database as binary large object and then read and 
 reconstituted into the object when needed.
 
