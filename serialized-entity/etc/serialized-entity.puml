@@ -1,5 +1,5 @@
 @startuml
-package com.iluwatar.serialized.entity {
+package com.iluwatar.serializedentity {
   class App {
     - DB_URL : String {static}
     - LOGGER : Logger {static}
@@ -9,23 +9,38 @@ package com.iluwatar.serialized.entity {
     - deleteSchema(dataSource : DataSource) {static}
     + main(args : String[]) {static}
   }
+
   class Taxonomy {
     - speciesId : int
-    - name : String
-    - departments : List<Department>
-    ~ Position(id : int, name : String, departments : List<Department>)
+    - domain : String
+    - kingdom : String
+    - phylum : String
+    - classis : String
+    - order : String
+    - family : String
+    - genus : String
+    - species : String
+    ~ Taxonomy(int, String, String, String, String, String, String, String, String)
   }
+
   class Serialization {
     - CREATE_SCHEMA_SQL : String {static}
     - DELETE_SCHEMA_SQL : String {static}
     - LOGGER : Logger {static}
     - dataSource : DataSource
-    - position : Position
-    ~ Serialization(position : Position, dataSource : DataSource)
+    - taxonomy : Taxonomy
+    ~ Serialization(taxonomy : Taxonomy, dataSource : DataSource)
     + insert()
     + read()
-    + update(updatePosition : Position)
+    + update(updateTaxonomy : Taxonomy)
     + delete()
   }
+  diamond h2db
 }
+
+App --> "Initialize Taxonomy objects" Taxonomy
+App --> "Initialize Serialization objects" Serialization
+Taxonomy --> "Serialized by" Serialization
+Taxonomy --> "Stored in database" h2db
+Serialization --> "Perform CRUD operations" h2db
 @enduml
