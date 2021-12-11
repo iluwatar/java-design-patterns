@@ -1739,6 +1739,16 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "Shrirang97",
+      "name": "Shrirang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28738668?v=4",
+      "profile": "https://github.com/Shrirang97",
+      "contributions": [
+        "review",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
