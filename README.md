@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-190-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-191-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -320,6 +320,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://www.linkedin.com/in/abhinav-vashisth-06613b208/"><img src="https://avatars.githubusercontent.com/u/89785800?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Abhinav Vashisth</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=vashisthabhinav" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://no website"><img src="https://avatars.githubusercontent.com/u/47126749?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kevin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3AKevinyl3" title="Reviewed Pull Requests">👀</a></td>
   </tr>
 </table>
 

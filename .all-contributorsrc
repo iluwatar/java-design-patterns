@@ -1730,6 +1730,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "Kevinyl3",
+      "name": "Kevin",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47126749?v=4",
+      "profile": "http://no website",
+      "contributions": [
+        "review"
+      ]
     }
   ],
   "contributorsPerLine": 7,
