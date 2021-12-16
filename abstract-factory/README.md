@@ -4,6 +4,7 @@ title: Abstract Factory
 folder: abstract-factory
 permalink: /patterns/abstract-factory/
 categories: Creational
+language: en
 tags:
  - Gang of Four
 ---
@@ -19,9 +20,9 @@ objects without specifying their concrete classes.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> To create a kingdom we need objects with a common theme. Elven kingdom needs an Elven king, Elven castle and Elven army whereas Orcish kingdom needs an Orcish king, Orcish castle and Orcish army. There is a dependency between the objects in the kingdom.
+> To create a kingdom we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency between the objects in the kingdom.
 
 In plain words
 
@@ -33,7 +34,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Translating the kingdom example above. First of all we have some interfaces and implementation for the objects in the 
+Translating the kingdom example above. First of all, we have some interfaces and implementation for the objects in the 
 kingdom.
 
 ```java
@@ -51,21 +52,21 @@ public interface Army {
 
 // Elven implementations ->
 public class ElfCastle implements Castle {
-  static final String DESCRIPTION = "This is the Elven castle!";
+  static final String DESCRIPTION = "This is the elven castle!";
   @Override
   public String getDescription() {
     return DESCRIPTION;
   }
 }
 public class ElfKing implements King {
-  static final String DESCRIPTION = "This is the Elven king!";
+  static final String DESCRIPTION = "This is the elven king!";
   @Override
   public String getDescription() {
     return DESCRIPTION;
   }
 }
 public class ElfArmy implements Army {
-  static final String DESCRIPTION = "This is the Elven Army!";
+  static final String DESCRIPTION = "This is the elven Army!";
   @Override
   public String getDescription() {
     return DESCRIPTION;
@@ -76,7 +77,7 @@ public class ElfArmy implements Army {
 
 ```
 
-Then we have the abstraction and implementations for the kingdom factory
+Then we have the abstraction and implementations for the kingdom factory.
 
 ```java
 public interface KingdomFactory {
@@ -86,31 +87,43 @@ public interface KingdomFactory {
 }
 
 public class ElfKingdomFactory implements KingdomFactory {
+
+  @Override
   public Castle createCastle() {
     return new ElfCastle();
   }
+
+  @Override
   public King createKing() {
     return new ElfKing();
   }
+
+  @Override
   public Army createArmy() {
     return new ElfArmy();
   }
 }
 
 public class OrcKingdomFactory implements KingdomFactory {
+
+  @Override
   public Castle createCastle() {
     return new OrcCastle();
   }
+
+  @Override
   public King createKing() {
     return new OrcKing();
   }
+  
+  @Override
   public Army createArmy() {
     return new OrcArmy();
   }
 }
 ```
 
-Now we have our abstract factory that lets us make family of related objects i.e. Elven kingdom factory creates Elven castle, king and army etc.
+Now we have the abstract factory that lets us make a family of related objects i.e. elven kingdom factory creates elven castle, king and army, etc.
 
 ```java
 var factory = new ElfKingdomFactory();
@@ -126,13 +139,13 @@ army.getDescription();
 Program output:
 
 ```java
-This is the Elven castle!
-This is the Elven king!
-This is the Elven Army!
+This is the elven castle!
+This is the elven king!
+This is the elven Army!
 ```
 
-Now, we can design a factory for our different kingdom factories. In this example, we created FactoryMaker, responsible for returning an instance of either ElfKingdomFactory or OrcKingdomFactory.  
-The client can use FactoryMaker to create the desired concrete factory which, in turn, will produce different concrete objects (Army, King, Castle).  
+Now, we can design a factory for our different kingdom factories. In this example, we created `FactoryMaker`, responsible for returning an instance of either `ElfKingdomFactory` or `OrcKingdomFactory`.  
+The client can use `FactoryMaker` to create the desired concrete factory which, in turn, will produce different concrete objects (derived from `Army`, `King`, `Castle`).  
 In this example, we also used an enum to parameterize which type of kingdom factory the client will ask for.
 
 ```java
@@ -178,8 +191,8 @@ public static void main(String[] args) {
 
 Use the Abstract Factory pattern when
 
-* The system should be independent of how its products are created, composed and represented
-* The system should be configured with one of multiple families of products
+* The system should be independent of how its products are created, composed, and represented
+* The system should be configured with one of the multiple families of products
 * The family of related product objects is designed to be used together, and you need to enforce this constraint
 * You want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
 * The lifetime of the dependency is conceptually shorter than the lifetime of the consumer.
@@ -195,13 +208,13 @@ Example use cases
 * Unit test case writing becomes much easier
 * UI tools for different OS
 
-## Consequences:
+## Consequences
 
 * Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
 * While the pattern is great when creating predefined objects, adding the new ones might be challenging.
-* The code becomes more complicated than it should be, since a lot of new interfaces and classes are introduced along with the pattern.
+* The code becomes more complicated than it should be since a lot of new interfaces and classes are introduced along with the pattern.
 
-## Tutorial
+## Tutorials
 
 * [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
 

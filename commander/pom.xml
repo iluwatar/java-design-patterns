@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     The MIT License
@@ -27,7 +28,7 @@
   <parent>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.25.0-SNAPSHOT</version>
+    <version>1.26.0-SNAPSHOT</version>
   </parent>
   <artifactId>commander</artifactId>
   <dependencies>
@@ -55,7 +56,7 @@
             </configuration>
           </execution>
           <execution>
-          <id>Message</id>
+            <id>Message</id>
             <configuration>
               <archive>
                 <manifest>

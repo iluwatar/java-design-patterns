@@ -4,6 +4,7 @@ title: Servant
 folder: servant
 permalink: /patterns/servant/
 categories: Behavioral
+language: en
 tags:
  - Decoupling
 ---

@@ -5,31 +5,32 @@ package com.iluwatar.factory {
     + App()
     + main(args : String[]) {static}
   }
-  interface Car {
+  interface Coin {
     + getDescription() : String {abstract}
   }
-  class CarsFactory {
-    + CarsFactory()
-    + getCar(type : CarType) : Car {static}
+  class CoinFactory {
+    + CoinFactory()
+    + getCoin(type : CoinType) : Coin {static}
   }
-  ~enum CarType {
-    + FERRARI {static}
-    + FORD {static}
-    + valueOf(name : String) : CarType {static}
-    + values() : CarType[] {static}
+  enum CoinType {
+    + COPPER {static}
+    + GOLD {static}
+    - constructor : Supplier<Coin>
+    + getConstructor() : Supplier<Coin>
+    + valueOf(name : String) : CoinType {static}
+    + values() : CoinType[] {static}
   }
-  class Ferrari {
+  class CopperCoin {
     ~ DESCRIPTION : String {static}
-    + Ferrari()
+    + CopperCoin()
     + getDescription() : String
   }
-  class Ford {
+  class GoldCoin {
     ~ DESCRIPTION : String {static}
-    + Ford()
+    + GoldCoin()
     + getDescription() : String
   }
 }
-CarType ..+ CarsFactory
-Ferrari ..|> Car 
-Ford ..|> Car 
+CopperCoin ..|> Coin 
+GoldCoin ..|> Coin 
 @enduml

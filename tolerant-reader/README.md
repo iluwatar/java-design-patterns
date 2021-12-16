@@ -4,6 +4,7 @@ title: Tolerant Reader
 folder: tolerant-reader
 permalink: /patterns/tolerant-reader/
 categories: Integration
+language: en
 tags:
  - Decoupling
 ---

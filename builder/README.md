@@ -4,6 +4,7 @@ title: Builder
 folder: builder
 permalink: /patterns/builder/
 categories: Creational
+language: en
 tags:
  - Gang of Four
 ---
@@ -15,11 +16,11 @@ process can create different representations.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a character generator for a role-playing game. The easiest option is to let the computer 
 > create the character for you. If you want to manually select the character details like 
-> profession, gender, hair color etc. the character generation becomes a step-by-step process that 
+> profession, gender, hair color, etc. the character generation becomes a step-by-step process that 
 > completes when all the selections are ready.
 
 In plain words
@@ -48,7 +49,7 @@ anti-pattern.
 
 **Programmatic Example**
 
-The sane alternative is to use the Builder pattern. First of all we have our hero that we want to 
+The sane alternative is to use the Builder pattern. First of all, we have our hero that we want to 
 create:
 
 ```java
@@ -133,7 +134,13 @@ Use the Builder pattern when
 * The algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled
 * The construction process must allow different representations for the object that's constructed
 
-## Real world examples
+## Tutorials
+
+* [Refactoring Guru](https://refactoring.guru/design-patterns/builder)
+* [Oracle Blog](https://blogs.oracle.com/javamagazine/post/exploring-joshua-blochs-builder-design-pattern-in-java)
+* [Journal Dev](https://www.journaldev.com/1425/builder-design-pattern-in-java)
+
+## Known uses
 
 * [java.lang.StringBuilder](http://docs.oracle.com/javase/8/docs/api/java/lang/StringBuilder.html)
 * [java.nio.ByteBuffer](http://docs.oracle.com/javase/8/docs/api/java/nio/ByteBuffer.html#put-byte-) as well as similar buffers such as FloatBuffer, IntBuffer and so on.

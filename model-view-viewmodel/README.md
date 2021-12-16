@@ -4,6 +4,7 @@ title: Model-View-ViewModel
 folder: model-view-viewmodel
 permalink: /patterns/model-view-viewmodel/
 categories: Architectural
+language: en
 tags:
  - Decoupling
 ---
@@ -117,7 +118,7 @@ To deploy the example, go to model-view-viewmodel folder and run:
 
 * [Zkoss Demo](https://www.zkoss.org/zkdemo/getting_started/mvvm)
 * [Learn MVVM](https://www.learnmvvm.com/)
-* [Android Developer CodeLabs](https://codelabs.developers.google.com/codelabs/android-databinding)
+* [Data Binding in Android](https://developer.android.com/codelabs/android-databinding#0)
 
 ## Typical Use Case
 

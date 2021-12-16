@@ -131,9 +131,10 @@ public class App {
      * log requests.
      */
     reactor
-        .registerChannel(tcpChannel(6666, loggingHandler))
-        .registerChannel(tcpChannel(6667, loggingHandler))
-        .registerChannel(udpChannel(6668, loggingHandler))
+        .registerChannel(tcpChannel(16666, loggingHandler))
+        .registerChannel(tcpChannel(16667, loggingHandler))
+        .registerChannel(udpChannel(16668, loggingHandler))
+        .registerChannel(udpChannel(16669, loggingHandler))
         .start();
   }
 

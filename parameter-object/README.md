@@ -4,6 +4,7 @@ title: Parameter Object
 folder: parameter-object
 permalink: /patterns/parameter-object/
 categories: Behavioral
+language: en
 tags:
  - Extensibility
 ---

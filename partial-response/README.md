@@ -4,6 +4,7 @@ title: Partial Response
 folder: partial-response
 permalink: /patterns/partial-response/
 categories: Behavioral
+language: en
 tags:
  - Decoupling
 ---

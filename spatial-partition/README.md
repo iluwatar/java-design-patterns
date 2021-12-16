@@ -4,6 +4,7 @@ title: Spatial Partition
 folder: spatial-partition
 permalink: /patterns/spatial-partition/
 categories: Behavioral
+language: en
 tags:
  - Performance
  - Game programming

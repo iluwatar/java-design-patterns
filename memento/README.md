@@ -4,6 +4,7 @@ title: Memento
 folder: memento
 permalink: /patterns/memento/
 categories: Behavioral
+language: en
 tags:
  - Gang of Four
 ---
@@ -19,10 +20,10 @@ object can be restored to this state later.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> We are working on astrology application where we need to analyze star properties over time. We are 
-> creating snapshots of star state using Memento pattern.
+> We are working on an astrology application where we need to analyze star properties over time. We 
+> are creating snapshots of star states using the Memento pattern.
 
 In plain words
 
@@ -50,7 +51,7 @@ public enum StarType {
 ```
 
 Next, let's jump straight to the essentials. Here's the `Star` class along with the mementos that we 
-need manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
+need to manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
 
 ```java
 public interface StarMemento {
@@ -175,7 +176,7 @@ Use the Memento pattern when
 * A direct interface to obtaining the state would expose implementation details and break the 
 object's encapsulation
 
-## Real world examples
+## Known uses
 
 * [java.util.Date](http://docs.oracle.com/javase/8/docs/api/java/util/Date.html)
 
