@@ -41,6 +41,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
+  private static final String MANUFACTURED = "{} manufactured {}";
+
   /**
    * Program entry point.
    * @param args command line args
@@ -49,14 +51,14 @@ public class App {
 
     Blacksmith blacksmith = new OrcBlacksmith();
     Weapon weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
-    LOGGER.info("{} manufactured {}", blacksmith, weapon);
+    LOGGER.info(MANUFACTURED, blacksmith, weapon);
     weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
-    LOGGER.info("{} manufactured {}", blacksmith, weapon);
+    LOGGER.info(MANUFACTURED, blacksmith, weapon);
 
     blacksmith = new ElfBlacksmith();
     weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
-    LOGGER.info("{} manufactured {}", blacksmith, weapon);
+    LOGGER.info(MANUFACTURED, blacksmith, weapon);
     weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
-    LOGGER.info("{} manufactured {}", blacksmith, weapon);
+    LOGGER.info(MANUFACTURED, blacksmith, weapon);
   }
 }
