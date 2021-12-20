@@ -98,7 +98,7 @@ public class NioReactor {
   public void stop() throws InterruptedException, IOException {
     reactorMain.shutdown();
     selector.wakeup();
-    if (!reactorMain.awaitTermination(4, TimeUnit.SECONDS)){
+    if (!reactorMain.awaitTermination(4, TimeUnit.SECONDS)) {
       reactorMain.shutdownNow();
     }
     selector.close();
