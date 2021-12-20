@@ -10,15 +10,15 @@ import java.util.List;
 @Slf4j
 public class App {
     public static void main(String[] args){
-        LOGGER.info("hello");
         DatabaseUtil.createDataSource();
         UserService userService = new UserService();
         for (User user: generateSampleUsers()) {
             userService.createUser(user);
         }
         List<User> users = userService.listUser();
+        LOGGER.info(String.valueOf(users));
         User user = userService.getUser(1);
-        System.out.println(user);
+        LOGGER.info(String.valueOf(user));
         user.setPassword("111111");
         userService.updateUser(1, user);
         userService.deleteUser(2);
