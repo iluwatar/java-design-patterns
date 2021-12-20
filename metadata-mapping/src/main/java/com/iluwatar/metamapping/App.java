@@ -2,11 +2,9 @@ package com.iluwatar.metamapping;
 
 import com.iluwatar.metamapping.model.User;
 import com.iluwatar.metamapping.service.UserService;
-import com.iluwatar.metamapping.service.impl.UserServiceImpl;
 import com.iluwatar.metamapping.utils.DatabaseUtil;
-import com.iluwatar.metamapping.utils.HibernateUtil;
 import lombok.extern.slf4j.Slf4j;
-import java.sql.SQLException;
+
 import java.util.List;
 
 @Slf4j
@@ -14,7 +12,7 @@ public class App {
     public static void main(String[] args){
         LOGGER.info("hello");
         DatabaseUtil.createDataSource();
-        UserService userService = new UserServiceImpl();
+        UserService userService = new UserService();
         for (User user: generateSampleUsers()) {
             userService.createUser(user);
         }

@@ -31,7 +31,7 @@ Wikipedia says
 
 ## Class diagram
 
-
+![metamapping](etc/metamapping.png)
 
 ## Applicability
 
