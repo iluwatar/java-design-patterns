@@ -19,7 +19,10 @@ public class DatabaseUtil {
                                                 + "  `password` varchar(255) NOT NULL,\n"
                                                 + "  PRIMARY KEY (`id`)\n"
                                                 + ");";
-  private static DataSource dataSource = null;
+  /**
+   * Hide constructor.
+   */
+  private DatabaseUtil() { }
 
   /**
    * Create database.
@@ -33,11 +36,10 @@ public class DatabaseUtil {
       connection = source.getConnection();
       var statement = connection.createStatement();
       statement.execute(CREATE_SCHEMA_SQL);
-      dataSource = source;
       statement.close();
       connection.close();
-    } catch (SQLException throwables) {
-      LOGGER.error("unable to create h2 data source", throwables);
+    } catch (SQLException e) {
+      LOGGER.error("unable to create h2 data source", e);
     }
   }
 }

@@ -29,9 +29,9 @@ public class UserService {
     List<User> users = new ArrayList<>();
     try {
       tx = session.beginTransaction();
-      List userIter = session.createQuery("FROM User").list();
-      for (Iterator iterator = userIter.iterator(); iterator.hasNext();) {
-        users.add((User) iterator.next());
+      List<User> userIter = session.createQuery("FROM User").list();
+      for (Iterator<User> iterator = userIter.iterator(); iterator.hasNext();) {
+        users.add(iterator.next());
       }
       tx.commit();
     } catch (HibernateException e) {
@@ -82,7 +82,7 @@ public class UserService {
     Transaction tx = null;
     try {
       tx = session.beginTransaction();
-      User u = (User) session.get(User.class, id);
+      User u = session.get(User.class, id);
       u.setUsername(user.getUsername());
       u.setPassword(user.getPassword());
       session.update(u);
@@ -107,7 +107,7 @@ public class UserService {
     Transaction tx = null;
     try {
       tx = session.beginTransaction();
-      User user = (User) session.get(User.class, id);
+      User user = session.get(User.class, id);
       session.delete(user);
       tx.commit();
     } catch (HibernateException e) {
@@ -132,7 +132,7 @@ public class UserService {
     User user = null;
     try {
       tx = session.beginTransaction();
-      user = (User) session.get(User.class, id);
+      user = session.get(User.class, id);
       tx.commit();
     } catch (HibernateException e) {
       if (tx != null) {
