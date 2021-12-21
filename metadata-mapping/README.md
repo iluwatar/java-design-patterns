@@ -34,31 +34,31 @@ We give an example about visiting the information of `USER` table in `h2` databa
 ```java
 @Slf4j
 public class DatabaseUtil {
-    private static final String DB_URL = "jdbc:h2:mem:metamapping";
-    private static final String CREATE_SCHEMA_SQL = "DROP TABLE IF EXISTS `user`;" +
-                                                    "CREATE TABLE `user` (\n" +
-                                                    "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                                                    "  `username` varchar(255) NOT NULL,\n" +
-                                                    "  `password` varchar(255) NOT NULL,\n" +
-                                                    "  PRIMARY KEY (`id`)\n" +
-                                                    ");";
-    private static DataSource dataSource = null;
+  private static final String DB_URL = "jdbc:h2:mem:metamapping";
+  private static final String CREATE_SCHEMA_SQL = "DROP TABLE IF EXISTS `user`;" +
+                          "CREATE TABLE `user` (\n" +
+                          "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
+                          "  `username` varchar(255) NOT NULL,\n" +
+                          "  `password` varchar(255) NOT NULL,\n" +
+                          "  PRIMARY KEY (`id`)\n" +
+                          ");";
+  private static DataSource dataSource = null;
 
-    public static void createDataSource(){
-        LOGGER.info("create h2 database");
-        try {
-            var _dataSource = new JdbcDataSource();
-            _dataSource.setURL(DB_URL);
-            Connection connection = null;
-            connection = _dataSource.getConnection();
-            var statement = connection.createStatement();
-            statement.execute(CREATE_SCHEMA_SQL);
-            dataSource = _dataSource;
-            connection.close();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+  public static void createDataSource(){
+    LOGGER.info("create h2 database");
+    try {
+      var _dataSource = new JdbcDataSource();
+      _dataSource.setURL(DB_URL);
+      Connection connection = null;
+      connection = _dataSource.getConnection();
+      var statement = connection.createStatement();
+      statement.execute(CREATE_SCHEMA_SQL);
+      dataSource = _dataSource;
+      connection.close();
+    } catch (SQLException throwables) {
+      throwables.printStackTrace();
     }
+  }
 }
 ```
 
@@ -66,20 +66,20 @@ Correspondingly, here's the basic `User` entity.
 
 ```java
 public class User implements Serializable {
-    private Integer id;
-    private String username;
-    private String password;
+  private Integer id;
+  private String username;
+  private String password;
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    public User() {}
+  public User() {}
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-    // getters and setters ->
-    ...
+  public User(String username, String password) {
+    this.username = username;
+    this.password = password;
+  }
+  // getters and setters ->
+  ...
 ```
 
 Then we write a `xml` file to show the mapping between the table and the object:
@@ -87,17 +87,17 @@ Then we write a `xml` file to show the mapping between the table and the object:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-mapping PUBLIC
-        "-//Hibernate/Hibernate Mapping DTD//EN"
-        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    "-//Hibernate/Hibernate Mapping DTD//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-    <class name="com.iluwatar.metamapping.model.User" table="user">
-        <id name="id" type="java.lang.Integer" column="id">
-            <generator class="native"/>
-        </id>
-        <property name="username" column="username" type="java.lang.String"/>
-        <property name="password" column="password" type="java.lang.String"/>
-    </class>
+  <class name="com.iluwatar.metamapping.model.User" table="user">
+    <id name="id" type="java.lang.Integer" column="id">
+      <generator class="native"/>
+    </id>
+    <property name="username" column="username" type="java.lang.String"/>
+    <property name="password" column="password" type="java.lang.String"/>
+  </class>
 </hibernate-mapping>
 ```
 
@@ -106,23 +106,23 @@ We use `Hibernate` to resolve the mapping and connect to our database, here's it
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
-        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <!-- JDBC Database connection settings -->
-        <property name="connection.url">jdbc:h2:mem:metamapping</property>
-        <property name="connection.driver_class">org.h2.Driver</property>
-        <!-- JDBC connection pool settings ... using built-in test pool -->
-        <property name="connection.pool_size">1</property>
-        <!-- Select our SQL dialect -->
-        <property name="dialect">org.hibernate.dialect.H2Dialect</property>
-        <!-- Echo the SQL to stdout -->
-        <property name="show_sql">false</property>
-        <!-- Drop and re-create the database schema on startup -->
-        <property name="hbm2ddl.auto">create-drop</property>
-        <mapping resource="com/iluwatar/metamapping/model/User.hbm.xml" />
-    </session-factory>
+  <session-factory>
+    <!-- JDBC Database connection settings -->
+    <property name="connection.url">jdbc:h2:mem:metamapping</property>
+    <property name="connection.driver_class">org.h2.Driver</property>
+    <!-- JDBC connection pool settings ... using built-in test pool -->
+    <property name="connection.pool_size">1</property>
+    <!-- Select our SQL dialect -->
+    <property name="dialect">org.hibernate.dialect.H2Dialect</property>
+    <!-- Echo the SQL to stdout -->
+    <property name="show_sql">false</property>
+    <!-- Drop and re-create the database schema on startup -->
+    <property name="hbm2ddl.auto">create-drop</property>
+    <mapping resource="com/iluwatar/metamapping/model/User.hbm.xml" />
+  </session-factory>
 </hibernate-configuration>
 ```
 
@@ -131,35 +131,35 @@ Then we can get access to the table just like an object with `Hibernate`, here's
 ```java
 @Slf4j
 public class UserService{
-    private static final SessionFactory factory = HibernateUtil.getSessionFactory();
-    
-    public List<User> listUser(){
-        LOGGER.info("list all users.");
-        Session session = factory.openSession();
-        Transaction tx = null;
-        List<User> users = new ArrayList<>();
-        try{
-            tx = session.beginTransaction();
-            List userIter = session.createQuery("FROM User").list();
-            for (Iterator iterator = userIter.iterator(); iterator.hasNext();){
-                users.add((User) iterator.next());
-            }
-            tx.commit();
-        }catch (HibernateException e) {
-            if (tx!=null) tx.rollback();
-            e.printStackTrace();
-        }finally {
-            session.close();
-        }
-        return users;
+  private static final SessionFactory factory = HibernateUtil.getSessionFactory();
+  
+  public List<User> listUser(){
+    LOGGER.info("list all users.");
+    Session session = factory.openSession();
+    Transaction tx = null;
+    List<User> users = new ArrayList<>();
+    try{
+      tx = session.beginTransaction();
+      List userIter = session.createQuery("FROM User").list();
+      for (Iterator iterator = userIter.iterator(); iterator.hasNext();){
+        users.add((User) iterator.next());
+      }
+      tx.commit();
+    }catch (HibernateException e) {
+      if (tx!=null) tx.rollback();
+      e.printStackTrace();
+    }finally {
+      session.close();
     }
+    return users;
+  }
+  
+  // other CRUDs ->
+  ...
     
-    // other CRUDs ->
-    ...
-        
-    public void close() {
-        HibernateUtil.shutdown();
-    }
+  public void close() {
+    HibernateUtil.shutdown();
+  }
 }
 ```
 
