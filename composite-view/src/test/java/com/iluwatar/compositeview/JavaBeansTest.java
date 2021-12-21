@@ -1,7 +1,8 @@
-package com.illuwatar.compositeview;
+package com.iluwatar.compositeview;
 
-import com.iluwatar.compositeview.ClientPropertiesBean;
+import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.Assert.*;
 
@@ -55,5 +56,16 @@ public class JavaBeansTest {
         assertTrue(newBean.isWorldNewsInterest());
         newBean.setWorldNewsInterest(false);
         assertFalse(newBean.isWorldNewsInterest());
+    }
+
+    @Test
+    public void testRequestConstructor(){
+        HttpServletRequest mockReq = Mockito.mock(HttpServletRequest.class);
+        ClientPropertiesBean newBean = new ClientPropertiesBean((mockReq));
+        assertEquals("DEFAULT_NAME", newBean.getName());
+        assertFalse(newBean.isWorldNewsInterest());
+        assertFalse(newBean.isBusinessInterest());
+        assertFalse(newBean.isScienceNewsInterest());
+        assertFalse(newBean.isSportsInterest());
     }
 }
