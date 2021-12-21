@@ -11,13 +11,10 @@ class com.iluwatar.metamapping.utils.DatabaseUtil {
 + {static} void createDataSource()
 }
 class com.iluwatar.metamapping.model.User {
-+ Integer getId()
-+ void setId(Integer)
-+ String getUsername()
-+ void setUsername(String)
-+ String getPassword()
-+ void setPassword(String)
-+ String toString()
+- Integer id
+- String username
+- String password
++ User(String username, String password)
 }
 class com.iluwatar.metamapping.utils.HibernateUtil {
 + {static} SessionFactory getSessionFactory()
