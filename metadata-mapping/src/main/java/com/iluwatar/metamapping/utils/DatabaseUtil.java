@@ -3,6 +3,8 @@ package com.iluwatar.metamapping.utils;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Logger;
+
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
@@ -36,7 +38,7 @@ public class DatabaseUtil {
       dataSource = dSource;
       connection.close();
     } catch (SQLException throwables) {
-      throwables.printStackTrace();
+      LOGGER.error("unable to create h2 data source", throwables);
     }
   }
 }
