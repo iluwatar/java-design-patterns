@@ -2,6 +2,7 @@ package com.iluwatar.metamapping.utils;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
@@ -29,17 +30,23 @@ public class DatabaseUtil {
    */
   public static void createDataSource() {
     LOGGER.info("create h2 database");
+    Connection connection = null;
+    Statement statement = null;
     try {
       var source = new JdbcDataSource();
       source.setURL(DB_URL);
-      Connection connection = null;
       connection = source.getConnection();
-      var statement = connection.createStatement();
+      statement = connection.createStatement();
       statement.execute(CREATE_SCHEMA_SQL);
-      statement.close();
-      connection.close();
     } catch (SQLException e) {
       LOGGER.error("unable to create h2 data source", e);
+    } finally {
+      try {
+        statement.close();
+        connection.close();
+      } catch (SQLException e) {
+        LOGGER.error("fail to close connection", e);
+      }
     }
   }
 }
