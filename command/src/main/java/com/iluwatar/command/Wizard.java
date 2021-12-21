@@ -36,9 +36,6 @@ public class Wizard {
   private final Deque<Runnable> undoStack = new LinkedList<>();
   private final Deque<Runnable> redoStack = new LinkedList<>();
 
-  public Wizard() {
-  }
-
   /**
    * Cast spell.
    */
