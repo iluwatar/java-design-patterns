@@ -37,7 +37,7 @@ public class KingsHand extends EventEmitter implements EventObserver {
 
   @Override
   public void onEvent(Event e) {
-    notifyObservers(e);
+      notifyObservers(e);
   }
 
   @Override

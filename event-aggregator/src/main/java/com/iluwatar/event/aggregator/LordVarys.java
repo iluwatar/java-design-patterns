@@ -23,10 +23,13 @@
 
 package com.iluwatar.event.aggregator;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * LordVarys produces events.
  */
-public class LordVarys extends EventEmitter {
+@Slf4j
+public class LordVarys extends EventEmitter implements EventObserver{
 
   public LordVarys() {
   }
@@ -38,7 +41,13 @@ public class LordVarys extends EventEmitter {
   @Override
   public void timePasses(Weekday day) {
     if (day == Weekday.SATURDAY) {
-      notifyObservers(Event.TRAITOR_DETECTED);
+        notifyObservers(Event.TRAITOR_DETECTED);
+        notifyObservers(Event.WHITE_WALKERS_SIGHTED);
     }
+  }
+
+
+  @Override
+  public void onEvent(Event e){
   }
 }
