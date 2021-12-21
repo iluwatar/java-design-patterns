@@ -75,6 +75,7 @@
     <license-maven-plugin.version>3.0</license-maven-plugin.version>
     <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
     <commons-io.version>2.7</commons-io.version>
+    <istack-commons-runtime.version>4.0.1</istack-commons-runtime.version>
     <!-- SonarCloud -->
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.organization>iluwatar</sonar.organization>
@@ -401,6 +402,11 @@
       <artifactId>lombok</artifactId>
       <version>${lombok.version}</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.istack</groupId>
+      <artifactId>istack-commons-runtime</artifactId>
+      <version>${istack-commons-runtime.version}</version>
     </dependency>
   </dependencies>
   <build>
