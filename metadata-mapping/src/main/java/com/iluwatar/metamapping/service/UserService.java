@@ -1,10 +1,10 @@
 package com.iluwatar.metamapping.service;
 
+import com.iluwatar.metamapping.model.User;
+import com.iluwatar.metamapping.utils.HibernateUtil;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import com.iluwatar.metamapping.model.User;
-import com.iluwatar.metamapping.utils.HibernateUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -12,14 +12,14 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
- * service layer for user
+ * Service layer for user.
  */
 @Slf4j
 public class UserService{
   private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 
   /**
-   * list all users
+   * List all users.
    * @return list of users
    */
   public List<User> listUser() {
@@ -35,7 +35,9 @@ public class UserService{
       }
       tx.commit();
     } catch (HibernateException e) {
-      if (tx!=null) tx.rollback();
+      if (tx != null) {
+        tx.rollback();
+      }
       LOGGER.debug("fail to get users", e);
     } finally {
       session.close();
@@ -44,47 +46,49 @@ public class UserService{
   }
 
   /**
-   * add a user
+   * Add a user.
    * @param user: user entity
    * @return user id
    */
   public int createUser(User user) {
-    LOGGER.info("create user: "+user.getUsername());
+    LOGGER.info("create user: " + user.getUsername());
     Session session = factory.openSession();
     Transaction tx = null;
-    Integer id = null;
+    Integer id = -1;
     try {
       tx = session.beginTransaction();
       id = (Integer) session.save(user);
       tx.commit();
     } catch (HibernateException e) {
-      if (tx!=null) tx.rollback();
+      if (tx != null) {
+        tx.rollback();
+      }
       LOGGER.debug("fail to create user", e);
     } finally {
       session.close();
     }
-    LOGGER.info("create user "+user.getUsername()+" at "+id);
+    LOGGER.info("create user " + user.getUsername() + " at " + id);
     return id;
   }
 
   /**
-   * update user
+   * Update user.
    * @param id: user id
    * @param user: new user entity
    */
   public void updateUser(Integer id, User user) {
-    LOGGER.info("update user at "+id);
+    LOGGER.info("update user at " + id);
     Session session = factory.openSession();
     Transaction tx = null;
     try {
       tx = session.beginTransaction();
-      User _user = (User) session.get(User.class, id);
-      _user.setUsername(user.getUsername());
-      _user.setPassword(user.getPassword());
-      session.update(_user);
+      User u = (User) session.get(User.class, id);
+      u.setUsername(user.getUsername());
+      u.setPassword(user.getPassword());
+      session.update(u);
       tx.commit();
     } catch (HibernateException e) {
-      if (tx!=null) {
+      if (tx != null) {
         tx.rollback();
       }
       LOGGER.debug("fail to update user", e);
@@ -94,11 +98,11 @@ public class UserService{
   }
 
   /**
-   * delete user
+   * Delete user.
    * @param id: user id
    */
   public void deleteUser(Integer id) {
-    LOGGER.info("delete user at: "+id);
+    LOGGER.info("delete user at: " + id);
     Session session = factory.openSession();
     Transaction tx = null;
     try {
@@ -107,7 +111,9 @@ public class UserService{
       session.delete(user);
       tx.commit();
     } catch (HibernateException e) {
-      if (tx!=null) tx.rollback();
+      if (tx != null) {
+        tx.rollback();
+      }
       LOGGER.debug("fail to delete user", e);
     } finally {
       session.close();
@@ -115,12 +121,12 @@ public class UserService{
   }
 
   /**
-   * get user
+   * Get user.
    * @param id: user id
    * @return deleted user
    */
   public User getUser(Integer id) {
-    LOGGER.info("get user at: "+id);
+    LOGGER.info("get user at: " + id);
     Session session = factory.openSession();
     Transaction tx = null;
     User user = null;
@@ -129,7 +135,9 @@ public class UserService{
       user = (User) session.get(User.class, id);
       tx.commit();
     } catch (HibernateException e) {
-      if (tx!=null) tx.rollback();
+      if (tx != null) {
+        tx.rollback();
+      }
       LOGGER.debug("fail to get user", e);
     } finally {
       session.close();
@@ -138,7 +146,7 @@ public class UserService{
   }
 
   /**
-   * close hibernate
+   * Close hibernate.
    */
   public void close() {
     HibernateUtil.shutdown();

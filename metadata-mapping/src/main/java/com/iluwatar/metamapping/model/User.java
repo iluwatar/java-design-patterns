@@ -5,12 +5,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * User Entity
+ * User Entity.
  */
 @Setter
 @Getter
 @ToString
-public class User{
+public class User {
   private Integer id;
   private String username;
   private String password;
@@ -18,9 +18,9 @@ public class User{
   public User() {}
 
   /**
-   * get a user
-   * @param username
-   * @param password
+   * Get a user.
+   * @param username: username
+   * @param password: password
    */
   public User(String username, String password) {
     this.username = username;

@@ -5,7 +5,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 /**
- * manage hibernate
+ * Manage hibernate.
  */
 @Slf4j
 public class HibernateUtil {
@@ -13,7 +13,7 @@ public class HibernateUtil {
   private static final SessionFactory sessionFactory = buildSessionFactory();
 
   /**
-   * build session factory
+   * Build session factory.
    * @return session factory
    */
   private static SessionFactory buildSessionFactory() {
@@ -28,7 +28,7 @@ public class HibernateUtil {
   }
 
   /**
-   * get session factory
+   * Get session factory.
    * @return session factory
    */
   public static SessionFactory getSessionFactory() {
@@ -36,7 +36,7 @@ public class HibernateUtil {
   }
 
   /**
-   * close session factory
+   * Close session factory.
    */
   public static void shutdown() {
     // Close caches and connection pools

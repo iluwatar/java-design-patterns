@@ -9,7 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
 /**
- * create h2 database
+ * Create h2 database.
  */
 @Slf4j
 public class DatabaseUtil {
@@ -24,7 +24,7 @@ public class DatabaseUtil {
   private static DataSource dataSource = null;
 
   /**
-   * create database
+   * Create database.
    */
   public static void createDataSource() {
     LOGGER.info("create h2 database");

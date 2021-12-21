@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
  * between classes and tables so that
  * we could treat a table of any database like a Java class.
  *
- * With hibernate, we achieve list/create/update/delete/get operations.
+ * <p>With hibernate, we achieve list/create/update/delete/get operations.
  * Let's have a test!
  */
 @Slf4j
@@ -26,7 +26,8 @@ public class App {
     DatabaseUtil.createDataSource();
     UserService userService = new UserService();
     for (User user: generateSampleUsers()) {
-      userService.createUser(user);
+      Integer id = userService.createUser(user);
+      LOGGER.info("Add user" + user + "at" + id + ".");
     }
     List<User> users = userService.listUser();
     LOGGER.info(String.valueOf(users));
