@@ -6,9 +6,23 @@ import com.iluwatar.metamapping.utils.DatabaseUtil;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Metadata Mapping specifies the mapping
+ * between classes and tables so that
+ * we could treat a table of any database like a Java class.
+ *
+ * With hibernate, we achieve list/create/update/delete/get operations.
+ * Let's have a test!
+ */
 @Slf4j
 public class App {
-  public static void main(String[] args){
+  /**
+   * Program entry point.
+   *
+   * @param args command line args.
+   * @throws Exception if any error occurs.
+   */
+  public static void main(String[] args) {
     DatabaseUtil.createDataSource();
     UserService userService = new UserService();
     for (User user: generateSampleUsers()) {
