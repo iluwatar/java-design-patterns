@@ -21,25 +21,27 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.adapter;
+package com.iluwatar.claimcheckpattern.domain;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * Tests that Adapter example runs without errors.
+ * This is message header or event which is sent to Event Grid.
+ * Its structure is same as Azure Event Grid Event Class.
  */
-class AppTest {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MessageHeader {
 
-  /**
-   * Check whether the execution of the main method in {@link App}
-   * throws an exception.
-   */
+  private String id;
+  private String subject;
+  private String topic;
+  private String eventType;
+  private String eventTime;
+  private Object data;
+  private String dataVersion;
 
-  @Test
-  void shouldExecuteApplicationWithoutException() {
-
-    assertDoesNotThrow(() -> App.main(new String[]{}));
-  }
 }

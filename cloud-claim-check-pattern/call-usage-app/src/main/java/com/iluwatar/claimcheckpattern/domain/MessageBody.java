@@ -21,25 +21,23 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.adapter;
+package com.iluwatar.claimcheckpattern.domain;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * Tests that Adapter example runs without errors.
+ * It is message body of the message.
+ * It stores actual data in our case UsageCostDetail or UsageDetail.
+ * @param <T> represents UsageDetail or UsageCostDetail
  */
-class AppTest {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MessageBody<T> {
 
-  /**
-   * Check whether the execution of the main method in {@link App}
-   * throws an exception.
-   */
+  private List<T> data;
 
-  @Test
-  void shouldExecuteApplicationWithoutException() {
-
-    assertDoesNotThrow(() -> App.main(new String[]{}));
-  }
 }

@@ -21,25 +21,25 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.adapter;
+package com.iluwatar.claimcheckpattern.domain;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * Tests that Adapter example runs without errors.
+ * This is claim/message reference class.
+ * It contains the information about data where it is stored in persistent storage
+ * and file name.
+ * dataLocation is blob storage container name.
+ * dataFileName is file name in above container.
  */
-class AppTest {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MessageReference {
 
-  /**
-   * Check whether the execution of the main method in {@link App}
-   * throws an exception.
-   */
+  private String dataLocation;
+  private String dataFileName;
 
-  @Test
-  void shouldExecuteApplicationWithoutException() {
-
-    assertDoesNotThrow(() -> App.main(new String[]{}));
-  }
 }
