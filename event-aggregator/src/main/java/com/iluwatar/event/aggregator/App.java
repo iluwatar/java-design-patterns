@@ -53,9 +53,9 @@ public class App {
 
     var emitters = List.of(
         kingsHand,
-        new LordBaelish(kingsHand, Event.TRAITOR_DETECTED),
-        new LordVarys(kingsHand, Event.WARSHIPS_APPROACHING),
-        new Scout(kingsHand, Event.STARK_SIGHTED)
+        new LordBaelish(kingsHand, Event.STARK_SIGHTED),
+        new LordVarys(kingsHand, Event.TRAITOR_DETECTED),
+        new Scout(kingsHand, Event.WARSHIPS_APPROACHING)
     );
 
     Arrays.stream(Weekday.values())

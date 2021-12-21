@@ -47,7 +47,8 @@ public abstract class EventEmitter {
   public final void registerObserver(EventObserver obs, Event e) {
       if(!observerLists.containsKey(e))
           observerLists.put(e, new LinkedList<>());
-      observerLists.get(e).add(obs);
+      if(!observerLists.get(e).contains(obs))
+          observerLists.get(e).add(obs);
   }
 
   protected void notifyObservers(Event e) {
