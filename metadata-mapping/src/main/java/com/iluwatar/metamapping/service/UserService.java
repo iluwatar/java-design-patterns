@@ -35,9 +35,6 @@ public class UserService {
       }
       tx.commit();
     } catch (HibernateException e) {
-      if (tx != null) {
-        tx.rollback();
-      }
       LOGGER.debug("fail to get users", e);
     } finally {
       session.close();
@@ -60,9 +57,6 @@ public class UserService {
       id = (Integer) session.save(user);
       tx.commit();
     } catch (HibernateException e) {
-      if (tx != null) {
-        tx.rollback();
-      }
       LOGGER.debug("fail to create user", e);
     } finally {
       session.close();
@@ -88,9 +82,6 @@ public class UserService {
       session.update(u);
       tx.commit();
     } catch (HibernateException e) {
-      if (tx != null) {
-        tx.rollback();
-      }
       LOGGER.debug("fail to update user", e);
     } finally {
       session.close();
@@ -111,9 +102,6 @@ public class UserService {
       session.delete(user);
       tx.commit();
     } catch (HibernateException e) {
-      if (tx != null) {
-        tx.rollback();
-      }
       LOGGER.debug("fail to delete user", e);
     } finally {
       session.close();
@@ -135,9 +123,6 @@ public class UserService {
       user = session.get(User.class, id);
       tx.commit();
     } catch (HibernateException e) {
-      if (tx != null) {
-        tx.rollback();
-      }
       LOGGER.debug("fail to get user", e);
     } finally {
       session.close();

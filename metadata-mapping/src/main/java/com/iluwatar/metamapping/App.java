@@ -22,7 +22,7 @@ public class App {
    * @param args command line args.
    * @throws Exception if any error occurs.
    */
-  public static void main(String[] args) {
+  public static void main(String[] args)  throws Exception {
     DatabaseUtil.createDataSource();
     UserService userService = new UserService();
     for (User user: generateSampleUsers()) {
