@@ -19,7 +19,7 @@ public class DatabaseUtil {
                                                 + "  `password` varchar(255) NOT NULL,\n"
                                                 + "  PRIMARY KEY (`id`)\n"
                                                 + ");";
-  
+
   /**
    * Hide constructor.
    */
@@ -30,19 +30,12 @@ public class DatabaseUtil {
    */
   public static void createDataSource() throws SQLException {
     LOGGER.info("create h2 database");
-    Connection connection = null;
-    Statement statement = null;
-    try {
-      var source = new JdbcDataSource();
-      source.setURL(DB_URL);
-      connection = source.getConnection();
-      statement = connection.createStatement();
-      statement.execute(CREATE_SCHEMA_SQL);
-    } catch (SQLException e) {
-      LOGGER.error("unable to create h2 data source", e);
-    } finally {
-      statement.close();
-      connection.close();
-    }
+    var source = new JdbcDataSource();
+    source.setURL(DB_URL);
+    Connection connection = source.getConnection();
+    Statement statement = connection.createStatement();
+    statement.execute(CREATE_SCHEMA_SQL);
+    statement.close();
+    connection.close();
   }
 }
