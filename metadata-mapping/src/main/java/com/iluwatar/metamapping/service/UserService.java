@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
  * Service layer for user.
  */
 @Slf4j
-public class UserService{
+public class UserService {
   private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 
   /**
@@ -27,7 +27,7 @@ public class UserService{
     Session session = factory.openSession();
     Transaction tx = null;
     List<User> users = new ArrayList<>();
-    try{
+    try {
       tx = session.beginTransaction();
       List userIter = session.createQuery("FROM User").list();
       for (Iterator iterator = userIter.iterator(); iterator.hasNext();) {
@@ -47,7 +47,7 @@ public class UserService{
 
   /**
    * Add a user.
-   * @param user: user entity
+   * @param user user entity
    * @return user id
    */
   public int createUser(User user) {
@@ -73,8 +73,8 @@ public class UserService{
 
   /**
    * Update user.
-   * @param id: user id
-   * @param user: new user entity
+   * @param id user id
+   * @param user new user entity
    */
   public void updateUser(Integer id, User user) {
     LOGGER.info("update user at " + id);
@@ -99,7 +99,7 @@ public class UserService{
 
   /**
    * Delete user.
-   * @param id: user id
+   * @param id user id
    */
   public void deleteUser(Integer id) {
     LOGGER.info("delete user at: " + id);
@@ -122,7 +122,7 @@ public class UserService{
 
   /**
    * Get user.
-   * @param id: user id
+   * @param id user id
    * @return deleted user
    */
   public User getUser(Integer id) {

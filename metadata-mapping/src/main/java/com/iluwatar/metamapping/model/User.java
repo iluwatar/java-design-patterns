@@ -19,8 +19,8 @@ public class User {
 
   /**
    * Get a user.
-   * @param username: username
-   * @param password: password
+   * @param username user name
+   * @param password user password
    */
   public User(String username, String password) {
     this.username = username;
