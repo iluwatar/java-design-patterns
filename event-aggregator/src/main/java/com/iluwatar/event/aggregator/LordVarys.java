@@ -42,12 +42,13 @@ public class LordVarys extends EventEmitter implements EventObserver{
   public void timePasses(Weekday day) {
     if (day == Weekday.SATURDAY) {
         notifyObservers(Event.TRAITOR_DETECTED);
-        notifyObservers(Event.WHITE_WALKERS_SIGHTED);
     }
+
   }
 
 
   @Override
   public void onEvent(Event e){
+      notifyObservers(e);
   }
 }
