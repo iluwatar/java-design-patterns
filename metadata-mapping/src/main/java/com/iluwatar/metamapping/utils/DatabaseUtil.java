@@ -34,6 +34,7 @@ public class DatabaseUtil {
       var statement = connection.createStatement();
       statement.execute(CREATE_SCHEMA_SQL);
       dataSource = source;
+      statement.close();
       connection.close();
     } catch (SQLException throwables) {
       LOGGER.error("unable to create h2 data source", throwables);
