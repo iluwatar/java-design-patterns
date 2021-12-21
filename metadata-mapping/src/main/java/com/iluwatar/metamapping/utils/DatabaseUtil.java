@@ -30,12 +30,23 @@ public class DatabaseUtil {
    */
   public static void createDataSource() throws SQLException {
     LOGGER.info("create h2 database");
-    var source = new JdbcDataSource();
-    source.setURL(DB_URL);
-    Connection connection = source.getConnection();
-    Statement statement = connection.createStatement();
-    statement.execute(CREATE_SCHEMA_SQL);
-    statement.close();
-    connection.close();
+    Connection connection = null;
+    Statement statement = null;
+    try {
+      var source = new JdbcDataSource();
+      source.setURL(DB_URL);
+      connection = source.getConnection();
+      statement = connection.createStatement();
+      statement.execute(CREATE_SCHEMA_SQL);
+    } catch (SQLException e) {
+      LOGGER.error("unable to create h2 data source", e);
+    } finally {
+      if (statement != null) {
+        statement.close();
+      }
+      if (connection != null) {
+        connection.close();
+      }
+    }
   }
 }
