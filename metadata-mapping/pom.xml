@@ -63,6 +63,7 @@
         <dependency>
             <groupId>com.sun.istack</groupId>
             <artifactId>istack-commons-runtime</artifactId>
+            <version>4.0.1</version>
         </dependency>
     </dependencies>
     <build>
