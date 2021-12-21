@@ -27,13 +27,13 @@ public class DatabaseUtil {
   public static void createDataSource() {
     LOGGER.info("create h2 database");
     try {
-      var dSource = new JdbcDataSource();
-      dSource.setURL(DB_URL);
+      var source = new JdbcDataSource();
+      source.setURL(DB_URL);
       Connection connection = null;
-      connection = dSource.getConnection();
+      connection = source.getConnection();
       var statement = connection.createStatement();
       statement.execute(CREATE_SCHEMA_SQL);
-      dataSource = dSource;
+      dataSource = source;
       connection.close();
     } catch (SQLException throwables) {
       LOGGER.error("unable to create h2 data source", throwables);
