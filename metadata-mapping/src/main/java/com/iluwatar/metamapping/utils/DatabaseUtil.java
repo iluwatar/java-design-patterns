@@ -19,10 +19,11 @@ public class DatabaseUtil {
                                                 + "  `password` varchar(255) NOT NULL,\n"
                                                 + "  PRIMARY KEY (`id`)\n"
                                                 + ");";
+  
   /**
    * Hide constructor.
    */
-  private DatabaseUtil() { }
+  private DatabaseUtil() {}
 
   /**
    * Create database.
