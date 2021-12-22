@@ -56,8 +56,6 @@ public class App {
     kingsHand.registerObserver(kingJoffrey, Event.WARSHIPS_APPROACHING);
     kingsHand.registerObserver(kingJoffrey, Event.WHITE_WALKERS_SIGHTED);
 
-    var baelish = new LordBaelish(kingsHand, Event.STARK_SIGHTED);
-
     var varys = new LordVarys();
     varys.registerObserver(kingsHand, Event.TRAITOR_DETECTED);
     varys.registerObserver(kingsHand, Event.WHITE_WALKERS_SIGHTED);
@@ -66,11 +64,13 @@ public class App {
     scout.registerObserver(kingsHand, Event.WARSHIPS_APPROACHING);
     scout.registerObserver(varys, Event.WHITE_WALKERS_SIGHTED);
 
+    var baelish = new LordBaelish(kingsHand, Event.STARK_SIGHTED);
+
     var emitters = List.of(
-        kingsHand,
-        baelish,
-        varys,
-        scout
+      kingsHand,
+      baelish,
+      varys,
+      scout
     );
 
     Arrays.stream(Weekday.values())
