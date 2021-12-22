@@ -29,12 +29,14 @@ import lombok.extern.slf4j.Slf4j;
  * LordVarys produces events.
  */
 @Slf4j
-public class LordVarys extends EventEmitter implements EventObserver{
+public class LordVarys extends EventEmitter implements EventObserver {
 
   public LordVarys() {
   }
 
-  public LordVarys(EventObserver obs, Event e) { super(obs, e); }
+  public LordVarys(EventObserver obs, Event e) {
+    super(obs, e);
+  }
 
   @Override
   public void timePasses(Weekday day) {
@@ -45,7 +47,7 @@ public class LordVarys extends EventEmitter implements EventObserver{
 
 
   @Override
-  public void onEvent(Event e){
+  public void onEvent(Event e) {
     notifyObservers(e);
   }
 }
