@@ -36,7 +36,7 @@ public abstract class EventEmitter {
   private final Map<Event, List<EventObserver>> observerLists;
 
   public EventEmitter() {
-      observerLists = new HashMap<>();
+    observerLists = new HashMap<>();
   }
 
   public EventEmitter(EventObserver obs, Event e) {
@@ -45,17 +45,20 @@ public abstract class EventEmitter {
   }
 
   public final void registerObserver(EventObserver obs, Event e) {
-      if(!observerLists.containsKey(e))
-          observerLists.put(e, new LinkedList<>());
-      if(!observerLists.get(e).contains(obs))
-          observerLists.get(e).add(obs);
+    if (!observerLists.containsKey(e)) {
+      observerLists.put(e, new LinkedList<>());
+    }
+    if (!observerLists.get(e).contains(obs)) {
+      observerLists.get(e).add(obs);
+    }
   }
 
   protected void notifyObservers(Event e) {
-      if(observerLists.containsKey(e))
-          observerLists
-              .get(e)
-              .forEach(observer -> observer.onEvent(e));
+    if (observerLists.containsKey(e)) {
+      observerLists
+        .get(e)
+        .forEach(observer -> observer.onEvent(e));
+    }
   }
 
   public abstract void timePasses(Weekday day);
