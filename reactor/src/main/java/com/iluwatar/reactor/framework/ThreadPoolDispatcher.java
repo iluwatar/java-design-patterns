@@ -64,6 +64,8 @@ public class ThreadPoolDispatcher implements Dispatcher {
   @Override
   public void stop() throws InterruptedException {
     executorService.shutdown();
-    executorService.awaitTermination(4, TimeUnit.SECONDS);
+    if (executorService.awaitTermination(4, TimeUnit.SECONDS)) {
+      executorService.shutdownNow();
+    }
   }
 }

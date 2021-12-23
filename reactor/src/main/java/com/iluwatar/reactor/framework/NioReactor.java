@@ -96,9 +96,11 @@ public class NioReactor {
    * @throws IOException          if any I/O error occurs.
    */
   public void stop() throws InterruptedException, IOException {
-    reactorMain.shutdownNow();
+    reactorMain.shutdown();
     selector.wakeup();
-    reactorMain.awaitTermination(4, TimeUnit.SECONDS);
+    if (!reactorMain.awaitTermination(4, TimeUnit.SECONDS)) {
+      reactorMain.shutdownNow();
+    }
     selector.close();
     LOGGER.info("Reactor stopped");
   }
