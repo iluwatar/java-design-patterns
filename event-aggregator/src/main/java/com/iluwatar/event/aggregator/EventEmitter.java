@@ -44,12 +44,12 @@ public abstract class EventEmitter {
     registerObserver(obs, e);
   }
 
-    /**
-     * Registers observer for specific event in the related list.
-     *
-     * @param obs
-     * @param e
-     */
+  /**
+  * Registers observer for specific event in the related list.
+  *
+  * @param obs the observer that observers this emitter
+  * @param e the specific event for that observation occurs
+  * */
   public final void registerObserver(EventObserver obs, Event e) {
     if (!observerLists.containsKey(e)) {
       observerLists.put(e, new LinkedList<>());
