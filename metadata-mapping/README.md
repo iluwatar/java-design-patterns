@@ -6,7 +6,7 @@ permalink: /patterns/metadata-mapping/
 categories: Architectural
 language: en
 tags:
- - Data mapping
+ - Data access
 ---
 
 ## Intent
