@@ -3,13 +3,10 @@ package com.iluwatar.metamapping.service;
 import com.iluwatar.metamapping.model.User;
 import com.iluwatar.metamapping.utils.HibernateUtil;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.HibernateException;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 
 /**
  * Service layer for user.
@@ -24,20 +21,16 @@ public class UserService {
    */
   public List<User> listUser() {
     LOGGER.info("list all users.");
-    Session session = factory.openSession();
-    Transaction tx = null;
     List<User> users = new ArrayList<>();
-    try {
-      tx = session.beginTransaction();
+    try (var session = factory.openSession()){
+      var tx = session.beginTransaction();
       List<User> userIter = session.createQuery("FROM User").list();
-      for (Iterator<User> iterator = userIter.iterator(); iterator.hasNext();) {
+      for (var iterator = userIter.iterator(); iterator.hasNext();) {
         users.add(iterator.next());
       }
       tx.commit();
     } catch (HibernateException e) {
       LOGGER.debug("fail to get users", e);
-    } finally {
-      session.close();
     }
     return users;
   }
@@ -49,17 +42,13 @@ public class UserService {
    */
   public int createUser(User user) {
     LOGGER.info("create user: " + user.getUsername());
-    Session session = factory.openSession();
-    Transaction tx = null;
     Integer id = -1;
-    try {
-      tx = session.beginTransaction();
+    try (var session = factory.openSession()){
+      var tx = session.beginTransaction();
       id = (Integer) session.save(user);
       tx.commit();
     } catch (HibernateException e) {
       LOGGER.debug("fail to create user", e);
-    } finally {
-      session.close();
     }
     LOGGER.info("create user " + user.getUsername() + " at " + id);
     return id;
@@ -72,19 +61,15 @@ public class UserService {
    */
   public void updateUser(Integer id, User user) {
     LOGGER.info("update user at " + id);
-    Session session = factory.openSession();
-    Transaction tx = null;
-    try {
-      tx = session.beginTransaction();
-      User u = session.get(User.class, id);
+    try (var session = factory.openSession()){
+      var tx = session.beginTransaction();
+      var u = session.get(User.class, id);
       u.setUsername(user.getUsername());
       u.setPassword(user.getPassword());
       session.update(u);
       tx.commit();
     } catch (HibernateException e) {
       LOGGER.debug("fail to update user", e);
-    } finally {
-      session.close();
     }
   }
 
@@ -94,17 +79,13 @@ public class UserService {
    */
   public void deleteUser(Integer id) {
     LOGGER.info("delete user at: " + id);
-    Session session = factory.openSession();
-    Transaction tx = null;
-    try {
-      tx = session.beginTransaction();
-      User user = session.get(User.class, id);
+    try (var session = factory.openSession()) {
+      var tx = session.beginTransaction();
+      var user = session.get(User.class, id);
       session.delete(user);
       tx.commit();
     } catch (HibernateException e) {
       LOGGER.debug("fail to delete user", e);
-    } finally {
-      session.close();
     }
   }
 
@@ -115,17 +96,13 @@ public class UserService {
    */
   public User getUser(Integer id) {
     LOGGER.info("get user at: " + id);
-    Session session = factory.openSession();
-    Transaction tx = null;
     User user = null;
-    try {
-      tx = session.beginTransaction();
+    try (var session = factory.openSession()) {
+      var tx = session.beginTransaction();
       user = session.get(User.class, id);
       tx.commit();
     } catch (HibernateException e) {
       LOGGER.debug("fail to get user", e);
-    } finally {
-      session.close();
     }
     return user;
   }
