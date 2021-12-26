@@ -12,19 +12,19 @@ import org.hibernate.service.ServiceRegistry;
  * between classes and tables so that
  * we could treat a table of any database like a Java class.
  *
- * <p>With hibernate, we achieve list/create/update/delete/get operations.
- * 1)Create the H2 Database in {@link DatabaseUtil}.
- * 2)Hibernate resolve hibernate.cfg.xml and generate service like save/list/get/delete.
+ * <p>With hibernate, we achieve list/create/update/delete/get operations:
+ * <p>1)Create the H2 Database in {@link DatabaseUtil}.
+ * <p>2)Hibernate resolve hibernate.cfg.xml and generate service like save/list/get/delete.
  *    For learning metadata mapping pattern, we go deeper into Hibernate here:
- *    a)read properties from hibernate.cfg.xml and mapping from *.hbm.xml
- *      @see org.hibernate.cfg.Configuration#configure(String)
- *    b)create session factory to generate session interacting with database
- *      @see org.hibernate.cfg.Configuration#buildSessionFactory(ServiceRegistry)
- *    c)generate session with factory pattern
- *      @see org.hibernate.internal.SessionFactoryImpl#openSession()
- *    d)create query object or use basic api with session,
+ * <p>a)read properties from hibernate.cfg.xml and mapping from *.hbm.xml
+ * <p>b)create session factory to generate session interacting with database
+ * <p>c)generate session with factory pattern
+ * <p>d)create query object or use basic api with session,
  *      hibernate will convert all query to database query according to metadata
- * 3)We encapsulate hibernate service in {@link UserService} for our use.
+ * <p>3)We encapsulate hibernate service in {@link UserService} for our use.
+ * @see org.hibernate.cfg.Configuration#configure(String)
+ * @see org.hibernate.cfg.Configuration#buildSessionFactory(ServiceRegistry)
+ * @see org.hibernate.internal.SessionFactoryImpl#openSession()
  */
 @Slf4j
 public class App {
