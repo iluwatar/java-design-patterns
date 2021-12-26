@@ -22,7 +22,7 @@ public class UserService {
   public List<User> listUser() {
     LOGGER.info("list all users.");
     List<User> users = new ArrayList<>();
-    try (var session = factory.openSession()){
+    try (var session = factory.openSession()) {
       var tx = session.beginTransaction();
       List<User> userIter = session.createQuery("FROM User").list();
       for (var iterator = userIter.iterator(); iterator.hasNext();) {
@@ -43,7 +43,7 @@ public class UserService {
   public int createUser(User user) {
     LOGGER.info("create user: " + user.getUsername());
     Integer id = -1;
-    try (var session = factory.openSession()){
+    try (var session = factory.openSession()) {
       var tx = session.beginTransaction();
       id = (Integer) session.save(user);
       tx.commit();
@@ -61,12 +61,10 @@ public class UserService {
    */
   public void updateUser(Integer id, User user) {
     LOGGER.info("update user at " + id);
-    try (var session = factory.openSession()){
+    try (var session = factory.openSession()) {
       var tx = session.beginTransaction();
-      var u = session.get(User.class, id);
-      u.setUsername(user.getUsername());
-      u.setPassword(user.getPassword());
-      session.update(u);
+      user.setId(id);
+      session.update(user);
       tx.commit();
     } catch (HibernateException e) {
       LOGGER.debug("fail to update user", e);
