@@ -23,20 +23,21 @@
 
 package com.iluwatar.throttling;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Test;
 
 import java.security.InvalidParameterException;
-import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * TenantTest to test the creation of Tenant with valid parameters.
  */
-public class TenantTest {
+public class BarCustomerTest {
 
   @Test
   void constructorTest() {
     assertThrows(InvalidParameterException.class, () -> {
-      new Tenant("FailTenant", -1, new CallsCount());
+      new BarCustomer("sirBrave", -1, new CallsCount());
     });
   }
 }

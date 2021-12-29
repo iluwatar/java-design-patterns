@@ -23,37 +23,28 @@
 
 package com.iluwatar.throttling;
 
-import java.security.InvalidParameterException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.iluwatar.throttling.timer.Throttler;
+import java.util.stream.IntStream;
+import org.junit.jupiter.api.Test;
 
 /**
- * A Pojo class to create a basic Tenant with the allowed calls per second.
+ * B2BServiceTest class to test the B2BService
  */
-public class Tenant {
+public class BartenderTest {
 
-  private final String name;
-  private final int allowedCallsPerSecond;
+  private final CallsCount callsCount = new CallsCount();
 
-  /**
-   * Constructor.
-   *
-   * @param name                  Name of the tenant
-   * @param allowedCallsPerSecond The number of calls allowed for a particular tenant.
-   * @throws InvalidParameterException If number of calls is less than 0, throws exception.
-   */
-  public Tenant(String name, int allowedCallsPerSecond, CallsCount callsCount) {
-    if (allowedCallsPerSecond < 0) {
-      throw new InvalidParameterException("Number of calls less than 0 not allowed");
-    }
-    this.name = name;
-    this.allowedCallsPerSecond = allowedCallsPerSecond;
-    callsCount.addTenant(name);
-  }
+  @Test
+  void dummyCustomerApiTest() {
+    var tenant = new BarCustomer("pirate", 2, callsCount);
+    // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
+    var timer = (Throttler) () -> {};
+    var service = new Bartender(timer, callsCount);
 
-  public String getName() {
-    return name;
-  }
-
-  public int getAllowedCallsPerSecond() {
-    return allowedCallsPerSecond;
+    IntStream.range(0, 5).mapToObj(i -> tenant).forEach(service::orderDrink);
+    var counter = callsCount.getCount(tenant.getName());
+    assertEquals(2, counter, "Counter limit must be reached");
   }
 }
