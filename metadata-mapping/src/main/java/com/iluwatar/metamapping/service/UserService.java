@@ -42,7 +42,7 @@ public class UserService {
    */
   public int createUser(User user) {
     LOGGER.info("create user: " + user.getUsername());
-    Integer id = -1;
+    var id = -1;
     try (var session = factory.openSession()) {
       var tx = session.beginTransaction();
       id = (Integer) session.save(user);

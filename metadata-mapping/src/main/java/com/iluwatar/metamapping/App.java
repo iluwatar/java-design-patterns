@@ -36,10 +36,10 @@ public class App {
    */
   public static void main(String[] args)  throws Exception {
     // get service
-    UserService userService = new UserService();
+    var userService = new UserService();
     // use create service to add users
     for (var user: generateSampleUsers()) {
-      Integer id = userService.createUser(user);
+      var id = userService.createUser(user);
       LOGGER.info("Add user" + user + "at" + id + ".");
     }
     // use list service to get users

@@ -35,28 +35,25 @@ We give an example about visiting the information of `USER` table in `h2` databa
 @Slf4j
 public class DatabaseUtil {
   private static final String DB_URL = "jdbc:h2:mem:metamapping";
-  private static final String CREATE_SCHEMA_SQL = "DROP TABLE IF EXISTS `user`;" +
-                          "CREATE TABLE `user` (\n" +
-                          "  `id` int(11) NOT NULL AUTO_INCREMENT,\n" +
-                          "  `username` varchar(255) NOT NULL,\n" +
-                          "  `password` varchar(255) NOT NULL,\n" +
-                          "  PRIMARY KEY (`id`)\n" +
-                          ");";
-  private static DataSource dataSource = null;
-
-  public static void createDataSource(){
+  private static final String CREATE_SCHEMA_SQL = "DROP TABLE IF EXISTS `user`;"
+      + "CREATE TABLE `user` (\n"
+      + "  `id` int(11) NOT NULL AUTO_INCREMENT,\n"
+      + "  `username` varchar(255) NOT NULL,\n"
+      + "  `password` varchar(255) NOT NULL,\n"
+      + "  PRIMARY KEY (`id`)\n"
+      + ");";
+    
+  /**
+   * Create database.
+   */
+  static {
     LOGGER.info("create h2 database");
-    try {
-      var _dataSource = new JdbcDataSource();
-      _dataSource.setURL(DB_URL);
-      Connection connection = null;
-      connection = _dataSource.getConnection();
-      var statement = connection.createStatement();
+    var source = new JdbcDataSource();
+    source.setURL(DB_URL);
+    try (var statement = source.getConnection().createStatement()) {
       statement.execute(CREATE_SCHEMA_SQL);
-      dataSource = _dataSource;
-      connection.close();
-    } catch (SQLException throwables) {
-      throwables.printStackTrace();
+    } catch (SQLException e) {
+      LOGGER.error("unable to create h2 data source", e);
     }
   }
 }
@@ -65,21 +62,24 @@ public class DatabaseUtil {
 Correspondingly, here's the basic `User` entity.
 
 ```java
-public class User implements Serializable {
+@Setter
+@Getter
+@ToString
+public class User {
   private Integer id;
   private String username;
   private String password;
-
-  private static final long serialVersionUID = 1L;
-
-  public User() {}
-
+    
+  /**
+   * Get a user.
+   * @param username user name
+   * @param password user password
+   */
   public User(String username, String password) {
     this.username = username;
     this.password = password;
   }
-  // getters and setters ->
-  ...
+}
 ```
 
 Then we write a `xml` file to show the mapping between the table and the object:
@@ -130,26 +130,25 @@ Then we can get access to the table just like an object with `Hibernate`, here's
 
 ```java
 @Slf4j
-public class UserService{
+public class UserService {
   private static final SessionFactory factory = HibernateUtil.getSessionFactory();
-  
-  public List<User> listUser(){
+
+  /**
+   * List all users.
+   * @return list of users
+   */
+  public List<User> listUser() {
     LOGGER.info("list all users.");
-    Session session = factory.openSession();
-    Transaction tx = null;
     List<User> users = new ArrayList<>();
-    try{
-      tx = session.beginTransaction();
-      List userIter = session.createQuery("FROM User").list();
-      for (Iterator iterator = userIter.iterator(); iterator.hasNext();){
-        users.add((User) iterator.next());
+    try (var session = factory.openSession()) {
+      var tx = session.beginTransaction();
+      List<User> userIter = session.createQuery("FROM User").list();
+      for (var iterator = userIter.iterator(); iterator.hasNext();) {
+        users.add(iterator.next());
       }
       tx.commit();
-    }catch (HibernateException e) {
-      if (tx!=null) tx.rollback();
-      e.printStackTrace();
-    }finally {
-      session.close();
+    } catch (HibernateException e) {
+      LOGGER.debug("fail to get users", e);
     }
     return users;
   }
