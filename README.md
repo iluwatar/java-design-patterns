@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-195-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-196-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -325,6 +325,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://github.com/interactwithankush"><img src="https://avatars.githubusercontent.com/u/18613127?v=4?s=100" width="100px;" alt=""/><br /><sub><b>interactwithankush</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=interactwithankush" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/yuhangbin"><img src="https://avatars.githubusercontent.com/u/17566866?v=4?s=100" width="100px;" alt=""/><br /><sub><b>CharlieYu</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yuhangbin" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/Leisterbecker"><img src="https://avatars.githubusercontent.com/u/20650323?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Leisterbecker</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Leisterbecker" title="Code">💻</a></td>
+    <td align="center"><a href="http://rosaecrucis.cn"><img src="https://avatars.githubusercontent.com/u/35420129?v=4?s=100" width="100px;" alt=""/><br /><sub><b>DragonDreamer</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=castleKing1997" title="Code">💻</a></td>
   </tr>
 </table>
 
