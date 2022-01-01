@@ -27,14 +27,12 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
- * {@link Student} is an entity.
+ * {@link Weapon} is an entity.
  */
 @Getter
 @RequiredArgsConstructor
-public class Student {
+public class Weapon {
 
   private final Integer id;
   private final String name;
-  private final String address;
-
 }
