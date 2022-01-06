@@ -107,6 +107,4 @@ public interface Trampoline<T> {
       }
     };
   }
-
-
 }
