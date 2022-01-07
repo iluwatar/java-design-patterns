@@ -41,7 +41,7 @@
     <spring.version>5.0.17.RELEASE</spring.version>
     <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
     <spring-data.version>2.0.14.RELEASE</spring-data.version>
-    <h2.version>1.4.190</h2.version>
+    <h2.version>2.0.206</h2.version>
     <junit.version>4.12</junit.version>
     <junit-jupiter.version>5.7.1</junit-jupiter.version>
     <junit-vintage.version>${junit-jupiter.version}</junit-vintage.version>
