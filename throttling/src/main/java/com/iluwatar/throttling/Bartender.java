@@ -23,29 +23,42 @@
 
 package com.iluwatar.throttling;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.iluwatar.throttling.timer.Throttler;
-import java.util.stream.IntStream;
-import org.junit.jupiter.api.Test;
+import java.util.concurrent.ThreadLocalRandom;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * B2BServiceTest class to test the B2BService
+ * Bartender is a service which accepts a BarCustomer (tenant) and throttles
+ * the resource based on the time given to the tenant.
  */
-public class B2BServiceTest {
+class Bartender {
 
-  private final CallsCount callsCount = new CallsCount();
+  private static final Logger LOGGER = LoggerFactory.getLogger(Bartender.class);
+  private final CallsCount callsCount;
 
-  @Test
-  void dummyCustomerApiTest() {
-    var tenant = new Tenant("testTenant", 2, callsCount);
-    // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
-    var timer = (Throttler) () -> {
-    };
-    var service = new B2BService(timer, callsCount);
+  public Bartender(Throttler timer, CallsCount callsCount) {
+    this.callsCount = callsCount;
+    timer.start();
+  }
 
-    IntStream.range(0, 5).mapToObj(i -> tenant).forEach(service::dummyCustomerApi);
-    var counter = callsCount.getCount(tenant.getName());
-    assertEquals(2, counter, "Counter limit must be reached");
+  /**
+   * Orders a drink from the bartender.
+   * @return customer id which is randomly generated
+   */
+  public int orderDrink(BarCustomer barCustomer) {
+    var tenantName = barCustomer.getName();
+    var count = callsCount.getCount(tenantName);
+    if (count >= barCustomer.getAllowedCallsPerSecond()) {
+      LOGGER.error("I'm sorry {}, you've had enough for today!", tenantName);
+      return -1;
+    }
+    callsCount.incrementCount(tenantName);
+    LOGGER.debug("Serving beer to {} : [{} consumed] ", barCustomer.getName(), count + 1);
+    return getRandomCustomerId();
+  }
+
+  private int getRandomCustomerId() {
+    return ThreadLocalRandom.current().nextInt(1, 10000);
   }
 }

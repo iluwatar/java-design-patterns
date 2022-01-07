@@ -23,43 +23,33 @@
 
 package com.iluwatar.throttling;
 
-import com.iluwatar.throttling.timer.Throttler;
-import java.util.concurrent.ThreadLocalRandom;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.security.InvalidParameterException;
+
+import lombok.Getter;
 
 /**
- * A service which accepts a tenant and throttles the resource based on the time given to the
- * tenant.
+ * BarCustomer is a tenant with a name and a number of allowed calls per second.
  */
-class B2BService {
+public class BarCustomer {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(B2BService.class);
-  private final CallsCount callsCount;
-
-  public B2BService(Throttler timer, CallsCount callsCount) {
-    this.callsCount = callsCount;
-    timer.start();
-  }
+  @Getter
+  private final String name;
+  @Getter
+  private final int allowedCallsPerSecond;
 
   /**
-   * Calls dummy customer api.
+   * Constructor.
    *
-   * @return customer id which is randomly generated
+   * @param name Name of the BarCustomer
+   * @param allowedCallsPerSecond The number of calls allowed for this particular tenant.
+   * @throws InvalidParameterException If number of calls is less than 0, throws exception.
    */
-  public int dummyCustomerApi(Tenant tenant) {
-    var tenantName = tenant.getName();
-    var count = callsCount.getCount(tenantName);
-    LOGGER.debug("Counter for {} : {} ", tenant.getName(), count);
-    if (count >= tenant.getAllowedCallsPerSecond()) {
-      LOGGER.error("API access per second limit reached for: {}", tenantName);
-      return -1;
+  public BarCustomer(String name, int allowedCallsPerSecond, CallsCount callsCount) {
+    if (allowedCallsPerSecond < 0) {
+      throw new InvalidParameterException("Number of calls less than 0 not allowed");
     }
-    callsCount.incrementCount(tenantName);
-    return getRandomCustomerId();
-  }
-
-  private int getRandomCustomerId() {
-    return ThreadLocalRandom.current().nextInt(1, 10000);
+    this.name = name;
+    this.allowedCallsPerSecond = allowedCallsPerSecond;
+    callsCount.addTenant(name);
   }
 }
