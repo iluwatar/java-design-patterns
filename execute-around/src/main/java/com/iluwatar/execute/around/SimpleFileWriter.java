@@ -23,6 +23,8 @@
 
 package com.iluwatar.execute.around;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -30,14 +32,18 @@ import java.io.IOException;
  * SimpleFileWriter handles opening and closing file for the user. The user only has to specify what
  * to do with the file resource through {@link FileWriterAction} parameter.
  */
+@Slf4j
 public class SimpleFileWriter {
 
   /**
    * Constructor.
    */
   public SimpleFileWriter(String filename, FileWriterAction action) throws IOException {
+    LOGGER.info("Opening the file");
     try (var writer = new FileWriter(filename)) {
+      LOGGER.info("Executing the action");
       action.writeFile(writer);
+      LOGGER.info("Closing the file");
     }
   }
 }

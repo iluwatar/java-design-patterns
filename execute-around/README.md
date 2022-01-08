@@ -17,10 +17,10 @@ the user to specify only what to do with the resource.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> We need to provide a class that can be used to write text strings to files. To make it easy for 
-> the user we let our service class open and close the file automatically, the user only has to 
+> A class needs to be provided for writing text strings to files. To make it easy for 
+> the user, the service class opens and closes the file automatically. The user only has to 
 > specify what is written into which file.       
 
 In plain words
@@ -35,35 +35,50 @@ In plain words
 
 **Programmatic Example**
 
-Let's introduce our file writer class.
+`SimpleFileWriter` class implements the Execute Around idiom. It takes `FileWriterAction` as a
+constructor argument allowing the user to specify what gets written into the file.
 
 ```java
 @FunctionalInterface
 public interface FileWriterAction {
-
   void writeFile(FileWriter writer) throws IOException;
-
 }
 
+@Slf4j
 public class SimpleFileWriter {
-
-  public SimpleFileWriter(String filename, FileWriterAction action) throws IOException {
-    try (var writer = new FileWriter(filename)) {
-      action.writeFile(writer);
+    public SimpleFileWriter(String filename, FileWriterAction action) throws IOException {
+        LOGGER.info("Opening the file");
+        try (var writer = new FileWriter(filename)) {
+            LOGGER.info("Executing the action");
+            action.writeFile(writer);
+            LOGGER.info("Closing the file");
+        }
     }
-  }
 }
 ```
 
-To utilize the file writer the following code is needed.
+The following code demonstrates how `SimpleFileWriter` is used. `Scanner` is used to print the file
+contents after the writing finishes.
 
 ```java
-    FileWriterAction writeHello = writer -> {
-      writer.write("Hello");
-      writer.append(" ");
-      writer.append("there!");
-    };
-    new SimpleFileWriter("testfile.txt", writeHello);
+FileWriterAction writeHello = writer -> {
+    writer.write("Gandalf was here");
+};
+new SimpleFileWriter("testfile.txt", writeHello);
+
+var scanner = new Scanner(new File("testfile.txt"));
+while (scanner.hasNextLine()) {
+LOGGER.info(scanner.nextLine());
+}
+```
+
+Here's the console output.
+
+```
+21:18:07.185 [main] INFO com.iluwatar.execute.around.SimpleFileWriter - Opening the file
+21:18:07.188 [main] INFO com.iluwatar.execute.around.SimpleFileWriter - Executing the action
+21:18:07.189 [main] INFO com.iluwatar.execute.around.SimpleFileWriter - Closing the file
+21:18:07.199 [main] INFO com.iluwatar.execute.around.App - Gandalf was here
 ```
 
 ## Class diagram
@@ -74,8 +89,7 @@ To utilize the file writer the following code is needed.
 
 Use the Execute Around idiom when
 
-* You use an API that requires methods to be called in pairs such as open/close or 
-allocate/deallocate.
+* An API requires methods to be called in pairs such as open/close or allocate/deallocate.
 
 ## Credits
 
