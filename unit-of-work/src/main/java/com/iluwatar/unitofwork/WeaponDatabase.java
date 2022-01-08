@@ -24,19 +24,19 @@
 package com.iluwatar.unitofwork;
 
 /**
- * Act as Database for student records.
+ * Act as database for weapon records.
  */
-public class StudentDatabase {
+public class WeaponDatabase {
 
-  public void insert(Student student) {
+  public void insert(Weapon weapon) {
     //Some insert logic to DB
   }
 
-  public void modify(Student student) {
+  public void modify(Weapon weapon) {
     //Some modify logic to DB
   }
 
-  public void delete(Student student) {
+  public void delete(Weapon weapon) {
     //Some delete logic to DB
   }
 }
