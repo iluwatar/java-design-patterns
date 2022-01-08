@@ -23,11 +23,11 @@
 
 package com.iluwatar.execute.around;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Execute Around idiom specifies executable code before and after a method. Typically

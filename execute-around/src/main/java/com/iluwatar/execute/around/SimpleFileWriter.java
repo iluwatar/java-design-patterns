@@ -23,10 +23,10 @@
 
 package com.iluwatar.execute.around;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.FileWriter;
 import java.io.IOException;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * SimpleFileWriter handles opening and closing file for the user. The user only has to specify what
