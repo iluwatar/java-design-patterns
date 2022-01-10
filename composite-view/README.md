@@ -3,7 +3,7 @@ layout: pattern
 title: Composite View 
 folder: composite-view
 permalink: /patterns/composite-view/
-categories: structural
+categories: Structural
 language: en
 tags:
 - Enterprise Integration Pattern
@@ -316,7 +316,7 @@ with components.
 * Increases potential for display errors 
 
 ## Related patterns
-* [Composite (GoF)](../composite)
+* [Composite (GoF)](https://java-design-patterns.com/patterns/composite/)
 * [View Helper](https://www.oracle.com/java/technologies/viewhelper.html)
 
 ## Credits
