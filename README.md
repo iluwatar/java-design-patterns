@@ -42,7 +42,7 @@ popular battle-proven open-source Java technologies.
 
 Before you dive into the material, you should be familiar with various
 [Software Design Principles](https://java-design-patterns.com/principles/).
-
+ррррррррр
 All designs should be as simple as possible. You should start with KISS, YAGNI,
 and Do The Simplest Thing That Could Possibly Work principles. Complexity and
 patterns should only be introduced when they are needed for practical
