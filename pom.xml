@@ -228,6 +228,7 @@
     <module>lockable-object</module>
     <module>fanout-fanin</module>
     <module>domain-model</module>
+    <module>composite-view</module>
     <module>metadata-mapping</module>
   </modules>
   <repositories>
