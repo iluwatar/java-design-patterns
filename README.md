@@ -320,7 +320,7 @@ This project is licensed under the terms of the MIT license.
   </tr>
   <tr>
     <td align="center"><a href="https://www.linkedin.com/in/abhinav-vashisth-06613b208/"><img src="https://avatars.githubusercontent.com/u/89785800?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Abhinav Vashisth</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=vashisthabhinav" title="Documentation">📖</a></td>
-    <td align="center"><a href="http://no website"><img src="https://avatars.githubusercontent.com/u/47126749?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kevin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3AKevinyl3" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="http://no website"><img src="https://avatars.githubusercontent.com/u/47126749?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kevin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3AKevinyl3" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=Kevinyl3" title="Code">💻</a></td>
   </tr>
 </table>
 
