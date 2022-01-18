@@ -43,7 +43,7 @@ import lombok.extern.slf4j.Slf4j;
 public class App {
 
   /**
-   * This practice creates three HeroStats(Value object) and checks equality between those.
+   * This example creates three HeroStats (value objects) and checks equality between those.
    */
   public static void main(String[] args) {
     var statA = HeroStat.valueOf(10, 5, 0);
@@ -51,6 +51,8 @@ public class App {
     var statC = HeroStat.valueOf(5, 1, 8);
 
     LOGGER.info(statA.toString());
+    LOGGER.info(statB.toString());
+    LOGGER.info(statC.toString());
 
     LOGGER.info("Is statA and statB equal : {}", statA.equals(statB));
     LOGGER.info("Is statA and statC equal : {}", statA.equals(statC));

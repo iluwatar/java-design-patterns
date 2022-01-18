@@ -34,11 +34,11 @@ import lombok.extern.slf4j.Slf4j;
  * complete service by users or a particular tenant. This can allow systems to continue to function
  * and meet service level agreements, even when an increase in demand places load on resources.
  * <p>
- * In this example we have ({@link App}) as the initiating point of the service. This is a time
+ * In this example there is a {@link Bartender} serving beer to {@link BarCustomer}s. This is a time
  * based throttling, i.e. only a certain number of calls are allowed per second.
  * </p>
- * ({@link Tenant}) is the Tenant POJO class with which many tenants can be created ({@link
- * B2BService}) is the service which is consumed by the tenants and is throttled.
+ * ({@link BarCustomer}) is the service tenant class having a name and the number of calls allowed.
+ * ({@link Bartender}) is the service which is consumed by the tenants and is throttled.
  */
 @Slf4j
 public class App {
@@ -50,33 +50,35 @@ public class App {
    */
   public static void main(String[] args) {
     var callsCount = new CallsCount();
-    var adidas = new Tenant("Adidas", 5, callsCount);
-    var nike = new Tenant("Nike", 6, callsCount);
+    var human = new BarCustomer("young human", 2, callsCount);
+    var dwarf = new BarCustomer("dwarf soldier", 4, callsCount);
 
     var executorService = Executors.newFixedThreadPool(2);
 
-    executorService.execute(() -> makeServiceCalls(adidas, callsCount));
-    executorService.execute(() -> makeServiceCalls(nike, callsCount));
+    executorService.execute(() -> makeServiceCalls(human, callsCount));
+    executorService.execute(() -> makeServiceCalls(dwarf, callsCount));
 
     executorService.shutdown();
     try {
-      executorService.awaitTermination(10, TimeUnit.SECONDS);
+      if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
+        executorService.shutdownNow();
+      }
     } catch (InterruptedException e) {
-      LOGGER.error("Executor Service terminated: {}", e.getMessage());
+      executorService.shutdownNow();
     }
   }
 
   /**
-   * Make calls to the B2BService dummy API.
+   * Make calls to the bartender.
    */
-  private static void makeServiceCalls(Tenant tenant, CallsCount callsCount) {
-    var timer = new ThrottleTimerImpl(10, callsCount);
-    var service = new B2BService(timer, callsCount);
+  private static void makeServiceCalls(BarCustomer barCustomer, CallsCount callsCount) {
+    var timer = new ThrottleTimerImpl(1000, callsCount);
+    var service = new Bartender(timer, callsCount);
     // Sleep is introduced to keep the output in check and easy to view and analyze the results.
-    IntStream.range(0, 20).forEach(i -> {
-      service.dummyCustomerApi(tenant);
+    IntStream.range(0, 50).forEach(i -> {
+      service.orderDrink(barCustomer);
       try {
-        Thread.sleep(1);
+        Thread.sleep(100);
       } catch (InterruptedException e) {
         LOGGER.error("Thread interrupted: {}", e.getMessage());
       }

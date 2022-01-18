@@ -18,11 +18,11 @@ threads and eliminating the latency of creating new threads.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > We have a large number of relatively short tasks at hand. We need to peel huge amounts of potatoes 
-> and serve mighty amount of coffee cups. Creating a new thread for each task would be a waste so we 
-> establish a thread pool.       
+> and serve a mighty amount of coffee cups. Creating a new thread for each task would be a waste so 
+> we establish a thread pool.       
 
 In plain words
 
@@ -99,7 +99,7 @@ public class PotatoPeelingTask extends Task {
 }
 ```
 
-Next we present a runnable `Worker` class that the thread pool will utilize to handle all the potato 
+Next, we present a runnable `Worker` class that the thread pool will utilize to handle all the potato 
 peeling and coffee making.
 
 ```java

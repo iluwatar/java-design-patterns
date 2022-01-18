@@ -69,7 +69,7 @@ public final class CallsCount {
    * Resets the count of all the tenants in the map.
    */
   public void reset() {
-    LOGGER.debug("Resetting the map.");
     tenantCallsCount.replaceAll((k, v) -> new AtomicLong(0));
+    LOGGER.info("reset counters");
   }
 }

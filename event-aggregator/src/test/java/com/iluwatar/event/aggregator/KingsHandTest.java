@@ -55,7 +55,11 @@ class KingsHandTest extends EventEmitterTest<KingsHand> {
   @Test
   void testPassThrough() throws Exception {
     final var observer = mock(EventObserver.class);
-    final var kingsHand = new KingsHand(observer);
+    final var kingsHand = new KingsHand();
+    kingsHand.registerObserver(observer, Event.STARK_SIGHTED);
+    kingsHand.registerObserver(observer, Event.WARSHIPS_APPROACHING);
+    kingsHand.registerObserver(observer, Event.TRAITOR_DETECTED);
+    kingsHand.registerObserver(observer, Event.WHITE_WALKERS_SIGHTED);
 
     // The kings hand should not pass any events before he received one
     verifyZeroInteractions(observer);

@@ -18,10 +18,10 @@ couldn't otherwise because of incompatible interfaces.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> Consider that you have some pictures in your memory card and you need to transfer them to your computer. In order to transfer them you need some kind of adapter that is compatible with your computer ports so that you can attach memory card to your computer. In this case card reader is an adapter.
-> Another example would be the famous power adapter; a three legged plug can't be connected to a two pronged outlet, it needs to use a power adapter that makes it compatible with the two pronged outlet.
+> Consider that you have some pictures on your memory card and you need to transfer them to your computer. To transfer them, you need some kind of adapter that is compatible with your computer ports so that you can attach a memory card to your computer. In this case card reader is an adapter.
+> Another example would be the famous power adapter; a three-legged plug can't be connected to a two-pronged outlet, it needs to use a power adapter that makes it compatible with the two-pronged outlets.
 > Yet another example would be a translator translating words spoken by one person to another
 
 In plain words
@@ -36,7 +36,7 @@ Wikipedia says
 
 Consider a captain that can only use rowing boats and cannot sail at all.
 
-First we have interfaces `RowingBoat` and `FishingBoat`
+First, we have interfaces `RowingBoat` and `FishingBoat`
 
 ```java
 public interface RowingBoat {
@@ -68,7 +68,7 @@ public class Captain {
 }
 ```
 
-Now let's say the pirates are coming and our captain needs to escape but there is only fishing boat available. We need to create an adapter that allows the captain to operate the fishing boat with his rowing boat skills.
+Now let's say the pirates are coming and our captain needs to escape but there is only a fishing boat available. We need to create an adapter that allows the captain to operate the fishing boat with his rowing boat skills.
 
 ```java
 @Slf4j
@@ -100,10 +100,10 @@ captain.row();
 ## Applicability
 Use the Adapter pattern when
 
-* you want to use an existing class, and its interface does not match the one you need
-* you want to create a reusable class that cooperates with unrelated or unforeseen classes, that is, classes that don't necessarily have compatible interfaces
-* you need to use several existing subclasses, but it's impractical to adapt their interface by subclassing every one. An object adapter can adapt the interface of its parent class.
-* most of the applications using third party libraries use adapters as a middle layer between the application and the 3rd party library to decouple the application from the library. If another library has to be used only an adapter for the new library is required without having to change the application code.
+* You want to use an existing class, and its interface does not match the one you need
+* You want to create a reusable class that cooperates with unrelated or unforeseen classes, that is, classes that don't necessarily have compatible interfaces
+* You need to use several existing subclasses, but it's impractical to adapt their interface by subclassing everyone. An object adapter can adapt the interface of its parent class.
+* Most of the applications using third-party libraries use adapters as a middle layer between the application and the 3rd party library to decouple the application from the library. If another library has to be used only an adapter for the new library is required without having to change the application code.
 
 ## Tutorials
 
@@ -114,17 +114,17 @@ Use the Adapter pattern when
 ## Consequences
 Class and object adapters have different trade-offs. A class adapter
 
-*	adapts Adaptee to Target by committing to a concrete Adaptee class. As a consequence, a class adapter won’t work when we want to adapt a class and all its subclasses.
-*	let’s Adapter override some of Adaptee’s behavior, since Adapter is a subclass of Adaptee.
-*	introduces only one object, and no additional pointer indirection is needed to get to the adaptee.
+*	Adapts Adaptee to Target by committing to a concrete Adaptee class. As a consequence, a class adapter won’t work when we want to adapt a class and all its subclasses.
+*	Let’s Adapter override some of Adaptee’s behavior since Adapter is a subclass of Adaptee.
+*	Introduces only one object, and no additional pointer indirection is needed to get to the adaptee.
 
 An object adapter	
 
-*	let’s a single Adapter work with many Adaptees—that is, the Adaptee itself and all of its subclasses (if any). The Adapter can also add functionality to all Adaptees at once.
-*	makes it harder to override Adaptee behavior. It will require subclassing Adaptee and making Adapter refer to the subclass rather than the Adaptee itself.
+*	Lets a single Adapter work with many Adaptees—that is, the Adaptee itself and all of its subclasses (if any). The Adapter can also add functionality to all Adaptees at once.
+*	Makes it harder to override Adaptee behavior. It will require subclassing Adaptee and making the Adapter refer to the subclass rather than the Adaptee itself.
 
 
-## Known uses
+## Real-world examples
 
 * [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList%28T...%29)
 * [java.util.Collections#list()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#list-java.util.Enumeration-)
