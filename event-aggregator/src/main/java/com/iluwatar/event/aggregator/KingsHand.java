@@ -31,8 +31,8 @@ public class KingsHand extends EventEmitter implements EventObserver {
   public KingsHand() {
   }
 
-  public KingsHand(EventObserver obs) {
-    super(obs);
+  public KingsHand(EventObserver obs, Event e) {
+    super(obs, e);
   }
 
   @Override
@@ -42,6 +42,5 @@ public class KingsHand extends EventEmitter implements EventObserver {
 
   @Override
   public void timePasses(Weekday day) {
-    // NOP
   }
 }

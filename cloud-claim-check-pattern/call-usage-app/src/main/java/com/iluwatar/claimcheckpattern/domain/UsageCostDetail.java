@@ -21,39 +21,23 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.throttling;
+package com.iluwatar.claimcheckpattern.domain;
 
-import java.security.InvalidParameterException;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * A Pojo class to create a basic Tenant with the allowed calls per second.
+ * This is call cost details class.
+ * It stores userId of the caller, call duration cost and data cost.
  */
-public class Tenant {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class UsageCostDetail {
 
-  private final String name;
-  private final int allowedCallsPerSecond;
+  private String userId;
+  private double callCost;
+  private double dataCost;
 
-  /**
-   * Constructor.
-   *
-   * @param name                  Name of the tenant
-   * @param allowedCallsPerSecond The number of calls allowed for a particular tenant.
-   * @throws InvalidParameterException If number of calls is less than 0, throws exception.
-   */
-  public Tenant(String name, int allowedCallsPerSecond, CallsCount callsCount) {
-    if (allowedCallsPerSecond < 0) {
-      throw new InvalidParameterException("Number of calls less than 0 not allowed");
-    }
-    this.name = name;
-    this.allowedCallsPerSecond = allowedCallsPerSecond;
-    callsCount.addTenant(name);
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getAllowedCallsPerSecond() {
-    return allowedCallsPerSecond;
-  }
 }

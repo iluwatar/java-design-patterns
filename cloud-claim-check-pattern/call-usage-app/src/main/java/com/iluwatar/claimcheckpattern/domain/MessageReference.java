@@ -21,31 +21,25 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.throttling;
+package com.iluwatar.claimcheckpattern.domain;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import com.iluwatar.throttling.timer.Throttler;
-import java.util.stream.IntStream;
-import org.junit.jupiter.api.Test;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * B2BServiceTest class to test the B2BService
+ * This is claim/message reference class.
+ * It contains the information about data where it is stored in persistent storage
+ * and file name.
+ * dataLocation is blob storage container name.
+ * dataFileName is file name in above container.
  */
-public class B2BServiceTest {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MessageReference {
 
-  private final CallsCount callsCount = new CallsCount();
+  private String dataLocation;
+  private String dataFileName;
 
-  @Test
-  void dummyCustomerApiTest() {
-    var tenant = new Tenant("testTenant", 2, callsCount);
-    // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
-    var timer = (Throttler) () -> {
-    };
-    var service = new B2BService(timer, callsCount);
-
-    IntStream.range(0, 5).mapToObj(i -> tenant).forEach(service::dummyCustomerApi);
-    var counter = callsCount.getCount(tenant.getName());
-    assertEquals(2, counter, "Counter limit must be reached");
-  }
 }

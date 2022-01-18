@@ -21,22 +21,35 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.unitofwork;
+package com.iluwatar.throttling;
+
+import java.security.InvalidParameterException;
+
+import lombok.Getter;
 
 /**
- * Act as Database for student records.
+ * BarCustomer is a tenant with a name and a number of allowed calls per second.
  */
-public class StudentDatabase {
+public class BarCustomer {
 
-  public void insert(Student student) {
-    //Some insert logic to DB
-  }
+  @Getter
+  private final String name;
+  @Getter
+  private final int allowedCallsPerSecond;
 
-  public void modify(Student student) {
-    //Some modify logic to DB
-  }
-
-  public void delete(Student student) {
-    //Some delete logic to DB
+  /**
+   * Constructor.
+   *
+   * @param name Name of the BarCustomer
+   * @param allowedCallsPerSecond The number of calls allowed for this particular tenant.
+   * @throws InvalidParameterException If number of calls is less than 0, throws exception.
+   */
+  public BarCustomer(String name, int allowedCallsPerSecond, CallsCount callsCount) {
+    if (allowedCallsPerSecond < 0) {
+      throw new InvalidParameterException("Number of calls less than 0 not allowed");
+    }
+    this.name = name;
+    this.allowedCallsPerSecond = allowedCallsPerSecond;
+    callsCount.addTenant(name);
   }
 }

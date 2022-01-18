@@ -27,7 +27,7 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * {@link App} Application for managing student data.
+ * {@link App} Application demonstrating unit of work pattern.
  */
 public class App {
   /**
@@ -37,17 +37,19 @@ public class App {
    */
 
   public static void main(String[] args) {
-    var ram = new Student(1, "Ram", "Street 9, Cupertino");
-    var shyam = new Student(2, "Shyam", "Z bridge, Pune");
-    var gopi = new Student(3, "Gopi", "Street 10, Mumbai");
+    // create some weapons
+    var enchantedHammer = new Weapon(1, "enchanted hammer");
+    var brokenGreatSword = new Weapon(2, "broken great sword");
+    var silverTrident = new Weapon(3, "silver trident");
 
-    var context = new HashMap<String, List<Student>>();
-    var studentDatabase = new StudentDatabase();
-    var studentRepository = new StudentRepository(context, studentDatabase);
+    // create repository
+    var weaponRepository = new ArmsDealer(new HashMap<String, List<Weapon>>(),
+            new WeaponDatabase());
 
-    studentRepository.registerNew(ram);
-    studentRepository.registerModified(shyam);
-    studentRepository.registerDeleted(gopi);
-    studentRepository.commit();
+    // perform operations on the weapons
+    weaponRepository.registerNew(enchantedHammer);
+    weaponRepository.registerModified(silverTrident);
+    weaponRepository.registerDeleted(brokenGreatSword);
+    weaponRepository.commit();
   }
 }

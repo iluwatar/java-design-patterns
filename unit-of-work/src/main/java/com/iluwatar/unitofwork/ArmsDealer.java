@@ -30,41 +30,41 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * {@link StudentRepository} Student database repository. supports unit of work for student data.
+ * {@link ArmsDealer} Weapon repository that supports unit of work for weapons.
  */
 @Slf4j
 @RequiredArgsConstructor
-public class StudentRepository implements IUnitOfWork<Student> {
+public class ArmsDealer implements IUnitOfWork<Weapon> {
 
-  private final Map<String, List<Student>> context;
-  private final StudentDatabase studentDatabase;
+  private final Map<String, List<Weapon>> context;
+  private final WeaponDatabase weaponDatabase;
 
   @Override
-  public void registerNew(Student student) {
-    LOGGER.info("Registering {} for insert in context.", student.getName());
-    register(student, UnitActions.INSERT.getActionValue());
+  public void registerNew(Weapon weapon) {
+    LOGGER.info("Registering {} for insert in context.", weapon.getName());
+    register(weapon, UnitActions.INSERT.getActionValue());
   }
 
   @Override
-  public void registerModified(Student student) {
-    LOGGER.info("Registering {} for modify in context.", student.getName());
-    register(student, UnitActions.MODIFY.getActionValue());
+  public void registerModified(Weapon weapon) {
+    LOGGER.info("Registering {} for modify in context.", weapon.getName());
+    register(weapon, UnitActions.MODIFY.getActionValue());
 
   }
 
   @Override
-  public void registerDeleted(Student student) {
-    LOGGER.info("Registering {} for delete in context.", student.getName());
-    register(student, UnitActions.DELETE.getActionValue());
+  public void registerDeleted(Weapon weapon) {
+    LOGGER.info("Registering {} for delete in context.", weapon.getName());
+    register(weapon, UnitActions.DELETE.getActionValue());
   }
 
-  private void register(Student student, String operation) {
-    var studentsToOperate = context.get(operation);
-    if (studentsToOperate == null) {
-      studentsToOperate = new ArrayList<>();
+  private void register(Weapon weapon, String operation) {
+    var weaponsToOperate = context.get(operation);
+    if (weaponsToOperate == null) {
+      weaponsToOperate = new ArrayList<>();
     }
-    studentsToOperate.add(student);
-    context.put(operation, studentsToOperate);
+    weaponsToOperate.add(weapon);
+    context.put(operation, weaponsToOperate);
   }
 
   /**
@@ -90,26 +90,26 @@ public class StudentRepository implements IUnitOfWork<Student> {
   }
 
   private void commitInsert() {
-    var studentsToBeInserted = context.get(UnitActions.INSERT.getActionValue());
-    for (var student : studentsToBeInserted) {
-      LOGGER.info("Saving {} to database.", student.getName());
-      studentDatabase.insert(student);
+    var weaponsToBeInserted = context.get(UnitActions.INSERT.getActionValue());
+    for (var weapon : weaponsToBeInserted) {
+      LOGGER.info("Inserting a new weapon {} to sales rack.", weapon.getName());
+      weaponDatabase.insert(weapon);
     }
   }
 
   private void commitModify() {
-    var modifiedStudents = context.get(UnitActions.MODIFY.getActionValue());
-    for (var student : modifiedStudents) {
-      LOGGER.info("Modifying {} to database.", student.getName());
-      studentDatabase.modify(student);
+    var modifiedWeapons = context.get(UnitActions.MODIFY.getActionValue());
+    for (var weapon : modifiedWeapons) {
+      LOGGER.info("Scheduling {} for modification work.", weapon.getName());
+      weaponDatabase.modify(weapon);
     }
   }
 
   private void commitDelete() {
-    var deletedStudents = context.get(UnitActions.DELETE.getActionValue());
-    for (var student : deletedStudents) {
-      LOGGER.info("Deleting {} to database.", student.getName());
-      studentDatabase.delete(student);
+    var deletedWeapons = context.get(UnitActions.DELETE.getActionValue());
+    for (var weapon : deletedWeapons) {
+      LOGGER.info("Scrapping {}.", weapon.getName());
+      weaponDatabase.delete(weapon);
     }
   }
 }

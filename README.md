@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-189-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-196-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -21,7 +21,7 @@ Read in different language : [**zh**](localization/zh/README.md), [**ko**](local
 
 # Introduction
 
-Design patterns are the best formalized practices a programmer can use to
+Design patterns are the best, formalized practices a programmer can use to
 solve common problems when designing an application or system.
 
 Design patterns can speed up the development process by providing tested, proven
@@ -34,11 +34,11 @@ are familiar with the patterns.
 # Getting started
 
 This site showcases Java Design Patterns. The solutions have been developed by
-experienced programmers and architects from the open source community. The
-patterns can be browsed by their high level descriptions or by looking at their
-source code. The source code examples are well commented and can be thought as
+experienced programmers and architects from the open-source community. The
+patterns can be browsed by their high-level descriptions or by looking at their
+source code. The source code examples are well commented and can be thought of as
 programming tutorials on how to implement a specific pattern. We use the most
-popular battle-proven open source Java technologies.
+popular battle-proven open-source Java technologies.
 
 Before you dive into the material, you should be familiar with various
 [Software Design Principles](https://java-design-patterns.com/principles/).
@@ -56,8 +56,8 @@ of the following approaches
  - Using tags such as `Performance`, `Gang of Four` or `Data access`.
  - Using pattern categories, `Creational`, `Behavioral`, and others.
 
-Hopefully you find the object oriented solutions presented on this site useful
-in your architectures and have as much fun learning them as we had developing them.
+Hopefully, you find the object-oriented solutions presented on this site useful
+in your architectures and have as much fun learning them as we had while developing them.
 
 # How to contribute
 
@@ -317,6 +317,15 @@ This project is licensed under the terms of the MIT license.
     <td align="center"><a href="https://uh-zz.github.io/blog/"><img src="https://avatars.githubusercontent.com/u/47747828?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Reo Uehara</b></sub></a><br /><a href="#translation-uh-zz" title="Translation">🌍</a></td>
     <td align="center"><a href="https://github.com/Fiordy"><img src="https://avatars.githubusercontent.com/u/53420573?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Fiordy</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Fiordy" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/harshalkh"><img src="https://avatars.githubusercontent.com/u/37841724?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Harshal</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=harshalkh" title="Code">💻</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://www.linkedin.com/in/abhinav-vashisth-06613b208/"><img src="https://avatars.githubusercontent.com/u/89785800?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Abhinav Vashisth</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=vashisthabhinav" title="Documentation">📖</a></td>
+    <td align="center"><a href="http://no website"><img src="https://avatars.githubusercontent.com/u/47126749?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Kevin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3AKevinyl3" title="Reviewed Pull Requests">👀</a></td>
+    <td align="center"><a href="https://github.com/Shrirang97"><img src="https://avatars.githubusercontent.com/u/28738668?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Shrirang</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3AShrirang97" title="Reviewed Pull Requests">👀</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=Shrirang97" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/interactwithankush"><img src="https://avatars.githubusercontent.com/u/18613127?v=4?s=100" width="100px;" alt=""/><br /><sub><b>interactwithankush</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=interactwithankush" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/yuhangbin"><img src="https://avatars.githubusercontent.com/u/17566866?v=4?s=100" width="100px;" alt=""/><br /><sub><b>CharlieYu</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yuhangbin" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Leisterbecker"><img src="https://avatars.githubusercontent.com/u/20650323?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Leisterbecker</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Leisterbecker" title="Code">💻</a></td>
+    <td align="center"><a href="http://rosaecrucis.cn"><img src="https://avatars.githubusercontent.com/u/35420129?v=4?s=100" width="100px;" alt=""/><br /><sub><b>DragonDreamer</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=castleKing1997" title="Code">💻</a></td>
   </tr>
 </table>
 

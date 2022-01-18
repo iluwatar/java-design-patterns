@@ -21,22 +21,27 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.throttling;
+package com.iluwatar.claimcheckpattern.domain;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import java.security.InvalidParameterException;
-import org.junit.jupiter.api.Test;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * TenantTest to test the creation of Tenant with valid parameters.
+ * This is message header or event which is sent to Event Grid.
+ * Its structure is same as Azure Event Grid Event Class.
  */
-public class TenantTest {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class MessageHeader {
 
-  @Test
-  void constructorTest() {
-    assertThrows(InvalidParameterException.class, () -> {
-      new Tenant("FailTenant", -1, new CallsCount());
-    });
-  }
+  private String id;
+  private String subject;
+  private String topic;
+  private String eventType;
+  private String eventTime;
+  private Object data;
+  private String dataVersion;
+
 }

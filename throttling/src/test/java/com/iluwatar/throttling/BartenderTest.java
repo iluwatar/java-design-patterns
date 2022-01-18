@@ -21,20 +21,30 @@
  * THE SOFTWARE.
  */
 
-package com.iluwatar.unitofwork;
+package com.iluwatar.throttling;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.iluwatar.throttling.timer.Throttler;
+import java.util.stream.IntStream;
+import org.junit.jupiter.api.Test;
 
 /**
- * {@link Student} is an entity.
+ * B2BServiceTest class to test the B2BService
  */
-@Getter
-@RequiredArgsConstructor
-public class Student {
+public class BartenderTest {
 
-  private final Integer id;
-  private final String name;
-  private final String address;
+  private final CallsCount callsCount = new CallsCount();
 
+  @Test
+  void dummyCustomerApiTest() {
+    var tenant = new BarCustomer("pirate", 2, callsCount);
+    // In order to assure that throttling limits will not be reset, we use an empty throttling implementation
+    var timer = (Throttler) () -> {};
+    var service = new Bartender(timer, callsCount);
+
+    IntStream.range(0, 5).mapToObj(i -> tenant).forEach(service::orderDrink);
+    var counter = callsCount.getCount(tenant.getName());
+    assertEquals(2, counter, "Counter limit must be reached");
+  }
 }
