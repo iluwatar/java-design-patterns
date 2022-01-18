@@ -64,15 +64,15 @@ public class App {
    */
   public static void main(String[] args) {
 
-    var serverStartTime = System.nanoTime();
+    long serverStartTime = System.nanoTime();
 
     var delayedService = new DelayedRemoteService(serverStartTime, 5);
     var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000, 2,
-        2000 * 1000 * 1000);
+            (long)2000 * 1000 * 1000);
 
     var quickService = new QuickRemoteService();
     var quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, 2,
-        2000 * 1000 * 1000);
+            (long)2000 * 1000 * 1000);
 
     //Create an object of monitoring service which makes both local and remote calls
     var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,
