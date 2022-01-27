@@ -12,6 +12,7 @@ tmp/
 local.properties
 .loadpath
 .recommenders
+.DS_Store
 
 #######  Java annotation processor (APT) ########
 .factorypath
