@@ -23,7 +23,7 @@
 
 package com.iluwatar.monitor;
 
-import java.util.Random;
+import java.security.SecureRandom;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import lombok.extern.slf4j.Slf4j;
@@ -48,8 +48,8 @@ public class Main {
     Runnable runnable =
         () -> {
           try {
-            Thread.sleep((long) (Math.random() * 1000));
-            Random random = new Random();
+            SecureRandom random = new SecureRandom();
+            Thread.sleep(random.nextInt(1000));
             for (int i = 0; i < 1000000; i++) {
               bank.transfer(random.nextInt(4), random.nextInt(4), random.nextInt());
             }
