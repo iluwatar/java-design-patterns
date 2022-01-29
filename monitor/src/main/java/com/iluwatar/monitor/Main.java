@@ -51,10 +51,11 @@ public class Main {
             Thread.sleep((long) (Math.random() * 1000));
             Random random = new Random();
             for (int i = 0; i < 1000000; i++) {
-              bank.transfer(random.nextInt(4), random.nextInt(4), (int) (Math.random() * 1000));
+              bank.transfer(random.nextInt(4), random.nextInt(4), random.nextInt());
             }
           } catch (InterruptedException e) {
             logger.info(e.getMessage());
+            Thread.currentThread().interrupt();
           }
         };
     ExecutorService executorService = Executors.newFixedThreadPool(5);

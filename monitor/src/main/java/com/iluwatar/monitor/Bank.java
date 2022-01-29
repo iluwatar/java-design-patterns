@@ -34,14 +34,9 @@ public class Bank {
       accounts[accountB] += amount;
       accounts[accountA] -= amount;
       logger.info(
-          "Transferred from account :"
-              + accountA
-              + " to account :"
-              + accountB
-              + " , amount :"
-              + amount
-              + " . balance :"
-              + getBalance());
+          String.format(
+              "Transferred from account: %s to account: %s , amount: %s , balance: %s",
+              accountA, accountB, amount, getBalance()));
     }
   }
 
