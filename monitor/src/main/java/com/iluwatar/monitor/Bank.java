@@ -52,4 +52,13 @@ public class Bank {
     }
     return balance;
   }
+
+  /**
+   * Get all accounts.
+   *
+   * @return accounts
+   */
+  public int[] getAccounts() {
+    return accounts;
+  }
 }
