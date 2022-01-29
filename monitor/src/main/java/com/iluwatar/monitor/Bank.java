@@ -1,23 +1,21 @@
 package com.iluwatar.monitor;
 
 import java.util.Arrays;
-import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /** Bank Definition. */
+@Slf4j
 public class Bank {
 
   private final int[] accounts;
-  Logger logger;
 
   /**
    * Constructor.
    *
    * @param accountNum - account number
    * @param baseAmount - base amount
-   * @param logger - logger object
    */
-  public Bank(int accountNum, int baseAmount, Logger logger) {
-    this.logger = logger;
+  public Bank(int accountNum, int baseAmount) {
     accounts = new int[accountNum];
     Arrays.fill(accounts, baseAmount);
   }
@@ -33,10 +31,12 @@ public class Bank {
     if (accounts[accountA] >= amount) {
       accounts[accountB] += amount;
       accounts[accountA] -= amount;
-      logger.info(
-          String.format(
-              "Transferred from account: %s to account: %s , amount: %s , balance: %s",
-              accountA, accountB, amount, getBalance()));
+      LOGGER.info(
+          "Transferred from account: {} to account: {} , amount: {} , balance: {}",
+          accountA,
+          accountB,
+          amount,
+          getBalance());
     }
   }
 

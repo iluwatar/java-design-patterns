@@ -26,7 +26,7 @@ package com.iluwatar.monitor;
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Monitor pattern is used in concurrent algorithms to achieve mutual exclusion.
@@ -36,6 +36,7 @@ import java.util.logging.Logger;
  *
  * <p>Main class uses ThreadPool to run threads that do transactions on the bank accounts.
  */
+@Slf4j
 public class Main {
   /**
    * Program entry point.
@@ -43,8 +44,7 @@ public class Main {
    * @param args command line args
    */
   public static void main(String[] args) {
-    Logger logger = Logger.getLogger("monitor");
-    var bank = new Bank(4, 1000, logger);
+    var bank = new Bank(4, 1000);
     Runnable runnable =
         () -> {
           try {
@@ -54,7 +54,7 @@ public class Main {
               bank.transfer(random.nextInt(4), random.nextInt(4), random.nextInt());
             }
           } catch (InterruptedException e) {
-            logger.info(e.getMessage());
+            LOGGER.info(e.getMessage());
             Thread.currentThread().interrupt();
           }
         };
