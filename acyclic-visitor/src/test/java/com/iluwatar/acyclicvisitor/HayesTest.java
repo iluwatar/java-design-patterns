@@ -39,7 +39,7 @@ class HayesTest {
     var mockVisitor = mock(ConfigureForDosVisitor.class);
 
     hayes.accept(mockVisitor);
-    verify((HayesVisitor) mockVisitor).visit(eq(hayes));
+    verify((HayesVisitor) mockVisitor).visit(hayes);
   }
 
   @Test
