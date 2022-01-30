@@ -41,7 +41,7 @@ class ZoomTest {
     var mockVisitor = mock(ConfigureForDosVisitor.class);
 
     zoom.accept(mockVisitor);
-    verify((ZoomVisitor) mockVisitor).visit(eq(zoom));
+    verify((ZoomVisitor) mockVisitor).visit(zoom);
   }
 
   @Test
@@ -50,6 +50,6 @@ class ZoomTest {
     var mockVisitor = mock(ConfigureForUnixVisitor.class);
 
     zoom.accept(mockVisitor);
-    verify((ZoomVisitor) mockVisitor).visit(eq(zoom));
+    verify((ZoomVisitor) mockVisitor).visit(zoom);
   }
 }
