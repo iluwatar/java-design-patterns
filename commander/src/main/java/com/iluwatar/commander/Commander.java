@@ -167,65 +167,39 @@ public class Commander {
   }
 
   private void sendPaymentRequest(Order order) {
-    if (System.currentTimeMillis() - order.createdTime >= this.paymentTime) {
-      if (order.paid.equals(PaymentStatus.TRYING)) {
-        order.paid = PaymentStatus.NOT_DONE;
-        sendPaymentFailureMessage(order);
-        LOG.error(ORDER_ID + ": Payment time for order over, failed and returning..", order.id);
-      } //if succeeded or failed, would have been dequeued, no attempt to make payment     
+    boolean timeRemaining = (System.currentTimeMillis() - order.createdTime >= this.paymentTime);
+    boolean paymentStatus = order.paid.equals(PaymentStatus.TRYING);
+    if (timeRemaining && paymentStatus) {
+      order.paid = PaymentStatus.NOT_DONE;
+      sendPaymentFailureMessage(order);
+      LOG.error(ORDER_ID + ": Payment time for order over, failed and returning..", order.id);
       return;
+      //if succeeded or failed, would have been dequeued, no attempt to make payment
     }
     var list = paymentService.exceptionsList;
     var t = new Thread(() -> {
-      Retry.Operation op = (l) -> {
-        if (!l.isEmpty()) {
-          if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-            LOG.debug(ORDER_ID + ": Error in connecting to payment service,"
-                + " trying again..", order.id);
-          } else {
-            LOG.debug(ORDER_ID + ": Error in creating payment request..", order.id);
-          }
-          throw l.remove(0);
-        }
-        if (order.paid.equals(PaymentStatus.TRYING)) {
-          var transactionId = paymentService.receiveRequest(order.price);
-          order.paid = PaymentStatus.DONE;
-          LOG.info(ORDER_ID + ": Payment successful, transaction Id: {}",
-                  order.id, transactionId);
-          if (!finalSiteMsgShown) {
-            LOG.info("Payment made successfully, thank you for shopping with us!!");
-            finalSiteMsgShown = true;
-          }
-          sendSuccessMessage(order);
-        }
-      };
+      Retry.Operation op=utilFunc(order);
+     
       Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
-        if (PaymentDetailsErrorException.class.isAssignableFrom(err.getClass())) {
-          if (!finalSiteMsgShown) {
+        if (PaymentDetailsErrorException.class.isAssignableFrom(err.getClass())&&!finalSiteMsgShown) {
             LOG.info("There was an error in payment. Your account/card details "
                 + "may have been incorrect. "
                 + "Meanwhile, your order has been converted to COD and will be shipped.");
             finalSiteMsgShown = true;
-          }
           LOG.error(ORDER_ID + ": Payment details incorrect, failed..", order.id);
           o.paid = PaymentStatus.NOT_DONE;
           sendPaymentFailureMessage(o);
-        } else {
-          if (o.messageSent.equals(MessageSent.NONE_SENT)) {
-            if (!finalSiteMsgShown) {
+        } else if (o.messageSent.equals(MessageSent.NONE_SENT)&&!finalSiteMsgShown) {
               LOG.info("There was an error in payment. We are on it, and will get back to you "
                   + "asap. Don't worry, your order has been placed and will be shipped.");
               finalSiteMsgShown = true;
-            }
             LOG.warn(ORDER_ID + ": Payment error, going to queue..", order.id);
             sendPaymentPossibleErrorMsg(o);
           }
-          if (o.paid.equals(PaymentStatus.TRYING) && System
-              .currentTimeMillis() - o.createdTime < paymentTime) {
+          if (o.paid.equals(PaymentStatus.TRYING) && (System.currentTimeMillis() - o.createdTime < paymentTime)) {
             var qt = new QueueTask(o, TaskType.PAYMENT, -1);
             updateQueue(qt);
           }
-        }
       };
       var r = new Retry<>(op, handleError, numOfRetries, retryDuration,
           e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
@@ -237,6 +211,31 @@ public class Commander {
     });
     t.start();
   }
+ private Retry.Operation utilFunc(Order order){
+   return (l) -> {
+     if (!l.isEmpty()&&DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
+       LOG.debug(ORDER_ID + ": Error in connecting to payment service," + " trying again..", order.id);
+     }
+     else {
+       LOG.debug(ORDER_ID + ": Error in creating payment request..", order.id);
+     }
+     if(!l.isEmpty()) {
+       throw l.remove(0);
+     }
+     if (order.paid.equals(PaymentStatus.TRYING)) {
+       var transactionId = paymentService.receiveRequest(order.price);
+       order.paid = PaymentStatus.DONE;
+       LOG.info(ORDER_ID + ": Payment successful, transaction Id: {}",
+               order.id, transactionId);
+       sendSuccessMessage(order);
+     }
+     if (!finalSiteMsgShown&&order.paid.equals(PaymentStatus.TRYING)) {
+       LOG.info("Payment made successfully, thank you for shopping with us!!");
+       finalSiteMsgShown = true;
+     }
+   };
+    
+ }
 
   private void updateQueue(QueueTask qt) {
     if (System.currentTimeMillis() - qt.order.createdTime >= this.queueTime) {
@@ -604,3 +603,4 @@ public class Commander {
   }
 
 }
+
