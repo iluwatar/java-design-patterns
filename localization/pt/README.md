@@ -25,7 +25,7 @@ Os padrões de projeto são um conjunto das melhores práticas e soluções form
 Os padrões de projeto podem acelerar o processo de desenvolvimento, fornecendo testes e comprovados paradigmas de desenvolvimento.
 
 Reutilizar padrões de projeto ajuda a evitar problemas sutis que causam
-problemas, e também melhora a legibilidade do código para desenvolvedores e arquitetos que
+problemas maiores, e também melhora a legibilidade do código para desenvolvedores e arquitetos que
 estão familiarizados com os padrões.
 
 # Começando
@@ -33,7 +33,7 @@ estão familiarizados com os padrões.
 Este site apresenta padrões de projeto Java. As soluções foram desenvolvidas por
 programadores e arquitetos experientes da comunidade de código aberto. Os
 padrões podem ser acessados por meio de suas descrições de alto nível ou  por meio de seu
-Código fonte. Os exemplos de código-fonte são bem comentados e podem ser considerados como
+código-fonte. Os exemplos de código-fonte são bem comentados e podem ser considerados como
 tutoriais de programação sobre como implementar um padrão específico. Nós usamos as mais
 populares tecnologias Java de código aberto comprovadas em batalhas.
 
@@ -53,7 +53,7 @@ das seguintes abordagens
  - Usando tags como `Performance`,` Gang of Four` ou `Acesso de dados`.
  - Usando categorias de padrões, `Criacional`,` Comportamental` e outros.
 
- Esperamos que você encontre as soluções orientadas a objetos apresentadas neste site úteis
+Esperamos que você encontre as soluções orientadas a objetos apresentadas neste site úteis
 em suas arquiteturas e divirta-se as aprendendo tanto quanto nos divertimos ao desenvolvê-las.
 
 # Como contribuir
