@@ -54,8 +54,8 @@ public class LordBaelish extends EventEmitter {
   public LordBaelish() {
   }
 
-  public LordBaelish(EventObserver obs) {
-    super(obs);
+  public LordBaelish(EventObserver obs, Event e) {
+    super(obs, e);
   }
 
   @Override

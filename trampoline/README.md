@@ -17,19 +17,19 @@ and to interleave the execution of functions without hard coding them together.
 ## Explanation
 
 Recursion is a frequently adopted technique for solving algorithmic problems in a divide and conquer
-style. For example calculating fibonacci accumulating sum and factorials. In these kinds of problems 
-recursion is more straightforward than their loop counterpart. Furthermore recursion may need less 
-code and looks more concise. There is a saying that every recursion problem can be solved using 
-a loop with the cost of writing code that is more difficult to understand.
+style. For example, calculating Fibonacci accumulating sum and factorials. In these kinds of 
+problems, recursion is more straightforward than its loop counterpart. Furthermore, recursion may 
+need less code and looks more concise. There is a saying that every recursion problem can be solved 
+using a loop with the cost of writing code that is more difficult to understand.
 
-However recursion type solutions have one big caveat. For each recursive call it typically needs 
+However, recursion-type solutions have one big caveat. For each recursive call, it typically needs 
 an intermediate value stored and there is a limited amount of stack memory available. Running out of 
 stack memory creates a stack overflow error and halts the program execution.
 
-Trampoline pattern is a trick that allows us define recursive algorithms in Java without blowing the 
+Trampoline pattern is a trick that allows defining recursive algorithms in Java without blowing the 
 stack. 
 
-Real world example
+Real-world example
 
 > A recursive Fibonacci calculation without the stack overflow problem using the Trampoline pattern.       
 
@@ -105,24 +105,26 @@ public interface Trampoline<T> {
 Using the `Trampoline` to get Fibonacci values.
 
 ```java
-  public static Trampoline<Integer> loop(int times, int prod) {
+public static void main(String[] args) {
+    LOGGER.info("Start calculating war casualties");
+    var result = loop(10, 1).result();
+    LOGGER.info("The number of orcs perished in the war: {}", result);
+}
+
+public static Trampoline<Integer> loop(int times, int prod) {
     if (times == 0) {
-      return Trampoline.done(prod);
+        return Trampoline.done(prod);
     } else {
-      return Trampoline.more(() -> loop(times - 1, prod * times));
+        return Trampoline.more(() -> loop(times - 1, prod * times));
     }
-  }
-  
-  log.info("start pattern");
-  var result = loop(10, 1).result();
-  log.info("result {}", result);
+}
 ```
 
 Program output:
 
 ```
-start pattern
-result 3628800
+19:22:24.462 [main] INFO com.iluwatar.trampoline.TrampolineApp - Start calculating war casualties
+19:22:24.472 [main] INFO com.iluwatar.trampoline.TrampolineApp - The number of orcs perished in the war: 3628800
 ```
 
 ## Class diagram
@@ -133,8 +135,8 @@ result 3628800
 
 Use the Trampoline pattern when
 
-* For implementing tail recursive function. This pattern allows to switch on a stackless operation.
-* For interleaving the execution of two or more functions on the same thread.
+* For implementing tail-recursive functions. This pattern allows to switch on a stackless operation.
+* For interleaving execution of two or more functions on the same thread.
 
 ## Known uses
 

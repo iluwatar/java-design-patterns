@@ -1,0 +1,29 @@
+@startuml
+package com.iluwatar.compositeview {
+  class ClientPropertiesBean {
+    - BUSINESS_PARAM : String {static}
+    - DEFAULT_NAME : String {static}
+    - NAME_PARAM : String {static}
+    - SCIENCE_PARAM : String {static}
+    - SPORTS_PARAM : String {static}
+    - WORLD_PARAM : String {static}
+    - businessInterest : boolean
+    - name : String
+    - scienceNewsInterest : boolean
+    - sportsInterest : boolean
+    - worldNewsInterest : boolean
+    + ClientPropertiesBean()
+    + ClientPropertiesBean(req : HttpServletRequest)
+    + getName() : String
+    + isBusinessInterest() : boolean
+    + isScienceNewsInterest() : boolean
+    + isSportsInterest() : boolean
+    + isWorldNewsInterest() : boolean
+    + setBusinessInterest(businessInterest : boolean)
+    + setName(name : String)
+    + setScienceNewsInterest(scienceNewsInterest : boolean)
+    + setSportsInterest(sportsInterest : boolean)
+    + setWorldNewsInterest(worldNewsInterest : boolean)
+  }
+}
+@enduml

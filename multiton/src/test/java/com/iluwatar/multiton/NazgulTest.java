@@ -71,5 +71,4 @@ public class NazgulTest {
       assertEquals(name, nazgul.getName());
     }
   }
-
 }
