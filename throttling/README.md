@@ -16,10 +16,12 @@ Ensure that a given client is not able to access service resources more than the
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> A large multinational corporation offers API to its customers. The API is rate-limited and each 
-> customer can only make certain amount of calls per second.      
+> A young human and an old dwarf walk into a bar. They start ordering beers from the bartender.
+> The bartender immediately sees that the young human shouldn't consume too many drinks too fast
+> and refuses to serve if enough time has not passed. For the old dwarf, the serving rate can
+> be higher.
 
 In plain words
 
@@ -33,30 +35,25 @@ In plain words
 
 **Programmatic Example**
 
-Tenant class presents the clients of the API. CallsCount tracks the number of API calls per tenant.
+`BarCustomer` class presents the clients of the `Bartender` API. `CallsCount` tracks the number of 
+calls per `BarCustomer`.
 
 ```java
-public class Tenant {
+public class BarCustomer {
 
-  private final String name;
-  private final int allowedCallsPerSecond;
+    @Getter
+    private final String name;
+    @Getter
+    private final int allowedCallsPerSecond;
 
-  public Tenant(String name, int allowedCallsPerSecond, CallsCount callsCount) {
-    if (allowedCallsPerSecond < 0) {
-      throw new InvalidParameterException("Number of calls less than 0 not allowed");
+    public BarCustomer(String name, int allowedCallsPerSecond, CallsCount callsCount) {
+        if (allowedCallsPerSecond < 0) {
+            throw new InvalidParameterException("Number of calls less than 0 not allowed");
+        }
+        this.name = name;
+        this.allowedCallsPerSecond = allowedCallsPerSecond;
+        callsCount.addTenant(name);
     }
-    this.name = name;
-    this.allowedCallsPerSecond = allowedCallsPerSecond;
-    callsCount.addTenant(name);
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getAllowedCallsPerSecond() {
-    return allowedCallsPerSecond;
-  }
 }
 
 @Slf4j
@@ -76,14 +73,14 @@ public final class CallsCount {
   }
 
   public void reset() {
-    LOGGER.debug("Resetting the map.");
     tenantCallsCount.replaceAll((k, v) -> new AtomicLong(0));
+    LOGGER.info("reset counters");
   }
 }
 ```
 
-Next we introduce the service that the tenants are calling. To track the call count we use the 
-throttler timer.
+Next, the service that the tenants are calling is introduced. To track the call count, a throttler 
+timer is used.
 
 ```java
 public interface Throttler {
@@ -111,71 +108,103 @@ public class ThrottleTimerImpl implements Throttler {
     }, 0, throttlePeriod);
   }
 }
+```
 
-class B2BService {
+`Bartender` offers the `orderDrink` service to the `BarCustomer`s. The customers probably don't
+know that the beer serving rate is limited by their appearances.
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(B2BService.class);
-  private final CallsCount callsCount;
+```java
+class Bartender {
 
-  public B2BService(Throttler timer, CallsCount callsCount) {
-    this.callsCount = callsCount;
-    timer.start();
-  }
+    private static final Logger LOGGER = LoggerFactory.getLogger(Bartender.class);
+    private final CallsCount callsCount;
 
-  public int dummyCustomerApi(Tenant tenant) {
-    var tenantName = tenant.getName();
-    var count = callsCount.getCount(tenantName);
-    LOGGER.debug("Counter for {} : {} ", tenant.getName(), count);
-    if (count >= tenant.getAllowedCallsPerSecond()) {
-      LOGGER.error("API access per second limit reached for: {}", tenantName);
-      return -1;
+    public Bartender(Throttler timer, CallsCount callsCount) {
+        this.callsCount = callsCount;
+        timer.start();
     }
-    callsCount.incrementCount(tenantName);
-    return getRandomCustomerId();
-  }
 
-  private int getRandomCustomerId() {
-    return ThreadLocalRandom.current().nextInt(1, 10000);
-  }
+    public int orderDrink(BarCustomer barCustomer) {
+        var tenantName = barCustomer.getName();
+        var count = callsCount.getCount(tenantName);
+        if (count >= barCustomer.getAllowedCallsPerSecond()) {
+            LOGGER.error("I'm sorry {}, you've had enough for today!", tenantName);
+            return -1;
+        }
+        callsCount.incrementCount(tenantName);
+        LOGGER.debug("Serving beer to {} : [{} consumed] ", barCustomer.getName(), count+1);
+        return getRandomCustomerId();
+    }
+
+    private int getRandomCustomerId() {
+        return ThreadLocalRandom.current().nextInt(1, 10000);
+    }
 }
 ```
 
-Now we are ready to see the full example in action. Tenant Adidas is rate-limited to 5 calls per 
-second and Nike to 6.
+Now it is possible to see the full example in action. `BarCustomer` young human is rate-limited to 2 
+calls per second and the old dwarf to 4.
 
 ```java
-  public static void main(String[] args) {
+public static void main(String[] args) {
     var callsCount = new CallsCount();
-    var adidas = new Tenant("Adidas", 5, callsCount);
-    var nike = new Tenant("Nike", 6, callsCount);
+    var human = new BarCustomer("young human", 2, callsCount);
+    var dwarf = new BarCustomer("dwarf soldier", 4, callsCount);
 
     var executorService = Executors.newFixedThreadPool(2);
-    executorService.execute(() -> makeServiceCalls(adidas, callsCount));
-    executorService.execute(() -> makeServiceCalls(nike, callsCount));
-    executorService.shutdown();
-    
-    try {
-      executorService.awaitTermination(10, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-      LOGGER.error("Executor Service terminated: {}", e.getMessage());
-    }
-  }
 
-  private static void makeServiceCalls(Tenant tenant, CallsCount callsCount) {
-    var timer = new ThrottleTimerImpl(10, callsCount);
-    var service = new B2BService(timer, callsCount);
+    executorService.execute(() -> makeServiceCalls(human, callsCount));
+    executorService.execute(() -> makeServiceCalls(dwarf, callsCount));
+
+    executorService.shutdown();
+    try {
+        executorService.awaitTermination(10, TimeUnit.SECONDS);
+    } catch (InterruptedException e) {
+        LOGGER.error("Executor service terminated: {}", e.getMessage());
+    }
+}
+
+private static void makeServiceCalls(BarCustomer barCustomer, CallsCount callsCount) {
+    var timer = new ThrottleTimerImpl(1000, callsCount);
+    var service = new Bartender(timer, callsCount);
     // Sleep is introduced to keep the output in check and easy to view and analyze the results.
-    IntStream.range(0, 20).forEach(i -> {
-      service.dummyCustomerApi(tenant);
-      try {
-        Thread.sleep(1);
-      } catch (InterruptedException e) {
-        LOGGER.error("Thread interrupted: {}", e.getMessage());
-      }
+    IntStream.range(0, 50).forEach(i -> {
+        service.orderDrink(barCustomer);
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException e) {
+            LOGGER.error("Thread interrupted: {}", e.getMessage());
+        }
     });
-  }
+}
 ```
 
+An excerpt from the example's console output:
+
+```
+18:46:36.218 [Timer-0] INFO com.iluwatar.throttling.CallsCount - reset counters
+18:46:36.218 [Timer-1] INFO com.iluwatar.throttling.CallsCount - reset counters
+18:46:36.242 [pool-1-thread-2] DEBUG com.iluwatar.throttling.Bartender - Serving beer to dwarf soldier : [1 consumed] 
+18:46:36.242 [pool-1-thread-1] DEBUG com.iluwatar.throttling.Bartender - Serving beer to young human : [1 consumed] 
+18:46:36.342 [pool-1-thread-2] DEBUG com.iluwatar.throttling.Bartender - Serving beer to dwarf soldier : [2 consumed] 
+18:46:36.342 [pool-1-thread-1] DEBUG com.iluwatar.throttling.Bartender - Serving beer to young human : [2 consumed] 
+18:46:36.443 [pool-1-thread-1] ERROR com.iluwatar.throttling.Bartender - I'm sorry young human, you've had enough for today!
+18:46:36.443 [pool-1-thread-2] DEBUG com.iluwatar.throttling.Bartender - Serving beer to dwarf soldier : [3 consumed] 
+18:46:36.544 [pool-1-thread-1] ERROR com.iluwatar.throttling.Bartender - I'm sorry young human, you've had enough for today!
+18:46:36.544 [pool-1-thread-2] DEBUG com.iluwatar.throttling.Bartender - Serving beer to dwarf soldier : [4 consumed] 
+18:46:36.645 [pool-1-thread-2] ERROR com.iluwatar.throttling.Bartender - I'm sorry dwarf soldier, you've had enough for today!
+18:46:36.645 [pool-1-thread-1] ERROR com.iluwatar.throttling.Bartender - I'm sorry young human, you've had enough for today!
+18:46:36.745 [pool-1-thread-1] ERROR com.iluwatar.throttling.Bartender - I'm sorry young human, you've had enough for today!
+18:46:36.745 [pool-1-thread-2] ERROR com.iluwatar.throttling.Bartender - I'm sorry dwarf soldier, you've had enough for today!
+18:46:36.846 [pool-1-thread-1] ERROR com.iluwatar.throttling.Bartender - I'm sorry young human, you've had enough for today!
+18:46:36.846 [pool-1-thread-2] ERROR com.iluwatar.throttling.Bartender - I'm sorry dwarf soldier, you've had enough for today!
+18:46:36.947 [pool-1-thread-2] ERROR com.iluwatar.throttling.Bartender - I'm sorry dwarf soldier, you've had enough for today!
+18:46:36.947 [pool-1-thread-1] ERROR com.iluwatar.throttling.Bartender - I'm sorry young human, you've had enough for today!
+18:46:37.048 [pool-1-thread-2] ERROR com.iluwatar.throttling.Bartender - I'm sorry dwarf soldier, you've had enough for today!
+18:46:37.048 [pool-1-thread-1] ERROR com.iluwatar.throttling.Bartender - I'm sorry young human, you've had enough for today!
+18:46:37.148 [pool-1-thread-1] ERROR com.iluwatar.throttling.Bartender - I'm sorry young human, you've had enough for today!
+18:46:37.148 [pool-1-thread-2] ERROR com.iluwatar.throttling.Bartender - I'm sorry dwarf soldier, you've had enough for today!
+```
 
 ## Class diagram
 
@@ -185,7 +214,7 @@ second and Nike to 6.
 
 The Throttling pattern should be used:
 
-* When a service access needs to be restricted to not have high impacts on the performance of the service.
+* When service access needs to be restricted not to have high impact on the performance of the service.
 * When multiple clients are consuming the same service resources and restriction has to be made according to the usage per client.
 
 ## Credits

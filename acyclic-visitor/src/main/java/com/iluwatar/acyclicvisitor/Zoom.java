@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
  * Zoom class implements its accept method.
  */
 @Slf4j
-public class Zoom extends Modem {
+public class Zoom implements Modem {
 
   /**
    * Accepts all visitors but honors only ZoomVisitor.

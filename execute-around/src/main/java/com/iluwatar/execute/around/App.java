@@ -23,10 +23,14 @@
 
 package com.iluwatar.execute.around;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * The Execute Around idiom specifies some code to be executed before and after a method. Typically
+ * The Execute Around idiom specifies executable code before and after a method. Typically
  * the idiom is used when the API has methods to be executed in pairs, such as resource
  * allocation/deallocation or lock acquisition/release.
  *
@@ -34,6 +38,7 @@ import java.io.IOException;
  * the user. The user specifies only what to do with the file by providing the {@link
  * FileWriterAction} implementation.
  */
+@Slf4j
 public class App {
 
   /**
@@ -41,11 +46,16 @@ public class App {
    */
   public static void main(String[] args) throws IOException {
 
+    // create the file writer and execute the custom action
     FileWriterAction writeHello = writer -> {
-      writer.write("Hello");
-      writer.append(" ");
-      writer.append("there!");
+      writer.write("Gandalf was here");
     };
     new SimpleFileWriter("testfile.txt", writeHello);
+
+    // print the file contents
+    var scanner = new Scanner(new File("testfile.txt"));
+    while (scanner.hasNextLine()) {
+      LOGGER.info(scanner.nextLine());
+    }
   }
 }

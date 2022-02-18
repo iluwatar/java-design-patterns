@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
  * Hayes class implements its accept method.
  */
 @Slf4j
-public class Hayes extends Modem {
+public class Hayes implements Modem {
 
   /**
    * Accepts all visitors but honors only HayesVisitor.

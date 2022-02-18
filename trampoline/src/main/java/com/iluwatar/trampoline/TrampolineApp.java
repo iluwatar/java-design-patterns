@@ -39,9 +39,9 @@ public class TrampolineApp {
    * Main program for showing pattern. It does loop with factorial function.
    */
   public static void main(String[] args) {
-    LOGGER.info("start pattern");
+    LOGGER.info("Start calculating war casualties");
     var result = loop(10, 1).result();
-    LOGGER.info("result {}", result);
+    LOGGER.info("The number of orcs perished in the war: {}", result);
 
   }
 
@@ -55,5 +55,4 @@ public class TrampolineApp {
       return Trampoline.more(() -> loop(times - 1, prod * times));
     }
   }
-
 }

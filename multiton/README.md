@@ -15,18 +15,18 @@ Registry
 
 ## Intent
 
-Ensure a class only has limited number of instances and provide a global point of access to them.
+Ensure a class only has a limited number of instances and provide a global point of access to them.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > The Nazgûl, also called ringwraiths or the Nine Riders, are Sauron's most terrible servants. By 
-> definition there's always nine of them.           
+> definition, there's always nine of them.           
 
 In plain words
 
-> Multiton pattern ensures there's predefined amount of instances available globally.   
+> Multiton pattern ensures there are a predefined amount of instances available globally.   
 
 Wikipedia says
 
@@ -81,29 +81,54 @@ public final class Nazgul {
 And here's how we access the `Nazgul` instances.
 
 ```java
-    LOGGER.info("KHAMUL={}", Nazgul.getInstance(NazgulName.KHAMUL));
-    LOGGER.info("MURAZOR={}", Nazgul.getInstance(NazgulName.MURAZOR));
-    LOGGER.info("DWAR={}", Nazgul.getInstance(NazgulName.DWAR));
-    LOGGER.info("JI_INDUR={}", Nazgul.getInstance(NazgulName.JI_INDUR));
-    LOGGER.info("AKHORAHIL={}", Nazgul.getInstance(NazgulName.AKHORAHIL));
-    LOGGER.info("HOARMURATH={}", Nazgul.getInstance(NazgulName.HOARMURATH));
-    LOGGER.info("ADUNAPHEL={}", Nazgul.getInstance(NazgulName.ADUNAPHEL));
-    LOGGER.info("REN={}", Nazgul.getInstance(NazgulName.REN));
-    LOGGER.info("UVATHA={}", Nazgul.getInstance(NazgulName.UVATHA));
+// eagerly initialized multiton
+LOGGER.info("Printing out eagerly initialized multiton contents");
+LOGGER.info("KHAMUL={}", Nazgul.getInstance(NazgulName.KHAMUL));
+LOGGER.info("MURAZOR={}", Nazgul.getInstance(NazgulName.MURAZOR));
+LOGGER.info("DWAR={}", Nazgul.getInstance(NazgulName.DWAR));
+LOGGER.info("JI_INDUR={}", Nazgul.getInstance(NazgulName.JI_INDUR));
+LOGGER.info("AKHORAHIL={}", Nazgul.getInstance(NazgulName.AKHORAHIL));
+LOGGER.info("HOARMURATH={}", Nazgul.getInstance(NazgulName.HOARMURATH));
+LOGGER.info("ADUNAPHEL={}", Nazgul.getInstance(NazgulName.ADUNAPHEL));
+LOGGER.info("REN={}", Nazgul.getInstance(NazgulName.REN));
+LOGGER.info("UVATHA={}", Nazgul.getInstance(NazgulName.UVATHA));
+
+// enum multiton
+LOGGER.info("Printing out enum-based multiton contents");
+LOGGER.info("KHAMUL={}", NazgulEnum.KHAMUL);
+LOGGER.info("MURAZOR={}", NazgulEnum.MURAZOR);
+LOGGER.info("DWAR={}", NazgulEnum.DWAR);
+LOGGER.info("JI_INDUR={}", NazgulEnum.JI_INDUR);
+LOGGER.info("AKHORAHIL={}", NazgulEnum.AKHORAHIL);
+LOGGER.info("HOARMURATH={}", NazgulEnum.HOARMURATH);
+LOGGER.info("ADUNAPHEL={}", NazgulEnum.ADUNAPHEL);
+LOGGER.info("REN={}", NazgulEnum.REN);
+LOGGER.info("UVATHA={}", NazgulEnum.UVATHA);
 ```
 
 Program output:
 
 ```
-KHAMUL=com.iluwatar.multiton.Nazgul@2b214b94
-MURAZOR=com.iluwatar.multiton.Nazgul@17814b1c
-DWAR=com.iluwatar.multiton.Nazgul@7ac9af2a
-JI_INDUR=com.iluwatar.multiton.Nazgul@7bb004b8
-AKHORAHIL=com.iluwatar.multiton.Nazgul@78e89bfe
-HOARMURATH=com.iluwatar.multiton.Nazgul@652ce654
-ADUNAPHEL=com.iluwatar.multiton.Nazgul@522ba524
-REN=com.iluwatar.multiton.Nazgul@29c5ee1d
-UVATHA=com.iluwatar.multiton.Nazgul@15cea7b0
+20:35:07.413 [main] INFO com.iluwatar.multiton.App - Printing out eagerly initialized multiton contents
+20:35:07.417 [main] INFO com.iluwatar.multiton.App - KHAMUL=com.iluwatar.multiton.Nazgul@48cf768c
+20:35:07.419 [main] INFO com.iluwatar.multiton.App - MURAZOR=com.iluwatar.multiton.Nazgul@7960847b
+20:35:07.419 [main] INFO com.iluwatar.multiton.App - DWAR=com.iluwatar.multiton.Nazgul@6a6824be
+20:35:07.419 [main] INFO com.iluwatar.multiton.App - JI_INDUR=com.iluwatar.multiton.Nazgul@5c8da962
+20:35:07.419 [main] INFO com.iluwatar.multiton.App - AKHORAHIL=com.iluwatar.multiton.Nazgul@512ddf17
+20:35:07.419 [main] INFO com.iluwatar.multiton.App - HOARMURATH=com.iluwatar.multiton.Nazgul@2c13da15
+20:35:07.419 [main] INFO com.iluwatar.multiton.App - ADUNAPHEL=com.iluwatar.multiton.Nazgul@77556fd
+20:35:07.419 [main] INFO com.iluwatar.multiton.App - REN=com.iluwatar.multiton.Nazgul@368239c8
+20:35:07.420 [main] INFO com.iluwatar.multiton.App - UVATHA=com.iluwatar.multiton.Nazgul@9e89d68
+20:35:07.420 [main] INFO com.iluwatar.multiton.App - Printing out enum-based multiton contents
+20:35:07.420 [main] INFO com.iluwatar.multiton.App - KHAMUL=KHAMUL
+20:35:07.420 [main] INFO com.iluwatar.multiton.App - MURAZOR=MURAZOR
+20:35:07.420 [main] INFO com.iluwatar.multiton.App - DWAR=DWAR
+20:35:07.420 [main] INFO com.iluwatar.multiton.App - JI_INDUR=JI_INDUR
+20:35:07.421 [main] INFO com.iluwatar.multiton.App - AKHORAHIL=AKHORAHIL
+20:35:07.421 [main] INFO com.iluwatar.multiton.App - HOARMURATH=HOARMURATH
+20:35:07.421 [main] INFO com.iluwatar.multiton.App - ADUNAPHEL=ADUNAPHEL
+20:35:07.421 [main] INFO com.iluwatar.multiton.App - REN=REN
+20:35:07.421 [main] INFO com.iluwatar.multiton.App - UVATHA=UVATHA
 ```
 
 ## Class diagram
@@ -114,5 +139,5 @@ UVATHA=com.iluwatar.multiton.Nazgul@15cea7b0
 
 Use the Multiton pattern when
 
-* There must be specific number of instances of a class, and they must be accessible to clients from 
+* There must be a specific number of instances of a class, and they must be accessible to clients from 
 a well-known access point.

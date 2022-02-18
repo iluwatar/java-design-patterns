@@ -1,0 +1,32 @@
+@startuml
+interface com.iluwatar.metamapping.service.UserService {
++ List<User> listUser()
++ int createUser(User)
++ void updateUser(Integer,User)
++ void deleteUser(Integer)
++ User getUser(Integer)
++ void close()
+}
+class com.iluwatar.metamapping.utils.DatabaseUtil {
++ {static} void createDataSource()
+}
+class com.iluwatar.metamapping.model.User {
+- Integer id
+- String username
+- String password
++ User(String username, String password)
+}
+class com.iluwatar.metamapping.utils.HibernateUtil {
++ {static} SessionFactory getSessionFactory()
++ {static} void shutdown()
+}
+class com.iluwatar.metamapping.App {
++ {static} void main(String[])
++ {static} List<User> generateSampleUsers()
+}
+
+com.iluwatar.metamapping.service.UserService <.. com.iluwatar.metamapping.App
+com.iluwatar.metamapping.model.User <.. com.iluwatar.metamapping.service.UserService
+com.iluwatar.metamapping.utils.HibernateUtil <.. com.iluwatar.metamapping.service.UserService
+com.iluwatar.metamapping.utils.DatabaseUtil <-- com.iluwatar.metamapping.utils.HibernateUtil
+@enduml

@@ -23,15 +23,17 @@
 
 package com.iluwatar.factorykit;
 
+import java.util.ArrayList;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Factory-kit is a creational pattern which defines a factory of immutable content with separated
+ * Factory kit is a creational pattern that defines a factory of immutable content with separated
  * builder and factory interfaces to deal with the problem of creating one of the objects specified
- * directly in the factory-kit instance.
+ * directly in the factory kit instance.
  * factory-kit是一种创建型模式，它使用分离的生成器和工厂接口定义了不可变内容的工厂，以处理创建直接在factory-kit实例中指定的对象的问题。
  *
- * <p>In the given example {@link WeaponFactory} represents the factory-kit, that contains four
+ * <p>In the given example {@link WeaponFactory} represents the factory kit, that contains four
  * {@link Builder}s for creating new objects of the classes implementing {@link Weapon} interface.
  * 在给出的示例中，{@link WeaponFactory}表示工厂工具包，它包含四个{@link Builder}，用于创建实现{@link Weapon}接口的类的新对象。
  *
@@ -55,7 +57,11 @@ public class App {
       builder.add(WeaponType.SPEAR, Spear::new);
       builder.add(WeaponType.BOW, Bow::new);
     });
-    var axe = factory.create(WeaponType.AXE);
-    LOGGER.info(axe.toString());
+    var list = new ArrayList<Weapon>();
+    list.add(factory.create(WeaponType.AXE));
+    list.add(factory.create(WeaponType.SPEAR));
+    list.add(factory.create(WeaponType.SWORD));
+    list.add(factory.create(WeaponType.BOW));
+    list.stream().forEach(weapon -> LOGGER.info("{}", weapon.toString()));
   }
 }

@@ -38,9 +38,6 @@ public class Wizard {
   // 重做
   private final Deque<Runnable> redoStack = new LinkedList<>();
 
-  public Wizard() {
-  }
-
   /**
    * Cast spell.
    * 施展法术
