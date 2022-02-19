@@ -56,6 +56,10 @@ of the following approaches
  - Using tags such as `Performance`, `Gang of Four` or `Data access`.
  - Using pattern categories, `Creational`, `Behavioral`, and others.
 
+Most of the solutions in this repository use [Project Lombok](https://projectlombok.org/)
+to automate the creation of boiler-plate code such as getters and constructors. We do so
+in the hopes that you can focus on the core principles of the design pattern themselves.
+
 Hopefully, you find the object-oriented solutions presented on this site useful
 in your architectures and have as much fun learning them as we had while developing them.
 
