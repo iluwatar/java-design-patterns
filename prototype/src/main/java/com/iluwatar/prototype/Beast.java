@@ -29,14 +29,11 @@ import lombok.NoArgsConstructor;
 /**
  * Beast.
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public abstract class Beast implements Prototype {
+public abstract class Beast extends Prototype<Beast> {
 
   public Beast(Beast source) {
   }
-
-  @Override
-  public abstract Beast copy();
 
 }

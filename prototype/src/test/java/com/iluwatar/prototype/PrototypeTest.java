@@ -39,7 +39,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  * @param <P> Prototype
  * @author Jeroen Meulemeester
  */
-class PrototypeTest<P extends Prototype> {
+class PrototypeTest<P extends Prototype<P>> {
   static Collection<Object[]> dataProvider() {
     return List.of(
         new Object[]{new OrcBeast("axe"), "Orcish wolf attacks with axe"},

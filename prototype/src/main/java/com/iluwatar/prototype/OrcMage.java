@@ -41,11 +41,6 @@ public class OrcMage extends Mage {
   }
 
   @Override
-  public OrcMage copy() {
-    return new OrcMage(this);
-  }
-
-  @Override
   public String toString() {
     return "Orcish mage attacks with " + weapon;
   }
