@@ -30,7 +30,7 @@ import java.nio.channels.Selector;
 import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
  * This represents the <i>Handle</i> of Reactor pattern. These are resources managed by OS which can
@@ -158,16 +158,8 @@ public abstract class AbstractNioChannel {
    * @param key  the key which is writable.
    */
   public void write(Object data, SelectionKey key) {
-    var pendingWrites = this.channelToPendingWrites.get(key.channel());
-    if (pendingWrites == null) {
-      synchronized (this.channelToPendingWrites) {
-        pendingWrites = this.channelToPendingWrites.get(key.channel());
-        if (pendingWrites == null) {
-          pendingWrites = new ConcurrentLinkedQueue<>();
-          this.channelToPendingWrites.put(key.channel(), pendingWrites);
-        }
-      }
-    }
+    this.channelToPendingWrites.computeIfAbsent(key.channel(), (channel) -> new ConcurrentLinkedDeque<>());
+    var pendingWrites = channelToPendingWrites.get(key.channel());
     pendingWrites.add(data);
     reactor.changeOps(key, SelectionKey.OP_WRITE);
   }
