@@ -175,9 +175,9 @@ Hobbit comes to listen
 Rogue comes to listen
 Hunter comes to listen
 Rogue found gold
-Hobbit takes his share of the gold
-Wizard takes his share of the gold
-Hunter takes his share of the gold
+Hobbit takes their share of the gold
+Wizard takes their share of the gold
+Hunter takes their share of the gold
 Hunter hunted a rabbit
 Hobbit arrives for dinner
 Wizard arrives for dinner

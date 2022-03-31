@@ -261,7 +261,7 @@ tom.buyProduct(butter);
 tom.showBalance();
 
 // trying to buy cheese, but receive a refusal
-// because he didn't have enough money
+// because they didn't have enough money
 tom.buyProduct(cheese);
 tom.showBalance();
 
@@ -269,7 +269,7 @@ tom.showBalance();
 tom.returnProduct(butter);
 tom.showBalance();
 
-// Tom can buy cheese now because he has enough money
+// Tom can buy cheese now because they has enough money
 // and there is a discount on cheese because it expires in 2 days
 tom.buyProduct(cheese);
 

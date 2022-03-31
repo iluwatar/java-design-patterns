@@ -19,7 +19,7 @@ handles it.
 
 Real-world example
 
-> The Orc King gives loud orders to his army. The closest one to react is the commander, then 
+> The Orc King gives loud orders to their army. The closest one to react is the commander, then 
 > an officer, and then a soldier. The commander, officer, and soldier form a chain of responsibility.
 
 In plain words

@@ -1,22 +1,22 @@
 ---
 layout: pattern
-title: Object Mother
-folder: object-mother
-permalink: /patterns/object-mother/
+title: Object Parent
+folder: object-parent
+permalink: /patterns/object-parent/
 categories: Creational
 language: en
 tags:
  - Instantiation
 ---
 
-## Object Mother
+## Object Parent
 Define a factory of immutable content with separated builder and factory interfaces.
 
 ## Class diagram
-![alt text](./etc/object-mother.png "Object Mother")
+![alt text](./etc/object-parent.png "Object Parent")
 
 ## Applicability
-Use the Object Mother pattern when
+Use the Object Parent pattern when
 
 * You want consistent objects over several tests
 * You want to reduce code for creation of objects in tests

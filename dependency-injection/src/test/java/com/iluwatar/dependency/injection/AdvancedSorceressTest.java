@@ -65,7 +65,7 @@ class AdvancedSorceressTest {
         new SecondBreakfastTobacco()
     );
 
-    // Verify if the sorceress is smoking the correct tobacco ...
+    // Verify if the sorcerer is smoking the correct tobacco ...
     tobaccos.forEach(tobacco -> {
       final var advancedSorceress = new AdvancedSorceress();
       advancedSorceress.setTobacco(tobacco);

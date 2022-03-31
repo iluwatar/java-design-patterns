@@ -116,12 +116,12 @@ LOGGER.info("Alice updates the book with new version {}", aliceBook.getVersion()
 // while actual book in database has filled title and version = 1
 bobBook.setAuthor("Vatsyayana Mallanaga"); // Bob updates the author
 try {
-  LOGGER.info("Bob tries to update the book with his version {}", bobBook.getVersion());
-  bookRepository.update(bobBook); // Bob tries to save his book to database
+  LOGGER.info("Bob tries to update the book with their version {}", bobBook.getVersion());
+  bookRepository.update(bobBook); // Bob tries to save their book to database
 } catch (VersionMismatchException e) {
   // Bob update fails, and book in repository remained untouchable
   LOGGER.info("Exception: {}", e.getMessage());
-  // Now Bob should reread actual book from repository, do his changes again and save again
+  // Now Bob should reread actual book from repository, do their changes again and save again
 }
 ```
 
@@ -129,7 +129,7 @@ try {
 
 ```java
 Alice updates the book with new version 1
-Bob tries to update the book with his version 0
+Bob tries to update the book with their version 0
 Exception: Tried to update stale version 0 while actual version is 1
 ```
 

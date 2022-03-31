@@ -92,7 +92,7 @@ public class CoinFactory {
 Now on the client code we can create different types of coins using the factory class.
 
 ```java
-LOGGER.info("The alchemist begins his work.");
+LOGGER.info("The alchemist begins their work.");
 var coin1 = CoinFactory.getCoin(CoinType.COPPER);
 var coin2 = CoinFactory.getCoin(CoinType.GOLD);
 LOGGER.info(coin1.getDescription());
@@ -102,7 +102,7 @@ LOGGER.info(coin2.getDescription());
 Program output:
 
 ```java
-The alchemist begins his work.
+The alchemist begins their work.
 This is a copper coin.
 This is a gold coin.
 ```

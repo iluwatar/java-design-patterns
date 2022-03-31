@@ -21,7 +21,7 @@ responsibility principles.
 
 Real world example
 
-> The old wizard likes to fill his pipe and smoke tobacco once in a while. However, he doesn't want 
+> The old wizard likes to fill their pipe and smoke tobacco once in a while. However, they doesn't want 
 > to depend on a single tobacco brand only but likes to be able to enjoy them all interchangeably.    
 
 In plain words

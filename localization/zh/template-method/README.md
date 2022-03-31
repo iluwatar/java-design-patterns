@@ -59,7 +59,7 @@ public class SubtleMethod extends StealingMethod {
 
   @Override
   protected void confuseTarget(String target) {
-    LOGGER.info("Approach the {} with tears running and hug him!", target);
+    LOGGER.info("Approach the {} with tears running and hug them!", target);
   }
 
   @Override
@@ -74,7 +74,7 @@ public class HitAndRunMethod extends StealingMethod {
 
   @Override
   protected String pickTarget() {
-    return "old goblin woman";
+    return "old goblin person";
   }
 
   @Override

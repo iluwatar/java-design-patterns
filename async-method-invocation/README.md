@@ -120,7 +120,7 @@ public static void main(String[] args) throws Exception {
       executor.startProcess(lazyval("callback", 600), callback("Deploying lunar rover"));
 
   // emulate processing in the current thread while async tasks are running in their own threads
-  Thread.sleep(350); // Oh boy, we are working hard here
+  Thread.sleep(350); // Oh child, we are working hard here
   log("Mission command is sipping coffee");
 
   // wait for completion of the tasks

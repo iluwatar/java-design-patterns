@@ -61,7 +61,7 @@ class KingsHandTest extends EventEmitterTest<KingsHand> {
     kingsHand.registerObserver(observer, Event.TRAITOR_DETECTED);
     kingsHand.registerObserver(observer, Event.WHITE_WALKERS_SIGHTED);
 
-    // The kings hand should not pass any events before he received one
+    // The kings hand should not pass any events before they received one
     verifyZeroInteractions(observer);
 
     // Verify if each event is passed on to the observer, nothing less, nothing more.

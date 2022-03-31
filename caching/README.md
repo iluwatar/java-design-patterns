@@ -303,7 +303,7 @@ public class App {
     LOGGER.info("# CachingPolicy.THROUGH");
     appManager.initCachingPolicy(CachingPolicy.THROUGH);
 
-    var userAccount1 = new UserAccount("001", "John", "He is a boy.");
+    var userAccount1 = new UserAccount("001", "John", "They is a child.");
 
     appManager.save(userAccount1);
     LOGGER.info(appManager.printCacheContent());

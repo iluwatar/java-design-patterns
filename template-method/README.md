@@ -20,7 +20,7 @@ structure.
 Real-world example
 
 > The general steps in stealing an item are the same. First, you pick the target, next you confuse 
-> him somehow and finally, you steal the item. However, there are many ways to implement these 
+> them somehow and finally, you steal the item. However, there are many ways to implement these 
 > steps.   
 
 In plain words
@@ -68,7 +68,7 @@ public class SubtleMethod extends StealingMethod {
 
   @Override
   protected void confuseTarget(String target) {
-    LOGGER.info("Approach the {} with tears running and hug him!", target);
+    LOGGER.info("Approach the {} with tears running and hug them!", target);
   }
 
   @Override
@@ -82,7 +82,7 @@ public class HitAndRunMethod extends StealingMethod {
 
   @Override
   protected String pickTarget() {
-    return "old goblin woman";
+    return "old goblin person";
   }
 
   @Override

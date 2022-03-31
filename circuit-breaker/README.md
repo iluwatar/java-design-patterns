@@ -26,7 +26,7 @@ Real world example
 > services is slow or not responding successfully, our application will try to fetch response from 
 > the remote service using multiple threads/processes, soon all of them will hang (also called 
 > [thread starvation](https://en.wikipedia.org/wiki/Starvation_(computer_science))) causing our entire web application to crash. We should be able to detect 
-> this situation and show the user an appropriate message so that he/she can explore other parts of 
+> this situation and show the user an appropriate message so that they/they can explore other parts of 
 > the app unaffected by the remote service failure. Meanwhile, the other services that are working 
 > normally, should keep functioning unaffected by this failure.
 

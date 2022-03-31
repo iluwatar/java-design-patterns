@@ -22,7 +22,7 @@ requests, queue or log requests, and support undoable operations.
 Real-world example
 
 > There is a wizard casting spells on a goblin. The spells are executed on the goblin one by one.
-> The first spell shrinks the goblin and the second makes him invisible. Then the wizard reverses
+> The first spell shrinks the goblin and the second makes them invisible. Then the wizard reverses
 > the spells one by one. Each spell here is a command object that can be undone.
 
 In plain words

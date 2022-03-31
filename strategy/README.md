@@ -73,7 +73,7 @@ public class SpellStrategy implements DragonSlayingStrategy {
 }
 ```
 
-And here is the mighty dragonslayer, who can pick his fighting strategy based on the 
+And here is the mighty dragonslayer, who can pick their fighting strategy based on the 
 opponent.
 
 ```java

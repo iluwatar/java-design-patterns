@@ -68,7 +68,7 @@ public class Captain {
 }
 ```
 
-Now let's say the pirates are coming and our captain needs to escape but there is only a fishing boat available. We need to create an adapter that allows the captain to operate the fishing boat with his rowing boat skills.
+Now let's say the pirates are coming and our captain needs to escape but there is only a fishing boat available. We need to create an adapter that allows the captain to operate the fishing boat with their rowing boat skills.
 
 ```java
 @Slf4j

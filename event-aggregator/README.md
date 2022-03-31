@@ -25,9 +25,9 @@ allowing clients to register with just the aggregator.
 
 Real-world example
 
-> King Joffrey sits on the iron throne and rules the seven kingdoms of Westeros. He receives most
-> of his critical information from King's Hand, the second in command. King's hand has many
-> close advisors himself, feeding him with relevant information about events occurring in the
+> King Joffrey sits on the iron throne and rules the seven kingdoms of Westeros. They receives most
+> of their critical information from King's Hand, the second in command. King's hand has many
+> close advisors himself, feeding them with relevant information about events occurring in the
 > kingdom.
 
 In Plain Words
@@ -75,8 +75,8 @@ public class KingJoffrey implements EventObserver {
 }
 ```
 
-`KingsHand` is listening to events from his subordinates `LordBaelish`, `LordVarys`, and `Scout`.
-Whatever he hears from them, he delivers to `KingJoffrey`.
+`KingsHand` is listening to events from their subordinates `LordBaelish`, `LordVarys`, and `Scout`.
+Whatever they hears from them, they delivers to `KingJoffrey`.
 
 ```java
 public class KingsHand extends EventEmitter implements EventObserver {
