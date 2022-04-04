@@ -230,6 +230,7 @@
     <module>domain-model</module>
     <module>composite-view</module>
     <module>metadata-mapping</module>
+    <module>identity-field</module>
   </modules>
   <repositories>
     <repository>
