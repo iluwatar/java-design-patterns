@@ -5,7 +5,7 @@
     <parent>
         <artifactId>java-design-patterns</artifactId>
         <groupId>com.iluwatar</groupId>
-        <version>1.24.0-SNAPSHOT</version>
+        <version>1.26.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -31,24 +31,17 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>com.test.MainClassName</mainClass>
-                        </manifest>
-                    </archive>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase> <!-- packaging phase -->
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>com.iluwatar.identityfield.App</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
