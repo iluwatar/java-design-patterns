@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.player">
+    <insert id="insert_player">insert into player(name) values (#{name})</insert>
+    <insert id="insert_footballer">insert into footballer(name,club) values (#{name},#{club})</insert>
+    <insert id="insert_Cricketer">insert into cricketer(battingAvarage,name) values (#{battingAvarage},#{name})</insert>
+    <insert id="insert_Bowler">insert into bowler(bowlingAvarage,battingAvarage,name) values (#{bowlingAvarage},#{battingAvarage},#{name})</insert>
+
+
+    <update id="update_footballer">update  footballer set club=#{club} where name =#{name}</update>
+    <update id="update_Cricketer">update  cricketer set battingAvarage=#{battingAvarage} where name =#{name}</update>
+    <update id="update_Bowler">update bowler set battingAvarage=#{battingAvarage}, bowlingAvarage=#{bowlingAvarage} where name =#{name}</update>
+
+
+    <delete id="delete_player"> DELETE FROM player WHERE name = #{name}</delete>
+    <delete id="delete_footballer">DELETE FROM footballer WHERE club = #{name}</delete>
+    <delete id="delete_Cricketer">DELETE FROM cricketer WHERE battingAvarage = #{id}</delete>
+    <delete id="delete_Bowler">DELETE FROM bowler WHERE bowlingAvarage = #{id}</delete>
+
+    <select id="list_player" resultType="entity.Player">select * from player</select>
+    <select id="list_football_player" resultType="entity.Footballer">select * from footballer</select>
+    <select id="list_cricketer" resultType="entity.Cricketer">select * from cricketer</select>
+    <select id="list_bowler" resultType="entity.Bowler">select * from bowler</select>
+    <select id="get_player" resultType="entity.Player">select * from player where name=#{name}</select>
+    <select id="get_footballer" resultType="entity.Footballer">select * from footballer where name=#{name}</select>
+    <select id="get_Cricketer" resultType="entity.Cricketer">select * from cricketer where battingAvarage=#{id}</select>
+    <select id="get_Bowler" resultType="entity.Bowler">select * from bowler where bowlingAvarage=#{id}</select>
+</mapper>
