@@ -1,0 +1,23 @@
+@startuml
+package com.iluwatar.datatransferhash {
+  class App {
+    - LOGGER : Logger {static}
+    + main(args : String[]) {static}
+  }
+  class Hash {
+    - hash : Hashtable<String, Object>
+    + put(void)
+    + getValue(key: String) : Object
+  }
+  class Business {
+      + createHash(key: String, value: Object, hash: Hash)
+      + getData(key: String, hash: Hash) : Object
+  }
+  class Presentation {
+      + createHash(key: String, value: Object, hash: Hash)
+      + getData(key: String, hash: Hash) : Object
+  }
+}
+Business .right.> Hash
+Presentation .left.> Hash
+@enduml
