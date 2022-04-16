@@ -1804,6 +1804,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "arnabsen1729",
+      "name": "Arnab Sen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/51032928?v=4",
+      "profile": "http://arnabsen.bio.link",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
