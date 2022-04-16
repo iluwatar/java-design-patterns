@@ -16,7 +16,7 @@
             </dataSource>
         </environment>
     </environments>
-    <!--配置实体映射xml路径-->
+    <!--xml  path-->
     <mappers>
         <mapper resource="mapper/Player.xml"/>
     </mappers>

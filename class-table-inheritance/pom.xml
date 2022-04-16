@@ -42,6 +42,12 @@
             <artifactId>lombok</artifactId>
             <version>1.18.22</version>
         </dependency>
+        <dependency>
+            <groupId>net.sourceforge.pmd</groupId>
+            <artifactId>pmd</artifactId>
+            <version>6.44.0</version>
+            <type>pom</type>
+        </dependency>
 
         <dependency>
             <groupId>org.slf4j</groupId>

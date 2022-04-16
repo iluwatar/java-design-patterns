@@ -1,8 +1,10 @@
 package mapper;
 
 import entity.*;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
+
 
 public interface player {
     List<Player> list_player();
