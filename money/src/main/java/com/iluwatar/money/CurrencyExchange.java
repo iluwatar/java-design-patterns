@@ -16,11 +16,14 @@ public class CurrencyExchange {
    * @return A new {@link Money} object with the converted amount and {@link Currency}.
    * @throws CurrencyCannotBeExchangedException If both {@link Currency} objects are the same.
    */
-  public static Money convertCurrency(Money moneyToExchangeCurrency, ExchangeMethod exchangeMethod) throws CurrencyCannotBeExchangedException {
+  public static Money convertCurrency(Money moneyToExchangeCurrency, ExchangeMethod exchangeMethod)
+      throws CurrencyCannotBeExchangedException {
     if (moneyToExchangeCurrency.getCurrency() != exchangeMethod.getExchangedCurrency()) {
-      return new Money(moneyToExchangeCurrency.multiplyMoneyBy(exchangeMethod.getExchangeRatio()).getAmount(), exchangeMethod.getExchangedCurrency());
+      return new Money(moneyToExchangeCurrency.multiplyMoneyBy(
+          exchangeMethod.getExchangeRatio()).getAmount(), exchangeMethod.getExchangedCurrency());
     } else {
-      throw new CurrencyCannotBeExchangedException("Currency cannot be the same in order to exchange.");
+      throw new CurrencyCannotBeExchangedException(
+          "Currency cannot be the same in order to exchange.");
     }
   }
 

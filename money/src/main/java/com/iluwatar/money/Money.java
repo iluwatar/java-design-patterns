@@ -42,7 +42,8 @@ public class Money {
    *                                         objects amount which this object
    *                                         is to be subtracted by.
    */
-  public Money subtractMoneyBy(Money moneyToSubtractBy) throws SubtractionCannotOccurException, CurrencyMismatchException {
+  public Money subtractMoneyBy(Money moneyToSubtractBy)
+      throws SubtractionCannotOccurException, CurrencyMismatchException {
     this.ensureSameCurrencyWith(moneyToSubtractBy);
     if (this.amount < moneyToSubtractBy.getAmount()) {
       throw new SubtractionCannotOccurException(
