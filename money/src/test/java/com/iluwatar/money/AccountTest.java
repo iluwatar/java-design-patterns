@@ -53,7 +53,7 @@ class AccountTest {
     }
 
     @Test
-    public void testAccountCanWithdrawMoneyOfSameCurrency() throws CurrencyMismatchException, BalanceDoesNotExistForAccountException, CurrencyCannotBeExchangedException, SubtractionCannotOccurException {
+    public void testAccountCanWithdrawMoneyOfSameCurrency() throws CurrencyMismatchException, BalanceDoesNotExistForAccountException, InsufficientFundsException {
         this.testAccount.setPrimaryCurrency(Currency.EUR);
         var money = new Money(100, Currency.EUR);
         this.testAccount.deposit(money);

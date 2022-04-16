@@ -3,6 +3,7 @@ package com.iluwatar.money;
 import com.iluwatar.money.exception.BalanceDoesNotExistForAccountException;
 import com.iluwatar.money.exception.CurrencyCannotBeExchangedException;
 import com.iluwatar.money.exception.CurrencyMismatchException;
+import com.iluwatar.money.exception.InsufficientFundsException;
 import com.iluwatar.money.exception.SubtractionCannotOccurException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -116,38 +117,42 @@ public class Account { //NOPMD - suppressed DataClass - adapt to the design phil
    * Withdraws funds from an accounts balance.
    *
    * @param moneyToWithdraw The {@link Money} to be withdrawn.
-   * @throws SubtractionCannotOccurException If not sufficient funds.
+   * @throws InsufficientFundsException If not sufficient funds.
    */
-  public void withdraw(final Money moneyToWithdraw) throws BalanceDoesNotExistForAccountException,
-      CurrencyCannotBeExchangedException, CurrencyMismatchException,
-      SubtractionCannotOccurException {
-    validateCurrencyFor(moneyToWithdraw, getCurrencies());
-    Money remainedMoney;
-    Money totalMoney;
-    if (this.primaryCurrency == moneyToWithdraw.getCurrency()) {
-      if (this.primaryBalance.getAmount() > moneyToWithdraw.getAmount()) {
-        this.primaryBalance = this.primaryBalance.subtractMoneyBy(moneyToWithdraw);
+  public void withdraw(final Money moneyToWithdraw)
+      throws BalanceDoesNotExistForAccountException, InsufficientFundsException {
+    try {
+      validateCurrencyFor(moneyToWithdraw, getCurrencies());
+      Money remainedMoney;
+      Money totalMoney;
+      if (this.primaryCurrency == moneyToWithdraw.getCurrency()) {
+        if (this.primaryBalance.getAmount() > moneyToWithdraw.getAmount()) {
+          this.primaryBalance = this.primaryBalance.subtractMoneyBy(moneyToWithdraw);
+        } else {
+          totalMoney = this.primaryBalance.addMoneyBy(CurrencyExchange.convertCurrency(
+              this.secondaryBalance,
+              ExchangeMethod.assignExchangeMethodBasedOnInput(this.primaryCurrency)));
+          remainedMoney = totalMoney.subtractMoneyBy(moneyToWithdraw);
+          this.primaryBalance = new Money(0, this.primaryCurrency);
+          this.secondaryBalance = CurrencyExchange.convertCurrency(remainedMoney,
+              ExchangeMethod.assignExchangeMethodBasedOnInput(this.secondaryCurrency));
+        }
       } else {
-        totalMoney = this.primaryBalance.addMoneyBy(CurrencyExchange.convertCurrency(
-            this.secondaryBalance,
-            ExchangeMethod.assignExchangeMethodBasedOnInput(this.primaryCurrency)));
-        remainedMoney = totalMoney.subtractMoneyBy(moneyToWithdraw);
-        this.primaryBalance = new Money(0, this.primaryCurrency);
-        this.secondaryBalance = CurrencyExchange.convertCurrency(remainedMoney,
-            ExchangeMethod.assignExchangeMethodBasedOnInput(this.secondaryCurrency));
+        if (this.secondaryBalance.getAmount() > moneyToWithdraw.getAmount()) {
+          this.secondaryBalance = this.secondaryBalance.subtractMoneyBy(moneyToWithdraw);
+        } else {
+          totalMoney = this.secondaryBalance.addMoneyBy(CurrencyExchange.convertCurrency(
+              this.primaryBalance,
+              ExchangeMethod.assignExchangeMethodBasedOnInput(this.secondaryCurrency)));
+          remainedMoney = totalMoney.subtractMoneyBy(moneyToWithdraw);
+          this.secondaryBalance = new Money(0, this.secondaryCurrency);
+          this.primaryBalance = CurrencyExchange.convertCurrency(remainedMoney,
+              ExchangeMethod.assignExchangeMethodBasedOnInput(this.primaryCurrency));
+        }
       }
-    } else {
-      if (this.secondaryBalance.getAmount() > moneyToWithdraw.getAmount()) {
-        this.secondaryBalance = this.secondaryBalance.subtractMoneyBy(moneyToWithdraw);
-      } else {
-        totalMoney = this.secondaryBalance.addMoneyBy(CurrencyExchange.convertCurrency(
-            this.primaryBalance,
-            ExchangeMethod.assignExchangeMethodBasedOnInput(this.secondaryCurrency)));
-        remainedMoney = totalMoney.subtractMoneyBy(moneyToWithdraw);
-        this.secondaryBalance = new Money(0, this.secondaryCurrency);
-        this.primaryBalance = CurrencyExchange.convertCurrency(remainedMoney,
-            ExchangeMethod.assignExchangeMethodBasedOnInput(this.primaryCurrency));
-      }
+    } catch (CurrencyCannotBeExchangedException
+             | CurrencyMismatchException | SubtractionCannotOccurException e) {
+      throw new InsufficientFundsException("insufficient funds");
     }
   }
 
