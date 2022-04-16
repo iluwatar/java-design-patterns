@@ -27,6 +27,6 @@ public enum ExchangeMethod {
 
   public static ExchangeMethod assignExchangeMethodBasedOnInput(Currency currencyToExchangeTo) {
     return Arrays.stream(values()).filter(value ->
-            value.getExchangedCurrency() == currencyToExchangeTo).findFirst().get();
+            value.getExchangedCurrency() == currencyToExchangeTo).findFirst().orElse(null);
   }
 }
