@@ -1,6 +1,9 @@
 package com.iluwatar.money;
 
-import com.iluwatar.money.exception.*;
+import com.iluwatar.money.exception.BalanceDoesNotExistForAccountException;
+import com.iluwatar.money.exception.CurrencyCannotBeExchangedException;
+import com.iluwatar.money.exception.CurrencyMismatchException;
+import com.iluwatar.money.exception.SubtractionCannotOccurException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,7 +26,7 @@ public class App {
   /**
    * Program entry point.
    */
-  public static void main(final String[] args) throws
+  public static void main(String[] args) throws
       CurrencyMismatchException, BalanceDoesNotExistForAccountException,
       CurrencyCannotBeExchangedException, SubtractionCannotOccurException {
     LOGGER.info("Here you are, the money pattern.");

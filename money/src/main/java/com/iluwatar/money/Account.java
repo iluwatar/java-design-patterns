@@ -103,12 +103,12 @@ public class Account { //NOPMD - suppressed DataClass - adapt to the design phil
       if (this.primaryBalance == null) {
         this.primaryBalance = new Money(0, this.primaryCurrency);
       }
-      this.primaryBalance = this.primaryBalance.addMoney(moneyToDeposit);
+      this.primaryBalance = this.primaryBalance.addMoneyBy(moneyToDeposit);
     } else {
       if (this.secondaryBalance == null) {
         this.secondaryBalance = new Money(0, this.secondaryCurrency);
       }
-      this.secondaryBalance = this.secondaryBalance.addMoney(moneyToDeposit);
+      this.secondaryBalance = this.secondaryBalance.addMoneyBy(moneyToDeposit);
     }
   }
 
@@ -128,7 +128,7 @@ public class Account { //NOPMD - suppressed DataClass - adapt to the design phil
       if (this.primaryBalance.getAmount() > moneyToWithdraw.getAmount()) {
         this.primaryBalance = this.primaryBalance.subtractMoneyBy(moneyToWithdraw);
       } else {
-        totalMoney = this.primaryBalance.addMoney(CurrencyExchange.convertCurrency(
+        totalMoney = this.primaryBalance.addMoneyBy(CurrencyExchange.convertCurrency(
             this.secondaryBalance,
             ExchangeMethod.assignExchangeMethodBasedOnInput(this.primaryCurrency)));
         remainedMoney = totalMoney.subtractMoneyBy(moneyToWithdraw);
@@ -140,7 +140,7 @@ public class Account { //NOPMD - suppressed DataClass - adapt to the design phil
       if (this.secondaryBalance.getAmount() > moneyToWithdraw.getAmount()) {
         this.secondaryBalance = this.secondaryBalance.subtractMoneyBy(moneyToWithdraw);
       } else {
-        totalMoney = this.secondaryBalance.addMoney(CurrencyExchange.convertCurrency(
+        totalMoney = this.secondaryBalance.addMoneyBy(CurrencyExchange.convertCurrency(
             this.primaryBalance,
             ExchangeMethod.assignExchangeMethodBasedOnInput(this.secondaryCurrency)));
         remainedMoney = totalMoney.subtractMoneyBy(moneyToWithdraw);

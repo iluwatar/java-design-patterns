@@ -29,7 +29,7 @@ class MoneyTest {
     public void testIfMoneyCanBeAdded() throws CurrencyMismatchException {
         var moneyOne = new Money(100, Currency.USD);
         var moneyTow = new Money(100, Currency.USD);
-        var moneySum = moneyOne.addMoney(moneyTow);
+        var moneySum = moneyOne.addMoneyBy(moneyTow);
 
         assertEquals(200, moneySum.getAmount());
     }
@@ -39,7 +39,7 @@ class MoneyTest {
         var moneyOne = new Money(100, Currency.USD);
         var moneyTwo = new Money(100, Currency.EUR);
 
-        assertThrows(CurrencyMismatchException.class, () -> moneyOne.addMoney(moneyTwo));
+        assertThrows(CurrencyMismatchException.class, () -> moneyOne.addMoneyBy(moneyTwo));
     }
 
     @Test

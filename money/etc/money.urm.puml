@@ -1,0 +1,61 @@
+@startuml
+package com.iluwatar.money {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Money {
+    - amount: long
+    - currency: Currency
+    - ensureSameCurrencyWith()
+    + Money(amount: long, currency Currency)
+    + getAmount() : long
+    + getCurrency() : Currency
+    + addMoneyBy(money: Money) : Money
+    + subtractMoneyBy(money: Money)) : Money
+    + multiplyMoneyBy(multiplier double) : Money
+    + allocate(a1: Account, a2: Account, p1: int, p2: int)
+    + equals(obj Object) : Boolean
+    + hashCode() : int
+  }
+  enum Currency {
+    + USD {static}
+    + EUR {static}
+    - centFactor: int
+    - representation: String
+    + Currency(centFactor: int, representation: String)
+    + getCentFactor() : int
+    + getRepresentation() : String
+  }
+  class Account {
+    - accountId: int
+    - primaryCurrency: Currency
+    - secondaryCurrency: Currency
+    - primaryBalance: Money
+    - secondaryBalance: Money
+    - validateCurrencyFor(money: Money, currencies: List<Currency>)
+    + Account(accountId: int)
+    + getCurrencies() : List<Currency>
+    + deposit(money: Money)
+    + withDraw((money: Money)
+  }
+  class CurrencyExchange {
+    + convertCurrency(money: Money, method: ExchangeMethod) : Money {static}
+  }
+  enum ExchangeMethod {
+    + USD_TO_EUR {static}
+    + EUR_TO_USD {static}
+    - exchangeRatio: double
+    - exchangedCurrency: Currency
+    + ExchangeMethod(ratio: double, currency Currency)
+    + getExchangeRatio() : double
+    + getExchangeCurrency() : Currency
+    + assignExchangeMethodBasedOnInput(currency: Currency) : ExchangeMethod
+  }
+}
+Currency --* Money
+Money --o Account
+Currency --o Account
+ExchangeMethod --|> Account
+@enduml

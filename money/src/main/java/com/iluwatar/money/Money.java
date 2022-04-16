@@ -2,7 +2,6 @@ package com.iluwatar.money;
 
 import com.iluwatar.money.exception.CurrencyMismatchException;
 import com.iluwatar.money.exception.SubtractionCannotOccurException;
-
 import java.util.Objects;
 
 /**
@@ -27,7 +26,7 @@ public class Money {
    * @param moneyToAdd The {@link Money} object which is to be added to this object.
    * @return The sum of the amounts of both of the {@link Money} objects.
    */
-  public Money addMoney(Money moneyToAdd) throws CurrencyMismatchException {
+  public Money addMoneyBy(Money moneyToAdd) throws CurrencyMismatchException {
     this.ensureSameCurrencyWith(moneyToAdd);
     return new Money(this.amount + moneyToAdd.getAmount(), this.currency);
   }
@@ -78,6 +77,9 @@ public class Money {
     }
   }
 
+  /**
+   * Allocate {@link Money} between two accounts with different percentage.
+   */
   public void allocate(Account a1, Account a2, int a1Percent, int a2Percent) throws
       CurrencyMismatchException {
     var exactA1Balance = this.amount * a1Percent / 100.0;
