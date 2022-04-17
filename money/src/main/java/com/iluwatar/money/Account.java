@@ -105,11 +105,15 @@ public class Account { //NOPMD - suppressed DataClass - adapt to the design phil
         this.primaryBalance = new Money(0, this.primaryCurrency);
       }
       this.primaryBalance = this.primaryBalance.addMoneyBy(moneyToDeposit);
-    } else {
+    } else if (this.secondaryCurrency == null
+        || this.secondaryCurrency == moneyToDeposit.getCurrency()) {
       if (this.secondaryBalance == null) {
         this.secondaryBalance = new Money(0, this.secondaryCurrency);
       }
       this.secondaryBalance = this.secondaryBalance.addMoneyBy(moneyToDeposit);
+    } else {
+      throw new CurrencyMismatchException(
+          "Currency of money to deposit does not exist in account.");
     }
   }
 
@@ -120,7 +124,8 @@ public class Account { //NOPMD - suppressed DataClass - adapt to the design phil
    * @throws InsufficientFundsException If not sufficient funds.
    */
   public void withdraw(final Money moneyToWithdraw)
-      throws BalanceDoesNotExistForAccountException, InsufficientFundsException {
+      throws BalanceDoesNotExistForAccountException,
+      InsufficientFundsException, CurrencyCannotBeExchangedException {
     try {
       validateCurrencyFor(moneyToWithdraw, getCurrencies());
       Money remainedMoney;
@@ -150,8 +155,7 @@ public class Account { //NOPMD - suppressed DataClass - adapt to the design phil
               ExchangeMethod.assignExchangeMethodBasedOnInput(this.primaryCurrency));
         }
       }
-    } catch (CurrencyCannotBeExchangedException
-             | CurrencyMismatchException | SubtractionCannotOccurException e) {
+    } catch (CurrencyMismatchException | SubtractionCannotOccurException e) {
       throw new InsufficientFundsException("insufficient funds");
     }
   }

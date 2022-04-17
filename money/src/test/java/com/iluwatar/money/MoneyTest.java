@@ -76,6 +76,17 @@ class MoneyTest {
         assertEquals(new Money(3, Currency.USD), a2.getPrimaryBalance());
     }
 
+    @Test
+    public void testMoneyCanBeAllocated2() throws CurrencyMismatchException {
+        var a1 = this.createAccount(1);
+        var a2 = this.createAccount(2);
+        var money = new Money(1, Currency.USD);
+        money.allocate(a1, a2, 30, 70);
+
+        assertEquals(new Money(1, Currency.USD), a1.getPrimaryBalance());
+        assertEquals(new Money(0, Currency.USD), a2.getPrimaryBalance());
+    }
+
     private Account createAccount(int accountId) throws CurrencyMismatchException {
         var account = new Account(accountId);
         account.setPrimaryCurrency(Currency.USD);

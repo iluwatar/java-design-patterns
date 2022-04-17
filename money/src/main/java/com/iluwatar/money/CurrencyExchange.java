@@ -18,6 +18,9 @@ public class CurrencyExchange {
    */
   public static Money convertCurrency(Money moneyToExchangeCurrency, ExchangeMethod exchangeMethod)
       throws CurrencyCannotBeExchangedException {
+    if (exchangeMethod == null) {
+      throw new CurrencyCannotBeExchangedException("no rule to exchange this currency");
+    }
     if (moneyToExchangeCurrency.getCurrency() != exchangeMethod.getExchangedCurrency()) {
       return new Money(moneyToExchangeCurrency.multiplyMoneyBy(
           exchangeMethod.getExchangeRatio()).getAmount(), exchangeMethod.getExchangedCurrency());

@@ -1,6 +1,7 @@
 package com.iluwatar.money;
 
 import com.iluwatar.money.exception.BalanceDoesNotExistForAccountException;
+import com.iluwatar.money.exception.CurrencyCannotBeExchangedException;
 import com.iluwatar.money.exception.CurrencyMismatchException;
 import com.iluwatar.money.exception.InsufficientFundsException;
 import lombok.extern.slf4j.Slf4j;
@@ -26,8 +27,8 @@ public class App {
    * Program entry point.
    */
   public static void main(String[] args)
-      throws CurrencyMismatchException,
-      BalanceDoesNotExistForAccountException, InsufficientFundsException {
+      throws CurrencyMismatchException, BalanceDoesNotExistForAccountException,
+      InsufficientFundsException, CurrencyCannotBeExchangedException {
     LOGGER.info("Here you are, the money pattern.");
     final var account = new Account(123);
     LOGGER.info("An account with ID " + 123 + " is created.");

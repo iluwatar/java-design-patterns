@@ -30,7 +30,20 @@ class AccountTest {
         this.testAccount.setPrimaryCurrency(Currency.USD);
         this.testAccount.setSecondaryCurrency(Currency.EUR);
 
+        assertEquals(Currency.USD, this.testAccount.getPrimaryCurrency());
+        assertEquals(Currency.EUR, this.testAccount.getSecondaryCurrency());
         assertEquals(new ArrayList<>(Arrays.asList(Currency.USD, Currency.EUR)), this.testAccount.getCurrencies());
+    }
+
+    @Test
+    public void testBalances() {
+        this.testAccount.setPrimaryCurrency(Currency.USD);
+        this.testAccount.setPrimaryBalance(new Money(100, Currency.USD));
+        this.testAccount.setSecondaryCurrency(Currency.EUR);
+        this.testAccount.setSecondaryBalance(new Money(100, Currency.EUR));
+
+        assertEquals(new Money(100, Currency.USD), this.testAccount.getPrimaryBalance());
+        assertEquals(new Money(100, Currency.EUR), this.testAccount.getSecondaryBalance());
     }
 
     @Test
@@ -53,7 +66,10 @@ class AccountTest {
     }
 
     @Test
-    public void testAccountCanWithdrawMoneyOfSameCurrency() throws CurrencyMismatchException, BalanceDoesNotExistForAccountException, InsufficientFundsException {
+    public void testAccountCanWithdrawMoneyOfSameCurrency()
+        throws CurrencyMismatchException, BalanceDoesNotExistForAccountException,
+        InsufficientFundsException, CurrencyCannotBeExchangedException
+        {
         this.testAccount.setPrimaryCurrency(Currency.EUR);
         var money = new Money(100, Currency.EUR);
         this.testAccount.deposit(money);
@@ -69,6 +85,28 @@ class AccountTest {
         this.testAccount.deposit(money);
 
         assertThrows(BalanceDoesNotExistForAccountException.class, () -> this.testAccount.withdraw(new Money(70, Currency.USD)));
+    }
+
+    @Test
+    public void testThrowsExceptionForCurrencyCanNotBeExchanged() throws CurrencyMismatchException {
+        this.testAccount.setPrimaryCurrency(Currency.EUR);
+        this.testAccount.setSecondaryCurrency(Currency.CNY);
+        var money = new Money(100, Currency.EUR);
+        this.testAccount.deposit(money);
+        money = new Money(100, Currency.CNY);
+        this.testAccount.deposit(money);
+
+        assertThrows(CurrencyCannotBeExchangedException.class, () -> this.testAccount.withdraw(new Money(200, Currency.CNY)));
+    }
+
+    @Test
+    public void testThrowsExceptionForCurrencyMismatch() throws CurrencyMismatchException {
+        this.testAccount.setPrimaryCurrency(Currency.EUR);
+        this.testAccount.setSecondaryCurrency(Currency.CNY);
+        var money = new Money(100, Currency.EUR);
+        this.testAccount.deposit(money);
+
+        assertThrows(CurrencyMismatchException.class, () -> this.testAccount.deposit(new Money(200, Currency.USD)));
     }
 
     @Test

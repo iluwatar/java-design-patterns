@@ -5,7 +5,8 @@ package com.iluwatar.money;
  */
 public enum Currency {
   USD(100, "USD"),
-  EUR(100, "USD");
+  EUR(100, "USD"),
+  CNY(100, "CNY");
 
   /**
    * cent factor, e.g., 100 means regarding 100 "USD" as 1 real USD.
