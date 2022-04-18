@@ -130,7 +130,7 @@ public abstract class Mybatis3Utils {
 
 ## Class diagram
 
-![alt text]( "class table inheritance pattern")
+![alt text](https://github.com/KingOfXi/java-design-patterns/blob/master/class-table-inheritance/src/main/java/test.png "class table inheritance pattern")
 
 ## Applicability
 
@@ -141,5 +141,5 @@ Use the Class table inheritance pattern when:
 
 ## Credits
 
-* [Example for java]https://www.martinfowler.com/eaaCatalog/classTableInheritance.html
+* [Example for java](https://www.martinfowler.com/eaaCatalog/classTableInheritance.html)
 * [Java8 Streams](https://docs.oracle.com/javase/8/docs/api/java/util/stream/package-summary.html)
