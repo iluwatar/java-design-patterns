@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="mapper.player">
+<mapper namespace="mapper.MapperPlayer">
     <insert id="insert_player">insert into player(name) values (#{name})</insert>
     <insert id="insert_footballer">insert into footballer(name,club) values (#{name},#{club})</insert>
     <insert id="insert_Cricketer">insert into cricketer(battingAvarage,name) values (#{battingAvarage},#{name})</insert>

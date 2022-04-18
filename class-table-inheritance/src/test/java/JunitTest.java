@@ -2,7 +2,7 @@ import entity.Bowler;
 import entity.Cricketer;
 import entity.Footballer;
 import entity.Player;
-import mapper.player;
+import mapper.MapperPlayer;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
 import org.junit.Before;
@@ -10,12 +10,12 @@ import org.junit.Test;
 
 public class JunitTest {
     SqlSession sqlSession;
-    player playerMapper;
+    MapperPlayer playerMapper;
 
     @Before
     public void before() {
         sqlSession = Mybatis3Utils.getCurrentSqlSession();
-        playerMapper = sqlSession.getMapper(player.class);
+        playerMapper = sqlSession.getMapper(MapperPlayer.class);
 
     }
 
