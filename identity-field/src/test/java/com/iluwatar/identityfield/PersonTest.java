@@ -23,67 +23,67 @@
 
 package com.iluwatar.identityfield;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import lombok.var;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * The type Pearson test.
  */
 public class PersonTest {
-    /**
-     * Pearson test.
-     */
-    @Test
-    public void SetNameTest() {
-        var person = new Person(1, "ramesh", 28, "male");
-        assertEquals(1, person.getId());
-        assertEquals("ramesh", person.getName());
-        assertEquals(28, person.getAge());
-        assertEquals("male", person.getGender());
-        var name = "prakash";
-        person.setName(name);
-        assertEquals("prakash", person.getName());
-        assertEquals(1, person.getId());
-    }
+  /**
+   * Pearson test.
+   */
+  @Test
+  void setNameTest() {
+    var person = new Person(1, "ramesh", 28, "male");
+    assertEquals(1, person.getId());
+    assertEquals("ramesh", person.getName());
+    assertEquals(28, person.getAge());
+    assertEquals("male", person.getGender());
+    var name = "prakash";
+    person.setName(name);
+    assertEquals("prakash", person.getName());
+    assertEquals(1, person.getId());
+  }
 
-    @Test
-    public void SetAgeTest() {
-        var person = new Person(1, "ramesh", 28, "male");
-        assertEquals(1, person.getId());
-        assertEquals("ramesh", person.getName());
-        assertEquals(28, person.getAge());
-        assertEquals("male", person.getGender());
-        var age = 29;
-        person.setAge(age);
-        assertEquals(29, person.getAge());
-        assertEquals(1, person.getId());
-    }
+  @Test
+  void setAgeTest() {
+    var person = new Person(1, "ramesh", 28, "male");
+    assertEquals(1, person.getId());
+    assertEquals("ramesh", person.getName());
+    assertEquals(28, person.getAge());
+    assertEquals("male", person.getGender());
+    var age = 29;
+    person.setAge(age);
+    assertEquals(29, person.getAge());
+    assertEquals(1, person.getId());
+  }
 
-    @Test
-    public void SetGenderTest() {
-        var person = new Person(1, "ramesh", 28, "male");
-        assertEquals(1, person.getId());
-        assertEquals("ramesh", person.getName());
-        assertEquals(28, person.getAge());
-        assertEquals("male", person.getGender());
-        var gender = "female";
-        person.setGender(gender);
-        assertEquals("female", person.getGender());
-        assertEquals(1, person.getId());
-    }
+  @Test
+  void setGenderTest() {
+    var person = new Person(1, "ramesh", 28, "male");
+    assertEquals(1, person.getId());
+    assertEquals("ramesh", person.getName());
+    assertEquals(28, person.getAge());
+    assertEquals("male", person.getGender());
+    var gender = "female";
+    person.setGender(gender);
+    assertEquals("female", person.getGender());
+    assertEquals(1, person.getId());
+  }
 
-    @Test
-    public void SetIdTest() {
-        var person = new Person(1, "ramesh", 28, "male");
-        assertEquals(1, person.getId());
-        assertEquals("ramesh", person.getName());
-        assertEquals(28, person.getAge());
-        assertEquals("male", person.getGender());
-        var id = 10;
-        person.setId(id);
-        assertEquals("ramesh", person.getName());
-        assertEquals(10, person.getId());
-    }
+  @Test
+  void setIdTest() {
+    var person = new Person(1, "ramesh", 28, "male");
+    assertEquals(1, person.getId());
+    assertEquals("ramesh", person.getName());
+    assertEquals(28, person.getAge());
+    assertEquals("male", person.getGender());
+    var id = 10;
+    person.setId(id);
+    assertEquals("ramesh", person.getName());
+    assertEquals(10, person.getId());
+  }
 }

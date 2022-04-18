@@ -13,5 +13,5 @@ package com.iluwatar.identityfield {
     + getId() : long
     + setId(id:long)
   }
-
+}
 @enduml

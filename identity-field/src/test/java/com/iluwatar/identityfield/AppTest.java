@@ -23,20 +23,19 @@
 
 package com.iluwatar.identityfield;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
+import org.junit.jupiter.api.Test;
 
 /**
  * The type App test.
  */
 public class AppTest {
-    /**
-     * App test.
-     */
-    @Test
-    public void shouldExecuteWithoutException() {
-        assertDoesNotThrow(() -> App.main(new String[]{}));
-    }
+  /**
+   * App test.
+   */
+  @Test
+  void shouldExecuteWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
+  }
 }

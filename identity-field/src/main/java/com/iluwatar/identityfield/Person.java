@@ -31,24 +31,24 @@ import lombok.Setter;
  */
 
 public class Person {
-    @Getter @Setter private long id;
-    @Getter @Setter private String name;
-    @Getter @Setter private int age;
-    @Getter @Setter private String gender;
+  @Getter @Setter private long id;
+  @Getter @Setter private String name;
+  @Getter @Setter private int age;
+  @Getter @Setter private String gender;
 
-    /**
-     * Instantiates a new Pearson.
-     *
-     * @param id   the id of the person
-     * @param name the name of the person
-     * @param age  the age of the person
-     * @param gender the gender of the person
-     */
-    public Person(long id, String name, int age, String gender) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.gender = gender;
-    }
+  /**
+   * Instantiates a new Pearson.
+   *
+   * @param id   the id of the person
+   * @param name the name of the person
+   * @param age  the age of the person
+   * @param gender the gender of the person
+   */
+  public Person(long id, String name, int age, String gender) {
+    this.id = id;
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+  }
 
 }
