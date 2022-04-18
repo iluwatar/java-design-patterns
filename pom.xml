@@ -85,6 +85,7 @@
   </properties>
   <modules>
     <module>abstract-factory</module>
+    <module>monitor</module>
     <module>tls</module>
     <module>builder</module>
     <module>factory-method</module>
