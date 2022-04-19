@@ -1,0 +1,58 @@
+@startuml
+package com.iluwatar.gameloop {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Broken{
+    + Broken(entity : CoinMachine)
+    + pass() : void
+    + coin() : void
+    + failed() : void
+    + fixed() : void
+  }
+  class Unlocked{
+    + Unlocked(entity : CoinMachine)
+    + pass() : void
+    + coin() : void
+    + failed() : void
+    + fixed() : void
+  }
+  class Locked{
+    + Locked(entity : CoinMachine)
+    + pass() : void
+    + coin() : void
+    + failed() : void
+    + fixed() : void
+  }
+  class CoinMachine{
+    + machineState : Astate
+    + currentState() : String
+    + pass() : void
+    + coin() : void
+    + failed() : void
+    + fixed() : void
+  }
+  interface Translation{
+      + pass() : void
+      + coin() : void
+      + failed() : void
+      + fixed() : void
+  }
+  abstract class Astate {
+     entity : CoinMachine;
+     - name : String;
+     + Astate(entity : CoinMachine, name : String)
+     setEntityState(newState : Astate) : void
+     + currentState() : String
+  }
+}
+  Astate --|> Translation
+  Astate --> CoinMachine
+  CoinMachine --> Astate
+  CoinMachine --|> Translation
+  Broken --|> Astate
+  Locked --|> Astate
+  Unlocked --|> Astate
+
+@enduml
