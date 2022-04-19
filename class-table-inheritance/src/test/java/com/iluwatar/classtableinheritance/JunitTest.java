@@ -41,7 +41,7 @@ public class JunitTest {
      */
 
   @Test
-  public void Test_insert() {
+  public void testinsert() {
     Player a = new Player();
     a.setName("player1");
     playerMapper.insert_player(a);
@@ -67,7 +67,7 @@ public class JunitTest {
      */
 
   @Test
-  public void Test_select() {
+  public void testselect() {
 
     playerMapper.list_player().forEach(x -> {
       System.out.println(x.getName());
@@ -87,7 +87,7 @@ public class JunitTest {
      */
 
   @Test
-  public void Testupdate() {
+  public void testupdate() {
     Bowler bowler = new Bowler();
     bowler.setName("bowler1");
     bowler.setBattingAvarage(11);
@@ -110,7 +110,7 @@ public class JunitTest {
      */
 
   @Test
-  public void Testdelete() {
+  public void testdelete() {
     playerMapper.delete_player("player1");
     playerMapper.delete_Bowler(16);
     playerMapper.delete_Cricketer(3);
