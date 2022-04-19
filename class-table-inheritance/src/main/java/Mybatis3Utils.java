@@ -7,12 +7,9 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 /**
- * [Project]:moy-gradle-project  <br/>
- * [Email]:moy25@foxmail.com  <br/>
- * [Date]:2018/2/19  <br/>
- * [Description]:  <br/>
+ * This is tool class.
  *
- * @author YeXiangYang
+ * @author ZhangXiZhi
  */
 public abstract class Mybatis3Utils {
 
