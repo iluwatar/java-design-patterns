@@ -15,6 +15,9 @@ import lombok.Data;
 @Table(name = "footballer")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Footballer extends Player {
-  String club;
+  /**
+   * club.
+   */
+  private String club;
 
 }

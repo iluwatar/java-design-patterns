@@ -11,5 +11,8 @@ import lombok.Data;
 @Data
 @Table(name = "bowler")
 public class Bowler extends Cricketer {
-  double bowlingAvarage;
+  /**
+   * this is a variable means.
+   */
+  private double bowlingAvarage;
 }

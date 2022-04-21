@@ -44,22 +44,22 @@ public class JunitTest {
   public void testinsert() {
     Player a = new Player();
     a.setName("player1");
-    playerMapper.insert_player(a);
+    playerMapper.insertPlayer(a);
 
     Footballer footballer = new Footballer();
     footballer.setClub("footballerclub");
     footballer.setName("footballer1");
-    playerMapper.insert_footballer(footballer);
+    playerMapper.insertFootballer(footballer);
 
     Bowler bowler = new Bowler();
     bowler.setBowlingAvarage(23);
     bowler.setName("bowler1");
-    playerMapper.insert_Bowler(bowler);
+    playerMapper.insertBowler(bowler);
 
     Cricketer cricketer = new Cricketer();
     cricketer.setName("cricketer1");
     cricketer.setBattingAvarage(23);
-    playerMapper.insert_Cricketer(cricketer);
+    playerMapper.insertCricketer(cricketer);
     sqlSession.commit();
   }
   /**
@@ -69,16 +69,16 @@ public class JunitTest {
   @Test
   public void testselect() {
 
-    playerMapper.list_player().forEach(x -> {
+    playerMapper.listplayer().forEach(x -> {
       System.out.println(x.getName());
     });
-    playerMapper.list_football_player().forEach(x -> {
+    playerMapper.listFootballPlayer().forEach(x -> {
       System.out.println(x.getName() + ' ' + x.getClub());
     });
-    playerMapper.list_cricketer().forEach(x -> {
+    playerMapper.listCricketer().forEach(x -> {
       System.out.println(x.getName() + " " + x.getBattingAvarage());
     });
-    playerMapper.list_bowler().forEach(x -> {
+    playerMapper.listBowler().forEach(x -> {
       System.out.println(x.getName() + " " + x.getBattingAvarage() + ' ' + x.getBowlingAvarage());
     });
   }
@@ -92,17 +92,17 @@ public class JunitTest {
     bowler.setName("bowler1");
     bowler.setBattingAvarage(11);
     bowler.setBowlingAvarage(16);
-    playerMapper.update_Bowler(bowler);
+    playerMapper.updateBowler(bowler);
 
     Cricketer cricketer = new Cricketer();
     cricketer.setName("cricketer1");
     cricketer.setBattingAvarage(3);
-    playerMapper.update_Cricketer(cricketer);
+    playerMapper.updateCricketer(cricketer);
 
     Footballer footballer = new Footballer();
     footballer.setName("footballer1");
     footballer.setClub("zzz");
-    playerMapper.update_footballer(footballer);
+    playerMapper.updateFootballer(footballer);
     sqlSession.commit();
   }
   /**
@@ -111,10 +111,10 @@ public class JunitTest {
 
   @Test
   public void testdelete() {
-    playerMapper.delete_player("player1");
-    playerMapper.delete_Bowler(16);
-    playerMapper.delete_Cricketer(3);
-    playerMapper.delete_footballer("footballer1");
+    playerMapper.deletePlayer("player1");
+    playerMapper.deleteBowler(16);
+    playerMapper.deleteCricketer(3);
+    playerMapper.deleteFootballer("footballer1");
     sqlSession.commit();
   }
 }

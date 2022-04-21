@@ -7,41 +7,151 @@ import java.util.List;
  */
 
 public interface MapperPlayer {
-  List<Player> list_player();
+  /**
+   * this is list player function.
+   *
+   * @return all the player.
+   */
+  List<Player> listplayer();
+  /**
+   * this is list football function.
+   *
+   * @return player meet the condition.
+   */
 
-  List<Footballer> list_football_player();
+  List<Footballer> listFootballPlayer();
+  /**
+   * this is list cricketer player function.
+   *
+   * @return all the cricketer.
+   */
 
-  List<Cricketer> list_cricketer();
+  List<Cricketer> listCricketer();
+  /**
+   * this is list bowler  function.
+   *
+   * @return bowler.
+   */
 
-  List<Bowler> list_bowler();
+  List<Bowler> listBowler();
+  /**
+   * this is get player function.
+   *
+   * @param name input.
+   * @return some polayer.
+   */
 
-  Player get_player(String name);
+  Player getPlayer(String name);
+  /**
+   * this is insert player function.
+   *
+   * @param player player.
+   * @return insert number.
+   */
 
-  int insert_player(Player player);
+  int insertPlayer(Player player);
+  /**
+   * this is delete player function.
+   *
+   * @param name input.
+   * @return delete number.
+   */
 
-  int delete_player(String name);
+  int deletePlayer(String name);
+  /**
+   * this is get Footballer function.
+   *
+   * @param name footballer name.
+   * @return footballer.
+   */
 
-  Footballer get_footballer(String name);
+  Footballer getFootballer(String name);
+  /**
+   * this is insert Footballer function.
+   *
+   * @param player aim.
+   * @return number.
+   */
 
-  int insert_footballer(Footballer player);
+  int insertFootballer(Footballer player);
+  /**
+   * this is update Footballer function.
+   *
+   * @param footballer aim
+   * @return number.
+   */
 
-  int update_footballer(Footballer footballer);
+  int updateFootballer(Footballer footballer);
+  /**
+   * this is delete Footballer function.
+   *
+   * @param name aim
+   * @return footballer's name.
+   */
 
-  int delete_footballer(String name);
+  int deleteFootballer(String name);
+  /**
+   * this is get Cricketer function.
+   *
+   * @param id id.
+   * @return crocleter id.
+   */
 
-  Cricketer get_Cricketer(double id);
+  Cricketer getCricketer(double id);
+  /**
+   * this is insert Cricketer function.
+   *
+   * @param player aim.
+   * @return Cricketer.
+   */
 
-  int insert_Cricketer(Cricketer player);
+  int insertCricketer(Cricketer player);
+  /**
+   * this is update Cricketer function.
+   *
+   * @param cricketer aim.
+   * @return Cricketer number id.
+   */
 
-  int update_Cricketer(Cricketer cricketer);
+  int updateCricketer(Cricketer cricketer);
+  /**
+   * this is delete Cricketer function.
+   *
+   * @param id aim.
+   * @return cricketer number id.
+   */
 
-  int delete_Cricketer(double id);
+  int deleteCricketer(double id);
+  /**
+   * this is delete Cricketer function.
+   *
+   * @param id aim.
+   * @return Bowler.
+   */
 
-  Bowler get_Bowler(double id);
+  Bowler getBowler(double id);
+  /**
+   * this is update Bowler function.
+   *
+   * @param player aim.
+   * @return Bowler id.
+   */
 
-  int insert_Bowler(Bowler player);
+  int insertBowler(Bowler player);
+  /**
+   * this is update Bowler  function.
+   *
+   * @param bowler aim.
+   * @return Bowler id.
+   */
 
-  int update_Bowler(Bowler bowler);
+  int updateBowler(Bowler bowler);
+  /**
+   * this is delete  Bowler function.
+   *
+   * @param id aim.
+   * @return id.
+   */
 
-  int delete_Bowler(double id);
+  int deleteBowler(double id);
 }

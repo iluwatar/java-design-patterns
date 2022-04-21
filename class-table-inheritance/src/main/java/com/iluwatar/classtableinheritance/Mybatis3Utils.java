@@ -15,13 +15,19 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  */
 public abstract class Mybatis3Utils {
 
-  public static final SqlSessionFactory sqlSessionFactory;
-  public static final ThreadLocal<SqlSession> sessionThread = new ThreadLocal<>();
+  /**
+   * this is a factory.
+   */
+  public static final SqlSessionFactory SQL_SESSION_FACTORY;
+  /**
+   * It can be extended in the future.
+   */
+  public static final ThreadLocal<SqlSession> SESSION_THREAD_LOCAL = new ThreadLocal<>();
 
   static {
     try {
       Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
-      sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
+      SQL_SESSION_FACTORY = new SqlSessionFactoryBuilder().build(reader);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
@@ -33,10 +39,10 @@ public abstract class Mybatis3Utils {
    * @return sqlsession can deal with some requests.
    */
   public static SqlSession getCurrentSqlSession() {
-    SqlSession sqlSession = sessionThread.get();
+    SqlSession sqlSession = SESSION_THREAD_LOCAL.get();
     if (Objects.isNull(sqlSession)) {
-      sqlSession = sqlSessionFactory.openSession();
-      sessionThread.set(sqlSession);
+      sqlSession = SQL_SESSION_FACTORY.openSession();
+      SESSION_THREAD_LOCAL.set(sqlSession);
     }
     return sqlSession;
   }
@@ -45,10 +51,10 @@ public abstract class Mybatis3Utils {
    * Close the session.
    */
   public static void closeCurrentSession() {
-    SqlSession sqlSession = sessionThread.get();
+    SqlSession sqlSession = SESSION_THREAD_LOCAL.get();
     if (Objects.nonNull(sqlSession)) {
       sqlSession.close();
     }
-    sessionThread.set(null);
+    SESSION_THREAD_LOCAL.set(null);
   }
 }

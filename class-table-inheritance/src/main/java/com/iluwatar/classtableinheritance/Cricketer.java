@@ -12,6 +12,9 @@ import lombok.Data;
 @Entity
 @Table(name = "cricketer")
 public class Cricketer extends Player {
-  double battingAvarage;
+  /**
+   * batting avarage.
+   */
+  private double battingAvarage;
 
 }

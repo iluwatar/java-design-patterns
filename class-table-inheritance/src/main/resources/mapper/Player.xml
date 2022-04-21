@@ -3,28 +3,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.iluwatar.classtableinheritance.MapperPlayer">
-    <insert id="insert_player">insert into player(name) values (#{name})</insert>
-    <insert id="insert_footballer">insert into footballer(name,club) values (#{name},#{club})</insert>
-    <insert id="insert_Cricketer">insert into cricketer(battingAvarage,name) values (#{battingAvarage},#{name})</insert>
-    <insert id="insert_Bowler">insert into bowler(bowlingAvarage,battingAvarage,name) values (#{bowlingAvarage},#{battingAvarage},#{name})</insert>
+    <insert id="insertPlayer">insert into player(name)values (#{name})</insert>
+    <insert id="insertFootballer">insert into footballer(name,club)values (#{name},#{club})</insert>
+    <insert id="insertCricketer">insert into cricketer(battingAvarage,name)values (#{battingAvarage},#{name})</insert>
+    <insert id="insertBowler">insert into bowler(bowlingAvarage,battingAvarage,name)values (#{bowlingAvarage},#{battingAvarage},#{name})</insert>
 
 
-    <update id="update_footballer">update  footballer set club=#{club} where name =#{name}</update>
-    <update id="update_Cricketer">update  cricketer set battingAvarage=#{battingAvarage} where name =#{name}</update>
-    <update id="update_Bowler">update bowler set battingAvarage=#{battingAvarage}, bowlingAvarage=#{bowlingAvarage} where name =#{name}</update>
+    <update id="updateFootballer">update  footballer set club=#{club}where name =#{name}</update>
+    <update id="updateCricketer">update  cricketer set battingAvarage=#{battingAvarage}where name =#{name}</update>
+    <update id="updateBowler">update bowler set battingAvarage=#{battingAvarage},bowlingAvarage=#{bowlingAvarage}where name =#{name}</update>
 
 
-    <delete id="delete_player"> DELETE FROM player WHERE name = #{name}</delete>
-    <delete id="delete_footballer">DELETE FROM footballer WHERE club = #{name}</delete>
-    <delete id="delete_Cricketer">DELETE FROM cricketer WHERE battingAvarage = #{id}</delete>
-    <delete id="delete_Bowler">DELETE FROM bowler WHERE bowlingAvarage = #{id}</delete>
+    <delete id="deletePlayer"> DELETE FROM player WHERE name = #{name}</delete>
+    <delete id="deleteFootballer">DELETE FROM footballer WHERE club = #{name}</delete>
+    <delete id="deleteCricketer">DELETE FROM cricketer WHERE battingAvarage = #{id}</delete>
+    <delete id="deleteBowler">DELETE FROM bowler WHERE bowlingAvarage = #{id}</delete>
 
-    <select id="list_player" resultType="com.iluwatar.classtableinheritance.Player">select * from player</select>
-    <select id="list_football_player" resultType="com.iluwatar.classtableinheritance.Footballer">select * from footballer</select>
-    <select id="list_cricketer" resultType="com.iluwatar.classtableinheritance.Cricketer">select * from cricketer</select>
-    <select id="list_bowler" resultType="com.iluwatar.classtableinheritance.Bowler">select * from bowler</select>
-    <select id="get_player" resultType="com.iluwatar.classtableinheritance.Player">select * from player where name=#{name}</select>
-    <select id="get_footballer" resultType="com.iluwatar.classtableinheritance.Footballer">select * from footballer where name=#{name}</select>
-    <select id="get_Cricketer" resultType="com.iluwatar.classtableinheritance.Cricketer">select * from cricketer where battingAvarage=#{id}</select>
-    <select id="get_Bowler" resultType="com.iluwatar.classtableinheritance.Bowler">select * from bowler where bowlingAvarage=#{id}</select>
+    <select id="listplayer" resultType="com.iluwatar.classtableinheritance.Player">select *from player</select>
+    <select id="listFootballPlayer" resultType="com.iluwatar.classtableinheritance.Footballer">select *from footballer</select>
+    <select id="listCricketer" resultType="com.iluwatar.classtableinheritance.Cricketer">select *from cricketer</select>
+    <select id="listBowler" resultType="com.iluwatar.classtableinheritance.Bowler">select *from bowler</select>
+    <select id="getPlayer" resultType="com.iluwatar.classtableinheritance.Player">select *from player where name=#{name}</select>
+    <select id="getFootballer" resultType="com.iluwatar.classtableinheritance.Footballer">select *from footballer where name=#{name}</select>
+    <select id="getCricketer" resultType="com.iluwatar.classtableinheritance.Cricketer">select *from cricketer where battingAvarage=#{id}</select>
+    <select id="getBowler" resultType="com.iluwatar.classtableinheritance.Bowler">select *from bowler where bowlingAvarage=#{id}</select>
 </mapper>

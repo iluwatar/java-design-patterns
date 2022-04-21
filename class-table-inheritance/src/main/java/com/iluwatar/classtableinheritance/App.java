@@ -1,6 +1,5 @@
 package com.iluwatar.classtableinheritance;
 
-
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 
@@ -22,37 +21,37 @@ public class App {
 
     Player a = new Player();
     a.setName("player1");
-    playerMapper.insert_player(a);
+    playerMapper.insertPlayer(a);
     sqlSession.commit();
 
     Footballer footballer = new Footballer();
     footballer.setClub("footballerclub");
     footballer.setName("footballer1");
-    playerMapper.insert_footballer(footballer);
+    playerMapper.insertFootballer(footballer);
     sqlSession.commit();
 
     Bowler bowler = new Bowler();
     bowler.setBowlingAvarage(23);
     bowler.setName("bowler1");
-    playerMapper.insert_Bowler(bowler);
+    playerMapper.insertBowler(bowler);
     sqlSession.commit();
 
     Cricketer cricketer = new Cricketer();
     cricketer.setName("cricketer1");
     cricketer.setBattingAvarage(23);
-    playerMapper.insert_Cricketer(cricketer);
+    playerMapper.insertCricketer(cricketer);
     sqlSession.commit();
 
-    playerMapper.list_player().forEach(x -> {
+    playerMapper.listplayer().forEach(x -> {
       System.out.println(x.getName());
     });
-    playerMapper.list_football_player().forEach(x -> {
+    playerMapper.listFootballPlayer().forEach(x -> {
       System.out.println(x.getName() + ' ' + x.getClub());
     });
-    playerMapper.list_cricketer().forEach(x -> {
+    playerMapper.listCricketer().forEach(x -> {
       System.out.println(x.getName() + " " + x.getBattingAvarage());
     });
-    playerMapper.list_bowler().forEach(x -> {
+    playerMapper.listBowler().forEach(x -> {
       System.out.println(x.getName() + " " + x.getBattingAvarage() + ' ' + x.getBowlingAvarage());
     });
   }
