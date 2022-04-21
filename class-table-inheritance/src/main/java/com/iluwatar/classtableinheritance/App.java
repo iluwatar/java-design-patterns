@@ -1,3 +1,7 @@
+/*
+ * Permission is hereby granted, free of charge, to any person obtaining a copy.
+ */
+
 package com.iluwatar.classtableinheritance;
 
 import lombok.extern.slf4j.Slf4j;
@@ -10,10 +14,9 @@ import org.apache.ibatis.session.SqlSession;
 public final class App {
 
   /**
-   *
    * constructor.
    */
-  @SuppressWarnings("checkstyle:WhitespaceAround")
+
   private App() { }
   /**
    * This is main entrance.
@@ -21,7 +24,7 @@ public final class App {
    * @param args input args.
    */
 
-  public static void main(final String[] args) {
+  public static void main( String[] args) {
 
     SqlSession sqlSession;
     MapperPlayer playerMapper;
