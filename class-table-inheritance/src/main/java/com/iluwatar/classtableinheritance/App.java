@@ -8,12 +8,22 @@ import org.apache.ibatis.session.SqlSession;
  */
 @Slf4j
 public class App {
+
+
+
+
+
+
+
   /**
    * This is main entrance.
    *
-   * @param args input args
+   * @param args input args.
    */
-  public static void main(String[] args) {
+  @SuppressWarnings("checkstyle:OperatorWrap")
+  public static void main(final String[] args) {
+    final int number;
+    number = 23;
     SqlSession sqlSession;
     MapperPlayer playerMapper;
     sqlSession = Mybatis3Utils.getCurrentSqlSession();
@@ -31,14 +41,14 @@ public class App {
     sqlSession.commit();
 
     Bowler bowler = new Bowler();
-    bowler.setBowlingAvarage(23);
+    bowler.setBowlingAvarage(number);
     bowler.setName("bowler1");
     playerMapper.insertBowler(bowler);
     sqlSession.commit();
 
     Cricketer cricketer = new Cricketer();
     cricketer.setName("cricketer1");
-    cricketer.setBattingAvarage(23);
+    cricketer.setBattingAvarage(number);
     playerMapper.insertCricketer(cricketer);
     sqlSession.commit();
 
@@ -51,8 +61,9 @@ public class App {
     playerMapper.listCricketer().forEach(x -> {
       System.out.println(x.getName() + " " + x.getBattingAvarage());
     });
-    playerMapper.listBowler().forEach(x -> {
-      System.out.println(x.getName() + " " + x.getBattingAvarage() + ' ' + x.getBowlingAvarage());
-    });
+    for (Bowler x : playerMapper.listBowler()) {
+      System.out.println(x.getName()
+          + " " + x.getBattingAvarage() + x.getBowlingAvarage());
+    }
   }
 }

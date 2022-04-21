@@ -22,7 +22,8 @@ public abstract class Mybatis3Utils {
   /**
    * It can be extended in the future.
    */
-  public static final ThreadLocal<SqlSession> SESSION_THREAD_LOCAL = new ThreadLocal<>();
+  public static final ThreadLocal<SqlSession> SESSION_THREAD_LOCAL
+      = new ThreadLocal<>();
 
   static {
     try {
