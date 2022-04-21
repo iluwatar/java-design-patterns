@@ -7,14 +7,20 @@ import org.apache.ibatis.session.SqlSession;
  * App class use these functions to test.
  */
 @Slf4j
-public class App {
+public final class App {
 
+  /**
+   *
+   * constructor.
+   */
+  @SuppressWarnings("checkstyle:WhitespaceAround")
+  private App() { }
   /**
    * This is main entrance.
    *
    * @param args input args.
    */
-  @SuppressWarnings("checkstyle:OperatorWrap")
+
   public static void main(final String[] args) {
 
     SqlSession sqlSession;
