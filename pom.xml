@@ -232,7 +232,6 @@
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>single-table-inheritance</module>
-    <module>single-table-inheritance</module>
   </modules>
   <repositories>
     <repository>
