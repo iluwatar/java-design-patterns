@@ -13,11 +13,11 @@ public class JunitTest {
   /**
    * sqlsession can operate on sql.
    */
-  public SqlSession sqlSession;
+  private SqlSession sqlSession;
   /**
-   * can deal with Player.xml
+   * can deal with Player.xml.
    */
-  public MapperPlayer playerMapper;
+  private MapperPlayer playerMapper;
 
   /**
  * before build a tool.
