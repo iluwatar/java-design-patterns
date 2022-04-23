@@ -34,7 +34,7 @@ public class Sergeant extends Unit {
 
   @Override
   public void accept(UnitVisitor visitor) {
-    visitor.visitSergeant(this);
+    visitor.visit(this);
     super.accept(visitor);
   }
 
