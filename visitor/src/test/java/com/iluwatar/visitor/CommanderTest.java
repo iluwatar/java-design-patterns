@@ -42,6 +42,7 @@ public class CommanderTest extends UnitTest<Commander> {
 
   @Override
   void verifyVisit(Commander unit, UnitVisitor mockedVisitor) {
+    //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1968
     verify(mockedVisitor).visit(eq(unit));
   }
 
