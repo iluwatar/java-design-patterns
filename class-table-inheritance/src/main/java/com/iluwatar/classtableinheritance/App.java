@@ -31,9 +31,9 @@ public final class App {
     sqlSession = Mybatis3Utils.getCurrentSqlSession();
     playerMapper = sqlSession.getMapper(MapperPlayer.class);
 
-    Player a = new Player();
-    a.setName("player1");
-    playerMapper.insertPlayer(a);
+    Player player = new Player();
+    player.setName("player1");
+    playerMapper.insertPlayer(player);
     sqlSession.commit();
 
     Footballer footballer = new Footballer();
@@ -53,16 +53,16 @@ public final class App {
     sqlSession.commit();
 
     playerMapper.listplayer().forEach(x -> {
-      System.out.println(x.getName());
+      LOGGER.info(x.getName());
     });
     playerMapper.listFootballPlayer().forEach(x -> {
-      System.out.println(x.getName() + ' ' + x.getClub());
+      LOGGER.info(x.getName() + ' ' + x.getClub());
     });
     playerMapper.listCricketer().forEach(x -> {
-      System.out.println(x.getName() + " " + x.getBattingAvarage());
+      LOGGER.info(x.getName() + " " + x.getBattingAvarage());
     });
     for (Bowler x : playerMapper.listBowler()) {
-      System.out.println(x.getName()
+      LOGGER.info(x.getName()
           + " " + x.getBattingAvarage() + x.getBowlingAvarage());
     }
   }

@@ -13,12 +13,12 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  *
  * @author ZhangXiZhi
  */
-public abstract class Mybatis3Utils {
+public  class Mybatis3Utils {
 
   /**
    * this is a factory.
    */
-  public static final SqlSessionFactory SQL_SESSION_FACTORY;
+  public static  SqlSessionFactory SQL_SESSION_FACTORY;
   /**
    * It can be extended in the future.
    */
@@ -30,7 +30,7 @@ public abstract class Mybatis3Utils {
       Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
       SQL_SESSION_FACTORY = new SqlSessionFactoryBuilder().build(reader);
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      e.printStackTrace();
     }
   }
 
