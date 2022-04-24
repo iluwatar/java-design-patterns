@@ -3,7 +3,7 @@ package com.iluwatar.classtableinheritance;
 import java.util.List;
 
 /**
- * solve some function.
+ * It's a mapper abstract class which can relate mybatis and xml file.
  */
 
 public interface MapperPlayer {

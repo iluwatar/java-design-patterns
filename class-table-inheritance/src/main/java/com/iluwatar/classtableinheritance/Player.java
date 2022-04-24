@@ -15,7 +15,7 @@ import lombok.Data;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Player {
   /**
-   * name.
+   * player 's name.
    */
   private String name;
 }

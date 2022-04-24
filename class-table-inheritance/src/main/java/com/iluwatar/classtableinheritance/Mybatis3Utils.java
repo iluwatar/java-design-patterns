@@ -9,7 +9,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 /**
- * This is tool class.
+ * This is a tool class which use mybatis and mysql .
  *
  * @author ZhangXiZhi
  */
@@ -21,12 +21,12 @@ public final class Mybatis3Utils {
   }
 
   /**
-   * this is a factory.
+   * this is a factory field.
    */
   private static  SqlSessionFactory sqlSessionFactory;
 
   /**
-   * getter.
+   * getter factory.
    *
    * @return sql factory.
    */
@@ -35,7 +35,7 @@ public final class Mybatis3Utils {
   }
 
   /**
-   * It can be extended in the future.
+   * It can be extended in the future, it can be thread.
    */
   public static final ThreadLocal<SqlSession> SESSION_THREAD_LOCAL
       = new ThreadLocal<>();

@@ -37,7 +37,7 @@ public class JunitTest {
     Mybatis3Utils.closeCurrentSession();
   }
   /**
-     * test insert.
+     * test insert function of player, footballer, bowler circketer.
      */
 
   @Test
@@ -63,7 +63,7 @@ public class JunitTest {
     sqlSession.commit();
   }
   /**
-     * test select.
+     * test select of list function.
      */
 
   @Test
@@ -83,7 +83,7 @@ public class JunitTest {
     });
   }
   /**
-     * test update.
+     * test update function related to bowler circketer footballer .
      */
 
   @Test
@@ -106,7 +106,7 @@ public class JunitTest {
     sqlSession.commit();
   }
   /**
-     * test delete.
+     * test delete related to player, bowler, cricketer, footballer.
      */
 
   @Test
