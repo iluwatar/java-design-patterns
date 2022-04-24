@@ -34,7 +34,7 @@ public class Commander extends Unit {
 
   /**
    * Accept a Visitor.
-   * @param visitor
+   * @param visitor An implementation class of Unit.
    */
   @Override
   public void accept(UnitVisitor visitor) {

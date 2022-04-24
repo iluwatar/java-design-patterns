@@ -34,7 +34,7 @@ public class SergeantVisitor implements UnitVisitor {
 
   /**
    * Soldier Visitor method.
-   * @param soldier
+   * @param soldier An implementation class of Unit.
    */
   @Override
   public void visit(Soldier soldier) {
@@ -43,7 +43,7 @@ public class SergeantVisitor implements UnitVisitor {
 
   /**
    * Sergeant Visitor method.
-   * @param sergeant
+   * @param sergeant An implementation class of Unit.
    */
   @Override
   public void visit(Sergeant sergeant) {
@@ -52,7 +52,7 @@ public class SergeantVisitor implements UnitVisitor {
 
   /**
    * Commander Visitor method.
-   * @param commander
+   * @param commander An implementation class of Unit.
    */
   @Override
   public void visit(Commander commander) {
