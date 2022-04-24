@@ -5,7 +5,6 @@ import java.util.List;
 /**
  * It's a mapper abstract class which can relate mybatis and xml file.
  */
-
 public interface MapperPlayer {
   /**
    * this is list player function.

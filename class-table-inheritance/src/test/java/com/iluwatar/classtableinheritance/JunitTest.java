@@ -1,8 +1,10 @@
 package com.iluwatar.classtableinheritance;
 
-
+import java.util.List;
+import java.util.stream.Stream;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,6 +20,7 @@ public class JunitTest {
    * can deal with player.xml.
    */
   private MapperPlayer playerMapper;
+
 
   /**
  * before build a tool to initialize the playermapper.
@@ -61,6 +64,7 @@ public class JunitTest {
     cricketer.setBattingAvarage(23);
     playerMapper.insertCricketer(cricketer);
     sqlSession.commit();
+    Assert.assertEquals("cricketer1 is true", "cricketer1", cricketer.getName());
   }
   /**
      * test select of list function.
@@ -81,11 +85,14 @@ public class JunitTest {
     playerMapper.listBowler().forEach(x -> {
       System.out.println(x.getName() + " " + x.getBattingAvarage() + ' ' + x.getBowlingAvarage());
     });
+    Stream<Player> stream = playerMapper.listplayer().stream();
+    Assert.assertTrue(stream.anyMatch(x -> x.getName().equals("player1")));
   }
   /**
      * test update function related to bowler circketer footballer .
      */
 
+  @SuppressWarnings("checkstyle:WhitespaceAfter")
   @Test
   public void testupdate() {
     Bowler bowler = new Bowler();
@@ -104,6 +111,7 @@ public class JunitTest {
     footballer.setClub("zzz");
     playerMapper.updateFootballer(footballer);
     sqlSession.commit();
+    Assert.assertEquals("cricketer1 is true", "cricketer1", cricketer.getName());
   }
   /**
      * test delete related to player, bowler, cricketer, footballer.
@@ -116,5 +124,8 @@ public class JunitTest {
     playerMapper.deleteCricketer(3);
     playerMapper.deleteFootballer("footballer1");
     sqlSession.commit();
+    List<Player> listplayer = playerMapper.listplayer();
+    Stream<Player> footballer1 = listplayer.stream().filter(x -> x.getName().equals("footballer1"));
+    Assert.assertFalse(footballer1.anyMatch(x -> x.getName().equals("footballer1")));
   }
 }

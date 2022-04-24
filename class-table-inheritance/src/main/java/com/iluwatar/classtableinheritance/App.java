@@ -65,5 +65,6 @@ public final class App {
       LOGGER.info(x.getName()
           + " " + x.getBattingAvarage() + x.getBowlingAvarage());
     }
+    sqlSession.close();
   }
 }
