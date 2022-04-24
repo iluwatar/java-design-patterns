@@ -13,12 +13,27 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  *
  * @author ZhangXiZhi
  */
-public  class Mybatis3Utils {
+public final class Mybatis3Utils {
+  /**
+   * constructor.
+   */
+  private Mybatis3Utils() {
+  }
 
   /**
    * this is a factory.
    */
-  public static  SqlSessionFactory SQL_SESSION_FACTORY;
+  private static  SqlSessionFactory sqlSessionFactory;
+
+  /**
+   * getter.
+   *
+   * @return sql factory.
+   */
+  public static SqlSessionFactory getSqlSessionFactory() {
+    return sqlSessionFactory;
+  }
+
   /**
    * It can be extended in the future.
    */
@@ -28,7 +43,7 @@ public  class Mybatis3Utils {
   static {
     try {
       Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
-      SQL_SESSION_FACTORY = new SqlSessionFactoryBuilder().build(reader);
+      sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -42,7 +57,7 @@ public  class Mybatis3Utils {
   public static SqlSession getCurrentSqlSession() {
     SqlSession sqlSession = SESSION_THREAD_LOCAL.get();
     if (Objects.isNull(sqlSession)) {
-      sqlSession = SQL_SESSION_FACTORY.openSession();
+      sqlSession = sqlSessionFactory.openSession();
       SESSION_THREAD_LOCAL.set(sqlSession);
     }
     return sqlSession;
