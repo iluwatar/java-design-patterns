@@ -20,7 +20,7 @@ public class JunitTest {
   private MapperPlayer playerMapper;
 
   /**
- * before build a tool.
+ * before build a tool to initialize the playermapper.
 */
   @Before
   public void before() {
