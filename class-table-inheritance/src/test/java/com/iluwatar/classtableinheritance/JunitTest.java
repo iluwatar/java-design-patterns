@@ -15,7 +15,7 @@ public class JunitTest {
    */
   private SqlSession sqlSession;
   /**
-   * can deal with Player.xml.
+   * can deal with player.xml.
    */
   private MapperPlayer playerMapper;
 
