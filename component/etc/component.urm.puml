@@ -1,0 +1,48 @@
+@startuml
+package com.iluwatar.Component {
+  class GraphicComponent{
+    + GraphicComponent()
+    + update(GameObject): void
+  }
+  class HealthComponent{
+    + HealthComponent()
+    + update(GameObject): void
+  }
+  class PhysicComponent{
+    + PhysicComponent()
+    + update(GameObject): void
+  }
+  abstract class Component{
+    - name: String
+    + Component(String)
+    + update(GameObject): void
+  }
+  class Vector2d{
+    - x: float
+    - y: float
+    + Vector2d(float, float)
+    + toString(): String
+  }
+  class GameObject{
+    - name: String
+    - position: Vector2d
+    - health: float
+    + GameObject(String, float, Vector2d)
+    + getComponent(Class<T>)
+    + update()
+    + addComponent(Component)
+  }
+  class App{
+    + App()
+    + main(args : String[]) {static}
+
+  }
+}
+
+Component <|-- GraphicComponent
+Component <|-- HealthComponent
+Component <|-- PhysicComponent
+GameObject *--> Vector2d
+GameObject *--> Component
+
+@enduml
