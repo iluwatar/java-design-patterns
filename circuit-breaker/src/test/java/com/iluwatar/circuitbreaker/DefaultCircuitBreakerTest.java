@@ -47,7 +47,7 @@ public class DefaultCircuitBreakerTest {
     assertEquals(circuitBreaker.getState(), "HALF_OPEN");
     //Since failureCount>failureThreshold, and lastFailureTime is much lesser current time,
     //state should be open
-    circuitBreaker.lastFailureTime = System.nanoTime() - 1000 * 1000 * 1000 * 1000;
+    circuitBreaker.lastFailureTime = System.nanoTime() - 1000 * 1000 * 1000 * 1000L; // specify by L to prevent overflow.
     circuitBreaker.evaluateState();
     assertEquals(circuitBreaker.getState(), "OPEN");
     //Now set it back again to closed to test idempotency

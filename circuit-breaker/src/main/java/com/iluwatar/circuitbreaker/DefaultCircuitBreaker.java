@@ -38,7 +38,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   int failureCount;
   private final int failureThreshold;
   private State state;
-  private final long futureTime = 1000 * 1000 * 1000 * 1000;
+  private final long futureTime = 1000 * 1000 * 1000 * 1000L; // use L to prevent overflow
 
   /**
    * Constructor to create an instance of Circuit Breaker.
