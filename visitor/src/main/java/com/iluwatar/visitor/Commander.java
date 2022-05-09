@@ -32,14 +32,9 @@ public class Commander extends Unit {
     super(children);
   }
 
-  /**
-   * Accept a Visitor.
-   * @param visitor An implementation class of Unit.
-   */
   @Override
   public void accept(UnitVisitor visitor) {
-    //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1968
-    visitor.visit(this);
+    visitor.visitCommander(this);
     super.accept(visitor);
   }
 

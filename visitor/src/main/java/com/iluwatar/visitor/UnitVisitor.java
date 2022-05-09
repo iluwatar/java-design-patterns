@@ -28,24 +28,10 @@ package com.iluwatar.visitor;
  */
 public interface UnitVisitor {
 
-  //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1968
+  void visitSoldier(Soldier soldier);
 
-  /**
-   * Soldier visit method.
-   * @param soldier An implementation class of Unit.
-   */
-  void visit(Soldier soldier);
+  void visitSergeant(Sergeant sergeant);
 
-  /**
-   * Sergeant visit method.
-   * @param sergeant An implementation class of Unit.
-   */
-  void visit(Sergeant sergeant);
-
-  /**
-   * Commander visit method.
-   * @param commander An implementation class of Unit.
-   */
-  void visit(Commander commander);
+  void visitCommander(Commander commander);
 
 }

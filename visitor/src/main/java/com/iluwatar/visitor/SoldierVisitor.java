@@ -31,32 +31,18 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class SoldierVisitor implements UnitVisitor {
 
-  //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1968
-
-  /**
-   * Soldier visitor method.
-   * @param soldier An implementation class of Unit.
-   */
   @Override
-  public void visit(Soldier soldier) {
+  public void visitSoldier(Soldier soldier) {
     LOGGER.info("Greetings {}", soldier);
   }
 
-  /**
-   * Sergeant visitor method.
-   * @param sergeant An implementation class of Unit.
-   */
   @Override
-  public void visit(Sergeant sergeant) {
+  public void visitSergeant(Sergeant sergeant) {
     // Do nothing
   }
 
-  /**
-   * Commander visitor method.
-   * @param commander An implementation class of Unit.
-   */
   @Override
-  public void visit(Commander commander) {
+  public void visitCommander(Commander commander) {
     // Do nothing
   }
 }

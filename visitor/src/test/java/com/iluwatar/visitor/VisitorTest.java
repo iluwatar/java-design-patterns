@@ -23,18 +23,19 @@
 
 package com.iluwatar.visitor;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * Date: 12/30/15 - 18:59 PM. Test case for Visitor Pattern
@@ -97,7 +98,7 @@ public abstract class VisitorTest<V extends UnitVisitor> {
 
   @Test
   void testVisitCommander() {
-    this.visitor.visit(new Commander());
+    this.visitor.visitCommander(new Commander());
     if (this.commanderResponse.isPresent()) {
       assertEquals(this.commanderResponse.get(), appender.getLastMessage());
       assertEquals(1, appender.getLogSize());
@@ -106,7 +107,7 @@ public abstract class VisitorTest<V extends UnitVisitor> {
 
   @Test
   void testVisitSergeant() {
-    this.visitor.visit(new Sergeant());
+    this.visitor.visitSergeant(new Sergeant());
     if (this.sergeantResponse.isPresent()) {
       assertEquals(this.sergeantResponse.get(), appender.getLastMessage());
       assertEquals(1, appender.getLogSize());
@@ -115,7 +116,7 @@ public abstract class VisitorTest<V extends UnitVisitor> {
 
   @Test
   void testVisitSoldier() {
-    this.visitor.visit(new Soldier());
+    this.visitor.visitSoldier(new Soldier());
     if (this.soldierResponse.isPresent()) {
       assertEquals(this.soldierResponse.get(), appender.getLastMessage());
       assertEquals(1, appender.getLogSize());

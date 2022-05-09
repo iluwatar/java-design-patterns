@@ -32,14 +32,9 @@ public class Soldier extends Unit {
     super(children);
   }
 
-  /**
-   * Accept a visitor.
-   * @param visitor An implementation class of Unit.
-   */
   @Override
   public void accept(UnitVisitor visitor) {
-    //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1968
-    visitor.visit(this);
+    visitor.visitSoldier(this);
     super.accept(visitor);
   }
 
