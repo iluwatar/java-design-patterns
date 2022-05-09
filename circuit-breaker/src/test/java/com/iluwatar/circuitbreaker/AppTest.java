@@ -58,6 +58,7 @@ public class AppTest {
    * wrapped in a {@link DefaultCircuitBreaker} implementation with failure threshold of 1 failure
    * and retry time period of 2 seconds.
    */
+  //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   @BeforeEach
   public void setupCircuitBreakers() {
     var delayedService = new DelayedRemoteService(System.nanoTime(), STARTUP_DELAY);

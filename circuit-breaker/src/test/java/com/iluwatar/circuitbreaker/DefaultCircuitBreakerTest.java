@@ -34,6 +34,7 @@ import org.junit.jupiter.api.Test;
 public class DefaultCircuitBreakerTest {
 
   //long timeout, int failureThreshold, long retryTimePeriod
+  //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   @Test
   void testEvaluateState() {
     var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 100);
@@ -57,14 +58,16 @@ public class DefaultCircuitBreakerTest {
   }
 
   @Test
+    //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   void testSetStateForBypass() {
-    var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 2000 * 1000 * 1000);
+    var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 2000 * 1000 * 1000L); //specify by L to prevent overflow.
     //Right now, failureCount<failureThreshold, so state should be closed
     //Bypass it and set it to open
     circuitBreaker.setState(State.OPEN);
     assertEquals(circuitBreaker.getState(), "OPEN");
   }
 
+  //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   @Test
   void testApiResponses() throws RemoteServiceException {
     RemoteService mockService = new RemoteService() {
@@ -76,7 +79,7 @@ public class DefaultCircuitBreakerTest {
     var circuitBreaker = new DefaultCircuitBreaker(mockService, 1, 1, 100);
     //Call with the paramater start_time set to huge amount of time in past so that service
     //replies with "Ok". Also, state is CLOSED in start
-    var serviceStartTime = System.nanoTime() - 60 * 1000 * 1000 * 1000;
+    var serviceStartTime = System.nanoTime() - 60 * 1000 * 1000 * 1000L; // specify L to avoid overflow
     var response = circuitBreaker.attemptRequest();
     assertEquals(response, "Remote Success");
   }

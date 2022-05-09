@@ -52,6 +52,7 @@ public class DelayedRemoteService implements RemoteService {
    *
    * @return The state of the service
    */
+  //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   @Override
   public String call() throws RemoteServiceException {
     long currentTime = System.nanoTime();

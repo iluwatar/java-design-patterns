@@ -62,17 +62,18 @@ public class App {
    *
    * @param args command line args
    */
+  //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   public static void main(String[] args) {
 
     var serverStartTime = System.nanoTime();
 
     var delayedService = new DelayedRemoteService(serverStartTime, 5);
     var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000, 2,
-        2000 * 1000 * 1000);
+        2000 * 1000 * 1000L); // change to 1000L to avoid overflow
 
     var quickService = new QuickRemoteService();
     var quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, 2,
-        2000 * 1000 * 1000);
+        2000 * 1000 * 1000L); // change to 1000L to avoid overflow
 
     //Create an object of monitoring service which makes both local and remote calls
     var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,

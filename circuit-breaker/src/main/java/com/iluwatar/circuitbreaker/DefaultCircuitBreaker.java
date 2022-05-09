@@ -38,6 +38,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   int failureCount;
   private final int failureThreshold;
   private State state;
+  //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   private final long futureTime = 1000 * 1000 * 1000 * 1000L; // use L to prevent overflow
 
   /**
