@@ -1,7 +1,15 @@
 package com.iluwatar.functionalcoreimperativeshell;
 
+/**
+ * The static main class.
+ */
 public class App {
 
+    /**
+     * The main class.
+     *
+     * @param args arguments
+     */
     public static void main(String[] args) {
         /*
          * This is a brief example of how the functional core imperative shell design pattern works.

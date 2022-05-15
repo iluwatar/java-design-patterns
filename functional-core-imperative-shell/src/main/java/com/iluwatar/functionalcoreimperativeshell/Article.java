@@ -1,7 +1,7 @@
 package com.iluwatar.functionalcoreimperativeshell;
 
 /**
- * immutable class
+ * immutable class.
  */
 public abstract class Article {
     private final String title;

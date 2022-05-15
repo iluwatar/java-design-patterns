@@ -1,13 +1,14 @@
 package com.iluwatar.functionalcoreimperativeshell;
 
 /**
- * deal with the immutable classes
- * the objects in this class are immutable for callers.
+ * Deal with the immutable classes.
+ * The objects in this class are immutable for callers, and won't affect anything outside.
  */
 public class Core {
 
     /**
-     * create a draftArticle
+     * create a draftArticle.
+     *
      * @param title title of the draft article
      * @param body body of the draft article
      * @return new draft article
@@ -17,7 +18,8 @@ public class Core {
     }
 
     /**
-     * change the draft article to publish article
+     * change the draft article to publish article.
+     *
      * @param draftArticle the draft article
      * @return new publish article
      */
@@ -26,7 +28,8 @@ public class Core {
     }
 
     /**
-     * revert the publish article to draft article
+     * revert the publish article to draft article.
+     *
      * @param publishArticle the publish article
      * @return new draft article
      */
