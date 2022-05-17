@@ -1,22 +1,49 @@
 package com.iluwater.coarsegrainedlock.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
-@Data
-@Entity
-@Table(name="Address")
+/**
+ * Address class
+ * Store the address of a certain player.
+ */
+@Slf4j
 public class Address {
-  private Customer customer;
-  private int customerID;
+  private final Player player;
   private String city;
   private String state;
 
-  public Address(Customer customer,String city,String state){
-    this.customer=customer;
-    this.customerID=customer.getCustomerID();
-    this.city=city;
-    this.state=state;
+  /**
+   * Construct function.
+   *
+   * @param player Instance of Player Class
+   * @param city   The city where the player lives
+   * @param state  The state where the city locates
+   */
+  public Address(Player player, String city, String state) {
+    this.player = player;
+    this.city = city;
+    this.state = state;
   }
+
+  /**
+   * Update the address of the player.
+   *
+   * @param city The city which the player would move to
+   * @param state The state where the city locates
+   */
+  public void updateAddress(String city, String state) {
+    synchronized (player.getMutex()) {
+      LOGGER.info("Become Free Agent");
+      try {
+        Thread.sleep(5000);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+      this.city = city;
+      this.state = state;
+      LOGGER.info(player.getFirstName() + " " + player.getLastName() + " "
+          + "brings talent to " + this.city + ", which is in " + this.state);
+    }
+  }
+
 }
