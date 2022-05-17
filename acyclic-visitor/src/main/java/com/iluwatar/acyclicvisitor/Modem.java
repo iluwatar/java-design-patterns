@@ -28,5 +28,5 @@ package com.iluwatar.acyclicvisitor;
  * converted to an interface
  */
 public interface Modem {
-   void accept(ModemVisitor modemVisitor);
+  void accept(ModemVisitor modemVisitor);
 }
