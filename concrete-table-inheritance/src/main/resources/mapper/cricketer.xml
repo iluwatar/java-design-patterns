@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iluwatar.concretetableinheritance.CricketerMapper">
+  <insert id="insertCricketer">insert into cricketer(playerId,battingAverage,name) values (#{playerId},#{battingAverage},#{name})</insert>
+  <update id="updateCricketer">update  cricketer set battingAverage=#{battingAverage} where playerId =#{playerId}</update>
+  <delete id="deleteCricketer">DELETE FROM cricketer WHERE playerId = #{playerId}</delete>
+  <select id="listCricketers" resultType="com.iluwatar.concretetableinheritance.Cricketer">select playerId, name from cricketer</select>
+  <select id="findCricketer" resultType="com.iluwatar.concretetableinheritance.Cricketer">select *from cricketer where playerId=#{playerId}</select>
+  <update id="dropTable" parameterType="String">DROP TABLE ${tableName}</update>
+  <update id="createNewTable" parameterType="String">
+    CREATE TABLE ${tableName} (
+      playerId INT UNSIGNED AUTO_INCREMENT,
+      name VARCHAR(100) NOT NULL,
+      battingAverage DOUBLE NOT NULL,
+      PRIMARY KEY ( playerId )) ENGINE=InnoDB DEFAULT CHARSET=utf8
+  </update>
+</mapper>

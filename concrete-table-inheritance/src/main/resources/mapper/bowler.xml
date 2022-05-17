@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.iluwatar.concretetableinheritance.BowlerMapper">
+  <insert id="insertBowler">insert into bowler(playerId,bowlingAverage,battingAverage,name) values (#{playerId},#{bowlingAverage},#{battingAverage},#{name})</insert>
+  <update id="updateBowler">update bowler set battingAverage=#{battingAverage},bowlingAverage=#{bowlingAverage} where playerId =#{playerId}</update>
+  <delete id="deleteBowler">DELETE FROM bowler WHERE playerId = #{playerId}</delete>
+  <select id="listBowlers" resultType="com.iluwatar.concretetableinheritance.Bowler">select playerId, name from bowler</select>
+  <select id="findBowler" resultType="com.iluwatar.concretetableinheritance.Bowler">select *from bowler where playerId=#{playerId}</select>
+  <update id="dropTable" parameterType="String">DROP TABLE ${tableName}</update>
+  <update id="createNewTable" parameterType="String">
+    CREATE TABLE ${tableName} (
+      playerId INT UNSIGNED AUTO_INCREMENT,
+      name VARCHAR(100) NOT NULL,
+      bowlingAverage DOUBLE NOT NULL,
+      battingAverage DOUBLE NOT NULL,
+      PRIMARY KEY ( playerId )) ENGINE=InnoDB DEFAULT CHARSET=utf8
+  </update>
+</mapper>

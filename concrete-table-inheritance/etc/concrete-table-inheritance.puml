@@ -1,0 +1,71 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class Bowler
+class Cricketer
+class Footballer
+class Player
+interface BowlerMapper
+interface CricketerMapper
+interface FootballerMapper
+Player <|-- Cricketer
+Player <|- Footballer
+Cricketer<|-- Bowler
+PlayerMapper --> BowlerMapper
+PlayerMapper --> CricketerMapper
+PlayerMapper --> FootballerMapper
+
+class Player {
+- int: playerId
+- String name;
+}
+class Footballer{
+- String club;
+}
+class Cricketer {
+- double battingAverage;
+}
+class Bowler {
+- double bowlingAverage;
+}
+class PlayerMapper {
+- BowlerMapper: bowlerMapper
+- CricketerMapper: cricketerMapper
+- FootballerMapper: footballerMapper
++ List<Player> listPlayers(String type);
++ Player findPlayer(int playerId);
++ void insertPlayer(Player player);
++ void updatePlayer(Player player);
++ void deletePlayer(int playerId);
++ void createNewTable();
++ void dropTable();
+}
+interface BowlerMapper {
++ Bowler findBowler(int playerId);
++ void insertBowler(Bowler bowler);
++ void updateBowler(Bowler bowler);
++ void deleteBowler(int playerId);
++ List<Player> listBowlers();
++ void createNewTable(String name);
++ void dropTable(String name);
+}
+interface CricketerMapper {
++ Cricketer findCricketer(int playerId);
++ void insertCricketer(Cricketer cricketer);
++ void updateCricketer(Cricketer cricketer);
++ void deleteCricketer(int playerId);
++ List<Player> listCricketers();
++ void createNewTable(String name);
++ void dropTable(String name);
+}
+interface FootballerMapper {
++ Footballer findFootballer(int playerId);
++ void insertFootballer(Footballer footballer);
++ void updateFootballer(Footballer footballer);
++ void deleteFootballer(int playerId);
++ List<Player> listFootballers();
++ void createNewTable(String name);
++ void dropTable(String name);
+}
+@enduml
