@@ -26,6 +26,24 @@ public class Address {
   }
 
   /**
+   * Get function of city.
+   *
+   * @return city
+   */
+  public String getCity() {
+    return city;
+  }
+
+  /**
+   * Get function os state.
+   *
+   * @return state
+   */
+  public String getState() {
+    return state;
+  }
+
+  /**
    * Update the address of the player.
    *
    * @param city The city which the player would move to

@@ -16,16 +16,17 @@ public class Player {
 
   /**
    * Construct function.
-   * @param lastName Lastname of the player
+   *
+   * @param lastName  Lastname of the player
    * @param firstName Firstname of the player
-   * @param city The city where the player lives
-   * @param state The state where the city locates
+   * @param city      The city where the player lives
+   * @param state     The state where the city locates
    */
-  public Player(String lastName, String firstName,String city,String state) {
+  public Player(String lastName, String firstName, String city, String state) {
     this.lastName = lastName;
     this.firstName = firstName;
     this.champions = 0;
-    this.address=new Address(this,city,state);
+    this.address = new Address(this, city, state);
     this.mutex = new Object();
   }
 
@@ -49,11 +50,38 @@ public class Player {
   }
 
   /**
+   * Get the number of champion of the player.
+   *
+   * @return The number of champion of the player.
+   */
+  public int getChampions() {
+    return champions;
+  }
+
+  /**
+   * Get the city where the player lives.
+   *
+   * @return city
+   */
+  public String getCity() {
+    return address.getCity();
+  }
+
+  /**
+   * Get the state where the player lives.
+   *
+   * @return state
+   */
+  public String getState() {
+    return address.getState();
+  }
+
+  /**
    * Get the lastname of the player.
    *
    * @return The lastname of the player
    */
-  public String getLastName(){
+  public String getLastName() {
     return lastName;
   }
 
@@ -69,15 +97,15 @@ public class Player {
         e.printStackTrace();
       }
       this.champions += 1;
-      LOGGER.info("Win one more champion, now the total champion is "+this.champions);
+      LOGGER.info("Win one more champion, now the total champion is " + this.champions);
     }
   }
 
   /**
    * Update the address of the player.
    *
-   * @param city: The city where the player lives
-   * @param state: The state where the city locates
+   * @param city  The city where the player lives
+   * @param state The state where the city locates
    */
   public void updateAddress(String city, String state) {
     this.address.updateAddress(city, state);

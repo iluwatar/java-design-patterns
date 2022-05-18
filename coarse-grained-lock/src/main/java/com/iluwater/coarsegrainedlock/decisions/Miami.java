@@ -5,7 +5,7 @@ import com.iluwater.coarsegrainedlock.entity.Player;
 /**
  * A thread representing that a player is going to Miami.
  */
-public class Miami extends Thread{
+public class Miami extends Thread {
   private final Player player;
 
   /**
@@ -13,14 +13,14 @@ public class Miami extends Thread{
    *
    * @param player The player that is going to Miami
    */
-  public Miami(Player player){
-    this.player=player;
+  public Miami(Player player) {
+    this.player = player;
   }
 
   /**
    * Runnable function of the thread.
    */
-  public void run(){
-    player.updateAddress("Miami","Florida");
+  public void run() {
+    player.updateAddress("Miami", "Florida");
   }
 }
