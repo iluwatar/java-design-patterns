@@ -21,13 +21,10 @@
  * THE SOFTWARE.
  */
 
-//package java-design-patterns.abstract-document.src.main.java.com.iluwatar.abstractdocument.domain
-//package com.iluwatar.abstractdocument.domain
+package com.iluwatar.abstractdocument.domain;
 
 import com.iluwatar.abstractdocument.AbstractDocument;
 import java.util.Map;
-
-package java-design-patterns.abstract-document.mid_src.main.java.com.iluwatar.abstractdocument.domain
 
 /**
  * Car entity.
