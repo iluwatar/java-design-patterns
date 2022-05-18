@@ -210,6 +210,7 @@ public class App {
 
 ## Class diagram
 
+![image](https://user-images.githubusercontent.com/73434395/168976105-6fa10028-5088-4c2a-ac45-0e2036143cf0.png)
 
 
 ## Applicability
