@@ -1,0 +1,35 @@
+@startuml
+package com.iluwatar.blackboard {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Blackboard{
+    - features : int[]
+    + dimension : int
+    + Blackboard(dimension : int)
+    + currentState() : String
+    + access(access : int) : int
+    + update(operatorList : ArrayList<Operator>) : void
+  }
+  class Control{
+    + knowledgeSources : ArrayList<KnowledgeSource>
+    + selectKnowledgeSource() : KnowledgeSource
+    + executeKnowledgeSource(knowledgeSource : KnowledgeSource) : void
+  }
+  class KnowledgeSource{
+    - blackboard : Blackboard
+    - operatorList : ArrayList<Operator>
+    - activeNum : int
+    + KnowledgeSource(blackboard : Blackboard, operatorList : ArrayList<Operator>, activeNum : int)
+    + execCondition() : void
+  }
+  class Operator{
+    + pos : int
+    + operateValue : int
+  }
+  KnowledgeSource --> Blackboard
+  KnowledgeSource --> Operator
+  Control --> KnowledgeSource
+}
+@enduml

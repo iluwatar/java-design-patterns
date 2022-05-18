@@ -21,21 +21,26 @@
  * THE SOFTWARE.
  */
 
-//package java-design-patterns.abstract-document.src.main.java.com.iluwatar.abstractdocument.domain
-//package com.iluwatar.abstractdocument.domain
+package com.iluwatar.blackboard;
 
-import com.iluwatar.abstractdocument.AbstractDocument;
-import java.util.Map;
+import org.junit.jupiter.api.Test;
 
-package java-design-patterns.abstract-document.mid_src.main.java.com.iluwatar.abstractdocument.domain
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
- * Car entity.
+ * Application test
  */
-public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts {
+class AppTest {
 
-  public Car(Map<String, Object> properties) {
-    super(properties);
+  /**
+   * Issue: Add at least one assertion to this test case.
+   *
+   * Solution: Inserted assertion to check whether the execution of the main method in {@link App}
+   * throws an exception.
+   */
+
+  @Test
+  public void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
-
 }
