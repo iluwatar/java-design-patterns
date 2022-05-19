@@ -1,0 +1,32 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Filter <|-- CacheFilter
+Filter <|- Decorator
+Filter<|-- AopController
+
+interface Filter{
+ +Userinfo doGet(int id);
+ + Userinfo doPost(int id);
+}
+class CacheFilter{
++ Object aroundAdvice(ProceedingJoinPoint proceedingJoinPoint);
++ Userinfo doGet(int id);
++ Userinfo doPost(int id);
++ void test();
+}
+
+class Decorator{
++Userinfo doGet(int id);
++Userinfo doPost(int id);
++Object aroundAdvice(ProceedingJoinPoint proceedingJoinPoint);
+}
+
+
+class AopController{
++ Userinfo sayGet(@RequestParam Integer id);
++ Userinfo sayPost(@RequestBody Map<String, String> map);
++ Userinfo doGet(int idd);
++ Userinfo doPost(int id);
+}
+@enduml

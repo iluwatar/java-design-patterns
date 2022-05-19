@@ -47,6 +47,7 @@ package com.iluwatar.strangler;
 public class App {
   /**
    * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(final String[] args) {

@@ -25,12 +25,12 @@ package com.iluwatar.activeobject;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
  * ActiveCreature class is the base of the active object example.
+ *
  * @author Noam Greenshtain
  *
  */
@@ -72,27 +72,30 @@ public abstract class ActiveCreature {
 
   /**
    * Eats the porridge.
+   *
    * @throws InterruptedException due to firing a new Runnable.
    */
   public void eat() throws InterruptedException {
     requests.put(() -> {
-      logger.info("{} is eating!",name());
-      logger.info("{} has finished eating!",name());
+      logger.info("{} is eating!", name());
+      logger.info("{} has finished eating!", name());
     });
   }
 
   /**
    * Roam the wastelands.
+   *
    * @throws InterruptedException due to firing a new Runnable.
    */
   public void roam() throws InterruptedException {
     requests.put(() ->
-        logger.info("{} has started to roam in the wastelands.",name())
+        logger.info("{} has started to roam in the wastelands.", name())
     );
   }
   
   /**
    * Returns the name of the creature.
+   *
    * @return the name of the creature.
    */
   public String name() {
@@ -101,6 +104,7 @@ public abstract class ActiveCreature {
   
   /**
    * Kills the thread of execution.
+   *
    * @param status of the thread of execution. 0 == OK, the rest is logging an error.
    */
   public void kill(int status) {
@@ -110,6 +114,7 @@ public abstract class ActiveCreature {
   
   /**
    * Returns the status of the thread of execution.
+   *
    * @return the status of the thread of execution.
    */
   public int getStatus() {
