@@ -1,0 +1,66 @@
+@startuml
+
+class Player
+class Address
+class App
+class Cleveland
+class Miami
+class LosAngeles
+class WinChampion
+
+
+Player-->Address
+Cleveland-->Player
+Miami-->Player
+LosAngeles-->Player
+WinChampion-->Player
+App-->Player
+App-->Cleveland
+App-->Miami
+App-->LosAngeles
+App-->WinChampion
+
+class Address{
+- player: Player
+- city: String
+- state: String
++ getCity(): String
++ getState(): String
++ updateAddress(String city, String state)
+}
+
+class Player {
+- lastName: String
+- firstName: String
+- champions: int
+- address: Address
+- mutex: Object
++ getMutex(): Object
++ getCity(): String
++ getState(): String
++ getChampions(): int
++ getFirstName(): String
++ getLastName(): String
+}
+
+class Miami{
+- player: Player
++ run()
+}
+class Cleveland{
+- player: Player
++ run()
+}
+class LosAngeles{
+- player: Player
++ run()
+}
+class WinChampion{
+- player: Player
++ run()
+}
+class App{
++ main(String[] args)
+}
+
+@enduml
