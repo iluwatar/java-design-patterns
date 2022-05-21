@@ -40,7 +40,6 @@ public class CacheFilter implements Filter {
    */
   @Around("test()")
   public Object aroundAdvice(ProceedingJoinPoint proceedingJoinPoint) throws IOException {
-    System.out.println("before");
     String id = proceedingJoinPoint.getArgs()[0].toString();
     JSONObject jsonObject;
     Userinfo proceed = null;
@@ -79,7 +78,6 @@ public class CacheFilter implements Filter {
       m.setUsername(proceed.getUsername());
       hashMap.put(id, m);
     }
-    System.out.println("after");
     return proceed;
   }
 
