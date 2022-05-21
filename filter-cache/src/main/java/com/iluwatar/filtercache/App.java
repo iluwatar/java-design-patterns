@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * This is the entrance.
  */
 @SpringBootApplication
-public class FilterCacheApplication {
+public class App {
 
   public static void main(String[] args) {
-    SpringApplication.run(FilterCacheApplication.class, args);
+    SpringApplication.run(App.class, args);
   }
 
 }

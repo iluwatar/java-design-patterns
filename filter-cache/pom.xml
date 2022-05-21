@@ -68,7 +68,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/x
 						<configuration>
 							<archive>
 								<manifest>
-									<mainClass>com.iluwatar.filtercache.FilterCacheApplication</mainClass>
+									<mainClass>com.iluwatar.filtercache.App</mainClass>
 								</manifest>
 							</archive>
 						</configuration>
