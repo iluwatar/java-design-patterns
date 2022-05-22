@@ -231,6 +231,9 @@
     <module>domain-model</module>
     <module>composite-view</module>
     <module>metadata-mapping</module>
+      <module>
+          pessimistic-concurrency
+      </module>
   </modules>
   <repositories>
     <repository>
