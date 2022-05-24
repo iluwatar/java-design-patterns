@@ -1,9 +1,13 @@
 package com.iluwatar.functionalcoreimperativeshell;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The static main class.
  */
 public class App {
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * The main class.
@@ -27,31 +31,31 @@ public class App {
      * std input.
      */
 
-    System.out.println("Create Draft...");
+    LOGGER.info("Create Draft...");
 
     Article article = Core.createDraft(
         "The Game Awards crowns The Legend of Zelda...",
         "The Game Awards 2017 The 17 biggest trailers and announcements..."
     );
 
-    System.out.println(article);
+    LOGGER.info(String.valueOf(article));
 
-    System.out.println("Publish Draft");
+    LOGGER.info("Publish Draft");
 
     article = Core.publishDraft((DraftArticle) article);
 
-    System.out.println(article);
+    LOGGER.info(String.valueOf(article));
 
-    System.out.println("Revert Publish");
+    LOGGER.info("Revert Publish");
 
     article = Core.revertPublish((PublishArticle) article);
 
-    System.out.println(article);
+    LOGGER.info(String.valueOf(article));
 
-    System.out.println("Call user to review draft");
+    LOGGER.info("Call user to review draft");
 
-    article = Shell.reviewArticle((DraftArticle) article);
+    article = Shell.reviewArticle((DraftArticle) article, "y");
 
-    System.out.println(article);
+    LOGGER.info(String.valueOf(article));
   }
 }

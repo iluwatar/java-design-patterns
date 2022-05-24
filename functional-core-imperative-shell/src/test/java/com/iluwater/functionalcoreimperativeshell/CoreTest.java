@@ -1,8 +1,6 @@
 package com.iluwater.functionalcoreimperativeshell;
 
 import com.iluwatar.functionalcoreimperativeshell.*;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.*;
@@ -16,13 +14,6 @@ import static junit.framework.TestCase.*;
  * @version 1.0
  */
 public class CoreTest {
-  @Before
-  public void before() throws Exception {
-  }
-
-  @After
-  public void after() throws Exception {
-  }
 
   /**
    *
@@ -30,7 +21,7 @@ public class CoreTest {
    *
    */
   @Test
-  public void testCreateDraft() throws Exception {
+  public void testCreateDraft() {
 
     Article article = Core.createDraft(
        "The Game Awards crowns The Legend of Zelda...",
@@ -48,7 +39,7 @@ public class CoreTest {
    *
    */
   @Test
-  public void testPublishDraft() throws Exception {
+  public void testPublishDraft() {
 
     DraftArticle draftArticle = new DraftArticle(
        "The Game Awards crowns The Legend of Zelda...",
@@ -68,7 +59,7 @@ public class CoreTest {
    *
    */
   @Test
-  public void testRevertPublish() throws Exception {
+  public void testRevertPublish() {
     PublishArticle publishArticle = new PublishArticle(
        "The Game Awards crowns The Legend of Zelda...",
        "The Game Awards 2017 The 17 biggest trailers and announcements..."

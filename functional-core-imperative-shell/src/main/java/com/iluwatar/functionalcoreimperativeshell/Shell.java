@@ -1,27 +1,23 @@
 package com.iluwatar.functionalcoreimperativeshell;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Objects;
-import java.util.Scanner;
 
 /**
  * The Shell Class deal with all the user inputs.
  */
 public class Shell {
 
+  private Shell() {}
+
   /**
    * review the Article & get user input.
    *
    * @param draftArticle draft to be reviewed
+   * @param key 'y' for yes, otherwise no, simulate user inputs
    * @return new PublishArticle if success, DraftArticle if failed.
    */
-  public static Article reviewArticle(DraftArticle draftArticle) {
-    Scanner input = new Scanner(System.in, StandardCharsets.US_ASCII);
-    String key;
-    do {
-      System.out.println("Publish this draft? (y, n)");
-      key = input.nextLine();
-    } while (!Objects.equals(key, "y") && !Objects.equals(key, "n"));
+  public static Article reviewArticle(DraftArticle draftArticle, String key) {
+    key = key.toLowerCase();
 
     if (Objects.equals(key, "y")) {
       return Core.publishDraft(draftArticle);

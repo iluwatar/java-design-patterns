@@ -6,6 +6,8 @@ package com.iluwatar.functionalcoreimperativeshell;
  */
 public class Core {
 
+  private Core() {}
+
   /**
    * create a draftArticle.
    *

@@ -1,13 +1,7 @@
 package com.iluwater.functionalcoreimperativeshell;
 
 import com.iluwatar.functionalcoreimperativeshell.*;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 
 import static junit.framework.TestCase.*;
 
@@ -20,32 +14,19 @@ import static junit.framework.TestCase.*;
  */
 public class ShellTest {
 
-  @Before
-  public void before() throws Exception {
-  }
-
-  @After
-  public void after() throws Exception {
-  }
-
   /**
    *
    * Method: reviewArticle(DraftArticle draftArticle)
    *
    */
   @Test
-  public void testReviewArticle() throws Exception {
+  public void testReviewArticleYes() {
     Article article = new DraftArticle(
        "The Game Awards crowns The Legend of Zelda...",
        "The Game Awards 2017 The 17 biggest trailers and announcements..."
     );
 
-    InputStream stdin = System.in;
-    System.setIn(new ByteArrayInputStream("y\n".getBytes(StandardCharsets.US_ASCII)));
-
-    article = Shell.reviewArticle((DraftArticle) article);
-
-    System.setIn(stdin);
+    article = Shell.reviewArticle((DraftArticle) article, "y");
 
     assertEquals(article.getClass(), PublishArticle.class);
     assertEquals(article.getTitle(), "The Game Awards crowns The Legend of Zelda...");
@@ -58,18 +39,13 @@ public class ShellTest {
    *
    */
   @Test
-  public void testReviewArticle1() throws Exception {
+  public void testReviewArticleNo() {
     Article article = new DraftArticle(
        "The Game Awards crowns The Legend of Zelda...",
        "The Game Awards 2017 The 17 biggest trailers and announcements..."
     );
 
-    InputStream stdin = System.in;
-    System.setIn(new ByteArrayInputStream("n\n".getBytes(StandardCharsets.US_ASCII)));
-
-    article = Shell.reviewArticle((DraftArticle) article);
-
-    System.setIn(stdin);
+    article = Shell.reviewArticle((DraftArticle) article, "n");
 
     assertEquals(article.getClass(), DraftArticle.class);
     assertEquals(article.getTitle(), "The Game Awards crowns The Legend of Zelda...");
