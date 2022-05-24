@@ -1,4 +1,15 @@
-# Functional Core Imperative Shell Design Pattern
+--- 
+layout: pattern 
+title: functional-core-imperative-shell 
+folder: functionalcoreimperativeshell 
+permalink: /patterns/functionalcoreimperativeshell/ 
+categories: Structural 
+language: en 
+tags:
+- Functional Programming
+---
+
+## Functional Core Imperative Shell Design Pattern
 
 ## Intent
 
