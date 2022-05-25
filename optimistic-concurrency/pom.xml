@@ -31,18 +31,6 @@
         </maven.compiler.target>
     </properties>
 
-<!--    <dependencies>-->
-<!--        <dependency>-->
-<!--            <groupId>org.hibernate.javax.persistence</groupId>-->
-<!--            <artifactId>hibernate-jpa-2.1-api</artifactId>-->
-<!--            <version>1.0.2.Final</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.h2database</groupId>-->
-<!--            <artifactId>h2</artifactId>-->
-<!--            <version>1.4.200</version>-->
-<!--        </dependency>-->
-<!--    </dependencies>-->
     <dependencies>
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
@@ -92,11 +80,6 @@
             <artifactId>postgresql</artifactId>
             <version>42.2.4</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.h2database</groupId>-->
-<!--            <artifactId>h2</artifactId>-->
-<!--            <version>1.4.200</version>-->
-<!--        </dependency>-->
     </dependencies>
 
 </project>

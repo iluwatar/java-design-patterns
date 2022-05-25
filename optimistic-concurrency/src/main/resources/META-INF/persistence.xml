@@ -12,9 +12,6 @@
             <property name="javax.persistence.jdbc.password" value="postgres" />
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="show_sql" value="true"/>
-<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>-->
-<!--            <property name="hibernate.hbm2ddl.auto" value="update" />-->
-<!--            <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>-->
         </properties>
 
     </persistence-unit>
