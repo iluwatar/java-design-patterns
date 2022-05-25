@@ -67,7 +67,7 @@ public class OptimisticConcurrencyTest {
          * This succeeds.
          */
         Thread t1 = new Thread(() -> {
-            productService.buy(productIdList.get(0), 2, 1000);
+            productService.buy(productIdList.get(0), 2, 1000, true);
         });
 
         /**
@@ -77,7 +77,7 @@ public class OptimisticConcurrencyTest {
          * This fails.
          */
         Thread t2 = new Thread(() -> {
-            productService.buy(productIdList.get(0), 2, 2000);
+            productService.buy(productIdList.get(0), 2, 2000, true);
         });
 
         /**
@@ -96,7 +96,7 @@ public class OptimisticConcurrencyTest {
             Optional result = productDao.get(productIdList.get(0));
             if (result.isPresent()) {
                 Product product = (Product) result.get();
-                Assert.assertEquals(8, product.getAmountInStock());
+                Assert.assertEquals(6, product.getAmountInStock());
             } else {
                 Assert.fail("Product doesn't exist!");
             }
@@ -112,11 +112,11 @@ public class OptimisticConcurrencyTest {
     @Test
     public void testBuyDiffProductsConcurrently() {
         Thread t1 = new Thread(() -> {
-            productService.buy(productIdList.get(1), 2, 0);
+            productService.buy(productIdList.get(1), 2, 0, true);
         });
 
         Thread t2 = new Thread(() -> {
-            productService.buy(productIdList.get(2), 3, 0);
+            productService.buy(productIdList.get(2), 3, 0, true);
         });
         /**
          * Since Thread 1 and 2 are buying different products,
@@ -132,11 +132,11 @@ public class OptimisticConcurrencyTest {
             t1.join();
             t2.join();
             // assert
-            Optional result_1 = productDao.get(productIdList.get(1));
-            Optional result_2 = productDao.get(productIdList.get(2));
-            if (result_1.isPresent() && result_2.isPresent()) {
-                Product banana = (Product) result_1.get();
-                Product laptop = (Product) result_2.get();
+            Optional result1 = productDao.get(productIdList.get(1));
+            Optional result2 = productDao.get(productIdList.get(2));
+            if (result1.isPresent() && result2.isPresent()) {
+                Product banana = (Product) result1.get();
+                Product laptop = (Product) result2.get();
                 Assert.assertEquals(18, banana.getAmountInStock());
                 Assert.assertEquals(2, laptop.getAmountInStock());
             } else {
@@ -157,14 +157,14 @@ public class OptimisticConcurrencyTest {
          * Since buy operations take place in sequence,
          * there shouldn't be any conflict
          */
-        productService.buy(productIdList.get(3), 7, 0);
-        productService.buy(productIdList.get(4), 10, 0);
+        productService.buy(productIdList.get(3), 7, 0, true);
+        productService.buy(productIdList.get(4), 10, 0, true);
         // assert
-        Optional result_1 = productDao.get(productIdList.get(3));
-        Optional result_2 = productDao.get(productIdList.get(4));
-        if (result_1.isPresent() && result_2.isPresent()) {
-            Product phone = (Product) result_1.get();
-            Product mouse = (Product) result_2.get();
+        Optional result1 = productDao.get(productIdList.get(3));
+        Optional result2 = productDao.get(productIdList.get(4));
+        if (result1.isPresent() && result2.isPresent()) {
+            Product phone = (Product) result1.get();
+            Product mouse = (Product) result2.get();
             Assert.assertEquals(1, phone.getAmountInStock());
             Assert.assertEquals(10, mouse.getAmountInStock());
         } else {

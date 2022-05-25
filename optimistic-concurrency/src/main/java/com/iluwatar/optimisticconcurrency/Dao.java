@@ -29,9 +29,14 @@ public interface Dao<T> {
 
     /**
      * Update an entry in the database.
-     * @param t the entry to be updated.
+     * @param newT the entry to be updated.
+     * @param oldId old id of the entry. (In case of id being updated)
+     * @param oldVersion old version of the entry.
+     * @param useLock whether to lock when performing update.
+     * @return the number of rows affected.
      */
-    void update(T t);
+    int update(T newT, long oldId,
+               int oldVersion, boolean useLock);
 
     /**
      * Delete an entry from the database.

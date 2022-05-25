@@ -2,6 +2,7 @@ package com.iluwatar.optimisticconcurrency;
 
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import java.util.Optional;
 
 /**
  * Optimistic Concurrency pattern.
@@ -26,12 +27,12 @@ final class App {
         // create some products in database
         final double applePrice = 1.5;
         final int appleNum = 10;
-        final String appleDes = "The apple is very delicious!";
         final double banaPrice = 2.1;
         final int banaNum = 20;
-        final String banaDes = "The banana is fresh!";
-        Product apple = new Product("apple", appleDes, applePrice, appleNum);
-        Product banana = new Product("banana", banaDes, banaPrice, banaNum);
+        Product apple = new Product("apple", "The apple is very delicious!",
+                applePrice, appleNum);
+        Product banana = new Product("banana", "The banana is fresh!",
+                banaPrice, banaNum);
         // insert into database
         productDao.save(apple);
         productDao.save(banana);
@@ -39,23 +40,51 @@ final class App {
         final long id1 = apple.getId();
         final long id2 = banana.getId();
         // create threads
-        final int thread1Delay = 1000;
-        final int thread2Delay = 2000;
-        final int thread1BuyAmount = 2;
-        final int thread2BuyAmount = 4;
+        final int delay1 = 1000;
+        final int delay2 = 2000;
+        final int buyAmount1 = 2;
+        final int buyAmount2 = 4;
+        // for apple
+        // With lock, thread can't override each other
         Thread t1 = new Thread(() -> {
-            productService.buy(id1, thread1BuyAmount, thread1Delay);
+            productService.buy(id1, buyAmount1, delay1, true);
         });
         Thread t2 = new Thread(() -> {
-            productService.buy(id2, thread2BuyAmount, thread2Delay);
+            productService.buy(id1, buyAmount2, delay2, true);
         });
+        // for banana
+        // Without lock, thread 4's update overrides thread 2's update
+        Thread t3 = new Thread(() -> {
+            productService.buy(id2, buyAmount1, delay1, false);
+        });
+        Thread t4 = new Thread(() -> {
+            productService.buy(id2, buyAmount2, delay2, false);
+        });
+
         // start threads
         t1.start();
         t2.start();
+        t3.start();
+        t4.start();
         // wait for threads to finish
         try {
             t1.join();
             t2.join();
+            t3.join();
+            t4.join();
+            Optional result1 = productDao.get(id1);
+            Optional result2 = productDao.get(id2);
+
+            if (result1.isPresent() && result2.isPresent()) {
+                apple = (Product) result1.get();
+                banana = (Product) result2.get();
+
+                System.out.printf("There are %d apples left.\n",
+                        apple.getAmountInStock());
+                System.out.printf("There are %d bananas left.\n",
+                        banana.getAmountInStock());
+            }
+
             emf.close();
         } catch (InterruptedException e) {
             e.printStackTrace();

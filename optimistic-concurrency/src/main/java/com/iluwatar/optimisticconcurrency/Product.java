@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Version;
 
 /**
  * An entity class.
@@ -23,9 +22,8 @@ public class Product {
 
     /**
      * Version of a product.
-     * This is used for optimistic concurrency patern.
+     * This is used for optimistic concurrency pattern.
      */
-    @Version
     private int version;
 
     /**
@@ -76,6 +74,19 @@ public class Product {
     }
 
     /**
+     * Construct a new Product instance by clone from another instance.
+     * @param other The product to clone from.
+     */
+    public Product(final Product other) {
+        setId(other.getId());
+        setVersion(other.getVersion());
+        setName(other.getName());
+        setDescription(other.getDescription());
+        setPrice(other.getPrice());
+        setAmountInStock(other.getAmountInStock());
+    }
+
+    /**
      * Get the id of the product.
      * @return id of the product.
      */
@@ -120,7 +131,7 @@ public class Product {
      * @param productName name to set for the product. It should not be blank.
      */
     public void setName(final String productName) {
-        if (name.isBlank()) {
+        if (productName.isBlank()) {
             throw new IllegalArgumentException("Name cannot be blank.");
         }
         this.name = productName;
@@ -139,7 +150,7 @@ public class Product {
      * @param desc description to set for the product. It should not be blank.
      */
     public void setDescription(final String desc) {
-        if (name.isBlank()) {
+        if (desc.isBlank()) {
             throw new IllegalArgumentException("Name cannot be blank.");
         }
         this.description = desc;
@@ -159,7 +170,7 @@ public class Product {
      *                     It should not be negative.
      */
     public void setPrice(final double productPrice) {
-        if (price < 0) {
+        if (productPrice < 0) {
             throw new IllegalArgumentException("Price cannot be negative");
         }
         this.price = productPrice;
@@ -179,7 +190,7 @@ public class Product {
      *                   It should not be negative.
      */
     public void setAmountInStock(final int amount) {
-        if (amountInStock < 0) {
+        if (amount < 0) {
             throw new IllegalArgumentException("Amount cannot be negative");
         }
         this.amountInStock = amount;

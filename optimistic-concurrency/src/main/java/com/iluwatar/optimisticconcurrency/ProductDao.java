@@ -63,11 +63,52 @@ public class ProductDao implements Dao<Product> {
 
     /**z
      * Update a product in the Product table.
-     * @param product the product to be updated.
+     * @param newProduct the product to be updated.
+     * @param oldId id of the product to be updated.
+     * @param oldVersion version of the product to be updated.
+     * @param useLock whether to enable locking.<br>
+     *                This is used to show difference.
+     * @return the number of rows affected by the update.
      */
     @Override
-    public void update(final Product product) {
-        executeInsideTransaction(em -> em.merge(product));
+    public int update(final Product newProduct, final long oldId,
+                       final int oldVersion, final boolean useLock) {
+
+        var rowsAffected = new Object() {
+            private int num = 0;
+
+            public int getNum() {
+                return num;
+            }
+        };
+
+        executeInsideTransaction((em) -> {
+            // construct query
+            Query query = em.createQuery("update Product set "
+                    + "id = :newId, "
+                    + "version = :newVersion, "
+                    + "name = :newName, "
+                    + "description = :newDesc, "
+                    + "price = :newPrice, "
+                    + "amountInStock = :newAmount "
+                    + "where id = :oldId "
+                    + "and version = :oldVersion"
+            );
+            // set params
+            query.setParameter("newId", newProduct.getId());
+            query.setParameter("newVersion",
+                    useLock ? oldVersion + 1 : oldVersion);
+            query.setParameter("newName", newProduct.getName());
+            query.setParameter("newDesc", newProduct.getDescription());
+            query.setParameter("newPrice", newProduct.getPrice());
+            query.setParameter("newAmount", newProduct.getAmountInStock());
+            query.setParameter("oldId", oldId);
+            query.setParameter("oldVersion", oldVersion);
+            // update
+            rowsAffected.num = query.executeUpdate();
+        });
+
+        return rowsAffected.num;
     }
 
     /**

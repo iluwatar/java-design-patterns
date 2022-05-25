@@ -3,7 +3,6 @@ package com.iluwatar.optimisticconcurrency;
 import java.util.Optional;
 
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.OptimisticLockException;
 
 /**
  * Service layer for Product class.
@@ -13,6 +12,18 @@ public class ProductService {
      * The ProductDao for the ProductService to use.
      */
     private ProductDao productDao;
+
+    /**
+     * Some placeholders for string literals.
+     */
+    static final String NOT_ENOUGH =
+            "There are not enough products in stock!";
+    /***/
+    static final String NEGATIVE_AMOUNT =
+            "Amount to buy should be more than zero!";
+    /***/
+    static final String NOT_EXIST =
+            "Product doesn't exist!";
 
     /**
      * Construct an instance of ProductService.
@@ -27,41 +38,57 @@ public class ProductService {
      * @param productId id of the product to buy.
      * @param amount amount of the product to buy.
      * @param delay time in millisecond for the thread
-     *              to sleep after fetching from database.
+     *              to sleep after fetching from database.<br>
+     *              This allows result to be reproducible.
+     * @param useLock whether to enable locking.<br>
+     *                This is used to show difference.
      */
-    public void buy(final long productId, final int amount, final int delay) {
+    public void buy(final long productId, final int amount,
+                    final int delay, final boolean useLock) {
         if (amount <= 0) {
-            System.out.println("Amount to buy should be more than zero!");
+            System.out.println(NEGATIVE_AMOUNT);
             return;
         }
-        //
-        Optional found = productDao.get(productId);
-        if (found.isPresent()) {
-            Product product = (Product) found.get();
 
-            try {
-                Thread.sleep(delay);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        while (true) {
+            Optional found = productDao.get(productId);
+            if (found.isPresent()) {
+                Product oldProduct = (Product) found.get();
+                long oldId = oldProduct.getId();
+                int oldVersion = oldProduct.getVersion();
+                // clone
+                Product newProduct = new Product(oldProduct);
+
+                try {
+                    Thread.sleep(delay);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                // make changes
+                int remaining = oldProduct.getAmountInStock() - amount;
+                if (remaining < 0) {
+                    System.out.println(NOT_ENOUGH);
+                    return;
+                }
+                newProduct.setAmountInStock(remaining);
+
+                int rowsAffected = productDao.update(newProduct, oldId,
+                        oldVersion, useLock);
+                if (rowsAffected == 0) {
+                    System.out.printf(
+                            "(Thread-%d) Buy operation is not successful!\n",
+                            Thread.currentThread().getId());
+                    continue;
+                }
+
+                System.out.printf("(Thread-%d) Buy operation is successful!\n",
+                        Thread.currentThread().getId());
+                break;
+            } else {
+                System.out.println(NOT_EXIST);
             }
-
-            int remaining = product.getAmountInStock() - amount;
-            if (remaining < 0) {
-                System.out.println("There are not enough products in stock!");
-                return;
-            }
-            product.setAmountInStock(remaining);
-
-            try {
-                productDao.update(product);
-            } catch (OptimisticLockException e) {
-                System.out.println("Buy operation is not successful!");
-                return;
-            }
-
-            System.out.println("Buy operation is successful!");
-        } else {
-            System.out.println("Product doesn't exist!");
         }
+
     }
 }
