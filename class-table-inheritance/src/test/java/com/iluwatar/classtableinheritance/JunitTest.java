@@ -9,21 +9,25 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * This is test class.
+ * This is a test class which tests the class table inheritance pattern.
  */
 public class JunitTest {
   /**
-   * sqlsession can operate on sql.
+   * Sqlsession can operate on sql because one operation means a session.
    */
-  private SqlSession sqlSession;
+  private transient SqlSession sqlSession;
   /**
-   * can deal with player.xml.
+   * It can deal with player.xml to complete mapper function.
    */
-  private MapperPlayer playerMapper;
-
+  private transient MapperPlayer playerMapper;
 
   /**
- * before build a tool to initialize the playermapper.
+   * Temp player which will be used by some methods, just variables but are used usually.
+   */
+  private final String playertemp = "player1";
+
+  /**
+ * Before building a tool to initialize the playermapper, initialize related variables.
 */
   @Before
   public void before() {
@@ -32,7 +36,7 @@ public class JunitTest {
 
   }
   /**
-     * close the tool class.
+     * Close the tool class Mybatis3Utils.
      */
 
   @After
@@ -40,92 +44,98 @@ public class JunitTest {
     Mybatis3Utils.closeCurrentSession();
   }
   /**
-     * test insert function of player, footballer, bowler circketer.
+     * Test inserting function related to player, footballer, bowler and circketer
+     * to see whether they are inserted to database correctly.
      */
 
   @Test
-  public void testinsert() {
-    Player a = new Player();
-    a.setName("player1");
-    playerMapper.insertPlayer(a);
+  public void testInsert() {
+    final Player player = new Player();
+    player.setName(playertemp);
+    playerMapper.insertPlayer(player);
 
-    Footballer footballer = new Footballer();
+    final Footballer footballer = new Footballer();
     footballer.setClub("footballerclub");
     footballer.setName("footballer1");
     playerMapper.insertFootballer(footballer);
 
-    Bowler bowler = new Bowler();
+    final Bowler bowler = new Bowler();
     bowler.setBowlingAvarage(23);
     bowler.setName("bowler1");
     playerMapper.insertBowler(bowler);
 
-    Cricketer cricketer = new Cricketer();
+    final Cricketer cricketer = new Cricketer();
     cricketer.setName("cricketer1");
     cricketer.setBattingAvarage(23);
     playerMapper.insertCricketer(cricketer);
     sqlSession.commit();
+    Assert.assertEquals("player1 is true", playertemp, player.getName());
+    Assert.assertEquals("footballerclub is true", "footballerclub", footballer.getClub());
     Assert.assertEquals("cricketer1 is true", "cricketer1", cricketer.getName());
+    Assert.assertEquals("bowler1 is true", "bowler1", bowler.getName());
   }
   /**
-     * test select of list function.
+     * Test selecting function to see whether the messages about the player, bowler and circketer
+     * are fetched from database correctly or not.
      */
 
   @Test
-  public void testselect() {
+  public void testSelect() {
 
-    playerMapper.listplayer().forEach(x -> {
-      System.out.println(x.getName());
-    });
-    playerMapper.listFootballPlayer().forEach(x -> {
-      System.out.println(x.getName() + ' ' + x.getClub());
-    });
-    playerMapper.listCricketer().forEach(x -> {
-      System.out.println(x.getName() + " " + x.getBattingAvarage());
-    });
-    playerMapper.listBowler().forEach(x -> {
-      System.out.println(x.getName() + " " + x.getBattingAvarage() + ' ' + x.getBowlingAvarage());
-    });
-    Stream<Player> stream = playerMapper.listplayer().stream();
-    Assert.assertTrue(stream.anyMatch(x -> x.getName().equals("player1")));
+    final Stream<Player> stream = playerMapper.listplayer().stream();
+    final Stream<Bowler> bowlerStream = playerMapper.listBowler().stream();
+    final Stream<Cricketer> cricketerStream = playerMapper.listCricketer().stream();
+    Assert.assertTrue("play equal", stream.anyMatch(x -> x.getName().equals(playertemp)));
+    Assert.assertTrue("bowler equal",
+        bowlerStream.anyMatch(x -> x.getName().equals("bowler1")));
+    Assert.assertTrue("cricketer equal",
+        cricketerStream.anyMatch(x -> x.getName().equals("cricketer1")));
   }
   /**
-     * test update function related to bowler circketer footballer .
+     * Test updating some messages about name, id and so on,
+     * which are related to bowler, circketer and footballer.
+     *
      */
 
   @SuppressWarnings("checkstyle:WhitespaceAfter")
   @Test
-  public void testupdate() {
-    Bowler bowler = new Bowler();
+  public void testUpdate() {
+    final Bowler bowler = new Bowler();
     bowler.setName("bowler1");
     bowler.setBattingAvarage(11);
     bowler.setBowlingAvarage(16);
     playerMapper.updateBowler(bowler);
 
-    Cricketer cricketer = new Cricketer();
+    final Cricketer cricketer = new Cricketer();
     cricketer.setName("cricketer1");
     cricketer.setBattingAvarage(3);
     playerMapper.updateCricketer(cricketer);
 
-    Footballer footballer = new Footballer();
+    final Footballer footballer = new Footballer();
     footballer.setName("footballer1");
     footballer.setClub("zzz");
     playerMapper.updateFootballer(footballer);
     sqlSession.commit();
     Assert.assertEquals("cricketer1 is true", "cricketer1", cricketer.getName());
+    Assert.assertEquals("bowler1 is true", "bowler1", bowler.getName());
+    Assert.assertEquals("footballer1 is true", "footballer1", footballer.getName());
   }
   /**
-     * test delete related to player, bowler, cricketer, footballer.
+     * Test delete function related to player, bowler, cricketer,
+     * footballer to see if related player is deleted correctly.
      */
 
   @Test
-  public void testdelete() {
-    playerMapper.deletePlayer("player1");
+  public void testDelete() {
+    playerMapper.deletePlayer(playertemp);
     playerMapper.deleteBowler(16);
     playerMapper.deleteCricketer(3);
     playerMapper.deleteFootballer("footballer1");
     sqlSession.commit();
-    List<Player> listplayer = playerMapper.listplayer();
-    Stream<Player> footballer1 = listplayer.stream().filter(x -> x.getName().equals("footballer1"));
-    Assert.assertFalse(footballer1.anyMatch(x -> x.getName().equals("footballer1")));
+    final List<Player> listplayer = playerMapper.listplayer();
+    final Stream<Player> footballer1 =
+        listplayer.stream().filter(x -> x.getName().equals("footballer1"));
+    Assert.assertFalse("delete sucessful",
+        footballer1.anyMatch(x -> x.getName().equals("footballer1")));
   }
 }

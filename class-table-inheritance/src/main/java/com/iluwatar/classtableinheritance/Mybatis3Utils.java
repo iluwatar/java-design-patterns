@@ -46,7 +46,7 @@ public final class Mybatis3Utils {
 
   static {
     try {
-      Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
+      final Reader reader = Resources.getResourceAsReader("mybatis-config.xml");
       sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
     } catch (IOException e) {
       LOGGER.info("mybatis import error");
@@ -71,7 +71,7 @@ public final class Mybatis3Utils {
    * Close the session.
    */
   public static void closeCurrentSession() {
-    SqlSession sqlSession = LOCAL.get();
+    final SqlSession sqlSession = LOCAL.get();
     if (Objects.nonNull(sqlSession)) {
       sqlSession.close();
     }

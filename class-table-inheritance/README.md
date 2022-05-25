@@ -136,8 +136,8 @@ public abstract class Mybatis3Utils {
 
 Use the Class table inheritance pattern when:
 
-* All columns are relevant for every row so tables are easier to understand and don’t waste space.
-* The relationship between the domain model and the database is very straightforward.
+* Minimize repeated page generation by caching dynamic pages when they are generated.
+* Reduce the controller class request response times
 
 ## Credits
 

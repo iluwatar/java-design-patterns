@@ -18,7 +18,7 @@ import lombok.EqualsAndHashCode;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Footballer extends Player {
   /**
-   * footballer 's club.
+   * The club where the footballer usually plays.
    */
   private String club;
 
