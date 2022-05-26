@@ -24,10 +24,10 @@
 
     <properties>
         <maven.compiler.source>
-            17
+            11
         </maven.compiler.source>
         <maven.compiler.target>
-            17
+            11
         </maven.compiler.target>
     </properties>
 
