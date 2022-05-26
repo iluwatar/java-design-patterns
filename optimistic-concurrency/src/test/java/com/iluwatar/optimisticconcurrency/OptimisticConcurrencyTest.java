@@ -74,16 +74,11 @@ public class OptimisticConcurrencyTest {
          * Thread 2 sleeps for 2s after fetching data.
          * This allows thread 1 to update first.
          * Thus, thread 2 will have outdated version.
-         * This fails.
+         * This first fails and then retries.
          */
         Thread t2 = new Thread(() -> {
             productService.buy(productIdList.get(0), 2, 2000, true);
         });
-
-        /**
-         * Since only one buy operation succeeds,
-         * there will be 8 apples left.
-         */
 
         t1.start();
         t2.start();

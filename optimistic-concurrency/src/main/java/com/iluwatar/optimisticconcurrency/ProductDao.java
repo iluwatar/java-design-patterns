@@ -34,7 +34,8 @@ public class ProductDao implements Dao<Product> {
     @Override
     public Optional<Product> get(final long id) {
         EntityManager em = emf.createEntityManager();
-        Optional result = Optional.ofNullable(em.find(Product.class, id));
+        Optional<Product> result = Optional.ofNullable(
+                em.find(Product.class, id));
         em.close();
         return result;
     }
@@ -47,7 +48,7 @@ public class ProductDao implements Dao<Product> {
     public List<Product> getAll() {
         EntityManager em = emf.createEntityManager();
         Query query = em.createQuery("SELECT e FROM Product e");
-        List result = query.getResultList();
+        List<Product> result = query.getResultList();
         em.close();
         return result;
     }
@@ -61,24 +62,29 @@ public class ProductDao implements Dao<Product> {
         executeInsideTransaction(em -> em.persist(product));
     }
 
-    /**z
+    /**
      * Update a product in the Product table.
      * @param newProduct the product to be updated.
      * @param oldId id of the product to be updated.
      * @param oldVersion version of the product to be updated.
      * @param useLock whether to enable locking.<br>
      *                This is used to show difference.
-     * @return the number of rows affected by the update.
+     * @throws OptimisticLockException
      */
     @Override
-    public int update(final Product newProduct, final long oldId,
-                       final int oldVersion, final boolean useLock) {
-
+    public void update(final Product newProduct,
+                       final long oldId,
+                       final int oldVersion,
+                       final boolean useLock) throws OptimisticLockException {
         var rowsAffected = new Object() {
             private int num = 0;
 
             public int getNum() {
                 return num;
+            }
+
+            public void setNum(final int n) {
+                num = n;
             }
         };
 
@@ -105,10 +111,13 @@ public class ProductDao implements Dao<Product> {
             query.setParameter("oldId", oldId);
             query.setParameter("oldVersion", oldVersion);
             // update
-            rowsAffected.num = query.executeUpdate();
+            rowsAffected.setNum(query.executeUpdate());
         });
 
-        return rowsAffected.num;
+        if (rowsAffected.getNum() == 0) {
+            throw new OptimisticLockException(
+                    "Rows were modified by other transactions!");
+        }
     }
 
     /**

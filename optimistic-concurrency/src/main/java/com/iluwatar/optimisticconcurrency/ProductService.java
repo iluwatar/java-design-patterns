@@ -11,7 +11,7 @@ public class ProductService {
     /**
      * The ProductDao for the ProductService to use.
      */
-    private ProductDao productDao;
+    private final ProductDao productDao;
 
     /**
      * Some placeholders for string literals.
@@ -51,9 +51,9 @@ public class ProductService {
         }
 
         while (true) {
-            Optional found = productDao.get(productId);
+            Optional<Product> found = productDao.get(productId);
             if (found.isPresent()) {
-                Product oldProduct = (Product) found.get();
+                Product oldProduct = found.get();
                 long oldId = oldProduct.getId();
                 int oldVersion = oldProduct.getVersion();
                 // clone
@@ -73,9 +73,11 @@ public class ProductService {
                 }
                 newProduct.setAmountInStock(remaining);
 
-                int rowsAffected = productDao.update(newProduct, oldId,
-                        oldVersion, useLock);
-                if (rowsAffected == 0) {
+                try {
+                    productDao.update(newProduct, oldId,
+                            oldVersion, useLock);
+                } catch (OptimisticLockException e) {
+                    System.out.println(e.getMessage());
                     System.out.printf(
                             "(Thread-%d) Buy operation is not successful!\n",
                             Thread.currentThread().getId());
@@ -84,10 +86,11 @@ public class ProductService {
 
                 System.out.printf("(Thread-%d) Buy operation is successful!\n",
                         Thread.currentThread().getId());
-                break;
             } else {
                 System.out.println(NOT_EXIST);
             }
+
+            break;
         }
 
     }

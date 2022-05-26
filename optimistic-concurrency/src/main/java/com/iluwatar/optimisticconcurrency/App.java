@@ -66,18 +66,20 @@ final class App {
         t2.start();
         t3.start();
         t4.start();
-        // wait for threads to finish
+
         try {
+            // wait for threads to finish
             t1.join();
             t2.join();
             t3.join();
             t4.join();
-            Optional result1 = productDao.get(id1);
-            Optional result2 = productDao.get(id2);
+
+            Optional<Product> result1 = productDao.get(id1);
+            Optional<Product> result2 = productDao.get(id2);
 
             if (result1.isPresent() && result2.isPresent()) {
-                apple = (Product) result1.get();
-                banana = (Product) result2.get();
+                apple = result1.get();
+                banana = result2.get();
 
                 System.out.printf("There are %d apples left.\n",
                         apple.getAmountInStock());

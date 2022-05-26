@@ -2,81 +2,104 @@
 
 ## Intent
 
-Each entity is given a version number, which is changed every time the entity is updated.
+Optimistic Concurrency pattern provides a solution to maintain transactional integrity of objects that are concurrently accessed by multiple clients.
 
 ## Explanation
 
-1. Fetch entity from database. It will be associated with some version number.
-2. Make changes to the entity.
-3. Check the version number of the original object
-4. If no one has made any change to the entity, then the version number remain the same.
-   Then, We can replace the original with the clone and update the version.
-   Otherwise, give an error.
+An update operation consists of 3 steps:
+1. Fetch data from database
+2. Make changes to local data
+3. Persist changes to the database
+
+These steps are not instantaneous.
+
+It is possible for multiple clients/processes to attempt update on the same entity in the database simultaneously. 
+This results in ***Race Condition***. Depending on delays, these steps may or may not overlap. 
+
+If they don't overlap, the execution appear to be normal.
+However, when they overlap, the bug will be discovered.
+
+#### Abnormal Condition
+
+![race condition](./etc/race-condition.png)
+
+As shown in the figure, in between Bob's Step 1 and 3, Alice already performed an update. Thus, Bob has outdated data in his local copy. 
+When he finally performs his update, he overrides Alice's update. In the end, banana = 19 when it should be 17. 
+This violates the transactional integrity
+
+#### Optimistic Concurrency
+
+To handle race condition, Optimistic Concurrency pattern attaches a version identifier to objects. 
+Ultimately, this prevents client from performing update with old version of the data.
+
+1. Fetch object from database and make a local copy. It will be associated with some version number.
+2. Make changes to the local copy.
+3. Attempt to persist changes to the database with the old version number as a filter condition. 
+4. Two things can happen. 
+   1. If no one has made any change to the object, then the version number remain the same and the filter finds a match. Then, the update is successful. 
+   2. If no match is found, no update will be performed. This will raise an exception and have the clients retry the operation.
+
+## Class diagram
+
+![class diagram](./etc/class-diagram.png)
+
+## Sequence diagram
+
+![sequence diagram](./etc/sequence-diagram.png)
 
 ## Programmatic Example
 
-Cloning original object
+Construct instance of EntityManagerFactory, ProductDao, ProductService to access the database
 ```java
-    Optional found = productDao.get(productId);
-    if (found.isPresent()) {
-        Product oldProduct = (Product) found.get();
-        long oldId = oldProduct.getId();
-        int oldVersion = oldProduct.getVersion();
-        // clone
-        Product newProduct = new Product(oldProduct);
+EntityManagerFactory emf =
+        Persistence.createEntityManagerFactory("AdvancedMapping");
+
+ProductDao productDao = new ProductDao(emf);
+ProductService productService = new ProductService(emf);
 ```
-Making changes to the clone
+Create some instances of Product and insert into database
 ```java
-// make changes
-int remaining = oldProduct.getAmountInStock() - amount;
-if (remaining < 0) {
-    System.out.println("There are not enough products in stock!");
-    return;
-}
-newProduct.setAmountInStock(remaining);
+Product apple = new Product("apple", "The apple is very delicious!",
+        applePrice, appleNum);
+Product banana = new Product("banana", "The banana is fresh!",
+        banaPrice, banaNum);
+productDao.save(apple);
+productDao.save(banana);
 ```
-Replace the original with the clone
+Create two threads which performs the buy method with useLock=true
 ```java
-Query query = em.createQuery("update Product set "
-        + "id = :newId, "
-        + "version = :newVersion, "
-        + "name = :newName, "
-        + "description = :newDesc, "
-        + "price = :newPrice, "
-        + "amountInStock = :newAmount "
+Thread t1 = new Thread(() -> {
+    productService.buy(id1, buyAmount1, delay1, true);
+});
+Thread t2 = new Thread(() -> {
+    productService.buy(id1, buyAmount2, delay2, true);
+});
 ```
-If no one has updated it, then the entry should still have old version.
-Thus, update is successful
+Start the two threads, wait for them to finish, and query changes from database again.
 ```java
-        + "where id = :oldId "
-        + "and version = :oldVersion"
-);
-```
-Also increment the version during update
-```java
-query.setParameter("newVersion", newProduct.getVersion() + 1);
-```
-If someone already updated it, then the entry will have a different version.
-Thus, the version filter on update will not find any entry to update. 
-This will raise a runtime exception and a rollback will be performed.
-```java
+// start threads
+t1.start();
+t2.start();
+t3.start();
+t4.start();
+
 try {
-   tx.begin();
-   op.accept(em);
-   tx.commit();
-} catch (RuntimeException e) {
-   tx.rollback();
-   throw e;
-}
-```
-The exception will be caught in the buy function in ProductService.
-Then, a log will be printed for client
-```java
-try {
-    productDao.update(newProduct, oldId, oldVersion);
-} catch (OptimisticLockException e) {
-    System.out.println("Buy operation is not successful!");
-    return;
+    // wait for threads to finish
+    t1.join();
+    t2.join();
+
+    Optional<Product> result1 = productDao.get(id1);
+
+    if (result1.isPresent() && result2.isPresent()) {
+        apple = result1.get();
+
+        System.out.printf("There are %d apples left.\n", 
+                apple.getAmountInStock());
+    }
+
+    emf.close();
+} catch (InterruptedException e) {
+    e.printStackTrace();
 }
 ```
 
