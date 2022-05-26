@@ -4,11 +4,15 @@ import java.util.Optional;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
+import lombok.extern.slf4j.Slf4j;
+
+
 /**
  * Optimistic Concurrency pattern.
  * Increment version during every update.
  * Attempts to update object using old version fail
  */
+@Slf4j
 final class App {
   /**
    * Program main entry point.
@@ -46,20 +50,16 @@ final class App {
     final int buyAmount2 = 4;
     // for apple
     // With lock, thread can't override each other
-    final Thread t1 = new Thread(() -> {
-      productService.buy(id1, buyAmount1, delay1, true);
-    });
-    final Thread t2 = new Thread(() -> {
-      productService.buy(id1, buyAmount2, delay2, true);
-    });
+    final Thread t1 = new Thread(()  -> productService.buy(id1, buyAmount1,
+        delay1, true));
+    final Thread t2 = new Thread(() -> productService.buy(id1, buyAmount2,
+        delay2, true));
     // for banana
     // Without lock, thread 4's update overrides thread 2's update
-    final Thread t3 = new Thread(() -> {
-      productService.buy(id2, buyAmount1, delay1, false);
-    });
-    final Thread t4 = new Thread(() -> {
-      productService.buy(id2, buyAmount2, delay2, false);
-    });
+    final Thread t3 = new Thread(() -> productService.buy(id2, buyAmount1,
+        delay1, false));
+    final Thread t4 = new Thread(() -> productService.buy(id2, buyAmount2,
+        delay2, false));
 
     // start threads
     t1.start();
@@ -67,8 +67,8 @@ final class App {
     t3.start();
     t4.start();
 
+    // wait for threads to finish
     try {
-      // wait for threads to finish
       t1.join();
       t2.join();
       t3.join();
@@ -81,15 +81,16 @@ final class App {
         apple = result1.get();
         banana = result2.get();
 
-        System.out.printf("There are %d apples left.\n",
+        LOGGER.info("There are {} apples left.",
             apple.getAmountInStock());
-        System.out.printf("There are %d bananas left.\n",
+        LOGGER.info("There are {} bananas left.",
             banana.getAmountInStock());
       }
 
       emf.close();
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error(e.getMessage());
+      Thread.currentThread().interrupt();
     }
   }
 

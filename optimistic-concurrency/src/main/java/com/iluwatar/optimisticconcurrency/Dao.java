@@ -33,7 +33,7 @@ public interface Dao<T> {
    * @param oldId old id of the entry. (In case of id being updated)
    * @param oldVersion old version of the entry.
    * @param useLock whether to lock when performing update.
-   * @throws OptimisticLockException exception thrown when update with outdated version
+   * @throws OptimisticLockException when update with outdated version
    */
   void update(T newT, long oldId,
               int oldVersion, boolean useLock) throws OptimisticLockException;

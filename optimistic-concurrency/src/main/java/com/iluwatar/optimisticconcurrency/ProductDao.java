@@ -69,7 +69,7 @@ public class ProductDao implements Dao<Product> {
    * @param oldVersion version of the product to be updated.
    * @param useLock whether to enable locking.<br>
    *                This is used to show difference.
-   * @throws OptimisticLockException exception thrown when update with outdated version
+   * @throws OptimisticLockException when update with outdated version
    */
   @Override
   public void update(final Product newProduct,
@@ -88,7 +88,7 @@ public class ProductDao implements Dao<Product> {
       }
     };
 
-    executeInsideTransaction((em) -> {
+    executeInsideTransaction(em -> {
       // construct query
       Query query = em.createQuery("update Product set "
           + "id = :newId, "
@@ -133,7 +133,7 @@ public class ProductDao implements Dao<Product> {
    * Delete all products in the Product table.
    */
   public void  deleteAll() {
-    executeInsideTransaction((em) -> {
+    executeInsideTransaction(em -> {
       Query query = em.createQuery("DELETE FROM Product");
       query.executeUpdate();
     });

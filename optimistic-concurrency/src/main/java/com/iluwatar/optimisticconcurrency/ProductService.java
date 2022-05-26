@@ -4,9 +4,12 @@ import java.util.Optional;
 
 import javax.persistence.EntityManagerFactory;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Service layer for Product class.
  */
+@Slf4j
 public class ProductService {
   /**
    * The ProductDao for the ProductService to use.
@@ -43,7 +46,8 @@ public class ProductService {
    *
    * @param productId id of the product to buy.
    * @param amount    amount of the product to buy.
-   * @param delay     time in millisecond for the thread to sleep after fetching from database.<br>
+   * @param delay     time in millisecond for the thread to sleep
+   *                  after fetching from database.<br>
    *                  This allows result to be reproducible.
    * @param useLock   whether to enable locking.<br>
    *                  This is used to show difference.
@@ -51,7 +55,7 @@ public class ProductService {
   public void buy(final long productId, final int amount,
                   final int delay, final boolean useLock) {
     if (amount <= 0) {
-      System.out.println(NEGATIVE_AMOUNT);
+      LOGGER.error(NEGATIVE_AMOUNT);
       return;
     }
 
@@ -61,19 +65,21 @@ public class ProductService {
         Product oldProduct = found.get();
         long oldId = oldProduct.getId();
         int oldVersion = oldProduct.getVersion();
+
         // clone
         Product newProduct = new Product(oldProduct);
 
         try {
           Thread.sleep(delay);
         } catch (InterruptedException e) {
-          e.printStackTrace();
+          LOGGER.error(e.getMessage());
+          Thread.currentThread().interrupt();
         }
 
         // make changes
         int remaining = oldProduct.getAmountInStock() - amount;
         if (remaining < 0) {
-          System.out.println(NOT_ENOUGH);
+          LOGGER.info(NOT_ENOUGH);
           return;
         }
         newProduct.setAmountInStock(remaining);
@@ -82,20 +88,20 @@ public class ProductService {
           productDao.update(newProduct, oldId,
               oldVersion, useLock);
         } catch (OptimisticLockException e) {
-          System.out.println(e.getMessage());
-          System.out.printf(
-              "(Thread-%d) Buy operation is not successful!\n",
+          LOGGER.error(e.getMessage());
+          LOGGER.error("(Thread-{}) Buy operation is not successful!",
               Thread.currentThread().getId());
           continue;
         }
 
-        System.out.printf("(Thread-%d) Buy operation is successful!\n",
+        LOGGER.info("(Thread-{}) Buy operation is successful!%n",
             Thread.currentThread().getId());
-      } else {
-        System.out.println(NOT_EXIST);
-      }
+        return;
 
-      break;
+      } else {
+        LOGGER.error(NOT_EXIST);
+        return;
+      }
     }
   }
 }

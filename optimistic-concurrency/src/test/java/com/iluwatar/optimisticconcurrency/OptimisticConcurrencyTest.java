@@ -3,7 +3,7 @@ package com.iluwatar.optimisticconcurrency;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-
+import lombok.extern.slf4j.Slf4j;
 import org.junit.*;
 
 import java.util.ArrayList;
@@ -13,6 +13,7 @@ import java.util.Optional;
 /**
  * Unit tests for Optimistic Concurrency pattern.
  */
+@Slf4j
 public class OptimisticConcurrencyTest {
     static EntityManagerFactory emf;
     static ProductDao productDao;
@@ -97,7 +98,8 @@ public class OptimisticConcurrencyTest {
             }
 
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            Thread.currentThread().interrupt();
         }
     }
 
@@ -139,7 +141,8 @@ public class OptimisticConcurrencyTest {
             }
 
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            LOGGER.error(e.getMessage());
+            Thread.currentThread().interrupt();
         }
     }
 

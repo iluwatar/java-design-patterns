@@ -19,13 +19,13 @@ This results in ***Race Condition***. Depending on delays, these steps may or ma
 If they don't overlap, the execution appear to be normal.
 However, when they overlap, the bug will be discovered.
 
-#### Abnormal Condition
+#### Abnormal Execution
 
 ![race condition](./etc/race-condition.png)
 
 As shown in the figure, in between Bob's Step 1 and 3, Alice already performed an update. Thus, Bob has outdated data in his local copy. 
 When he finally performs his update, he overrides Alice's update. In the end, banana = 19 when it should be 17. 
-This violates the transactional integrity
+This violates the transactional integrity.
 
 #### Optimistic Concurrency
 
@@ -75,32 +75,26 @@ Thread t2 = new Thread(() -> {
     productService.buy(id1, buyAmount2, delay2, true);
 });
 ```
-Start the two threads, wait for them to finish, and query changes from database again.
+Start the two threads
 ```java
-// start threads
 t1.start();
 t2.start();
-t3.start();
-t4.start();
+```
+Wait for them to finish, and query changes from database again.
+```java
+t1.join();
+t2.join();
 
-try {
-    // wait for threads to finish
-    t1.join();
-    t2.join();
+Optional<Product> result1 = productDao.get(id1);
 
-    Optional<Product> result1 = productDao.get(id1);
+if (result1.isPresent() && result2.isPresent()) {
+  apple = result1.get();
 
-    if (result1.isPresent() && result2.isPresent()) {
-        apple = result1.get();
-
-        System.out.printf("There are %d apples left.\n", 
-                apple.getAmountInStock());
-    }
-
-    emf.close();
-} catch (InterruptedException e) {
-    e.printStackTrace();
+  LOGGER.info("There are {} apples left.",
+      apple.getAmountInStock());
 }
+
+emf.close();
 ```
 
 ## Reference
