@@ -1,0 +1,59 @@
+@startuml
+package com.iluwatar.optimisticconcurrency {
+  ~class App {
+    - App()
+    + main(args : String[]) {static}
+  }
+  interface Dao<T> {
+    + delete(T) {abstract}
+    + get(long) : Optional<T> {abstract}
+    + getAll() : List<T> {abstract}
+    + save(T) {abstract}
+    + update(T, long, int, boolean) {abstract}
+  }
+  class Product {
+    - amountInStock : int
+    - description : String
+    - id : long
+    - name : String
+    - price : double
+    - version : int
+    + Product()
+    + Product(other : Product)
+    + Product(productName : String, desc : String, productPrice : double, amount : int)
+    + getAmountInStock() : int
+    + getDescription() : String
+    + getId() : long
+    + getName() : String
+    + getPrice() : double
+    + getVersion() : int
+    + setAmountInStock(amount : int)
+    + setDescription(desc : String)
+    + setId(productId : long)
+    + setName(productName : String)
+    + setPrice(productPrice : double)
+    + setVersion(productVersion : int)
+  }
+  class ProductDao {
+    - emf : EntityManagerFactory
+    + ProductDao(entityManagerFactory : EntityManagerFactory)
+    + delete(product : Product)
+    + deleteAll()
+    - executeInsideTransaction(op : Consumer<EntityManager>)
+    + get(id : long) : Optional<Product>
+    + getAll() : List<Product>
+    + save(product : Product)
+    + update(newProduct : Product, oldId : long, oldVersion : int, useLock : boolean)
+  }
+  class ProductService {
+    ~ NEGATIVE_AMOUNT : String {static}
+    ~ NOT_ENOUGH : String {static}
+    ~ NOT_EXIST : String {static}
+    - productDao : ProductDao
+    + ProductService(emf : EntityManagerFactory)
+    + buy(productId : long, amount : int, delay : int, useLock : boolean)
+  }
+}
+ProductService -->  "-productDao" ProductDao
+ProductDao ..|> Dao 
+@enduml

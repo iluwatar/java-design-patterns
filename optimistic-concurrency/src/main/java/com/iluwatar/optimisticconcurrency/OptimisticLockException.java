@@ -5,11 +5,11 @@ package com.iluwatar.optimisticconcurrency;
  */
 public class OptimisticLockException extends Exception {
 
-    /**
-     * Construct an instance of OptimisticLockException.
-     * @param message message to display.
-     */
-    public OptimisticLockException(final String message) {
-        super(message);
-    }
+  /**
+   * Construct an instance of OptimisticLockException.
+   * @param message message to display.
+   */
+  public OptimisticLockException(final String message) {
+    super(message);
+  }
 }
