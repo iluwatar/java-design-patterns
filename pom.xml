@@ -231,6 +231,7 @@
     <module>domain-model</module>
     <module>composite-view</module>
     <module>metadata-mapping</module>
+    <module>inheritance-mapper</module>
   </modules>
   <repositories>
     <repository>

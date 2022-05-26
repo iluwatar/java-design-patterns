@@ -1,0 +1,85 @@
+@startuml
+package com.iluwatar.InheritanceMapper {
+  interface Mapper{
+    + abstractFind(): Player
+    + save(): Player
+    + load(): Player
+    + delete(): Player
+  }
+  interface AbstractPlayerMapper{
+    + save(): Player
+    + load():  Player
+    + update():  Player
+    + insert():  Player
+    + find():  Player
+  }
+class FootballerMapper{
+    + save(): Footballer
+    + load(): Footballer
+    + update(): Footballer
+    + insert(): Footballer
+    + find(): Footballer
+  }
+class BowlerMapper{
+    + save(): Bowler
+    + load(): Bowler
+    + update(): Bowler
+    + insert(): Bowler
+    + find(): Bowler
+  }
+class CricketerMapper{
+    + save(): Cricketer
+    + load(): Cricketer
+    + update(): Cricketer
+    + insert(): Cricketer
+    + find(): Cricketer
+}
+class PlayerMapper{
+    + save(): Player
+    + load(): Player
+    + update(): Player
+    + insert(): Player
+    + find(): Player
+}
+  interface Player{
+    - int: id
+    - String: name
+    + getId(): int
+    + getName(): String
+    + setName()
+  }
+
+  class Footballer{
+    - String: club
+    + getclub(): String
+    + setclub()
+  }
+  class Bowler{
+    - double: bowlingAverage
+    + getbowlingAverage(): double
+    + setbowlingAverage()
+  }
+  class Cricketer{
+    - double: battlingAverage
+    + getbattlingAverage(): double
+    + setbattlingAverage()
+  }
+  class App{
+    - EntityManagerFactory: emf {static}
+    + App()
+    + main(args : String[]) {static}
+
+  }
+}
+
+Footballer ..|>  Player
+Cricketer ..|>  Player
+Bowler ..|> Cricketer
+Mapper ..|> AbstractPlayerMapper
+AbstractPlayerMapper ..|> FootballerMapper
+AbstractPlayerMapper ..|> BowlerMapper
+AbstractPlayerMapper ..|> CricketerMapper
+PlayerMapper o-- FootballerMapper
+PlayerMapper o-- BowlerMapper
+PlayerMapper o-- CricketerMapper
+@enduml
