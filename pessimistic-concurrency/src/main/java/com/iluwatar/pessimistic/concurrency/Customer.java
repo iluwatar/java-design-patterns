@@ -15,8 +15,6 @@ public class Customer implements Lockable{
     private int id;
     private String name;
     private String lockingUser = null;
-    @Transient
-    private Object lockSynchronizer = new Object();
 
 
 //    public Customer(int id) {
@@ -39,7 +37,7 @@ public class Customer implements Lockable{
     @Override
     public void lock(String username) throws LockingException {
         if (username == null) throw new LockingException("No User Provided.");
-        synchronized(lockSynchronizer) {
+        synchronized(this) {
             if (lockingUser == null) {
                 lockingUser = username;
             }

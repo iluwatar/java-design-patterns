@@ -52,8 +52,8 @@ public class CustomerDao implements Dao<Customer>{
 
     @Override
     public void update(Customer customer, String[] params) throws LockingException {
-        EntityManager entityManager = emf.createEntityManager();
-        Query query = entityManager.createQuery("update Customer set "
+        executeInsideTransaction(em -> {
+            Query query = em.createQuery("update Customer set "
                 + "id = :newId, "
                 + "name = :newName "
                 + "where id = :oldId "
@@ -61,10 +61,9 @@ public class CustomerDao implements Dao<Customer>{
         );
         query.setParameter("newId", customer.getId());
         query.setParameter("newName", customer.getName());
-        query.setParameter("oldId", params[0]);
+        query.setParameter("oldId", Integer.parseInt(params[0]));
         query.executeUpdate();
-
-
+        });
     }
 
     @Override

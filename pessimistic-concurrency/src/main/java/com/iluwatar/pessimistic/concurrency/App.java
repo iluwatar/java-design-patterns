@@ -9,9 +9,13 @@ public class App {
                 Persistence.createEntityManagerFactory("AdvancedMapping");
 
         CustomerDao customerDao = new CustomerDao(emf);
+        customerDao.deleteAll();
         Customer obj1 = new Customer("John");
         Customer obj2 = new Customer("Abby");
         Customer obj3 = new Customer("Bob");
+        customerDao.save(obj1);
+        customerDao.save(obj2);
+        customerDao.save(obj3);
         LockManager lockManager = LockManager.getLockManager("CUSTOMER");
         Thread t1 = new Thread(() -> {
             try {
@@ -21,7 +25,9 @@ public class App {
             if (lockManager.requestLock("user1", obj1)) {
                 obj1.lock("user1");
                 Customer tmp = new Customer("Ben");
-                customerDao.update(tmp, new String[obj1.getId()]);
+                String[] params = new String[1];
+                params[0] = String.valueOf(obj1.getId());
+                customerDao.update(tmp, params);
                 System.out.println(obj1.isLocked());
             }
             Thread.sleep(100);
@@ -33,29 +39,29 @@ public class App {
                 throw new RuntimeException(e);
             }
         });
-//        Thread t2 = new Thread(() -> {
-//            try {
-//                System.out.println("User 2, Obj1: " + lockManager.requestLock("user2", obj1));
-//
-//            System.out.println(obj1.isLocked());
-//
-//            try {
-//                Thread.sleep(100);
-//            } catch (
-//                    InterruptedException e) {
-//                throw new RuntimeException(e);
-//            }
-//            System.out.println("Release Obj1 " + lockManager.releaseLock(obj1));
-//            } catch (
-//                    LockingException e) {
-//                throw new RuntimeException(e);
-//            }
-//        });
+        Thread t2 = new Thread(() -> {
+            try {
+                System.out.println("User 2, Obj1: " + lockManager.requestLock("user2", obj1));
+
+            System.out.println(obj1.isLocked());
+
+            try {
+                Thread.sleep(100);
+            } catch (
+                    InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println("Release Obj1 " + lockManager.releaseLock(obj1));
+            } catch (
+                    LockingException e) {
+                throw new RuntimeException(e);
+            }
+        });
         try {
         t1.start();
-//        t2.start();
+        t2.start();
         t1.join();
-//        t2.join();
+        t2.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
