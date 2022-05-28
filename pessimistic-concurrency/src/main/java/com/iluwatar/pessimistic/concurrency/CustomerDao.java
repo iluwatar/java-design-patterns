@@ -1,12 +1,16 @@
 package com.iluwatar.pessimistic.concurrency;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
+import javax.persistence.LockModeType;
 import javax.persistence.Query;
 
 public class CustomerDao implements Dao<Customer>{
@@ -18,16 +22,24 @@ public class CustomerDao implements Dao<Customer>{
 
     @Override
     public Optional<Customer> get(long id) {
-        EntityManager entityManager = emf.createEntityManager();
-        return Optional.ofNullable(entityManager.find(Customer.class, id));
+//        EntityManager entityManager = emf.createEntityManager();
+//
+//        Optional<Customer> result = Optional.ofNullable(
+//                entityManager.find(Customer.class, id, LockModeType.PESSIMISTIC_READ));
+        executeInsideTransaction(em -> em.find(Customer.class, id, LockModeType.PESSIMISTIC_READ));
+
+//        entityManager.close();
+//        return result;
+        return Optional.empty();
     }
 
     @Override
     public List<Customer> getAll() {
         EntityManager entityManager = emf.createEntityManager();
         Query query = entityManager.createQuery("SELECT e FROM Customer e");
-        query.executeUpdate();
-        return null;
+        List<Customer> result = query.getResultList();
+        entityManager.close();
+        return result;
     }
 
     @Override
@@ -54,14 +66,13 @@ public class CustomerDao implements Dao<Customer>{
     public void update(Customer customer, String[] params) throws LockingException {
         executeInsideTransaction(em -> {
             Query query = em.createQuery("update Customer set "
-                + "id = :newId, "
                 + "name = :newName "
                 + "where id = :oldId "
 
         );
-        query.setParameter("newId", customer.getId());
         query.setParameter("newName", customer.getName());
-        query.setParameter("oldId", Integer.parseInt(params[0]));
+        query.setParameter("oldId", Long.parseLong(params[0]));
+        query.setLockMode(LockModeType.PESSIMISTIC_WRITE);
         query.executeUpdate();
         });
     }
@@ -76,5 +87,8 @@ public class CustomerDao implements Dao<Customer>{
             Query query = em.createQuery("DELETE FROM Customer");
             query.executeUpdate();
         });
+    }
+    public boolean verifyLock(Customer customer, String editingUser) {
+        return Objects.equals(customer.getLockingUser(), editingUser);
     }
 }

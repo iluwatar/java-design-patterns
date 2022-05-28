@@ -1,5 +1,7 @@
 package com.iluwatar.pessimistic.concurrency;
 
+import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,7 +14,7 @@ import javax.persistence.Transient;
 public class Customer implements Lockable{
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int id;
+    private long id;
     private String name;
     private String lockingUser = null;
 
@@ -56,11 +58,11 @@ public class Customer implements Lockable{
         }
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
