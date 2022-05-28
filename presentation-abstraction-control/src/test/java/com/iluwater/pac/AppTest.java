@@ -9,9 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
  */
 class AppTest {
 
-    @Test
-    void shouldExecuteApplicationWithoutException() {
-        App app=new App();
-        assertDoesNotThrow(() -> app.main(new String[]{}));
-    }
+  @Test
+  void shouldExecuteApplicationWithoutException() {
+    App app = new App();
+    assertDoesNotThrow(() -> app.main(new String[]{}));
+  }
 }

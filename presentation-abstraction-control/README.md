@@ -1,20 +1,25 @@
 ---
-layout: pattern
-title: Presentation-Abstraction-Control
-folder: presentation-abstraction-control
-permalink: /patterns/presentation-abstraction-control/
-categories: Architectural
-tags:
+layout: pattern title: Presentation-Abstraction-Control folder: presentation-abstraction-control permalink:
+/patterns/presentation-abstraction-control/ categories: Architectural tags:
+
 - Decoupling
+
 ---
 
 ## Intent
 
-**Presentation–abstraction–control** (**PAC**) is a software [architectural pattern](https://en.wikipedia.org/wiki/Architectural_pattern_(computer_science)). It is an interaction-oriented software architecture, and is somewhat similar to [model–view–controller](https://en.wikipedia.org/wiki/Model–view–controller) (MVC) in that it separates an interactive system into three types of components responsible for specific aspects of the application's functionality. The **abstraction** component retrieves and processes the data, the **presentation** component formats the visual and audio presentation of data, and the **control** component handles things such as the flow of control and communication between the other two components.
+**Presentation–abstraction–control** (**PAC**) is a
+software [architectural pattern](https://en.wikipedia.org/wiki/Architectural_pattern_(computer_science)). It is an
+interaction-oriented software architecture, and is somewhat similar
+to [model–view–controller](https://en.wikipedia.org/wiki/Model–view–controller) (MVC) in that it separates an
+interactive system into three types of components responsible for specific aspects of the application's functionality.
+The **abstraction** component retrieves and processes the data, the **presentation** component formats the visual and
+audio presentation of data, and the **control** component handles things such as the flow of control and communication
+between the other two components.
 
 ## Class diagram
-![alt text](./etc/pac.png "Pac")
 
+![alt text](./etc/pac.png "Pac")
 
 ## Applicability
 

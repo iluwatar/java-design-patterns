@@ -21,7 +21,7 @@
         </dependency>
     </dependencies>
 
-<!--    CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/304-->
+    <!--    CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/304-->
     <build>
         <plugins>
             <!-- Maven assembly plugin is invoked with default setting which we have
