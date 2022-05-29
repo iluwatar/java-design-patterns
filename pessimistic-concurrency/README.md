@@ -1,6 +1,6 @@
 ## Intent
 
- Pessimisitc Concurrency pattern provides a solution to maintain transactional integrity of objects that are concurrently accessed by multiple clients.
+ Pessimistic Concurrency pattern provides a solution to maintain transactional integrity of objects that are concurrently accessed by multiple clients.
 
  ## Explanation
 
@@ -15,7 +15,7 @@
  This results in ***Race Condition***. Depending on delays, these steps may or may not overlap. 
 
  If they don't overlap, the execution appear to be normal.
- However, when they overlap, the bug will be discovered. This violates the transactional integrity.
+ However, when they overlap, the bug will be discovered, violating the transactional integrity.
 
  #### Pessimistic Concurrency
 
@@ -50,7 +50,7 @@
     customerService.save(obj2);
     customerService.save(obj3);
  ```
- Create two threads which performs the buy method with useLock=true
+ Create two threads which performs the edit and update method.
  ```java
  Thread t1 =
         new Thread(
@@ -145,4 +145,5 @@
  ```
 
  ## Reference
- https://www.javacodegeeks.com/2012/11/jpahibernate-version-based-optimistic-concurrency-control.html
+http://ommolketab.ir/aaf-lib/axkwht7wxrhvgs2aqkxse8hihyu9zv.pdf chapter 10.2 & B-5
+
