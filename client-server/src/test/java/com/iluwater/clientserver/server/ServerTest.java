@@ -14,6 +14,13 @@ import com.iluwater.clientserver.server.Server;
 public class ServerTest {
 
     @Test
+    void constructorTest() {
+        final int portNo = 1111;
+        Server server = new Server(portNo);
+        assertEquals(portNo, server.getPort());
+    }
+
+    @Test
     void clientStartTest() throws IOException {
         final int portNo = 2233;
         RunnableServer server = new RunnableServer(portNo);
