@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.util.Date;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +44,7 @@ public class RunnableClientTest {
     }
 
     @Test
-    void constructorClientAppTest() throws InterruptedException {
+    void constructorClientAppTest() throws InterruptedException, UnknownHostException {
         final int portNo = 1129;
         final int timeout = 1000;
         RunnableClient runnableClient = new RunnableClient(
@@ -49,10 +52,28 @@ public class RunnableClientTest {
         ExecutorService executor = Executors.newCachedThreadPool();
         executor.execute(runnableClient);
         executor.awaitTermination(timeout, TimeUnit.MILLISECONDS);
-        //runnableClient.start();
+        runnableClient.start();
 
-        //String val = outputStreamCaptor.toString();
-        //assertEquals("Client Started", val);
+        String val = outputStreamCaptor.toString();
+        Date date = new Date();
+        date.setSeconds(date.getSeconds() - 1);
+        String res = "Server > Start Server!!!\r\n" +
+                "Server > Server is listening on port 1129 \r\n" +
+                "ClientApp > Start Client!!!\r\n" +
+                "Client client 1 > Connected\r\n" +
+                "Server > Client Connection Accepted.\r\n" +
+                "Server > Request and Request ready\r\n" +
+                "Server Command: Date \r\n" +
+                "Client client 1 > Response recieved: " + date.toString() + "\r\n" +
+                "Server Command: Version \r\n" +
+                "Client client 1 > Response recieved: " + InetAddress.getLocalHost() + "\r\n" +
+                "Server Multi-part Message:\r\n" +
+                "Server Multi-part Message 0: This is client app. \r\n" +
+                "Server Multi-part Message 1:  will convert to .  \r\n" +
+                "Server Multi-part Message 2:  all Upper Case \r\n" +
+                "Client client 1 > Response recieved: THIS IS CLIENT APP. WILL CONVERT TO .  ALL UPPER CASE\r\n" +
+                "Server > client disconnected\r\n";
+        assertEquals(res, val);
 
         //assertTrue(runnableClient.getClientStarted());
     }
