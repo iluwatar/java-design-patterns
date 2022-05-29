@@ -12,6 +12,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.LockModeType;
 import javax.persistence.Query;
+import javax.swing.text.html.Option;
 
 public class CustomerDao implements Dao<Customer>{
     private EntityManagerFactory emf;
@@ -22,15 +23,13 @@ public class CustomerDao implements Dao<Customer>{
 
     @Override
     public Optional<Customer> get(long id) {
-//        EntityManager entityManager = emf.createEntityManager();
-//
-//        Optional<Customer> result = Optional.ofNullable(
-//                entityManager.find(Customer.class, id, LockModeType.PESSIMISTIC_READ));
-        executeInsideTransaction(em -> em.find(Customer.class, id, LockModeType.PESSIMISTIC_READ));
+        EntityManager entityManager = emf.createEntityManager();
 
-//        entityManager.close();
-//        return result;
-        return Optional.empty();
+        Optional<Customer> result = Optional.ofNullable(
+                entityManager.find(Customer.class, id));
+
+        entityManager.close();
+        return result;
     }
 
     @Override
@@ -72,7 +71,6 @@ public class CustomerDao implements Dao<Customer>{
         );
         query.setParameter("newName", customer.getName());
         query.setParameter("oldId", Long.parseLong(params[0]));
-        query.setLockMode(LockModeType.PESSIMISTIC_WRITE);
         query.executeUpdate();
         });
     }

@@ -29,6 +29,7 @@ public class App {
         Thread t1 = new Thread(() -> {
             try {
                 Optional<Customer> customer1 = customerService.startEditingCustomerInfo("user1", obj1);
+                Thread.sleep(100);
                 if (customer1.isPresent()) {
                     try {
                         customerService.updateCustomerInfo("user1", obj1, "Ben");
@@ -62,7 +63,6 @@ public class App {
                     }
                 }catch (
                     LockingException e) {
-                System.out.println("???");
                 LOGGER.info(e.getMessage());
             }
             try {
@@ -77,8 +77,22 @@ public class App {
                 }
             }   catch (
                     LockingException e) {
-                System.out.println("???");
                 LOGGER.info(e.getMessage());
+            }
+            try {
+                Thread.sleep(1000);
+                Optional<Customer> customer1 = customerService.startEditingCustomerInfo("user1", obj1);
+                System.out.println(customer1);
+                if (customer1.isPresent()) {
+
+                    customerService.updateCustomerInfo("user1", obj1, "Eren");
+                }
+            } catch (
+                    LockingException e) {
+                LOGGER.info(e.getMessage());
+            } catch (
+                    Exception e) {
+                throw new RuntimeException(e);
             }
 
         });
@@ -90,12 +104,6 @@ public class App {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-//        System.out.println("User 1, Obj1: " + lockManager.requestLock("user1", obj1));
-//        System.out.println("User 2, Obj1: " + lockManager.requestLock("user2", obj1));
-//        System.out.println("User 2, Obj2: " + lockManager.requestLock("user2", obj2));
-//        System.out.println("User 1, Obj3: " + lockManager.requestLock("user1", obj3));
-//        System.out.println("Release Obj1 " + lockManager.releaseLock(obj1));
-//        System.out.println("User 2, Obj1: " + lockManager.requestLock("user2", obj1));
 
 
     }

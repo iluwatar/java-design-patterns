@@ -19,6 +19,14 @@ public class LockManager {
     public LockManager() {
         locks = new HashMap<Object, String>();
     }
+
+    /**
+     * request the lock to be
+     * @param username name of user that requests lock
+     * @param lockable  object to be locked
+     * @return status of locking
+     * @throws LockingException if locking is
+     */
     public boolean requestLock(String username, Object lockable) throws LockingException {
         if (username == null) {
             return false;
@@ -37,6 +45,13 @@ public class LockManager {
             return (username.equals(locks.get(lockable)));
         }
     }
+
+    /**
+     *
+     * @param lockable
+     * @return
+     * @throws LockingException
+     */
     public Object releaseLock(Object lockable) throws LockingException {
         Customer customer = (Customer) lockable;
         customer.unlock(customer.getLockingUser());
