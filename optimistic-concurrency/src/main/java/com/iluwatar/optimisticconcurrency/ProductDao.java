@@ -16,14 +16,14 @@ public class ProductDao implements Dao<Product> {
   /**
    * entry manager factory to use for creating entity manager.
    */
-  private EntityManagerFactory emf;
+  private final EntityManagerFactory emf;
 
   /**
    * Construct an instance of ProductDao.
-   * @param entityManagerFactory the entity manager factory to use.
+   * @param emFactory the entity manager factory to use.
    */
-  public ProductDao(final EntityManagerFactory entityManagerFactory) {
-    this.emf = entityManagerFactory;
+  public ProductDao(final EntityManagerFactory emFactory) {
+    this.emf = emFactory;
   }
 
   /**
@@ -33,10 +33,10 @@ public class ProductDao implements Dao<Product> {
    */
   @Override
   public Optional<Product> get(final long id) {
-    EntityManager em = emf.createEntityManager();
-    Optional<Product> result = Optional.ofNullable(
-        em.find(Product.class, id));
-    em.close();
+    final EntityManager entityManager = emf.createEntityManager();
+    final Optional<Product> result = Optional.ofNullable(
+        entityManager.find(Product.class, id));
+    entityManager.close();
     return result;
   }
 
@@ -46,10 +46,10 @@ public class ProductDao implements Dao<Product> {
    */
   @Override
   public List<Product> getAll() {
-    EntityManager em = emf.createEntityManager();
-    Query query = em.createQuery("SELECT e FROM Product e");
-    List<Product> result = query.getResultList();
-    em.close();
+    final EntityManager entityManager = emf.createEntityManager();
+    final Query query = entityManager.createQuery("SELECT e FROM Product e");
+    final List<Product> result = query.getResultList();
+    entityManager.close();
     return result;
   }
 
@@ -67,8 +67,7 @@ public class ProductDao implements Dao<Product> {
    * @param newProduct the product to be updated.
    * @param oldId id of the product to be updated.
    * @param oldVersion version of the product to be updated.
-   * @param useLock whether to enable locking.<br>
-   *                This is used to show difference.
+   * @param useLock whether to enable locking.
    * @throws OptimisticLockException when update with outdated version
    */
   @Override
@@ -76,21 +75,24 @@ public class ProductDao implements Dao<Product> {
                      final long oldId,
                      final int oldVersion,
                      final boolean useLock) throws OptimisticLockException {
-    var rowsAffected = new Object() {
-      private int num = 0;
+    final var rowsAffected = new Object() {
+      /**
+       * num.
+       */
+      private int num;
 
       public int getNum() {
         return num;
       }
 
-      public void setNum(final int n) {
-        num = n;
+      public void setNum(final int rows) {
+        num = rows;
       }
     };
 
     executeInsideTransaction(em -> {
       // construct query
-      Query query = em.createQuery("update Product set "
+      final Query query = em.createQuery("update Product set "
           + "id = :newId, "
           + "version = :newVersion, "
           + "name = :newName, "
@@ -126,7 +128,8 @@ public class ProductDao implements Dao<Product> {
    */
   @Override
   public void delete(final Product product) {
-    executeInsideTransaction(em -> em.remove(product));
+    executeInsideTransaction(em -> em.remove(
+        em.contains(product) ? product : em.merge(product)));
   }
 
   /**
@@ -134,26 +137,26 @@ public class ProductDao implements Dao<Product> {
    */
   public void  deleteAll() {
     executeInsideTransaction(em -> {
-      Query query = em.createQuery("DELETE FROM Product");
+      final Query query = em.createQuery("DELETE FROM Product");
       query.executeUpdate();
     });
   }
 
   /**
    * Execute operation in transaction.
-   * @param op operation to perform.
+   * @param action operation to perform.
    */
-  private void executeInsideTransaction(final Consumer<EntityManager> op) {
-    EntityManager em = emf.createEntityManager();
-    EntityTransaction tx = em.getTransaction();
+  private void executeInsideTransaction(final Consumer<EntityManager> action) {
+    final EntityManager entityManager = emf.createEntityManager();
+    final EntityTransaction transaction = entityManager.getTransaction();
     try {
-      tx.begin();
-      op.accept(em);
-      tx.commit();
+      transaction.begin();
+      action.accept(entityManager);
+      transaction.commit();
     } catch (RuntimeException e) {
-      tx.rollback();
+      transaction.rollback();
       throw e;
     }
-    em.close();
+    entityManager.close();
   }
 }

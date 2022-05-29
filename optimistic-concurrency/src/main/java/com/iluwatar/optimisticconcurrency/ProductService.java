@@ -17,22 +17,6 @@ public class ProductService {
   private final ProductDao productDao;
 
   /**
-   * message for not enough in stock.
-   */
-  static final String NOT_ENOUGH =
-      "There are not enough products in stock!";
-  /**
-   * message for when buy amount is negative.
-   */
-  static final String NEGATIVE_AMOUNT =
-      "Amount to buy should be more than zero!";
-  /**
-   * message for when product not found.
-   */
-  static final String NOT_EXIST =
-      "Product doesn't exist!";
-
-  /**
    * Construct an instance of ProductService.
    *
    * @param emf the entity manager factory for the ProductDao to use.
@@ -51,57 +35,77 @@ public class ProductService {
    *                  This allows result to be reproducible.
    * @param useLock   whether to enable locking.<br>
    *                  This is used to show difference.
+   * @throws NotEnoughException when not enough in stock.
+   * @throws NegativeAmountException when buy in negative amount.
+   * @throws NotExistException when product not found.
    */
   public void buy(final long productId, final int amount,
-                  final int delay, final boolean useLock) {
-    if (amount <= 0) {
-      LOGGER.error(NEGATIVE_AMOUNT);
-      return;
-    }
+                  final int delay, final boolean useLock)
+      throws NotEnoughException, NegativeAmountException, NotExistException {
+
+    checkAmount(amount);
 
     while (true) {
-      Optional<Product> found = productDao.get(productId);
+      final Optional<Product> found = productDao.get(productId);
       if (found.isPresent()) {
-        Product oldProduct = found.get();
-        long oldId = oldProduct.getId();
-        int oldVersion = oldProduct.getVersion();
-
-        // clone
-        Product newProduct = new Product(oldProduct);
-
+        // sleep
         try {
           Thread.sleep(delay);
         } catch (InterruptedException e) {
-          LOGGER.error(e.getMessage());
           Thread.currentThread().interrupt();
         }
+        // declare
+        final Product oldProduct = found.get();
 
+        final int remaining = oldProduct.getAmountInStock() - amount;
+        checkRemaining(remaining);
+        // clone
+        final Product newProduct = new Product(oldProduct);
         // make changes
-        int remaining = oldProduct.getAmountInStock() - amount;
-        if (remaining < 0) {
-          LOGGER.info(NOT_ENOUGH);
-          return;
-        }
         newProduct.setAmountInStock(remaining);
 
         try {
-          productDao.update(newProduct, oldId,
-              oldVersion, useLock);
+          productDao.update(newProduct, oldProduct.getId(),
+              oldProduct.getVersion(), useLock);
         } catch (OptimisticLockException e) {
-          LOGGER.error(e.getMessage());
-          LOGGER.error("(Thread-{}) Buy operation is not successful!",
-              Thread.currentThread().getId());
+          if (LOGGER.isErrorEnabled()) {
+            LOGGER.error(e.getMessage());
+            LOGGER.error("(Thread-{}) Buy operation is not successful!",
+                Thread.currentThread().getId());
+          }
           continue;
         }
 
-        LOGGER.info("(Thread-{}) Buy operation is successful!%n",
-            Thread.currentThread().getId());
-        return;
-
+        if (LOGGER.isInfoEnabled()) {
+          LOGGER.info("(Thread-{}) Buy operation is successful!%n",
+              Thread.currentThread().getId());
+        }
       } else {
-        LOGGER.error(NOT_EXIST);
-        return;
+        throw new NotExistException();
       }
+      return;
+    }
+  }
+
+  /**
+   * check amount is not negative.
+   * @param amount amount to check.
+   * @throws NegativeAmountException when buy negative amount.
+   */
+  private void checkAmount(final int amount) throws NegativeAmountException {
+    if (amount <= 0) {
+      throw new NegativeAmountException();
+    }
+  }
+
+  /**
+   * check remaining is not negative.
+   * @param remaining remaining to check.
+   * @throws NotEnoughException when not enough amount in stock.
+   */
+  private void checkRemaining(final int remaining) throws NotEnoughException {
+    if (remaining < 0) {
+      throw new NotEnoughException();
     }
   }
 }

@@ -56,14 +56,10 @@ public class Product {
 
   /**
    * Construct a Product instance with specified info.
-   * @param productName The product's name.
-   *             It should not be blank.
-   * @param desc The product's description.
-   *                    It should not be blank.
-   * @param productPrice The product's price.
-   *              It should not be negative.
-   * @param amount The product's amount in stock.
-   *                      It should not be negative.
+   * @param productName The product's name.It should not be blank.
+   * @param desc The product's description. It should not be blank.
+   * @param productPrice The product's price. It should not be negative.
+   * @param amount The product's amount in stock. It should not be negative.
    */
   public Product(final String productName, final String desc,
                  final double productPrice, final int amount) {
@@ -130,7 +126,7 @@ public class Product {
    * Set the name of the product.
    * @param productName name to set for the product. It should not be blank.
    */
-  public void setName(final String productName) {
+  public final void setName(final String productName) {
     if (productName.isBlank()) {
       throw new IllegalArgumentException("Name cannot be blank.");
     }
@@ -149,7 +145,7 @@ public class Product {
    * Set the product's description.
    * @param desc description to set for the product. It should not be blank.
    */
-  public void setDescription(final String desc) {
+  public final void setDescription(final String desc) {
     if (desc.isBlank()) {
       throw new IllegalArgumentException("Name cannot be blank.");
     }
@@ -169,7 +165,7 @@ public class Product {
    * @param productPrice price to set for the product.
    *                     It should not be negative.
    */
-  public void setPrice(final double productPrice) {
+  public final void setPrice(final double productPrice) {
     if (productPrice < 0) {
       throw new IllegalArgumentException("Price cannot be negative");
     }
@@ -189,7 +185,7 @@ public class Product {
    * @param amount amount to set for the product.
    *                   It should not be negative.
    */
-  public void setAmountInStock(final int amount) {
+  public final void setAmountInStock(final int amount) {
     if (amount < 0) {
       throw new IllegalArgumentException("Amount cannot be negative");
     }

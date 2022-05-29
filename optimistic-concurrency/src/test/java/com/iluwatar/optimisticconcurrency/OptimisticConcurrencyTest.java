@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -15,11 +16,26 @@ import java.util.Optional;
  */
 @Slf4j
 public class OptimisticConcurrencyTest {
-    static EntityManagerFactory emf;
-    static ProductDao productDao;
-    static ProductService productService;
-    static ArrayList<Long> productIdList;
+    /**
+     * emf
+     */
+    private static EntityManagerFactory emf;
+    /**
+     * productDao
+     */
+    private static ProductDao productDao;
+    /**
+     * productService
+     */
+    private static ProductService productService;
+    /**
+     * productIdList
+     */
+    private static List<Long> productIdList;
 
+    /**
+     * init
+     */
     @BeforeClass
     public static void init() {
         emf = Persistence.createEntityManagerFactory("AdvancedMapping");
@@ -29,18 +45,22 @@ public class OptimisticConcurrencyTest {
         //clear table
         productDao.deleteAll();
         // insert some products in database
-        Product apple = new Product("apple", "The apple is very delicious!", 1.5, 10);
-        Product banana = new Product("banana", "The banana is fresh!", 2.1, 20);
-        Product laptop = new Product("laptop", "This laptop is very powerful.", 899.99, 5);
-        Product phone = new Product("phone", "This phone is waterproof.", 729.99, 8);
-        Product mouse = new Product("mouse", "This is a bluetooth mouse.", 35.99, 20);
-        Product keyboard = new Product("keyboard", "This is a mechanical keyboard", 77.99, 30);
+        final Product apple = new Product("apple", "The apple is very delicious!", 1.5, 10);
+        final Product banana = new Product("banana", "The banana is fresh!", 2.1, 20);
+        final Product laptop = new Product("laptop", "This laptop is very powerful.", 899.99, 5);
+        final Product phone = new Product("phone", "This phone is waterproof.", 729.99, 8);
+        final Product mouse = new Product("mouse", "This is a bluetooth mouse.", 35.99, 20);
+        final Product keyboard = new Product("keyboard", "This is a mechanical keyboard.", 77.99, 30);
+        final Product coffee = new Product("coffee", "This coffee is local sourced.", 22.99, 12);
+        final Product speaker = new Product("speaker", "loud and clear!", 57.22, 11);
         productDao.save(apple);
         productDao.save(banana);
         productDao.save(laptop);
         productDao.save(phone);
         productDao.save(mouse);
         productDao.save(keyboard);
+        productDao.save(coffee);
+        productDao.save(speaker);
         // save product ids
         productIdList.add(apple.getId());
         productIdList.add(banana.getId());
@@ -48,8 +68,14 @@ public class OptimisticConcurrencyTest {
         productIdList.add(phone.getId());
         productIdList.add(mouse.getId());
         productIdList.add(keyboard.getId());
+        productIdList.add(coffee.getId());
+        productIdList.add(speaker.getId());
+
     }
 
+    /**
+     * close
+     */
     @AfterClass
     public static void close() {
         emf.close();
@@ -67,8 +93,14 @@ public class OptimisticConcurrencyTest {
          * to ensure that Thread 2 doesn't fetch the data updated by Thread 1
          * This succeeds.
          */
-        Thread t1 = new Thread(() -> {
-            productService.buy(productIdList.get(0), 2, 1000, true);
+        final Thread thread1 = new Thread(() -> {
+            try {
+                productService.buy(productIdList.get(0), 2, 1000, true);
+            } catch (NotEnoughException | NegativeAmountException | NotExistException e) {
+                if (LOGGER.isErrorEnabled()) {
+                    LOGGER.error(e.getMessage());
+                }
+            }
         });
 
         /**
@@ -77,28 +109,34 @@ public class OptimisticConcurrencyTest {
          * Thus, thread 2 will have outdated version.
          * This first fails and then retries.
          */
-        Thread t2 = new Thread(() -> {
-            productService.buy(productIdList.get(0), 2, 2000, true);
+        final Thread thread2 = new Thread(() -> {
+            try {
+                productService.buy(productIdList.get(0), 2, 2000, true);
+            } catch (NotEnoughException | NegativeAmountException | NotExistException e) {
+                if (LOGGER.isErrorEnabled()) {
+                    LOGGER.error(e.getMessage());
+                }
+            }
         });
 
-        t1.start();
-        t2.start();
+        thread1.start();
+        thread2.start();
 
         try {
             // wait for both threads to end
-            t1.join();
-            t2.join();
+            thread1.join();
+            thread2.join();
             // assert
-            Optional result = productDao.get(productIdList.get(0));
+            final Optional result = productDao.get(productIdList.get(0));
             if (result.isPresent()) {
-                Product product = (Product) result.get();
-                Assert.assertEquals(6, product.getAmountInStock());
+                final Product product = (Product) result.get();
+                Assert.assertEquals("testBuySameProductConcurrently passed! (1/1)",
+                    6, product.getAmountInStock());
             } else {
                 Assert.fail("Product doesn't exist!");
             }
 
         } catch (InterruptedException e) {
-            LOGGER.error(e.getMessage());
             Thread.currentThread().interrupt();
         }
     }
@@ -108,12 +146,24 @@ public class OptimisticConcurrencyTest {
      */
     @Test
     public void testBuyDiffProductsConcurrently() {
-        Thread t1 = new Thread(() -> {
-            productService.buy(productIdList.get(1), 2, 0, true);
+        final Thread thread1 = new Thread(() -> {
+            try {
+                productService.buy(productIdList.get(1), 2, 0, true);
+            } catch (NotEnoughException | NegativeAmountException | NotExistException e) {
+                if (LOGGER.isErrorEnabled()) {
+                    LOGGER.error(e.getMessage());
+                }
+            }
         });
 
-        Thread t2 = new Thread(() -> {
-            productService.buy(productIdList.get(2), 3, 0, true);
+        final Thread thread2 = new Thread(() -> {
+            try {
+                productService.buy(productIdList.get(2), 3, 0, true);
+            } catch (NotEnoughException | NegativeAmountException | NotExistException e) {
+                if (LOGGER.isErrorEnabled()) {
+                    LOGGER.error(e.getMessage());
+                }
+            }
         });
         /**
          * Since Thread 1 and 2 are buying different products,
@@ -121,27 +171,28 @@ public class OptimisticConcurrencyTest {
          * both buy operations should succeed.
          */
 
-        t1.start();
-        t2.start();
+        thread1.start();
+        thread2.start();
 
         try {
             // wait for both threads to end
-            t1.join();
-            t2.join();
+            thread1.join();
+            thread2.join();
             // assert
-            Optional result1 = productDao.get(productIdList.get(1));
-            Optional result2 = productDao.get(productIdList.get(2));
+            final Optional result1 = productDao.get(productIdList.get(1));
+            final Optional result2 = productDao.get(productIdList.get(2));
             if (result1.isPresent() && result2.isPresent()) {
-                Product banana = (Product) result1.get();
-                Product laptop = (Product) result2.get();
-                Assert.assertEquals(18, banana.getAmountInStock());
-                Assert.assertEquals(2, laptop.getAmountInStock());
+                final Product banana = (Product) result1.get();
+                final Product laptop = (Product) result2.get();
+                Assert.assertEquals("testBuyDiffProductsConcurrently passed (1/2)",
+                    18, banana.getAmountInStock());
+                Assert.assertEquals("testBuyDiffProductsConcurrently passed! (2/2)",
+                    2, laptop.getAmountInStock());
             } else {
                 Assert.fail("Product doesn't exist!");
             }
 
         } catch (InterruptedException e) {
-            LOGGER.error(e.getMessage());
             Thread.currentThread().interrupt();
         }
     }
@@ -150,7 +201,7 @@ public class OptimisticConcurrencyTest {
      * Test by buying a product two times sequentially
      */
     @Test
-    public void testBuySameProductSequentially() {
+    public void testBuySameProductSequentially() throws NegativeAmountException, NotEnoughException, NotExistException {
         /**
          * Since buy operations take place in sequence,
          * there shouldn't be any conflict
@@ -158,17 +209,74 @@ public class OptimisticConcurrencyTest {
         productService.buy(productIdList.get(3), 7, 0, true);
         productService.buy(productIdList.get(4), 10, 0, true);
         // assert
-        Optional result1 = productDao.get(productIdList.get(3));
-        Optional result2 = productDao.get(productIdList.get(4));
+        final Optional result1 = productDao.get(productIdList.get(3));
+        final Optional result2 = productDao.get(productIdList.get(4));
         if (result1.isPresent() && result2.isPresent()) {
-            Product phone = (Product) result1.get();
-            Product mouse = (Product) result2.get();
-            Assert.assertEquals(1, phone.getAmountInStock());
-            Assert.assertEquals(10, mouse.getAmountInStock());
+            final Product phone = (Product) result1.get();
+            final Product mouse = (Product) result2.get();
+            Assert.assertEquals("testBuySameProductSequentially passed! (1/2)",
+                1, phone.getAmountInStock());
+            Assert.assertEquals("testBuySameProductSequentially passed! (2/2)",
+                10, mouse.getAmountInStock());
         } else {
             Assert.fail("Product doesn't exist!");
         }
     }
 
+    /**
+     * Test by passing negative amount to buy
+     */
+    @Test
+    public void testNegativeAmountException() throws NotEnoughException, NotExistException {
+        try {
+            productService.buy(productIdList.get(5), -2, 0, true);
+        } catch (NegativeAmountException e) {
+            if (LOGGER.isErrorEnabled()) {
+                LOGGER.error(e.getMessage());
+            }
+            Assert.assertTrue("testNegativeAmountException passed!",
+                true);
+        }
+    }
 
+    /**
+     * Test by buying more than there is in stock
+     */
+    @Test
+    public void testNotEnoughException() throws NegativeAmountException, NotExistException {
+        try {
+            productService.buy(productIdList.get(6), 13, 0, true);
+        } catch (NotEnoughException e) {
+            if (LOGGER.isErrorEnabled()) {
+                LOGGER.error(e.getMessage());
+            }
+            Assert.assertTrue("testNotEnoughException passed!",
+                true);
+        }
+    }
+
+    /**
+     * Test by removing product
+     */
+    @Test
+    public void testNotExistException() throws NotEnoughException, NegativeAmountException {
+        final Optional result = productDao.get(productIdList.get(7));
+        if (result.isPresent()) {
+            final Product speaker = (Product) result.get();
+            productDao.delete(speaker);
+
+            try {
+                productService.buy(speaker.getId(), 3, 2000, true);
+                Assert.fail("Should throw NotExistException!");
+            } catch (NotExistException e) {
+                if (LOGGER.isErrorEnabled()) {
+                    LOGGER.error(e.getMessage());
+                }
+                Assert.assertTrue("testNotExistException passed!",
+                        true);
+            }
+        } else {
+            Assert.fail("Product doesn't exist!");
+        }
+    }
 }
