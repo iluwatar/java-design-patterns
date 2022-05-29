@@ -1,0 +1,78 @@
+@startuml
+package com.iluwatar.Client-Server {
+  class RunnableClient{
+    - clientName: String
+    - hostname: String
+    - port: int
+    + RunnableClient(String, String, int)
+    + start(): void
+    + run(): void
+  }
+  class RunnableServer{
+    - port: int
+    + RunnableServer(int)
+    + start(): void
+    + run(): void
+  }
+  class ClientApp{
+    + ClientApp()
+    + showHelp():void
+    + main(String[]):void
+  }
+  class ClientJamie{
+    + ClientJamie()
+    + showHelp():void
+    + main(String[]):void
+  }
+  class ServerApp{
+    + ServerApp()
+    + showHelp():void
+    + main(String[]):void
+  }
+  class Client{
+    - clientName: String
+    - hostname: String
+    - port: int
+    + Client(String, String, int)
+    + disconnect():void
+    + sendCommand(ServerCommand):void
+    + sendMultiPartCommand(String[]):void
+    + connect():void
+  }
+  class Server{
+    - socket: ServerSocket
+    - port: int
+    + Server(int)
+    + setSocket():void
+    + startServer():void
+    + stopServer():void
+  }
+  class ServerThread{
+    + ServerThread(Socket)
+    + run(): void
+  }
+  enum ServerCommand{
+    + ServerCommand()
+    + valueOf(String):ServerCommand
+    + values():ServerCommand[]
+  }
+  class App{
+    + App()
+    + main(args : String[]) {static}
+
+  }
+}
+
+App -.-> RunnableClient
+App -.-> RunnableServer
+RunnableClient -.-> ClientApp
+RunnableClient -.-> ClientJamie
+RunnableServer -.-> ServerApp
+ClientApp -.-> Client
+ClientJamie -.-> Client
+ServerApp -.-> Server
+Server -.-> ServerThread
+Client -.-> ServerCommand
+ServerThread -.-> ServerCommand
+
+@enduml
