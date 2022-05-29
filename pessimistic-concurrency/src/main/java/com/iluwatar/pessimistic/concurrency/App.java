@@ -16,12 +16,11 @@ public class App {
    * @param args args to pass if needed
    */
   public static void main(String[] args) {
-    Map<String, Object> properties = new HashMap();
-    properties.put("javax.persistence.query.timeout", 4000);
     EntityManagerFactory emf =
-        Persistence.createEntityManagerFactory("AdvancedMapping", properties);
+        Persistence.createEntityManagerFactory("AdvancedMapping");
 
     CustomerService customerService = new CustomerService(emf);
+    CustomerDao customerDao = new CustomerDao(emf);
     customerService.clearTable();
     Customer obj1 = new Customer("John");
     Customer obj2 = new Customer("Abby");
@@ -106,6 +105,18 @@ public class App {
       t2.start();
       t1.join();
       t2.join();
+      long id1 = obj1.getId();
+      Optional<Customer> result1 = customerDao.get(id1);
+      result1.ifPresent(customer -> LOGGER.info(customer.getName()));
+      long id2 = obj1.getId();
+      Optional<Customer> result2 = customerDao.get(id2);
+      result2.ifPresent(customer -> LOGGER.info(customer.getName()));
+      long id3 = obj1.getId();
+      Optional<Customer> result3 = customerDao.get(id3);
+      result3.ifPresent(customer -> LOGGER.info(customer.getName()));
+      emf.close();
+
+
     } catch (InterruptedException e) {
       e.printStackTrace();
     }
