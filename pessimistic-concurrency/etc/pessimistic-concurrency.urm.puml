@@ -1,0 +1,70 @@
+@startuml
+package com.iluwatar.pessimistic.concurrency {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Customer {
+    - id : long
+    - lockingUser : String
+    - name : String
+    + Customer()
+    + Customer(name : String)
+    + getId() : long
+    + getLockingUser() : String
+    + getName() : String
+    + isLocked() : boolean
+    + lock(username : String)
+    + setId(id : long)
+    + setLockingUser(lockingUser : String)
+    + setName(name : String)
+    + unlock(username : String)
+  }
+  class CustomerDao {
+    - emf : EntityManagerFactory
+    + CustomerDao(emf : EntityManagerFactory)
+    + delete(customer : Customer)
+    + deleteAll()
+    - executeInsideTransaction(action : Consumer<EntityManager>)
+    + get(id : long) : Optional<Customer>
+    + getAll() : List<Customer>
+    + save(customer : Customer)
+    + update(customer : Customer, params : String[])
+    + verifyLock(customer : Customer, editingUser : String) : boolean
+  }
+  class CustomerService {
+    - customerDao : CustomerDao
+    - lockManager : LockManager
+    + CustomerService(emf : EntityManagerFactory)
+    + clearTable()
+    + save(customer : Customer)
+    + startEditingCustomerInfo(editingUser : String, customer : Customer) : Optional<Customer>
+    + updateCustomerInfo(editingUser : String, customer : Customer, newName : String)
+  }
+  interface Dao<T> {
+    + delete(T) {abstract}
+    + get(long) : Optional<T> {abstract}
+    + getAll() : List<T> {abstract}
+    + save(T) {abstract}
+    + update(T, String[]) {abstract}
+  }
+  class LockManager {
+    - locks : HashMap<Object, String>
+    - managers : HashMap<String, LockManager> {static}
+    + LockManager()
+    + getLockManager(managerName : String) : LockManager {static}
+    + releaseLock(lockable : Object) : Object
+    + requestLock(username : String, lockable : Object) : boolean
+  }
+  interface Lockable {
+    + isLocked() : boolean {abstract}
+    + lock(String) {abstract}
+    + unlock(String) {abstract}
+  }
+}
+CustomerService -->  "-lockManager" LockManager
+CustomerService -->  "-customerDao" CustomerDao
+Customer ..|> Lockable 
+CustomerDao ..|> Dao 
+@enduml
