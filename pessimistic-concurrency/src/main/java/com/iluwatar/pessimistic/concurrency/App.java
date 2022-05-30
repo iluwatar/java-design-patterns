@@ -37,22 +37,18 @@ public class App {
                     customerService.startEditingCustomerInfo("user1", obj1);
                 Thread.sleep(100);
                 if (customer1.isPresent()) {
-                  try {
                     customerService.updateCustomerInfo("user1", obj1, "Ben");
-                  } catch (LockingException e) {
-                    LOGGER.info(e.getMessage());
-                  }
                 }
                 Optional<Customer> customer3 =
                     customerService.startEditingCustomerInfo("user1", obj3);
                 if (customer3.isPresent()) {
-                  try {
                     customerService.updateCustomerInfo("user1", obj3, "Eric");
-                  } catch (LockingException e) {
-                    LOGGER.info(e.getMessage());
-                  }
                 }
-              } catch (Exception e) {
+              } catch (InterruptedException e) {
+                LOGGER.info(e.getMessage());
+                Thread.currentThread().interrupt();
+
+              } catch (LockingException e) {
                 LOGGER.info(e.getMessage());
               }
             });
@@ -63,35 +59,24 @@ public class App {
                 Optional<Customer> customer1 =
                     customerService.startEditingCustomerInfo("user1", obj1);
                 if (customer1.isPresent()) {
-
                   customerService.updateCustomerInfo("user1", obj1, "Eren");
                 }
-              } catch (LockingException e) {
-                LOGGER.info(e.getMessage());
-              }
-              try {
                 Optional<Customer> customer2 =
                     customerService.startEditingCustomerInfo("user1", obj2);
                 if (customer2.isPresent()) {
-                  try {
                     customerService.updateCustomerInfo("user1", obj2, "Mikasa");
-                  } catch (LockingException e) {
-                    LOGGER.info(e.getMessage());
-                  }
+                }
+                Thread.sleep(1000);
+                Optional<Customer> customer1_retry =
+                    customerService.startEditingCustomerInfo("user1", obj1);
+                if (customer1_retry.isPresent()) {
+                  customerService.updateCustomerInfo("user1", obj1, "Eren");
                 }
               } catch (LockingException e) {
                 LOGGER.info(e.getMessage());
-              }
-              try {
-                Thread.sleep(1000);
-                Optional<Customer> customer1 =
-                    customerService.startEditingCustomerInfo("user1", obj1);
-                if (customer1.isPresent()) {
-
-                  customerService.updateCustomerInfo("user1", obj1, "Eren");
-                }
-              } catch (Exception e) {
+              } catch (InterruptedException e) {
                 LOGGER.info(e.getMessage());
+                Thread.currentThread().interrupt();
               }
             });
     try {
@@ -113,6 +98,8 @@ public class App {
 
     } catch (InterruptedException e) {
       LOGGER.info(e.getMessage());
+      Thread.currentThread().interrupt();
+
     }
   }
 }

@@ -18,13 +18,6 @@ public interface Dao<T> {
   Optional<T> get(long id);
 
   /**
-   * Get all entities from database that belong to the Entity class.
-   *
-   * @return list of entities in the Entity class.
-   */
-  List<T> getAll();
-
-  /**
    * Save entry in the database.
    *
    * @param t the entry to be saved.

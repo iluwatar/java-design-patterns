@@ -23,11 +23,6 @@ public class Customer implements Lockable {
   public Customer() {}
 
   @Override
-  public boolean isLocked() {
-    return lockingUser != null;
-  }
-
-  @Override
   public void lock(String username) throws LockingException {
     if (username == null) {
       throw new LockingException("No User Provided.");

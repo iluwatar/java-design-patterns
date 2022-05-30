@@ -28,15 +28,6 @@ public class CustomerDao implements Dao<Customer> {
   }
 
   @Override
-  public List<Customer> getAll() {
-    EntityManager entityManager = emf.createEntityManager();
-    Query query = entityManager.createQuery("SELECT e FROM Customer e");
-    List<Customer> result = query.getResultList();
-    entityManager.close();
-    return result;
-  }
-
-  @Override
   public void save(Customer customer) {
     executeInsideTransaction(entityManager -> entityManager.persist(customer));
   }
