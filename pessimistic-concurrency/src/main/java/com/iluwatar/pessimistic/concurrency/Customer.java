@@ -1,13 +1,10 @@
 package com.iluwatar.pessimistic.concurrency;
 
-import java.util.Objects;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "customers")
@@ -27,7 +24,7 @@ public class Customer implements Lockable {
 
   @Override
   public boolean isLocked() {
-    return (lockingUser != null);
+    return lockingUser != null;
   }
 
   @Override
@@ -38,7 +35,7 @@ public class Customer implements Lockable {
     synchronized (this) {
       if (lockingUser == null) {
         lockingUser = username;
-      } else if ((lockingUser != null) && (!lockingUser.equals(username))) {
+      } else if (!lockingUser.equals(username)) {
         throw new LockingException("Resource already locked.");
       }
     }
@@ -46,7 +43,7 @@ public class Customer implements Lockable {
 
   @Override
   public void unlock(String username) throws LockingException {
-    if ((lockingUser != null) && (lockingUser.equals(username))) {
+    if (lockingUser != null && lockingUser.equals(username)) {
       lockingUser = null;
     } else if (lockingUser != null) {
       throw new LockingException("Resource already locked.");

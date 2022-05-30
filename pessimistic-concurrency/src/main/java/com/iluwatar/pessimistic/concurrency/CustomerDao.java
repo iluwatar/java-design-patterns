@@ -1,8 +1,6 @@
 package com.iluwatar.pessimistic.concurrency;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -10,9 +8,7 @@ import java.util.function.Consumer;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
-import javax.persistence.LockModeType;
 import javax.persistence.Query;
-import javax.swing.text.html.Option;
 
 public class CustomerDao implements Dao<Customer> {
   private EntityManagerFactory emf;

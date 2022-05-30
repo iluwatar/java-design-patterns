@@ -3,7 +3,6 @@ package com.iluwatar.pessimistic.concurrency;
 import java.util.Optional;
 
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.LockModeType;
 
 public class CustomerService {
   private final CustomerDao customerDao;
@@ -56,6 +55,5 @@ public class CustomerService {
     } else {
       throw new LockingException("Permission not granted.");
     }
-    //        System.out.println(customer.isLocked());
   }
 }

@@ -1,9 +1,6 @@
 package com.iluwatar.pessimistic.concurrency;
 
-import java.beans.Transient;
-import java.sql.Time;
 import java.util.HashMap;
-import java.util.concurrent.TimeoutException;
 
 public class LockManager {
   private final HashMap<Object, String> locks;
@@ -52,7 +49,7 @@ public class LockManager {
         }
         return true;
       }
-      return (username.equals(locks.get(lockable)));
+      return username.equals(locks.get(lockable));
     }
   }
 

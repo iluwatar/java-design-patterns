@@ -1,7 +1,5 @@
 package com.iluwatar.pessimistic.concurrency;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 
 import javax.persistence.EntityManagerFactory;
@@ -55,7 +53,7 @@ public class App {
                   }
                 }
               } catch (Exception e) {
-                throw new RuntimeException(e);
+                LOGGER.info(e.getMessage());
               }
             });
     Thread t2 =
@@ -64,7 +62,6 @@ public class App {
               try {
                 Optional<Customer> customer1 =
                     customerService.startEditingCustomerInfo("user1", obj1);
-                System.out.println(customer1);
                 if (customer1.isPresent()) {
 
                   customerService.updateCustomerInfo("user1", obj1, "Eren");
@@ -89,15 +86,12 @@ public class App {
                 Thread.sleep(1000);
                 Optional<Customer> customer1 =
                     customerService.startEditingCustomerInfo("user1", obj1);
-                System.out.println(customer1);
                 if (customer1.isPresent()) {
 
                   customerService.updateCustomerInfo("user1", obj1, "Eren");
                 }
-              } catch (LockingException e) {
-                LOGGER.info(e.getMessage());
               } catch (Exception e) {
-                throw new RuntimeException(e);
+                LOGGER.info(e.getMessage());
               }
             });
     try {
@@ -118,7 +112,7 @@ public class App {
 
 
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.info(e.getMessage());
     }
   }
 }

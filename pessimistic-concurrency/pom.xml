@@ -30,19 +30,6 @@
             17
         </maven.compiler.target>
     </properties>
-
-    <!--    <dependencies>-->
-    <!--        <dependency>-->
-    <!--            <groupId>org.hibernate.javax.persistence</groupId>-->
-    <!--            <artifactId>hibernate-jpa-2.1-api</artifactId>-->
-    <!--            <version>1.0.2.Final</version>-->
-    <!--        </dependency>-->
-    <!--        <dependency>-->
-    <!--            <groupId>com.h2database</groupId>-->
-    <!--            <artifactId>h2</artifactId>-->
-    <!--            <version>1.4.200</version>-->
-    <!--        </dependency>-->
-    <!--    </dependencies>-->
     <dependencies>
         <dependency>
             <groupId>org.hibernate.javax.persistence</groupId>
@@ -87,16 +74,36 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.postgresql</groupId>-->
-        <!--            <artifactId>postgresql</artifactId>-->
-        <!--            <version>42.2.4</version>-->
-        <!--        </dependency>-->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>2.1.210</version>
         </dependency>
     </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.7.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.0.0</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>

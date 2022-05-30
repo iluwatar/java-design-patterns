@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import lombok.extern.slf4j.Slf4j;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
@@ -93,6 +94,7 @@ public class PessimisticConcurrencyTest {
       t2.join();
       long id = customers.get(0).getId();
       Optional<Customer> result = customerDao.get(id);
+      assertTrue(result.isPresent());
       result.ifPresent(customer -> assertEquals("Ben", customer.getName()));
 
     } catch (InterruptedException e) {
