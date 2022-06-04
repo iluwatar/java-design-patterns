@@ -51,7 +51,6 @@ class DelayedRemoteServiceTest {
    *
    * @throws RemoteServiceException
    */
-  //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   @Test
   public void testParameterizedConstructor() throws RemoteServiceException {
       var obj = new DelayedRemoteService(System.nanoTime()-2000 * 1000 * 1000L,1); //specify by L to prevent overflow.

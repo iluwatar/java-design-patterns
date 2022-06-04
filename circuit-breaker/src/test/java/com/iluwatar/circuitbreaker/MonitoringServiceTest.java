@@ -40,7 +40,6 @@ class MonitoringServiceTest {
     assertEquals(response, "Local Service is working");
   }
 
-  //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   @Test
   void testDelayedRemoteResponseSuccess() {
     var delayedService = new DelayedRemoteService(System.nanoTime()-2 * 1000 * 1000 * 1000L, 2); //specify by L to prevent overflow.
@@ -54,7 +53,6 @@ class MonitoringServiceTest {
     assertEquals(response, "Delayed service is working");
   }
 
-  //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   @Test
   void testDelayedRemoteResponseFailure() {
     var delayedService = new DelayedRemoteService(System.nanoTime(), 2);
@@ -67,7 +65,6 @@ class MonitoringServiceTest {
     assertEquals(response, "Delayed service is down");
   }
 
-  //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   @Test
   void testQuickRemoteServiceResponse() {
     var delayedService = new QuickRemoteService();

@@ -62,7 +62,6 @@ public class App {
    *
    * @param args command line args
    */
-  //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   public static void main(String[] args) {
 
     var serverStartTime = System.nanoTime();

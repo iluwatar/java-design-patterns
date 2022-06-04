@@ -34,7 +34,6 @@ import org.junit.jupiter.api.Test;
 public class DefaultCircuitBreakerTest {
 
   //long timeout, int failureThreshold, long retryTimePeriod
-  //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   @Test
   void testEvaluateState() {
     var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 100);
@@ -58,7 +57,6 @@ public class DefaultCircuitBreakerTest {
   }
 
   @Test
-    //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   void testSetStateForBypass() {
     var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 2000 * 1000 * 1000L); //specify by L to prevent overflow.
     //Right now, failureCount<failureThreshold, so state should be closed
@@ -67,7 +65,6 @@ public class DefaultCircuitBreakerTest {
     assertEquals(circuitBreaker.getState(), "OPEN");
   }
 
-  //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1957
   @Test
   void testApiResponses() throws RemoteServiceException {
     RemoteService mockService = new RemoteService() {
