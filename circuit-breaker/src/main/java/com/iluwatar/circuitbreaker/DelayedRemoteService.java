@@ -60,7 +60,8 @@ public class DelayedRemoteService implements RemoteService {
     //with 1.0 first. We then check if it is greater or less than specified delay and then
     //send the reply
     if ((currentTime - serverStartTime) * 1.0 / (1000 * 1000 * 1000L) < delay) {
-      //Can use Thread.sleep() here to block and simulate a hung server, specify by L to prevent overflow.
+      //Can use Thread.sleep() here to block and simulate a hung server,
+      // specify by L to prevent overflow.
       throw new RemoteServiceException("Delayed service is down");
     }
     return "Delayed service is working";
