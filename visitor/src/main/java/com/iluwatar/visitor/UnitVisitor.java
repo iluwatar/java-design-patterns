@@ -30,19 +30,16 @@ public interface UnitVisitor {
 
   /**
    * Soldier visit method.
-   * @param soldier An implementation class of Unit.
    */
   void visit(Soldier soldier);
 
   /**
    * Sergeant visit method.
-   * @param sergeant An implementation class of Unit.
    */
   void visit(Sergeant sergeant);
 
   /**
    * Commander visit method.
-   * @param commander An implementation class of Unit.
    */
   void visit(Commander commander);
 
