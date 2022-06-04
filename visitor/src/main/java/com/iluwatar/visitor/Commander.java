@@ -38,7 +38,6 @@ public class Commander extends Unit {
    */
   @Override
   public void accept(UnitVisitor visitor) {
-    //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1968
     visitor.visit(this);
     super.accept(visitor);
   }

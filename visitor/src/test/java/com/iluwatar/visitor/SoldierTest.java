@@ -42,7 +42,6 @@ public class SoldierTest extends UnitTest<Soldier> {
 
   @Override
   void verifyVisit(Soldier unit, UnitVisitor mockedVisitor) {
-    //CS304 (manually written) Issue link: https://github.com/iluwatar/java-design-patterns/issues/1968
     verify(mockedVisitor).visit(eq(unit));
   }
 

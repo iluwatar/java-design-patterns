@@ -28,8 +28,6 @@ package com.iluwatar.visitor;
  */
 public interface UnitVisitor {
 
-  //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1968
-
   /**
    * Soldier visit method.
    * @param soldier An implementation class of Unit.

@@ -30,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class SergeantVisitor implements UnitVisitor {
-  //CS304 Issue link: https://github.com/iluwatar/java-design-patterns/issues/1968
 
   /**
    * Soldier Visitor method.
