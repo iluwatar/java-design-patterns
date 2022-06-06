@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type Pearson test.
  */
-public class PersonTest {
+class PersonTest {
   /**
    * Pearson test.
    */

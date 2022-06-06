@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 /**
  * The type App test.
  */
-public class AppTest {
+class AppTest {
   /**
    * App test.
    */
