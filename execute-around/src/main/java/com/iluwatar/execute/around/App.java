@@ -53,9 +53,10 @@ public class App {
     new SimpleFileWriter("testfile.txt", writeHello);
 
     // print the file contents
-    var scanner = new Scanner(new File("testfile.txt"));
-    while (scanner.hasNextLine()) {
-      LOGGER.info(scanner.nextLine());
+    try (var scanner = new Scanner(new File("testfile.txt"))) {
+      while (scanner.hasNextLine()) {
+        LOGGER.info(scanner.nextLine());
+      }
     }
   }
 }
