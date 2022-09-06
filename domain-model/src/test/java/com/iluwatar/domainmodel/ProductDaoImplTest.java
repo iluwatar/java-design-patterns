@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -39,7 +39,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ProductDaoImplTest {
 
     public static final String INSERT_PRODUCT_SQL =
-            "insert into PRODUCTS values('product', 100, DATE '2021-06-27')";
+            "insert into PRODUCTS values('product', 100, DATE '2022-06-27')";
     public static final String SELECT_PRODUCTS_SQL =
             "select name, price, expiration_date from PRODUCTS";
 
@@ -62,7 +62,7 @@ class ProductDaoImplTest {
                 Product.builder()
                         .name("product")
                         .price(Money.of(USD, 100.0))
-                        .expirationDate(LocalDate.parse("2021-06-27"))
+                        .expirationDate(LocalDate.parse("2022-06-27"))
                         .productDao(productDao)
                         .build();
     }
@@ -85,7 +85,7 @@ class ProductDaoImplTest {
         assertTrue(product.isPresent());
         assertEquals("product", product.get().getName());
         assertEquals(Money.of(USD, 100), product.get().getPrice());
-        assertEquals(LocalDate.parse("2021-06-27"), product.get().getExpirationDate());
+        assertEquals(LocalDate.parse("2022-06-27"), product.get().getExpirationDate());
     }
 
     @Test

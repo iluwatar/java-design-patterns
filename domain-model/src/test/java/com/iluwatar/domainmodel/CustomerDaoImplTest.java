@@ -1,6 +1,6 @@
 /*
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -68,7 +68,7 @@ class CustomerDaoImplTest {
         Product.builder()
             .name("product")
             .price(Money.of(USD, 100.0))
-            .expirationDate(LocalDate.parse("2021-06-27"))
+            .expirationDate(LocalDate.parse("2022-06-27"))
             .productDao(new ProductDaoImpl(dataSource))
             .build();
   }
