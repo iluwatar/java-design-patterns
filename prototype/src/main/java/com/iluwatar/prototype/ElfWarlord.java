@@ -24,27 +24,20 @@
 package com.iluwatar.prototype;
 
 import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
 
 /**
  * ElfWarlord.
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
+@RequiredArgsConstructor
 public class ElfWarlord extends Warlord {
 
   private final String helpType;
 
-  public ElfWarlord(String helpType) {
-    this.helpType = helpType;
-  }
-
   public ElfWarlord(ElfWarlord elfWarlord) {
     super(elfWarlord);
     this.helpType = elfWarlord.helpType;
-  }
-
-  @Override
-  public ElfWarlord copy() {
-    return new ElfWarlord(this);
   }
 
   @Override

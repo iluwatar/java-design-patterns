@@ -29,14 +29,11 @@ import lombok.NoArgsConstructor;
 /**
  * Warlord.
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public abstract class Warlord implements Prototype {
+public abstract class Warlord extends Prototype<Warlord> {
 
   public Warlord(Warlord source) {
   }
-
-  @Override
-  public abstract Warlord copy();
 
 }

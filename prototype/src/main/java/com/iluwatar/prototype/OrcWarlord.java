@@ -41,11 +41,6 @@ public class OrcWarlord extends Warlord {
   }
 
   @Override
-  public OrcWarlord copy() {
-    return new OrcWarlord(this);
-  }
-
-  @Override
   public String toString() {
     return "Orcish warlord attacks with " + weapon;
   }

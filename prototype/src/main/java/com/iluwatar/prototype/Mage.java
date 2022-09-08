@@ -29,14 +29,11 @@ import lombok.NoArgsConstructor;
 /**
  * Mage.
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public abstract class Mage implements Prototype {
+public abstract class Mage extends Prototype<Mage> {
 
   public Mage(Mage source) {
   }
-
-  @Override
-  public abstract Mage copy();
 
 }
