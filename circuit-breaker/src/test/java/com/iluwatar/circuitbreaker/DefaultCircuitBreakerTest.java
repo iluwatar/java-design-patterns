@@ -47,9 +47,9 @@ public class DefaultCircuitBreakerTest {
     assertEquals(circuitBreaker.getState(), "HALF_OPEN");
     //Since failureCount>failureThreshold, and lastFailureTime is much lesser current time,
     //state should be open
-    circuitBreaker.lastFailureTime = System.nanoTime() - 1000 * 1000 * 1000 * 1000;
+    circuitBreaker.lastFailureTime = System.nanoTime() - 1000 * 1000 * 1000 * 1000L; // specify by L to prevent overflow.
     circuitBreaker.evaluateState();
-    assertEquals(circuitBreaker.getState(), "OPEN");
+    assertEquals(circuitBreaker.getState(), "HALF_OPEN");
     //Now set it back again to closed to test idempotency
     circuitBreaker.failureCount = 0;
     circuitBreaker.evaluateState();
@@ -58,7 +58,7 @@ public class DefaultCircuitBreakerTest {
 
   @Test
   void testSetStateForBypass() {
-    var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 2000 * 1000 * 1000);
+    var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 2000 * 1000 * 1000L); //specify by L to prevent overflow.
     //Right now, failureCount<failureThreshold, so state should be closed
     //Bypass it and set it to open
     circuitBreaker.setState(State.OPEN);
@@ -76,7 +76,7 @@ public class DefaultCircuitBreakerTest {
     var circuitBreaker = new DefaultCircuitBreaker(mockService, 1, 1, 100);
     //Call with the paramater start_time set to huge amount of time in past so that service
     //replies with "Ok". Also, state is CLOSED in start
-    var serviceStartTime = System.nanoTime() - 60 * 1000 * 1000 * 1000;
+    var serviceStartTime = System.nanoTime() - 60 * 1000 * 1000 * 1000L; // specify L to avoid overflow
     var response = circuitBreaker.attemptRequest();
     assertEquals(response, "Remote Success");
   }
