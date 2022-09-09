@@ -64,12 +64,12 @@ public class AppTest {
     //Set the circuit Breaker parameters
     delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000,
         FAILURE_THRESHOLD,
-        RETRY_PERIOD * 1000 * 1000 * 1000);
+        RETRY_PERIOD * 1000 * 1000 * 1000L); //specify by L to prevent overflow.
 
     var quickService = new QuickRemoteService();
     //Set the circuit Breaker parameters
     quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, FAILURE_THRESHOLD,
-        RETRY_PERIOD * 1000 * 1000 * 1000);
+        RETRY_PERIOD * 1000 * 1000 * 1000L); //specify by L to prevent overflow.
 
     monitoringService = new MonitoringService(delayedServiceCircuitBreaker,
         quickServiceCircuitBreaker);

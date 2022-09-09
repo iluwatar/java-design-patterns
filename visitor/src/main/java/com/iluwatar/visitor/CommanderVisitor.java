@@ -31,18 +31,27 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CommanderVisitor implements UnitVisitor {
 
+  /**
+   * Soldier Visitor method.
+   */
   @Override
-  public void visitSoldier(Soldier soldier) {
+  public void visit(Soldier soldier) {
     // Do nothing
   }
 
+  /**
+   * Sergeant Visitor method.
+   */
   @Override
-  public void visitSergeant(Sergeant sergeant) {
+  public void visit(Sergeant sergeant) {
     // Do nothing
   }
 
+  /**
+   * Commander Visitor method.
+   */
   @Override
-  public void visitCommander(Commander commander) {
+  public void visit(Commander commander) {
     LOGGER.info("Good to see you {}", commander);
   }
 }

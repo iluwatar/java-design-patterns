@@ -42,7 +42,7 @@ class MonitoringServiceTest {
 
   @Test
   void testDelayedRemoteResponseSuccess() {
-    var delayedService = new DelayedRemoteService(System.nanoTime()-2*1000*1000*1000, 2);
+    var delayedService = new DelayedRemoteService(System.nanoTime()-2 * 1000 * 1000 * 1000L, 2); //specify by L to prevent overflow.
     var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000,
         1,
         2 * 1000 * 1000 * 1000);
@@ -58,7 +58,7 @@ class MonitoringServiceTest {
     var delayedService = new DelayedRemoteService(System.nanoTime(), 2);
     var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000,
         1,
-        2 * 1000 * 1000 * 1000);
+        2 * 1000 * 1000 * 1000L);   //specify by L to prevent overflow.
     var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,null);
     //Set time as current time as initially server fails
     var response = monitoringService.delayedServiceResponse();
@@ -70,7 +70,7 @@ class MonitoringServiceTest {
     var delayedService = new QuickRemoteService();
     var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000,
         1,
-        2 * 1000 * 1000 * 1000);
+        2 * 1000 * 1000 * 1000L);  // specify by L to prevent overflow.
     var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,null);
     //Set time as current time as initially server fails
     var response = monitoringService.delayedServiceResponse();

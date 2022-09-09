@@ -32,9 +32,12 @@ public class Soldier extends Unit {
     super(children);
   }
 
+  /**
+   * Accept a visitor.
+   */
   @Override
   public void accept(UnitVisitor visitor) {
-    visitor.visitSoldier(this);
+    visitor.visit(this);
     super.accept(visitor);
   }
 
