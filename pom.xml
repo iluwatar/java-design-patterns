@@ -55,7 +55,7 @@
     <guice.version>4.0</guice.version>
     <mongo-java-driver.version>3.12.1</mongo-java-driver.version>
     <slf4j.version>1.7.30</slf4j.version>
-    <logback.version>1.2.3</logback.version>
+    <logback.version>1.2.9</logback.version>
     <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
     <aws-java-sdk-dynamodb.version>1.12.13</aws-java-sdk-dynamodb.version>
     <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
