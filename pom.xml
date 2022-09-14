@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    The MIT License (MIT)
+    This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
 
-    Copyright © 2014-2021 Ilkka Seppälä
+    The MIT License
+    Copyright © 2014-2022 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -12,19 +13,16 @@
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
 
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
-
-    Module Model-view-viewmodel is using ZK framework
-    ZK framework is licensed under LGPL and the license can be found at lgpl-3.0.txt
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -33,7 +31,9 @@
   <artifactId>java-design-patterns</artifactId>
   <version>1.26.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <inceptionYear>2014-2021</inceptionYear>
+  <inceptionYear>2014-2022</inceptionYear>
+  <name>Java Design Patterns</name>
+  <description>Java Design Patterns</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
@@ -71,8 +71,7 @@
     <javassist.version>3.27.0-GA</javassist.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
-    <directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
-    <license-maven-plugin.version>3.0</license-maven-plugin.version>
+    <license-maven-plugin.version>4.1</license-maven-plugin.version>
     <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
     <commons-io.version>2.7</commons-io.version>
     <istack-commons-runtime.version>4.0.1</istack-commons-runtime.version>
@@ -485,49 +484,29 @@
           </execution>
         </executions>
       </plugin>
-      <!-- Resolves ${projectRoot} to the project root directory. Used by the
-                license-maven-plugin to find the correct location of license-plugin-header-style.xml
-                when built from a submodule directory. -->
-      <plugin>
-        <groupId>org.commonjava.maven.plugins</groupId>
-        <artifactId>directory-maven-plugin</artifactId>
-        <version>${directory-maven-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>directories</id>
-            <goals>
-              <goal>directory-of</goal>
-            </goals>
-            <phase>initialize</phase>
-            <configuration>
-              <property>projectRoot</property>
-              <project>
-                <groupId>com.iluwatar</groupId>
-                <artifactId>java-design-patterns</artifactId>
-              </project>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
         <version>${license-maven-plugin.version}</version>
         <configuration>
-          <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
+          <licenseSets>
+            <licenseSet>
+              <multi>
+                <preamble><![CDATA[This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).]]></preamble>
+                <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
+              </multi>
+              <excludes>
+                <exclude>**/README</exclude>
+                <exclude>src/test/resources/**</exclude>
+                <exclude>src/main/resources/**</exclude>
+                <exclude>checkstyle-suppressions.xml</exclude>
+              </excludes>
+            </licenseSet>
+          </licenseSets>
           <properties>
             <owner>Ilkka Seppälä</owner>
+            <email>iluwatar@gmail.com</email>
           </properties>
-          <skipExistingHeaders>true</skipExistingHeaders>
-          <headerDefinitions>
-            <headerDefinition>license-plugin-header-style.xml</headerDefinition>
-          </headerDefinitions>
-          <mapping>
-            <java>SLASHSTAR_CUSTOM_STYLE</java>
-          </mapping>
-          <excludes>
-            <exclude>.github/FUNDING.yml</exclude>
-          </excludes>
         </configuration>
         <executions>
           <execution>
