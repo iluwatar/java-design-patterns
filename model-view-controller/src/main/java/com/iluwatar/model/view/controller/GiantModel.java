@@ -33,7 +33,10 @@ public class GiantModel {
   private Fatigue fatigue;
   private Nourishment nourishment;
 
-  GiantModel(Health health, Fatigue fatigue, Nourishment nourishment) {
+  /**
+   * Instantiates a new GiantModel.
+   */
+  public GiantModel(Health health, Fatigue fatigue, Nourishment nourishment) {
     this.health = health;
     this.fatigue = fatigue;
     this.nourishment = nourishment;

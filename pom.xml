@@ -230,6 +230,7 @@
     <module>domain-model</module>
     <module>composite-view</module>
     <module>metadata-mapping</module>
+    <module>service-to-worker</module>
   </modules>
   <repositories>
     <repository>
