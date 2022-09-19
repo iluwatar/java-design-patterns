@@ -18,7 +18,6 @@ Putting it simply, there is some type T, some functions for constructing "primit
 and some "combinators" which can combine values of type T in various ways to build up more complex values of type T.
 
 ## Explanation
----
 
 Real world example
 
