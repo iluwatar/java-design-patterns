@@ -48,38 +48,38 @@ public interface Finder {
 
 	// Simple implementation of function {@link #find(String)}.
 	static Finder contains(String word) {
-    return txt -> Stream.of(txt.split("\n"))
-        .filter(line -> line.toLowerCase().contains(word.toLowerCase()))
-        .collect(Collectors.toList());
-  }
+    		return txt -> Stream.of(txt.split("\n"))
+        		.filter(line -> line.toLowerCase().contains(word.toLowerCase()))
+        		.collect(Collectors.toList());
+  	}
 
 	// combinator not.
 	default Finder not(Finder notFinder) {
-    return txt -> {
-      List<String> res = this.find(txt);
-      res.removeAll(notFinder.find(txt));
-      return res;
-    };
-  }
+    		return txt -> {
+      			List<String> res = this.find(txt);
+      			res.removeAll(notFinder.find(txt));
+      			return res;
+    			};
+  	}
 
 	// combinator or.
 	default Finder or(Finder orFinder) {
-    return txt -> {
-      List<String> res = this.find(txt);
-      res.addAll(orFinder.find(txt));
-      return res;
-    };
+    		return txt -> {
+      			List<String> res = this.find(txt);
+      			res.addAll(orFinder.find(txt));
+      			return res;
+    			};
 	}
 
 	// combinator and.
 	default Finder and(Finder andFinder) {
-    return
-        txt -> this
-            .find(txt)
-            .stream()
-            .flatMap(line -> andFinder.find(line).stream())
-            .collect(Collectors.toList());
-  }
+    		return
+        	txt -> this
+            		.find(txt)
+            		.stream()
+            		.flatMap(line -> andFinder.find(line).stream())
+            		.collect(Collectors.toList());
+  	}
 	...
 }
 ```
@@ -91,45 +91,45 @@ Then we have also another combinator for some complex finders `advancedFinder`, 
 public class Finders {
 
 	private Finders() {
-  }
+  	}
 
 	// Finder to find a complex query.
 	public static Finder advancedFinder(String query, String orQuery, String notQuery) {
-    return
-        Finder.contains(query)
-            .or(Finder.contains(orQuery))
-            .not(Finder.contains(notQuery));
-  }
+    		return
+        		Finder.contains(query)
+            			.or(Finder.contains(orQuery))
+            			.not(Finder.contains(notQuery));
+	}
 
 	// Filtered finder looking a query with excluded queries as well.
 	public static Finder filteredFinder(String query, String... excludeQueries) {
-    var finder = Finder.contains(query);
+		var finder = Finder.contains(query);
 
-    for (String q : excludeQueries) {
-      finder = finder.not(Finder.contains(q));
-    }
-    return finder;
-  }
+    		for (String q : excludeQueries) {
+      			finder = finder.not(Finder.contains(q));
+    		}
+    		return finder;
+	}
 
 	// Specialized query. Every next query is looked in previous result.
 	public static Finder specializedFinder(String... queries) {
-    var finder = identMult();
+    		var finder = identMult();
 
-    for (String query : queries) {
-      finder = finder.and(Finder.contains(query));
-    }
-    return finder;
-  }
+		for (String query : queries) {
+      			finder = finder.and(Finder.contains(query));
+    		}
+    		return finder;
+  	}
 
 	// Expanded query. Looking for alternatives.
 	public static Finder expandedFinder(String... queries) {
-    var finder = identSum();
+    		var finder = identSum();
 
-    for (String query : queries) {
-      finder = finder.or(Finder.contains(query));
-    }
-    return finder;
-  }
+    		for (String query : queries) {
+      			finder = finder.or(Finder.contains(query));
+    		}
+   		return finder;
+  	}
 	...
 }
 ```
