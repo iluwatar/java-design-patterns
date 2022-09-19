@@ -13,12 +13,11 @@ tags:
 Composition pattern
 
 ## Intent
----
 The functional pattern representing a style of organizing libraries centered around the idea of combining functions.  
 Putting it simply, there is some type T, some functions for constructing "primitive" values of type T, 
 and some "combinators" which can combine values of type T in various ways to build up more complex values of type T.
 
-#Explanation
+## Explanation
 ---
 
 Real world example
@@ -40,7 +39,6 @@ Wikipedia says
 >
 
 ## Class diagram
----
 ![alt text](./etc/combinator.urm.png "Combinator class diagram")
 
 ## Applicability
