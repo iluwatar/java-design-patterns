@@ -45,6 +45,13 @@ Use the combinator pattern when:
 
 - You are able to create a more complex value from more plain values but having the same type(a combination of them)
 
+## Benefits
+
+- From a developers perspective the API is made of terms from the domain.
+- There is a clear distinction between combining and application phase.
+- One first constructs an instance and then executes it.
+- This makes the pattern applicable in a parallel environment.
+
 ## Real world examples
 
 - java.util.function.Function#compose
