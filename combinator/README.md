@@ -29,8 +29,6 @@ In plain words
 > Combinators provide means to compose primitives and/or already composed structures into more complex structures.
 > 
 
-> A combinator is a function that takes other functions as arguments and returns a new function.
-> 
 
 Wikipedia says
 
