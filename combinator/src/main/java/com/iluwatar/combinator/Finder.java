@@ -78,7 +78,7 @@ public interface Finder {
   }
 
   /**
-   * combinator or.
+   * combinator and.
    * @param andFinder finder to combine
    * @return new finder including previous finders
    */
