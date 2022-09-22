@@ -5,6 +5,9 @@ import com.iluwatar.money.exception.CurrencyCannotBeExchangedException;
 import com.iluwatar.money.exception.CurrencyMismatchException;
 import com.iluwatar.money.exception.InsufficientFundsException;
 import com.iluwatar.money.exception.SubtractionCannotOccurException;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,76 +16,49 @@ import java.util.List;
  * This class represents a User Account, which holds all the {@link Money}s
  * that this user has.
  */
-public class Account { //NOPMD - suppressed DataClass - adapt to the design philosophy of this class
+public class Account {
 
   /**
    * The ID of an {@link Account}.
    */
+  @Getter
   private final int accountId;
 
   /**
    * The primary {@link Currency} of an {@link Account}.
    */
+  @Getter
+  @Setter
   private Currency primaryCurrency;
 
   /**
    * The secondary {@link Currency} of an {@link Account}.
    */
+  @Getter
+  @Setter
   private Currency secondaryCurrency;
 
   /**
    * The primary Balance ({@link Money}) of an {@link Account}.
    */
+  @Getter
+  @Setter
   private Money primaryBalance;
 
   /**
    * The secondary Balance ({@link Money}) of an {@link Account}.
    */
+  @Getter
+  @Setter
   private Money secondaryBalance;
 
   /**
    * Constructor.
    *
-   * @param accountId  - account ID
+   * @param accountId - account ID
    */
   public Account(final int accountId) {
     this.accountId = accountId;
-  }
-
-  public void setPrimaryBalance(final Money primaryBalance) {
-    this.primaryBalance = primaryBalance;
-  }
-
-  public void setSecondaryBalance(final Money secondaryBalance) {
-    this.secondaryBalance = secondaryBalance;
-  }
-
-  public void setPrimaryCurrency(final Currency primaryCurrency) {
-    this.primaryCurrency = primaryCurrency;
-  }
-
-  public void setSecondaryCurrency(final Currency secondaryCurrency) {
-    this.secondaryCurrency = secondaryCurrency;
-  }
-
-  public Currency getPrimaryCurrency() {
-    return primaryCurrency;
-  }
-
-  public Currency getSecondaryCurrency() {
-    return secondaryCurrency;
-  }
-
-  public Money getPrimaryBalance() {
-    return primaryBalance;
-  }
-
-  public Money getSecondaryBalance() {
-    return secondaryBalance;
-  }
-
-  public int getAccountId() {
-    return accountId;
   }
 
   /**

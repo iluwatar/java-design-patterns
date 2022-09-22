@@ -2,6 +2,8 @@ package com.iluwatar.money;
 
 import com.iluwatar.money.exception.CurrencyMismatchException;
 import com.iluwatar.money.exception.SubtractionCannotOccurException;
+import lombok.Getter;
+
 import java.util.Objects;
 
 /**
@@ -10,7 +12,9 @@ import java.util.Objects;
  */
 public class Money {
 
+  @Getter
   private long amount;
+  @Getter
   private final Currency currency;
 
 
@@ -62,14 +66,6 @@ public class Money {
   public Money multiplyMoneyBy(double multiplier) {
     var product = Math.round(this.amount * multiplier);
     return new Money(product, this.currency);
-  }
-
-  public long getAmount() {
-    return amount;
-  }
-
-  public Currency getCurrency() {
-    return currency;
   }
 
   private void ensureSameCurrencyWith(Money other) throws CurrencyMismatchException {

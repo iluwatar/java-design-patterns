@@ -1,5 +1,7 @@
 package com.iluwatar.money;
 
+import lombok.Getter;
+
 import java.util.Arrays;
 
 /**
@@ -9,7 +11,9 @@ public enum ExchangeMethod {
   USD_TO_EUR(0.67, Currency.EUR),
   EUR_TO_USD(1.5, Currency.USD);
 
+  @Getter
   private final double exchangeRatio;
+  @Getter
   private final Currency exchangedCurrency;
 
   ExchangeMethod(double exchangeRatio, Currency resultingCurrency) {
@@ -17,16 +21,8 @@ public enum ExchangeMethod {
     this.exchangedCurrency = resultingCurrency;
   }
 
-  public Currency getExchangedCurrency() {
-    return exchangedCurrency;
-  }
-
-  public double getExchangeRatio() {
-    return exchangeRatio;
-  }
-
   public static ExchangeMethod assignExchangeMethodBasedOnInput(Currency currencyToExchangeTo) {
     return Arrays.stream(values()).filter(value ->
-            value.getExchangedCurrency() == currencyToExchangeTo).findFirst().orElse(null);
+        value.getExchangedCurrency() == currencyToExchangeTo).findFirst().orElse(null);
   }
 }

@@ -6,7 +6,7 @@ permalink: /patterns/money/
 categories: Structural
 language: en
 tags:
- - Enterprise Integration Pattern
+ - Business
 ---
 
 ## Intent
@@ -187,7 +187,7 @@ Now the account has balance, USD: 100, EUR: 200
 
 ## Class Diagram
 
-![alt text](E:\DOC\2022_Spring\CS304SoftwareEngineering\java-design-patterns\money\etc\money.urm.png "Money pattern class diagram")
+![alt text](./etc/money.urm.png "Money pattern class diagram")
 
 ## Applicability
 
