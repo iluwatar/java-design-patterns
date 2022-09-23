@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,31 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.prototype;
 
 import lombok.EqualsAndHashCode;
+import lombok.RequiredArgsConstructor;
 
 /**
  * ElfWarlord.
  */
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
+@RequiredArgsConstructor
 public class ElfWarlord extends Warlord {
 
   private final String helpType;
 
-  public ElfWarlord(String helpType) {
-    this.helpType = helpType;
-  }
-
   public ElfWarlord(ElfWarlord elfWarlord) {
     super(elfWarlord);
     this.helpType = elfWarlord.helpType;
-  }
-
-  @Override
-  public ElfWarlord copy() {
-    return new ElfWarlord(this);
   }
 
   @Override

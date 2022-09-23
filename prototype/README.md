@@ -22,7 +22,7 @@ used for creating new objects from prototype instances.
 
 Real-world example
 
-> Remember Dolly? The sheep that was cloned! Lets not get into the details but the key point here is 
+> Remember Dolly? The sheep that was cloned! Let's not get into the details but the key point here is 
 > that it is all about cloning.
 
 In plain words
@@ -45,8 +45,11 @@ interface with a method for cloning objects. In this example, `Prototype` interf
 this with its `copy` method.
 
 ```java
-public interface Prototype {
-  Object copy();
+public abstract class Prototype<T> implements Cloneable {
+    @SneakyThrows
+    public T copy() {
+        return (T) super.clone();
+    }
 }
 ```
 
@@ -54,15 +57,13 @@ Our example contains a hierarchy of different creatures. For example, let's look
 `OrcBeast` classes.
 
 ```java
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public abstract class Beast implements Prototype {
+public abstract class Beast extends Prototype<Beast> {
 
   public Beast(Beast source) {
   }
 
-  @Override
-  public abstract Beast copy();
 }
 
 @EqualsAndHashCode(callSuper = false)
@@ -77,18 +78,14 @@ public class OrcBeast extends Beast {
   }
 
   @Override
-  public OrcBeast copy() {
-    return new OrcBeast(this);
-  }
-
-  @Override
   public String toString() {
     return "Orcish wolf attacks with " + weapon;
   }
+
 }
 ```
 
-We don't want to go into too much details, but the full example contains also base classes `Mage`
+We don't want to go into too many details, but the full example contains also base classes `Mage`
 and `Warlord` and there are specialized implementations for those for elves in addition to orcs.
 
 To take full advantage of the prototype pattern, we create `HeroFactory` and `HeroFactoryImpl`
