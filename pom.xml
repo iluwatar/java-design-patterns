@@ -230,8 +230,8 @@
     <module>domain-model</module>
     <module>composite-view</module>
     <module>metadata-mapping</module>
-    <module>money</module>
     <module>service-to-worker</module>
+    <module>money</module>
   </modules>
   <repositories>
     <repository>

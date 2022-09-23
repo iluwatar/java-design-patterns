@@ -1,8 +1,7 @@
 package com.iluwatar.money;
 
-import lombok.Getter;
-
 import java.util.Arrays;
+import lombok.Getter;
 
 /**
  * This class implements the exchange method invoked by {@link CurrencyExchange}.

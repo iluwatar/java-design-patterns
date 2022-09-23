@@ -2,9 +2,8 @@ package com.iluwatar.money;
 
 import com.iluwatar.money.exception.CurrencyMismatchException;
 import com.iluwatar.money.exception.SubtractionCannotOccurException;
-import lombok.Getter;
-
 import java.util.Objects;
+import lombok.Getter;
 
 /**
  * This class represents a unit-pair representation of money, which holds the {@link Currency}

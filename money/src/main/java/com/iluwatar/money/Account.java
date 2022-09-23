@@ -5,12 +5,11 @@ import com.iluwatar.money.exception.CurrencyCannotBeExchangedException;
 import com.iluwatar.money.exception.CurrencyMismatchException;
 import com.iluwatar.money.exception.InsufficientFundsException;
 import com.iluwatar.money.exception.SubtractionCannotOccurException;
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * This class represents a User Account, which holds all the {@link Money}s
