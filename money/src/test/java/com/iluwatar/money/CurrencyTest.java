@@ -12,6 +12,6 @@ public class CurrencyTest {
 
   @Test
   public void testCurrencyRepresentation() {
-    assertEquals("USD", Currency.USD.getStringRepresentation());
+    assertEquals("USD", Currency.USD.getRepresentation());
   }
 }
