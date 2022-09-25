@@ -333,9 +333,9 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/HattoriHenzo"><img src="https://avatars.githubusercontent.com/u/5141285?v=4?s=100" width="100px;" alt=""/><br /><sub><b>HattoriHenzo</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=HattoriHenzo" title="Code">💻</a></td>
       <td align="center"><a href="http://arnabsen.bio.link"><img src="https://avatars.githubusercontent.com/u/51032928?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Arnab Sen</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=arnabsen1729" title="Code">💻</a></td>
       <td align="center"><a href="https://javaforlife.wordpress.com/"><img src="https://avatars.githubusercontent.com/u/1470114?v=4?s=100" width="100px;" alt=""/><br /><sub><b>MohanaRao SV</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mohanaraosv" title="Code">💻</a></td>
-      <td align="center"><a href="https://github.com/yonatankarp"><img src="https://avatars.githubusercontent.com/u/14914865?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yonatan Karp-Rudin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yonatankarp" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/yonatankarp"><img src="https://avatars.githubusercontent.com/u/14914865?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yonatan Karp-Rudin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yonatankarp" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Ayonatankarp" title="Reviewed Pull Requests">👀</a></td>
     </tr>
-  </tobdy>
+  </tbody>
 </table>
 
 <!-- markdownlint-restore -->
