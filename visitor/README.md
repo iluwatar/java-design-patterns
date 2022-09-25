@@ -72,7 +72,7 @@ public class Commander extends Unit {
 
   @Override
   public void accept(UnitVisitor visitor) {
-    visitor.visitCommander(this);
+    visitor.visit(this);
     super.accept(visitor);
   }
 
@@ -90,7 +90,7 @@ public class Sergeant extends Unit {
 
   @Override
   public void accept(UnitVisitor visitor) {
-    visitor.visitSergeant(this);
+    visitor.visit(this);
     super.accept(visitor);
   }
 
@@ -108,7 +108,7 @@ public class Soldier extends Unit {
 
   @Override
   public void accept(UnitVisitor visitor) {
-    visitor.visitSoldier(this);
+    visitor.visit(this);
     super.accept(visitor);
   }
 
@@ -126,17 +126,17 @@ Here are then some concrete visitors.
 public class CommanderVisitor implements UnitVisitor {
 
   @Override
-  public void visitSoldier(Soldier soldier) {
+  public void visit(Soldier soldier) {
     // Do nothing
   }
 
   @Override
-  public void visitSergeant(Sergeant sergeant) {
+  public void visit(Sergeant sergeant) {
     // Do nothing
   }
 
   @Override
-  public void visitCommander(Commander commander) {
+  public void visit(Commander commander) {
     LOGGER.info("Good to see you {}", commander);
   }
 }
@@ -145,17 +145,17 @@ public class CommanderVisitor implements UnitVisitor {
 public class SergeantVisitor implements UnitVisitor {
 
   @Override
-  public void visitSoldier(Soldier soldier) {
+  public void visit(Soldier soldier) {
     // Do nothing
   }
 
   @Override
-  public void visitSergeant(Sergeant sergeant) {
+  public void visit(Sergeant sergeant) {
     LOGGER.info("Hello {}", sergeant);
   }
 
   @Override
-  public void visitCommander(Commander commander) {
+  public void visit(Commander commander) {
     // Do nothing
   }
 }
@@ -164,17 +164,17 @@ public class SergeantVisitor implements UnitVisitor {
 public class SoldierVisitor implements UnitVisitor {
 
   @Override
-  public void visitSoldier(Soldier soldier) {
+  public void visit(Soldier soldier) {
     LOGGER.info("Greetings {}", soldier);
   }
 
   @Override
-  public void visitSergeant(Sergeant sergeant) {
+  public void visit(Sergeant sergeant) {
     // Do nothing
   }
 
   @Override
-  public void visitCommander(Commander commander) {
+  public void visit(Commander commander) {
     // Do nothing
   }
 }
