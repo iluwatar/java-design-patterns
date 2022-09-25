@@ -33,9 +33,13 @@ public class Soldier extends Unit {
     super(children);
   }
 
+  /**
+   * Accept a Visitor.
+   * @param visitor UnitVisitor to be accepted
+   */
   @Override
   public void accept(UnitVisitor visitor) {
-    visitor.visitSoldier(this);
+    visitor.visit(this);
     super.accept(visitor);
   }
 

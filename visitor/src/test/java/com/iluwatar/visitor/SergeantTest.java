@@ -43,7 +43,7 @@ public class SergeantTest extends UnitTest<Sergeant> {
 
   @Override
   void verifyVisit(Sergeant unit, UnitVisitor mockedVisitor) {
-    verify(mockedVisitor).visitSergeant(eq(unit));
+    verify(mockedVisitor).visit(eq(unit));
   }
 
 }
