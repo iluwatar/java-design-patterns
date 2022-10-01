@@ -26,6 +26,7 @@ package com.iluwatar.acyclicvisitor;
 
 import com.google.common.collect.ImmutableList;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import uk.org.lidalia.slf4jtest.LoggingEvent;
 import uk.org.lidalia.slf4jtest.TestLogger;
@@ -41,6 +42,7 @@ class ConfigureForUnixVisitorTest {
 
   private static final TestLogger LOGGER = TestLoggerFactory.getTestLogger(ConfigureForUnixVisitor.class);
 
+  @BeforeEach
   @AfterEach
   public void clearLoggers() {
     TestLoggerFactory.clear();
