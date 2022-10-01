@@ -24,13 +24,14 @@
  */
 package com.iluwatar.acyclicvisitor;
 
+import com.google.common.collect.ImmutableList;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import uk.org.lidalia.slf4jtest.LoggingEvent;
 import uk.org.lidalia.slf4jtest.TestLogger;
 import uk.org.lidalia.slf4jtest.TestLoggerFactory;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.groups.Tuple.tuple;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static uk.org.lidalia.slf4jext.Level.INFO;
 
 /**
@@ -52,8 +53,11 @@ class ConfigureForUnixVisitorTest {
 
     conUnix.visit(zoom);
 
-    assertThat(LOGGER.getLoggingEvents())
-        .extracting("level", "message")
-        .contains(tuple(INFO, zoom + " used with Unix configurator."));
+    ImmutableList<LoggingEvent> loggingEvents = LOGGER.getLoggingEvents();
+    assertEquals(1, loggingEvents.size());
+    for (LoggingEvent loggingEvent : loggingEvents) {
+      assertEquals(INFO, loggingEvent.getLevel());
+      assertEquals(zoom + " used with Unix configurator.", loggingEvent.getMessage());
+    }
   }
 }
