@@ -31,7 +31,7 @@ import com.iluwatar.cqrs.util.HibernateUtil;
 import java.math.BigInteger;
 import java.util.List;
 import org.hibernate.SessionFactory;
-import org.hibernate.transform.Transformers;
+import org.hibernate.query.Query;
 
 /**
  * This class is an implementation of {@link IQueryService}. It uses Hibernate native queries to
@@ -45,12 +45,11 @@ public class QueryServiceImpl implements IQueryService {
   public Author getAuthorByUsername(String username) {
     Author authorDTo;
     try (var session = sessionFactory.openSession()) {
-      var sqlQuery = session.createSQLQuery("SELECT a.username as \"username\","
-          + " a.name as \"name\", a.email as \"email\""
-          + "FROM Author a where a.username=:username");
+      Query<Author> sqlQuery = session.createQuery(
+              "select new com.iluwatar.cqrs.dto.Author(a.name, a.email, a.username)"
+                      + " from com.iluwatar.cqrs.domain.model.Author a where a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
-      authorDTo = (Author) sqlQuery.setResultTransformer(Transformers.aliasToBean(Author.class))
-          .uniqueResult();
+      authorDTo = sqlQuery.uniqueResult();
     }
     return authorDTo;
   }
@@ -59,11 +58,11 @@ public class QueryServiceImpl implements IQueryService {
   public Book getBook(String title) {
     Book bookDTo;
     try (var session = sessionFactory.openSession()) {
-      var sqlQuery = session.createSQLQuery("SELECT b.title as \"title\","
-          + " b.price as \"price\"" + " FROM Book b where b.title=:title");
+      Query<Book> sqlQuery = session.createQuery(
+              "select new com.iluwatar.cqrs.dto.Book(b.title, b.price)"
+                      + " from com.iluwatar.cqrs.domain.model.Book b where b.title=:title");
       sqlQuery.setParameter("title", title);
-      bookDTo =
-          (Book) sqlQuery.setResultTransformer(Transformers.aliasToBean(Book.class)).uniqueResult();
+      bookDTo = sqlQuery.uniqueResult();
     }
     return bookDTo;
   }
@@ -72,10 +71,12 @@ public class QueryServiceImpl implements IQueryService {
   public List<Book> getAuthorBooks(String username) {
     List<Book> bookDTos;
     try (var session = sessionFactory.openSession()) {
-      var sqlQuery = session.createSQLQuery("SELECT b.title as \"title\", b.price as \"price\""
-          + " FROM Author a , Book b where b.author_id = a.id and a.username=:username");
+      Query<Book> sqlQuery = session.createQuery(
+              "select new com.iluwatar.cqrs.dto.Book(b.title, b.price)"
+                      + " from com.iluwatar.cqrs.domain.model.Author a, com.iluwatar.cqrs.domain.model.Book b "
+                      + "where b.author.id = a.id and a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
-      bookDTos = sqlQuery.setResultTransformer(Transformers.aliasToBean(Book.class)).list();
+      bookDTos = sqlQuery.list();
     }
     return bookDTos;
   }
@@ -84,9 +85,9 @@ public class QueryServiceImpl implements IQueryService {
   public BigInteger getAuthorBooksCount(String username) {
     BigInteger bookcount;
     try (var session = sessionFactory.openSession()) {
-      var sqlQuery = session.createSQLQuery(
-          "SELECT count(b.title)" + " FROM  Book b, Author a"
-              + " where b.author_id = a.id and a.username=:username");
+      var sqlQuery = session.createNativeQuery(
+              "SELECT count(b.title)" + " FROM  Book b, Author a"
+                      + " where b.author_id = a.id and a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
       bookcount = (BigInteger) sqlQuery.uniqueResult();
     }
@@ -97,7 +98,7 @@ public class QueryServiceImpl implements IQueryService {
   public BigInteger getAuthorsCount() {
     BigInteger authorcount;
     try (var session = sessionFactory.openSession()) {
-      var sqlQuery = session.createSQLQuery("SELECT count(id) from Author");
+      var sqlQuery = session.createNativeQuery("SELECT count(id) from Author");
       authorcount = (BigInteger) sqlQuery.uniqueResult();
     }
     return authorcount;
