@@ -1,77 +1,65 @@
-<!-- the line below needs to be an empty line C: (its because kramdown isnt
-     that smart and dearly wants an empty line before a heading to be able to
-     display it as such, e.g. website) -->
-
-# Design patterns implemented in Java
+# Mẫu thiết kế được hiện thực bằng Java
 
 ![Java CI](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=ncloc)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-BADGE:START - Không được xóa hoặc sửa đổi mục này -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-205-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
 
-Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md)
+Ngôn ngữ khác : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md)
 
 <br/>
 
-# Introduction
+# Giới thiệu
 
-Design patterns are the best, formalized practices a programmer can use to
-solve common problems when designing an application or system.
+Mẫu thiết kế là phương pháp tốt nhất, được chuẩn hóa mà một lập trình viên có thể sử dụng để giải quyết các vấn đề chung khi thiết kế một ứng dụng hoặc hệ thống.
 
-Design patterns can speed up the development process by providing tested, proven
-development paradigms.
+Mẫu thiết kế có thể đẩy nhanh quá trình phát triển bằng cách cung cấp các mô hình đã được kiểm nghiệm, chứng minh.
 
-Reusing design patterns help prevent subtle issues that cause major
-problems, and it also improves code readability for coders and architects who
-are familiar with the patterns.
+Việc sử dụng lại các mẫu thiết kế giúp phòng ngừa các vấn đề tiềm ẩn có thể xảy ra và nó cũng cải thiện khả năng đọc hiểu mã nguồn cho các lập trình viên và người thiết kế hệ thống đã quen thuộc với các mẫu đó.
 
-# Getting started
+# Mở đầu
 
-This site showcases Java Design Patterns. The solutions have been developed by
-experienced programmers and architects from the open-source community. The
-patterns can be browsed by their high-level descriptions or by looking at their
-source code. The source code examples are well commented and can be thought of as
-programming tutorials on how to implement a specific pattern. We use the most
-popular battle-proven open-source Java technologies.
+Trang web này giới thiệu các mẫu thiết kế được hiện thực bằng Java. Các giải pháp này đã được phát triển
+bởi các lập trình viên và người thiết kế có kinh nghiệm từ cộng đồng mã nguồn mở.
+Bạn có thể tham khảo các mẫu thông qua mô tả cấp cao hoặc mã nguồn của chúng. 
+Các mã nguồn mẫu được giải thích đầy đủ và được coi là hướng dẫn trực quan về cách triển khai một mẫu thiết kế cụ thể. 
+Chúng tôi cũng sử dụng các công nghệ Java nguồn mở đã được chứng minh thực chiến phổ biến nhất.
 
-Before you dive into the material, you should be familiar with various
-[Software Design Principles](https://java-design-patterns.com/principles/).
+Trước khi đào sâu vào tài liệu, bạn nên làm quen với những
+[quy tắc thiết kế](https://java-design-patterns.com/principles/).
 
-All designs should be as simple as possible. You should start with KISS, YAGNI,
-and Do The Simplest Thing That Could Possibly Work principles. Complexity and
-patterns should only be introduced when they are needed for practical
-extensibility.
+Tất cả các thiết kế nên đơn giản nhất có thể. 
+Bạn nên bắt đầu với KISS, YAGNI, và Làm-Thứ-Đơn-Giản-Nhất-Mà-Giải-Quyết-Vấn-Đề (Do-The-Simplest-Thing-That-Could-Possibly-Work).
+Sự phức tạp và các mẫu chỉ được thêm vào khi chúng thực sự cần cho sự mở rộng về sau.
 
-Once you are familiar with these concepts you can start drilling down into the
-[available design patterns](https://java-design-patterns.com/patterns/) by any
-of the following approaches
+Một khi đã quen với các khái niệm, bạn có thể bắt đầu đào sâu
+[các mẫu thiết kế hiện có](https://java-design-patterns.com/patterns/)
+bằng các cách tiếp cận sau
 
- - Search for a specific pattern by name. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
- - Using tags such as `Performance`, `Gang of Four` or `Data access`.
- - Using pattern categories, `Creational`, `Behavioral`, and others.
+ - Tìm kiếm một mẫu thiết kế cụ thể bằng tên. Nếu không tìm thấy, vui lòng yêu cầu một mẫu mới [ở đây](https://github.com/iluwatar/java-design-patterns/issues).
+ - Sử dụng đánh dấu (tag) như `Performance`, `Gang of Four` hoặc `Data access`.
+ - Sử dụng danh mục như `Creational`, `Behavioral`, vân vân.
 
-Hopefully, you find the object-oriented solutions presented on this site useful
-in your architectures and have as much fun learning them as we had while developing them.
+Mong rằng những giải pháp hướng đối tượng ở đây sẽ mang lại lợi ích công việc cũng như niềm vui học tập cho bạn, giống như chúng tôi đã và đang được trải nghiệm trong quá trình phát triển chúng.
 
-# How to contribute
+# Đóng góp
 
-If you are willing to contribute to the project you will find the relevant information in
-our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help
-you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
+Nếu bạn mong muốn đóng góp cho dự án, bạn có thể tìm kiếm thông tin liên quan ở [wiki cho nhà phát triển](https://github.com/iluwatar/java-design-patterns/wiki).
+Chúng tôi sẽ giúp trả lời câu hỏi của bạn ở [Gitter](https://gitter.im/iluwatar/java-design-patterns).
 
-# License
+# Giấy phép
 
-This project is licensed under the terms of the MIT license.
+Dự án này được cấp phép theo các điều khoản của giấy phép MIT.
 
-# Contributors
+# Những người đóng góp
 
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:START - Không được xóa hoặc sửa đổi mục này -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 <table>
