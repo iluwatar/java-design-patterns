@@ -22,16 +22,16 @@ Read in different language : [**zh**](localization/zh/README.md), [**ko**](local
 # Introduction
 
 Design patterns are the best, formalized practices a programmer can use to
-solve common problems when designing an application or system.
+solve common problems when designing an application or a system.
 
-Design patterns can speed up the development process by providing tested, proven
+Design patterns can speed up the development process by providing tested and proven
 development paradigms.
 
 Reusing design patterns help prevent subtle issues that cause major
 problems, and it also improves code readability for coders and architects who
 are familiar with the patterns.
 
-# Getting started
+# Getting started!
 
 This site showcases Java Design Patterns. The solutions have been developed by
 experienced programmers and architects from the open-source community. The
@@ -336,6 +336,15 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/yonatankarp"><img src="https://avatars.githubusercontent.com/u/14914865?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yonatan Karp-Rudin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yonatankarp" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Ayonatankarp" title="Reviewed Pull Requests">👀</a></td>
       <td align="center"><a href="https://github.com/yonatankarp"><img src="https://avatars.githubusercontent.com/u/14914865?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Yonatan Karp-Rudin</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yonatankarp" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/GustavoOliani"><img src="https://avatars.githubusercontent.com/u/25756378?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Oliani</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=GustavoOliani" title="Code">💻</a></td>
+    </tr>
+        <tr>
+      <td align="center"><a href="https://github.com/mayankn05"><img src="https://avatars.githubusercontent.com/u/96943825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mayank</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mayankn05" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/mayankn05"><img src="https://avatars.githubusercontent.com/u/96943825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mayank</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mayankn05" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/mayankn05"><img src="https://avatars.githubusercontent.com/u/96943825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mayank</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mayankn05" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/mayankn05"><img src="https://avatars.githubusercontent.com/u/96943825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mayank</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mayankn05" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/mayankn05"><img src="https://avatars.githubusercontent.com/u/96943825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mayank</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mayankn05" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/mayankn05"><img src="https://avatars.githubusercontent.com/u/96943825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mayank</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mayankn05" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/mayankn05"><img src="https://avatars.githubusercontent.com/u/96943825?v=4?s=100" width="100px;" alt=""/><br /><sub><b>mayank</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mayankn05" title="Code">💻</a></td>
     </tr>
     <tr>
       <td align="center"><a href="https://github.com/TreeFireMen"><img src="https://avatars.githubusercontent.com/u/54127694?v=4?s=100" width="100px;" alt=""/><br /><sub><b>perfect guy</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=TreeFireMen" title="Documentation">📖</a></td>
