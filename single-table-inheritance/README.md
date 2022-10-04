@@ -5,7 +5,7 @@
 Map all the fields of classes in an inheritance hierarchy into a single table
 
 ##Explanation
-Relational database doesn't support inheritance, therefore when we process inherited class, there tend to be significance numbers of join operations.
+A relational database doesn't support inheritance, therefore when we process inherited classes, there tend to be significant numbers of join operations. Single Table Inheritance ensures that all classes in the hierarchy are mapped to the same table.
 Single Table Inheritance ensure that all class in the hierarchy is map to the same table
 
 ## Class diagram
