@@ -46,7 +46,7 @@
     <junit-jupiter.version>5.7.1</junit-jupiter.version>
     <junit-vintage.version>${junit-jupiter.version}</junit-vintage.version>
     <compiler.version>3.8.1</compiler.version>
-    <jacoco.version>0.8.6</jacoco.version>
+    <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <camel.version>2.24.0</camel.version>
     <guava.version>19.0</guava.version>
