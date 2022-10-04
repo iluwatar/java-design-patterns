@@ -1877,6 +1877,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "karshil2309",
+      "name": "Karshil sheth",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37497287?v=4",
+      "profile": "https://www.linkedin.com/in/karshilsheth/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
