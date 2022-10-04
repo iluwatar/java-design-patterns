@@ -1868,6 +1868,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "dmdbilal",
+      "name": "Mohamed Bilal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/91405690?v=4",
+      "profile": "https://github.com/dmdbilal",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
