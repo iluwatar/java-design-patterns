@@ -59,8 +59,6 @@ public class Ferrari implements Car {
 }
 ```
 
-Enumeration above represents types of cars that we support (`Ford` and `Ferrari`).
-
 以下的枚举用于表示支持的 `Car` 类型（`Ford` 和 `Ferrari`）
 
 ```java
