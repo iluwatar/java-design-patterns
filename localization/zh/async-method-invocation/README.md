@@ -116,7 +116,6 @@ public static void main(String[] args) throws Exception {
   asyncResult4.await();
   asyncResult5.await();
 
-  // log the results of the tasks, callbacks log immediately when complete
   // 记录任务结果的日志， 回调的日志会在回调完成时立刻记录
   log("Space rocket <" + result1 + "> launch complete");
   log("Space rocket <" + result2 + "> launch complete");
