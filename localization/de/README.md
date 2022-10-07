@@ -21,15 +21,14 @@ In einer anderen Sprache lesen : [**zh**](localization/zh/README.md), [**ko**](l
 
 # Einführung
 
-Entwurfsmuster sind die besten formalisierten Methoden, die ein Programmierer verwenden kann,
+Entwurfschemas sind die besten formalisierten Praktiken, die ein Programmierer verwenden kann,
 um allgemeine Probleme beim Entwurf einer Anwendung oder eines Systems zu lösen.
 
-Entwurfsmuster können den Entwicklungsprozess beschleunigen, indem sie getestete und bewährte
+Entwurfschemas können den Entwicklungsprozess beschleunigen, indem sie getestete und bewährte
 Entwicklungsparadigmen bereitstellen.
 
-Die Wiederverwendung von Entwurfsmustern hilft, subtile Probleme zu vermeiden, die größere
-Probleme verursachen können. 
-Außerdem verbessert es auch die Lesbarkeit des Codes für Programmierer und Architekten, 
+Die Wiederverwendung von Entwurfschemas hilft, subtile Fehler zu vermeiden, die größere
+Probleme verursachen können, sowie die Lesbarkeit des Codes für Programmierer und Architekten zu verbessern, 
 welche mit den Prinzipien der Entwurfsmuster vertraut sind.
 
 # Erste Schritte
