@@ -57,11 +57,11 @@ der folgenden Ansätze
 Hoffentlich finden sie die auf dieser Website vorgestellten objektorientierten Lösungen
 für ihre Architekturen nützlich und dass sie genauso viel Spaß beim Lernen haben, wie wir bei ihrer Entwicklung hatten.
 
-# Wie man etwas zu diesem Projekt beitragen kann
+# Wie man bei diesem Projekt mitwirken kann
 
-Wenn Sie zu dem Projekt beitragen wollen, finden Sie die entsprechenden Informationen in
-unserem [Entwickler-Wiki](https://github.com/iluwatar/java-design-patterns/wiki). 
-Wir helfen Ihnen gerne und beantworten Ihre Fragen im [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
+Wenn sie zu dem Projekt beitragen wollen, finden sie die entsprechenden Informationen in
+unserem [Entwickler-Wiki](https://github.com/iluwatar/java-design-patterns/wiki).mWir helfen Ihnen
+gerne und beantworten ihre Fragen im [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
 # Lizenz
 
