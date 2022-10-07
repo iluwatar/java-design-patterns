@@ -343,6 +343,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/dmdbilal"><img src="https://avatars.githubusercontent.com/u/91405690?v=4?s=100" width="100px;" alt="Mohamed Bilal"/><br /><sub><b>Mohamed Bilal</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dmdbilal" title="Documentation">📖</a></td>
       <td align="center"><a href="https://www.linkedin.com/in/karshilsheth/"><img src="https://avatars.githubusercontent.com/u/37497287?v=4?s=100" width="100px;" alt="Karshil sheth"/><br /><sub><b>Karshil sheth</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=karshil2309" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/kongleong86"><img src="https://avatars.githubusercontent.com/u/3745455?v=4?s=100" width="100px;" alt="kongleong86"/><br /><sub><b>kongleong86</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=kongleong86" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/lucaszischka"><img src="https://avatars.githubusercontent.com/u/63545066?v=4?s=100" width="100px;" alt="Lucas Zischka"/><br /><sub><b>Lucas Zischka</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=lucaszischka" title="Translation">🌍</a></td>
     </tr>
   </tbody>
   <tfoot>
