@@ -33,14 +33,14 @@ welche mit den Prinzipien der Entwurfsmuster vertraut sind.
 
 # Erste Schritte
 
-Auf dieser Website werden Java Design Patterns vorgestellt, wobei die Etwurfsmuster von
-erfahrenen Programmierern und Architekten aus der Open-Source-Gemeinschaft entwickelt werden.
-Die Entwurfsmuster können anhand der übergeordneten Beschreibungen oder anhand des Quellcodes gesucht werden.
-Die Quellcode-Beispiele sind gut kommentiert und können als Programmiertutorials zur Implementierung 
-eines bestimmten Entwurfmusters betrachtet werden. 
-Wir verwenden hier die bewährten Open-Source-Java-Technologien.
+Auf dieser Seite werden Java Entwurfschemas vorgestellt. Die Lösungen wurden entwickelt von
+erfahrenen Programmierern und Architekten aus der Open-Source-Gemeinschaft. Die
+Schemas können anhand ihrer übergeordneten Beschreibungen oder anhand ihres
+Quellcodes durchsucht werden. Die Quellcode-Beispiele sind gut kommentiert und können als
+Programmiertutorials zur Implementierung eines bestimmten Schemas angesehen werden. Wir  verwenden die am besten
+bekannten und erprobtesten Open-Source Java-Technologien.
 
-Bevor Sie in die Materie der Entwurfsmuster eintauchen, sollten sie sich mit den verschiednen 
+Bevor Sie in die Materie der Entwurfschemas eintauchen, sollten sie sich mit den verschiednen
 [Software-Entwurfsprinzipien](https://java-design-patterns.com/principles/) auseinandersetzen.
 
 Alle Entwürfe sollten so einfach wie möglich gehalten werden. 
