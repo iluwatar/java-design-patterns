@@ -1,0 +1,93 @@
+@startuml
+package com.iluwatar.mapper.pricing {
+  class Pricing {
+    - pricingMapper : PricingMapper
+    + Pricing(pricingMapper : PricingMapper)
+    + findCustomerCost() : double
+  }
+  class PricingMapper {
+    - LOGGER : Logger {static}
+    - asset : Asset
+    - assetRepository : AssetRepository {static}
+    - customer : Customer
+    - customerRepository : CustomerRepository {static}
+    - lease : Lease
+    - leaseRepository : LeaseRepository {static}
+    + PricingMapper(customer : Customer, asset : Asset, lease : Lease)
+    + assignAsset()
+    + getAssets() : Collection<Asset>
+    + getCustomerAssets() : List<Asset>
+    + getLeasedAssets() : Collection<Lease>
+    + getPricing() : double
+    + revokeAsset()
+  }
+}
+package com.iluwatar.mapper {
+  class Asset {
+    - assetId : String
+    - price : double
+    + Asset(assetId : String, price : double)
+    + equals(o : Object) : boolean
+    + getAssetId() : String
+    + getPrice() : double
+    + hashCode() : int
+    + toString() : String
+  }
+  class Customer {
+    - customerId : String
+    - customerName : String
+    + Customer(customerId : String, customerName : String)
+    + equals(o : Object) : boolean
+    + getCustomerId() : String
+    + getCustomerName() : String
+    + hashCode() : int
+    + toString() : String
+  }
+  class Lease {
+    - assetId : String
+    - customerId : String
+    + Lease(assetId : String, customerId : String)
+    + equals(o : Object) : boolean
+    + getAssetId() : String
+    + getCustomerId() : String
+    + hashCode() : int
+    + toString() : String
+  }
+  class LeaseManagementApp {
+    - LOGGER : Logger {static}
+    + LeaseManagementApp()
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.mapper.repository {
+  class AssetRepository {
+    - assets : Map<String, Asset>
+    + AssetRepository()
+    + add(asset : Asset)
+    + get(id : String) : Asset
+    + getAssets() : Collection<Asset>
+    + remove(id : String)
+  }
+  class CustomerRepository {
+    - customers : Map<String, Customer>
+    + CustomerRepository()
+    + add(customer : Customer)
+    + remove(customerId : String)
+  }
+  class LeaseRepository {
+    - leases : Map<String, Lease>
+    + LeaseRepository()
+    + add(lease : Lease)
+    - getKey(lease : Lease) : String {static}
+    + getLeases() : Collection<Lease>
+    + remove(lease : Lease)
+  }
+}
+PricingMapper -->  "-assetRepository" AssetRepository
+PricingMapper -->  "-leaseRepository" LeaseRepository
+PricingMapper -->  "-customerRepository" CustomerRepository
+PricingMapper -->  "-asset" Asset
+Pricing -->  "-pricingMapper" PricingMapper
+PricingMapper -->  "-lease" Lease
+PricingMapper -->  "-customer" Customer
+@enduml
