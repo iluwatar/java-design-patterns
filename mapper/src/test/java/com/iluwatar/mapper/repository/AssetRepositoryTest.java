@@ -24,34 +24,40 @@
  */
 package com.iluwatar.mapper.repository;
 
-import com.iluwatar.mapper.Customer;
-import java.util.HashMap;
-import java.util.Map;
+import static java.util.UUID.randomUUID;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/** Repository containing information about the customer. */
-public final class CustomerRepository {
-  private final Map<String, Customer> customers;
+import com.iluwatar.mapper.Asset;
+import org.junit.jupiter.api.Test;
 
-  public CustomerRepository() {
-    this.customers = new HashMap<>();
+class AssetRepositoryTest {
+  private static final AssetRepository assetRepository = new AssetRepository();
+  private static final Asset asset = new Asset(randomUUID().toString(), 200);
+
+  @Test
+  void add() {
+    assetRepository.add(asset);
+    assertEquals(asset, assetRepository.get(asset.getAssetId()));
   }
 
-  /**
-   * Add a customer.
-   *
-   * @param customer the customer
-   */
-  public void add(Customer customer) {
-    customers.put(customer.getCustomerId(), customer);
+  @Test
+  void remove() {
+    add();
+    assetRepository.remove(asset.getAssetId());
+    assertFalse(assetRepository.getAssets().contains(asset));
   }
 
-  /**
-   * Finds a customer by param {@code id}.
-   *
-   * @param id the customer identifier
-   * @return Customer the associated customer
-   */
-  public Customer get(String id) {
-    return customers.get(id);
+  @Test
+  void getAssets() {
+    add();
+    assertTrue(assetRepository.getAssets().contains(asset));
+  }
+
+  @Test
+  void get() {
+    add();
+    assertEquals(asset, assetRepository.get(asset.getAssetId()));
   }
 }

@@ -22,36 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.mapper.repository;
+package com.iluwatar.mapper;
 
-import com.iluwatar.mapper.Customer;
-import java.util.HashMap;
-import java.util.Map;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/** Repository containing information about the customer. */
-public final class CustomerRepository {
-  private final Map<String, Customer> customers;
+import org.junit.jupiter.api.Test;
 
-  public CustomerRepository() {
-    this.customers = new HashMap<>();
-  }
+class LeaseManagementAppTest {
 
-  /**
-   * Add a customer.
-   *
-   * @param customer the customer
-   */
-  public void add(Customer customer) {
-    customers.put(customer.getCustomerId(), customer);
-  }
-
-  /**
-   * Finds a customer by param {@code id}.
-   *
-   * @param id the customer identifier
-   * @return Customer the associated customer
-   */
-  public Customer get(String id) {
-    return customers.get(id);
+  @Test
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> LeaseManagementApp.main(new String[] {}));
   }
 }

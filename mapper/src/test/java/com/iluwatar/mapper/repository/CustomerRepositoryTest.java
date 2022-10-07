@@ -24,34 +24,25 @@
  */
 package com.iluwatar.mapper.repository;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.iluwatar.mapper.Customer;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.UUID;
+import org.junit.jupiter.api.Test;
 
-/** Repository containing information about the customer. */
-public final class CustomerRepository {
-  private final Map<String, Customer> customers;
+class CustomerRepositoryTest {
+  private static final CustomerRepository customerRepository = new CustomerRepository();
+  private static final Customer customer = new Customer(UUID.randomUUID().toString(), "Leanord");
 
-  public CustomerRepository() {
-    this.customers = new HashMap<>();
+  @Test
+  void add() {
+    customerRepository.add(customer);
+    assertEquals(customer, customerRepository.get(customer.getCustomerId()));
   }
 
-  /**
-   * Add a customer.
-   *
-   * @param customer the customer
-   */
-  public void add(Customer customer) {
-    customers.put(customer.getCustomerId(), customer);
-  }
-
-  /**
-   * Finds a customer by param {@code id}.
-   *
-   * @param id the customer identifier
-   * @return Customer the associated customer
-   */
-  public Customer get(String id) {
-    return customers.get(id);
+  @Test
+  void get() {
+    add();
+    assertEquals(customer, customerRepository.get(customer.getCustomerId()));
   }
 }

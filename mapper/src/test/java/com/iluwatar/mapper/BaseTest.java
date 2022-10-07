@@ -22,36 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.mapper.repository;
+package com.iluwatar.mapper;
 
-import com.iluwatar.mapper.Customer;
-import java.util.HashMap;
-import java.util.Map;
+import static java.util.UUID.randomUUID;
 
-/** Repository containing information about the customer. */
-public final class CustomerRepository {
-  private final Map<String, Customer> customers;
+import com.iluwatar.mapper.pricing.PricingMapper;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.provider.Arguments;
 
-  public CustomerRepository() {
-    this.customers = new HashMap<>();
+public abstract class BaseTest {
+  protected static Stream<Arguments> pricingTestCases() {
+    return Stream.of(
+        Arguments.of(
+            new Customer(randomUUID().toString(), "Leanord"),
+            new Asset(randomUUID().toString(), 200.0)),
+        Arguments.of(
+            new Customer(randomUUID().toString(), "Sheldon"),
+            new Asset(randomUUID().toString(), 1200.0)),
+        Arguments.of(
+            new Customer(randomUUID().toString(), "Penny"),
+            new Asset(randomUUID().toString(), 600.0)),
+        Arguments.of(
+            new Customer(randomUUID().toString(), "Raj"),
+            new Asset(randomUUID().toString(), 700.0)));
   }
 
-  /**
-   * Add a customer.
-   *
-   * @param customer the customer
-   */
-  public void add(Customer customer) {
-    customers.put(customer.getCustomerId(), customer);
-  }
-
-  /**
-   * Finds a customer by param {@code id}.
-   *
-   * @param id the customer identifier
-   * @return Customer the associated customer
-   */
-  public Customer get(String id) {
-    return customers.get(id);
+  protected static PricingMapper getPricingMapper(Customer customer, Asset asset) {
+    Lease lease = new Lease(asset.getAssetId(), customer.getCustomerId());
+    return new PricingMapper(customer, asset, lease);
   }
 }

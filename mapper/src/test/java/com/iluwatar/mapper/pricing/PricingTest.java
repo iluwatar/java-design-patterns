@@ -22,36 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.mapper.repository;
+package com.iluwatar.mapper.pricing;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.iluwatar.mapper.Asset;
+import com.iluwatar.mapper.BaseTest;
 import com.iluwatar.mapper.Customer;
-import java.util.HashMap;
-import java.util.Map;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-/** Repository containing information about the customer. */
-public final class CustomerRepository {
-  private final Map<String, Customer> customers;
-
-  public CustomerRepository() {
-    this.customers = new HashMap<>();
-  }
-
-  /**
-   * Add a customer.
-   *
-   * @param customer the customer
-   */
-  public void add(Customer customer) {
-    customers.put(customer.getCustomerId(), customer);
-  }
-
-  /**
-   * Finds a customer by param {@code id}.
-   *
-   * @param id the customer identifier
-   * @return Customer the associated customer
-   */
-  public Customer get(String id) {
-    return customers.get(id);
+class PricingTest extends BaseTest {
+  @ParameterizedTest
+  @MethodSource("pricingTestCases")
+  void findCustomerCost(Customer customer, Asset asset) {
+    PricingMapper pricingMapper = getPricingMapper(customer, asset);
+    pricingMapper.assignAsset();
+    Pricing pricing = new Pricing(pricingMapper);
+    assertEquals(asset.getPrice(), pricing.findCustomerCost());
   }
 }
