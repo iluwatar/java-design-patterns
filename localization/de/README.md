@@ -43,19 +43,19 @@ bekannten und erprobtesten Open-Source Java-Technologien.
 Bevor Sie in die Materie der Entwurfschemas eintauchen, sollten sie sich mit den verschiednen
 [Software-Entwurfsprinzipien](https://java-design-patterns.com/principles/) auseinandersetzen.
 
-Alle Entwürfe sollten so einfach wie möglich gehalten werden. 
-Dafür sollten Sie sich zu beginnen mit den _KISS_ (Keep It Simple, Stupid), 
-_YAGNI_ (You Ain’t Gonna Need It) und _Do The Simplest Thing That Could Possibly Work_ prinzipen vertraut machen.
-Komplexe Entwurfsmuster sollen nur eingesetzt werden, wenn diese für sinnvolle Erweiterungen benötigt werden.
+Alle Entwürfe sollten so einfach wie möglich gehalten werden. Sie sollten mit KISS, YAGNI,
+und Do The Simplest Thing That Could Possibly Work prinzipen anfangen. Komplexe Entwurfschemas sollen nur eingesetzt werden, wenn diese für sinnvolle Erweiterungen benötigt werden.
 
-Sobald Sie mit diesen Konzepten vertraut sind, können Sie beginnen, sich mit den verfügbaren Entwurfsmuster auseinanderzusetzen. 
+Sobald sie mit diesen Konzepten vertraut sind, können sie beginnen, sich mit den [verfügbaren Entwurfschemas](https://java-design-patterns.com/patterns/) auseinanderzusetzen, durch einen
+der folgenden Ansätze
 
- - Suchen Sie nach einem bestimmten Muster anhand des Namens. 
- Sie können keins finden? Bitte melden Sie ein neues Muster [hier](https://github.com/iluwatar/java-design-patterns/issues).
+ - Nach einem bestimmten Schema anhand des Namens suchen. 
+ Sie können keins finden? Bitte melden sie ein neues Schema [hier](https://github.com/iluwatar/java-design-patterns/issues).
  - Verwendung von Tags wie `Performance`, `Gang of Four` oder `Data access`.
- - Verwendung von Entwurfsmuster-Kategorien wie `Creational`, `Behavioral` und andere.
+ - Verwendung von Entwurfschema-Kategorien wie `Creational`, `Behavioral` und andere.
 
-Ich hoffe, Sie finden die auf dieser Website vorgestellten objektorientierten Lösungen für Ihre Architekturen nützlich und dass Sie genauso viel Spaß beim Lernen haben, wie wir bei ihrer Entwicklung hatten.
+Hoffentlich finden sie die auf dieser Website vorgestellten objektorientierten Lösungen
+für ihre Architekturen nützlich und dass sie genauso viel Spaß beim Lernen haben, wie wir bei ihrer Entwicklung hatten.
 
 # Wie man etwas zu diesem Projekt beitragen kann
 
