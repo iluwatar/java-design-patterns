@@ -65,4 +65,4 @@ gerne und beantworten ihre Fragen im [Gitter chatroom](https://gitter.im/iluwata
 
 # Lizenz
 
-Dieses Projekt ist unter den Bedingungen der MIT-Lizenz lizenziert.
+Dieses Projekt steht unter den Bedingungen der MIT-Lizenz.
