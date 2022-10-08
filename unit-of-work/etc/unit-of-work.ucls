@@ -39,7 +39,7 @@
     </display>  
   </class>  
   <class id="5" language="java" name="com.iluwatar.unitofwork.Weapon" project="unit-of-work"
-    file="/unit-of-work/src/main/java/com/iluwatar/unitofwork/Student.java" binary="false" corner="BOTTOM_RIGHT">    
+    file="/unit-of-work/src/main/java/com/iluwatar/unitofwork/domain.Student.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="-1" width="-1" x="696" y="130"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

@@ -13,34 +13,34 @@ package com.iluwatar.unitofwork {
     + registerModified(T) {abstract}
     + registerNew(T) {abstract}
   }
-  class Student {
+  class domain.Student {
     - address : String
     - id : Integer
     - name : String
-    + Student(id : Integer, name : String, address : String)
+    + domain.Student(id : Integer, name : String, address : String)
     + getAddress() : String
     + getId() : Integer
     + getName() : String
   }
   class StudentDatabase {
     + StudentDatabase()
-    + delete(student : Student)
-    + insert(student : Student)
-    + modify(student : Student)
+    + delete(student : domain.Student)
+    + insert(student : domain.Student)
+    + modify(student : domain.Student)
   }
   class StudentRepository {
     - LOGGER : Logger {static}
-    - context : Map<String, List<Student>>
+    - context : Map<String, List<domain.Student>>
     - studentDatabase : StudentDatabase
-    + StudentRepository(context : Map<String, List<Student>>, studentDatabase : StudentDatabase)
+    + StudentRepository(context : Map<String, List<domain.Student>>, studentDatabase : StudentDatabase)
     + commit()
     - commitDelete()
     - commitInsert()
     - commitModify()
-    - register(student : Student, operation : String)
-    + registerDeleted(student : Student)
-    + registerModified(student : Student)
-    + registerNew(student : Student)
+    - register(student : domain.Student, operation : String)
+    + registerDeleted(student : domain.Student)
+    + registerModified(student : domain.Student)
+    + registerNew(student : domain.Student)
   }
 }
 StudentRepository -->  "-studentDatabase" StudentDatabase

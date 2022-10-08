@@ -1,3 +1,5 @@
+package domain;
+
 import java.util.Objects;
 
 public class Student {
@@ -40,7 +42,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "domain.Student{" +
                 "gpa=" + gpa +
                 ", gender=" + gender +
                 ", name='" + name + '\'' +

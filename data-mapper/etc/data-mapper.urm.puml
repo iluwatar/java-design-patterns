@@ -6,12 +6,12 @@ package com.iluwatar.datamapper {
     - App()
     + main(args : String[]) {static}
   }
-  class Student {
+  class domain.Student {
     - grade : char
     - name : String
     - serialVersionUID : long {static}
     - studentId : int
-    + Student(studentId : int, name : String, grade : char)
+    + domain.Student(studentId : int, name : String, grade : char)
     + equals(inputObject : Object) : boolean
     + getGrade() : char
     + getName() : String
@@ -23,21 +23,21 @@ package com.iluwatar.datamapper {
     + toString() : String
   }
   interface StudentDataMapper {
-    + delete(Student) {abstract}
-    + find(int) : Optional<Student> {abstract}
-    + insert(Student) {abstract}
-    + update(Student) {abstract}
+    + delete(domain.Student) {abstract}
+    + find(int) : Optional<domain.Student> {abstract}
+    + insert(domain.Student) {abstract}
+    + update(domain.Student) {abstract}
   }
   class StudentDataMapperImpl {
-    - students : List<Student>
+    - students : List<domain.Student>
     + StudentDataMapperImpl()
-    + delete(studentToBeDeleted : Student)
-    + find(studentId : int) : Optional<Student>
-    + getStudents() : List<Student>
-    + insert(studentToBeInserted : Student)
-    + update(studentToBeUpdated : Student)
+    + delete(studentToBeDeleted : domain.Student)
+    + find(studentId : int) : Optional<domain.Student>
+    + getStudents() : List<domain.Student>
+    + insert(studentToBeInserted : domain.Student)
+    + update(studentToBeUpdated : domain.Student)
   }
 }
-StudentDataMapperImpl -->  "-students" Student
+StudentDataMapperImpl -->  "-students" domain.Student
 StudentDataMapperImpl ..|> StudentDataMapper 
 @enduml

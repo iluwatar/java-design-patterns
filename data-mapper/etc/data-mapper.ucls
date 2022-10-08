@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.iluwatar.datamapper.Student" project="java-design-patterns" 
-    file="/java-design-patterns/java/com/iluwatar/datamapper/Student.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="1" language="java" name="com.iluwatar.datamapper.domain.Student" project="java-design-patterns"
+    file="/java-design-patterns/java/com/iluwatar/datamapper/domain.Student.java" binary="false" corner="BOTTOM_RIGHT">
     <position height="359" width="148" x="868" y="175"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      

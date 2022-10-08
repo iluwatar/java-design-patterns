@@ -1,5 +1,9 @@
+package doamin;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import domain.Gender;
+import domain.Student;
 import org.junit.jupiter.api.Test;
 
 class StudentTest {

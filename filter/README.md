@@ -13,7 +13,7 @@ Filter Pattern
 
 ## Also known as
 
-Criteria pattern
+criteria.Criteria pattern
 
 ## Intent
 
@@ -33,65 +33,65 @@ There is no explanation in Wikipedia
 
 ### Programmatic example
 Translating student management system from above.
-Here we have Criteria interface to be used for implementing filter options and implementation.
+Here we have criteria.Criteria interface to be used for implementing filter options and implementation.
 ```java
-public interface Criteria {
+public interface criteria.Criteria {
 
-    List<Student> meetCriteria(List<Student> students);
+    List<domain.Student> meetCriteria(List<domain.Student> students);
 }
 
-public class CriteriaMale implements Criteria {
+public class criteria.CriteriaMale implements criteria.Criteria {
 
     @Override
-    public List<Student> meetCriteria(final List<Student> students) {
+    public List<domain.Student> meetCriteria(final List<domain.Student> students) {
         return students.stream()
-                .filter(Student::isMale)
+                .filter(domain.Student::isMale)
                 .collect(Collectors.toList());
     }
 }
 
-public class CriteriaGPAHigherThan3 implements Criteria {
+public class criteria.CriteriaGPAHigherThan3 implements criteria.Criteria {
 
     public static final double standardGpa = 3.0;
 
     @Override
-    public List<Student> meetCriteria(final List<Student> students) {
+    public List<domain.Student> meetCriteria(final List<domain.Student> students) {
         return students.stream()
                 .filter(student -> student.isGpaHigherThan(standardGpa))
                 .collect(Collectors.toList());
     }
 }
 
-public class AndCriteria implements Criteria {
+public class criteria.AndCriteria implements criteria.Criteria {
 
-    private final Criteria criteria;
-    private final Criteria anotherCriteria;
+    private final criteria.Criteria criteria;
+    private final criteria.Criteria anotherCriteria;
 
-    public AndCriteria(final Criteria criteria, final Criteria anotherCriteria) {
+    public criteria.AndCriteria(final criteria.Criteria criteria, final criteria.Criteria anotherCriteria) {
         this.criteria = criteria;
         this.anotherCriteria = anotherCriteria;
     }
 
     @Override
-    public List<Student> meetCriteria(final List<Student> students) {
+    public List<domain.Student> meetCriteria(final List<domain.Student> students) {
         return anotherCriteria.meetCriteria(criteria.meetCriteria(students));
     }
 }
 
-public class OrCriteria implements Criteria {
+public class criteria.OrCriteria implements criteria.Criteria {
 
-    private final Criteria criteria;
-    private final Criteria anotherCriteria;
+    private final criteria.Criteria criteria;
+    private final criteria.Criteria anotherCriteria;
 
-    public OrCriteria(final Criteria criteria, final Criteria anotherCriteria) {
+    public criteria.OrCriteria(final criteria.Criteria criteria, final criteria.Criteria anotherCriteria) {
         this.criteria = criteria;
         this.anotherCriteria = anotherCriteria;
     }
 
     @Override
-    public List<Student> meetCriteria(final List<Student> students) {
-        final List<Student> filteredStudents1 = criteria.meetCriteria(students);
-        final List<Student> filteredStudents2 = anotherCriteria.meetCriteria(students);
+    public List<domain.Student> meetCriteria(final List<domain.Student> students) {
+        final List<domain.Student> filteredStudents1 = criteria.meetCriteria(students);
+        final List<domain.Student> filteredStudents2 = anotherCriteria.meetCriteria(students);
 
         return Stream.of(filteredStudents1, filteredStudents2)
                 .flatMap(Collection::stream)
@@ -102,13 +102,13 @@ public class OrCriteria implements Criteria {
 ```
 This is a class that represents student
 ```java
-public class Student {
+public class domain.Student {
 
     private final double gpa;
-    private final Gender gender;
+    private final domain.Gender gender;
     private final String name;
 
-    public Student(final double gpa, final Gender gender, final String name) {
+    public domain.Student(final double gpa, final domain.Gender gender, final String name) {
         this.gpa = gpa;
         this.gender = gender;
         this.name = name;
@@ -127,10 +127,10 @@ public class Student {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Student)) {
+        if (!(o instanceof domain.Student)) {
             return false;
         }
-        Student student = (Student) o;
+        domain.Student student = (domain.Student) o;
         return Double.compare(student.gpa, gpa) == 0 && gender == student.gender && Objects.equals(name,
                 student.name);
     }
@@ -142,7 +142,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "domain.Student{" +
                 "gpa=" + gpa +
                 ", gender=" + gender +
                 ", name='" + name + '\'' +
@@ -150,7 +150,7 @@ public class Student {
     }
 }
 
-public enum Gender {
+public enum domain.Gender {
     MALE,
     FEMALE
     ;
@@ -161,7 +161,16 @@ public enum Gender {
 }
 ```
 This is main class
+
 ```java
+import criteria.AndCriteria;
+import criteria.Criteria;
+import criteria.CriteriaGPAHigherThan3;
+import criteria.CriteriaMale;
+import criteria.OrCriteria;
+import domain.Gender;
+import domain.Student;
+
 public class Application {
 
     public static void main(String[] args) {
@@ -199,20 +208,20 @@ public class Application {
 Here's the console output.
 ```
 criterialMale
-Student{gpa=3.5, gender=MALE, name='student1'}
-Student{gpa=2.0, gender=MALE, name='student2'}
+domain.Student{gpa=3.5, gender=MALE, name='student1'}
+domain.Student{gpa=2.0, gender=MALE, name='student2'}
 
 criteriaGPAHigherThan3
-Student{gpa=3.5, gender=MALE, name='student1'}
-Student{gpa=3.5, gender=FEMALE, name='student3'}
+domain.Student{gpa=3.5, gender=MALE, name='student1'}
+domain.Student{gpa=3.5, gender=FEMALE, name='student3'}
 
 andCriteria
-Student{gpa=3.5, gender=MALE, name='student1'}
+domain.Student{gpa=3.5, gender=MALE, name='student1'}
 
 orCriteria
-Student{gpa=3.5, gender=MALE, name='student1'}
-Student{gpa=2.0, gender=MALE, name='student2'}
-Student{gpa=3.5, gender=FEMALE, name='student3'}
+domain.Student{gpa=3.5, gender=MALE, name='student1'}
+domain.Student{gpa=2.0, gender=MALE, name='student2'}
+domain.Student{gpa=3.5, gender=FEMALE, name='student3'}
 ```
 ## Class diagram
 ![filter pattern class diagram](./etc/filter.png)

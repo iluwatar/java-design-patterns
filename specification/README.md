@@ -11,7 +11,7 @@ tags:
 
 ## Also known as
 
-Filter, Criteria
+Filter, criteria.Criteria
 
 ## Intent
 

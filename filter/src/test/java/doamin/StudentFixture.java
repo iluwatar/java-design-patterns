@@ -1,3 +1,7 @@
+package doamin;
+
+import domain.Gender;
+import domain.Student;
 import java.util.List;
 
 public class StudentFixture {

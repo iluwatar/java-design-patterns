@@ -1,3 +1,6 @@
+package criteria;
+
+import domain.Student;
 import java.util.List;
 
 public class AndCriteria implements Criteria {

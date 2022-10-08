@@ -52,7 +52,7 @@ public final class App {
     final var mapper = new StudentDataMapperImpl();
 
     /* Create new student */
-    var student = new Student(1, "Adam", 'A');
+    var student = new domain.Student(1, "Adam", 'A');
 
     /* Add student in respectibe store */
     mapper.insert(student);
@@ -65,7 +65,7 @@ public final class App {
     LOGGER.debug(STUDENT_STRING + studentToBeFound + ", is searched");
 
     /* Update existing student object */
-    student = new Student(student.getStudentId(), "AdamUpdated", 'A');
+    student = new domain.Student(student.getStudentId(), "AdamUpdated", 'A');
 
     /* Update student in respectibe db */
     mapper.update(student);
