@@ -32,10 +32,6 @@ tags:
 
 ## 程序示例
 
-So, how does this all come together? With the above example in mind we will imitate the 
-functionality in a simple example. A monitoring service mimics the web app and makes both local and 
-remote calls.
-
 那么，这一切是如何结合在一起的呢？ 记住上面的例子，我们将在一个简单的例子中模仿这个功能。 监控服务模仿 Web 应用程序并进行本地和远程调用。
 
 服务架构如下：
