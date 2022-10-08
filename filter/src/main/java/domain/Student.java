@@ -26,6 +26,11 @@ package domain;
 
 import java.util.Objects;
 
+/**
+ * Student Class to represent student status
+ *
+ * @author yunki Kim
+ */
 public class Student {
 
     private final double gpa;

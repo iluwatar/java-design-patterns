@@ -28,6 +28,12 @@ import domain.Student;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * CriteriaGPAHigherThan3 class
+ * pick out student with GPA higher than 3.0
+ *
+ * @author yunki Kim
+ */
 public class CriteriaGPAHigherThan3 implements Criteria {
 
     public static final double standardGpa = 3.0;

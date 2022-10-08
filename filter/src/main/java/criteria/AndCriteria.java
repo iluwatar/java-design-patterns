@@ -27,6 +27,12 @@ package criteria;
 import domain.Student;
 import java.util.List;
 
+/**
+ * AndCriteria class in the filter pattern
+ * do AND operation with two criteria implementation
+ *
+ * @author yunki Kim
+ */
 public class AndCriteria implements Criteria {
 
     private final Criteria criteria;

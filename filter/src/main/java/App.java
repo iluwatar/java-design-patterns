@@ -26,6 +26,10 @@ package com.iluwatar.filter;
 
 import java.util.List;
 
+/**
+ * App class
+ * @author yunki Kim
+ */
 public class App {
 
     public static void main(String[] args) {

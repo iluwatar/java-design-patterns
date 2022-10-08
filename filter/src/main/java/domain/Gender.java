@@ -24,6 +24,11 @@
  */
 package domain;
 
+/**
+ * Gender enum
+ *
+ * @author yunki Kim
+ */
 public enum Gender {
     MALE,
     FEMALE

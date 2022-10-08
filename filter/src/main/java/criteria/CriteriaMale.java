@@ -28,6 +28,12 @@ import domain.Student;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * CriteriaMale class
+ * pick out male Students
+ *
+ * @author yunki Kim
+ */
 public class CriteriaMale implements Criteria {
 
     @Override

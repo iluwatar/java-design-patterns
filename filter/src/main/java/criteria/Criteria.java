@@ -27,6 +27,11 @@ package criteria;
 import domain.Student;
 import java.util.List;
 
+/**
+ * Criteria interface in the filter pattern
+ *
+ * @author yunki Kim
+ */
 public interface Criteria {
 
     List<Student> meetCriteria(List<Student> students);

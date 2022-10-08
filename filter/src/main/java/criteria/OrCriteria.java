@@ -30,6 +30,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * OrCriteria in the filter pattern
+ * do OR operation with two criteria.
+ *
+ * @author yunki Kim
+ */
 public class OrCriteria implements Criteria {
 
     private final Criteria criteria;
