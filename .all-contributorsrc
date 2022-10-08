@@ -1895,6 +1895,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "aitorfi",
+      "name": "Aitor Fidalgo Sánchez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64830228?v=4",
+      "profile": "https://github.com/aitorfi",
+      "contributions": [
+        "translation",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -1902,5 +1912,6 @@
   "projectOwner": "iluwatar",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
