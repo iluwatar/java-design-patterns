@@ -91,7 +91,7 @@ public class OrCriteria implements Criteria {
     @Override
     public List<Student> meetCriteria(final List<Student> students) {
         final List<Student> filteredStudents1 = criteria.meetCriteria(students);
-        final List<Student> filteredStudents2 = criteria.meetCriteria(students);
+        final List<Student> filteredStudents2 = anotherCriteria.meetCriteria(students);
 
         return Stream.of(filteredStudents1, filteredStudents2)
                 .flatMap(Collection::stream)
@@ -212,8 +212,10 @@ Student{gpa=3.5, gender=MALE, name='student1'}
 orCriteria
 Student{gpa=3.5, gender=MALE, name='student1'}
 Student{gpa=2.0, gender=MALE, name='student2'}
+Student{gpa=3.5, gender=FEMALE, name='student3'}
 ```
 ## Class diagram
+![filter pattern class diagram](./etc/filter.png)
 
 ## Applicability
 
