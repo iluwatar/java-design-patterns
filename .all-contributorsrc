@@ -1914,6 +1914,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "m-inh",
+      "name": "Minh Nguyen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10632233?v=4",
+      "profile": "http://m-inh.github.io/",
+      "contributions": [
+        "translation",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
