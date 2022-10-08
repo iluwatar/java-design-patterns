@@ -1905,6 +1905,15 @@
         "translation",
         "doc"
       ]
+    },
+    {
+      "login": "HeVictor",
+      "name": "Victor He",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20733994?v=4",
+      "profile": "https://github.com/HeVictor",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
