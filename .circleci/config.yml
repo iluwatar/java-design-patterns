@@ -33,7 +33,7 @@ jobs:
         key: jdp-sonar-pr-{{ checksum "pom.xml" }}
     - run: |
         sudo apt-get update
-        sudo apt-get install -y xvfb
+        sudo apt-get install -y openjdk-11-jdk xvfb
         if [ -n "${CIRCLE_PR_NUMBER}" ]; then
           MAVEN_OPTS="-Xmx3000m" xvfb-run ./mvnw -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
              -Dsonar.pullrequest.key=${CIRCLE_PR_NUMBER} \
