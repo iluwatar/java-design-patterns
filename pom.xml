@@ -24,8 +24,7 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.iluwatar</groupId>
   <artifactId>java-design-patterns</artifactId>
@@ -37,7 +36,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
-    <hibernate.version>5.2.18.Final</hibernate.version>
+    <hibernate.version>5.4.24.Final</hibernate.version>
     <spring.version>5.0.17.RELEASE</spring.version>
     <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
     <spring-data.version>2.0.14.RELEASE</spring-data.version>
