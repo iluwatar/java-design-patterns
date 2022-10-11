@@ -9,11 +9,11 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class NotificationError {
-    private int errorID;
-    private String errorMessage;
+  private int errorID;
+  private String errorMessage;
 
-    @Override
-    public String toString() {
-        return "Error " + errorID + ": " + errorMessage;
-    }
+  @Override
+  public String toString() {
+    return "Error " + errorID + ": " + errorMessage;
+  }
 }

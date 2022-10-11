@@ -1,21 +1,24 @@
 package com.iluwater.notification;
 
+/**
+ *
+ */
 public class ServerCommand {
-    protected DataTransferObject data;
+  protected DataTransferObject data;
 
-    /**
-     *
-     * @param data
-     */
-    public ServerCommand(DataTransferObject data) {
-        this.data = data;
-    }
+  /**
+   *
+   * @param data
+   */
+  public ServerCommand(DataTransferObject data) {
+    this.data = data;
+  }
 
-    /**
-     * 
-     * @return
-     */
-    public Notification getNotification() {
+  /**
+   *
+   * @return
+   */
+  public Notification getNotification() {
         return data.getNotification();
-    }
+  }
 }
