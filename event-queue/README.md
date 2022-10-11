@@ -39,8 +39,144 @@ Wikipedia says
 > Message queues (also known as event queues) implement an asynchronous communication pattern between two or more processes/
 >threads whereby the sending and receiving party do not need to interact with the queue at the same time.
 
+
+Key drawback
+
+> As the event queue model decouples the sender-receiver relationship - this means that the event-queue design pattern is
+> unsuitable for scenarios in which the sender requires a response. For example, this is a prominent feature within online 
+> multiplayer games, therefore, this approach require thorough consideration.
+
 **Programmatic Example**
 
+Upon examining our event-queue example, here's the app which utilised an event queue system.
+
+```java
+import javax.sound.sampled.UnsupportedAudioFileException;
+import java.io.IOException;
+
+public class App {
+
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     * @throws IOException                   when there is a problem with the audio file loading
+     * @throws UnsupportedAudioFileException when the loaded audio file is unsupported
+     */
+    public static void main(String[] args) throws UnsupportedAudioFileException, IOException,
+            InterruptedException {
+        var audio = Audio.getInstance();
+        audio.playSound(audio.getAudioStream("./etc/Bass-Drum-1.wav"), -10.0f);
+        audio.playSound(audio.getAudioStream("./etc/Closed-Hi-Hat-1.wav"), -8.0f);
+
+        LOGGER.info("Press Enter key to stop the program...");
+        try (var br = new BufferedReader(new InputStreamReader(System.in))) {
+            br.read();
+        }
+        audio.stopService();
+    }
+}
+```
+
+Much of the design pattern is developed within the Audio class. Here we set instances, declare global variables and establish 
+the key methods used in the above runnable class.
+
+```java
+public class Audio {
+    private static final Audio INSTANCE = new Audio();
+
+    private static final int MAX_PENDING = 16;
+
+    private int headIndex;
+
+    private int tailIndex;
+
+    private volatile Thread updateThread = null;
+
+    private final PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
+
+    // Visible only for testing purposes
+    Audio() {
+
+    }
+
+    public static Audio getInstance() {
+        return INSTANCE;
+    }
+}
+```
+
+The Audio class is also responsible for handling and setting the states of the thread, this is shown in the code segments
+below.
+
+```java
+/**
+ * This method stops the Update Method's thread and waits till service stops.
+ */
+public synchronized void stopService() throws InterruptedException {
+    if (updateThread != null) {updateThread.interrupt();}
+    updateThread.join();
+    updateThread = null;
+}
+
+/**
+ * This method check the Update Method's thread is started.
+ * @return boolean
+ */
+public synchronized boolean isServiceRunning() {
+    return updateThread != null && updateThread.isAlive();}
+
+/**
+ * Starts the thread for the Update Method pattern if it was not started previously. Also when the
+ * thread is ready it initializes the indexes of the queue
+ */
+public void init() {
+    if (updateThread == null) {
+        updateThread = new Thread(() -> {
+            while (!Thread.currentThread().isInterrupted()) {
+                update();
+            }});}
+    startThread();
+}
+
+/**
+ * This is a synchronized thread starter.
+ */
+private synchronized void startThread() {
+    if (!updateThread.isAlive()) {
+        updateThread.start();
+        headIndex = 0;
+        tailIndex = 0;
+    }
+}
+```
+
+New audio is added into our event queue in the playSound method found in the Audio class. The update method is then utilised
+to retrieve an audio item from the queue and play it to the user.
+
+```java
+public void playSound(AudioInputStream stream, float volume) {
+    init();
+    // Walk the pending requests.
+    for (var i = headIndex; i != tailIndex; i = (i + 1) % MAX_PENDING) {
+      var playMessage = getPendingAudio()[i];
+      if (playMessage.getStream() == stream) {
+        // Use the larger of the two volumes.
+        playMessage.setVolume(Math.max(volume, playMessage.getVolume()));
+        // Don't need to enqueue.
+        return;
+      }
+    }
+    getPendingAudio()[tailIndex] = new PlayMessage(stream, volume);
+    tailIndex = (tailIndex + 1) % MAX_PENDING;
+}
+```
+
+Within the Audio class are some more methods with assist the construction of the event-queue design patterns, they are 
+summarised below.
+
+- getAudioStream() = returns the input stream path of a file
+- getPendingAudio() = returns the current event queue item 
 
 
 ## Class diagram
