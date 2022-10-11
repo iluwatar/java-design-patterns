@@ -1,30 +1,30 @@
 ---
-layout: pattern
-title: Active Object
-folder: active-object
-permalink: /patterns/active-object/
-categories: Concurrency
-language: en
-tags:
- - Performance
+diseño: patrón
+título: Objeto activo
+carpeta: objeto activo
+enlace permanente: /patrones/objeto-activo/
+categorías: Concurrencia
+idioma: es
+etiquetas:
+ - Actuación
 ---
 
 
-## Intent
-The active object design pattern decouples method execution from method invocation for objects that each reside in their thread of control. The goal is to introduce concurrency, by using asynchronous method invocation, and a scheduler for handling requests.
+## Intención
+El patrón de diseño de objeto activo desacopla la ejecución del método de la invocación del método para los objetos que residen en su subproceso de control. El objetivo es introducir la simultaneidad mediante el uso de la invocación de métodos asincrónicos y un programador para gestionar las solicitudes.
 
-## Explanation
+## Explicación
 
-The class that implements the active object pattern will contain a self-synchronization mechanism without using 'synchronized' methods.
+La clase que implementa el patrón de objeto activo contendrá un mecanismo de autosincronización sin usar métodos 'sincronizados'.
 
-Real-world example
+ejemplo del mundo real
 
->The Orcs are known for their wildness and untameable soul. It seems like they have their own thread of control based on previous behavior.
+>Los orcos son conocidos por su salvajismo y su alma indomable. Parece que tienen su propio hilo de control basado en el comportamiento anterior.
 
-To implement a creature that has its own thread of control mechanism and expose its API only and not the execution itself, we can use the Active Object pattern.
+Para implementar una criatura que tiene su propio hilo de mecanismo de control y exponer solo su API y no la ejecución en sí, podemos usar el patrón Active Object.
 
 
-**Programmatic Example**
+**Ejemplo programático**
 
 ```java
 public abstract class ActiveCreature{
@@ -82,9 +82,9 @@ public abstract class ActiveCreature{
 }
 ```
 
-We can see that any class that will extend the ActiveCreature class will have its own thread of control to invoke and execute methods.
+Podemos ver que cualquier clase que extienda la clase ActiveCreature tendrá su propio hilo de control para invocar y ejecutar métodos.
 
-For example, the Orc class:
+Por ejemplo, la clase Orc:
 
 ```java
 public class Orc extends ActiveCreature {
@@ -96,7 +96,7 @@ public class Orc extends ActiveCreature {
 }
 ```
 
-Now, we can create multiple creatures such as Orcs, tell them to eat and roam, and they will execute it on their own thread of control:
+Ahora, podemos crear múltiples criaturas como orcos, decirles que coman y deambulen, y lo ejecutarán en su propio hilo de control:
 
 ```java
   public static void main(String[] args) {  
@@ -121,10 +121,10 @@ Now, we can create multiple creatures such as Orcs, tell them to eat and roam, a
   }
 ```
 
-## Class diagram
+## Diagrama de clase
 
-![alt text](./etc/active-object.urm.png "Active Object class diagram")
+![texto alternativo](./etc/active-object.urm.png "Active Object class diagram")
 
-## Tutorials
+## Tutoriales
 
-* [Android and Java Concurrency: The Active Object Pattern](https://www.youtube.com/watch?v=Cd8t2u5Qmvc)
+* [Simultaneidad de Android y Java: el patrón de objeto activo](https://www.youtube.com/watch?v=Cd8t2u5Qmvc)
