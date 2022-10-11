@@ -7,6 +7,8 @@ categories: Concurrency
 language: en
 tags:
  - Game programming
+ - GUI
+ - code flow
 ---
 
 ## Intent
