@@ -40,48 +40,47 @@ import java.io.IOException;
  */
 public class App {
 
-    /**
-     * The main method for the loan pattern.
-     */
-    public static void main(String[] args) throws IOException {
-        // export data to the given file
-        writeFile("loan-pattern/etc/data.txt");
-        // get data from the given file
-        readFile("loan-pattern/etc/data.txt");
-    }
+  /**
+   * The main method for the loan pattern.
+   */
+  public static void main(String[] args) throws IOException {
+    // export data to the given file
+    writeFile("loan-pattern/etc/data.txt");
+    // get data from the given file
+    readFile("loan-pattern/etc/data.txt");
+  }
 
-    /**
-     * a file path is given and write 0 to 9 numbers to the file.
-     */
-    public static void writeFile(String fileName) throws IOException {
-        Lender.writeUsing(fileName,
-                new WriteBlock() {
-                    public void call(BufferedWriter out) throws IOException {
-                        // define what data should be written to the file
-                        for (int i = 0; i < 10; i++) {
-                            out.append(i + "");
-                            out.newLine();
-                        }
-                    }
-                });
+  /**
+   * a file path is given and write 0 to 9 numbers to the file.
+   */
+  public static void writeFile(String fileName) throws IOException {
+    Lender.writeUsing(fileName, new WriteBlock() {
+      @Override
+      public void call(BufferedWriter out) throws IOException {
+        // define what data should be written to the file
+        for (int i = 0; i < 10; i++) {
+          out.append(String.valueOf(i));
+          out.newLine();
+        }
+      }
     }
+    );
+  }
 
-    /**
-     * a file path is given, read data line by line from the file and print out.
-     */
-    public static void readFile(String fileName) throws IOException {
-        Lender.readUsing(fileName,
-                new ReadBlock() {
-                    @Override
-                    public void call(BufferedReader reader) throws IOException {
-                        while (reader.ready()) {
-                            // the way how to read the data
-                            String s = reader.readLine();
-                            // the way how to operate the data
-                            System.out.println(s);
-                        }
-                    }
-                });
-    }
-
+  /**
+   * a file path is given, read data line by line from the file and print out.
+   */
+  public static void readFile(String fileName) throws IOException {
+    Lender.readUsing(fileName, new ReadBlock() {
+      @Override
+      public void call(BufferedReader reader) throws IOException {
+        while (reader.ready()) {
+          // the way how to read the data
+          String s = reader.readLine();
+          // the way how to operate the data
+          System.out.println(s);
+        }
+      }
+    });
+  }
 }
