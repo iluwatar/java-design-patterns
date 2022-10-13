@@ -21,9 +21,9 @@ public class App {
      */
     public static void main(String[] args) throws IOException {
         // export data to the given file
-        writeFile("loan-pattern/src/main/resources/data.txt");
+        writeFile("loan-pattern/etc/data.txt");
         // get data from the given file
-        readFile("loan-pattern/src/main/resources/data.txt");
+        readFile("loan-pattern/etc/data.txt");
     }
 
     /**
