@@ -14,7 +14,7 @@ public class Notification {
   private List<NotificationError> errors = new ArrayList<>();
 
   protected Notification() {
-    //
+    //constructor purposefully left blank
   }
 
   public boolean hasErrors() {
