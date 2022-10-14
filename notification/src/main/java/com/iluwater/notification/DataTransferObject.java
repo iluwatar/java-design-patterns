@@ -10,7 +10,8 @@ public class DataTransferObject {
   protected Notification notification = new Notification();
 
   public DataTransferObject() {
-    //This constructor is purposefully left blank. In practice this may contain a common constructor that can
+    //This constructor is purposefully left blank.
+    //In practice this may contain a common constructor that can
     //be used by all DataTransferObjects in this layer
   }
 }

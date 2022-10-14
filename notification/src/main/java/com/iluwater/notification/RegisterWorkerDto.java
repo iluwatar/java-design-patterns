@@ -1,13 +1,15 @@
 package com.iluwater.notification;
 
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-
+/**
+ *
+ */
 @Getter
 @Setter
-public class RegisterWorkerDTO extends DataTransferObject {
+public class RegisterWorkerDto extends DataTransferObject {
   private String name;
   private String occupation;
   private LocalDate dateOfBirth;
@@ -37,7 +39,20 @@ public class RegisterWorkerDTO extends DataTransferObject {
         new NotificationError(4, "Worker registered must be over 18");
 
 
-  protected RegisterWorkerDTO() {
+  protected RegisterWorkerDto() {
     super();
+  }
+
+  /**
+   * Simple set up function for capturing our worker information.
+
+   * @param name Name of the worker
+   * @param occupation occupation of the worker
+   * @param dateOfBirth Date of Birth of the worker
+   */
+  public void setupWorkerDto(String name, String occupation, LocalDate dateOfBirth) {
+    this.name = name;
+    this.occupation = occupation;
+    this.dateOfBirth = dateOfBirth;
   }
 }

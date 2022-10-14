@@ -12,7 +12,7 @@ public class RegisterWorkerForm {
   String occupation;
   LocalDate dateOfBirth;
 
-  RegisterWorkerDTO worker;
+  RegisterWorkerDto worker;
 
   RegisterWorkerService service = new RegisterWorkerService();
 
@@ -43,17 +43,17 @@ public class RegisterWorkerForm {
   }
 
   private void saveToClaim() {
-    worker = new RegisterWorkerDTO();
+    worker = new RegisterWorkerDto();
     worker.setName(name);
     worker.setOccupation(occupation);
     worker.setDateOfBirth(dateOfBirth);
   }
 
   private void indicateErrors() {
-    checkError(RegisterWorkerDTO.MISSING_NAME, name);
-    checkError(RegisterWorkerDTO.MISSING_DOB, dateOfBirth.toString());
-    checkError(RegisterWorkerDTO.MISSING_OCCUPATION, occupation);
-    checkError(RegisterWorkerDTO.DOB_TOO_SOON, dateOfBirth.toString());
+    checkError(RegisterWorkerDto.MISSING_NAME, name);
+    checkError(RegisterWorkerDto.MISSING_DOB, dateOfBirth.toString());
+    checkError(RegisterWorkerDto.MISSING_OCCUPATION, occupation);
+    checkError(RegisterWorkerDto.DOB_TOO_SOON, dateOfBirth.toString());
   }
 
   private void checkError(NotificationError error, String info) {
