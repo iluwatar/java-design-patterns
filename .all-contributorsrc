@@ -1933,6 +1933,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "PanSem",
+      "name": "Pan Sem",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43316964?v=4",
+      "profile": "https://github.com/PanSem",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
