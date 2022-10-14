@@ -37,7 +37,7 @@ public class RegisterWorkerForm {
    */
   public void submit() {
     //Transmit information to our transfer object to communicate between layers
-    saveToClaim();
+    saveToWorker();
     //call the service layer to register our worker
     service.registerWorker(worker);
 
@@ -53,7 +53,7 @@ public class RegisterWorkerForm {
   /**
    * Saves worker information to the data transfer object.
    */
-  private void saveToClaim() {
+  private void saveToWorker() {
     worker = new RegisterWorkerDto();
     worker.setName(name);
     worker.setOccupation(occupation);

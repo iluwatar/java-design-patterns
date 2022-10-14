@@ -11,9 +11,9 @@ public class App {
   /**
    * Variables to be submitted in the form.
    */
-  private static final String NAME = "Agatha";
-  private static final String OCCUPATION = "Lawyer";
-  private static final LocalDate DATE_OF_BIRTH = LocalDate.of(2001, 7, 13);
+  private static final String NAME = "";
+  private static final String OCCUPATION = "";
+  private static final LocalDate DATE_OF_BIRTH = LocalDate.of(2016, 7, 13);
 
   private App() {
   }
