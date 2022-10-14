@@ -3,7 +3,8 @@ package com.iluwater.notification;
 import lombok.Getter;
 
 /**
- *
+ * Layer super type for all Data Transfer Objects.
+ * Also contains code for accessing our notification.
  */
 public class DataTransferObject {
   @Getter

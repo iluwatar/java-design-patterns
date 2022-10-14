@@ -5,7 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- *
+ * Data transfer object which stores information about the worker. This is carried between
+ * objects and layers to reduce the number of method calls made.
  */
 @Getter
 @Setter
@@ -15,25 +16,25 @@ public class RegisterWorkerDto extends DataTransferObject {
   private LocalDate dateOfBirth;
 
   /**
-   *
+   * Error for when name field is blank or missing.
    */
   public static final NotificationError MISSING_NAME =
         new NotificationError(1, "Name is missing");
 
   /**
-   *
+   * Error for when occupation field is blank or missing.
    */
   public static final NotificationError MISSING_OCCUPATION =
         new NotificationError(2, "Occupation is missing");
 
   /**
-   *
+   * Error for when date of birth field is blank or missing.
    */
   public static final NotificationError MISSING_DOB =
         new NotificationError(3, "Date of birth is missing");
 
   /**
-   *
+   * Error for when date of birth is less than 18 years ago.
    */
   public static final NotificationError DOB_TOO_SOON =
         new NotificationError(4, "Worker registered must be over 18");

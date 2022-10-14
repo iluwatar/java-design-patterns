@@ -4,16 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- *
+ * Error class for storing information on the error.
+ * Error ID is not necessary, but may be useful for serialisation.
  */
 @Getter
 @AllArgsConstructor
 public class NotificationError {
-  private int errorID;
+  private int errorId;
   private String errorMessage;
 
   @Override
   public String toString() {
-    return "Error " + errorID + ": " + errorMessage;
+    return "Error " + errorId + ": " + errorMessage;
   }
 }

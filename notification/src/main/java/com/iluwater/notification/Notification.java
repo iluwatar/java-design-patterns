@@ -5,7 +5,9 @@ import java.util.List;
 import lombok.Getter;
 
 /**
- *
+ * The notification. Used for storing errors and any other methods
+ * that may be necessary for when we send information back to the
+ * presentation layer.
  */
 public class Notification {
   @Getter
