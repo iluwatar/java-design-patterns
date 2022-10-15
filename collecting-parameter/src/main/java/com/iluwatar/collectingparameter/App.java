@@ -45,6 +45,11 @@ import java.util.List;
 
 public class App {
     static PrinterQueue printerQueue = PrinterQueue.getInstance();
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
     public static void main(String[] args) {
         printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A4, 5, false, false));
         printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A4, 10, true, false));
