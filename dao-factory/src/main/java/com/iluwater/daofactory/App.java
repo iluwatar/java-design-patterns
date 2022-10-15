@@ -20,6 +20,8 @@ public class App {
         // Finding an account with first_name Richard and
         // last_name Reynaldo
         Account tempAcc = psqlAccount.findAccount("Richard", "Reynaldo", null);
+
+        // Resetting the location attribute
         tempAcc.setLocation("Sydney");
 
         // Update modified account to the database
@@ -31,5 +33,23 @@ public class App {
 
         // Create an Order DAO
         OrderDAO psqlOrder = postgres.getOrderDAO();
+
+        // Inserting a new order to the database
+        psqlOrder.insertOrder("Richard", "Josh", "Paris");
+        psqlOrder.insertOrder("Hiro", "Richard", "Sydney");
+        psqlOrder.insertOrder("Josh", "Richard", "Sydney");
+
+        // Finding an order whose sender is Richard
+        Order tempOrder = psqlOrder.findOrder("Richard", null, null);
+
+        // Resetting the destination attribute
+        tempOrder.setDestination("Milan");
+
+        // Update modified order to the database
+        psqlOrder.updateOrder(tempOrder);
+
+        // Delete an account from the database
+        // (delete all record whose sender is Hiro)
+        psqlOrder.deleteOrder("Hiro", null, null);
     }
 }
