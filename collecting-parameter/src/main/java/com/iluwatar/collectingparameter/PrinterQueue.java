@@ -9,6 +9,9 @@ public class PrinterQueue {
     static PrinterQueue currentInstance = null;
     public static Queue<PrinterItem> printerItemQueue;
 
+    /**
+     * This class is a singleton. The getInstance method will ensure that only one instance exists at a time.
+     */
     public static PrinterQueue getInstance() {
         if (Objects.isNull(currentInstance)) {
             currentInstance = new PrinterQueue();
@@ -16,10 +19,18 @@ public class PrinterQueue {
         return currentInstance;
     }
 
+    /**
+     * Private constructor prevents instantiation, unless using the getInstance() method.
+     */
     private PrinterQueue() {
         printerItemQueue = new LinkedList<>();
     }
 
+    /**
+     * Adds a single print job to the queue
+     *
+     * @param printerItem: The printing job to be added to the queue
+     */
     public void addPrinterItem (PrinterItem printerItem) {
         printerItemQueue.add(printerItem);
     }

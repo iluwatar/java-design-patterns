@@ -70,10 +70,16 @@ public class App {
 
     }
 
+    /**
+     * Adds A4 document jobs to the collecting parameter according to some policy that can be whatever the client
+     * (the print center) wants.
+     *
+     * @param printerItemsCollection: the collecting parameter
+     */
     public static void addA4Papers(List<PrinterQueue.PrinterItem> printerItemsCollection) {
         for (PrinterQueue.PrinterItem nextItem : PrinterQueue.printerItemQueue) {
             if (nextItem.paperSize.equals(PaperSizes.A4)) {
-                boolean isColouredAndSingleSided = nextItem.isColour && !nextItem.isDoubleSided;
+                var isColouredAndSingleSided = nextItem.isColour && !nextItem.isDoubleSided;
                 if (isColouredAndSingleSided) {
                     printerItemsCollection.add(nextItem);
                 } else if (!nextItem.isColour) {
@@ -83,11 +89,16 @@ public class App {
         }
     }
 
-
+    /**
+     * Adds A3 document jobs to the collecting parameter according to some policy that can be whatever the client
+     * (the print center) wants.
+     *
+     * @param printerItemsCollection: the collecting parameter
+     */
     public static void addA3Papers(List<PrinterQueue.PrinterItem> printerItemsCollection) {
         for (PrinterQueue.PrinterItem nextItem : PrinterQueue.printerItemQueue) {
             if (nextItem.paperSize.equals(PaperSizes.A3)) {
-                boolean isNotColouredAndSingleSided = !nextItem.isColour && !nextItem.isDoubleSided;
+                var isNotColouredAndSingleSided = !nextItem.isColour && !nextItem.isDoubleSided;
                 if (isNotColouredAndSingleSided) {
                     printerItemsCollection.add(nextItem);
                 }
@@ -95,10 +106,16 @@ public class App {
         }
     }
 
+    /**
+     * Adds A2 document jobs to the collecting parameter according to some policy that can be whatever the client
+     * (the print center) wants.
+     *
+     * @param printerItemsCollection: the collecting parameter
+     */
     public static void addA2Papers(List<PrinterQueue.PrinterItem> printerItemsCollection) {
         for (PrinterQueue.PrinterItem nextItem : PrinterQueue.printerItemQueue) {
             if (nextItem.paperSize.equals(PaperSizes.A2)) {
-                boolean isNotColouredSingleSidedAndOnePage = nextItem.pageCount == 1 && !nextItem.isDoubleSided
+                var isNotColouredSingleSidedAndOnePage = nextItem.pageCount == 1 && !nextItem.isDoubleSided
                         && !nextItem.isColour;
                 if (isNotColouredSingleSidedAndOnePage) {
                     printerItemsCollection.add(nextItem);
