@@ -46,14 +46,14 @@
     <junit-jupiter.version>5.7.1</junit-jupiter.version>
     <junit-vintage.version>${junit-jupiter.version}</junit-vintage.version>
     <compiler.version>3.8.1</compiler.version>
-    <jacoco.version>0.8.6</jacoco.version>
+    <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <camel.version>2.24.0</camel.version>
     <guava.version>19.0</guava.version>
     <mockito.version>3.5.6</mockito.version>
     <htmlunit.version>2.22</htmlunit.version>
     <guice.version>4.0</guice.version>
-    <mongo-java-driver.version>3.12.1</mongo-java-driver.version>
+    <mongo-java-driver.version>3.12.8</mongo-java-driver.version>
     <slf4j.version>1.7.30</slf4j.version>
     <logback.version>1.2.9</logback.version>
     <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
@@ -231,6 +231,7 @@
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
+      <module>rule-engine</module>
   </modules>
   <repositories>
     <repository>

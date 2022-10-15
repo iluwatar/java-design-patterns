@@ -39,13 +39,6 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
   <dependencies>
-    <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <version>3.9.1</version>
-      <scope>test</scope>
-    </dependency>
     <!-- https://mvnrepository.com/artifact/uk.org.lidalia/slf4j-test -->
     <dependency>
       <groupId>uk.org.lidalia</groupId>

@@ -39,6 +39,10 @@ Wikipedia says
 **Programmatic Example**
 
 Let's first introduce the template method class along with its concrete implementations.
+To make sure that subclasses don’t override the template method, the template method (in our case
+method `steal`) should be declared `final`, otherwise the skeleton defined in the base class could
+be overridden in subclasses.
+
 
 ```java
 @Slf4j
@@ -50,7 +54,7 @@ public abstract class StealingMethod {
 
   protected abstract void stealTheItem(String target);
 
-  public void steal() {
+  public final void steal() {
     var target = pickTarget();
     LOGGER.info("The target has been chosen as {}.", target);
     confuseTarget(target);
