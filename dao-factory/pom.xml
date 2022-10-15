@@ -28,10 +28,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>org.example</groupId>
+    <parent>
+        <groupId>com.iluwatar</groupId>
+        <artifactId>java-design-patterns</artifactId>
+        <version>1.26.0-SNAPSHOT</version>
+    </parent>
     <artifactId>dao-factory</artifactId>
-    <version>1.0-SNAPSHOT</version>
     <properties>
         <maven.compiler.source>1.18</maven.compiler.source>
         <maven.compiler.target>1.18</maven.compiler.target>
@@ -100,45 +102,45 @@
             </plugin>
         </plugins>
     </build>
-    <profiles>
-        <profile>
-            <id>run-its</id>
-            <build>
+<!--    <profiles>-->
+<!--        <profile>-->
+<!--            <id>run-its</id>-->
+<!--            <build>-->
 
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-invoker-plugin</artifactId>
-                        <version>1.7</version>
-                        <configuration>
-                            <debug>true</debug>
-                            <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
-                            <pomIncludes>
-                                <pomInclude>*/pom.xml</pomInclude>
-                            </pomIncludes>
-                            <postBuildHookScript>verify</postBuildHookScript>
-                            <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>
-                            <settingsFile>src/it/settings.xml</settingsFile>
-                            <goals>
-                                <goal>clean</goal>
-                                <goal>test-compile</goal>
-                            </goals>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>integration-test</id>
-                                <goals>
-                                    <goal>install</goal>
-                                    <goal>integration-test</goal>
-                                    <goal>verify</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
+<!--                <plugins>-->
+<!--                    <plugin>-->
+<!--                        <groupId>org.apache.maven.plugins</groupId>-->
+<!--                        <artifactId>maven-invoker-plugin</artifactId>-->
+<!--                        <version>1.7</version>-->
+<!--                        <configuration>-->
+<!--                            <debug>true</debug>-->
+<!--                            <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>-->
+<!--                            <pomIncludes>-->
+<!--                                <pomInclude>*/pom.xml</pomInclude>-->
+<!--                            </pomIncludes>-->
+<!--                            <postBuildHookScript>verify</postBuildHookScript>-->
+<!--                            <localRepositoryPath>${project.build.directory}/local-repo</localRepositoryPath>-->
+<!--                            <settingsFile>src/it/settings.xml</settingsFile>-->
+<!--                            <goals>-->
+<!--                                <goal>clean</goal>-->
+<!--                                <goal>test-compile</goal>-->
+<!--                            </goals>-->
+<!--                        </configuration>-->
+<!--                        <executions>-->
+<!--                            <execution>-->
+<!--                                <id>integration-test</id>-->
+<!--                                <goals>-->
+<!--                                    <goal>install</goal>-->
+<!--                                    <goal>integration-test</goal>-->
+<!--                                    <goal>verify</goal>-->
+<!--                                </goals>-->
+<!--                            </execution>-->
+<!--                        </executions>-->
+<!--                    </plugin>-->
+<!--                </plugins>-->
 
-            </build>
-        </profile>
-    </profiles>
+<!--            </build>-->
+<!--        </profile>-->
+<!--    </profiles>-->
 </project>
 

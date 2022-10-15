@@ -1,4 +1,4 @@
-package main.java.com.iluwater.daofactory;
+package com.iluwater.daofactory;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
