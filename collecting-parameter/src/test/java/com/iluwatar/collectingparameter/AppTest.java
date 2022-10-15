@@ -29,11 +29,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class AppTest {
-    /**
-     * Checks whether {@link App} executes without throwing exception
-     */
-    @Test
-    void executesWithoutException() {
-        assertDoesNotThrow(() -> App.main(new String[]{}));
-    }
+  /**
+   * Checks whether {@link App} executes without throwing exception
+   */
+  @Test
+  void executesWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
+  }
 }
