@@ -91,6 +91,7 @@ parameter, `result` in this case, and appends to this string. The result is the 
 and maintain.
 
 ## Class diagram
+![alt text](./etc/collectingParameter.png "Collecting Parameter")
 
 ## Applicability
 Use the Collecting Parameter design pattern when
