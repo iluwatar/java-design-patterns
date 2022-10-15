@@ -24,7 +24,7 @@
  */
 package com.iluwatar.collectingparameter;
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
 /**
  * The Collecting Parameter Design Pattern aims to return a result that is the collaborative result of several
@@ -76,8 +76,9 @@ public class App {
      *
      * @param printerItemsCollection: the collecting parameter
      */
-    public static void addA4Papers(List<PrinterQueue.PrinterItem> printerItemsCollection) {
-        for (PrinterQueue.PrinterItem nextItem : PrinterQueue.printerItemQueue) {
+    public static void addA4Papers(Queue<PrinterQueue.PrinterItem> printerItemsCollection) {
+        assert printerQueue.getPrinterQueue() != null;
+        for (PrinterQueue.PrinterItem nextItem : printerQueue.getPrinterQueue()) {
             if (nextItem.paperSize.equals(PaperSizes.A4)) {
                 var isColouredAndSingleSided = nextItem.isColour && !nextItem.isDoubleSided;
                 if (isColouredAndSingleSided) {
@@ -95,8 +96,9 @@ public class App {
      *
      * @param printerItemsCollection: the collecting parameter
      */
-    public static void addA3Papers(List<PrinterQueue.PrinterItem> printerItemsCollection) {
-        for (PrinterQueue.PrinterItem nextItem : PrinterQueue.printerItemQueue) {
+    public static void addA3Papers(Queue<PrinterQueue.PrinterItem> printerItemsCollection) {
+        assert printerQueue.getPrinterQueue() != null;
+        for (PrinterQueue.PrinterItem nextItem : printerQueue.getPrinterQueue()) {
             if (nextItem.paperSize.equals(PaperSizes.A3)) {
                 var isNotColouredAndSingleSided = !nextItem.isColour && !nextItem.isDoubleSided;
                 if (isNotColouredAndSingleSided) {
@@ -112,8 +114,9 @@ public class App {
      *
      * @param printerItemsCollection: the collecting parameter
      */
-    public static void addA2Papers(List<PrinterQueue.PrinterItem> printerItemsCollection) {
-        for (PrinterQueue.PrinterItem nextItem : PrinterQueue.printerItemQueue) {
+    public static void addA2Papers(Queue<PrinterQueue.PrinterItem> printerItemsCollection) {
+        assert printerQueue.getPrinterQueue() != null;
+        for (PrinterQueue.PrinterItem nextItem : printerQueue.getPrinterQueue()) {
             if (nextItem.paperSize.equals(PaperSizes.A2)) {
                 var isNotColouredSingleSidedAndOnePage = nextItem.pageCount == 1 && !nextItem.isDoubleSided
                         && !nextItem.isColour;

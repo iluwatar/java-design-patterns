@@ -7,7 +7,7 @@ public class PrinterQueue {
 
 
     static PrinterQueue currentInstance = null;
-    public static Queue<PrinterItem> printerItemQueue;
+    private static Queue<PrinterItem> printerItemQueue;
 
     /**
      * This class is a singleton. The getInstance method will ensure that only one instance exists at a time.
@@ -24,6 +24,10 @@ public class PrinterQueue {
      */
     private PrinterQueue() {
         printerItemQueue = new LinkedList<>();
+    }
+
+    public Queue<PrinterItem> getPrinterQueue() {
+        return printerItemQueue;
     }
 
     /**
