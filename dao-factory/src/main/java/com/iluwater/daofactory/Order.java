@@ -7,10 +7,10 @@ import java.io.Serializable;
  */
 public class Order implements Serializable {
     // Variable for Order Object
-    int id = -1;
-    String senderName;
-    String receiverName;
-    String destination;
+    private int id = -1;
+    private String senderName;
+    private String receiverName;
+    private String destination;
 
     public Order() {}
 

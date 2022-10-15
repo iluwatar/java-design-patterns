@@ -7,10 +7,10 @@ import java.io.Serializable;
  */
 public class Account implements Serializable {
     // Variable for Account Object
-    int id = -1;
-    String firstName;
-    String lastName;
-    String location;
+    private int id = -1;
+    private String firstName;
+    private String lastName;
+    private String location;
 
     public Account() {}
 

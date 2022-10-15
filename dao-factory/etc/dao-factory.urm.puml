@@ -1,0 +1,91 @@
+@startuml
+package com.iluwatar.dao-factory {
+    class Account {
+    - id : int
+    - firstName : String
+    - lastName : String
+    - location : String
+    + Account()
+    + getId() : int
+    + getFirstName() : String
+    + getLastName() : String
+    + getLocation() : String
+    + setId(id : int)
+    + setFirstName(firstName : String)
+    + setLastName(lastName : String)
+    + setLocation(location : String)
+    + toString() : String
+  }
+  class Order {
+    - id : int
+    - senderName : String
+    - receiverName : String
+    - destination : String
+    + Order()
+    + getId() : int
+    + getSenderName() : String
+    + getReceiverName() : String
+    + getDestination() : String
+    + setId(id : int)
+    + setSenderName(senderName : String)
+    + setReceiverName(receiverName : String)
+    + setDestination(destination : String)
+    + toString() : String
+  }
+  interface AccountDAO {
+    + insertAccount(String, String, String) : boolean {abstract}
+    + findAccount(String, String, String) : Account {abstract}
+    + deleteAccount(String, String, String) : boolean {abstract}
+    + updateAccount(Account) : boolean {abstract}
+  }
+  interface OrderDAO {
+    + insertOrder(String, String, String) : boolean {abstract}
+    + findOrder(String, String, String) : Order {abstract}
+    + deleteOrder(String, String, String) : boolean {abstract}
+    + updateOrder(Order) : boolean {abstract}
+  }
+  abstract class DAOFactory {
+    + POSTGRES : int {static}
+    + getAccountDAO() : AccountDAO {abstract}
+    + getOrderDAO() : OrderDAO {abstract}
+  }
+  class PostgresDAOFactory {
+    - conn : String {static}
+    - user : String {static}
+    - pass : String {static}
+    + getAccountDAO() : AccountDAO
+    + getOrderDAO() : OrderDAO
+    + createConnection() : Connection {static}
+  }
+  class PostgresAccountDAO {
+    + PostgresOrderDAO()
+    + insertOrder(senderName : String, receiverName : String, destination : String) : boolean
+    + findOrder(senderName : String, receiverName : String, destination : String) : Order
+    + deleteOrder(senderName : String, receiverName : String, destination : String) : boolean
+    + updateOrder(ord : Order) : boolean
+  }
+  class PostgresOrderDAO {
+    + PostgresAccountDAO()
+    + insertAccount(firstName : String, lastName : String, location : String) : boolean
+    + findAccount(firstName : String, lastName : String, location : String) : Account
+    + deleteAccount(firstName : String, lastName : String, location : String) : boolean
+    + updateAccount(acc : Account) : boolean
+  }
+  class App {
+    + main(args : String[]) {static}
+  }
+}
+package java.sql {
+  interface DataSource {
+  }
+}
+PostgresAccountDAO ..|> AccountDAO
+PostgresOrderDAO ..|> OrderDAO
+PostgresAccountDAO ..|> Account
+PostgresOrderDAO ..|> Order
+AccountDAO ..|> DataSource
+OrderDAO ..|> DataSource
+PostgresDAOFactory ..|> DAOFactory
+PostgresAccountDAO ..|> DAOFactory
+PostgresOrderDAO ..|> DAOFactory
+@enduml

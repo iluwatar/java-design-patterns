@@ -8,7 +8,7 @@ import java.sql.Statement;
 /**
  * A DAO implementation for the OrderDAO in Postgres
  */
-public class PostgresOrderDAO implements OrderDAO{
+public class PostgresOrderDAO implements OrderDAO {
     public PostgresOrderDAO() {}
 
     /**
