@@ -1,0 +1,41 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int duplicateNum(int arr[], int n ){
+
+  /*  sort(arr, arr+n);
+    int duplicate = 0;
+
+    for(int i = 0; i < n; i++)
+        if(arr[i] == arr[i+1]){
+            duplicate = arr[i];
+            break;
+        }
+    
+    return duplicate;
+}*/
+ int slow = arr[0];
+        int fast = arr[0];
+        
+        do
+        {
+            slow = arr[slow];
+            fast = arr[arr[fast]];
+        }while(slow != fast);
+        
+        fast = arr[0];
+        while(slow != fast)
+        {
+            slow = arr[slow];
+            fast = arr[fast];
+        }
+        
+        return slow;
+    }
+int main() {
+    int arr[] = {1,5,9,1,3,4,4,5,8,7,9,9};
+    int n = sizeof(arr)/sizeof(arr[0]);
+
+    cout<<"Duplicate number is : "<<duplicateNum(arr,n);
+    return 0;
+}
