@@ -44,8 +44,8 @@ public class PersonDbSimulatorImplementation implements PersonDbSimulator {
 
   //This simulates a table in the database. To extend logic to multiple tables just add more lists to the implementation.
   private List<Person> personList = new ArrayList<>();
-  static final String notInDb = " not in DataBase";
-  static final String idStr = "ID : ";
+  static final String NOT_IN_DATA_BASE = " not in DataBase";
+  static final String ID_STR = "ID : ";
   @Override
   public Person find(int personNationalID) throws IdNotFoundException {
     for (Person elem : personList) {
@@ -53,7 +53,7 @@ public class PersonDbSimulatorImplementation implements PersonDbSimulator {
         return elem;
       }
     }
-    throw new IdNotFoundException(idStr + personNationalID + notInDb);
+    throw new IdNotFoundException(ID_STR + personNationalID + NOT_IN_DATA_BASE);
   }
 
   @Override
@@ -77,7 +77,7 @@ public class PersonDbSimulatorImplementation implements PersonDbSimulator {
         return;
       }
     }
-    throw new IdNotFoundException(idStr + person.getPersonNationalId() + notInDb);
+    throw new IdNotFoundException(ID_STR + person.getPersonNationalId() + NOT_IN_DATA_BASE);
   }
 
   /**
@@ -93,7 +93,7 @@ public class PersonDbSimulatorImplementation implements PersonDbSimulator {
         return;
       }
     }
-    throw new IdNotFoundException(idStr + id + notInDb);
+    throw new IdNotFoundException(ID_STR + id + NOT_IN_DATA_BASE);
   }
 
   /**
