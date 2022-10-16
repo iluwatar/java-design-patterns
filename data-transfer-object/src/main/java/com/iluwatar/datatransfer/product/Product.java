@@ -37,20 +37,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public final class Product {
-    private Long id;
-    private String name;
-    private Double price;
-    private Double cost;
-    private String supplier;
+  private Long id;
+  private String name;
+  private Double price;
+  private Double cost;
+  private String supplier;
 
-    @Override
-    public String toString() {
-        return "Product{"
-                + "id=" + id
-                + ", name='" + name + '\''
-                + ", price=" + price
-                + ", cost=" + cost
-                + ", supplier='" + supplier + '\''
-                + '}';
-    }
+  @Override
+  public String toString() {
+    return "Product{"
+            + "id=" + id
+            + ", name='" + name + '\''
+            + ", price=" + price
+            + ", cost=" + cost
+            + ", supplier='" + supplier + '\''
+            + '}';
+  }
 }
