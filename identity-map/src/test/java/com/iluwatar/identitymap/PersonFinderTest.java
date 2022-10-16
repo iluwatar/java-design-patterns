@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 
 public class PersonFinderTest {
   @Test
-  public void personFoundInDB(){
+  void personFoundInDB(){
     // personFinderInstance
     PersonFinder personFinder = new PersonFinder();
     // init database for our personFinder
@@ -55,7 +55,7 @@ public class PersonFinderTest {
     Assertions.assertEquals(person4,personFinder.getPerson(4),"Find person returns incorrect record.");
   }
   @Test
-  public void personFoundInIdMap(){
+  void personFoundInIdMap(){
     // personFinderInstance
     PersonFinder personFinder = new PersonFinder();
     // init database for our personFinder
@@ -83,7 +83,7 @@ public class PersonFinderTest {
     Assertions.assertEquals(person3,personFinder.getPerson(3),"Finder returns incorrect record.");
   }
   @Test
-  public void personNotFoundInDB(){
+  void personNotFoundInDB(){
     PersonFinder personFinder = new PersonFinder();
     // init database for our personFinder
     PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();

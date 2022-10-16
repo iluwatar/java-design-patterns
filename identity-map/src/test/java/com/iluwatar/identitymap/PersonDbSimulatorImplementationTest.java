@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 
 public class PersonDbSimulatorImplementationTest {
   @Test
-  public void testInsert(){
+  void testInsert(){
     // DataBase initialization.
     PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
     Assertions.assertEquals(0,db.size(),"Size of null database should be 0");
@@ -54,7 +54,7 @@ public class PersonDbSimulatorImplementationTest {
     Assertions.assertEquals(5,db.size(),"Incorrect size for data base");
   }
   @Test
-  public void findNotInDb(){
+  void findNotInDb(){
     PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
     Person person1 = new Person(1, "Thomas", 27304159);
     Person person2 = new Person(2, "John", 42273631);
@@ -64,7 +64,7 @@ public class PersonDbSimulatorImplementationTest {
     Assertions.assertThrows(IdNotFoundException.class,()->db.find(3));
   }
   @Test
-  public void findInDb(){
+  void findInDb(){
     PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
     Person person1 = new Person(1, "Thomas", 27304159);
     Person person2 = new Person(2, "John", 42273631);
@@ -73,7 +73,7 @@ public class PersonDbSimulatorImplementationTest {
     Assertions.assertEquals(person2,db.find(2),"Record that was found was incorrect.");
   }
   @Test
-  public void updateNotInDb(){
+  void updateNotInDb(){
     PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
     Person person1 = new Person(1, "Thomas", 27304159);
     Person person2 = new Person(2, "John", 42273631);
@@ -84,7 +84,7 @@ public class PersonDbSimulatorImplementationTest {
     Assertions.assertThrows(IdNotFoundException.class,()->db.update(person3));
   }
   @Test
-  public void updateInDb(){
+  void updateInDb(){
     PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
     Person person1 = new Person(1, "Thomas", 27304159);
     Person person2 = new Person(2, "John", 42273631);
@@ -95,7 +95,7 @@ public class PersonDbSimulatorImplementationTest {
     Assertions.assertEquals(person,db.find(2),"Incorrect update.");
   }
   @Test
-  public void deleteNotInDb(){
+  void deleteNotInDb(){
     PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
     Person person1 = new Person(1, "Thomas", 27304159);
     Person person2 = new Person(2, "John", 42273631);
@@ -105,7 +105,7 @@ public class PersonDbSimulatorImplementationTest {
     Assertions.assertThrows(IdNotFoundException.class,()->db.delete(3));
   }
   @Test
-  public void deleteInDb(){
+  void deleteInDb(){
     PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
     Person person1 = new Person(1, "Thomas", 27304159);
     Person person2 = new Person(2, "John", 42273631);

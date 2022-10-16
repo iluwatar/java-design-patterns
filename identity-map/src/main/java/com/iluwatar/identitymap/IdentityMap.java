@@ -25,6 +25,7 @@
 package com.iluwatar.identitymap;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -34,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class IdentityMap {
-  private HashMap<Integer, Person> personMap = new HashMap<>();
+  private Map<Integer, Person> personMap = new HashMap<>();
   /**
    * Add person to the map.
    */
@@ -69,7 +70,7 @@ public class IdentityMap {
     return personMap.size();
   }
 
-  public HashMap<Integer, Person> getPersonMap() {
+  public Map<Integer, Person> getPersonMap() {
     return this.personMap;
   }
 }

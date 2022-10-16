@@ -24,6 +24,8 @@
  */
 package com.iluwatar.identitymap;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * The basic idea behind the Identity Map is to have a series of maps containing objects that have been pulled from the database.
  * The below example demonstrates the identity map pattern by creating a sample DB.
@@ -32,6 +34,7 @@ package com.iluwatar.identitymap;
  * If there’s an object in it that corresponds to the one you’re loading, you return it. If not, you go to the database,
  * putting the objects on the map for future reference as you load them.
  */
+@Slf4j
 public class App {
   /**
    * Program entry point.
@@ -56,10 +59,10 @@ public class App {
     PersonFinder finder = new PersonFinder();
     finder.setDB(db);
 
-    System.out.println(finder.getPerson(2).toString());
-    System.out.println(finder.getPerson(4).toString());
-    System.out.println(finder.getPerson(5).toString());
-    System.out.println(finder.getPerson(2).toString());
+    LOGGER.info(finder.getPerson(2).toString());
+    LOGGER.info(finder.getPerson(4).toString());
+    LOGGER.info(finder.getPerson(5).toString());
+    LOGGER.info(finder.getPerson(2).toString());
 
   }
 }

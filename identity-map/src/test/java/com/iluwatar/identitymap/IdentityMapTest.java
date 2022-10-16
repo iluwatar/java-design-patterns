@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 
 public class IdentityMapTest {
   @Test
-  public void addToMap(){
+  void addToMap(){
     // new instance of an identity map(not connected to any DB here)
     IdentityMap idMap = new IdentityMap();
     // Dummy person instances
@@ -51,7 +51,7 @@ public class IdentityMapTest {
     Assertions.assertEquals(27304159,idMap.getPerson(11).getPhoneNum(),"Incorrect return value for phone number");
   }
   @Test
-  public void testGetFromMap() {
+  void testGetFromMap() {
     // new instance of an identity map(not connected to any DB here)
     IdentityMap idMap = new IdentityMap();
     // Dummy person instances

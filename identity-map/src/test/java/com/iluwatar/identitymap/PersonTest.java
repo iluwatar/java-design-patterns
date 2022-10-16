@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 
 public class PersonTest {
   @Test
-  public void testEquality(){
+  void testEquality(){
     // dummy persons.
     Person person1 = new Person(1,"Harry",989950022);
     Person person2 = new Person(2,"Kane",989920011);
