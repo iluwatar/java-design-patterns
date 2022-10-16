@@ -24,7 +24,10 @@
  */
 package com.iluwatar.datatransfer.product;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * {@link Product} is a entity class for product entity. This class act as entity in the demo.
@@ -34,20 +37,20 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public final class Product {
-  private Long id;
-  private String name;
-  private Double price;
-  private Double cost;
-  private String supplier;
+    private Long id;
+    private String name;
+    private Double price;
+    private Double cost;
+    private String supplier;
 
-  @Override
-  public String toString() {
-    return "Product{"
-        + "id=" + id
-        + ", name='" + name + '\''
-        + ", price=" + price
-        + ", cost=" + cost
-        + ", supplier='" + supplier + '\''
-        + '}';
-  }
+    @Override
+    public String toString() {
+        return "Product{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", price=" + price
+                + ", cost=" + cost
+                + ", supplier='" + supplier + '\''
+                + '}';
+    }
 }
