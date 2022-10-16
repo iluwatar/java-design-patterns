@@ -36,13 +36,13 @@ import lombok.extern.slf4j.Slf4j;
  * -> find (look for object with a particular ID)
  * -> insert (insert record for a new person into the database)
  * -> update (update the record of a person). To do this, create a new person instance with the same ID as the record you
- *    want to update. Then call this method with that person as an argument.
+ * want to update. Then call this method with that person as an argument.
  * -> delete (delete the record for a particular ID)
  */
 @Slf4j
 public class PersonDbSimulatorImplementation implements PersonDbSimulator {
 
-  //    This simulates a database.
+  //This simulates a table in the database. To extend logic to multiple tables just add more lists to the implementation.
   private List<Person> personList = new ArrayList<>();
 
   @Override
