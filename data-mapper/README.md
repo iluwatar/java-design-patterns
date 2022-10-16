@@ -18,8 +18,19 @@ A generic mapper will handle many different domain entity types, a dedicated map
 ## Explanation
 
 Real-world example
+
+> When accessing web resources through a browser, there is generally no need to interact with the server directly;
+> the browser and the proxy server will complete the data acquisition operation, and the three will remain independent.
+
 In plain words
+
+> The data mapper will help complete the bi-directional transfer of persistence layer and in-memory data.
+
 Wikipedia says
+
+> A Data Mapper is a Data Access Layer that performs bidirectional transfer of data between a
+> persistent data store (often a relational database) and an in-memory data representation (the domain layer).
+
 Programmatic example
 
 ## Class diagram
@@ -35,6 +46,9 @@ Use the Data Mapper in any of the following situations
 * [SqlSession.getMapper()](https://mybatis.org/mybatis-3/java-api.html)
 
 ## Consequences
+
+> Neatly mapped persistence layer data
+> Data model follows the single function principle
 
 ## Related patterns
 * [Active Record Pattern](https://en.wikipedia.org/wiki/Active_record_pattern)
