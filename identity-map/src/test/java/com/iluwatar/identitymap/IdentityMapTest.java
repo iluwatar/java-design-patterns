@@ -27,7 +27,7 @@ package com.iluwatar.identitymap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class IdentityMapTest {
+class IdentityMapTest {
   @Test
   void addToMap(){
     // new instance of an identity map(not connected to any DB here)

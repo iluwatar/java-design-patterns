@@ -27,7 +27,7 @@ package com.iluwatar.identitymap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class PersonTest {
+class PersonTest {
   @Test
   void testEquality(){
     // dummy persons.
