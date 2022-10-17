@@ -24,10 +24,12 @@
  */
 package com.iluwatar.stepbuilder;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.List;
+
 
 /**
  * The class with many parameters.
