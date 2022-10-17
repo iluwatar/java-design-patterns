@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-216-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-217-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -352,6 +352,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/zhoumengyks"><img src="https://avatars.githubusercontent.com/u/111965739?v=4?s=100" width="100px;" alt="zhoumengyks"/><br /><sub><b>zhoumengyks</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=zhoumengyks" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/you"><img src="https://avatars.githubusercontent.com/u/57100752?v=4?s=100" width="100px;" alt="you"/><br /><sub><b>you</b></sub></a><br /><a href="#translation-you" title="Translation">🌍</a></td>
       <td align="center"><a href="https://github.com/thanks"><img src="https://avatars.githubusercontent.com/u/1121545?v=4?s=100" width="100px;" alt="Thanks"/><br /><sub><b>Thanks</b></sub></a><br /><a href="#translation-Thanks" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://github.com/lazy-pr0grammer"><img src="https://avatars.githubusercontent.com/u/87204946?v=4?s=100" width="100px;" alt="LazyProgrammer"/><br /><sub><b>LazyProgrammer</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=lazy-pr0grammer" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
