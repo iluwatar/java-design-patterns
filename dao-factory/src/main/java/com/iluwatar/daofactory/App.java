@@ -6,7 +6,7 @@ package com.iluwatar.daofactory;
 public class App {
     public static void main(String[] args) {
         // Create a PostgreSQL DAO Factory
-        DAOFactory postgres = DAOFactory.getDAOFactory(DAOFactory.POSTGRES);
+        DAOFactory postgres = DAOFactory.getDAOFactory(DataSourceType.POSTGRES);
 
         // Create an Account DAO
         AccountDAO psqlAccount = postgres.getAccountDAO();
