@@ -1951,6 +1951,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "lucaszischka",
+      "name": "Lucas Zischka",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63545066?v=4",
+      "profile": "https://github.com/lucaszischka",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
