@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-214-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-215-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -351,6 +351,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/YichuanSun"><img src="https://avatars.githubusercontent.com/u/30886176?v=4?s=100" width="100px;" alt="yiichan"/><br /><sub><b>yiichan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=YichuanSun" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/PanSem"><img src="https://avatars.githubusercontent.com/u/43316964?v=4?s=100" width="100px;" alt="Pan Sem"/><br /><sub><b>Pan Sem</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=PanSem" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/zhoumengyks"><img src="https://avatars.githubusercontent.com/u/111965739?v=4?s=100" width="100px;" alt="zhoumengyks"/><br /><sub><b>zhoumengyks</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=zhoumengyks" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/you"><img src="https://avatars.githubusercontent.com/u/57100752?v=4?s=100" width="100px;" alt="you"/><br /><sub><b>you</b></sub></a><br /><a href="#translation-you" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
