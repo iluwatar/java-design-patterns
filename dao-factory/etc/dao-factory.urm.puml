@@ -1,5 +1,5 @@
 @startuml
-package com.iluwatar.dao-factory {
+package com.iluwatar.daofactory {
     class Account {
     - id : int
     - firstName : String
