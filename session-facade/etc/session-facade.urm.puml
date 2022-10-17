@@ -1,0 +1,50 @@
+@startuml
+package com.iluwatar.sessionfacade.entityBean {
+  class Addition {
+    ~ x : double
+    ~ y : double
+    + Addition(x : double, y : double)
+    + evaluate() : double
+  }
+  class Division {
+    ~ x : double
+    ~ y : double
+    + Division(x : double, y : double)
+    + evaluate() : double
+  }
+  class Multiplication {
+    ~ x : double
+    ~ y : double
+    + Multiplication(x : double, y : double)
+    + evaluate() : double
+  }
+  class Subtraction {
+    ~ x : double
+    ~ y : double
+    + Subtraction(x : double, y : double)
+    + evaluate() : double
+  }
+}
+package com.iluwatar.sessionfacade {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.sessionfacade.sessionBean {
+  class OperationSessionBean {
+    + OperationSessionBean()
+    + add(x : double, y : double) : double
+    + divide(x : double, y : double) : double
+    + multiply(x : double, y : double) : double
+    + subtract(x : double, y : double) : double
+  }
+  interface OperationSessionBeanRemote {
+    + add(double, double) : double {abstract}
+    + divide(double, double) : double {abstract}
+    + multiply(double, double) : double {abstract}
+    + subtract(double, double) : double {abstract}
+  }
+}
+OperationSessionBean ..|> OperationSessionBeanRemote 
+@enduml
