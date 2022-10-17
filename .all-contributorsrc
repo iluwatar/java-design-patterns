@@ -1969,6 +1969,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "lazy-pr0grammer",
+      "name": "LazyProgrammer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87204946?v=4",
+      "profile": "https://github.com/lazy-pr0grammer",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
