@@ -32,14 +32,17 @@ import java.util.Queue;
  * methods. This design pattern uses a 'collecting parameter' that is passed to several functions, accumulating results
  * as it travels from method-to-method. This is different to the Composed Method design pattern, where a single
  * collection is modified via several methods.
- * This example is inspired by Kent Beck's example in his book, 'Smalltalk Best Practice Patterns'. The context for this
+ *
+ * <p>This example is inspired by Kent Beck's example in his book, 'Smalltalk Best Practice Patterns'. The context for this
  * situation is that there is a single printer queue {@link PrinterQueue} that holds numerous print jobs
- * {@link com.iluwatar.collectingparameter.PrinterQueue.PrinterItem} that must be distributed to various print centers.
+ * {@link PrinterItem} that must be distributed to various print centers.
  * Each print center has its own requirements and printing limitations. In this example, the following requirements are:
  * If an A4 document is coloured, it must also be single-sided. All other non-coloured A4 documents are accepted.
  * All A3 documents must be non-coloured and single sided. All A2 documents must be a single page, single sided, and
  * non-coloured.
- * A collecting parameter is used to filter the global printer queue so that it meets the requirements for this centre,
+ *
+ * <p>A collecting parameter (the result variable) is used to filter the global printer queue so that it meets the
+ * requirements for this centre,
  **/
 
 public class App {
@@ -51,23 +54,20 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A4, 5, false, false));
-    printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A4, 10, true, false));
-    printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A3, 2, false, false));
-    printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A2, 5, false, false));
-    printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A4, 50, true, true));
-    printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A3, 4, false, false));
-    printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A3, 5, false, true));
-    printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A2, 1, false, false));
-    printerQueue.addPrinterItem(new PrinterQueue.PrinterItem(PaperSizes.A4, 1, false, false));
+    /*
+      Initialising the printer queue with jobs
+      **/
+    printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A4, 5, false, false));
+    printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A3, 2, false, false));
+    printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A2, 5, false, false));
 
-    var result = new LinkedList<PrinterQueue.PrinterItem>();
+    var result = new LinkedList<PrinterItem>();
 
     addA4Papers(result);
     addA3Papers(result);
     addA2Papers(result);
-
-
+//
+//    System.out.println(result);
   }
 
   /**
@@ -76,9 +76,12 @@ public class App {
    *
    * @param printerItemsCollection the collecting parameter
    */
-  public static void addA4Papers(Queue<PrinterQueue.PrinterItem> printerItemsCollection) {
-    assert printerQueue.getPrinterQueue() != null;
-    for (PrinterQueue.PrinterItem nextItem : printerQueue.getPrinterQueue()) {
+  public static void addA4Papers(Queue<PrinterItem> printerItemsCollection) {
+    /*
+      Iterate through the printer queue, and add A4 papers according to the correct policy to the collecting parameter,
+      which is 'printerItemsCollection' in this case.
+     */
+    for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
       if (nextItem.paperSize.equals(PaperSizes.A4)) {
         var isColouredAndSingleSided = nextItem.isColour && !nextItem.isDoubleSided;
         if (isColouredAndSingleSided) {
@@ -92,14 +95,16 @@ public class App {
 
   /**
    * Adds A3 document jobs to the collecting parameter according to some policy that can be whatever the client
-   * (the print center) wants.
+   * (the print center) wants. The code is similar to the 'addA4Papers' method. The code can be changed to accommodate
+   * the wants of the client.
    *
    * @param printerItemsCollection the collecting parameter
    */
-  public static void addA3Papers(Queue<PrinterQueue.PrinterItem> printerItemsCollection) {
-    assert printerQueue.getPrinterQueue() != null;
-    for (PrinterQueue.PrinterItem nextItem : printerQueue.getPrinterQueue()) {
+  public static void addA3Papers(Queue<PrinterItem> printerItemsCollection) {
+    for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
       if (nextItem.paperSize.equals(PaperSizes.A3)) {
+
+        // Encoding the policy into a Boolean: the A3 paper cannot be coloured and double-sided at the same time
         var isNotColouredAndSingleSided = !nextItem.isColour && !nextItem.isDoubleSided;
         if (isNotColouredAndSingleSided) {
           printerItemsCollection.add(nextItem);
@@ -110,14 +115,16 @@ public class App {
 
   /**
    * Adds A2 document jobs to the collecting parameter according to some policy that can be whatever the client
-   * (the print center) wants.
+   * (the print center) wants. The code is similar to the 'addA4Papers' method. The code can be changed to accommodate
+   * the wants of the client.
    *
    * @param printerItemsCollection the collecting parameter
    */
-  public static void addA2Papers(Queue<PrinterQueue.PrinterItem> printerItemsCollection) {
-    assert printerQueue.getPrinterQueue() != null;
-    for (PrinterQueue.PrinterItem nextItem : printerQueue.getPrinterQueue()) {
+  public static void addA2Papers(Queue<PrinterItem> printerItemsCollection) {
+    for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
       if (nextItem.paperSize.equals(PaperSizes.A2)) {
+
+        // Encoding the policy into a Boolean: the A2 paper must be single page, single-sided, and non-coloured.
         var isNotColouredSingleSidedAndOnePage = nextItem.pageCount == 1 && !nextItem.isDoubleSided
                 && !nextItem.isColour;
         if (isNotColouredSingleSidedAndOnePage) {

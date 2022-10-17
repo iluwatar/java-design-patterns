@@ -10,7 +10,7 @@ import java.util.Queue;
 public class PrinterQueue {
 
   static PrinterQueue currentInstance = null;
-  private static Queue<PrinterItem> printerItemQueue;
+  private final Queue<PrinterItem> printerItemQueue;
 
   /**
    * * This class is a singleton. The getInstance method will ensure that only one instance exists at a time.
@@ -23,6 +23,13 @@ public class PrinterQueue {
   }
 
   /**
+   * Empty the printer queue.
+   */
+  public void emptyQueue () {
+    currentInstance.getPrinterQueue().clear();
+  }
+
+  /**
    * Private constructor prevents instantiation, unless using the getInstance() method.
    */
   private PrinterQueue() {
@@ -30,7 +37,7 @@ public class PrinterQueue {
   }
 
   public Queue<PrinterItem> getPrinterQueue() {
-    return printerItemQueue;
+    return currentInstance.printerItemQueue;
   }
 
   /**
@@ -39,36 +46,7 @@ public class PrinterQueue {
    * @param printerItem The printing job to be added to the queue
    */
   public void addPrinterItem(PrinterItem printerItem) {
-    printerItemQueue.add(printerItem);
-  }
-
-  /**
-   * This class represents a Print Item, that should be added to the queue.
-   **/
-  public static class PrinterItem {
-    PaperSizes paperSize;
-    int pageCount;
-    boolean isDoubleSided;
-    boolean isColour;
-
-    PrinterItem(PaperSizes paperSize, int pageCount, boolean isDoubleSided, boolean isColour) {
-      if (!Objects.isNull(paperSize)) {
-        this.paperSize = paperSize;
-      } else {
-        throw new IllegalArgumentException();
-      }
-
-      if (pageCount > 0) {
-        this.pageCount = pageCount;
-      } else {
-        throw new IllegalArgumentException();
-      }
-
-      this.isColour = isColour;
-      this.isDoubleSided = isDoubleSided;
-
-    }
-
+    currentInstance.getPrinterQueue().add(printerItem);
   }
 
 }

@@ -1,3 +1,14 @@
+---
+layout: pattern
+title: Collecting Parameter
+folder: collecting-parameter
+permalink: /patterns/collecting-parameter/
+categories: Structural
+language: en
+tags:
+- Collecting Parameter
+---
+
 ## Name / classification
 Collecting Parameter
 
@@ -5,23 +16,23 @@ Collecting Parameter
 To store the collaborative result of numerous methods within a collection.
 
 ## Explanation
-Real-world example
+### Real-world example
 Joshua Kerivsky gives a real-world example in his book 'Refactoring to Patterns'. He gives an example of using the
 Collecting Parameter Design Pattern to create a `toString()` method for an XML tree. Without using this design pattern,
 this would require a bulky function with conditionals and concatenation that would worsen code readability. Such a method
 can be broken down into smaller methods, each appending their own set of information to the collecting parameter. 
 
-In plain words
+### In plain words
 Instead of having one giant method that contains numerous policies for collecting information into a variable, we can
 create numerous smaller functions that each take parameter, and append new information. We can pass the parameter to
 all of these smaller functions and by the end, we will have what we wanted originally. This time, the code is cleaner
 and easier to understand. Because the larger function has been broken down, the code is also easier to modify as changes
 are localised to the smaller functions.
 
-Wikipedia says
+### Wikipedia says
 In the CollectingParameter idiom a collection (list, map, etc.) is passed repeatedly as a parameter to a method which adds items to the collection.
 
-Programmatic example
+### Programmatic example
 Taking the example from Joshua Kerivsky, our `toString()` method for an XML tree may originally be:
 ```java
 class TagNode {
@@ -96,7 +107,7 @@ and maintain.
 ## Applicability
 Use the Collecting Parameter design pattern when
 - you want to return a collection or object that is the collaborative result of several methods
-- You want to decompose a method that accumulates data
+- You want to simplify a method that accumulates data as the original method is too complex
 
 ## Tutorials
 Tutorials for this method are found in:

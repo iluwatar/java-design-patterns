@@ -23,13 +23,13 @@ public class PrinterQueueTest {
   @Timeout(1000)
   public void getPrinterQueueTest() {
     PrinterQueue printerQueue = PrinterQueue.getInstance();
-    PrinterQueue.PrinterItem item1 = new PrinterQueue.PrinterItem(PaperSizes.A4, 5, false, false);
-    PrinterQueue.PrinterItem item2 = new PrinterQueue.PrinterItem(PaperSizes.A4, 10, true, false);
-    PrinterQueue.PrinterItem item3 = new PrinterQueue.PrinterItem(PaperSizes.A3, 2, false, false);
+    PrinterItem item1 = new PrinterItem(PaperSizes.A4, 5, false, false);
+    PrinterItem item2 = new PrinterItem(PaperSizes.A4, 10, true, false);
+    PrinterItem item3 = new PrinterItem(PaperSizes.A3, 2, false, false);
     printerQueue.addPrinterItem(item1);
     printerQueue.addPrinterItem(item2);
     printerQueue.addPrinterItem(item3);
-    Queue<PrinterQueue.PrinterItem> testQueue = new LinkedList<>();
+    Queue<PrinterItem> testQueue = new LinkedList<>();
     testQueue.add(item1);
     testQueue.add(item2);
     testQueue.add(item3);
@@ -39,13 +39,13 @@ public class PrinterQueueTest {
   @Test()
   @Timeout(1000)
   public void negativePageCount() throws IllegalArgumentException {
-    Assertions.assertThrows(IllegalArgumentException.class, () -> new PrinterQueue.PrinterItem(PaperSizes.A4, -1, true, true));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> new PrinterItem(PaperSizes.A4, -1, true, true));
   }
 
   @Test()
   @Timeout(1000)
   public void nullPageSize() throws IllegalArgumentException {
-    Assertions.assertThrows(IllegalArgumentException.class, () -> new PrinterQueue.PrinterItem(null, 1, true, true));
+    Assertions.assertThrows(IllegalArgumentException.class, () -> new PrinterItem(null, 1, true, true));
   }
 
 }
