@@ -21,7 +21,7 @@ Ejemplo del mundo real
 
 >  Toma como ejemplo un coche que está formado por muchas partes. Sin embargo, no sabemos si el coche tiene todas las partes o solo una parte de ellas. Nuestros coches son dinámicos y extremadamente flexibles.
 
-En resumen
+Dicho de otra forma
 
 > El patrón Abstract Document permite añadir propiedades a objetos sin que estos sean conscientes de ello.
 
@@ -166,7 +166,7 @@ Y finalmente asi es como construimos y usamos el Coche `Car` en un ejemplo compl
 
 ## Diagrama de clases
 
-![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
+![alt text](../../../abstract-document/etc/abstract-document.png "Abstract Document Traits and Domain")
 
 ## Aplicación
 

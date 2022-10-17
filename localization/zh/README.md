@@ -32,7 +32,7 @@
 
 # 如何做出贡献
 
-如果您愿意为该项目做出贡献，则可以在我们的[开发人员Wiki中](https://github.com/iluwatar/java-design-patterns/wiki)找到相关信息。我们将在[Gitter聊天室为](https://gitter.im/iluwatar/java-design-patterns)您提供帮助并回答您的问题。
+如果您愿意为该项目做出贡献，则可以在我们的[开发人员Wiki中](https://github.com/iluwatar/java-design-patterns/wiki)找到相关信息。我们将在[Gitter聊天室](https://gitter.im/iluwatar/java-design-patterns)为您提供帮助并回答您的问题。
 
 # 许可证
 

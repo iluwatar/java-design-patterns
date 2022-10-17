@@ -1906,6 +1906,88 @@
         "doc",
         "review"
       ]
+    },
+    {
+      "login": "HeVictor",
+      "name": "Victor He",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20733994?v=4",
+      "profile": "https://github.com/HeVictor",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "m-inh",
+      "name": "Minh Nguyen",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10632233?v=4",
+      "profile": "http://m-inh.github.io/",
+      "contributions": [
+        "translation",
+        "doc"
+      ]
+    },
+    {
+      "login": "YichuanSun",
+      "name": "yiichan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30886176?v=4",
+      "profile": "https://github.com/YichuanSun",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "PanSem",
+      "name": "Pan Sem",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43316964?v=4",
+      "profile": "https://github.com/PanSem",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "zhoumengyks",
+      "name": "zhoumengyks",
+      "avatar_url": "https://avatars.githubusercontent.com/u/111965739?v=4",
+      "profile": "https://github.com/zhoumengyks",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "you",
+      "name": "you",
+      "avatar_url": "https://avatars.githubusercontent.com/u/57100752?v=4",
+      "profile": "https://github.com/you",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Thanks",
+      "name": "Thanks",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1121545?v=4",
+      "profile": "https://github.com/thanks",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "lazy-pr0grammer",
+      "name": "LazyProgrammer",
+      "avatar_url": "https://avatars.githubusercontent.com/u/87204946?v=4",
+      "profile": "https://github.com/lazy-pr0grammer",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "mdfaizanahmed786",
+      "name": "Mohammed Faizan Ahmed",
+      "avatar_url": "https://avatars.githubusercontent.com/u/85175130?v=4",
+      "profile": "https://github.com/mdfaizanahmed786",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
