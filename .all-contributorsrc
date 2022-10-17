@@ -1960,6 +1960,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Thanks",
+      "name": "Thanks",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1121545?v=4",
+      "profile": "https://github.com/thanks",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
