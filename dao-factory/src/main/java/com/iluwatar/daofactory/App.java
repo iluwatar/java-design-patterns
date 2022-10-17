@@ -1,4 +1,4 @@
-package com.iluwater.daofactory;
+package com.iluwatar.daofactory;
 
 /**
  * An implementation example for a client code

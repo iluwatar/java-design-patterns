@@ -1,4 +1,4 @@
-package com.iluwater.daofactory;
+package com.iluwatar.daofactory;
 
 import java.io.Serializable;
 

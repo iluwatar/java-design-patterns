@@ -1,4 +1,4 @@
-package com.iluwater.daofactory;
+package com.iluwatar.daofactory;
 
 /**
  * An abstract class that determine and specify
