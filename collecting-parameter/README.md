@@ -17,10 +17,13 @@ To store the collaborative result of numerous methods within a collection.
 
 ## Explanation
 ### Real-world example
-Joshua Kerivsky gives a real-world example in his book 'Refactoring to Patterns'. He gives an example of using the
-Collecting Parameter Design Pattern to create a `toString()` method for an XML tree. Without using this design pattern,
-this would require a bulky function with conditionals and concatenation that would worsen code readability. Such a method
-can be broken down into smaller methods, each appending their own set of information to the collecting parameter. 
+Within a large corporate building, there exists a global printer queue that is a collection of all the printing jobs
+that are currently pending. Various floors contain different models of printers, each having a different printing
+policy. One floor has the following restrictions on printing
+- If an A4 paper is coloured, it must also be single-sided. All other non-coloured papers are accepted
+- A3 papers must be non-coloured and single-sided
+- A2 papers must be single-page, single-sided, and non-coloured
+We must construct a program that can continually add printing jobs to a collection, which is called the *collecting parameter*.
 
 ### In plain words
 Instead of having one giant method that contains numerous policies for collecting information into a variable, we can
@@ -33,73 +36,121 @@ are localised to the smaller functions.
 In the CollectingParameter idiom a collection (list, map, etc.) is passed repeatedly as a parameter to a method which adds items to the collection.
 
 ### Programmatic example
-Taking the example from Joshua Kerivsky, our `toString()` method for an XML tree may originally be:
+Coding our example from above, we may use the collection `result` as a collecting parameter
+
 ```java
-class TagNode {
-public String toString() {
-    String result = new String();
-    result += "<" + tagName + " " + attributes + ">";
-    Iterator it = children.iterator();
-    while (it.hasNext()) {
-        TagNode node = (TagNode) it.next();
-        result += node.toString();
-    }
-    if (!tagValue.equals(""))
-        result += tagValue;
-    result += "</" + tagName + ">";
-    return result;
-}
+package com.iluwatar.collectingparameter;
+import java.util.LinkedList;
+import java.util.Queue;
+public class App {
+  static PrinterQueue printerQueue = PrinterQueue.getInstance();
+
+  /**
+   * Program entry point.
+   *
+   * @param args command line args
+   */
+  public static void main(String[] args) {
+    /*
+      Initialising the printer queue with jobs
+    */
+    printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A4, 5, false, false));
+    printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A3, 2, false, false));
+    printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A2, 5, false, false));
+
+    var result = new LinkedList<PrinterItem>();
+
+    /* 
+     * Using numerous sub-methods to collaboratively add information to the result collecting parameter
+     */
+    addA4Papers(result);
+    addA3Papers(result);
+    addA2Papers(result);
+  }
 }
 ```
 
-Notice how this can be difficult to understand and customise. We can convert it using the Collecting Parameter design
-pattern. It now looks like this,
+We use the `addA4Paper`, `addA3Paper`, and `addA2Paper` methods to populate the `result` collecting parameter with the
+appropriate print jobs as per the policy described previously. The three policies are encoded below,
 
 ```java
-public class TagNode {
-    public String toString() {
-        return toStringHelper(new StringBuffer(""));
-    }
-
-    private String toStringHelper(StringBuffer result) {
-        writeOpenTagTo(result);
-        writeChildrenTo(result);
-        writeValueTo(result);
-        writeEndTagTo(result);
-        return result.toString();
-    }
-
-    private void writeOpenTagTo(StringBuffer result) {
-        result.append("<");
-        result.append(name);
-        result.append(attributes.toString());
-        result.append(">");
-    }
-
-    private void writeChildrenTo(StringBuffer result) {
-        Iterator it = children.iterator();
-        while (it.hasNext()) {
-            TagNode node = (TagNode) it.next();
-            node.toStringHelper(result);
+public class App {
+  static PrinterQueue printerQueue = PrinterQueue.getInstance();
+  /**
+   * Adds A4 document jobs to the collecting parameter according to some policy that can be whatever the client
+   * (the print center) wants.
+   *
+   * @param printerItemsCollection the collecting parameter
+   */
+  public static void addA4Papers(Queue<PrinterItem> printerItemsCollection) {
+    /*
+      Iterate through the printer queue, and add A4 papers according to the correct policy to the collecting parameter,
+      which is 'printerItemsCollection' in this case.
+     */
+    for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
+      if (nextItem.paperSize.equals(PaperSizes.A4)) {
+        var isColouredAndSingleSided = nextItem.isColour && !nextItem.isDoubleSided;
+        if (isColouredAndSingleSided) {
+          printerItemsCollection.add(nextItem);
+        } else if (!nextItem.isColour) {
+          printerItemsCollection.add(nextItem);
         }
+      }
     }
+  }
 
-    private void writeValueTo(StringBuffer result) {
-        if (!value.equals(""))
-            result.append(value);
-    }
+  /**
+   * Adds A3 document jobs to the collecting parameter according to some policy that can be whatever the client
+   * (the print center) wants. The code is similar to the 'addA4Papers' method. The code can be changed to accommodate
+   * the wants of the client.
+   *
+   * @param printerItemsCollection the collecting parameter
+   */
+  public static void addA3Papers(Queue<PrinterItem> printerItemsCollection) {
+    for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
+      if (nextItem.paperSize.equals(PaperSizes.A3)) {
 
-    private void writeEndTagTo(StringBuffer result) {
-        result.append("</");
-        result.append(name);
-        result.append(">");
+        // Encoding the policy into a Boolean: the A3 paper cannot be coloured and double-sided at the same time
+        var isNotColouredAndSingleSided = !nextItem.isColour && !nextItem.isDoubleSided;
+        if (isNotColouredAndSingleSided) {
+          printerItemsCollection.add(nextItem);
+        }
+      }
     }
+  }
+
+  /**
+   * Adds A2 document jobs to the collecting parameter according to some policy that can be whatever the client
+   * (the print center) wants. The code is similar to the 'addA4Papers' method. The code can be changed to accommodate
+   * the wants of the client.
+   *
+   * @param printerItemsCollection the collecting parameter
+   */
+  public static void addA2Papers(Queue<PrinterItem> printerItemsCollection) {
+    for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
+      if (nextItem.paperSize.equals(PaperSizes.A2)) {
+
+        // Encoding the policy into a Boolean: the A2 paper must be single page, single-sided, and non-coloured.
+        var isNotColouredSingleSidedAndOnePage = nextItem.pageCount == 1 && !nextItem.isDoubleSided
+                && !nextItem.isColour;
+        if (isNotColouredSingleSidedAndOnePage) {
+          printerItemsCollection.add(nextItem);
+        }
+      }
+    }
+  }
 }
 ```
 
-Notice how the `toString()` method has essentially been broken down into five functions. Each function takes a collecting
-parameter, `result` in this case, and appends to this string. The result is the same, however, the code is easier to understand
-and maintain.
+Each method takes a collecting parameter as an argument. It then adds elements, taken from a global variable,
+to this collecting parameter if each element satisfies a given criteria. These methods can have whatever policy the client desires.
+
+In this programmatic example, three print jobs are added to the queue. Only the first two print jobs should be added to
+the collecting parameter as per the policy. If we print the `result` variable after execution, we get,
+
+`[PrinterItem{paperSize=A4, pageCount=5, isDoubleSided=false, isColour=false}, PrinterItem{paperSize=A3, pageCount=2, isDoubleSided=false, isColour=false}]`
+
+which is what we expected.
 
 ## Class diagram
 ![alt text](./etc/collectingParameter.png "Collecting Parameter")
@@ -113,6 +164,12 @@ Use the Collecting Parameter design pattern when
 Tutorials for this method are found in:
 - 'Refactoring to Patterns' by Joshua Kerivsky
 - 'Smalltalk Best Practice Patterns' by Kent Beck
+
+## Known uses
+Joshua Kerivsky gives a real-world example in his book 'Refactoring to Patterns'. He gives an example of using the
+Collecting Parameter Design Pattern to create a `toString()` method for an XML tree. Without using this design pattern,
+this would require a bulky function with conditionals and concatenation that would worsen code readability. Such a method
+can be broken down into smaller methods, each appending their own set of information to the collecting parameter.
 
 ## Consequences
 Pros:
