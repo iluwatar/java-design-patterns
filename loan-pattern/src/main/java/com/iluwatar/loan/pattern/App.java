@@ -30,8 +30,8 @@ import java.io.IOException;
 
 /**
  * Loan Pattern can loan a resource to a user-defined function. It also helps users create
- * a resource which the users can use and loan the resources to the function which would use it
- * and the resource would be destroyed automatically by the lender at the end.
+ * a resource which the users can use and loan the resources to the function which
+ * would use it and the resource would be destroyed automatically by the lender at the end.
  * The advantages of using this pattern are multifaceted. First, users are not constrained by the function
  * which can use the loaned resource and users can pass any function that they desire.
  * Second, users are not concerned about the creation, destruction of the resource. The lender takes care of it.
