@@ -162,8 +162,8 @@ Use the Collecting Parameter design pattern when
 
 ## Tutorials
 Tutorials for this method are found in:
-- 'Refactoring to Patterns' by Joshua Kerivsky
-- 'Smalltalk Best Practice Patterns' by Kent Beck
+- * [Refactoring To Patterns](http://www.tarrani.net/RefactoringToPatterns.pdf)  by Joshua Kerivsky
+- * [Smalltalk Best Practice Patterns](https://ptgmedia.pearsoncmg.com/images/9780134769042/samplepages/013476904X.pdf)  by Kent Beck
 
 ## Known uses
 Joshua Kerivsky gives a real-world example in his book 'Refactoring to Patterns'. He gives an example of using the
