@@ -25,7 +25,7 @@
 package com.iluwatar.currying;
 
 /**
- * This is a Javadoc comment to pass the style check.
+ * Enum representing different book genres.
  */
 public enum Genre {
   FANTASY,
