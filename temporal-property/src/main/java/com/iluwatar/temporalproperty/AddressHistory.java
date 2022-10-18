@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Customer is a temporal property object, implemented as a temporal collection.
+ * AddressHistory is a temporal property object, implemented as a temporal collection.
  *
  * @see <a href="https://martinfowler.com/eaaDev/TemporalProperty.html">
  *   https://martinfowler.com/eaaDev/TemporalProperty.html
