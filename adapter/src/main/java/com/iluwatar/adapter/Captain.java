@@ -28,6 +28,9 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+// Setters are used and as well as final keyword is also used. Both are contradicts. I think we can prefer one either over other.
+//final or getter setter
+
 /**
  * The Captain uses {@link RowingBoat} to sail. <br> This is the client in the pattern.
  */
