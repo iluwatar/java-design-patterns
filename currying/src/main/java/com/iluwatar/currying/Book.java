@@ -73,8 +73,8 @@ public class Book {
   /**
    * Curried unary book create functions.
    */
-  static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> BOOK_CREATOR = //
-      genre
+  static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> BOOK_CREATOR
+      = genre
           -> author
               -> title
                   -> publicationDate
