@@ -66,8 +66,6 @@ public class App {
     addA4Papers(result);
     addA3Papers(result);
     addA2Papers(result);
-
-    System.out.println(result);
   }
 
   /**
