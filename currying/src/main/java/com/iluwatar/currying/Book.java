@@ -32,14 +32,11 @@ import java.util.function.Function;
  * This is a Javadoc comment to pass the style check.
  */
 public class Book {
-  private Genre genre;
-  private String author;
-  private String title;
-  private LocalDate publicationDate;
+  private final Genre genre;
+  private final String author;
+  private final String title;
+  private final LocalDate publicationDate;
 
-  /**
-   * This is a Javadoc comment to pass the style check.
-   */
   Book(Genre genre, String author, String title, LocalDate publicationDate) {
     this.genre = genre;
     this.author = author;
@@ -47,9 +44,6 @@ public class Book {
     this.publicationDate = publicationDate;
   }
 
-  /**
-   * This is a Javadoc comment to pass the style check.
-   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -65,17 +59,11 @@ public class Book {
             && Objects.equals(publicationDate, book.publicationDate);
   }
 
-  /**
-   * This is a Javadoc comment to pass the style check.
-   */
   @Override
   public int hashCode() {
     return Objects.hash(author, genre, title, publicationDate);
   }
 
-  /**
-   * This is a Javadoc comment to pass the style check.
-   */
   @Override
   public String toString() {
     return "Book{" + "genre=" + genre + ", author='" + author + '\''
@@ -83,7 +71,7 @@ public class Book {
   }
 
   /**
-   * This is a Javadoc comment to pass the style check.
+   * Curried unary book create functions.
    */
   static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> BOOK_CREATOR = //
       genre
@@ -93,7 +81,8 @@ public class Book {
                       -> new Book(genre, author, title, publicationDate);
 
   /**
-   * This is a Javadoc comment to pass the style check.
+   * Implements the builder pattern using functional interfaces to create a more readable
+   * book creator function.
    */
   public static AddGenre builder() {
     return genre
@@ -103,30 +92,18 @@ public class Book {
                     -> new Book(genre, author, title, publicationDate);
   }
 
-  /**
-   * This is a Javadoc comment to pass the style check.
-   */
   public interface AddGenre {
     Book.AddAuthor withGenre(Genre genre);
   }
 
-  /**
-   * This is a Javadoc comment to pass the style check.
-   */
   public interface AddAuthor {
     Book.AddTitle withAuthor(String author);
   }
 
-  /**
-   * This is a Javadoc comment to pass the style check.
-   */
   public interface AddTitle {
     Book.AddPublicationDate withTitle(String title);
   }
 
-  /**
-   * This is a Javadoc comment to pass the style check.
-   */
   public interface AddPublicationDate {
     Book withPublicationDate(LocalDate publicationDate);
   }

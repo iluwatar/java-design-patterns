@@ -22,30 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/*
-* This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
-*
-* The MIT License
-* Copyright © 2014-2022 Ilkka Seppälä
-*
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-*
-* The above copyright notice and this permission notice shall be included in
-* all copies or substantial portions of the Software.
-*
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-* THE SOFTWARE.
-*/
 package com.iluwatar.currying;
 
 import java.time.LocalDate;
@@ -53,7 +29,6 @@ import java.time.LocalDate;
 /**
 * This is a Javadoc comment to pass the style check.
 */
-
 public class App {
   /**
   * This is a Javadoc comment to pass the style check.
@@ -69,13 +44,9 @@ public class App {
     Book.AddTitle kingHorrorBooksFunc = horrorBookFunc.withAuthor("Stephen King");
     Book.AddTitle rowlingFantasyBooksFunc = fantasyBookFunc.withAuthor("J.K. Rowling");
 
-    // Creates horror books by Stephen King
+    // Creates books by Stephen King (horror and fantasy genres)
     Book shining = kingHorrorBooksFunc.withTitle("The Shining")
             .withPublicationDate(LocalDate.of(1977, 1, 28));
-    Book it = kingHorrorBooksFunc.withTitle("It")
-            .withPublicationDate(LocalDate.of(1986, 9, 15));
-
-    // Creates fantasy books by Stephen King
     Book darkTower = kingFantasyBooksFunc.withTitle("The Dark Tower: Gunslinger")
             .withPublicationDate(LocalDate.of(1982, 6, 10));
 
@@ -91,10 +62,14 @@ public class App {
             .withTitle("Foundation")
             .withPublicationDate(LocalDate.of(1942, 5, 1));
 
+    System.out.println("Stephen King Books:");
     System.out.println(shining);
-    System.out.println(it);
     System.out.println(darkTower);
+
+    System.out.println("J.K. Rowling Books:");
     System.out.println(chamberOfSecrets);
+
+    System.out.println("Sci-fi Books:");
     System.out.println(dune);
     System.out.println(foundation);
   }
