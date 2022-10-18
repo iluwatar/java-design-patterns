@@ -77,7 +77,6 @@ public class App {
         while (reader.ready()) {
           // the way how to read the data
           String s = reader.readLine();
-
           // the way how to operate the data
           System.out.println(s);
         }
