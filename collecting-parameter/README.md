@@ -162,8 +162,8 @@ Use the Collecting Parameter design pattern when
 
 ## Tutorials
 Tutorials for this method are found in:
-- * [Refactoring To Patterns](http://www.tarrani.net/RefactoringToPatterns.pdf)  by Joshua Kerivsky
-- * [Smalltalk Best Practice Patterns](https://ptgmedia.pearsoncmg.com/images/9780134769042/samplepages/013476904X.pdf)  by Kent Beck
+- [Refactoring To Patterns](http://www.tarrani.net/RefactoringToPatterns.pdf)  by Joshua Kerivsky
+- [Smalltalk Best Practice Patterns](https://ptgmedia.pearsoncmg.com/images/9780134769042/samplepages/013476904X.pdf)  by Kent Beck
 
 ## Known uses
 Joshua Kerivsky gives a real-world example in his book 'Refactoring to Patterns'. He gives an example of using the
@@ -171,7 +171,7 @@ Collecting Parameter Design Pattern to create a `toString()` method for an XML t
 this would require a bulky function with conditionals and concatenation that would worsen code readability. Such a method
 can be broken down into smaller methods, each appending their own set of information to the collecting parameter.
 
-See this in * [Refactoring To Patterns](http://www.tarrani.net/RefactoringToPatterns.pdf).
+See this in [Refactoring To Patterns](http://www.tarrani.net/RefactoringToPatterns.pdf).
 
 ## Consequences
 Pros:
@@ -184,11 +184,11 @@ Cons:
 - Adds 'layers' of methods
 
 ## Related patterns
-- * [Compose Methods](https://www.geeksforgeeks.org/composite-design-pattern/)
+- [Compose Methods](https://www.geeksforgeeks.org/composite-design-pattern/)
 
 ## Credits
 Following books were used:
-- * [Refactoring To Patterns](http://www.tarrani.net/RefactoringToPatterns.pdf)  by Joshua Kerivsky
-- * [Smalltalk Best Practice Patterns](https://ptgmedia.pearsoncmg.com/images/9780134769042/samplepages/013476904X.pdf)  by Kent Beck
+- [Refactoring To Patterns](http://www.tarrani.net/RefactoringToPatterns.pdf)  by Joshua Kerivsky
+- [Smalltalk Best Practice Patterns](https://ptgmedia.pearsoncmg.com/images/9780134769042/samplepages/013476904X.pdf)  by Kent Beck
 Sites:
-- * [Wiki](https://wiki.c2.com/?CollectingParameter)
+- [Wiki](https://wiki.c2.com/?CollectingParameter)
