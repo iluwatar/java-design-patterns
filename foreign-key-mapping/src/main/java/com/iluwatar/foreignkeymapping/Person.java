@@ -1,6 +1,8 @@
 package com.iluwatar.foreignkeymapping;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -30,5 +32,21 @@ public final class Person implements Serializable {
     return "Person ID is : " + personNationalId + " ; Person Last Name is : " + lastName + " ; Person First Name is : " + firstName + " ; Age is :" + age;
 
   }
+/*
+  public void placeOrder(String text) {
+    Order order = new Order(AppDbSimulatorImplementation.getOrderListSize()+1, text, this.personNationalId);
+    AppDbSimulatorImplementation.insertOrder(order);
+  }*/
+
+  public List<Order> getAllOrder(List<Order> orderList) {
+    List<Order> orders = new ArrayList<>();
+    for (Order order : orderList) {
+      if (this.getPersonNationalId() == order.getPersonNationalId()) {
+        orders.add(order);
+      }
+    }
+    return orders;
+  }
+
 
 }

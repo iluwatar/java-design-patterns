@@ -21,7 +21,7 @@ public final class Order implements Serializable {
   @EqualsAndHashCode.Include
   private int orderNationalId;
   private String orderNumber;
-  private long personNationalId;
+  private int personNationalId;
 
   @Override
   public String toString() {
@@ -29,5 +29,7 @@ public final class Order implements Serializable {
     return "Order ID is : " + orderNationalId + " ; Order Number is : " + orderNumber + " ; Person ID is :" + personNationalId;
 
   }
+
+
 
 }
