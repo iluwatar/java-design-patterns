@@ -5,7 +5,8 @@ folder: component
 permalink: /patterns/component/
 categories: Behavioral
 language: en
-tags:Game programming
+tags:
+- Game programming
 ---
 
 ## Name / classification
