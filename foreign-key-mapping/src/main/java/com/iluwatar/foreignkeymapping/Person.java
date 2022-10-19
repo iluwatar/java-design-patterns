@@ -29,15 +29,15 @@ public final class Person implements Serializable {
   @Override
   public String toString() {
 
-    return "Person ID is : " + personNationalId + " ; Person Last Name is : " + lastName + " ; Person First Name is : " + firstName + " ; Age is :" + age;
+    return "Person ID is : " + personNationalId + " ; Person Last Name is : " + lastName + " ; Person First Name is : "
+        + firstName + " ; Age is :" + age;
 
   }
-/*
-  public void placeOrder(String text) {
-    Order order = new Order(AppDbSimulatorImplementation.getOrderListSize()+1, text, this.personNationalId);
-    AppDbSimulatorImplementation.insertOrder(order);
-  }*/
 
+  /**
+   * Multiple lines of Javadoc text are written here,
+   * wrapped normally...
+   */
   public List<Order> getAllOrder(List<Order> orderList) {
     List<Order> orders = new ArrayList<>();
     for (Order order : orderList) {
@@ -47,6 +47,5 @@ public final class Person implements Serializable {
     }
     return orders;
   }
-
 
 }
