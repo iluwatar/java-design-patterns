@@ -25,10 +25,12 @@
 package com.iluwatar.currying;
 
 import java.time.LocalDate;
+import lombok.extern.slf4j.Slf4j;
 
 /**
 * This is a Javadoc comment to pass the style check.
 */
+@Slf4j
 public class App {
   /**
   * This is a Javadoc comment to pass the style check.
@@ -62,15 +64,15 @@ public class App {
             .withTitle("Foundation")
             .withPublicationDate(LocalDate.of(1942, 5, 1));
 
-    System.out.println("Stephen King Books:");
-    System.out.println(shining);
-    System.out.println(darkTower);
+    LOGGER.info("Stephen King Books:");
+    LOGGER.info(shining.toString());
+    LOGGER.info(darkTower.toString());
 
-    System.out.println("J.K. Rowling Books:");
-    System.out.println(chamberOfSecrets);
+    LOGGER.info("J.K. Rowling Books:");
+    LOGGER.info(chamberOfSecrets.toString());
 
-    System.out.println("Sci-fi Books:");
-    System.out.println(dune);
-    System.out.println(foundation);
+    LOGGER.info("Sci-fi Books:");
+    LOGGER.info(dune.toString());
+    LOGGER.info(foundation.toString());
   }
 }
