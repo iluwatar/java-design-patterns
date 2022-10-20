@@ -13,7 +13,9 @@ tags:
 Currying
 
 ## Intent
-WHAT IS CURRYING TRYING TO ACHIEVE? Test
+Currying decomposes a function that takes multiple arguments into a sequence of functions that each take a single argument. 
+The parameters of a curried function can be initialised to create a new function with lower arity to perform a more specialised 
+task. 
 
 ## Explanation
 Real-world example
