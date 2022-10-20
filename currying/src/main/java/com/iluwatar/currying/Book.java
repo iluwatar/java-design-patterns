@@ -71,7 +71,7 @@ public class Book {
   }
 
   /**
-   * Curried unary book create functions.
+   * Curried book builder/creator function.
    */
   static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> BOOK_CREATOR
       = genre

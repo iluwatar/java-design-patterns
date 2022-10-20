@@ -6,7 +6,7 @@ permalink: /patterns/currying/
 categories: Functional
 language: en
 tags: 
- - FIGURE OUT WHAT TAG
+ - Decoupling
 ---
 
 ## Name / classification
@@ -14,8 +14,8 @@ Currying
 
 ## Intent
 Currying decomposes a function that takes multiple arguments into a sequence of functions that each take a single argument. 
-The parameters of a curried function can be initialised to create a new function with lower arity to perform a more specialised 
-task. 
+Curried functions are useful since they can be used to create new functions with lower arity to perform more specialised tasks
+in a concise and readable manner. This is done via partial application.
 
 ## Explanation
 Real-world example
