@@ -28,6 +28,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests that the App can be run without throwing any exceptions.
+ */
 public class AppTest {
   @Test
   void executesWithoutExceptions() {
