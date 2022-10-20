@@ -8,13 +8,12 @@ import com.iluwatar.component.GameObject;
 public class ObjectPhysicComponent implements PhysicComponent {
 
   /**
-   * The method update the x coordinate based on the velocity of gameObject.
-   *
+   * The method update the horizontal (X-axis) coordinate based on the velocity of gameObject.
    * @param gameObject the gameObject instance
    */
   @Override
   public void update(GameObject gameObject) {
     gameObject.coordinate += gameObject.velocity;
-    System.out.println("PhysicComponent - " + gameObject.name + ": coordinate changed");
+    System.out.println("PhysicComponent has been updated for: " + gameObject.name + ", their coordinates have changed.");
   }
 }

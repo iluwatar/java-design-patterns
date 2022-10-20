@@ -15,9 +15,10 @@ public class App {
     final GameObject player = GameObject.createPlayer();
     final GameObject npc = GameObject.createNpc();
 
-    System.out.println("Update player:");
+
+    System.out.println("Player Update:");
     player.update(KeyEvent.KEY_LOCATION_LEFT);
-    System.out.println("Update npc:");
+    System.out.println("NPC Update:");
     npc.demoUpdate();
   }
 }

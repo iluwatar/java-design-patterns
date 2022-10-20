@@ -18,8 +18,8 @@ public class GameObject {
   private final GraphicComponent graphicComponent;
 
   public String name;
-  public int velocity;
-  public int coordinate;
+  public int velocity = 0;
+  public int coordinate = 0;
 
   GameObject(InputComponent inputComponent,
              PhysicComponent physicComponent,
@@ -32,8 +32,7 @@ public class GameObject {
   }
 
   /**
-   * Create a player game object.
-   *
+   * Creates a player game object.
    * @return player object
    */
   public static GameObject createPlayer() {
@@ -45,19 +44,20 @@ public class GameObject {
 
 
   /**
-   * Create a npc game object.
-   *
+   * Creates a NPC game object.
    * @return npc object
    */
   public static GameObject createNpc() {
-    return new GameObject(new DemoInputComponent(),
+    return new GameObject(
+            new DemoInputComponent(),
         new ObjectPhysicComponent(),
         new ObjectGraphicComponent(),
         "npc");
   }
 
   /**
-   * update three components for demo mode.
+   * updates the three components of the NPC object used in the demo in App.java
+   * note that this is simply a duplicate of update() without the key event for demonstration purposes.
    */
   public void demoUpdate() {
     inputComponent.update(this);
@@ -66,8 +66,7 @@ public class GameObject {
   }
 
   /**
-   * update three components for player mode.
-   *
+   * Updates the three components for objects based on key events.
    * @param e key event from the player.
    */
   public void update(int e) {
