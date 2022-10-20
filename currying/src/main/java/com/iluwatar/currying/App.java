@@ -28,14 +28,21 @@ import java.time.LocalDate;
 import lombok.extern.slf4j.Slf4j;
 
 /**
-* This is a Javadoc comment to pass the style check.
+* Currying decomposes a function with multiple arguments in multiple functions that
+* take a single argument. A curried function which has only been passed some of its
+* arguments is called a partial application. Partial application is useful since it can
+* be used to create specialised functions in a concise way.
+*
+* <p>In this example, a librarian uses a curried book builder function create books belonging to
+* desired genres and written by specific authors.
 */
 @Slf4j
 public class App {
   /**
-  * This is a Javadoc comment to pass the style check.
+  * Main entry point of the program.
   */
   public static void main(String[] args) {
+    LOGGER.info("Librarian begins their work.");
     // Defining genre book functions
     Book.AddAuthor fantasyBookFunc = Book.builder().withGenre(Genre.FANTASY);
     Book.AddAuthor horrorBookFunc = Book.builder().withGenre(Genre.HORROR);
