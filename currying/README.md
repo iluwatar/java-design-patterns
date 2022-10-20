@@ -169,7 +169,7 @@ Pros
 * Currying allows for partial application, which can be used to create specialised functions concisely.
 
 Cons
-* The order of the parameters in a curried function is important since we want to take advantage of partial application. It is best to input the most general parameters first and input specific parameters lasts. 
+* The order of the parameters in a curried function is important since we want to take advantage of partial application. It is best to input the most general parameters first and input specific parameters last. 
 * As shown in the programmatic example above, curried functions with several parameters have a cumbersome type signature (in Java).
 
 ## Credits
