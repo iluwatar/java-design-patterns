@@ -27,12 +27,11 @@
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <artifactId>java-design-patterns</artifactId>
         <groupId>com.iluwatar</groupId>
+        <artifactId>java-design-patterns</artifactId>
         <version>1.26.0-SNAPSHOT</version>
     </parent>
     <artifactId>currying</artifactId>
@@ -45,21 +44,14 @@
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.7.1</version>
+            <artifactId>junit-jupiter-engine</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <properties>
-        <maven.compiler.source>15</maven.compiler.source>
-        <maven.compiler.target>15</maven.compiler.target>
-    </properties>
-
     <build>
         <plugins>
             <!-- Maven assembly plugin is invoked with default setting which we have
-                      in parent pom and specifying the class having main method -->
+        in parent pom and specifying the class having main method -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -77,5 +69,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
