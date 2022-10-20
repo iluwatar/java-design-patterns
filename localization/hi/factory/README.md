@@ -2,44 +2,49 @@
 layout: pattern
 title: Factory
 folder: factory
-permalink: /patterns/factory/ko
+permalink: /patterns/factory/hi
 categories: Creational
-language: ko
+language: hi
 tags:
 - Gang of Four
 ---
 
-## 또한 ~으로 알려진
+## इस रूप में भी जाना जाता है
 
-- Simple Factory
-- Static Factory Method
+* Simple Factory
+* Static Factory Method
 
-## 의도
+## इरादा
 
-구현 논리를 숨기고 클라이언트 코드가 새 객체를 초기화하는 대신 사용에 집중하도록하기 위해 factory라는 클래스에 캡슐화 된 정적 메서드를 제공합니다.
+कार्यान्वयन को छिपाने के लिए फैक्ट्री नामक एक वर्ग में समझाया गया एक स्थिर तरीका प्रदान करना
+तर्क दें और क्लाइंट कोड को नई वस्तुओं को आरंभ करने के बजाय उपयोग पर केंद्रित करें।
 
-## 설명
+## व्याख्या
 
-예시
+वास्तविक दुनिया का उदाहरण
 
-> SQLServer에 연결된 웹 응용 프로그램이 있지만 이제 Oracle로 전환하려고 합니다. 기존 소스 코드를 수정하지 않고 이를 수행하려면 주어진 데이터베이스에 대한 연결을 생성하기 위해 정적 메서드를 호출 할 수 있는 Simple Factory 패턴을 구현해야합니다.
+> एक कीमियागर की कल्पना कीजिए जो सिक्कों का निर्माण करने वाला है। कीमियागर दोनों को बनाने में सक्षम होना चाहिए।  
+> सोने और तांबे के सिक्के और उनके बीच स्विच करना मौजूदा को संशोधित किए बिना संभव होना चाहिए
+> स्रोत कोड। फ़ैक्टरी पैटर्न एक स्थिर निर्माण विधि प्रदान करके इसे संभव बनाता है।  
+> प्रासंगिक मापदंडों के साथ बुलाया जा सकता है।
 
-Wikipedia 말에 의하면
+विकिपीडिया कहता है
 
-> factory는 다른 객체를 생성하기위한 객체입니다. 공식적으로 factory는 다양한 프로토 타입 또는 클래스의 객체를 반환하는 함수 또는 메서드입니다.
+> फैक्ट्री अन्य वस्तुओं को बनाने के लिए एक वस्तु है - औपचारिक रूप से एक कारखाना एक कार्य या विधि है जो।  
+> एक अलग प्रोटोटाइप या वर्ग की वस्तुओं को लौटाता है।
 
-**프로그램 코드 예제**
+**प्रोग्रामेटिक उदाहरण**
 
-우리는 인터페이스 `Car` 와 두 가지 구현 `Ford` 와 `Ferrari`을 가지고 있습니다.
+हमारे पास एक इंटरफ़ेस `Coin` और दो कार्यान्वयन `GoldCoin` और `CopperCoin` हैं।
 
 ```java
-public interface Car {
+public interface Coin {
   String getDescription();
 }
 
-public class Ford implements Car {
+public class GoldCoin implements Coin {
 
-  static final String DESCRIPTION = "This is Ford.";
+  static final String DESCRIPTION = "This is a gold coin.";
 
   @Override
   public String getDescription() {
@@ -47,9 +52,9 @@ public class Ford implements Car {
   }
 }
 
-public class Ferrari implements Car {
+public class CopperCoin implements Coin {
    
-  static final String DESCRIPTION = "This is Ferrari.";
+  static final String DESCRIPTION = "This is a copper coin.";
 
   @Override
   public String getDescription() {
@@ -58,72 +63,80 @@ public class Ferrari implements Car {
 }
 ```
 
-열거형은 우리가 지원하는 자동차 유형을 나타냅니다 ( `Ford` 및 `Ferrari` ).
+ऊपर दी गई गणना उन प्रकार के सिक्कों का प्रतिनिधित्व करती है जिनका हम समर्थन करते हैं (`GoldCoin` और `CopperCoin`)।
 
 ```java
-public enum CarType {
-  
-  FORD(Ford::new),
-  FERRARI(Ferrari::new);
-  
-  private final Supplier<Car> constructor;
-  
-  CarType(Supplier<Car> constructor) {
-    this.constructor = constructor;
-  }
-  
-  public Supplier<Car> getConstructor() {
-    return this.constructor;
-  }
+@RequiredArgsConstructor
+@Getter
+public enum CoinType {
+
+  COPPER(CopperCoin::new),
+  GOLD(GoldCoin::new);
+
+  private final Supplier<Coin> constructor;
 }
 ```
 
-그런 다음 factory 클래스 `CarsFactory` 캡슐화 된 자동차 객체를 만드는 정적 메서드 `getCar` 가 있습니다.
+फिर हमारे पास फैक्ट्री क्लास में इनकैप्सुलेटेड Coin ऑब्जेक्ट्स बनाने के लिए स्टैटिक मेथड `getCoin` जो `CoinFactory` में है।
 
 ```java
-public class CarsFactory {
-  
-  public static Car getCar(CarType type) {
+public class CoinFactory {
+
+  public static Coin getCoin(CoinType type) {
     return type.getConstructor().get();
   }
 }
 ```
 
-이제 클라이언트 코드에서 factory 클래스를 사용하여 다양한 유형의 자동차를 만들 수 있습니다.
+अब क्लाइंट कोड पर हम फ़ैक्टरी क्लास का उपयोग करके विभिन्न प्रकार के सिक्के बना सकते हैं।
 
 ```java
-var car1 = CarsFactory.getCar(CarType.FORD);
-var car2 = CarsFactory.getCar(CarType.FERRARI);
-LOGGER.info(car1.getDescription());
-LOGGER.info(car2.getDescription());;
+LOGGER.info("The alchemist begins his work.");
+var coin1 = CoinFactory.getCoin(CoinType.COPPER);
+var coin2 = CoinFactory.getCoin(CoinType.GOLD);
+LOGGER.info(coin1.getDescription());
+LOGGER.info(coin2.getDescription());
 ```
 
-프로그램 출력 :
+प्रोग्राम आउटपुट:
 
 ```java
-This is Ford.
-This Ferrari.
+The alchemist begins his work.
+This is a copper coin.
+This is a gold coin.
 ```
 
-## 클래스 다이어그램
+## कक्षा आरेख
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/factory/etc/factory.urm.png)
+![alt text](../../../factory/etc/factory.urm.png "Factory pattern class diagram")
 
-## 적용 가능성
+## प्रयोज्यता
 
-객체 생성 및 관리 방법이 아닌 객체 생성에만 관심이있을 때 Simple Factory 패턴을 사용합니다.
+फ़ैक्टरी पैटर्न का उपयोग तब करें जब आप केवल किसी वस्तु के निर्माण की परवाह करते हैं, न कि कैसे बनाना है
+और इसे प्रबंधित करें।
 
-장점
+मुनाफे
 
-- 모든 객체 생성을 한곳에 유지하고 코드베이스에 '새'키 값이 확산되는 것을 방지합니다.
-- 느슨하게 결합 된 코드를 작성할 수 있습니다. 주요 장점 중 일부는 더 나은 테스트 가능성, 이해하기 쉬운 코드, 교체 가능한 구성 요소, 확장성 및 격리된 기능을 포함합니다.
+* सभी वस्तुओं के निर्माण को एक ही स्थान पर रखने की अनुमति देता है और कोडबेस में 'नया' कीवर्ड फैलाने से बचता है।
+* शिथिल युग्मित कोड लिखने की अनुमति देता है। इसके कुछ मुख्य लाभों में बेहतर परीक्षण क्षमता, समझने में आसान कोड, स्वैपेबल घटक, मापनीयता और पृथक विशेषताएं शामिल हैं।
 
-단점
+हानि
 
-- 코드는 생각보다 복잡해집니다.
+* कोड जितना होना चाहिए उससे कहीं अधिक जटिल हो जाता है।
 
-## 관련 패턴
+## ज्ञात उपयोग
 
-- [Factory Method](https://java-design-patterns.com/patterns/factory-method/)
-- [Factory Kit](https://java-design-patterns.com/patterns/factory-kit/)
-- [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/)
+* [java.util.Calendar#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
+* [java.util.ResourceBundle#getBundle()](https://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
+* [java.text.NumberFormat#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html#getInstance--)
+* [java.nio.charset.Charset#forName()](https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html#forName-java.lang.String-)
+* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)](https://docs.oracle.com/javase/8/docs/api/java/net/URLStreamHandlerFactory.html) (
+  प्रोटोकॉल के आधार पर अलग-अलग सिंगलटन ऑब्जेक्ट लौटाता है)
+* [java.util.EnumSet#of()](https://docs.oracle.com/javase/8/docs/api/java/util/EnumSet.html#of(E))
+* [javax.xml.bind.JAXBContext#createMarshaller()](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/JAXBContext.html#createMarshaller--) और अन्य समान तरीके.
+
+## संबंधित पैटर्न
+
+* [Factory Method](https://java-design-patterns.com/patterns/factory-method/)
+* [Factory Kit](https://java-design-patterns.com/patterns/factory-kit/)
+* [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/)
