@@ -19,11 +19,7 @@ To store the collaborative result of numerous methods within a collection.
 ### Real-world example
 Within a large corporate building, there exists a global printer queue that is a collection of all the printing jobs
 that are currently pending. Various floors contain different models of printers, each having a different printing
-policy. One floor has the following restrictions on printing
-- If an A4 paper is coloured, it must also be single-sided. All other non-coloured papers are accepted
-- A3 papers must be non-coloured and single-sided
-- A2 papers must be single-page, single-sided, and non-coloured
-We must construct a program that can continually add printing jobs to a collection, which is called the *collecting parameter*.
+policy. We must construct a program that can continually add appropriate printing jobs to a collection, which is called the *collecting parameter*.
 
 ### In plain words
 Instead of having one giant method that contains numerous policies for collecting information into a variable, we can
@@ -36,7 +32,11 @@ are localised to the smaller functions.
 In the CollectingParameter idiom a collection (list, map, etc.) is passed repeatedly as a parameter to a method which adds items to the collection.
 
 ### Programmatic example
-Coding our example from above, we may use the collection `result` as a collecting parameter
+Coding our example from above, we may use the collection `result` as a collecting parameter. The following restrictions
+are implemented:
+- If an A4 paper is coloured, it must also be single-sided. All other non-coloured papers are accepted
+- A3 papers must be non-coloured and single-sided
+- A2 papers must be single-page, single-sided, and non-coloured
 
 ```java
 package com.iluwatar.collectingparameter;
@@ -146,9 +146,12 @@ Each method takes a collecting parameter as an argument. It then adds elements, 
 to this collecting parameter if each element satisfies a given criteria. These methods can have whatever policy the client desires.
 
 In this programmatic example, three print jobs are added to the queue. Only the first two print jobs should be added to
-the collecting parameter as per the policy. If we print the `result` variable after execution, we get,
+the collecting parameter as per the policy. The elements of the `result` variable after execution are,
 
-`[PrinterItem{paperSize=A4, pageCount=5, isDoubleSided=false, isColour=false}, PrinterItem{paperSize=A3, pageCount=2, isDoubleSided=false, isColour=false}]`
+| paperSize | pageCount | isDoubleSided | isColour |
+|-----------|-----------|---------------|----------|
+| A4        | 5         | false         | false    |
+| A3        | 2         | false         | false    |
 
 which is what we expected.
 

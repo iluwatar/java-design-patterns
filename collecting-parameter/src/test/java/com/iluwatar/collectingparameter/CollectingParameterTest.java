@@ -40,9 +40,9 @@ public class CollectingParameterTest {
     printerQueue.addPrinterItem(item11);
 
     Queue<PrinterItem> result = new LinkedList<>();
-    App.addA4Papers(result);
-    App.addA3Papers(result);
-    App.addA2Papers(result);
+    App.addValidA4Papers(result);
+    App.addValidA3Papers(result);
+    App.addValidA2Papers(result);
 
     Queue<PrinterItem> testResult = new LinkedList<>();
     testResult.add(item1);

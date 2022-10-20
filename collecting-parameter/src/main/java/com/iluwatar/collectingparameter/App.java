@@ -63,9 +63,9 @@ public class App {
 
     var result = new LinkedList<PrinterItem>();
 
-    addA4Papers(result);
-    addA3Papers(result);
-    addA2Papers(result);
+    addValidA4Papers(result);
+    addValidA3Papers(result);
+    addValidA2Papers(result);
   }
 
   /**
@@ -74,7 +74,7 @@ public class App {
    *
    * @param printerItemsCollection the collecting parameter
    */
-  public static void addA4Papers(Queue<PrinterItem> printerItemsCollection) {
+  public static void addValidA4Papers(Queue<PrinterItem> printerItemsCollection) {
     /*
       Iterate through the printer queue, and add A4 papers according to the correct policy to the collecting parameter,
       which is 'printerItemsCollection' in this case.
@@ -98,7 +98,7 @@ public class App {
    *
    * @param printerItemsCollection the collecting parameter
    */
-  public static void addA3Papers(Queue<PrinterItem> printerItemsCollection) {
+  public static void addValidA3Papers(Queue<PrinterItem> printerItemsCollection) {
     for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
       if (nextItem.paperSize.equals(PaperSizes.A3)) {
 
@@ -118,7 +118,7 @@ public class App {
    *
    * @param printerItemsCollection the collecting parameter
    */
-  public static void addA2Papers(Queue<PrinterItem> printerItemsCollection) {
+  public static void addValidA2Papers(Queue<PrinterItem> printerItemsCollection) {
     for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
       if (nextItem.paperSize.equals(PaperSizes.A2)) {
 
