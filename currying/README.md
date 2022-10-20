@@ -72,7 +72,7 @@ Note that the order of the parameters is important. `genre` must come before `au
 ```java
 Function<String, Function<String, Function<LocalDate, Book>>> fantasyBookFunc = Book.BOOK_CREATOR.apply(Genre.FANTASY);
 ```
-Unfortunately, the type signature of `BOOK_CREATOR` and `fantasyBookFunc` are difficult to read and understand. We can improve this by using the [builder pattern](https://java-design-patterns.com/patterns/builder/) and functional interfaces. 
+Unfortunately, the type signature of `BOOK_CREATOR` and `fantasyBookFunc` are difficult to read and understand. We can improve this by using the [builder pattern](https://java-design-patterns.com/patterns/builder/) and [functional interfaces](https://www.geeksforgeeks.org/functional-interfaces-java/#:~:text=A%20functional%20interface%20is%20an,any%20number%20of%20default%20methods). 
 ```java
 public static AddGenre builder() {
     return genre
@@ -98,51 +98,54 @@ public interface AddPublicationDate {
 Book withPublicationDate(LocalDate publicationDate);
 }
 ```
-The semantics of the `builder` function can easily be understood. The `builder` function returns a functional interface `AddGenre`, which adds the genre to the book. Similarity, the `AddGenre` functional interface returns another functional interface `AddTitle`, which adds the title to the book and so on, until the `AddPublicationDate` functional interface returns a `Book`. The below example demonstrates how partial application can be used with the `builder` function to create specialised book builder functions.
+The semantics of the `builder` function can easily be understood. The `builder` function returns a function `AddGenre`, which adds the genre to the book. Similarity, the `AddGenre` function returns another function `AddTitle`, which adds the title to the book and so on, until the `AddPublicationDate` function returns a `Book`. The below example demonstrates how partial application can be used with the `builder` function to create specialised book builder functions.
 ```java
 public static void main(String[] args) {
-  // Defining genre book functions
-  Book.AddAuthor fantasyBookFunc = Book.builder().withGenre(Genre.FANTASY);
-  Book.AddAuthor horrorBookFunc = Book.builder().withGenre(Genre.HORROR);
-  Book.AddAuthor scifiBookFunc = Book.builder().withGenre(Genre.SCI_FI);
+    LOGGER.info("Librarian begins their work.");
+    
+    // Defining genre book functions
+    Book.AddAuthor fantasyBookFunc = Book.builder().withGenre(Genre.FANTASY);
+    Book.AddAuthor horrorBookFunc = Book.builder().withGenre(Genre.HORROR);
+    Book.AddAuthor scifiBookFunc = Book.builder().withGenre(Genre.SCI_FI);
 
-  // Defining author book functions
-  Book.AddTitle kingFantasyBooksFunc = fantasyBookFunc.withAuthor("Stephen King");
-  Book.AddTitle kingHorrorBooksFunc = horrorBookFunc.withAuthor("Stephen King");
-  Book.AddTitle rowlingFantasyBooksFunc = fantasyBookFunc.withAuthor("J.K. Rowling");
+    // Defining author book functions
+    Book.AddTitle kingFantasyBooksFunc = fantasyBookFunc.withAuthor("Stephen King");
+    Book.AddTitle kingHorrorBooksFunc = horrorBookFunc.withAuthor("Stephen King");
+    Book.AddTitle rowlingFantasyBooksFunc = fantasyBookFunc.withAuthor("J.K. Rowling");
 
-  // Creates books by Stephen King (horror and fantasy genres)
-  Book shining = kingHorrorBooksFunc.withTitle("The Shining")
-          .withPublicationDate(LocalDate.of(1977, 1, 28));
-  Book darkTower = kingFantasyBooksFunc.withTitle("The Dark Tower: Gunslinger")
-          .withPublicationDate(LocalDate.of(1982, 6, 10));
+    // Creates books by Stephen King (horror and fantasy genres)
+    Book shining = kingHorrorBooksFunc.withTitle("The Shining")
+    .withPublicationDate(LocalDate.of(1977, 1, 28));
+    Book darkTower = kingFantasyBooksFunc.withTitle("The Dark Tower: Gunslinger")
+    .withPublicationDate(LocalDate.of(1982, 6, 10));
 
-  // Creates fantasy books by J.K. Rowling
-  Book chamberOfSecrets = rowlingFantasyBooksFunc.withTitle("Harry Potter and the Chamber of Secrets")
-          .withPublicationDate(LocalDate.of(1998, 7, 2));
+    // Creates fantasy books by J.K. Rowling
+    Book chamberOfSecrets = rowlingFantasyBooksFunc.withTitle("Harry Potter and the Chamber of Secrets")
+    .withPublicationDate(LocalDate.of(1998, 7, 2));
 
-  // Create sci-fi books
-  Book dune = scifiBookFunc.withAuthor("Frank Herbert")
-          .withTitle("Dune")
-          .withPublicationDate(LocalDate.of(1965, 8, 1));
-  Book foundation = scifiBookFunc.withAuthor("Isaac Asimov")
-          .withTitle("Foundation")
-          .withPublicationDate(LocalDate.of(1942, 5, 1));
+    // Create sci-fi books
+    Book dune = scifiBookFunc.withAuthor("Frank Herbert")
+    .withTitle("Dune")
+    .withPublicationDate(LocalDate.of(1965, 8, 1));
+    Book foundation = scifiBookFunc.withAuthor("Isaac Asimov")
+    .withTitle("Foundation")
+    .withPublicationDate(LocalDate.of(1942, 5, 1));
 
-  System.out.println("Stephen King Books:");
-  System.out.println(shining);
-  System.out.println(darkTower);
+    LOGGER.info("Stephen King Books:");
+    LOGGER.info(shining.toString());
+    LOGGER.info(darkTower.toString());
 
-  System.out.println("J.K. Rowling Books:");
-  System.out.println(chamberOfSecrets);
+    LOGGER.info("J.K. Rowling Books:");
+    LOGGER.info(chamberOfSecrets.toString());
 
-  System.out.println("Sci-fi Books:");
-  System.out.println(dune);
-  System.out.println(foundation);
+    LOGGER.info("Sci-fi Books:");
+    LOGGER.info(dune.toString());
+    LOGGER.info(foundation.toString());
 }
 ```
 Program output:
 ```
+Librarian begins their work.
 Stephen King Books:
 Book{genre=HORROR, author='Stephen King', title='The Shining', publicationDate=1977-01-28}
 Book{genre=FANTASY, author='Stephen King', title='The Dark Tower: Gunslinger', publicationDate=1982-06-10}

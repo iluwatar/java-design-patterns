@@ -29,7 +29,7 @@ import java.util.Objects;
 import java.util.function.Function;
 
 /**
- * This is a Javadoc comment to pass the style check.
+ * Book class.
  */
 public class Book {
   private final Genre genre;
@@ -81,8 +81,8 @@ public class Book {
                       -> new Book(genre, author, title, publicationDate);
 
   /**
-   * Implements the builder pattern using functional interfaces to create a more readable
-   * book creator function.
+   * Implements the builder pattern using functional interfaces to create a more readable book
+   * creator function. This function is equivalent to the BOOK_CREATOR function.
    */
   public static AddGenre builder() {
     return genre

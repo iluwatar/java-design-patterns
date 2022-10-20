@@ -43,6 +43,7 @@ public class App {
   */
   public static void main(String[] args) {
     LOGGER.info("Librarian begins their work.");
+
     // Defining genre book functions
     Book.AddAuthor fantasyBookFunc = Book.builder().withGenre(Genre.FANTASY);
     Book.AddAuthor horrorBookFunc = Book.builder().withGenre(Genre.HORROR);
