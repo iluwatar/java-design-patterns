@@ -26,8 +26,8 @@ In plain words
 
 Wikipedia says
 > Currying is the technique of converting a function that takes multiple arguments into a sequence of functions that
-> each take a single argument. Given a function $f:(X \times Y) \rightarrow Z$, currying constructs a new function $h:X \rightarrow 
-> (Y\rightarrow Z)$. $h$ takes an argument from $X$ and returns a function which maps $Y$ to $Z$. Hence,
+> each take a single argument. Given a function $f:(X \times Y) \rightarrow Z$, currying constructs a new function 
+> $h:X \rightarrow (Y\rightarrow Z)$. $h$ takes an argument from $X$ and returns a function which maps $Y$ to $Z$. Hence,
 > $h(x)(y) = f(x, y)$.
 
 Programmatic example  
