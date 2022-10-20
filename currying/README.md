@@ -13,7 +13,7 @@ tags:
 Currying
 
 ## Intent
-WHAT IS CURRYING TRYING TO ACHIEVE?
+WHAT IS CURRYING TRYING TO ACHIEVE? Test
 
 ## Explanation
 Real-world example
