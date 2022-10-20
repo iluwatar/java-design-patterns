@@ -32,9 +32,6 @@ public enum Genre {
   HORROR,
   SCIFI;
 
-  /**
-   * This is a Javadoc comment to pass the style check.
-   */
   @Override
   public String toString() {
     return super.toString();
