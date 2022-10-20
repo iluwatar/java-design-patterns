@@ -47,7 +47,7 @@ public class App {
     // Defining genre book functions
     Book.AddAuthor fantasyBookFunc = Book.builder().withGenre(Genre.FANTASY);
     Book.AddAuthor horrorBookFunc = Book.builder().withGenre(Genre.HORROR);
-    Book.AddAuthor scifiBookFunc = Book.builder().withGenre(Genre.SCI_FI);
+    Book.AddAuthor scifiBookFunc = Book.builder().withGenre(Genre.SCIFI);
 
     // Defining author book functions
     Book.AddTitle kingFantasyBooksFunc = fantasyBookFunc.withAuthor("Stephen King");

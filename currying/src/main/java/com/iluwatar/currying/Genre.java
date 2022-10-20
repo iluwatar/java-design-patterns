@@ -30,7 +30,7 @@ package com.iluwatar.currying;
 public enum Genre {
   FANTASY,
   HORROR,
-  SCI_FI;
+  SCIFI;
 
   /**
    * This is a Javadoc comment to pass the style check.
