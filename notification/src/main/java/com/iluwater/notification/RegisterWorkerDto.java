@@ -46,7 +46,7 @@ public class RegisterWorkerDto extends DataTransferObject {
 
   /**
    * Simple set up function for capturing our worker information.
-
+   *
    * @param name Name of the worker
    * @param occupation occupation of the worker
    * @param dateOfBirth Date of Birth of the worker
