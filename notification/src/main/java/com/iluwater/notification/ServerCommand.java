@@ -22,6 +22,6 @@ public class ServerCommand {
    * @return the notification stored within the data
    */
   public Notification getNotification() {
-        return data.getNotification();
+    return data.getNotification();
   }
 }
