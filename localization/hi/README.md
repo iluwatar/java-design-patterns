@@ -2,7 +2,7 @@
      that smart and dearly wants an empty line before a heading to be able to
      display it as such, e.g. website) -->
 
-# Design patterns implemented in Java
+# जावा में कार्यान्वित डिजाइन पैटर्न
 
 ![Java CI](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
@@ -10,65 +10,50 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-218-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-213-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-<br/>
+# परिचय
 
-Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md)
-<br/>
+डिज़ाइन पैटर्न सर्वोत्तम, औपचारिक अभ्यास हैं जिनका उपयोग एक प्रोग्रामर कर सकता है
+किसी एप्लिकेशन या सिस्टम को डिजाइन करते समय सामान्य समस्याओं को हल करें।
 
-# Introduction
+डिज़ाइन पैटर्न परीक्षण किए गए, सिद्ध विकास प्रतिमान प्रदान करके विकास प्रक्रिया को गति दे सकते हैं।
 
-Design patterns are the best, formalized practices a programmer can use to
-solve common problems when designing an application or system.
+डिज़ाइन पैटर्न का पुन: उपयोग करने से सूक्ष्म मुद्दों को रोकने में मदद मिलती है जो बड़ी समस्याएं पैदा करते हैं, और यह कोडर्स और आर्किटेक्ट्स के लिए कोड पठनीयता में भी सुधार करता है जो पैटर्न से परिचित हैं।
 
-Design patterns can speed up the development process by providing tested, proven
-development paradigms.
+# शुरू करते है
 
-Reusing design patterns help prevent subtle issues that cause major
-problems, and it also improves code readability for coders and architects who
-are familiar with the patterns.
+यह साइट जावा डिज़ाइन पैटर्न प्रदर्शित करती है। समाधान द्वारा विकसित किए गए हैं
+ओपन-सोर्स समुदाय के अनुभवी प्रोग्रामर और आर्किटेक्ट।
+पैटर्न को उनके उच्च-स्तरीय विवरणों द्वारा या उनके को देखकर ब्राउज़ किया जा सकता है
+सोर्स कोड। स्रोत कोड के उदाहरणों पर अच्छी तरह से टिप्पणी की गई है और इसे इस प्रकार माना जा सकता है
+एक विशिष्ट पैटर्न को लागू करने के तरीके पर प्रोग्रामिंग ट्यूटोरियल। हम सबसे ज्यादा इस्तेमाल करते हैं
+लोकप्रिय युद्ध-सिद्ध ओपन-सोर्स जावा प्रौद्योगिकियां।
 
-# Getting started
+सामग्री में गोता लगाने से पहले, आपको विभिन्न से परिचित होना चाहिए
+[सॉफ्टवेयर डिजाइन सिद्धांत](https://java-design-patterns.com/principles/).
 
-This site showcases Java Design Patterns. The solutions have been developed by
-experienced programmers and architects from the open-source community. The
-patterns can be browsed by their high-level descriptions or by looking at their
-source code. The source code examples are well commented and can be thought of as
-programming tutorials on how to implement a specific pattern. We use the most
-popular battle-proven open-source Java technologies.
+सभी डिज़ाइन यथासंभव सरल होने चाहिए। आपको KISS, YAGNI से शुरू करना चाहिए और वह सरलतम कार्य करें जो संभवतः सिद्धांतों पर कार्य कर सके। जटिलता और पैटर्न केवल तभी पेश किए जाने चाहिए जब व्यावहारिक विस्तारशीलता के लिए उनकी आवश्यकता हो।
 
-Before you dive into the material, you should be familiar with various
-[Software Design Principles](https://java-design-patterns.com/principles/).
+एक बार जब आप इन अवधारणाओं से परिचित हो जाते हैं तो आप नीचे की ओर ड्रिलिंग शुरू कर सकते हैं
+[उपलब्ध डिजाइन पैटर्न](https://java-design-patterns.com/patterns/) निम्नलिखित में से किसी भी दृष्टिकोण से
 
-All designs should be as simple as possible. You should start with KISS, YAGNI,
-and Do The Simplest Thing That Could Possibly Work principles. Complexity and
-patterns should only be introduced when they are needed for practical
-extensibility.
+ - नाम से एक विशिष्ट पैटर्न खोजें। एक नहीं मिल रहा है? कृपया एक नए पैटर्न की रिपोर्ट करें [यहां](https://github.com/iluwatar/java-design-patterns/issues).
+ - `Performance`, `Gang of Four` या `Data access` जैसे टैग का उपयोग करना।
+ - पैटर्न श्रेणियों, `Creational`, `Behavioral`, और अन्य का उपयोग करना।
 
-Once you are familiar with these concepts you can start drilling down into the
-[available design patterns](https://java-design-patterns.com/patterns/) by any
-of the following approaches
+उम्मीद है, आप इस साइट पर प्रस्तुत किए गए ऑब्जेक्ट-ओरिएंटेड समाधान अपने आर्किटेक्चर में उपयोगी पाते हैं और उन्हें सीखने में उतना ही मज़ा आता है जितना हमें उन्हें विकसित करते समय मिला था।
 
- - Search for a specific pattern by name. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
- - Using tags such as `Performance`, `Gang of Four` or `Data access`.
- - Using pattern categories, `Creational`, `Behavioral`, and others.
+# कैसे योगदान करें
 
-Hopefully, you find the object-oriented solutions presented on this site useful
-in your architectures and have as much fun learning them as we had while developing them.
+यदि आप परियोजना में योगदान करने के इच्छुक हैं तो आपको हमारे [डेवलपर विकी](https://github.com/iluwatar/java-design-patterns/wiki) में प्रासंगिक जानकारी मिल जाएगी। हम आपकी मदद करेंगे और [गिटर चैटरूम](https://gitter.im/iluwatar/java-design-patterns) में आपके सवालों के जवाब देंगे।
 
-# How to contribute
+# लाइसेंस
 
-If you are willing to contribute to the project you will find the relevant information in
-our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help
-you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
+यह परियोजना एमआईटी लाइसेंस की शर्तों के तहत लाइसेंस प्राप्त है।
 
-# License
-
-This project is licensed under the terms of the MIT license.
-
-# Contributors
+# योगदानकर्ता
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -342,20 +327,13 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/dmdbilal"><img src="https://avatars.githubusercontent.com/u/91405690?v=4?s=100" width="100px;" alt="Mohamed Bilal"/><br /><sub><b>Mohamed Bilal</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dmdbilal" title="Documentation">📖</a></td>
       <td align="center"><a href="https://www.linkedin.com/in/karshilsheth/"><img src="https://avatars.githubusercontent.com/u/37497287?v=4?s=100" width="100px;" alt="Karshil sheth"/><br /><sub><b>Karshil sheth</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=karshil2309" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/kongleong86"><img src="https://avatars.githubusercontent.com/u/3745455?v=4?s=100" width="100px;" alt="kongleong86"/><br /><sub><b>kongleong86</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=kongleong86" title="Code">💻</a></td>
-      <td align="center"><a href="https://github.com/aitorfi"><img src="https://avatars.githubusercontent.com/u/64830228?v=4?s=100" width="100px;" alt="Aitor Fidalgo Sánchez"/><br /><sub><b>Aitor Fidalgo Sánchez</b></sub></a><br /><a href="#translation-aitorfi" title="Translation">🌍</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=aitorfi" title="Documentation">📖</a> <a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Aaitorfi" title="Reviewed Pull Requests">👀</a></td>
+      <td align="center"><a href="https://github.com/aitorfi"><img src="https://avatars.githubusercontent.com/u/64830228?v=4?s=100" width="100px;" alt="Aitor Fidalgo Sánchez"/><br /><sub><b>Aitor Fidalgo Sánchez</b></sub></a><br /><a href="#translation-aitorfi" title="Translation">🌍</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=aitorfi" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/HeVictor"><img src="https://avatars.githubusercontent.com/u/20733994?v=4?s=100" width="100px;" alt="Victor He"/><br /><sub><b>Victor He</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=HeVictor" title="Code">💻</a></td>
     </tr>
     <tr>
       <td align="center"><a href="http://m-inh.github.io/"><img src="https://avatars.githubusercontent.com/u/10632233?v=4?s=100" width="100px;" alt="Minh Nguyen"/><br /><sub><b>Minh Nguyen</b></sub></a><br /><a href="#translation-m-inh" title="Translation">🌍</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=m-inh" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/YichuanSun"><img src="https://avatars.githubusercontent.com/u/30886176?v=4?s=100" width="100px;" alt="yiichan"/><br /><sub><b>yiichan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=YichuanSun" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/PanSem"><img src="https://avatars.githubusercontent.com/u/43316964?v=4?s=100" width="100px;" alt="Pan Sem"/><br /><sub><b>Pan Sem</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=PanSem" title="Documentation">📖</a></td>
-      <td align="center"><a href="https://github.com/zhoumengyks"><img src="https://avatars.githubusercontent.com/u/111965739?v=4?s=100" width="100px;" alt="zhoumengyks"/><br /><sub><b>zhoumengyks</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=zhoumengyks" title="Code">💻</a></td>
-      <td align="center"><a href="https://github.com/you"><img src="https://avatars.githubusercontent.com/u/57100752?v=4?s=100" width="100px;" alt="you"/><br /><sub><b>you</b></sub></a><br /><a href="#translation-you" title="Translation">🌍</a></td>
-      <td align="center"><a href="https://github.com/thanks"><img src="https://avatars.githubusercontent.com/u/1121545?v=4?s=100" width="100px;" alt="Thanks"/><br /><sub><b>Thanks</b></sub></a><br /><a href="#translation-Thanks" title="Translation">🌍</a></td>
-      <td align="center"><a href="https://github.com/lazy-pr0grammer"><img src="https://avatars.githubusercontent.com/u/87204946?v=4?s=100" width="100px;" alt="LazyProgrammer"/><br /><sub><b>LazyProgrammer</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=lazy-pr0grammer" title="Documentation">📖</a></td>
-    </tr>
-    <tr>
-      <td align="center"><a href="https://github.com/mdfaizanahmed786"><img src="https://avatars.githubusercontent.com/u/85175130?v=4?s=100" width="100px;" alt="Mohammed Faizan Ahmed"/><br /><sub><b>Mohammed Faizan Ahmed</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mdfaizanahmed786" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
