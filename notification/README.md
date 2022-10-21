@@ -241,13 +241,13 @@ Use the notification pattern when:
 
 ## Related patterns
 
-* service layer
-* Data Transfer Object
-* Domain Model
-* Remote Facade
-* Autonomous View
-* Layer Supertype
-* Separated Presentation
+* [Service Layer](https://java-design-patterns.com/patterns/service-layer/)
+* [Data Transfer Object](https://java-design-patterns.com/patterns/data-transfer-object/)
+* [Domain Model](https://java-design-patterns.com/patterns/domain-model/)
+* [Remote Facade](https://martinfowler.com/eaaCatalog/remoteFacade.html)
+* [Autonomous View](https://martinfowler.com/eaaDev/AutonomousView.html)
+* [Layer Supertype](https://martinfowler.com/eaaCatalog/layerSupertype.html)
+* [Separated Presentation](https://java-design-patterns.com/patterns/data-transfer-object/)
 
 ## Credits
 
