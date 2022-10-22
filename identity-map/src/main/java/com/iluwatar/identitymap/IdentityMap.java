@@ -58,7 +58,9 @@ public class IdentityMap {
     Person person = personMap.get(id);
     if (person == null) {
       LOGGER.info("ID not in Map.");
+      return null;
     }
+    LOGGER.info(person.toString());
     return person;
   }
 

@@ -54,6 +54,7 @@ public class PersonDbSimulatorImplementation implements PersonDbSimulator {
     if (elem.isEmpty()) {
       throw new IdNotFoundException(ID_STR + personNationalID + NOT_IN_DATA_BASE);
     }
+    LOGGER.info(elem.get().toString());
     return elem.get();
   }
 
