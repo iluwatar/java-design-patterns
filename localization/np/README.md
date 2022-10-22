@@ -2,7 +2,7 @@
      that smart and dearly wants an empty line before a heading to be able to
      display it as such, e.g. website) -->
 
-# Design patterns implemented in Java
+# जाभामा लागू गरिएको डिजाइन ढाँचाहरू
 
 ![Java CI](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
@@ -13,62 +13,56 @@
 [![All Contributors](https://img.shields.io/badge/all_contributors-218-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-<br/>
+<br>
 
-Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/np/README.md)
-<br/>
+फरक भाषामा पढ्नुहोस् : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/np/README.md)
+<br>
 
-# Introduction
+# परिचय
 
-Design patterns are the best, formalized practices a programmer can use to
-solve common problems when designing an application or system.
+डिजाइन ढाँचाहरू सबै भन्दा राम्रो, औपचारिक अभ्यासहरू हुन् जुन प्रोग्रामरले अनुप्रयोग वा प्रणाली डिजाइन गर्दा सामान्य समस्याहरू समाधान गर्न प्रयोग गर्न सक्छ।
 
-Design patterns can speed up the development process by providing tested, proven
-development paradigms.
+डिजाइन ढाँचाहरूले परीक्षण, प्रमाणित विकास प्रतिमानहरू प्रदान गरेर विकास प्रक्रियालाई गति दिन सक्छ।
 
-Reusing design patterns help prevent subtle issues that cause major
-problems, and it also improves code readability for coders and architects who
-are familiar with the patterns.
+डिजाइन ढाँचाहरू पुन: प्रयोग गर्नाले प्रमुख समस्याहरू निम्त्याउने सूक्ष्म समस्याहरूलाई रोक्न मद्दत गर्दछ, र यसले ढाँचाहरूसँग परिचित भएका कोडरहरू र आर्किटेक्टहरूको लागि कोड पढ्न योग्यतामा पनि सुधार गर्दछ।
 
-# Getting started
+# सुरु गर्दै
 
-This site showcases Java Design Patterns. The solutions have been developed by
-experienced programmers and architects from the open-source community. The
-patterns can be browsed by their high-level descriptions or by looking at their
-source code. The source code examples are well commented and can be thought of as
-programming tutorials on how to implement a specific pattern. We use the most
-popular battle-proven open-source Java technologies.
+यो साइटले जाभा डिजाइन ढाँचाहरू प्रदर्शन गर्दछ। समाधानहरू द्वारा विकसित गरिएको छ
+खुला स्रोत समुदायबाट अनुभवी प्रोग्रामरहरू र आर्किटेक्टहरू। द
+ढाँचाहरू तिनीहरूको उच्च-स्तरको विवरणहरू वा हेरेर ब्राउज गर्न सकिन्छ
+स्रोत कोड। स्रोत कोड उदाहरणहरू राम्ररी टिप्पणी गरिएका छन् र सोच्न सकिन्छ
+एक विशिष्ट ढाँचा कसरी कार्यान्वयन गर्ने बारे प्रोग्रामिङ ट्यूटोरियल। हामी सबैभन्दा बढी प्रयोग गर्छौं
+लोकप्रिय युद्ध सिद्ध खुला स्रोत जाभा प्रविधिहरू।
 
-Before you dive into the material, you should be familiar with various
-[Software Design Principles](https://java-design-patterns.com/principles/).
+तपाईंले सामग्रीमा डुब्नु अघि, तपाईं विभिन्नसँग परिचित हुनुपर्छ
+[सफ्टवेयर डिजाइन सिद्धान्तहरू](https://java-design-patterns.com/principles/).
 
-All designs should be as simple as possible. You should start with KISS, YAGNI,
-and Do The Simplest Thing That Could Possibly Work principles. Complexity and
-patterns should only be introduced when they are needed for practical
-extensibility.
+सबै डिजाइनहरू सकेसम्म सरल हुनुपर्छ। चुम्बन, यज्ञीबाट सुरु गर्नुपर्छ,
+र सम्भवतः सिद्धान्तहरू काम गर्न सक्ने साधारण कुरा गर्नुहोस्। जटिलता र
+ढाँचाहरू मात्र पेश गर्नुपर्छ जब तिनीहरू व्यावहारिक रूपमा आवश्यक हुन्छन्
+विस्तारशीलता।
 
-Once you are familiar with these concepts you can start drilling down into the
-[available design patterns](https://java-design-patterns.com/patterns/) by any
-of the following approaches
+एकचोटि तपाइँ यी अवधारणाहरूसँग परिचित भएपछि तपाइँ मा ड्रिल गर्न सुरु गर्न सक्नुहुन्छ
+[उपलब्ध डिजाइन ढाँचा](https://java-design-patterns.com/patterns/) कुनै पनि द्वारा
+निम्न दृष्टिकोणहरु को
 
- - Search for a specific pattern by name. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
- - Using tags such as `Performance`, `Gang of Four` or `Data access`.
- - Using pattern categories, `Creational`, `Behavioral`, and others.
+- नाम द्वारा एक विशिष्ट ढाँचा खोज्नुहोस्। एउटा भेट्टाउन सक्नुहुन्न? कृपया एउटा नयाँ ढाँचा रिपोर्ट गर्नुहोस् [यहाँ](https://github.com/iluwatar/java-design-patterns/issues).
+- `प्रदर्शन`, `Gang of Four`, वा `डेटा पहुँच` जस्ता ट्यागहरू प्रयोग गर्दै।
+- ढाँचा कोटिहरू प्रयोग गर्दै, `सृजनात्मक`, `व्यवहार`, र अन्य।
 
-Hopefully, you find the object-oriented solutions presented on this site useful
-in your architectures and have as much fun learning them as we had while developing them.
+आशा छ, तपाईंले यस साइटमा प्रस्तुत वस्तु-उन्मुख समाधानहरू उपयोगी पाउनुहुनेछ
+तपाईंको आर्किटेक्चरमा र तिनीहरूलाई सिक्न धेरै रमाईलो गर्नुहोस् हामीले तिनीहरूलाई विकास गर्दा।
 
-# How to contribute
+# कसरी योगदान गर्ने
+यदि तपाईं परियोजनामा ​​योगदान गर्न इच्छुक हुनुहुन्छ भने तपाईंले सान्दर्भिक जानकारी पाउनुहुनेछ
+हाम्रो [विकासकर्ता विकि](https://github.com/iluwatar/java-design-patterns/wiki). हामी मद्दत गर्नेछौं
+तपाईं र [गिटर च्याटरूम](https://gitter.im/iluwatar/java-design-patterns) मा तपाईंका प्रश्नहरूको जवाफ दिनुहोस्।
 
-If you are willing to contribute to the project you will find the relevant information in
-our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help
-you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
+# इजाजतपत्र
+यो परियोजना MIT लाइसेन्स को सर्तहरु अन्तर्गत इजाजतपत्र दिइएको छ।
 
-# License
-
-This project is licensed under the terms of the MIT license.
-
-# Contributors
+# योगदानकर्ताहरू
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -362,5 +356,3 @@ This project is licensed under the terms of the MIT license.
 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->
