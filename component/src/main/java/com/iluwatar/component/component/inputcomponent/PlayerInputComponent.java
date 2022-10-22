@@ -5,14 +5,13 @@ import com.iluwatar.component.GameObject;
 import java.awt.event.KeyEvent;
 
 /**
- * Take this component class for handling user input and implemented.
- * the InputComponent interface.
+ * PlayerInputComponent is used to handle user key event inputs, and thus it implements the InputComponent interface.
  */
 public class PlayerInputComponent implements InputComponent {
   private final int walkAcceleration = 1;
 
   /**
-   * The update method to change the velocity based on the input e.
+   * The update method to change the velocity based on the input key event.
    *
    * @param gameObject the gameObject instance
    * @param e          key event instance
@@ -38,7 +37,7 @@ public class PlayerInputComponent implements InputComponent {
   }
 
   /**
-   * Useless method in the player input mode.
+   * Redundant method in the player input mode.
    *
    * @param gameObject the gameObject instance
    */

@@ -3,7 +3,7 @@ package com.iluwatar.component.component.graphiccomponent;
 import com.iluwatar.component.GameObject;
 
 /**
- * Take this component class to update the graphic for the Game Object instance.
+ * ObjectGraphicComponent class mimics the graphic component of the Game Object.
  */
 public class ObjectGraphicComponent implements GraphicComponent {
 

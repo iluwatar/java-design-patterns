@@ -10,7 +10,7 @@ import com.iluwatar.component.component.physiccomponent.PhysicComponent;
 
 /**
  * The GameObject class has three component class instances that allow
- * the creation of different game objects based on the needs.
+ * the creation of different game objects based on the game design requirements.
  */
 public class GameObject {
   private final InputComponent inputComponent;
@@ -56,8 +56,10 @@ public class GameObject {
   }
 
   /**
-   * updates the three components of the NPC object used in the demo in App.java
+   * Updates the three components of the NPC object used in the demo in App.java
    * note that this is simply a duplicate of update() without the key event for demonstration purposes.
+   *
+   * This method is usually used in games if the player becomes inactive.
    */
   public void demoUpdate() {
     inputComponent.update(this);
