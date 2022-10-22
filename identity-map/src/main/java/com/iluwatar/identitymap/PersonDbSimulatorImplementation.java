@@ -46,6 +46,7 @@ public class PersonDbSimulatorImplementation implements PersonDbSimulator {
   private List<Person> personList = new ArrayList<>();
   static final String NOT_IN_DATA_BASE = " not in DataBase";
   static final String ID_STR = "ID : ";
+
   @Override
   public Person find(int personNationalID) throws IdNotFoundException {
     for (Person elem : personList) {

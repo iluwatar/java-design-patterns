@@ -3,7 +3,7 @@ layout: pattern
 title: Identity Map
 folder: identity-map
 permalink: /patterns/identity-map/
-categories: Object-Relational Behavioral
+categories: Data access
 language: en
 tags:
 - Performance
