@@ -79,6 +79,7 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
         orderList.add(order);
       } else {
         LOGGER.info("Person Not Found");
+        throw new IdNotFoundException("OwnerId not in DataBase");
       }
     } else {
       LOGGER.info("Table Not Found");
@@ -148,10 +149,14 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
    * wrapped normally...
    */
   public void deletePersonOrder(int id) throws IdNotFoundException {
+    ArrayList<Order> deletList = new ArrayList<>();
     for (Order elem : orderList) {
       if (elem.getPersonNationalId() == id) {
-        orderList.remove(elem);
+        deletList.add(elem);
       }
+    }
+    for (Order order : deletList) {
+      orderList.remove(order);
     }
   }
 
