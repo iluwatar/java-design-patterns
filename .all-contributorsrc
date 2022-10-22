@@ -2015,6 +2015,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "shouryamanekar",
+      "name": "Shourya Manekar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72398499?v=4",
+      "profile": "https://github.com/shouryamanekar",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
