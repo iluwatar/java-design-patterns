@@ -1988,6 +1988,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "burno1",
+      "name": "Bruno Fernandes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39165280?v=4",
+      "profile": "https://github.com/burno1",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
