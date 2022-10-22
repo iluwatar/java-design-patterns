@@ -1,0 +1,61 @@
+@startuml
+package com.iluwatar.effectivity {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Company {
+    ~ Company(name : String)
+  }
+  class DateRange {
+    - endDate : SimpleDate
+    - startDate : SimpleDate
+    + DateRange(startDate : SimpleDate, endDate : SimpleDate)
+    + getEndDate() : SimpleDate
+    + getStartDate() : SimpleDate
+    + includes(arg : SimpleDate) : boolean
+    + startingOn(date : SimpleDate) : DateRange {static}
+  }
+  class Employment {
+    - company : Company
+    - effective : DateRange
+    ~ Employment(company : Company, effective : DateRange)
+    ~ Employment(company : Company, startDate : SimpleDate)
+    ~ company() : Company
+    ~ end(endDate : SimpleDate)
+    ~ isEffectiveOn(arg : SimpleDate) : boolean
+    ~ setEffectivity(arg : DateRange)
+  }
+  class NamedObject {
+    - name : String
+    + NamedObject(name : String)
+    + toString() : String
+  }
+  ~class Person {
+    - employments : ArrayList<Employment>
+    + Person(name : String)
+    ~ addEmployment(company : Company, startDate : SimpleDate)
+    + addEmployment(employment : Employment)
+    ~ employments() : Employment[]
+  }
+  class SimpleDate {
+    - day : int
+    - month : int
+    - today : SimpleDate {static}
+    - year : int
+    ~ SimpleDate(year : int, month : int, day : int)
+    + compareTo(otherDate : SimpleDate) : int
+    + equals(o : Object) : boolean
+    + getToday() : SimpleDate {static}
+    + setToday(newToday : SimpleDate) {static}
+    + toString() : String
+  }
+}
+SimpleDate -->  "-today" SimpleDate
+DateRange -->  "-startDate" SimpleDate
+Employment -->  "-company" Company
+Employment -->  "-effective" DateRange
+Person -->  "-employments" Employment
+Company --|> NamedObject 
+Person --|> NamedObject 
+@enduml

@@ -41,7 +41,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <properties>
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
@@ -58,7 +57,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.iluwatar.temporalobject.App</mainClass>
+                                    <mainClass>com.iluwatar.effectivity.App</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>
