@@ -1997,6 +1997,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "SammanPali",
+      "name": "SammanPali",
+      "avatar_url": "https://avatars.githubusercontent.com/u/110753804?v=4",
+      "profile": "https://github.com/SammanPali",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
