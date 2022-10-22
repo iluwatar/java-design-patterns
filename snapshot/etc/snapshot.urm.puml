@@ -1,0 +1,44 @@
+@startuml
+package com.iluwatar.snapshot {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Customer {
+    - addresses : TemporalCollection<String>
+    + Customer()
+    + getAddress() : String
+    + getAddress(date : SimpleDate) : String
+    + putAddress(date : SimpleDate, value : String)
+  }
+  class CustomerSnapshot {
+    - base : Customer
+    - validDate : SimpleDate
+    + CustomerSnapshot(base : Customer, validDate : SimpleDate)
+    + getAddress() : String
+  }
+  class SimpleDate {
+    - day : int
+    - month : int
+    - today : SimpleDate {static}
+    - year : int
+    ~ SimpleDate(year : int, month : int, day : int)
+    + compareTo(otherDate : SimpleDate) : int
+    + equals(o : Object) : boolean
+    + getToday() : SimpleDate {static}
+    + hashCode() : int
+    + setToday(newToday : SimpleDate) {static}
+    + toString() : String
+  }
+  class TemporalCollection<T> {
+    - versionMap : HashMap<SimpleDate, T>
+    ~ TemporalCollection<T>()
+    + get(date : SimpleDate) : T
+    + put(addedDate : SimpleDate, obj : T)
+  }
+}
+SimpleDate -->  "-today" SimpleDate
+CustomerSnapshot -->  "-validDate" SimpleDate
+CustomerSnapshot -->  "-base" Customer
+Customer -->  "-addresses" TemporalCollection
+@enduml
