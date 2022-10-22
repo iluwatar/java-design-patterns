@@ -46,7 +46,7 @@ class PersonFinderTest {
     db.insert(person3);
     db.insert(person4);
     db.insert(person5);
-    personFinder.setDB(db);
+    personFinder.setDb(db);
 
     Assertions.assertEquals(person1,personFinder.getPerson(1),"Find person returns incorrect record.");
     Assertions.assertEquals(person3,personFinder.getPerson(3),"Find person returns incorrect record.");
@@ -72,7 +72,7 @@ class PersonFinderTest {
     db.insert(person3);
     db.insert(person4);
     db.insert(person5);
-    personFinder.setDB(db);
+    personFinder.setDb(db);
     // Assure key is not in the ID map.
     Assertions.assertFalse(personFinder.getIdentityMap().getPersonMap().containsKey(3));
     // Assure key is in the database.
@@ -87,7 +87,7 @@ class PersonFinderTest {
     PersonFinder personFinder = new PersonFinder();
     // init database for our personFinder
     PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
-    personFinder.setDB(db);
+    personFinder.setDb(db);
     Assertions.assertThrows(IdNotFoundException.class,()->personFinder.getPerson(1));
     // Dummy persons
     Person person1 = new Person(1, "John", 27304159);
@@ -100,7 +100,7 @@ class PersonFinderTest {
     db.insert(person3);
     db.insert(person4);
     db.insert(person5);
-    personFinder.setDB(db);
+    personFinder.setDb(db);
     // Assure that the database has been updated.
     Assertions.assertEquals(person4,personFinder.getPerson(4),"Find returns incorrect record");
     // Assure key is in DB now.

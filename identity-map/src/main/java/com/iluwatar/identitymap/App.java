@@ -60,7 +60,7 @@ public class App {
 
     // Init a personFinder
     PersonFinder finder = new PersonFinder();
-    finder.setDB(db);
+    finder.setDb(db);
 
     // Find persons in DataBase not the map.
     LOGGER.info(finder.getPerson(2).toString());

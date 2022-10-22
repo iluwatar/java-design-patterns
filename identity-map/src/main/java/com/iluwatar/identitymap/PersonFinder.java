@@ -24,6 +24,8 @@
  */
 package com.iluwatar.identitymap;
 
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -34,11 +36,13 @@ import lombok.extern.slf4j.Slf4j;
  * will make lookup faster.
  */
 @Slf4j
+@Getter
+@Setter
 public class PersonFinder {
+  private static final long serialVersionUID = 1L;
   //  Access to the Identity Map
   private IdentityMap identityMap = new IdentityMap();
-  //  Access to the DataBase
-  private PersonDbSimulatorImplementation db;
+  private PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
   /**
    * get person corresponding to input ID.
    *
@@ -61,21 +65,5 @@ public class PersonFinder {
       LOGGER.info("Person with this ID does not exist.");
       return null;
     }
-  }
-
-  public PersonDbSimulatorImplementation getDB() {
-    return db;
-  }
-
-  public IdentityMap getIdentityMap() {
-    return identityMap;
-  }
-
-  public void setDB(PersonDbSimulatorImplementation db) {
-    this.db = db;
-  }
-
-  public void setIdentityMap(IdentityMap identityMap) {
-    this.identityMap = identityMap;
   }
 }
