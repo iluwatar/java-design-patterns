@@ -26,6 +26,7 @@ package com.iluwatar.identitymap;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -49,34 +50,31 @@ public class PersonDbSimulatorImplementation implements PersonDbSimulator {
 
   @Override
   public Person find(int personNationalID) throws IdNotFoundException {
-    for (Person elem : personList) {
-      if (elem.getPersonNationalId() == personNationalID) {
-        return elem;
-      }
+    Optional<Person> elem = personList.stream().filter(p -> p.getPersonNationalId() == personNationalID).findFirst();
+    if (elem.isEmpty()) {
+      throw new IdNotFoundException(ID_STR + personNationalID + NOT_IN_DATA_BASE);
     }
-    throw new IdNotFoundException(ID_STR + personNationalID + NOT_IN_DATA_BASE);
+    return elem.get();
   }
 
   @Override
   public void insert(Person person) {
-    for (Person elem : personList) {
-      if (elem.getPersonNationalId() == person.getPersonNationalId()) {
-        LOGGER.info("Record already exists.");
-        return;
-      }
+    Optional<Person> elem = personList.stream().filter(p -> p.getPersonNationalId() == person.getPersonNationalId()).findFirst();
+    if (elem.isPresent()) {
+      LOGGER.info("Record already exists.");
+      return;
     }
     personList.add(person);
   }
 
   @Override
   public void update(Person person) throws IdNotFoundException {
-    for (Person elem : personList) {
-      if (elem.getPersonNationalId() == person.getPersonNationalId()) {
-        elem.setName(person.getName());
-        elem.setPhoneNum(person.getPhoneNum());
-        LOGGER.info("Record updated successfully");
-        return;
-      }
+    Optional<Person> elem = personList.stream().filter(p -> p.getPersonNationalId() == person.getPersonNationalId()).findFirst();
+    if (elem.isPresent()) {
+      elem.get().setName(person.getName());
+      elem.get().setPhoneNum(person.getPhoneNum());
+      LOGGER.info("Record updated successfully");
+      return;
     }
     throw new IdNotFoundException(ID_STR + person.getPersonNationalId() + NOT_IN_DATA_BASE);
   }
@@ -87,12 +85,11 @@ public class PersonDbSimulatorImplementation implements PersonDbSimulator {
    * @param id : personNationalId for person whose record is to be deleted.
    */
   public void delete(int id) throws IdNotFoundException {
-    for (Person elem : personList) {
-      if (elem.getPersonNationalId() == id) {
-        personList.remove(elem);
-        LOGGER.info("Record deleted successfully.");
-        return;
-      }
+    Optional<Person> elem = personList.stream().filter(p -> p.getPersonNationalId() == id).findFirst();
+    if (elem.isPresent()) {
+      personList.remove(elem.get());
+      LOGGER.info("Record deleted successfully.");
+      return;
     }
     throw new IdNotFoundException(ID_STR + id + NOT_IN_DATA_BASE);
   }

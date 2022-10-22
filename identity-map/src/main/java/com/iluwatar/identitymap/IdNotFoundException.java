@@ -24,8 +24,9 @@
  */
 package com.iluwatar.identitymap;
 
-public class IdNotFoundException extends RuntimeException {
+import java.util.function.Supplier;
 
+public class IdNotFoundException extends RuntimeException {
   public IdNotFoundException(final String message) {
     super(message);
   }

@@ -27,6 +27,7 @@ package com.iluwatar.identitymap;
 import java.util.HashMap;
 import java.util.Map;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -34,6 +35,7 @@ import lombok.extern.slf4j.Slf4j;
  * Stores the records as a Hash Map with the personNationalIDs as keys.
  */
 @Slf4j
+@Getter
 public class IdentityMap {
   private Map<Integer, Person> personMap = new HashMap<>();
   /**
@@ -70,7 +72,4 @@ public class IdentityMap {
     return personMap.size();
   }
 
-  public Map<Integer, Person> getPersonMap() {
-    return this.personMap;
-  }
 }
