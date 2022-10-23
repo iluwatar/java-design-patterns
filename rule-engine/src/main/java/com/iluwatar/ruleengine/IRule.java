@@ -4,5 +4,5 @@ import java.awt.*;
 
 public interface IRule {
     public boolean shouldRun(Candidate candidate);
-    public List runRule(Candidate candidate);
+    public int runRule(Candidate candidate);
 }
