@@ -1,7 +1,6 @@
 package com.iluwatar.component.component.inputcomponent;
 
 import com.iluwatar.component.GameObject;
-
 import java.awt.event.KeyEvent;
 
 /**
