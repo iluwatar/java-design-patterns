@@ -58,8 +58,8 @@ public class Db {
   public void seedUser(String userName, Double amount) {
     User user = new User(userName);
     instance.userName2User.put(userName, user);
-    Account account = new Account(amount);
-    instance.user2Account.put(user, account);
+    Account Account = new Account(amount);
+    instance.user2Account.put(user, Account);
   }
 
   public void seedItem(String itemName, Double price) {
@@ -284,20 +284,20 @@ public class DomainServicesImpl implements DomainServices {
       return new InvalidUser(userName);
     }
 
-    Db.Account account = Db.getInstance().findAccountByUser(user);
-    return purchase(user, account, itemName);
+    Db.Account Account = Db.getInstance().findAccountByUser(user);
+    return purchase(user, Account, itemName);
   }
 
-  private ReceiptViewModel purchase(Db.User user, Db.Account account, String itemName) {
+  private ReceiptViewModel purchase(Db.User user, Db.Account Account, String itemName) {
     Db.Product item = Db.getInstance().findProductByItemName(itemName);
     if (item == null) {
       return new OutOfStock(user.getUserName(), itemName);
     }
 
     ReceiptDto receipt = user.purchase(item);
-    MoneyTransaction transaction = account.withdraw(receipt.getPrice());
+    MoneyTransaction transaction = Account.withdraw(receipt.getPrice());
     if (transaction == null) {
-      return new InsufficientFunds(user.getUserName(), account.getAmount(), itemName);
+      return new InsufficientFunds(user.getUserName(), Account.getAmount(), itemName);
     }
 
     return receipt;

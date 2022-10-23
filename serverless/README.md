@@ -129,7 +129,7 @@ dependencies of the function.
 
 * Node.js v6.5.0 or later.
 * Serverless CLI v1.9.0 or later. You can run npm install -g serverless to install it.
-* An AWS account. If you don't already have one, you can sign up for a free trial that includes 1 million free Lambda requests per month.
+* An AWS Account. If you don't already have one, you can sign up for a free trial that includes 1 million free Lambda requests per month.
 * [Set-up](https://serverless.com/framework/docs/providers/aws/guide/credentials/) your Provider Credentials. Watch the video on setting up credentials
 
 # build and deploy

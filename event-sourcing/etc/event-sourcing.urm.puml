@@ -72,7 +72,7 @@ package com.iluwatar.event.sourcing.state {
     - accounts : Map<Integer, Account> {static}
     - AccountAggregate()
     + getAccount(accountNo : int) : Account {static}
-    + putAccount(account : Account) {static}
+    + putAccount(Account : Account) {static}
     + resetState() {static}
   }
 }

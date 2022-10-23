@@ -1,9 +1,9 @@
-package data;
+package com.iluwatar.dci_pattern.data;
 
-public class account {
+public class Account {
     public int balance;
 
-    public account(int balance) {
+    public Account(int balance) {
         this.balance = balance;
     }
 

@@ -48,7 +48,7 @@ Wikipedia says
 In this example we create a static web site using AWS S3 and utilize AWS Cloudfront to distribute
 the content globally.
 
-1. First you will need an AWS account. You can create a free one here: [AWS Free Tier](https://aws.amazon.com/free/free-tier/)
+1. First you will need an AWS Account. You can create a free one here: [AWS Free Tier](https://aws.amazon.com/free/free-tier/)
 
 2. Login to the [AWS Console](https://console.aws.amazon.com/console/home?nc2=h_ct&src=header-signin)
 

@@ -49,7 +49,7 @@ package com.iluwatar.specialcase {
   }
   class DomainServicesImpl {
     + DomainServicesImpl()
-    - purchase(user : User, account : Account, itemName : String) : ReceiptViewModel
+    - purchase(user : User, Account : Account, itemName : String) : ReceiptViewModel
     + purchase(userName : String, itemName : String) : ReceiptViewModel
   }
   class DownForMaintenance {

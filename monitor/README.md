@@ -24,7 +24,7 @@ Wikipedia says
 
 **Programmatic Examples**
 
-Consider there is a bank that transfers money from an account to another account with transfer method . it is `synchronized` mean just one thread can access to this method because if many threads access to it and transfer money from an account to another account in same time balance changed !   
+Consider there is a Bank that transfers money from an Account to another Account with transfer method . it is `synchronized` mean just one thread can access to this method because if many threads access to it and transfer money from an Account to another Account in same time balance changed !   
  
 ```
 class Bank {
@@ -42,7 +42,7 @@ class Bank {
          if (accounts[accountA] >= amount) {
              accounts[accountB] += amount;
              accounts[accountA] -= amount;
-             logger.info("Transferred from account :" + accountA + " to account :" + accountB + " , amount :" + amount + " . balance :" + getBalance());
+             logger.info("Transferred from Account :" + accountA + " to Account :" + accountB + " , amount :" + amount + " . balance :" + getBalance());
          }
      }
 ```
@@ -52,8 +52,8 @@ getBalance always return total amount and the total amount should be same after 
 ```
      private synchronized int getBalance() {
          int balance = 0;
-         for (int account : accounts) {
-             balance += account;
+         for (int Account : accounts) {
+             balance += Account;
          }
          return balance;
      }

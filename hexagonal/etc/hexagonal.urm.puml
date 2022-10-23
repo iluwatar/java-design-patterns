@@ -25,9 +25,9 @@ package com.iluwatar.hexagonal.service {
   class LotteryConsoleServiceImpl {
     - logger : Logger
     + LotteryConsoleServiceImpl(logger : Logger)
-    + addFundsToLotteryAccount(bank : WireTransfers, scanner : Scanner)
+    + addFundsToLotteryAccount(Bank : WireTransfers, scanner : Scanner)
     + checkTicket(service : LotteryService, scanner : Scanner)
-    + queryLotteryAccountFunds(bank : WireTransfers, scanner : Scanner)
+    + queryLotteryAccountFunds(Bank : WireTransfers, scanner : Scanner)
     - readString(scanner : Scanner) : String
     + submitTicket(service : LotteryService, scanner : Scanner)
   }

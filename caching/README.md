@@ -43,7 +43,7 @@ Wikipedia says:
 **Programmatic Example**
 
 Let's first look at the data layer of our application. The interesting classes are `UserAccount`
-which is a simple Java object containing the user account details, and `DbManager` interface which handles
+which is a simple Java object containing the user Account details, and `DbManager` interface which handles
 reading and writing of these objects to/from database.
 
 ```java
