@@ -24,5 +24,112 @@
  */
 package com.iluwatar.foreignkeymapping;
 
+import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+
 public class AppDbSimulatorImplementationTest {
+  static final String order = "order";
+  static final String person = "person";
+
+  Person person1 = new Person(1, "John", "Loli", 33);
+  Person person2 = new Person(2, "Thomas", "Funny", 22);
+
+  Order order1 = new Order(1, "2132131", 1);
+  Order order2 = new Order(2, "12321321", 1);
+
+  @Test
+  public void insertFindPerson() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    assertEquals(person1, database.find(1,person));
+  }
+
+  @Test(expected = IdNotFoundException.class)
+  public void findPersonNotExist() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    database.find(2,person);
+  }
+
+  @Test
+  public void insertfindOrder() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    database.insert(order1,order);
+    assertEquals(order1, database.find(1,order));
+  }
+
+  @Test(expected = IdNotFoundException.class)
+  public void findOrderNotExist() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    database.insert(order1,order);
+    database.find(2,order);
+  }
+
+  @Test(expected = IdNotFoundException.class)
+  public void insertOrderWithUnkownOwner() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(order1,order);
+  }
+
+  @Test
+  public void updatePerson() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    Person personUpdate = new Person(1, "John", "Loli", 30);
+    database.update(personUpdate,person);
+    assertEquals(personUpdate, database.find(1,person));
+  }
+
+  @Test
+  public void updateOrder() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    database.insert(order1,order);
+    Order orderUpdate = new Order(1, "123", 1);
+    database.update(orderUpdate,order);
+    assertEquals(orderUpdate, database.find(1,order));
+  }
+
+  @Test(expected = IdNotFoundException.class)
+  public void deletePerson() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    database.delete(1,person);
+    database.find(1,person);
+  }
+
+  @Test(expected = IdNotFoundException.class)
+  public void deletePersonNotExist() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.delete(1,person);
+  }
+
+  @Test(expected = IdNotFoundException.class)
+  public void deleteOrder() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    database.delete(1,person);
+    database.find(1,person);
+  }
+
+  @Test(expected = IdNotFoundException.class)
+  public void deleteOrderNotExist() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.delete(1,order);
+  }
+
+  @Test(expected = IdNotFoundException.class)
+  public void deletePersonWithOrder() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    database.insert(order1,order);
+    database.delete(1,person);
+    database.find(1,order);
+  }
+
+
+
 }
