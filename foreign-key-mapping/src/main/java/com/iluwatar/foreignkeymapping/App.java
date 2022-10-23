@@ -37,7 +37,7 @@ public class App {
   static final String person = "person";
 
   /**
-   * Program entry point
+   * Program entry point.
    *
    * @param args command line args
    */

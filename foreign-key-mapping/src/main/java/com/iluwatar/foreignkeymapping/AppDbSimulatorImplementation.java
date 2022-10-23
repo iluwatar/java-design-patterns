@@ -51,12 +51,6 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
     this.personList = personList;
   }
 
-  /**
-   * Find specific person or order
-   *
-   * @param id person's id or order's id
-   * @param table find from person table or order table
-   */
   @Override
   public Object find(int id, String table) throws IdNotFoundException {
     if (table.toLowerCase(Locale.ROOT).equals("person")) {
@@ -80,12 +74,6 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
     throw new IdNotFoundException("ID not in DataBase");
   }
 
-  /**
-   * Insert person or order
-   *
-   * @param object new person or order that is going to insert
-   * @param table insert into person table or order table
-   */
   @Override
   public void insert(Object object, String table) {
     if (table.toLowerCase(Locale.ROOT).equals("person")) {
@@ -122,12 +110,6 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
     }
   }
 
-  /**
-   * Update person or order
-   *
-   * @param object updated person or order
-   * @param table update to person table or order table
-   */
   @Override
   public void update(Object object, String table) throws IdNotFoundException {
     if (table.toLowerCase(Locale.ROOT).equals("person")) {
@@ -158,7 +140,7 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
   }
 
   /**
-   * Delete specific person or order
+   * Delete specific person or order.
    *
    * @param id person's id or order's id
    * @param table delete from person table or order table
@@ -189,7 +171,7 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
   }
 
   /**
-   * Delete person's orders in orderList
+   * Delete person's orders in orderList.
    *
    * @param person the specific person
    */

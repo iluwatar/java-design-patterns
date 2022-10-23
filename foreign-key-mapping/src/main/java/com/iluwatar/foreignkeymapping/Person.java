@@ -59,7 +59,7 @@ public final class Person implements Serializable {
   }
 
   /**
-   * Get specific person's order list
+   * Get specific person's order list.
    *
    * @param orderList all order in database
    * @return a list of order belong to person
