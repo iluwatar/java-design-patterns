@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Master-Worker
-folder: master-worker-pattern
-permalink: /patterns/master-worker-pattern/
-categories: Concurrency
+category: Concurrency
 language: en
 tags:
  - Performance

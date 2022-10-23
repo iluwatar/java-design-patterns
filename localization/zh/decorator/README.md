@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Decorator
-folder: decorator
-permalink: /patterns/decorator/
-categories: Structural
+category: Structural
 language: zh
 tags:
  - Gang Of Four
@@ -106,7 +103,7 @@ clubbedTroll.fleeBattle(); // The troll shrieks in horror and runs away!
 ```
 
 ## 类图
-![alt text](../../../decorator/etc/decorator.urm.png "Decorator pattern class diagram")
+![alt text](etc/decorator.urm.png "Decorator pattern class diagram")
 
 ## 适用性
 使用装饰者

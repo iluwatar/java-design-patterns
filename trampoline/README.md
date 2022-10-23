@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Trampoline
-folder: trampoline
-permalink: /patterns/trampoline/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Performance

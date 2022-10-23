@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Private Class Data
-folder: private-class-data
-permalink: /patterns/private-class-data/
-categories: Idiom
+category: Idiom
 language: en
 tags:
  - Data access

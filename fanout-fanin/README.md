@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Fan-Out/Fan-In
-folder: fanout-fanin
-permalink: /patterns/fanout-fanin/
-categories: Integration
+category: Integration
 language: en
 tags:
 - Microservices
