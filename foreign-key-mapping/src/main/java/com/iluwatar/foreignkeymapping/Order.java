@@ -44,14 +44,14 @@ public final class Order implements Serializable {
 
   @EqualsAndHashCode.Include
   private int orderNationalId;
-  private String orderNumber;
-  private int personNationalId;
+  private String content;
+  private Person owner;
 
   @Override
   public String toString() {
 
-    return "Order ID is : " + orderNationalId + " ; Order Number is : " + orderNumber + " ; Person ID is :"
-        + personNationalId;
+    return "Order ID is : " + orderNationalId + " ; Order Content is : " + content + " ; Owner is: "
+        + owner.getFirstName();
 
   }
 

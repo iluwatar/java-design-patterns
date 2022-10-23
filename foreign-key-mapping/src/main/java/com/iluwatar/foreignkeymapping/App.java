@@ -37,9 +37,10 @@ public class App {
   static final String person = "person";
 
   /**
- * Multiple lines of Javadoc text are written here,
- * wrapped normally...
- */
+   * Program entry point
+   *
+   * @param args command line args
+   */
   public static void main(String[] args) {
 
     Person person1 = new Person(1, "John", "Loli", 33);
@@ -48,11 +49,11 @@ public class App {
     Person person4 = new Person(4, "Finn", "Wash", 55);
     Person person5 = new Person(5, "Michael", "Linux", 67);
 
-    Order order1 = new Order(1, "2132131", 1);
-    Order order2 = new Order(2, "12321321", 1);
-    Order order3 = new Order(3, "213213123", 3);
-    Order order4 = new Order(4, "123213213", 3);
-    Order order5 = new Order(5, "12312321231", 1);
+    Order order1 = new Order(1, "2132131", person1);
+    Order order2 = new Order(2, "12321321", person1);
+    Order order3 = new Order(3, "213213123", person3);
+    Order order4 = new Order(4, "123213213", person3);
+    Order order5 = new Order(5, "12312321231", person1);
 
     AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
     database.insert(person1, person);
@@ -75,16 +76,15 @@ public class App {
     LOGGER.info(database.find(5, order).toString());
 
     // get order owner
-    LOGGER.info(database.find(order2.getPersonNationalId(), person).toString());
+    LOGGER.info(order2.getOwner().toString());
 
     // get person's orders
     LOGGER.info(person1.getAllOrder(database.getOrderList()).toString());
-    // System.out.println(getAllOrder(person1.getPersonNationalId(),database.getOrderList()));
 
     // person place order
-    Order order6 = new Order(6, "12312321231", 1);
+    Order order6 = new Order(6, "12312321231", person1);
     database.insert(order6, order);
-
+    LOGGER.info(person1.getAllOrder(database.getOrderList()).toString());
   }
 
 }

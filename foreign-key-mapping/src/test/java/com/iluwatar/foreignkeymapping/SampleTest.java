@@ -41,11 +41,11 @@ public class SampleTest {
   Person person4 = new Person(4, "Finn", "Wash", 55);
   Person person5 = new Person(5, "Michael", "Linux", 67);
 
-  Order order1 = new Order(1, "2132131", 1);
-  Order order2 = new Order(2, "12321321", 1);
-  Order order3 = new Order(3, "213213123", 3);
-  Order order4 = new Order(4, "123213213", 3);
-  Order order5 = new Order(5, "12312321231", 1);
+  Order order1 = new Order(1, "2132131", person1);
+  Order order2 = new Order(2, "12321321", person1);
+  Order order3 = new Order(3, "213213123", person3);
+  Order order4 = new Order(4, "123213213", person3);
+  Order order5 = new Order(5, "12312321231", person1);
 
 
   @Test
@@ -98,7 +98,7 @@ public class SampleTest {
     AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
     database.insert(person1,person);
     database.insert(order1,order);
-    Order orderUpdate = new Order(1, "123", 1);
+    Order orderUpdate = new Order(1, "123", person1);
     database.update(orderUpdate,order);
     assertEquals(orderUpdate, database.find(1,order));
   }

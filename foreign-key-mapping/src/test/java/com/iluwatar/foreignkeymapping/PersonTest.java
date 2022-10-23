@@ -37,8 +37,8 @@ public class PersonTest {
 
   Person person1 = new Person(1, "John", "Loli", 33);
 
-  Order order1 = new Order(1, "2132131", 1);
-  Order order2 = new Order(2, "12321321", 1);
+  Order order1 = new Order(1, "2132131", person1);
+  Order order2 = new Order(2, "12321321", person1);
 
   @Test
   public void getPersonOrder() {
@@ -53,10 +53,15 @@ public class PersonTest {
   }
 
   @Test
-  public void getPersonOrderNoRecord() {
+  public void getPersonOrderNoOrder() {
     AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
     database.insert(person1,person);
     List<Order> compare = new ArrayList<>();
     assertEquals(compare, person1.getAllOrder(database.getOrderList()));
+  }
+
+  @Test
+  public void toStringTest() {
+    assertEquals("Person ID is : 1 ; Person Last Name is : John ; Person First Name is : Loli ; Age is :33", person1.toString());
   }
 }

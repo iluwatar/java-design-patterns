@@ -33,10 +33,8 @@ public class AppDbSimulatorImplementationTest {
   static final String person = "person";
 
   Person person1 = new Person(1, "John", "Loli", 33);
-  Person person2 = new Person(2, "Thomas", "Funny", 22);
 
-  Order order1 = new Order(1, "2132131", 1);
-  Order order2 = new Order(2, "12321321", 1);
+  Order order1 = new Order(1, "2132131", person1);
 
   @Test
   public void insertFindPerson() {
@@ -53,7 +51,7 @@ public class AppDbSimulatorImplementationTest {
   }
 
   @Test
-  public void insertfindOrder() {
+  public void insertFindOrder() {
     AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
     database.insert(person1,person);
     database.insert(order1,order);
@@ -69,7 +67,7 @@ public class AppDbSimulatorImplementationTest {
   }
 
   @Test(expected = IdNotFoundException.class)
-  public void insertOrderWithUnkownOwner() {
+  public void insertOrderWithUnknownOwner() {
     AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
     database.insert(order1,order);
   }
@@ -88,7 +86,7 @@ public class AppDbSimulatorImplementationTest {
     AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
     database.insert(person1,person);
     database.insert(order1,order);
-    Order orderUpdate = new Order(1, "123", 1);
+    Order orderUpdate = new Order(1, "123", person1);
     database.update(orderUpdate,order);
     assertEquals(orderUpdate, database.find(1,order));
   }

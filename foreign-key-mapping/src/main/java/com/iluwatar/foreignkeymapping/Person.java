@@ -59,13 +59,15 @@ public final class Person implements Serializable {
   }
 
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Get specific person's order list
+   *
+   * @param orderList all order in database
+   * @return a list of order belong to person
    */
   public List<Order> getAllOrder(List<Order> orderList) {
     List<Order> orders = new ArrayList<>();
     for (Order order : orderList) {
-      if (this.getPersonNationalId() == order.getPersonNationalId()) {
+      if (this.equals(order.getOwner())) {
         orders.add(order);
       }
     }

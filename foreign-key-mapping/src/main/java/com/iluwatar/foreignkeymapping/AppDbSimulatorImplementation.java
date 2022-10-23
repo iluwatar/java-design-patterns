@@ -51,6 +51,12 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
     this.personList = personList;
   }
 
+  /**
+   * Find specific person or order
+   *
+   * @param id person's id or order's id
+   * @param table find from person table or order table
+   */
   @Override
   public Object find(int id, String table) throws IdNotFoundException {
     if (table.toLowerCase(Locale.ROOT).equals("person")) {
@@ -74,6 +80,12 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
     throw new IdNotFoundException("ID not in DataBase");
   }
 
+  /**
+   * Insert person or order
+   *
+   * @param object new person or order that is going to insert
+   * @param table insert into person table or order table
+   */
   @Override
   public void insert(Object object, String table) {
     if (table.toLowerCase(Locale.ROOT).equals("person")) {
@@ -89,7 +101,7 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
       Order order = (Order) object;
       boolean find = false;
       for (Person person : personList) {
-        if (person.getPersonNationalId() == order.getPersonNationalId()) {
+        if (person.equals(order.getOwner())) {
           find = true;
         }
       }
@@ -110,6 +122,12 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
     }
   }
 
+  /**
+   * Update person or order
+   *
+   * @param object updated person or order
+   * @param table update to person table or order table
+   */
   @Override
   public void update(Object object, String table) throws IdNotFoundException {
     if (table.toLowerCase(Locale.ROOT).equals("person")) {
@@ -126,8 +144,8 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
       Order order = (Order) object;
       for (Order elem : orderList) {
         if (elem.getOrderNationalId() == order.getOrderNationalId()) {
-          elem.setOrderNumber(order.getOrderNumber());
-          elem.setPersonNationalId(order.getPersonNationalId());
+          elem.setContent(order.getContent());
+          elem.setOwner(order.getOwner());
           LOGGER.info("Record updated successfully");
           return;
         }
@@ -140,15 +158,17 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
   }
 
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Delete specific person or order
+   *
+   * @param id person's id or order's id
+   * @param table delete from person table or order table
    */
   public void delete(int id, String table) throws IdNotFoundException {
     if (table.toLowerCase(Locale.ROOT).equals("person")) {
       for (Person elem : personList) {
         if (elem.getPersonNationalId() == id) {
           personList.remove(elem);
-          deletePersonOrder(id);
+          deletePersonOrder(elem);
           LOGGER.info("Record deleted successfully.");
           return;
         }
@@ -169,17 +189,18 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
   }
 
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Delete person's orders in orderList
+   *
+   * @param person the specific person
    */
-  public void deletePersonOrder(int id) throws IdNotFoundException {
-    ArrayList<Order> deletList = new ArrayList<>();
+  public void deletePersonOrder(Person person) throws IdNotFoundException {
+    ArrayList<Order> deleteList = new ArrayList<>();
     for (Order elem : orderList) {
-      if (elem.getPersonNationalId() == id) {
-        deletList.add(elem);
+      if (elem.getOwner().equals(person)) {
+        deleteList.add(elem);
       }
     }
-    for (Order order : deletList) {
+    for (Order order : deleteList) {
       orderList.remove(order);
     }
   }
