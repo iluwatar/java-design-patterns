@@ -1,6 +1,5 @@
 ---
 title: Filterer
-description: Design pattern that helps container-like objects to return filtered version of themselves.# short meta description that shows in Google search results
 language: en
 category: Functional
 tags:

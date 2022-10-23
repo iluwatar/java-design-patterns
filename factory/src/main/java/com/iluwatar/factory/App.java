@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,15 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.factory;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Factory is an object for creating other objects, it providing Providing a static method to 
+ * Factory is an object for creating other objects. It provides a static method to 
  * create and return objects of varying classes, in order to hide the implementation logic 
- * and makes client code focus on usage rather then objects initialization and management.
+ * and makes client code focus on usage rather than objects initialization and management.
  *
  * <p>In this example an alchemist manufactures coins. CoinFactory is the factory class and it
  * provides a static method to create different types of coins.

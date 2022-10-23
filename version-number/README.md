@@ -1,6 +1,5 @@
 ---
 title: Version Number
-description: Entity versioning with version number
 category: Concurrency
 language: en
 tags:
