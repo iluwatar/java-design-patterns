@@ -56,4 +56,9 @@ public class Employment {
   void setEffectivity(DateRange arg) {
     effective = arg;
   }
+
+  @Override
+  public String toString() {
+    return company().toString() + " : " + effective.toString();
+  }
 }

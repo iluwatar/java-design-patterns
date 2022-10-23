@@ -41,6 +41,84 @@ In plain words
 >Once defined, effectivity ranges are then used in queries to return the appropriate objects 
 > that are effective on a certain date.
 
+**Programmatic Example**
+
+In this example implementation, a `Person` has several `Employment`s, that are only effective over 
+certain `DateRange`s. 
+
+Here are the relevant parts of `Person`
+
+```java
+class Person extends NamedObject {
+  private final ArrayList<Employment> employments;
+
+  Employment[] employments() {
+    return employments.toArray(new Employment[0]);
+  }
+
+  void addEmployment(Company company, SimpleDate startDate) {
+    employments.add(new Employment(company, startDate));
+  }
+
+  public void addEmployment(Employment employment) {
+    employments.add(employment);
+  }
+}
+```
+
+The relevant parts of `Employment`,
+```java
+public class Employment {
+  private DateRange effective;
+  private Company company;
+
+  Employment(Company company, DateRange effective) {
+    this.company = company;
+    this.effective = effective;
+  }
+
+  void end(SimpleDate endDate) {
+    effective = new DateRange(effective.getStartDate(), endDate);
+  }
+
+  boolean isEffectiveOn(SimpleDate arg) {
+    return effective.includes(arg);
+  }
+}
+```
+
+Then, these are used in application, wherein an individual is employed at several companies over 
+a span of time
+```java
+  public static void main(String[] args) {
+    Person bob = new Person("Bob");
+    Company aaInc = new Company("AA inc");
+    Company bbCo = new Company("BB Company");
+
+    // Bob was employed at A Inc from the 2nd of June 2003, until 4th of February 2008
+    DateRange aaIncPeriod = new DateRange(new SimpleDate(2003, 6, 2),
+            new SimpleDate(2008, 2, 4));
+    Employment aaIncEmployment = new Employment(aaInc, aaIncPeriod);
+    bob.addEmployment(aaIncEmployment);
+
+    // Then, Bob started working at B Company from the 19th of March 2008,
+    // and has continued working there since.
+    bob.addEmployment(bbCo, new SimpleDate(2008, 3, 19));
+
+    System.out.println("Bob's employments:");
+    for (Employment emp :bob.employments()){
+      System.out.println(emp.toString());
+    }
+  }
+```
+
+Has an output of 
+```
+Bob's employments:
+AA inc : (2003, 6, 2 : 2008, 2, 4)
+BB Company : (2008, 3, 19 : )
+```
+
 
 ## Class diagram
 

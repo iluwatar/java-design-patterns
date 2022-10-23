@@ -54,6 +54,11 @@ public class App {
     // Then, Bob started working at B Company from the 19th of March 2008,
     // and has continued working there since.
     bob.addEmployment(bbCo, new SimpleDate(2008, 3, 19));
+
+    System.out.println("Bob's employments:");
+    for (Employment emp :bob.employments()){
+      System.out.println(emp.toString());
+    }
   }
 
 }

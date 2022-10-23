@@ -98,6 +98,9 @@ public class SimpleDate implements Comparable<SimpleDate> {
 
   @Override
   public String toString() {
+    if (year == Integer.MAX_VALUE && month == Integer.MAX_VALUE && day == Integer.MAX_VALUE){
+      return "";
+    }
     return "" + year + ", " + month + ", " + day;
   }
 }

@@ -65,4 +65,9 @@ public class DateRange {
   public SimpleDate getEndDate() {
     return endDate;
   }
+
+  @Override
+  public String toString() {
+    return "(" + startDate.toString() + " : " + endDate.toString() + ")";
+  }
 }
