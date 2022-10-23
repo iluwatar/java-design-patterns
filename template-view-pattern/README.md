@@ -16,11 +16,15 @@ tags:
 
 ## Intent
 
+Write a java program that  processes the logic, using it to render information into HTML. This is done by embedding markers in an HTML page.
+
 ## Explanation
 
 ## Class diagram
 
 ## Applicability
+
+
 
 ## Tutorials
 
