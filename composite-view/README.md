@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Composite View 
-folder: composite-view
-permalink: /patterns/composite-view/
-categories: Structural
+category: Structural
 language: en
 tags:
 - Enterprise Integration Pattern
