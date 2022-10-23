@@ -55,7 +55,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.serializedentity.App</mainClass>
+                  <mainClass>com.iluwatar.servant.App</mainClass>
                 </manifest>
               </archive>
             </configuration>

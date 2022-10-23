@@ -59,7 +59,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.iluwatar.servant.App</mainClass>
+                                    <mainClass>com.iluwatar.serializedentity.App</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>
