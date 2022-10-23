@@ -1,10 +1,13 @@
 ---
-layout: pattern title: Component folder: component permalink: /patterns/component/ categories: Behavioral language: en
+layout: pattern
+title: Component
+folder: component
+permalink: /patterns/component/
+categories: Behavioral
+language: en
 tags:
-
 - Game programming
 - Domain
-
 ---
 
 ## Intent
