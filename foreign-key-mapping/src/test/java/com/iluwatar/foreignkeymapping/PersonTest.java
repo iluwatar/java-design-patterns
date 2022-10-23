@@ -24,5 +24,39 @@
  */
 package com.iluwatar.foreignkeymapping;
 
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
 public class PersonTest {
+  static final String order = "order";
+  static final String person = "person";
+
+  Person person1 = new Person(1, "John", "Loli", 33);
+
+  Order order1 = new Order(1, "2132131", 1);
+  Order order2 = new Order(2, "12321321", 1);
+
+  @Test
+  public void getPersonOrder() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    database.insert(order1,order);
+    database.insert(order2,order);
+    List<Order> compare = new ArrayList<>();
+    compare.add(order1);
+    compare.add(order2);
+    assertEquals(compare, person1.getAllOrder(database.getOrderList()));
+  }
+
+  @Test
+  public void getPersonOrderNoRecord() {
+    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
+    database.insert(person1,person);
+    List<Order> compare = new ArrayList<>();
+    assertEquals(compare, person1.getAllOrder(database.getOrderList()));
+  }
 }
