@@ -1,0 +1,41 @@
+@startuml
+package com.iluwatar.temporalproperty {
+  class AddressHistory {
+    - addressMap : HashMap<SimpleDate, String>
+    ~ AddressHistory()
+    + get(date : SimpleDate) : String
+    + put(date : SimpleDate, address : String)
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Customer {
+    ~ addressHistory : AddressHistory
+    - id : int
+    - name : String
+    + Customer(id : int, name : String)
+    + getAddress() : String
+    + getAddress(date : SimpleDate) : String
+    + getId() : int
+    + getName() : String
+    + putAddress(address : String)
+    + putAddress(address : String, date : SimpleDate)
+    + setName(name : String)
+  }
+  class SimpleDate {
+    - day : int
+    - month : int
+    - today : SimpleDate {static}
+    - year : int
+    ~ SimpleDate(year : int, month : int, day : int)
+    + compareTo(otherDate : SimpleDate) : int
+    + equals(o : Object) : boolean
+    + getToday() : SimpleDate {static}
+    + hashCode() : int
+    + setToday(newToday : SimpleDate) {static}
+  }
+}
+Customer -->  "-addressHistory" AddressHistory
+SimpleDate -->  "-today" SimpleDate
+@enduml
