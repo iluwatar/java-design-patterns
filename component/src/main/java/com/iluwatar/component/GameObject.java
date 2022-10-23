@@ -33,6 +33,7 @@ public class GameObject {
 
   /**
    * Creates a player game object.
+   *
    * @return player object
    */
   public static GameObject createPlayer() {
@@ -45,6 +46,7 @@ public class GameObject {
 
   /**
    * Creates a NPC game object.
+   *
    * @return npc object
    */
   public static GameObject createNpc() {
@@ -57,18 +59,20 @@ public class GameObject {
 
   /**
    * Updates the three components of the NPC object used in the demo in App.java
-   * note that this is simply a duplicate of update() without the key event for demonstration purposes.
+   * note that this is simply a duplicate of update() without the key event for
+   * demonstration purposes.
    *
-   * This method is usually used in games if the player becomes inactive.
+   * <p>This method is usually used in games if the player becomes inactive.
    */
   public void demoUpdate() {
-    inputComponent.update(this);
+    inputComponent.update(this, 0);
     physicComponent.update(this);
     graphicComponent.update(this);
   }
 
   /**
    * Updates the three components for objects based on key events.
+   *
    * @param e key event from the player.
    */
   public void update(int e) {

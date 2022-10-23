@@ -7,6 +7,4 @@ import com.iluwatar.component.GameObject;
  */
 public interface InputComponent {
   void update(GameObject gameObject, int e);
-
-  void update(GameObject gameObject);
 }

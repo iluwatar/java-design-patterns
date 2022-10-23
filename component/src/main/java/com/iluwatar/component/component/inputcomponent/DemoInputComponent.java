@@ -7,7 +7,7 @@ import com.iluwatar.component.GameObject;
  * Take this component class to control player or the NPC for demo mode.
  * and implemented the InputComponent interface.
  *
- * Essentially, the demo mode is utilised during a game if the user become inactive.
+ * <p>Essentially, the demo mode is utilised during a game if the user become inactive.
  * Please see: http://gameprogrammingpatterns.com/component.html
  */
 public class DemoInputComponent implements InputComponent {
@@ -21,15 +21,8 @@ public class DemoInputComponent implements InputComponent {
    */
   @Override
   public void update(GameObject gameObject, int e) {
-  }
-
-  /**
-   * The method controls the demo instance(player/NPC) velocity automatically.
-   * @param gameObject the gameObject instance
-   */
-  @Override
-  public void update(GameObject gameObject) {
     gameObject.velocity += walkAcceleration;
-    System.out.println("InputComponent has been updated for: " + gameObject.name + ", they have moved right.");
+    System.out.println("InputComponent has been updated for: "
+        + gameObject.name + ", they have moved right.");
   }
 }

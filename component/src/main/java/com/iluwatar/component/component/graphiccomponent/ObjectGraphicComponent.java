@@ -15,11 +15,14 @@ public class ObjectGraphicComponent implements GraphicComponent {
   @Override
   public void update(GameObject gameObject) {
     if (gameObject.velocity > 0) {
-      System.out.println("GraphicComponent has been updated for: " + gameObject.name + ", they now have a positive velocity.");
+      System.out.println("GraphicComponent has been updated for: "
+          + gameObject.name + ", they now have a positive velocity.");
     } else if (gameObject.velocity < 0) {
-      System.out.println("GraphicComponent has been updated for: " + gameObject.name + ", they now have a negative velocity.");
+      System.out.println("GraphicComponent has been updated for: "
+          + gameObject.name + ", they now have a negative velocity.");
     } else {
-      System.out.println("GraphicComponent has been updated for: " + gameObject.name + ", their velocity is now zero.");
+      System.out.println("GraphicComponent has been updated for: "
+          + gameObject.name + ", their velocity is now zero.");
     }
   }
 }
