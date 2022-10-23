@@ -1,0 +1,59 @@
+@startuml
+package com.iluwatar.temporalobject {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class CreditCard {
+    - contractHistory : CreditContractVersionHistory
+    + CreditCard(contract : CreditContractVersion, effectiveDate : SimpleDate)
+    + addContract(contract : CreditContractVersion, effectiveDate : SimpleDate)
+    + getContract() : CreditContractVersion
+    + getContract(date : SimpleDate) : CreditContractVersion
+    + getCreditLimit() : int
+    + getCvc() : int
+    + getExpiration() : SimpleDate
+    + getNumber() : int
+    + isExpired() : boolean
+  }
+  class CreditContractVersion {
+    - cardNumber : int
+    - contractIssuer : String
+    - contractText : String
+    - creditLimit : int
+    - cvcCode : int
+    - expirationDate : SimpleDate
+    - version : String
+    ~ CreditContractVersion(contractText : String, contractIssuer : String, version : String, creditLimit : int, cardNumber : int, cvcCode : int, expirationDate : SimpleDate)
+    + getCardNumber() : int
+    + getContractIssuer() : String
+    + getContractText() : String
+    + getCreditLimit() : int
+    + getCvcCode() : int
+    + getExpirationDate() : SimpleDate
+    + getVersion() : String
+  }
+  class CreditContractVersionHistory {
+    - versionMap : HashMap<SimpleDate, CreditContractVersion>
+    ~ CreditContractVersionHistory()
+    + get(date : SimpleDate) : CreditContractVersion
+    + put(effectiveDate : SimpleDate, contract : CreditContractVersion)
+  }
+  class SimpleDate {
+    - day : int
+    - month : int
+    - today : SimpleDate {static}
+    - year : int
+    ~ SimpleDate(year : int, month : int, day : int)
+    + compareTo(otherDate : SimpleDate) : int
+    + equals(o : Object) : boolean
+    + getToday() : SimpleDate {static}
+    + hashCode() : int
+    + setToday(newToday : SimpleDate) {static}
+    + toString() : String
+  }
+}
+SimpleDate -->  "-today" SimpleDate
+CreditContractVersion -->  "-expirationDate" SimpleDate
+CreditCard -->  "-contractHistory" CreditContractVersionHistory
+@enduml

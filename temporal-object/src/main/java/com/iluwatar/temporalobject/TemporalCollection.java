@@ -28,31 +28,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Credit Contract Version History is a collection of Temporal Object versions that
- * can be indexed using points in time.
+ * TemporalCollection is a collection of objects with associated times can be indexed using
+ * points in time.
  */
-public class CreditContractVersionHistory {
-  private final HashMap<SimpleDate, CreditContractVersion> versionMap;
+public class TemporalCollection<T> {
+  private final HashMap<SimpleDate, T> versionMap;
 
   /**
-   * Create new address history.
+   * Create new temporal history.
    */
-  CreditContractVersionHistory() {
+  TemporalCollection() {
     versionMap = new HashMap<>();
   }
 
   /**
    * Finds the address associated to the latest date before the given date.
    *
-   * @param date The date to check address at
-   * @return The address that was being used at the given date
+   * @param date The date to check for object
+   * @return The object that was being used at the given time.
    * @throws IllegalStateException If the date given is earlier than any recorded
    */
-  public CreditContractVersion get(SimpleDate date) throws IllegalStateException {
+  public T get(SimpleDate date) throws IllegalStateException {
     // The most recent date recorded before the given date
     SimpleDate mostRecent = null;
 
-    for (Map.Entry<SimpleDate, CreditContractVersion> entry : versionMap.entrySet()) {
+    for (Map.Entry<SimpleDate, T> entry : versionMap.entrySet()) {
       SimpleDate checkDate = entry.getKey();
       // 0 if date = check, 1 if check > date, -1 if check < date
       int afterDate = checkDate.compareTo(date);
@@ -87,10 +87,10 @@ public class CreditContractVersionHistory {
   /**
    * Puts the given date and time into the history.
    *
-   * @param effectiveDate Date that the contract is effective from.
-   * @param contract Contract to be added to history.
+   * @param addedDate Date that the object is added.
+   * @param obj Object to be added to history.
    */
-  public void put(SimpleDate effectiveDate, CreditContractVersion contract) {
-    versionMap.put(effectiveDate, contract);
+  public void put(SimpleDate addedDate, T obj) {
+    versionMap.put(addedDate, obj);
   }
 }

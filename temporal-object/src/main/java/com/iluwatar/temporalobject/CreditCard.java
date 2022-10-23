@@ -32,10 +32,10 @@ package com.iluwatar.temporalobject;
  *   </a>
  */
 public class CreditCard {
-  private final CreditContractVersionHistory contractHistory;
+  private final TemporalCollection<CreditContractVersion> contractHistory;
 
   public CreditCard(CreditContractVersion contract, SimpleDate effectiveDate) {
-    contractHistory = new CreditContractVersionHistory();
+    contractHistory = new TemporalCollection<>();
     contractHistory.put(effectiveDate, contract);
   }
 
