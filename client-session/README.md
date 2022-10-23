@@ -24,7 +24,7 @@ tags:
 
 Real-World Example
 
-> You're looking to create a 
+> You're looking to create a data managment app allowing users to send requests to the server to modify and make changes to data stored on their devices. These requests are small in size and the data is individual to each user, negating the need for a large scale database implementation. Using the client session pattern, you are able to handle multiple concurrent requests, load balancing clients across different servers with ease due to servers remaining stateless. You also remove the need to store session IDs on the server side due to clients providing all the information that a server needs to perform their process.
 
 In Plain words
 
