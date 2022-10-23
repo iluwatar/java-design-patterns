@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.temporalproperty;
+
 /**
  * Class used to represent a customer with a unique id, a name, and a history of address.
  */
