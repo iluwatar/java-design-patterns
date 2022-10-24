@@ -26,10 +26,12 @@
 package com.iluwatar.client.session;
 
 import java.util.UUID;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Server class. The client communicates with the server and request processing and getting a new session.
  */
+@Slf4j
 public class Server {
   private String host;
 
@@ -73,7 +75,7 @@ public class Server {
    * @param request Request object with data and Session
    */
   public void process(Request request) {
-    System.out.println(request.getSession().getClientName());
+    LOGGER.info("Processing Request with client: " + request.getSession().getClientName());
   }
 
 }
