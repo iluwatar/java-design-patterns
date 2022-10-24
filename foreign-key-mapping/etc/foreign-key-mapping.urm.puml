@@ -1,0 +1,72 @@
+@startuml
+package com.iluwatar.foreignkeymapping {
+  class App {
+    - LOGGER : Logger {static}
+    ~ order : String {static}
+    ~ person : String {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface AppDbSimulator {
+    + delete(int, String) {abstract}
+    + find(int, String) : Object {abstract}
+    + insert(Object, String) {abstract}
+    + update(Object, String) {abstract}
+  }
+  class AppDbSimulatorImplementation {
+    - LOGGER : Logger {static}
+    - orderList : List<Order>
+    - personList : List<Person>
+    + AppDbSimulatorImplementation()
+    + delete(id : int, table : String)
+    + deletePersonOrder(person : Person)
+    + find(id : int, table : String) : Object
+    + getOrderList() : List<Order>
+    + getPersonList() : List<Person>
+    + insert(object : Object, table : String)
+    + setOrderList(orderList : List<Order>)
+    + setPersonList(personList : List<Person>)
+    + update(object : Object, table : String)
+  }
+  class Order {
+    - content : String
+    - orderNationalId : int
+    - owner : Person
+    - serialVersionUID : long {static}
+    + Order(orderNationalId : int, content : String, owner : Person)
+    + equals(o : Object) : boolean
+    + getContent() : String
+    + getOrderNationalId() : int
+    + getOwner() : Person
+    + hashCode() : int
+    + setContent(content : String)
+    + setOrderNationalId(orderNationalId : int)
+    + setOwner(owner : Person)
+    + toString() : String
+  }
+  class Person {
+    - age : long
+    - firstName : String
+    - lastName : String
+    - personNationalId : int
+    - serialVersionUID : long {static}
+    + Person(personNationalId : int, lastName : String, firstName : String, age : long)
+    + equals(o : Object) : boolean
+    + getAge() : long
+    + getAllOrder(orderList : List<Order>) : List<Order>
+    + getFirstName() : String
+    + getLastName() : String
+    + getPersonNationalId() : int
+    + hashCode() : int
+    + setAge(age : long)
+    + setFirstName(firstName : String)
+    + setLastName(lastName : String)
+    + setPersonNationalId(personNationalId : int)
+    + toString() : String
+  }
+}
+AppDbSimulatorImplementation -->  "-orderList" Order
+Order -->  "-owner" Person
+AppDbSimulatorImplementation -->  "-personList" Person
+AppDbSimulatorImplementation ..|> AppDbSimulator 
+@enduml
