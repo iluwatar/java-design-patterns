@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class MenuItemTest {
+class MenuItemTest {
 
   @Test
   void testToString() {

@@ -43,7 +43,7 @@ class ShardTest {
   private Shard shard;
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     data = new Data(1, "test", Data.DataType.TYPE_1);
     shard = new Shard(1);
   }

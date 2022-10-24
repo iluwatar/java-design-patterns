@@ -40,7 +40,7 @@ class RangeShardManagerTest {
    * Initialize rangeShardManager instance.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     rangeShardManager = new RangeShardManager();
     var shard1 = new Shard(1);
     var shard2 = new Shard(2);

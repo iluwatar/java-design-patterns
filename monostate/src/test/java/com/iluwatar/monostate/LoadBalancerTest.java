@@ -41,7 +41,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class LoadBalancerTest {
+class LoadBalancerTest {
 
   @Test
   void testSameStateAmongstAllInstances() {

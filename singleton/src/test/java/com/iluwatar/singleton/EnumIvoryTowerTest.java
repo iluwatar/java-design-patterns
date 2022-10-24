@@ -29,7 +29,7 @@ package com.iluwatar.singleton;
  *
  * @author Jeroen Meulemeester
  */
-public class EnumIvoryTowerTest extends SingletonTest<EnumIvoryTower> {
+class EnumIvoryTowerTest extends SingletonTest<EnumIvoryTower> {
 
   /**
    * Create a new singleton test instance using the given 'getInstance' method.

@@ -32,7 +32,7 @@ import org.junit.jupiter.params.provider.Arguments;
  *
  * @author Jeroen Meulemeester
  */
-public class MinusExpressionTest extends ExpressionTest<MinusExpression> {
+class MinusExpressionTest extends ExpressionTest<MinusExpression> {
 
   /**
    * Create a new set of test entries with the expected result
