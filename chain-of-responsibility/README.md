@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Chain of responsibility
-folder: chain-of-responsibility
-permalink: /patterns/chain-of-responsibility/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Gang of Four

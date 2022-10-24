@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Data Locality
-folder: data-locality
-permalink: /patterns/data-locality/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Game programming

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Delegation
-folder: delegation
-permalink: /patterns/delegation/
-categories: Structural
+category: Structural
 language: zh
 tags:
  - Decoupling
@@ -16,7 +13,7 @@ tags:
 它是一种让对象将某种行为向外部表达，但实际上将实现该行为的责任委托给关联对象的技术。
 
 ## 类图
-![alt text](../../../delegation/etc/delegation.png "Delegate")
+![alt text](etc/delegation.png "Delegate")
 
 ## 适用性
 使用委托模式以实现以下目的

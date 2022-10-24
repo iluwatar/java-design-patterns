@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Unit Of Work
-folder: unit-of-work
-permalink: /patterns/unit-of-work/
-categories: Architectural
+category: Architectural
 language: en
 tags:
  - Data access

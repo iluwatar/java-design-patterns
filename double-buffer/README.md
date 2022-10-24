@@ -1,9 +1,6 @@
 ---  
-layout: pattern  
 title: Double Buffer 
-folder:  double-buffer  
-permalink: /patterns/double-buffer/  
-categories: Behavioral
+category: Behavioral
 language: en
 tags:  
  - Performance
