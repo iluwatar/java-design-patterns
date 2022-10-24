@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class DemoInputComponent implements InputComponent {
-  private static final int walk_acceleration = 2;
+  private static final int WALK_ACCELERATION = 2;
 
   /**
    * Redundant method in the demo mode.
@@ -22,7 +22,7 @@ public class DemoInputComponent implements InputComponent {
    */
   @Override
   public void update(GameObject gameObject, int e) {
-    gameObject.setVelocity(walk_acceleration);
+    gameObject.setVelocity(WALK_ACCELERATION);
     LOGGER.info(gameObject.getName() + " has moved right.");
   }
 }

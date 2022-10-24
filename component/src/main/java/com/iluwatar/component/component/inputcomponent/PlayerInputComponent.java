@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class PlayerInputComponent implements InputComponent {
-  private static final int walk_acceleration = 1;
+  private static final int WALK_ACCELERATION = 1;
 
   /**
    * The update method to change the velocity based on the input key event.
@@ -22,11 +22,11 @@ public class PlayerInputComponent implements InputComponent {
   public void update(GameObject gameObject, int e) {
     switch (e) {
       case KeyEvent.KEY_LOCATION_LEFT:
-        gameObject.setVelocity(-walk_acceleration);
+        gameObject.setVelocity(-WALK_ACCELERATION);
         LOGGER.info(gameObject.getName() + " has moved left.");
         break;
       case KeyEvent.KEY_LOCATION_RIGHT:
-        gameObject.setVelocity(walk_acceleration);
+        gameObject.setVelocity(WALK_ACCELERATION);
         LOGGER.info(gameObject.getName() + " has moved right.");
         break;
       default:
