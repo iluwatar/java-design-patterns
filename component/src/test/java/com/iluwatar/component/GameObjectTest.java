@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
  * Tests GameObject class.
  * src/main/java/com/iluwatar/component/GameObject.java
  */
-public class GameObjectTest {
+class GameObjectTest {
 
     //creates player & npc objects for testing
     GameObject playerTest = GameObject.createPlayer();
@@ -22,8 +22,8 @@ public class GameObjectTest {
     @Test
     void objectTest(){
         System.out.println();
-        assert(playerTest.name.equals("player"));
-        assert(npcTest.name.equals("npc"));
+        assertEquals("player",playerTest.getName());
+        assertEquals("npc",npcTest.getName());
     }
 
     /**
@@ -33,25 +33,24 @@ public class GameObjectTest {
     @Test
     void eventInputTest(){
         playerTest.update(KeyEvent.KEY_LOCATION_LEFT);
-        assertEquals(-1, playerTest.velocity);
-        assertEquals(-1, playerTest.coordinate);
+        assertEquals(-1, playerTest.getVelocity());
+        assertEquals(-1, playerTest.getCoordinate());
 
 
         playerTest.update(KeyEvent.KEY_LOCATION_RIGHT);
         playerTest.update(KeyEvent.KEY_LOCATION_RIGHT);
-        assertEquals(1, playerTest.velocity);
-        assertEquals(0, playerTest.coordinate);
+        assertEquals(1, playerTest.getVelocity());
+        assertEquals(0, playerTest.getCoordinate());
 
-        System.out.println(playerTest.coordinate);
-        System.out.println(playerTest.velocity);
+        System.out.println(playerTest.getCoordinate());
+        System.out.println(playerTest.getVelocity());
 
 
         GameObject p2 = GameObject.createPlayer();
         p2.update(KeyEvent.KEY_LOCATION_LEFT);
         //in the case of an unknown, object stats are set to default
         p2.update(KeyEvent.KEY_LOCATION_UNKNOWN);
-        assertEquals(0, p2.coordinate);
-        assertEquals(0, p2.velocity);
+        assertEquals(0, p2.getVelocity());
     }
 
     /**
@@ -60,7 +59,7 @@ public class GameObjectTest {
     @Test
     void npcDemoTest(){
         npcTest.demoUpdate();
-        assertEquals(2, npcTest.velocity);
-        assertEquals(2, npcTest.coordinate);
+        assertEquals(2, npcTest.getVelocity());
+        assertEquals(2, npcTest.getCoordinate());
     }
 }

@@ -1,7 +1,7 @@
 package com.iluwatar.component.component.inputcomponent;
 
 import com.iluwatar.component.GameObject;
-
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Take this component class to control player or the NPC for demo mode.
@@ -10,8 +10,9 @@ import com.iluwatar.component.GameObject;
  * <p>Essentially, the demo mode is utilised during a game if the user become inactive.
  * Please see: http://gameprogrammingpatterns.com/component.html
  */
+@Slf4j
 public class DemoInputComponent implements InputComponent {
-  private final int walkAcceleration = 2;
+  private static final int walkAcceleration = 2;
 
   /**
    * Redundant method in the demo mode.
@@ -21,8 +22,7 @@ public class DemoInputComponent implements InputComponent {
    */
   @Override
   public void update(GameObject gameObject, int e) {
-    gameObject.velocity += walkAcceleration;
-    System.out.println("InputComponent has been updated for: "
-        + gameObject.name + ", they have moved right.");
+    gameObject.setVelocity(walkAcceleration);
+    LOGGER.info(gameObject.getName() + " have moved right.");
   }
 }
