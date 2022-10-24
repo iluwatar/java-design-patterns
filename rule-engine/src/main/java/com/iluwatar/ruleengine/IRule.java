@@ -1,8 +1,14 @@
 package com.iluwatar.ruleengine;
 
-import java.awt.*;
-
 public interface IRule {
-    public boolean shouldRun(Candidate candidate);
-    public int runRule(Candidate candidate);
+  /**
+   * Multiple lines of Javadoc text are written here,
+   * wrapped normally...
+   */
+  public boolean shouldRun(Candidate candidate);
+  /**
+   * Multiple lines of Javadoc text are written here,
+   * wrapped normally...
+   */
+  public int runRule(Candidate candidate);
 }
