@@ -1,0 +1,18 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Manager {
+ - lockSet : HashMap
+ - managerSet : HashMap {static}
+ - invalidNames : Set<String> {static}
+ + Manager()
+ + getManager(name : String)
+ + canLock(name : String, lockable : object)
+ + removeLock(lockable : object)
+}
+class InvalidNameException {
+ + InvalidNameException(exception : String)
+}
+InvalidNameException--Manager
+
+@enduml
