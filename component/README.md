@@ -17,7 +17,7 @@ component to be inheritable by multiple domains/objects without linking the obje
 benefit, the component design pattern allows developer to write maintainable and comprehensible code which is less
 likely to result in monolithic classes.
 
-![Intent](./etc/component_duplication.png "Component Design Pattern")
+![Intent](./etc/component.duplication.png "Component Design Pattern")
 
 ## Explanation
 

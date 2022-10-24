@@ -11,8 +11,6 @@ class DemoInputComponent
 class PlayerInputComponent
 class ObjectPhysicComponent
 
-
-
 GraphicComponent <|.. ObjectGraphicComponent
 InputComponent <|.. DemoInputComponent
 InputComponent <|.. PlayerInputComponent
@@ -30,15 +28,20 @@ class GameObject{
   - inputComponent;
   - physicComponent;
   - graphicComponent;
-  + name;
-  + velocity
-  + coordinate
+  - name;
+  - velocity
+  - coordinate
 
   +GameObject()
   +createPlayer()
   +createNpc()
   +demoUpdate()
   +update(e:int)
+  +getName()
+  +getVelocity()
+  +setVelocity(acceleration:int)
+  +getCoordinate()
+  +setCoordinate()
 }
 
 interface GraphicComponent{
@@ -59,13 +62,11 @@ class ObjectGraphicComponent{
 
 class DemoInputComponent{
     -walkAcceleration
-    +update(gameObject:GameObject)
     +update(gameObject:GameObject,e:int)
 }
 
 class PlayerInputComponent{
     -walkAcceleration
-    +update(gameObject:GameObject)
     +update(gameObject:GameObject,e:int)
 }
 
