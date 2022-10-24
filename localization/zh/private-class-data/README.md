@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Private Class Data
-folder: private-class-data
-permalink: /patterns/private-class-data/
-categories: Idiom
+category: Idiom
 language: zh
 tags:
  - Data access
@@ -120,7 +117,7 @@ immutableStew.mix();  // Mixing the immutable stew we find: 2 potatoes, 4 carrot
 
 ## 类图
 
-![alt text](../../../private-class-data/etc/private-class-data.png "Private Class Data")
+![alt text](etc/private-class-data.png "Private Class Data")
 
 ## 适用性
 

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Factory
-folder: factory
-permalink: /patterns/factory/
-categories: Creational
+category: Creational
 language: en
 tags:
  - Gang of Four

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Data Mapper
-folder: data-mapper
-permalink: /patterns/data-mapper/
-categories: Architectural
+category: Architectural
 language: en
 tags:
  - Decoupling

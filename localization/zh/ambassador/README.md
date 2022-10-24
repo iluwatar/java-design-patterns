@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Ambassador
-folder: ambassador
-permalink: /patterns/ambassador/
-categories: Structural
+category: Structural
 language: zh
 tags:
   - Decoupling
@@ -167,7 +164,7 @@ Service result: -1
 
 ## 类图
 
-![alt text](../../../ambassador/etc/ambassador.urm.png "Ambassador class diagram")
+![alt text](etc/ambassador.urm.png "Ambassador class diagram")
 
 ## 适用性
 

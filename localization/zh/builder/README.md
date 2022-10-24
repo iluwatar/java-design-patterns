@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Builder
-folder: builder
-permalink: /patterns/builder/
-categories: Creational
+category: Creational
 language: zh
 tags:
  - Gang of Four
@@ -114,7 +111,7 @@ var mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.
 
 ## 类图
 
-![alt text](../../../builder/etc/builder.urm.png "Builder class diagram")
+![alt text](etc/builder.urm.png "Builder class diagram")
 
 ## 适用性
 

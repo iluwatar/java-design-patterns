@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Metadata Mapping
-folder: metadata-mapping
-permalink: /patterns/metadata-mapping/
-categories: Architectural
+category: Architectural
 language: en
 tags:
  - Data access

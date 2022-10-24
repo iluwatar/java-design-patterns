@@ -1,9 +1,6 @@
 ---  
-layout: pattern  
 title: Subclass Sandbox 
-folder:  subclass-sandbox  
-permalink: /patterns/subclass-sandbox/  
-categories: Behavioral
+category: Behavioral
 language: en
 tags:  
  - Game programming
@@ -21,7 +18,7 @@ In plain words
 
 Wikipedia says
 > A base class defines an abstract sandbox method and several provided operations. Marking them protected makes it clear that they are for use by derived classes. Each derived sandboxed subclass implements the sandbox method using the provided operations.
-
+>
 **Programmatic Example**  
 We start with the base class `Superpower`. It contains an abstract sandbox method `active()` and some provided operations.
 ```
