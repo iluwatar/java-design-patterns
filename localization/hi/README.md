@@ -2,7 +2,7 @@
      that smart and dearly wants an empty line before a heading to be able to
      display it as such, e.g. website) -->
 
-# In Java implementierte Entwurfsmuster
+# जावा में कार्यान्वित डिजाइन पैटर्न
 
 ![Java CI](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg)
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
@@ -10,64 +10,50 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-208-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-213-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-<br/>
+# परिचय
 
-In einer anderen Sprache lesen : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md)
+डिज़ाइन पैटर्न सर्वोत्तम, औपचारिक अभ्यास हैं जिनका उपयोग एक प्रोग्रामर कर सकता है
+किसी एप्लिकेशन या सिस्टम को डिजाइन करते समय सामान्य समस्याओं को हल करें।
 
-<br/>
+डिज़ाइन पैटर्न परीक्षण किए गए, सिद्ध विकास प्रतिमान प्रदान करके विकास प्रक्रिया को गति दे सकते हैं।
 
-# Einführung
+डिज़ाइन पैटर्न का पुन: उपयोग करने से सूक्ष्म मुद्दों को रोकने में मदद मिलती है जो बड़ी समस्याएं पैदा करते हैं, और यह कोडर्स और आर्किटेक्ट्स के लिए कोड पठनीयता में भी सुधार करता है जो पैटर्न से परिचित हैं।
 
-Entwurfschemas sind die besten formalisierten Praktiken, die ein Programmierer verwenden kann,
-um allgemeine Probleme beim Entwurf einer Anwendung oder eines Systems zu lösen.
+# शुरू करते है
 
-Entwurfschemas können den Entwicklungsprozess beschleunigen, indem sie getestete und bewährte
-Entwicklungsparadigmen bereitstellen.
+यह साइट जावा डिज़ाइन पैटर्न प्रदर्शित करती है। समाधान द्वारा विकसित किए गए हैं
+ओपन-सोर्स समुदाय के अनुभवी प्रोग्रामर और आर्किटेक्ट।
+पैटर्न को उनके उच्च-स्तरीय विवरणों द्वारा या उनके को देखकर ब्राउज़ किया जा सकता है
+सोर्स कोड। स्रोत कोड के उदाहरणों पर अच्छी तरह से टिप्पणी की गई है और इसे इस प्रकार माना जा सकता है
+एक विशिष्ट पैटर्न को लागू करने के तरीके पर प्रोग्रामिंग ट्यूटोरियल। हम सबसे ज्यादा इस्तेमाल करते हैं
+लोकप्रिय युद्ध-सिद्ध ओपन-सोर्स जावा प्रौद्योगिकियां।
 
-Die Wiederverwendung von Entwurfschemas hilft, subtile Fehler zu vermeiden, die größere
-Probleme verursachen können, sowie die Lesbarkeit des Codes für Programmierer und Architekten zu verbessern, 
-welche mit den Prinzipien der Entwurfsmuster vertraut sind.
+सामग्री में गोता लगाने से पहले, आपको विभिन्न से परिचित होना चाहिए
+[सॉफ्टवेयर डिजाइन सिद्धांत](https://java-design-patterns.com/principles/).
 
-# Erste Schritte
+सभी डिज़ाइन यथासंभव सरल होने चाहिए। आपको KISS, YAGNI से शुरू करना चाहिए और वह सरलतम कार्य करें जो संभवतः सिद्धांतों पर कार्य कर सके। जटिलता और पैटर्न केवल तभी पेश किए जाने चाहिए जब व्यावहारिक विस्तारशीलता के लिए उनकी आवश्यकता हो।
 
-Auf dieser Seite werden Java Entwurfschemas vorgestellt. Die Lösungen wurden entwickelt von
-erfahrenen Programmierern und Architekten aus der Open-Source-Gemeinschaft. Die
-Schemas können anhand ihrer übergeordneten Beschreibungen oder anhand ihres
-Quellcodes durchsucht werden. Die Quellcode-Beispiele sind gut kommentiert und können als
-Programmiertutorials zur Implementierung eines bestimmten Schemas angesehen werden. Wir  verwenden die am besten
-bekannten und erprobtesten Open-Source Java-Technologien.
+एक बार जब आप इन अवधारणाओं से परिचित हो जाते हैं तो आप नीचे की ओर ड्रिलिंग शुरू कर सकते हैं
+[उपलब्ध डिजाइन पैटर्न](https://java-design-patterns.com/patterns/) निम्नलिखित में से किसी भी दृष्टिकोण से
 
-Bevor Sie in die Materie der Entwurfschemas eintauchen, sollten sie sich mit den verschiednen
-[Software-Entwurfsprinzipien](https://java-design-patterns.com/principles/) auseinandersetzen.
+ - नाम से एक विशिष्ट पैटर्न खोजें। एक नहीं मिल रहा है? कृपया एक नए पैटर्न की रिपोर्ट करें [यहां](https://github.com/iluwatar/java-design-patterns/issues).
+ - `Performance`, `Gang of Four` या `Data access` जैसे टैग का उपयोग करना।
+ - पैटर्न श्रेणियों, `Creational`, `Behavioral`, और अन्य का उपयोग करना।
 
-Alle Entwürfe sollten so einfach wie möglich gehalten werden. Sie sollten mit KISS, YAGNI,
-und Do The Simplest Thing That Could Possibly Work prinzipen anfangen. Komplexe Entwurfschemas sollen nur eingesetzt werden, wenn diese für sinnvolle Erweiterungen benötigt werden.
+उम्मीद है, आप इस साइट पर प्रस्तुत किए गए ऑब्जेक्ट-ओरिएंटेड समाधान अपने आर्किटेक्चर में उपयोगी पाते हैं और उन्हें सीखने में उतना ही मज़ा आता है जितना हमें उन्हें विकसित करते समय मिला था।
 
-Sobald sie mit diesen Konzepten vertraut sind, können sie beginnen, sich mit den [verfügbaren Entwurfschemas](https://java-design-patterns.com/patterns/) auseinanderzusetzen, durch einen
-der folgenden Ansätze
+# कैसे योगदान करें
 
- - Nach einem bestimmten Schema anhand des Namens suchen. 
- Sie können keins finden? Bitte melden sie ein neues Schema [hier](https://github.com/iluwatar/java-design-patterns/issues).
- - Verwendung von Tags wie `Performance`, `Gang of Four` oder `Data access`.
- - Verwendung von Entwurfschema-Kategorien wie `Creational`, `Behavioral` und andere.
+यदि आप परियोजना में योगदान करने के इच्छुक हैं तो आपको हमारे [डेवलपर विकी](https://github.com/iluwatar/java-design-patterns/wiki) में प्रासंगिक जानकारी मिल जाएगी। हम आपकी मदद करेंगे और [गिटर चैटरूम](https://gitter.im/iluwatar/java-design-patterns) में आपके सवालों के जवाब देंगे।
 
-Hoffentlich finden sie die auf dieser Website vorgestellten objektorientierten Lösungen
-für ihre Architekturen nützlich und dass sie genauso viel Spaß beim Lernen haben, wie wir bei ihrer Entwicklung hatten.
+# लाइसेंस
 
-# Wie man bei diesem Projekt mitwirken kann
+यह परियोजना एमआईटी लाइसेंस की शर्तों के तहत लाइसेंस प्राप्त है।
 
-Wenn sie zu dem Projekt beitragen wollen, finden sie die entsprechenden Informationen in
-unserem [Entwickler-Wiki](https://github.com/iluwatar/java-design-patterns/wiki).mWir helfen Ihnen
-gerne und beantworten ihre Fragen im [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
-
-# Lizenz
-
-Dieses Projekt steht unter den Bedingungen der MIT-Lizenz.
-
-# Mitwirkende
+# योगदानकर्ता
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
@@ -341,12 +327,15 @@ Dieses Projekt steht unter den Bedingungen der MIT-Lizenz.
       <td align="center"><a href="https://github.com/dmdbilal"><img src="https://avatars.githubusercontent.com/u/91405690?v=4?s=100" width="100px;" alt="Mohamed Bilal"/><br /><sub><b>Mohamed Bilal</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dmdbilal" title="Documentation">📖</a></td>
       <td align="center"><a href="https://www.linkedin.com/in/karshilsheth/"><img src="https://avatars.githubusercontent.com/u/37497287?v=4?s=100" width="100px;" alt="Karshil sheth"/><br /><sub><b>Karshil sheth</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=karshil2309" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/kongleong86"><img src="https://avatars.githubusercontent.com/u/3745455?v=4?s=100" width="100px;" alt="kongleong86"/><br /><sub><b>kongleong86</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=kongleong86" title="Code">💻</a></td>
-      <td align="center"><a href="https://github.com/lucaszischka"><img src="https://avatars.githubusercontent.com/u/63545066?v=4?s=100" width="100px;" alt="Lucas Zischka"/><br /><sub><b>Lucas Zischka</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=lucaszischka" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://github.com/aitorfi"><img src="https://avatars.githubusercontent.com/u/64830228?v=4?s=100" width="100px;" alt="Aitor Fidalgo Sánchez"/><br /><sub><b>Aitor Fidalgo Sánchez</b></sub></a><br /><a href="#translation-aitorfi" title="Translation">🌍</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=aitorfi" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/HeVictor"><img src="https://avatars.githubusercontent.com/u/20733994?v=4?s=100" width="100px;" alt="Victor He"/><br /><sub><b>Victor He</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=HeVictor" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="http://m-inh.github.io/"><img src="https://avatars.githubusercontent.com/u/10632233?v=4?s=100" width="100px;" alt="Minh Nguyen"/><br /><sub><b>Minh Nguyen</b></sub></a><br /><a href="#translation-m-inh" title="Translation">🌍</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=m-inh" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/YichuanSun"><img src="https://avatars.githubusercontent.com/u/30886176?v=4?s=100" width="100px;" alt="yiichan"/><br /><sub><b>yiichan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=YichuanSun" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/PanSem"><img src="https://avatars.githubusercontent.com/u/43316964?v=4?s=100" width="100px;" alt="Pan Sem"/><br /><sub><b>Pan Sem</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=PanSem" title="Documentation">📖</a></td>
     </tr>
   </tbody>
-  <tfoot>
-    
-  </tfoot>
 </table>
 
 <!-- markdownlint-restore -->
