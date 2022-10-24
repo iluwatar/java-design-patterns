@@ -17,11 +17,11 @@ public class ObjectGraphicComponent implements GraphicComponent {
   @Override
   public void update(GameObject gameObject) {
     if (gameObject.getVelocity() > 0) {
-      LOGGER.info(gameObject.getName() + " have a positive velocity.");
+      LOGGER.info(gameObject.getName() + " has a positive velocity.");
     } else if (gameObject.getVelocity() < 0) {
-      LOGGER.info(gameObject.getName() + " have a negative velocity.");
+      LOGGER.info(gameObject.getName() + " has a negative velocity.");
     } else {
-      LOGGER.info(gameObject.getName() + " have zero velocity.");
+      LOGGER.info(gameObject.getName() + " has zero velocity.");
     }
   }
 }

@@ -23,15 +23,14 @@ public class PlayerInputComponent implements InputComponent {
     switch (e) {
       case KeyEvent.KEY_LOCATION_LEFT:
         gameObject.setVelocity(-walkAcceleration);
-        LOGGER.info(gameObject.getName() + " have moved left.");
+        LOGGER.info(gameObject.getName() + " has moved left.");
         break;
       case KeyEvent.KEY_LOCATION_RIGHT:
         gameObject.setVelocity(walkAcceleration);
-        LOGGER.info(gameObject.getName() + " have moved right.");
+        LOGGER.info(gameObject.getName() + " has moved right.");
         break;
       default:
-        LOGGER.info(gameObject.getName() + "'s velocity and coordinates "
-            + "are now 0 due to the invalid input");
+        LOGGER.info(gameObject.getName() + "'s velocity is now 0 due to the invalid input");
         gameObject.setVelocity(0);
         break; // incorrect input
     }

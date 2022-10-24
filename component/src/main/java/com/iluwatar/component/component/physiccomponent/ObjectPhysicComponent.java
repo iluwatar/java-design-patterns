@@ -17,6 +17,6 @@ public class ObjectPhysicComponent implements PhysicComponent {
   @Override
   public void update(GameObject gameObject) {
     gameObject.setCoordinate();
-    LOGGER.info(gameObject.getName() + "'s coordinate have changed.");
+    LOGGER.info(gameObject.getName() + "'s coordinate has been changed.");
   }
 }
