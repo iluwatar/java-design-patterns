@@ -43,15 +43,9 @@ public class Request {
     return data;
   }
 
-  public void setData(String data) {
-    this.data = data;
-  }
 
   public Session getSession() {
     return session;
   }
 
-  public void setSession(Session session) {
-    this.session = session;
-  }
 }

@@ -42,22 +42,6 @@ public class Server {
     this.port = port;
   }
 
-  public String getHost() {
-    return host;
-  }
-
-  public void setHost(String host) {
-    this.host = host;
-  }
-
-  public int getPort() {
-    return port;
-  }
-
-  public void setPort(int port) {
-    this.port = port;
-  }
-
   /**
    * Creates a new session.
    *
@@ -75,7 +59,7 @@ public class Server {
    * @param request Request object with data and Session
    */
   public void process(Request request) {
-    LOGGER.info("Processing Request with client: " + request.getSession().getClientName());
+    LOGGER.info("Processing Request with client: " + request.getSession().getClientName() + " data: " + request.getData());
   }
 
 }
