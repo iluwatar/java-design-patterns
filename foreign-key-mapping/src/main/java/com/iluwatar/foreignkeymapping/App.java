@@ -49,11 +49,11 @@ public class App {
     Person person4 = new Person(4, "Finn", "Wash", 55);
     Person person5 = new Person(5, "Michael", "Linux", 67);
 
-    Order order1 = new Order(1, "2132131", person1);
-    Order order2 = new Order(2, "12321321", person1);
-    Order order3 = new Order(3, "213213123", person3);
-    Order order4 = new Order(4, "123213213", person3);
-    Order order5 = new Order(5, "12312321231", person1);
+    Order order1 = new Order(1, "cola", person1);
+    Order order2 = new Order(2, "cafe", person1);
+    Order order3 = new Order(3, "juice", person3);
+    Order order4 = new Order(4, "wola", person3);
+    Order order5 = new Order(5, "kala", person1);
 
     AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
     database.insert(person1, person);
@@ -82,7 +82,7 @@ public class App {
     LOGGER.info(person1.getAllOrder(database.getOrderList()).toString());
 
     // person place order
-    Order order6 = new Order(6, "12312321231", person1);
+    Order order6 = new Order(6, "fula", person1);
     database.insert(order6, order);
     LOGGER.info(person1.getAllOrder(database.getOrderList()).toString());
   }

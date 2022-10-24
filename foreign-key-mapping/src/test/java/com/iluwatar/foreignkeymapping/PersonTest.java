@@ -37,8 +37,8 @@ public class PersonTest {
 
   Person person1 = new Person(1, "John", "Loli", 33);
 
-  Order order1 = new Order(1, "2132131", person1);
-  Order order2 = new Order(2, "12321321", person1);
+  Order order1 = new Order(1, "fula", person1);
+  Order order2 = new Order(2, "cola", person1);
 
   @Test
   public void getPersonOrder() {

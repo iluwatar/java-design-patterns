@@ -32,7 +32,7 @@ public class OrderTest {
   @Test
   public void toStringTest() {
     Person person1 = new Person(1, "John", "Loli", 33);
-    Order order = new Order(1,"123",person1);
-    assertEquals("Order ID is : 1 ; Order Content is : 123 ; Owner is: Loli", order.toString());
+    Order order = new Order(1,"kala",person1);
+    assertEquals("Order ID is : 1 ; Order Content is : kala ; Owner is: Loli", order.toString());
   }
 }

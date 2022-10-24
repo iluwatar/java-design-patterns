@@ -34,7 +34,7 @@ public class AppDbSimulatorImplementationTest {
 
   Person person1 = new Person(1, "John", "Loli", 33);
 
-  Order order1 = new Order(1, "2132131", person1);
+  Order order1 = new Order(1, "wola", person1);
 
   @Test
   public void insertFindPerson() {
@@ -86,7 +86,7 @@ public class AppDbSimulatorImplementationTest {
     AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
     database.insert(person1,person);
     database.insert(order1,order);
-    Order orderUpdate = new Order(1, "123", person1);
+    Order orderUpdate = new Order(1, "fula", person1);
     database.update(orderUpdate,order);
     assertEquals(orderUpdate, database.find(1,order));
   }
