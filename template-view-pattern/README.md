@@ -7,9 +7,8 @@ categories:
  - Architectural 
 language: en 
 tags:
- - Presentation 
- - Decoupling 
- - Enterprise Integration Pattern
+ - Creational
+ - Concurrency
 ---
 
 ## Template View Pattern
