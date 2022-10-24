@@ -17,9 +17,9 @@ public class GameObject {
   private final PhysicComponent physicComponent;
   private final GraphicComponent graphicComponent;
 
-  public String name;
-  public int velocity = 0;
-  public int coordinate = 0;
+  private String name;
+  private int velocity = 0;
+  private int coordinate = 0;
 
   GameObject(InputComponent inputComponent,
              PhysicComponent physicComponent,
@@ -79,5 +79,37 @@ public class GameObject {
     inputComponent.update(this, e);
     physicComponent.update(this);
     graphicComponent.update(this);
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public int getVelocity() {
+    return velocity;
+  }
+
+  /**
+   * Set the velocity based on the acceleration.
+   *
+   * @param acceleration the current acceleration
+   */
+  public void setVelocity(int acceleration) {
+    if (acceleration == 0) {
+      this.velocity = 0;
+      return;
+    }
+    this.velocity += acceleration;
+  }
+
+  public int getCoordinate() {
+    return coordinate;
+  }
+
+  /**
+   * Set the c based on the current velocity.
+   */
+  public void setCoordinate() {
+    this.coordinate += this.velocity;
   }
 }
