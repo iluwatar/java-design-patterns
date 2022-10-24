@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Mediator
-folder: mediator
-permalink: /patterns/mediator/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Gang Of Four

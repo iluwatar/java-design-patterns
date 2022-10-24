@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Proxy
-folder: proxy
-permalink: /patterns/proxy/
-categories: Structural
+category: Structural
 language: zh
 tags:
  - Gang Of Four
@@ -123,7 +120,7 @@ Brown wizard is not allowed to enter!
 
 ## 类图
 
-![alt text](../../../proxy/etc/proxy.urm.png "Proxy pattern class diagram")
+![alt text](etc/proxy.urm.png "Proxy pattern class diagram")
 
 ## 适用性
 

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Front Controller
-folder: front-controller
-permalink: /patterns/front-controller/
-categories: Structural
+category: Structural
 language: en
 tags:
  - Decoupling

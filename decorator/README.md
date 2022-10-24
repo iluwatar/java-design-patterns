@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Decorator
-folder: decorator
-permalink: /patterns/decorator/
-categories: Structural
+category: Structural
 language: en
 tags:
  - Gang of Four

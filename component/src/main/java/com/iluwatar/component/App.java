@@ -1,6 +1,7 @@
 package com.iluwatar.component;
 
 import java.awt.event.KeyEvent;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The component design pattern is a common game design structure. This pattern is often
@@ -17,7 +18,8 @@ import java.awt.event.KeyEvent;
  * for separate objects (player & NPC) and updating of these components as per the
  * implementations in GameObject class and the component classes.
  */
-public class App {
+@Slf4j
+public final class App {
   /**
    * Program entry point.
    *
@@ -28,9 +30,9 @@ public class App {
     final GameObject npc = GameObject.createNpc();
 
 
-    System.out.println("Player Update:");
+    LOGGER.info("Player Update:");
     player.update(KeyEvent.KEY_LOCATION_LEFT);
-    System.out.println("NPC Update:");
+    LOGGER.info("NPC Update:");
     npc.demoUpdate();
   }
 }

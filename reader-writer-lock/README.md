@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Reader Writer Lock
-folder: reader-writer-lock
-permalink: /patterns/reader-writer-lock/
-categories: Concurrency
+category: Concurrency
 language: en
 tags: 
  - Performance

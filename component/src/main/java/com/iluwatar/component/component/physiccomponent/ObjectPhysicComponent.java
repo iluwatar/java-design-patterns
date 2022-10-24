@@ -1,10 +1,12 @@
 package com.iluwatar.component.component.physiccomponent;
 
 import com.iluwatar.component.GameObject;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Take this component class to update the x coordinate for the Game Object instance.
  */
+@Slf4j
 public class ObjectPhysicComponent implements PhysicComponent {
 
   /**
@@ -14,8 +16,7 @@ public class ObjectPhysicComponent implements PhysicComponent {
    */
   @Override
   public void update(GameObject gameObject) {
-    gameObject.coordinate += gameObject.velocity;
-    System.out.println("PhysicComponent has been updated for: "
-        + gameObject.name + ", their coordinates have changed.");
+    gameObject.setCoordinate();
+    LOGGER.info(gameObject.getName() + "'s coordinate has been changed.");
   }
 }

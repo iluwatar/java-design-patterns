@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
  * Tests App class : src/main/java/com/iluwatar/component/App.java
  * General execution test of the application.
  */
-public class AppTest {
+class AppTest {
 
     @Test
     void shouldExecuteComponentWithoutException() {
