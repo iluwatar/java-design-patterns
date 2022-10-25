@@ -26,13 +26,16 @@ Programmatic Example
 
 Translating the online events app example above, we firstly have our Member interface and its implementations composed of MessageCollectorMember (the ordinary community members) and StatusMember (the event administrators or organisers).
 
+```java
 public interface Member extends Consumer<DataType> {
 
   void accept(DataType event);
 }
- 
+```
+
 Then we have a databus to subscribe someone to be a member or unsubcribe, and also to publish an event so to notify every member in the community.
 
+```java
  public class DataBus {
 
   private static final DataBus INSTANCE = new DataBus();
@@ -74,12 +77,13 @@ Then we have a databus to subscribe someone to be a member or unsubcribe, and al
             listener -> listener.accept(event));
   }
 }
-
+```
  
 As you can see, the accept method is applied for each member under the publish method.
  
 Hence, as shown below, the accept method can be used to check the type of message to be published and successfully send/handle that message if the accept method has an instance for that message. Otherwise, the accept method cannot as is for the case of the MessageCollectorMember (the ordinary community members) when the type of message being sent is StartingData or StoppingData (information on the time whenever a new advertisement is sent to all members). 
 
+```java
 public class MessageCollectorMember implements Member {
 
   private final String name;
@@ -96,10 +100,11 @@ public class MessageCollectorMember implements Member {
       handleEvent((MessageData) data);
     }
   }
-
+```
 
 However, the StatusMember(the event administrators or organisers) can accept such types of messages as
 
+```java
 public class StatusMember implements Member {
 
   private final int id;
@@ -115,11 +120,12 @@ public class StatusMember implements Member {
       handleEvent((StoppingData) data);
     }
   }
-
+```
 
 
 Thus, the data bus outputs as follows:
  
+ ```java
  class App {
 
   public static void main(String[] args) {
@@ -130,6 +136,8 @@ Thus, the data bus outputs as follows:
     final var bar = new MessageCollectorMember("Bar");
     bus.subscribe(foo);
     bus.publish(StartingData.of(LocalDateTime.now()));
+    ```
+    
 //OUTPUT:
 //02:33:57.627 [main] INFO com.iluwatar.databus.members.StatusMember - Receiver 2 sees application started at 2022-10-26T02:33:57.613529100
 //02:33:57.633 [main] INFO com.iluwatar.databus.members.StatusMember - Receiver 1 sees application started at 2022-10-26T02:33:57.613529100
