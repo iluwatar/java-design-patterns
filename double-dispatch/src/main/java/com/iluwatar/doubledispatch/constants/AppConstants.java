@@ -29,10 +29,10 @@ package com.iluwatar.doubledispatch.constants;
  */
 public final class AppConstants {
 
-    private AppConstants() {
+  private AppConstants() {
 
-    }
+  }
 
-    public static final String HITS         = "{} hits {}.";
-    public static final String HITS_DAMAGED = "{} hits {}. {} is damaged!";
+  public static final String HITS         = "{} hits {}.";
+  public static final String HITS_DAMAGED = "{} hits {}. {} is damaged!";
 }
