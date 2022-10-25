@@ -26,16 +26,21 @@ package com.iluwatar.ruleengine;
 
 public class AssetsRule implements IMigrationRule {
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Check if this Assets rule can be executed or not
+   *
+   * @param candidate: the current candidate
+   * @return boolean: true if the candidate has met the  Assets rule
+   * @author Dehao Liu
    */
   @Override
   public boolean shouldRun(Candidate candidate) {
     return candidate.getAssets() != 0;
   }
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Execute this Assets rule
+   *
+   * @param candidate: the current candidate
+   * @author Dehao Liu
    */
   @Override
   public int runRule(Candidate candidate) {

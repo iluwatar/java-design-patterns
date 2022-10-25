@@ -26,16 +26,21 @@ package com.iluwatar.ruleengine;
 
 public class LengthOfEmploymentRule implements IMigrationRule {
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Check if this LengthOfEmployment rule can be executed or not
+   *
+   * @param candidate: the current candidate
+   * @return boolean: true if the candidate has met the  LengthOfEmployment rule
+   * @author Dehao Liu
    */
   @Override
   public boolean shouldRun(Candidate candidate) {
     return candidate.getLengthOfEmployment() != 0;
   }
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Execute this  LengthOfEmployment  rule
+   *
+   * @param candidate: the current candidate
+   * @author Dehao Liu
    */
   @Override
   public int runRule(Candidate candidate) {
