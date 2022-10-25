@@ -139,6 +139,7 @@ Thus, the data bus outputs as follows:
  ```
     
 //OUTPUT:
+
 //02:33:57.627 [main] INFO com.iluwatar.databus.members.StatusMember - Receiver 2 sees application started at 2022-10-26T02:33:57.613529100
 
 //02:33:57.633 [main] INFO com.iluwatar.databus.members.StatusMember - Receiver 1 sees application started at 2022-10-26T02:33:57.613529100
