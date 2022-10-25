@@ -24,7 +24,7 @@
  */
 package com.iluwatar.ruleengine;
 
-public class CloseFamilyRule implements IRule {
+public class CloseFamilyRule implements IMigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...

@@ -24,7 +24,7 @@
  */
 package com.iluwatar.ruleengine;
 
-public class LengthOfResidenceRule implements IRule {
+public class LengthOfResidenceRule implements IMigrationRule {
   /**
    * Check if this Length of Residence rule can be executed or not
    *

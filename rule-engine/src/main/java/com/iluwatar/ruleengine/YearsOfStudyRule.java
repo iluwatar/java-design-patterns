@@ -24,7 +24,7 @@
  */
 package com.iluwatar.ruleengine;
 
-public class YearsOfStudyRule implements IRule {
+public class YearsOfStudyRule implements IMigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...

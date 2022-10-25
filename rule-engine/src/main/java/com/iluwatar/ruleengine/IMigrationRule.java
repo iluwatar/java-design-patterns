@@ -24,7 +24,7 @@
  */
 package com.iluwatar.ruleengine;
 
-public interface IRule {
+public interface IMigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...

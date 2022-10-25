@@ -24,7 +24,7 @@
  */
 package com.iluwatar.ruleengine;
 
-public class SmallBusinessRule implements IRule {
+public class SmallBusinessRule implements IMigrationRule {
   /**
    * Check if this Small Business Rule can be executed or not
    *

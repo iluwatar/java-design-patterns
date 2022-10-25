@@ -24,7 +24,7 @@
  */
 package com.iluwatar.ruleengine;
 
-public class LengthOfEmploymentRule implements IRule {
+public class LengthOfEmploymentRule implements IMigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...

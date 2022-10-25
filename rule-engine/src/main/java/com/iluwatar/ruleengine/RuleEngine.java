@@ -32,7 +32,7 @@ public class RuleEngine {
    * wrapped normally...
    */
   public static void main(String[] args) {
-    ArrayList<IRule> rules = new ArrayList<IRule>();
+    ArrayList<IMigrationRule> rules = new ArrayList<IMigrationRule>();
     rules.add(new EnglishProficiencyRule());
     rules.add(new LengthOfResidenceRule());
     rules.add(new NominatedOccupationRule());
@@ -45,7 +45,7 @@ public class RuleEngine {
     candidate.setLengthOfCurrentResidence(5);
 
     int score = 0;
-    for (IRule rule : rules) {
+    for (IMigrationRule rule : rules) {
       if (rule.shouldRun(candidate)) {
         score += rule.runRule(candidate);
       }

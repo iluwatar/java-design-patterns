@@ -24,7 +24,7 @@
  */
 package com.iluwatar.ruleengine;
 
-public class EnglishProficiencyRule implements IRule {
+public class EnglishProficiencyRule implements IMigrationRule {
   /**
    * Check if this English Proficiency rule can be executed or not
    *

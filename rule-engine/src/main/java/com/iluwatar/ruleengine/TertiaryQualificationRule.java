@@ -24,7 +24,7 @@
  */
 package com.iluwatar.ruleengine;
 
-public class TertiaryQualificationRule implements IRule {
+public class TertiaryQualificationRule implements IMigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...

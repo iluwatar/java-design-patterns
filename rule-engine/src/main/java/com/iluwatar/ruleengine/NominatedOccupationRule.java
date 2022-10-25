@@ -24,7 +24,7 @@
  */
 package com.iluwatar.ruleengine;
 
-public class NominatedOccupationRule implements IRule {
+public class NominatedOccupationRule implements IMigrationRule {
   /**
    * Check if this Nominated Occupation Rule can be executed or not
    *

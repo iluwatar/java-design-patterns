@@ -24,7 +24,7 @@
  */
 package com.iluwatar.ruleengine;
 
-public class AssetsRule implements IRule {
+public class AssetsRule implements IMigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...
