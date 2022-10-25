@@ -140,6 +140,7 @@ Thus, the data bus outputs as follows:
     
 //OUTPUT:
 //02:33:57.627 [main] INFO com.iluwatar.databus.members.StatusMember - Receiver 2 sees application started at 2022-10-26T02:33:57.613529100
+
 //02:33:57.633 [main] INFO com.iluwatar.databus.members.StatusMember - Receiver 1 sees application started at 2022-10-26T02:33:57.613529100
 
 Evidently, due to MessageCollectorMembers only accepting messages of type MessageData and none of either StartingData nor StoppingData, the MessageCollectorMembers are prevented from seeing what the StatusMembers (the event administrators or organisers) are shown: information on the time whenever a new advertisement is sent to all members.
