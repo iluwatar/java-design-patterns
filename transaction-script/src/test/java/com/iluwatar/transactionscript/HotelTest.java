@@ -33,6 +33,8 @@ import javax.sql.DataSource;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Tests {@link Hotel}
@@ -40,6 +42,7 @@ import org.junit.jupiter.api.Test;
 class HotelTest {
 
   private static final String H2_DB_URL = "jdbc:h2:~/test";
+  private static final Logger LOGGER = LoggerFactory.getLogger(HotelTest.class);
 
   private Hotel hotel;
   private HotelDaoImpl dao;
@@ -70,8 +73,12 @@ class HotelTest {
 
   @Test()
   void bookingRoomAgainShouldRaiseException() {
+      try {
+        hotel.bookRoom(1);
+    } catch (Exception e) {
+        LOGGER.error("Shouldn't happen", e);
+    }
     assertThrows(Exception.class, () -> {
-      hotel.bookRoom(1);
       hotel.bookRoom(1);
     });
   }

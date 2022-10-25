@@ -43,5 +43,6 @@ public class KingsHand extends EventEmitter implements EventObserver {
 
   @Override
   public void timePasses(Weekday day) {
+      //Do nothing
   }
 }

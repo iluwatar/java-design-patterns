@@ -33,7 +33,7 @@ class RoleTest {
 
   @Test
   void instanceTest() {
-    var instance = Role.Borrower.instance();
+    var instance = Role.BORROWER.instance();
     assertTrue(instance.isPresent());
     assertEquals(instance.get().getClass(), BorrowerRole.class);
   }

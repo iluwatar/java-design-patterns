@@ -39,6 +39,6 @@ public class InvalidUser implements ReceiptViewModel {
 
   @Override
   public void show() {
-    LOGGER.info("Invalid user: " + userName);
+    LOGGER.info("Invalid user: {}", userName);
   }
 }

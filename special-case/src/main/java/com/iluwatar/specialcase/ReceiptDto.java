@@ -43,6 +43,6 @@ public class ReceiptDto implements ReceiptViewModel {
 
   @Override
   public void show() {
-    LOGGER.info("Receipt: " + price + " paid");
+    LOGGER.info("Receipt: {} paid", price);
   }
 }

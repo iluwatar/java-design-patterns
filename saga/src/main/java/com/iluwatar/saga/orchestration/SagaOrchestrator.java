@@ -29,6 +29,8 @@ import static com.iluwatar.saga.orchestration.Saga.Result.CRASHED;
 import static com.iluwatar.saga.orchestration.Saga.Result.FINISHED;
 import static com.iluwatar.saga.orchestration.Saga.Result.ROLLBACK;
 
+import com.iluwatar.saga.orchestration.Saga.Result;
+
 import lombok.extern.slf4j.Slf4j;
 
 
@@ -100,15 +102,16 @@ public class SagaOrchestrator {
           next = state.back();
         }
       }
-
-
       if (!saga.isPresent(next)) {
-        return state.isForward() ? FINISHED : result == CRASHED ? CRASHED : ROLLBACK;
+        return state.isForward() ? FINISHED : getResult(result);
       }
     }
 
   }
 
+  private Result getResult(Result result) {
+    return result == CRASHED ? CRASHED : ROLLBACK;
+  }
 
   private static class CurrentState {
     int currentNumber;

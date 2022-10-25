@@ -24,6 +24,7 @@
  */
 package com.iluwatar.roleobject;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +34,7 @@ import org.slf4j.LoggerFactory;
  */
 public enum Role {
 
-  Borrower(BorrowerRole.class), Investor(InvestorRole.class);
+  BORROWER(BorrowerRole.class), INVESTOR(InvestorRole.class);
 
   private final Class<? extends CustomerRole> typeCst;
 
@@ -50,8 +51,8 @@ public enum Role {
   public <T extends CustomerRole> Optional<T> instance() {
     var typeCst = this.typeCst;
     try {
-      return (Optional<T>) Optional.of(typeCst.newInstance());
-    } catch (InstantiationException | IllegalAccessException e) {
+      return (Optional<T>) Optional.of(typeCst.getDeclaredConstructor().newInstance());
+    } catch (NoSuchMethodException | InvocationTargetException | InstantiationException | IllegalAccessException e) {
       logger.error("error creating an object", e);
     }
     return Optional.empty();

@@ -27,7 +27,12 @@ package com.iluwatar.doubledispatch.constants;
 /**
  * Constants class to define all constants.
  */
-public class AppConstants {
+public final class AppConstants {
 
-  public static final String HITS = "{} hits {}.";
+    private AppConstants() {
+
+    }
+
+    public static final String HITS         = "{} hits {}.";
+    public static final String HITS_DAMAGED = "{} hits {}. {} is damaged!";
 }

@@ -79,13 +79,13 @@ public class App {
 
     // Java 8 lambda implementation with enum Strategy pattern
     LOGGER.info(GREEN_DRAGON_SPOTTED);
-    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.MeleeStrategy);
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.MELEESTRATEGY);
     dragonSlayer.goToBattle();
     LOGGER.info(RED_DRAGON_EMERGES);
-    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.ProjectileStrategy);
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.PROJECTILESTRATEGRY);
     dragonSlayer.goToBattle();
     LOGGER.info(BLACK_DRAGON_LANDS);
-    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.SpellStrategy);
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.SPELLSTRATEGY);
     dragonSlayer.goToBattle();
   }
 }

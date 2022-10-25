@@ -22,28 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.masterworker.system;
+package com.iluwatar.specialcase;
 
-import com.iluwatar.masterworker.Input;
-import com.iluwatar.masterworker.Result;
-import com.iluwatar.masterworker.system.systemmaster.Master;
 
-/**
- * The abstract MasterWorker class which contains reference to master.
- */
+public enum ProductType {
+    
+    TV("tv"),
+    COMPUTER("computer"),
+    CAR("car");
 
-public abstract class MasterWorker {
-  private final Master master;
-
-  public MasterWorker(int numOfWorkers) {
-    this.master = setMaster(numOfWorkers);
+  private String itemType;
+    
+  ProductType(String product) {
+    this.itemType = product;
   }
 
-  abstract Master setMaster(int numOfWorkers);
-
-  public Result<?> getResult(Input<int[][]> input) {
-    this.master.doWork(input);
-    return this.master.getFinalResult();
+  public String getItemType() {
+    return itemType;
   }
 }
-

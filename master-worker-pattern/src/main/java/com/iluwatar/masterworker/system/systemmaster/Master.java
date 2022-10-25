@@ -40,9 +40,9 @@ import java.util.List;
 public abstract class Master {
   private final int numOfWorkers;
   private final List<Worker> workers;
-  private final Hashtable<Integer, Result<?>> allResultData;
+  private final Hashtable<Integer, Result<int[][]>> allResultData;
   private int expectedNumResults;
-  private Result<?> finalResult;
+  private Result<int[][]> finalResult;
 
   Master(int numOfWorkers) {
     this.numOfWorkers = numOfWorkers;
@@ -52,11 +52,11 @@ public abstract class Master {
     this.finalResult = null;
   }
 
-  public Result<?> getFinalResult() {
+  public Result<int[][]> getFinalResult() {
     return this.finalResult;
   }
 
-  Hashtable<Integer, Result<?>> getAllResultData() {
+  Hashtable<Integer, Result<int[][]>> getAllResultData() {
     return this.allResultData;
   }
 
@@ -70,11 +70,11 @@ public abstract class Master {
 
   abstract List<Worker> setWorkers(int num);
 
-  public void doWork(Input<?> input) {
+  public void doWork(Input<int[][]> input) {
     divideWork(input);
   }
 
-  private void divideWork(Input<?> input) {
+  private void divideWork(Input<int[][]> input) {
     var dividedInput = input.divideData(numOfWorkers);
     if (dividedInput != null) {
       this.expectedNumResults = dividedInput.size();
@@ -93,12 +93,12 @@ public abstract class Master {
     }
   }
 
-  public void receiveData(Result<?> data, Worker w) {
+  public void receiveData(Result<int[][]> data, Worker w) {
     //check if can receive..if yes:
     collectResult(data, w.getWorkerId());
   }
 
-  private void collectResult(Result<?> data, int workerId) {
+  private void collectResult(Result<int[][]> data, int workerId) {
     this.allResultData.put(workerId, data);
     if (this.allResultData.size() == this.expectedNumResults) {
       //all data received
@@ -106,5 +106,5 @@ public abstract class Master {
     }
   }
 
-  abstract Result<?> aggregateData();
+  abstract Result<int[][]> aggregateData();
 }

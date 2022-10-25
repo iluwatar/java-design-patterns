@@ -31,32 +31,29 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import org.junit.Rule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.io.TempDir;
 
 /**
  * Date: 12/12/15 - 3:21 PM
  *
  * @author Jeroen Meulemeester
  */
-@EnableRuleMigrationSupport
 class SimpleFileWriterTest {
 
-  @Rule
-  public final TemporaryFolder testFolder = new TemporaryFolder();
+  @TempDir
+  public File testFolder;
 
   @Test
   void testWriterNotNull() throws Exception {
-    final var temporaryFile = this.testFolder.newFile();
+    final var temporaryFile = File.createTempFile("junit", null, testFolder);
     new SimpleFileWriter(temporaryFile.getPath(), Assertions::assertNotNull);
   }
 
   @Test
   void testCreatesNonExistentFile() throws Exception {
-    final var nonExistingFile = new File(this.testFolder.getRoot(), "non-existing-file");
+    final var nonExistingFile = new File(this.testFolder, "non-existing-file");
     assertFalse(nonExistingFile.exists());
 
     new SimpleFileWriter(nonExistingFile.getPath(), Assertions::assertNotNull);
@@ -67,7 +64,7 @@ class SimpleFileWriterTest {
   void testContentsAreWrittenToFile() throws Exception {
     final var testMessage = "Test message";
 
-    final var temporaryFile = this.testFolder.newFile();
+    final var temporaryFile = File.createTempFile("junit", null, testFolder);
     assertTrue(temporaryFile.exists());
 
     new SimpleFileWriter(temporaryFile.getPath(), writer -> writer.write(testMessage));
@@ -77,12 +74,21 @@ class SimpleFileWriterTest {
   @Test
   void testRipplesIoExceptionOccurredWhileWriting() {
     var message = "Some error";
+    File temporaryFile = getTemporaryFile();
     assertThrows(IOException.class, () -> {
-      final var temporaryFile = this.testFolder.newFile();
       new SimpleFileWriter(temporaryFile.getPath(), writer -> {
         throw new IOException(message);
       });
     }, message);
   }
 
+  private File getTemporaryFile() {
+    File temporaryFile = null;
+    try {
+        temporaryFile = File.createTempFile("junit", null, testFolder);
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return temporaryFile;
+  }
 }

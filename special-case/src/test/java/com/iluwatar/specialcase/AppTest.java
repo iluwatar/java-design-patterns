@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Application test.
  */
-public class AppTest {
+class AppTest {
 
   @Test
   void shouldExecuteWithoutException() {

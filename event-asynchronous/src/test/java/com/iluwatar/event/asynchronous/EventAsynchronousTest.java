@@ -74,12 +74,16 @@ class EventAsynchronousTest {
 
   @Test
   void testUnsuccessfulSynchronousEvent() {
-    assertThrows(InvalidOperationException.class, () -> {
-      var eventManager = new EventManager();
-      try {
+    var eventManager = new EventManager();
+    try {
         var sEventId = eventManager.create(60);
         eventManager.start(sEventId);
-        sEventId = eventManager.create(60);
+    } catch (MaxNumOfEventsAllowedException | InvalidOperationException | LongRunningEventException | EventDoesNotExistException e1) {
+        LOGGER.error(e1.getMessage());
+    }
+    assertThrows(InvalidOperationException.class, () -> {
+      try {
+        var sEventId = eventManager.create(60);
         eventManager.start(sEventId);
       } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
         LOGGER.error(e.getMessage());

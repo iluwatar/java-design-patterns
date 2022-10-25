@@ -36,6 +36,10 @@ import org.slf4j.LoggerFactory;
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  private static final String REQUEST_USER_ABC = "[REQUEST] User: abc123 buy product: {}";
+  private static final String REQUEST_USER_IGNITE = "[REQUEST] User: ignite1771 buy product: {}";
+  private static final String USER_ABC123 = "abc123";
+  private static final String USER_IGNITE1771 = "ignite1771";
 
   /**
    * Program entry point.
@@ -44,28 +48,28 @@ public class App {
     // DB seeding
     LOGGER.info("Db seeding: " + "1 user: {\"ignite1771\", amount = 1000.0}, "
         + "2 products: {\"computer\": price = 800.0, \"car\": price = 20000.0}");
-    Db.getInstance().seedUser("ignite1771", 1000.0);
-    Db.getInstance().seedItem("computer", 800.0);
-    Db.getInstance().seedItem("car", 20000.0);
+    Db.getInstance().seedUser(USER_IGNITE1771, 1000.0);
+    Db.getInstance().seedItem(ProductType.COMPUTER.getItemType(), 800.0);
+    Db.getInstance().seedItem(ProductType.CAR.getItemType(), 20000.0);
 
     final var applicationServices = new ApplicationServicesImpl();
     ReceiptViewModel receipt;
 
-    LOGGER.info("[REQUEST] User: " + "abc123" + " buy product: " + "tv");
-    receipt = applicationServices.loggedInUserPurchase("abc123", "tv");
+    LOGGER.info(REQUEST_USER_ABC, ProductType.TV.getItemType());
+    receipt = applicationServices.loggedInUserPurchase(USER_ABC123, ProductType.TV.getItemType());
     receipt.show();
     MaintenanceLock.getInstance().setLock(false);
-    LOGGER.info("[REQUEST] User: " + "abc123" + " buy product: " + "tv");
-    receipt = applicationServices.loggedInUserPurchase("abc123", "tv");
+    LOGGER.info(REQUEST_USER_ABC, ProductType.TV.getItemType());
+    receipt = applicationServices.loggedInUserPurchase(USER_ABC123, ProductType.TV.getItemType());
     receipt.show();
-    LOGGER.info("[REQUEST] User: " + "ignite1771" + " buy product: " + "tv");
-    receipt = applicationServices.loggedInUserPurchase("ignite1771", "tv");
+    LOGGER.info(REQUEST_USER_IGNITE, ProductType.TV.getItemType());
+    receipt = applicationServices.loggedInUserPurchase(USER_IGNITE1771, ProductType.TV.getItemType());
     receipt.show();
-    LOGGER.info("[REQUEST] User: " + "ignite1771" + " buy product: " + "car");
-    receipt = applicationServices.loggedInUserPurchase("ignite1771", "car");
+    LOGGER.info(REQUEST_USER_IGNITE, ProductType.CAR.getItemType());
+    receipt = applicationServices.loggedInUserPurchase(USER_IGNITE1771, ProductType.CAR.getItemType());
     receipt.show();
-    LOGGER.info("[REQUEST] User: " + "ignite1771" + " buy product: " + "computer");
-    receipt = applicationServices.loggedInUserPurchase("ignite1771", "computer");
+    LOGGER.info(REQUEST_USER_IGNITE, ProductType.COMPUTER.getItemType());
+    receipt = applicationServices.loggedInUserPurchase(USER_IGNITE1771, ProductType.COMPUTER.getItemType());
     receipt.show();
   }
 }
