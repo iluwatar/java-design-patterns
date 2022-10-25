@@ -27,8 +27,8 @@
 | [Composite](composite)                                                               | Structural             | Gang of Four                      |
 | [Composite Entity](composite-entity)                                                 | Structural             | Enterprise Integration Pattern    |
 | [Converter](converter)                                                               | Creational             | Decoupling                        |
-| [Command Query Responsibility Segregation](command-query-responsibility-segregation) | Architectural          | Performance, Cloud distributed    |
-| [Data Access Object](data-access-object)                                             | Architectural          | Data access                       |
+| [Command Query Responsibility Segregation](cqrs)                                     | Architectural          | Performance, Cloud distributed    |
+| [Data Access Object](dao)                                                            | Architectural          | Data access                       |
 | [Data Bus](data-bus)                                                                 | Architectural          | Decoupling                        |
 | [Data Locality](data-locality)                                                       | Behavioral             | Performance, Game programming     |
 | [Data Mapper](data-mapper)                                                           | Architectural          | Decoupling                        |
@@ -42,11 +42,11 @@
 | [Double Dispatch](double-dispatch)                                                   | Idiom                  | Extensibility                     |
 | [EIP Aggregator](eip-aggregator)                                                     | Integration            | Enterprise Integration Pattern    |
 | [EIP Message Channel](eip-message-channel)                                           | Integration            | Enterprise Integration Pattern    |
-| [EIP Publish and Subscribe](eip-publish-and-subscribe)                               | Integration            | Enterprise Integration Pattern    |
+| [EIP Publish and Subscribe](eip-publish-subscribe)                                   | Integration            | Enterprise Integration Pattern    |
 | [EIP Splitter](eip-splitter)                                                         | Integration            | Enterprise Integration Pattern    |
 | [EIP Wire Tap](eip-wire-tap)                                                         | Integration            | Enterprise Integration Pattern    |
 | [Event Aggregator](event-aggregator)                                                 | Structural             | Reactive                          |
-| [Event Based Asynchronous](event-based-asynchronous)                                 | Concurrency            | Reactive                          |
+| [Event Based Asynchronous](event-asynchronous)                                       | Concurrency            | Reactive                          |
 | [Event Driven Architecture](event-driven-architecture)                               | Architectural          | Reactive                          |
 | [Event Queue](event-queue)                                                           | Concurrency            | Game programming                  |
 | [Event Sourcing](event-sourcing)                                                     | Architectural          | Performance                       |
@@ -59,7 +59,7 @@
 | [Fan-Out/Fan-In](fanout-fanin)                                                       | Integration            | Microservices                     |
 | [Feature Toggle](feature-toggle)                                                     | Behavioral             | Extensibility                     |
 | [Filterer](filterer)                                                                 | Functional             | Extensibility                     |
-| [Fluent Interface](fluent-interface)                                                 | Functional             | Reactive                          |
+| [Fluent Interface](fluentinterface)                                                  | Functional             | Reactive                          |
 | [Flux](flux)                                                                         | Structural             | Decoupling                        |
 | [Flyweight](flyweight)                                                               | Structural             | Gang of Four, Performance         |
 | [Front Controller](front-controller)                                                 | Structural             | Decoupling                        |
@@ -75,8 +75,8 @@
 | [Leader Election](leader-election)                                                   | Behavioral             | Cloud distributed                 |
 | [Leader Followers](leader-followers)                                                 | Concurrency            | Performance                       |
 | [Lockable Object](lockable-object)                                                   | Concurrency            | Performance                       |
-| [Marker Interface](marker-interface)                                                 | Structural             | Decoupling                        |
-| [Master Worker](master-worker)                                                       | Concurrency            | Performance                       |
+| [Marker Interface](marker)                                                           | Structural             | Decoupling                        |
+| [Master Worker](master-worker-pattern)                                               | Concurrency            | Performance                       |
 | [Mediator](mediator)                                                                 | Behavioral             | Gang of Four, Decoupling          |
 | [Memento](memento)                                                                   | Behavioral             | Gang of Four                      |
 | [Model View Controller](model-view-controller)                                       | Architectural          | Decoupling                        |
@@ -97,7 +97,7 @@
 | [Partial Response](partial-response)                                                 | Behavioral             | Decoupling                        |
 | [Pipeline](pipeline)                                                                 | Behavioral             | Decoupling                        |
 | [Poison Pill](poison-pill)                                                           | Behavioral             | Cloud distributed, Reactive       |
-| [Presentation Model](presentation-model)                                             | Behavioral             | Decoupling                        |
+| [Presentation Model](presentation)                                                   | Behavioral             | Decoupling                        |
 | [Priority Queue](priority-queue)                                                     | Behavioral             | Decoupling                        |
 | [Private Class Data](private-class-data)                                             | Idiom                  | Data access                       |
 | [Producer Consumer](producer-consumer)                                               | Concurrency            | Reactive                          |
@@ -105,7 +105,7 @@
 | [Property](property)                                                                 | Creational             | Instantiation                     |
 | [Prototype](prototype)                                                               | Creational             | Gang of Four, Instantiation       |
 | [Proxy](proxy)                                                                       | Structural             | Gang of Four, Decoupling          |
-| [Queue Based Load Leveling](queue-based-load-leveling)                               | Concurrency            | Performance, Decoupling           |
+| [Queue Based Load Leveling](queue-load-leveling)                                     | Concurrency            | Performance, Decoupling           |
 | [Reactor](reactor)                                                                   | Concurrency            | Performance, Reactive             |
 | [Reader Writer Lock](reader-writer-lock)                                             | Concurrency            | Performance                       |
 | [Registry](registry)                                                                 | Creational             | Instantiation                     |
@@ -114,7 +114,6 @@
 | [Retry](retry)                                                                       | Behavioral             | Performance                       |
 | [Role Object](role-object)                                                           | Structural             | Extensibility                     |
 | [Saga](saga)                                                                         | Concurrency            | Cloud distributed                 |
-| [Semaphore](semaphore)                                                               | Concurrency            | Performance                       |
 | [Separated Interface](separated-interface)                                           | Structural             | Decoupling                        |
 | [Servant](servant)                                                                   | Behavioral             | Decoupling                        |
 | [Serverless](serverless)                                                             | Architectural          | Cloud distributed                 |
@@ -134,12 +133,12 @@
 | [Template Method](table-module)                                                      | Behavioral             | Gang of Four                      |
 | [Thread Pool](thread-pool)                                                           | Concurrency            | Performance                       |
 | [Throttling](throttling)                                                             | Behavioral             | Performance                       |
-| [Thread Local Storage](thread-local-storage)                                         | Idiom                  | Performance                       |
+| [Thread Local Storage](tls)                                                          | Idiom                  | Performance                       |
 | [Tolerant Reader](tolerant-reader)                                                   | Integration            | Decoupling                        |
 | [Trampoline](trampoline)                                                             | Behavioral             | Performance                       |
 | [Transaction Script](transaction-script)                                             | Behavioral             | Data access                       |
 | [Twin](twin)                                                                         | Structural             | Extensibility                     |
-| [Type Object](type-object)                                                           | Behavioral             | Game programming, Extensibility   |
+| [Type Object](typeobjectpattern)                                                     | Behavioral             | Game programming, Extensibility   |
 | [Unit of Work](unit-of-work)                                                         | Architectural          | Data access                       |
 | [Update Method](update-method)                                                       | Behavioral             | Game programming                  |
 | [Value Object](value-object)                                                         | Creational             | Instantiation                     |
