@@ -1,9 +1,6 @@
 ---  
-layout: pattern  
 title: Game Loop 
-folder:  game-loop  
-permalink: /patterns/game-loop/  
-categories: Behavioral
+category: Behavioral
 language: en
 tags:  
  - Game programming

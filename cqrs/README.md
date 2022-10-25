@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: CQRS
-folder: cqrs
-permalink: /patterns/cqrs/
-categories: Architectural
+category: Architectural
 language: en
 tags:
   - Performance

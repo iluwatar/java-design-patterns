@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Delegation
-folder: delegation
-permalink: /patterns/delegation/
-categories: Structural
+category: Structural
 language: en
 tags:
  - Decoupling

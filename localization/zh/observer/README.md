@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Observer
-folder: observer
-permalink: /patterns/observer/
-categories: Behavioral
+category: Behavioral
 language: zh
 tags:
  - Gang Of Four
@@ -129,7 +126,7 @@ public class Weather {
 ```
 
 ## Class diagram
-![alt text](../../../observer/etc/observer.png "Observer")
+![alt text](etc/observer.png "Observer")
 
 ## 应用
 在下面任何一种情况下都可以使用观察者模式

@@ -87,29 +87,29 @@ public class App {
     printCustomerDetails(allCustomers);
 
     // Example 2: Product DTO
-    Product tv =
-        new Product().setId(1L).setName("TV").setSupplier("Sony").setPrice(1000D).setCost(1090D);
+
+    Product tv = Product.builder().id(1L).name("TV").supplier("Sony").price(1000D).cost(1090D).build();
     Product microwave =
-        new Product()
-            .setId(2L)
-            .setName("microwave")
-            .setSupplier("Delonghi")
-            .setPrice(1000D)
-            .setCost(1090D);
+        Product.builder()
+            .id(2L)
+            .name("microwave")
+            .supplier("Delonghi")
+            .price(1000D)
+            .cost(1090D).build();
     Product refrigerator =
-        new Product()
-            .setId(3L)
-            .setName("refrigerator")
-            .setSupplier("Botsch")
-            .setPrice(1000D)
-            .setCost(1090D);
+        Product.builder()
+            .id(3L)
+            .name("refrigerator")
+            .supplier("Botsch")
+            .price(1000D)
+            .cost(1090D).build();
     Product airConditioner =
-        new Product()
-            .setId(4L)
-            .setName("airConditioner")
-            .setSupplier("LG")
-            .setPrice(1000D)
-            .setCost(1090D);
+        Product.builder()
+            .id(4L)
+            .name("airConditioner")
+            .supplier("LG")
+            .price(1000D)
+            .cost(1090D).build();
     List<Product> products =
         new ArrayList<>(Arrays.asList(tv, microwave, refrigerator, airConditioner));
     ProductResource productResource = new ProductResource(products);
