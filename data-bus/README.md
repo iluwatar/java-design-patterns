@@ -12,6 +12,14 @@ Allows send of messages/events between components of an application
 without them needing to know about each other. They only need to know
 about the type of the message/event being sent.
 
+## Explanation
+
+This chapter consists of the following sections
+  * Real-world example
+  * In plain words
+  * Wikipedia says
+  * Programmatic example
+
 ## Class diagram
 ![data bus pattern uml diagram](./etc/data-bus.urm.png "Data Bus pattern")
 
