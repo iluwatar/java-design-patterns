@@ -136,7 +136,7 @@ Thus, the data bus outputs as follows:
     final var bar = new MessageCollectorMember("Bar");
     bus.subscribe(foo);
     bus.publish(StartingData.of(LocalDateTime.now()));
-    ```
+ ```
     
 //OUTPUT:
 //02:33:57.627 [main] INFO com.iluwatar.databus.members.StatusMember - Receiver 2 sees application started at 2022-10-26T02:33:57.613529100
