@@ -34,6 +34,10 @@ import lombok.extern.slf4j.Slf4j;
 public class AppDbSimulatorImplementation implements AppDbSimulator {
   private List<Order> orderList = new ArrayList<>();
   private List<Person> personList = new ArrayList<>();
+  private String personTableName = "person";
+  private String orderTableName = "order";
+  private String personNotFoundMsg = "Person Not Found";
+  private String tableNotFoundMsg = "Table Not Found";
 
   public List<Order> getOrderList() {
     return orderList;
@@ -53,22 +57,22 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
 
   @Override
   public Object find(int id, String table) throws IdNotFoundException {
-    if (table.toLowerCase(Locale.ROOT).equals("person")) {
+    if (table.toLowerCase(Locale.ROOT).equals(personTableName)) {
       for (Person elem : personList) {
         if (elem.getPersonNationalId() == id) {
           return elem;
         }
       }
-      LOGGER.info("Person Not Found");
-    } else if (table.toLowerCase(Locale.ROOT).equals("order")) {
+      LOGGER.info(personNotFoundMsg);
+    } else if (table.toLowerCase(Locale.ROOT).equals(orderTableName)) {
       for (Order elem : orderList) {
         if (elem.getOrderNationalId() == id) {
           return elem;
         }
       }
-      LOGGER.info("Person Not Found");
+      LOGGER.info(personNotFoundMsg);
     } else {
-      LOGGER.info("Table Not Found");
+      LOGGER.info(tableNotFoundMsg);
 
     }
     throw new IdNotFoundException("ID not in DataBase");
@@ -76,7 +80,7 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
 
   @Override
   public void insert(Object object, String table) {
-    if (table.toLowerCase(Locale.ROOT).equals("person")) {
+    if (table.toLowerCase(Locale.ROOT).equals(personTableName)) {
       Person person = (Person) object;
       for (Person elem : personList) {
         if (elem.getPersonNationalId() == person.getPersonNationalId()) {
@@ -85,34 +89,21 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
         }
       }
       personList.add(person);
-    } else if (table.toLowerCase(Locale.ROOT).equals("order")) {
+    } else if (table.toLowerCase(Locale.ROOT).equals(orderTableName)) {
       Order order = (Order) object;
-      boolean find = false;
       for (Person person : personList) {
         if (person.equals(order.getOwner())) {
-          find = true;
+          orderList.add(order);
         }
-      }
-      if (find) {
-        for (Order elem : orderList) {
-          if (elem.getOrderNationalId() == order.getOrderNationalId()) {
-            LOGGER.info("Record already exists.");
-            return;
-          }
-        }
-        orderList.add(order);
-      } else {
-        LOGGER.info("Person Not Found");
-        throw new IdNotFoundException("OwnerId not in DataBase");
       }
     } else {
-      LOGGER.info("Table Not Found");
+      LOGGER.info(tableNotFoundMsg);
     }
   }
 
   @Override
   public void update(Object object, String table) throws IdNotFoundException {
-    if (table.toLowerCase(Locale.ROOT).equals("person")) {
+    if (table.toLowerCase(Locale.ROOT).equals(personTableName)) {
       Person person = (Person) object;
       for (Person elem : personList) {
         if (elem.getPersonNationalId() == person.getPersonNationalId()) {
@@ -122,7 +113,7 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
           return;
         }
       }
-    } else if (table.toLowerCase(Locale.ROOT).equals("order")) {
+    } else if (table.toLowerCase(Locale.ROOT).equals(orderTableName)) {
       Order order = (Order) object;
       for (Order elem : orderList) {
         if (elem.getOrderNationalId() == order.getOrderNationalId()) {
@@ -133,7 +124,7 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
         }
       }
     } else {
-      LOGGER.info("Table Not Found");
+      LOGGER.info(tableNotFoundMsg);
     }
 
     throw new IdNotFoundException("ID not in DataBase");
@@ -146,7 +137,7 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
    * @param table delete from person table or order table
    */
   public void delete(int id, String table) throws IdNotFoundException {
-    if (table.toLowerCase(Locale.ROOT).equals("person")) {
+    if (table.toLowerCase(Locale.ROOT).equals(personTableName)) {
       for (Person elem : personList) {
         if (elem.getPersonNationalId() == id) {
           personList.remove(elem);
@@ -155,7 +146,7 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
           return;
         }
       }
-    } else if (table.toLowerCase(Locale.ROOT).equals("order")) {
+    } else if (table.toLowerCase(Locale.ROOT).equals(orderTableName)) {
       for (Order elem : orderList) {
         if (elem.getOrderNationalId() == id) {
           orderList.remove(elem);
@@ -164,7 +155,7 @@ public class AppDbSimulatorImplementation implements AppDbSimulator {
         }
       }
     } else {
-      LOGGER.info("Table Not Found");
+      LOGGER.info(tableNotFoundMsg);
     }
 
     throw new IdNotFoundException("ID : " + id + " not in DataBase");

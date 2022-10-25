@@ -66,12 +66,6 @@ public class AppDbSimulatorImplementationTest {
     database.find(2,order);
   }
 
-  @Test(expected = IdNotFoundException.class)
-  public void insertOrderWithUnknownOwner() {
-    AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
-    database.insert(order1,order);
-  }
-
   @Test
   public void updatePerson() {
     AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
