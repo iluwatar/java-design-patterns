@@ -1,0 +1,105 @@
+@startuml
+package com.iluwatar.ruleengine {
+  class AssetsRule {
+    + AssetsRule()
+    + runRule(candidate : Candidate) : int
+    + shouldRun(candidate : Candidate) : boolean
+  }
+  class Candidate {
+    - assets : int
+    - closeFamilyTies : String
+    - englishProficiency : String
+    - isNominatedOccupationOnTheList : boolean
+    - isSmallBusinessOwner : boolean
+    - lengthOfCurrentResidence : int
+    - lengthOfEmployment : int
+    - smallBusinessTurnover : int
+    - tertiaryQualification : String
+    - yearsOfStudy : int
+    + Candidate()
+    + getAssets() : int
+    + getCloseFamilyTies() : String
+    + getEnglishProficiency() : String
+    + getLengthOfCurrentResidence() : int
+    + getLengthOfEmployment() : int
+    + getSmallBusinessTurnover() : int
+    + getTertiaryQualification() : String
+    + getYearsOfStudy() : int
+    + isNominatedOccupationOnTheList() : boolean
+    + isSmallBusinessOwner() : boolean
+    + setAssets(assets : int)
+    + setCloseFamilyTies(closeFamilyTies : String)
+    + setEnglishProficiency(englishProficiency : String)
+    + setLengthOfCurrentResidence(lengthOfCurrentResidence : int)
+    + setLengthOfEmployment(lengthOfEmployment : int)
+    + setNominatedOccupationOnTheList(nominatedOccupationOnTheList : boolean)
+    + setSmallBusinessOwner(smallBusinessOwner : boolean)
+    + setSmallBusinessTurnover(smallBusinessTurnover : int)
+    + setTertiaryQualification(tertiaryQualification : String)
+    + setYearsOfStudy(yearsOfStudy : int)
+  }
+  class CloseFamilyRule {
+    + CloseFamilyRule()
+    + runRule(candidate : Candidate) : int
+    + shouldRun(candidate : Candidate) : boolean
+  }
+  class EnglishProficiencyRule {
+    + EnglishProficiencyRule()
+    + runRule(candidate : Candidate) : int
+    + shouldRun(candidate : Candidate) : boolean
+  }
+  interface IRule {
+    + runRule(Candidate) : int {abstract}
+    + shouldRun(Candidate) : boolean {abstract}
+  }
+  class LengthOfEmploymentRule {
+    + LengthOfEmploymentRule()
+    + runRule(candidate : Candidate) : int
+    + shouldRun(candidate : Candidate) : boolean
+  }
+  class LengthResidenceRule {
+    + LengthResidenceRule()
+    + runRule(candidate : Candidate) : int
+    + shouldRun(candidate : Candidate) : boolean
+  }
+  class NominatedOccupationRule {
+    + NominatedOccupationRule()
+    + runRule(candidate : Candidate) : int
+    + shouldRun(candidate : Candidate) : boolean
+  }
+  class Partner {
+    - englishProficiency : String
+    + Partner()
+    + getEnglishProficiency() : String
+    + setEnglishProficiency(englishProficiency : String)
+  }
+  class RuleEngine {
+    + RuleEngine()
+    + main(args : String[]) {static}
+  }
+  class SmallBusinessRule {
+    + SmallBusinessRule()
+    + runRule(candidate : Candidate) : int
+    + shouldRun(candidate : Candidate) : boolean
+  }
+  class TertiaryQualificationRule {
+    + TertiaryQualificationRule()
+    + runRule(candidate : Candidate) : int
+    + shouldRun(candidate : Candidate) : boolean
+  }
+  class YearsOfStudyRule {
+    + YearsOfStudyRule()
+    + runRule(candidate : Candidate) : int
+    + shouldRun(candidate : Candidate) : boolean
+  }
+}
+AssetsRule ..|> IRule
+CloseFamilyRule ..|> IRule
+EnglishProficiencyRule ..|> IRule
+LengthOfEmploymentRule ..|> IRule
+LengthResidenceRule ..|> IRule
+NominatedOccupationRule ..|> IRule
+SmallBusinessRule ..|> IRule
+TertiaryQualificationRule ..|> IRule
+YearsOfStudyRule ..|> IRule
+@enduml

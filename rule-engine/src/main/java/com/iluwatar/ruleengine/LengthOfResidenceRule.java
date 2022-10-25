@@ -24,23 +24,42 @@
  */
 package com.iluwatar.ruleengine;
 
-public class AssetsRule implements IRule {
+public class LengthOfResidenceRule implements IRule {
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Check if this Length of Residence rule can be executed or not
+   *
+   * @param candidate: the current candidate
+   * @return boolean: true if the candidate has met the Length of Residence rule
+   * @author Harry Li
    */
   @Override
   public boolean shouldRun(Candidate candidate) {
-    return candidate.getAssets() != 0;
+    return candidate.getLengthOfCurrentResidence() != 0;
   }
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Execute this Length of Residence rule
+   *
+   * @param candidate: the current candidate
+   * @return int: the score that the candidate can get based on its length of residence
+   * @author Harry Li
    */
   @Override
   public int runRule(Candidate candidate) {
-    if (candidate.getAssets() >= 250000) {
-      return 5;
+    int length = candidate.getLengthOfCurrentResidence();
+
+    switch (length) {
+      case 1:
+        return 5;
+      case 2:
+        return 10;
+      case 3:
+        return 15;
+      case 4:
+        return 20;
+    }
+
+    if (length >= 5) {
+      return 25;
     }
 
     return 0;

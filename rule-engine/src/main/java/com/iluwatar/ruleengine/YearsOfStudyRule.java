@@ -24,14 +24,14 @@
  */
 package com.iluwatar.ruleengine;
 
-public class AssetsRule implements IRule {
+public class YearsOfStudyRule implements IRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...
    */
   @Override
   public boolean shouldRun(Candidate candidate) {
-    return candidate.getAssets() != 0;
+    return candidate.getYearsOfStudy() != 0;
   }
   /**
    * Multiple lines of Javadoc text are written here,
@@ -39,7 +39,17 @@ public class AssetsRule implements IRule {
    */
   @Override
   public int runRule(Candidate candidate) {
-    if (candidate.getAssets() >= 250000) {
+
+    if (candidate.getYearsOfStudy() >= 4) {
+      return 20;
+    }
+    if (candidate.getYearsOfStudy() == 3) {
+      return 15;
+    }
+    if (candidate.getYearsOfStudy() == 2) {
+      return 10;
+    }
+    if (candidate.getYearsOfStudy() == 1) {
       return 5;
     }
 
