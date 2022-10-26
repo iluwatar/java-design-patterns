@@ -37,7 +37,7 @@ public class TemporalCollection<T> {
   /**
    * Create new temporal history.
    */
-  TemporalCollection() {
+  public TemporalCollection() {
     versionMap = new HashMap<>();
   }
 

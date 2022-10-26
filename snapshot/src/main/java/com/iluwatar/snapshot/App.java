@@ -26,6 +26,7 @@ package com.iluwatar.snapshot;
 
 import java.util.HashMap;
 import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Snapshot pattern is a view of an object at a point in time.
@@ -36,6 +37,7 @@ import java.util.Map;
  * {@link CustomerSnapshot} is the view. The snapshot is taken several times at random intervals
  * and is stored, as would be expected on a manual snapshotting system. </p>
  */
+@Slf4j
 public class App {
   /**
    * Main class.
@@ -64,9 +66,9 @@ public class App {
     billySnapshots.put(new SimpleDate(2007, 1, 5),
             new CustomerSnapshot(billy, new SimpleDate(2006, 2, 1)));
 
-    System.out.println("Snapshots of billy's address:");
+    LOGGER.info("Snapshots of billy's address:");
     for (Map.Entry<SimpleDate, CustomerSnapshot> entry : billySnapshots.entrySet()) {
-      System.out.println("On " + entry.getKey() + " billy was at " + entry.getValue().getAddress());
+      LOGGER.info("On " + entry.getKey() + " billy was at " + entry.getValue().getAddress());
     }
 
   }

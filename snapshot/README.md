@@ -5,10 +5,9 @@ folder: snapshot
 permalink: /patterns/snapshot/
 categories:
 - creational 
-  language: 
-  tags:
+language: en
+tags:
 - Data access
-- Gang of Four
 ---
 
 ## Name / classification
@@ -23,19 +22,19 @@ Create a view of an object at a point in time.
 
 Real world example
 
-> Many people have phone numbers with details attached. A phone book, where registered phone 
-> numbers with details are relieved are snapshots of the history of phone numbers, and their 
-> associated details.
+> A customer can have many details that change over time, and trying to keep track of these 
+> values at any time can be difficult. Instead, make a snapshot of a customer, and work using 
+> its variables, abstracting away the temporal component.
 
 In plain words
 
 > A snapshot is a copy of an object as it is at a point in time.
 
-Wikipedia says
+Martin Fowler says:
 
-> The memento pattern is a software design pattern that exposes the private internal state of an 
-> object. One example of how this can be used is to restore an object to its previous state 
-> (undo via rollback), another is versioning, another is custom serialization.  
+>A Snapshot is simply a view of an object with all the temporal aspects removed. So if the full 
+> temporal object has an accessor in the form getAddress(date) then the snapshot will have an 
+> accessor getAddress(). All questions of a snapshot are non-temporal.
 
 **Programmatic Example**
 
@@ -127,10 +126,13 @@ account.
 ## Known uses
 
 * [java.util.Date](http://docs.oracle.com/javase/8/docs/api/java/util/Date.html)
- as Memento is a Snapshot with a caretaker.
+ as Snapshot is a Memento without a caretaker.
 ## Consequences
 
-Snapshot allows for removing the temporal aspects of an object with temporality.
+Pros:
+* Snapshots help to access values as temporality doesn't need to be considered after creation.
+
+Note that Snapshots are equivalent to the Memento pattern without the caretaker.
 
 ## Related patterns
 * [Memento](https://java-design-patterns.com/patterns/memento/)
