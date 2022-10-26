@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-public class AppTest {
+class AppTest {
   /**
    * Checks whether {@link App} executes without throwing exception
    */

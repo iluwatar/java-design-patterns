@@ -82,9 +82,7 @@ public class App {
     for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
       if (nextItem.paperSize.equals(PaperSizes.A4)) {
         var isColouredAndSingleSided = nextItem.isColour && !nextItem.isDoubleSided;
-        if (isColouredAndSingleSided) {
-          printerItemsCollection.add(nextItem);
-        } else if (!nextItem.isColour) {
+        if (isColouredAndSingleSided || !nextItem.isColour) {
           printerItemsCollection.add(nextItem);
         }
       }

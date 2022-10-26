@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Timeout;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class CollectingParameterTest {
+class CollectingParameterTest {
 
   @Test
   @Timeout(1000)
-  public void testCollectingParameter() {
+  void testCollectingParameter() {
     PrinterQueue printerQueue = PrinterQueue.getInstance();
     printerQueue.emptyQueue();
 

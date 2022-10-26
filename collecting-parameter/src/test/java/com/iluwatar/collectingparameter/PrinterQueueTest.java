@@ -9,11 +9,11 @@ import java.util.Queue;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class PrinterQueueTest {
+class PrinterQueueTest {
 
   @Test
   @Timeout(1000)
-  public void singletonTest() {
+  void singletonTest() {
     PrinterQueue printerQueue1 = PrinterQueue.getInstance();
     PrinterQueue printerQueue2 = PrinterQueue.getInstance();
     assertSame(printerQueue1, printerQueue2);
@@ -21,13 +21,13 @@ public class PrinterQueueTest {
 
   @Test()
   @Timeout(1000)
-  public void negativePageCount() throws IllegalArgumentException {
+  void negativePageCount() throws IllegalArgumentException {
     Assertions.assertThrows(IllegalArgumentException.class, () -> new PrinterItem(PaperSizes.A4, -1, true, true));
   }
 
   @Test()
   @Timeout(1000)
-  public void nullPageSize() throws IllegalArgumentException {
+  void nullPageSize() throws IllegalArgumentException {
     Assertions.assertThrows(IllegalArgumentException.class, () -> new PrinterItem(null, 1, true, true));
   }
 
