@@ -180,13 +180,6 @@
                 <artifactId>simpleapp-dom</artifactId>
                 <version>1.9.0-SNAPSHOT</version>
               </dependency>
-              <!-- ... workaround to avoid conflict with plexus-default (not sure 
-								why exclusions in the isis-maven-plugin aren't sufficient, though ... -->
-              <dependency>
-                <groupId>com.google.guava</groupId>
-                <artifactId>guava</artifactId>
-                <version>16.0.1</version>
-              </dependency>
             </dependencies>
             <executions>
               <execution>
