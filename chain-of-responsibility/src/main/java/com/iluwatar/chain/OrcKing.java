@@ -24,23 +24,34 @@
  */
 package com.iluwatar.chain;
 
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * OrcKing makes requests that are handled by the chain.
  */
 public class OrcKing {
 
-  private RequestHandler chain;
+  private List<RequestHandler> handlers;
 
   public OrcKing() {
     buildChain();
   }
 
   private void buildChain() {
-    chain = new OrcCommander(new OrcOfficer(new OrcSoldier(null)));
+    handlers = Arrays.asList(new OrcCommander(), new OrcOfficer(), new OrcSoldier());
   }
 
+  /**
+   * Handle request by the chain.
+   */
   public void makeRequest(Request req) {
-    chain.handleRequest(req);
+    handlers
+        .stream()
+        .sorted(Comparator.comparing(RequestHandler::getPriority))
+        .filter(handler -> handler.canHandleRequest(req))
+        .findFirst()
+        .ifPresent(handler -> handler.handle(req));
   }
-
 }
