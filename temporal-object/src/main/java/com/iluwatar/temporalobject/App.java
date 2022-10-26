@@ -34,7 +34,7 @@ import lombok.extern.slf4j.Slf4j;
  * properties that change over time, and others where the object is temporal. </p>
  *
  * <p>In this particular example, each {@link CreditCard} has a
- * {@link TemporalCollection<CreditContractVersion>}, which stores the prior and current
+ * {@link TemporalCollection}, which stores the prior and current
  * contract terms as {@link CreditContractVersion}s. In this case, most details about the credit
  * card are part of the contract, and so, the {@link CreditCard} is considered a Temporal Object
  * .</p>
