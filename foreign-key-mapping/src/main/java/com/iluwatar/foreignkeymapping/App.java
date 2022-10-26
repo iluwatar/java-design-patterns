@@ -33,8 +33,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  static final String orderTableName = "order";
-  static final String personTableName = "person";
+  static final String ORDERTABLENAME = "order";
+  static final String PERSONTABLENAME = "person";
 
   /**
    * Program entry point.
@@ -56,24 +56,24 @@ public class App {
     Order order5 = new Order(5, "kala", person1);
 
     AppDbSimulatorImplementation database = new AppDbSimulatorImplementation();
-    database.insert(person1, personTableName);
-    database.insert(person2, personTableName);
-    database.insert(person3, personTableName);
-    database.insert(person4, personTableName);
-    database.insert(person5, personTableName);
-    database.insert(order1, orderTableName);
-    database.insert(order2, orderTableName);
-    database.insert(order3, orderTableName);
-    database.insert(order4, orderTableName);
-    database.insert(order5, orderTableName);
+    database.insert(person1, PERSONTABLENAME);
+    database.insert(person2, PERSONTABLENAME);
+    database.insert(person3, PERSONTABLENAME);
+    database.insert(person4, PERSONTABLENAME);
+    database.insert(person5, PERSONTABLENAME);
+    database.insert(order1, ORDERTABLENAME);
+    database.insert(order2, ORDERTABLENAME);
+    database.insert(order3, ORDERTABLENAME);
+    database.insert(order4, ORDERTABLENAME);
+    database.insert(order5, ORDERTABLENAME);
 
-    LOGGER.info(database.find(2, personTableName).toString());
-    LOGGER.info(database.find(4, personTableName).toString());
-    LOGGER.info(database.find(5, personTableName).toString());
+    LOGGER.info(database.find(2, PERSONTABLENAME).toString());
+    LOGGER.info(database.find(4, PERSONTABLENAME).toString());
+    LOGGER.info(database.find(5, PERSONTABLENAME).toString());
 
-    LOGGER.info(database.find(2, orderTableName).toString());
-    LOGGER.info(database.find(4, orderTableName).toString());
-    LOGGER.info(database.find(5, orderTableName).toString());
+    LOGGER.info(database.find(2, ORDERTABLENAME).toString());
+    LOGGER.info(database.find(4, ORDERTABLENAME).toString());
+    LOGGER.info(database.find(5, ORDERTABLENAME).toString());
 
     // get order owner
     LOGGER.info(order2.getOwner().toString());
@@ -83,7 +83,7 @@ public class App {
 
     // person place order
     Order order6 = new Order(6, "fula", person1);
-    database.insert(order6, orderTableName);
+    database.insert(order6, ORDERTABLENAME);
     LOGGER.info(person1.getAllOrder(database.getOrderList()).toString());
   }
 
