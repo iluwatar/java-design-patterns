@@ -17,7 +17,7 @@
 | [Bytecode](bytecode)                                                                 | Behavioral             | Game programming                  |
 | [Caching](caching)                                                                   | Behavioral             | Performance                       |
 | [Callback](callback)                                                                 | Idiom                  | Reactive                          |
-| [Chain of Responsibility](chain-of-responsibility)                                   | Behavioral             | Gang of Four                      |
+| [Chain of Responsibility](chain)                                                     | Behavioral             | Gang of Four                      |
 | [Circuit Breaker](circuit-breaker)                                                   | Behavioral             | Performance, Decoupling           |
 | [Cloud Static Content Hosting](cloud-static-content-hosting)                         | Cloud                  | Cloud distributed                 |
 | [Collection Pipeline](collection-pipeline)                                           | Functional             | Reactive                          |
@@ -25,7 +25,7 @@
 | [Composite](composite)                                                               | Structural             | Gang of Four                      |
 | [Composite Entity](composite-entity)                                                 | Structural             | Enterprise Integration Pattern    |
 | [Converter](converter)                                                               | Creational             | Decoupling                        |
-| [Data Access Object](data-access-object)                                             | Architectural          | Data access                       |
+| [Data Access Object](dao)                                                            | Architectural          | Data access                       |
 | [Data Bus](data-bus)                                                                 | Architectural          | Decoupling                        |
 | [Data Mapper](data-mapper)                                                           | Architectural          | Decoupling                        |
 | [Data Transfer Object](data-transfer-object)                                         | Architectural          | Performance                       |
@@ -47,6 +47,6 @@
 | [Sharding](sharding)                                                                 | Behavioral             | Performance, Cloud distributed    |
 | [State](state)                                                                       | Behavioral             | Gang of Four                      |
 | [Strategy](strategy)                                                                 | Behavioral             | Gang of Four                      |
-| [Template Method](table-module)                                                      | Behavioral             | Gang of Four                      |
+| [Template Method](template-method)                                                   | Behavioral             | Gang of Four                      |
 | [Version Number](version-number)                                                     | Concurrency            | Data access, Microservices        |
 | [Visitor](visitor)                                                                   | Behavioral             | Gang of Four                      |
