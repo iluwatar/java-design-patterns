@@ -1,12 +1,12 @@
---- # this is so-called 'YAML front matter', read up on it here: http://jekyllrb.com/docs/frontmatter/
+--- 
 layout: pattern
 title: Temporal Object
 folder: temporal-object 
 permalink: /patterns/temporal-object /
 categories:
-- creational
-  language: en
-  tags:
+- creational 
+language: en
+tags:
 - Data Access 
 ---
 
@@ -74,14 +74,12 @@ public class CreditCard {
   }
 
   public boolean isExpired() {
-    // if expiration date before current date, return true
     return getContract().getExpirationDate().compareTo(SimpleDate.getToday()) < 0;
   }
 
   public int getNumber() {
     return getContract().getCardNumber();
   }
-  //...
 }
 ```
 
@@ -102,45 +100,44 @@ public class CreditContractVersion {
 Then, we can introduce an example application that makes use of these properties
 
 ```java
-  public static void main(String[] args) {
-    SimpleDate.setToday(new SimpleDate(2000, 3, 1));
+public static void main(String[] args) {
+  SimpleDate.setToday(new SimpleDate(2000, 3, 1));
 
-    // start a credit card contract from today until 3rd of September 2002
-    CreditContractVersion firstContract = new CreditContractVersion("Original Contract",
-    "Bank of XYZ", "Version 1", 100, 12345, 1234,
-    new SimpleDate(2002, 9, 3));
-    CreditCard card = new CreditCard(firstContract, SimpleDate.getToday());
-    System.out.println("New card with limit of " + card.getCreditLimit()
-    + ", card number " + card.getNumber() + ", and cvc code of " + card.getCvc()
-    + " which expires on " + card.getExpiration());
+  // start a credit card contract from today until 3rd of September 2002
+  CreditContractVersion firstContract = new CreditContractVersion("Original Contract",
+  "Bank of XYZ", "Version 1", 100, 12345, 1234,
+  new SimpleDate(2002, 9, 3));
+  CreditCard card = new CreditCard(firstContract, SimpleDate.getToday());
+  LOGGER.info("New card with limit of " + card.getCreditLimit() + ", card number "
+  + card.getNumber() + ", and cvc code of " + card.getCvc() + " which expires on "
+  + card.getExpiration());
 
-    // The card expires
-    SimpleDate.setToday(new SimpleDate(2002, 9, 18));
-    System.out.println(SimpleDate.getToday().toString() + " is expired: " + card.isExpired());
+  // The card expires
+  SimpleDate.setToday(new SimpleDate(2002, 9, 18));
+  LOGGER.info(SimpleDate.getToday().toString() + " is expired: " + card.isExpired());
 
-    // And is then re-negotiated, with the new contract coming into effect a few days later
+  // And is then re-negotiated, with the new contract coming into effect a few days later
 
-    CreditContractVersion secondContract = new CreditContractVersion("new contract", "Bank of XYZ",
-    "Version 2", 120, 12345, 1234, new SimpleDate(2004, 3, 4));
-    card.addContract(secondContract, new SimpleDate(2002, 9, 21));
+  CreditContractVersion secondContract = new CreditContractVersion("new contract", "Bank of XYZ",
+  "Version 2", 120, 12345, 1234, new SimpleDate(2004, 3, 4));
+  card.addContract(secondContract, new SimpleDate(2002, 9, 21));
 
-    // A few days later when the new contract is effective
-    SimpleDate.setToday(new SimpleDate(2002, 9, 21));
-    System.out.println("Re-negotiated card with limit of " + card.getCreditLimit()
-    + ", card number " + card.getNumber() + ", and cvc code of " + card.getCvc()
-    + " which expires on " + card.getExpiration());
-    System.out.println(SimpleDate.getToday().toString() + " is expired: " + card.isExpired());
-    }
+  // A few days later when the new contract is effective
+  SimpleDate.setToday(new SimpleDate(2002, 9, 21));
+  LOGGER.info("Re-negotiated card with limit of " + card.getCreditLimit() + ", card number "
+  + card.getNumber() + ", and cvc code of " + card.getCvc() + " which expires on "
+  + card.getExpiration());
+  LOGGER.info(SimpleDate.getToday().toString() + " is expired: " + card.isExpired());
 }
 ```
 
 Which has an output of 
 
 ```
-New card with limit of 100, card number 12345, and cvc code of 1234 which expires on 2002, 9, 3
-2002, 9, 18 is expired: true
-Re-negotiated card with limit of 120, card number 12345, and cvc code of 1234 which expires on 2004, 3, 4
-2002, 9, 21 is expired: false
+New card with limit of 100, card number 12345, and cvc code of 1234 which expires on 2002-09-03
+2002-09-18 is expired: true
+Re-negotiated card with limit of 120, card number 12345, and cvc code of 1234 which expires on 2004-03-04
+2002-09-21 is expired: false
 ```
 
 
@@ -155,7 +152,7 @@ Use the Temporal Object pattern when
 
 ## Consequences
 
-A temporal object allows for individuals to refer explicit to versions, and temporal objects 
+A temporal object allows for individuals to explicitly refer to versions, and temporal objects 
 don't necessarily need their users to be aware of the temporal aspect.
 
 ## Related patterns

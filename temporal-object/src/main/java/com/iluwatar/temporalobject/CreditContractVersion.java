@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.temporalobject;
 
 /**
@@ -36,9 +37,20 @@ public class CreditContractVersion {
   private final int cvcCode;
   private final SimpleDate expirationDate;
 
-  CreditContractVersion(String contractText, String contractIssuer,
-                        String version, int creditLimit, int cardNumber, int cvcCode,
-                        SimpleDate expirationDate) {
+  /**
+   * Creator for a credit card contract version.
+   *
+   * @param contractText The text contained in the contract.
+   * @param contractIssuer The issuer of the contract.
+   * @param version The version of the contract.
+   * @param creditLimit The credit limit according to the contract.
+   * @param cardNumber The credit number associated to the contract.
+   * @param cvcCode The cvc code associated to the contract.
+   * @param expirationDate The date the contract's associated card is no longer valid.
+   */
+  public CreditContractVersion(String contractText, String contractIssuer, String version,
+                               int creditLimit, int cardNumber, int cvcCode,
+                               SimpleDate expirationDate) {
     this.contractText = contractText;
     this.contractIssuer = contractIssuer;
     this.version = version;

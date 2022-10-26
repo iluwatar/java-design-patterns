@@ -1,11 +1,12 @@
 @startuml
 package com.iluwatar.temporalobject {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
   class CreditCard {
-    - contractHistory : CreditContractVersionHistory
+    - contractHistory : TemporalCollection<CreditContractVersion>
     + CreditCard(contract : CreditContractVersion, effectiveDate : SimpleDate)
     + addContract(contract : CreditContractVersion, effectiveDate : SimpleDate)
     + getContract() : CreditContractVersion
@@ -24,7 +25,7 @@ package com.iluwatar.temporalobject {
     - cvcCode : int
     - expirationDate : SimpleDate
     - version : String
-    ~ CreditContractVersion(contractText : String, contractIssuer : String, version : String, creditLimit : int, cardNumber : int, cvcCode : int, expirationDate : SimpleDate)
+    + CreditContractVersion(contractText : String, contractIssuer : String, version : String, creditLimit : int, cardNumber : int, cvcCode : int, expirationDate : SimpleDate)
     + getCardNumber() : int
     + getContractIssuer() : String
     + getContractText() : String
@@ -40,20 +41,26 @@ package com.iluwatar.temporalobject {
     + put(effectiveDate : SimpleDate, contract : CreditContractVersion)
   }
   class SimpleDate {
-    - day : int
-    - month : int
-    - today : SimpleDate {static}
-    - year : int
+    - clock : Clock {static}
+    - date : LocalDate
+    - setDate : SimpleDate {static}
+    ~ SimpleDate(date : LocalDate)
     ~ SimpleDate(year : int, month : int, day : int)
     + compareTo(otherDate : SimpleDate) : int
     + equals(o : Object) : boolean
+    + getDate() : LocalDate
     + getToday() : SimpleDate {static}
-    + hashCode() : int
     + setToday(newToday : SimpleDate) {static}
     + toString() : String
   }
+  class TemporalCollection<T> {
+    - versionMap : HashMap<SimpleDate, T>
+    + TemporalCollection<T>()
+    + get(date : SimpleDate) : T
+    + put(addedDate : SimpleDate, obj : T)
+  }
 }
-SimpleDate -->  "-today" SimpleDate
+SimpleDate -->  "-setDate" SimpleDate
 CreditContractVersion -->  "-expirationDate" SimpleDate
-CreditCard -->  "-contractHistory" CreditContractVersionHistory
+CreditCard -->  "-contractHistory" TemporalCollection
 @enduml

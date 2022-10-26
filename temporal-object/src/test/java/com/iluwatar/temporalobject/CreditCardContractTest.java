@@ -36,7 +36,7 @@ public class CreditCardContractTest {
     int creditLimit = 9999;
     int cardNumber = 12345;
     int cvcCode = 1234;
-    SimpleDate expirationDate = new SimpleDate(0,0,0);
+    SimpleDate expirationDate = new SimpleDate(1,2,3);
 
     CreditContractVersion contractVersion = new CreditContractVersion(contractText, contractIssuer, version, creditLimit,
             cardNumber, cvcCode, expirationDate);

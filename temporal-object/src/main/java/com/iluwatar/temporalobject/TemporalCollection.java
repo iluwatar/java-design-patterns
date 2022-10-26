@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.temporalobject;
 
 import java.util.HashMap;
@@ -37,7 +38,7 @@ public class TemporalCollection<T> {
   /**
    * Create new temporal history.
    */
-  TemporalCollection() {
+  public TemporalCollection() {
     versionMap = new HashMap<>();
   }
 

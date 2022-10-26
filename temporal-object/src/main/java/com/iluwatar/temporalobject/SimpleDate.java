@@ -22,25 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.temporalobject;
 
-import java.util.Objects;
+import java.time.Clock;
+import java.time.LocalDate;
 
 /**
- * Class that is used to wrap year, month, day values without correction.
- * Note that this class also does not consider different time zones being used in an implementation.
+ * Class that is used to have global now variables for LocalDate.
  */
 public class SimpleDate implements Comparable<SimpleDate> {
-  private final int year;
-  private final int month;
-  private final int day;
+  private static Clock clock = Clock.systemUTC();
+  private static SimpleDate setDate = null;
 
-  private static SimpleDate today = new SimpleDate(0, 0, 0);
+  private LocalDate date;
 
   SimpleDate(int year, int month, int day) {
-    this.year = year;
-    this.month = month;
-    this.day = day;
+    date = LocalDate.of(year, month, day);
+  }
+
+  SimpleDate(LocalDate date) {
+    this.date = date;
   }
 
   @Override
@@ -52,46 +54,25 @@ public class SimpleDate implements Comparable<SimpleDate> {
       return false;
     }
     SimpleDate that = (SimpleDate) o;
-    return year == that.year && month == that.month && day == that.day;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(year, month, day);
+    return date.equals(that.date);
   }
 
   @Override
   public int compareTo(SimpleDate otherDate) {
-    if (equals(otherDate)) {
-      return 0;
-    }
+    return date.compareTo(otherDate.getDate());
+  }
 
-    if (year > otherDate.year) {
-      return 1;
-    } else if (year < otherDate.year) {
-      return -1;
-    }
-
-    if (month > otherDate.month) {
-      return 1;
-    } else if (month < otherDate.month) {
-      return -1;
-    }
-
-    if (day > otherDate.day) {
-      return 1;
-    } else {
-      return -1;
-    }
+  public LocalDate getDate() {
+    return date;
   }
 
   /**
    * Set the value considered to be today by the simple date.
    *
-   * @param newToday The date to be set as 'today'.
+   * @param newToday The date to be used for today.
    */
   public static void setToday(SimpleDate newToday) {
-    today = newToday;
+    setDate = newToday;
   }
 
   /**
@@ -100,11 +81,14 @@ public class SimpleDate implements Comparable<SimpleDate> {
    * @return The date set to day
    */
   public static SimpleDate getToday() {
-    return today;
+    if (setDate != null) {
+      return setDate;
+    }
+    return new SimpleDate(LocalDate.now(clock));
   }
 
   @Override
   public String toString() {
-    return "" + year + ", " + month + ", " + day;
+    return date.toString();
   }
 }

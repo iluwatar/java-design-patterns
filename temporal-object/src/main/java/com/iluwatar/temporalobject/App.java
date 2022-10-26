@@ -22,7 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.temporalobject;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Temporal Object pattern is an object that changes over time.
@@ -30,11 +33,13 @@ package com.iluwatar.temporalobject;
  * <p>There are times where it is useful to consider that an object that has
  * properties that change over time, and others where the object is temporal. </p>
  *
- * <p>In this particular example, each {@link CreditCard} has a {@link CreditContractVersionHistory},
- * which stores the prior and current contract terms as {@link CreditContractVersion}s. In this case,
- * most details about the credit card are part of the contract, and so, the {@link CreditCard} is
- * considered a Temporal Object.</p>
+ * <p>In this particular example, each {@link CreditCard} has a
+ * {@link TemporalCollection<CreditContractVersion>}, which stores the prior and current
+ * contract terms as {@link CreditContractVersion}s. In this case, most details about the credit
+ * card are part of the contract, and so, the {@link CreditCard} is considered a Temporal Object
+ * .</p>
  */
+@Slf4j
 public class App {
   /**
    * Main function.
@@ -49,13 +54,13 @@ public class App {
             "Bank of XYZ", "Version 1", 100, 12345, 1234,
             new SimpleDate(2002, 9, 3));
     CreditCard card = new CreditCard(firstContract, SimpleDate.getToday());
-    System.out.println("New card with limit of " + card.getCreditLimit()
-            + ", card number " + card.getNumber() + ", and cvc code of " + card.getCvc()
-            + " which expires on " + card.getExpiration());
+    LOGGER.info("New card with limit of " + card.getCreditLimit() + ", card number "
+            + card.getNumber() + ", and cvc code of " + card.getCvc() + " which expires on "
+            + card.getExpiration());
 
     // The card expires
     SimpleDate.setToday(new SimpleDate(2002, 9, 18));
-    System.out.println(SimpleDate.getToday().toString() + " is expired: " + card.isExpired());
+    LOGGER.info(SimpleDate.getToday().toString() + " is expired: " + card.isExpired());
 
     // And is then re-negotiated, with the new contract coming into effect a few days later
 
@@ -65,12 +70,9 @@ public class App {
 
     // A few days later when the new contract is effective
     SimpleDate.setToday(new SimpleDate(2002, 9, 21));
-    System.out.println("Re-negotiated card with limit of " + card.getCreditLimit()
-            + ", card number " + card.getNumber() + ", and cvc code of " + card.getCvc()
-            + " which expires on " + card.getExpiration());
-    System.out.println(SimpleDate.getToday().toString() + " is expired: " + card.isExpired());
-
-
-
+    LOGGER.info("Re-negotiated card with limit of " + card.getCreditLimit() + ", card number "
+            + card.getNumber() + ", and cvc code of " + card.getCvc() + " which expires on "
+            + card.getExpiration());
+    LOGGER.info(SimpleDate.getToday().toString() + " is expired: " + card.isExpired());
   }
 }
