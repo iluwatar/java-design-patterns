@@ -204,6 +204,7 @@
     <module>serialized-entity</module>
     <module>identity-map</module>
     <module>component</module>
+    <module>model-view-intent</module>
   </modules>
   <repositories>
     <repository>
