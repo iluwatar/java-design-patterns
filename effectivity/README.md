@@ -146,7 +146,7 @@ Pros:
 * Allows for simple temporal behaviour.
 
 Cons:
-* Replies on client awareness of the temporality for processing.
+* Relies on client awareness of the temporality for processing.
 
 ## Related patterns
 
