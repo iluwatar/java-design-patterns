@@ -2,40 +2,33 @@ package com.iluwatar.collectingparameter;
 
 import java.util.Objects;
 
+/**
+ * This class represents a Print Item, that should be added to the queue.
+ **/
 public class PrinterItem {
+  PaperSizes paperSize;
+  int pageCount;
+  boolean isDoubleSided;
+  boolean isColour;
+
   /**
-   * This class represents a Print Item, that should be added to the queue.
+   * The {@link PrinterItem} constructor.
    **/
-    PaperSizes paperSize;
-    int pageCount;
-    boolean isDoubleSided;
-    boolean isColour;
-
-    public PrinterItem(PaperSizes paperSize, int pageCount, boolean isDoubleSided, boolean isColour) {
-      if (!Objects.isNull(paperSize)) {
-        this.paperSize = paperSize;
-      } else {
-        throw new IllegalArgumentException();
-      }
-
-      if (pageCount > 0) {
-        this.pageCount = pageCount;
-      } else {
-        throw new IllegalArgumentException();
-      }
-
-      this.isColour = isColour;
-      this.isDoubleSided = isDoubleSided;
-
+  public PrinterItem(PaperSizes paperSize, int pageCount, boolean isDoubleSided, boolean isColour) {
+    if (!Objects.isNull(paperSize)) {
+      this.paperSize = paperSize;
+    } else {
+      throw new IllegalArgumentException();
     }
 
-  @Override
-  public String toString() {
-    return "PrinterItem{" +
-            "paperSize=" + paperSize +
-            ", pageCount=" + pageCount +
-            ", isDoubleSided=" + isDoubleSided +
-            ", isColour=" + isColour +
-            '}';
+    if (pageCount > 0) {
+      this.pageCount = pageCount;
+    } else {
+      throw new IllegalArgumentException();
+    }
+
+    this.isColour = isColour;
+    this.isDoubleSided = isDoubleSided;
+
   }
 }

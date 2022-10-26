@@ -25,7 +25,7 @@ public class PrinterQueue {
   /**
    * Empty the printer queue.
    */
-  public void emptyQueue () {
+  public void emptyQueue() {
     currentInstance.getPrinterQueue().clear();
   }
 
