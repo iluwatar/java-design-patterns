@@ -31,7 +31,7 @@ public class Customer {
   private final int id;
   private String name;
 
-  AddressHistory addressHistory;
+  private final AddressHistory addressHistory;
 
   /**
    * Create new customer.

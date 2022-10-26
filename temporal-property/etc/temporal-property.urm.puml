@@ -24,18 +24,19 @@ package com.iluwatar.temporalproperty {
     + setName(name : String)
   }
   class SimpleDate {
-    - day : int
-    - month : int
-    - today : SimpleDate {static}
-    - year : int
+    - clock : Clock {static}
+    - date : LocalDate
+    - setDate : SimpleDate {static}
+    ~ SimpleDate(date : LocalDate)
     ~ SimpleDate(year : int, month : int, day : int)
     + compareTo(otherDate : SimpleDate) : int
     + equals(o : Object) : boolean
+    + getDate() : LocalDate
     + getToday() : SimpleDate {static}
-    + hashCode() : int
     + setToday(newToday : SimpleDate) {static}
+    + toString() : String
   }
 }
 Customer -->  "-addressHistory" AddressHistory
-SimpleDate -->  "-today" SimpleDate
+SimpleDate -->  "-setDate" SimpleDate
 @enduml

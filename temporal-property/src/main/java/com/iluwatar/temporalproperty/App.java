@@ -22,8 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.temporalproperty;
 
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Temporal Property pattern is a property that changes over time.
@@ -35,6 +37,7 @@ package com.iluwatar.temporalproperty;
  * In particular, the history of all addresses are stored within a {@link AddressHistory}
  * instance which is an implementation of Temporal Property described as a Temporal Collection</p>
  */
+@Slf4j
 public class App {
 
   /**
@@ -45,7 +48,7 @@ public class App {
   public static void main(String[] args) {
     Customer john = new Customer(1234, "John");
 
-    // set today's calandar date to 1st January 2000
+    // set today's calendar date to 1st January 2000
     SimpleDate.setToday(new SimpleDate(2000, 1, 1));
 
     // set john's address at different points in time
@@ -59,11 +62,11 @@ public class App {
     SimpleDate.setToday(new SimpleDate(2000, 1, 2));
 
     // get john's address today
-    System.out.println("John lives at " + john.getAddress() + " today");
-    // get the address that john lived at on the 3rd of June 1997
-    System.out.println("John lived at " + john.getAddress(new SimpleDate(1997, 7, 3))
-            + " on the 3rd of June 1997");
+    LOGGER.info("John lives at " + john.getAddress() + " today");
 
+    // get the address that john lived at on the 3rd of June 1997
+    LOGGER.info("John lived at " + john.getAddress(new SimpleDate(1997, 7, 3))
+            + " on the 3rd of June 1997");
 
   }
 }
