@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.effectivity {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
@@ -15,16 +16,17 @@ package com.iluwatar.effectivity {
     + getStartDate() : SimpleDate
     + includes(arg : SimpleDate) : boolean
     + startingOn(date : SimpleDate) : DateRange {static}
+    + toString() : String
   }
   class Employment {
     - company : Company
     - effective : DateRange
     ~ Employment(company : Company, effective : DateRange)
-    ~ Employment(company : Company, startDate : SimpleDate)
-    ~ company() : Company
-    ~ end(endDate : SimpleDate)
-    ~ isEffectiveOn(arg : SimpleDate) : boolean
-    ~ setEffectivity(arg : DateRange)
+    + getCompany() : Company
+    + isEffectiveOn(arg : SimpleDate) : boolean
+    + setEffective(range : DateRange)
+    + setEnd(endDate : SimpleDate)
+    + toString() : String
   }
   class NamedObject {
     - name : String
@@ -36,25 +38,26 @@ package com.iluwatar.effectivity {
     + Person(name : String)
     ~ addEmployment(company : Company, startDate : SimpleDate)
     + addEmployment(employment : Employment)
-    ~ employments() : Employment[]
+    ~ getEmployments() : ArrayList<Employment>
   }
   class SimpleDate {
-    - day : int
-    - month : int
-    - today : SimpleDate {static}
-    - year : int
+    - clock : Clock {static}
+    - date : LocalDate
+    - setDate : SimpleDate {static}
+    ~ SimpleDate(date : LocalDate)
     ~ SimpleDate(year : int, month : int, day : int)
     + compareTo(otherDate : SimpleDate) : int
     + equals(o : Object) : boolean
+    + getDate() : LocalDate
     + getToday() : SimpleDate {static}
     + setToday(newToday : SimpleDate) {static}
     + toString() : String
   }
 }
-SimpleDate -->  "-today" SimpleDate
+SimpleDate -->  "-setDate" SimpleDate
 DateRange -->  "-startDate" SimpleDate
-Employment -->  "-company" Company
 Employment -->  "-effective" DateRange
+Employment -->  "-company" Company
 Person -->  "-employments" Employment
 Company --|> NamedObject 
 Person --|> NamedObject 

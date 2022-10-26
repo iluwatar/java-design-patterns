@@ -22,7 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.effectivity;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Effectivity pattern adds a time period to an object to show when it is effective.
@@ -34,6 +37,7 @@ package com.iluwatar.effectivity;
  * over certain periods of time. Each {@link Employment} contains a {@link DateRange}
  * that describes the range over which the employment is valid.</p>
  */
+@Slf4j
 public class App {
   /**
    * Main function.
@@ -55,9 +59,9 @@ public class App {
     // and has continued working there since.
     bob.addEmployment(bbCo, new SimpleDate(2008, 3, 19));
 
-    System.out.println("Bob's employments:");
-    for (Employment emp :bob.employments()){
-      System.out.println(emp.toString());
+    LOGGER.info("Bob's employments:");
+    for (Employment emp : bob.getEmployments()) {
+      LOGGER.info(emp.toString());
     }
   }
 

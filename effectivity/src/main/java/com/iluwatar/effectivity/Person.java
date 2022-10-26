@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.effectivity;
 
 import java.util.ArrayList;
@@ -37,12 +38,12 @@ class Person extends NamedObject {
     employments =  new ArrayList<>();
   }
 
-  Employment[] employments() {
-    return employments.toArray(new Employment[0]);
+  ArrayList<Employment> getEmployments() {
+    return employments;
   }
 
   void addEmployment(Company company, SimpleDate startDate) {
-    employments.add(new Employment(company, startDate));
+    employments.add(new Employment(company, DateRange.startingOn(startDate)));
   }
 
   public void addEmployment(Employment employment) {

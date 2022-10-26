@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.effectivity;
 
 /**
@@ -31,13 +32,8 @@ public class Employment {
   private DateRange effective;
   private Company company;
 
-  Company company() {
+  public Company getCompany() {
     return company;
-  }
-
-  Employment(Company company, SimpleDate startDate) {
-    this.company = company;
-    effective = DateRange.startingOn(startDate);
   }
 
   Employment(Company company, DateRange effective) {
@@ -45,20 +41,31 @@ public class Employment {
     this.effective = effective;
   }
 
-  void end(SimpleDate endDate) {
-    effective = new DateRange(effective.getStartDate(), endDate);
-  }
-
-  boolean isEffectiveOn(SimpleDate arg) {
+  /**
+   * Checks if the current employment is effective on the given date.
+   *
+   * @param arg Date to check if effective on.
+   * @return True if the employment is effective on the given date.
+   */
+  public boolean isEffectiveOn(SimpleDate arg) {
     return effective.includes(arg);
   }
 
-  void setEffectivity(DateRange arg) {
-    effective = arg;
+  /**
+   * Sets the end of the current employments effectiveness to the give date.
+   *
+   * @param endDate Date this employment should no longer be effective on.
+   */
+  public void setEnd(SimpleDate endDate) {
+    effective = new DateRange(effective.getStartDate(), endDate);
+  }
+
+  public void setEffective(DateRange range) {
+    effective = range;
   }
 
   @Override
   public String toString() {
-    return company().toString() + " : " + effective.toString();
+    return getCompany().toString() + " : " + effective.toString();
   }
 }

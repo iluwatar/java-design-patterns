@@ -39,52 +39,52 @@ public class EffectivityTests {
     duke = new Person("Duke");
     duke.addEmployment(india, new SimpleDate(1999,12,1));
     duke.addEmployment(peninsular, new SimpleDate(2000,4,1));
-    duke.employments()[0].end(new SimpleDate (2000,5,1));
+    duke.getEmployments().get(0).setEnd(new SimpleDate (2000,5,1));
   }
 
   @Test
   public void testAdditive() {
-    assertEquals(2, duke.employments().length);
+    assertEquals(2, duke.getEmployments().size());
     Employment actual = null;
-    for (int i = 0; i < duke.employments().length; i++) {
-      if (duke.employments()[i].isEffectiveOn(new SimpleDate(2000,6,1))) {
-        actual = duke.employments()[i];
+    for (int i = 0; i < duke.getEmployments().size(); i++) {
+      if (duke.getEmployments().get(i).isEffectiveOn(new SimpleDate(2000,6,1))) {
+        actual = duke.getEmployments().get(i);
         break;
       }
     }
     assertNotNull(actual);
-    assertEquals(peninsular, actual.company());
-    assertEquals("peninsular", actual.company().toString());
+    assertEquals(peninsular, actual.getCompany());
+    assertEquals("peninsular", actual.getCompany().toString());
   }
 
   @Test
   public void testRetro() {
-    duke.employments()[1].setEffectivity(DateRange.startingOn(new SimpleDate(2000,6,1)));
+    duke.getEmployments().get(1).setEffective(DateRange.startingOn(new SimpleDate(2000,6,1)));
     duke.addEmployment(new Employment(dublin, new DateRange(new SimpleDate(2000,5,1), new SimpleDate(2000,5,31))));
     Employment april = null;
-    for (int i = 0; i < duke.employments().length; i++) {
-      if (duke.employments()[i].isEffectiveOn(new SimpleDate(2000,4,10))) {
-        april = duke.employments()[i];
+    for (int i = 0; i < duke.getEmployments().size(); i++) {
+      if (duke.getEmployments().get(i).isEffectiveOn(new SimpleDate(2000,4,10))) {
+        april = duke.getEmployments().get(i);
         break;
       }
     }
     assertNotNull(april);
-    assertEquals(india, april.company());
+    assertEquals(india, april.getCompany());
     Employment may = null;
-    for (int i = 0; i < duke.employments().length; i++) {
-      if (duke.employments()[i].isEffectiveOn(new SimpleDate(2000,5,10))) {
-        may = duke.employments()[i];
+    for (int i = 0; i < duke.getEmployments().size(); i++) {
+      if (duke.getEmployments().get(i).isEffectiveOn(new SimpleDate(2000,5,10))) {
+        may = duke.getEmployments().get(i);
         break;
       }
     }
     assertNotNull(may);
-    assertEquals(dublin, may.company());
+    assertEquals(dublin, may.getCompany());
   }
 
   @Test
   public void correctEmploymentEffectiveDates(){
-    Employment employment = new Employment(dublin, new SimpleDate(1,1,1));
-    employment.end(new SimpleDate(2,2,2));
+    Employment employment = new Employment(dublin, DateRange.startingOn(new SimpleDate(1,1,1)));
+    employment.setEnd(new SimpleDate(2,2,2));
     assertFalse(employment.isEffectiveOn(new SimpleDate(0,12,31)));
     assertFalse(employment.isEffectiveOn(new SimpleDate(2,2,3)));
     assertTrue(employment.isEffectiveOn(new SimpleDate(1,1,1)));

@@ -52,18 +52,24 @@ Here are the relevant parts of `Person`
 class Person extends NamedObject {
   private final ArrayList<Employment> employments;
 
-  Employment[] employments() {
-    return employments.toArray(new Employment[0]);
+  public Person(String name) {
+    super(name);
+    employments =  new ArrayList<>();
+  }
+
+  ArrayList<Employment> getEmployments() {
+    return employments;
   }
 
   void addEmployment(Company company, SimpleDate startDate) {
-    employments.add(new Employment(company, startDate));
+    employments.add(new Employment(company, DateRange.startingOn(startDate)));
   }
 
   public void addEmployment(Employment employment) {
     employments.add(employment);
   }
 }
+
 ```
 
 The relevant parts of `Employment`,
@@ -76,13 +82,17 @@ public class Employment {
     this.company = company;
     this.effective = effective;
   }
-
-  void end(SimpleDate endDate) {
+  
+  public boolean isEffectiveOn(SimpleDate arg) {
+    return effective.includes(arg);
+  }
+  
+  public void setEnd(SimpleDate endDate) {
     effective = new DateRange(effective.getStartDate(), endDate);
   }
 
-  boolean isEffectiveOn(SimpleDate arg) {
-    return effective.includes(arg);
+  public void setEffective(DateRange range) {
+    effective = range;
   }
 }
 ```
@@ -97,7 +107,7 @@ a span of time
 
     // Bob was employed at A Inc from the 2nd of June 2003, until 4th of February 2008
     DateRange aaIncPeriod = new DateRange(new SimpleDate(2003, 6, 2),
-            new SimpleDate(2008, 2, 4));
+    new SimpleDate(2008, 2, 4));
     Employment aaIncEmployment = new Employment(aaInc, aaIncPeriod);
     bob.addEmployment(aaIncEmployment);
 
@@ -105,9 +115,9 @@ a span of time
     // and has continued working there since.
     bob.addEmployment(bbCo, new SimpleDate(2008, 3, 19));
 
-    System.out.println("Bob's employments:");
-    for (Employment emp :bob.employments()){
-      System.out.println(emp.toString());
+    LOGGER.info("Bob's employments:");
+    for (Employment emp : bob.getEmployments()) {
+    LOGGER.info(emp.toString());
     }
   }
 ```
@@ -115,8 +125,8 @@ a span of time
 Has an output of 
 ```
 Bob's employments:
-AA inc : (2003, 6, 2 : 2008, 2, 4)
-BB Company : (2008, 3, 19 : )
+AA inc : (2003-06-02 : 2008-02-04)
+BB Company : (2008-03-19 : +99999-12-31)
 ```
 
 
@@ -132,8 +142,11 @@ Use the Effectivity pattern when
 
 ## Consequences
 
-Effectivity pattern allows for simple temporal behaviour that relies on client awareness for 
-processing.
+Pros:
+* Allows for simple temporal behaviour.
+
+Cons:
+* Replies on client awareness of the temporality for processing.
 
 ## Related patterns
 
