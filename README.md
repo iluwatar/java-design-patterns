@@ -361,7 +361,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/LeseChe"><img src="https://avatars.githubusercontent.com/u/79553089?v=4?s=100" width="100px;" alt="Qixiang Chen"/><br /><sub><b>Qixiang Chen</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=LeseChe" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/shouryamanekar"><img src="https://avatars.githubusercontent.com/u/72398499?v=4?s=100" width="100px;" alt="Shourya Manekar"/><br /><sub><b>Shourya Manekar</b></sub></a><br /><a href="#translation-shouryamanekar" title="Translation">🌍</a></td>
       <td align="center"><a href="https://seongkyu-lim.github.io/Blog/"><img src="https://avatars.githubusercontent.com/u/55138532?v=4?s=100" width="100px;" alt="Alan"/><br /><sub><b>Alan</b></sub></a><br /><a href="#translation-seongkyu-lim" title="Translation">🌍</a></td>
-      <td align="center"><a href="https://github.com/JanFidor"><img src="https://avatars.githubusercontent.com/u/66260538?v=4?s=100" width="100px;" alt="JanFidor"/><br /><sub><b>JanFidor</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=JanFidor" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/JanFidor"><img src="https://avatars.githubusercontent.com/u/66260538?v=4?s=100" width="100px;" alt="JanFidor"/><br /><sub><b>JanFidor</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=JanFidor" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=JanFidor" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
