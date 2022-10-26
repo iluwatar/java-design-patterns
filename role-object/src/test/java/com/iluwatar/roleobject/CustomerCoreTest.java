@@ -79,11 +79,11 @@ class CustomerCoreTest {
   void toStringTest() {
     var core = new CustomerCore();
     core.addRole(Role.BORROWER);
-    assertEquals("Customer{roles=[Borrower]}", core.toString());
+    assertEquals("Customer{roles=[BORROWER]}", core.toString());
 
     core = new CustomerCore();
     core.addRole(Role.INVESTOR);
-    assertEquals("Customer{roles=[Investor]}", core.toString());
+    assertEquals("Customer{roles=[INVESTOR]}", core.toString());
 
     core = new CustomerCore();
     assertEquals("Customer{roles=[]}", core.toString());
