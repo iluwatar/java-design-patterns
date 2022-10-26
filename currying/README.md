@@ -100,7 +100,15 @@ public interface AddPublicationDate {
 Book withPublicationDate(LocalDate publicationDate);
 }
 ```
-The semantics of the `builder` function can easily be understood. The `builder` function returns a function `AddGenre`, which adds the genre to the book. Similarity, the `AddGenre` function returns another function `AddTitle`, which adds the title to the book and so on, until the `AddPublicationDate` function returns a `Book`. The below example demonstrates how partial application can be used with the `builder` function to create specialised book builder functions.
+The semantics of the `builder` function can easily be understood. The `builder` function returns a function `AddGenre`, which adds the genre to the book. Similarity, the `AddGenre` function returns another function `AddTitle`, which adds the title to the book and so on, until the `AddPublicationDate` function returns a `Book`. 
+For example, we could create a `Book` as follows:
+```java
+Book book = Book.builder().withGenre(Genre.FANTAST)
+        .withAuthor("Author")
+        .withTitle("Title")
+        .withPublicationDate(LocalDate.of(2000, 7, 2));
+```
+The below example demonstrates how partial application can be used with the `builder` function to create specialised book builder functions.
 ```java
 public static void main(String[] args) {
     LOGGER.info("Librarian begins their work.");
@@ -176,6 +184,9 @@ Pros
 Cons
 * The order of the parameters in a curried function is important since we want to take advantage of partial application. It is best to input the most general parameters first and input specific parameters last. 
 * As shown in the programmatic example above, curried functions with several parameters have a cumbersome type signature (in Java).
+
+## Related patterns
+* [Builder patter](https://java-design-patterns.com/patterns/builder/)
 
 ## Credits
 * [Currying in Java](https://www.baeldung.com/java-currying)
