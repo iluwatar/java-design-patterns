@@ -40,7 +40,6 @@
     <spring-boot.version>2.7.5</spring-boot.version>
     <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <guava.version>19.0</guava.version>
     <htmlunit.version>2.66.0</htmlunit.version>
     <guice.version>4.0</guice.version>
     <mongo-java-driver.version>3.12.8</mongo-java-driver.version>
@@ -225,9 +224,6 @@
         <version>${commons-dbcp.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${guava.version}</version>
       </dependency>
       <dependency>
         <groupId>net.sourceforge.htmlunit</groupId>
