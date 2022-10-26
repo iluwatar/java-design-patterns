@@ -6,18 +6,23 @@ permalink: /patterns/lock-manager/
 categories: Concurrency
 language: en
 tags:
- - Security
- - Data access
+
+- Security
+- Data access
+
 ---
 
 ## Intent
+
 Lock-Manager design pattern is used to allow
 for the management of locks by reference as opposed to an instance.
 
 ## Class diagram
-![alt text](./etc/lazy-loading.png "Lazy Loading")
+
+![alt text](./etc/lock-manager.puml "Lock Manager")
 
 ## Applicability
+
 Use the Lock-Manager design pattern when:
 
 * there is a requirement for a centralization of lock information.

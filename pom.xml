@@ -232,6 +232,7 @@
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
+    <module>lock-manager</module>
   </modules>
   <repositories>
     <repository>
