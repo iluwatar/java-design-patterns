@@ -1,12 +1,12 @@
---- 
+---
 layout: pattern
 title: Audit Log
 folder: audit-log
 permalink: /patterns/audit-log/ 
 categories:
 - creational 
-  language: en 
-  tags:
+language: en 
+tags:
 - Security
 - Data Access
 ---
