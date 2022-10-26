@@ -22,15 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.auditlog;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The AuditLog pattern is a simple log of changes, intended to be easily written and non-intrusive.
@@ -43,6 +42,7 @@ import java.nio.file.StandardOpenOption;
  * properties of the {@link Customer} class change, which is then stored within the file
  * <a href="file:./etc/log.txt">/etc/log.txt</a>. </p>
  */
+@Slf4j
 public class App {
   /**
    * Main method.
@@ -51,13 +51,12 @@ public class App {
    */
   public static void main(String[] args) {
     // empty the log file (don't do this) so that the pattern's size doesn't increase over time.
-    try{
+    try {
       Files.write(AuditLog.getLogFile().toPath(), "".getBytes(StandardCharsets.UTF_8),
               StandardOpenOption.TRUNCATE_EXISTING);
     } catch (IOException e) {
-      System.out.println("Failed to clear log file.");
+      LOGGER.info("Failed to clear log file.");
     }
-
     SimpleDate.setToday(new SimpleDate(2000, 5, 7));
     Customer john = new Customer("John Smith", 1);
 
@@ -67,20 +66,10 @@ public class App {
     SimpleDate.setToday(new SimpleDate(2001, 6, 3));
 
     // note that john's address and name have changed in the past
-    john.setName("John Johnson", new SimpleDate(2001, 4, 17));
+    john.setName("John Dough", new SimpleDate(2001, 4, 17));
     john.setAddress("4321 House Ave", new SimpleDate(2000, 8, 23));
 
     // Print out the log file.
-    try {
-      File logFile = AuditLog.getLogFile();
-      BufferedReader br = new BufferedReader(new FileReader(logFile));
-      String line;
-      while ((line = br.readLine()) != null) {
-        System.out.println(line);
-      }
-    } catch (IOException e) {
-      System.out.println("Failed to get log file for reading.");
-    }
-
+    LOGGER.info(AuditLog.auditToString());
   }
 }

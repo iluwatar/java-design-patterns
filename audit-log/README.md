@@ -32,7 +32,7 @@ Real-world example
 
 In plain words
 
-> Whenever a some property changes, log the change in a file.
+> Whenever some property changes, log the change in a file.
 
 Wikipedia says
 
@@ -41,7 +41,8 @@ Wikipedia says
 > sequence of activities that have affected at any time a specific operation, procedure, event, 
 > or device.  
 
-**Programmatic Example**
+**Programmatic Example**:
+
 In this example implementation, `Customer` is an object that is being logged by an Audit Log, 
 `AuditLog`, and changes to the `Customer`'s address, or name will be logged by the logger.
 
@@ -112,12 +113,11 @@ Then, with an empty log file, we have an application using the log.
   }
 ```
 
-Then, the log file after this has been run is 
+Then, the formatted log file after this has been run is 
 ```
-2000, 5, 7	1	John Smith	change of address	null	1234 Street St	1999, 1, 4
-2001, 6, 3	1	John Smith	change of name	John Smith	John Johnson	2001, 4, 17
-2001, 6, 3	1	John Johnson	change of address	1234 Street St	4321 House Ave	2000, 8, 23
-
+2000-05-07  1  John Smith  change of address  null            1234 Street St  1999-01-04
+2001-06-03  1  John Smith  change of name     John Smith      John Dough      2001-04-17
+2001-06-03  1  John Dough  change of address  1234 Street St  4321 House Ave  2000-08-23
 ```
 
 ## Class diagram
@@ -127,7 +127,7 @@ Then, the log file after this has been run is
 ## Applicability
 
 Use the Audit Log pattern when 
-* You want simple Temporality
+* You want to track changes to temporal properties in your implementation
 
 ## Tutorials
 
@@ -138,14 +138,17 @@ Use the Audit Log pattern when
 [Log4j Audit](https://logging.apache.org/log4j-audit/latest/index.html)
 
 ## Consequences
-* Have a simple history of changes.
+Pros:
+* Have a simple log of temporal variable changes.
+
+Cons:
 * Is difficult to process, the tighter the accessing of temporal information is integrated, the 
   less useful Audit Logs are.
 
 ## Related patterns
-[Temporal Property](https://martinfowler.com/eaaDev/TemporalProperty.html)
-[Temporal Object](https://martinfowler.com/eaaDev/TemporalObject.html)
-[Effectivity](https://martinfowler.com/eaaDev/Effectivity.html)
+* [Temporal Property](https://martinfowler.com/eaaDev/TemporalProperty.html)
+* [Temporal Object](https://martinfowler.com/eaaDev/TemporalObject.html)
+* [Effectivity](https://martinfowler.com/eaaDev/Effectivity.html)
 
 ## Credits
-[Martin Fowler](https://martinfowler.com/eaaDev/AuditLog.html)
+* [Martin Fowler](https://martinfowler.com/eaaDev/AuditLog.html)

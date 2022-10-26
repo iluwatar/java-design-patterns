@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.auditlog;
 
 /**
@@ -37,11 +38,23 @@ public class Customer {
     this.id = id;
   }
 
+  /**
+   * Sets the current address of this customer with the change occurring on the given date.
+   *
+   * @param address Address that the customer is changing to.
+   * @param changeDate The date that the customer changed address.
+   */
   public void setAddress(String address, SimpleDate changeDate) {
     AuditLog.log(changeDate, this, "change of address", this.address, address);
     this.address = address;
   }
 
+  /**
+   * Sets the name of this customer with the change occurring on the given date.
+   *
+   * @param name Name that the customer is changing to.
+   * @param changeDate The date that the customer changed name.
+   */
   public void setName(String name, SimpleDate changeDate) {
     AuditLog.log(changeDate, this, "change of name", this.name, name);
     this.name = name;

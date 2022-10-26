@@ -22,16 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.auditlog;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
 
 /**
- * AuditLog is an implementation of the AuditLog design pattern.
+ * AuditLog is an implementation of the AuditLog design pattern, and on changes to specific temporal
+ * properties on other classes, the AuditLog will write a description of the change to its current
+ * logging file.
  *
  * @see <a href="https://martinfowler.com/eaaDev/AuditLog.html"> https://martinfowler.com/eaaDev/AuditLog.html </a>
  */
@@ -102,5 +107,27 @@ public class AuditLog {
       setLogFile(new File(defaultLog));
     }
     return logFile;
+  }
+
+  /**
+   * Returns a string representation of the current audit file's contents.
+   *
+   * @return String of audit file contents.
+   */
+  public static String auditToString() {
+    StringBuilder outString = new StringBuilder();
+
+    try {
+      File logFile = AuditLog.getLogFile();
+      BufferedReader br = new BufferedReader(new FileReader(logFile));
+      String line;
+      while ((line = br.readLine()) != null) {
+        outString.append(line).append("\n");
+      }
+    } catch (IOException e) {
+      return "Failed to read audit log \n";
+    }
+
+    return outString.toString();
   }
 }

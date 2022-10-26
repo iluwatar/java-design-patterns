@@ -1,6 +1,7 @@
 @startuml
 package com.iluwatar.auditlog {
   class App {
+    - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
   }
@@ -8,6 +9,7 @@ package com.iluwatar.auditlog {
     - defaultLog : String {static}
     - logFile : File {static}
     + AuditLog()
+    + auditToString() : String {static}
     + getLogFile() : File {static}
     + log(date : SimpleDate, customer : Customer, description : String, oldValue : Object, newValue : Object) {static}
     + setLogFile(file : File) {static}
@@ -25,18 +27,18 @@ package com.iluwatar.auditlog {
     + setName(name : String, changeDate : SimpleDate)
   }
   class SimpleDate {
-    - day : int
-    - month : int
-    - today : SimpleDate {static}
-    - year : int
+    - clock : Clock {static}
+    - date : LocalDate
+    - setDate : SimpleDate {static}
+    ~ SimpleDate(date : LocalDate)
     ~ SimpleDate(year : int, month : int, day : int)
     + compareTo(otherDate : SimpleDate) : int
     + equals(o : Object) : boolean
+    + getDate() : LocalDate
     + getToday() : SimpleDate {static}
-    + hashCode() : int
     + setToday(newToday : SimpleDate) {static}
     + toString() : String
   }
 }
-SimpleDate -->  "-today" SimpleDate
+SimpleDate -->  "-setDate" SimpleDate
 @enduml

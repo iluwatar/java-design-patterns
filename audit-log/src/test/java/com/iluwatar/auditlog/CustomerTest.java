@@ -33,6 +33,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.time.Instant;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,7 +58,7 @@ public class CustomerTest {
       fail("Failed to set log file.");
     }
     // putting different addresses as time changes
-    SimpleDate.setToday(new SimpleDate(1996,1,1));
+    SimpleDate.setToday(new SimpleDate(1996, 1, 1));
     martin = new Customer ("Martin", 15);
   }
 
@@ -98,7 +99,11 @@ public class CustomerTest {
 
     try{
       String outString = Files.readString(logFile.toPath());
-      System.out.println(outString);
+      assertEquals(
+              "1996-01-01	15	Martin	change of address	null	961 Franklin St	1996-07-01\n"
+              + "1997-01-03	15	Martin	change of address	961 Franklin St	88 Worcester St	" +
+                      "1996-07-15\n"
+              + "1997-01-03	15	Martin	change of name	Martin	John	1996-07-15\n", outString);
 
     } catch (IOException e) {
       fail("Log file reading failed, with exception " + e.toString());
