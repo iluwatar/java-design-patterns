@@ -66,37 +66,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-            <groupId>com.iluwatar.urm</groupId>
-            <artifactId>urm-maven-plugin</artifactId>
-            <version>2.0.0</version>
-            <configuration>
-                <!-- if outputDirectory is not set explicitly it will default to your build dir -->
-                <outputDirectory>${project.basedir}/etc</outputDirectory>
-                <packages>
-                    <param>com.iluwatar.remotefacade.dto.Customerdto</param>
-                    <param>com.iluwatar.remotefacade.domain.Customer</param>
-                    <param>com.iluwatar.remotefacade.domain.Domain</param>
-                    <param>com.iluwatar.remotefacade.assemblersfacades.Customerdtoassembler</param>
-                    <param>com.iluwatar.remotefacade.assemblersfacades.RemoteFacade</param>
-                    <param>com.iluwatar.remotefacade.Client</param>
-                </packages>
-                <ignores>
-                    <param>com.iluwatar.remotefacade.test</param>
-                </ignores>
-                <includeMainDirectory>true</includeMainDirectory>
-                <includeTestDirectory>false</includeTestDirectory>
-                <presenter>graphviz</presenter>
-            </configuration>
-            <executions>
-                <execution>
-                    <phase>process-classes</phase>
-                    <goals>
-                        <goal>map</goal>
-                    </goals>
-                </execution>
-            </executions>
-        </plugin>
         </plugins>
     </build>
 </project>
