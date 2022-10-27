@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Module
-folder: module
-permalink: /patterns/module/
-categories: Structural
+category: Structural
 language: en
 tags:
  - Decoupling

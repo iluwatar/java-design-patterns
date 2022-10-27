@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Version Number
-folder: version-number
-permalink: /patterns/version-number/
-categories: Concurrency
+category: Concurrency
 language: en
 tags:
  - Data access

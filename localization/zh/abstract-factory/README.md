@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Abstract Factory
-folder: abstract-factory
-permalink: /patterns/abstract-factory/
-categories: Creational
+category: Creational
 language: zh
 tags:
  - Gang of Four
@@ -168,7 +165,7 @@ public static void main(String[] args) {
 
 ## 类图
 
-![alt text](../../../abstract-factory/etc/abstract-factory.urm.png "Abstract Factory class diagram")
+![alt text](etc/abstract-factory.urm.png "Abstract Factory class diagram")
 
 
 ## 适用性

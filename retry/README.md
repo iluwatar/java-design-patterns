@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Retry
-folder: retry
-permalink: /patterns/retry/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
   - Performance
