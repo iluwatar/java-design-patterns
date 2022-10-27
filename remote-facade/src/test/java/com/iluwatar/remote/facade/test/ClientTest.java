@@ -1,11 +1,11 @@
-import com.iluwatar.remote.facade.AssemblersFacades.CustomerDTOAssembler;
+package com.iluwatar.remote.facade.test;
+
+import com.iluwatar.remote.facade.AssemblersFacades.Customerdtoassembler;
 import com.iluwatar.remote.facade.AssemblersFacades.RemoteFacade;
 import com.iluwatar.remote.facade.Domain.Customer;
 import com.iluwatar.remote.facade.Domain.Domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
-import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
@@ -16,7 +16,7 @@ public class ClientTest {
 
     @Test
     public void checkClientAMY(){
-        RemoteFacade.makeClient(CustomerDTOAssembler.makeCustomerDTO(AMY));
+        RemoteFacade.makeClient(Customerdtoassembler.makeCustomerdto(AMY));
         Assertions.assertEquals("Amy Adams", Domain.customers.get(1).getName());
         Assertions.assertEquals("0490490490", Domain.customers.get(1).getPhone());
         Assertions.assertEquals("88 Radford Street", Domain.customers.get(1).getAddress());
@@ -24,7 +24,7 @@ public class ClientTest {
     }
     @Test
     public void checkClientJOHN(){
-        RemoteFacade.makeClient(CustomerDTOAssembler.makeCustomerDTO(JOHN));
+        RemoteFacade.makeClient(Customerdtoassembler.makeCustomerdto(JOHN));
         Assertions.assertEquals("John Adams", Domain.customers.get(0).getName());
         Assertions.assertEquals("0449944994", Domain.customers.get(0).getPhone());
         Assertions.assertEquals("12 Kingsford Street", Domain.customers.get(0).getAddress());
