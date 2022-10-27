@@ -1,9 +1,9 @@
-package com.iluwatar.remote.facade.test;
+package com.iluwatar.remotefacade.test;
 
-import com.iluwatar.remote.facade.AssemblersFacades.Customerdtoassembler;
-import com.iluwatar.remote.facade.AssemblersFacades.RemoteFacade;
-import com.iluwatar.remote.facade.Domain.Customer;
-import com.iluwatar.remote.facade.Domain.Domain;
+import com.iluwatar.remotefacade.assemblersfacades.Customerdtoassembler;
+import com.iluwatar.remotefacade.assemblersfacades.RemoteFacade;
+import com.iluwatar.remotefacade.domain.Customer;
+import com.iluwatar.remotefacade.domain.Domain;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

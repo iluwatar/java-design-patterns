@@ -1,5 +1,5 @@
 
-import com.iluwatar.remote.facade.Client;
+import com.iluwatar.remotefacade.Client;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

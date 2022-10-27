@@ -59,7 +59,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.iluwatar.remote.facade.Client</mainClass>
+                                    <mainClass>com.iluwatar.remotefacade.Client</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

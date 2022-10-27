@@ -1,6 +1,5 @@
-package com.iluwatar.remote.facade.AssemblersFacades;
-
-import com.iluwatar.remote.facade.DTOs.Customerdto;
+package com.iluwatar.remotefacade.assemblersfacades;
+import com.iluwatar.remotefacade.dto.Customerdto;
 
 /**
  * Use the Assembler to create the facade here.

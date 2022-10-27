@@ -1,8 +1,8 @@
-package com.iluwatar.remote.facade;
-import com.iluwatar.remote.facade.AssemblersFacades.Customerdtoassembler;
-import com.iluwatar.remote.facade.AssemblersFacades.RemoteFacade;
-import com.iluwatar.remote.facade.Domain.Customer;
-import com.iluwatar.remote.facade.Domain.Domain;
+package com.iluwatar.remotefacade;
+import com.iluwatar.remotefacade.assemblersfacades.Customerdtoassembler;
+import com.iluwatar.remotefacade.assemblersfacades.RemoteFacade;
+import com.iluwatar.remotefacade.domain.Customer;
+import com.iluwatar.remotefacade.domain.Domain;
 import java.util.ArrayList;
 import lombok.extern.slf4j.Slf4j;
 /**

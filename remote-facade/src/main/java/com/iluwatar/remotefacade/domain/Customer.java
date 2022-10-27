@@ -1,4 +1,4 @@
-package com.iluwatar.remote.facade.Domain;
+package com.iluwatar.remotefacade.domain;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
