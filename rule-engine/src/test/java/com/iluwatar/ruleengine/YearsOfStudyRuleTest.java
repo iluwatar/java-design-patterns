@@ -28,18 +28,37 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class Employement {
+public class YearsOfStudyRuleTest {
   @Test
-  void TestA() {
-    var candidate = new Candidate();
-    candidate.setLengthOfEmployment(5);
-    AssetsRule rule = new AssetsRule();
-    assertEquals(0, rule.runRule(candidate));}
-  @Test
-  void TestB() {
-    var candidate = new Candidate();
-    candidate.setAssets(13);
-    LengthOfEmploymentRule a = new LengthOfEmploymentRule();
-    assertEquals(0, a.runRule(candidate));}
+  void testShouldRun() {
+    Candidate candidate = new Candidate();
+    YearsOfStudyRule rule = new YearsOfStudyRule();
 
+    assertEquals(false, rule.shouldRun(candidate));
+
+    candidate.setYearsOfStudy(5);
+    assertEquals(true, rule.shouldRun(candidate));
+  }
+
+
+  @Test
+  void testRunRule() {
+    Candidate candidate = new Candidate();
+    YearsOfStudyRule rule = new YearsOfStudyRule();
+
+    candidate.setYearsOfStudy(1);
+    assertEquals(5, rule.runRule(candidate));
+
+    candidate.setYearsOfStudy(2);
+    assertEquals(10, rule.runRule(candidate));
+
+    candidate.setYearsOfStudy(3);
+    assertEquals(15, rule.runRule(candidate));
+
+    candidate.setYearsOfStudy(4);
+    assertEquals(20, rule.runRule(candidate));
+
+    candidate.setYearsOfStudy(5);
+    assertEquals(25, rule.runRule(candidate));
+  }
 }

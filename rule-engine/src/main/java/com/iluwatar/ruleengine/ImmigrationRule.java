@@ -26,13 +26,11 @@ package com.iluwatar.ruleengine;
 
 public interface ImmigrationRule {
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * @param candidate: the current candidate
    */
   public boolean shouldRun(Candidate candidate);
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * @param candidate: the current candidate
    */
   public int runRule(Candidate candidate);
 }

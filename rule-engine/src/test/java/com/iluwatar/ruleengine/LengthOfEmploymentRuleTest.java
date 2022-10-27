@@ -28,24 +28,27 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class YearsTest {
+public class LengthOfEmploymentRuleTest {
   @Test
-  void TestB() {
-    var candidate = new Candidate();
+  void testShouldRun() {
+    Candidate candidate = new Candidate();
 
-    YearsOfStudyRule rule = new YearsOfStudyRule();
-    assertEquals(false, rule.shouldRun(candidate));}
+    LengthOfEmploymentRule rule = new LengthOfEmploymentRule();
+    assertEquals(false, rule.shouldRun(candidate));
 
-
+    candidate.setLengthOfEmployment(5);
+    assertEquals(true, rule.shouldRun(candidate));
+  }
 
   @Test
-  void TestA() {
-    var candidate = new Candidate();
-    candidate.setYearsOfStudy(6);
-    YearsOfStudyRule rule = new YearsOfStudyRule();
-    assertEquals(20, rule.runRule(candidate));}
+  void testRunRule() {
+    Candidate candidate = new Candidate();
+    LengthOfEmploymentRule rule = new LengthOfEmploymentRule();
 
+    candidate.setLengthOfEmployment(13);
+    assertEquals(10, rule.runRule(candidate));
 
-
-
+    candidate.setLengthOfEmployment(7);
+    assertEquals(5, rule.runRule(candidate));
+  }
 }

@@ -28,20 +28,33 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class CloseTest {
+public class TertiaryQualificationRuleTest {
   @Test
-  void TestB() {
-    var candidate = new Candidate();
+  void testShouldRun() {
+    Candidate candidate = new Candidate();
+    TertiaryQualificationRule rule = new TertiaryQualificationRule();
 
-    CloseFamilyRule rule = new CloseFamilyRule();
-    assertEquals(false, rule.shouldRun(candidate));}
+    assertEquals(false, rule.shouldRun(candidate));
 
-
+    candidate.setTertiaryQualification("Doctoral degree");
+    assertEquals(true, rule.shouldRun(candidate));
+  }
 
   @Test
-  void TestA() {
-    var candidate = new Candidate();
-    candidate.setCloseFamilyTies("Spouse");
-    CloseFamilyRule rule = new CloseFamilyRule();
-    assertEquals(20, rule.runRule(candidate));}
+  void testRunRule() {
+    Candidate candidate = new Candidate();
+    TertiaryQualificationRule rule = new TertiaryQualificationRule();
+
+    candidate.setTertiaryQualification("Doctoral degree");
+    assertEquals(20, rule.runRule(candidate));
+
+    candidate.setTertiaryQualification("Master degree");
+    assertEquals(15, rule.runRule(candidate));
+
+    candidate.setTertiaryQualification("Bachelor degree");
+    assertEquals(10, rule.runRule(candidate));
+
+    candidate.setTertiaryQualification("Diploma degree");
+    assertEquals(5, rule.runRule(candidate));
+  }
 }

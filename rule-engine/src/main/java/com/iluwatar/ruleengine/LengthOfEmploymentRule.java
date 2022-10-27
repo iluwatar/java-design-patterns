@@ -54,10 +54,8 @@ public class LengthOfEmploymentRule implements ImmigrationRule {
     if (candidate.getLengthOfEmployment() >= 12) {
       return 10;
     }
-    if (candidate.getLengthOfEmployment() >= 6) {
-      return 5;
-    }
-    return 0;
+
+    return 5;
   }
 
 }

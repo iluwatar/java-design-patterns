@@ -52,7 +52,7 @@ public class LengthOfResidenceRule implements ImmigrationRule {
    */
   @Override
   public int runRule(Candidate candidate) {
-
+    int length = candidate.getLengthOfCurrentResidence();
     switch (length) {
       case 1:
         return 5;

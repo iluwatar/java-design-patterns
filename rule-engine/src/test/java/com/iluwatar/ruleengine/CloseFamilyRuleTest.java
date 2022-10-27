@@ -28,25 +28,28 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class AssetsTest {
-
-
-    @Test
-    void TestA() {
-      var candidate = new Candidate();
-      candidate.setAssets(5);
-      AssetsRule rule = new AssetsRule();
-      assertEquals(0, rule.runRule(candidate));}
+public class CloseFamilyRuleTest {
   @Test
-  void TestB() {
-    var candidate = new Candidate();
-    candidate.setAssets(250000);
-    AssetsRule a = new AssetsRule();
-    assertEquals(5, a.runRule(candidate));}
+  void testShouldRun() {
+    Candidate candidate = new Candidate();
+
+    CloseFamilyRule rule = new CloseFamilyRule();
+    assertEquals(false, rule.shouldRun(candidate));
+
+    candidate.setCloseFamilyTies("Spouse");
+    assertEquals(true, rule.shouldRun(candidate));
+  }
 
 
+  @Test
+  void testRunRule() {
+    Candidate candidate = new Candidate();
+    CloseFamilyRule rule = new CloseFamilyRule();
 
+    candidate.setCloseFamilyTies("Spouse");
+    assertEquals(20, rule.runRule(candidate));
 
-
-
+    candidate.setCloseFamilyTies("Parent");
+    assertEquals(10, rule.runRule(candidate));
+  }
 }

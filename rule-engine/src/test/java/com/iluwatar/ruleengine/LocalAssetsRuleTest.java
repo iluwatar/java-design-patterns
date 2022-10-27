@@ -28,18 +28,26 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class Tertiary {
+public class LocalAssetsRuleTest {
+  @Test
+  void testShouldRun() {
+    Candidate candidate = new Candidate();
+    LocalAssetsRule rule = new LocalAssetsRule();
+
+    assertEquals(false, rule.runRule(candidate));
+
+    candidate.setLocalAssets(12000);
+    assertEquals(true, rule.runRule(candidate));
+  }
 
   @Test
-  void TestA() {
-    var candidate = new Candidate();
-    candidate.setTertiaryQualification("Doctoral degree");
-    TertiaryQualificationRule rule = new TertiaryQualificationRule();
-    assertEquals(20, rule.runRule(candidate));}
-  @Test
-  void TestB() {
-    var candidate = new Candidate();
-    candidate.setTertiaryQualification("Master degree");
-    TertiaryQualificationRule c = new TertiaryQualificationRule();
-    assertEquals(15, c.runRule(candidate));}
+  void testRunRule() {
+    Candidate candidate = new Candidate();
+    candidate.setLocalAssets(250000);
+    LocalAssetsRule rule = new LocalAssetsRule();
+
+    assertEquals(5, rule.runRule(candidate));
+  }
+
+
 }
