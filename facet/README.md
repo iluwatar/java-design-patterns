@@ -44,7 +44,7 @@ public class Knight {
   private Attack attack;
   private DragonFacet dragonFacet;
 
-  public Knight (String name, Attack attack, DragonFacet dragonFacet) {
+  public Knight(String name, Attack attack, DragonFacet dragonFacet) {
     this.name = name;
     this.attack = attack;
     this.dragonFacet = dragonFacet;
@@ -53,7 +53,7 @@ public class Knight {
   public void attackDragon() {
     int oldHealth = dragonFacet.getHealth();
     dragonFacet.receiveAttack(attack);
-    if(oldHealth == dragonFacet.getHealth()){
+    if (oldHealth == dragonFacet.getHealth()) {
       LOGGER.info("{}: Darn it! {} did nothing.", name, attack);
     } else {
       LOGGER.info("{}: Huzzah! {} hurt that dastardly dragon.", name, attack);
@@ -87,16 +87,16 @@ public class Dragon {
     this.health = health;
   }
 
-  int f_getHealth() {
+  int facetedGetHealth() {
     return health;
   }
-
+  
   void setHealth(int health) {
     this.health = health;
   }
 
-  void f_receiveAttack(Attack attack) {
-    switch(attack) {
+  void facetedReceiveAttack(Attack attack) {
+    switch (attack) {
       case ARROW:
         health -= 10;
         break;
@@ -114,6 +114,19 @@ Then we have the `DragonFacet` to add control to `Dragon`.
 
 ```java
 @Slf4j
+package com.iluwatar.facet.dragon;
+
+import com.iluwatar.facet.Attack;
+import lombok.extern.slf4j.Slf4j;
+
+/**
+ * The facet class which acts as an interface/wrapper for {@link Dragon}.
+ * It only allows access to the methods with names beginning
+ * with 'faceted', and also checks in receiveAttack() what
+ * the type of attack is, so that it can filter some illegal
+ * values.
+ */
+@Slf4j
 public class DragonFacet {
   private Dragon dragon;
 
@@ -122,15 +135,16 @@ public class DragonFacet {
   }
 
   public int getHealth() {
-    return dragon.f_getHealth();
+    return dragon.facetedGetHealth();
   }
 
   public void receiveAttack(Attack attack) {
-    if(attack == Attack.WATER_PISTOL || attack == Attack.ARROW) {
-      dragon.f_receiveAttack(attack);
+    if (attack == Attack.WATER_PISTOL || attack == Attack.ARROW) {
+      dragon.facetedReceiveAttack(attack);
     }
   }
 }
+
 ```
 
 Note that `DragonFacet` only provides access to two of the three methods in `Dragon` 

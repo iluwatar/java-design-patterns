@@ -24,7 +24,9 @@
  */
 package com.iluwatar.facet;
 
-import com.iluwatar.facet.dragon.*;
+import com.iluwatar.facet.dragon.Dragon;
+import com.iluwatar.facet.dragon.DragonFacet;
+
 
 /**
  * A facet is a class functioning as an interface to something else which provides less functionality.
