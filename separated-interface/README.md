@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Separated Interface
-folder: separated-interface
-permalink: /patterns/separated-interface/
-categories: Structural
+category: Structural
 language: en
 tags:
  - Decoupling

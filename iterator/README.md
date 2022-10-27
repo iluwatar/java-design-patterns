@@ -1,8 +1,5 @@
 ---
-layout: pattern
 title: Iterator
-folder: iterator
-permalink: /patterns/iterator/
 categories: Behavioral
 language: en
 tags:

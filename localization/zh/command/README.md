@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Command
-folder: command
-permalink: /patterns/command/
-categories: Behavioral
+category: Behavioral
 language: zh
 tags:
  - Gang of Four
@@ -222,7 +219,7 @@ goblin.printStatus();
 ```
 
 ## 类图
-![alt text](../../../command/etc/command.png "Command")
+![alt text](etc/command.png "Command")
 
 ## 适用性
 使用命令模式当你想

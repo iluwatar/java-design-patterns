@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Combinator
-folder: combinator
-permalink: /patterns/combinator/
-categories: Idiom
+category: Idiom
 language: en
 tags:
  - Reactive
