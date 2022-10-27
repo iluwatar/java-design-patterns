@@ -97,7 +97,6 @@ Now Fetching the details through the `Domain` class where the DTOs are stored an
 ```
 
 ## Class diagram
-![alt text](./etc/remote-facade.urm.png "Remote-Facade-Class-Diagram")
 
 ## Applicability
 
