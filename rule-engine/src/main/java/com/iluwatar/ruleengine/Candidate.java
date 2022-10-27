@@ -39,9 +39,9 @@ public class Candidate {
   private String closeFamilyTies;
 
   /**
-   * Get years of study from the candidate
+   * Get years of study from the candidate.
    *
-   * @return int yearsOfStudy: years of study from the candidate
+   * @return int yearsOfStudy : years of study from the candidate
    * @author Dehao Liu
    */
   public int getYearsOfStudy() {
@@ -49,9 +49,9 @@ public class Candidate {
   }
 
   /**
-   * Set years of study to the candidate
+   * Set years of study to the candidate.
    *
-   * @param yearsOfStudy: updated years of study
+   * @param yearsOfStudy : updated years of study.
    * @author Dehao Liu
    */
   public void setYearsOfStudy(int yearsOfStudy) {
@@ -59,8 +59,8 @@ public class Candidate {
   }
 
   /**
-   * Get length of employment from the candidate
-   *
+   * Get length of employment from the candidate.
+
    * @return int lengthOfEmployment: length of employment from the candidate
    * @author Dehao Liu
    */
@@ -69,9 +69,8 @@ public class Candidate {
   }
 
   /**
-   * Set length of employment to the candidate
-   *
-   * @param lengthOfEmployment: new length of employment to the candidate
+   * Set length of employment to the candidate.
+   * @param lengthOfEmployment : new length of employment to the candidate.
    * @author Dehao Liu
    */
   public void setLengthOfEmployment(int lengthOfEmployment) {
@@ -79,55 +78,62 @@ public class Candidate {
   }
 
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * get length of TertiaryQualificatio to the candidate.
+
+   * @author Dehao Liu
    */
   public String getTertiaryQualification() {
     return tertiaryQualification;
   }
 
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Set length of TertiaryQualificatio to the candidate.
+
+   * @author Dehao Liu
    */
   public void setTertiaryQualification(String tertiaryQualification) {
     this.tertiaryQualification = tertiaryQualification;
   }
 
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * get length of Assets to the candidate.
+
+   * @author Dehao Liu
    */
   public int getAssets() {
     return assets;
   }
 
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Set length of Assets to the candidate.
+
+   * @author Dehao Liu
    */
   public void setAssets(int assets) {
     this.assets = assets;
   }
 
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * get length of CloseFamilyTies to the candidate.
+
+   * @author Dehao Liu
    */
   public String getCloseFamilyTies() {
     return closeFamilyTies;
   }
 
+
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * set length of CloseFamilyTies to the candidate.
+
+   * @author Dehao Liu
    */
   public void setCloseFamilyTies(String closeFamilyTies) {
     this.closeFamilyTies = closeFamilyTies;
   }
 
   /**
-   * Get length of current residence from the candidate
+   * Get length of current residence from the candidate.
    *
    * @return int lengthOfCurrentResidence: length of current residence from the candidate
    * @author Harry Li
@@ -137,9 +143,9 @@ public class Candidate {
   }
 
   /**
-   * Set length of current residence to the candidate
+   * Set length of current residence to the candidate.
    *
-   * @param lengthOfCurrentResidence: new length of current residence
+   * @param lengthOfCurrentResidence : new length of current residence.
    * @author Harry Li
    */
   public void setLengthOfCurrentResidence(int lengthOfCurrentResidence) {
@@ -147,9 +153,9 @@ public class Candidate {
   }
 
   /**
-   * Get English proficiency from the candidate
+   * Get English proficiency from the candidate.
    *
-   * @return String englishProficiency: the candidate's English proficiency
+   * @return String englishProficiency : the candidate's English proficiency.
    * @author Harry Li
    */
   public String getEnglishProficiency() {
@@ -157,9 +163,9 @@ public class Candidate {
   }
 
   /**
-   * Set English proficiency to the candidate
+   * Set English proficiency to the candidate.
    *
-   * @param englishProficiency: new value to the candidate's English proficiency
+   * @param englishProficiency : new value to the candidate's English proficiency
    * @author Harry Li
    */
   public void setEnglishProficiency(String englishProficiency) {
@@ -167,7 +173,7 @@ public class Candidate {
   }
 
   /**
-   * Check if the candidate's occupation is on the designated skill list
+   * Check if the candidate's occupation is on the designated skill list.
    *
    * @return nominatedOccupationOnTheList: true if the candidate's occupation is on the list, false otherwise.
    * @author Harry Li
@@ -177,9 +183,9 @@ public class Candidate {
   }
 
   /**
-   * Set if the candidate's occupation is on the designated skill list
+   * Set if the candidate's occupation is on the designated skill list.
    *
-   * @param nominatedOccupationOnTheList: true if the candidate's occupation is on the list, false otherwise.
+   * @param nominatedOccupationOnTheList : true if the candidate's occupation is on the list, false otherwise.
    * @author Harry Li
    */
   public void setNominatedOccupationOnTheList(boolean nominatedOccupationOnTheList) {
@@ -187,9 +193,9 @@ public class Candidate {
   }
 
   /**
-   * Check if the candidate is a small business owner
+   * Check if the candidate is a small business owner.
    *
-   * @return boolean isSmallBusinessOwner: true if the candidate is a small business owner, false otherwise
+   * @return boolean isSmallBusinessOwner : true if the candidate is a small business owner, false otherwise
    * @author Harry Li
    */
   public boolean isSmallBusinessOwner() {
@@ -197,9 +203,9 @@ public class Candidate {
   }
 
   /**
-   * Set small business owner to the candidate
+   * Set small business owner to the candidate.
    *
-   * @param smallBusinessOwner: new small business owner
+   * @param smallBusinessOwner : new small business owner
    * @author Harry Li
    */
   public void setSmallBusinessOwner(boolean smallBusinessOwner) {
@@ -207,9 +213,9 @@ public class Candidate {
   }
 
   /**
-   * Get small business turnover from the candidate
+   * Get small business turnover from the candidate.
    *
-   * @return int smallBusinessTurnover: the candidate's small business turnover
+   * @return int smallBusinessTurnover: the candidate's small business turnover.
    * @author Harry Li
    */
   public int getSmallBusinessTurnover() {
@@ -217,9 +223,9 @@ public class Candidate {
   }
 
   /**
-   * Set small business turnover to the candidate
+   * Set small business turnover to the candidate.
    *
-   * @param smallBusinessTurnover: new small business turnover
+   * @param smallBusinessTurnover : new small business turnover.
    * @author Harry Li
    */
   public void setSmallBusinessTurnover(int smallBusinessTurnover) {

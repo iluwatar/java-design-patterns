@@ -26,41 +26,44 @@ package com.iluwatar.ruleengine;
 
 public class LengthOfResidenceRule implements IMigrationRule {
   /**
-   * Check if this LengthOfResidence rule can be executed or not
-   *
-   * @param candidate: the current candidate
-   * @return boolean: true if the candidate has met the  LengthOfResidence rule
+   * Check if this LengthOfResidence rule can be executed or not.
+   * @param candidate : the current candidate
+   * @return boolean : true if the candidate has met the  LengthOfResidence rule
    * @author Dehao Liu
    */
   @Override
   public boolean shouldRun(Candidate candidate) {
     return candidate.getLengthOfCurrentResidence() != 0;
   }
+
   /**
-   * Execute this  LengthOfResidence  rule
-   *
-   * @param candidate: the current candidate
+   * Execute this  LengthOfResidence  rule.
+   * @param candidate : the current candidate.
    * @author Dehao Liu
    */
   @Override
   public int runRule(Candidate candidate) {
-    int length = candidate.getLengthOfCurrentResidence();
 
-    switch (length) {
-      case 1:
-        return 5;
-      case 2:
-        return 10;
-      case 3:
-        return 15;
-      case 4:
-        return 20;
-    }
 
-    if (length >= 5) {
+    if (candidate.getLengthOfCurrentResidence() >= 5) {
       return 25;
+    }
+    if (candidate.getLengthOfCurrentResidence() >= 4 && candidate.getLengthOfCurrentResidence() <= 5) {
+      return 20;
+    }
+    if (candidate.getLengthOfCurrentResidence() >= 3 && candidate.getLengthOfCurrentResidence() <= 4) {
+      return 15;
+    }
+    if (candidate.getLengthOfCurrentResidence() >= 2 && candidate.getLengthOfCurrentResidence() <= 3) {
+      return 10;
+    }
+    if (candidate.getLengthOfCurrentResidence() >= 1 && candidate.getLengthOfCurrentResidence() <= 2) {
+      return 5;
     }
 
     return 0;
   }
+
+
+
 }

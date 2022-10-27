@@ -26,9 +26,9 @@ package com.iluwatar.ruleengine;
 
 public class LengthOfEmploymentRule implements IMigrationRule {
   /**
-   * Check if this LengthOfEmployment rule can be executed or not
+   * Check if this LengthOfEmployment rule can be executed or not.
    *
-   * @param candidate: the current candidate
+   * @param candidate : the current candidate.
    * @return boolean: true if the candidate has met the  LengthOfEmployment rule
    * @author Dehao Liu
    */
@@ -37,9 +37,9 @@ public class LengthOfEmploymentRule implements IMigrationRule {
     return candidate.getLengthOfEmployment() != 0;
   }
   /**
-   * Execute this  LengthOfEmployment  rule
+   * Execute this  LengthOfEmployment  rule.
    *
-   * @param candidate: the current candidate
+   * @param candidate : the current candidate.
    * @author Dehao Liu
    */
   @Override

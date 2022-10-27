@@ -26,10 +26,10 @@ package com.iluwatar.ruleengine;
 
 public class TertiaryQualificationRule implements IMigrationRule {
   /**
-   * Check if this TertiaryQualification rule can be executed or not
+   * Check if this TertiaryQualification rule can be executed or not.
    *
-   * @param candidate: the current candidate
-   * @return boolean: true if the candidate has met the  TertiaryQualification rule
+   * @param candidate : the current candidate
+   * @return boolean : true if the candidate has met the  TertiaryQualification rule
    * @author Dehao Liu
    */
   @Override
@@ -38,9 +38,9 @@ public class TertiaryQualificationRule implements IMigrationRule {
   }
 
   /**
-   * Execute this  TertiaryQualification  rule
+   * Execute this  TertiaryQualification  rule.
    *
-   * @param candidate: the current candidate
+   * @param candidate : the current candidate
    * @author Dehao Liu
    */
   @Override

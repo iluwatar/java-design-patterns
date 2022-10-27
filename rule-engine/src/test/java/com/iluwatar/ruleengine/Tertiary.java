@@ -26,29 +26,20 @@ package com.iluwatar.ruleengine;
 
 import org.testng.annotations.Test;
 
-import java.lang.invoke.VarHandle;
-
 import static org.testng.AssertJUnit.assertEquals;
 
-public class RuleEngineTest {
+public class Tertiary {
 
-
-    @Test
-    void TestA() {
-      var candidate = new Candidate();
-      candidate.setAssets(5);
-      AssetsRule rule = new AssetsRule();
-      assertEquals(0, rule.runRule(candidate));}
+  @Test
+  void TestA() {
+    var candidate = new Candidate();
+    candidate.setTertiaryQualification("Doctoral degree");
+    TertiaryQualificationRule rule = new TertiaryQualificationRule();
+    assertEquals(20, rule.runRule(candidate));}
   @Test
   void TestB() {
     var candidate = new Candidate();
-    candidate.setAssets(250000);
-    AssetsRule a = new AssetsRule();
-    assertEquals(5, a.runRule(candidate));}
-
-
-
-
-
-
+    candidate.setTertiaryQualification("Master degree");
+    TertiaryQualificationRule c = new TertiaryQualificationRule();
+    assertEquals(15, c.runRule(candidate));}
 }

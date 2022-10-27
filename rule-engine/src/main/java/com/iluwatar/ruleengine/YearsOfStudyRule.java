@@ -26,10 +26,10 @@ package com.iluwatar.ruleengine;
 
 public class YearsOfStudyRule implements IMigrationRule {
   /**
-   * Check if this YearsOfStudy rule can be executed or not
+   * Check if this YearsOfStudy rule can be executed or not.
    *
-   * @param candidate: the current candidate
-   * @return boolean: true if the candidate has met the  YearsOfStudy rule
+   * @param candidate : the current candidate.
+   * @return boolean : true if the candidate has met the  YearsOfStudy rule.
    * @author Dehao Liu
    */
   @Override
@@ -37,9 +37,9 @@ public class YearsOfStudyRule implements IMigrationRule {
     return candidate.getYearsOfStudy() != 0;
   }
   /**
-   * Execute this  YearsOfStudy  rule
+   * Execute this  YearsOfStudy  rule.
    *
-   * @param candidate: the current candidate
+   * @param candidate : the current candidate.
    * @author Dehao Liu
    */
   @Override

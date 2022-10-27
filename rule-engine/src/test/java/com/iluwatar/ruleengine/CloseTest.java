@@ -26,29 +26,22 @@ package com.iluwatar.ruleengine;
 
 import org.testng.annotations.Test;
 
-import java.lang.invoke.VarHandle;
-
 import static org.testng.AssertJUnit.assertEquals;
 
-public class RuleEngineTest {
-
-
-    @Test
-    void TestA() {
-      var candidate = new Candidate();
-      candidate.setAssets(5);
-      AssetsRule rule = new AssetsRule();
-      assertEquals(0, rule.runRule(candidate));}
+public class CloseTest {
   @Test
   void TestB() {
     var candidate = new Candidate();
-    candidate.setAssets(250000);
-    AssetsRule a = new AssetsRule();
-    assertEquals(5, a.runRule(candidate));}
+
+    CloseFamilyRule rule = new CloseFamilyRule();
+    assertEquals(false, rule.shouldRun(candidate));}
 
 
 
-
-
-
+  @Test
+  void TestA() {
+    var candidate = new Candidate();
+    candidate.setCloseFamilyTies("Spouse");
+    CloseFamilyRule rule = new CloseFamilyRule();
+    assertEquals(20, rule.runRule(candidate));}
 }
