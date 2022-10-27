@@ -43,17 +43,28 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
+                <groupId>com.iluwatar.urm</groupId>
+                <artifactId>urm-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <configuration>
+                    <!-- if outputDirectory is not set explicitly it will default to your build dir -->
+                    <outputDirectory>C:/Users/Alvis/IdeaProjects/IdeaProjects/context-object/etc</outputDirectory>
+                    <packages>
+                        <param>com.iluwatar.context.object</param>
+                    </packages>
+                    <ignores>
+                        <param>com.iluwatar.contect.object.App</param>
+                    </ignores>
+                    <includeMainDirectory>true</includeMainDirectory>
+                    <includeTestDirectory>false</includeTestDirectory>
+                    <presenter>plantuml</presenter>
+                </configuration>
                 <executions>
                     <execution>
-                        <configuration>
-                            <archive>
-                                <manifest>
-                                    <mainClass>com.iluwatar.context.object.App</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>map</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>

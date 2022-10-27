@@ -4,6 +4,7 @@ import com.iluwatar.context.object.LayerA;
 import com.iluwatar.context.object.LayerB;
 import com.iluwatar.context.object.LayerC;
 import com.iluwatar.context.object.ServiceContext;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -19,9 +20,15 @@ public class ServiceContextTest {
 
     private static final String SERVICE = "SERVICE";
 
+    private LayerA layerA;
+
+    @BeforeEach
+    void initiateLayerA() {
+        this.layerA = new LayerA();
+    }
+
     @Test
     void testSameContextPassedBetweenLayers() {
-        LayerA layerA = new LayerA();
         ServiceContext context1 = layerA.getContext();
         LayerB layerB = new LayerB(layerA);
         ServiceContext context2 = layerB.getContext();
@@ -45,5 +52,16 @@ public class ServiceContextTest {
         assertEquals(SERVICE,context.getACCOUNT_SERVICE());
         assertNull(context.getSESSION_SERVICE());
         assertEquals(SERVICE,context.getSEARCH_SERVICE());
+    }
+
+    @Test
+    void testToString() {
+        assertEquals(layerA.getContext().toString(),"null null null");
+        layerA.addAccountInfo(SERVICE);
+        assertEquals(layerA.getContext().toString(), "SERVICE null null");
+        LayerB layerB = new LayerB(layerA);
+        layerB.addSessionInfo(SERVICE);
+        LayerC layerC = new LayerC(layerB);
+        assertEquals(layerC.getContext().toString(), "SERVICE SERVICE null");
     }
 }

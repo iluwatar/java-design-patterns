@@ -30,4 +30,6 @@ public class ServiceContext {
     public String getSEARCH_SERVICE() {
         return SEARCH_SERVICE;
     }
+
+    public String toString() { return ACCOUNT_SERVICE + " " + SESSION_SERVICE + " " + SEARCH_SERVICE;}
 }
