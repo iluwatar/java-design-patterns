@@ -11,8 +11,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Knight {
   private final String name;
-  private Attack attack;
-  private DragonFacet dragonFacet;
+  private final Attack attack;
+  private final DragonFacet dragonFacet;
 
   /**
    * Simple constructor for a Knight.

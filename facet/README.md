@@ -90,21 +90,16 @@ public class Dragon {
   int facetedGetHealth() {
     return health;
   }
-  
+
   void setHealth(int health) {
     this.health = health;
   }
 
   void facetedReceiveAttack(Attack attack) {
     switch (attack) {
-      case ARROW:
-        health -= 10;
-        break;
-      case WATER_PISTOL:
-        health -= 15;
-        break;
-      default:
-        health -= 5;
+      case ARROW -> health -= 10;
+      case WATER_PISTOL -> health -= 15;
+      default -> health -= 5;
     }
   }
 }
