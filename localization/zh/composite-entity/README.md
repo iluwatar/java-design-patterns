@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Composite Entity
-folder: composite-entity
-permalink: /patterns/composite-entity/
-categories: Structural
+category: Structural
 language: zh
 tags:
  - Enterprise Integration Pattern
@@ -110,7 +107,7 @@ Arrays.stream(console.getData()).forEach(LOGGER::info);
 
 ## 类图
 
-![alt text](../../../composite-entity/etc/composite_entity.urm.png "Composite Entity Pattern")
+![alt text](etc/composite_entity.urm.png "Composite Entity Pattern")
 
 ## 适用场景
 

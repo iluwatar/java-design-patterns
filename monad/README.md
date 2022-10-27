@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Monad
-folder: monad
-permalink: /patterns/monad/
-categories: Functional
+category: Functional
 language: en
 tags:
  - Reactive

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Factory Method
-folder: factory-method
-permalink: /patterns/factory-method/
-categories: Creational
+category: Creational
 language: zh
 tags:
  - Extensibility
@@ -63,7 +60,7 @@ blacksmith.manufactureWeapon(WeaponType.AXE);
 ```
 
 ## 类图
-![alt text](../../../factory-method/etc/factory-method.urm.png "Factory Method pattern class diagram")
+![alt text](etc/factory-method.urm.png "Factory Method pattern class diagram")
 
 ## 适用性
 使用工厂方法模式当
