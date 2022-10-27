@@ -26,11 +26,9 @@ package com.iluwatar.ruleengine;
 
 import org.testng.annotations.Test;
 
-import java.lang.invoke.VarHandle;
-
 import static org.testng.AssertJUnit.assertEquals;
 
-public class RuleEngineTest {
+public class AssetsTest {
 
 
     @Test
