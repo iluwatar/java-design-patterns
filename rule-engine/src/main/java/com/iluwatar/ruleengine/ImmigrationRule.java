@@ -24,20 +24,15 @@
  */
 package com.iluwatar.ruleengine;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-public class Candidate {
-  private int lengthOfCurrentResidence;
-  private String englishProficiency;
-  private boolean isNominatedOccupationOnTheList;
-  private boolean isSmallBusinessOwner;
-  private int smallBusinessTurnover;
-  private int lengthOfEmployment;
-  private int yearsOfStudy;
-  private String tertiaryQualification;
-  private int localAssets;
-  private String closeFamilyTies;
+public interface ImmigrationRule {
+  /**
+   * Multiple lines of Javadoc text are written here,
+   * wrapped normally...
+   */
+  public boolean shouldRun(Candidate candidate);
+  /**
+   * Multiple lines of Javadoc text are written here,
+   * wrapped normally...
+   */
+  public int runRule(Candidate candidate);
 }

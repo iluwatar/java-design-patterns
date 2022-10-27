@@ -24,20 +24,31 @@
  */
 package com.iluwatar.ruleengine;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Getter
-@Setter
-public class Candidate {
-  private int lengthOfCurrentResidence;
-  private String englishProficiency;
-  private boolean isNominatedOccupationOnTheList;
-  private boolean isSmallBusinessOwner;
-  private int smallBusinessTurnover;
-  private int lengthOfEmployment;
-  private int yearsOfStudy;
-  private String tertiaryQualification;
-  private int localAssets;
-  private String closeFamilyTies;
+public class SmallBusinessRuleTest {
+  @Test
+  void testShouldRun() {
+    Candidate candidate = new Candidate();
+
+    SmallBusinessRule rule = new SmallBusinessRule();
+    assertEquals(false, rule.shouldRun(candidate));
+
+    candidate.setSmallBusinessOwner(true);
+    assertEquals(true, rule.shouldRun(candidate));
+  }
+
+  @Test
+  void testRunRule() {
+    Candidate candidate = new Candidate();
+    candidate.setSmallBusinessOwner(true);
+    candidate.setSmallBusinessTurnover(100000);
+
+    SmallBusinessRule rule = new SmallBusinessRule();
+    assertEquals(10, rule.runRule(candidate));
+
+    candidate.setSmallBusinessTurnover(200000);
+    assertEquals(20, rule.runRule(candidate));
+  }
 }

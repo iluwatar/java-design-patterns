@@ -24,11 +24,20 @@
  */
 package com.iluwatar.ruleengine;
 
-public class LengthOfResidenceRule implements IMigrationRule {
+/**
+ * This rule states:
+ * The candidate has lived locally for enough amount of time.
+ * 5+ years: 25 points
+ * 4 years: 20 points
+ * 3 years: 15 points
+ * 2 years: 10 points
+ * 1 year: 5 points
+ */
+public class LengthOfResidenceRule implements ImmigrationRule {
   /**
-   * Check if this Length of Residence rule can be executed or not
+   * Check if this Length of Residence rule can be executed or not.
    *
-   * @param candidate: the current candidate
+   * @param candidate the current candidate
    * @return boolean: true if the candidate has met the Length of Residence rule
    * @author Harry Li
    */
@@ -37,9 +46,9 @@ public class LengthOfResidenceRule implements IMigrationRule {
     return candidate.getLengthOfCurrentResidence() != 0;
   }
   /**
-   * Execute this Length of Residence rule
+   * Execute this Length of Residence rule.
    *
-   * @param candidate: the current candidate
+   * @param candidate the current candidate
    * @return int: the score that the candidate can get based on its length of residence
    * @author Harry Li
    */
@@ -56,12 +65,8 @@ public class LengthOfResidenceRule implements IMigrationRule {
         return 15;
       case 4:
         return 20;
+      default:
+        return 25;
     }
-
-    if (length >= 5) {
-      return 25;
-    }
-
-    return 0;
   }
 }

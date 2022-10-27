@@ -23,13 +23,17 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.ruleengine;
-
-public class NominatedOccupationRule implements IMigrationRule {
+/**
+ * This rule states:
+ * The candidate's occupation is on the nominated occupation list.
+ * true: 20 points
+ */
+public class NominatedOccupationRule implements ImmigrationRule {
   /**
-   * Check if this Nominated Occupation Rule can be executed or not
+   * Check if this Nominated Occupation Rule can be executed or not.
    *
-   * @param candidate: the current candidate
-   * @return boolean: true if the candidate has met the Nominated Occupation Rule
+   * @param candidate the current candidate
+   * @return boolean true if the candidate has met the Nominated Occupation Rule
    * @author Harry Li
    */
   @Override
@@ -38,10 +42,10 @@ public class NominatedOccupationRule implements IMigrationRule {
   }
 
   /**
-   * Execute this Nominated Occupation Rule
+   * Execute this Nominated Occupation Rule.
    *
-   * @param candidate: the current candidate
-   * @return int: the score that the candidate can get based on its occupation
+   * @param candidate the current candidate
+   * @return int the score that the candidate can get based on its occupation
    * @author Harry Li
    */
   @Override

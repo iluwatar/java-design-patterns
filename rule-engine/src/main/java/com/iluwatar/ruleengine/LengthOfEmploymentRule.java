@@ -24,7 +24,14 @@
  */
 package com.iluwatar.ruleengine;
 
-public class LengthOfEmploymentRule implements IMigrationRule {
+/**
+ * This rule states:
+ * The candidate has worked locally for enough amount of time.
+ * 12+ months: 10 points
+ * 6+ months: 5 points
+ * None: 0 point
+ */
+public class LengthOfEmploymentRule implements ImmigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...
@@ -39,8 +46,6 @@ public class LengthOfEmploymentRule implements IMigrationRule {
    */
   @Override
   public int runRule(Candidate candidate) {
-
-
     if (candidate.getLengthOfEmployment() >= 12) {
       return 10;
     }

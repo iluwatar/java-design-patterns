@@ -24,20 +24,40 @@
  */
 package com.iluwatar.ruleengine;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Getter
-@Setter
-public class Candidate {
-  private int lengthOfCurrentResidence;
-  private String englishProficiency;
-  private boolean isNominatedOccupationOnTheList;
-  private boolean isSmallBusinessOwner;
-  private int smallBusinessTurnover;
-  private int lengthOfEmployment;
-  private int yearsOfStudy;
-  private String tertiaryQualification;
-  private int localAssets;
-  private String closeFamilyTies;
+public class LengthOfResidenceRuleTest {
+  @Test
+  void testShouldRun() {
+    Candidate candidate = new Candidate();
+
+    LengthOfResidenceRule rule = new LengthOfResidenceRule();
+    assertEquals(false, rule.shouldRun(candidate));
+
+    candidate.setLengthOfCurrentResidence(3);
+    assertEquals(true, rule.shouldRun(candidate));
+  }
+
+  @Test
+  void testRunRule() {
+    Candidate candidate = new Candidate();
+
+    LengthOfResidenceRule rule = new LengthOfResidenceRule();
+
+    candidate.setLengthOfCurrentResidence(1);
+    assertEquals(5, rule.runRule(candidate));
+
+    candidate.setLengthOfCurrentResidence(2);
+    assertEquals(10, rule.runRule(candidate));
+
+    candidate.setLengthOfCurrentResidence(3);
+    assertEquals(15, rule.runRule(candidate));
+
+    candidate.setLengthOfCurrentResidence(4);
+    assertEquals(20, rule.runRule(candidate));
+
+    candidate.setLengthOfCurrentResidence(5);
+    assertEquals(25, rule.runRule(candidate));
+  }
 }

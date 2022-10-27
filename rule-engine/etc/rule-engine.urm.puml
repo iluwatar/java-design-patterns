@@ -1,39 +1,39 @@
 @startuml
 package com.iluwatar.ruleengine {
-  class AssetsRule {
-    + AssetsRule()
-    + runRule(candidate : Candidate) : int
-    + shouldRun(candidate : Candidate) : boolean
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
   }
   class Candidate {
-    - assets : int
     - closeFamilyTies : String
     - englishProficiency : String
     - isNominatedOccupationOnTheList : boolean
     - isSmallBusinessOwner : boolean
     - lengthOfCurrentResidence : int
     - lengthOfEmployment : int
+    - localAssets : int
     - smallBusinessTurnover : int
     - tertiaryQualification : String
     - yearsOfStudy : int
     + Candidate()
-    + getAssets() : int
     + getCloseFamilyTies() : String
     + getEnglishProficiency() : String
     + getLengthOfCurrentResidence() : int
     + getLengthOfEmployment() : int
+    + getLocalAssets() : int
     + getSmallBusinessTurnover() : int
     + getTertiaryQualification() : String
     + getYearsOfStudy() : int
     + isNominatedOccupationOnTheList() : boolean
     + isSmallBusinessOwner() : boolean
-    + setAssets(assets : int)
     + setCloseFamilyTies(closeFamilyTies : String)
     + setEnglishProficiency(englishProficiency : String)
     + setLengthOfCurrentResidence(lengthOfCurrentResidence : int)
     + setLengthOfEmployment(lengthOfEmployment : int)
-    + setNominatedOccupationOnTheList(nominatedOccupationOnTheList : boolean)
-    + setSmallBusinessOwner(smallBusinessOwner : boolean)
+    + setLocalAssets(localAssets : int)
+    + setNominatedOccupationOnTheList(isNominatedOccupationOnTheList : boolean)
+    + setSmallBusinessOwner(isSmallBusinessOwner : boolean)
     + setSmallBusinessTurnover(smallBusinessTurnover : int)
     + setTertiaryQualification(tertiaryQualification : String)
     + setYearsOfStudy(yearsOfStudy : int)
@@ -48,7 +48,7 @@ package com.iluwatar.ruleengine {
     + runRule(candidate : Candidate) : int
     + shouldRun(candidate : Candidate) : boolean
   }
-  interface IRule {
+  interface IMigrationRule {
     + runRule(Candidate) : int {abstract}
     + shouldRun(Candidate) : boolean {abstract}
   }
@@ -57,8 +57,13 @@ package com.iluwatar.ruleengine {
     + runRule(candidate : Candidate) : int
     + shouldRun(candidate : Candidate) : boolean
   }
-  class LengthResidenceRule {
-    + LengthResidenceRule()
+  class LengthOfResidenceRule {
+    + LengthOfResidenceRule()
+    + runRule(candidate : Candidate) : int
+    + shouldRun(candidate : Candidate) : boolean
+  }
+  class LocalAssetsRule {
+    + LocalAssetsRule()
     + runRule(candidate : Candidate) : int
     + shouldRun(candidate : Candidate) : boolean
   }
@@ -66,16 +71,6 @@ package com.iluwatar.ruleengine {
     + NominatedOccupationRule()
     + runRule(candidate : Candidate) : int
     + shouldRun(candidate : Candidate) : boolean
-  }
-  class Partner {
-    - englishProficiency : String
-    + Partner()
-    + getEnglishProficiency() : String
-    + setEnglishProficiency(englishProficiency : String)
-  }
-  class RuleEngine {
-    + RuleEngine()
-    + main(args : String[]) {static}
   }
   class SmallBusinessRule {
     + SmallBusinessRule()
@@ -93,13 +88,13 @@ package com.iluwatar.ruleengine {
     + shouldRun(candidate : Candidate) : boolean
   }
 }
-AssetsRule ..|> IRule
-CloseFamilyRule ..|> IRule
-EnglishProficiencyRule ..|> IRule
-LengthOfEmploymentRule ..|> IRule
-LengthResidenceRule ..|> IRule
-NominatedOccupationRule ..|> IRule
-SmallBusinessRule ..|> IRule
-TertiaryQualificationRule ..|> IRule
-YearsOfStudyRule ..|> IRule
+CloseFamilyRule ..|> IMigrationRule 
+EnglishProficiencyRule ..|> IMigrationRule 
+LengthOfEmploymentRule ..|> IMigrationRule 
+LengthOfResidenceRule ..|> IMigrationRule 
+LocalAssetsRule ..|> IMigrationRule 
+NominatedOccupationRule ..|> IMigrationRule 
+SmallBusinessRule ..|> IMigrationRule 
+TertiaryQualificationRule ..|> IMigrationRule 
+YearsOfStudyRule ..|> IMigrationRule 
 @enduml

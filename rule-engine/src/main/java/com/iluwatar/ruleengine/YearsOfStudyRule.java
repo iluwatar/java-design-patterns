@@ -23,8 +23,16 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.ruleengine;
-
-public class YearsOfStudyRule implements IMigrationRule {
+/**
+ * This rule states:
+ * The candidate has studied enough amount of time in a local education institution.
+ * 5+ years: 25 points
+ * 4 years: 20 points
+ * 3 years: 15 points
+ * 2 years: 10 points
+ * 1 year: 5 points
+ */
+public class YearsOfStudyRule implements ImmigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...
@@ -39,20 +47,19 @@ public class YearsOfStudyRule implements IMigrationRule {
    */
   @Override
   public int runRule(Candidate candidate) {
+    int yearsOfStudy = candidate.getYearsOfStudy();
 
-    if (candidate.getYearsOfStudy() >= 4) {
-      return 20;
+    switch (yearsOfStudy) {
+      case 1:
+        return 5;
+      case 2:
+        return 10;
+      case 3:
+        return 15;
+      case 4:
+        return 20;
+      default:
+        return 25;
     }
-    if (candidate.getYearsOfStudy() == 3) {
-      return 15;
-    }
-    if (candidate.getYearsOfStudy() == 2) {
-      return 10;
-    }
-    if (candidate.getYearsOfStudy() == 1) {
-      return 5;
-    }
-
-    return 0;
   }
 }

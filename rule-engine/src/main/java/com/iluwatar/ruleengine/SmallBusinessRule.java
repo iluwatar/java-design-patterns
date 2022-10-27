@@ -23,12 +23,16 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.ruleengine;
-
-public class SmallBusinessRule implements IMigrationRule {
+/**
+ * This rule states:
+ * The candidate has invested a small business locally with enough turnover.
+ * $250000+: 5 points
+ */
+public class SmallBusinessRule implements ImmigrationRule {
   /**
-   * Check if this Small Business Rule can be executed or not
+   * Check if this Small Business Rule can be executed or not.
    *
-   * @param candidate: the current candidate
+   * @param candidate the current candidate
    * @return boolean: true if the candidate has met the Small Business Rule
    * @author Harry Li
    */
@@ -38,9 +42,9 @@ public class SmallBusinessRule implements IMigrationRule {
   }
 
   /**
-   * Execute this Small Business Rule
+   * Execute this Small Business Rule.
    *
-   * @param candidate: the current candidate
+   * @param candidate the current candidate
    * @return int: the score that the candidate can get based on its small business turnover
    * @author Harry Li
    */

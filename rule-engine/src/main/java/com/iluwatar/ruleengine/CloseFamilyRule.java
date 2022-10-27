@@ -24,7 +24,14 @@
  */
 package com.iluwatar.ruleengine;
 
-public class CloseFamilyRule implements IMigrationRule {
+/**
+ * This rule states:
+ * The candidate has a close family member who has lived in this nation for the last two years.
+ * Spouse: 20 points
+ * Parent: 10 points
+ * None: 0 point
+ */
+public class CloseFamilyRule implements ImmigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...
@@ -39,8 +46,6 @@ public class CloseFamilyRule implements IMigrationRule {
    */
   @Override
   public int runRule(Candidate candidate) {
-
-
     if (candidate.getCloseFamilyTies() == "Spouse") {
       return 20;
     }

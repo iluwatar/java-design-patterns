@@ -23,8 +23,16 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.ruleengine;
-
-public class TertiaryQualificationRule implements IMigrationRule {
+/**
+ * This rule states:
+ * The candidate has a decent level of education.
+ * Doctoral: 20 points
+ * Master: 15 points
+ * Bachelor: 10 points
+ * Diploma: 5 points
+ * None of above: 0 points
+ */
+public class TertiaryQualificationRule implements ImmigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...

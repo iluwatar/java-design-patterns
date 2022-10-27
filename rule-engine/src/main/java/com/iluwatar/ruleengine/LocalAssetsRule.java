@@ -23,35 +23,30 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.ruleengine;
-
-import java.util.ArrayList;
-
-public class RuleEngine {
+/**
+ * This rule states:
+ * The candidate has invested enough amount of money into local businesses.
+ * $250000+: 5 points
+ */
+public class LocalAssetsRule implements ImmigrationRule {
   /**
    * Multiple lines of Javadoc text are written here,
    * wrapped normally...
    */
-  public static void main(String[] args) {
-    ArrayList<IMigrationRule> rules = new ArrayList<IMigrationRule>();
-    rules.add(new EnglishProficiencyRule());
-    rules.add(new LengthOfResidenceRule());
-    rules.add(new NominatedOccupationRule());
-    rules.add(new SmallBusinessRule());
-
-    Candidate candidate = new Candidate();
-    candidate.setEnglishProficiency("superior");
-    candidate.setSmallBusinessOwner(true);
-    candidate.setNominatedOccupationOnTheList(true);
-    candidate.setLengthOfCurrentResidence(5);
-
-    int score = 0;
-    for (IMigrationRule rule : rules) {
-      if (rule.shouldRun(candidate)) {
-        score += rule.runRule(candidate);
-      }
+  @Override
+  public boolean shouldRun(Candidate candidate) {
+    return candidate.getLocalAssets() != 0;
+  }
+  /**
+   * Multiple lines of Javadoc text are written here,
+   * wrapped normally...
+   */
+  @Override
+  public int runRule(Candidate candidate) {
+    if (candidate.getLocalAssets() >= 250000) {
+      return 5;
     }
 
-    System.out.println(score);
-
+    return 0;
   }
 }

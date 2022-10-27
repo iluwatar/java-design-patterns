@@ -24,25 +24,30 @@
  */
 package com.iluwatar.ruleengine;
 
-public class AssetsRule implements IMigrationRule {
-  /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
-   */
-  @Override
-  public boolean shouldRun(Candidate candidate) {
-    return candidate.getAssets() != 0;
-  }
-  /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
-   */
-  @Override
-  public int runRule(Candidate candidate) {
-    if (candidate.getAssets() >= 250000) {
-      return 5;
-    }
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-    return 0;
+public class EnglishProficiencyRuleTest {
+  @Test
+  void testShouldRun() {
+    Candidate candidate = new Candidate();
+
+    EnglishProficiencyRule rule = new EnglishProficiencyRule();
+    assertEquals(false, rule.shouldRun(candidate));
+
+    candidate.setEnglishProficiency("proficient");
+    assertEquals(true, rule.shouldRun(candidate));
+  }
+
+  @Test
+  void testRunRule() {
+    Candidate candidate = new Candidate();
+    EnglishProficiencyRule rule = new EnglishProficiencyRule();
+
+    candidate.setEnglishProficiency("proficient");
+    assertEquals(10, rule.runRule(candidate));
+
+    candidate.setEnglishProficiency("superior");
+    assertEquals(15, rule.runRule(candidate));
   }
 }
