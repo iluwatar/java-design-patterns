@@ -30,16 +30,19 @@ package com.iluwatar.ruleengine;
  */
 public class LocalAssetsRule implements ImmigrationRule {
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Check if this Assets rule can be executed or not.
+   *
+   * @return boolean : true if the candidate has met the  Assets rule
+   * @author Dehao Liu
    */
   @Override
   public boolean shouldRun(Candidate candidate) {
     return candidate.getLocalAssets() != 0;
   }
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Execute this Assets rule.
+   *
+   * @author Dehao Liu
    */
   @Override
   public int runRule(Candidate candidate) {

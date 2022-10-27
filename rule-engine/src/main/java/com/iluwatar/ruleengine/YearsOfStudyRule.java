@@ -34,16 +34,21 @@ package com.iluwatar.ruleengine;
  */
 public class YearsOfStudyRule implements ImmigrationRule {
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Check if this YearsOfStudy rule can be executed or not.
+   *
+   * @param candidate : the current candidate.
+   * @return boolean : true if the candidate has met the  YearsOfStudy rule.
+   * @author Dehao Liu
    */
   @Override
   public boolean shouldRun(Candidate candidate) {
     return candidate.getYearsOfStudy() != 0;
   }
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Execute this  YearsOfStudy  rule.
+   *
+   * @param candidate : the current candidate.
+   * @author Dehao Liu
    */
   @Override
   public int runRule(Candidate candidate) {

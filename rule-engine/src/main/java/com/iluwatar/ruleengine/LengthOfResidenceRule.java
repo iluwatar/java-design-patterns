@@ -35,26 +35,23 @@ package com.iluwatar.ruleengine;
  */
 public class LengthOfResidenceRule implements ImmigrationRule {
   /**
-   * Check if this Length of Residence rule can be executed or not.
-   *
-   * @param candidate the current candidate
-   * @return boolean: true if the candidate has met the Length of Residence rule
-   * @author Harry Li
+   * Check if this LengthOfResidence rule can be executed or not.
+   * @param candidate : the current candidate
+   * @return boolean : true if the candidate has met the  LengthOfResidence rule
+   * @author Dehao Liu
    */
   @Override
   public boolean shouldRun(Candidate candidate) {
     return candidate.getLengthOfCurrentResidence() != 0;
   }
+
   /**
-   * Execute this Length of Residence rule.
-   *
-   * @param candidate the current candidate
-   * @return int: the score that the candidate can get based on its length of residence
-   * @author Harry Li
+   * Execute this  LengthOfResidence  rule.
+   * @param candidate : the current candidate.
+   * @author Dehao Liu
    */
   @Override
   public int runRule(Candidate candidate) {
-    int length = candidate.getLengthOfCurrentResidence();
 
     switch (length) {
       case 1:
@@ -69,4 +66,7 @@ public class LengthOfResidenceRule implements ImmigrationRule {
         return 25;
     }
   }
+
+
+
 }

@@ -35,8 +35,8 @@ public class EnglishProficiencyRule implements ImmigrationRule {
   /**
    * Check if this English Proficiency rule can be executed or not.
    *
-   * @param candidate the current candidate
-   * @return boolean true if the candidate has met the English Proficiency rule
+   * @param candidate : the current candidate.
+   * @return boolean : true if the candidate has met the English Proficiency rule
    * @author Harry Li
    */
   @Override
@@ -47,8 +47,8 @@ public class EnglishProficiencyRule implements ImmigrationRule {
   /**
    * Execute this English proficiency rule.
    *
-   * @param candidate the current candidate
-   * @return int the score that the candidate can get based on its English proficiency
+   * @param candidate : the current candidate.
+   * @return int: the score that the candidate can get based on its English proficiency
    * @author Harry Li
    */
   @Override

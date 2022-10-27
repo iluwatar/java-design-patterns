@@ -23,42 +23,23 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.ruleengine;
-/**
- * This rule states:
- * The candidate has invested a small business locally with enough turnover.
- * $250000+: 5 points
- */
-public class SmallBusinessRule implements ImmigrationRule {
-  /**
-   * Check if this Small Business Rule can be executed or not.
-   *
-   * @param candidate : the current candidate.
-   * @return boolean: true if the candidate has met the Small Business Rule
-   * @author Harry Li
-   */
-  @Override
-  public boolean shouldRun(Candidate candidate) {
-    return candidate.isSmallBusinessOwner();
-  }
 
-  /**
-   * Execute this Small Business Rule.
-   *
-   * @param candidate : the current candidate.
-   * @return int: the score that the candidate can get based on its small business turnover
-   * @author Harry Li
-   */
-  @Override
-  public int runRule(Candidate candidate) {
-    int turnover = candidate.getSmallBusinessTurnover();
+import org.testng.annotations.Test;
 
-    if (turnover >= 100000 && turnover < 200000) {
-      return 10;
-    }
-    if (turnover >= 200000) {
-      return 20;
-    }
+import static org.testng.AssertJUnit.assertEquals;
 
-    return 0;
-  }
+public class Tertiary {
+
+  @Test
+  void TestA() {
+    var candidate = new Candidate();
+    candidate.setTertiaryQualification("Doctoral degree");
+    TertiaryQualificationRule rule = new TertiaryQualificationRule();
+    assertEquals(20, rule.runRule(candidate));}
+  @Test
+  void TestB() {
+    var candidate = new Candidate();
+    candidate.setTertiaryQualification("Master degree");
+    TertiaryQualificationRule c = new TertiaryQualificationRule();
+    assertEquals(15, c.runRule(candidate));}
 }

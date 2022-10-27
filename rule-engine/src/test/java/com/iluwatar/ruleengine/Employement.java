@@ -24,5 +24,22 @@
  */
 package com.iluwatar.ruleengine;
 
-public class RuleEngineTest {
+import org.testng.annotations.Test;
+
+import static org.testng.AssertJUnit.assertEquals;
+
+public class Employement {
+  @Test
+  void TestA() {
+    var candidate = new Candidate();
+    candidate.setLengthOfEmployment(5);
+    AssetsRule rule = new AssetsRule();
+    assertEquals(0, rule.runRule(candidate));}
+  @Test
+  void TestB() {
+    var candidate = new Candidate();
+    candidate.setAssets(13);
+    LengthOfEmploymentRule a = new LengthOfEmploymentRule();
+    assertEquals(0, a.runRule(candidate));}
+
 }
