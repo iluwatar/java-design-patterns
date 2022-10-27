@@ -77,7 +77,7 @@ public class CustomerDTOAssembler {
 }
 ```
 
-Now using the `RemoteFacade` class since we have the DTOs.
+Now using the `RemoteFacade` class since we have the DTOs. The methods take in the DTOs and compute any logic for them in the `Customerdtoassembler`
 
 ```java
     public class RemoteFacade {
@@ -86,6 +86,35 @@ Now using the `RemoteFacade` class since we have the DTOs.
         CustomerDTOAssembler.updateCustomer(dataObject);
     }
 }
+```
+```java
+public class Customerdtoassembler {
+  public static Customerdto makeCustomerdto(Customer cstmr) {
+    Customerdto customer = new Customerdto();
+    customer.name = cstmr.getName();
+    customer.phone = cstmr.getPhone();
+    customer.address = cstmr.getAddress();
+    return customer;
+  }
+  public static void updateCustomer(Customerdto dataObject) {
+    Customer c = null;
+    for (Customer cstmr : Domain.customers) {
+      if (cstmr.getName().equals(dataObject.name)) {
+        c = cstmr;
+        break;
+      }
+    }
+    if (c != null) {
+      c.setAddress(dataObject.address);
+      c.setPhone(dataObject.phone);
+    }
+  }
+  public static void  makeCustomer(Customerdto dataObject) {
+    Customer c = new Customer(dataObject.name, dataObject.phone, dataObject.address);
+    Domain.customers.add(c);
+  }
+}
+
 ```
 Now Fetching the details through the `Domain` class where the DTOs are stored and calling them in the `Client` App.
 ```java
