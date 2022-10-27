@@ -75,7 +75,7 @@ Note that, according to C2 Wiki,
 > they are not added by default to the facet. The methods to be included in a facet should have to 
 > be explicitly indicated (although this could be by metadata or a naming convention). 
 
-In this case, the methods are marked with `f_`.
+In this case, the methods are marked with `faceted`.
 
 This is the simple `Dragon` class.
 
@@ -114,13 +114,6 @@ package com.iluwatar.facet.dragon;
 import com.iluwatar.facet.Attack;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * The facet class which acts as an interface/wrapper for {@link Dragon}.
- * It only allows access to the methods with names beginning
- * with 'faceted', and also checks in receiveAttack() what
- * the type of attack is, so that it can filter some illegal
- * values.
- */
 @Slf4j
 public class DragonFacet {
   private Dragon dragon;
@@ -143,7 +136,7 @@ public class DragonFacet {
 ```
 
 Note that `DragonFacet` only provides access to two of the three methods in `Dragon` 
-(the ones marked with `f_`). Also, `receiveAttack` makes a check for valid parameters.
+(the ones marked with `faceted`). Also, `receiveAttack` makes a check for valid parameters.
 
 And here is the dragon-fighting scenario.
 
