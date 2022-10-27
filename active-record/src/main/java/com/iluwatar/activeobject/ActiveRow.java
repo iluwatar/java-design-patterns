@@ -15,23 +15,29 @@ import java.util.ArrayList;
  */
 public class ActiveRow {
 
-  String ID;
-  Connection con;
-  String READ;
-  String DELETE;
-  String WRITE;
+  String id;
   DB dataBase;
+  Connection con;
+  String read;
+  String delete;
+  String write;
   int columnCount;
   ArrayList<String> columns;
-  ArrayList<String> contents = new ArrayList<String>();
+  ArrayList<String> contents = new ArrayList<>();
 
   /**
    * @param dataBase A Database object which handles opening the connection.
-   * @param ID       The unique identifier of a row.
+   * @param id       The unique identifier of a row.
    * @throws SQLException
    */
-  public ActiveRow(DB dataBase, String ID) throws SQLException {
-    this.ID = ID;
+  public ActiveRow(DB dataBase, String id) throws SQLException {
+    this.dataBase = dataBase;
+    this.id = id;
+    initialise();
+  }
+
+  @Rowverride
+  public void initialise() throws SQLException {
     con = DriverManager
         .getConnection("jdbc:mysql://" + dataBase.getDbDomain() + "/" + dataBase.getDbName(),
             dataBase.getUsername(), dataBase.getPassword());
@@ -46,20 +52,20 @@ public class ActiveRow {
       columnNames.add(name);
     }
     this.columns = columnNames;
-    READ =
+    read =
         "SELECT * FROM `" + dataBase.getDbName() + "`.`" + dataBase.getTableName() + "` WHERE ID="
-            + this.ID;
-    DELETE = "DELETE FROM `" + dataBase.getDbName() + "`.`" + dataBase.getTableName() + "`"
-        + " WHERE ID = '" + this.ID + "';";
-    WRITE = "INSERT INTO `" + dataBase.getDbName() + "`.`" + dataBase.getTableName() + "`";
+            + this.id;
+    delete = "DELETE FROM `" + dataBase.getDbName() + "`.`" + dataBase.getTableName() + "`"
+        + " WHERE ID = '" + this.id + "';";
+    write = "INSERT INTO `" + dataBase.getDbName() + "`.`" + dataBase.getTableName() + "`";
     statement.close();
     columnSet.close();
   }
 
   @Rowverride
-  public void Write() throws SQLException {
+  public void write() throws SQLException {
     StringBuilder query = new StringBuilder();
-    query.append(WRITE);
+    query.append(write);
     query.append(" VALUES (");
     for (String con : this.contents) {
       if (contents.indexOf(con) != this.contents.size() - 1) {
@@ -81,15 +87,15 @@ public class ActiveRow {
   }
 
   @Rowverride
-  public void Delete() throws SQLException {
-    con.prepareStatement(DELETE).executeUpdate();
+  public void delete() throws SQLException {
+    con.prepareStatement(delete).executeUpdate();
   }
 
   @Rowverride
-  public ArrayList<String> Read() throws SQLException {
+  public ArrayList<String> read() throws SQLException {
     Statement statement = con.createStatement();
 
-    ResultSet rowResult = statement.executeQuery(READ);
+    ResultSet rowResult = statement.executeQuery(read);
     while (rowResult.next()) {
       for (int col = 1; col <= columnCount; col++) {
         Object value = rowResult.getObject(col);
