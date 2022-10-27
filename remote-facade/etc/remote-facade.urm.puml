@@ -1,0 +1,61 @@
+@startuml
+package com.iluwatar.remote.facade.Domain {
+  class Customer {
+    - address : String
+    - name : String
+    - phone : String
+    + Customer()
+    + Customer(nm : String, phn : String, adrs : String)
+    + getAddress() : String
+    + getName() : String
+    + getPhone() : String
+    + setAddress(address : String)
+    + setName(name : String)
+    + setPhone(phone : String)
+  }
+  class Domain {
+    + customers : List<Customer> {static}
+    + Domain()
+    + getCustomers() : ArrayList<String> {static}
+  }
+}
+package com.iluwatar.remote.facade.DTOs {
+  class CustomerDTO {
+    + address : String
+    + name : String
+    + phone : String
+    + CustomerDTO()
+    + getAddress() : String
+    + getName() : String
+    + getPhone() : String
+    + setAddress(address : String)
+    + setName(name : String)
+    + setPhone(phone : String)
+  }
+}
+package com.iluwatar.remote.facade.AssemblersFacades {
+  class CustomerDTOAssembler {
+    + CustomerDTOAssembler()
+    + makeCustomer(dataObject : CustomerDTO) {static}
+    + makeCustomerDTO(cstmr : Customer) : CustomerDTO {static}
+    + updateCustomer(dataObject : CustomerDTO) {static}
+  }
+  class RemoteFacade {
+    + RemoteFacade()
+    + makeClient(dataObject : CustomerDTO) {static}
+  }
+}
+package com.iluwatar.remote.facade {
+  class Client {
+    - LOGGER : Logger {static}
+    + Client()
+    + main(args : String[]) {static}
+    - printCustomerDetails(list : ArrayList<String>) {static}
+  }
+}
+Domain <--  "-customers" Customer
+CustomerDTOAssembler --> RemoteFacade
+RemoteFacade --> CustomerDTO
+Client <-- CustomerDTO
+RemoteFacade --> Domain
+@enduml

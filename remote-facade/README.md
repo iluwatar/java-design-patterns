@@ -43,40 +43,7 @@ public class CustomerDTO {
 }
 ```
 
-`CustomerDTOAssembler` class acts as the server for customer information.
-
-```java
-public class CustomerDTOAssembler {
-
-    public static CustomerDTO makeCustomerDTO(Customer cstmr) {
-        CustomerDTO customer = new CustomerDTO();
-        customer.name = cstmr.getName();
-        customer.phone = cstmr.getPhone();
-        customer.address = cstmr.getAddress();
-        return customer;
-    }
-
-    public static void updateCustomer(CustomerDTO dataObject) {
-        Customer c = null;
-        for (Customer cstmr : Domain.customers) {
-            if (cstmr.getName().equals(dataObject.name)) {
-                c = cstmr;
-                break;
-            }
-        }
-        if (c != null) {
-            c.setAddress(dataObject.address);
-            c.setPhone(dataObject.phone);
-        }
-    }
-
-    public static void makeCustomer(CustomerDTO dataObject) {
-        Customer c = new Customer(dataObject.name, dataObject.phone, dataObject.address);
-        Domain.customers.add(c);
-    }
-}
-```
-
+`CustomerDTOAssembler` class acts as the server for customer information computing all logic.
 Now using the `RemoteFacade` class since we have the DTOs. The methods take in the DTOs and compute any logic for them in the `Customerdtoassembler`
 
 ```java
@@ -126,7 +93,7 @@ Now Fetching the details through the `Domain` class where the DTOs are stored an
 ```
 
 ## Class diagram
-
+![alt text](./etc/remote-facade.urm.png "Remote-facade")
 ## Applicability
 
 Use the Remote Facade Pattern pattern when:
