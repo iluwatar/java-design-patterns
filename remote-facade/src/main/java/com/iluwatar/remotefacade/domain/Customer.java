@@ -16,13 +16,13 @@ public class Customer {
   /**
   * Customer details.
   *
-   * @param nm name
-   * @param phn phone
-   * @param adrs address
+   * @param customername .
+   * @param customerphone .
+   * @param customeradress .
    */
-  public Customer(String nm, String phn, String adrs) {
-    name = nm;
-    phone = phn;
-    address = adrs;
+  public Customer(String customername, String customerphone, String customeradress) {
+    name = customername;
+    phone = customerphone;
+    address = customeradress;
   }
 }

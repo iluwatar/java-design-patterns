@@ -1,7 +1,7 @@
 package com.iluwatar.remotefacade.assemblersfacades;
-import com.iluwatar.remotefacade.dto.Customerdto;
 import com.iluwatar.remotefacade.domain.Customer;
 import com.iluwatar.remotefacade.domain.Domain;
+import com.iluwatar.remotefacade.dto.Customerdto;
 
 /**
  * act as server with business logic.
