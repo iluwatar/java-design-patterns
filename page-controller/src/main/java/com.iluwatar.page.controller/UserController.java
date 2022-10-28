@@ -38,6 +38,7 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 @Slf4j
 @Controller
 public class UserController {
+  UserView view = new UserView();
   public UserController() {
   }
 
@@ -45,13 +46,9 @@ public class UserController {
    * Handle http GET request and access view and model.
    */
   @GetMapping("/user")
-  public void getUserPath(HttpServletRequest request, Model model) {
-    Map<String, ?> flashMap = RequestContextUtils.getInputFlashMap(request);
-    SignupModel userInfo = (SignupModel) flashMap.get("userInfo");
-    model.addAttribute("name", userInfo.getName());
-    model.addAttribute("email", userInfo.getEmail());
-    model.addAttribute("password", userInfo.getPassword());
-    UserView.display(userInfo);
-    LOGGER.info("Redirect successful");
+  public String getUserPath(SignupModel form, Model model) {
+    model.addAttribute("name", form.getName());
+    model.addAttribute("email", form.getEmail());
+    return view.display(form);
   }
 }

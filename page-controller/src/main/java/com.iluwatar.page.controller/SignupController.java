@@ -49,8 +49,8 @@ public class SignupController {
    * Handle http GET request.
    */
   @GetMapping("/signup")
-  public void getSignup() {
-    view.display();
+  public String getSignup() {
+    return view.display();
   }
 
   /**
@@ -61,6 +61,7 @@ public class SignupController {
     LOGGER.info(form.getName());
     LOGGER.info(form.getEmail());
     redirectAttributes.addAttribute("name", form.getName());
+    redirectAttributes.addAttribute("email", form.getEmail());
     redirectAttributes.addFlashAttribute("userInfo", form);
     return view.redirect(form);
   }

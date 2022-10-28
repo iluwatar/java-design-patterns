@@ -34,8 +34,9 @@ public class SignupView {
   public SignupView() {
   }
 
-  public void display() {
+  public String display() {
     LOGGER.info("display signup front page");
+    return "/signup";
   }
 
   /**
@@ -43,7 +44,6 @@ public class SignupView {
    */
   public String redirect(SignupModel form) {
     LOGGER.info("Redirect to user page with " + "name " + form.getName() + " email " + form.getEmail());
-    UserView.display(form);
     return "redirect:/user";
   }
 }

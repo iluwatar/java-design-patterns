@@ -24,13 +24,11 @@
  */
 package com.iluwatar.page.controller;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 /**
  * clothes model.
  */
-@RequiredArgsConstructor
 @Component
 public class SignupModel {
   private String name;
@@ -39,7 +37,7 @@ public class SignupModel {
 
   /**
    * signup model.
-   * @param name user name
+   * @param name username
    * @param email user email
    * @param password user password
    */
@@ -48,6 +46,10 @@ public class SignupModel {
     this.email = email;
     this.password = password;
   }
+
+  public SignupModel() {
+  }
+
   public void setName(String name) {
     this.name = name;
   }

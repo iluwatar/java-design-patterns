@@ -24,24 +24,31 @@
  */
 package com.iluwatar.page.controller;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.junit.jupiter.api.Test;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
-* The page controller pattern explanation.
-*/
-@Slf4j
-@SpringBootApplication
-public class App {
+ * Test for Signup Controller
+ */
+public class SignupControllerTest {
+
   /**
-   * Program entry point.
-   *
-   * @param args command line args
+   * Verify if user can sign up and redirect to user page
    */
-  public static void main(final String[] args) throws Exception {
-    SpringApplication.run(App.class, args);
+  @Test
+  void testSignup() {
+    var controller = new SignupController();
+    controller.getSignup();
+
+    RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
+    String redirectPath = controller.create(retrieveSignupData(), redirectAttributes);
+    assertEquals("redirect:/user", redirectPath);
+  }
+
+  public static SignupModel retrieveSignupData() {
+    SignupModel model = new SignupModel("Lily", "lily@email.com", "password1234");
+    return model;
   }
 }

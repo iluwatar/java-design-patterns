@@ -24,24 +24,15 @@
  */
 package com.iluwatar.page.controller;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
-* The page controller pattern explanation.
-*/
-@Slf4j
-@SpringBootApplication
-public class App {
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(final String[] args) throws Exception {
-    SpringApplication.run(App.class, args);
+ * Application test
+ */
+public class AppTest {
+  @Test
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

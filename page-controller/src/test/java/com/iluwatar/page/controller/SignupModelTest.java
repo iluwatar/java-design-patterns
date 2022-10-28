@@ -24,24 +24,40 @@
  */
 package com.iluwatar.page.controller;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
-* The page controller pattern explanation.
-*/
-@Slf4j
-@SpringBootApplication
-public class App {
+ * Test for Signup Model
+ */
+public class SignupModelTest {
   /**
-   * Program entry point.
-   *
-   * @param args command line args
+   * Verify if a user can set a name properly
    */
-  public static void main(final String[] args) throws Exception {
-    SpringApplication.run(App.class, args);
+  @Test
+  void testSetName() {
+    SignupModel model = new SignupModel();
+    model.setName("Lily");
+    assertEquals("Lily", model.getName());
+  }
+
+  /**
+   * Verify if a user can set an email properly
+   */
+  @Test
+  void testSetEmail() {
+    SignupModel model = new SignupModel();
+    model.setEmail("Lily@email");
+    assertEquals("Lily@email", model.getEmail());
+  }
+
+  /**
+   * Verify if a user can set a password properly
+   */
+  @Test
+  void testSetPassword() {
+    SignupModel model = new SignupModel();
+    model.setPassword("password1234");
+    assertEquals("password1234", model.getPassword());
   }
 }

@@ -30,7 +30,6 @@ package com.iluwatar.page.controller;
 public class UserModel {
   private String name;
   private String email;
-  private String password;
 
   /**
    * model.
@@ -53,7 +52,4 @@ public class UserModel {
     return email;
   }
 
-  public String getPassword() {
-    return password;
-  }
 }

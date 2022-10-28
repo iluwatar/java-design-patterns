@@ -35,7 +35,8 @@ public class UserView {
    * displaying command to generate html.
    * @param user model content.
    */
-  public static void display(SignupModel user) {
+  public String display(SignupModel user) {
     LOGGER.info("display user html" + " name " + user.getName() + " email " + user.getEmail());
+    return "/user";
   }
 }
