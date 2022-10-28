@@ -35,5 +35,26 @@ class RemoveLockTest {
     Object lockable = new Object();
     manager.canLock("Lock", lockable);
     assertEquals("Lock", manager.removeLock(lockable));
+
+    //Adding multiple locks then removing
+    Object lockable1 = new Object();
+    Object lockable2 = new Object();
+    Object lockable3 = new Object();
+    Object lockable4 = new Object();
+
+    manager.canLock("Lock1", lockable1);
+    manager.canLock("Lock2", lockable2);
+    manager.canLock("Lock3", lockable3);
+    manager.canLock("Lock4", lockable4);
+
+    assertEquals("Lock2", manager.removeLock(lockable2));
+    assertEquals("Lock4", manager.removeLock(lockable4));
+    assertEquals("Lock1", manager.removeLock(lockable1));
+    assertEquals("Lock3", manager.removeLock(lockable3));
+
+    //Re-adding a removed lock with the same name
+    assertTrue(manager.canLock("Lock", lockable));
+
+    assertEquals("Lock", manager.removeLock(lockable));
   }
 }

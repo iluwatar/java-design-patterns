@@ -54,4 +54,11 @@ class InvalidNameTest {
     Manager manager = Manager.getManager("TESTING");
     manager.canLock(null, object);
   }
+  
+   //Testing adding an empty string
+  @Test(expectedExceptions = InvalidNameException.class)
+  void invalidNameTestCanLockNull() throws InvalidNameException {
+    Object object = new Object();
+    Manager manager = Manager.getManager(" ");
+  }
 }
