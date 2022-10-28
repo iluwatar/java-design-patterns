@@ -29,7 +29,6 @@ import org.testng.annotations.Test;
 class InvalidNameTest {
 
   @Test(expectedExceptions = InvalidNameException.class)
-
   void invalidNameTestGetManagerEmpty() throws InvalidNameException {
     Manager manager = Manager.getManager("TESTING");
     Manager.getManager("");
@@ -49,15 +48,15 @@ class InvalidNameTest {
   }
 
   @Test(expectedExceptions = InvalidNameException.class)
-  void invalidNameTestCanLockNull() throws InvalidNameException {
+  void invalidNameTestCanLockNullNoManager() throws InvalidNameException {
     Object object = new Object();
     Manager manager = Manager.getManager("TESTING");
     manager.canLock(null, object);
   }
   
-   //Testing adding an empty string
+  //Testing adding an empty string
   @Test(expectedExceptions = InvalidNameException.class)
-  void invalidNameTestCanLockNull() throws InvalidNameException {
+  void invalidNameTestCanLockEmptyNoManager() throws InvalidNameException {
     Object object = new Object();
     Manager manager = Manager.getManager(" ");
   }

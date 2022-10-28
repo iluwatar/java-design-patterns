@@ -24,6 +24,7 @@
  */
 package com.iluwatar.lockmanager;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.testng.AssertJUnit.assertEquals;
 
 import org.testng.annotations.Test;
