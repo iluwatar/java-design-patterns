@@ -42,10 +42,22 @@ class Person extends NamedObject {
     return employments;
   }
 
-  void addEmployment(Company company, SimpleDate startDate) {
+  /**
+   * Adds period of employment at the given company that has started on the given date and is
+   * effective at all times past that date.
+   *
+   * @param company The company employed at.
+   * @param startDate The start of the effectivity of working.
+   */
+  public void addEmployment(Company company, SimpleDate startDate) {
     employments.add(new Employment(company, DateRange.startingOn(startDate)));
   }
 
+  /**
+   * Add employment to peron's list.
+   *
+   * @param employment Employment to add to this individual.
+   */
   public void addEmployment(Employment employment) {
     employments.add(employment);
   }

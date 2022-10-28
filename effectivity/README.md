@@ -26,8 +26,7 @@ Add a time period to an object to show when it is effective.
 Real-world example
 
 > An individual is employed at different companies over different periods of time during their 
-> life. It is useful to know if their employment at a certain position is effective during 
-> different points in time.
+> life. It is useful to know if they were working at a company at certain times.
 
 In plain words
 
