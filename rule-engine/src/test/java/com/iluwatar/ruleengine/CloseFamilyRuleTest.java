@@ -28,7 +28,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.AssertJUnit.assertEquals;
 
-public class CloseFamilyRuleTest {
+class CloseFamilyRuleTest {
   @Test
   void testShouldRun() {
     Candidate candidate = new Candidate();

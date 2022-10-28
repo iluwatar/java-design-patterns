@@ -27,7 +27,7 @@ package com.iluwatar.ruleengine;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SmallBusinessRuleTest {
+class SmallBusinessRuleTest {
   @Test
   void testShouldRun() {
     Candidate candidate = new Candidate();
