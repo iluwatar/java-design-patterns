@@ -123,7 +123,7 @@ Bây giờ, chúng ta có thể khởi tạo các sinh vật như Orcs, bảo ch
 
 ## Sơ đồ lớp
 
-![alt text](../../active-object/active-object.urm.png "Active Object class diagram")
+![alt text](../../../active-object/etc/active-object.urm.png "Active Object class diagram")
 
 ## Hướng dẫn
 
