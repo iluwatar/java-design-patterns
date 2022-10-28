@@ -7,9 +7,7 @@ Helps developers encapsulate each business rule in a separate object and separat
 > Unit testing is easy because the validation rule object is smaller than the single conditional statement.
 > The loop complexity metric is better than the monolithic conditional operator.
 ### Real world example
-* In this example we have an imaginary country that has an immigration policy with multiple criteria
-* We create separate class for each criterion to implement the pattern to calculate the candidate's
-* immigration score.
+ In this example we have an imaginary country that has an immigration policy with multiple criteria We create separate class for each criterion to implement the pattern to calculate the candidate's immigration score.
 ### Programmatic Example
 Walking through our example, here's the basic Candidate entity.
 
