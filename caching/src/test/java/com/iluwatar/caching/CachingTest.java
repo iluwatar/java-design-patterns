@@ -1,8 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.caching;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Application test
@@ -44,30 +43,32 @@ class CachingTest {
     // to avoid Maven compilation errors. Set flag to true to run the
     // tests with MongoDB (provided that MongoDB is installed and socket
     // connection is open).
-    app = new App(false);
+    AppManager.initDb(false);
+    AppManager.initCacheCapacity(3);
+    app = new App();
   }
 
   @Test
   void testReadAndWriteThroughStrategy() {
-    assertNotNull(app);
+	assertNotNull(app);
     app.useReadAndWriteThroughStrategy();
   }
 
   @Test
   void testReadThroughAndWriteAroundStrategy() {
-    assertNotNull(app);
+	assertNotNull(app);
     app.useReadThroughAndWriteAroundStrategy();
   }
 
   @Test
   void testReadThroughAndWriteBehindStrategy() {
-    assertNotNull(app);
+	assertNotNull(app);
     app.useReadThroughAndWriteBehindStrategy();
   }
 
   @Test
   void testCacheAsideStrategy() {
-    assertNotNull(app);
+	assertNotNull(app);
     app.useCacheAsideStategy();
   }
 }

@@ -1,8 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.throttling;
 
 import com.iluwatar.throttling.timer.ThrottleTimerImpl;
@@ -35,11 +34,11 @@ import lombok.extern.slf4j.Slf4j;
  * complete service by users or a particular tenant. This can allow systems to continue to function
  * and meet service level agreements, even when an increase in demand places load on resources.
  * <p>
- * In this example there is a {@link Bartender} serving beer to {@link BarCustomer}s. This is a time
+ * In this example we have ({@link App}) as the initiating point of the service. This is a time
  * based throttling, i.e. only a certain number of calls are allowed per second.
  * </p>
- * ({@link BarCustomer}) is the service tenant class having a name and the number of calls allowed.
- * ({@link Bartender}) is the service which is consumed by the tenants and is throttled.
+ * ({@link Tenant}) is the Tenant POJO class with which many tenants can be created ({@link
+ * B2BService}) is the service which is consumed by the tenants and is throttled.
  */
 @Slf4j
 public class App {
@@ -51,35 +50,33 @@ public class App {
    */
   public static void main(String[] args) {
     var callsCount = new CallsCount();
-    var human = new BarCustomer("young human", 2, callsCount);
-    var dwarf = new BarCustomer("dwarf soldier", 4, callsCount);
+    var adidas = new Tenant("Adidas", 5, callsCount);
+    var nike = new Tenant("Nike", 6, callsCount);
 
     var executorService = Executors.newFixedThreadPool(2);
 
-    executorService.execute(() -> makeServiceCalls(human, callsCount));
-    executorService.execute(() -> makeServiceCalls(dwarf, callsCount));
+    executorService.execute(() -> makeServiceCalls(adidas, callsCount));
+    executorService.execute(() -> makeServiceCalls(nike, callsCount));
 
     executorService.shutdown();
     try {
-      if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
-        executorService.shutdownNow();
-      }
+      executorService.awaitTermination(10, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      executorService.shutdownNow();
+      LOGGER.error("Executor Service terminated: {}", e.getMessage());
     }
   }
 
   /**
-   * Make calls to the bartender.
+   * Make calls to the B2BService dummy API.
    */
-  private static void makeServiceCalls(BarCustomer barCustomer, CallsCount callsCount) {
-    var timer = new ThrottleTimerImpl(1000, callsCount);
-    var service = new Bartender(timer, callsCount);
+  private static void makeServiceCalls(Tenant tenant, CallsCount callsCount) {
+    var timer = new ThrottleTimerImpl(10, callsCount);
+    var service = new B2BService(timer, callsCount);
     // Sleep is introduced to keep the output in check and easy to view and analyze the results.
-    IntStream.range(0, 50).forEach(i -> {
-      service.orderDrink(barCustomer);
+    IntStream.range(0, 20).forEach(i -> {
+      service.dummyCustomerApi(tenant);
       try {
-        Thread.sleep(100);
+        Thread.sleep(1);
       } catch (InterruptedException e) {
         LOGGER.error("Thread interrupted: {}", e.getMessage());
       }

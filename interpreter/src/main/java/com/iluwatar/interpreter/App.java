@@ -1,8 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.interpreter;
 
 import java.util.Stack;
@@ -35,33 +34,25 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>In this example we use the Interpreter pattern to break sentences into expressions ({@link
  * Expression}) that can be evaluated and as a whole form the result.
- *
- * <p>Expressions can be evaluated using prefix, infix or postfix notations This sample uses
- * postfix, where operator comes after the operands.
- *
  */
 @Slf4j
 public class App {
 
   /**
    * Program entry point.
-   * @param args program arguments
+   *
+   * <p>Expressions can be evaluated using prefix, infix or postfix notations This sample uses
+   * postfix, where operator comes after the operands.
+   *
+   * @param args command line args
    */
   public static void main(String[] args) {
-
-    // the halfling kids are learning some basic math at school
-    // define the math string we want to parse
-    final var tokenString = "4 3 2 - 1 + *";
-
-    // the stack holds the parsed expressions
+    var tokenString = "4 3 2 - 1 + *";
     var stack = new Stack<Expression>();
 
-    // tokenize the string and go through them one by one
     var tokenList = tokenString.split(" ");
     for (var s : tokenList) {
       if (isOperator(s)) {
-        // when an operator is encountered we expect that the numbers can be popped from the top of
-        // the stack
         var rightExpression = stack.pop();
         var leftExpression = stack.pop();
         LOGGER.info("popped from stack left: {} right: {}",
@@ -69,36 +60,24 @@ public class App {
         var operator = getOperatorInstance(s, leftExpression, rightExpression);
         LOGGER.info("operator: {}", operator);
         var result = operator.interpret();
-        // the operation result is pushed on top of the stack
         var resultExpression = new NumberExpression(result);
         stack.push(resultExpression);
         LOGGER.info("push result to stack: {}", resultExpression.interpret());
       } else {
-        // numbers are pushed on top of the stack
         var i = new NumberExpression(s);
         stack.push(i);
         LOGGER.info("push to stack: {}", i.interpret());
       }
     }
-    // in the end, the final result lies on top of the stack
     LOGGER.info("result: {}", stack.pop().interpret());
   }
 
-  /**
-   * Checks whether the input parameter is an operator.
-   * @param s input string
-   * @return true if the input parameter is an operator
-   */
   public static boolean isOperator(String s) {
     return s.equals("+") || s.equals("-") || s.equals("*");
   }
 
   /**
-   * Returns correct expression based on the parameters.
-   * @param s input string
-   * @param left expression
-   * @param right expression
-   * @return expression
+   * Get expression for string.
    */
   public static Expression getOperatorInstance(String s, Expression left, Expression right) {
     switch (s) {
@@ -106,6 +85,8 @@ public class App {
         return new PlusExpression(left, right);
       case "-":
         return new MinusExpression(left, right);
+      case "*":
+        return new MultiplyExpression(left, right);
       default:
         return new MultiplyExpression(left, right);
     }

@@ -1,8 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.async.method.invocation;
 
 import java.util.concurrent.Callable;
@@ -60,12 +59,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  private static final String ROCKET_LAUNCH_LOG_PATTERN = "Space rocket <%s> launched successfully";
-
   /**
    * Program entry point.
    */
-
   public static void main(String[] args) throws Exception {
     // construct a new executor that will run async tasks
     var executor = new ThreadAsyncExecutor();
@@ -91,9 +87,9 @@ public class App {
     asyncResult5.await();
 
     // log the results of the tasks, callbacks log immediately when complete
-    log(String.format(ROCKET_LAUNCH_LOG_PATTERN, result1));
-    log(String.format(ROCKET_LAUNCH_LOG_PATTERN, result2));
-    log(String.format(ROCKET_LAUNCH_LOG_PATTERN, result3));
+    log("Space rocket <" + result1 + "> launch complete");
+    log("Space rocket <" + result2 + "> launch complete");
+    log("Space rocket <" + result3 + "> launch complete");
   }
 
   /**
@@ -106,7 +102,7 @@ public class App {
   private static <T> Callable<T> lazyval(T value, long delayMillis) {
     return () -> {
       Thread.sleep(delayMillis);
-      log(String.format(ROCKET_LAUNCH_LOG_PATTERN, value));
+      log("Space rocket <" + value + "> launched successfully");
       return value;
     };
   }

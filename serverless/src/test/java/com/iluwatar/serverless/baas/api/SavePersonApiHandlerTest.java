@@ -1,8 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.serverless.baas.api;
 
 import static org.mockito.Mockito.mock;
@@ -35,18 +34,18 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iluwatar.serverless.baas.model.Address;
 import com.iluwatar.serverless.baas.model.Person;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  * Unit tests for SavePersonApiHandler Created by dheeraj.mummar on 3/4/18.
  */
-class SavePersonApiHandlerTest {
+@RunWith(MockitoJUnitRunner.class)
+public class SavePersonApiHandlerTest {
 
   private SavePersonApiHandler savePersonApiHandler;
 
@@ -55,32 +54,31 @@ class SavePersonApiHandlerTest {
 
   private final ObjectMapper objectMapper = new ObjectMapper();
 
-  @BeforeEach
+  @Before
   public void setUp() {
-    MockitoAnnotations.openMocks(this);
     this.savePersonApiHandler = new SavePersonApiHandler();
     this.savePersonApiHandler.setDynamoDbMapper(dynamoDbMapper);
   }
 
   @Test
-  void handleRequestSavePersonSuccessful() throws JsonProcessingException {
+  public void handleRequestSavePersonSuccessful() throws JsonProcessingException {
     var person = newPerson();
     var body = objectMapper.writeValueAsString(person);
     var request = apiGatewayProxyRequestEvent(body);
     var ctx = mock(Context.class);
     var apiGatewayProxyResponseEvent = this.savePersonApiHandler.handleRequest(request, ctx);
     verify(dynamoDbMapper, times(1)).save(person);
-    assertNotNull(apiGatewayProxyResponseEvent);
-    assertEquals(Integer.valueOf(201), apiGatewayProxyResponseEvent.getStatusCode());
+    Assert.assertNotNull(apiGatewayProxyResponseEvent);
+    Assert.assertEquals(Integer.valueOf(201), apiGatewayProxyResponseEvent.getStatusCode());
   }
 
   @Test
-  void handleRequestSavePersonException() {
+  public void handleRequestSavePersonException() {
     var request = apiGatewayProxyRequestEvent("invalid sample request");
     var ctx = mock(Context.class);
     var apiGatewayProxyResponseEvent = this.savePersonApiHandler.handleRequest(request, ctx);
-    assertNotNull(apiGatewayProxyResponseEvent);
-    assertEquals(Integer.valueOf(400), apiGatewayProxyResponseEvent.getStatusCode());
+    Assert.assertNotNull(apiGatewayProxyResponseEvent);
+    Assert.assertEquals(Integer.valueOf(400), apiGatewayProxyResponseEvent.getStatusCode());
   }
 
   private APIGatewayProxyRequestEvent apiGatewayProxyRequestEvent(String body) {

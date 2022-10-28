@@ -3,7 +3,6 @@ layout: pattern
 title: Lockable Object
 folder: lockable-object
 permalink: /patterns/lockable-object/
-language: en
 categories: Concurrency
 tags:
 - Performance

@@ -1,8 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.value.object;
 
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +43,7 @@ import lombok.extern.slf4j.Slf4j;
 public class App {
 
   /**
-   * This example creates three HeroStats (value objects) and checks equality between those.
+   * This practice creates three HeroStats(Value object) and checks equality between those.
    */
   public static void main(String[] args) {
     var statA = HeroStat.valueOf(10, 5, 0);
@@ -52,8 +51,6 @@ public class App {
     var statC = HeroStat.valueOf(5, 1, 8);
 
     LOGGER.info(statA.toString());
-    LOGGER.info(statB.toString());
-    LOGGER.info(statC.toString());
 
     LOGGER.info("Is statA and statB equal : {}", statA.equals(statB));
     LOGGER.info("Is statA and statC equal : {}", statA.equals(statC));

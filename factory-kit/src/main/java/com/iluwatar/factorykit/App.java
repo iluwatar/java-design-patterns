@@ -1,8 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,18 +20,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.factorykit;
 
-import java.util.ArrayList;
+package com.iluwatar.factorykit;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Factory kit is a creational pattern that defines a factory of immutable content with separated
+ * Factory-kit is a creational pattern which defines a factory of immutable content with separated
  * builder and factory interfaces to deal with the problem of creating one of the objects specified
- * directly in the factory kit instance.
+ * directly in the factory-kit instance.
  *
- * <p>In the given example {@link WeaponFactory} represents the factory kit, that contains four
+ * <p>In the given example {@link WeaponFactory} represents the factory-kit, that contains four
  * {@link Builder}s for creating new objects of the classes implementing {@link Weapon} interface.
  *
  * <p>Each of them can be called with {@link WeaponFactory#create(WeaponType)} method, with
@@ -55,11 +52,7 @@ public class App {
       builder.add(WeaponType.SPEAR, Spear::new);
       builder.add(WeaponType.BOW, Bow::new);
     });
-    var list = new ArrayList<Weapon>();
-    list.add(factory.create(WeaponType.AXE));
-    list.add(factory.create(WeaponType.SPEAR));
-    list.add(factory.create(WeaponType.SWORD));
-    list.add(factory.create(WeaponType.BOW));
-    list.stream().forEach(weapon -> LOGGER.info("{}", weapon.toString()));
+    var axe = factory.create(WeaponType.AXE);
+    LOGGER.info(axe.toString());
   }
 }

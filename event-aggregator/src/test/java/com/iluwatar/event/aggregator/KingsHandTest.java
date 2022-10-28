@@ -1,8 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,6 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.event.aggregator;
 
 import static org.mockito.Matchers.eq;
@@ -56,11 +55,7 @@ class KingsHandTest extends EventEmitterTest<KingsHand> {
   @Test
   void testPassThrough() throws Exception {
     final var observer = mock(EventObserver.class);
-    final var kingsHand = new KingsHand();
-    kingsHand.registerObserver(observer, Event.STARK_SIGHTED);
-    kingsHand.registerObserver(observer, Event.WARSHIPS_APPROACHING);
-    kingsHand.registerObserver(observer, Event.TRAITOR_DETECTED);
-    kingsHand.registerObserver(observer, Event.WHITE_WALKERS_SIGHTED);
+    final var kingsHand = new KingsHand(observer);
 
     // The kings hand should not pass any events before he received one
     verifyZeroInteractions(observer);

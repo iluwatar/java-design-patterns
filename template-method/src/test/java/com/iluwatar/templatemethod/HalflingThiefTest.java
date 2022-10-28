@@ -1,8 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,9 +20,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.templatemethod;
 
-import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -42,14 +41,11 @@ public class HalflingThiefTest {
    */
   @Test
   void testSteal() {
-    final var method = spy(StealingMethod.class);
+    final var method = mock(StealingMethod.class);
     final var thief = new HalflingThief(method);
 
     thief.steal();
     verify(method).steal();
-    String target = verify(method).pickTarget();
-    verify(method).confuseTarget(target);
-    verify(method).stealTheItem(target);
 
     verifyNoMoreInteractions(method);
   }
@@ -59,23 +55,19 @@ public class HalflingThiefTest {
    */
   @Test
   void testChangeMethod() {
-    final var initialMethod = spy(StealingMethod.class);
+    final var initialMethod = mock(StealingMethod.class);
     final var thief = new HalflingThief(initialMethod);
 
     thief.steal();
     verify(initialMethod).steal();
-    String target = verify(initialMethod).pickTarget();
-    verify(initialMethod).confuseTarget(target);
-    verify(initialMethod).stealTheItem(target);
 
-    final var newMethod = spy(StealingMethod.class);
+    final var newMethod = mock(StealingMethod.class);
     thief.changeMethod(newMethod);
 
     thief.steal();
     verify(newMethod).steal();
-    String newTarget = verify(newMethod).pickTarget();
-    verify(newMethod).confuseTarget(newTarget);
-    verify(newMethod).stealTheItem(newTarget);
+
     verifyNoMoreInteractions(initialMethod, newMethod);
+
   }
 }

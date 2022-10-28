@@ -118,7 +118,7 @@ To deploy the example, go to model-view-viewmodel folder and run:
 
 * [Zkoss Demo](https://www.zkoss.org/zkdemo/getting_started/mvvm)
 * [Learn MVVM](https://www.learnmvvm.com/)
-* [Data Binding in Android](https://developer.android.com/codelabs/android-databinding#0)
+* [Android Developer CodeLabs](https://codelabs.developers.google.com/codelabs/android-databinding)
 
 ## Typical Use Case
 

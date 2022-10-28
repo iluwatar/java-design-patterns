@@ -1,8 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2021 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,12 +20,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.factory.method;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The Factory Method is a creational design pattern that uses factory methods to deal with the
+ * The Factory Method is a creational design pattern which uses factory methods to deal with the
  * problem of creating objects without specifying the exact class of object that will be created.
  * This is done by creating objects via calling a factory method either specified in an interface
  * and implemented by child classes, or implemented in a base class and optionally overridden by
@@ -42,24 +41,39 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  private static final String MANUFACTURED = "{} manufactured {}";
+  private final Blacksmith blacksmith;
+
+  /**
+   * Creates an instance of <code>App</code> which will use <code>blacksmith</code> to manufacture 
+   * the weapons for war.
+   * <code>App</code> is unaware which concrete implementation of {@link Blacksmith} it is using.
+   * The decision of which blacksmith implementation to use may depend on configuration, or
+   * the type of rival in war.
+   * @param blacksmith a non-null implementation of blacksmith
+   */
+  public App(Blacksmith blacksmith) {
+    this.blacksmith = blacksmith;
+  }
 
   /**
    * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {
+    // Lets go to war with Orc weapons
+    var app = new App(new OrcBlacksmith());
+    app.manufactureWeapons();
 
-    Blacksmith blacksmith = new OrcBlacksmith();
-    Weapon weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
-    LOGGER.info(MANUFACTURED, blacksmith, weapon);
-    weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
-    LOGGER.info(MANUFACTURED, blacksmith, weapon);
+    // Lets go to war with Elf weapons
+    app = new App(new ElfBlacksmith());
+    app.manufactureWeapons();
+  }
 
-    blacksmith = new ElfBlacksmith();
-    weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
-    LOGGER.info(MANUFACTURED, blacksmith, weapon);
+  private void manufactureWeapons() {
+    var weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
+    LOGGER.info(weapon.toString());
     weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
-    LOGGER.info(MANUFACTURED, blacksmith, weapon);
+    LOGGER.info(weapon.toString());
   }
 }

@@ -1,8 +1,10 @@
 ---
 layout: pattern
 title: Version Number
-folder: version-number
-permalink: /patterns/version-number/
+folder: versionnumber
+permalink: /patterns/versionnumber/
+description: Entity versioning with version number
+
 categories: Concurrency
 language: en
 tags:

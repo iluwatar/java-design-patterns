@@ -43,29 +43,39 @@ Wikipedia says:
 **Programmatic Example**
 
 Let's first look at the data layer of our application. The interesting classes are `UserAccount`
-which is a simple Java object containing the user account details, and `DbManager` interface which handles
-reading and writing of these objects to/from database.
+which is a simple Java object containing the user account details, and `DbManager` which handles
+reading and writing of these objects to/from MongoDB database.
 
 ```java
-@Data
+@Setter
+@Getter
 @AllArgsConstructor
 @ToString
-@EqualsAndHashCode
 public class UserAccount {
   private String userId;
   private String userName;
   private String additionalInfo;
 }
 
-public interface DbManager {
+@Slf4j
+public final class DbManager {
 
-  void connect();
-  void disconnect();
-  
-  UserAccount readFromDb(String userId);
-  UserAccount writeToDb(UserAccount userAccount);
-  UserAccount updateDb(UserAccount userAccount);
-  UserAccount upsertDb(UserAccount userAccount);
+  private static MongoClient mongoClient;
+  private static MongoDatabase db;
+
+  private DbManager() { /*...*/ }
+
+  public static void createVirtualDb() { /*...*/ }
+
+  public static void connect() throws ParseException { /*...*/ }
+
+  public static UserAccount readFromDb(String userId) { /*...*/ }
+
+  public static void writeToDb(UserAccount userAccount) { /*...*/ }
+
+  public static void updateDb(UserAccount userAccount) { /*...*/ }
+
+  public static void upsertDb(UserAccount userAccount) { /*...*/ }
 }
 ```
 
@@ -161,41 +171,28 @@ strategies.
 @Slf4j
 public class CacheStore {
 
-  private static final int CAPACITY = 3;
   private static LruCache cache;
-  private final DbManager dbManager;
 
   /* ... details omitted ... */
 
-  public UserAccount readThrough(final String userId) {
+  public static UserAccount readThrough(String userId) {
     if (cache.contains(userId)) {
-      LOGGER.info("# Found in Cache!");
+      LOGGER.info("# Cache Hit!");
       return cache.get(userId);
     }
-    LOGGER.info("# Not found in cache! Go to DB!!");
-    UserAccount userAccount = dbManager.readFromDb(userId);
+    LOGGER.info("# Cache Miss!");
+    UserAccount userAccount = DbManager.readFromDb(userId);
     cache.set(userId, userAccount);
     return userAccount;
   }
 
-  public void writeThrough(final UserAccount userAccount) {
+  public static void writeThrough(UserAccount userAccount) {
     if (cache.contains(userAccount.getUserId())) {
-      dbManager.updateDb(userAccount);
+      DbManager.updateDb(userAccount);
     } else {
-      dbManager.writeToDb(userAccount);
+      DbManager.writeToDb(userAccount);
     }
     cache.set(userAccount.getUserId(), userAccount);
-  }
-
-  public void writeAround(final UserAccount userAccount) {
-    if (cache.contains(userAccount.getUserId())) {
-      dbManager.updateDb(userAccount);
-      // Cache data has been updated -- remove older
-      cache.invalidate(userAccount.getUserId());
-      // version from cache.
-    } else {
-      dbManager.writeToDb(userAccount);
-    }
   }
 
   public static void clearCache() {
@@ -228,39 +225,34 @@ class.
 public final class AppManager {
 
   private static CachingPolicy cachingPolicy;
-  private final DbManager dbManager;
-  private final CacheStore cacheStore;
 
   private AppManager() {
   }
 
-  public void initDb() { /* ... */ }
+  public static void initDb(boolean useMongoDb) { /* ... */ }
 
   public static void initCachingPolicy(CachingPolicy policy) { /* ... */ }
 
   public static void initCacheCapacity(int capacity) { /* ... */ }
 
-  public UserAccount find(final String userId) {
-    LOGGER.info("Trying to find {} in cache", userId);
-    if (cachingPolicy == CachingPolicy.THROUGH
-            || cachingPolicy == CachingPolicy.AROUND) {
-      return cacheStore.readThrough(userId);
+  public static UserAccount find(String userId) {
+    if (cachingPolicy == CachingPolicy.THROUGH || cachingPolicy == CachingPolicy.AROUND) {
+      return CacheStore.readThrough(userId);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
-      return cacheStore.readThroughWithWriteBackPolicy(userId);
+      return CacheStore.readThroughWithWriteBackPolicy(userId);
     } else if (cachingPolicy == CachingPolicy.ASIDE) {
       return findAside(userId);
     }
     return null;
   }
 
-  public void save(final UserAccount userAccount) {
-    LOGGER.info("Save record!");
+  public static void save(UserAccount userAccount) {
     if (cachingPolicy == CachingPolicy.THROUGH) {
-      cacheStore.writeThrough(userAccount);
+      CacheStore.writeThrough(userAccount);
     } else if (cachingPolicy == CachingPolicy.AROUND) {
-      cacheStore.writeAround(userAccount);
+      CacheStore.writeAround(userAccount);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
-      cacheStore.writeBehind(userAccount);
+      CacheStore.writeBehind(userAccount);
     } else if (cachingPolicy == CachingPolicy.ASIDE) {
       saveAside(userAccount);
     }
@@ -280,35 +272,24 @@ Here is what we do in the main class of the application.
 @Slf4j
 public class App {
 
-  public static void main(final String[] args) {
-    boolean isDbMongo = isDbMongo(args);
-    if(isDbMongo){
-      LOGGER.info("Using the Mongo database engine to run the application.");
-    } else {
-      LOGGER.info("Using the 'in Memory' database to run the application.");
-    }
-    App app = new App(isDbMongo);
+  public static void main(String[] args) {
+    AppManager.initDb(false);
+    AppManager.initCacheCapacity(3);
+    var app = new App();
     app.useReadAndWriteThroughStrategy();
-    String splitLine = "==============================================";
-    LOGGER.info(splitLine);
     app.useReadThroughAndWriteAroundStrategy();
-    LOGGER.info(splitLine);
     app.useReadThroughAndWriteBehindStrategy();
-    LOGGER.info(splitLine);
     app.useCacheAsideStategy();
-    LOGGER.info(splitLine);
   }
 
   public void useReadAndWriteThroughStrategy() {
     LOGGER.info("# CachingPolicy.THROUGH");
-    appManager.initCachingPolicy(CachingPolicy.THROUGH);
-
+    AppManager.initCachingPolicy(CachingPolicy.THROUGH);
     var userAccount1 = new UserAccount("001", "John", "He is a boy.");
-
-    appManager.save(userAccount1);
-    LOGGER.info(appManager.printCacheContent());
-    appManager.find("001");
-    appManager.find("001");
+    AppManager.save(userAccount1);
+    LOGGER.info(AppManager.printCacheContent());
+    AppManager.find("001");
+    AppManager.find("001");
   }
 
   public void useReadThroughAndWriteAroundStrategy() { /* ... */ }
@@ -317,6 +298,16 @@ public class App {
 
   public void useCacheAsideStategy() { /* ... */ }
 }
+```
+
+Finally, here is some of the console output from the program.
+
+```
+12:32:53.845 [main] INFO com.iluwatar.caching.App - # CachingPolicy.THROUGH
+12:32:53.900 [main] INFO com.iluwatar.caching.App - 
+--CACHE CONTENT--
+UserAccount(userId=001, userName=John, additionalInfo=He is a boy.)
+----
 ```
 
 ## Class diagram

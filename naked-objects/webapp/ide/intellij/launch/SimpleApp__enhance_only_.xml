@@ -1,10 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
-
     The MIT License
-    Copyright © 2014-2022 Ilkka Seppälä
+    Copyright © 2014-2021 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -26,8 +23,7 @@
 
 -->
 <component name="ProjectRunConfigurationManager">
-  s
-  <configuration default="false" name="SimpleApp (enhance only)" type="Application" factoryName="Application">
+s  <configuration default="false" name="SimpleApp (enhance only)" type="Application" factoryName="Application">
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     <option name="MAIN_CLASS_NAME" value="org.apache.isis.Dummy" />
     <option name="VM_PARAMETERS" value="" />
