@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-224-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-225-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -362,6 +362,9 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/shouryamanekar"><img src="https://avatars.githubusercontent.com/u/72398499?v=4?s=100" width="100px;" alt="Shourya Manekar"/><br /><sub><b>Shourya Manekar</b></sub></a><br /><a href="#translation-shouryamanekar" title="Translation">🌍</a></td>
       <td align="center"><a href="https://seongkyu-lim.github.io/Blog/"><img src="https://avatars.githubusercontent.com/u/55138532?v=4?s=100" width="100px;" alt="Alan"/><br /><sub><b>Alan</b></sub></a><br /><a href="#translation-seongkyu-lim" title="Translation">🌍</a></td>
       <td align="center"><a href="https://github.com/JanFidor"><img src="https://avatars.githubusercontent.com/u/66260538?v=4?s=100" width="100px;" alt="JanFidor"/><br /><sub><b>JanFidor</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=JanFidor" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=JanFidor" title="Documentation">📖</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/drakulavich"><img src="https://avatars.githubusercontent.com/u/129260?v=4?s=100" width="100px;" alt="Anton Yakutovich"/><br /><sub><b>Anton Yakutovich</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=drakulavich" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
