@@ -24,12 +24,16 @@
  */
 package com.iluwatar.ruleengine;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Candidate {
+@AllArgsConstructor
+@NoArgsConstructor
+class Candidate {
   private int lengthOfCurrentResidence;
   private String englishProficiency;
   private boolean isNominatedOccupationOnTheList;

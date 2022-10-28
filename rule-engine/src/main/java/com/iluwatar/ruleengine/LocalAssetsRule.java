@@ -28,7 +28,7 @@ package com.iluwatar.ruleengine;
  * The candidate has invested enough amount of money into local businesses.
  * $250000+: 5 points
  */
-public class LocalAssetsRule implements ImmigrationRule {
+class LocalAssetsRule implements ImmigrationRule {
   /**
    * Check if this Assets rule can be executed or not.
    *

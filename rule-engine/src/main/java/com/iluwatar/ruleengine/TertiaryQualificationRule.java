@@ -32,7 +32,7 @@ package com.iluwatar.ruleengine;
  * Diploma: 5 points
  * None of above: 0 points
  */
-public class TertiaryQualificationRule implements ImmigrationRule {
+class TertiaryQualificationRule implements ImmigrationRule {
   /**
    * Check if this TertiaryQualification rule can be executed or not.
    *

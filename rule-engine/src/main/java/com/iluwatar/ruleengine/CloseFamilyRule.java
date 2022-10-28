@@ -31,7 +31,7 @@ package com.iluwatar.ruleengine;
  * Parent: 10 points
  * None: 0 point
  */
-public class CloseFamilyRule implements ImmigrationRule {
+class CloseFamilyRule implements ImmigrationRule {
   /**
    * Check if this CloseFamilyRule rule can be executed or not.
    * @param candidate : the current candidate

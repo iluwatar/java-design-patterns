@@ -28,7 +28,7 @@ package com.iluwatar.ruleengine;
  * The candidate's occupation is on the nominated occupation list.
  * true: 20 points
  */
-public class NominatedOccupationRule implements ImmigrationRule {
+class NominatedOccupationRule implements ImmigrationRule {
   /**
    * Check if this Nominated Occupation Rule can be executed or not.
    *

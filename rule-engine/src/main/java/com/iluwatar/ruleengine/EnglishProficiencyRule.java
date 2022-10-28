@@ -31,7 +31,7 @@ package com.iluwatar.ruleengine;
  * proficient: 10 points
  * None: 0 point
  */
-public class EnglishProficiencyRule implements ImmigrationRule {
+class EnglishProficiencyRule implements ImmigrationRule {
   /**
    * Check if this English Proficiency rule can be executed or not.
    *
@@ -55,7 +55,7 @@ public class EnglishProficiencyRule implements ImmigrationRule {
   public int runRule(Candidate candidate) {
     String proficiency = candidate.getEnglishProficiency();
 
-    if (proficiency == "superior") {
+    if (proficiency.equals("superior")) {
       return 15;
     }
 

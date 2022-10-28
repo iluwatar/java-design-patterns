@@ -31,7 +31,7 @@ package com.iluwatar.ruleengine;
  * 6+ months: 5 points
  * None: 0 point
  */
-public class LengthOfEmploymentRule implements ImmigrationRule {
+class LengthOfEmploymentRule implements ImmigrationRule {
   /**
    * Check if this LengthOfEmployment rule can be executed or not.
    *

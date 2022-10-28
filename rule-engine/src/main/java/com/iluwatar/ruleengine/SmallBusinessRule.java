@@ -28,7 +28,7 @@ package com.iluwatar.ruleengine;
  * The candidate has invested a small business locally with enough turnover.
  * $250000+: 5 points
  */
-public class SmallBusinessRule implements ImmigrationRule {
+class SmallBusinessRule implements ImmigrationRule {
   /**
    * Check if this Small Business Rule can be executed or not.
    *

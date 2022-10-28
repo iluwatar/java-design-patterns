@@ -25,6 +25,7 @@
 package com.iluwatar.ruleengine;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -45,7 +46,8 @@ public class App {
    * The main method of rule engine pattern.
    */
   public static void main(String[] args) {
-    ArrayList<ImmigrationRule> rules = new ArrayList<ImmigrationRule>();
+    List<ImmigrationRule> rules = new ArrayList<>();
+
     rules.add(new LengthOfResidenceRule());
     rules.add(new EnglishProficiencyRule());
     rules.add(new NominatedOccupationRule());
@@ -56,24 +58,24 @@ public class App {
     rules.add(new LocalAssetsRule());
     rules.add(new CloseFamilyRule());
 
-    Candidate candidate = new Candidate();
-    candidate.setLengthOfCurrentResidence(5);
-    candidate.setEnglishProficiency("superior");
-    candidate.setNominatedOccupationOnTheList(true);
-    candidate.setSmallBusinessOwner(true);
-    candidate.setLengthOfEmployment(7);
-    candidate.setTertiaryQualification("Master degree");
-    candidate.setYearsOfStudy(6);
-    candidate.setLocalAssets(200000);
-    candidate.setCloseFamilyTies("Spouse");
+    Candidate candidate1 = new Candidate(5, "superior", true, true, 100000, 7, 6, "Master Degree", 300000, "Spouse");
+    Candidate candidate2 = new Candidate(3, "proficient", false, false, 0, 12, 3, "Bachelor Degree", 20000, "Parent");
+    Candidate candidate3 = new Candidate(1, "proficient", false, false, 0, 12, 7, "Doctoral Degree", 200000, "Parent");
 
-    int score = 0;
+    int score1 = 0;
+    int score2 = 0;
+    int score3 = 0;
     for (ImmigrationRule rule : rules) {
-      if (rule.shouldRun(candidate)) {
-        score += rule.runRule(candidate);
+      if (rule.shouldRun(candidate1)) {
+        score1 += rule.runRule(candidate1);
+        score2 += rule.runRule(candidate2);
+        score3 += rule.runRule(candidate3);
       }
     }
 
-    LOGGER.info("score: " + score);
+    LOGGER.info("score for candidate 1: " + score1);
+    LOGGER.info("score for candidate 2: " + score2);
+    LOGGER.info("score for candidate 3: " + score3);
+
   }
 }

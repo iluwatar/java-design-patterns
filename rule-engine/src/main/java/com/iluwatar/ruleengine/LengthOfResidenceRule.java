@@ -33,7 +33,7 @@ package com.iluwatar.ruleengine;
  * 2 years: 10 points
  * 1 year: 5 points
  */
-public class LengthOfResidenceRule implements ImmigrationRule {
+class LengthOfResidenceRule implements ImmigrationRule {
   /**
    * Check if this LengthOfResidence rule can be executed or not.
    * @param candidate : the current candidate

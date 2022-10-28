@@ -32,7 +32,7 @@ package com.iluwatar.ruleengine;
  * 2 years: 10 points
  * 1 year: 5 points
  */
-public class YearsOfStudyRule implements ImmigrationRule {
+class YearsOfStudyRule implements ImmigrationRule {
   /**
    * Check if this YearsOfStudy rule can be executed or not.
    *
