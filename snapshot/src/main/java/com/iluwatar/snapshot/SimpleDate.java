@@ -37,10 +37,22 @@ public class SimpleDate implements Comparable<SimpleDate> {
 
   private LocalDate date;
 
+  /**
+   * Create a SimpleDate by specifying a calender day.
+   *
+   * @param year The calendar year for the date.
+   * @param month The calendar month for the date.
+   * @param day The calendar day for the date.
+   */
   SimpleDate(int year, int month, int day) {
     date = LocalDate.of(year, month, day);
   }
 
+  /**
+   * Initialise a simple date using the given date.
+   *
+   * @param date Date to initialise the simple date with.
+   */
   SimpleDate(LocalDate date) {
     this.date = date;
   }
