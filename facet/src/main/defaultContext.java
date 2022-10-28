@@ -1,22 +1,15 @@
 package main;
 
 public class defaultContext implements Context{
-    private Client client;
-
-    public defaultContext(){
-        client = new Client();
-    }
-
     @Override
     public Object validateComponent(Class interfaceClass, Object delegate){
         return delegate.getClass().equals(interfaceClass);
     }
     @Override
     public boolean validateInterface(Class interfaceClass) {
-        return interfaceClass.equals(securityMethods.class);
-    }
+        if(interfaceClass.equals(securityMethods.class)){
+            return accessController.checkPermission(new administratorPermission());
+        }else return false;
 
-    public void setClient(Client client) {
-        this.client = client;
     }
 }

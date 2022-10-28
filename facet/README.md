@@ -14,9 +14,11 @@ Restrict an interface to obtain a smaller interface that provides less authority
 
 Facets are used as a security pattern in CapabilityOrientedProgramming, in order to satisfy the PrincipleOfLeastAuthority. For example, if some client of an object only needs to be able to read information from it, that client should be provided with a read-only facet.
 
+The facet interface is always a subset of the original interface, and the purpose is to restrict authority rather than to translate between incompatible interfaces.
+
 ## Class Diagram
 
-![facet_class_diagram](./etc/facet_class_diagram.png)
+
 
 ## Applicability
 

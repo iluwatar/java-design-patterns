@@ -7,16 +7,12 @@ public class defaultSentry implements Sentry{
         context = new defaultContext();
     }
     public defaultSentry(Context context) {
+
         this.context = context;
     }
 
     @Override
-    public boolean execute(Client client, Class interfaceClass){
-        this.context.setClient(client);
-        if (this.context.validateInterface(interfaceClass)) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean execute( Class interfaceClass){
+        return this.context.validateInterface(interfaceClass);
     }
 }
