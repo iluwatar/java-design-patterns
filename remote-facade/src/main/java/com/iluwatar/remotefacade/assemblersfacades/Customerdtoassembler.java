@@ -1,6 +1,6 @@
 package com.iluwatar.remotefacade.assemblersfacades;
 import com.iluwatar.remotefacade.domain.Customer;
-import com.iluwatar.remotefacade.domain.Domain;
+import com.iluwatar.remotefacade.domain.Store;
 import com.iluwatar.remotefacade.dto.Customerdto;
 
 /**
@@ -20,30 +20,12 @@ public class Customerdtoassembler {
     return customer;
   }
   /**
-   * update Customers details.
-   *
-   * @param dataObject .
-   */
-  public static void updateCustomer(Customerdto dataObject) {
-    Customer c = null;
-    for (Customer cstmr : Domain.customers) {
-      if (cstmr.getName().equals(dataObject.name)) {
-        c = cstmr;
-        break;
-      }
-    }
-    if (c != null) {
-      c.setAddress(dataObject.address);
-      c.setPhone(dataObject.phone);
-    }
-  }
-  /**
   * create a customer using a single data call on the dataObject.
    *
   * @param dataObject .
    */
   public static void  makeCustomer(Customerdto dataObject) {
     Customer c = new Customer(dataObject.name, dataObject.phone, dataObject.address);
-    Domain.customers.add(c);
+    Store.customers.add(c);
   }
 }

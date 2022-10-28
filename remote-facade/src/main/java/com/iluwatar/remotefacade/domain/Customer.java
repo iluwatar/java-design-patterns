@@ -1,17 +1,13 @@
 package com.iluwatar.remotefacade.domain;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 /**
  * {@link Customer } is an object with customer details.
  */
 @Getter
-@Setter
-@RequiredArgsConstructor
 public class Customer {
-  private String name;
-  private String phone;
-  private String address;
+  private final String name;
+  private final String phone;
+  private final String address;
 
   /**
   * Customer details.

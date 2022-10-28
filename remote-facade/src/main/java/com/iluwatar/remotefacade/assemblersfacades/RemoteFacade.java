@@ -13,6 +13,5 @@ public class RemoteFacade {
 
   public static void makeClient(Customerdto dataObject) {
     Customerdtoassembler.makeCustomer(dataObject);
-    Customerdtoassembler.updateCustomer(dataObject);
   }
 }

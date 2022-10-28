@@ -33,9 +33,6 @@ Wikipedia says
 Let's first introduce our simple `CustomerDTO` class.
 
 ```java
-@Getter
-@Setter
-@RequiredArgsConstructor
 public class CustomerDTO {
     public  String name;
     public  String phone;
@@ -50,7 +47,6 @@ Now using the `RemoteFacade` class since we have the DTOs. The methods take in t
     public class RemoteFacade {
     public static void makeClient(CustomerDTO dataObject){
         CustomerDTOAssembler.makeCustomer(dataObject);
-        CustomerDTOAssembler.updateCustomer(dataObject);
     }
 }
 ```
@@ -83,11 +79,14 @@ public class Customerdtoassembler {
 }
 
 ```
-Now Fetching the details through the `Domain` class where the DTOs are stored and calling them in the `Client` App.
+Now Fetching the details through the `Store` class where the DTOs are stored and calling them in the `Client` App.
+
 ```java
-    public class Client {
+    import com.iluwatar.remotefacade.domain.Store;
+
+public class Client {
     private static void printCustomerDetails(ArrayList<String> list) {
-        list.forEach(customer -> LOGGER.info(Domain.getCustomers().toString()));
+        list.forEach(customer -> LOGGER.info(Store.customers.toString()));
     }
 }
 ```
