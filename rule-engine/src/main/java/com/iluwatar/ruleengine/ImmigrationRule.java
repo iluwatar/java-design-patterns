@@ -24,13 +24,22 @@
  */
 package com.iluwatar.ruleengine;
 
+/**
+ * This interface provides the two basic methods that a rule engine pattern requires
+ * and intends for each rule to implement it.
+ */
 public interface ImmigrationRule {
   /**
-   * @param candidate: the current candidate
+   * Check if the rule can be executed or not.
+   *
+   * @param candidate the current candidate
    */
   public boolean shouldRun(Candidate candidate);
+
   /**
-   * @param candidate: the current candidate
+   * Execute the rule if the previous method is true.
+   *
+   * @param candidate the current candidate
    */
   public int runRule(Candidate candidate);
 }
