@@ -15,17 +15,17 @@ Kit
 
 ## Intent
 
-针对不同Entity实体对象的相同属性或方法向上抽取, 减少过多的重复代码, 提供抽象能力, 保持简单和通用性
+The same properties or methods of different Entity objects are extracted upwards to reduce excessive repetitive code and provide abstraction capability, keeping simplicity and generality.
 
 ## Explanation
 
 Real world example
 
-> 手枪, 步枪, 狙击枪都有子弹规格的属性, 我们可以抽象一个枪的实体类拥有子弹规格的属性, 具体枪的类别都继承枪这个实体类, 所有枪的类别都能引用父类的子弹规格属性
+> Pistol, rifle, sniper gun all have bullet specification properties, we can abstract a gun entity class has bullet specification properties, specific gun classes inherit from the gun entity class, all gun classes can refer to the bullet specification properties of the parent class
 
 In plain words
 
-> 将相似子类进行抽象, 抽取公共属性和方法并继承, 减少重复代码的使用
+> Abstracting similar subclasses, extracting common properties and methods and inheriting them, reducing the use of repetitive code
 
 Wikipedia says
 
@@ -33,7 +33,8 @@ Wikipedia says
 
 **Programmatic Example**
 
-这是Post和Comment类的公共父类Entity实体
+This is the common parent Entity entity of the Post and Comment classes
+
 
 ```java
 public abstract class AbstractEntity {
@@ -53,7 +54,7 @@ public abstract class AbstractEntity {
 }
 ```
 
-这是Post类和Comment实体
+This is the Post class and Comment entity
 
 ```java
 public class Comment extends AbstractEntity implements CommentInterface {
@@ -231,8 +232,8 @@ Here is the console output.
 
 Use the Layer Supertype pattern when
 
-* 每个实体类有相同类型相同名称的属性
-* 每个实体类有相同返回值, 相同参数, 相同名称的方法
+* Each entity class has properties of the same type and the same name
+* Each entity class has methods with the same return value, the same parameters, and the same name
 
 Example use cases	
 
