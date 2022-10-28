@@ -33,16 +33,20 @@ package com.iluwatar.ruleengine;
  */
 public class CloseFamilyRule implements ImmigrationRule {
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Check if this CloseFamilyRule rule can be executed or not.
+   * @param candidate : the current candidate
+   * @return boolean : true if the candidate has met the  CloseFamilyRule rule
+   * @author Dehao Liu
    */
   @Override
   public boolean shouldRun(Candidate candidate) {
     return candidate.getCloseFamilyTies() != null;
   }
   /**
-   * Multiple lines of Javadoc text are written here,
-   * wrapped normally...
+   * Execute this  CloseFamily  rule.
+   *
+   * @param candidate : the current candidate.
+   * @author Dehao Liu
    */
   @Override
   public int runRule(Candidate candidate) {

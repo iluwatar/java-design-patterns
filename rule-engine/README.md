@@ -6,6 +6,17 @@ Helps developers encapsulate each business rule in a separate object and separat
 > Adding a new validation rule is as simple as adding a new object to the collection.
 > Unit testing is easy because the validation rule object is smaller than the single conditional statement.
 > The loop complexity metric is better than the monolithic conditional operator.
+### Real world example
+* In this example we have an imaginary country that has an immigration policy with multiple criteria
+* We create separate class for each criterion to implement the pattern to calculate the candidate's
+* immigration score.
+### Programmatic Example
+Walking through our example, here's the basic Candidate entity.
+
+Here's the CustomerDao interface and two different implementations for it.
+
+The program output:
+
 # Wikipedia says
 Rules design pattern helps the developer to encapsulate each business rule in a separate object and decouple the definition of business rules from their processing. New rules can be added without the need to modify the rest of the application logic.
 ## Class Diagram
