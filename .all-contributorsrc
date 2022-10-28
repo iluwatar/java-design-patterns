@@ -2043,6 +2043,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "drakulavich",
+      "name": "Anton Yakutovich",
+      "avatar_url": "https://avatars.githubusercontent.com/u/129260?v=4",
+      "profile": "https://github.com/drakulavich",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
