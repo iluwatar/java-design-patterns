@@ -1,0 +1,37 @@
+@startuml
+package com.iluwatar.serializedlob {
+  class LOBInterpreter {
+    - lobTokenizer : ArrayList<String>
+    - columns : Hashmap<String,String>
+    + readLOB(clob : String) :ArrayList<String>
+    + getColumns(clob : ArrayList<String>) : HashMap<String,String>
+    + getObjects(clob : ArrayList<String>) : String
+    + getObject(clob : ArrayList<String>) : Hashmap<String,String>
+  }
+
+  class PostGresDatabase{
+    - columns : Map<String , String>
+    + connection() : Connection
+    + toSerializedLOB(Connection c, String tableName, String newTableName)
+  }
+
+  class PostGresSerializer{
+    + graphToLOB(Connection c, String tableName)
+  }
+
+  class SerializedLOB{
+    - clob : String
+    - key : Hashmap<String,String>
+    - objects : string
+    + getClob() : string
+    + setClob(clob : String)
+    + getKey() : Hashmap<String,String>
+    + setKey(key : Hashmap<String,String>)
+    + getObjects() : String
+    + setObjects(objects : String)
+    }
+}
+
+PostGresSerializer --> PostGresDatabase
+
+@enduml
