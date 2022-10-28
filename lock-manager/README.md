@@ -19,7 +19,7 @@ for the management of locks by reference as opposed to an instance.
 
 ## Class diagram
 
-![alt text](./etc/lock-manager.puml "Lock Manager")
+![alt text](./etc/lock-manager.png "Lock Manager")
 
 ## Applicability
 
