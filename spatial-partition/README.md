@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Spatial Partition
-folder: spatial-partition
-permalink: /patterns/spatial-partition/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Performance

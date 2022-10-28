@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Producer Consumer
-folder: producer-consumer
-permalink: /patterns/producer-consumer/
-categories: Concurrency
+category: Concurrency
 language: en
 tags:
  - Reactive

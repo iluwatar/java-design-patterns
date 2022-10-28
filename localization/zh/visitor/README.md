@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Visitor
-folder: visitor
-permalink: /patterns/visitor/
-categories: Behavioral
+category: Behavioral
 language: zh
 tags:
  - Gang of Four
@@ -201,7 +198,7 @@ Good to see you commander
 
 ## Class diagram
 
-![alt text](../../../visitor/etc/visitor_1.png "Visitor")
+![alt text](etc/visitor_1.png "Visitor")
 
 ## 适用性
 

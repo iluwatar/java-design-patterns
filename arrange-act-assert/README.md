@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Arrange/Act/Assert
-folder: arrange-act-assert
-permalink: /patterns/arrange-act-assert/
-categories: Idiom
+category: Idiom
 language: en
 tags:
  - Testing

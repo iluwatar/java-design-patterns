@@ -1,10 +1,7 @@
 ---
-layout: pattern
 title: Filterer
-folder: filterer
-permalink: /patterns/filterer/
 language: en
-categories: Functional
+category: Functional
 tags:
  - Extensibility
 ---

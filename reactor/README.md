@@ -1,10 +1,6 @@
 ---
-layout: pattern
 title: Reactor
-folder: reactor
-permalink: /patterns/reactor/
-pumlformat: svg
-categories: Concurrency
+category: Concurrency
 language: en
 tags:
  - Performance

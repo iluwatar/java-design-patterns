@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Strangler
-folder: strangler
-permalink: /patterns/strangler/
-categories: Structural
+category: Structural
 language: en
 tags:
  - Extensibility
