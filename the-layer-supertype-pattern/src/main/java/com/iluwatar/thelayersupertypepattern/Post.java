@@ -29,7 +29,7 @@ import java.util.List;
 
 
 /**
- * Post  class.
+ * Post  class..
  */
 public class Post extends AbstractEntity implements PostInterface {
 
