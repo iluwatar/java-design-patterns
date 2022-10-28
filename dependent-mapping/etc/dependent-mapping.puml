@@ -1,0 +1,47 @@
+@startuml
+package com.iluwatar.denpendetmapping {
+  Abstract Class DependentObj{
+  -String: title
+  +String getTitle()
+  }
+  Abstract Class MasterObj{
+  -private String: title
+  +void addDepObj(DependentObj obj)
+  +void removeDepObj(DependentObj obj)
+  +void removeDepObj(int i)
+  +DependentObj[] getDepObjs()
+  +String getTitle()
+
+  }
+  Interface Mapper{
+  String findstatement()
+  MasterObj doLoad(Long id, ResultSet rs)
+  DependentObj newDepObj(ResultSet rs)
+  void loadDepObjs(MasterObj arg,ResultSet rs)
+  void update(MasterObj arg)
+  void updateDepObjs(MasterObj arg)
+  void insertDepObj(DependentObj dependentObj, int seq, MasterObj masterObj)
+  }
+  Class Album{
+  -List<Track>: tracks
+  -Long: id
+  +Track[] getTracks()
+  +Long getId()
+  }
+  Class AlbumMapper{
+  +Connection: DB
+  +AlbumMapper(Connection DB)
+
+  }
+  Class Track{
+
+  }
+}
+DependentObj --> MasterObj
+MasterObj --o DependentObj
+Mapper ..> DependentObj
+Mapper ..> MasterObj
+Track --|> DependentObj
+Album --|> MasterObj
+AlbumMapper --|> Mapper
+@enduml

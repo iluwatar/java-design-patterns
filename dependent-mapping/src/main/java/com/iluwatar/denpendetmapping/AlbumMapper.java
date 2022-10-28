@@ -1,0 +1,172 @@
+/*
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package com.iluwatar.denpendetmapping;
+
+import com.iluwatar.denpendetmapping.Structure.DependentObj;
+import com.iluwatar.denpendetmapping.Structure.Mapper;
+import com.iluwatar.denpendetmapping.Structure.MasterObj;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+/**
+ * The album mapper class handles all the SQL for tracks and thus
+ * defines the SQL statements that access the tracks table.
+ * The tracks are loaded into the album whenever the album is loaded.
+ * When the album is updated all the tracks are deleted and reinserted.
+ */
+public class AlbumMapper implements Mapper {
+
+  /**
+   * parameter index used to set database sentence.
+   */
+  private final int parameterIndex1 = 1;
+
+  /**
+   * parameter index used to set database sentence.
+   */
+  private final int parameterIndex2 = 2;
+
+  /**
+   * parameter index used to set database sentence.
+   */
+  private final int parameterIndex3 = 3;
+
+  /**
+   * DataBase connection.
+   */
+  private final Connection db;
+
+  /**
+   * Construction method.
+   *
+   * @param newDb the connection of database.
+   */
+  public AlbumMapper(final Connection newDb) {
+    this.db = newDb;
+  }
+
+  /**
+   * Index to get the album instance.
+   */
+  private final int columnIndex = 3;
+
+  /**
+   * show the data of database.
+   *
+   * @return the data of album and tracks in database.
+   */
+  @Override
+  public String findstatement() {
+    return
+      "SELECT ID, a.title, t.title as trackTitle"
+        + "  FROM albums a, tracks t"
+        + "  WHERE a.ID = ? AND t.albumID = a.ID"
+        + "  ORDER BY t.seq";
+  }
+
+  /**
+   * Update specific album in database.
+   *
+   * @param arg Master class instance.
+   * @throws SQLException
+   */
+  @Override
+  public void update(final MasterObj arg) throws SQLException {
+    PreparedStatement updateStatement = null;
+    try {
+      updateStatement = db.prepareStatement(
+        "UPDATE albums SET title = ? WHERE id = ?");
+      Album album = (Album) arg;
+      updateStatement.setLong(parameterIndex2, album.getId());
+      updateStatement.setString(
+        parameterIndex1, album.getTitle());
+      updateStatement.execute();
+      updateDepObjs(album);
+    } catch (SQLException e) {
+      throw new SQLException(e);
+    }
+  }
+
+  /**
+   * Update all the tracks which belong to the album.
+   *
+   * @param arg the album of which the tracks you want update.
+   * @throws SQLException
+   */
+  @Override
+  public void updateDepObjs(final MasterObj arg) throws SQLException {
+    PreparedStatement deleteTracksStatement = null;
+    try {
+      deleteTracksStatement = db.prepareStatement(
+        "DELETE from tracks WHERE albumID = ?");
+      Album album = (Album) arg;
+      deleteTracksStatement.setLong(
+        parameterIndex1, album.getId().longValue());
+      deleteTracksStatement.execute();
+      for (int i = 0; i < album.getTracks().length; i++) {
+        Track track = album.getTracks()[i];
+        insertDepObj(track, i + 1, arg);
+      }
+    } finally {
+      System.out.println("work done");
+    }
+  }
+
+  /**
+   * insert a track into an album.
+   *
+   * @param dependentObj dependent class instance.
+   * @param seq
+   * @param masterObj    master class instance.
+   * @throws SQLException
+   */
+  @Override
+  public void insertDepObj(
+    final DependentObj dependentObj, final int seq,
+    final MasterObj masterObj) throws SQLException {
+    PreparedStatement insertTracksStatement = null;
+    try {
+      insertTracksStatement =
+        db.prepareStatement(
+          "INSERT INTO tracks "
+            + "(seq, albumID, title)"
+            + " VALUES (?, ?, ?)");
+      Album album = (Album) masterObj;
+      Track track = (Track) dependentObj;
+      insertTracksStatement.setInt(parameterIndex1, seq);
+      insertTracksStatement.setLong(parameterIndex2,
+        album.getId());
+      insertTracksStatement.setString(parameterIndex3,
+        track.getTitle());
+      insertTracksStatement.execute();
+    } finally {
+      System.out.println("work done");
+    }
+  }
+}
