@@ -1,7 +1,7 @@
 --- 
 layout: pattern 
 title: Template View Pattern 
-folder: template-view-pattern 
+folder: template-view-pattern
 permalink: /java-design-patterns/template-view-pattern/ 
 categories: 
  - Architectural 
