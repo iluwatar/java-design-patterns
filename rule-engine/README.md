@@ -13,11 +13,22 @@ Helps developers encapsulate each business rule in a separate object and separat
 ### Programmatic Example
 Walking through our example, here's the basic Candidate entity.
 
+![image](https://user-images.githubusercontent.com/110162648/198544770-266140ce-abc5-4d92-85b8-b66576fc80e7.png)
+
 Here's the CustomerDao interface and two different implementations for it.
 
+![image](https://user-images.githubusercontent.com/110162648/198544781-d7a14fe5-2e45-4e12-a0bc-aabf40e8a60b.png)
+
+
 The program output:
+
+![image](https://user-images.githubusercontent.com/110162648/198545044-4d45db23-0ed9-4369-881b-2b4261410222.png)
 
 # Wikipedia says
 Rules design pattern helps the developer to encapsulate each business rule in a separate object and decouple the definition of business rules from their processing. New rules can be added without the need to modify the rest of the application logic.
 ## Class Diagram
-![image](https://user-images.githubusercontent.com/110162648/197736364-6cbc20bd-302d-4491-8f43-4cbb048ad414.png)
+
+![image](https://user-images.githubusercontent.com/110162648/198545171-a154750a-e6a9-4785-b183-b97303e7ff8a.png)
+
+
+
