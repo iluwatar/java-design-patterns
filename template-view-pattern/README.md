@@ -19,6 +19,8 @@ Write a java program that  processes the logic, using it to render information i
 
 ## Explanation
 
+Template view acts as the view in the model view controller design pattern.
+
 ## Class diagram
 
 ## Applicability
