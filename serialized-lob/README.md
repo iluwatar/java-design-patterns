@@ -11,11 +11,10 @@ tags:
 
 ## Intent
 Complicated graph of objects may have excessive information for links than actual objects themselves.
-Serialized LOB reduces the need for 
+Serialized LOB removes those relationship and stores data in a single Large Object(LOB).
 
 ## Explanation
 Saves a graph of objects by serializing them into a single large object (LOB), which it stores in a database field.
-
 
 ## Class diagram
 ![alt text](./etc/Serialized-LOB.png "Serialized-LOB")
