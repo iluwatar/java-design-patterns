@@ -21,7 +21,7 @@ Write a java program that  processes the logic, using it to render information i
 
 Template view acts as the view in the model view controller design pattern.
 
-![Model View Controller](/etc/model-view-controller-diagram.png)
+![Model View Controller](https://github.com/alainalawson02/java-design-patterns/blob/master/template-view-pattern/etc/model-view-controller-diagram.png)
 
 ## Class diagram
 
