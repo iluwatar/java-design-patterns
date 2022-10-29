@@ -232,6 +232,10 @@
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
     <module>effectivity</module>
+    <module>snapshot</module>
+    <module>audit-log</module>
+    <module>temporal-property</module>
+    <module>temporal-object</module>
   </modules>
   <repositories>
     <repository>

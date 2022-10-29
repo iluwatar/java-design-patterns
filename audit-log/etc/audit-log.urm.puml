@@ -1,0 +1,44 @@
+@startuml
+package com.iluwatar.auditlog {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class AuditLog {
+    - defaultLog : String {static}
+    - logFile : File {static}
+    + AuditLog()
+    + auditToString() : String {static}
+    + getLogFile() : File {static}
+    + log(date : SimpleDate, customer : Customer, description : String, oldValue : Object, newValue : Object) {static}
+    + setLogFile(file : File) {static}
+    + write(string : String) {static}
+  }
+  class Customer {
+    - address : String
+    - id : int
+    - name : String
+    + Customer(name : String, id : int)
+    + getAddress() : String
+    + getId() : int
+    + getName() : String
+    + setAddress(address : String, changeDate : SimpleDate)
+    + setName(name : String, changeDate : SimpleDate)
+  }
+  class SimpleDate {
+    - clock : Clock {static}
+    - date : LocalDate
+    - setDate : SimpleDate {static}
+    ~ SimpleDate(date : LocalDate)
+    ~ SimpleDate(year : int, month : int, day : int)
+    + compareTo(otherDate : SimpleDate) : int
+    + equals(o : Object) : boolean
+    + getDate() : LocalDate
+    + getToday() : SimpleDate {static}
+    + setToday(newToday : SimpleDate) {static}
+    + toString() : String
+  }
+}
+SimpleDate -->  "-setDate" SimpleDate
+@enduml
