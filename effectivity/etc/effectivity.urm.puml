@@ -1,0 +1,64 @@
+@startuml
+package com.iluwatar.effectivity {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Company {
+    ~ Company(name : String)
+  }
+  class DateRange {
+    - endDate : SimpleDate
+    - startDate : SimpleDate
+    + DateRange(startDate : SimpleDate, endDate : SimpleDate)
+    + getEndDate() : SimpleDate
+    + getStartDate() : SimpleDate
+    + includes(arg : SimpleDate) : boolean
+    + startingOn(date : SimpleDate) : DateRange {static}
+    + toString() : String
+  }
+  class Employment {
+    - company : Company
+    - effective : DateRange
+    ~ Employment(company : Company, effective : DateRange)
+    + getCompany() : Company
+    + isEffectiveOn(arg : SimpleDate) : boolean
+    + setEffective(range : DateRange)
+    + setEnd(endDate : SimpleDate)
+    + toString() : String
+  }
+  class NamedObject {
+    - name : String
+    + NamedObject(name : String)
+    + toString() : String
+  }
+  ~class Person {
+    - employments : ArrayList<Employment>
+    + Person(name : String)
+    ~ addEmployment(company : Company, startDate : SimpleDate)
+    + addEmployment(employment : Employment)
+    ~ getEmployments() : ArrayList<Employment>
+  }
+  class SimpleDate {
+    - clock : Clock {static}
+    - date : LocalDate
+    - setDate : SimpleDate {static}
+    ~ SimpleDate(date : LocalDate)
+    ~ SimpleDate(year : int, month : int, day : int)
+    + compareTo(otherDate : SimpleDate) : int
+    + equals(o : Object) : boolean
+    + getDate() : LocalDate
+    + getToday() : SimpleDate {static}
+    + setToday(newToday : SimpleDate) {static}
+    + toString() : String
+  }
+}
+SimpleDate -->  "-setDate" SimpleDate
+DateRange -->  "-startDate" SimpleDate
+Employment -->  "-effective" DateRange
+Employment -->  "-company" Company
+Person -->  "-employments" Employment
+Company --|> NamedObject 
+Person --|> NamedObject 
+@enduml
