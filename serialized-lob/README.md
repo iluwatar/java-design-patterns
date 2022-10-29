@@ -18,7 +18,8 @@ Saves a graph of objects by serializing them into a single large object (LOB), w
 
 
 ## Class diagram
-![alt text](./etc/class_diagram.png "Serialized LOB")
+![alt text](./etc/Serialized-LOB.png "Serialized-LOB")
 
 ## Credits
 * [PostgreSQL - JAVA Interface](https://www.tutorialspoint.com/postgresql/postgresql_java.htm)
+* [P of EAA Serialized LOB](https://martinfowler.com/eaaCatalog/serializedLOB.html)
