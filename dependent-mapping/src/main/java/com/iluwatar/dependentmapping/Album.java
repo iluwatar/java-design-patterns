@@ -65,6 +65,7 @@ public class Album extends MasterObj {
   @Override
   public void addDepObj(final DependentObj obj) {
     tracks.add((Track) obj);
+    System.out.println("Added a new track");
   }
 
   /**
@@ -93,18 +94,10 @@ public class Album extends MasterObj {
    * @return the array of dependent instances.
    */
   @Override
-  public DependentObj[] getDepObjs() {
-    return tracks.toArray(new DependentObj[tracks.size()]);
-  }
-
-  /**
-   * get the tracks of album.
-   *
-   * @return the list of tracks.
-   */
-  public Track[] getTracks() {
+  public Track[] getDepObjs() {
     return tracks.toArray(new Track[tracks.size()]);
   }
+
 
   /**
    * get the id of album.

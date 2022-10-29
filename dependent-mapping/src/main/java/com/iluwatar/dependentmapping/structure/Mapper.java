@@ -26,6 +26,9 @@
  */
 package com.iluwatar.dependentmapping.structure;
 
+import com.iluwatar.dependentmapping.Album;
+import com.iluwatar.dependentmapping.Track;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -40,6 +43,12 @@ public interface Mapper {
    * @return the data in database.
    */
   String findstatement();
+
+  MasterObj doLoad(Long id, ResultSet rs) throws SQLException;
+
+  void loadTracks(Album arg, ResultSet rs) throws SQLException;
+
+  DependentObj newTrack(ResultSet rs) throws SQLException;
 
   /**
    * Updata the specific master instance and its dependent instances.

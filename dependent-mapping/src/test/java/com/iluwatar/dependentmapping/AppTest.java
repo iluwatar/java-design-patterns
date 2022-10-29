@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package org.dependent.mapping;
+package com.iluwatar.dependentmapping;
 
 import com.iluwatar.dependentmapping.App;
 import org.junit.jupiter.api.Test;
@@ -41,7 +41,7 @@ class AppTest {
    */
 
   @Test
-  void shouldExecuteDaoWithoutException() {
+  void shouldExecuteDependentMappingWithoutException() {
     assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

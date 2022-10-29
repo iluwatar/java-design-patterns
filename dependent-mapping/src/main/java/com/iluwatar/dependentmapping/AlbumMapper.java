@@ -31,6 +31,7 @@ import com.iluwatar.dependentmapping.structure.Mapper;
 import com.iluwatar.dependentmapping.structure.MasterObj;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -76,7 +77,8 @@ public class AlbumMapper implements Mapper {
   private final int columnIndex = 3;
 
   /**
-   * show the data of database.
+   * return the semi finished product statement, by fixing the id part you can got the statement which can help you
+   * load the master object(the album).
    *
    * @return the data of album and tracks in database.
    */
@@ -87,6 +89,48 @@ public class AlbumMapper implements Mapper {
         + "  FROM albums a, tracks t"
         + "  WHERE a.ID = ? AND t.albumID = a.ID"
         + "  ORDER BY t.seq";
+  }
+
+  /**
+   * Load the specific album through the database by using findstatement and album id.
+   *
+   * @param id the id of album.
+   * @param rs the database result set.
+   * @return the album which has correct id and rs.
+   * @throws SQLException the exception of SQL.
+   */
+  public Album doLoad(Long id, ResultSet rs) throws SQLException {
+    String title = rs.getString(parameterIndex2);
+    Album result = new Album(id, title);
+    loadTracks(result, rs);
+    return result;
+  }
+
+  /**
+   * Load tracks of the specific album through the database result set got by using findstatement.
+   *
+   * @param arg the album of which the tracks you will load.
+   * @param rs  Got by using findstatement and album id.
+   * @throws SQLException exception of SQL.
+   */
+  public void loadTracks(Album arg, ResultSet rs) throws SQLException {
+    arg.addDepObj(newTrack(rs));
+    while (rs.next()) {
+      arg.addDepObj(newTrack(rs));
+    }
+  }
+
+  /**
+   * new a track through the result set.
+   *
+   * @param rs the result set from database.
+   * @return a new track object.
+   * @throws SQLException the exception of SQL.
+   */
+  public Track newTrack(ResultSet rs) throws SQLException {
+    String title = rs.getString(3);
+    Track newTrack = new Track(title);
+    return newTrack;
   }
 
   /**
@@ -106,8 +150,8 @@ public class AlbumMapper implements Mapper {
       updateStatement.setString(parameterIndex1, album.getTitle());
       updateStatement.execute();
       updateDepObjs(album);
-    } catch (SQLException e) {
-      throw new SQLException(e);
+    } finally {
+      System.out.println("--update master object work done--");
     }
   }
 
@@ -126,12 +170,12 @@ public class AlbumMapper implements Mapper {
       Album album = (Album) arg;
       deleteTracksStatement.setLong(parameterIndex1, album.getId().longValue());
       deleteTracksStatement.execute();
-      for (int i = 0; i < album.getTracks().length; i++) {
-        Track track = album.getTracks()[i];
+      for (int i = 0; i < album.getDepObjs().length; i++) {
+        Track track = album.getDepObjs()[i];
         insertDepObj(track, i + 1, arg);
       }
     } finally {
-      System.out.println("work done");
+      System.out.println("--update dependent objects work done--");
     }
   }
 
@@ -159,7 +203,30 @@ public class AlbumMapper implements Mapper {
       insertTracksStatement.setString(parameterIndex3, track.getTitle());
       insertTracksStatement.execute();
     } finally {
-      System.out.println("work done");
+      System.out.println("--insert dependent object work done--");
+    }
+  }
+
+  /**
+   * Insert Master obj (here is album) into database.
+   *
+   * @param masterObj the album you want insert.
+   * @throws SQLException the exception of SQL.
+   */
+  public void insertMasterObj(final MasterObj masterObj) throws SQLException {
+    PreparedStatement insertTracksStatement = null;
+    try {
+      insertTracksStatement =
+        db.prepareStatement(
+          "INSERT INTO albums "
+            + "(id, title)"
+            + " VALUES (?, ?)");
+      Album album = (Album) masterObj;
+      insertTracksStatement.setLong(parameterIndex1, album.getId());
+      insertTracksStatement.setString(parameterIndex2, album.getTitle());
+      insertTracksStatement.execute();
+    } finally {
+      System.out.println("--insert Master object work done--");
     }
   }
 }

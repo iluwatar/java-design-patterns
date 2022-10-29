@@ -1,4 +1,4 @@
-package org.dependent.mapping;
+package com.iluwatar.dependentmapping;
 
 import com.iluwatar.dependentmapping.Album;
 import com.iluwatar.dependentmapping.Track;
@@ -10,30 +10,30 @@ class AlbumTest {
     @org.junit.jupiter.api.Test
     void addTrack() {
         Album album=new Album((long)1,"testAlbum");
-        assertEquals(0,album.getTracks().length);
+        assertEquals(0,album.getDepObjs().length);
         Track track1=new Track("testTrack1");
         album.addDepObj(track1);
-        assertEquals(1,album.getTracks().length);
+        assertEquals(1,album.getDepObjs().length);
         Track track2=new Track("testTrack1");
         album.addDepObj(track2);
-        assertEquals(2,album.getTracks().length);
+        assertEquals(2,album.getDepObjs().length);
     }
 
     @org.junit.jupiter.api.Test
     void removeTrack() {
         Album album=new Album((long)1,"testAlbum");
-        assertEquals(0,album.getTracks().length);
+        assertEquals(0,album.getDepObjs().length);
         Track track1=new Track("testTrack1");
         album.addDepObj(track1);
-        assertEquals(1,album.getTracks().length);
+        assertEquals(1,album.getDepObjs().length);
         Track track2=new Track("testTrack1");
         album.addDepObj(track2);
-        assertEquals(2,album.getTracks().length);
+        assertEquals(2,album.getDepObjs().length);
         album.removeDepObj(0);
-        assertEquals(1,album.getTracks().length);
-        assertEquals(track2,album.getTracks()[0]);
+        assertEquals(1,album.getDepObjs().length);
+        assertEquals(track2,album.getDepObjs()[0]);
         album.removeDepObj(track2);
-        assertEquals(0,album.getTracks().length);
+        assertEquals(0,album.getDepObjs().length);
     }
 
     @org.junit.jupiter.api.Test
@@ -45,7 +45,7 @@ class AlbumTest {
     @org.junit.jupiter.api.Test
     void getTracks() {
         Album album=new Album((long)1,"testAlbum");
-        assertNotNull(album.getTracks());
+        assertNotNull(album.getDepObjs());
     }
 
     @org.junit.jupiter.api.Test

@@ -1,4 +1,4 @@
-package org.dependent.mapping;
+package com.iluwatar.dependentmapping;
 
 import com.iluwatar.dependentmapping.Track;
 import static org.junit.jupiter.api.Assertions.*;
