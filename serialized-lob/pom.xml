@@ -45,7 +45,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.iluwatar.dao-factory.App</mainClass>
+                                    <mainClass>com.iluwatar.serializedlobLOB.App</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

@@ -51,25 +51,25 @@ public class LOBInterpreter {
                 hasNext = false;
             } else{
                 lobTokenizer.add(lob.substring(0,next));
-                lob = lob.substring(next);
+                lob = lob.substring(next+1);
             }
         };
         return lobTokenizer;
     }
 
     public static HashMap<String,String> getColumns(ArrayList<String> clob){
-        int columnCounts = Integer.getInteger( clob.get(0));
+        int columnCounts = Integer.parseInt( clob.get(0));
         for(int i = 0 ;i<columnCounts ; i++){
             columns.put(clob.get(i*2+1),clob.get(i*2+2));
         }
-        return null;
+        return columns;
     }
 
     // This is after Columns part of the CLOB.
     public static String getObjects(ArrayList<String> clob){
         StringBuilder objects = new StringBuilder();
-        int columnCounts = Integer.getInteger(clob.get(0));
-        for(int i = columnCounts*2+2;i<clob.size();i++){
+        int columnCounts = Integer.parseInt(clob.get(0));
+        for(int i = columnCounts*2+1;i<clob.size();i++){
             if(i < clob.size() -  1){
                 objects.append(clob.get(i)).append(" ");
             } else{

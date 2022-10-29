@@ -30,6 +30,12 @@ package com.iluwatar.serializedlob {
     + getObjects() : String
     + setObjects(objects : String)
     }
+
+   class App{
+    - lob : String
+    - list : ArrayList<String>
+    - columns : HashMap<String,String>
+   }
 }
 
 PostGresSerializer --> PostGresDatabase
