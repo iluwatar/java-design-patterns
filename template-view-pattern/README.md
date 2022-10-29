@@ -43,4 +43,6 @@ Easy parameter modification - particularly easy for non-programmers to contribut
 
 ## Related patterns
 
+[model view controller](https://github.com/iluwatar/java-design-patterns/tree/master/model-view-controller)
+
 ## Credits
