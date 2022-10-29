@@ -68,9 +68,9 @@
                 <version>2.0.0</version>
                 <configuration>
                     <!-- if outputDirectory is not set explicitly it will default to your build dir -->
-                    <outputDirectory>collecting-parameter/etc</outputDirectory>
+                    <outputDirectory>java-design-patterns/collecting-parameter/etc</outputDirectory>
                     <packages>
-                        <param>com.iluwatar.collectingparameter</param>
+                        <param>java-design-patterns/collecting-parameter/src/main/java/com.iluwatar.collectingparameter</param>
                     </packages>
                     <includeMainDirectory>true</includeMainDirectory>
                     <includeTestDirectory>false</includeTestDirectory>
