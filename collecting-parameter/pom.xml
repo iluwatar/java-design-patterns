@@ -62,6 +62,34 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>com.iluwatar.urm</groupId>
+                <artifactId>urm-maven-plugin</artifactId>
+                <version>2.0.0</version>
+                <configuration>
+                    <!-- if outputDirectory is not set explicitly it will default to your build dir -->
+                    <outputDirectory>collecting-parameter/etc</outputDirectory>
+                    <packages>
+                        <param>com.mycompany.mypackage</param>
+                        <param>com.mycompany.other_package</param>
+                    </packages>
+                    <ignores>
+                        <param>com.mycompany.mypackage.MyClass</param>
+                        <param>com.mycompany.other_package.OtherClass</param>
+                    </ignores>
+                    <includeMainDirectory>true</includeMainDirectory>
+                    <includeTestDirectory>false</includeTestDirectory>
+                    <presenter>graphviz</presenter>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>map</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 </project>
