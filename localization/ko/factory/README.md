@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Factory
-folder: factory
-permalink: /patterns/factory/ko
-categories: Creational
+category: Creational
 language: ko
 tags:
 - Gang of Four
@@ -107,7 +104,7 @@ This Ferrari.
 
 ## 클래스 다이어그램
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/factory/etc/factory.urm.png)
+![alt text](etc/factory.urm.png)
 
 ## 적용 가능성
 

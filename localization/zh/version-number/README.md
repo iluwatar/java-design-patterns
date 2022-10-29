@@ -1,13 +1,6 @@
 ---
-layout: pattern
 title: Version Number
-folder: versionnumber
-permalink: /patterns/versionnumber/
-description: Entity versioning with version number
-
-categories:
- - Concurrency
-
+category: Concurrency
 language: zh
 tags:
  - Data access
@@ -135,7 +128,7 @@ Exception: Tried to update stale version 0 while actual version is 1
 
 ## 类图
 
-![alt text](../../../version-number/etc/version-number.urm.png "Version Number pattern class diagram")
+![alt text](etc/version-number.urm.png "Version Number pattern class diagram")
 
 ## 适用性
 

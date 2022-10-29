@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Commander
-folder: commander
-permalink: /patterns/commander/
-categories: Concurrency
+category: Concurrency
 language: en
 tags:
  - Cloud distributed

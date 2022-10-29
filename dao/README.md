@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Data Access Object
-folder: dao
-permalink: /patterns/dao/
-categories: Architectural
+category: Architectural
 language: en
 tags:
  - Data access

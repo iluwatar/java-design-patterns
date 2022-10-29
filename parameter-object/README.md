@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Parameter Object
-folder: parameter-object
-permalink: /patterns/parameter-object/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Extensibility

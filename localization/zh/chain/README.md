@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Chain of responsibility
-folder: chain
-permalink: /patterns/chain/
-categories: Behavioral
+category: Behavioral
 language: zh
 tags:
  - Gang of Four
@@ -139,7 +136,7 @@ king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax")); // Orc so
 ```
 
 ## 类图
-![alt text](../../../chain-of-responsibility/etc/chain-of-responsibility.urm.png "Chain of Responsibility class diagram")
+![alt text](etc/chain-of-responsibility.urm.png "Chain of Responsibility class diagram")
 
 ## 适用性
 使用责任链模式当
