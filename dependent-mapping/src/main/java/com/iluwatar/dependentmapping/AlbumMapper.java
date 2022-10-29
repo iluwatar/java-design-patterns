@@ -129,8 +129,7 @@ public class AlbumMapper implements Mapper {
    */
   public Track newTrack(ResultSet rs) throws SQLException {
     String title = rs.getString(3);
-    Track newTrack = new Track(title);
-    return newTrack;
+    return new Track(title);
   }
 
   /**
@@ -141,17 +140,13 @@ public class AlbumMapper implements Mapper {
    */
   @Override
   public void update(final MasterObj arg) throws SQLException {
-    PreparedStatement updateStatement = null;
-    try {
-      updateStatement = db.prepareStatement(
-        "UPDATE albums SET title = ? WHERE id = ?");
+    try (PreparedStatement updateStatement = db.prepareStatement("UPDATE albums SET title = ? WHERE id = ?")) {
       Album album = (Album) arg;
       updateStatement.setLong(parameterIndex2, album.getId());
       updateStatement.setString(parameterIndex1, album.getTitle());
       updateStatement.execute();
       updateDepObjs(album);
     } finally {
-      updateStatement.close();
       System.out.println("--update master object work done--");
     }
   }
@@ -164,10 +159,7 @@ public class AlbumMapper implements Mapper {
    */
   @Override
   public void updateDepObjs(final MasterObj arg) throws SQLException {
-    PreparedStatement deleteTracksStatement = null;
-    try {
-      deleteTracksStatement = db.prepareStatement(
-        "DELETE from tracks WHERE albumID = ?");
+    try (PreparedStatement deleteTracksStatement = db.prepareStatement("DELETE from tracks WHERE albumID = ?")) {
       Album album = (Album) arg;
       deleteTracksStatement.setLong(parameterIndex1, album.getId().longValue());
       deleteTracksStatement.execute();
@@ -176,7 +168,6 @@ public class AlbumMapper implements Mapper {
         insertDepObj(track, i + 1, arg);
       }
     } finally {
-      deleteTracksStatement.close();
       System.out.println("--update dependent objects work done--");
     }
   }
@@ -191,13 +182,7 @@ public class AlbumMapper implements Mapper {
    */
   @Override
   public void insertDepObj(final DependentObj dependentObj, final int seq, final MasterObj masterObj) throws SQLException {
-    PreparedStatement insertTracksStatement = null;
-    try {
-      insertTracksStatement =
-        db.prepareStatement(
-          "INSERT INTO tracks "
-            + "(seq, albumID, title)"
-            + " VALUES (?, ?, ?)");
+    try (PreparedStatement insertTracksStatement = db.prepareStatement("INSERT INTO tracks(seq, albumID, title) VALUES (?, ?, ?)")) {
       Album album = (Album) masterObj;
       Track track = (Track) dependentObj;
       insertTracksStatement.setInt(parameterIndex1, seq);
@@ -205,7 +190,6 @@ public class AlbumMapper implements Mapper {
       insertTracksStatement.setString(parameterIndex3, track.getTitle());
       insertTracksStatement.execute();
     } finally {
-      insertTracksStatement.close();
       System.out.println("--insert dependent object work done--");
     }
   }
@@ -217,19 +201,12 @@ public class AlbumMapper implements Mapper {
    * @throws SQLException the exception of SQL.
    */
   public void insertMasterObj(final MasterObj masterObj) throws SQLException {
-    PreparedStatement insertTracksStatement = null;
-    try {
-      insertTracksStatement =
-        db.prepareStatement(
-          "INSERT INTO albums "
-            + "(id, title)"
-            + " VALUES (?, ?)");
+    try (PreparedStatement insertTracksStatement = db.prepareStatement("INSERT INTO albums(id, title) VALUES (?, ?)")) {
       Album album = (Album) masterObj;
       insertTracksStatement.setLong(parameterIndex1, album.getId());
       insertTracksStatement.setString(parameterIndex2, album.getTitle());
       insertTracksStatement.execute();
     } finally {
-      insertTracksStatement.close();
       System.out.println("--insert Master object work done--");
     }
   }
