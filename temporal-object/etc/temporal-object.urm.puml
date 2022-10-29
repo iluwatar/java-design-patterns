@@ -1,0 +1,66 @@
+@startuml
+package com.iluwatar.temporalobject {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class CreditCard {
+    - contractHistory : TemporalCollection<CreditContractVersion>
+    + CreditCard(contract : CreditContractVersion, effectiveDate : SimpleDate)
+    + addContract(contract : CreditContractVersion, effectiveDate : SimpleDate)
+    + getContract() : CreditContractVersion
+    + getContract(date : SimpleDate) : CreditContractVersion
+    + getCreditLimit() : int
+    + getCvc() : int
+    + getExpiration() : SimpleDate
+    + getNumber() : int
+    + isExpired() : boolean
+  }
+  class CreditContractVersion {
+    - cardNumber : int
+    - contractIssuer : String
+    - contractText : String
+    - creditLimit : int
+    - cvcCode : int
+    - expirationDate : SimpleDate
+    - version : String
+    + CreditContractVersion(contractText : String, contractIssuer : String, version : String, creditLimit : int, cardNumber : int, cvcCode : int, expirationDate : SimpleDate)
+    + getCardNumber() : int
+    + getContractIssuer() : String
+    + getContractText() : String
+    + getCreditLimit() : int
+    + getCvcCode() : int
+    + getExpirationDate() : SimpleDate
+    + getVersion() : String
+  }
+  class CreditContractVersionHistory {
+    - versionMap : HashMap<SimpleDate, CreditContractVersion>
+    ~ CreditContractVersionHistory()
+    + get(date : SimpleDate) : CreditContractVersion
+    + put(effectiveDate : SimpleDate, contract : CreditContractVersion)
+  }
+  class SimpleDate {
+    - clock : Clock {static}
+    - date : LocalDate
+    - setDate : SimpleDate {static}
+    ~ SimpleDate(date : LocalDate)
+    ~ SimpleDate(year : int, month : int, day : int)
+    + compareTo(otherDate : SimpleDate) : int
+    + equals(o : Object) : boolean
+    + getDate() : LocalDate
+    + getToday() : SimpleDate {static}
+    + setToday(newToday : SimpleDate) {static}
+    + toString() : String
+  }
+  class TemporalCollection<T> {
+    - versionMap : HashMap<SimpleDate, T>
+    + TemporalCollection<T>()
+    + get(date : SimpleDate) : T
+    + put(addedDate : SimpleDate, obj : T)
+  }
+}
+SimpleDate -->  "-setDate" SimpleDate
+CreditContractVersion -->  "-expirationDate" SimpleDate
+CreditCard -->  "-contractHistory" TemporalCollection
+@enduml
