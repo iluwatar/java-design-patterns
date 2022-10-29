@@ -1,6 +1,8 @@
 package com.iluwatar.dependentmapping;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * Some objects naturally appear in the context of other objects. Whenever you load or save the base album, you can load
@@ -14,13 +16,15 @@ import java.sql.Connection;
  */
 public class App {
 
+  private static final String DB_URL = "jdbc:h2:~/test";
+
   /**
    * Return the basic "Select" sentence of SQL.
    *
    * @param args not args need.
    */
-  public static void main(String[] args) {
-    Connection connection = null;
+  public static void main(String[] args) throws SQLException {
+    Connection connection = DriverManager.getConnection(DB_URL);
     AlbumMapper albumMapper = new AlbumMapper(connection);
     String str = albumMapper.findstatement();
     System.out.println(str);

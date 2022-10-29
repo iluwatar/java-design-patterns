@@ -65,7 +65,6 @@ public interface Mapper {
    * @param masterObj    the specific master instance
    * @throws SQLException the exception of SQL
    */
-  void insertDepObj(DependentObj dependentObj,
-                    int seq, MasterObj masterObj) throws SQLException;
+  void insertDepObj(DependentObj dependentObj, int seq, MasterObj masterObj) throws SQLException;
 
 }
