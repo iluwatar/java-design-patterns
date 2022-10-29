@@ -151,6 +151,7 @@ public class AlbumMapper implements Mapper {
       updateStatement.execute();
       updateDepObjs(album);
     } finally {
+      updateStatement.close();
       System.out.println("--update master object work done--");
     }
   }
@@ -175,6 +176,7 @@ public class AlbumMapper implements Mapper {
         insertDepObj(track, i + 1, arg);
       }
     } finally {
+      deleteTracksStatement.close();
       System.out.println("--update dependent objects work done--");
     }
   }
@@ -203,6 +205,7 @@ public class AlbumMapper implements Mapper {
       insertTracksStatement.setString(parameterIndex3, track.getTitle());
       insertTracksStatement.execute();
     } finally {
+      insertTracksStatement.close();
       System.out.println("--insert dependent object work done--");
     }
   }
@@ -226,6 +229,7 @@ public class AlbumMapper implements Mapper {
       insertTracksStatement.setString(parameterIndex2, album.getTitle());
       insertTracksStatement.execute();
     } finally {
+      insertTracksStatement.close();
       System.out.println("--insert Master object work done--");
     }
   }
