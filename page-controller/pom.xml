@@ -30,15 +30,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <artifactId>page-controller</artifactId>
-
     <parent>
       <groupId>com.iluwatar</groupId>
       <artifactId>java-design-patterns</artifactId>
       <version>1.26.0-SNAPSHOT</version>
     </parent>
-    <properties>
-        <org.springframework.version>5.2.8.RELEASE</org.springframework.version>
-    </properties>
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -103,5 +99,4 @@
       </plugin>
     </plugins>
   </build>
-    
 </project>
