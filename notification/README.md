@@ -1,13 +1,12 @@
 --- 
 layout: pattern 
-title: com.iluwater.notification.Notification
-folder: notification 
-permalink: /patterns/notification/ 
-categories: Behavioural
+title: Notification
+category: Behavioural
 language: en 
 tags:
 - Decoupling
 - Presentation
+- Domain
 ---
 
 ## Intent
@@ -187,15 +186,15 @@ public class RegisterWorker extends ServerCommand {
    * Validates our data. Checks for any errors and if found, stores them in our notification.
    */
   private void validate() {
-    RegisterWorkerDto ourData = ((RegisterWorkerDto) this.data);
+    var ourData = ((RegisterWorkerDto) this.data);
     //check if any of submitted data is not given
     failIfNullOrBlank(ourData.getName(), RegisterWorkerDto.MISSING_NAME);
     failIfNullOrBlank(ourData.getOccupation(), RegisterWorkerDto.MISSING_OCCUPATION);
     failIfNullOrBlank(ourData.getDateOfBirth().toString(), RegisterWorkerDto.MISSING_DOB);
     //only if DOB is not blank, then check if worker is over 18 to register.
     if (!super.getNotification().getErrors().contains(RegisterWorkerDto.MISSING_DOB)) {
-      LocalDate dateOfBirth = ourData.getDateOfBirth();
-      LocalDate current = now().minusYears(18);
+      var dateOfBirth = ourData.getDateOfBirth();
+      var current = now().minusYears(18);
       fail(dateOfBirth.compareTo(current) > 0, RegisterWorkerDto.DOB_TOO_SOON);
     }
   }
@@ -223,10 +222,10 @@ The form then processes the submission and returns these error messages to the u
 
 output:
 ```java
-17:19:17.902 [main] INFO com.iluwater.notification.RegisterWorkerForm - Error 1: Name is missing: ""
-17:19:17.909 [main] INFO com.iluwater.notification.RegisterWorkerForm - Error 2: Occupation is missing: ""
-17:19:17.909 [main] INFO com.iluwater.notification.RegisterWorkerForm - Error 4: Worker registered must be over 18: "2016-07-13"
-17:19:17.909 [main] INFO com.iluwater.notification.RegisterWorkerForm - Not registered, see errors
+18:10:00.075 [main] INFO com.iluwater.RegisterWorkerForm - Error 1: Name is missing: ""
+18:10:00.079 [main] INFO com.iluwater.RegisterWorkerForm - Error 2: Occupation is missing: ""
+18:10:00.079 [main] INFO com.iluwater.RegisterWorkerForm - Error 4: Worker registered must be over 18: "2016-07-13"
+18:10:00.080 [main] INFO com.iluwater.RegisterWorkerForm - Not registered, see errors
 ```
 
 ## Class diagram
@@ -251,4 +250,4 @@ Use the notification pattern when:
 
 ## Credits
 
-* [Martin Fowler - com.iluwater.notification.Notification Pattern](https://martinfowler.com/eaaDev/Notification.html)
+* [Martin Fowler - Notification Pattern](https://martinfowler.com/eaaDev/Notification.html)

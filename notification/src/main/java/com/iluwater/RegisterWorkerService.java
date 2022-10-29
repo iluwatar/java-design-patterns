@@ -1,4 +1,4 @@
-package com.iluwater.notification;
+package com.iluwater;
 
 /**
  * Service used to register a worker.
@@ -12,7 +12,7 @@ public class RegisterWorkerService {
    * @param registration worker to be registered if possible
    */
   public void registerWorker(RegisterWorkerDto registration) {
-    RegisterWorker cmd = new RegisterWorker(registration);
+    var cmd = new RegisterWorker(registration);
     cmd.run();
   }
 }

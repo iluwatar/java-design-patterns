@@ -1,4 +1,4 @@
-package com.iluwater.notification;
+package com.iluwater;
 
 import java.time.LocalDate;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.iluwater.notification;
+package com.iluwater;
 
 /**
  * Stores the dto and access the notification within it.

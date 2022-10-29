@@ -1,4 +1,4 @@
-package com.iluwater.notification;
+package com.iluwater;
 
 import org.junit.jupiter.api.Test;
 

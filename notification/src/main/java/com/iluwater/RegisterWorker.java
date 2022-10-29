@@ -1,4 +1,4 @@
-package com.iluwater.notification;
+package com.iluwater;
 
 import static java.time.LocalDate.now;
 
@@ -31,15 +31,15 @@ public class RegisterWorker extends ServerCommand {
    * Validates our data. Checks for any errors and if found, stores them in our notification.
    */
   private void validate() {
-    RegisterWorkerDto ourData = ((RegisterWorkerDto) this.data);
+    var ourData = ((RegisterWorkerDto) this.data);
     //check if any of submitted data is not given
     failIfNullOrBlank(ourData.getName(), RegisterWorkerDto.MISSING_NAME);
     failIfNullOrBlank(ourData.getOccupation(), RegisterWorkerDto.MISSING_OCCUPATION);
     failIfNullOrBlank(ourData.getDateOfBirth().toString(), RegisterWorkerDto.MISSING_DOB);
     //only if DOB is not blank, then check if worker is over 18 to register.
     if (!super.getNotification().getErrors().contains(RegisterWorkerDto.MISSING_DOB)) {
-      LocalDate dateOfBirth = ourData.getDateOfBirth();
-      LocalDate current = now().minusYears(18);
+      var dateOfBirth = ourData.getDateOfBirth();
+      var current = now().minusYears(18);
       fail(dateOfBirth.compareTo(current) > 0, RegisterWorkerDto.DOB_TOO_SOON);
     }
   }

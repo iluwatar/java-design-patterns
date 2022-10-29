@@ -1,4 +1,4 @@
-package com.iluwater.notification;
+package com.iluwater;
 
 import java.time.LocalDate;
 import java.util.List;
