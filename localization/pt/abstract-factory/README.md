@@ -1,12 +1,9 @@
 ---
-layout: pattern
-title: Abstract Factory
-folder: abstract-factory
-permalink: /patterns/abstract-factory/
-categories: Creational
-language: pt
+título: Abstract Factory
+categoria: Criacional
+idioma: pt
 tags:
- - Gang of Four
+- Gang of Four
 ---
 
 ## Também conhecido como
