@@ -2061,6 +2061,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "0xYujan",
+      "name": "Yujan Ranjitkar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63731234?v=4",
+      "profile": "http://yujanranjitkar.com.np",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
