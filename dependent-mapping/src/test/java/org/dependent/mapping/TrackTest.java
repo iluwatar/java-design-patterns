@@ -1,6 +1,6 @@
 package org.dependent.mapping;
 
-import com.iluwatar.denpendetmapping.Track;
+import com.iluwatar.denpendentmapping.Track;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TrackTest {

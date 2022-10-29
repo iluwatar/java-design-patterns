@@ -1,7 +1,7 @@
 package org.dependent.mapping;
 
-import com.iluwatar.denpendetmapping.Album;
-import com.iluwatar.denpendetmapping.Track;
+import com.iluwatar.denpendentmapping.Album;
+import com.iluwatar.denpendentmapping.Track;
 
 import static org.junit.jupiter.api.Assertions.*;
 

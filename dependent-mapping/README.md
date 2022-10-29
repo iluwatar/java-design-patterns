@@ -10,9 +10,6 @@ tags:
  - consistency
 ---
 
-## Also known as
-* IsDirty pattern
-
 ## Intent
 Has one class perform the database mapping for a child class.
 

@@ -24,55 +24,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.denpendetmapping.Structure;
+package com.iluwatar.denpendentmapping.structure;
 
 /**
- * A master class of which instance will be depended
- * by a list of DependentObj instances.
+ * A class of which instance will be depend on the
+ * MasterObj class instance.
  */
-public abstract class MasterObj {
+public abstract class DependentObj {
   /**
    * title.
    */
-  private String title;
+  private final String title;
 
-    /**
-     * add new dependent instance.
-     * @param obj the dependent instance to be added.
-     */
-    public abstract void addDepObj(DependentObj obj);
+  /**
+   * Construction method.
+   *
+   * @param newTitle title.
+   */
+  public DependentObj(final String newTitle) {
 
-    /**
-     * remove specific dependent instance.
-     * @param obj the dependent instance to be removed.
-     */
-    public abstract void removeDepObj(DependentObj obj);
+    this.title = newTitle;
 
-    /**
-     * remove i-th dependent instance.
-     * @param i the index of instance to be removed.
-     */
-    public abstract void removeDepObj(int i);
+  }
 
-    /**
-     * get the list dependent instances.
-     * @return the list.
-     */
-    public abstract DependentObj[] getDepObjs();
+  /**
+   * get title of it.
+   *
+   * @return title.
+   */
+  public String getTitle() {
 
-    /**
-     * construction method.
-     * @param newTitle title.
-     */
-    public MasterObj(final String newTitle) {
-        this.title = newTitle;
-    }
-
-    /**
-     * get title of the master instance.
-     * @return title.
-     */
-    public String getTitle() {
-        return title;
-    }
+    return title;
+  }
 }

@@ -24,49 +24,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.denpendetmapping.Structure;
+package com.iluwatar.denpendentmapping;
 
-import java.sql.SQLException;
+import com.iluwatar.denpendentmapping.structure.DependentObj;
 
 /**
- * Mapper which depend on the master class and dependent class,
- * and connect them with the database.
+ * A track which contained in an Album.
  */
-public interface Mapper {
+public class Track extends DependentObj {
 
   /**
-   * Show the data from the database.
+   * construction file.
    *
-   * @return the data in database.
+   * @param title the title of track.
    */
-  String findstatement();
-
-  /**
-   * Updata the specific master instance and its dependent instances.
-   *
-   * @param arg the master instance.
-   * @throws SQLException the exception of SQL
-   */
-  void update(MasterObj arg) throws SQLException;
-
-  /**
-   * Updata the dependent instances of the specific master instance.
-   *
-   * @param arg the master instance.
-   * @throws SQLException the exception of SQL
-   */
-  void updateDepObjs(MasterObj arg) throws SQLException;
-
-  /**
-   * Insert specific a dependent instance into a master instance in database.
-   *
-   * @param dependentObj the specific dependent instance.
-   * @param seq          the sequence.
-   * @param masterObj    the specific master instance
-   * @throws SQLException the exception of SQL
-   */
-  void insertDepObj(DependentObj dependentObj,
-                    int seq, MasterObj masterObj)
-    throws SQLException;
+  public Track(final String title) {
+    super(title);
+  }
 
 }

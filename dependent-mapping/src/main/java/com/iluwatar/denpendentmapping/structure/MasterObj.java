@@ -1,4 +1,4 @@
-/**
+/*
  * This project is licensed under the MIT license.
  * Module model-view-viewmodel is using ZK framework
  * licensed under LGPL (see lgpl-3.0.txt).
@@ -24,21 +24,61 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.denpendetmapping;
-
-import com.iluwatar.denpendetmapping.Structure.DependentObj;
+package com.iluwatar.denpendentmapping.structure;
 
 /**
- * A track which contained in an Album.
+ * A master class of which instance will be depended
+ * by a list of DependentObj instances.
  */
-public class Track extends DependentObj {
+public abstract class MasterObj {
+  /**
+   * title.
+   */
+  private String title;
 
-    /**
-     * construction file.
-     * @param title the title of track.
-     */
-    public Track(final String title) {
-        super(title);
-    }
+  /**
+   * add new dependent instance.
+   *
+   * @param obj the dependent instance to be added.
+   */
+  public abstract void addDepObj(DependentObj obj);
 
+  /**
+   * remove specific dependent instance.
+   *
+   * @param obj the dependent instance to be removed.
+   */
+  public abstract void removeDepObj(DependentObj obj);
+
+  /**
+   * remove i-th dependent instance.
+   *
+   * @param i the index of instance to be removed.
+   */
+  public abstract void removeDepObj(int i);
+
+  /**
+   * get the list dependent instances.
+   *
+   * @return the list.
+   */
+  public abstract DependentObj[] getDepObjs();
+
+  /**
+   * construction method.
+   *
+   * @param newTitle title.
+   */
+  public MasterObj(final String newTitle) {
+    this.title = newTitle;
+  }
+
+  /**
+   * get title of the master instance.
+   *
+   * @return title.
+   */
+  public String getTitle() {
+    return title;
+  }
 }
