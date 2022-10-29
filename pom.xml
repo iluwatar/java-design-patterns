@@ -411,11 +411,6 @@
       <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-assembly-plugin</artifactId>
-      <version>3.4.2</version>
-    </dependency>
   </dependencies>
   <build>
     <pluginManagement>
@@ -547,16 +542,18 @@
       <plugin>
         <groupId>com.iluwatar.urm</groupId>
         <artifactId>urm-maven-plugin</artifactId>
-        <version>${urm-maven-plugin.version}</version>
+        <version>2.0.0</version>
         <configuration>
           <!-- if outputDirectory is not set explicitly it will default to your build dir -->
           <outputDirectory>${project.basedir}/etc</outputDirectory>
           <packages>
-            <param>com.iluwatar</param>
+            <param>com.iluwatar.collectingparameter</param>
           </packages>
+          <ignores>
+          </ignores>
           <includeMainDirectory>true</includeMainDirectory>
           <includeTestDirectory>false</includeTestDirectory>
-          <presenter>plantuml</presenter>
+          <presenter>graphviz</presenter>
         </configuration>
         <executions>
           <execution>
@@ -567,14 +564,6 @@
           </execution>
         </executions>
       </plugin>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-                <source>10</source>
-                <target>10</target>
-            </configuration>
-        </plugin>
     </plugins>
   </build>
 </project>
