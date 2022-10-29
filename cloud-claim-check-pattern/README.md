@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Claim Check Pattern
-folder: cloud-claim-check-pattern
-permalink: /patterns/cloud-claim-check-pattern/
-categories: Cloud
+category: Cloud
 language: en
 tags:
   - Cloud distributed

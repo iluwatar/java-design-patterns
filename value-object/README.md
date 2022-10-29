@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Value Object
-folder: value-object
-permalink: /patterns/value-object/
-categories: Creational
+category: Creational
 language: en
 tags:
  - Instantiation

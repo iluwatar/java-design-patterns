@@ -1,0 +1,134 @@
+@startuml
+package com.iluwatar.servicetoworker {
+  class Action {
+    + giant : GiantModel
+    + Action(giant : GiantModel)
+    + setFatigue(fatigue : Fatigue)
+    + setHealth(health : Health)
+    + setNourishment(nourishment : Nourishment)
+    + updateModel(command : Command)
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Command {
+    - fatigue : Fatigue
+    - health : Health
+    - nourishment : Nourishment
+    + Command(fatigue : Fatigue, health : Health, nourishment : Nourishment)
+    + getFatigue() : Fatigue
+    + getHealth() : Health
+    + getNourishment() : Nourishment
+  }
+  class Dispatcher {
+    - actions : List<Action>
+    - giantView : GiantView
+    + Dispatcher(giantView : GiantView)
+    ~ addAction(action : Action)
+    + getGiantView() : GiantView
+    + performAction(s : Command, actionIndex : int)
+    + updateView(giantModel : GiantModel)
+  }
+  class GiantController {
+    + dispatcher : Dispatcher
+    + GiantController(dispatcher : Dispatcher)
+    + setCommand(s : Command, index : int)
+    + updateView(giantModel : GiantModel)
+  }
+  class GiantModel {
+    - model : GiantModel
+    - name : String
+    ~ GiantModel(name : String, health : Health, fatigue : Fatigue, nourishment : Nourishment)
+    ~ getFatigue() : Fatigue
+    ~ getHealth() : Health
+    + getName() : String
+    ~ getNourishment() : Nourishment
+    ~ setFatigue(fatigue : Fatigue)
+    ~ setHealth(health : Health)
+    ~ setNourishment(nourishment : Nourishment)
+    + toString() : String
+  }
+  class GiantView {
+    - LOGGER : Logger {static}
+    + GiantView()
+    + displayGiant(giant : GiantModel)
+  }
+}
+package com.iluwatar.model.view.controller {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum Fatigue {
+    + ALERT {static}
+    + SLEEPING {static}
+    + TIRED {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Fatigue {static}
+    + values() : Fatigue[] {static}
+  }
+  class GiantController {
+    - giant : GiantModel
+    - view : GiantView
+    + GiantController(giant : GiantModel, view : GiantView)
+    + getFatigue() : Fatigue
+    + getHealth() : Health
+    + getNourishment() : Nourishment
+    + setFatigue(fatigue : Fatigue)
+    + setHealth(health : Health)
+    + setNourishment(nourishment : Nourishment)
+    + updateView()
+  }
+  class GiantModel {
+    - fatigue : Fatigue
+    - health : Health
+    - nourishment : Nourishment
+    + GiantModel(health : Health, fatigue : Fatigue, nourishment : Nourishment)
+    + getFatigue() : Fatigue
+    + getHealth() : Health
+    + getNourishment() : Nourishment
+    + setFatigue(fatigue : Fatigue)
+    + setHealth(health : Health)
+    + setNourishment(nourishment : Nourishment)
+    + toString() : String
+  }
+  class GiantView {
+    - LOGGER : Logger {static}
+    + GiantView()
+    + displayGiant(giant : GiantModel)
+  }
+  enum Health {
+    + DEAD {static}
+    + HEALTHY {static}
+    + WOUNDED {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Health {static}
+    + values() : Health[] {static}
+  }
+  enum Nourishment {
+    + HUNGRY {static}
+    + SATURATED {static}
+    + STARVING {static}
+    - title : String
+    + toString() : String
+    + valueOf(name : String) : Nourishment {static}
+    + values() : Nourishment[] {static}
+  }
+}
+Command -->  "-nourishment" Nourishment
+GiantModel -->  "-nourishment" Nourishment
+GiantController -->  "-giant" GiantModel
+GiantController -->  "-dispatcher" Dispatcher
+GiantModel -->  "-fatigue" Fatigue
+Dispatcher -->  "-actions" Action
+GiantModel -->  "-health" Health
+GiantModel -->  "-model" GiantModel
+Command -->  "-fatigue" Fatigue
+Command -->  "-health" Health
+GiantController -->  "-view" GiantView
+Action -->  "-giant" GiantModel
+Dispatcher -->  "-giantView" GiantView
+@enduml

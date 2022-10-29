@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Data Transfer Object
-folder: data-transfer-object
-permalink: /patterns/data-transfer-object/
-categories: Architectural
+category: Architectural
 language: zh
 tags:
  - Performance
@@ -94,7 +91,7 @@ public class CustomerResource {
 
 ## 类图
 
-![alt text](../../../data-transfer-object/etc/data-transfer-object.urm.png "data-transfer-object")
+![alt text](etc/data-transfer-object.urm.png "data-transfer-object")
 
 ## 适用性
 

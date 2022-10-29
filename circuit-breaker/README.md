@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Circuit Breaker
-folder: circuit-breaker
-permalink: /patterns/circuit-breaker/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
   - Performance
