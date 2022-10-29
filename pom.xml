@@ -411,6 +411,11 @@
       <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <version>3.4.2</version>
+    </dependency>
   </dependencies>
   <build>
     <pluginManagement>
