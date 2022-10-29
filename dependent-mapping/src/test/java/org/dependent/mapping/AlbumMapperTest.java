@@ -1,6 +1,6 @@
 package org.dependent.mapping;
 
-import com.iluwatar.denpendentmapping.AlbumMapper;
+import com.iluwatar.dependentmapping.AlbumMapper;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Connection;

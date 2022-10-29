@@ -24,10 +24,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.denpendentmapping;
+package com.iluwatar.dependentmapping;
 
-import com.iluwatar.denpendentmapping.structure.DependentObj;
-import com.iluwatar.denpendentmapping.structure.MasterObj;
+import com.iluwatar.dependentmapping.structure.DependentObj;
+import com.iluwatar.dependentmapping.structure.MasterObj;
 import java.util.ArrayList;
 import java.util.List;
 

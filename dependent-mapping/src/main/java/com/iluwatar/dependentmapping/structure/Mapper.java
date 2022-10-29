@@ -24,61 +24,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.denpendentmapping.structure;
+package com.iluwatar.dependentmapping.structure;
+
+import java.sql.SQLException;
 
 /**
- * A master class of which instance will be depended
- * by a list of DependentObj instances.
+ * Mapper which depend on the master class and dependent class,
+ * and connect them with the database.
  */
-public abstract class MasterObj {
-  /**
-   * title.
-   */
-  private String title;
+public interface Mapper {
 
   /**
-   * add new dependent instance.
+   * Show the data from the database.
    *
-   * @param obj the dependent instance to be added.
+   * @return the data in database.
    */
-  public abstract void addDepObj(DependentObj obj);
+  String findstatement();
 
   /**
-   * remove specific dependent instance.
+   * Updata the specific master instance and its dependent instances.
    *
-   * @param obj the dependent instance to be removed.
+   * @param arg the master instance.
+   * @throws SQLException the exception of SQL
    */
-  public abstract void removeDepObj(DependentObj obj);
+  void update(MasterObj arg) throws SQLException;
 
   /**
-   * remove i-th dependent instance.
+   * Updata the dependent instances of the specific master instance.
    *
-   * @param i the index of instance to be removed.
+   * @param arg the master instance.
+   * @throws SQLException the exception of SQL
    */
-  public abstract void removeDepObj(int i);
+  void updateDepObjs(MasterObj arg) throws SQLException;
 
   /**
-   * get the list dependent instances.
+   * Insert specific a dependent instance into a master instance in database.
    *
-   * @return the list.
+   * @param dependentObj the specific dependent instance.
+   * @param seq          the sequence.
+   * @param masterObj    the specific master instance
+   * @throws SQLException the exception of SQL
    */
-  public abstract DependentObj[] getDepObjs();
+  void insertDepObj(DependentObj dependentObj,
+                    int seq, MasterObj masterObj) throws SQLException;
 
-  /**
-   * construction method.
-   *
-   * @param newTitle title.
-   */
-  public MasterObj(final String newTitle) {
-    this.title = newTitle;
-  }
-
-  /**
-   * get title of the master instance.
-   *
-   * @return title.
-   */
-  public String getTitle() {
-    return title;
-  }
 }

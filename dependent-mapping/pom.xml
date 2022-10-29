@@ -42,7 +42,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.iluwatar.denpendentmapping.App</mainClass>
+                                    <mainClass>com.iluwatar.dependentmapping.App</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

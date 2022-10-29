@@ -1,4 +1,4 @@
-package com.iluwatar.denpendentmapping;
+package com.iluwatar.dependentmapping;
 
 import java.sql.Connection;
 

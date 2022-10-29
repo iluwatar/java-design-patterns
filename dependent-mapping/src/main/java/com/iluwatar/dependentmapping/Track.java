@@ -24,36 +24,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.denpendentmapping.structure;
+package com.iluwatar.dependentmapping;
+
+import com.iluwatar.dependentmapping.structure.DependentObj;
 
 /**
- * A class of which instance will be depend on the
- * MasterObj class instance.
+ * A track which contained in an Album.
  */
-public abstract class DependentObj {
-  /**
-   * title.
-   */
-  private final String title;
+public class Track extends DependentObj {
 
   /**
-   * Construction method.
+   * construction file.
    *
-   * @param newTitle title.
+   * @param title the title of track.
    */
-  public DependentObj(final String newTitle) {
-
-    this.title = newTitle;
-
+  public Track(final String title) {
+    super(title);
   }
 
-  /**
-   * get title of it.
-   *
-   * @return title.
-   */
-  public String getTitle() {
-
-    return title;
-  }
 }

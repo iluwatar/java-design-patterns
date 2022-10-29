@@ -1,0 +1,60 @@
+@startuml
+package com.iluwatar.dependentmapping {
+  class Album {
+    - id : Long
+    - tracks : List<Track>
+    + Album(newid : Long, newtitle : String)
+    + addDepObj(obj : DependentObj)
+    + getDepObjs() : DependentObj[]
+    + getId() : Long
+    + getTracks() : Track[]
+    + removeDepObj(i : int)
+    + removeDepObj(obj : DependentObj)
+  }
+  class AlbumMapper {
+    - columnIndex : int
+    - db : Connection
+    - parameterIndex1 : int
+    - parameterIndex2 : int
+    - parameterIndex3 : int
+    + AlbumMapper(newDb : Connection)
+    + findstatement() : String
+    + insertDepObj(dependentObj : DependentObj, seq : int, masterObj : MasterObj)
+    + update(arg : MasterObj)
+    + updateDepObjs(arg : MasterObj)
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Track {
+    + Track(title : String)
+  }
+}
+package com.iluwatar.dependentmapping.structure {
+  abstract class DependentObj {
+    - title : String
+    + DependentObj(newTitle : String)
+    + getTitle() : String
+  }
+  interface Mapper {
+    + findstatement() : String {abstract}
+    + insertDepObj(DependentObj, int, MasterObj) {abstract}
+    + update(MasterObj) {abstract}
+    + updateDepObjs(MasterObj) {abstract}
+  }
+  abstract class MasterObj {
+    - title : String
+    + MasterObj(newTitle : String)
+    + addDepObj(DependentObj) {abstract}
+    + getDepObjs() : DependentObj[] {abstract}
+    + getTitle() : String
+    + removeDepObj(DependentObj) {abstract}
+    + removeDepObj(int) {abstract}
+  }
+}
+Album -->  "-tracks" Track
+Album --|> MasterObj 
+AlbumMapper ..|> Mapper 
+Track --|> DependentObj 
+@enduml
