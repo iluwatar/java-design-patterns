@@ -38,6 +38,6 @@ package com.iluwatar.facet {
   }
 }
 DragonFacet -->  "-dragon" Dragon
-Knight -->  "-dragonFacet" DragonFacet
+Knight -up->  "-dragonFacet" DragonFacet
 Knight -->  "-attack" Attack
 @enduml

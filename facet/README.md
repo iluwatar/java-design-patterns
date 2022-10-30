@@ -12,7 +12,7 @@ Attenuation
 
 ## Intent
 
-Provide a interface to a powerful object in a restricted way, either by restricting parameters 
+Provide an interface to a powerful object in a restricted way, either by restricting parameters 
 or only allowing calls to a subset of object's functions.
 
 ## Explanation
@@ -157,7 +157,7 @@ Sir Luke: Darn it! FLAME_THROWER did nothing.
 
 ## Class diagram
 
-![alt text](./etc/proxy.urm.png "Facet pattern class diagram")
+![alt text](./etc/facet.urm.png "Facet pattern class diagram")
 
 ## Applicability
 
