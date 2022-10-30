@@ -1,11 +1,43 @@
 class Controller...
 
 public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        Artist artist = Artist.findNamed(request.getParameter("name"));
-        if (artist == null)
-        forward("/MissingArtistError.jsp", request, response);
+        Author author = Author.findNamed(request.getParameter("name"));
+        if (author == null)
+        forward("/website.jsp", request, response);
         else {
-        request.setAttribute("helper", new ArtistHelper(artist));
-       forward("/artist.jsp", request, response);
+        request.setAttribute("author", new Helper(author));
+       forward("/website.jsp", request, response);
+
+        AuthorDescription description = Author.findNamed(request.getParameter("description"));
+        if (description == null)
+        forward("/website.jsp", request, response);
+        else {
+        request.setAttribute("description", new Helper(description));
+        forward("/website.jsp", request, response);
+
+        BookList booklist = booklist.findNamed(request.getParameter("book list"));
+        if (booklist == null)
+        forward("/website.jsp", request, response);
+        else {
+        request.setAttribute("booklist", new Helper(booklist));
+        forward("/website.jsp", request, response);
         }
+
+        BookList booklist = booklist.findNamed(request.getParameter("book list"));
+        if (booklist == null)
+        forward("/website.jsp", request, response);
+        else {
+        request.setAttribute("booklist", new Helper(booklist));
+        forward("/website.jsp", request, response);
+
+        Image image = image.findNamed(request.getParameter("image"));
+        if (image == null)
+        forward("/website.jsp", request, response);
+        else {
+        request.setAttribute("image", new Helper(image));
+        forward("/website.jsp", request, response);
+        }
+
+        }
+
      }

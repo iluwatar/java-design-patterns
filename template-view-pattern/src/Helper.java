@@ -1,11 +1,20 @@
 class Helper...
 
-private Artist artist;
-public ArtistHelper(Artist artist) {
-        this.artist = artist;
-        }
+private Author author;
 
 
 public String getName() {
-        return artist.getName();
+        return author.getName();
+        }
+
+public String getDescription() {
+        return author.getDescription();
+        }
+
+public String getBookList() {
+        return author.getBookList();
+        }
+
+public String getImage() {
+        return author.getImage();
         }
