@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-228-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-229-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -368,6 +368,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/steph88ss"><img src="https://avatars.githubusercontent.com/u/111041594?v=4?s=100" width="100px;" alt="steph88ss"/><br /><sub><b>steph88ss</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=steph88ss" title="Documentation">📖</a></td>
       <td align="center"><a href="http://yujanranjitkar.com.np"><img src="https://avatars.githubusercontent.com/u/63731234?v=4?s=100" width="100px;" alt="Yujan Ranjitkar"/><br /><sub><b>Yujan Ranjitkar</b></sub></a><br /><a href="#translation-0xYujan" title="Translation">🌍</a></td>
       <td align="center"><a href="https://github.com/yusha-g"><img src="https://avatars.githubusercontent.com/u/110189579?v=4?s=100" width="100px;" alt="yusha-g"/><br /><sub><b>yusha-g</b></sub></a><br /><a href="#translation-yusha-g" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://github.com/robertvolkmann"><img src="https://avatars.githubusercontent.com/u/20912167?v=4?s=100" width="100px;" alt="Robert Volkmann"/><br /><sub><b>Robert Volkmann</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=robertvolkmann" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
