@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-231-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-232-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -371,6 +371,9 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/robertvolkmann"><img src="https://avatars.githubusercontent.com/u/20912167?v=4?s=100" width="100px;" alt="Robert Volkmann"/><br /><sub><b>Robert Volkmann</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=robertvolkmann" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/pulls?q=is%3Apr+reviewed-by%3Arobertvolkmann" title="Reviewed Pull Requests">👀</a></td>
       <td align="center"><a href="https://github.com/bipin-k"><img src="https://avatars.githubusercontent.com/u/21119358?v=4?s=100" width="100px;" alt="Bipin Kumar Chaurasia"/><br /><sub><b>Bipin Kumar Chaurasia</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=bipin-k" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/KyleSong30"><img src="https://avatars.githubusercontent.com/u/100892032?v=4?s=100" width="100px;" alt="KyleSong30"/><br /><sub><b>KyleSong30</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=KyleSong30" title="Documentation">📖</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/u7281975"><img src="https://avatars.githubusercontent.com/u/111095623?v=4?s=100" width="100px;" alt="u7281975"/><br /><sub><b>u7281975</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=u7281975" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
