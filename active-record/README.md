@@ -172,4 +172,4 @@ public class ActiveRow {
 ```
 
 
-![alt text](./etc/active-record.png "Active Record Traits and Domain")
+![alt text](./etc/active-record.png)
