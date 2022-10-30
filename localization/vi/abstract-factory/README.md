@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Abstract Factory
-folder: abstract-factory
-permalink: /patterns/abstract-factory/
-categories: Creational
+category: Creational
 language: vi
 tags:
  - Gang of Four
