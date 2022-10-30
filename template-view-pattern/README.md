@@ -35,14 +35,15 @@ Code / Parameter organisation
 Code reusability 
 Easy parameter modification - particularly easy for non-programmers to contribute to this.
 
-## Tutorials
-
 ## Known uses
-
-## Consequences
+One of the most common uses of the template view pattern can be seen in server pages. Examples include:
+- [ASP](https://en.wikipedia.org/wiki/Active_Server_Pages)
+- [JSP](https://en.wikipedia.org/wiki/Jakarta_Server_Pages)
+- [PHP](https://simple.wikipedia.org/wiki/PHP#)
 
 ## Related patterns
 
 [model view controller](https://github.com/iluwatar/java-design-patterns/tree/master/model-view-controller)
 
 ## Credits
+[Martin Fowler - Author of "Pattern of Enterprise Application Architecture"](https://www.martinfowler.com/books/eaa.html)
