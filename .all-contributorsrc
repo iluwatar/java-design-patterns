@@ -2088,6 +2088,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "bipin-k",
+      "name": "Bipin Kumar Chaurasia",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21119358?v=4",
+      "profile": "https://github.com/bipin-k",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
