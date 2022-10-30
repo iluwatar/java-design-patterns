@@ -31,7 +31,7 @@ import java.lang.reflect.Field;
  *
  * @author Jeroen Meulemeester
  */
-public class HolderNaiveTest extends AbstractHolderTest {
+class HolderNaiveTest extends AbstractHolderTest {
 
   private final HolderNaive holder = new HolderNaive();
 

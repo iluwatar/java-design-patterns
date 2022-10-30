@@ -76,7 +76,7 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
   }
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     for (int i = 0; i < INITIAL_COUNT; i++) {
       final var className = dao.persistentClass.getSimpleName();
       final var entityName = String.format("%s%d", className, ID_GENERATOR.incrementAndGet());
@@ -85,7 +85,7 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     HibernateUtil.dropSession();
   }
 

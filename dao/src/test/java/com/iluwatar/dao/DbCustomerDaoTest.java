@@ -70,7 +70,7 @@ class DbCustomerDaoTest {
    * Represents the scenario where DB connectivity is present.
    */
   @Nested
-  public class ConnectionSuccess {
+  class ConnectionSuccess {
 
     /**
      * Setup for connection success scenario.
@@ -78,7 +78,7 @@ class DbCustomerDaoTest {
      * @throws Exception if any error occurs.
      */
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() throws Exception {
       var dataSource = new JdbcDataSource();
       dataSource.setURL(DB_URL);
       dao = new DbCustomerDao(dataSource);
@@ -191,7 +191,7 @@ class DbCustomerDaoTest {
      * @throws SQLException if any error occurs.
      */
     @BeforeEach
-    public void setUp() throws SQLException {
+    void setUp() throws SQLException {
       dao = new DbCustomerDao(mockedDatasource());
     }
 

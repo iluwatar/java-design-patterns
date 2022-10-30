@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test methods in NewSource
  */
-public class NewSourceTest {
+class NewSourceTest {
   private static final NewSource source = new NewSource();
 
   @Test

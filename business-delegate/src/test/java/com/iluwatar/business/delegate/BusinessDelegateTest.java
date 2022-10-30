@@ -49,7 +49,7 @@ class BusinessDelegateTest {
    * execution of every test.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     netflixService = spy(new NetflixService());
     youTubeService = spy(new YouTubeService());
 

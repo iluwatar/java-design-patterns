@@ -60,7 +60,7 @@ class RepositoryTest {
    * Prepare data for test
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     repository.saveAll(persons);
   }
 
@@ -112,7 +112,7 @@ class RepositoryTest {
   }
 
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     repository.deleteAll();
   }
 

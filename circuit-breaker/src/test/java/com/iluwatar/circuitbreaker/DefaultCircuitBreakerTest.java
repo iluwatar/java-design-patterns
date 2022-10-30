@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Circuit Breaker test
  */
-public class DefaultCircuitBreakerTest {
+class DefaultCircuitBreakerTest {
 
   //long timeout, int failureThreshold, long retryTimePeriod
   @Test
