@@ -2,6 +2,7 @@
 package com.iluwatar.dci_design_pattern {
   abstract class Context {
     - creatures : Integer
+    - logger : Logger
     + transfer()
     + receive()
     + request()
