@@ -26,18 +26,21 @@ package com.iluwatar.lockmanager;
 
 import org.testng.annotations.Test;
 
-class InvalidNameTest {
+/**
+ * Tests that on invalid name inputs, an InvalidNameException is thrown.
+ */
+public class InvalidNameTest {
 
   @Test(expectedExceptions = InvalidNameException.class)
   void invalidNameTestGetManagerEmpty() throws InvalidNameException {
     Manager manager = Manager.getManager("TESTING");
-    Manager.getManager("");
+    manager.getManager("");
   }
 
   @Test(expectedExceptions = InvalidNameException.class)
   void invalidNameTestGetManagerNull() throws InvalidNameException {
     Manager manager = Manager.getManager("TESTING");
-    Manager.getManager(null);
+    manager.getManager(null);
   }
 
   @Test(expectedExceptions = InvalidNameException.class)
@@ -57,7 +60,7 @@ class InvalidNameTest {
   //Testing adding an empty string
   @Test(expectedExceptions = InvalidNameException.class)
   void invalidNameTestCanLockEmptyNoManager() throws InvalidNameException {
-    Object object = new Object();
-    Manager manager = Manager.getManager(" ");
+    Manager manager = Manager.getManager("TESTING");
+    manager.getManager("");
   }
 }

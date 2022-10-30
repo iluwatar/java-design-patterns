@@ -33,8 +33,8 @@ import java.util.Set;
  */
 public class Manager {
 
-  private final HashMap lockSet;
-  private static final HashMap managerSet = new HashMap();
+  private final HashMap<Object, String> lockSet;
+  private static final HashMap<String, Object> managerSet = new HashMap<>();
   private static final Set<String> invalidNames = new HashSet<>();
 
   /**
@@ -42,7 +42,7 @@ public class Manager {
    * to the invalidNames hashmap.
    */
   public Manager() {
-    lockSet = new HashMap();
+    lockSet = new HashMap<>();
     invalidNames.add(null);
     invalidNames.add("");
   }
@@ -62,13 +62,8 @@ public class Manager {
       throw new InvalidNameException("Invalid Name of Manager.");
     }
     // If the set of manager's does not contain the key, create a new manager instance and add it to the set.
-    if (!managerSet.containsKey(name)) {
-      Manager manager = new Manager();
-      managerSet.put(name, manager);
-    }
-
-    Manager returnManager = (Manager) managerSet.get(name);
-    return returnManager;
+    managerSet.computeIfAbsent(name, key -> new Manager());
+    return (Manager) managerSet.get(name);
   }
 
   /**
@@ -88,12 +83,9 @@ public class Manager {
     // accessing the set at the same time, causing data overwrites.
     synchronized (lockSet) {
       // If the lockSet doesn't contain the lockable object, then add it with the provided name.
-      if (!lockSet.containsKey(lockable)) {
-        lockSet.put(lockable, name);
-        return true;
-      }
+      lockSet.computeIfAbsent(lockable, key -> name);
       // Otherwise, we must check that the name provided matches the key name.
-      String lockName = (String) lockSet.get(lockable);
+      String lockName = lockSet.get(lockable);
       return name.equals(lockName);
     }
   }
@@ -104,7 +96,6 @@ public class Manager {
    * @param lockable lockable object that we wish to remove.
    */
   public Object removeLock(Object lockable) {
-    Object removed = lockSet.remove(lockable);
-    return removed;
+    return lockSet.remove(lockable);
   }
 }

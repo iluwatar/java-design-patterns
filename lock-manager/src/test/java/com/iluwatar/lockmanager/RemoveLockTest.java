@@ -29,7 +29,10 @@ import static org.testng.AssertJUnit.assertEquals;
 
 import org.testng.annotations.Test;
 
-class RemoveLockTest {
+/**
+ * Tests that removing locks works correctly.
+ */
+public class RemoveLockTest {
   @Test
   void removingLockTest() throws InvalidNameException {
     Manager manager = Manager.getManager("TESTING");

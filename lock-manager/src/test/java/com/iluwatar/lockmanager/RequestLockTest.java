@@ -29,8 +29,10 @@ import static org.testng.AssertJUnit.assertTrue;
 
 import org.testng.annotations.Test;
 
-
-class RequestLockTest {
+/**
+ * Tests that requesting for locks works correctly.
+ */
+public class RequestLockTest {
   @Test
   void requestingLockTest() throws InvalidNameException {
     Manager manager = Manager.getManager("TESTING");
