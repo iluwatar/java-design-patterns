@@ -2033,6 +2033,52 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "JanFidor",
+      "name": "JanFidor",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66260538?v=4",
+      "profile": "https://github.com/JanFidor",
+      "contributions": [
+        "code",
+        "doc"
+      ]
+    },
+    {
+      "login": "drakulavich",
+      "name": "Anton Yakutovich",
+      "avatar_url": "https://avatars.githubusercontent.com/u/129260?v=4",
+      "profile": "https://github.com/drakulavich",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "steph88ss",
+      "name": "steph88ss",
+      "avatar_url": "https://avatars.githubusercontent.com/u/111041594?v=4",
+      "profile": "https://github.com/steph88ss",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "0xYujan",
+      "name": "Yujan Ranjitkar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/63731234?v=4",
+      "profile": "http://yujanranjitkar.com.np",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "yusha-g",
+      "name": "yusha-g",
+      "avatar_url": "https://avatars.githubusercontent.com/u/110189579?v=4",
+      "profile": "https://github.com/yusha-g",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
