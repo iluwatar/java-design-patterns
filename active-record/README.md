@@ -224,4 +224,7 @@ public class ActiveDatabase {
 
 ```
 
+## Applicability
+Useful for when you require objects which are made up of database rows and may need to manipulate the database during your program.
+
 ![alt text](./etc/active-record.png)
