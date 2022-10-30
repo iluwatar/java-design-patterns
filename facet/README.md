@@ -198,8 +198,11 @@ doesn't provide any extra functionality.
 ## Related patterns
 
 * [Proxy](https://java-design-patterns.com/patterns/proxy/)
+* [Adapter](https://java-design-patterns.com/patterns/adapter/)
+* [Facade](https://java-design-patterns.com/patterns/facade/)
 
 ## Credits
 
 * [Facet Pattern](http://wiki.c2.com/?FacetPattern)
 * [Capability Theory Glossary](http://www.cap-lore.com/CapTheory/Glossary.html)
+* [What is Facet design pattern?](https://stackoverflow.com/questions/30164108/what-is-facet-design-pattern)
