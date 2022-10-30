@@ -1,10 +1,12 @@
 package com.iluwatar.facet;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+
 import com.iluwatar.facet.dragon.Dragon;
 import com.iluwatar.facet.dragon.DragonFacet;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * One of the possible ways of using a facet is to restrict parameters that can
@@ -18,7 +20,7 @@ public class ParameterBlockingTest {
    * the dragonFacet indeed do not do any damage (i.e. are ignored.)
    */
   @Test
-  public void blockIllegalParameters () {
+  public void blockIllegalParameters() {
     Dragon dragon = new Dragon(100);
     DragonFacet dragonFacet = new DragonFacet(dragon);
     Knight sirJim = new Knight("Sir Jim", Attack.SWORD, dragonFacet);
@@ -34,10 +36,10 @@ public class ParameterBlockingTest {
 
   /**
    * These tests make sure that the dragon is indeed attacked when the knights
-   * use the correct attacks
+   * use the correct attacks.
    */
   @Test
-  public void allowLegalParameters () {
+  public void allowLegalParameters() {
     Dragon dragon = new Dragon(100);
     DragonFacet dragonFacet = new DragonFacet(dragon);
     Knight sirJim = new Knight("Sir Jim", Attack.ARROW, dragonFacet);

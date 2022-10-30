@@ -1,14 +1,14 @@
 package com.iluwatar.facet;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import com.iluwatar.facet.dragon.Dragon;
 import com.iluwatar.facet.dragon.DragonFacet;
-import org.junit.jupiter.api.Test;
-
 import java.lang.reflect.Method;
 import java.util.ArrayList;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test that the definition of a facet is upheld. That is,
@@ -22,7 +22,7 @@ public class MethodsOfFacetTest {
    * All objects must only be able to interact with the facet.
    */
   @Test
-  public void visibleDragonMethods () {
+  public void visibleDragonMethods() {
     Dragon dragon = new Dragon(100);
     Method[] methods = Dragon.class.getDeclaredMethods();
     for (Method method : methods) {
@@ -46,7 +46,7 @@ public class MethodsOfFacetTest {
    * (2. and 3. imply 1.)
    */
   @Test
-  public void facetASubset () {
+  public void facetIsSubset() {
     Method[] dragonMethods = Dragon.class.getDeclaredMethods();
     Method[] dragonFacetMethods = DragonFacet.class.getDeclaredMethods();
 
@@ -54,15 +54,17 @@ public class MethodsOfFacetTest {
     assertTrue(dragonMethods.length >= dragonFacetMethods.length);
 
     ArrayList<String> facetMethodNames = new ArrayList<>();
-    for (Method facetMethod : dragonFacetMethods)
+    for (Method facetMethod : dragonFacetMethods) {
       facetMethodNames.add(facetMethod.getName());
+    }
     ArrayList<String> dragonMethodNames = new ArrayList<>();
-    for (Method dragonMethod : dragonMethods)
+    for (Method dragonMethod : dragonMethods) {
       dragonMethodNames.add(dragonMethod.getName());
+    }
 
     //Check 2. from javadoc comment.
     for (String dragonMethodName : dragonMethodNames) {
-      if(dragonMethodName.startsWith("faceted")) {
+      if (dragonMethodName.startsWith("faceted")) {
         String expectedName = dragonMethodName.substring("faceted".length());
         expectedName = Character.toLowerCase(expectedName.charAt(0))
             + expectedName.substring(1);
@@ -74,8 +76,8 @@ public class MethodsOfFacetTest {
 
     //Check 3. from javadoc comment.
     for (String facetMethodName : facetMethodNames) {
-      String expectedName = "faceted"+
-          Character.toUpperCase(facetMethodName.charAt(0))
+      String expectedName = "faceted"
+          + Character.toUpperCase(facetMethodName.charAt(0))
           + facetMethodName.substring(1);
       assertTrue(dragonMethodNames.contains(expectedName));
     }
