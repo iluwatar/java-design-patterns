@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -15,7 +14,6 @@ import java.util.ArrayList;
  * Java.
  */
 public class ActiveRow {
-
 	String id;
 	DB dataBase;
 	Connection con;
