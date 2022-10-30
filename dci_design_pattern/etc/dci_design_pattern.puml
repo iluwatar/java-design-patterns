@@ -1,0 +1,37 @@
+@startuml
+package com.iluwatar.dci_design_pattern {
+  abstract class Context {
+    - creatures : Integer
+    + transfer()
+    + receive()
+    + request()
+  }
+  class Account {
+    - creatures : Integer
+    - logger : Logger
+    + Account()
+    + balance()
+    + increase()
+    + decrease()
+  }
+  class Bank {
+    - creatures : Integer
+    - logger : Logger
+    + Bank()
+    + createAccount()
+    + deleteAccount()
+    + getAccount()
+  }
+
+  class SOURCEACCOUNT{
+    + sendTo()
+  }
+
+  class DESTINATIONACCOUNT{
+    + sendFrom()
+  }
+
+}
+SOURCEACCOUNT --|> Context
+DESTINATIONACCOUNT --|> Context
+@enduml
