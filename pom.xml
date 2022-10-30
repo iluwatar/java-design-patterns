@@ -82,6 +82,7 @@
     <sonar.projectName>Java Design Patterns</sonar.projectName>
   </properties>
   <modules>
+    <module>facet</module>
     <module>abstract-factory</module>
     <module>monitor</module>
     <module>tls</module>
