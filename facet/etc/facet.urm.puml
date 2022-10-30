@@ -1,0 +1,43 @@
+@startuml
+package com.iluwatar.facet.dragon {
+  class Dragon {
+    - health : int
+    + Dragon(health : int)
+    ~ facetedGetHealth() : int
+    ~ facetedReceiveAttack(attack : Attack)
+    ~ setHealth(health : int)
+  }
+  class DragonFacet {
+    - LOGGER : Logger {static}
+    - dragon : Dragon
+    + DragonFacet(dragon : Dragon)
+    + getHealth() : int
+    + receiveAttack(attack : Attack)
+  }
+}
+package com.iluwatar.facet {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum Attack {
+    + ARROW {static}
+    + FLAME_THROWER {static}
+    + SWORD {static}
+    + WATER_PISTOL {static}
+    + valueOf(name : String) : Attack {static}
+    + values() : Attack[] {static}
+  }
+  class Knight {
+    - LOGGER : Logger {static}
+    - attack : Attack
+    - dragonFacet : DragonFacet
+    - name : String
+    + Knight(name : String, attack : Attack, dragonFacet : DragonFacet)
+    + attackDragon()
+  }
+}
+DragonFacet -->  "-dragon" Dragon
+Knight -up->  "-dragonFacet" DragonFacet
+Knight -->  "-attack" Attack
+@enduml
