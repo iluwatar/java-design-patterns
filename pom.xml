@@ -82,7 +82,6 @@
     <sonar.projectName>Java Design Patterns</sonar.projectName>
   </properties>
   <modules>
-    <module>facet</module>
     <module>abstract-factory</module>
     <module>monitor</module>
     <module>tls</module>
@@ -231,6 +230,7 @@
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
+    <module>facet</module>
   </modules>
   <repositories>
     <repository>

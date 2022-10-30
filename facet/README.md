@@ -1,9 +1,13 @@
----
+--- 
+layout: pattern
 title: Facet
-category: Structural
+folder: facet
+permalink: /patterns/facet/
+categories:
+- structural
 language: en
 tags:
- - Decoupling
+- Decoupling
 ---
 
 ## Also known as
@@ -13,7 +17,8 @@ Attenuation
 ## Intent
 
 Provide an interface to a powerful object in a restricted way, either by restricting parameters 
-or only allowing calls to a subset of object's functions.
+or only allowing calls to a subset of object's functions such that the powerful object's 
+capabilities are not abused by any other classes.
 
 ## Explanation
 
@@ -25,7 +30,7 @@ Real-world example
 
 In plain words
 
-> Using the facet pattern, a class represents strictly limited access to another class.
+> Using the facet pattern, a facet class represents strictly limited access to another class.
 
 C2 Wiki says that the intent is
 
@@ -97,9 +102,14 @@ public class Dragon {
 
   void facetedReceiveAttack(Attack attack) {
     switch (attack) {
-      case ARROW -> health -= 10;
-      case WATER_PISTOL -> health -= 15;
-      default -> health -= 5;
+      case ARROW:
+        health -= 10;
+        break;
+      case WATER_PISTOL:
+        health -= 15;
+        break;
+      default:
+        health -= 5;
     }
   }
 }
@@ -108,7 +118,6 @@ public class Dragon {
 Then we have the `DragonFacet` to add control to `Dragon`.
 
 ```java
-@Slf4j
 package com.iluwatar.facet.dragon;
 
 import com.iluwatar.facet.Attack;
@@ -169,6 +178,22 @@ This is often a security pattern, used in order to satisfy the Principle of Leas
 Authority. For example, if an object should be read-only, then the client should 
 be provided with a read-only facet.
 
+## Known Uses
+
+In the Java Database Connectivity (JDBC) API, the interface that is provided is 
+a facet. The users do not see implementation details of accessing the database,
+does the user have as much power as classes of the implementation.
+
+## Consequences
+
+Pros:
+
+- An object that has potential to be misused can be protected from other classes.
+
+Cons:
+
+- There is an overhead cost in writing the code for another class which
+doesn't provide any extra functionality.
 
 ## Related patterns
 

@@ -1,7 +1,6 @@
 package com.iluwatar.facet.dragon;
 
 import com.iluwatar.facet.Attack;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * The facet class which acts as an interface/wrapper for {@link Dragon}.
@@ -10,9 +9,8 @@ import lombok.extern.slf4j.Slf4j;
  * the type of attack is, so that it can filter some illegal
  * values.
  */
-@Slf4j
 public class DragonFacet {
-  private Dragon dragon;
+  private final Dragon dragon;
 
   public DragonFacet(Dragon dragon) {
     this.dragon = dragon;

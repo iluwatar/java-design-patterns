@@ -55,11 +55,15 @@ public class MethodsOfFacetTest {
 
     ArrayList<String> facetMethodNames = new ArrayList<>();
     for (Method facetMethod : dragonFacetMethods) {
-      facetMethodNames.add(facetMethod.getName());
+      if (!facetMethod.isSynthetic()) {
+        facetMethodNames.add(facetMethod.getName());
+      }
     }
     ArrayList<String> dragonMethodNames = new ArrayList<>();
     for (Method dragonMethod : dragonMethods) {
-      dragonMethodNames.add(dragonMethod.getName());
+      if (!dragonMethod.isSynthetic()) {
+        dragonMethodNames.add(dragonMethod.getName());
+      }
     }
 
     //Check 2. from javadoc comment.
