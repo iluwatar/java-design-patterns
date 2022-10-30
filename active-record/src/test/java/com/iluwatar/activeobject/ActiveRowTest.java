@@ -13,18 +13,20 @@ public class ActiveRowTest {
 
 	@Test
 	void initialiseTest() {
-		DB db = new DB("world", "root", "apple-trunks", "localhost:3306", "city");
-		ActiveRow row = new ActiveRow(db, "1");
+		ActiveDatabase activeDatabase = new ActiveDatabase("world", "root", "apple-trunks", "localhost:3306", "city");
+		ActiveRow row = new ActiveRow(activeDatabase, "1");
 		assertDoesNotThrow(row::initialise);
 	}
 
 
 	@Test
 	void readRowTest() {
-		DB db = new DB("world", "root", "apple-trunks", "localhost:3306", "city");
-		ActiveRow row = new ActiveRow(db, "1");
+		ActiveDatabase activeDatabase = new ActiveDatabase("world", "root", "apple-trunks", "localhost:3306", "city");
+		ActiveRow row = new ActiveRow(activeDatabase, "1");
+		System.out.println(row.read().size());
+		int rowSize = row.read().size();
 		if (!(row.read().equals(new ArrayList<String>()))) {
-			for (int i = 0; i < row.read().size(); i++) {
+			for (int i = 0; i < rowSize; i++) {
 				assertNotNull(row.read().get(i));
 			}
 		}
@@ -33,8 +35,8 @@ public class ActiveRowTest {
 
 	@Test
 	void deleteRowTest() {
-		DB db = new DB("world", "root", "apple-trunks", "localhost:3306", "city");
-		ActiveRow row = new ActiveRow(db, "1");
+		ActiveDatabase activeDatabase = new ActiveDatabase("world", "root", "apple-trunks", "localhost:3306", "city");
+		ActiveRow row = new ActiveRow(activeDatabase, "1");
 		row.delete();
 		assertEquals(row.read(), new ArrayList<String>());
 
@@ -42,8 +44,8 @@ public class ActiveRowTest {
 
 	@Test
 	void insertRowTest() {
-		DB db = new DB("world", "root", "apple-trunks", "localhost:3306", "city");
-		ActiveRow row = new ActiveRow(db, "1");
+		ActiveDatabase activeDatabase = new ActiveDatabase("world", "root", "apple-trunks", "localhost:3306", "city");
+		ActiveRow row = new ActiveRow(activeDatabase, "1");
 		row.delete();
 		row.contents = new ArrayList<String>(
 				Arrays.asList("101", "Godoy Cruz", "ARG", "Mendoza", "206998"));
