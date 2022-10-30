@@ -47,7 +47,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Jeroen Meulemeester
  */
-public class PartyMemberTest {
+class PartyMemberTest {
 
   static Stream<Arguments> dataProvider() {
     return Stream.of(
@@ -61,12 +61,12 @@ public class PartyMemberTest {
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(PartyMemberBase.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -75,7 +75,7 @@ public class PartyMemberTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testPartyAction(Supplier<PartyMember> memberSupplier) {
+  void testPartyAction(Supplier<PartyMember> memberSupplier) {
     final var member = memberSupplier.get();
 
     for (final var action : Action.values()) {
@@ -91,7 +91,7 @@ public class PartyMemberTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testAct(Supplier<PartyMember> memberSupplier) {
+  void testAct(Supplier<PartyMember> memberSupplier) {
     final var member = memberSupplier.get();
 
     member.act(Action.GOLD);
@@ -115,7 +115,7 @@ public class PartyMemberTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testToString(Supplier<PartyMember> memberSupplier) {
+  void testToString(Supplier<PartyMember> memberSupplier) {
     final var member = memberSupplier.get();
     final var memberClass = member.getClass();
     assertEquals(memberClass.getSimpleName(), member.toString());

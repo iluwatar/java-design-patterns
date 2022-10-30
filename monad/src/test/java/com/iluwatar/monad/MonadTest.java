@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test for Monad Pattern
  */
-public class MonadTest {
+class MonadTest {
 
   @Test
   void testForInvalidName() {

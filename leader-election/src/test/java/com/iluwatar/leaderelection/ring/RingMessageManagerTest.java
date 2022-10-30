@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
 /**
  * RingMessageManager unit test.
  */
-public class RingMessageManagerTest {
+class RingMessageManagerTest {
 
   @Test
   void testSendHeartbeatMessage() {

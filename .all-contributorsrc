@@ -2089,6 +2089,24 @@
         "code",
         "review"
       ]
+    },
+    {
+      "login": "bipin-k",
+      "name": "Bipin Kumar Chaurasia",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21119358?v=4",
+      "profile": "https://github.com/bipin-k",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "KyleSong30",
+      "name": "KyleSong30",
+      "avatar_url": "https://avatars.githubusercontent.com/u/100892032?v=4",
+      "profile": "https://github.com/KyleSong30",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

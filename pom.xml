@@ -43,7 +43,7 @@
     <camel.version>2.25.1</camel.version>
     <guava.version>19.0</guava.version>
     <mockito.version>3.5.6</mockito.version>
-    <htmlunit.version>2.22</htmlunit.version>
+    <htmlunit.version>2.66.0</htmlunit.version>
     <guice.version>4.0</guice.version>
     <mongo-java-driver.version>3.12.8</mongo-java-driver.version>
     <aws-lambda-core.version>1.1.0</aws-lambda-core.version>

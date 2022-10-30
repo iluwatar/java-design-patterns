@@ -49,12 +49,12 @@ public abstract class ObserverTest<O extends Observer<?, ?, WeatherType>> {
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -79,7 +79,7 @@ public abstract class ObserverTest<O extends Observer<?, ?, WeatherType>> {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testObserver(WeatherType weather, String response) {
+  void testObserver(WeatherType weather, String response) {
     final var observer = this.factory.get();
     assertEquals(0, appender.getLogSize());
 

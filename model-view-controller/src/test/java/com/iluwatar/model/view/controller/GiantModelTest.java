@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class GiantModelTest {
+class GiantModelTest {
 
   /**
    * Verify if the health value is set properly though the constructor and setter

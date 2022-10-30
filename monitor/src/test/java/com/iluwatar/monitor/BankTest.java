@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.*;
 
-public class BankTest {
+class BankTest {
 
   private static final int ACCOUNT_NUM = 4;
   private static final int BASE_AMOUNT = 1000;
