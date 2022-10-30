@@ -22,49 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.presentation;
+package com.iluwatar.presentationmodel;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.jupiter.api.Test;
 
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
- * a class used to deal with albums.
+ * Issue: Add at least one assertion to this test case.
  *
+ * Solution: Inserted assertion to check whether the execution of the main method in {@link App}
+ * throws an exception.
  */
-@Slf4j
-@Getter
-public class DisplayedAlbums {
-  /**
-   * albums a list of albums.
-   */
-  private final List<Album> albums;
+class AppTest {
 
-  /**
-   * a constructor method.
-   */
-  public DisplayedAlbums() {
-    this.albums = new ArrayList<>();
-  }
-
-  /**
-   * a method used to add a new album to album list.
-   *
-   * @param title       the title of the album.
-   * @param artist      the artist name of the album.
-   * @param isClassical is the album classical, true or false.
-   * @param composer    only when the album is classical,
-   *                    composer can have content.
-   */
-  public void addAlbums(final String title,
-                        final String artist, final boolean isClassical,
-                        final String composer) {
-    if (isClassical) {
-      this.albums.add(new Album(title, artist, true, composer));
-    } else {
-      this.albums.add(new Album(title, artist, false, ""));
+    @Test
+    void shouldExecuteApplicationWithoutException() {
+        assertDoesNotThrow(() -> App.main(new String[]{}));
     }
-  }
 }
