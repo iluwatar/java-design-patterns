@@ -1,8 +1,5 @@
 ---
-layout: pattern
 title: Identity Map
-folder: identity-map
-permalink: /patterns/identity-map/
 categories: Data access
 language: en
 tags:
