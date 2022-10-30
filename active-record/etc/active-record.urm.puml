@@ -1,0 +1,40 @@
+@startuml
+package com.iluwatar.activeobject {
+  class ActiveDatabase {
+    ~ dbDomain : String
+    ~ dbName : String
+    ~ password : String
+    ~ tableName : String
+    ~ username : String
+    + ActiveDatabase(dbName : String, username : String, password : String, dbDomain : String, tableName : String)
+    + getDbDomain() : String
+    + getDbName() : String
+    + getPassword() : String
+    + getTableName() : String
+    + getUsername() : String
+  }
+  class ActiveRow {
+    ~ columnCount : int
+    ~ columns : ArrayList<String>
+    ~ con : Connection
+    ~ contents : ArrayList<String>
+    ~ dataBase : ActiveDatabase
+    ~ delete : String
+    ~ id : String
+    ~ read : String
+    ~ write : String
+    + ActiveRow(dataBase : ActiveDatabase, id : String)
+    + delete()
+    + initialise()
+    + read() : ArrayList<String>
+    + write()
+  }
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface Rowverride {
+  }
+}
+ActiveRow -->  "-dataBase" ActiveDatabase
+@enduml
