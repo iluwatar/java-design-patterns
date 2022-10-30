@@ -1,5 +1,5 @@
 ---
-title: Presentation
+title: Presentation Model
 category: Behavioral
 language: en
 tags:
