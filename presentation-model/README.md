@@ -173,7 +173,7 @@ We can run class `App` to start this demo. the checkbox is the album classical; 
 
 
 ## Class diagram
-![](./etc/presentation.urm.png "presentation model")
+![](./etc/presentation-model.urm.png "presentation model")
 
 ## Applicability
 Use the Presentation Model Pattern when
