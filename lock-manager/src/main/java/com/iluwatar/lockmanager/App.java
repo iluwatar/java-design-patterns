@@ -75,8 +75,6 @@ public class App {
       LOGGER.info("Does user 3 have access to object 2: " + manager.canLock(client3, object3));
       // Checking that client3 has access to object3
       LOGGER.info("Does user 3 have access to object 3: " + manager.canLock(client3, object3));
-      // Attempting to give an invalid username an object
-      LOGGER.info("Can null have an object: " + manager.canLock(null, object3));
 
     } catch (Exception e) {
       //If the name input is invalid at any point.

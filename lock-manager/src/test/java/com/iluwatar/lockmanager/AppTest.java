@@ -24,44 +24,16 @@
  */
 package com.iluwatar.lockmanager;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.testng.annotations.Test;
 
 /**
- * Tests that on invalid name inputs, an InvalidNameException is thrown.
+ * Tests that the main app class runs without exceptions.
  */
-public class InvalidNameTest {
-
-  @Test(expectedExceptions = InvalidNameException.class)
-  void invalidNameTestGetManagerEmpty() throws InvalidNameException {
-    Manager manager = Manager.getManager("TESTING");
-    manager.getManager("");
-  }
-
-  @Test(expectedExceptions = InvalidNameException.class)
-  void invalidNameTestGetManagerNull() throws InvalidNameException {
-    Manager manager = Manager.getManager("TESTING");
-    manager.getManager(null);
-  }
-
-  @Test(expectedExceptions = InvalidNameException.class)
-  void invalidNameTestCanLockEmpty() throws InvalidNameException {
-    Object object = new Object();
-    Manager manager = Manager.getManager("TESTING");
-    manager.canLock("", object);
-  }
-
-  @Test(expectedExceptions = InvalidNameException.class)
-  void invalidNameTestCanLockNullNoManager() throws InvalidNameException {
-    Object object = new Object();
-    Manager manager = Manager.getManager("TESTING");
-    manager.canLock(null, object);
-  }
-
-  //Testing adding an empty string
-  @Test(expectedExceptions = InvalidNameException.class)
-  void invalidNameTestCanLockEmptyNoManager() throws InvalidNameException {
-    Manager manager = Manager.getManager("TESTING");
-    manager.getManager("");
+public class AppTest {
+  @Test
+  void appTestRuns() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }
-
