@@ -14,7 +14,7 @@ tags:
 Simplify the management process and boost performance by encapsulating business-tier components and expose a course-grained service access layer to remote clients.
 
 ## Class diagram
-![alt text](./etc/session-facade.png "Session Facade")
+![alt text](./etc/session-facade.urm.png "Session Facade")
 
 ## Applicability
 The session facade pattern is applicable when
