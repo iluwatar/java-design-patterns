@@ -8,6 +8,7 @@ categories:
 language: en
 tags:
 - Decoupling
+- Security
 ---
 
 ## Also known as
@@ -30,12 +31,17 @@ Real-world example
 
 In plain words
 
-> Using the facet pattern, a facet class represents strictly limited access to another class.
+> Using the facet pattern, a facet class protects others classes from misusing a powerful class by
+> only allowing them to use and see some of its functionality.
 
-C2 Wiki says that the intent is
+C2 Wiki says that the intent is to
 
-> Restrict an interface to obtain a smaller interface that provides less authority. Usually the 
-> smaller interface has only a subset of the methods, or allows only a subset of parameter values. 
+> Restrict an interface to obtain a smaller interface that provides less authority. Usually
+> the smaller interface has only a subset of the methods, or allows only a subset of parameter 
+> values. Facets are used as a security pattern in [CapabilityOrientedProgramming](https://wiki.c2.com/?CapabilityOrientedProgramming), 
+> in order to satisfy the [PrincipleOfLeastAuthority](https://wiki.c2.com/?PrincipleOfLeastAuthority). 
+> For example, if some client of an object only needs to be able to read information from it, that client should be 
+> provided with a read-only facet.
 
 **Programmatic Example**
 
