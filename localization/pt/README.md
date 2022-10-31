@@ -14,7 +14,7 @@
 
 <br/>
 
-Leia em outro idioma: [**zh**](/localization/zh/README.md), [**ko**](/localization/ko/README.md), [**fr**](/localization/fr/README.md), [**tr**](/localization/tr/README.md), [**ar**](/localization/ar/README.md), [**es**](/localization/es/README.md)
+Leia em outro idioma: [**zh**](/localization/za/README.md), [**ko**](/localization/ko/README.md), [**fr**](/localization/fr/README.md), [**tr**](/localization/tr/README.md), [**ar**](/localization/ar/README.md), [**es**](/localization/es/README.md)
 
 <br/>
 
