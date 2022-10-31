@@ -16,6 +16,6 @@ public class ObjectGraphicComponent implements GraphicComponent {
    */
   @Override
   public void update(GameObject gameObject) {
-      LOGGER.info(gameObject.getName() + "'s current velocity: "+ gameObject.getVelocity());
+    LOGGER.info(gameObject.getName() + "'s current velocity: " + gameObject.getVelocity());
   }
 }
