@@ -26,21 +26,21 @@
 package com.iluwatar.client.session;
 
 import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Server class. The client communicates with the server and request processing and getting a new session.
  */
 @Slf4j
+@Data
+@AllArgsConstructor
 public class Server {
   private String host;
 
   private int port;
 
-  public Server(String host, int port) {
-    this.host = host;
-    this.port = port;
-  }
 
   /**
    * Creates a new session.

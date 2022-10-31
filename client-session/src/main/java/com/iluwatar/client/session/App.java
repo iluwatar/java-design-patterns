@@ -25,6 +25,17 @@
 
 package com.iluwatar.client.session;
 
+/**
+ * The Client-Session pattern allows the session data to be stored on the client side and send this
+ * data to the server with each request.
+ *
+ * <p> In this example, The {@link Server} class represents the server that would process the
+ * incoming {@link Request} and also assign {@link Session} to a client. Here one instance of Server
+ * is created. The we create two sessions for two different clients. These sessions are then passed
+ * on to the server in the request along with the data. The server is then able to interpret the
+ * client based on the session associated with it.
+ * </p>
+ */
 public class App {
 
   /**
@@ -33,11 +44,11 @@ public class App {
    * @param args Command line args
    */
   public static void main(String[] args) {
-    Server server = new Server("localhost", 8080);
-    Session session1 = server.getSession("Session1");
-    Session session2 = server.getSession("Session2");
-    Request request1 = new Request("Data1", session1);
-    Request request2 = new Request("Data2", session2);
+    var server = new Server("localhost", 8080);
+    var session1 = server.getSession("Session1");
+    var session2 = server.getSession("Session2");
+    var request1 = new Request("Data1", session1);
+    var request2 = new Request("Data2", session2);
     server.process(request1);
     server.process(request2);
   }

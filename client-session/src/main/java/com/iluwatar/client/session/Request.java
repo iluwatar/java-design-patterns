@@ -25,27 +25,18 @@
 
 package com.iluwatar.client.session;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 /**
  * The Request class which contains the Session details and data.
  */
+@Data
+@AllArgsConstructor
 public class Request {
 
   private String data;
 
   private Session session;
-
-  public Request(String data, Session session) {
-    this.data = data;
-    this.session = session;
-  }
-
-  public String getData() {
-    return data;
-  }
-
-
-  public Session getSession() {
-    return session;
-  }
 
 }
