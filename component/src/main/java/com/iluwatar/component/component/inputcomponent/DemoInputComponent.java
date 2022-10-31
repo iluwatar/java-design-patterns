@@ -22,7 +22,7 @@ public class DemoInputComponent implements InputComponent {
    */
   @Override
   public void update(GameObject gameObject, int e) {
-    gameObject.setVelocity(WALK_ACCELERATION);
+    gameObject.updateVelocity(WALK_ACCELERATION);
     LOGGER.info(gameObject.getName() + " has moved right.");
   }
 }
