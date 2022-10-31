@@ -40,7 +40,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class EventHandlerUtilityTest {
+class EventHandlerUtilityTest {
 
     @Mock
     EventGridPublisherClient<BinaryData> mockCustomEventClient;
@@ -49,7 +49,7 @@ public class EventHandlerUtilityTest {
     EventHandlerUtility<Message<UsageDetail>> eventHandlerUtility;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
 
         System.setProperty("EventGridURL", "https://www.dummyEndpoint.com/api/events");
         System.setProperty("EventGridKey", "EventGridURL");

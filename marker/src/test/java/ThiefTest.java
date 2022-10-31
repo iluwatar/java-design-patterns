@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Thief test
  */
-public class ThiefTest {
+class ThiefTest {
   @Test
   void testThief() {
     var thief = new Thief();

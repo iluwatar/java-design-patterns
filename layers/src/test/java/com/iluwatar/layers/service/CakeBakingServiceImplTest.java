@@ -43,7 +43,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class CakeBakingServiceImplTest {
+class CakeBakingServiceImplTest {
 
   @Test
   void testLayers() {

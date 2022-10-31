@@ -53,7 +53,7 @@ class DelayedRemoteServiceTest {
    * @throws RemoteServiceException
    */
   @Test
-  public void testParameterizedConstructor() throws RemoteServiceException {
+  void testParameterizedConstructor() throws RemoteServiceException {
       var obj = new DelayedRemoteService(System.nanoTime()-2000*1000*1000,1);
       assertEquals("Delayed service is working",obj.call());
   }

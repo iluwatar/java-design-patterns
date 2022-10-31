@@ -49,4 +49,7 @@
       </map>
     </property>
   </bean>
+  <context:component-scan base-package="com.iluwatar.layers.dao">
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+  </context:component-scan>
 </beans>

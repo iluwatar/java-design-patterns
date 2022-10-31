@@ -44,7 +44,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class MenuStoreTest {
+class MenuStoreTest {
 
   @Test
   void testOnAction() {

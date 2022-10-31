@@ -39,7 +39,7 @@ import static org.junit.Assert.*;
 and https://stackoverflow.com/questions/50211433/servlets-unit-testing
  */
 
-public class AppServletTest extends Mockito{
+class AppServletTest extends Mockito{
   private String msgPartOne = "<h1>This Server Doesn't Support";
   private String msgPartTwo = "Requests</h1>\n"
       + "<h2>Use a GET request with boolean values for the following parameters<h2>\n"
@@ -47,7 +47,7 @@ public class AppServletTest extends Mockito{
   private String destination = "newsDisplay.jsp";
 
   @Test
-  public void testDoGet() throws Exception {
+  void testDoGet() throws Exception {
     HttpServletRequest mockReq = Mockito.mock(HttpServletRequest.class);
     HttpServletResponse mockResp = Mockito.mock(HttpServletResponse.class);
     RequestDispatcher mockDispatcher = Mockito.mock(RequestDispatcher.class);
@@ -64,7 +64,7 @@ public class AppServletTest extends Mockito{
   }
 
   @Test
-  public void testDoPost() throws Exception {
+  void testDoPost() throws Exception {
     HttpServletRequest mockReq = Mockito.mock(HttpServletRequest.class);
     HttpServletResponse mockResp = Mockito.mock(HttpServletResponse.class);
     StringWriter stringWriter = new StringWriter();
@@ -78,7 +78,7 @@ public class AppServletTest extends Mockito{
   }
 
   @Test
-  public void testDoPut() throws Exception {
+  void testDoPut() throws Exception {
     HttpServletRequest mockReq = Mockito.mock(HttpServletRequest.class);
     HttpServletResponse mockResp = Mockito.mock(HttpServletResponse.class);
     StringWriter stringWriter = new StringWriter();
@@ -92,7 +92,7 @@ public class AppServletTest extends Mockito{
   }
 
   @Test
-  public void testDoDelete() throws Exception {
+  void testDoDelete() throws Exception {
     HttpServletRequest mockReq = Mockito.mock(HttpServletRequest.class);
     HttpServletResponse mockResp = Mockito.mock(HttpServletResponse.class);
     StringWriter stringWriter = new StringWriter();
