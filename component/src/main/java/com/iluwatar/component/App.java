@@ -26,8 +26,8 @@ public final class App {
    * @param args args command line args.
    */
   public static void main(String[] args) {
-    final GameObject player = GameObject.createPlayer();
-    final GameObject npc = GameObject.createNpc();
+    final var player = GameObject.createPlayer();
+    final var npc = GameObject.createNpc();
 
 
     LOGGER.info("Player Update:");

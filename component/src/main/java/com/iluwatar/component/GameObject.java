@@ -8,12 +8,14 @@ import com.iluwatar.component.component.inputcomponent.PlayerInputComponent;
 import com.iluwatar.component.component.physiccomponent.ObjectPhysicComponent;
 import com.iluwatar.component.component.physiccomponent.PhysicComponent;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
 /**
  * The GameObject class has three component class instances that allow
  * the creation of different game objects based on the game design requirements.
  */
 @Getter
+@RequiredArgsConstructor
 public class GameObject {
   private final InputComponent inputComponent;
   private final PhysicComponent physicComponent;
@@ -22,16 +24,6 @@ public class GameObject {
   private final String name;
   private int velocity = 0;
   private int coordinate = 0;
-
-  GameObject(InputComponent inputComponent,
-             PhysicComponent physicComponent,
-             GraphicComponent graphicComponent,
-             String name) {
-    this.inputComponent = inputComponent;
-    this.physicComponent = physicComponent;
-    this.graphicComponent = graphicComponent;
-    this.name = name;
-  }
 
   /**
    * Creates a player game object.
@@ -84,22 +76,19 @@ public class GameObject {
   }
 
   /**
-   * Set the velocity based on the acceleration.
+   * Update the velocity based on the acceleration of the GameObject.
    *
-   * @param acceleration the current acceleration
+   * @param acceleration the acceleration of the GameObject
    */
-  public void setVelocity(int acceleration) {
-    if (acceleration == 0) {
-      this.velocity = 0;
-      return;
-    }
+  public void updateVelocity(int acceleration) {
     this.velocity += acceleration;
   }
+
 
   /**
    * Set the c based on the current velocity.
    */
-  public void setCoordinate() {
+  public void updateCoordinate() {
     this.coordinate += this.velocity;
   }
 }

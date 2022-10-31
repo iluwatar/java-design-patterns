@@ -1,8 +1,5 @@
 ---
-layout: pattern
 title: Component
-folder: component
-permalink: /patterns/component/
 categories: Behavioral
 language: en
 tags:
@@ -48,8 +45,8 @@ public final class App {
      * @param args args command line args.
      */
     public static void main(String[] args) {
-        final GameObject player = GameObject.createPlayer();
-        final GameObject npc = GameObject.createNpc();
+        final var player = GameObject.createPlayer();
+        final var npc = GameObject.createNpc();
 
 
         LOGGER.info("Player Update:");
@@ -73,16 +70,6 @@ public class GameObject {
   public String name;
   public int velocity = 0;
   public int coordinate = 0;
-
-  GameObject(InputComponent inputComponent,
-             PhysicComponent physicComponent,
-             GraphicComponent graphicComponent,
-             String name) {
-    this.inputComponent = inputComponent;
-    this.physicComponent = physicComponent;
-    this.graphicComponent = graphicComponent;
-    this.name = name;
-  }
 
   public static GameObject createPlayer() {
     return new GameObject(new PlayerInputComponent(),
@@ -110,6 +97,14 @@ public class GameObject {
     physicComponent.update(this);
     graphicComponent.update(this);
   }
+
+  public void updateVelocity(int acceleration) {
+    this.velocity += acceleration;
+  }
+  
+  public void updateCoordinate() {
+    this.coordinate += this.velocity;
+  }
 }
 ```
 
@@ -130,18 +125,18 @@ public class PlayerInputComponent implements InputComponent {
     @Override
     public void update(GameObject gameObject, int e) {
         switch (e) {
-            case KeyEvent.KEY_LOCATION_LEFT:
-                gameObject.setVelocity(-walkAcceleration);
+            case KeyEvent.KEY_LOCATION_LEFT -> {
+                gameObject.updateVelocity(-WALK_ACCELERATION);
                 LOGGER.info(gameObject.getName() + " has moved left.");
-                break;
-            case KeyEvent.KEY_LOCATION_RIGHT:
-                gameObject.setVelocity(walkAcceleration);
+            }
+            case KeyEvent.KEY_LOCATION_RIGHT -> {
+                gameObject.updateVelocity(WALK_ACCELERATION);
                 LOGGER.info(gameObject.getName() + " has moved right.");
-                break;
-            default:
-                LOGGER.info(gameObject.getName() + "'s velocity is now 0 due to the invalid input");
-                gameObject.setVelocity(0);
-                break; // incorrect input
+            }
+            default -> {
+                LOGGER.info(gameObject.getName() + "'s velocity is unchanged due to the invalid input");
+                gameObject.updateVelocity(0);
+            } // incorrect input
         }
     }
 }
