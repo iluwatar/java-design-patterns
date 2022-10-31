@@ -11,7 +11,7 @@ tags:
 
 Prioritize requests sent to services so that requests with a higher priority are received and 
 processed more quickly than those of a lower priority. This pattern is useful in applications that 
-offer different service level guarantees to individual clients.
+offer different service level guarantees to individual clients. 
 
 ## Explanation
 
@@ -30,7 +30,7 @@ Real world example
 In plain words
 
 > Priority Queue enables processing of high priority messages first, regardless of queue size or
-> message age. 
+> message age. Anything that has higher priority stays at the top of the queue. And is popped out first, whenever needed.
 
 Wikipedia says
 
