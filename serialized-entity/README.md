@@ -1,12 +1,9 @@
 ---
-layout: pattern
 title: Serialized Entity Pattern
-folder: serialized-entity
-permalink: /patterns/serialized-entity/
-categories: Behavioral
+categories: Architectural
 language: en
 tags:
-- Data access
+ - Data access
 ---
 
 
@@ -115,7 +112,7 @@ public class CountrySchemaSql {
           ByteArrayInputStream baos = new ByteArrayInputStream(countryBlob.getBytes(1, (int) countryBlob.length()));
           ObjectInputStream ois = new ObjectInputStream(baos);
           country = (Country) ois.readObject();
-          System.out.println(country);
+          LOGGER.info("Country: " + country);
         }
         return rs.getInt("id");
       }

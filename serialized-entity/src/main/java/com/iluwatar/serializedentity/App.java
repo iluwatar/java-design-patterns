@@ -30,8 +30,19 @@ import org.h2.jdbcx.JdbcDataSource;
 
 
 /**
- * Serialized Country objects and store them into database.
- * Read data from database and deserialize them and reconstruct to Country objects.
+ * Serialized Entity Pattern.
+ *
+ * <p> Serialized Entity Pattern allow us to easily persist Java objects to the database. It uses Serializable interface
+ * and DAO pattern. Serialized Entity Pattern will first use Serializable to convert a Java object into a set of bytes,
+ * then it will using DAO pattern to store this set of bytes as BLOB to database.</p>
+ *
+ * <p> In this example, we first initialize two Java objects (Country) "China" and "UnitedArabEmirates", then we
+ * initialize "serializedChina" with "China" object and "serializedUnitedArabEmirates" with "UnitedArabEmirates",
+ * then we use method "serializedChina.insertCountry()" and "serializedUnitedArabEmirates.insertCountry()" to serialize
+ * "China" and "UnitedArabEmirates" and persist them to database.
+ * Last, with "serializedChina.selectCountry()" and "serializedUnitedArabEmirates.selectCountry()" we could read "China"
+ * and "UnitedArabEmirates" from database as sets of bytes, then deserialize them back to Java object (Country). </p>
+ *
  */
 @Slf4j
 public class App {
@@ -53,6 +64,7 @@ public class App {
     deleteSchema(dataSource);
     createSchema(dataSource);
 
+    // Initializing Country Object China
     final var China = new Country(
             86,
             "China",
@@ -60,6 +72,7 @@ public class App {
             "Chinese"
     );
 
+    // Initializing Country Object UnitedArabEmirates
     final var UnitedArabEmirates = new Country(
             971,
             "United Arab Emirates",
@@ -67,11 +80,24 @@ public class App {
             "Arabic"
     );
 
+    // Initializing CountrySchemaSql Object with parameter "China" and "dataSource"
     final var serializedChina = new CountrySchemaSql(China, dataSource);
+    // Initializing CountrySchemaSql Object with parameter "UnitedArabEmirates" and "dataSource"
     final var serializedUnitedArabEmirates = new CountrySchemaSql(UnitedArabEmirates, dataSource);
+
+    /*
+    By using CountrySchemaSql.insertCountry() method, the private (Country) type variable  within Object
+    CountrySchemaSql will be serialized to a set of bytes and persist to database.
+    For more details of CountrySchemaSql.insertCountry() method please refer to CountrySchemaSql.java file
+    */
     serializedChina.insertCountry();
     serializedUnitedArabEmirates.insertCountry();
 
+    /*
+    By using CountrySchemaSql.selectCountry() method, CountrySchemaSql object will read the sets of bytes from database
+    and deserialize it to Country object.
+    For more details of CountrySchemaSql.selectCountry() method please refer to CountrySchemaSql.java file
+    */
     serializedChina.selectCountry();
     serializedUnitedArabEmirates.selectCountry();
   }

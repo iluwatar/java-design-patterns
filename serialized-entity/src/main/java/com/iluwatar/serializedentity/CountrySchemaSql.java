@@ -109,7 +109,7 @@ public class CountrySchemaSql implements CountryDao {
           ByteArrayInputStream baos = new ByteArrayInputStream(countryBlob.getBytes(1, (int) countryBlob.length()));
           ObjectInputStream ois = new ObjectInputStream(baos);
           country = (Country) ois.readObject();
-          System.out.println(country);
+          LOGGER.info("Country: " + country);
         }
         return rs.getInt("id");
       }
