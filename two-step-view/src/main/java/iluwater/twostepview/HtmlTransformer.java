@@ -22,7 +22,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwater.twostepview;
+package iluwater.twostepview;
+
 
 import javax.xml.transform.*;
 import javax.xml.transform.stream.*;
@@ -31,22 +32,21 @@ import java.io.*;
 
 /**
  * In this class,it is the first stage of the two-step view pattern which produced page in logical representation.
- * It transforms the input XML document (couse.xml) with XSLT stylesheet (coursetostudent.xsl) to describe
- * how the course data is transformed into another XML document (students.xml) that uses the formatting of
- * remove the course title and map each student's personal details (userID, firstName, lastName and DOB).
+ * It transforms the input HTML file with XSLT stylesheet (toHTML.xsl) to describe
  */
-public class XsltTransformer {
+
+public class HtmlTransformer {
 
     /**
-     * @author Stephanie Sun
-     * @param args transform XML to another XML with XSLT
+     * @author Fei Lin
+     * @param args transform XML to HTML with XSLT
      */
     public static void main(String[] args) {
 
         // Files that requires for the transformation process
-        String xslFile ="two-step-view/src/main/xml.xslt/coursetostudent.xsl";
-        String inputFile = "two-step-view/src/main/xml.xslt/course.xml";
-        String outputFile = "two-step-view/src/main/xml.xslt/students.xml";
+        String xslFile ="two-step-view/src/main/xml.xslt/tohtml.xsl";
+        String inputFile = "two-step-view/src/main/xml.xslt/students.xml";
+        String outputFile = "two-step-view/src/main/xml.xslt/students.html";
 
         StreamSource xsl = new StreamSource(new File(xslFile));
         StreamSource input = new StreamSource(new File(inputFile));
@@ -62,6 +62,5 @@ public class XsltTransformer {
         } catch (TransformerException e){
             e.printStackTrace();
         }
-
     }
 }
