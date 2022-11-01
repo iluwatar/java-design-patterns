@@ -17,8 +17,8 @@ display.
 Real-world example
 
 > Consider ICU room in hospital which displays the patients health information on device displays which 
-> are taking input from sensors connected to patient. Here display's job is to display the data that 
-> it receivers from the controller which in turn gets update from sensor model.
+> are taking input from sensors connected to patient. Here, display's job is to display the data that 
+> it receives from the controller which in turn gets update from sensor model.
 
 In plain words
 
@@ -81,7 +81,7 @@ public class GiantModel {
 }
 ```
 
-`GiantView` class to display received patients data.
+`GiantView` class to display received patient data.
 
 ```java
 public class GiantView {
