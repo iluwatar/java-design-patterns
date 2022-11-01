@@ -52,7 +52,7 @@ import static org.mockito.Mockito.*;
  * Unit test for Function class.
  */
 @ExtendWith(MockitoExtension.class)
-public class UsageDetailPublisherFunctionTest {
+class UsageDetailPublisherFunctionTest {
     @Mock
     MessageHandlerUtility<UsageDetail> mockMessageHandlerUtility;
     @Mock
@@ -65,7 +65,7 @@ public class UsageDetailPublisherFunctionTest {
      * Unit test for HttpTriggerJava method.
      */
     @Test
-    public void shouldTriggerHttpAzureFunctionJavaWithSubscriptionValidationEventType() throws Exception {
+    void shouldTriggerHttpAzureFunctionJavaWithSubscriptionValidationEventType() throws Exception {
 
         // Setup
         @SuppressWarnings("unchecked")
@@ -91,7 +91,7 @@ public class UsageDetailPublisherFunctionTest {
     }
 
     @Test
-    public void shouldTriggerHttpAzureFunctionJavaWithUsageDetailEventType() throws Exception {
+    void shouldTriggerHttpAzureFunctionJavaWithUsageDetailEventType() throws Exception {
 
         // Setup
         @SuppressWarnings("unchecked")

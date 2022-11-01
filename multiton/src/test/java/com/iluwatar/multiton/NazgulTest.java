@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class NazgulTest {
+class NazgulTest {
 
   /**
    * Verify if {@link Nazgul#getInstance(NazgulName)} returns the correct Nazgul multiton instance

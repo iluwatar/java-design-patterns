@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 /**
  * BullyInstance unit test.
  */
-public class BullyinstanceTest {
+class BullyinstanceTest {
 
   @Test
   void testOnMessage() {

@@ -46,7 +46,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class MessageHandlerUtilityTest {
+class MessageHandlerUtilityTest {
     @Mock
     private BlobClient mockBlobClient;
 
@@ -63,7 +63,7 @@ public class MessageHandlerUtilityTest {
     private MessageReference messageReference;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         System.setProperty("BlobStorageConnectionString", "https://www.dummyEndpoint.com/api/blobs");
 
         var messageBody = new MessageBody<UsageDetail>();

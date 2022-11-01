@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class CharacterTest {
+class CharacterTest {
 
   @Test
   void testPrototypeStats() throws Exception {

@@ -33,12 +33,12 @@ import org.junit.jupiter.api.Test;
 /**
  * Test Album Selection and Album Listing
  */
-public class AlbumListPageTest {
+class AlbumListPageTest {
 
   private final AlbumListPage albumListPage = new AlbumListPage(new WebClient());
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     albumListPage.navigateToPage();
   }
 

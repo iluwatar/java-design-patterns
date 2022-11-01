@@ -32,7 +32,7 @@ import java.util.List;
  *
  * @author Jeroen Meulemeester
  */
-public class HobbitsTest extends WeatherObserverTest<Hobbits> {
+class HobbitsTest extends WeatherObserverTest<Hobbits> {
 
   @Override
   public Collection<Object[]> dataProvider() {
