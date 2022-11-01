@@ -18,7 +18,7 @@ The facet interface is always a subset of the original interface, and the purpos
 
 ## Class Diagram
 
-
+![alt text](./etc/class_diagram.jpg "Facet pattern class diagram")
 
 ## Applicability
 

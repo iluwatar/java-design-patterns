@@ -11,6 +11,10 @@ public class defaultSentry implements Sentry{
         this.context = context;
     }
 
+    /**
+     * @param interfaceClass class of the interface
+     * @return true if the interface is valid for the context
+     */
     @Override
     public boolean execute( Class interfaceClass){
         return this.context.validateInterface(interfaceClass);
