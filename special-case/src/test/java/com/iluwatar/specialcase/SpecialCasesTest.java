@@ -71,7 +71,7 @@ class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Down for maintenance", loggingEventList.get(0).getMessage());
+    assertEquals("Down for maintenance", loggingEventList.get(0).getFormattedMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 
@@ -87,7 +87,7 @@ class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Invalid user: a", loggingEventList.get(0).getMessage());
+    assertEquals("Invalid user: a", loggingEventList.get(0).getFormattedMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 
@@ -103,8 +103,7 @@ class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Out of stock: tv for user = ignite1771 to buy"
-        , loggingEventList.get(0).getMessage());
+    assertEquals("Out of stock: tv for user = ignite1771 to buy" , loggingEventList.get(0).getFormattedMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 
@@ -120,8 +119,7 @@ class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Insufficient funds: 1000.0 of user: ignite1771 for buying item: car"
-        , loggingEventList.get(0).getMessage());
+    assertEquals("Insufficient funds: 1000.0 of user: ignite1771 for buying item: car" , loggingEventList.get(0).getFormattedMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 
@@ -137,8 +135,7 @@ class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Receipt: 800.0 paid"
-        , loggingEventList.get(0).getMessage());
+    assertEquals("Receipt: 800.0 paid" , loggingEventList.get(0).getFormattedMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 }
