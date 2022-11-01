@@ -25,8 +25,12 @@
 package com.iluwatar.servicelayer.spellbook;
 
 import com.iluwatar.servicelayer.common.DaoBaseImpl;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
+
 
 /**
  * SpellbookDao implementation.
@@ -39,9 +43,12 @@ public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements Spellboo
     Spellbook result;
     try (var session = getSessionFactory().openSession()) {
       tx = session.beginTransaction();
-      var criteria = session.createCriteria(persistentClass);
-      criteria.add(Restrictions.eq("name", name));
-      result = (Spellbook) criteria.uniqueResult();
+      CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+      CriteriaQuery<Spellbook> builderQuery = criteriaBuilder.createQuery(Spellbook.class);
+      Root<Spellbook> root = builderQuery.from(Spellbook.class);
+      builderQuery.select(root).where(criteriaBuilder.equal(root.get("name"), name));
+      Query<Spellbook> query = session.createQuery(builderQuery);
+      result = query.uniqueResult();
       tx.commit();
     } catch (Exception e) {
       if (tx != null) {

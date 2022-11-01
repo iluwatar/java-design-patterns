@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class AlchemistShopTest {
+class AlchemistShopTest {
 
   @Test
   void testShop() {

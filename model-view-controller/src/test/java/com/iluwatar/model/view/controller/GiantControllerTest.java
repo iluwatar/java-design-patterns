@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class GiantControllerTest {
+class GiantControllerTest {
 
   /**
    * Verify if the controller passes the health level through to the model and vice versa

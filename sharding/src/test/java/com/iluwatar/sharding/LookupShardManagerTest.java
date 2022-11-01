@@ -42,7 +42,7 @@ class LookupShardManagerTest {
    * Initialize lookupShardManager instance.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     lookupShardManager = new LookupShardManager();
     var shard1 = new Shard(1);
     var shard2 = new Shard(2);

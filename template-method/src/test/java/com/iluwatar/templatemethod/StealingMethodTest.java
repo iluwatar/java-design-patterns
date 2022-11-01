@@ -48,12 +48,12 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 

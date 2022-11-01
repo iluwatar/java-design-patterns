@@ -51,7 +51,7 @@ class FindPersonApiHandlerTest {
   private DynamoDBMapper dynamoDbMapper;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     MockitoAnnotations.openMocks(this);
     this.findPersonApiHandler = new FindPersonApiHandler();
     this.findPersonApiHandler.setDynamoDbMapper(dynamoDbMapper);

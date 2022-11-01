@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test Generation of Royalty Types using the object-mother
  */
-public class RoyaltyObjectMotherTest {
+class RoyaltyObjectMotherTest {
 
   @Test
   void unsuccessfulKingFlirt() {

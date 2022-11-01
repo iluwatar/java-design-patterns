@@ -34,9 +34,8 @@ import org.mockito.Mockito;
 import jakarta.servlet.http.HttpServletRequest;
 
 class JavaBeansTest {
-
     @Test
-    public void testDefaultConstructor() {
+    void testDefaultConstructor() {
         ClientPropertiesBean newBean = new ClientPropertiesBean();
         assertEquals("DEFAULT_NAME", newBean.getName());
         assertTrue(newBean.isBusinessInterest());

@@ -26,13 +26,12 @@ package com.iluwatar.circuitbreaker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.rmi.Remote;
 import org.junit.jupiter.api.Test;
 
 /**
  * Circuit Breaker test
  */
-public class DefaultCircuitBreakerTest {
+class DefaultCircuitBreakerTest {
 
   //long timeout, int failureThreshold, long retryTimePeriod
   @Test

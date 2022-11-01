@@ -48,7 +48,7 @@ class AppServletTest extends Mockito{
   private String destination = "newsDisplay.jsp";
 
   @Test
-   void testDoGet() throws Exception {
+  void testDoGet() throws Exception {
     HttpServletRequest mockReq = Mockito.mock(HttpServletRequest.class);
     HttpServletResponse mockResp = Mockito.mock(HttpServletResponse.class);
     RequestDispatcher mockDispatcher = Mockito.mock(RequestDispatcher.class);

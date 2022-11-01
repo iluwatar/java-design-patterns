@@ -48,7 +48,7 @@ class AdapterPatternTest {
    * This method runs before the test execution and sets the bean objects in the beans Map.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     beans = new HashMap<>();
 
     var fishingBoatAdapter = spy(new FishingBoatAdapter());
