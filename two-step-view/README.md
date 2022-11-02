@@ -3,12 +3,13 @@ layout: pattern
 title: Two-step view 
 folder: two-step-view
 permalink: /patterns/two-step-view/
-categories: 
+categories: Structural
 language: en
 tags:
 - 
 ---
-
+## Name
+**Two-Step View**
 
 ## Intent
 
