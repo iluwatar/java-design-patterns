@@ -1,4 +1,13 @@
 @startuml
 package com.iluwatar.two-step-view{
+  class HtmlTransformer {
+    + main(args : String[]) {static}
+  }
+
+  class XsltTransformer {
+    + main(args : String[]) {static}
+  }
 }
+HtmlTransformer -- |> student.xml, tohml.xsl
+XsltTransformer -- |> course.xml, coursetostudent.xsl
 @enduml
