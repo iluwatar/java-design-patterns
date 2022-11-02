@@ -31,7 +31,7 @@ import java.io.*;
 
 
 /**
- * In this class,it is the first stage of the two-step view pattern which produced page in logical representation.
+ * In this class,it is the second stage of the two-step view pattern which produced final HTML page
  * It transforms the input HTML file with XSLT stylesheet (toHTML.xsl) to describe
  */
 
