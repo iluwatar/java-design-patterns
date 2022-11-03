@@ -1,0 +1,105 @@
+@startuml
+package com.iluwatar.finite.state.machine {
+  interface AutomatonInterfaceI {
+    + inputCharacter(char) {abstract}
+    + isCorrect() : boolean {abstract}
+    + logStreamNameCorrectness() {abstract}
+    + startNewQuery() {abstract}
+  }
+  class DataModel {
+    - currentString : String
+    + DataModel()
+    + addCharacter(character : char)
+    + clear()
+    + getCurrentString() : String
+  }
+  enum Event {
+    + CLEAR {static}
+    + CORRECT {static}
+    + INCORRECT {static}
+    + valueOf(name : String) : Event {static}
+    + values() : Event[] {static}
+  }
+  interface EventSink {
+    + castEvent(Event) {abstract}
+  }
+  class Main {
+    + Main()
+    + main(args : String[]) {static}
+  }
+  class RecognizeCorrectNameStateMachine {
+    - LOGGER : Logger {static}
+    - currentStateId : int
+    - edges : Map<Integer, Map<Event, Integer>>
+    - model : DataModel
+    - states : List<AutomatonInterfaceI>
+    ~ RecognizeCorrectNameStateMachine()
+    - addAllEdges()
+    - addAllStates()
+    - addEdge(startingStateId : Integer, event : Event, resultingStateId : Integer)
+    + castEvent(event : Event)
+    + inputCharacter(character : char)
+    + isCorrect() : boolean
+    + logStreamNameCorrectness()
+    + startNewQuery()
+  }
+}
+package com.iluwatar.finite.state.machine.states {
+  class CorrectFirstLetterState {
+    - LOGGER : Logger {static}
+    ~ eventSink : EventSink
+    ~ model : DataModel
+    + CorrectFirstLetterState(eventSink : EventSink, model : DataModel)
+    + inputCharacter(character : char)
+    + isCorrect() : boolean
+    + logStreamNameCorrectness()
+    + startNewQuery()
+  }
+  class CorrectNameState {
+    - LOGGER : Logger {static}
+    ~ eventSink : EventSink
+    ~ model : DataModel
+    + CorrectNameState(eventSink : EventSink, model : DataModel)
+    + inputCharacter(character : char)
+    + isCorrect() : boolean
+    + logStreamNameCorrectness()
+    + startNewQuery()
+  }
+  class EmptyState {
+    - LOGGER : Logger {static}
+    ~ eventSink : EventSink
+    ~ model : DataModel
+    + EmptyState(eventSink : EventSink, model : DataModel)
+    + inputCharacter(character : char)
+    + isCorrect() : boolean
+    + logStreamNameCorrectness()
+    + startNewQuery()
+  }
+  class IncorrectNameState {
+    - LOGGER : Logger {static}
+    ~ eventSink : EventSink
+    ~ model : DataModel
+    + IncorrectNameState(eventSink : EventSink, model : DataModel)
+    + inputCharacter(character : char)
+    + isCorrect() : boolean
+    + logStreamNameCorrectness()
+    + startNewQuery()
+  }
+}
+IncorrectNameState -->  "-model" DataModel
+CorrectFirstLetterState -->  "-model" DataModel
+CorrectNameState -->  "-eventSink" EventSink
+CorrectNameState -->  "-model" DataModel
+CorrectFirstLetterState -->  "-eventSink" EventSink
+RecognizeCorrectNameStateMachine -->  "-states" AutomatonInterfaceI
+EmptyState -->  "-eventSink" EventSink
+RecognizeCorrectNameStateMachine -->  "-model" DataModel
+EmptyState -->  "-model" DataModel
+IncorrectNameState -->  "-eventSink" EventSink
+RecognizeCorrectNameStateMachine ..|> AutomatonInterfaceI 
+RecognizeCorrectNameStateMachine ..|> EventSink 
+CorrectFirstLetterState ..|> AutomatonInterfaceI 
+CorrectNameState ..|> AutomatonInterfaceI 
+EmptyState ..|> AutomatonInterfaceI 
+IncorrectNameState ..|> AutomatonInterfaceI 
+@enduml
