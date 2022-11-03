@@ -214,6 +214,7 @@
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
+    <module>finite-state-machine</module>
   </modules>
   <repositories>
     <repository>
