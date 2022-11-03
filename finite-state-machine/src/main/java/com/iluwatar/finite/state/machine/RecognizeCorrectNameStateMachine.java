@@ -46,7 +46,7 @@ public class RecognizeCorrectNameStateMachine implements AutomatonInterfaceI, Ev
   }
 
   @Override
-  public boolean isCorrect(){
+  public boolean isCorrect() {
     AutomatonInterfaceI state = states.get(currentStateId);
     return state.isCorrect();
   }
