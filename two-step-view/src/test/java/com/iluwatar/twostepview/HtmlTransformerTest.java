@@ -1,6 +1,6 @@
 package com.iluwatar.twostepview;
 
-import iluwater.twostepview.HtmlTransformer;
+import com.iluwater.twostepview.HtmlTransformer;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

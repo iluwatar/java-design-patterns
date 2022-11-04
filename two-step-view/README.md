@@ -103,6 +103,8 @@ public class HtmlTransformer {
 
 ## Class diagram
 
+![alt text](./etc/twostepview.png "Two-step view class diagram")
+
 ## Applicability
 Use the two-step view when
 

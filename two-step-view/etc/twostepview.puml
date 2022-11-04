@@ -8,6 +8,5 @@ package com.iluwatar.two-step-view{
     + main(args : String[]) {static}
   }
 }
-HtmlTransformer -- |> student.xml, tohml.xsl
-XsltTransformer -- |> course.xml, coursetostudent.xsl
+XsltTransformer --|> HtmlTransformer
 @enduml
