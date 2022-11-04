@@ -1,4 +1,5 @@
 package com.iluwatar.tabledatagateway;
+
 import java.sql.*;
 
 public class PersonGateway implements PersonGatewayInterface{
