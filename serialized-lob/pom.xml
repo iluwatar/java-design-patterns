@@ -32,7 +32,7 @@
                     </packages>
                     <includeMainDirectory>true</includeMainDirectory>
                     <includeTestDirectory>false</includeTestDirectory>
-                    <presenter>graphviz</presenter>
+                    <presenter>plantuml</presenter>
                 </configuration>
                 <executions>
                     <execution>
