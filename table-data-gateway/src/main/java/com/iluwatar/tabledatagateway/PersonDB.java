@@ -8,7 +8,7 @@ import java.sql.*;
 import org.h2.jdbcx.JdbcDataSource;
 
 public class PersonDB implements Database{
-    ArrayList<Person> personDB;
+    public ArrayList<Person> personDB;
     private final JdbcDataSource dataSource = new JdbcDataSource();
 
     private static final String DBURL = "jdbc:h2:~/tabledatagateway";
@@ -19,6 +19,7 @@ public class PersonDB implements Database{
         Statement statement = connection.createStatement();
         statement.execute("CREATE TABLE PERSONS (ID NUMBER, FIRSTNAME VARCHAR(100), "
                 + "LASTNAME VARCHAR(100), GENDER VARCHAR(100), AGE NUMBER)");
+        getAll();
     }
 
     public void getAll() {

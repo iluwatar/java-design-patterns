@@ -3,23 +3,70 @@ import java.sql.*;
 
 public class PersonGateway implements PersonGatewayInterface{
 
+    public PersonDB database;
+
+    public PersonGateway() throws SQLException {
+        database = new PersonDB();
+    }
+
     public Person find(int id) {
-        return new Person(0,null,null,null,0);
+        for (Person ps: database.personDB){
+            if (ps.getId() == id){
+                return ps;
+            }
+        }
+        return null;
     }
 
-    public Person findByFirstName() {
-        return new Person(0,null,null,null,0);
+    public Person findByFirstName(String FName) {
+        for (Person ps: database.personDB){
+            if (ps.getFirstName() == FName){
+                return ps;
+            }
+        }
+        return null;
     }
 
-    public void update(int id, String firstName, String lastName, String age) {
+    public boolean update(int id, String firstName, String lastName, String gender, int age) {
+        if (database.update(id, new Person(id,firstName,lastName,gender,age))){
+            for (Person ps: database.personDB){
+                if (ps.getId() == id){
+                    ps.setAge(age);
+                    ps.setLastName(lastName);
+                    ps.setFirstName(firstName);
+                    ps.setGender(gender);
+                }
+            }
+            return true;
+        }
+        return false;
 
     }
 
-    public void insert(int id, String firstName, String lastName, String gender, String age) {
-
+    public boolean insert(int id, String firstName, String lastName, String gender, int age) {
+        database.insert(new Person(id,firstName,lastName,gender,age));
+        for (Person ps: database.personDB){
+            if (ps.getId() == id){
+                ps.setAge(age);
+                ps.setLastName(lastName);
+                ps.setFirstName(firstName);
+                ps.setGender(gender);
+            }
+        }
+        return true;
     }
 
-    public void delete(int id) {
-
+    public boolean delete(int id) {
+        if (database.delete(id)){
+            Person removedPS = null;
+            for (Person ps: database.personDB){
+                if (ps.getId() == id){
+                    removedPS = ps;
+                }
+            }
+            database.personDB.remove(removedPS);
+            return true;
+        }
+        return false;
     }
 }

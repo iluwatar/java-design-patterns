@@ -4,11 +4,11 @@ public interface PersonGatewayInterface {
 
     Person find(int id);
 
-    Person findByFirstName();
+    Person findByFirstName(String FName);
 
-    void update(int id, String firstName, String lastName, String age);
+    boolean update(int id, String firstName, String lastName, String gender, int age);
 
-    void insert(int id, String firstName, String lastName, String gender,String age);
+    boolean insert(int id, String firstName, String lastName, String gender,int age);
 
-    void delete(int id);
+    boolean delete(int id);
 }
