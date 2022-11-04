@@ -1,5 +1,10 @@
 package com.iluwatar.tabledatagateway;
 
+/**
+ * The class of object, person, with general get and set method for each instances
+ * @author Taowen Huang
+ *
+ */
 public class Person {
     private int id;
     private String firstName;

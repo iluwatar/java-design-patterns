@@ -14,6 +14,7 @@ public class PersonDB implements Database{
     private static final String DBURL = "jdbc:h2:~/tabledatagateway";
 
     public PersonDB() throws SQLException {
+        // Set up the connection to database and create the required table in it
         dataSource.setURL(DBURL);
         Connection connection = dataSource.getConnection();
         Statement statement = connection.createStatement();
