@@ -44,9 +44,9 @@ public class HtmlTransformer {
     public static void main(String[] args) {
 
         // Files that requires for the transformation process
-        String xslFile ="two-step-view/src/main/xml.xslt/tohtml.xsl";
-        String inputFile = "two-step-view/src/main/xml.xslt/students.xml";
-        String outputFile = "two-step-view/src/main/xml.xslt/students.html";
+        String xslFile ="two-step-view/xml.xslt/tohtml.xsl";
+        String inputFile = "two-step-view/xml.xslt/students.xml";
+        String outputFile = "two-step-view/xml.xslt/students.html";
 
         StreamSource xsl = new StreamSource(new File(xslFile));
         StreamSource input = new StreamSource(new File(inputFile));

@@ -44,9 +44,9 @@ public class XsltTransformer {
     public static void main(String[] args) {
 
         // Files that requires for the transformation process
-        String xslFile ="two-step-view/src/main/xml.xslt/coursetostudent.xsl";
-        String inputFile = "two-step-view/src/main/xml.xslt/course.xml";
-        String outputFile = "two-step-view/src/main/xml.xslt/students.xml";
+        String xslFile ="two-step-view/xml.xslt/coursetostudent.xsl";
+        String inputFile = "two-step-view/xml.xslt/course.xml";
+        String outputFile = "two-step-view/xml.xslt/students.xml";
 
         StreamSource xsl = new StreamSource(new File(xslFile));
         StreamSource input = new StreamSource(new File(inputFile));

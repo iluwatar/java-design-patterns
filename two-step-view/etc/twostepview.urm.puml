@@ -8,5 +8,4 @@ package com.iluwatar.two-step-view{
     + main(args : String[]) {static}
   }
 }
-XsltTransformer --|> HtmlTransformer
 @enduml
