@@ -5,6 +5,11 @@ import lombok.extern.slf4j.Slf4j;
 import java.sql.SQLException;
 
 @Slf4j
+/**
+ * implement the basic functionalities of this pattern
+ * @author Taowen Huang
+ *
+ */
 public class App {
     public static void main(String[] args) throws SQLException {
         PersonGateway pg = new PersonGateway();
@@ -21,6 +26,11 @@ public class App {
 
     }
 
+    /**
+     * insert some data into the database for testing
+     * @author Taowen Huang
+     *
+     */
     private static void insertPersons(PersonGateway pg) {
         pg.database.insert(new Person(01,"DONGPING","WU","MALE",25));
         pg.database.insert(new Person(02,"HAIJIAN","WANG","MALE",25));
