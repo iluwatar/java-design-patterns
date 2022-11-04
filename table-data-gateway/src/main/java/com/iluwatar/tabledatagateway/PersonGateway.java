@@ -1,6 +1,8 @@
 package com.iluwatar.tabledatagateway;
 
 import java.sql.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PersonGateway implements PersonGatewayInterface{
 
@@ -19,13 +21,14 @@ public class PersonGateway implements PersonGatewayInterface{
         return null;
     }
 
-    public Person findByFirstName(String FName) {
+    public Set<Person> findByFirstName(String FName) {
+        Set<Person> setPerson = new HashSet<Person>();
         for (Person ps: database.personDB){
             if (ps.getFirstName() == FName){
-                return ps;
+                setPerson.add(ps);
             }
         }
-        return null;
+        return setPerson;
     }
 
     public boolean update(int id, String firstName, String lastName, String gender, int age) {
@@ -59,15 +62,12 @@ public class PersonGateway implements PersonGatewayInterface{
 
     public boolean delete(int id) {
         if (database.delete(id)){
-            Person removedPS = null;
-            for (Person ps: database.personDB){
-                if (ps.getId() == id){
-                    removedPS = ps;
-                }
-            }
-            database.personDB.remove(removedPS);
             return true;
         }
         return false;
+    }
+
+    public void deleteTable(){
+        database.deleteTable();
     }
 }

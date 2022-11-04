@@ -19,7 +19,7 @@ public class PersonDB implements Database{
         Statement statement = connection.createStatement();
         statement.execute("CREATE TABLE PERSONS (ID NUMBER, FIRSTNAME VARCHAR(100), "
                 + "LASTNAME VARCHAR(100), GENDER VARCHAR(100), AGE NUMBER)");
-        getAll();
+        personDB = new ArrayList<Person>();
     }
 
     public void getAll() {
@@ -27,7 +27,7 @@ public class PersonDB implements Database{
             Connection con = dataSource.getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM PERSONS");
-            while (!rs.next()){
+            while (rs.next()){
                 personDB.add(new Person(rs.getInt("ID"),
                         rs.getString("FIRSTNAME"), rs.getString("LASTNAME"),
                         rs.getString("GENDER"), rs.getInt("AGE")));
@@ -47,7 +47,7 @@ public class PersonDB implements Database{
             Connection con = dataSource.getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM PERSONS WHERE ID = " + String.valueOf(ID));
-            if (!rs.next()){
+            if (rs.next()){
                 ps.setId((rs.getInt("ID")));
                 ps.setFirstName(rs.getString("FIRSTNAME"));
                 ps.setLastName(rs.getString("LASTNAME"));
@@ -72,7 +72,7 @@ public class PersonDB implements Database{
             Connection con = dataSource.getConnection();
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("SELECT * FROM PERSONS WHERE ID = " + FName);
-            while (!rs.next()){
+            while (rs.next()){
                 setPerson.add(new Person(rs.getInt("ID"),
                         rs.getString("FIRSTNAME"), rs.getString("LASTNAME"),
                         rs.getString("GENDER"), rs.getInt("AGE")));
@@ -91,6 +91,13 @@ public class PersonDB implements Database{
             Connection con = dataSource.getConnection();
             PreparedStatement st = con.prepareStatement("DELETE FROM PERSONS WHERE ID = ?");
             st.setInt(1, id);
+            Person removedPS = null;
+            for (Person ps: personDB){
+                if (ps.getId() == id){
+                    removedPS = ps;
+                }
+            }
+            personDB.remove(removedPS);
             return st.executeUpdate() > 0;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -108,6 +115,15 @@ public class PersonDB implements Database{
             st.setString(3, ps.getGender());
             st.setInt(4, ps.getAge());
             st.setInt(5, ps.getId());
+            for (Person pss: personDB){
+                if (pss.getId() == id){
+                    pss.setGender(ps.getGender());
+                    pss.setLastName(ps.getLastName());
+                    pss.setAge(ps.getAge());
+                    pss.setFirstName(ps.getFirstName());
+                    pss.setId(ps.getId());
+                }
+            }
             return st.executeUpdate() > 0;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -124,11 +140,22 @@ public class PersonDB implements Database{
             st.setString(3, ps.getLastName());
             st.setString(4, ps.getGender());
             st.setInt(5, ps.getAge());
+            personDB.add(ps);
             return st.executeUpdate() > 0;
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
         return false;
+    }
+
+    public void deleteTable(){
+        try {
+            Connection con = dataSource.getConnection();
+            Statement st = con.createStatement();
+            st.execute("DROP TABLE PERSONS");
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
 

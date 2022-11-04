@@ -26,6 +26,10 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
   <parent>
     <artifactId>java-design-patterns</artifactId>
     <groupId>com.iluwatar</groupId>
@@ -34,6 +38,11 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>table-data-gateway</artifactId>
   <dependencies>
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.8.1</version>
+    </dependency>
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
@@ -68,3 +77,4 @@
     </plugins>
   </build>
 </project>
+
