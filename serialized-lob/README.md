@@ -197,6 +197,11 @@ LOGGER.info(Customer.elementToString(customer.departmentsToXMLElement()));
 
 Program output: 
 
+```java
+<departmentList><department name="department1"><department name="department2"><department name="department3" /></department></department></departmentList>
+<departmentList><department name="department1"><department name="department2"><department name="department3" /></department></department></departmentList>
+```
+
 ## Class diagram
 
 ## Applicability
