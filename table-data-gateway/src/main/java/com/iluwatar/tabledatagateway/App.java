@@ -7,7 +7,7 @@ public class App {
         PersonGateway pg = new PersonGateway();
         insertPersons(pg);
         Person bfwu = pg.find(01);
-
+        System.out.println(bfwu.getId());
     }
 
     private static void insertPersons(PersonGateway pg) {
