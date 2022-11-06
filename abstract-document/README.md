@@ -1,41 +1,39 @@
 ---
-title: Abstract Document
-category: Structural
-language: en
-tags: 
- - Extensibility
+标题：摘要文件
+类别：结构
+语言：en
+标签：
+ - 可扩展性
 ---
 
-## Intent
+## 意图
 
-Use dynamic properties and achieve flexibility of untyped languages while keeping type-safety. 
+使用动态属性并实现无类型语言的灵活性，同时保持类型安全。
 
-## Explanation
+＃＃ 解释
 
-The Abstract Document pattern enables handling additional, non-static properties. This pattern
-uses concept of traits to enable type safety and separate properties of different classes into
-set of interfaces.
+抽象文档模式可以处理额外的非静态属性。这种模式
+使用特征的概念来实现类型安全并将不同类的属性分离到
+一组接口。
 
-Real world example
+现实世界的例子
+> 考虑一辆由多个零件组成的汽车。但是，我们不知道具体的汽车是否真的拥有所有零件，或者只是其中的一部分。我们的汽车充满活力且极其灵活。
 
->  Consider a car that consists of multiple parts. However we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
+简单来说
 
-In plain words
+> 抽象文档模式允许在对象不知道的情况下将属性附加到对象。
 
-> Abstract Document pattern allows attaching properties to objects without them knowing about it.
+维基百科说
 
-Wikipedia says
+> 一种面向对象的结构设计模式，用于在松散类型的键值存储中组织对象并公开
+使用类型化视图的数据。模式的目的是实现组件之间的高度灵活性
+在强类型语言中，可以动态地将新属性添加到对象树中，而不会丢失
+支持类型安全。该模式利用特征将一个类的不同属性分成不同的
+接口
+**程序示例**
 
-> An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing 
-the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components 
-in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the 
-support of type-safety. The pattern makes use of traits to separate different properties of a class into different 
-interfaces.
-
-**Programmatic Example**
-
-Let's first define the base classes `Document` and `AbstractDocument`. They basically make the object hold a property
-map and any amount of child objects.
+让我们首先定义基类 `Document` 和 `AbstractDocument`。他们基本上使对象拥有一个属性
+地图和任意数量的子对象。
 
 ```java
 public interface Document {
@@ -80,8 +78,8 @@ public abstract class AbstractDocument implements Document {
   ...
 }
 ```
-Next we define an enum `Property` and a set of interfaces for type, price, model and parts. This allows us to create
-static looking interface to our `Car` class.
+接下来我们定义一个枚举“Property”和一组用于类型、价格、型号和零件的接口。这允许我们创建
+我们的“汽车”类的静态界面。
 
 ```java
 public enum Property {
@@ -117,7 +115,7 @@ public interface HasParts extends Document {
 }
 ```
 
-Now we are ready to introduce the `Car`.
+现在我们准备介绍“汽车”。
 
 ```java
 public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts {
@@ -128,8 +126,7 @@ public class Car extends AbstractDocument implements HasModel, HasPrice, HasPart
 }
 ```
 
-And finally here's how we construct and use the `Car` in a full example.
-
+最后，这是我们如何在完整示例中构建和使用“汽车”的方式。
 ```java
     LOGGER.info("Constructing parts and car");
 
@@ -160,29 +157,29 @@ And finally here's how we construct and use the `Car` in a full example.
         p.getPrice().orElse(null))
     );
 
-    // Constructing parts and car
-    // Here is our car:
-    // model: 300SL
-    // price: 10000
-    // parts: 
-    // wheel/15C/100
-    // door/Lambo/300
+    // 构建零件和汽车
+    // 这是我们的车：
+    // 型号：300SL
+    // 价格：10000
+    // 部分：
+    // 轮子/15C/100
+    // 门/兰博/300
 ```
 
-## Class diagram
+##类图
 
-![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
+![alt text](./etc/abstract-document.png "抽象文档特征和域")
 
-## Applicability
+## 适用性
 
-Use the Abstract Document Pattern when
+在以下情况下使用抽象文档模式
 
-* There is a need to add new properties on the fly
-* You want a flexible way to organize domain in tree like structure
-* You want more loosely coupled system
+* 需要动态添加新属性
+*您想要一种灵活的方式来组织树状结构中的域
+* 你想要更松耦合的系统
 
-## Credits
+## 学分
 
-* [Wikipedia: Abstract Document Pattern](https://en.wikipedia.org/wiki/Abstract_Document_Pattern)
-* [Martin Fowler: Dealing with properties](http://martinfowler.com/apsupp/properties.pdf)
-* [Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing (v. 4)](https://www.amazon.com/gp/product/0470059028/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0470059028&linkId=e3aacaea7017258acf184f9f3283b492)
+* [维基百科：抽象文档模式](https://en.wikipedia.org/wiki/Abstract_Document_Pattern)
+* [Martin Fowler：处理属性](http://martinfowler.com/apsupp/properties.pdf)
+* [面向模式的软件架构第 4 卷：分布式计算的模式语言 (v. 4)](https://www.amazon.com/gp/product/0470059028/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative =9325&linkCode=as2&creativeASIN=0470059028&linkId=e3aacaea7017258acf184f9f3283b492)
