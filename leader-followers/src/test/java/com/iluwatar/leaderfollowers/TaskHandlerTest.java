@@ -22,33 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com;
+package com.iluwatar.leaderfollowers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.iluwatar.leaderfollowers.Task;
-import com.iluwatar.leaderfollowers.TaskSet;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for TaskSet
+ * Tests for TaskHandler
  */
-class TaskSetTest {
+class TaskHandlerTest {
 
   @Test
-  void testAddTask() throws InterruptedException {
-    var taskSet = new TaskSet();
-    taskSet.addTask(new Task(10));
-    assertEquals(1, taskSet.getSize());
-  }
-
-  @Test
-  void testGetTask() throws InterruptedException {
-    var taskSet = new TaskSet();
-    taskSet.addTask(new Task(100));
-    Task task = taskSet.getTask();
-    assertEquals(100, task.getTime());
-    assertEquals(0, taskSet.getSize());
+  void testHandleTask() throws InterruptedException {
+    var taskHandler = new TaskHandler();
+    var handle = new Task(100);
+    taskHandler.handleTask(handle);
+    assertTrue(handle.isFinished());
   }
 
 }
