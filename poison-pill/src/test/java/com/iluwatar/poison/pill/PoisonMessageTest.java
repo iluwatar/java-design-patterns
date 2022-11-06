@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class PoisonMessageTest {
+class PoisonMessageTest {
 
   @Test
   void testAddHeader() {

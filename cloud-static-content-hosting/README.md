@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Static Content Hosting
-folder: cloud-static-content-hosting
-permalink: /patterns/cloud-static-content-hosting/
-categories: Cloud
+category: Cloud
 language: en
 tags:
 - Cloud distributed

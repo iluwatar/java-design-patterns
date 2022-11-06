@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Observer
-folder: observer
-permalink: /patterns/observer/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Gang Of Four

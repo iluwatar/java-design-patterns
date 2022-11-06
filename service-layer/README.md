@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Service Layer
-folder: service-layer
-permalink: /patterns/service-layer/
-categories: Architectural
+category: Architectural
 language: en
 tags:
  - Data access

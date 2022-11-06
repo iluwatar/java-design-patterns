@@ -102,7 +102,7 @@ public abstract class ExpressionTest<E extends Expression> {
    */
   @ParameterizedTest
   @MethodSource("expressionProvider")
-  public void testInterpret(NumberExpression first, NumberExpression second, int result) {
+  void testInterpret(NumberExpression first, NumberExpression second, int result) {
     final var expression = factory.apply(first, second);
     assertNotNull(expression);
     assertEquals(result, expression.interpret());
@@ -113,7 +113,7 @@ public abstract class ExpressionTest<E extends Expression> {
    */
   @ParameterizedTest
   @MethodSource("expressionProvider")
-  public void testToString(NumberExpression first, NumberExpression second) {
+  void testToString(NumberExpression first, NumberExpression second) {
     final var expression = factory.apply(first, second);
     assertNotNull(expression);
     assertEquals(expectedToString, expression.toString());

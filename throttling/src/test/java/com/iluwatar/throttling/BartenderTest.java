@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 /**
  * B2BServiceTest class to test the B2BService
  */
-public class BartenderTest {
+class BartenderTest {
 
   private final CallsCount callsCount = new CallsCount();
 

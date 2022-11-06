@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class FilterManagerTest {
+class FilterManagerTest {
 
   @Test
   void testFilterRequest() {

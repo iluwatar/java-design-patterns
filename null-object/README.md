@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Null Object
-folder: null-object
-permalink: /patterns/null-object/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Extensibility

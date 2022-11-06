@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class CharacterStepBuilderTest {
+class CharacterStepBuilderTest {
 
   /**
    * Build a new wizard {@link Character} and verify if it has the expected attributes

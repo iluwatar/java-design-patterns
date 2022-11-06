@@ -32,7 +32,7 @@ import static org.mockito.Mockito.verify;
  *
  * @author Jeroen Meulemeester
  */
-public class SergeantTest extends UnitTest<Sergeant> {
+class SergeantTest extends UnitTest<Sergeant> {
 
   /**
    * Create a new test instance for the given {@link Sergeant}.

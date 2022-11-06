@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Model-View-Presenter
-folder: model-view-presenter
-permalink: /patterns/model-view-presenter/
-categories: Architectural
+category: Architectural
 language: en
 tags:
  - Decoupling

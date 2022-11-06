@@ -26,9 +26,16 @@ package com.iluwatar.stepbuilder;
 
 import java.util.List;
 
+import lombok.Getter;
+import lombok.Setter;
+
+
+
 /**
  * The class with many parameters.
  */
+@Getter
+@Setter
 public class Character {
 
   private String name;
@@ -42,53 +49,6 @@ public class Character {
     this.name = name;
   }
 
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getFighterClass() {
-    return fighterClass;
-  }
-
-  public void setFighterClass(String fighterClass) {
-    this.fighterClass = fighterClass;
-  }
-
-  public String getWizardClass() {
-    return wizardClass;
-  }
-
-  public void setWizardClass(String wizardClass) {
-    this.wizardClass = wizardClass;
-  }
-
-  public String getWeapon() {
-    return weapon;
-  }
-
-  public void setWeapon(String weapon) {
-    this.weapon = weapon;
-  }
-
-  public String getSpell() {
-    return spell;
-  }
-
-  public void setSpell(String spell) {
-    this.spell = spell;
-  }
-
-  public List<String> getAbilities() {
-    return abilities;
-  }
-
-  public void setAbilities(List<String> abilities) {
-    this.abilities = abilities;
-  }
 
   @Override
   public String toString() {
