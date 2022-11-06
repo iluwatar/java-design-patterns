@@ -375,6 +375,7 @@ This project is licensed under the terms of the MIT license.
     <tr>
       <td align="center"><a href="https://github.com/u7281975"><img src="https://avatars.githubusercontent.com/u/111095623?v=4?s=100" width="100px;" alt="u7281975"/><br /><sub><b>u7281975</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=u7281975" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/harshalkhachane"><img src="https://avatars.githubusercontent.com/u/92866584?v=4?s=100" width="100px;" alt="harshalkhachane"/><br /><sub><b>harshalkhachane</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=harshalkhachane" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/ec-026"><img src="https://avatars.githubusercontent.com/u/95495584?v=4?s=100" width="100px;" alt="Tejas Singh"/><br /><sub><b>Tejas Singh</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ec-026" title="Documentation">📖</a> <a href="#translation-ec-026" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>

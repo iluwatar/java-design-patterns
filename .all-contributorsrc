@@ -2125,6 +2125,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ec-026",
+      "name": "Tejas Singh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95495584?v=4",
+      "profile": "https://github.com/ec-026",
+      "contributions": [
+        "doc",
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
