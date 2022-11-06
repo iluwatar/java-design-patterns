@@ -28,13 +28,12 @@ import static java.lang.Thread.UncaughtExceptionHandler;
 import static java.lang.Thread.sleep;
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import org.junit.jupiter.api.Test;
 
@@ -87,7 +86,7 @@ class BallThreadTest {
 
       sleep(1000);
 
-      verifyZeroInteractions(ballItem);
+      verifyNoMoreInteractions(ballItem);
 
       ballThread.resumeMe();
       sleep(300);

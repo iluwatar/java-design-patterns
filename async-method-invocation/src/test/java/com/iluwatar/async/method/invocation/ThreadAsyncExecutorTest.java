@@ -32,11 +32,11 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.isNull;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
@@ -47,7 +47,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -190,7 +189,7 @@ class ThreadAsyncExecutorTest {
       assertNotNull(asyncResult);
       assertFalse(asyncResult.isCompleted());
 
-      verifyZeroInteractions(callback);
+      verifyNoMoreInteractions(callback);
 
       try {
         asyncResult.getValue();
@@ -296,7 +295,7 @@ class ThreadAsyncExecutorTest {
       assertNotNull(asyncResult, "The AsyncResult should not be 'null', even though the task was 'null'.");
       asyncResult.await(); // Prevent timing issues, and wait until the result is available
       assertTrue(asyncResult.isCompleted());
-      verify(callback, times(1)).onComplete(Matchers.isNull(), optionalCaptor.capture());
+      verify(callback, times(1)).onComplete(isNull(), optionalCaptor.capture());
 
       final var optionalException = optionalCaptor.getValue();
       assertNotNull(optionalException);
