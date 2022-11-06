@@ -56,13 +56,19 @@ public class App {
   public static void main(String[] args) {
     /*
       Initialising the printer queue with jobs
-      **/
+    */
     printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A4, 5, false, false));
     printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A3, 2, false, false));
     printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A2, 5, false, false));
 
+    /*
+      This variable is the collecting parameter, and will store the policy abiding print jobs.
+    */
     var result = new LinkedList<PrinterItem>();
 
+    /*
+      Adding A4, A3, and A2 papers that obey the policy
+    */
     addValidA4Papers(result);
     addValidA3Papers(result);
     addValidA2Papers(result);

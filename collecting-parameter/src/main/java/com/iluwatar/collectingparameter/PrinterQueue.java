@@ -13,7 +13,7 @@ public class PrinterQueue {
   private final Queue<PrinterItem> printerItemQueue;
 
   /**
-   * * This class is a singleton. The getInstance method will ensure that only one instance exists at a time.
+   * This class is a singleton. The getInstance method will ensure that only one instance exists at a time.
    */
   public static PrinterQueue getInstance() {
     if (Objects.isNull(currentInstance)) {

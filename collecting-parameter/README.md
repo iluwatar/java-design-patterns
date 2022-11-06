@@ -1,15 +1,12 @@
 ---
-layout: pattern
-title: Collecting Parameter
-folder: collecting-parameter
-permalink: /patterns/collecting-parameter/
-categories: Structural
+title: Collecting Parameter 
+category: Idiom
 language: en
 tags:
-- Collecting Parameter
+- Generic
 ---
 
-## Name / classification
+## Name
 Collecting Parameter
 
 ## Intent
@@ -29,7 +26,7 @@ and easier to understand. Because the larger function has been broken down, the 
 are localised to the smaller functions.
 
 ### Wikipedia says
-In the CollectingParameter idiom a collection (list, map, etc.) is passed repeatedly as a parameter to a method which adds items to the collection.
+In the Collecting Parameter idiom a collection (list, map, etc.) is passed repeatedly as a parameter to a method which adds items to the collection.
 
 ### Programmatic example
 Coding our example from above, we may use the collection `result` as a collecting parameter. The following restrictions
@@ -58,6 +55,9 @@ public class App {
     printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A3, 2, false, false));
     printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A2, 5, false, false));
 
+    /*
+      This variable is the collecting parameter.
+    */    
     var result = new LinkedList<PrinterItem>();
 
     /* 
