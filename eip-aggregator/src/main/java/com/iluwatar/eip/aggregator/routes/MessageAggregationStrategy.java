@@ -24,8 +24,8 @@
  */
 package com.iluwatar.eip.aggregator.routes;
 
+import org.apache.camel.AggregationStrategy;
 import org.apache.camel.Exchange;
-import org.apache.camel.processor.aggregate.AggregationStrategy;
 import org.springframework.stereotype.Component;
 
 /**
