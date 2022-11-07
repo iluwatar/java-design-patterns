@@ -1,7 +1,7 @@
 ---
-título: Builder
-categoria: Criacional
-idioma: pt
+title: Builder
+categories: Creational
+language: pt
 tags:
 - Gang of Four
 ---
