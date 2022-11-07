@@ -1,7 +1,7 @@
 ---
-título: Abstract Factory
-categoria: Criacional
-idioma: pt
+title: Abstract Factory
+categories: Creational
+language: pt
 tags:
 - Gang of Four
 ---
