@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.presentation;
+package com.iluwatar.presentationmodel;
 
 import java.awt.TextField;
 import java.awt.event.MouseAdapter;

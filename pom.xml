@@ -208,7 +208,7 @@
     <module>model-view-viewmodel</module>
     <module>composite-entity</module>
     <module>table-module</module>
-    <module>presentation</module>
+    <module>presentation-model</module>
     <module>lockable-object</module>
     <module>fanout-fanin</module>
     <module>domain-model</module>
