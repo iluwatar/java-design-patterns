@@ -22,25 +22,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.presentation;
+package com.iluwatar.presentationmodel;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class DisplayedAlbumsTest {
+class AlbumTest {
   @Test
-  void testAdd_true(){
-    DisplayedAlbums displayedAlbums = new DisplayedAlbums();
-    displayedAlbums.addAlbums("title", "artist", true, "composer");
-    assertEquals("composer", displayedAlbums.getAlbums().get(0).getComposer());
-
+  void testSetTitle(){
+    Album album = new Album("a", "b", false, "");
+    album.setTitle("b");
+    assertEquals("b", album.getTitle());
   }
 
   @Test
-  void testAdd_false(){
-    DisplayedAlbums displayedAlbums = new DisplayedAlbums();
-    displayedAlbums.addAlbums("title", "artist", false, "composer");
-    assertEquals("", displayedAlbums.getAlbums().get(0).getComposer());
+  void testSetArtist(){
+    Album album = new Album("a", "b", false, "");
+    album.setArtist("c");
+    assertEquals("c", album.getArtist());
+  }
+
+  @Test
+  void testSetClassical(){
+    Album album = new Album("a", "b", false, "");
+    album.setClassical(true);
+    assertTrue(album.isClassical());
+  }
+
+  @Test
+  void testSetComposer(){
+    Album album = new Album("a", "b", false, "");
+    album.setClassical(true);
+    album.setComposer("w");
+    assertEquals("w", album.getComposer());
   }
 }

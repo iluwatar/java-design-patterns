@@ -2135,6 +2135,15 @@
         "doc",
         "translation"
       ]
+    },
+    {
+      "login": "artfuldev",
+      "name": "Sudarsan Balaji",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3091087?v=4",
+      "profile": "https://journal.artfuldev.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

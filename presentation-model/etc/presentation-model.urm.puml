@@ -1,5 +1,5 @@
 @startuml
-package com.iluwatar.presentation {
+package com.iluwatar.presentationmodel {
   class Album {
     ~ artist : String
     ~ composer : String

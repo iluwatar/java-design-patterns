@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-233-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-235-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -301,7 +301,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://stackoverflow.com/users/308565/nagaraj-tantri"><img src="https://avatars.githubusercontent.com/u/3784194?v=4?s=100" width="100px;" alt="Nagaraj Tantri"/><br /><sub><b>Nagaraj Tantri</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=tan31989" title="Code">💻</a></td>
     </tr>
     <tr>
-      <td align="center"><a href="http://scuccimarri.it"><img src="https://avatars.githubusercontent.com/u/7107651?v=4?s=100" width="100px;" alt="Francesco Scuccimarri"/><br /><sub><b>Francesco Scuccimarri</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=frascu" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/frascu"><img src="https://avatars.githubusercontent.com/u/7107651?v=4?s=100" width="100px;" alt="Francesco Scuccimarri"/><br /><sub><b>Francesco Scuccimarri</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=frascu" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/Conhan93"><img src="https://avatars.githubusercontent.com/u/71334757?v=4?s=100" width="100px;" alt="Conny Hansson"/><br /><sub><b>Conny Hansson</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Conhan93" title="Documentation">📖</a></td>
       <td align="center"><a href="http://muklasr.medium.com"><img src="https://avatars.githubusercontent.com/u/43443753?v=4?s=100" width="100px;" alt="Muklas Rahmanto"/><br /><sub><b>Muklas Rahmanto</b></sub></a><br /><a href="#translation-muklasr" title="Translation">🌍</a></td>
       <td align="center"><a href="https://github.com/VxDxK"><img src="https://avatars.githubusercontent.com/u/38704817?v=4?s=100" width="100px;" alt="Vadim"/><br /><sub><b>Vadim</b></sub></a><br /><a href="#translation-VxDxK" title="Translation">🌍</a></td>
@@ -376,6 +376,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/u7281975"><img src="https://avatars.githubusercontent.com/u/111095623?v=4?s=100" width="100px;" alt="u7281975"/><br /><sub><b>u7281975</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=u7281975" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/harshalkhachane"><img src="https://avatars.githubusercontent.com/u/92866584?v=4?s=100" width="100px;" alt="harshalkhachane"/><br /><sub><b>harshalkhachane</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=harshalkhachane" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/ec-026"><img src="https://avatars.githubusercontent.com/u/95495584?v=4?s=100" width="100px;" alt="Tejas Singh"/><br /><sub><b>Tejas Singh</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ec-026" title="Documentation">📖</a> <a href="#translation-ec-026" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://journal.artfuldev.com"><img src="https://avatars.githubusercontent.com/u/3091087?v=4?s=100" width="100px;" alt="Sudarsan Balaji"/><br /><sub><b>Sudarsan Balaji</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=artfuldev" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
