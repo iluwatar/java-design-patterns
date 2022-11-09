@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.1" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="com.iluwatar.unitofwork.StudentDatabase" project="unit-of-work" 
+  <class id="1" language="java" name="com.iluwatar.unitofwork.WeaponDatabase" project="unit-of-work"
     file="/unit-of-work/src/main/java/com/iluwatar/unitofwork/StudentDatabase.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="170" y="406"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -28,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="com.iluwatar.unitofwork.StudentRepository" project="unit-of-work" 
+  <class id="4" language="java" name="com.iluwatar.unitofwork.ArmsDealer" project="unit-of-work"
     file="/unit-of-work/src/main/java/com/iluwatar/unitofwork/StudentRepository.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="377" y="166"/>    
@@ -38,7 +38,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="com.iluwatar.unitofwork.Student" project="unit-of-work" 
+  <class id="5" language="java" name="com.iluwatar.unitofwork.Weapon" project="unit-of-work"
     file="/unit-of-work/src/main/java/com/iluwatar/unitofwork/Student.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="696" y="130"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

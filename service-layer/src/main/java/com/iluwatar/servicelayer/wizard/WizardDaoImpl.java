@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.servicelayer.wizard;
 
 import com.iluwatar.servicelayer.common.DaoBaseImpl;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 
 /**
  * WizardDao implementation.
@@ -38,9 +42,12 @@ public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
     Wizard result;
     try (var session = getSessionFactory().openSession()) {
       tx = session.beginTransaction();
-      var criteria = session.createCriteria(persistentClass);
-      criteria.add(Restrictions.eq("name", name));
-      result = (Wizard) criteria.uniqueResult();
+      CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+      CriteriaQuery<Wizard> builderQuery = criteriaBuilder.createQuery(Wizard.class);
+      Root<Wizard> root = builderQuery.from(Wizard.class);
+      builderQuery.select(root).where(criteriaBuilder.equal(root.get("name"), name));
+      Query<Wizard> query = session.createQuery(builderQuery);
+      result = query.uniqueResult();
       tx.commit();
     } catch (Exception e) {
       if (tx != null) {

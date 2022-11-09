@@ -1,8 +1,5 @@
 ---
-layout: pattern
 title: Interpreter
-folder: interpreter
-permalink: /patterns/interpreter/
 categories: Behavioral
 language: en
 tags:

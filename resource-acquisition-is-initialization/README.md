@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Resource Acquisition Is Initialization
-folder: resource-acquisition-is-initialization
-permalink: /patterns/resource-acquisition-is-initialization/
-categories: Idiom
+category: Idiom
 language: en
 tags:
  - Data access

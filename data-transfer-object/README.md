@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Data Transfer Object
-folder: data-transfer-object
-permalink: /patterns/data-transfer-object/
-categories: Architectural
+category: Architectural
 language: en
 tags:
  - Performance

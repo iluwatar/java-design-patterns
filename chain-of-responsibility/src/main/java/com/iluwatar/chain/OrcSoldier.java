@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,30 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.chain;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * OrcSoldier.
  */
-public class OrcSoldier extends RequestHandler {
-
-  public OrcSoldier(RequestHandler handler) {
-    super(handler);
+@Slf4j
+public class OrcSoldier implements RequestHandler {
+  @Override
+  public boolean canHandleRequest(Request req) {
+    return req.getRequestType() == RequestType.COLLECT_TAX;
   }
 
   @Override
-  public void handleRequest(Request req) {
-    if (RequestType.COLLECT_TAX == req.getRequestType()) {
-      printHandling(req);
-      req.markHandled();
-    } else {
-      super.handleRequest(req);
-    }
+  public int getPriority() {
+    return 1;
   }
 
   @Override
-  public String toString() {
+  public void handle(Request req) {
+    req.markHandled();
+    LOGGER.info("{} handling request \"{}\"", name(), req);
+  }
+
+  @Override
+  public String name() {
     return "Orc soldier";
   }
 }

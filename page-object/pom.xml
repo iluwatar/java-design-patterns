@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
+    This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+
     The MIT License
-    Copyright © 2014-2021 Ilkka Seppälä
+    Copyright © 2014-2022 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -35,17 +37,11 @@
       <artifactId>htmlunit</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter</artifactId>
-      <version>RELEASE</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
   <parent>
     <groupId>com.iluwatar</groupId>
     <artifactId>java-design-patterns</artifactId>
-    <version>1.25.0-SNAPSHOT</version>
+    <version>1.26.0-SNAPSHOT</version>
   </parent>
   <artifactId>page-object</artifactId>
   <packaging>pom</packaging>

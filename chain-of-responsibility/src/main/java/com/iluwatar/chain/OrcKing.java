@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,26 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.chain;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * OrcKing makes requests that are handled by the chain.
  */
 public class OrcKing {
 
-  private RequestHandler chain;
+  private List<RequestHandler> handlers;
 
   public OrcKing() {
     buildChain();
   }
 
   private void buildChain() {
-    chain = new OrcCommander(new OrcOfficer(new OrcSoldier(null)));
+    handlers = Arrays.asList(new OrcCommander(), new OrcOfficer(), new OrcSoldier());
   }
 
+  /**
+   * Handle request by the chain.
+   */
   public void makeRequest(Request req) {
-    chain.handleRequest(req);
+    handlers
+        .stream()
+        .sorted(Comparator.comparing(RequestHandler::getPriority))
+        .filter(handler -> handler.canHandleRequest(req))
+        .findFirst()
+        .ifPresent(handler -> handler.handle(req));
   }
-
 }

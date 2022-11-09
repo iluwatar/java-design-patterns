@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package domainapp.dom.modules.simple;
 
 import static org.junit.Assert.assertEquals;
@@ -40,7 +41,7 @@ import org.junit.Test;
 /**
  * Test for SimpleObjects
  */
-public class SimpleObjectsTest {
+class SimpleObjectsTest {
 
   @Rule
   public JUnitRuleMockery2 context = JUnitRuleMockery2.createFor(Mode.INTERFACES_AND_CLASSES);
@@ -51,13 +52,13 @@ public class SimpleObjectsTest {
   SimpleObjects simpleObjects;
 
   @Before
-  public void setUp() {
+  void setUp() {
     simpleObjects = new SimpleObjects();
     simpleObjects.container = mockContainer;
   }
 
   @Test
-  public void testCreate() {
+  void testCreate() {
 
     // given
     final SimpleObject simpleObject = new SimpleObject();
@@ -84,7 +85,7 @@ public class SimpleObjectsTest {
   }
 
   @Test
-  public void testListAll() {
+  void testListAll() {
 
     // given
     final List<SimpleObject> all = Lists.newArrayList();

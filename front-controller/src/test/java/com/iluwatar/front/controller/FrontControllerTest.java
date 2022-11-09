@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.front.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,17 +38,17 @@ import org.junit.jupiter.params.provider.MethodSource;
  *
  * @author Jeroen Meulemeester
  */
-public class FrontControllerTest {
+class FrontControllerTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -65,7 +66,7 @@ public class FrontControllerTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testDisplay(Command command, String displayMessage) {
+  void testDisplay(Command command, String displayMessage) {
     assertEquals(0, appender.getLogSize());
     command.process();
     assertEquals(displayMessage, appender.getLastMessage());

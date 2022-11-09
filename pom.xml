@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    The MIT License (MIT)
+    This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
 
-    Copyright © 2014-2021 Ilkka Seppälä
+    The MIT License
+    Copyright © 2014-2022 Ilkka Seppälä
 
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
@@ -12,69 +13,52 @@
     copies of the Software, and to permit persons to whom the Software is
     furnished to do so, subject to the following conditions:
 
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
 
     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
     IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
     FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
-
-    Module Model-view-viewmodel is using ZK framework
-    ZK framework is licensed under LGPL and the license can be found at lgpl-3.0.txt
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.iluwatar</groupId>
   <artifactId>java-design-patterns</artifactId>
-  <version>1.25.0-SNAPSHOT</version>
+  <version>1.26.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <inceptionYear>2014-2021</inceptionYear>
+  <inceptionYear>2014-2022</inceptionYear>
+  <name>Java Design Patterns</name>
+  <description>Java Design Patterns</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
-    <hibernate.version>5.2.18.Final</hibernate.version>
-    <spring.version>5.0.17.RELEASE</spring.version>
-    <spring-boot.version>2.0.9.RELEASE</spring-boot.version>
-    <spring-data.version>2.0.14.RELEASE</spring-data.version>
+    <spring-boot.version>2.7.5</spring-boot.version>
     <h2.version>1.4.190</h2.version>
-    <junit.version>4.12</junit.version>
-    <junit-jupiter.version>5.7.1</junit-jupiter.version>
-    <junit-vintage.version>${junit-jupiter.version}</junit-vintage.version>
-    <compiler.version>3.8.1</compiler.version>
-    <jacoco.version>0.8.6</jacoco.version>
+    <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <camel.version>2.24.0</camel.version>
+    <camel.version>2.25.1</camel.version>
     <guava.version>19.0</guava.version>
     <mockito.version>3.5.6</mockito.version>
-    <htmlunit.version>2.22</htmlunit.version>
+    <htmlunit.version>2.66.0</htmlunit.version>
     <guice.version>4.0</guice.version>
-    <mongo-java-driver.version>3.12.1</mongo-java-driver.version>
-    <slf4j.version>1.7.30</slf4j.version>
-    <logback.version>1.2.3</logback.version>
+    <mongo-java-driver.version>3.12.8</mongo-java-driver.version>
     <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
     <aws-java-sdk-dynamodb.version>1.12.13</aws-java-sdk-dynamodb.version>
     <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
-    <jackson.version>2.12.3</jackson.version>
-    <jaxb-api.version>2.3.1</jaxb-api.version>
-    <jaxb-impl.version>2.3.2</jaxb-impl.version>
-    <annotation-api.version>1.3.2</annotation-api.version>
     <system-lambda.version>1.1.0</system-lambda.version>
     <urm.version>2.0.0</urm.version>
-    <mockito-junit-jupiter.version>3.5.0</mockito-junit-jupiter.version>
-    <lombok.version>1.18.20</lombok.version>
-    <byte-buddy.version>1.11.5</byte-buddy.version>
     <javassist.version>3.27.0-GA</javassist.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
-    <directory-maven-plugin.version>0.3.1</directory-maven-plugin.version>
-    <license-maven-plugin.version>3.0</license-maven-plugin.version>
+    <license-maven-plugin.version>4.1</license-maven-plugin.version>
     <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
     <commons-io.version>2.7</commons-io.version>
+    <istack-commons-runtime.version>4.0.1</istack-commons-runtime.version>
     <!-- SonarCloud -->
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.organization>iluwatar</sonar.organization>
@@ -84,6 +68,7 @@
   </properties>
   <modules>
     <module>abstract-factory</module>
+    <module>monitor</module>
     <module>tls</module>
     <module>builder</module>
     <module>factory-method</module>
@@ -223,10 +208,13 @@
     <module>model-view-viewmodel</module>
     <module>composite-entity</module>
     <module>table-module</module>
-    <module>presentation</module>
+    <module>presentation-model</module>
     <module>lockable-object</module>
     <module>fanout-fanin</module>
     <module>domain-model</module>
+    <module>composite-view</module>
+    <module>metadata-mapping</module>
+    <module>service-to-worker</module>
   </modules>
   <repositories>
     <repository>
@@ -237,21 +225,19 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>net.bytebuddy</groupId>
-        <artifactId>byte-buddy</artifactId>
-        <version>${byte-buddy.version}</version>
-        <scope>test</scope>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${mockito.version}</version>
       </dependency>
       <dependency>
-        <groupId>net.bytebuddy</groupId>
-        <artifactId>byte-buddy-agent</artifactId>
-        <version>${byte-buddy.version}</version>
-        <scope>test</scope>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-inline</artifactId>
+        <version>${mockito.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>${hibernate.version}</version>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>${mockito.version}</version>
       </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -259,16 +245,6 @@
         <version>${spring-boot.version}</version>
         <type>pom</type>
         <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.data</groupId>
-        <artifactId>spring-data-jpa</artifactId>
-        <version>${spring-data.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-webmvc</artifactId>
-        <version>${spring.version}</version>
       </dependency>
       <dependency>
         <groupId>com.h2database</groupId>
@@ -291,42 +267,6 @@
         <version>${camel.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-api</artifactId>
-        <version>${junit-jupiter.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-engine</artifactId>
-        <version>${junit-jupiter.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-params</artifactId>
-        <version>${junit-jupiter.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-migrationsupport</artifactId>
-        <version>${junit-jupiter.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.junit.vintage</groupId>
-        <artifactId>junit-vintage-engine</artifactId>
-        <version>${junit-vintage.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>${mockito.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
         <version>${guava.version}</version>
@@ -347,21 +287,6 @@
         <version>${mongo-java-driver.version}</version>
       </dependency>
       <dependency>
-        <groupId>javax.xml.bind</groupId>
-        <artifactId>jaxb-api</artifactId>
-        <version>${jaxb-api.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>javax.annotation</groupId>
-        <artifactId>javax.annotation-api</artifactId>
-        <version>${annotation-api.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.xml.bind</groupId>
-        <artifactId>jaxb-impl</artifactId>
-        <version>${jaxb-impl.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.javassist</groupId>
         <artifactId>javassist</artifactId>
         <version>${javassist.version}</version>
@@ -377,28 +302,29 @@
         <artifactId>commons-io</artifactId>
         <version>${commons-io.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.sun.istack</groupId>
+        <artifactId>istack-commons-runtime</artifactId>
+        <version>${istack-commons-runtime.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>${slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
-      <version>${logback.version}</version>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-core</artifactId>
-      <version>${logback.version}</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -408,7 +334,6 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>${compiler.version}</version>
           <configuration>
             <source>11</source>
             <target>11</target>
@@ -422,7 +347,6 @@
         <plugin>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-maven-plugin</artifactId>
-          <version>${spring-boot.version}</version>
         </plugin>
         <!-- Maven assembly plugin template for all child project to follow -->
         <plugin>
@@ -476,49 +400,29 @@
           </execution>
         </executions>
       </plugin>
-      <!-- Resolves ${projectRoot} to the project root directory. Used by the
-                license-maven-plugin to find the correct location of license-plugin-header-style.xml
-                when built from a submodule directory. -->
-      <plugin>
-        <groupId>org.commonjava.maven.plugins</groupId>
-        <artifactId>directory-maven-plugin</artifactId>
-        <version>${directory-maven-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>directories</id>
-            <goals>
-              <goal>directory-of</goal>
-            </goals>
-            <phase>initialize</phase>
-            <configuration>
-              <property>projectRoot</property>
-              <project>
-                <groupId>com.iluwatar</groupId>
-                <artifactId>java-design-patterns</artifactId>
-              </project>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
       <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
         <version>${license-maven-plugin.version}</version>
         <configuration>
-          <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
+          <licenseSets>
+            <licenseSet>
+              <multi>
+                <preamble><![CDATA[This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).]]></preamble>
+                <header>com/mycila/maven/plugin/license/templates/MIT.txt</header>
+              </multi>
+              <excludes>
+                <exclude>**/README</exclude>
+                <exclude>src/test/resources/**</exclude>
+                <exclude>src/main/resources/**</exclude>
+                <exclude>checkstyle-suppressions.xml</exclude>
+              </excludes>
+            </licenseSet>
+          </licenseSets>
           <properties>
             <owner>Ilkka Seppälä</owner>
+            <email>iluwatar@gmail.com</email>
           </properties>
-          <skipExistingHeaders>true</skipExistingHeaders>
-          <headerDefinitions>
-            <headerDefinition>license-plugin-header-style.xml</headerDefinition>
-          </headerDefinitions>
-          <mapping>
-            <java>SLASHSTAR_CUSTOM_STYLE</java>
-          </mapping>
-          <excludes>
-            <exclude>.github/FUNDING.yml</exclude>
-          </excludes>
         </configuration>
         <executions>
           <execution>

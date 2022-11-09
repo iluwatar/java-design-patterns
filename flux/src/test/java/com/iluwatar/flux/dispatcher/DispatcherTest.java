@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.flux.dispatcher;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -48,7 +49,7 @@ import org.mockito.ArgumentCaptor;
  *
  * @author Jeroen Meulemeester
  */
-public class DispatcherTest {
+class DispatcherTest {
 
   /**
    * Dispatcher is a singleton with no way to reset it's internal state back to the beginning.
@@ -56,7 +57,7 @@ public class DispatcherTest {
    * influence on each other.
    */
   @BeforeEach
-  public void setUp() throws Exception {
+  void setUp() throws Exception {
     final var constructor = Dispatcher.class.getDeclaredConstructor();
     constructor.setAccessible(true);
 

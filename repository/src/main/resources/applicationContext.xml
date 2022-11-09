@@ -24,7 +24,7 @@
 
 -->
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context" xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:security="http://www.springframework.org/schema/security" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
-  <jpa:repositories base-package="com.iluwatar" base-class="org.springframework.data.jpa.repository.support.SimpleJpaRepository" />
+  <jpa:repositories base-package="com.iluwatar" />
   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
     <property name="entityManagerFactory" ref="entityManagerFactory" />
   </bean>
@@ -48,4 +48,7 @@
       </map>
     </property>
   </bean>
+  <context:component-scan base-package="com.iluwatar.repository">
+    <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+  </context:component-scan>
 </beans>

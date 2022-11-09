@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.event.aggregator;
 
 import java.util.Arrays;
@@ -49,13 +50,28 @@ public class App {
   public static void main(String[] args) {
 
     var kingJoffrey = new KingJoffrey();
-    var kingsHand = new KingsHand(kingJoffrey);
+
+    var kingsHand = new KingsHand();
+    kingsHand.registerObserver(kingJoffrey, Event.TRAITOR_DETECTED);
+    kingsHand.registerObserver(kingJoffrey, Event.STARK_SIGHTED);
+    kingsHand.registerObserver(kingJoffrey, Event.WARSHIPS_APPROACHING);
+    kingsHand.registerObserver(kingJoffrey, Event.WHITE_WALKERS_SIGHTED);
+
+    var varys = new LordVarys();
+    varys.registerObserver(kingsHand, Event.TRAITOR_DETECTED);
+    varys.registerObserver(kingsHand, Event.WHITE_WALKERS_SIGHTED);
+
+    var scout = new Scout();
+    scout.registerObserver(kingsHand, Event.WARSHIPS_APPROACHING);
+    scout.registerObserver(varys, Event.WHITE_WALKERS_SIGHTED);
+
+    var baelish = new LordBaelish(kingsHand, Event.STARK_SIGHTED);
 
     var emitters = List.of(
         kingsHand,
-        new LordBaelish(kingsHand),
-        new LordVarys(kingsHand),
-        new Scout(kingsHand)
+        baelish,
+        varys,
+        scout
     );
 
     Arrays.stream(Weekday.values())

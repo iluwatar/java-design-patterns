@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,34 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.chain;
-
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * RequestHandler.
  */
-@Slf4j
-@AllArgsConstructor
-public abstract class RequestHandler {
+public interface RequestHandler {
 
-  private final RequestHandler next;
+  boolean canHandleRequest(Request req);
 
-  /**
-   * Request handler.
-   */
-  public void handleRequest(Request req) {
-    if (next != null) {
-      next.handleRequest(req);
-    }
-  }
+  int getPriority();
 
-  protected void printHandling(Request req) {
-    LOGGER.info("{} handling request \"{}\"", this, req);
-  }
+  void handle(Request req);
 
-  @Override
-  public abstract String toString();
+  String name();
 }

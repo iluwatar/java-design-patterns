@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.servicelayer.common;
 
 import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
-import org.hibernate.Criteria;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 
 /**
  * Base class for Dao implementations.
@@ -56,9 +59,12 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
     E result;
     try (var session = getSessionFactory().openSession()) {
       tx = session.beginTransaction();
-      var criteria = session.createCriteria(persistentClass);
-      criteria.add(Restrictions.idEq(id));
-      result = (E) criteria.uniqueResult();
+      CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+      CriteriaQuery<E> builderQuery = criteriaBuilder.createQuery(persistentClass);
+      Root<E> root = builderQuery.from(persistentClass);
+      builderQuery.select(root).where(criteriaBuilder.equal(root.get("id"), id));
+      Query<E> query = session.createQuery(builderQuery);
+      result = query.uniqueResult();
       tx.commit();
     } catch (Exception e) {
       if (tx != null) {
@@ -122,8 +128,12 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
     List<E> result;
     try (var session = getSessionFactory().openSession()) {
       tx = session.beginTransaction();
-      Criteria criteria = session.createCriteria(persistentClass);
-      result = criteria.list();
+      CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+      CriteriaQuery<E> builderQuery = criteriaBuilder.createQuery(persistentClass);
+      Root<E> root = builderQuery.from(persistentClass);
+      builderQuery.select(root);
+      Query<E> query = session.createQuery(builderQuery);
+      result = query.getResultList();
     } catch (Exception e) {
       if (tx != null) {
         tx.rollback();

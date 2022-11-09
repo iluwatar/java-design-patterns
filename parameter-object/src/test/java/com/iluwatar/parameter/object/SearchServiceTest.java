@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.parameter.object;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -36,7 +37,7 @@ class SearchServiceTest {
   private SearchService searchService;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     //Creating parameter object with default values set
     parameterObject = ParameterObject.newBuilder()
         .withType("sneakers")
@@ -49,7 +50,7 @@ class SearchServiceTest {
    *  Testing parameter object against the overloaded method to verify if the behaviour is same.
    */
   @Test
-  public void testDefaultParametersMatch() {
+  void testDefaultParametersMatch() {
     assertEquals(searchService.search(parameterObject), searchService.search("sneakers",
         SortOrder.ASC), "Default Parameter values do not not match.");
     LOGGER.info("SortBy Default parameter value matches.");

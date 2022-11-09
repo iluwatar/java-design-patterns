@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package domainapp.dom.modules.simple;
 
 import static org.junit.Assert.assertEquals;
@@ -32,17 +33,17 @@ import org.junit.Test;
 /**
  * Test for SimpleObject
  */
-public class SimpleObjectTest {
+class SimpleObjectTest {
 
   SimpleObject simpleObject;
 
   @Before
-  public void setUp() {
+  void setUp() {
     simpleObject = new SimpleObject();
   }
 
   @Test
-  public void testName() {
+  void testName() {
     // given
     String name = "Foobar";
     assertNull(simpleObject.getName());
