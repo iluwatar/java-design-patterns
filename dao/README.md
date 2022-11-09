@@ -154,6 +154,11 @@ Use the Data Access Object in any of the following situations:
 * When you want to consolidate how the data layer is accessed.
 * When you want to avoid writing multiple data retrieval/persistence layers.
 
+## Tutorials
+
+* [The DAO Pattern in Java](https://www.baeldung.com/java-dao-pattern)
+* [Data Access Object Pattern](https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm)
+
 ## Credits
 
 * [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
