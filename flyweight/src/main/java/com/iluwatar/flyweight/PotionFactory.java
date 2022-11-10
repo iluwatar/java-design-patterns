@@ -58,6 +58,7 @@ public class PotionFactory {
           break;
         case STRENGTH:
           potion = new StrengthPotion();
+          break;
         default:
           break;
       }
