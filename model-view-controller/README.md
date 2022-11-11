@@ -20,6 +20,11 @@ Use the Model-View-Controller pattern when
 
 * You want to clearly separate the domain data from its user interface representation
 
+## Tutorials
+
+* [Spring Boot MVC](https://zetcode.com/springboot/model/)
+* [Spring MVC Tutorial](https://www.baeldung.com/spring-mvc-tutorial)
+
 ## Credits
 
 * [Trygve Reenskaug - Model-view-controller](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
