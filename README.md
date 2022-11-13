@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-237-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-238-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -379,6 +379,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://journal.artfuldev.com"><img src="https://avatars.githubusercontent.com/u/3091087?v=4?s=100" width="100px;" alt="Sudarsan Balaji"/><br /><sub><b>Sudarsan Balaji</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=artfuldev" title="Code">💻</a></td>
       <td align="center"><a href="https://www.linkedin.com/in/vaibhav-agr/"><img src="https://avatars.githubusercontent.com/u/78676331?v=4?s=100" width="100px;" alt="Vaibhav Agrawal"/><br /><sub><b>Vaibhav Agrawal</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=vaibhav-if" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/u7275858"><img src="https://avatars.githubusercontent.com/u/110969489?v=4?s=100" width="100px;" alt="u7275858"/><br /><sub><b>u7275858</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=u7275858" title="Code">💻</a></td>
+      <td align="center"><a href="https://gist.github.com/prasad-333"><img src="https://avatars.githubusercontent.com/u/37048768?v=4?s=100" width="100px;" alt="prasad-333"/><br /><sub><b>prasad-333</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=prasad-333" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
