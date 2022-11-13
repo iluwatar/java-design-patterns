@@ -215,6 +215,7 @@
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
+    <module>serialized-entity</module>
     <module>identity-map</module>
   </modules>
   <repositories>
