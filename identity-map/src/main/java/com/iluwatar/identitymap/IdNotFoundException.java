@@ -22,24 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.model.view.controller;
+package com.iluwatar.identitymap;
 
-import lombok.AllArgsConstructor;
-
-/**
- * Fatigue enumeration.
- */
-@AllArgsConstructor
-public enum Fatigue {
-  ALERT("alert"),
-  TIRED("tired"),
-  SLEEPING("sleeping");
-
-  private final String title;
-
-
-  @Override
-  public String toString() {
-    return title;
+public class IdNotFoundException extends RuntimeException {
+  public IdNotFoundException(final String message) {
+    super(message);
   }
 }

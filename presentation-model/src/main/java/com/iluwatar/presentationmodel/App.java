@@ -22,24 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.model.view.controller;
+package com.iluwatar.presentationmodel;
 
-import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Fatigue enumeration.
+ * The Presentation model pattern is used to divide the presentation and controlling.
+ * This demo is a used to information of some albums with GUI.
  */
-@AllArgsConstructor
-public enum Fatigue {
-  ALERT("alert"),
-  TIRED("tired"),
-  SLEEPING("sleeping");
+@Slf4j
+public final class App {
+  /**
+   * the constructor.
+   */
+  private App() {
+  }
 
-  private final String title;
-
-
-  @Override
-  public String toString() {
-    return title;
+  /**
+   * main method.
+   *
+   * @param args args
+   */
+  public static void main(final String[] args) {
+    var view = new View();
+    view.createView();
   }
 }
+

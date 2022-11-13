@@ -22,24 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.model.view.controller;
+package com.iluwatar.identitymap;
+import org.junit.jupiter.api.Test;
 
-import lombok.AllArgsConstructor;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Fatigue enumeration.
- */
-@AllArgsConstructor
-public enum Fatigue {
-  ALERT("alert"),
-  TIRED("tired"),
-  SLEEPING("sleeping");
-
-  private final String title;
-
-
-  @Override
-  public String toString() {
-    return title;
+  class AppTest {
+  @Test
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

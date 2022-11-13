@@ -22,24 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.model.view.controller;
+package com.iluwatar.presentationmodel;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * Fatigue enumeration.
+ *A class used to store the information of album.
  */
+@Setter
+@Getter
 @AllArgsConstructor
-public enum Fatigue {
-  ALERT("alert"),
-  TIRED("tired"),
-  SLEEPING("sleeping");
-
-  private final String title;
-
-
-  @Override
-  public String toString() {
-    return title;
-  }
+public class Album {
+  /**
+   * the title of the album.
+   */
+  private String title;
+  /**
+   * the artist name of the album.
+   */
+  private String artist;
+  /**
+   * is the album classical, true or false.
+   */
+  private boolean isClassical;
+  /**
+   * only when the album is classical,
+   * composer can have content.
+   */
+  private String composer;
 }

@@ -22,24 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.model.view.controller;
+package com.iluwatar.identitymap;
 
-import lombok.AllArgsConstructor;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-/**
- * Fatigue enumeration.
- */
-@AllArgsConstructor
-public enum Fatigue {
-  ALERT("alert"),
-  TIRED("tired"),
-  SLEEPING("sleeping");
-
-  private final String title;
-
-
-  @Override
-  public String toString() {
-    return title;
+class PersonTest {
+  @Test
+  void testEquality(){
+    // dummy persons.
+    Person person1 = new Person(1,"Harry",989950022);
+    Person person2 = new Person(2,"Kane",989920011);
+    Assertions.assertNotEquals(person1,person2,"Incorrect equality condition");
+    // person with duplicate nationalID.
+    Person person3 = new Person(2,"John",789012211);
+    // If nationalID is equal then persons are equal(even if name or phoneNum are different).
+    // This situation will never arise in this implementation. Only for testing.
+    Assertions.assertEquals(person2,person3,"Incorrect inequality condition");
   }
 }

@@ -152,6 +152,12 @@ Use the API Gateway pattern when
 
 * You're using microservices architecture and need a single point of aggregation for your microservice calls.
 
+## Tutorials
+
+* [Exploring the New Spring Cloud Gateway](https://www.baeldung.com/spring-cloud-gateway)
+* [Spring Cloud - Gateway](https://www.tutorialspoint.com/spring_cloud/spring_cloud_gateway.htm)
+* [Getting Started With Spring Cloud Gateway](https://dzone.com/articles/getting-started-with-spring-cloud-gateway)
+
 ## Credits
 
 * [microservices.io - API Gateway](http://microservices.io/patterns/apigateway.html)

@@ -22,24 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.model.view.controller;
+package com.iluwatar.identitymap;
 
-import lombok.AllArgsConstructor;
+public interface PersonDbSimulator {
+  Person find(int personNationalID);
 
-/**
- * Fatigue enumeration.
- */
-@AllArgsConstructor
-public enum Fatigue {
-  ALERT("alert"),
-  TIRED("tired"),
-  SLEEPING("sleeping");
+  void insert(Person person);
 
-  private final String title;
+  void update(Person person);
 
+  void delete(int personNationalID);
 
-  @Override
-  public String toString() {
-    return title;
-  }
 }

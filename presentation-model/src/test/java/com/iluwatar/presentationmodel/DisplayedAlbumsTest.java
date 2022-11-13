@@ -22,24 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.model.view.controller;
+package com.iluwatar.presentationmodel;
 
-import lombok.AllArgsConstructor;
+import org.junit.jupiter.api.Test;
 
-/**
- * Fatigue enumeration.
- */
-@AllArgsConstructor
-public enum Fatigue {
-  ALERT("alert"),
-  TIRED("tired"),
-  SLEEPING("sleeping");
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-  private final String title;
+class DisplayedAlbumsTest {
+  @Test
+  void testAdd_true(){
+    DisplayedAlbums displayedAlbums = new DisplayedAlbums();
+    displayedAlbums.addAlbums("title", "artist", true, "composer");
+    assertEquals("composer", displayedAlbums.getAlbums().get(0).getComposer());
 
+  }
 
-  @Override
-  public String toString() {
-    return title;
+  @Test
+  void testAdd_false(){
+    DisplayedAlbums displayedAlbums = new DisplayedAlbums();
+    displayedAlbums.addAlbums("title", "artist", false, "composer");
+    assertEquals("", displayedAlbums.getAlbums().get(0).getComposer());
   }
 }

@@ -22,24 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.model.view.controller;
+package com.iluwatar.presentationmodel;
 
-import lombok.AllArgsConstructor;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
- * Fatigue enumeration.
+ * Issue: Add at least one assertion to this test case.
+ *
+ * Solution: Inserted assertion to check whether the execution of the main method in {@link App}
+ * throws an exception.
  */
-@AllArgsConstructor
-public enum Fatigue {
-  ALERT("alert"),
-  TIRED("tired"),
-  SLEEPING("sleeping");
+class AppTest {
 
-  private final String title;
-
-
-  @Override
-  public String toString() {
-    return title;
-  }
+    @Test
+    void shouldExecuteApplicationWithoutException() {
+        assertDoesNotThrow(() -> App.main(new String[]{}));
+    }
 }

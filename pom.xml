@@ -24,7 +24,8 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+  <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.iluwatar</groupId>
   <artifactId>java-design-patterns</artifactId>
@@ -207,13 +208,14 @@
     <module>model-view-viewmodel</module>
     <module>composite-entity</module>
     <module>table-module</module>
-    <module>presentation</module>
+    <module>presentation-model</module>
     <module>lockable-object</module>
     <module>fanout-fanin</module>
     <module>domain-model</module>
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
+    <module>identity-map</module>
   </modules>
   <repositories>
     <repository>
