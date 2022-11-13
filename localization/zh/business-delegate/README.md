@@ -129,7 +129,7 @@ public class MobileClient {
 
 ## 类图
 
-![alt text](etc/business-delegate.urm.png "Business Delegate")
+![alt text](./etc/business-delegate.urm.png "Business Delegate")
 
 ## 相关模式
 

@@ -161,7 +161,7 @@ public class UserService {
 
 ## Class diagram
 
-![metamapping](etc/metamapping.png)
+![metamapping](./etc/metamapping.png)
 
 ## Applicability
 

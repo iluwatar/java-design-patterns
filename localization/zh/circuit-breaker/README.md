@@ -37,7 +37,7 @@ remote calls.
 
 服务架构如下：
 
-![alt text](etc/ServiceDiagram.png "Service Diagram")
+![alt text](./etc/ServiceDiagram.png "Service Diagram")
 
 在代码方面，最终用户应用程序是：
 
@@ -278,7 +278,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
 
 上述模式如何防止失败？ 让我们通过它实现的这个有限状态机来理解。
 
-![alt text](etc/StateDiagram.png "State Diagram")
+![alt text](./etc/StateDiagram.png "State Diagram")
 
 - 我们使用某些参数初始化断路器对象：`timeout`、`failureThreshold` 和 `retryTimePeriod`，这有助于确定 API 的弹性。
 - 最初，我们处于“关闭”状态，没有发生对 API 的远程调用。
@@ -288,7 +288,7 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
 
 ## 类图
 
-![alt text](etc/circuit-breaker.urm.png "Circuit Breaker class diagram")
+![alt text](./etc/circuit-breaker.urm.png "Circuit Breaker class diagram")
 
 ## 适用性
 

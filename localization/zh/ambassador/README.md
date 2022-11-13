@@ -164,7 +164,7 @@ Service result: -1
 
 ## 类图
 
-![alt text](etc/ambassador.urm.png "Ambassador class diagram")
+![alt text](./etc/ambassador.urm.png "Ambassador class diagram")
 
 ## 适用性
 
