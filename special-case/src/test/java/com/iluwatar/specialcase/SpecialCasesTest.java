@@ -40,7 +40,7 @@ import org.junit.jupiter.api.BeforeEach;
 /**
  * Special cases unit tests. (including the successful scenario {@link ReceiptDto})
  */
-public class SpecialCasesTest {
+class SpecialCasesTest {
   private static ApplicationServices applicationServices;
   private static ReceiptViewModel receipt;
 
@@ -54,12 +54,12 @@ public class SpecialCasesTest {
   }
 
   @BeforeEach
-  public void beforeEach() {
+  void beforeEach() {
     MaintenanceLock.getInstance().setLock(false);
   }
 
   @Test
-  public void testDownForMaintenance() {
+  void testDownForMaintenance() {
     final Logger LOGGER = (Logger) LoggerFactory.getLogger(DownForMaintenance.class);
 
     ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
@@ -76,7 +76,7 @@ public class SpecialCasesTest {
   }
 
   @Test
-  public void testInvalidUser() {
+  void testInvalidUser() {
     final Logger LOGGER = (Logger) LoggerFactory.getLogger(InvalidUser.class);
 
     ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
@@ -92,7 +92,7 @@ public class SpecialCasesTest {
   }
 
   @Test
-  public void testOutOfStock() {
+  void testOutOfStock() {
     final Logger LOGGER = (Logger) LoggerFactory.getLogger(OutOfStock.class);
 
     ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
@@ -109,7 +109,7 @@ public class SpecialCasesTest {
   }
 
   @Test
-  public void testInsufficientFunds() {
+  void testInsufficientFunds() {
     final Logger LOGGER = (Logger) LoggerFactory.getLogger(InsufficientFunds.class);
 
     ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
@@ -126,7 +126,7 @@ public class SpecialCasesTest {
   }
 
   @Test
-  public void testReceiptDto() {
+  void testReceiptDto() {
     final Logger LOGGER = (Logger) LoggerFactory.getLogger(ReceiptDto.class);
 
     ListAppender<ILoggingEvent> listAppender = new ListAppender<>();

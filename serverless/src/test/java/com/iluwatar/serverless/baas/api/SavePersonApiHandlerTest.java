@@ -56,7 +56,7 @@ class SavePersonApiHandlerTest {
   private final ObjectMapper objectMapper = new ObjectMapper();
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     MockitoAnnotations.openMocks(this);
     this.savePersonApiHandler = new SavePersonApiHandler();
     this.savePersonApiHandler.setDynamoDbMapper(dynamoDbMapper);

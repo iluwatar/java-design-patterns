@@ -32,7 +32,7 @@ import org.junit.jupiter.params.provider.Arguments;
  *
  * @author Jeroen Meulemeester
  */
-public class PlusExpressionTest extends ExpressionTest<PlusExpression> {
+class PlusExpressionTest extends ExpressionTest<PlusExpression> {
 
   /**
    * Create a new set of test entries with the expected result

@@ -41,7 +41,7 @@ import org.mockito.ArgumentCaptor;
  *
  * @author Jeroen Meulemeester
  */
-public class ProducerTest {
+class ProducerTest {
 
   @Test
   void testSend() throws Exception {

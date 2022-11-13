@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Feature Toggle
-folder: feature-toggle
-permalink: /patterns/feature-toggle/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Extensibility

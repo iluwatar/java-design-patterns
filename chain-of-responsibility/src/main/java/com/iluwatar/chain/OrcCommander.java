@@ -24,27 +24,31 @@
  */
 package com.iluwatar.chain;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * OrcCommander.
  */
-public class OrcCommander extends RequestHandler {
-
-  public OrcCommander(RequestHandler handler) {
-    super(handler);
+@Slf4j
+public class OrcCommander implements RequestHandler {
+  @Override
+  public boolean canHandleRequest(Request req) {
+    return req.getRequestType() == RequestType.DEFEND_CASTLE;
   }
 
   @Override
-  public void handleRequest(Request req) {
-    if (RequestType.DEFEND_CASTLE == req.getRequestType()) {
-      printHandling(req);
-      req.markHandled();
-    } else {
-      super.handleRequest(req);
-    }
+  public int getPriority() {
+    return 2;
   }
 
   @Override
-  public String toString() {
+  public void handle(Request req) {
+    req.markHandled();
+    LOGGER.info("{} handling request \"{}\"", name(), req);
+  }
+
+  @Override
+  public String name() {
     return "Orc commander";
   }
 }

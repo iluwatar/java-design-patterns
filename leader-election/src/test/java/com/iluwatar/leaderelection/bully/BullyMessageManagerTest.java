@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
 /**
  * BullyMessageManager unit test.
  */
-public class BullyMessageManagerTest {
+class BullyMessageManagerTest {
 
   @Test
   void testSendHeartbeatMessage() {

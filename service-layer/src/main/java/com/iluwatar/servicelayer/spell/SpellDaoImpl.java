@@ -25,8 +25,12 @@
 package com.iluwatar.servicelayer.spell;
 
 import com.iluwatar.servicelayer.common.DaoBaseImpl;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
+
 
 /**
  * SpellDao implementation.
@@ -39,9 +43,12 @@ public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
     Spell result;
     try (var session = getSessionFactory().openSession()) {
       tx = session.beginTransaction();
-      var criteria = session.createCriteria(persistentClass);
-      criteria.add(Restrictions.eq("name", name));
-      result = (Spell) criteria.uniqueResult();
+      CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+      CriteriaQuery<Spell> builderQuery = criteriaBuilder.createQuery(Spell.class);
+      Root<Spell> root = builderQuery.from(Spell.class);
+      builderQuery.select(root).where(criteriaBuilder.equal(root.get("name"), name));
+      Query<Spell> query = session.createQuery(builderQuery);
+      result = query.uniqueResult();
       tx.commit();
     } catch (Exception e) {
       if (tx != null) {

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: EIP Publish Subscribe
-folder: eip-publish-subscribe
-permalink: /patterns/eip-publish-subscribe/
-categories: Integration
+category: Integration
 language: en
 tags:
  - Enterprise Integration Pattern

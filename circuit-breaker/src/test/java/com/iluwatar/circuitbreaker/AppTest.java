@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
 /**
  * App Test showing usage of circuit breaker.
  */
-public class AppTest {
+class AppTest {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(AppTest.class);
 
@@ -60,7 +60,7 @@ public class AppTest {
    * and retry time period of 2 seconds.
    */
   @BeforeEach
-  public void setupCircuitBreakers() {
+  void setupCircuitBreakers() {
     var delayedService = new DelayedRemoteService(System.nanoTime(), STARTUP_DELAY);
     //Set the circuit Breaker parameters
     delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000,
@@ -78,7 +78,7 @@ public class AppTest {
   }
 
   @Test
-  public void testFailure_OpenStateTransition() {
+  void testFailure_OpenStateTransition() {
     //Calling delayed service, which will be unhealthy till 4 seconds
     assertEquals("Delayed service is down", monitoringService.delayedServiceResponse());
     //As failure threshold is "1", the circuit breaker is changed to OPEN
@@ -93,7 +93,7 @@ public class AppTest {
   }
 
   @Test
-  public void testFailure_HalfOpenStateTransition() {
+  void testFailure_HalfOpenStateTransition() {
     //Calling delayed service, which will be unhealthy till 4 seconds
     assertEquals("Delayed service is down", monitoringService.delayedServiceResponse());
     //As failure threshold is "1", the circuit breaker is changed to OPEN
@@ -112,7 +112,7 @@ public class AppTest {
   }
 
   @Test
-  public void testRecovery_ClosedStateTransition() {
+  void testRecovery_ClosedStateTransition() {
     //Calling delayed service, which will be unhealthy till 4 seconds
     assertEquals("Delayed service is down", monitoringService.delayedServiceResponse());
     //As failure threshold is "1", the circuit breaker is changed to OPEN

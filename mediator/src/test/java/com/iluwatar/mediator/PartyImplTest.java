@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class PartyImplTest {
+class PartyImplTest {
 
   /**
    * Verify if a member is notified when it's joining a party. Generate an action and see if the

@@ -43,7 +43,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Jeroen Meulemeester
  */
-public class DragonSlayingStrategyTest {
+class DragonSlayingStrategyTest {
 
   /**
    * Assembles test parameters.
@@ -70,12 +70,12 @@ public class DragonSlayingStrategyTest {
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -85,7 +85,7 @@ public class DragonSlayingStrategyTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testExecute(DragonSlayingStrategy strategy, String expectedResult) {
+  void testExecute(DragonSlayingStrategy strategy, String expectedResult) {
     strategy.execute();
     assertEquals(expectedResult, appender.getLastMessage());
     assertEquals(1, appender.getLogSize());

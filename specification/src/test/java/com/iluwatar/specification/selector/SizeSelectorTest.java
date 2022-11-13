@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class SizeSelectorTest {
+class SizeSelectorTest {
 
   /**
    * Verify if the size selector gives the correct results
