@@ -28,6 +28,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * Person repository.
  */
@@ -36,4 +38,6 @@ public interface PersonRepository
     extends CrudRepository<Person, Long>, JpaSpecificationExecutor<Person> {
 
   Person findByName(String name);
+
+  List<Person> findAll();
 }
