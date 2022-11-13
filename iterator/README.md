@@ -1,6 +1,6 @@
 ---
 title: Iterator
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Gang of Four
