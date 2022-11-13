@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class HalflingThiefTest {
+class HalflingThiefTest {
 
   /**
    * Verify if the thief uses the provided stealing method

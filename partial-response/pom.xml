@@ -37,7 +37,6 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-junit-jupiter</artifactId>
-      <version>3.5.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>

@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class ConsumerTest {
+class ConsumerTest {
 
   private static final int ITEM_COUNT = 5;
 

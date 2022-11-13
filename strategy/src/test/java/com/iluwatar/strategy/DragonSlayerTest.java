@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class DragonSlayerTest {
+class DragonSlayerTest {
 
   /**
    * Verify if the dragon slayer uses the strategy during battle.

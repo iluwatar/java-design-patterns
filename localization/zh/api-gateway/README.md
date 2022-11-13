@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: API Gateway
-folder: api-gateway
-permalink: /patterns/api-gateway/
-categories: Architectural
+category: Architectural
 language: zh
 tags:
   - Cloud distributed
@@ -123,7 +120,7 @@ public class ApiGateway {
 ```
 
 ## 类图
-![alt text](../../../api-gateway/etc/api-gateway.png "API Gateway")
+![alt text](etc/api-gateway.png "API Gateway")
 
 ## 适用性
 

@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Message test case.
  */
-public class MessageTest {
+class MessageTest {
 
   @Test
   void testGetType() {

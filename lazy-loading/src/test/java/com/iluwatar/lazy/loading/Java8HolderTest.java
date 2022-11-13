@@ -32,7 +32,7 @@ import java.util.function.Supplier;
  *
  * @author Jeroen Meulemeester
  */
-public class Java8HolderTest extends AbstractHolderTest {
+class Java8HolderTest extends AbstractHolderTest {
 
   private final Java8Holder holder = new Java8Holder();
 

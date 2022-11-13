@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 /**
  * RingInstance unit test.
  */
-public class RingInstanceTest {
+class RingInstanceTest {
 
   @Test
   void testOnMessage() {

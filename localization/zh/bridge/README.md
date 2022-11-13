@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Bridge
-folder: bridge
-permalink: /patterns/bridge/
-categories: Structural
+category: Structural
 language: zh
 tags:
  - Gang of Four
@@ -184,7 +181,7 @@ hammer.unwield();
 
 ## 类图
 
-![alt text](../../../bridge/etc/bridge.urm.png "Bridge class diagram")
+![alt text](etc/bridge.urm.png "Bridge class diagram")
 
 ## 适用性
 

@@ -38,17 +38,17 @@ import org.junit.jupiter.params.provider.MethodSource;
  *
  * @author Jeroen Meulemeester
  */
-public class FrontControllerTest {
+class FrontControllerTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -66,7 +66,7 @@ public class FrontControllerTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testDisplay(Command command, String displayMessage) {
+  void testDisplay(Command command, String displayMessage) {
     assertEquals(0, appender.getLogSize());
     command.process();
     assertEquals(displayMessage, appender.getLastMessage());

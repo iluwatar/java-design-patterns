@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Iterator
-folder: iterator
-permalink: /patterns/iterator/
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Gang of Four

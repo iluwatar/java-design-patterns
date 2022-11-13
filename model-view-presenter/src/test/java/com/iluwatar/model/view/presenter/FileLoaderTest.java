@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class FileLoaderTest {
+class FileLoaderTest {
 
   @Test
   void testLoadData() {
