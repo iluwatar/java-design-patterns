@@ -65,7 +65,7 @@ class RepositoryTest {
 
   @Test
   void testFindAll() {
-    List<Person> actuals = (List<Person>) repository.findAll();
+    List<Person> actuals = repository.findAll();
     assertTrue(actuals.containsAll(persons) && persons.containsAll(actuals));
   }
 
