@@ -37,7 +37,7 @@ class BookRepositoryTest {
   private final BookRepository bookRepository = new BookRepository();
 
   @BeforeEach
-  public void setUp() throws BookDuplicateException {
+  void setUp() throws BookDuplicateException {
     var book = new Book();
     book.setId(bookId);
     bookRepository.add(book);

@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test for {@link Pipeline}
  */
-public class PipelineTest {
+class PipelineTest {
 
   @Test
   void testAddHandlersToPipeline() {

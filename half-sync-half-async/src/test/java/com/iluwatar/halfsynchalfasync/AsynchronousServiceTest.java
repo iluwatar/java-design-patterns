@@ -44,12 +44,12 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class AsynchronousServiceTest {
+class AsynchronousServiceTest {
   private AsynchronousService service;
   private AsyncTask<Object> task;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     service = new AsynchronousService(new LinkedBlockingQueue<>());
     task = mock(AsyncTask.class);
   }

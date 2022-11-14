@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Prototype
-folder: prototype
-permalink: /patterns/prototype/ko
-categories: Creational
+category: Creational
 language: ko
 tags:
 - Gang Of Four
@@ -67,7 +64,7 @@ System.out.println(cloned.getName()); // Dolly
 
 ## 클래스 다이어그램
 
-![alt text](https://github.com/iluwatar/java-design-patterns/blob/master/prototype/etc/prototype.urm.png)
+![alt text](etc/prototype.urm.png)
 
 ## 적용 가능성
 

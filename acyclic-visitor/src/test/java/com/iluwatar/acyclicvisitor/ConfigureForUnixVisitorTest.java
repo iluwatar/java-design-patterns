@@ -44,7 +44,7 @@ class ConfigureForUnixVisitorTest {
 
   @BeforeEach
   @AfterEach
-  public void clearLoggers() {
+  void clearLoggers() {
     TestLoggerFactory.clear();
   }
 

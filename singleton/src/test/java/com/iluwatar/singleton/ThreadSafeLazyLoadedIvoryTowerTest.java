@@ -29,7 +29,7 @@ package com.iluwatar.singleton;
  *
  * @author Jeroen Meulemeester
  */
-public class ThreadSafeLazyLoadedIvoryTowerTest
+class ThreadSafeLazyLoadedIvoryTowerTest
     extends SingletonTest<ThreadSafeLazyLoadedIvoryTower> {
 
   /**

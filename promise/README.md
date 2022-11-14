@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Promise
-folder: promise
-permalink: /patterns/promise/
-categories: Concurrency
+category: Concurrency
 language: en
 tags:
  - Reactive

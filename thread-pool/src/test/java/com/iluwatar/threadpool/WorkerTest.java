@@ -36,7 +36,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class WorkerTest {
+class WorkerTest {
 
   /**
    * Verify if a worker does the actual job

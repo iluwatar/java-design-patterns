@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Active Object
-folder: active-object
-permalink: /patterns/active-object/
-categories: Concurrency
+category: Concurrency
 language: en
 tags:
  - Performance

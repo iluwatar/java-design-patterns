@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class StarTest {
+class StarTest {
 
   /**
    * Verify the stages of a dying sun, without going back in time

@@ -1,0 +1,67 @@
+@startuml
+package com.iluwatar.identitymap {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class IdentityMap {
+    - LOGGER : Logger {static}
+    - personMap : Map<Integer, Person>
+    + IdentityMap()
+    + addPerson(person : Person)
+    + getPerson(id : int) : Person
+    + getPersonMap() : Map<Integer, Person>
+    + size() : int
+  }
+  class Person {
+    - name : String
+    - personNationalId : int
+    - phoneNum : long
+    - serialVersionUID : long {static}
+    + Person(personNationalId : int, name : String, phoneNum : long)
+    + equals(o : Object) : boolean
+    + getName() : String
+    + getPersonNationalId() : int
+    + getPhoneNum() : long
+    + hashCode() : int
+    + setName(name : String)
+    + setPersonNationalId(personNationalId : int)
+    + setPhoneNum(phoneNum : long)
+    + toString() : String
+  }
+  interface PersonDbSimulator {
+    + delete(int) {abstract}
+    + find(int) : Person {abstract}
+    + insert(Person) {abstract}
+    + update(Person) {abstract}
+  }
+  class PersonDbSimulatorImplementation {
+    ~ ID_STR : String {static}
+    - LOGGER : Logger {static}
+    ~ NOT_IN_DATA_BASE : String {static}
+    - personList : List<Person>
+    + PersonDbSimulatorImplementation()
+    + delete(id : int)
+    + find(personNationalID : int) : Person
+    + insert(person : Person)
+    + size() : int
+    + update(person : Person)
+  }
+  class PersonFinder {
+    - LOGGER : Logger {static}
+    - db : PersonDbSimulatorImplementation
+    - identityMap : IdentityMap
+    + PersonFinder()
+    + getDB() : PersonDbSimulatorImplementation
+    + getIdentityMap() : IdentityMap
+    + getPerson(key : int) : Person
+    + setDb(db : PersonDbSimulatorImplementation)
+    + setIdentityMap(identityMap : IdentityMap)
+  }
+}
+PersonFinder -->  "-db" PersonDbSimulatorImplementation
+PersonFinder -->  "-identityMap" IdentityMap
+PersonDbSimulatorImplementation -->  "-personList" Person
+PersonDbSimulatorImplementation ..|> PersonDbSimulator 
+@enduml
