@@ -91,7 +91,7 @@ public class CustomerResource {
 
 ## 类图
 
-![alt text](etc/data-transfer-object.urm.png "data-transfer-object")
+![alt text](./etc/data-transfer-object.urm.png "data-transfer-object")
 
 ## 适用性
 

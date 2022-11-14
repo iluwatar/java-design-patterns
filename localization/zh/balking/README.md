@@ -108,7 +108,7 @@ public interface DelayProvider {
 
 ## 类图
 
-![alt text](etc/balking.png "Balking")
+![alt text](./etc/balking.png "Balking")
 
 ## 适用性
 
