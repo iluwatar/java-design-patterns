@@ -34,7 +34,7 @@ import java.time.LocalDate;
 /**
  * Unit tests for the Book class
  */
-public class BookCurryingTest {
+class BookCurryingTest {
   private static Book expectedBook;
 
   @BeforeAll
@@ -49,7 +49,7 @@ public class BookCurryingTest {
    * Tests that the expected book can be created via curried functions
    */
   @Test
-  public void createsExpectedBook() {
+  void createsExpectedBook() {
     Book curriedBook = Book.builder()
         .withGenre(Genre.FANTASY)
         .withAuthor("Dave")
@@ -63,7 +63,7 @@ public class BookCurryingTest {
    * Tests that an intermediate curried function can be used to create the expected book
    */
   @Test
-  public void functionCreatesExpectedBook() {
+  void functionCreatesExpectedBook() {
     Book.AddTitle daveFantasyBookFunc = Book.builder()
       .withGenre(Genre.FANTASY)
       .withAuthor("Dave");
