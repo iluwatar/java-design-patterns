@@ -49,7 +49,7 @@ import org.mockito.ArgumentCaptor;
  *
  * @author Jeroen Meulemeester
  */
-public class DispatcherTest {
+class DispatcherTest {
 
   /**
    * Dispatcher is a singleton with no way to reset it's internal state back to the beginning.
@@ -57,7 +57,7 @@ public class DispatcherTest {
    * influence on each other.
    */
   @BeforeEach
-  public void setUp() throws Exception {
+  void setUp() throws Exception {
     final var constructor = Dispatcher.class.getDeclaredConstructor();
     constructor.setAccessible(true);
 

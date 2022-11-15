@@ -219,7 +219,7 @@ goblin.printStatus();
 ```
 
 ## 类图
-![alt text](etc/command.png "Command")
+![alt text](./etc/command.png "Command")
 
 ## 适用性
 使用命令模式当你想

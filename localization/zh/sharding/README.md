@@ -13,7 +13,7 @@ tags:
 一个分片本身就是一个数据存储（它可以包含许多不同类型的实体的数据），运行在作为存储节点的服务器上。
 
 ## 类图
-![alt text](etc/sharding.urm.png "Sharding pattern class diagram")
+![alt text](./etc/sharding.urm.png "Sharding pattern class diagram")
 
 ## 适用场景 
 这种设计模式提供了一下的好处：

@@ -34,7 +34,7 @@ import java.util.List;
  *
  * @author Jeroen Meulemeester
  */
-public class GHobbitsTest extends ObserverTest<GHobbits> {
+class GHobbitsTest extends ObserverTest<GHobbits> {
 
   @Override
   public Collection<Object[]> dataProvider() {

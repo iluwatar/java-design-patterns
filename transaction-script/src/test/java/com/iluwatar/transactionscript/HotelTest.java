@@ -45,7 +45,7 @@ class HotelTest {
   private HotelDaoImpl dao;
 
   @BeforeEach
-  public void setUp() throws Exception {
+  void setUp() throws Exception {
     final var dataSource = createDataSource();
     deleteSchema(dataSource);
     createSchema(dataSource);

@@ -165,7 +165,7 @@ public static void main(String[] args) {
 
 ## 类图
 
-![alt text](etc/abstract-factory.urm.png "Abstract Factory class diagram")
+![alt text](./etc/abstract-factory.urm.png "Abstract Factory class diagram")
 
 
 ## 适用性

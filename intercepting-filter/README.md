@@ -1,6 +1,6 @@
 ---
 title: Intercepting Filter
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Decoupling

@@ -11,7 +11,7 @@ tags:
 为了避免昂贵的资源重新获取，方法是在资源使用后不立即释放资源。资源保留其身份，保留在某些快速访问的存储中，并被重新使用，以避免再次获取它们。
 
 ## 类图
-![alt text](etc/caching.png "Caching")
+![alt text](./etc/caching.png "Caching")
 
 ## 适用性
 在以下情况下使用缓存模式

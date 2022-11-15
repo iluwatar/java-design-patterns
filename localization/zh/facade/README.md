@@ -186,7 +186,7 @@ facade.endDay();
 ```
 
 ## 类图
-![alt text](etc/facade.urm.png "Facade pattern class diagram")
+![alt text](./etc/facade.urm.png "Facade pattern class diagram")
 
 ## 适用性
 使用外观模式当
