@@ -26,8 +26,8 @@ package com.iluwatar.currying;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
@@ -37,7 +37,7 @@ import java.time.LocalDate;
 public class BookCurryingTest {
   private static Book expectedBook;
 
-  @BeforeClass
+  @BeforeAll
   public static void initialiseBook() {
     expectedBook = new Book(Genre.FANTASY,
         "Dave",
