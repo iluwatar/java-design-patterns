@@ -92,18 +92,30 @@ public class Book {
                     -> new Book(genre, author, title, publicationDate);
   }
 
+  /**
+   * Functional interface which adds the genre to a book.
+   */
   public interface AddGenre {
     Book.AddAuthor withGenre(Genre genre);
   }
 
+  /**
+   * Functional interface which adds the author to a book.
+   */
   public interface AddAuthor {
     Book.AddTitle withAuthor(String author);
   }
 
+  /**
+   * Functional interface which adds the title to a book.
+   */
   public interface AddTitle {
     Book.AddPublicationDate withTitle(String title);
   }
 
+  /**
+   * Functional interface which adds the publication date to a book.
+   */
   public interface AddPublicationDate {
     Book withPublicationDate(LocalDate publicationDate);
   }
