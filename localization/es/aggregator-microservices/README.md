@@ -1,11 +1,11 @@
 ---
-título: Agregador de microservicios
+título: Agregador de microservicios (Aggregator Microservices)
 categoría: Arquitectónico
 idioma: es
 etiquetas:
-- Nube distribuida
-- Desacoplamiento
-- Microservicios
+- Cloud distributed (Nube distribuida)
+- Decoupling (Desacoplamiento) 
+- Microservices (Microservicios)
 ---
 
 ## Intención
@@ -17,7 +17,7 @@ El usuario realiza una sola llamada al servicio del agregador y, a continuación
 ejemplo del mundo real
 
 > Nuestro mercado web necesita información sobre los productos y su inventario actual. Hace una llamada a un agregador
-> servicio que a su vez llama al microservicio de información del producto y al microservicio de inventario del producto que devuelve el
+> servicio que a su vez llama al microservicio de información del producto y al microservicio de inventario del producto que devuelve la
 > información combinada.
 
 En palabras sencillas
@@ -41,8 +41,8 @@ public class Product {
 }
 ```
 
-A continuación, podemos presentar nuestro microservicio `Aggregator`. Contiene clientes `ProductInformationClient` y
-`ProductInventoryClient` para llamar a los respectivos microservicios.
+A continuación, podemos presentar nuestro microservicio `Aggregator` (Agregador de microservicios). Contiene el `ProductInformationClient` (Información del producto del cliente) y el
+`ProductInventoryClient` (Inventario del producto del cliente) de los clientes para llamar a los respectivos microservicios.
 
 ```java
 @RestController
@@ -91,19 +91,17 @@ Ahora llamando a nuestra REST API `Aggregator` devuelve la información del prod
 curl http://localhost:50004/product
 {"title":"The Product Title.","productInventories":5}
 ```
+
 ## Diagrama de clase
 
 ![alt text](./aggregator-service/etc/aggregator-service.png "Aggregator Microservice")
 
 ## Aplicabilidad
 
-Utilice el patrón Aggregator Microservices cuando necesite una API unificada para varios microservicios, independientemente del dispositivo cliente.
+Utilice el patrón Agregador de microservicios (Aggregator Microservices) cuando necesite una API unificada para varios microservicios, independientemente del dispositivo cliente.
 
 ## Créditos
 
 * [Patrones de diseño de microservicios] (http://web.archive.org/web/20190705163602/http://blog.arungupta.me/microservice-design-patterns/)
 * [Patrones de microservicios: Con ejemplos en Java](https://www.amazon.com/gp/product/1617294543/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617294543&linkId=8b4e570267bc5fb8b8189917b461dc60)
-* [Patrones de arquitectura: Descubra patrones esenciales en el ámbito más indispensable de la arquitectura empresarial] (https://www.amazon.com/gp/product/B077T7V8RC/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=B077T7V8RC&linkId=c34d204bfe1b277914b420189f09c1a4)
-
-
-
+* [Patrones de arquitectura: Descubra patrones esenciales en el ámbito más indispensable de la arquitectura empresarial](https://www.amazon.com/gp/product/B077T7V8RC/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=B077T7V8RC&linkId=c34d204bfe1b277914b420189f09c1a4)
