@@ -92,7 +92,7 @@ curl http://localhost:50004/product
 
 ## 类图
 
-![alt text](etc/aggregator-service.png "Aggregator Microservice")
+![alt text](./etc/aggregator-service.png "Aggregator Microservice")
 
 ## 适用性
 

@@ -83,7 +83,7 @@ var user = userConverter.convertFromDto(dtoUser);
 
 ## 类图
 
-![alt text](etc/converter.png "Converter Pattern")
+![alt text](./etc/converter.png "Converter Pattern")
 
 ## 适用性
 

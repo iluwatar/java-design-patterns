@@ -216,6 +216,7 @@
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
     <module>model-view-intent</module>
+    <module>serialized-entity</module>
     <module>identity-map</module>
   </modules>
   <repositories>
