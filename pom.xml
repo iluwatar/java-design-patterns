@@ -217,6 +217,7 @@
     <module>service-to-worker</module>
     <module>serialized-entity</module>
     <module>identity-map</module>
+    <module>optimistic-offline-lock</module>
   </modules>
   <repositories>
     <repository>

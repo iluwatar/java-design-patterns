@@ -1,0 +1,72 @@
+@startuml
+package com.iluwatar.optimistic.offline.lock.customer {
+  class Customer {
+    - firstName : String
+    - id : long
+    - lastName : String
+    - modified : Timestamp
+    - modifiedBy : String
+    - serialVersionUID : long {static}
+    - version : int
+    + Customer(id : long, firstName : String, lastName : String)
+    ~ Customer(id : long, firstName : String, lastName : String, modifiedBy : String, modified : Timestamp, version : int)
+    + getFirstName() : String
+    + getId() : long
+    + getLastName() : String
+    + getModified() : Timestamp
+    + getModifiedBy() : String
+    + getVersion() : int
+    + setFirstName(firstName : String)
+    + setLastName(lastName : String)
+    + toString() : String
+  }
+  interface CustomerDataMapper {
+    + delete(Customer) {abstract}
+    + find(long) : Customer {abstract}
+    + getAllCustomers() : List<Customer> {abstract}
+    + insert(Customer, String) {abstract}
+    + update(Customer, String) {abstract}
+  }
+  class CustomerDataMapperImpl {
+    - LOGGER : Logger {static}
+    - dataSource : DataSource
+    + CustomerDataMapperImpl(dataSource : DataSource)
+    - closeDbResources(preparedStatement : PreparedStatement, connection : Connection)
+    - closeDbResources(resultSet : ResultSet, preparedStatement : PreparedStatement, connection : Connection)
+    - createCustomer(resultSet : ResultSet) : Customer
+    + delete(customer : Customer)
+    + find(id : long) : Customer
+    + getAllCustomers() : List<Customer>
+    - getConnection() : Connection
+    + insert(customer : Customer, modifiedBy : String)
+    - throwConcurrencyException(customer : Customer)
+    + update(customer : Customer, modifiedBy : String)
+  }
+  class CustomerSchemaSql {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    + CustomerSchemaSql()
+  }
+}
+package com.iluwatar.optimistic.offline.lock {
+  class App {
+    - DB_URL : String {static}
+    - LOGGER : Logger {static}
+    + App()
+    - closeDbResources(statement : Statement, connection : Connection) {static}
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteCustomer(customerDataMapper : CustomerDataMapper, id : long, sleepTime : long) {static}
+    - deleteSchema(dataSource : DataSource) {static}
+    - deleteUpdatedCustomerConcurrencyExample(customerDataMapper : CustomerDataMapper) {static}
+    - generateSampleCustomers(customerDataMapper : CustomerDataMapper) {static}
+    + main(args : String[]) {static}
+    - showAllCustomers(customerDataMapper : CustomerDataMapper) {static}
+    - updateCustomer(customerDataMapper : CustomerDataMapper, id : long, setFirstName : String, setLastName : String, sleepTime : long) {static}
+    - updateCustomerConcurrencyExample(customerDataMapper : CustomerDataMapper) {static}
+    - updateDeletedCustomerConcurrencyExample(customerDataMapper : CustomerDataMapper) {static}
+    - waitForThreadsToFinishExecution(executorService : ExecutorService) {static}
+  }
+}
+CustomerDataMapperImpl ..|> CustomerDataMapper 
+@enduml
