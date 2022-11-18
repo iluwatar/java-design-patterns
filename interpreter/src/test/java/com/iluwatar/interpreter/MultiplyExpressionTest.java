@@ -32,7 +32,7 @@ import org.junit.jupiter.params.provider.Arguments;
  *
  * @author Jeroen Meulemeester
  */
-public class MultiplyExpressionTest extends ExpressionTest<MultiplyExpression> {
+class MultiplyExpressionTest extends ExpressionTest<MultiplyExpression> {
 
   /**
    * Create a new set of test entries with the expected result

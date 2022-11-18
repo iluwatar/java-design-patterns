@@ -34,12 +34,12 @@ import org.junit.jupiter.api.Test;
 /**
  * Test Login Page Object
  */
-public class LoginPageTest {
+class LoginPageTest {
 
   private final LoginPage loginPage = new LoginPage(new WebClient());
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     loginPage.navigateToPage();
   }
 

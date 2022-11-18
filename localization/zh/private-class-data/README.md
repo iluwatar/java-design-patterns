@@ -117,7 +117,7 @@ immutableStew.mix();  // Mixing the immutable stew we find: 2 potatoes, 4 carrot
 
 ## 类图
 
-![alt text](etc/private-class-data.png "Private Class Data")
+![alt text](./etc/private-class-data.png "Private Class Data")
 
 ## 适用性
 

@@ -11,7 +11,7 @@ tags:
 在函数式编程中，可以通过一系列较小的模块化函数或操作来编排复杂的操作。这一系列函数被称为函数组合。当一个数据集合流经一个函数组合时，它就成为一个集合管道。函数组合和集合管道是函数式编程中经常使用的两种设计模式。
 
 ## 类图
-![alt text](etc/collection-pipeline.png "Collection Pipeline")
+![alt text](./etc/collection-pipeline.png "Collection Pipeline")
 
 ## 适用场景
 在以下场景适用集合管道模式：

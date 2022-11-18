@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class ApplicationExceptionTest {
+class ApplicationExceptionTest {
 
   @Test
   void testCause() {

@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * TenantTest to test the creation of Tenant with valid parameters.
  */
-public class BarCustomerTest {
+class BarCustomerTest {
 
   @Test
   void constructorTest() {

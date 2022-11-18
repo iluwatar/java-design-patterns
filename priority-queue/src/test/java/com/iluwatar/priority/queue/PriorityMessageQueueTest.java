@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test case for order of messages
  */
-public class PriorityMessageQueueTest {
+class PriorityMessageQueueTest {
 
 
   @Test

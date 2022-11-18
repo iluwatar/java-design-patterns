@@ -29,7 +29,7 @@ package com.iluwatar.threadpool;
  *
  * @author Jeroen Meulemeester
  */
-public class PotatoPeelingTaskTest extends TaskTest<PotatoPeelingTask> {
+class PotatoPeelingTaskTest extends TaskTest<PotatoPeelingTask> {
 
   /**
    * Create a new test instance

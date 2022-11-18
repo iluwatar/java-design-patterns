@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
-public class CustomerRegistryTest {
+class CustomerRegistryTest {
 
   private static CustomerRegistry customerRegistry;
 
@@ -41,7 +41,7 @@ public class CustomerRegistryTest {
   }
 
   @Test
-  public void shouldBeAbleToAddAndQueryCustomerObjectFromRegistry() {
+  void shouldBeAbleToAddAndQueryCustomerObjectFromRegistry() {
     Customer john = new Customer("1", "john");
     Customer julia = new Customer("2", "julia");
 

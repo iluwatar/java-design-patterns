@@ -29,7 +29,7 @@ package com.iluwatar.templatemethod;
  *
  * @author Jeroen Meulemeester
  */
-public class HitAndRunMethodTest extends StealingMethodTest<HitAndRunMethod> {
+class HitAndRunMethodTest extends StealingMethodTest<HitAndRunMethod> {
 
   /**
    * Create a new test for the {@link HitAndRunMethod}

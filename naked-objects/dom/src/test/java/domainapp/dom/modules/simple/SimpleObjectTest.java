@@ -33,17 +33,17 @@ import org.junit.Test;
 /**
  * Test for SimpleObject
  */
-public class SimpleObjectTest {
+class SimpleObjectTest {
 
   SimpleObject simpleObject;
 
   @Before
-  public void setUp() {
+  void setUp() {
     simpleObject = new SimpleObject();
   }
 
   @Test
-  public void testName() {
+  void testName() {
     // given
     String name = "Foobar";
     assertNull(simpleObject.getName());

@@ -58,7 +58,7 @@ import static org.mockito.Mockito.*;
  * Unit test for Function class.
  */
 @ExtendWith(MockitoExtension.class)
-public class UsageCostProcessorFunctionTest {
+class UsageCostProcessorFunctionTest {
 
     @Mock
     MessageHandlerUtility<UsageDetail> mockMessageHandlerUtilityForUsageADetail;
@@ -74,7 +74,7 @@ public class UsageCostProcessorFunctionTest {
     UsageCostProcessorFunction usageCostProcessorFunction;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         var messageBodyUsageDetail = new MessageBody<UsageDetail>();
         var usageDetailsList = new ArrayList<UsageDetail>();
 
@@ -122,7 +122,7 @@ public class UsageCostProcessorFunctionTest {
      * Unit test for HttpTriggerJava method.
      */
     @Test
-    public void shouldTriggerHttpAzureFunctionJavaWithSubscriptionValidationEventType() throws Exception {
+    void shouldTriggerHttpAzureFunctionJavaWithSubscriptionValidationEventType() throws Exception {
 
         // Setup
         @SuppressWarnings("unchecked")
@@ -148,7 +148,7 @@ public class UsageCostProcessorFunctionTest {
     }
 
     @Test
-    public void shouldTriggerHttpAzureFunctionJavaWithUsageDetailEventType() throws Exception {
+    void shouldTriggerHttpAzureFunctionJavaWithUsageDetailEventType() throws Exception {
         // Setup
         @SuppressWarnings("unchecked")
         final HttpRequestMessage<Optional<String>> req = mock(HttpRequestMessage.class);

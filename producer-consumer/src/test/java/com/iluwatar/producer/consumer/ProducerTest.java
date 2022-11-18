@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class ProducerTest {
+class ProducerTest {
 
   @Test
   void testProduce() {
