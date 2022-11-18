@@ -1,18 +1,17 @@
 package com.iluwatar.context.object;
 
+import lombok.Getter;
+
+@Getter
 public class LayerB {
 
-    private static ServiceContext context;
+    private ServiceContext context;
 
     public LayerB(LayerA layerA) {
         this.context = layerA.getContext();
     }
 
-    public static ServiceContext getContext() {
-        return context;
-    }
-
     public void addSessionInfo(String sessionService) {
-        context.setSESSION_SERVICE(sessionService);
+        context.setSessionService(sessionService);
     }
 }

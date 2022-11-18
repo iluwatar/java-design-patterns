@@ -1,18 +1,17 @@
 package com.iluwatar.context.object;
 
+import lombok.Getter;
+
+@Getter
 public class LayerA {
 
-    private static ServiceContext context;
+    private ServiceContext context;
 
     public LayerA() {
         context = ServiceContextFactory.createContext();
     }
 
-    public static ServiceContext getContext() {
-        return context;
-    }
-
     public void addAccountInfo(String accountService) {
-        context.setACCOUNT_SERVICE(accountService);
+        context.setAccountService(accountService);
     }
 }
