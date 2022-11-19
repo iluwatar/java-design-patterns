@@ -107,6 +107,11 @@ Use the Data Transfer Object pattern when:
 * When you want to boost the performance to get resources.
 * You want reduced number of remote calls.
 
+## Tutorials
+
+* [Data Transfer Object Pattern in Java - Implementation and Mapping](https://stackabuse.com/data-transfer-object-pattern-in-java-implementation-and-mapping/)
+* [The DTO Pattern (Data Transfer Object)](https://www.baeldung.com/java-dto-pattern)
+
 ## Credits
 
 * [Design Pattern - Transfer Object Pattern](https://www.tutorialspoint.com/design_pattern/transfer_object_pattern.htm)

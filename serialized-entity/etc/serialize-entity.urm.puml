@@ -1,0 +1,56 @@
+@startuml
+package com.iluwatar.serializedentity {
+  class App {
+      - DB_URL : String {static}
+      - LOGGER : Logger {static}
+      + App()
+      - createDataSource() : DataSource {static}
+      - createSchema(dataSource : DataSource) {static}
+      - deleteSchema(dataSource : DataSource) {static}
+      + main(args : String[]) {static}
+  }
+
+  class Country {
+      - code : int
+      - name : String
+      - continents : String
+      - language : String
+      + serialVersionUID : final Long {static}
+      ~Country(int, String, String, String)
+      + getCode() : int
+      + getName() : String
+      + getContinents() : String
+      + getLanguage() : String
+      + setCode(code : int)
+      + setName(name : String)
+      + setContinents(continents : String)
+      + setLanguage(language : String)
+      + equals(that: Object) : boolean
+      + hashCode() : int
+      + toString() : String
+  }
+
+  interface CountryDao {
+    + insertCountry : int {abstract}
+    + selectCountry : int {abstract}
+  }
+
+  class CountrySchemaSql {
+    - CREATE_SCHEMA_SQL : String {static}
+    - DELETE_SCHEMA_SQL : String {static}
+    - LOGGER : Logger {static}
+    - dataSource : DataSource
+    - country : Country
+    ~ CountrySchemaSql(country : Country, dataSource : DataSource)
+    + insertCountry()
+    + selectCountry()
+  }
+  diamond h2db
+}
+
+App --> "Initialize Country objects" Country
+App --> "Initialize CountrySchemaSql" CountrySchemaSql
+CountrySchemaSql --> "implements" CountryDao
+Country --> "Stored in database" h2db
+CountrySchemaSql --> "Perform INSERT and SELECT operation after serialize and deserialize Country object" h2db
+@enduml

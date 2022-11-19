@@ -259,9 +259,9 @@ Here are two examples of the mock atomic subviews used in the composite:
 The results are as such:
 
 1) The user has put their name as `Tammy` in the request parameters and no preferences: 
-![alt text](etc/images/noparam.png)
+![alt text](./etc/images/noparam.png)
 2) The user has put their name as `Johnny` in the request parameters and has a preference for world, business, and science news:
-![alt text](etc/images/threeparams.png)
+![alt text](./etc/images/threeparams.png)
 
 The different subviews such as `worldNews.jsp`, `businessNews.jsp`, etc. are included conditionally
 based on the request parameters.

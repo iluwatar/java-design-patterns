@@ -120,7 +120,7 @@ Brown wizard is not allowed to enter!
 
 ## 类图
 
-![alt text](etc/proxy.urm.png "Proxy pattern class diagram")
+![alt text](./etc/proxy.urm.png "Proxy pattern class diagram")
 
 ## 适用性
 

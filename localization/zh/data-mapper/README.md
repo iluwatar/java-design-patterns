@@ -10,7 +10,7 @@ tags:
 一个用于在持久化对象和数据库之间传输数据的映射器，同时保持它们之间和映射器本身的独立性。
 
 ## 类图
-![alt text](etc/data-mapper.png "Data Mapper")
+![alt text](./etc/data-mapper.png "Data Mapper")
 
 ## 适用场景
 数据映射器适用于以下场景：
