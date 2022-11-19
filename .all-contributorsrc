@@ -2180,6 +2180,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "murphShaw",
+      "name": "murphShaw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/111167533?v=4",
+      "profile": "https://github.com/murphShaw",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
