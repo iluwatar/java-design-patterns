@@ -37,7 +37,6 @@ import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
-import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 
@@ -66,7 +65,7 @@ public class MongoDb implements DbManager {
                     DATABASE_NAME,
                     MONGO_PASSWORD.toCharArray());
     MongoClientOptions options = MongoClientOptions.builder().build();
-    client = new MongoClient(new ServerAddress(), List.of(mongoCredential), options);
+    client = new MongoClient(new ServerAddress(), mongoCredential, options);
     db = client.getDatabase(DATABASE_NAME);
   }
 
