@@ -2,7 +2,7 @@
 title: Metadata Mapping
 category: Architectural
 language: en
-tags:
+tag:
  - Data access
 ---
 

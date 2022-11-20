@@ -2,7 +2,7 @@
 title: Data Access Object
 category: Architectural
 language: en
-tags:
+tag:
  - Data access
 ---
 

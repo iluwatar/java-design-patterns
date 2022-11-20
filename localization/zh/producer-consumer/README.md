@@ -2,7 +2,7 @@
 title: Producer Consumer
 category: Concurrency
 language: zh
-tags:
+tag:
  - Reactive
 ---
 

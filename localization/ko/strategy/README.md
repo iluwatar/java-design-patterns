@@ -2,7 +2,7 @@
 title: Strategy
 category: Behavioral
 language: ko
-tags:
+tag:
  - Gang of Four
 ---
 

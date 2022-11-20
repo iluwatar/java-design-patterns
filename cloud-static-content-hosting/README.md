@@ -2,7 +2,7 @@
 title: Static Content Hosting
 category: Cloud
 language: en
-tags:
+tag:
 - Cloud distributed
 ---
 

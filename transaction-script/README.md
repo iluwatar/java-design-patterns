@@ -2,7 +2,7 @@
 title: Transaction Script
 category: Behavioral
 language: en
-tags:
+tag:
  - Data access
 ---
 

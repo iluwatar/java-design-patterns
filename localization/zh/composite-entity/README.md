@@ -2,7 +2,7 @@
 title: Composite Entity
 category: Structural
 language: zh
-tags:
+tag:
  - Enterprise Integration Pattern
 ---
 

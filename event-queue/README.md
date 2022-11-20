@@ -2,7 +2,7 @@
 title: Event Queue
 category: Concurrency
 language: en
-tags:
+tag:
  - Game programming
 ---
 

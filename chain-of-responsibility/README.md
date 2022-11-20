@@ -2,7 +2,7 @@
 title: Chain of responsibility
 category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

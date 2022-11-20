@@ -2,7 +2,7 @@
 title: Poison Pill
 category: Behavioral
 language: en
-tags:
+tag:
  - Cloud distributed
  - Reactive
 ---

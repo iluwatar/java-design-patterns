@@ -2,7 +2,7 @@
 title: Event Driven Architecture
 category: Architectural
 language: en
-tags:
+tag:
  - Reactive
 ---
 

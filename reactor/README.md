@@ -2,7 +2,7 @@
 title: Reactor
 category: Concurrency
 language: en
-tags:
+tag:
  - Performance
  - Reactive
 ---

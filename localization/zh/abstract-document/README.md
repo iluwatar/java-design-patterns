@@ -2,7 +2,7 @@
 title: Abstract Document
 category: Structural
 language: zh
-tags: 
+tag: 
  - Extensibility
 ---
 

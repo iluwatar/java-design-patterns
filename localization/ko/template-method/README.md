@@ -5,7 +5,7 @@ folder: template-method
 permalink: /patterns/template-method/ko
 categories: Behavioral
 language: ko
-tags:
+tag:
 - Gang of Four
 ---
 

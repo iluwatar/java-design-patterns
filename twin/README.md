@@ -2,7 +2,7 @@
 title: Twin
 category: Structural
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

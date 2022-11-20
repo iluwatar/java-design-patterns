@@ -2,7 +2,7 @@
 title: Composite View 
 category: Structural
 language: en
-tags:
+tag:
 - Enterprise Integration Pattern
 - Presentation
 ---

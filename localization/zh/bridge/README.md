@@ -2,7 +2,7 @@
 title: Bridge
 category: Structural
 language: zh
-tags:
+tag:
  - Gang of Four
 ---
 

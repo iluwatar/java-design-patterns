@@ -2,7 +2,7 @@
 title: Lockable Object
 category: Concurrency
 language: en
-tags:
+tag:
 - Performance
 ---
 

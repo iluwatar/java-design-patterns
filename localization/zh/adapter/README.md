@@ -2,7 +2,7 @@
 title: Adapter
 category: Structural
 language: zh
-tags:
+tag:
  - Gang of Four
 ---
 

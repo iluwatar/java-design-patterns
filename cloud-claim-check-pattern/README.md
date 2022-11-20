@@ -2,7 +2,7 @@
 title: Claim Check Pattern
 category: Cloud
 language: en
-tags:
+tag:
   - Cloud distributed
   - Microservices
 ---

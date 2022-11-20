@@ -2,7 +2,7 @@
 title: Step Builder
 category: Creational
 language: en
-tags:
+tag:
  - Instantiation
 ---
 

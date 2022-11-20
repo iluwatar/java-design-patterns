@@ -2,7 +2,7 @@
 title: Observer
 category: Behavioral
 language: ko
-tags:
+tag:
 - Gang Of Four
 - Reactive
 ---

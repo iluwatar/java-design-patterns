@@ -2,7 +2,7 @@
 title: Serverless
 category: Architectural
 language: en
-tags:
+tag:
  - Cloud distributed
 ---
 

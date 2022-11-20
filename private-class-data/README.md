@@ -2,7 +2,7 @@
 title: Private Class Data
 category: Idiom
 language: en
-tags:
+tag:
  - Data access
 ---
 
