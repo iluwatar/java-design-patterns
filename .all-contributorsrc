@@ -2207,6 +2207,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ricardo-ramos-moura",
+      "name": "Ricardo Ramos",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36955909?v=4",
+      "profile": "http://www.linkedin.com/in/ricardo-ramos-moura",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
