@@ -2,7 +2,7 @@
 title: Circuit Breaker
 category: Behavioral
 language: zh
-tags:
+tag:
   - Performance
   - Decoupling
   - Cloud distributed

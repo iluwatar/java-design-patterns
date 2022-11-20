@@ -2,7 +2,7 @@
 title: Service Layer
 category: Architectural
 language: en
-tags:
+tag:
  - Data access
 ---
 

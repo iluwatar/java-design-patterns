@@ -2,7 +2,7 @@
 title: Adapter
 category: Structural
 language: ko
-tags:
+tag:
 - Gang of Four
 ---
 

@@ -2,7 +2,7 @@
 title: Collection Pipeline
 category: Functional
 language: en
-tags:
+tag:
  - Reactive
 ---
 

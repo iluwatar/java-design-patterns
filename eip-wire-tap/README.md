@@ -2,7 +2,7 @@
 title: EIP Wire Tap
 category: Integration
 language: en
-tags:
+tag:
  - Enterprise Integration Pattern
 ---
 

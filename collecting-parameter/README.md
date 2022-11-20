@@ -2,7 +2,7 @@
 title: Collecting Parameter 
 category: Idiom
 language: en
-tags:
+tag:
 - Generic
 ---
 

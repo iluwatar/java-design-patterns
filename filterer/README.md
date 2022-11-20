@@ -2,7 +2,7 @@
 title: Filterer
 language: en
 category: Functional
-tags:
+tag:
  - Extensibility
 ---
 

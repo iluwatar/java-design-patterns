@@ -2,7 +2,7 @@
 title: Iterator
 category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

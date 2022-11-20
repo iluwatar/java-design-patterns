@@ -2,7 +2,7 @@
 title: Builder
 categories: Creational
 language: pt
-tags:
+tag:
 - Gang of Four
 ---
 

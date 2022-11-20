@@ -2,7 +2,7 @@
 title: Callback
 category: Idiom
 language: en
-tags:
+tag:
  - Reactive
 ---
 

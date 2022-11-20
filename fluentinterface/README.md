@@ -2,7 +2,7 @@
 title: Fluent Interface
 category: Functional
 language: en
-tags: 
+tag: 
  - Reactive
 ---
 

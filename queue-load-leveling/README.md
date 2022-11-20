@@ -2,7 +2,7 @@
 title: Queue based load leveling
 category: Concurrency
 language: en
-tags:
+tag:
  - Decoupling
  - Performance
  - Cloud distributed

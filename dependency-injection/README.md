@@ -2,7 +2,7 @@
 title: Dependency Injection
 category: Creational
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

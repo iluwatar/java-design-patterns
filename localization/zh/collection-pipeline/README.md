@@ -2,7 +2,7 @@
 title: Collection Pipeline
 category: Functional
 language: zh
-tags:
+tag:
  - Reactive
 ---
 

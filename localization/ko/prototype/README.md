@@ -2,7 +2,7 @@
 title: Prototype
 category: Creational
 language: ko
-tags:
+tag:
 - Gang Of Four
 - Instantiation
 ---

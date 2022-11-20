@@ -2,7 +2,7 @@
 title: Builder
 category: Creational
 language: ko
-tags:
+tag:
 - Gang of Four
 ---
 

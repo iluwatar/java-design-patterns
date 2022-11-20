@@ -2,7 +2,7 @@
 title: Factory Method
 category: Creational
 language: zh
-tags:
+tag:
  - Extensibility
  - Gang Of Four
 ---

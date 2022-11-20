@@ -2,7 +2,7 @@
 title: State
 category: Behavioral
 language: zh
-tags:
+tag:
  - Gang of Four
 ---
 

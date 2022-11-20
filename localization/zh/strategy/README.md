@@ -2,7 +2,7 @@
 title: Strategy
 category: Behavioral
 language: zh
-tags:
+tag:
  - Gang of Four
 ---
 

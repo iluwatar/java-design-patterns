@@ -2,7 +2,7 @@
 title: Model-View-Presenter
 category: Architectural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

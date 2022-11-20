@@ -2,7 +2,7 @@
 title: Component
 categories: Behavioral
 language: en
-tags:
+tag:
 - Game programming
 - Domain
 ---

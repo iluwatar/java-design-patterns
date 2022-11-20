@@ -2,7 +2,7 @@
 title: Abstract Factory
 category: Creational
 language: zh
-tags:
+tag:
  - Gang of Four
 ---
 
