@@ -22,22 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com;
+package com.iluwatar.leaderfollowers;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
-import com.iluwatar.leaderfollowers.App;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
 /**
- * Application test
+ * Tests for TaskSet
  */
-class AppTest {
+class TaskSetTest {
 
   @Test
-  void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+  void testAddTask() throws InterruptedException {
+    var taskSet = new TaskSet();
+    taskSet.addTask(new Task(10));
+    assertEquals(1, taskSet.getSize());
+  }
+
+  @Test
+  void testGetTask() throws InterruptedException {
+    var taskSet = new TaskSet();
+    taskSet.addTask(new Task(100));
+    Task task = taskSet.getTask();
+    assertEquals(100, task.getTime());
+    assertEquals(0, taskSet.getSize());
   }
 
 }

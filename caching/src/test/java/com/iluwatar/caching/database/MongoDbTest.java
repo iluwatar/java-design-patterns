@@ -33,7 +33,6 @@ import org.bson.Document;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
-import org.mockito.internal.util.reflection.Whitebox;
 
 import static com.iluwatar.caching.constants.CachingConstants.ADD_INFO;
 import static com.iluwatar.caching.constants.CachingConstants.USER_ID;
@@ -56,10 +55,8 @@ class MongoDbTest {
   @BeforeEach
   void init() {
     db = mock(MongoDatabase.class);
-    Whitebox.setInternalState(mongoDb, "db", db);
+    mongoDb.setDB(db);
     userAccount = new UserAccount(ID, NAME, ADDITIONAL_INFO);
-
-
   }
 
   @Test

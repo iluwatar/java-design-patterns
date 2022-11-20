@@ -22,25 +22,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com;
+package com.iluwatar.leaderfollowers;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
-import com.iluwatar.leaderfollowers.Task;
-import com.iluwatar.leaderfollowers.TaskHandler;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for TaskHandler
+ * Tests for WorkCenter
  */
-class TaskHandlerTest {
+class WorkCenterTest {
 
   @Test
-  void testHandleTask() throws InterruptedException {
+  void testCreateWorkers() {
+    var taskSet = new TaskSet();
     var taskHandler = new TaskHandler();
-    var handle = new Task(100);
-    taskHandler.handleTask(handle);
-    assertTrue(handle.isFinished());
+    var workCenter = new WorkCenter();
+    workCenter.createWorkers(5, taskSet, taskHandler);
+    assertEquals(5, workCenter.getWorkers().size());
+    assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
   }
 
+  @Test
+  void testNullLeader() {
+    var workCenter = new WorkCenter();
+    workCenter.promoteLeader();
+    assertNull(workCenter.getLeader());
+  }
+
+  @Test
+  void testPromoteLeader() {
+    var taskSet = new TaskSet();
+    var taskHandler = new TaskHandler();
+    var workCenter = new WorkCenter();
+    workCenter.createWorkers(5, taskSet, taskHandler);
+    workCenter.removeWorker(workCenter.getLeader());
+    workCenter.promoteLeader();
+    assertEquals(4, workCenter.getWorkers().size());
+    assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
+  }
 }

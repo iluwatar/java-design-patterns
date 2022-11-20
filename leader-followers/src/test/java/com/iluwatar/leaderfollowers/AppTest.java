@@ -22,47 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com;
+package com.iluwatar.leaderfollowers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import com.iluwatar.leaderfollowers.TaskHandler;
-import com.iluwatar.leaderfollowers.TaskSet;
-import com.iluwatar.leaderfollowers.WorkCenter;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests for WorkCenter
+ * Application test
  */
-class WorkCenterTest {
+class AppTest {
 
   @Test
-  void testCreateWorkers() {
-    var taskSet = new TaskSet();
-    var taskHandler = new TaskHandler();
-    var workCenter = new WorkCenter();
-    workCenter.createWorkers(5, taskSet, taskHandler);
-    assertEquals(5, workCenter.getWorkers().size());
-    assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 
-  @Test
-  void testNullLeader() {
-    var workCenter = new WorkCenter();
-    workCenter.promoteLeader();
-    assertNull(workCenter.getLeader());
-  }
-
-  @Test
-  void testPromoteLeader() {
-    var taskSet = new TaskSet();
-    var taskHandler = new TaskHandler();
-    var workCenter = new WorkCenter();
-    workCenter.createWorkers(5, taskSet, taskHandler);
-    workCenter.removeWorker(workCenter.getLeader());
-    workCenter.promoteLeader();
-    assertEquals(4, workCenter.getWorkers().size());
-    assertEquals(workCenter.getWorkers().get(0), workCenter.getLeader());
-  }
 }
