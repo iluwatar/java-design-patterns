@@ -2234,6 +2234,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "StefanelStan",
+      "name": "Stefanel Stan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25990078?v=4",
+      "profile": "http://www.linkedin.com/in/stefanel-stan/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
