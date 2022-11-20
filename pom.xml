@@ -224,8 +224,6 @@
         <version>${commons-dbcp.version}</version>
       </dependency>
       <dependency>
-      </dependency>
-      <dependency>
         <groupId>net.sourceforge.htmlunit</groupId>
         <artifactId>htmlunit</artifactId>
         <version>${htmlunit.version}</version>
