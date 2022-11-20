@@ -1,9 +1,6 @@
 ---
-layout: pattern
-title: Template method
-folder: template-method
-permalink: /patterns/template-method/ko
-categories: Behavioral
+title: Template Method
+category: Behavioral
 language: ko
 tag:
 - Gang of Four
