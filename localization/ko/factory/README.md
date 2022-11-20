@@ -104,7 +104,7 @@ This Ferrari.
 
 ## 클래스 다이어그램
 
-![alt text](etc/factory.urm.png)
+![alt text](./etc/factory.urm.png)
 
 ## 적용 가능성
 

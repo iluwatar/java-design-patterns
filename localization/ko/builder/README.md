@@ -112,7 +112,7 @@ var mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.
 
 ## 클래스 다이어그램
 
-![alt text](../../../builder/etc/builder.urm.png "Builder class diagram")
+![alt text](./etc/builder.urm.png "Builder class diagram")
 
 ## 적용 가능성
 

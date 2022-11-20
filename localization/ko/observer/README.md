@@ -134,7 +134,7 @@ The hobbits are facing sunny weather now
 
 ## 클래스 다이어그램
 
-![alt text](etc/observer.png)
+![alt text](./etc/observer.png)
 
 ## 적용 가능성
 

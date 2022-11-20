@@ -118,7 +118,7 @@ public class HalflingThief {
 
 ## 클래스 다이어그램
 
-![alt text](../../../template-method/etc/template_method_urm.png "Template Method")
+![alt text](./etc/template_method_urm.png "Template Method")
 
 ## 적용 가능성
 
