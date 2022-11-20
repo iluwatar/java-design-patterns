@@ -38,7 +38,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
     <spring-boot.version>2.7.5</spring-boot.version>
-    <h2.version>1.4.190</h2.version>
     <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <camel.version>2.25.1</camel.version>
@@ -231,11 +230,6 @@
         <version>${spring-boot.version}</version>
         <type>pom</type>
         <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <version>${h2.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-dbcp</groupId>
