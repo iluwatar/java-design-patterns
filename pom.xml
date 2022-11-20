@@ -63,6 +63,7 @@
   </properties>
   <modules>
     <module>abstract-factory</module>
+    <module>collecting-parameter</module>
     <module>monitor</module>
     <module>tls</module>
     <module>builder</module>
