@@ -119,7 +119,6 @@
     <module>private-class-data</module>
     <module>object-pool</module>
     <module>dependency-injection</module>
-    <module>naked-objects</module>
     <module>front-controller</module>
     <module>repository</module>
     <module>async-method-invocation</module>
