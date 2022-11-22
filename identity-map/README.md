@@ -1,8 +1,8 @@
 ---
 title: Identity Map
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
 - Performance
 - Data access
 ---

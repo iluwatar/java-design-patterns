@@ -2,7 +2,7 @@
 title: EIP Aggregator
 category: Integration
 language: en
-tags:
+tag:
  - Enterprise Integration Pattern
 ---
 

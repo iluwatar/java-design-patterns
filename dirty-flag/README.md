@@ -2,7 +2,7 @@
 title: Dirty Flag
 category: Behavioral
 language: en
-tags:
+tag:
  - Game programming
  - Performance
 ---

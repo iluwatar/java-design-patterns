@@ -2,7 +2,7 @@
 title: Half-Sync/Half-Async
 category: Concurrency
 language: en
-tags:
+tag:
  - Performance
 ---
 

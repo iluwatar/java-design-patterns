@@ -2,7 +2,7 @@
 title: Data Bus
 category: Architectural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

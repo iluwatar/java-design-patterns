@@ -2,7 +2,7 @@
 title: Acyclic Visitor
 category: Behavioral
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

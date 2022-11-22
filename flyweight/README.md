@@ -2,7 +2,7 @@
 title: Flyweight
 category: Structural
 language: en
-tags:
+tag:
  - Gang of Four
  - Performance
 ---

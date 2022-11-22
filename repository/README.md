@@ -2,7 +2,7 @@
 title: Repository
 category: Architectural
 language: en
-tags:
+tag:
  - Data access
 ---
 

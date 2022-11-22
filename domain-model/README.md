@@ -2,7 +2,7 @@
 title: Domain Model
 category: Architectural
 language: en
-tags:
+tag:
  - Domain
 ---
 

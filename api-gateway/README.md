@@ -2,7 +2,7 @@
 title: API Gateway
 category: Architectural
 language: en
-tags:
+tag:
   - Cloud distributed
   - Decoupling
   - Microservices
