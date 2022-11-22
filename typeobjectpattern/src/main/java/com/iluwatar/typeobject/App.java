@@ -24,9 +24,7 @@
  */
 package com.iluwatar.typeobject;
 
-import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
-import org.json.simple.parser.ParseException;
 
 /**
  * <p>Type object pattern is the pattern we use when the OOP concept of creating a base class and
@@ -54,7 +52,7 @@ public class App {
    *
    * @param args command line args
    */
-  public static void main(String[] args) throws IOException, ParseException {
+  public static void main(String[] args) {
     var givenTime = 50; //50ms
     var toWin = 500; //points
     var pointsWon = 0;
