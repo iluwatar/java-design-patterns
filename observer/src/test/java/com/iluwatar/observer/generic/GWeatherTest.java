@@ -29,7 +29,6 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import com.iluwatar.observer.WeatherObserver;
 import com.iluwatar.observer.WeatherType;
@@ -67,7 +66,7 @@ class GWeatherTest {
 
     final var weather = new GWeather();
     weather.addObserver(observer);
-    verifyZeroInteractions(observer);
+    verifyNoMoreInteractions(observer);
 
     weather.timePasses();
     assertEquals("The weather changed to rainy.", appender.getLastMessage());

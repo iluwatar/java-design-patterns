@@ -2,7 +2,7 @@
 title: Marker Interface
 category: Structural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

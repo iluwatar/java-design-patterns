@@ -2,7 +2,7 @@
 title: Property
 category: Creational
 language: en
-tags:
+tag:
  - Instantiation
 ---
 

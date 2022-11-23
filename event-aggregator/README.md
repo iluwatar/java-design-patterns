@@ -2,7 +2,7 @@
 title: Event Aggregator
 category: Structural
 language: en
-tags:
+tag:
  - Reactive
 ---
 

@@ -2,7 +2,7 @@
 title: Ambassador
 category: Structural
 language: zh
-tags:
+tag:
   - Decoupling
   - Cloud distributed
 ---

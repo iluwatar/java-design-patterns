@@ -60,8 +60,8 @@ public class App {
           + "customer_name varchar references CUSTOMERS(name));";
 
   public static final String DELETE_SCHEMA_SQL =
-      "DROP TABLE CUSTOMERS IF EXISTS;"
-          + "DROP TABLE PURCHASES IF EXISTS;"
+      "DROP TABLE PURCHASES IF EXISTS;"
+          + "DROP TABLE CUSTOMERS IF EXISTS;"
           + "DROP TABLE PRODUCTS IF EXISTS;";
 
   /**

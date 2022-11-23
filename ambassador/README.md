@@ -2,7 +2,7 @@
 title: Ambassador
 category: Structural
 language: en
-tags:
+tag:
   - Decoupling
   - Cloud distributed
 ---

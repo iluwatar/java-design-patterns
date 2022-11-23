@@ -2,7 +2,7 @@
 title: Template method
 category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

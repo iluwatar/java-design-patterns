@@ -2,7 +2,7 @@
 title: Observer
 category: Behavioral
 language: zh
-tags:
+tag:
  - Gang Of Four
  - Reactive
 ---

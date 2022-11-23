@@ -2,7 +2,7 @@
 title: Multiton
 category: Creational
 language: en
-tags:
+tag:
  - Instantiation
 ---
 

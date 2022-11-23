@@ -2,7 +2,7 @@
 title: Type-Object
 category: Behavioral
 language: en
-tags:
+tag:
  - Game programming
  - Extensibility
 ---

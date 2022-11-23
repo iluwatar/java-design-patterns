@@ -2,7 +2,7 @@
 title: Extension objects
 category: Behavioral
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

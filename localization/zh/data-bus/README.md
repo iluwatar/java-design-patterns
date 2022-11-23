@@ -2,7 +2,7 @@
 title: Data Bus
 category: Architectural
 language: zh
-tags:
+tag:
  - Decoupling
 ---
 

@@ -2,7 +2,7 @@
 title: Bytecode
 category: Behavioral
 language: zh
-tags:
+tag:
  - Game programming
 ---
 

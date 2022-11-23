@@ -2,7 +2,7 @@
 title: Aggregator Microservices
 category: Architectural
 language: zh
-tags:
+tag:
 - Cloud distributed
 - Decoupling
 - Microservices
