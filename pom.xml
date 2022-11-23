@@ -24,7 +24,8 @@
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
     THE SOFTWARE.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+  <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.iluwatar</groupId>
   <artifactId>java-design-patterns</artifactId>
@@ -37,12 +38,10 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
     <spring-boot.version>2.7.5</spring-boot.version>
-    <h2.version>1.4.190</h2.version>
     <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <camel.version>2.25.1</camel.version>
+    <camel.version>3.18.3</camel.version>
     <guava.version>19.0</guava.version>
-    <mockito.version>3.5.6</mockito.version>
     <htmlunit.version>2.66.0</htmlunit.version>
     <guice.version>4.0</guice.version>
     <mongo-java-driver.version>3.12.8</mongo-java-driver.version>
@@ -51,13 +50,10 @@
     <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
     <system-lambda.version>1.1.0</system-lambda.version>
     <urm.version>2.0.0</urm.version>
-    <javassist.version>3.27.0-GA</javassist.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
     <license-maven-plugin.version>4.1</license-maven-plugin.version>
     <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
-    <commons-io.version>2.7</commons-io.version>
-    <istack-commons-runtime.version>4.0.1</istack-commons-runtime.version>
     <!-- SonarCloud -->
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.organization>iluwatar</sonar.organization>
@@ -67,6 +63,7 @@
   </properties>
   <modules>
     <module>abstract-factory</module>
+    <module>collecting-parameter</module>
     <module>monitor</module>
     <module>tls</module>
     <module>builder</module>
@@ -122,7 +119,6 @@
     <module>private-class-data</module>
     <module>object-pool</module>
     <module>dependency-injection</module>
-    <module>naked-objects</module>
     <module>front-controller</module>
     <module>repository</module>
     <module>async-method-invocation</module>
@@ -207,13 +203,16 @@
     <module>model-view-viewmodel</module>
     <module>composite-entity</module>
     <module>table-module</module>
-    <module>presentation</module>
+    <module>presentation-model</module>
     <module>lockable-object</module>
     <module>fanout-fanin</module>
     <module>domain-model</module>
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
+    <module>serialized-entity</module>
+    <module>identity-map</module>
+    <module>component</module>
   </modules>
   <repositories>
     <repository>
@@ -224,31 +223,11 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>${mockito.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-inline</artifactId>
-        <version>${mockito.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-junit-jupiter</artifactId>
-        <version>${mockito.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
         <version>${spring-boot.version}</version>
         <type>pom</type>
         <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <version>${h2.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-dbcp</groupId>
@@ -286,25 +265,10 @@
         <version>${mongo-java-driver.version}</version>
       </dependency>
       <dependency>
-        <groupId>org.javassist</groupId>
-        <artifactId>javassist</artifactId>
-        <version>${javassist.version}</version>
-      </dependency>
-      <dependency>
         <groupId>com.github.stefanbirkner</groupId>
         <artifactId>system-lambda</artifactId>
         <version>${system-lambda.version}</version>
         <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>${commons-io.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.istack</groupId>
-        <artifactId>istack-commons-runtime</artifactId>
-        <version>${istack-commons-runtime.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

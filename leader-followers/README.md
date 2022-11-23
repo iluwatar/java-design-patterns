@@ -2,7 +2,7 @@
 title: Leader/Followers
 category: Concurrency
 language: en
-tags:
+tag:
  - Performance
 ---
 

@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="com.iluwatar.metamapping.model.User" table="user">
+  <class name="com.iluwatar.metamapping.model.User" table="user_account">
     <id name="id" type="java.lang.Integer" column="id">
       <generator class="native"/>
     </id>

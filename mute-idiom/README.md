@@ -2,7 +2,7 @@
 title: Mute Idiom
 category: Idiom
 language: en
-tags: 
+tag: 
  - Decoupling
 ---
 

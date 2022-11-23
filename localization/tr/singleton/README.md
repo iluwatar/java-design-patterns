@@ -2,7 +2,7 @@
 title: Singleton
 category: Creational
 language: tr
-tags:
+tag:
 - Gang of Four
 ---
 

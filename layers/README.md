@@ -2,7 +2,7 @@
 title: Layers
 category: Architectural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

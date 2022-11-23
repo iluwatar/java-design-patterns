@@ -2,7 +2,7 @@
 title: EIP Splitter
 category: Integration
 language: en
-tags:
+tag:
  - Enterprise Integration Pattern
 ---
 

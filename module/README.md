@@ -2,7 +2,7 @@
 title: Module
 category: Structural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

@@ -2,7 +2,7 @@
 title: EIP Publish Subscribe
 category: Integration
 language: en
-tags:
+tag:
  - Enterprise Integration Pattern
 ---
 

@@ -53,6 +53,10 @@ public class MongoDb implements DbManager {
   private MongoClient client;
   private MongoDatabase db;
 
+  void setDB(MongoDatabase db) {
+    this.db = db;
+  }
+
   /**
    * Connect to Db. Check th connection
    */

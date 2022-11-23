@@ -2,7 +2,7 @@
 title: Bytecode
 category: Behavioral
 language: en
-tags:
+tag:
  - Game programming
 ---
 

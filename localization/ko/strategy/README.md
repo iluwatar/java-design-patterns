@@ -2,7 +2,7 @@
 title: Strategy
 category: Behavioral
 language: ko
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -160,7 +160,7 @@ public class LambdaStrategy {
 
 ## 클래스 다이어그램
 
-![alt text](etc/strategy_urm.png "Strategy")
+![alt text](./etc/strategy_urm.png "Strategy")
 
 ## 적용 가능성
 

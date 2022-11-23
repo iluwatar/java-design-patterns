@@ -2,7 +2,7 @@
 title: Arrange/Act/Assert
 category: Idiom
 language: zh
-tags:
+tag:
  - Testing
 ---
 

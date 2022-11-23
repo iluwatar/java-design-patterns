@@ -2,7 +2,7 @@
 title: Promise
 category: Concurrency
 language: en
-tags:
+tag:
  - Reactive
 ---
 
