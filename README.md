@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-246-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-247-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -392,6 +392,7 @@ This project is licensed under the terms of the MIT license.
     </tr>
     <tr>
       <td align="center"><a href="http://www.linkedin.com/in/stefanel-stan/"><img src="https://avatars.githubusercontent.com/u/25990078?v=4?s=100" width="100px;" alt="Stefanel Stan"/><br /><sub><b>Stefanel Stan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=StefanelStan" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/bhati00"><img src="https://avatars.githubusercontent.com/u/79313705?v=4?s=100" width="100px;" alt="Prince bhati"/><br /><sub><b>Prince bhati</b></sub></a><br /><a href="#translation-bhati00" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
