@@ -25,17 +25,13 @@
 package com.iluwatar.embedded.value;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 /** 
  * Another POJO which wraps the Shipping details of order into Object.
  */
 @ToString
-@Setter
 @Getter
-@NoArgsConstructor
 public class ShippingAddress {
   
   private String city;

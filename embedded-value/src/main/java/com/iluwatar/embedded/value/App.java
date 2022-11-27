@@ -54,31 +54,60 @@ public class App {
   public static void main(String[] args) throws Exception {
     final var dataSource = new DataSource();
 
-    final var order1 = new Order("JBL headphone", "Ram", new ShippingAddress("Bangalore", "Karnataka", "560040"));
+    // Orders to insert into database
+    final var order1 = new Order("JBL headphone", "Ram", 
+        new ShippingAddress("Bangalore", "Karnataka", "560040"));
     final var order2 = new Order("MacBook Pro", "Manjunath",
         new ShippingAddress("Bangalore", "Karnataka", "581204"));
     final var order3 = new Order("Carrie Soto is Back", "Shiva",
         new ShippingAddress("Bangalore", "Karnataka", "560004"));
     
-        if (dataSource.createSchema()) {
+    /**
+     * Create table for orders - Orders(id, name, orderedBy, city, state, pincode).
+     * We can see that table is different from the Order object we have.
+     * We're mapping ShippingAddress into city, state, pincode colummns of the database and not creating a separate table.
+     */ 
+    if (dataSource.createSchema()) {
       LOGGER.info("TABLE CREATED");
       LOGGER.info("Table \"Orders\" schema:\n" + dataSource.getSchema());
     } else {
+      //If not able to create table, there's nothing we can do further.
       LOGGER.error("Error creating table");
       System.exit(0);
     }
+
+    // Initially, database is empty
     LOGGER.info("Orders Query: {}", dataSource.queryOrders().collect(Collectors.toList()));
+    
+    //Insert orders where shippingAddress is mapped to different columns of the same table 
     dataSource.insertOrder(order1);
     dataSource.insertOrder(order2);
     dataSource.insertOrder(order3);
-    LOGGER.info("Orders Query: {}", dataSource.queryOrders().collect(Collectors.toList()));
+    
+    /**
+     * Query orders
+     * We'll create ShippingAddress object from city, state, pincode values from the table 
+     * and add it to Order object
+     */
+    LOGGER.info("Orders Query: {}", dataSource.queryOrders().collect(Collectors.toList()) + "\n");
+    
+    //Query order by given id
     LOGGER.info("Query Order with id=2: {}", dataSource.queryOrder(2));
+    
+    /**
+     * Remove order by given id. 
+     * Since we'd mapped address in the same table, deleting order will also take
+     * out the shipping address details
+     */
     LOGGER.info("Remove Order with id=1");
     dataSource.removeOrder(1);
-    LOGGER.info("Orders Query: {}", dataSource.queryOrders().collect(Collectors.toList()));
+    LOGGER.info("\nOrders Query: {}", dataSource.queryOrders().collect(Collectors.toList()) + "\n");
+    
+    //After successfull demonstration of the pattern, drop the table
     if (dataSource.deleteSchema()) {
       LOGGER.info("TABLE DROPPED");
     } else {
+      //If there's a potential error while dropping table
       LOGGER.error("Error deleting table");
     }
   }

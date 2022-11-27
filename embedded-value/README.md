@@ -1,11 +1,9 @@
 ---
-layout: pattern
 title: Embedded Value
-folder: embedded-value
-permalink: /patterns/embedded/value
-categories: Structural
+category: Structural 
 language: en
-tags:
+tag: 
+ - Data Access
  - Enterprise Application Pattern
 ---
 
@@ -26,7 +24,7 @@ ranges. Although the default thinking is to save an object as a table, no sane p
 
 In plain words
 
-> Embeddedd value pattern let's you map an object into several fields of another object’s table.
+> Embedded value pattern let's you map an object into several fields of another object’s table.
 
 **Programmatic Example**
 
@@ -42,7 +40,7 @@ public class Order {
     private String orderedBy;
     private ShippingAddress ShippingAddress;
 
-    public Order(String item, String orderedBy, ShippingAddress ShippingAddress) {
+    public Order(String item, String orderedBy, ShippingAddress           ShippingAddress) {
         this.item = item;
         this.orderedBy = orderedBy;
         this.ShippingAddress = ShippingAddress;
@@ -118,9 +116,6 @@ Use the Embedded value pattern when
 * While using this, you have to be careful that any change to the dependent marks the owner as dirty—which isn’t an issue with Value Objects that are replaced in the owner.
 * Another issue is the loading and saving. If you only load the embedded object memory when you load the owner, that’s an argument for saving both in the same table. 
 * Another question is whether you’ll want to access the embedded objects' data separately through SQL. This can be important if you’re reporting through SQL and don’t have a separate database for reporting.
-
-## Real-world examples
-
 
 
 ## Credits

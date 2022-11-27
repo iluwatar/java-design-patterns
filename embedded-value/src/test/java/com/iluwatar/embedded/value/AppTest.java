@@ -26,7 +26,7 @@ package com.iluwatar.embedded.value;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
   * Check whether the execution of the main method in {@link App}

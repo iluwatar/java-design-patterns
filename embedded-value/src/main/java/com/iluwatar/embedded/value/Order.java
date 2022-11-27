@@ -25,7 +25,6 @@
 package com.iluwatar.embedded.value;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 /* 
@@ -34,7 +33,6 @@ import lombok.ToString;
 @ToString
 @Setter
 @Getter
-@NoArgsConstructor
 public class Order {
   
   private int id;

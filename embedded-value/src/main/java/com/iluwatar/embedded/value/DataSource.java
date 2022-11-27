@@ -34,7 +34,7 @@ import java.util.stream.Stream;
 
 import lombok.extern.slf4j.Slf4j;
 /*
- * Communicates with database with the help of JDBC API
+ * Communicates with H2 database with the help of JDBC API
  * 
  * Inherits the SQL queries and methods from @link AbstractDataSource class
  */
@@ -47,11 +47,10 @@ public class DataSource implements DataSourceInterface {
    * Statements are objects which are used to execute queries which will not be
    * repeated.
    */
-  private Statement createschema;
   private Statement getschema;
   private Statement deleteschema;
   private Statement queryOrders;
-  
+
   /*
    * PreparedStatements are used to execute queries which will be repeated.
    */
@@ -74,8 +73,7 @@ public class DataSource implements DataSourceInterface {
 
   @Override
   public boolean createSchema() {
-    try {
-      createschema = conn.createStatement();
+    try (Statement createschema = conn.createStatement()) {
       createschema.execute(CREATE_SCHEMA);
       insertIntoOrders = conn.prepareStatement(INSERT_ORDER, PreparedStatement.RETURN_GENERATED_KEYS);
       getschema = conn.createStatement();
@@ -83,7 +81,6 @@ public class DataSource implements DataSourceInterface {
       removeorder = conn.prepareStatement(REMOVE_ORDER);
       queyOrderByID = conn.prepareStatement(QUERY_ORDER);
       deleteschema = conn.createStatement();
-      createschema.close();
     } catch (SQLException e) {
       LOGGER.error(e.getLocalizedMessage(), e.getCause());
       return false;
@@ -121,9 +118,11 @@ public class DataSource implements DataSourceInterface {
       if (affectedRows == 1) {
         var rs = insertIntoOrders.getGeneratedKeys();
         rs.last();
-        order.setId(rs.getInt(1));
+        var insertedAddress = new ShippingAddress(address.getCity(), address.getState(), address.getPincode());
+        var insertedOrder = new Order(rs.getInt(1), order.getItem(), order.getOrderedBy(),
+            insertedAddress); 
         conn.commit();
-        LOGGER.info("Inserted: {}", order);
+        LOGGER.info("Inserted: {}", insertedOrder);
       } else {
         conn.rollback();
       }
@@ -144,10 +143,9 @@ public class DataSource implements DataSourceInterface {
     var ordersList = new ArrayList<Order>();
     try (var rSet = queryOrders.executeQuery(QUERY_ORDERS)) {
       while (rSet.next()) {
-        var order = new Order(rSet.getString(2), rSet.getString(3),
+        var order = new Order(rSet.getInt(1), rSet.getString(2), rSet.getString(3),
             new ShippingAddress(rSet.getString(4), rSet.getString(5),
             rSet.getString(6)));
-        order.setId(rSet.getInt(1));
         ordersList.add(order);
       }
       rSet.close();
@@ -204,7 +202,6 @@ public class DataSource implements DataSourceInterface {
       deleteschema.execute(DELETE_SCHEMA);
       queryOrders.close();
       queyOrderByID.close();
-      createschema.close();
       deleteschema.close();
       insertIntoOrders.close();
       conn.close();
