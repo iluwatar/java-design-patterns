@@ -1,8 +1,8 @@
 ---
-título: Agregador de microservicios (Aggregator Microservices)
-categoría: Arquitectónico
-idioma: es
-etiquetas:
+title: Agregador de microservicios (Aggregator Microservices)
+category: Arquitectónico
+language: es
+tag:
 - Cloud distributed (Nube distribuida)
 - Decoupling (Desacoplamiento) 
 - Microservices (Microservicios)
