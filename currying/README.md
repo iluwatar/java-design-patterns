@@ -1,12 +1,9 @@
 ---
-layout: pattern
 title: Currying
-folder: currying
-permalink: /patterns/currying/
-categories: Functional
+category: Functional 
 language: en
-tags: 
- - Decoupling
+tag:
+- Decoupling
 ---
 
 ## Name / classification

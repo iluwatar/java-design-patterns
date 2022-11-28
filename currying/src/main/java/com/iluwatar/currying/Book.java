@@ -27,22 +27,17 @@ package com.iluwatar.currying;
 import java.time.LocalDate;
 import java.util.Objects;
 import java.util.function.Function;
+import lombok.AllArgsConstructor;
 
 /**
  * Book class.
  */
+@AllArgsConstructor
 public class Book {
   private final Genre genre;
   private final String author;
   private final String title;
   private final LocalDate publicationDate;
-
-  Book(Genre genre, String author, String title, LocalDate publicationDate) {
-    this.genre = genre;
-    this.author = author;
-    this.title = title;
-    this.publicationDate = publicationDate;
-  }
 
   @Override
   public boolean equals(Object o) {
