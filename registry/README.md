@@ -2,7 +2,7 @@
 title: Registry
 category: Creational
 language: en
-tags:
+tag:
  - Instantiation
 ---
 

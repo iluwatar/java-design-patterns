@@ -2,7 +2,7 @@
 title: Converter
 category: Creational
 language: zh
-tags:
+tag:
  - Decoupling
 ---
 

@@ -2,7 +2,7 @@
 title: Proxy
 category: Structural
 language: zh
-tags:
+tag:
  - Gang Of Four
  - Decoupling
 ---

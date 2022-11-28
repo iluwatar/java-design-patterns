@@ -2,7 +2,7 @@
 title: Builder
 category: Creational
 language: zh
-tags:
+tag:
  - Gang of Four
 
 ---

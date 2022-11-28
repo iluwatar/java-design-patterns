@@ -2,7 +2,7 @@
 title: Event-based Asynchronous
 category: Concurrency
 language: en
-tags:
+tag:
  - Reactive
 ---
 

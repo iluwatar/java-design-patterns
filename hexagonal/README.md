@@ -2,7 +2,7 @@
 title: Hexagonal Architecture
 category: Architectural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

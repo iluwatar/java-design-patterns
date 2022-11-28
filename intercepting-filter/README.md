@@ -2,7 +2,7 @@
 title: Intercepting Filter
 category: Behavioral
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

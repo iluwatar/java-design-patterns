@@ -2,7 +2,7 @@
 title: Model-View-Controller
 category: Architectural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

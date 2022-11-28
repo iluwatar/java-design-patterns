@@ -2,7 +2,7 @@
 title: Factory Kit
 category: Creational
 language: zh
-tags:
+tag:
  - Extensibility
 ---
 

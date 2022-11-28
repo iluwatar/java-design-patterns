@@ -10,12 +10,12 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-239-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-247-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
 
-Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/np/README.md)
+Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/ne/README.md)
 <br/>
 
 # Introduction
@@ -383,6 +383,16 @@ This project is licensed under the terms of the MIT license.
     </tr>
     <tr>
       <td align="center"><a href="https://github.com/JurenXu"><img src="https://avatars.githubusercontent.com/u/101047547?v=4?s=100" width="100px;" alt="JurenXu"/><br /><sub><b>JurenXu</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=JurenXu" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/murphShaw"><img src="https://avatars.githubusercontent.com/u/111167533?v=4?s=100" width="100px;" alt="murphShaw"/><br /><sub><b>murphShaw</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=murphShaw" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/XianWu99"><img src="https://avatars.githubusercontent.com/u/111103319?v=4?s=100" width="100px;" alt="XianWu99"/><br /><sub><b>XianWu99</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=XianWu99" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://github.com/JoshuaSinglaANU"><img src="https://avatars.githubusercontent.com/u/109902734?v=4?s=100" width="100px;" alt="JoshuaSinglaANU"/><br /><sub><b>JoshuaSinglaANU</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=JoshuaSinglaANU" title="Code">💻</a></td>
+      <td align="center"><a href="http://www.linkedin.com/in/ricardo-ramos-moura"><img src="https://avatars.githubusercontent.com/u/36955909?v=4?s=100" width="100px;" alt="Ricardo Ramos"/><br /><sub><b>Ricardo Ramos</b></sub></a><br /><a href="#translation-ricardo-ramos-moura" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://zhrfrd.github.io/faridzouheir/"><img src="https://avatars.githubusercontent.com/u/72947724?v=4?s=100" width="100px;" alt="Farid Zouheir"/><br /><sub><b>Farid Zouheir</b></sub></a><br /><a href="#translation-zhrfrd" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://www.linkedin.com/in/vinicius-beraldo/"><img src="https://avatars.githubusercontent.com/u/91766068?v=4?s=100" width="100px;" alt="Vinícius A. B."/><br /><sub><b>Vinícius A. B.</b></sub></a><br /><a href="#translation-Viniberaldo" title="Translation">🌍</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="http://www.linkedin.com/in/stefanel-stan/"><img src="https://avatars.githubusercontent.com/u/25990078?v=4?s=100" width="100px;" alt="Stefanel Stan"/><br /><sub><b>Stefanel Stan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=StefanelStan" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/bhati00"><img src="https://avatars.githubusercontent.com/u/79313705?v=4?s=100" width="100px;" alt="Prince bhati"/><br /><sub><b>Prince bhati</b></sub></a><br /><a href="#translation-bhati00" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>

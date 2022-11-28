@@ -2,7 +2,7 @@
 title: Double Checked Locking
 category: Idiom
 language: en
-tags:
+tag:
  - Performance
 ---
 

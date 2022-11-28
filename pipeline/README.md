@@ -2,7 +2,7 @@
 title: Pipeline
 category: Behavioral
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

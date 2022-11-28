@@ -2,7 +2,7 @@
 title: Singleton
 category: Creational
 language: ko
-tags:
+tag:
 - Gang of Four
 ---
 
@@ -46,7 +46,7 @@ assertEquals(enumIvoryTower1, enumIvoryTower2); // true
 
 ## 클래스 다이어그램
 
-![alt text](etc/singleton.urm.png)
+![alt text](./etc/singleton.urm.png)
 
 ## 적용 가능성
 

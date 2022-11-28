@@ -2,7 +2,7 @@
 title: Abstract Document
 category: Structural
 language: vi
-tags: 
+tag: 
  - Extensibility
 ---
 

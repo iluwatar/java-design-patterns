@@ -2,7 +2,7 @@
 title: Dirty Flag
 category: Behavioral
 language: zh
-tags:
+tag:
  - Game programming
  - Performance
 ---

@@ -2,7 +2,7 @@
 title: Delegation
 category: Structural
 language: zh
-tags:
+tag:
  - Decoupling
 ---
 

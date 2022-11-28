@@ -2,7 +2,7 @@
 title: Data Mapper
 category: Architectural
 language: zh
-tags:
+tag:
  - Decoupling
 ---
 

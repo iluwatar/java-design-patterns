@@ -2,7 +2,7 @@
 title: Caching
 category: Behavioral
 language: zh
-tags:
+tag:
   - Performance
   - Cloud distributed
 ---

@@ -2,7 +2,7 @@
 title: Double Dispatch
 category: Idiom
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

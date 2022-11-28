@@ -2,7 +2,7 @@
 title: Value Object
 category: Creational
 language: en
-tags:
+tag:
  - Instantiation
 ---
 
