@@ -60,6 +60,9 @@
     <sonar.projectKey>iluwatar_java-design-patterns</sonar.projectKey>
     <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
     <sonar.projectName>Java Design Patterns</sonar.projectName>
+    <sonar.organization>snowak-developer</sonar.organization>
+    <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+</properties>
   </properties>
   <modules>
     <module>abstract-factory</module>
