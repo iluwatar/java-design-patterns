@@ -31,9 +31,4 @@ public enum Genre {
   FANTASY,
   HORROR,
   SCIFI;
-
-  @Override
-  public String toString() {
-    return super.toString();
-  }
 }
