@@ -40,14 +40,10 @@
     <spring-boot.version>2.7.5</spring-boot.version>
     <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <camel.version>3.18.3</camel.version>
     <guava.version>19.0</guava.version>
     <htmlunit.version>2.66.0</htmlunit.version>
     <guice.version>4.0</guice.version>
     <mongo-java-driver.version>3.12.8</mongo-java-driver.version>
-    <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
-    <aws-java-sdk-dynamodb.version>1.12.13</aws-java-sdk-dynamodb.version>
-    <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
     <system-lambda.version>1.1.0</system-lambda.version>
     <urm.version>2.0.0</urm.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
@@ -127,11 +123,9 @@
     <module>business-delegate</module>
     <module>half-sync-half-async</module>
     <module>layers</module>
-    <module>eip-message-channel</module>
     <module>fluentinterface</module>
     <module>reactor</module>
     <module>caching</module>
-    <module>eip-publish-subscribe</module>
     <module>delegation</module>
     <module>event-driven-architecture</module>
     <module>api-gateway</module>
@@ -162,13 +156,9 @@
     <module>throttling</module>
     <module>unit-of-work</module>
     <module>partial-response</module>
-    <module>eip-wire-tap</module>
-    <module>eip-splitter</module>
-    <module>eip-aggregator</module>
     <module>retry</module>
     <module>dirty-flag</module>
     <module>trampoline</module>
-    <module>serverless</module>
     <module>ambassador</module>
     <module>acyclic-visitor</module>
     <module>collection-pipeline</module>
@@ -233,16 +223,6 @@
         <groupId>commons-dbcp</groupId>
         <artifactId>commons-dbcp</artifactId>
         <version>${commons-dbcp.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-core</artifactId>
-        <version>${camel.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-stream</artifactId>
-        <version>${camel.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
