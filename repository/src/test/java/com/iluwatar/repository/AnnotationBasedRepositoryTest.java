@@ -65,7 +65,7 @@ class AnnotationBasedRepositoryTest {
 
   @Test
   void testFindAll() {
-    List<Person> actuals = repository.findAll();
+    var actuals = repository.findAll();
     assertTrue(actuals.containsAll(persons) && persons.containsAll(actuals));
   }
 
