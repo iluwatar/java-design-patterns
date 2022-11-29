@@ -60,7 +60,7 @@ Book createBook(Genre genre, String author, String title, LocalDate publicationD
 ```
 However, what if we only wanted to create books from the `FANTASY` genre? We could pass in the `FANTASY` parameter on each method call; however, this is repetitive. We could define a new method specifically for creating `FANTASY` books; however, it is infeasible to create a new method for each book genre. The solution is to create a curried function.
 ```java
-static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> BOOK_CREATOR
+static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> book_creator
       = genre
       -> author
       -> title
