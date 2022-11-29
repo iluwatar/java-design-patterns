@@ -68,7 +68,7 @@ public class Book {
   /**
    * Curried book builder/creator function.
    */
-  static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> BOOK_CREATOR
+  static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> book_creator
       = bookGenre
           -> bookAuthor
               -> bookTitle
