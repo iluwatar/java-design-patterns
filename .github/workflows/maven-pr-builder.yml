@@ -34,21 +34,18 @@ on:
 jobs:
   build:
 
-    name: Build JDP
+    name: Build on JDK 17
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        java-version: [ 11.0.3, 11 ]
     steps:
     
     - name: Checkout Code
       uses: actions/checkout@v3
     
-    - name: Set up JDK ${{ matrix.java-version }}
+    - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
-        java-version: ${{ matrix.java-version }}
-        distribution: 'zulu'
+        java-version: '17'
+        distribution: 'temurin'
         cache: 'maven'
     
     # Some tests need screen access
