@@ -49,11 +49,13 @@ public class Main {
     try {
       SecureRandom random = new SecureRandom();
       Thread.sleep(random.nextInt(1000));
+      LOGGER.info("Start transferring...");
       for (int i = 0; i < 1000000; i++) {
         bank.transfer(random.nextInt(4), random.nextInt(4), random.nextInt());
       }
+      LOGGER.info("Finished transferring.");
     } catch (InterruptedException e) {
-      LOGGER.info(e.getMessage());
+      LOGGER.error(e.getMessage());
       Thread.currentThread().interrupt();
     }
   }
