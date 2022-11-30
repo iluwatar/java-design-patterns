@@ -68,3 +68,4 @@ Nous vous aiderons répondrons à vos questions dans le [Gitter chatroom](https:
 # Licence
 
 Ce projet est concédé sous les termes de la licence MIT.
+

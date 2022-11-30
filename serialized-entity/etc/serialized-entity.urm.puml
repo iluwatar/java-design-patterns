@@ -1,0 +1,49 @@
+@startuml
+package com.iluwatar.serializedentity {
+  class App {
+    - DB_URL : String {static}
+    - LOGGER : Logger {static}
+    - App()
+    - createDataSource() : DataSource {static}
+    - createSchema(dataSource : DataSource) {static}
+    - deleteSchema(dataSource : DataSource) {static}
+    + main(args : String[]) {static}
+  }
+  class Country {
+    - code : int
+    - continents : String
+    - language : String
+    - name : String
+    + serialVersionUID : long {static}
+    + Country(code : int, name : String, continents : String, language : String)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getCode() : int
+    + getContinents() : String
+    + getLanguage() : String
+    + getName() : String
+    + hashCode() : int
+    + setCode(code : int)
+    + setContinents(continents : String)
+    + setLanguage(language : String)
+    + setName(name : String)
+    + toString() : String
+  }
+  interface CountryDao {
+    + insertCountry() : int {abstract}
+    + selectCountry() : int {abstract}
+  }
+  class CountrySchemaSql {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    - LOGGER : Logger {static}
+    - country : Country
+    - dataSource : DataSource
+    + CountrySchemaSql(country : Country, dataSource : DataSource)
+    + insertCountry() : int
+    + selectCountry() : int
+  }
+}
+CountrySchemaSql -->  "-country" Country
+CountrySchemaSql ..|> CountryDao 
+@enduml

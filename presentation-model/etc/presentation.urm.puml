@@ -1,0 +1,82 @@
+@startuml
+package com.iluwatar.presentationmodel {
+  class Album {
+    - artist : String
+    - composer : String
+    - isClassical : boolean
+    - title : String
+    + Album(title : String, artist : String, isClassical : boolean, composer : String)
+    + getArtist() : String
+    + getComposer() : String
+    + getTitle() : String
+    + isClassical() : boolean
+    + setArtist(artist : String)
+    + setClassical(isClassical : boolean)
+    + setComposer(composer : String)
+    + setTitle(title : String)
+  }
+  class App {
+    - LOGGER : Logger {static}
+    - App()
+    + main(args : String[]) {static}
+  }
+  class DisplayedAlbums {
+    - LOGGER : Logger {static}
+    - albums : List<Album>
+    + DisplayedAlbums()
+    + addAlbums(title : String, artist : String, isClassical : boolean, composer : String)
+    + getAlbums() : List<Album>
+  }
+  class PresentationModel {
+    - LOGGER : Logger {static}
+    - data : DisplayedAlbums
+    - selectedAlbum : Album
+    - selectedAlbumNumber : int
+    + PresentationModel(dataOfAlbums : DisplayedAlbums)
+    + albumDataSet() : DisplayedAlbums {static}
+    + getAlbumList() : String[]
+    + getArtist() : String
+    + getComposer() : String
+    + getIsClassical() : boolean
+    + getTitle() : String
+    + setArtist(value : String)
+    + setComposer(value : String)
+    + setIsClassical(value : boolean)
+    + setSelectedAlbumNumber(albumNumber : int)
+    + setTitle(value : String)
+  }
+  class View {
+    ~ HEIGHT : int {static}
+    ~ HEIGHT_TXT : int {static}
+    ~ LOCATION_X : int {static}
+    ~ LOCATION_Y : int {static}
+    - LOGGER : Logger {static}
+    ~ WIDTH : int {static}
+    ~ WIDTH_TXT : int {static}
+    - albumList : JList<String>
+    - apply : JButton
+    - cancel : JButton
+    - chkClassical : JCheckBox
+    - model : PresentationModel
+    - txtArtist : TextField
+    - txtComposer : TextField
+    - txtTitle : TextField
+    + View()
+    + createView()
+    + getAlbumList() : JList<String>
+    + getApply() : JButton
+    + getCancel() : JButton
+    + getChkClassical() : JCheckBox
+    + getModel() : PresentationModel
+    + getTxtArtist() : TextField
+    + getTxtComposer() : TextField
+    + getTxtTitle() : TextField
+    + loadFromPMod()
+    + saveToPMod()
+  }
+}
+DisplayedAlbums -->  "-albums" Album
+View -->  "-model" PresentationModel
+PresentationModel -->  "-data" DisplayedAlbums
+PresentationModel -->  "-selectedAlbum" Album
+@enduml
