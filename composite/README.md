@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Composite
-folder: composite
-permalink: /patterns/composite/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

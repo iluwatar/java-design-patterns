@@ -48,7 +48,7 @@ class AggregatorTest {
   private ProductInventoryClient inventoryClient;
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     MockitoAnnotations.openMocks(this);
   }
 

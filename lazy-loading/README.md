@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Lazy Loading
-folder: lazy-loading
-permalink: /patterns/lazy-loading/
-categories: Idiom
+category: Idiom
 language: en
-tags:
+tag:
  - Performance
 ---
 

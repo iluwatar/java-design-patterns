@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: State
-folder: state
-permalink: /patterns/state/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

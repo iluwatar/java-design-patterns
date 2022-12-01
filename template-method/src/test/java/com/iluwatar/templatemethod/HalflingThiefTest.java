@@ -24,7 +24,7 @@
  */
 package com.iluwatar.templatemethod;
 
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
@@ -35,18 +35,21 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class HalflingThiefTest {
+class HalflingThiefTest {
 
   /**
    * Verify if the thief uses the provided stealing method
    */
   @Test
   void testSteal() {
-    final var method = mock(StealingMethod.class);
+    final var method = spy(StealingMethod.class);
     final var thief = new HalflingThief(method);
 
     thief.steal();
     verify(method).steal();
+    String target = verify(method).pickTarget();
+    verify(method).confuseTarget(target);
+    verify(method).stealTheItem(target);
 
     verifyNoMoreInteractions(method);
   }
@@ -56,19 +59,23 @@ public class HalflingThiefTest {
    */
   @Test
   void testChangeMethod() {
-    final var initialMethod = mock(StealingMethod.class);
+    final var initialMethod = spy(StealingMethod.class);
     final var thief = new HalflingThief(initialMethod);
 
     thief.steal();
     verify(initialMethod).steal();
+    String target = verify(initialMethod).pickTarget();
+    verify(initialMethod).confuseTarget(target);
+    verify(initialMethod).stealTheItem(target);
 
-    final var newMethod = mock(StealingMethod.class);
+    final var newMethod = spy(StealingMethod.class);
     thief.changeMethod(newMethod);
 
     thief.steal();
     verify(newMethod).steal();
-
+    String newTarget = verify(newMethod).pickTarget();
+    verify(newMethod).confuseTarget(newTarget);
+    verify(newMethod).stealTheItem(newTarget);
     verifyNoMoreInteractions(initialMethod, newMethod);
-
   }
 }

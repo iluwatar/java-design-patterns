@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Lockable Object
-folder: lockable-object
-permalink: /patterns/lockable-object/
+category: Concurrency
 language: en
-categories: Concurrency
-tags:
+tag:
 - Performance
 ---
 

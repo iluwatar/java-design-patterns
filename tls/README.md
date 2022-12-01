@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Thread Local Storage
-folder: tls
-permalink: /patterns/tls/
-categories: Idiom
+category: Idiom
 language: en
-tags:
+tag:
  - Performance
 ---
 

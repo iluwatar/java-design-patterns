@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Caching
-folder: caching
-permalink: /patterns/caching/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
   - Performance
   - Cloud distributed
 ---

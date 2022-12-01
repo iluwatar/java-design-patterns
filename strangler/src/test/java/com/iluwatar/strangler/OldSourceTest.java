@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test methods in OldSource
  */
-public class OldSourceTest {
+class OldSourceTest {
   private static final OldSource source = new OldSource();
 
   @Test

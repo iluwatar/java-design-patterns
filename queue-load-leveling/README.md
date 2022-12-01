@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Queue based load leveling
-folder: queue-load-leveling
-permalink: /patterns/queue-load-leveling/
-categories: Concurrency
+category: Concurrency
 language: en
-tags:
+tag:
  - Decoupling
  - Performance
  - Cloud distributed

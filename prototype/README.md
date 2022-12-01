@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Prototype
-folder: prototype
-permalink: /patterns/prototype/
-categories: Creational
+category: Creational
 language: en
-tags: 
+tag: 
  - Gang Of Four
  - Instantiation
 ---

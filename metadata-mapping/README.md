@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Metadata Mapping
-folder: metadata-mapping
-permalink: /patterns/metadata-mapping/
-categories: Architectural
+category: Architectural
 language: en
-tags:
+tag:
  - Data access
 ---
 
@@ -29,14 +26,14 @@ Wikipedia says
 
 **Programmatic Example**
 
-We give an example about visiting the information of `USER` table in `h2` database. Firstly, we create `USER` table with `h2`:
+We give an example about visiting the information of `user_account` table in `h2` database. Firstly, we create `user_account` table with `h2`:
 
 ```java
 @Slf4j
 public class DatabaseUtil {
   private static final String DB_URL = "jdbc:h2:mem:metamapping";
-  private static final String CREATE_SCHEMA_SQL = "DROP TABLE IF EXISTS `user`;"
-      + "CREATE TABLE `user` (\n"
+  private static final String CREATE_SCHEMA_SQL = "DROP TABLE IF EXISTS `user_account`;"
+      + "CREATE TABLE `user_account` (\n"
       + "  `id` int(11) NOT NULL AUTO_INCREMENT,\n"
       + "  `username` varchar(255) NOT NULL,\n"
       + "  `password` varchar(255) NOT NULL,\n"
@@ -91,7 +88,7 @@ Then we write a `xml` file to show the mapping between the table and the object:
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-  <class name="com.iluwatar.metamapping.model.User" table="user">
+  <class name="com.iluwatar.metamapping.model.User" table="user_account">
     <id name="id" type="java.lang.Integer" column="id">
       <generator class="native"/>
     </id>
@@ -107,7 +104,7 @@ We use `Hibernate` to resolve the mapping and connect to our database, here's it
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
     "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
     <!-- JDBC Database connection settings -->
@@ -164,7 +161,7 @@ public class UserService {
 
 ## Class diagram
 
-![metamapping](etc/metamapping.png)
+![metamapping](./etc/metamapping.png)
 
 ## Applicability
 

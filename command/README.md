@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Command
-folder: command
-permalink: /patterns/command/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

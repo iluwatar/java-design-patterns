@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Poison Pill
-folder: poison-pill
-permalink: /patterns/poison-pill/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Cloud distributed
  - Reactive
 ---

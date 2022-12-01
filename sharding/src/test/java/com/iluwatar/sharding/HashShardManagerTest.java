@@ -40,7 +40,7 @@ class HashShardManagerTest {
    * Initialize hashShardManager instance.
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     hashShardManager = new HashShardManager();
     var shard1 = new Shard(1);
     var shard2 = new Shard(2);

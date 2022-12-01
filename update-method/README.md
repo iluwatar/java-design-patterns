@@ -1,11 +1,8 @@
 ---  
-layout: pattern  
 title: Update Method
-folder: update-method  
-permalink: /patterns/update-method/  
-categories: Behavioral
+category: Behavioral
 language: en
-tags:  
+tag:  
  - Game programming
 ---  
   

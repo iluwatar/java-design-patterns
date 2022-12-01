@@ -1,11 +1,8 @@
 ---
-layout: pattern  
 title: Sharding 
-folder: sharding  
-permalink: /patterns/sharding/  
-categories: Behavioral
+category: Behavioral
 language: en
-tags:  
+tag:  
  - Performance
  - Cloud distributed
 ---  

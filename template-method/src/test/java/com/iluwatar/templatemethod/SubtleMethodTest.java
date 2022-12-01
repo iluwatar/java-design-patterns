@@ -29,7 +29,7 @@ package com.iluwatar.templatemethod;
  *
  * @author Jeroen Meulemeester
  */
-public class SubtleMethodTest extends StealingMethodTest<SubtleMethod> {
+class SubtleMethodTest extends StealingMethodTest<SubtleMethod> {
 
   /**
    * Create a new test for the {@link SubtleMethod}

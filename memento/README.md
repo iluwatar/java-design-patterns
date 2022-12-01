@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Memento
-folder: memento
-permalink: /patterns/memento/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

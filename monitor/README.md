@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Monitor
-folder: monitor
-permalink: /patterns/monitor/
-categories: Concurrency
+category: Concurrency
 language: en
-tags:
+tag:
  - Performance
 ---
 

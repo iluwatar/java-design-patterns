@@ -27,7 +27,6 @@ package com.iluwatar.threadpool;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +35,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class WorkerTest {
+class WorkerTest {
 
   /**
    * Verify if a worker does the actual job
@@ -45,7 +44,7 @@ public class WorkerTest {
   void testRun() {
     final var task = mock(Task.class);
     final var worker = new Worker(task);
-    verifyZeroInteractions(task);
+    verifyNoMoreInteractions(task);
 
     worker.run();
     verify(task).getTimeMs();

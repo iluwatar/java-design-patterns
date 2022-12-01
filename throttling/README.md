@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Throttling
-folder: throttling
-permalink: /patterns/throttling/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Performance
  - Cloud distributed
 ---

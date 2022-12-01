@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Pipeline
-folder: pipeline
-permalink: /patterns/pipeline/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

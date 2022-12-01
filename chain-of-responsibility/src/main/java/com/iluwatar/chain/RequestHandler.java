@@ -24,31 +24,16 @@
  */
 package com.iluwatar.chain;
 
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * RequestHandler.
  */
-@Slf4j
-@AllArgsConstructor
-public abstract class RequestHandler {
+public interface RequestHandler {
 
-  private final RequestHandler next;
+  boolean canHandleRequest(Request req);
 
-  /**
-   * Request handler.
-   */
-  public void handleRequest(Request req) {
-    if (next != null) {
-      next.handleRequest(req);
-    }
-  }
+  int getPriority();
 
-  protected void printHandling(Request req) {
-    LOGGER.info("{} handling request \"{}\"", this, req);
-  }
+  void handle(Request req);
 
-  @Override
-  public abstract String toString();
+  String name();
 }

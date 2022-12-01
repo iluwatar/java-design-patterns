@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class CakeBakingExceptionTest {
+class CakeBakingExceptionTest {
 
   @Test
   void testConstructor() {

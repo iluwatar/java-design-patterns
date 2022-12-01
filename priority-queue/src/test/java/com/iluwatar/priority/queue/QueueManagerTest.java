@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Check queue manager
  */
-public class QueueManagerTest {
+class QueueManagerTest {
 
   @Test
   void publishMessage() {

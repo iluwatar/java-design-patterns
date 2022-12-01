@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Event Sourcing
-folder: event-sourcing
-permalink: /patterns/event-sourcing/
-categories: Architectural
+category: Architectural
 language: en
-tags:
+tag:
   - Performance
   - Cloud distributed
 ---
