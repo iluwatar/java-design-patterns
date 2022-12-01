@@ -2,7 +2,7 @@
 title: MonoState
 category: Creational
 language: en
-tags:
+tag:
  - Instantiation
 ---
 

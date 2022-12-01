@@ -2,7 +2,7 @@
 title: Page Object
 category: Structural
 language: en
-tags:
+tag:
 - Decoupling
 ---
 

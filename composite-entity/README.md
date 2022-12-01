@@ -2,7 +2,7 @@
 title: Composite Entity
 category: Structural
 language: en
-tags:
+tag:
  - Enterprise Integration Pattern
 ---
 

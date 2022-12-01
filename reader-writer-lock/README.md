@@ -2,7 +2,7 @@
 title: Reader Writer Lock
 category: Concurrency
 language: en
-tags: 
+tag: 
  - Performance
 ---
 

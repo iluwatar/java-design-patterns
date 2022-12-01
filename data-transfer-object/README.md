@@ -2,7 +2,7 @@
 title: Data Transfer Object
 category: Architectural
 language: en
-tags:
+tag:
  - Performance
 ---
 

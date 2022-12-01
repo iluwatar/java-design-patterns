@@ -2,7 +2,7 @@
 title: Active Object
 category: Concurrency
 language: zh
-tags:
+tag:
  - Performance
 ---
 
@@ -119,4 +119,4 @@ public class Orc extends ActiveCreature {
 
 ## 类图
 
-![alt text](etc/active-object.urm.png "Active Object class diagram")
+![alt text](./etc/active-object.urm.png "Active Object class diagram")

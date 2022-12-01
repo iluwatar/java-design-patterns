@@ -1,1 +1,0 @@
-mock-maker-inline
