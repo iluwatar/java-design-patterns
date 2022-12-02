@@ -25,7 +25,6 @@
 package com.iluwatar.combinator;
 
 import java.util.ArrayList;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -95,7 +94,7 @@ public class Finders {
   }
 
   private static Finder identMult() {
-    return txt -> Stream.of(txt.split("\n")).collect(Collectors.toList());
+    return txt -> Stream.of(txt.split("\n")).toList();
   }
 
   private static Finder identSum() {

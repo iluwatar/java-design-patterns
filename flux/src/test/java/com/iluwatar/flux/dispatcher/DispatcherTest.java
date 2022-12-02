@@ -39,7 +39,6 @@ import com.iluwatar.flux.action.ContentAction;
 import com.iluwatar.flux.action.MenuAction;
 import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.store.Store;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -90,12 +89,12 @@ class DispatcherTest {
     final var menuActions = actions.stream()
         .filter(a -> a.getType().equals(ActionType.MENU_ITEM_SELECTED))
         .map(a -> (MenuAction) a)
-        .collect(Collectors.toList());
+        .toList();
 
     final var contentActions = actions.stream()
         .filter(a -> a.getType().equals(ActionType.CONTENT_CHANGED))
         .map(a -> (ContentAction) a)
-        .collect(Collectors.toList());
+        .toList();
 
     assertEquals(2, menuActions.size());
     assertEquals(1, menuActions.stream().map(MenuAction::getMenuItem).filter(MenuItem.HOME::equals)
