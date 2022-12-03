@@ -12,14 +12,33 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CorrectNameState implements AutomatonInterfaceI {
 
-  EventSink eventSink;
-  DataModel model;
+  /**
+   * Event sink for sending state changes.
+   * */
+  private final EventSink eventSink;
 
-  public CorrectNameState(EventSink eventSink, DataModel model) {
-    this.eventSink = eventSink;
-    this.model = model;
+  /**
+   * Event sink for current inputs value.
+   * */
+  private final DataModel model;
+
+  /**
+   * Constructor.
+   *
+   * @param newEventSink -> evenSink value.
+   * @param newModel -> model value.
+   * */
+  public CorrectNameState(
+      final EventSink newEventSink,
+      final DataModel newModel
+  ) {
+    this.eventSink = newEventSink;
+    this.model = newModel;
   }
 
+  /**
+   * Restarts the FSM.
+   * */
   @Override
   public void startNewQuery() {
     LOGGER.info("Input cache cleared");
@@ -27,8 +46,13 @@ public class CorrectNameState implements AutomatonInterfaceI {
     model.clear();
   }
 
+  /**
+   * Input new character into FSM.
+   *
+   * @param character -> value of inputted character.
+   * */
   @Override
-  public void inputCharacter(char character) {
+  public void inputCharacter(final char character) {
     // check if character is an uppercase letter
     if ((int) 'a' <= (int) character && (int) character <= (int) 'z') {
       eventSink.castEvent(Event.CORRECT);
@@ -39,11 +63,22 @@ public class CorrectNameState implements AutomatonInterfaceI {
     model.addCharacter(character);
   }
 
+  /**
+   * Log if a name inputted up to now is correct.
+   * */
   @Override
   public void logStreamNameCorrectness() {
-    LOGGER.info("String '{}' is a correct name", model.getCurrentString());
+    LOGGER.info(
+        "String '{}' is a correct name",
+        model.getCurrentString()
+    );
   }
 
+  /**
+   * Is a name inputted up to now correct.
+   *
+   * @return is name created from inputs correct.
+   * */
   @Override
   public boolean isCorrect() {
     return true;
