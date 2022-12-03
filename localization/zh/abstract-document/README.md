@@ -2,7 +2,7 @@
 title: Abstract Document
 category: Structural
 language: zh
-tags: 
+tag: 
  - Extensibility
 ---
 
@@ -163,7 +163,7 @@ public class Car extends AbstractDocument implements HasModel, HasPrice, HasPart
 
 ## 类图
 
-![alt text](etc/abstract-document.png "Abstract Document Traits and Domain")
+![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
 ## 适用性
 

@@ -2,7 +2,7 @@
 title: Abstract Document
 category: Structural
 language: en
-tags: 
+tag: 
  - Extensibility
 ---
 

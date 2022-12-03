@@ -1,8 +1,8 @@
 ---
 title: Iterator
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

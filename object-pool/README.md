@@ -2,7 +2,7 @@
 title: Object Pool
 category: Creational
 language: en
-tags:
+tag:
  - Game programming
  - Performance
 ---

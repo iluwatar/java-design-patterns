@@ -2,7 +2,7 @@
 title: Visitor
 category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

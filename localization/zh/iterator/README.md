@@ -2,7 +2,7 @@
 title: Iterator
 category: Behavioral
 language: zh
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -112,7 +112,7 @@ while (itemIterator.hasNext()) {
 ```
 
 ## 类图
-![alt text](etc/iterator_1.png "Iterator")
+![alt text](./etc/iterator_1.png "Iterator")
 
 ## 适用性
 以下情况使用迭代器模式

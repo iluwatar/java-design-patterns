@@ -5,7 +5,7 @@ folder: abstract-factory
 permalink: /patterns/abstract-factory/
 categories: Creational
 language: es
-tags:
+tag:
  - Gang of Four
 ---
 

@@ -48,7 +48,7 @@ public class UserGroup {
    */
   public static void addUserToFreeGroup(final User user) throws IllegalArgumentException {
     if (paidGroup.contains(user)) {
-      throw new IllegalArgumentException("User all ready member of paid group.");
+      throw new IllegalArgumentException("User already member of paid group.");
     } else {
       if (!freeGroup.contains(user)) {
         freeGroup.add(user);
@@ -65,7 +65,7 @@ public class UserGroup {
    */
   public static void addUserToPaidGroup(final User user) throws IllegalArgumentException {
     if (freeGroup.contains(user)) {
-      throw new IllegalArgumentException("User all ready member of free group.");
+      throw new IllegalArgumentException("User already member of free group.");
     } else {
       if (!paidGroup.contains(user)) {
         paidGroup.add(user);

@@ -2,7 +2,7 @@
 title: Role Object
 category: Structural
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

@@ -2,7 +2,7 @@
 title: Partial Response
 category: Behavioral
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

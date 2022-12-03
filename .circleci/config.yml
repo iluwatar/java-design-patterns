@@ -26,14 +26,14 @@ version: 2
 jobs:
   sonar-pr:
     docker:
-      - image: cimg/openjdk:11.0-node
+      - image: cimg/openjdk:17.0-node
     steps:
     - checkout
     - restore_cache:
         key: jdp-sonar-pr-{{ checksum "pom.xml" }}
     - run: |
         sudo apt-get update
-        sudo apt-get install -y openjdk-11-jdk xvfb
+        sudo apt-get install -y openjdk-17-jdk xvfb
         if [ -n "${CIRCLE_PR_NUMBER}" ]; then
           MAVEN_OPTS="-Xmx3000m" xvfb-run ./mvnw -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
              -Dsonar.pullrequest.key=${CIRCLE_PR_NUMBER} \

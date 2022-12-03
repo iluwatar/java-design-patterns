@@ -2,7 +2,7 @@
 title: Servant
 category: Behavioral
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

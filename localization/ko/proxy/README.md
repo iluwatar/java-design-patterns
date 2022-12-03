@@ -2,7 +2,7 @@
 title: Proxy
 category: Structural
 language: ko
-tags:
+tag:
 - Gang Of Four
 - Decoupling
 ---
@@ -120,7 +120,7 @@ Brown wizard is not allowed to enter!
 
 ## 클래스 다이어그램
 
-![alt text](../../../proxy/etc/proxy.urm.png "Proxy pattern class diagram")
+![alt text](./etc/proxy.urm.png "Proxy pattern class diagram")
 
 ## 적용 가능성
 

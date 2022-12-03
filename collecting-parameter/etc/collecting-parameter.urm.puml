@@ -1,0 +1,39 @@
+@startuml
+package com.iluwatar.collectingparameter {
+  class App {
+    ~ printerQueue : PrinterQueue {static}
+    + App()
+    + addValidA2Papers(printerItemsCollection : Queue<PrinterItem>) {static}
+    + addValidA3Papers(printerItemsCollection : Queue<PrinterItem>) {static}
+    + addValidA4Papers(printerItemsCollection : Queue<PrinterItem>) {static}
+    + main(args : String[]) {static}
+  }
+  ~enum PaperSizes {
+    + A2 {static}
+    + A3 {static}
+    + A4 {static}
+    + valueOf(name : String) : PaperSizes {static}
+    + values() : PaperSizes[] {static}
+  }
+  class PrinterItem {
+    ~ isColour : boolean
+    ~ isDoubleSided : boolean
+    ~ pageCount : int
+    ~ paperSize : PaperSizes
+    + PrinterItem(paperSize : PaperSizes, pageCount : int, isDoubleSided : boolean, isColour : boolean)
+  }
+  class PrinterQueue {
+    ~ currentInstance : PrinterQueue {static}
+    - printerItemQueue : Queue<PrinterItem>
+    - PrinterQueue()
+    + addPrinterItem(printerItem : PrinterItem)
+    + emptyQueue()
+    + getInstance() : PrinterQueue {static}
+    + getPrinterQueue() : Queue<PrinterItem>
+  }
+}
+PrinterQueue -->  "-currentInstance" PrinterQueue
+PrinterQueue -->  "-printerItemQueue" PrinterItem
+App -->  "-printerQueue" PrinterQueue
+PrinterItem -->  "-paperSize" PaperSizes
+@enduml
