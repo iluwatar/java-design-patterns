@@ -112,12 +112,12 @@ Use the Adapter pattern when
 Class and object adapters have different trade-offs. A class adapter
 
 *	Adapts Adaptee to Target by committing to a concrete Adaptee class. As a consequence, a class adapter won’t work when we want to adapt a class and all its subclasses.
-*	Let’s Adapter override some of Adaptee’s behavior since Adapter is a subclass of Adaptee.
+*	Lets Adapter override some of Adaptee’s behavior since Adapter is a subclass of Adaptee.
 *	Introduces only one object, and no additional pointer indirection is needed to get to the adaptee.
 
 An object adapter	
 
-*	Lets a single Adapter work with many Adaptees—that is, the Adaptee itself and all of its subclasses (if any). The Adapter can also add functionality to all Adaptees at once.
+*	Lets a single Adapter work with many Adaptees, that is, the Adaptee itself and all of its subclasses (if any). The Adapter can also add functionality to all Adaptees at once.
 *	Makes it harder to override Adaptee behavior. It will require subclassing Adaptee and making the Adapter refer to the subclass rather than the Adaptee itself.
 
 

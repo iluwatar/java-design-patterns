@@ -1600,7 +1600,7 @@
       "login": "frascu",
       "name": "Francesco Scuccimarri",
       "avatar_url": "https://avatars.githubusercontent.com/u/7107651?v=4",
-      "profile": "http://scuccimarri.it",
+      "profile": "https://github.com/frascu",
       "contributions": [
         "code"
       ]
@@ -2115,6 +2115,25 @@
       "profile": "https://github.com/u7281975",
       "contributions": [
         "doc"
+      ]
+    },
+    {
+      "login": "harshalkhachane",
+      "name": "harshalkhachane",
+      "avatar_url": "https://avatars.githubusercontent.com/u/92866584?v=4",
+      "profile": "https://github.com/harshalkhachane",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ec-026",
+      "name": "Tejas Singh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95495584?v=4",
+      "profile": "https://github.com/ec-026",
+      "contributions": [
+        "doc",
+        "translation"
       ]
     }
   ],
