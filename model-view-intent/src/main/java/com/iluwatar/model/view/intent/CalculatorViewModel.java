@@ -8,12 +8,23 @@ import com.iluwatar.model.view.intent.actions.SetVariableCalculatorAction;
 import com.iluwatar.model.view.intent.actions.SubtractionCalculatorAction;
 
 /**
- * Handle transformations to {@link CalculatorModel} based on intercepted {@link CalculatorAction}.
- * */
-public class CalculatorViewModel {
-  private CalculatorModel model = new CalculatorModel(0.0, 0.0);
+ * Handle transformations to {@link CalculatorModel}
+ * based on intercepted {@link CalculatorAction}.
+ */
+public final class CalculatorViewModel {
 
-  void handleAction(CalculatorAction action) {
+  /**
+   * Current calculator model (can be changed).
+   */
+  private CalculatorModel model =
+      new CalculatorModel(0.0, 0.0);
+
+  /**
+   * Handle calculator action.
+   *
+   * @param action -> transforms calculator model.
+   */
+  void handleAction(final CalculatorAction action) {
     switch (action.tag()) {
       case AdditionCalculatorAction.TAG:
         add();
@@ -32,8 +43,9 @@ public class CalculatorViewModel {
         break;
 
       case SetVariableCalculatorAction.TAG:
-        SetVariableCalculatorAction setVariableAction = (SetVariableCalculatorAction) action;
-        setVariable(setVariableAction.variable);
+        SetVariableCalculatorAction setVariableAction =
+            (SetVariableCalculatorAction) action;
+        setVariable(setVariableAction.getVariable());
         break;
 
       default:
@@ -41,27 +53,62 @@ public class CalculatorViewModel {
     }
   }
 
+  /**
+   * Getter.
+   *
+   * @return current calculator model.
+   */
   public CalculatorModel getCalculatorModel() {
     return model;
   }
 
-  private void setVariable(Double variable) {
-    model = model.copy(model.output, variable);
+  /**
+   * Set new calculator model variable.
+   *
+   * @param variable -> value of new calculator model variable.
+   */
+  private void setVariable(final Double variable) {
+    model = model.copy(model.getOutput(), variable);
   }
 
+  /**
+   * Add variable to model output.
+   */
   private void add() {
-    model = model.copy(model.output + model.variable, model.variable);
+    model = model.copy(
+        model.getOutput() + model.getVariable(),
+        model.getVariable()
+    );
   }
 
+  /**
+   * Subtract variable from model output.
+   */
   private void subtract() {
-    model = model.copy(model.output - model.variable, model.variable);
+    model = model.copy(
+        model.getOutput() - model.getVariable(),
+        model.getVariable()
+    );
   }
 
+  /**
+   * Multiply model output by variable.
+   */
   private void multiply() {
-    model = model.copy(model.output * model.variable, model.variable);
+    model = model.copy(
+        model.getOutput() * model.getVariable(),
+        model.getVariable()
+
+    );
   }
 
+  /**
+   * Divide model output by variable.
+   */
   private void divide() {
-    model = model.copy(model.output / model.variable, model.variable);
+    model = model.copy(
+        model.getOutput() / model.getVariable(),
+        model.getVariable()
+    );
   }
 }

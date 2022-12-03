@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework licensed under LGPL
+ * (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -27,24 +29,38 @@ package com.iluwatar.model.view.intent;
 /**
  * Model-View-Intent is a pattern for implementing user interfaces.
  */
-public class App {
+public final class App {
+
+
+  /**
+   * To avoid magic value lint error.
+   */
+  private static final double RANDOM_VARIABLE = 10.0;
 
   /**
    * Program entry point.
    *
    * @param args command line args
    */
-  public static void main(String[] args) {
+  public static void main(final String[] args) {
     // create model, view and controller
     CalculatorView view = new CalculatorView();
-    view.setVariable(10.0);
+    double variable1 = RANDOM_VARIABLE;
+    view.setVariable(variable1);
     view.add();
     view.displayTotal();
 
-    view.setVariable(2.0);
+    variable1 = 2.0;
+    view.setVariable(variable1);
     view.subtract();
     view.divide();
     view.multiply();
     view.displayTotal();
+  }
+
+  /**
+   * Avoid default constructor lint error.
+   * */
+  private App() {
   }
 }

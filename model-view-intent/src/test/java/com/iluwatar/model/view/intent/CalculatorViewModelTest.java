@@ -19,7 +19,7 @@ public class CalculatorViewModelTest {
   @Test
   void testSetup() {
     CalculatorModel model = modelAfterExecutingActions(new ArrayList<>());
-    assert model.variable == 0 && model.output == 0;
+    assert model.getVariable() == 0 && model.getOutput() == 0;
   }
 
   @Test
@@ -28,7 +28,7 @@ public class CalculatorViewModelTest {
         new SetVariableCalculatorAction(10.0)
     );
     CalculatorModel model = modelAfterExecutingActions(actions);
-    assert model.variable == 10.0 && model.output == 0;
+    assert model.getVariable() == 10.0 && model.getOutput() == 0;
   }
 
   @Test
@@ -41,7 +41,7 @@ public class CalculatorViewModelTest {
         new AdditionCalculatorAction()
     );
     CalculatorModel model = modelAfterExecutingActions(actions);
-    assert model.variable == 7.0 && model.output == 11.0;
+    assert model.getVariable() == 7.0 && model.getOutput() == 11.0;
   }
 
   @Test
@@ -53,7 +53,7 @@ public class CalculatorViewModelTest {
         new SubtractionCalculatorAction()
     );
     CalculatorModel model = modelAfterExecutingActions(actions);
-    assert model.variable == 2.0 && model.output == 2.0;
+    assert model.getVariable() == 2.0 && model.getOutput() == 2.0;
   }
 
   @Test
@@ -65,7 +65,7 @@ public class CalculatorViewModelTest {
         new MultiplicationCalculatorAction()
     );
     CalculatorModel model = modelAfterExecutingActions(actions);
-    assert model.variable == 2.0 && model.output == 8.0;
+    assert model.getVariable() == 2.0 && model.getOutput() == 8.0;
   }
 
   @Test
@@ -78,6 +78,6 @@ public class CalculatorViewModelTest {
         new DivisionCalculatorAction()
     );
     CalculatorModel model = modelAfterExecutingActions(actions);
-    assert model.variable == 2.0 && model.output == 2.0;
+    assert model.getVariable() == 2.0 && model.getOutput() == 2.0;
   }
 }
