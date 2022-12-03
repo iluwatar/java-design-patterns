@@ -109,7 +109,7 @@ public class DragonSlayer {
 ```
 
 ## 类图
-![alt text](etc/strategy_urm.png "Strategy")
+![alt text](./etc/strategy_urm.png "Strategy")
 
 ## 应用
 使用策略模式当

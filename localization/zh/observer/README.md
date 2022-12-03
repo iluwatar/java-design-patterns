@@ -126,7 +126,7 @@ public class Weather {
 ```
 
 ## Class diagram
-![alt text](etc/observer.png "Observer")
+![alt text](./etc/observer.png "Observer")
 
 ## 应用
 在下面任何一种情况下都可以使用观察者模式

@@ -208,7 +208,7 @@
     <module>model-view-viewmodel</module>
     <module>composite-entity</module>
     <module>table-module</module>
-    <module>presentation</module>
+    <module>presentation-model</module>
     <module>lockable-object</module>
     <module>fanout-fanin</module>
     <module>domain-model</module>
@@ -216,6 +216,8 @@
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
     <module>model-view-intent</module>
+    <module>serialized-entity</module>
+    <module>identity-map</module>
   </modules>
   <repositories>
     <repository>

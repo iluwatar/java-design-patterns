@@ -10,7 +10,7 @@ tags:
 使用分离的构建器和工厂接口来定义一个不可变内容的工厂。
 
 ## 类图
-![alt text](etc/factory-kit.png "Factory Kit")
+![alt text](./etc/factory-kit.png "Factory Kit")
 
 ## 适用场景
 工厂套件模式适用于与以下场景：

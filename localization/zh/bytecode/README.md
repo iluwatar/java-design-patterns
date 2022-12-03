@@ -211,7 +211,7 @@ public class VirtualMachine {
 
 ## 类图
 
-![alt text](etc/bytecode.urm.png "Bytecode class diagram")
+![alt text](./etc/bytecode.urm.png "Bytecode class diagram")
 
 ## 适用性
 
