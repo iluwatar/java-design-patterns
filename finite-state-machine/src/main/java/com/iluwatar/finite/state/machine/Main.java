@@ -3,13 +3,21 @@ package com.iluwatar.finite.state.machine;
 /**
  * Main.
  */
-public class Main {
+public final class Main {
+  /**
+   * Avoid lint error.
+   */
+  private Main() {
+  }
 
   /**
    * Check if 'John' is a correct name.
+   *
+   * @param args -> not used
    */
-  public static void main(String[] args) {
-    RecognizeCorrectNameStateMachine fsm = new RecognizeCorrectNameStateMachine();
+  public static void main(final String[] args) {
+    RecognizeCorrectNameStateMachine fsm =
+        new RecognizeCorrectNameStateMachine();
 
     fsm.logStreamNameCorrectness();
     fsm.inputCharacter('J');

@@ -5,11 +5,27 @@ package com.iluwatar.finite.state.machine;
  */
 public interface AutomatonInterfaceI {
 
+  /**
+   * Restarts the FSM.
+   * */
   void startNewQuery();
 
+  /**
+   * Input new character into FSM.
+   *
+   * @param character -> value of inputted character.
+   * */
   void inputCharacter(char character);
 
+  /**
+   * Log if a name inputted up to now is correct.
+   * */
   void logStreamNameCorrectness();
 
+  /**
+   * Is a name inputted up to now correct.
+   *
+   * @return is name created from inputs correct.
+   * */
   boolean isCorrect();
 }

@@ -5,5 +5,10 @@ package com.iluwatar.finite.state.machine;
  */
 public interface EventSink {
 
+  /**
+   * Used to inform FSM about changes to state.
+   *
+   * @param event -> affects FSM state
+   */
   void castEvent(Event event);
 }
