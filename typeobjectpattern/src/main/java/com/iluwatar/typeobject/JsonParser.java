@@ -24,17 +24,13 @@
  */
 package com.iluwatar.typeobject;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import com.iluwatar.typeobject.Candy.Type;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Hashtable;
-import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import java.io.InputStreamReader;
+import java.util.Hashtable;
 
 /**
  * The JsonParser class helps parse the json file candy.json to get all the different candies.
@@ -47,23 +43,21 @@ public class JsonParser {
     this.candies = new Hashtable<>();
   }
 
-  void parse() throws IOException, ParseException {
-    var parser = new JSONParser();
-    var workingDirectory = new File("").getAbsolutePath();
-    var filePath = List.of("src", "main", "java", "com", "iluwatar", "typeobject", "candy.json");
-    var absolutePath = workingDirectory + File.separator + String.join(File.separator, filePath);
-    var jo = (JSONObject) parser.parse(new FileReader(absolutePath));
-    var a = (JSONArray) jo.get("candies");
-    for (var o : a) {
-      var candy = (JSONObject) o;
-      var name = (String) candy.get("name");
-      var parentName = (String) candy.get("parent");
-      var t = (String) candy.get("type");
+  void parse() throws JsonParseException {
+    var is = this.getClass().getClassLoader().getResourceAsStream("candy.json");
+    var reader = new InputStreamReader(is);
+    var json = (JsonObject) com.google.gson.JsonParser.parseReader(reader);
+    var array = (JsonArray) json.get("candies");
+    for (var item : array) {
+      var candy = (JsonObject) item;
+      var name = candy.get("name").getAsString();
+      var parentName = candy.get("parent").getAsString();
+      var t = candy.get("type").getAsString();
       var type = Type.CRUSHABLE_CANDY;
       if (t.equals("rewardFruit")) {
         type = Type.REWARD_FRUIT;
       }
-      var points = Integer.parseInt((String) candy.get("points"));
+      var points = candy.get("points").getAsInt();
       var c = new Candy(name, parentName, type, points);
       this.candies.put(name, c);
     }
