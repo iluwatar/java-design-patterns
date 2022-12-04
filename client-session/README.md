@@ -40,8 +40,12 @@ In Plain words
 
 Here is the sample code to describe the client-session pattern. In the below code we are first 
 creating an instance of the Server. This server instance will then be used to get Session objects 
-for two clients. These session objects will then be passed on with every Request to the server so 
-that the server can identify the client based on the Session object.
+for two clients. As you can see from the code below the Session object can be used to store any 
+relevant information that are required by the server to process the client request. These session 
+objects will then be passed on with every Request to the server. The Request will have the Session 
+object that stores the relevant client details along with the required data for processing the 
+request. The session information in every request helps the server identify the client and process 
+the request accordingly. 
 
 ```java
 public class App {
@@ -55,6 +59,32 @@ public class App {
     server.process(request1);
     server.process(request2);
   }
+}
+
+@Data
+@AllArgsConstructor
+public class Session {
+
+  /**
+   * Session id.
+   */
+  private String id;
+
+  /**
+   * Client name.
+   */
+  private String clientName;
+
+}
+
+@Data
+@AllArgsConstructor
+public class Request {
+
+  private String data;
+
+  private Session session;
+
 }
 ```
 
