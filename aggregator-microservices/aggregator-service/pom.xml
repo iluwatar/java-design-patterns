@@ -56,18 +56,7 @@
   </dependencies>
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <!-- Maven assembly plugin is invoked with default setting which we have 
+      <!-- Maven assembly plugin is invoked with default setting which we have
 				in parent pom and specifying the class having main method -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
