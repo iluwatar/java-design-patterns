@@ -198,6 +198,7 @@
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
+    <module>currying</module>
     <module>serialized-entity</module>
     <module>identity-map</module>
     <module>component</module>
