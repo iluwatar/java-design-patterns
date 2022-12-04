@@ -89,7 +89,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
     database = mongoClient.getDatabase(dbName);
     ticketsCollection = database.getCollection(ticketsCollectionName);
     countersCollection = database.getCollection(countersCollectionName);
-    if (countersCollection.count() <= 0) {
+    if (countersCollection.countDocuments() <= 0) {
       initCounters();
     }
   }
