@@ -35,9 +35,8 @@
   <artifactId>typeobjectpattern</artifactId>
   <dependencies>
     <dependency>
-      <groupId>com.googlecode.json-simple</groupId>
-      <artifactId>json-simple</artifactId>
-      <version>1.1.1</version>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>

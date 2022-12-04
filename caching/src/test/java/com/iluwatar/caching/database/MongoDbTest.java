@@ -84,7 +84,6 @@ class MongoDbTest {
   void writeToDb() {
     MongoCollection<Document> mongoCollection = mock(MongoCollection.class);
     when(db.getCollection(CachingConstants.USER_ACCOUNT)).thenReturn(mongoCollection);
-    doNothing().when(mongoCollection).insertOne(any(Document.class));
     assertDoesNotThrow(()-> {mongoDb.writeToDb(userAccount);});
   }
 

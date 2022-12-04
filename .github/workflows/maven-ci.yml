@@ -36,7 +36,6 @@ on:
 
 jobs:
 
-  # This Workflow Job will build this project and run Sonar analysis using JDK 11.0.3
   build-and-analyze:
 
     name: Build and Run Sonar analysis on JDK 17
@@ -56,7 +55,7 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
 
-    # Cache Sonar packages which as used to run anaylysis and collect metrics
+    # Cache Sonar packages which as used to run analysis and collect metrics
     - name: Cache SonarCloud packages
       uses: actions/cache@v3
       with:
@@ -74,28 +73,3 @@ jobs:
         # These two env variables are needed for sonar analysis
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-  
-  # This Workflow Job is going to build the project on the latest stable JDK 11
-  build:
-
-    name: Build and Test on JDK 17
-    runs-on: ubuntu-20.04
-    steps:
-
-    - name: Checkout Code
-      uses: actions/checkout@v3
-
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: 'maven'
-
-    # Some tests need screen access
-    - name: Install xvfb
-      run: sudo apt-get install -y xvfb
-
-    - name: Build with Maven
-      run: xvfb-run ./mvnw clean verify
