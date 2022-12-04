@@ -33,7 +33,6 @@ on:
   push:
     branches: [ master ]
 
-
 jobs:
 
   build-and-analyze:
