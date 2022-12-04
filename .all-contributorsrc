@@ -2261,6 +2261,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "wulangcode",
+      "name": "WuLang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48200100?v=4",
+      "profile": "https://github.com/wulangcode",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
