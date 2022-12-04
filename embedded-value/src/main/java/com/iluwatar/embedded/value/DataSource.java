@@ -156,10 +156,13 @@ public class DataSource implements DataSourceInterface {
   }
 
   /**
-   * @param order_id
+   * {@summary}
+   * Query order by given id.
+   * @param id as the parameter
    * @return Order objct
-   * @throws SQLExceptions
+   * @throws SQLException in case of unexpected events
    */
+
   @Override
   public Order queryOrder(int id) throws SQLException {
     Order order = null;
