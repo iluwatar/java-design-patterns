@@ -230,6 +230,7 @@
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
+    <module>embedded-value</module>
   </modules>
   <repositories>
     <repository>
