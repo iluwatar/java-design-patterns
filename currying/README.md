@@ -69,7 +69,7 @@ static Function<Genre, Function<String, Function<String, Function<LocalDate, Boo
 ```
 Note that the order of the parameters is important. `genre` must come before `author`, `author` must come before `title` and so on. We must be considerate of this when writing curried functions to take full advantage of partial application. Using the above function, we can define a new function `fantasyBookFunc`, to generate `FANTASY` books as follows:
 ```java
-Function<String, Function<String, Function<LocalDate, Book>>> fantasyBookFunc = Book.BOOK_CREATOR.apply(Genre.FANTASY);
+Function<String, Function<String, Function<LocalDate, Book>>> fantasyBookFunc = Book.book_creator.apply(Genre.FANTASY);
 ```
 Unfortunately, the type signature of `BOOK_CREATOR` and `fantasyBookFunc` are difficult to read and understand. We can improve this by using the [builder pattern](https://java-design-patterns.com/patterns/builder/) and [functional interfaces](https://www.geeksforgeeks.org/functional-interfaces-java/#:~:text=A%20functional%20interface%20is%20an,any%20number%20of%20default%20methods). 
 ```java
