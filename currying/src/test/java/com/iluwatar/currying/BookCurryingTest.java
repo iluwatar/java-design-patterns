@@ -50,13 +50,20 @@ class BookCurryingTest {
    */
   @Test
   void createsExpectedBook() {
-    Book curriedBook = Book.builder()
+    Book builderCurriedBook = Book.builder()
         .withGenre(Genre.FANTASY)
         .withAuthor("Dave")
         .withTitle("Into the Night")
         .withPublicationDate(LocalDate.of(2002, 4, 7));
 
-    assertEquals(expectedBook, curriedBook);
+    Book funcCurriedBook = Book.book_creator
+            .apply(Genre.FANTASY)
+            .apply("Dave")
+            .apply("Into the Night")
+            .apply(LocalDate.of(2002, 4, 7));
+
+    assertEquals(expectedBook, builderCurriedBook);
+    assertEquals(expectedBook, funcCurriedBook);
   }
 
   /**
