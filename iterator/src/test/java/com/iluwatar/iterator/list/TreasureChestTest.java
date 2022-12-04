@@ -37,7 +37,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  *
  * @author Jeroen Meulemeester
  */
-public class TreasureChestTest {
+class TreasureChestTest {
 
   /**
    * Create a list of all expected items in the chest.
@@ -65,7 +65,7 @@ public class TreasureChestTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testIterator(Item expectedItem) {
+  void testIterator(Item expectedItem) {
     final var chest = new TreasureChest();
     final var iterator = chest.iterator(expectedItem.getType());
     assertNotNull(iterator);
@@ -92,7 +92,7 @@ public class TreasureChestTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testGetItems(Item expectedItem) throws Exception {
+  void testGetItems(Item expectedItem) throws Exception {
     final var chest = new TreasureChest();
     final var items = chest.getItems();
     assertNotNull(items);

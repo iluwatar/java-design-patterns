@@ -48,7 +48,7 @@ class ApiGatewayTest {
   private PriceClient priceClient;
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     MockitoAnnotations.openMocks(this);
   }
 

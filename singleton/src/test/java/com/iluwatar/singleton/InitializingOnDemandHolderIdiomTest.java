@@ -29,7 +29,7 @@ package com.iluwatar.singleton;
  *
  * @author Jeroen Meulemeester
  */
-public class InitializingOnDemandHolderIdiomTest
+class InitializingOnDemandHolderIdiomTest
     extends SingletonTest<InitializingOnDemandHolderIdiom> {
 
   /**

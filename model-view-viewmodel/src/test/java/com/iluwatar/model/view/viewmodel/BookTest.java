@@ -24,18 +24,15 @@
  */
 package com.iluwatar.model.view.viewmodel;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.not;
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import com.google.common.testing.EqualsTester;
 
 class BookTest {
 
@@ -67,13 +64,13 @@ class BookTest {
   
   @Test
   void testEquals() {
-    new EqualsTester().addEqualityGroup(testBook, testBookTwo).testEquals();
+    assertEquals(testBook, testBookTwo);
   }
 
   @Test
   void testToString() {
-    assertThat(testBook.toString(), is(testBookTwo.toString()));
-    assertThat(testBook.toString(), is(not(testBookThree.toString())));
+    assertEquals(testBook.toString(), testBookTwo.toString());
+    assertNotEquals(testBook.toString(), testBookThree.toString());
   }
   
   @Test

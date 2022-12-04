@@ -2,7 +2,7 @@
 title: Factory
 category: Creational
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

@@ -2,7 +2,7 @@
 title: Data Access Object
 category: Architectural
 language: zh
-tags:
+tag:
  - Data access
 ---
 
@@ -146,7 +146,7 @@ customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@6ec8211c
 
 ## 类图
 
-![alt text](etc/dao.png "Data Access Object")
+![alt text](./etc/dao.png "Data Access Object")
 
 ## 适用性
 

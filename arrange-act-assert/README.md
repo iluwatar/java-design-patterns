@@ -2,7 +2,7 @@
 title: Arrange/Act/Assert
 category: Idiom
 language: en
-tags:
+tag:
  - Testing
 ---
 

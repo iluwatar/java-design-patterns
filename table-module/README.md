@@ -2,7 +2,7 @@
 title: Table Module
 category: Structural
 language: en
-tags:
+tag:
  - Data access
 ---
 

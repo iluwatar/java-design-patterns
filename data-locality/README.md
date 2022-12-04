@@ -2,7 +2,7 @@
 title: Data Locality
 category: Behavioral
 language: en
-tags:
+tag:
  - Game programming
  - Performance
 ---

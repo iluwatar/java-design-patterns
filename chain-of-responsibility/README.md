@@ -2,7 +2,7 @@
 title: Chain of responsibility
 category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -118,18 +118,24 @@ The Orc King gives the orders and forms the chain.
 
 ```java
 public class OrcKing {
-  RequestHandler chain;
+
+  private List<RequestHandler> handlers;
 
   public OrcKing() {
     buildChain();
   }
 
   private void buildChain() {
-    chain = new OrcCommander(new OrcOfficer(new OrcSoldier(null)));
+    handlers = Arrays.asList(new OrcCommander(), new OrcOfficer(), new OrcSoldier());
   }
 
   public void makeRequest(Request req) {
-    chain.handleRequest(req);
+    handlers
+        .stream()
+        .sorted(Comparator.comparing(RequestHandler::getPriority))
+        .filter(handler -> handler.canHandleRequest(req))
+        .findFirst()
+        .ifPresent(handler -> handler.handle(req));
   }
 }
 ```

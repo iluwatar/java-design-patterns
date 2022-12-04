@@ -38,7 +38,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class MovementSelectorTest {
+class MovementSelectorTest {
 
   /**
    * Verify if the movement selector gives the correct results.

@@ -24,7 +24,7 @@
  */
 package com.iluwatar.visitor;
 
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
 /**
@@ -32,7 +32,7 @@ import static org.mockito.Mockito.verify;
  *
  * @author Jeroen Meulemeester
  */
-public class SoldierTest extends UnitTest<Soldier> {
+class SoldierTest extends UnitTest<Soldier> {
 
   /**
    * Create a new test instance for the given {@link Soldier}.

@@ -35,7 +35,7 @@ class ParameterObjectTest {
   private static final Logger LOGGER = LoggerFactory.getLogger(ParameterObjectTest.class);
 
   @Test
-  public void testForDefaultSortBy() {
+  void testForDefaultSortBy() {
     //Creating parameter object with default value for SortBy set
     ParameterObject params = ParameterObject.newBuilder()
         .withType("sneakers")
@@ -49,7 +49,7 @@ class ParameterObjectTest {
   }
 
   @Test
-  public void testForDefaultSortOrder() {
+  void testForDefaultSortOrder() {
     //Creating parameter object with default value for SortOrder set
     ParameterObject params = ParameterObject.newBuilder()
         .withType("sneakers")

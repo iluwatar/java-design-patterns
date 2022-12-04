@@ -2,7 +2,7 @@
 title: Converter
 category: Creational
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

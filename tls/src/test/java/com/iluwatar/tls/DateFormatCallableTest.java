@@ -49,7 +49,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Thomas Bauer, January 2017
  */
-public class DateFormatCallableTest {
+class DateFormatCallableTest {
 
   // Class variables used in setup() have to be static because setup() has to be static
   /**

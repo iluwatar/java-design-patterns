@@ -2,7 +2,7 @@
 title: Null Object
 category: Behavioral
 language: en
-tags:
+tag:
  - Extensibility
 ---
 
