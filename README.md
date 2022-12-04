@@ -351,7 +351,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/YichuanSun"><img src="https://avatars.githubusercontent.com/u/30886176?v=4?s=100" width="100px;" alt="yiichan"/><br /><sub><b>yiichan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=YichuanSun" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/PanSem"><img src="https://avatars.githubusercontent.com/u/43316964?v=4?s=100" width="100px;" alt="Pan Sem"/><br /><sub><b>Pan Sem</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=PanSem" title="Documentation">📖</a></td>
       <td align="center"><a href="https://github.com/zhoumengyks"><img src="https://avatars.githubusercontent.com/u/111965739?v=4?s=100" width="100px;" alt="zhoumengyks"/><br /><sub><b>zhoumengyks</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=zhoumengyks" title="Code">💻</a></td>
-      <td align="center"><a href="https://github.com/you"><img src="https://avatars.githubusercontent.com/u/57100752?v=4?s=100" width="100px;" alt="you"/><br /><sub><b>you</b></sub></a><br /><a href="#translation-you" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://github.com/you"><img src="https://avatars.githubusercontent.com/u/57100752?v=4?s=100" width="100px;" alt="you"/><br /><sub><b>you</b></sub></a><br /><a href="#translation-you" title="Translation">🌍</a> <a href="#design-you" title="Design">🎨</a></td>
     </tr>
   </tbody>
 </table>
