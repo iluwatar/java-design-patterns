@@ -25,6 +25,7 @@
 package com.iluwatar.combinator;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -47,7 +48,7 @@ public interface Finder {
   static Finder contains(String word) {
     return txt -> Stream.of(txt.split("\n"))
         .filter(line -> line.toLowerCase().contains(word.toLowerCase()))
-        .toList();
+        .collect(Collectors.toList());
   }
 
   /**
@@ -87,7 +88,7 @@ public interface Finder {
             .find(txt)
             .stream()
             .flatMap(line -> andFinder.find(line).stream())
-            .toList();
+            .collect(Collectors.toList());
   }
 
 }
