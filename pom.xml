@@ -231,7 +231,7 @@
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
-    <module>audit-log</module>
+    <module>temporal-audit-log</module>
     <module>temporal-property</module>
     <module>temporal-object</module>
   </modules>

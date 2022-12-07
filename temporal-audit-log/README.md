@@ -186,7 +186,7 @@ Then, the log file after this has been run is
 
 ## Class diagram
 
-![alt text](./etc/audit-log.urm.png "Audit Log")
+![alt text](etc/temporal-audit-log.urm.png "Audit Log")
 
 ## Applicability
 
