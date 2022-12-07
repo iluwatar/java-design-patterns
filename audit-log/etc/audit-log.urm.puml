@@ -9,11 +9,42 @@ package com.iluwatar.auditlog {
     - defaultLog : String {static}
     - logFile : File {static}
     + AuditLog()
-    + auditToString() : String {static}
+    - addRecord(record : AuditLogRecord) {static}
     + getLogFile() : File {static}
-    + log(date : SimpleDate, customer : Customer, description : String, oldValue : Object, newValue : Object) {static}
+    + log(givenDate : SimpleDate, objectType : String, objectName : String, variableType : String, variableName : String, oldValue : String, newValue : String) {static}
     + setLogFile(file : File) {static}
-    + write(string : String) {static}
+  }
+  class AuditLogRecord {
+    - dateGiven : String
+    - dateRecordChanged : String
+    - objectName : String
+    - objectType : String
+    - valueNew : String
+    - valueOld : String
+    - variableName : String
+    - variableType : String
+    + AuditLogRecord()
+    + AuditLogRecord(dateGiven : String, dateRecordChanged : String, objectType : String, objectName : String, variableType : String, variableName : String, valueOld : String, valueNew : String)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getDateGiven() : String
+    + getDateRecordChanged() : String
+    + getObjectName() : String
+    + getObjectType() : String
+    + getValueNew() : String
+    + getValueOld() : String
+    + getVariableName() : String
+    + getVariableType() : String
+    + hashCode() : int
+    + setDateGiven(dateGiven : String)
+    + setDateRecordChanged(dateRecordChanged : String)
+    + setObjectName(objectName : String)
+    + setObjectType(objectType : String)
+    + setValueNew(valueNew : String)
+    + setValueOld(valueOld : String)
+    + setVariableName(variableName : String)
+    + setVariableType(variableType : String)
+    + toString() : String
   }
   class Customer {
     - address : String
@@ -32,10 +63,12 @@ package com.iluwatar.auditlog {
     - setDate : SimpleDate {static}
     ~ SimpleDate(date : LocalDate)
     ~ SimpleDate(year : int, month : int, day : int)
+    # canEqual(other : Object) : boolean
     + compareTo(otherDate : SimpleDate) : int
     + equals(o : Object) : boolean
     + getDate() : LocalDate
     + getToday() : SimpleDate {static}
+    + hashCode() : int
     + setToday(newToday : SimpleDate) {static}
     + toString() : String
   }

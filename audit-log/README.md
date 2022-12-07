@@ -1,12 +1,8 @@
---- 
-layout: pattern
+---
 title: Audit Log
-folder: audit-log
-permalink: /patterns/audit-log/ 
-categories:
-- creational 
-  language: en 
-  tags:
+category: Creational
+language: en
+tag:
 - Security
 - Data Access
 ---
@@ -58,20 +54,28 @@ public class Customer {
     this.name = name;
     this.id = id;
   }
-
+  
   public void setAddress(String address, SimpleDate changeDate) {
-    AuditLog.log(changeDate, this, "change of address", this.address, address);
+    AuditLog.log(changeDate, this.getClass().getTypeName(), String.valueOf(id),
+            address.getClass().getTypeName(), "address", this.address, address);
     this.address = address;
   }
-
+  
   public void setName(String name, SimpleDate changeDate) {
-    AuditLog.log(changeDate, this, "change of name", this.name, name);
+    AuditLog.log(changeDate, this.getClass().getTypeName(), String.valueOf(id),
+            name.getClass().getTypeName(), "name", this.name, name);
     this.name = name;
   }
 }
 ```
 
 And here are the relevant parts of `AuditLog`
+
+* Note that in the `addRecord` function design choices have been made so that the output to a log 
+  file is invalid xml (though inclusion of an opening and closing tag at the start and end of 
+  the log validates it), and this choice was made for speed. In particular, instead of 
+  re-generating valid xml and adding a new record, a new self-contained record is appended to 
+  the log file without generating xml. 
 
 ```java
 public class AuditLog {
@@ -82,17 +86,50 @@ public class AuditLog {
             StandardOpenOption.APPEND);
   }
 
-  public static void log(SimpleDate date, Customer customer, String description, Object oldValue,
-                         Object newValue) {
-    try {
-      write(SimpleDate.getToday().toString() + "\t" + customer.getId() + "\t" + customer.getName()
-              + "\t" + description + "\t" + oldValue + "\t" + newValue + "\t"
-              + date.toString() + "\n");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
+  public static void log(SimpleDate givenDate,
+                         String objectType, String objectName,
+                         String variableType, String variableName,
+                         String oldValue, String newValue) {
+    SimpleDate trueDate = SimpleDate.getToday();
+    AuditLogRecord record = new AuditLogRecord(trueDate.toString(), givenDate.toString(),
+            objectType, objectName, variableType, variableName, oldValue, newValue);
+    addRecord(record);
   }
+
+  private static void addRecord(AuditLogRecord record) {
+    // requires a single record to be self-contained, appending another record to the bottom
+    // should keep the file correct.
+    try (FileWriter fWriter = new FileWriter(getLogFile(), true)) {
+      // if file not empty, add new line character so entries are properly split
+      if (getLogFile().length() > 0){
+        fWriter.write('\n');
+      }
+
+      // set up the xml marshaller
+      JAXBContext context = JAXBContext.newInstance(AuditLogRecord.class);
+      Marshaller marshall = context.createMarshaller();
+      marshall.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+      marshall.setProperty(Marshaller.JAXB_FRAGMENT, true);
+      marshall.marshal(record, fWriter);
+    } catch (IOException | JAXBException ignored) {
+      
+    }
+  }
+}
+```
+
+and the helper class `AuditLogRecord`
+
+```java
+public class AuditLogRecord {
+  private String dateGiven;
+  private String dateRecordChanged;
+  private String objectType;
+  private String objectName;
+  private String variableType;
+  private String variableName;
+  private String valueOld;
+  private String valueNew;
 }
 ```
 
@@ -113,11 +150,38 @@ Then, with an empty log file, we have an application using the log.
   }
 ```
 
-Then, the formatted log file after this has been run is 
+Then, the log file after this has been run is 
 ```
-2000-05-07  1  John Smith  change of address  null            1234 Street St  1999-01-04
-2001-06-03  1  John Smith  change of name     John Smith      John Dough      2001-04-17
-2001-06-03  1  John Dough  change of address  1234 Street St  4321 House Ave  2000-08-23
+<auditLogRecord>
+    <dateGiven>SimpleDate(2000-05-07)</dateGiven>
+    <dateRecordChanged>SimpleDate(1999-01-04)</dateRecordChanged>
+    <objectName>1</objectName>
+    <objectType>com.iluwatar.auditlog.Customer</objectType>
+    <valueNew>1234 Street St</valueNew>
+    <variableName>address</variableName>
+    <variableType>java.lang.String</variableType>
+</auditLogRecord>
+<auditLogRecord>
+    <dateGiven>SimpleDate(2001-06-03)</dateGiven>
+    <dateRecordChanged>SimpleDate(2001-04-17)</dateRecordChanged>
+    <objectName>1</objectName>
+    <objectType>com.iluwatar.auditlog.Customer</objectType>
+    <valueNew>John Dough</valueNew>
+    <valueOld>John Smith</valueOld>
+    <variableName>name</variableName>
+    <variableType>java.lang.String</variableType>
+</auditLogRecord>
+<auditLogRecord>
+    <dateGiven>SimpleDate(2001-06-03)</dateGiven>
+    <dateRecordChanged>SimpleDate(2000-08-23)</dateRecordChanged>
+    <objectName>1</objectName>
+    <objectType>com.iluwatar.auditlog.Customer</objectType>
+    <valueNew>4321 House Ave</valueNew>
+    <valueOld>1234 Street St</valueOld>
+    <variableName>address</variableName>
+    <variableType>java.lang.String</variableType>
+</auditLogRecord>
+
 ```
 
 ## Class diagram

@@ -25,9 +25,7 @@
 package com.iluwatar.auditlog;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-
-import java.time.Instant;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,8 +40,10 @@ public class SimpleDateTest {
   }
 
   @Test
-  public void correctString(){
-    SimpleDate jul1 = new SimpleDate(1932, 7, 1);
-    assertEquals(jul1.getDate().toString(), jul1.toString());
+  public void correctInstantiation(){
+    LocalDate nowDate = LocalDate.of(2022, 11, 29);
+
+    assertEquals(nowDate, new SimpleDate(nowDate).getDate());
+    assertEquals(nowDate, new SimpleDate(2022, 11, 29).getDate());
   }
 }

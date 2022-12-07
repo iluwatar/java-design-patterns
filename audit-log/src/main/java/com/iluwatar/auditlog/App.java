@@ -68,8 +68,5 @@ public class App {
     // note that john's address and name have changed in the past
     john.setName("John Dough", new SimpleDate(2001, 4, 17));
     john.setAddress("4321 House Ave", new SimpleDate(2000, 8, 23));
-
-    // Print out the log file.
-    LOGGER.info(AuditLog.auditToString());
   }
 }

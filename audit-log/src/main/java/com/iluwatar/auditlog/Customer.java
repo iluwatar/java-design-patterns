@@ -25,9 +25,13 @@
 
 package com.iluwatar.auditlog;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+
 /**
  * Class used to represent a customer with a unique id, a name, and an address.
  */
+@Getter
 public class Customer {
   private String address;
   private String name;
@@ -45,7 +49,8 @@ public class Customer {
    * @param changeDate The date that the customer changed address.
    */
   public void setAddress(String address, SimpleDate changeDate) {
-    AuditLog.log(changeDate, this, "change of address", this.address, address);
+    AuditLog.log(changeDate, this.getClass().getTypeName(), String.valueOf(id),
+            address.getClass().getTypeName(), "address", this.address, address);
     this.address = address;
   }
 
@@ -56,19 +61,8 @@ public class Customer {
    * @param changeDate The date that the customer changed name.
    */
   public void setName(String name, SimpleDate changeDate) {
-    AuditLog.log(changeDate, this, "change of name", this.name, name);
+    AuditLog.log(changeDate, this.getClass().getTypeName(), String.valueOf(id),
+            name.getClass().getTypeName(), "name", this.name, name);
     this.name = name;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public String getAddress() {
-    return address;
   }
 }

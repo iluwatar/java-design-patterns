@@ -26,18 +26,21 @@
 package com.iluwatar.auditlog;
 
 import java.time.Clock;
-import java.time.Instant;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Objects;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.ToString;
 
 /**
  * Class that is used to have global now variables for LocalDate.
  */
+@EqualsAndHashCode
+@ToString(includeFieldNames = false)
 public class SimpleDate implements Comparable<SimpleDate> {
   private static Clock clock = Clock.systemUTC();
   private static SimpleDate setDate = null;
 
+  @Getter
   private LocalDate date;
 
   SimpleDate(int year, int month, int day) {
@@ -49,24 +52,8 @@ public class SimpleDate implements Comparable<SimpleDate> {
   }
 
   @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    SimpleDate that = (SimpleDate) o;
-    return date.equals(that.date);
-  }
-
-  @Override
   public int compareTo(SimpleDate otherDate) {
     return date.compareTo(otherDate.getDate());
-  }
-
-  public LocalDate getDate() {
-    return date;
   }
 
   /**
@@ -88,10 +75,5 @@ public class SimpleDate implements Comparable<SimpleDate> {
       return setDate;
     }
     return new SimpleDate(LocalDate.now(clock));
-  }
-
-  @Override
-  public String toString() {
-    return date.toString();
   }
 }

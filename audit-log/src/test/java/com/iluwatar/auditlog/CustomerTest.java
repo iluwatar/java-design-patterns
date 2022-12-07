@@ -24,16 +24,26 @@
  */
 package com.iluwatar.auditlog;
 
+import ch.qos.logback.core.joran.spi.NoAutoStartUtil;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.commons.util.CollectionUtils;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.*;
 import java.nio.file.Files;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,6 +57,8 @@ public class CustomerTest {
 
   private SimpleDate jul1 = new SimpleDate(1996, 7, 1);
   private SimpleDate jul15 = new SimpleDate(1996, 7, 15);
+  private SimpleDate startDate = new SimpleDate(1996, 1, 1);
+
 
   @BeforeEach
   public void setUp () {
@@ -58,7 +70,7 @@ public class CustomerTest {
       fail("Failed to set log file.");
     }
     // putting different addresses as time changes
-    SimpleDate.setToday(new SimpleDate(1996, 1, 1));
+    SimpleDate.setToday(startDate);
     martin = new Customer ("Martin", 15);
   }
 
@@ -93,21 +105,54 @@ public class CustomerTest {
   @Test
   public void correctFileOutput() {
     martin.setAddress(franklin, jul1);
-    SimpleDate.setToday(new SimpleDate(1997, 1, 3));
+
+    SimpleDate nextDate = new SimpleDate(1997, 1, 3);
+
+    SimpleDate.setToday(nextDate);
     martin.setAddress(worcester, jul15);
     martin.setName("John", jul15);
 
+    // manually create logs (hacky but effectively forced for simple implementation)
+    HashSet<AuditLogRecord> records = new HashSet<>();
+    records.add(new AuditLogRecord(jul1.toString(), startDate.toString(), martin.getClass().getName(),
+            String.valueOf(martin.getId()), franklin.getClass().getName(), "address", null,
+            franklin));
+    records.add(new AuditLogRecord(jul15.toString(), nextDate.toString(),martin.getClass().getName(),
+            String.valueOf(martin.getId()), worcester.getClass().getName(), "address", franklin,
+            worcester));
+    records.add(new AuditLogRecord(jul15.toString(), nextDate.toString(),martin.getClass().getName(),
+            String.valueOf(martin.getId()), worcester.getClass().getName(), "name", "Martin",
+            "John"));
+    System.out.println(records);
+
+
     try{
       String outString = Files.readString(logFile.toPath());
-      assertEquals(
-              "1996-01-01	15	Martin	change of address	null	961 Franklin St	1996-07-01\n"
-              + "1997-01-03	15	Martin	change of address	961 Franklin St	88 Worcester St	" +
-                      "1996-07-15\n"
-              + "1997-01-03	15	Martin	change of name	Martin	John	1996-07-15\n", outString);
 
-    } catch (IOException e) {
+      // split records by closing audit log record tag, then re-add it
+      String[] splitString = outString.split("</auditLogRecord>");
+
+      JAXBContext jaxbContext 	= JAXBContext.newInstance( AuditLogRecord.class );
+      Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+
+
+
+      HashSet<AuditLogRecord> loggedRecords = new HashSet<>();
+      for (String i : splitString){
+        String recordXML = i+"</auditLogRecord>";
+        AuditLogRecord logSet = (AuditLogRecord) jaxbUnmarshaller.unmarshal(new StringReader(recordXML));
+        loggedRecords.add(logSet);
+      }
+
+      AuditLogRecord[] recordArr = new AuditLogRecord[3];
+      AuditLogRecord[] loggedArr = new AuditLogRecord[3];
+      records.toArray(recordArr);
+      loggedRecords.toArray(loggedArr);
+
+      assertArrayEquals(recordArr, loggedArr);
+
+    } catch (IOException | JAXBException e) {
       fail("Log file reading failed, with exception " + e.toString());
     }
   }
 }
-

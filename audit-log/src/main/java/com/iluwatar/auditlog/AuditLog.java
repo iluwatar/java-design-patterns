@@ -25,13 +25,18 @@
 
 package com.iluwatar.auditlog;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.StandardOpenOption;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.XmlRootElement;
+import lombok.AllArgsConstructor;
+import lombok.ToString;
 
 /**
  * AuditLog is an implementation of the AuditLog design pattern, and on changes to specific temporal
@@ -61,73 +66,66 @@ public class AuditLog {
   }
 
   /**
-   * Appends given string to the end of the log file.
-   * Note that this has significant overhead, as the file is opened and closed
-   *  every time something is logged.
-   *
-   * @param string String to add to log file.
-   */
-  public static void write(String string) throws IOException {
-    Files.write(getLogFile().toPath(), string.getBytes(StandardCharsets.UTF_8),
-            StandardOpenOption.APPEND);
-  }
-
-  /**
-   * Add log of customer change to log file.
+   * Add log of change to log file.
    * Note that as mentioned in <a href="https://martinfowler.com/eaaDev/AuditLog.html">
    *   https://martinfowler.com/eaaDev/AuditLog.html </a>, 'today's date' is also included so that the record can be
    *   reconstituted.
    *
-   * @param date The date of the change.
-   * @param customer The customer who has had the change occur.
-   * @param description Description of the change.
+   * @param givenDate The date that the change of variable has occurred.
+   * @param objectType Type of the changed object.
+   * @param objectName Name / identifier of the changed object.
+   * @param variableType Type of the changed variable.
+   * @param variableName Name of the changed variable.
    * @param oldValue Old value before the change.
    * @param newValue New value after the change.
    */
-  public static void log(SimpleDate date, Customer customer, String description, Object oldValue,
-                         Object newValue) {
-    try {
-      write(SimpleDate.getToday().toString() + "\t" + customer.getId() + "\t" + customer.getName()
-              + "\t" + description + "\t" + oldValue + "\t" + newValue + "\t"
-              + date.toString() + "\n");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
-
+  public static void log(SimpleDate givenDate,
+                         String objectType, String objectName,
+                         String variableType, String variableName,
+                         String oldValue, String newValue) {
+    SimpleDate trueDate = SimpleDate.getToday();
+    AuditLogRecord record = new AuditLogRecord(givenDate.toString(), trueDate.toString(),
+            objectType, objectName, variableType, variableName, oldValue, newValue);
+    addRecord(record);
   }
 
   /**
-   * Returns the file currently used for logging.
+   * Adds xml-like record to log.
    *
-   * @return The file currently used for logging.
-   * @throws IOException When log file is null and the setting to the default file fails.
+   * @param record Record to be added.
    */
+  private static void addRecord(AuditLogRecord record) {
+    // requires a single record to be self-contained, appending another record to the bottom
+    // should keep the file correct.
+    try (FileWriter fWriter = new FileWriter(getLogFile(), true)) {
+      // if file not empty, add new line character so entries are properly split
+      if (getLogFile().length() > 0) {
+        fWriter.write('\n');
+      }
+
+      // set up the xml marshaller
+      JAXBContext context = JAXBContext.newInstance(AuditLogRecord.class);
+      Marshaller marshall = context.createMarshaller();
+      marshall.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+      marshall.setProperty(Marshaller.JAXB_FRAGMENT, true);
+      marshall.marshal(record, fWriter);
+    } catch (IOException | JAXBException ignored) {
+      ;
+    }
+  }
+
+  /**
+  * Returns the file currently used for logging.
+  *
+  * @return The file currently used for logging.
+  * @throws IOException When log file is null and the setting to the default file fails.
+  */
   public static File getLogFile() throws IOException {
     if (logFile == null) {
       setLogFile(new File(defaultLog));
     }
     return logFile;
   }
-
-  /**
-   * Returns a string representation of the current audit file's contents.
-   *
-   * @return String of audit file contents.
-   */
-  public static String auditToString() {
-    StringBuilder outString = new StringBuilder();
-
-    try {
-      File logFile = AuditLog.getLogFile();
-      BufferedReader br = new BufferedReader(new FileReader(logFile));
-      String line;
-      while ((line = br.readLine()) != null) {
-        outString.append(line).append("\n");
-      }
-    } catch (IOException e) {
-      return "Failed to read audit log \n";
-    }
-
-    return outString.toString();
-  }
 }
+
+
