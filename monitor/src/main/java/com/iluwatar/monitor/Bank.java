@@ -78,12 +78,14 @@ public class Bank {
     if (accounts[accountA] >= amount) {
       accounts[accountB] += amount;
       accounts[accountA] -= amount;
-      LOGGER.info(
-          "Transferred from account: {} to account: {} , amount: {} , balance: {}",
-          accountA,
-          accountB,
-          amount,
-          getBalance());
+      if (LOGGER.isDebugEnabled()) {
+        LOGGER.debug(
+            "Transferred from account: {} to account: {} , amount: {} , balance: {}",
+            accountA,
+            accountB,
+            amount,
+            getBalance());
+      }
     }
   }
 
