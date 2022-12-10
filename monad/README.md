@@ -2,7 +2,7 @@
 title: Monad
 category: Functional
 language: en
-tags:
+tag:
  - Reactive
 ---
 

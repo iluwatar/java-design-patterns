@@ -2,7 +2,7 @@
 title: Leader Election
 category: Behavioral
 language: en
-tags:
+tag:
  - Cloud distributed
 ---
 

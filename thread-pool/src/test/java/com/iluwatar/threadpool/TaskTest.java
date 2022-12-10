@@ -96,7 +96,7 @@ public abstract class TaskTest<T extends Task> {
           .stream()
           .map(TaskTest::get)
           .filter(Objects::nonNull)
-          .collect(Collectors.toList());
+          .toList();
 
       service.shutdownNow();
 

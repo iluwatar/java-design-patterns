@@ -28,7 +28,6 @@ import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -88,7 +87,7 @@ public class RingInstance extends AbstractInstance {
     var candidateList = Arrays.stream(content.trim().split(","))
         .map(Integer::valueOf)
         .sorted()
-        .collect(Collectors.toList());
+        .toList();
     if (candidateList.contains(localId)) {
       var newLeaderId = candidateList.get(0);
       LOGGER.info(INSTANCE + localId + " - New leader should be " + newLeaderId + ".");

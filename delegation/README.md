@@ -2,7 +2,7 @@
 title: Delegation
 category: Structural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

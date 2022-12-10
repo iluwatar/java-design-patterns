@@ -2,7 +2,7 @@
 title: Business Delegate
 category: Structural
 language: zh
-tags:
+tag:
  - Decoupling
 ---
 

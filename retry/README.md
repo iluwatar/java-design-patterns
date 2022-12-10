@@ -2,7 +2,7 @@
 title: Retry
 category: Behavioral
 language: en
-tags:
+tag:
   - Performance
   - Cloud distributed
 ---

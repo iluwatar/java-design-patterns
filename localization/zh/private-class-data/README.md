@@ -2,7 +2,7 @@
 title: Private Class Data
 category: Idiom
 language: zh
-tags:
+tag:
  - Data access
 ---
 

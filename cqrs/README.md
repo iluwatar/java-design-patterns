@@ -2,7 +2,7 @@
 title: CQRS
 category: Architectural
 language: en
-tags:
+tag:
   - Performance
   - Cloud distributed
 ---

@@ -2,7 +2,7 @@
 title: Proxy
 category: Structural
 language: en
-tags:
+tag:
  - Gang Of Four
  - Decoupling
 ---

@@ -2,7 +2,7 @@
 title: Data Transfer Object
 category: Architectural
 language: zh
-tags:
+tag:
  - Performance
 ---
 

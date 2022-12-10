@@ -27,7 +27,6 @@ package com.iluwatar.mediator;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,7 +54,7 @@ class PartyImplTest {
     verify(partyMember2).joinedParty(party);
 
     party.act(partyMember1, Action.GOLD);
-    verifyZeroInteractions(partyMember1);
+    verifyNoMoreInteractions(partyMember1);
     verify(partyMember2).partyAction(Action.GOLD);
 
     verifyNoMoreInteractions(partyMember1, partyMember2);
