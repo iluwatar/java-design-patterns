@@ -29,7 +29,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class FanOutFanInTest {
 
@@ -38,7 +37,7 @@ class FanOutFanInTest {
     final List<Long> numbers = Arrays.asList(1L, 3L, 4L, 7L, 8L);
 
     final List<SquareNumberRequest> requests =
-        numbers.stream().map(SquareNumberRequest::new).collect(Collectors.toList());
+        numbers.stream().map(SquareNumberRequest::new).toList();
 
     final Consumer consumer = new Consumer(0L);
 
