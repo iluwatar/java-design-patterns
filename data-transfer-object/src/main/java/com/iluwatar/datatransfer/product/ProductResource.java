@@ -25,7 +25,6 @@
 package com.iluwatar.datatransfer.product;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * The resource class which serves product information. This class act as server in the demo. Which
@@ -54,7 +53,7 @@ public class ProductResource {
             .map(p -> new ProductDto.Response.Private().setId(p.getId()).setName(p.getName())
                     .setCost(p.getCost())
                     .setPrice(p.getPrice()))
-            .collect(Collectors.toList());
+            .toList();
   }
 
   /**
@@ -67,7 +66,7 @@ public class ProductResource {
             .stream()
             .map(p -> new ProductDto.Response.Public().setId(p.getId()).setName(p.getName())
                     .setPrice(p.getPrice()))
-            .collect(Collectors.toList());
+            .toList();
   }
 
   /**

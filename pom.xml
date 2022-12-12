@@ -40,10 +40,9 @@
     <spring-boot.version>2.7.5</spring-boot.version>
     <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <guava.version>19.0</guava.version>
     <htmlunit.version>2.66.0</htmlunit.version>
-    <guice.version>4.0</guice.version>
-    <mongo-java-driver.version>3.12.8</mongo-java-driver.version>
+    <gson.version>2.10</gson.version>
+    <guice.version>5.1.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
     <urm.version>2.0.0</urm.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
@@ -201,6 +200,8 @@
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
     <module>finite-state-machine</module>
+    <module>embedded-value</module>
+    <module>currying</module>
     <module>serialized-entity</module>
     <module>identity-map</module>
     <module>component</module>
@@ -226,24 +227,19 @@
         <version>${commons-dbcp.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${guava.version}</version>
-      </dependency>
-      <dependency>
         <groupId>net.sourceforge.htmlunit</groupId>
         <artifactId>htmlunit</artifactId>
         <version>${htmlunit.version}</version>
       </dependency>
       <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>${gson.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
         <version>${guice.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongo-java-driver</artifactId>
-        <version>${mongo-java-driver.version}</version>
       </dependency>
       <dependency>
         <groupId>com.github.stefanbirkner</groupId>
@@ -279,8 +275,8 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <configuration>
-            <source>11</source>
-            <target>11</target>
+            <source>17</source>
+            <target>17</target>
           </configuration>
         </plugin>
         <plugin>

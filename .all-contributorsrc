@@ -2261,6 +2261,42 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "wulangcode",
+      "name": "WuLang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48200100?v=4",
+      "profile": "https://github.com/wulangcode",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "hkattt",
+      "name": "Hugo Kat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/54300585?v=4",
+      "profile": "https://github.com/hkattt",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "shivu2002a",
+      "name": "Shivanagouda Agasimani",
+      "avatar_url": "https://avatars.githubusercontent.com/u/88313126?v=4",
+      "profile": "https://github.com/shivu2002a",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Ap284",
+      "name": "Aparna",
+      "avatar_url": "https://avatars.githubusercontent.com/u/13827254?v=4",
+      "profile": "https://github.com/Ap284",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

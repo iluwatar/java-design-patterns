@@ -56,7 +56,7 @@ public class FunctionalProgramming {
   public static List<String> getModelsAfter2000(List<Car> cars) {
     return cars.stream().filter(car -> car.getYear() > 2000)
         .sorted(Comparator.comparing(Car::getYear))
-        .map(Car::getModel).collect(Collectors.toList());
+        .map(Car::getModel).toList();
   }
 
   /**
@@ -78,6 +78,6 @@ public class FunctionalProgramming {
   public static List<Car> getSedanCarsOwnedSortedByDate(List<Person> persons) {
     return persons.stream().map(Person::getCars).flatMap(List::stream)
         .filter(car -> Category.SEDAN.equals(car.getCategory()))
-        .sorted(Comparator.comparing(Car::getYear)).collect(Collectors.toList());
+        .sorted(Comparator.comparing(Car::getYear)).toList();
   }
 }
