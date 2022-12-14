@@ -3,7 +3,7 @@ title: Aggregator Microservices
 category: Architectural
 language: es
 tag:
-- Cloud distributed (Nube distribuida)
+- Cloud distributed
 - Decoupling (Desacoplamiento) 
 - Microservices (Microservicios)
 ---
