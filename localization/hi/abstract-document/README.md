@@ -6,7 +6,7 @@ tag:
  - Extensibility
 ---
 
-## इरादा
+## हेतु
 
 गतिशील गुणों का उपयोग करें और टाइप-सेफ्टी रखते हुए अनटाइप्ड लैंग्वेज का लचीलापन प्राप्त करें।
 
@@ -174,7 +174,7 @@ public class Car extends AbstractDocument implements HasModel, HasPrice, HasPart
 
 ![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
-## Applicability
+## उपयोग
 
 अब्स्त्रक्त डॉक्यूमेंट पैटर्न का उपयोग तब करे जब 
 
