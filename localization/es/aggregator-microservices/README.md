@@ -5,7 +5,7 @@ language: es
 tag:
 - Cloud distributed
 - Decoupling
-- Microservices (Microservicios)
+- Microservices
 ---
 
 ## Intención
