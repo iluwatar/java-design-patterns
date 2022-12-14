@@ -4,7 +4,7 @@ category: Architectural
 language: es
 tag:
 - Cloud distributed
-- Decoupling (Desacoplamiento) 
+- Decoupling
 - Microservices (Microservicios)
 ---
 
