@@ -1,6 +1,6 @@
 ---
 title: Aggregator Microservices
-category: Architectural (Arquitectónico)
+category: Architectural
 language: es
 tag:
 - Cloud distributed (Nube distribuida)
