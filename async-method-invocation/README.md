@@ -2,7 +2,7 @@
 title: Async Method Invocation
 category: Concurrency
 language: en
-tags:
+tag:
  - Reactive
 ---
 

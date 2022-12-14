@@ -2,7 +2,7 @@
 title: Guarded Suspension
 category: Concurrency
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

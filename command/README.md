@@ -2,7 +2,7 @@
 title: Command
 category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

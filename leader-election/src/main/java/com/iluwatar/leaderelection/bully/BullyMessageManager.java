@@ -30,7 +30,6 @@ import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageType;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Implementation of BullyMessageManager.
@@ -115,7 +114,7 @@ public class BullyMessageManager extends AbstractMessageManager {
     return instanceMap.keySet()
         .stream()
         .filter((i) -> i < currentId && instanceMap.get(i).isAlive())
-        .collect(Collectors.toList());
+        .toList();
   }
 
 }

@@ -2,7 +2,7 @@
 title: Bridge
 category: Structural
 language: zh
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -181,7 +181,7 @@ hammer.unwield();
 
 ## 类图
 
-![alt text](etc/bridge.urm.png "Bridge class diagram")
+![alt text](./etc/bridge.urm.png "Bridge class diagram")
 
 ## 适用性
 

@@ -5,7 +5,7 @@ folder: acyclic-visitor
 permalink: /patterns/acyclic-visitor/
 categories: Behavioral
 language: es
-tags:
+tag:
  - Extensibility
 ---
 

@@ -5,7 +5,7 @@ folder: abstract-document
 permalink: /patterns/abstract-document/
 categories: Structural
 language: es
-tags: 
+tag: 
  - Extensibility
 ---
 

@@ -2,7 +2,7 @@
 title: Flux
 category: Structural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

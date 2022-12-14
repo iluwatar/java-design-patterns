@@ -1,0 +1,77 @@
+@startuml
+class App
+class GameObject
+
+interface GraphicComponent
+interface InputComponent
+interface PhysicComponent
+
+class ObjectGraphicComponent
+class DemoInputComponent
+class PlayerInputComponent
+class ObjectPhysicComponent
+
+GraphicComponent <|.. ObjectGraphicComponent
+InputComponent <|.. DemoInputComponent
+InputComponent <|.. PlayerInputComponent
+PhysicComponent <|.. ObjectPhysicComponent
+
+GameObject *-- ObjectGraphicComponent
+GameObject *.. DemoInputComponent
+GameObject *.. PlayerInputComponent
+GameObject *-- ObjectPhysicComponent
+class App {
++main(String[] args)
+}
+
+class GameObject{
+  - inputComponent;
+  - physicComponent;
+  - graphicComponent;
+  - name;
+  - velocity
+  - coordinate
+
+  +GameObject()
+  +createPlayer()
+  +createNpc()
+  +demoUpdate()
+  +update(e:int)
+  +getName()
+  +getVelocity()
+  +setVelocity(acceleration:int)
+  +getCoordinate()
+  +setCoordinate()
+}
+
+interface GraphicComponent{
+    +update()
+}
+
+interface InputComponent{
+    +update()
+}
+
+interface PhysicComponent{
+    +update()
+}
+
+class ObjectGraphicComponent{
+    +update(gameObject:GameObject)
+}
+
+class DemoInputComponent{
+    -walkAcceleration
+    +update(gameObject:GameObject,e:int)
+}
+
+class PlayerInputComponent{
+    -walkAcceleration
+    +update(gameObject:GameObject,e:int)
+}
+
+class ObjectPhysicComponent{
+    +update(gameObject:GameObject)
+}
+
+@enduml
