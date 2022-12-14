@@ -1,5 +1,5 @@
 ---
-title: Aggregator Microservices (Agregador de microservicios)
+title: Aggregator Microservices
 category: Architectural (Arquitectónico)
 language: es
 tag:
