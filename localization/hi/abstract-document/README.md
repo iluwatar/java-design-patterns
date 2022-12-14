@@ -170,7 +170,7 @@ public class Car extends AbstractDocument implements HasModel, HasPrice, HasPart
 
 ## क्लास डायग्राम
 
-![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
+![alt text](../../../abstract-document/etc/abstract-document.png "Abstract Document Traits and Domain")
 
 ## उपयोग
 
