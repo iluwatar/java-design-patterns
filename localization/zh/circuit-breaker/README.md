@@ -233,18 +233,17 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   @Override
   public void setState(State state) {
     this.state = state;
-    switch (state) {
-      case OPEN:
-        this.failureCount = failureThreshold;
-        this.lastFailureTime = System.nanoTime();
-        break;
-      case HALF_OPEN:
-        this.failureCount = failureThreshold;
-        this.lastFailureTime = System.nanoTime() - retryTimePeriod;
-        break;
-      default:
-        this.failureCount = 0;
-    }
+      switch (state) {
+          case OPEN -> {
+              this.failureCount = failureThreshold;
+              this.lastFailureTime = System.nanoTime();
+          }
+          case HALF_OPEN -> {
+              this.failureCount = failureThreshold;
+              this.lastFailureTime = System.nanoTime() - retryTimePeriod;
+          }
+          default -> this.failureCount = 0;
+      }
   }
 
   /**

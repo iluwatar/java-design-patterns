@@ -21,18 +21,18 @@ public class PlayerInputComponent implements InputComponent {
   @Override
   public void update(GameObject gameObject, int e) {
     switch (e) {
-      case KeyEvent.KEY_LOCATION_LEFT:
+      case KeyEvent.KEY_LOCATION_LEFT -> {
         gameObject.updateVelocity(-WALK_ACCELERATION);
         LOGGER.info(gameObject.getName() + " has moved left.");
-        break;
-      case KeyEvent.KEY_LOCATION_RIGHT:
+      }
+      case KeyEvent.KEY_LOCATION_RIGHT -> {
         gameObject.updateVelocity(WALK_ACCELERATION);
         LOGGER.info(gameObject.getName() + " has moved right.");
-        break;
-      default:
+      }
+      default -> {
         LOGGER.info(gameObject.getName() + "'s velocity is unchanged due to the invalid input");
         gameObject.updateVelocity(0);
-        break; // incorrect input
+      } // incorrect input
     }
   }
 }
