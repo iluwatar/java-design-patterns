@@ -27,6 +27,9 @@ package com.iluwatar.transactionscript;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+/**
+ * HotelDao.
+ */
 public interface HotelDao {
 
   Stream<Room> getAll() throws Exception;

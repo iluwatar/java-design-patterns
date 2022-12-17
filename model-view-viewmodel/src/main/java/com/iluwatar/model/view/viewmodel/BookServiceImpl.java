@@ -27,6 +27,9 @@ package com.iluwatar.model.view.viewmodel;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * BookServiceImpl.
+ */
 public class BookServiceImpl implements BookService {
   private List<Book> designPatternBooks = new ArrayList<>();
 

@@ -22,30 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.observer.generic;
-
-import com.iluwatar.observer.WeatherType;
-import lombok.extern.slf4j.Slf4j;
+package com.iluwatar.event.asynchronous;
 
 /**
- * GWeather.
+ * Events that fulfill the start stop and list out current status behaviour follow this interface.
  */
-@Slf4j
-public class GWeather extends Observable<GWeather, Race, WeatherType> {
+public interface Ievent {
 
-  private WeatherType currentWeather;
+  void start();
 
-  public GWeather() {
-    currentWeather = WeatherType.SUNNY;
-  }
+  void stop();
 
-  /**
-   * Makes time pass for weather.
-   */
-  public void timePasses() {
-    var enumValues = WeatherType.values();
-    currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
-    LOGGER.info("The weather changed to {}.", currentWeather);
-    notifyObservers(currentWeather);
-  }
+  void status();
+
 }

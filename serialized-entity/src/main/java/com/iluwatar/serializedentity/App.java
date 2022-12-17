@@ -56,6 +56,7 @@ public class App {
 
   /**
    * Program entry point.
+   *
    * @param args command line args.
    * @throws IOException if any
    * @throws ClassNotFoundException if any

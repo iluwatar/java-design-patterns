@@ -44,6 +44,7 @@ public interface Threat {
 
   /**
    * Returns threat type.
+   *
    * @return {@link ThreatType}
    */
   ThreatType type();

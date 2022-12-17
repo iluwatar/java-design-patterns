@@ -40,6 +40,7 @@ public class Word extends LetterComposite {
 
   /**
    * Constructor.
+   *
    * @param letters to include
    */
   public Word(char... letters) {

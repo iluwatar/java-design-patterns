@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.0" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <interface id="1" language="java" name="com.iluwatar.cqrs.commandes.ICommandService" project="cqrs" 
+  <interface id="1" language="java" name="com.iluwatar.cqrs.commandes.IcommandService" project="cqrs"
     file="/cqrs/src/main/java/com/iluwatar/cqrs/commandes/ICommandService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="291" y="-49"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="3" language="java" name="com.iluwatar.cqrs.queries.IQueryService" project="cqrs" 
+  <interface id="3" language="java" name="com.iluwatar.cqrs.queries.IqueryService" project="cqrs"
     file="/cqrs/src/main/java/com/iluwatar/cqrs/queries/IQueryService.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="182" width="248" x="176" y="428"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 

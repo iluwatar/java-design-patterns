@@ -63,8 +63,8 @@ public abstract class EventEmitter {
   protected void notifyObservers(Event e) {
     if (observerLists.containsKey(e)) {
       observerLists
-        .get(e)
-        .forEach(observer -> observer.onEvent(e));
+          .get(e)
+          .forEach(observer -> observer.onEvent(e));
     }
   }
 

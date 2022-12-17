@@ -24,6 +24,9 @@
  */
 package com.iluwatar.specialcase;
 
+/**
+ * ApplicationServices.
+ */
 public interface ApplicationServices {
 
   ReceiptViewModel loggedInUserPurchase(String userName, String itemName);

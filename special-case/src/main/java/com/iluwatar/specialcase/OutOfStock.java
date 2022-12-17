@@ -27,6 +27,9 @@ package com.iluwatar.specialcase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * OutOfStock.
+ */
 public class OutOfStock implements ReceiptViewModel {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(OutOfStock.class);

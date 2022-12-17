@@ -40,6 +40,7 @@ public class ShippingAddress {
   
   /**
    * Constructor for Shipping Address object.
+   *
    * @param city City name
    * @param state State name
    * @param pincode Pin code of the city

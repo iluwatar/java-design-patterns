@@ -45,6 +45,7 @@ class Bartender {
 
   /**
    * Orders a drink from the bartender.
+   *
    * @return customer id which is randomly generated
    */
   public int orderDrink(BarCustomer barCustomer) {

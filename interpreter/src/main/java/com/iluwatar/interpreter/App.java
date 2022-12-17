@@ -45,6 +45,7 @@ public class App {
 
   /**
    * Program entry point.
+   *
    * @param args program arguments
    */
   public static void main(String[] args) {
@@ -86,6 +87,7 @@ public class App {
 
   /**
    * Checks whether the input parameter is an operator.
+   *
    * @param s input string
    * @return true if the input parameter is an operator
    */
@@ -95,6 +97,7 @@ public class App {
 
   /**
    * Returns correct expression based on the parameters.
+   *
    * @param s input string
    * @param left expression
    * @param right expression

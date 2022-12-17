@@ -35,6 +35,7 @@ public class Soldier extends Unit {
 
   /**
    * Accept a Visitor.
+   *
    * @param visitor UnitVisitor to be accepted
    */
   @Override

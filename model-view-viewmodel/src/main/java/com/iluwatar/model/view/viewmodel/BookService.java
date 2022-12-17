@@ -27,6 +27,9 @@ package com.iluwatar.model.view.viewmodel;
 
 import java.util.List;
 
+/**
+ * BookService.
+ */
 public interface BookService {
   /* List all books
    * @return all books

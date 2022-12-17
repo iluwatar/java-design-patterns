@@ -24,6 +24,9 @@
  */
 package com.iluwatar.specialcase;
 
+/**
+ * MoneyTransaction.
+ */
 public class MoneyTransaction {
 
   private Double amount;

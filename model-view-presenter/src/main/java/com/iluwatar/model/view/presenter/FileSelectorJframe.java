@@ -30,7 +30,6 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,7 +42,7 @@ import javax.swing.JTextField;
 /**
  * This class is the GUI implementation of the View component in the Model-View-Presenter pattern.
  */
-public class FileSelectorJFrame extends JFrame implements FileSelectorView, ActionListener {
+public class FileSelectorJframe extends JFrame implements FileSelectorView, ActionListener {
 
   /**
    * Default serial version ID.
@@ -83,7 +82,7 @@ public class FileSelectorJFrame extends JFrame implements FileSelectorView, Acti
   /**
    * Constructor.
    */
-  public FileSelectorJFrame() {
+  public FileSelectorJframe() {
     super("File Loader");
     this.setDefaultCloseOperation(EXIT_ON_CLOSE);
     this.setLayout(null);

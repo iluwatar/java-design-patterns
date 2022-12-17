@@ -41,6 +41,7 @@ public class UserService {
 
   /**
    * List all users.
+   *
    * @return list of users
    */
   public List<User> listUser() {
@@ -61,6 +62,7 @@ public class UserService {
 
   /**
    * Add a user.
+   *
    * @param user user entity
    * @return user id
    */
@@ -80,6 +82,7 @@ public class UserService {
 
   /**
    * Update user.
+   *
    * @param id user id
    * @param user new user entity
    */
@@ -97,6 +100,7 @@ public class UserService {
 
   /**
    * Delete user.
+   *
    * @param id user id
    */
   public void deleteUser(Integer id) {
@@ -113,6 +117,7 @@ public class UserService {
 
   /**
    * Get user.
+   *
    * @param id user id
    * @return deleted user
    */

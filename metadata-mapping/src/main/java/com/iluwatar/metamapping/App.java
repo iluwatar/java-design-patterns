@@ -46,6 +46,7 @@ import org.hibernate.service.ServiceRegistry;
  * d)create query object or use basic api with session,
  *      hibernate will convert all query to database query according to metadata
  * 3)We encapsulate hibernate service in {@link UserService} for our use.
+ *
  * @see org.hibernate.cfg.Configuration#configure(String)
  * @see org.hibernate.cfg.Configuration#buildSessionFactory(ServiceRegistry)
  * @see org.hibernate.internal.SessionFactoryImpl#openSession()
@@ -62,7 +63,7 @@ public class App {
     // get service
     var userService = new UserService();
     // use create service to add users
-    for (var user: generateSampleUsers()) {
+    for (var user : generateSampleUsers()) {
       var id = userService.createUser(user);
       LOGGER.info("Add user" + user + "at" + id + ".");
     }

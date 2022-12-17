@@ -49,6 +49,7 @@ public class PotionFactory {
         case INVISIBILITY -> potion = new InvisibilityPotion();
         case POISON -> potion = new PoisonPotion();
         case STRENGTH -> potion = new StrengthPotion();
+        default -> { }
       }
       if (potion != null) {
         potions.put(type, potion);

@@ -34,6 +34,7 @@ public class CommanderVisitor implements UnitVisitor {
 
   /**
    * Soldier Visitor method.
+   *
    * @param soldier Soldier to be visited
    */
   @Override
@@ -43,6 +44,7 @@ public class CommanderVisitor implements UnitVisitor {
 
   /**
    * Sergeant Visitor method.
+   *
    * @param sergeant Sergeant to be visited
    */
   @Override
@@ -52,6 +54,7 @@ public class CommanderVisitor implements UnitVisitor {
 
   /**
    * Commander Visitor method.
+   *
    * @param commander Commander to be visited
    */
   @Override

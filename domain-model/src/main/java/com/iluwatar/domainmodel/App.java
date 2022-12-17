@@ -29,7 +29,6 @@ import static org.joda.money.CurrencyUnit.USD;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import javax.sql.DataSource;
-
 import org.h2.jdbcx.JdbcDataSource;
 import org.joda.money.Money;
 

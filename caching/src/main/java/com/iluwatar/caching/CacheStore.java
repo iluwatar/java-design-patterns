@@ -28,7 +28,6 @@ import com.iluwatar.caching.database.DbManager;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -52,6 +51,7 @@ public class CacheStore {
 
   /**
    * Cache Store.
+   *
    * @param dataBaseManager {@link DbManager}
    */
   public CacheStore(final DbManager dataBaseManager) {
@@ -61,6 +61,7 @@ public class CacheStore {
 
   /**
    * Init cache capacity.
+   *
    * @param capacity int
    */
   public void initCapacity(final int capacity) {
@@ -73,6 +74,7 @@ public class CacheStore {
 
   /**
    * Get user account using read-through cache.
+   *
    * @param userId {@link String}
    * @return {@link UserAccount}
    */
@@ -89,6 +91,7 @@ public class CacheStore {
 
   /**
    * Get user account using write-through cache.
+   *
    * @param userAccount {@link UserAccount}
    */
   public void writeThrough(final UserAccount userAccount) {
@@ -102,6 +105,7 @@ public class CacheStore {
 
   /**
    * Get user account using write-around cache.
+   *
    * @param userAccount {@link UserAccount}
    */
   public void writeAround(final UserAccount userAccount) {
@@ -117,6 +121,7 @@ public class CacheStore {
 
   /**
    * Get user account using read-through cache with write-back policy.
+   *
    * @param userId {@link String}
    * @return {@link UserAccount}
    */
@@ -138,6 +143,7 @@ public class CacheStore {
 
   /**
    * Set user account.
+   *
    * @param userAccount {@link UserAccount}
    */
   public void writeBehind(final UserAccount userAccount) {
@@ -172,6 +178,7 @@ public class CacheStore {
 
   /**
    * Print user accounts.
+   *
    * @return {@link String}
    */
   public String print() {
@@ -185,6 +192,7 @@ public class CacheStore {
 
   /**
    * Delegate to backing cache store.
+   *
    * @param userId {@link String}
    * @return {@link UserAccount}
    */
@@ -194,6 +202,7 @@ public class CacheStore {
 
   /**
    * Delegate to backing cache store.
+   *
    * @param userId {@link String}
    * @param userAccount {@link UserAccount}
    */
@@ -203,6 +212,7 @@ public class CacheStore {
 
   /**
    * Delegate to backing cache store.
+   *
    * @param userId {@link String}
    */
   public void invalidate(final String userId) {

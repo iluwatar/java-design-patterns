@@ -24,9 +24,9 @@
  */
 package com.iluwatar.observer;
 
-import com.iluwatar.observer.generic.GHobbits;
-import com.iluwatar.observer.generic.GOrcs;
-import com.iluwatar.observer.generic.GWeather;
+import com.iluwatar.observer.generic.Ghobbits;
+import com.iluwatar.observer.generic.Gorcs;
+import com.iluwatar.observer.generic.Gweather;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -61,9 +61,9 @@ public class App {
 
     // Generic observer inspired by Java Generics and Collections by Naftalin & Wadler
     LOGGER.info("--Running generic version--");
-    var genericWeather = new GWeather();
-    genericWeather.addObserver(new GOrcs());
-    genericWeather.addObserver(new GHobbits());
+    var genericWeather = new Gweather();
+    genericWeather.addObserver(new Gorcs());
+    genericWeather.addObserver(new Ghobbits());
 
     genericWeather.timePasses();
     genericWeather.timePasses();

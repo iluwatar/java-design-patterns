@@ -47,9 +47,7 @@ public class DatabaseUtil {
    */
   private DatabaseUtil() {}
 
-  /**
-   * Create database.
-   */
+  //create database
   static {
     LOGGER.info("create h2 database");
     var source = new JdbcDataSource();

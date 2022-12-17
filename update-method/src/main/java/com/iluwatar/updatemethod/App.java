@@ -39,6 +39,7 @@ public class App {
 
   /**
    * Program entry point.
+   *
    * @param args runtime arguments
    */
   public static void main(String[] args) {

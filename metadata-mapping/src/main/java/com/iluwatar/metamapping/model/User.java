@@ -43,6 +43,7 @@ public class User {
 
   /**
    * Get a user.
+   *
    * @param username user name
    * @param password user password
    */

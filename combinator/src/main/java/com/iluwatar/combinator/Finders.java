@@ -38,6 +38,7 @@ public class Finders {
 
   /**
    * Finder to find a complex query.
+   *
    * @param query to find
    * @param orQuery alternative to find
    * @param notQuery exclude from search
@@ -52,6 +53,7 @@ public class Finders {
 
   /**
    * Filtered finder looking a query with excluded queries as well.
+   *
    * @param query to find
    * @param excludeQueries to exclude
    * @return new finder
@@ -68,6 +70,7 @@ public class Finders {
 
   /**
    * Specialized query. Every next query is looked in previous result.
+   *
    * @param queries array with queries
    * @return new finder
    */
@@ -82,6 +85,7 @@ public class Finders {
 
   /**
    * Expanded query. Looking for alternatives.
+   *
    * @param queries array with queries.
    * @return new finder
    */

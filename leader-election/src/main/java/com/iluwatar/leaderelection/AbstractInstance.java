@@ -129,6 +129,7 @@ public abstract class AbstractInstance implements Instance, Runnable {
         LOGGER.info(INSTANCE + localId + " - Heartbeat Invoke Message handling...");
         handleHeartbeatInvokeMessage();
       }
+      default -> { }
     }
   }
 

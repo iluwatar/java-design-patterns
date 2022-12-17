@@ -57,6 +57,7 @@ public class Star {
         ageYears *= 2;
         massTons = 0;
       }
+      default -> { }
     }
   }
 

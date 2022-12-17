@@ -76,7 +76,7 @@ public class Target extends JFrame { //NOSONAR
     jsp.setPreferredSize(new Dimension(500, 250));
     add(jsp, BorderLayout.CENTER);
 
-    del.addActionListener(new DListener());
+    del.addActionListener(new Dlistener());
 
     var rootPane = SwingUtilities.getRootPane(del);
     rootPane.setDefaultButton(del);
@@ -87,7 +87,7 @@ public class Target extends JFrame { //NOSONAR
     dtm.addRow(new Object[]{request[0], request[1], request[2], request[3], request[4]});
   }
 
-  class DListener implements ActionListener {
+  class Dlistener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
       var temp = jt.getSelectedRow();

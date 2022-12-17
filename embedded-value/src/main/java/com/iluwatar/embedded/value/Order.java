@@ -30,6 +30,9 @@ import lombok.ToString;
 /* 
  * A POJO which represents the Order object.
  */
+/**
+ * Order.
+ */
 @ToString
 @Setter
 @Getter
@@ -42,6 +45,7 @@ public class Order {
   
   /**
    * Constructor for Item object.
+   *
    * @param item item name
    * @param orderedBy item orderer
    * @param shippingAddress shipping address details

@@ -25,7 +25,6 @@
 package com.iluwatar.commander;
 
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Hashtable;

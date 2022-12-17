@@ -33,7 +33,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RequiredArgsConstructor
-public class Event implements IEvent, Runnable {
+public class Event implements Ievent, Runnable {
 
   private final int eventId;
   private final int eventTime;

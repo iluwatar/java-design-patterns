@@ -37,6 +37,7 @@ public class Data {
 
   /**
    * Constructor of Data class.
+   *
    * @param key data key
    * @param value data vlue
    * @param type data type

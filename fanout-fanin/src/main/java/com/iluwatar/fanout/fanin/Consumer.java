@@ -25,7 +25,6 @@
 package com.iluwatar.fanout.fanin;
 
 import java.util.concurrent.atomic.AtomicLong;
-
 import lombok.Getter;
 
 

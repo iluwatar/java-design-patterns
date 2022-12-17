@@ -33,7 +33,6 @@ import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.sql.DataSource;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -66,6 +65,7 @@ public class CountrySchemaSql implements CountryDao {
 
   /**
    * This method will serialize a Country object and store it to database.
+   *
    * @return int type, if successfully insert a serialized object to database then return country code, else return -1.
    * @throws IOException if any.
    */
@@ -92,6 +92,7 @@ public class CountrySchemaSql implements CountryDao {
 
   /**
    * This method will select a data item from database and deserialize it.
+   *
    * @return int type, if successfully select and deserialized object from database then return country code,
    *     else return -1.
    * @throws IOException if any.

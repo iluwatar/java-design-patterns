@@ -36,6 +36,9 @@ import java.util.stream.StreamSupport;
 import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * HotelDaoImpl.
+ */
 @Slf4j
 public class HotelDaoImpl implements HotelDao {
 

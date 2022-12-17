@@ -22,17 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.event.asynchronous;
+package com.iluwatar.unitofwork;
 
 /**
- * Events that fulfill the start stop and list out current status behaviour follow this interface.
+ * UnitOfWork interface.
+ *
+ * @param <T> Any generic entity
  */
-public interface IEvent {
+public interface IunitOfWork<T> {
 
-  void start();
+  /**
+   * Any register new operation occurring on UnitOfWork is only going to be performed on commit.
+   */
+  void registerNew(T entity);
 
-  void stop();
+  /**
+   * Any register modify operation occurring on UnitOfWork is only going to be performed on commit.
+   */
+  void registerModified(T entity);
 
-  void status();
+  /**
+   * Any register delete operation occurring on UnitOfWork is only going to be performed on commit.
+   */
+  void registerDeleted(T entity);
+
+  /**
+   * All UnitOfWork operations batched together executed in commit only.
+   */
+  void commit();
 
 }
