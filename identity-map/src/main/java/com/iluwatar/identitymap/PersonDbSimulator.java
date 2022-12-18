@@ -24,13 +24,16 @@
  */
 package com.iluwatar.identitymap;
 
+/**
+ * PersonDbSimulator.
+ */
 public interface PersonDbSimulator {
-  Person find(int personNationalID);
+  Person find(int personNationalId);
 
   void insert(Person person);
 
   void update(Person person);
 
-  void delete(int personNationalID);
+  void delete(int personNationalId);
 
 }

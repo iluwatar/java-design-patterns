@@ -44,6 +44,7 @@ public class HalfArithmetic {
 
   /**
    * Accumulate sum.
+   *
    * @param nums numbers need to add together
    * @return accumulate sum
    */
@@ -54,6 +55,7 @@ public class HalfArithmetic {
 
   /**
    * Accumulate multiplication.
+   *
    * @param nums numbers need to multiply together
    * @return accumulate multiplication
    */
@@ -64,6 +66,7 @@ public class HalfArithmetic {
 
   /**
    * Chech if has any zero.
+   *
    * @param nums numbers need to check
    * @return if has any zero, return true, else, return false
    */

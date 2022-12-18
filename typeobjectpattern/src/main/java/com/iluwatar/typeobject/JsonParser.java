@@ -28,7 +28,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.iluwatar.typeobject.Candy.Type;
-
 import java.io.InputStreamReader;
 import java.util.Hashtable;
 

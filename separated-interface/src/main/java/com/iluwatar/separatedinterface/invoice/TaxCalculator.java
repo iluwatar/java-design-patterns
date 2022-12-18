@@ -24,6 +24,9 @@
  */
 package com.iluwatar.separatedinterface.invoice;
 
+/**
+ * TaxCalculator.
+ */
 public interface TaxCalculator {
 
   double calculate(double amount);

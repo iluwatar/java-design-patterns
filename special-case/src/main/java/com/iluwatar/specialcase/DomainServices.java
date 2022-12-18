@@ -24,5 +24,8 @@
  */
 package com.iluwatar.specialcase;
 
+/**
+ * DomainServices.
+ */
 public interface DomainServices {
 }

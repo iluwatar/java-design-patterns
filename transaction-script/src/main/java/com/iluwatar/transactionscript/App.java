@@ -53,6 +53,7 @@ public class App {
    * Program entry point.
    * Initialises an instance of Hotel and adds rooms to it.
    * Carries out booking and cancel booking transactions.
+   *
    * @param args command line arguments
    * @throws Exception if any error occurs
    */

@@ -23,7 +23,9 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.registry;
-
+/**
+ * Customer.
+ */
 public class Customer {
 
   private final String id;

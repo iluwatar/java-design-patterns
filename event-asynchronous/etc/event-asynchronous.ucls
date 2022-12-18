@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <interface id="1" language="java" name="com.iluwatar.event.asynchronous.IEvent" project="java-design-patterns" 
+  <interface id="1" language="java" name="com.iluwatar.event.asynchronous.Ievent" project="java-design-patterns"
     file="/java-design-patterns/event-asynchronous/src/main/java/com/iluwatar/event/asynchronous/IEvent.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="117" width="151" x="42" y="15"/>    

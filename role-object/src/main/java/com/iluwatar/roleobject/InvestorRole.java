@@ -24,6 +24,9 @@
  */
 package com.iluwatar.roleobject;
 
+/**
+ * InvestorRole.
+ */
 public class InvestorRole extends CustomerRole {
 
   private String name;

@@ -34,7 +34,7 @@ import java.util.List;
  *
  * @author Jeroen Meulemeester
  */
-class OrcsTest extends ObserverTest<GOrcs> {
+class OrcsTest extends ObserverTest<Gorcs> {
 
   @Override
   public Collection<Object[]> dataProvider() {
@@ -50,7 +50,7 @@ class OrcsTest extends ObserverTest<GOrcs> {
    * Create a new test with the given weather and expected response
    */
   public OrcsTest() {
-    super(GOrcs::new);
+    super(Gorcs::new);
   }
 
 }

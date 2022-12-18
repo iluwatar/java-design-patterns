@@ -42,13 +42,13 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-class GWeatherTest {
+class GweatherTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
   void setUp() {
-    appender = new InMemoryAppender(GWeather.class);
+    appender = new InMemoryAppender(Gweather.class);
   }
 
   @AfterEach
@@ -64,7 +64,7 @@ class GWeatherTest {
   void testAddRemoveObserver() {
     final var observer = mock(Race.class);
 
-    final var weather = new GWeather();
+    final var weather = new Gweather();
     weather.addObserver(observer);
     verifyNoMoreInteractions(observer);
 
@@ -86,7 +86,7 @@ class GWeatherTest {
   @Test
   void testTimePasses() {
     final var observer = mock(Race.class);
-    final var weather = new GWeather();
+    final var weather = new Gweather();
     weather.addObserver(observer);
 
     final var inOrder = inOrder(observer);

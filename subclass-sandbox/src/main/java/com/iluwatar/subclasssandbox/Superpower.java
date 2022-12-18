@@ -42,6 +42,7 @@ public abstract class Superpower {
 
   /**
    * Move to (x, y, z).
+   *
    * @param x X coordinate.
    * @param y Y coordinate.
    * @param z Z coordinate.
@@ -52,6 +53,7 @@ public abstract class Superpower {
 
   /**
    * Play sound effect for the superpower.
+   *
    * @param soundName Sound name.
    * @param volumn Value of volumn.
    */
@@ -61,6 +63,7 @@ public abstract class Superpower {
 
   /**
    * Spawn particles for the superpower.
+   *
    * @param particleType Particle type.
    * @param count Count of particles to be spawned.
    */

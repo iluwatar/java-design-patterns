@@ -27,6 +27,9 @@ package com.iluwatar.specialcase;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Db.
+ */
 public class Db {
 
   private static Db instance;
@@ -113,6 +116,9 @@ public class Db {
     return itemName2Product.get(itemName);
   }
 
+  /**
+   * User.
+   */
   public class User {
 
     private String userName;
@@ -130,6 +136,9 @@ public class Db {
     }
   }
 
+  /**
+   * Account.
+   */
   public class Account {
 
     private Double amount;
@@ -156,6 +165,9 @@ public class Db {
     }
   }
 
+  /**
+   * Product.
+   */
   public class Product {
 
     private Double price;

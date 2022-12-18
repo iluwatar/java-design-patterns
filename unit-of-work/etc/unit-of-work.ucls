@@ -10,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <interface id="2" language="java" name="com.iluwatar.unitofwork.IUnitOfWork" project="unit-of-work" 
+  <interface id="2" language="java" name="com.iluwatar.unitofwork.IunitOfWork" project="unit-of-work"
     file="/unit-of-work/src/main/java/com/iluwatar/unitofwork/IUnitOfWork.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="356" y="433"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

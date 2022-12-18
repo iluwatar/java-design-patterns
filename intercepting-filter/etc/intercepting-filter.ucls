@@ -121,7 +121,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="13" language="java" name="com.iluwatar.intercepting.filter.Target.DListener" project="intercepting-filter" 
+  <class id="13" language="java" name="com.iluwatar.intercepting.filter.Target.Dlistener" project="intercepting-filter"
     file="/intercepting-filter/src/main/java/com/iluwatar/intercepting/filter/Target.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="106" width="223" x="819" y="1135"/>    

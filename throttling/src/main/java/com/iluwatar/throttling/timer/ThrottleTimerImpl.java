@@ -30,6 +30,7 @@ import java.util.TimerTask;
 
 /**
  * Implementation of throttler interface. This class resets the counter every second.
+ *
  * @author drastogi
  *
  */

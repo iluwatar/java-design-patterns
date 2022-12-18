@@ -24,6 +24,9 @@
  */
 package com.iluwatar.parameter.object;
 
+/**
+ * SearchService.
+ */
 public class SearchService {
 
   /**

@@ -38,6 +38,7 @@ public class FanOutFanIn {
 
   /**
    * the main fanOutFanIn function or orchestrator function.
+   *
    * @param requests List of numbers that need to be squared and summed up
    * @param consumer Takes in the squared number from {@link SquareNumberRequest} and sums it up
    * @return Aggregated sum of all squared numbers.

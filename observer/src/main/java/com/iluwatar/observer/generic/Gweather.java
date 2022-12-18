@@ -25,32 +25,27 @@
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
-
-import java.util.Collection;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Date: 12/27/15 - 12:07 PM
- *
- * @author Jeroen Meulemeester
+ * GWeather.
  */
-class GHobbitsTest extends ObserverTest<GHobbits> {
+@Slf4j
+public class Gweather extends Observable<Gweather, Race, WeatherType> {
 
-  @Override
-  public Collection<Object[]> dataProvider() {
-    return List.of(
-        new Object[]{WeatherType.SUNNY, "The hobbits are facing Sunny weather now"},
-        new Object[]{WeatherType.RAINY, "The hobbits are facing Rainy weather now"},
-        new Object[]{WeatherType.WINDY, "The hobbits are facing Windy weather now"},
-        new Object[]{WeatherType.COLD, "The hobbits are facing Cold weather now"}
-    );
+  private WeatherType currentWeather;
+
+  public Gweather() {
+    currentWeather = WeatherType.SUNNY;
   }
 
   /**
-   * Create a new test with the given weather and expected response
+   * Makes time pass for weather.
    */
-  public GHobbitsTest() {
-    super(GHobbits::new);
+  public void timePasses() {
+    var enumValues = WeatherType.values();
+    currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
+    LOGGER.info("The weather changed to {}.", currentWeather);
+    notifyObservers(currentWeather);
   }
-
 }

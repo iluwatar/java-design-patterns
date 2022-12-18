@@ -24,6 +24,9 @@
  */
 package com.iluwatar.parameter.object;
 
+/**
+ * SortOrder.
+ */
 public enum SortOrder {
   ASC("asc"),
   DESC("desc");

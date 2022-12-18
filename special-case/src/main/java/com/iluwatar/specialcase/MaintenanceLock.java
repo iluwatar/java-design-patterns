@@ -27,6 +27,9 @@ package com.iluwatar.specialcase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * MaintenanceLock.
+ */
 public class MaintenanceLock {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MaintenanceLock.class);

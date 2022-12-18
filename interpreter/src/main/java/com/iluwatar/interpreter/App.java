@@ -45,6 +45,7 @@ public class App {
 
   /**
    * Program entry point.
+   *
    * @param args program arguments
    */
   public static void main(String[] args) {
@@ -86,6 +87,7 @@ public class App {
 
   /**
    * Checks whether the input parameter is an operator.
+   *
    * @param s input string
    * @return true if the input parameter is an operator
    */
@@ -95,19 +97,17 @@ public class App {
 
   /**
    * Returns correct expression based on the parameters.
+   *
    * @param s input string
    * @param left expression
    * @param right expression
    * @return expression
    */
   public static Expression getOperatorInstance(String s, Expression left, Expression right) {
-    switch (s) {
-      case "+":
-        return new PlusExpression(left, right);
-      case "-":
-        return new MinusExpression(left, right);
-      default:
-        return new MultiplyExpression(left, right);
-    }
+    return switch (s) {
+      case "+" -> new PlusExpression(left, right);
+      case "-" -> new MinusExpression(left, right);
+      default -> new MultiplyExpression(left, right);
+    };
   }
 }

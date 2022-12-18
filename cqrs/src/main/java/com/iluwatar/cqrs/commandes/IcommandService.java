@@ -22,26 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cqrs.queries;
-
-import com.iluwatar.cqrs.dto.Author;
-import com.iluwatar.cqrs.dto.Book;
-import java.math.BigInteger;
-import java.util.List;
+package com.iluwatar.cqrs.commandes;
 
 /**
- * This interface represents the query methods of the CQRS pattern.
+ * This interface represents the commands of the CQRS pattern.
  */
-public interface IQueryService {
+public interface IcommandService {
 
-  Author getAuthorByUsername(String username);
+  void authorCreated(String username, String name, String email);
 
-  Book getBook(String title);
+  void bookAddedToAuthor(String title, double price, String username);
 
-  List<Book> getAuthorBooks(String username);
+  void authorNameUpdated(String username, String name);
 
-  BigInteger getAuthorBooksCount(String username);
+  void authorUsernameUpdated(String oldUsername, String newUsername);
 
-  BigInteger getAuthorsCount();
+  void authorEmailUpdated(String username, String email);
+
+  void bookTitleUpdated(String oldTitle, String newTitle);
+
+  void bookPriceUpdated(String title, double price);
 
 }

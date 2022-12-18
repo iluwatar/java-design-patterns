@@ -46,6 +46,7 @@ public class CombinatorApp {
 
   /**
    * main.
+   *
    * @param args args
    */
   public static void main(String[] args) {

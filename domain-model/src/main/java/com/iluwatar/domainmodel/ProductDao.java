@@ -27,6 +27,9 @@ package com.iluwatar.domainmodel;
 import java.sql.SQLException;
 import java.util.Optional;
 
+/**
+ * ProductDao.
+ */
 public interface ProductDao {
 
   Optional<Product> findByName(String name) throws SQLException;

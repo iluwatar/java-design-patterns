@@ -35,6 +35,7 @@ public class Commander extends Unit {
 
   /**
    * Accept a Visitor.
+   *
    * @param visitor UnitVisitor to be accepted
    */
   @Override

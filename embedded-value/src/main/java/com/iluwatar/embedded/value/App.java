@@ -25,7 +25,6 @@
 package com.iluwatar.embedded.value;
 
 import java.util.stream.Collectors;
-
 import lombok.extern.slf4j.Slf4j;
 
 /* 
@@ -41,6 +40,9 @@ import lombok.extern.slf4j.Slf4j;
  * themselves.  
  */
 
+/**
+ * App.
+ */
 @Slf4j
 public class App {
                                       
@@ -62,7 +64,7 @@ public class App {
     final var order3 = new Order("Carrie Soto is Back", "Shiva",
         new ShippingAddress("Bangalore", "Karnataka", "560004"));
     
-    /**
+    /*
      * Create table for orders - Orders(id, name, orderedBy, city, state, pincode).
      * We can see that table is different from the Order object we have.
      * We're mapping ShippingAddress into city, state, pincode colummns of the database and not creating a separate table.
@@ -84,7 +86,7 @@ public class App {
     dataSource.insertOrder(order2);
     dataSource.insertOrder(order3);
     
-    /**
+    /*
      * Query orders
      * We'll create ShippingAddress object from city, state, pincode values from the table 
      * and add it to Order object
@@ -94,7 +96,7 @@ public class App {
     //Query order by given id
     LOGGER.info("Query Order with id=2: {}", dataSource.queryOrder(2));
     
-    /**
+    /*
      * Remove order by given id. 
      * Since we'd mapped address in the same table, deleting order will also take
      * out the shipping address details

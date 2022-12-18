@@ -43,6 +43,7 @@ public class HibernateUtil {
 
   /**
    * Build session factory.
+   *
    * @return session factory
    */
   private static SessionFactory buildSessionFactory() {
@@ -52,6 +53,7 @@ public class HibernateUtil {
 
   /**
    * Get session factory.
+   *
    * @return session factory
    */
   public static SessionFactory getSessionFactory() {

@@ -27,6 +27,9 @@ package com.iluwatar.unitofwork;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * UnitActions.
+ */
 @Getter
 @RequiredArgsConstructor
 public enum UnitActions {

@@ -22,19 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.observer.generic;
+package com.iluwatar.cqrs.queries;
 
-import com.iluwatar.observer.WeatherType;
-import lombok.extern.slf4j.Slf4j;
+import com.iluwatar.cqrs.dto.Author;
+import com.iluwatar.cqrs.dto.Book;
+import java.math.BigInteger;
+import java.util.List;
 
 /**
- * GHobbits.
+ * This interface represents the query methods of the CQRS pattern.
  */
-@Slf4j
-public class GHobbits implements Race {
+public interface IqueryService {
 
-  @Override
-  public void update(GWeather weather, WeatherType weatherType) {
-    LOGGER.info("The hobbits are facing " + weatherType.getDescription() + " weather now");
-  }
+  Author getAuthorByUsername(String username);
+
+  Book getBook(String title);
+
+  List<Book> getAuthorBooks(String username);
+
+  BigInteger getAuthorBooksCount(String username);
+
+  BigInteger getAuthorsCount();
+
 }

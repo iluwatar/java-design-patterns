@@ -25,7 +25,6 @@
 package com.iluwatar.throttling;
 
 import java.security.InvalidParameterException;
-
 import lombok.Getter;
 
 /**

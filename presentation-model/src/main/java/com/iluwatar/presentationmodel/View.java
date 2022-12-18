@@ -32,7 +32,6 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
-
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
@@ -100,7 +99,7 @@ public class View {
   /**
    * save the data to PresentationModel.
    */
-  public void saveToPMod() {
+  public void saveToPmod() {
     LOGGER.info("Save data to PresentationModel");
     model.setArtist(txtArtist.getText());
     model.setTitle(txtTitle.getText());
@@ -111,7 +110,7 @@ public class View {
   /**
    * load the data from PresentationModel.
    */
-  public void loadFromPMod() {
+  public void loadFromPmod() {
     LOGGER.info("Load data from PresentationModel");
     txtArtist.setText(model.getArtist());
     txtTitle.setText(model.getTitle());
@@ -133,7 +132,7 @@ public class View {
       @Override
       public void mouseClicked(final MouseEvent e) {
         model.setSelectedAlbumNumber(albumList.getSelectedIndex() + 1);
-        loadFromPMod();
+        loadFromPmod();
       }
     });
     b1.add(albumList);
@@ -162,15 +161,15 @@ public class View {
     apply.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(final MouseEvent e) {
-        saveToPMod();
-        loadFromPMod();
+        saveToPmod();
+        loadFromPmod();
       }
     });
     cancel = new JButton("Cancel");
     cancel.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(final MouseEvent e) {
-        loadFromPMod();
+        loadFromPmod();
       }
     });
 

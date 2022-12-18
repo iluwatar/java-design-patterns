@@ -203,6 +203,7 @@ public class LruCache {
 
   /**
    * Check if the cache is full.
+   *
    * @return boolean
    */
   public boolean isFull() {
