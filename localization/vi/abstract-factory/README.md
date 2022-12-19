@@ -2,7 +2,7 @@
 title: Abstract Factory
 category: Creational
 language: vi
-tags:
+tag:
  - Gang of Four
 ---
 

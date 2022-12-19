@@ -2,7 +2,7 @@
 title: Priority Queue Pattern
 category: Behavioral
 language: en
-tags:
+tag:
  - Decoupling
  - Cloud distributed
 ---

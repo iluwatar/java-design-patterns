@@ -2,7 +2,7 @@
 title: Active Object
 category: Concurrency
 language: vi
-tags:
+tag:
  - Performance
 ---
 

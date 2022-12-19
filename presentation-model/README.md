@@ -2,7 +2,7 @@
 title: Presentation Model
 category: Behavioral
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

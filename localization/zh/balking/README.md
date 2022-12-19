@@ -2,7 +2,7 @@
 title: Balking
 category: Concurrency
 language: zh
-tags:
+tag:
  - Decoupling
 ---
 

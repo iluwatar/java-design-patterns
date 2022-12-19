@@ -2,7 +2,7 @@
 title: Callback
 category: Idiom
 language: zh
-tags:
+tag:
  - Reactive
 ---
 

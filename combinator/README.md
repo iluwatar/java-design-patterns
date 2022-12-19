@@ -2,7 +2,7 @@
 title: Combinator
 category: Idiom
 language: en
-tags:
+tag:
  - Reactive
 ---
 

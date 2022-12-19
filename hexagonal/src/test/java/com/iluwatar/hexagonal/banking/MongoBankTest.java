@@ -55,7 +55,7 @@ class MongoBankTest {
 
   @Test
   void testSetup() {
-    assertEquals(0, mongoBank.getAccountsCollection().count());
+    assertEquals(0, mongoBank.getAccountsCollection().countDocuments());
   }
 
   @Test

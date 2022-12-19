@@ -2,7 +2,7 @@
 title: Monitor
 category: Concurrency
 language: en
-tags:
+tag:
  - Performance
 ---
 

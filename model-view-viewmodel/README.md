@@ -2,7 +2,7 @@
 title: Model-View-ViewModel
 category: Architectural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

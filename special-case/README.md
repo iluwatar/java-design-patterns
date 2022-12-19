@@ -2,7 +2,7 @@
 title: Special Case
 category: Behavioral
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

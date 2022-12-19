@@ -2,7 +2,7 @@
 title: Facade
 category: Structural
 language: zh
-tags:
+tag:
  - Gang Of Four
  - Decoupling
 ---

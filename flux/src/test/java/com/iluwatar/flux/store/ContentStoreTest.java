@@ -25,12 +25,11 @@
 package com.iluwatar.flux.store;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.action.ContentAction;
@@ -53,11 +52,11 @@ class ContentStoreTest {
     final var view = mock(View.class);
     contentStore.registerView(view);
 
-    verifyZeroInteractions(view);
+    verifyNoMoreInteractions(view);
 
     // Content should not react on menu action ...
     contentStore.onAction(new MenuAction(MenuItem.PRODUCTS));
-    verifyZeroInteractions(view);
+    verifyNoMoreInteractions(view);
 
     // ... but it should react on a content action
     contentStore.onAction(new ContentAction(Content.COMPANY));
