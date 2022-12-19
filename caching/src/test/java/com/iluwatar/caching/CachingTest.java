@@ -39,7 +39,7 @@ class CachingTest {
    * Setup of application test includes: initializing DB connection and cache size/capacity.
    */
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     // VirtualDB (instead of MongoDB) was used in running the JUnit tests
     // to avoid Maven compilation errors. Set flag to true to run the
     // tests with MongoDB (provided that MongoDB is installed and socket

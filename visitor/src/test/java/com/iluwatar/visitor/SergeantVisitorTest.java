@@ -31,7 +31,7 @@ import java.util.Optional;
  *
  * @author Jeroen Meulemeester
  */
-public class SergeantVisitorTest extends VisitorTest<SergeantVisitor> {
+class SergeantVisitorTest extends VisitorTest<SergeantVisitor> {
 
   /**
    * Create a new test instance for the given visitor.

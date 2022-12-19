@@ -4,6 +4,7 @@ import com.iluwatar.context.object.LayerA;
 import com.iluwatar.context.object.LayerB;
 import com.iluwatar.context.object.LayerC;
 import com.iluwatar.context.object.ServiceContext;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
@@ -19,13 +20,19 @@ public class ServiceContextTest {
 
     private static final String SERVICE = "SERVICE";
 
+    private LayerA layerA;
+
+    @BeforeEach
+    void initiateLayerA() {
+        this.layerA = new LayerA();
+    }
+
     @Test
     void testSameContextPassedBetweenLayers() {
-        LayerA layerA = new LayerA();
         ServiceContext context1 = layerA.getContext();
-        LayerB layerB = new LayerB(layerA);
+        var layerB = new LayerB(layerA);
         ServiceContext context2 = layerB.getContext();
-        LayerC layerC = new LayerC(layerB);
+        var layerC = new LayerC(layerB);
         ServiceContext context3 = layerC.getContext();
 
         assertSame(context1, context2);
@@ -35,15 +42,25 @@ public class ServiceContextTest {
 
     @Test
     void testScopedDataPassedBetweenLayers() {
-        LayerA layerA = new LayerA();
         layerA.addAccountInfo(SERVICE);
-        LayerB layerB = new LayerB(layerA);
-        LayerC layerC = new LayerC(layerB);
+        var layerB = new LayerB(layerA);
+        var layerC = new LayerC(layerB);
         layerC.addSearchInfo(SERVICE);
         ServiceContext context = layerC.getContext();
 
-        assertEquals(SERVICE,context.getACCOUNT_SERVICE());
-        assertNull(context.getSESSION_SERVICE());
-        assertEquals(SERVICE,context.getSEARCH_SERVICE());
+        assertEquals(SERVICE,context.getAccountService());
+        assertNull(context.getSessionService());
+        assertEquals(SERVICE,context.getSearchService());
+    }
+
+    @Test
+    void testToString() {
+        assertEquals(layerA.getContext().toString(),"ServiceContext(AccountService=null, SessionService=null, SearchService=null)");
+        layerA.addAccountInfo(SERVICE);
+        assertEquals(layerA.getContext().toString(), "ServiceContext(AccountService=SERVICE, SessionService=null, SearchService=null)");
+        var layerB = new LayerB(layerA);
+        layerB.addSessionInfo(SERVICE);
+        var layerC = new LayerC(layerB);
+        assertEquals(layerC.getContext().toString(), "ServiceContext(AccountService=SERVICE, SessionService=SERVICE, SearchService=null)");
     }
 }

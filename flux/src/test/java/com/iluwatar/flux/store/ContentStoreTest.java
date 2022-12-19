@@ -44,7 +44,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class ContentStoreTest {
+class ContentStoreTest {
 
   @Test
   void testOnAction() {

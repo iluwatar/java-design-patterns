@@ -41,7 +41,7 @@ import org.junit.Test;
 /**
  * Test for SimpleObjects
  */
-public class SimpleObjectsTest {
+class SimpleObjectsTest {
 
   @Rule
   public JUnitRuleMockery2 context = JUnitRuleMockery2.createFor(Mode.INTERFACES_AND_CLASSES);
@@ -52,13 +52,13 @@ public class SimpleObjectsTest {
   SimpleObjects simpleObjects;
 
   @Before
-  public void setUp() {
+  void setUp() {
     simpleObjects = new SimpleObjects();
     simpleObjects.container = mockContainer;
   }
 
   @Test
-  public void testCreate() {
+  void testCreate() {
 
     // given
     final SimpleObject simpleObject = new SimpleObject();
@@ -85,7 +85,7 @@ public class SimpleObjectsTest {
   }
 
   @Test
-  public void testListAll() {
+  void testListAll() {
 
     // given
     final List<SimpleObject> all = Lists.newArrayList();

@@ -1,6 +1,6 @@
 ---
 title: Interpreter
-categories: Behavioral
+category: Behavioral
 language: en
 tags:
  - Gang of Four

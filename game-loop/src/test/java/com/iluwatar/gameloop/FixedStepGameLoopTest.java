@@ -33,17 +33,17 @@ import org.junit.jupiter.api.BeforeEach;
 /**
  * FixedStepGameLoop unit test class.
  */
-public class FixedStepGameLoopTest {
+class FixedStepGameLoopTest {
 
   private FixedStepGameLoop gameLoop;
 
   @BeforeEach
-  public void setup() {
+  void setup() {
     gameLoop = new FixedStepGameLoop();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     gameLoop = null;
   }
 

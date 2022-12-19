@@ -34,7 +34,7 @@ import java.util.List;
  *
  * @author Jeroen Meulemeester
  */
-public class OrcsTest extends ObserverTest<GOrcs> {
+class OrcsTest extends ObserverTest<GOrcs> {
 
   @Override
   public Collection<Object[]> dataProvider() {

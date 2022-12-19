@@ -5,6 +5,9 @@ language: en
 tags:
  - Extensibility
 ---
+## Also Known As
+
+Abstract-Factory
 
 ## Intent
 
@@ -20,7 +23,7 @@ Real-world example
 
 In plain words
 
-> Factory kit is a configurable object builder.
+> Factory kit is a configurable object builder, a factory to create factories.
 
 **Programmatic Example**
 
@@ -110,11 +113,17 @@ Use the Factory Kit pattern when
 * A new instance of a custom builder is needed instead of a global one
 * The types of objects that the factory can build need to be defined outside the class
 * The builder and creator interfaces need to be separated
+* Game developments and other applications that have user customisation
 
 ## Related patterns
 
 * [Builder](https://java-design-patterns.com/patterns/builder/)
 * [Factory](https://java-design-patterns.com/patterns/factory/)
+* [Abstract-Factory](https://java-design-patterns.com/patterns/abstract-factory/)
+
+## Tutorials
+
+* [Factory kit implementation tutorial](https://diego-pacheco.medium.com/factory-kit-pattern-66d5ccb0c405)
 
 ## Credits
 

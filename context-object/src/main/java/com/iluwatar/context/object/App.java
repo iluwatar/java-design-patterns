@@ -20,14 +20,22 @@ public class App {
      * @param args command line args
      */
     public static void main(String[] args) {
+        //Initiate first layer and add service information into context
         var layerA = new LayerA();
         layerA.addAccountInfo(SERVICE);
+
         LOGGER.info("Context = {}",layerA.getContext());
+
+        //Initiate second layer and preserving information retrieved in first layer through passing context object
         var layerB = new LayerB(layerA);
         layerB.addSessionInfo(SERVICE);
+
         LOGGER.info("Context = {}",layerB.getContext());
+
+        //Initiate third layer and preserving information retrieved in first and second layer through passing context object
         var layerC = new LayerC(layerB);
         layerC.addSearchInfo(SERVICE);
+
         LOGGER.info("Context = {}",layerC.getContext());
     }
 }

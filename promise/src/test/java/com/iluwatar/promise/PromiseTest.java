@@ -50,7 +50,7 @@ class PromiseTest {
   private Promise<Integer> promise;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     executor = Executors.newSingleThreadExecutor();
     promise = new Promise<>();
   }

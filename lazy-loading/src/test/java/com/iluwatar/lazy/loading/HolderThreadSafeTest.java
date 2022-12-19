@@ -31,7 +31,7 @@ import java.lang.reflect.Field;
  *
  * @author Jeroen Meulemeester
  */
-public class HolderThreadSafeTest extends AbstractHolderTest {
+class HolderThreadSafeTest extends AbstractHolderTest {
 
   private final HolderThreadSafe holder = new HolderThreadSafe();
 
