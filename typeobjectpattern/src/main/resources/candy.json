@@ -1,0 +1,45 @@
+{"candies" : [
+  {
+    "name" : "fruit",
+    "parent" : "null",
+    "type" : "rewardFruit",
+    "points" : 20
+  },
+  {
+    "name" : "candy",
+    "parent" : "null",
+    "type" : "crushableCandy",
+    "points" : 10
+  },
+  {
+    "name" : "cherry",
+    "parent" : "fruit",
+    "type" : "rewardFruit",
+    "points" : 0
+  },
+  {
+    "name" : "mango",
+    "parent" : "fruit",
+    "type" : "rewardFruit",
+    "points" : 0
+  },
+  {
+    "name" : "purple popsicle",
+    "parent" : "candy",
+    "type" : "crushableCandy",
+    "points" : 0
+  },
+  {
+    "name" : "green jellybean",
+    "parent" : "candy",
+    "type" : "crushableCandy",
+    "points" : 0
+  },
+  {
+    "name" : "orange gum",
+    "parent" : "candy",
+    "type" : "crushableCandy",
+    "points" : 0
+  }
+  ]
+}

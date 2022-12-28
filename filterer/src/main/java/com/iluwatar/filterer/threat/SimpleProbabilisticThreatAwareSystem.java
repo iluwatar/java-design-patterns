@@ -76,7 +76,7 @@ public class SimpleProbabilisticThreatAwareSystem implements ProbabilisticThreat
       final Predicate<? super ProbableThreat> predicate) {
     return this.threats.stream()
         .filter(predicate)
-        .collect(Collectors.toUnmodifiableList());
+        .toList();
   }
 
 }

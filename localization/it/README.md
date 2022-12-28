@@ -20,47 +20,43 @@ Leggi in lingue diverse: [**it**](localization/it/README.md), [**zh**](localizat
 
 # Introduzione
 
-I modelli di progettazione sono i migliori metodi un programmatore puó usare per
-risolvere problemi comuni nel strutturare un' applicazione o sistema.
+I design patterns sono le migliori pratiche di programmazione che uno sviluppatore puó usare per
+risolvere problemi durante il design di un'applicazione o sistema.
 
-I modelli di progettazione possono velocizzare lo sviluppo fornendo paradigmi di 
+I design patterns possono velocizzare lo sviluppo fornendo paradigmi di 
 sviluppo testati e approvati.
 
-Riutilizzare i modelli di progettazione aiuta a prevenire problemi che possono 
-diventare sempre più grandi a, inoltre, migliora la leggibilità del codice per i
-programmatori e ingegneri che anno famigliarità con questi modelli.
+Riutilizzare i design patterns aiuta a prevenire problematiche che possono causare maggiori problemi, inoltre, migliorano la leggibilità del codice per gli sviluppatori e ingegneri che hanno familiarità con questi patterns.
 
 # Come iniziare
 
-Questo sito espone i Modelli di Progettazione in Java. Le soluzioni sono state 
-sviluppate da programmatori e ingegneri esperti della comunità open-source. Questi
-modelli possono essere consultati attraverso le loro descrizioni dettagliate o guardando
-il loro codice sorgente. Gli esempti di codice sono ben commentati e possono essere
-visti come dei tutorial di programmazione riguardanti l' implementazione di modelli
-specifici. Per fare ciò utiliziamo le migliori e più famose tecnologie Java.
+Il sito mostra i design patterns sviluppati utilizzando il linguaggio Java. Le soluzioni sono state 
+sviluppate da programmatori e ingegneri esperti provenienti dalla community open-source. Questi patterns possono essere compresi attraverso descrizioni dettagliate o guardando
+il codice sorgente. Gli esempi di codice sono ben commentati e possono essere
+visti come dei tutorial di programmazione su come implementare uno specifico pattern. Per fare ciò utiliziamo le migliori tecnologie open-source di Java.
 
 Prima di cimentarti nel materiale proposto, dovresti prima familiarizzare con i vari
-[Principi di modellazione software](https://java-design-patterns.com/principles/).
+[Principi di Software Design](https://java-design-patterns.com/principles/).
 
-Tutti i modelli dovrebbero essere il più semplici possibili. Ti consigliamo di cominicare 
+Tutti i patterns dovrebbero essere i più semplici possibili. Ti consigliamo di cominiciare 
 con i principi KISS, YAGNI e Do The Simplest Thing That Could Possibly Work. Complessità
-e modelli dovrebbero essere introdotti solamente quando sono necessari per motivi pratici.
+e patterns dovrebbero essere introdotti solamente quando sono necessari per motivi pratici.
 
 Quando hai familiarizzato con questi concetti puoi cominciare a immergerti nei
-[modelli di progettazione disponibili](https://java-design-patterns.com/patterns/) usando 
+[design patterns disponibili](https://java-design-patterns.com/patterns/) utilizzando
 uno dei seguenti approcci:
 
- - Ricercando un modello specifico per nome. Non riesci a trovarlo? Allora comunicacelo [qui](https://github.com/iluwatar/java-design-patterns/issues).
- - Usando etichette come `Performence`, `Gang of four` o `Data access`.
- - Usando categorie di modelli come `Creational`, `Behavioral` eccetera.
+ - Cercando uno specifico pattern tramite il nome. Non riesci a trovarlo? Allora comunicacelo [qui](https://github.com/iluwatar/java-design-patterns/issues).
+ - Usando tags come `Performence`, `Gang of four` o `Data access`.
+ - Usando categorie appartenenti ai patterns come `Creational`, `Behavioral`, etc.
 
-Speriamo le soluzioni object-oriented mostrate ti siano utili per i tuoi progetti e che tu 
+Speriamo che le soluzioni object-oriented mostrate ti siano utili per i tuoi progetti e che tu 
 ti diverta a impararle come abbiamo fatto noi nell' implementarle.
 
 # Come contribuire 
 
-Se desideri contribuire al progetto puoi trovare le informazioni necessari nella nostra pagina 
-[wiki](https://github.com/iluwatar/java-design-patterns/wiki). Ti aiuteremo a responderemo a
+Se desideri contribuire al progetto puoi trovare le informazioni necessarie nella nostra pagina 
+[wiki](https://github.com/iluwatar/java-design-patterns/wiki). Ti aiuteremo a rispondere a
 ogni tua domanda nella [chatroom Gitter](https://gitter.im/iluwatar/java-design-patterns).
 
 # Licenza

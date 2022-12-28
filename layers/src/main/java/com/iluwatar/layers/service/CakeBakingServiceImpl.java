@@ -38,7 +38,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -62,7 +61,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
     var allToppings = getAvailableToppingEntities();
     var matchingToppings =
         allToppings.stream().filter(t -> t.getName().equals(cakeInfo.cakeToppingInfo.name))
-            .collect(Collectors.toList());
+            .toList();
     if (matchingToppings.isEmpty()) {
       throw new CakeBakingException(String.format("Topping %s is not available",
           cakeInfo.cakeToppingInfo.name));
