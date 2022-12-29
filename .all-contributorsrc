@@ -2306,6 +2306,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Chak-C",
+      "name": "Chak-C",
+      "avatar_url": "https://avatars.githubusercontent.com/u/114961815?v=4",
+      "profile": "https://github.com/Chak-C",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
