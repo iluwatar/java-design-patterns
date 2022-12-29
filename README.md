@@ -10,12 +10,12 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-252-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-254-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
 
-Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/ne/README.md)
+Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/ne/README.md), [**it**](localization/it/README.md)
 <br/>
 
 # Introduction
@@ -398,6 +398,10 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/hkattt"><img src="https://avatars.githubusercontent.com/u/54300585?v=4?s=100" width="100px;" alt="Hugo Kat"/><br /><sub><b>Hugo Kat</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=hkattt" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/shivu2002a"><img src="https://avatars.githubusercontent.com/u/88313126?v=4?s=100" width="100px;" alt="Shivanagouda Agasimani"/><br /><sub><b>Shivanagouda Agasimani</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=shivu2002a" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/Ap284"><img src="https://avatars.githubusercontent.com/u/13827254?v=4?s=100" width="100px;" alt="Aparna"/><br /><sub><b>Aparna</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Ap284" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/girolamo-giordano"><img src="https://avatars.githubusercontent.com/u/56109364?v=4?s=100" width="100px;" alt="Girolamo Giordano"/><br /><sub><b>Girolamo Giordano</b></sub></a><br /><a href="#translation-girolamo-giordano" title="Translation">🌍</a></td>
+      <td align="center"><a href="https://github.com/Chak-C"><img src="https://avatars.githubusercontent.com/u/114961815?v=4?s=100" width="100px;" alt="Chak-C"/><br /><sub><b>Chak-C</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Chak-C" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>

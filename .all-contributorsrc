@@ -2297,6 +2297,24 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "girolamo-giordano",
+      "name": "Girolamo Giordano",
+      "avatar_url": "https://avatars.githubusercontent.com/u/56109364?v=4",
+      "profile": "https://github.com/girolamo-giordano",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Chak-C",
+      "name": "Chak-C",
+      "avatar_url": "https://avatars.githubusercontent.com/u/114961815?v=4",
+      "profile": "https://github.com/Chak-C",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
