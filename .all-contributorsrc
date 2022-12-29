@@ -2324,6 +2324,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "KarmaTashiCat",
+      "name": "KarmaTashiCat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76797146?v=4",
+      "profile": "https://github.com/KarmaTashiCat",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
