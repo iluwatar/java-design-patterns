@@ -2,7 +2,7 @@
 title: Tolerant Reader
 category: Integration
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

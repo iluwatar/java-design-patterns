@@ -2,7 +2,7 @@
 title: Data Access Object
 category: Architectural
 language: zh
-tags:
+tag:
  - Data access
 ---
 

@@ -55,10 +55,6 @@
       <artifactId>jaxb-runtime</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.sun.istack</groupId>
-      <artifactId>istack-commons-runtime</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
     </dependency>

@@ -2,7 +2,7 @@
 title: Static Content Hosting
 category: Cloud
 language: zh
-tags:
+tag:
 - Cloud distributed
 ---
 

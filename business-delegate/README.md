@@ -2,7 +2,7 @@
 title: Business Delegate
 category: Structural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

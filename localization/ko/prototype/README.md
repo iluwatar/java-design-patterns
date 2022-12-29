@@ -2,7 +2,7 @@
 title: Prototype
 category: Creational
 language: ko
-tags:
+tag:
 - Gang Of Four
 - Instantiation
 ---
@@ -64,7 +64,7 @@ System.out.println(cloned.getName()); // Dolly
 
 ## 클래스 다이어그램
 
-![alt text](etc/prototype.urm.png)
+![alt text](./etc/prototype.urm.png)
 
 ## 적용 가능성
 

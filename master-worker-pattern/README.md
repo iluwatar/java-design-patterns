@@ -2,7 +2,7 @@
 title: Master-Worker
 category: Concurrency
 language: en
-tags:
+tag:
  - Performance
 ---
 

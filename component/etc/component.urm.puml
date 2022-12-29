@@ -1,0 +1,74 @@
+@startuml
+package com.iluwatar.component.component.physiccomponent {
+  class ObjectPhysicComponent {
+    - LOGGER : Logger {static}
+    + ObjectPhysicComponent()
+    + update(gameObject : GameObject)
+  }
+  interface PhysicComponent {
+    + update(GameObject) {abstract}
+  }
+}
+package com.iluwatar.component.component.inputcomponent {
+  class DemoInputComponent {
+    - LOGGER : Logger {static}
+    - WALK_ACCELERATION : int {static}
+    + DemoInputComponent()
+    + update(gameObject : GameObject, e : int)
+  }
+  interface InputComponent {
+    + update(GameObject, int) {abstract}
+  }
+  class PlayerInputComponent {
+    - LOGGER : Logger {static}
+    - WALK_ACCELERATION : int {static}
+    + PlayerInputComponent()
+    + update(gameObject : GameObject, e : int)
+  }
+}
+package com.iluwatar.component.component.graphiccomponent {
+  interface GraphicComponent {
+    + update(GameObject) {abstract}
+  }
+  class ObjectGraphicComponent {
+    - LOGGER : Logger {static}
+    + ObjectGraphicComponent()
+    + update(gameObject : GameObject)
+  }
+}
+package com.iluwatar.component {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class GameObject {
+    - coordinate : int
+    - graphicComponent : GraphicComponent
+    - inputComponent : InputComponent
+    - name : String
+    - physicComponent : PhysicComponent
+    - velocity : int
+    + GameObject(inputComponent : InputComponent, physicComponent : PhysicComponent, graphicComponent : GraphicComponent, name : String)
+    + createNpc() : GameObject {static}
+    + createPlayer() : GameObject {static}
+    + demoUpdate()
+    + getCoordinate() : int
+    + getGraphicComponent() : GraphicComponent
+    + getInputComponent() : InputComponent
+    + getName() : String
+    + getPhysicComponent() : PhysicComponent
+    + getVelocity() : int
+    + update(e : int)
+    + updateCoordinate()
+    + updateVelocity(acceleration : int)
+  }
+}
+GameObject -->  "-inputComponent" InputComponent
+GameObject -->  "-graphicComponent" GraphicComponent
+GameObject -->  "-physicComponent" PhysicComponent
+ObjectGraphicComponent ..|> GraphicComponent 
+DemoInputComponent ..|> InputComponent 
+PlayerInputComponent ..|> InputComponent 
+ObjectPhysicComponent ..|> PhysicComponent 
+@enduml

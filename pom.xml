@@ -38,27 +38,16 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
     <spring-boot.version>2.7.5</spring-boot.version>
-    <h2.version>1.4.190</h2.version>
     <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <camel.version>2.25.1</camel.version>
-    <guava.version>19.0</guava.version>
-    <mockito.version>3.5.6</mockito.version>
     <htmlunit.version>2.66.0</htmlunit.version>
-    <guice.version>4.0</guice.version>
-    <mongo-java-driver.version>3.12.8</mongo-java-driver.version>
-    <aws-lambda-core.version>1.1.0</aws-lambda-core.version>
-    <aws-java-sdk-dynamodb.version>1.12.13</aws-java-sdk-dynamodb.version>
-    <aws-lambda-java-events.version>2.0.1</aws-lambda-java-events.version>
+    <gson.version>2.10</gson.version>
+    <guice.version>5.1.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
-    <urm.version>2.0.0</urm.version>
-    <javassist.version>3.27.0-GA</javassist.version>
     <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
     <license-maven-plugin.version>4.1</license-maven-plugin.version>
-    <urm-maven-plugin.version>1.4.8</urm-maven-plugin.version>
-    <commons-io.version>2.7</commons-io.version>
-    <istack-commons-runtime.version>4.0.1</istack-commons-runtime.version>
+    <urm-maven-plugin.version>2.1.1</urm-maven-plugin.version>
     <!-- SonarCloud -->
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.organization>iluwatar</sonar.organization>
@@ -68,6 +57,7 @@
   </properties>
   <modules>
     <module>abstract-factory</module>
+    <module>collecting-parameter</module>
     <module>monitor</module>
     <module>tls</module>
     <module>builder</module>
@@ -123,7 +113,6 @@
     <module>private-class-data</module>
     <module>object-pool</module>
     <module>dependency-injection</module>
-    <module>naked-objects</module>
     <module>front-controller</module>
     <module>repository</module>
     <module>async-method-invocation</module>
@@ -132,11 +121,9 @@
     <module>business-delegate</module>
     <module>half-sync-half-async</module>
     <module>layers</module>
-    <module>eip-message-channel</module>
     <module>fluentinterface</module>
     <module>reactor</module>
     <module>caching</module>
-    <module>eip-publish-subscribe</module>
     <module>delegation</module>
     <module>event-driven-architecture</module>
     <module>api-gateway</module>
@@ -167,13 +154,9 @@
     <module>throttling</module>
     <module>unit-of-work</module>
     <module>partial-response</module>
-    <module>eip-wire-tap</module>
-    <module>eip-splitter</module>
-    <module>eip-aggregator</module>
     <module>retry</module>
     <module>dirty-flag</module>
     <module>trampoline</module>
-    <module>serverless</module>
     <module>ambassador</module>
     <module>acyclic-visitor</module>
     <module>collection-pipeline</module>
@@ -215,8 +198,12 @@
     <module>composite-view</module>
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
+    <module>client-session</module>
+    <module>embedded-value</module>
+    <module>currying</module>
     <module>serialized-entity</module>
     <module>identity-map</module>
+    <module>component</module>
   </modules>
   <repositories>
     <repository>
@@ -227,21 +214,6 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-core</artifactId>
-        <version>${mockito.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-inline</artifactId>
-        <version>${mockito.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-junit-jupiter</artifactId>
-        <version>${mockito.version}</version>
-      </dependency>
-      <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
         <version>${spring-boot.version}</version>
@@ -249,29 +221,9 @@
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>com.h2database</groupId>
-        <artifactId>h2</artifactId>
-        <version>${h2.version}</version>
-      </dependency>
-      <dependency>
         <groupId>commons-dbcp</groupId>
         <artifactId>commons-dbcp</artifactId>
         <version>${commons-dbcp.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-core</artifactId>
-        <version>${camel.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-stream</artifactId>
-        <version>${camel.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${guava.version}</version>
       </dependency>
       <dependency>
         <groupId>net.sourceforge.htmlunit</groupId>
@@ -279,35 +231,20 @@
         <version>${htmlunit.version}</version>
       </dependency>
       <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>${gson.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.google.inject</groupId>
         <artifactId>guice</artifactId>
         <version>${guice.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mongodb</groupId>
-        <artifactId>mongo-java-driver</artifactId>
-        <version>${mongo-java-driver.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.javassist</groupId>
-        <artifactId>javassist</artifactId>
-        <version>${javassist.version}</version>
       </dependency>
       <dependency>
         <groupId>com.github.stefanbirkner</groupId>
         <artifactId>system-lambda</artifactId>
         <version>${system-lambda.version}</version>
         <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>${commons-io.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.istack</groupId>
-        <artifactId>istack-commons-runtime</artifactId>
-        <version>${istack-commons-runtime.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -337,8 +274,8 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
           <configuration>
-            <source>11</source>
-            <target>11</target>
+            <source>17</source>
+            <target>17</target>
           </configuration>
         </plugin>
         <plugin>

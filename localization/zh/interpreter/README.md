@@ -2,7 +2,7 @@
 title: Interpreter
 category: Behavioral
 language: zh
-tags:
+tag:
  - Gang of Four
 ---
 

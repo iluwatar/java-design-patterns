@@ -5,7 +5,7 @@ folder: active-object
 permalink: /patterns/active-object/
 categories: Concurrency
 language: es
-tags:
+tag:
  - Performance
 ---
 

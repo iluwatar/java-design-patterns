@@ -2,7 +2,7 @@
 title: Resource Acquisition Is Initialization
 category: Idiom
 language: en
-tags:
+tag:
  - Data access
 ---
 

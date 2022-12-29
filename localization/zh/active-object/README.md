@@ -2,7 +2,7 @@
 title: Active Object
 category: Concurrency
 language: zh
-tags:
+tag:
  - Performance
 ---
 

@@ -27,7 +27,6 @@ package com.iluwatar.converter;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -74,7 +73,7 @@ public class Converter<T, U> {
    *     with the conversion function
    */
   public final List<U> createFromDtos(final Collection<T> dtos) {
-    return dtos.stream().map(this::convertFromDto).collect(Collectors.toList());
+    return dtos.stream().map(this::convertFromDto).toList();
   }
 
   /**
@@ -85,7 +84,7 @@ public class Converter<T, U> {
    *     with the conversion function
    */
   public final List<T> createFromEntities(final Collection<U> entities) {
-    return entities.stream().map(this::convertFromEntity).collect(Collectors.toList());
+    return entities.stream().map(this::convertFromEntity).toList();
   }
 
 }
