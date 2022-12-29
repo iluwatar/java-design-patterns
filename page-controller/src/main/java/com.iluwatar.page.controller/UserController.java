@@ -24,13 +24,10 @@
  */
 package com.iluwatar.page.controller;
 
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 /**
  * Controller.
@@ -39,8 +36,8 @@ import org.springframework.web.servlet.support.RequestContextUtils;
 @Controller
 public class UserController {
   UserView view = new UserView();
-  public UserController() {
-  }
+
+  public UserController() {}
 
   /**
    * Handle http GET request and access view and model.

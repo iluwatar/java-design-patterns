@@ -27,11 +27,12 @@ package com.iluwatar.page.controller;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
 
 /**
-* The page controller pattern explanation.
+ * Page Controller pattern is utilized when we want to simplify relationship in a dynamic website.
+ * It is an approach of one front page leading to one logical file that handles HTTP requests and actions.
+ * In this example, we build a website with signup page handling an input form with Signup Controller, Signup View, and Signup Model
+ * and after signup, it is redirected to a user page handling with User Controller, User View, and User Model.
 */
 @Slf4j
 @SpringBootApplication

@@ -24,12 +24,16 @@
  */
 package com.iluwatar.page.controller;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 /**
  * clothes model.
  */
 @Component
+@Getter
+@Setter
 public class SignupModel {
   private String name;
   private String email;
@@ -48,29 +52,5 @@ public class SignupModel {
   }
 
   public SignupModel() {
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public String getEmail() {
-    return this.email;
-  }
-
-  public String getPassword() {
-    return this.password;
   }
 }
