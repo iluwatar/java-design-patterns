@@ -1,8 +1,5 @@
 ---
-layout: pattern
 title: Page Controller
-folder: page-controller
-permalink: /patterns/page-controller/
 categories: Structural
 language: en
 tags:
