@@ -24,32 +24,17 @@
  */
 package com.iluwatar.page.controller;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * User model.
  */
+@Getter
+@Setter
 public class UserModel {
   private String name;
   private String email;
-
-  /**
-   * model.
-   */
+  
   public UserModel() {}
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
 }

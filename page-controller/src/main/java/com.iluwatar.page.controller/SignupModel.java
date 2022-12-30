@@ -29,7 +29,7 @@ import lombok.Setter;
 import org.springframework.stereotype.Component;
 
 /**
- * clothes model.
+ * ignup model.
  */
 @Component
 @Getter
@@ -38,18 +38,6 @@ public class SignupModel {
   private String name;
   private String email;
   private String password;
-
-  /**
-   * signup model.
-   * @param name username
-   * @param email user email
-   * @param password user password
-   */
-  public SignupModel(String name, String email, String password) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-  }
 
   public SignupModel() {
   }

@@ -48,7 +48,10 @@ public class SignupControllerTest {
   }
 
   public static SignupModel retrieveSignupData() {
-    SignupModel model = new SignupModel("Lily", "lily@email.com", "password1234");
+    SignupModel model = new SignupModel();
+    model.setName("Lily");
+    model.setEmail("lily@email.com");
+    model.setPassword("password1234");
     return model;
   }
 }

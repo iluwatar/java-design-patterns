@@ -42,7 +42,7 @@ public class App {
    *
    * @param args command line args
    */
-  public static void main(final String[] args) throws Exception {
+  public static void main(final String[] args) {
     SpringApplication.run(App.class, args);
   }
 }

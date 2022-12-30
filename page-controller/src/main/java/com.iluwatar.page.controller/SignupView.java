@@ -27,7 +27,7 @@ package com.iluwatar.page.controller;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * PriceListView.
+ * Signup View.
  */
 @Slf4j
 public class SignupView {

@@ -32,7 +32,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
- * PriceListController.
+ * Signup Controller.
  */
 @Slf4j
 @Controller
@@ -40,7 +40,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class SignupController {
   SignupView view = new SignupView();
   /**
-   * ClothesController can handle http request and decide which model and view use.
+   * Signup Controller can handle http request and decide which model and view use.
    */
   SignupController() {
   }

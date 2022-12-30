@@ -8,10 +8,17 @@ language: en
 tags:
 - Decoupling
 ---
+
+## Name / classification
+
+Page Controller
+
 ## Intent
+
 It is an approach of one page leading to one logical file that handles actions or requests on a website.
 
 ## Explanation
+
 Real-world example
 
 > In a shopping website, there is a signup page to register a user profile.
@@ -27,10 +34,13 @@ In plain words
 Here's Signup controller when a user signup their information for a website.
 
 ```java
+@Slf4j
+@Controller
+@Component
 public class SignupController {
   SignupView view = new SignupView();
   /**
-   * ClothesController can handle http request and decide which model and view use.
+   * Signup Controller can handle http request and decide which model and view use.
    */
   SignupController() {
   }
@@ -60,29 +70,21 @@ public class SignupController {
 Here's Signup model and view that are handled by Signup controller.
 
 ```java
+@Component
+@Getter
+@Setter
 public class SignupModel {
   private String name;
   private String email;
   private String password;
-
-  /**
-   * signup model.
-   * @param name username
-   * @param email user email
-   * @param password user password
-   */
-  public SignupModel(String name, String email, String password) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-  }
-
+  
   public SignupModel() {
   }
 }
 ```
 
 ```java
+@Slf4j
 public class SignupView {
   public SignupView() {
   }
@@ -105,6 +107,8 @@ public class SignupView {
 Here's User Controller to handle Get request in a user page.
 
 ```java
+@Slf4j
+@Controller
 public class UserController {
   UserView view = new UserView();
 
@@ -124,35 +128,18 @@ public class UserController {
 
 Here's User Model and View that are handled by User controller.
 ```java
+@Getter
+@Setter
 public class UserModel {
   private String name;
   private String email;
 
-  /**
-   * model.
-   */
   public UserModel() {}
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
 }
 ```
 
 ```java
+@Slf4j
 public class UserView {
   /**
    * displaying command to generate html.

@@ -30,12 +30,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * Controller.
+ * User Controller.
  */
 @Slf4j
 @Controller
 public class UserController {
-  UserView view = new UserView();
+  private final UserView view = new UserView();
 
   public UserController() {}
 
