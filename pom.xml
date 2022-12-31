@@ -40,7 +40,7 @@
     <spring-boot.version>2.7.5</spring-boot.version>
     <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <htmlunit.version>2.66.0</htmlunit.version>
+    <htmlunit.version>2.68.0</htmlunit.version>
     <gson.version>2.10</gson.version>
     <guice.version>5.1.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
