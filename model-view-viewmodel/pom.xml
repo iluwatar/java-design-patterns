@@ -39,7 +39,6 @@
     <zk.version>9.0.0</zk.version>
     <jetty-maven-plugin.version>9.4.28.v20200408</jetty-maven-plugin.version>
     <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
-    <maven-assembly-plugin.version>2.2</maven-assembly-plugin.version>
     <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
     <packname>-${project.version}-FL-${maven.build.timestamp}</packname>
   </properties>
@@ -109,7 +108,6 @@
       <!-- Pack zips -->
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>${maven-assembly-plugin.version}</version>
         <executions>
           <execution>
             <id>webapp</id>
