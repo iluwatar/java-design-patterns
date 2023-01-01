@@ -5,7 +5,7 @@ package com.iluwatar.context.object;
  */
 public class ServiceContextFactory {
 
-    public static ServiceContext createContext() {
-        return new ServiceContext();
-    }
+  public static ServiceContext createContext() {
+    return new ServiceContext();
+  }
 }

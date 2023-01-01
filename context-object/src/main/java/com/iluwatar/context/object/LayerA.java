@@ -5,13 +5,13 @@ import lombok.Getter;
 @Getter
 public class LayerA {
 
-    private ServiceContext context;
+  private ServiceContext context;
 
-    public LayerA() {
-        context = ServiceContextFactory.createContext();
-    }
+  public LayerA() {
+    context = ServiceContextFactory.createContext();
+  }
 
-    public void addAccountInfo(String accountService) {
-        context.setAccountService(accountService);
-    }
+  public void addAccountInfo(String accountService) {
+    context.setAccountService(accountService);
+  }
 }

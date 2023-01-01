@@ -5,13 +5,13 @@ import lombok.Getter;
 @Getter
 public class LayerC {
 
-    public ServiceContext context;
+  public ServiceContext context;
 
-    public LayerC(LayerB layerB) {
-        this.context = layerB.getContext();
-    }
+  public LayerC(LayerB layerB) {
+    this.context = layerB.getContext();
+  }
 
-    public void addSearchInfo(String searchService) {
-        context.setSearchService(searchService);
-    }
+  public void addSearchInfo(String searchService) {
+    context.setSearchService(searchService);
+  }
 }
