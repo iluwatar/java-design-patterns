@@ -12,5 +12,7 @@ import lombok.ToString;
 @Setter
 public class ServiceContext {
 
-   String AccountService, SessionService, SearchService;
+  String accountService;
+  String sessionService;
+  String searchService;
 }

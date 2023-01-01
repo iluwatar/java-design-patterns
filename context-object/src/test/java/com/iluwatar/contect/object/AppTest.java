@@ -7,11 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class AppTest {
 
-    /**
-     * Test example app runs without error.
-     */
-    @Test
-    void shouldExecuteWithoutException() {
-        assertDoesNotThrow(() -> App.main(new String[]{}));
-    }
+  /**
+   * Test example app runs without error.
+   */
+  @Test
+  void shouldExecuteWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[] {}));
+  }
 }
