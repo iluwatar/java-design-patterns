@@ -31,6 +31,7 @@ import com.iluwatar.context.object.ServiceContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -78,13 +79,31 @@ public class ServiceContextTest {
   }
 
   @Test
-  void testToString() {
-    assertEquals("ServiceContext(accountService=null, sessionService=null, searchService=null)", layerA.getContext().toString());
+  void testLayerContexts() {
+    assertAll(
+        () -> assertNull(layerA.getContext().getAccountService()),
+        () -> assertNull(layerA.getContext().getSearchService()),
+        () -> assertNull(layerA.getContext().getSessionService())
+        );
     layerA.addAccountInfo(SERVICE);
-    assertEquals("ServiceContext(accountService=SERVICE, sessionService=null, searchService=null)", layerA.getContext().toString());
+    assertAll(
+        () -> assertEquals(SERVICE, layerA.getContext().getAccountService()),
+        () -> assertNull(layerA.getContext().getSearchService()),
+        () -> assertNull(layerA.getContext().getSessionService())
+    );
     var layerB = new LayerB(layerA);
     layerB.addSessionInfo(SERVICE);
+    assertAll(
+        () -> assertEquals(SERVICE, layerB.getContext().getAccountService()),
+        () -> assertEquals(SERVICE, layerB.getContext().getSessionService()),
+        () -> assertNull(layerB.getContext().getSearchService())
+    );
     var layerC = new LayerC(layerB);
-    assertEquals("ServiceContext(accountService=SERVICE, sessionService=SERVICE, searchService=null)", layerC.getContext().toString());
+    layerC.addSearchInfo(SERVICE);
+    assertAll(
+        () -> assertEquals(SERVICE, layerC.getContext().getAccountService()),
+        () -> assertEquals(SERVICE, layerC.getContext().getSearchService()),
+        () -> assertEquals(SERVICE, layerC.getContext().getSessionService())
+    );
   }
 }
