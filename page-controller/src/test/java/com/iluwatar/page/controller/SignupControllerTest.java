@@ -22,20 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.context.object;
+package com.iluwatar.page.controller;
 
-import lombok.Getter;
+import org.junit.jupiter.api.Test;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Getter
-public class LayerC {
+/**
+ * Test for Signup Controller
+ */
+public class SignupControllerTest {
 
-  public ServiceContext context;
+  /**
+   * Verify if user can sign up and redirect to user page
+   */
+  @Test
+  void testSignup() {
+    var controller = new SignupController();
+    controller.getSignup();
 
-  public LayerC(LayerB layerB) {
-    this.context = layerB.getContext();
+    RedirectAttributes redirectAttributes = new RedirectAttributesModelMap();
+    String redirectPath = controller.create(retrieveSignupData(), redirectAttributes);
+    assertEquals("redirect:/user", redirectPath);
   }
 
-  public void addSearchInfo(String searchService) {
-    context.setSearchService(searchService);
+  public static SignupModel retrieveSignupData() {
+    SignupModel model = new SignupModel();
+    model.setName("Lily");
+    model.setEmail("lily@email.com");
+    model.setPassword("password1234");
+    return model;
   }
 }

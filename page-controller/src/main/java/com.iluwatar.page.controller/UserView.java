@@ -22,20 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.context.object;
+package com.iluwatar.page.controller;
 
-import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
-@Getter
-public class LayerC {
-
-  public ServiceContext context;
-
-  public LayerC(LayerB layerB) {
-    this.context = layerB.getContext();
-  }
-
-  public void addSearchInfo(String searchService) {
-    context.setSearchService(searchService);
+/**
+ * User view class generating html file.
+ */
+@Slf4j
+public class UserView {
+  /**
+   * displaying command to generate html.
+   * @param user model content.
+   */
+  public String display(SignupModel user) {
+    LOGGER.info("display user html" + " name " + user.getName() + " email " + user.getEmail());
+    return "/user";
   }
 }

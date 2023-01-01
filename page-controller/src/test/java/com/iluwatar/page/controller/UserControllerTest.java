@@ -22,20 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.contect.object;
+package com.iluwatar.page.controller;
 
-import com.iluwatar.context.object.App;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.web.servlet.MockMvc;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+@AutoConfigureMockMvc
+public class UserControllerTest {
+  private UserController userController;
 
-public class AppTest {
+  @Autowired
+  MockMvc mockMvc;
 
   /**
-   * Test example app runs without error.
+   * Verify if view and model are directed properly
    */
   @Test
-  void shouldExecuteWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[] {}));
+  void testGetUserPath () throws Exception {
+        this.mockMvc.perform(get("/user")
+                .param("name", "Lily")
+                .param("email", "Lily@email.com"))
+        .andExpect(status().isOk())
+        .andExpect(model().attribute("name", "Lily"))
+        .andExpect(model().attribute("email", "Lily@email.com"))
+        .andReturn();
   }
 }
