@@ -36,7 +36,7 @@
   <description>Java Design Patterns</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar-maven-plugin.version>3.8.0.2131</sonar-maven-plugin.version>
+    <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
     <spring-boot.version>2.7.5</spring-boot.version>
     <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
