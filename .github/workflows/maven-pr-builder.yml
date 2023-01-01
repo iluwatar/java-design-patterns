@@ -61,7 +61,7 @@ jobs:
       run: sudo apt-get install -y xvfb
 
     - name: Build with Maven and run SonarQube analysis
-      run: xvfb-run ./mvnw clean verify -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=iluwatar -Dsonar.projectKey=iluwatar_java-design-patterns -Dsonar.pullrequest.branch=${{ github.head_ref }} -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
+      run: xvfb-run ./mvnw clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=iluwatar -Dsonar.projectKey=iluwatar_java-design-patterns -Dsonar.pullrequest.branch=${{ github.head_ref }} -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
       env:
         # These two env variables are needed for sonar analysis
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
