@@ -22,20 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.context.object;
+package com.iluwatar.page.controller;
 
-import lombok.Getter;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@Getter
-public class LayerC {
+import org.junit.jupiter.api.Test;
 
-  public ServiceContext context;
-
-  public LayerC(LayerB layerB) {
-    this.context = layerB.getContext();
+public class UserModelTest {
+  /**
+   * Verify if a user can set a name properly
+   */
+  @Test
+  void testSetName() {
+    UserModel model = new UserModel();
+    model.setName("Lily");
+    assertEquals("Lily", model.getName());
   }
 
-  public void addSearchInfo(String searchService) {
-    context.setSearchService(searchService);
+  /**
+   * Verify if a user can set an email properly
+   */
+  @Test
+  void testSetEmail() {
+    UserModel model = new UserModel();
+    model.setEmail("Lily@email");
+    assertEquals("Lily@email", model.getEmail());
   }
 }

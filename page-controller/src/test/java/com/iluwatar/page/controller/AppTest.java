@@ -22,20 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.context.object;
+package com.iluwatar.page.controller;
 
-import lombok.Getter;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-@Getter
-public class LayerC {
-
-  public ServiceContext context;
-
-  public LayerC(LayerB layerB) {
-    this.context = layerB.getContext();
-  }
-
-  public void addSearchInfo(String searchService) {
-    context.setSearchService(searchService);
+/**
+ * Application test
+ */
+public class AppTest {
+  @Test
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

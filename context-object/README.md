@@ -179,6 +179,7 @@ Use the Context Object pattern for:
 
 ## Credits
 
-* [J2EE Design Patterns](http://corej2eepatterns.com/ContextObject.htm)
+* [Core J2EE Design Patterns](https://amzn.to/3IhcY9w)
+* [Core J2EE Design Patterns website - Context Object](http://corej2eepatterns.com/ContextObject.htm)
 * [Allan Kelly - The Encapsulate Context Pattern](https://accu.org/journals/overload/12/63/kelly_246/)
 * [Arvid S. Krishna et al. - Context Object](https://www.dre.vanderbilt.edu/~schmidt/PDF/Context-Object-Pattern.pdf)
