@@ -22,20 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.context.object;
+package com.iluwatar.page.controller;
 
 import lombok.Getter;
+import lombok.Setter;
+import org.springframework.stereotype.Component;
 
+/**
+ * ignup model.
+ */
+@Component
 @Getter
-public class LayerC {
+@Setter
+public class SignupModel {
+  private String name;
+  private String email;
+  private String password;
 
-  public ServiceContext context;
-
-  public LayerC(LayerB layerB) {
-    this.context = layerB.getContext();
-  }
-
-  public void addSearchInfo(String searchService) {
-    context.setSearchService(searchService);
+  public SignupModel() {
   }
 }

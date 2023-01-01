@@ -22,20 +22,47 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.context.object;
+package com.iluwatar.page.controller;
 
-import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@Getter
-public class LayerC {
-
-  public ServiceContext context;
-
-  public LayerC(LayerB layerB) {
-    this.context = layerB.getContext();
+/**
+ * Signup Controller.
+ */
+@Slf4j
+@Controller
+@Component
+public class SignupController {
+  SignupView view = new SignupView();
+  /**
+   * Signup Controller can handle http request and decide which model and view use.
+   */
+  SignupController() {
   }
 
-  public void addSearchInfo(String searchService) {
-    context.setSearchService(searchService);
+  /**
+   * Handle http GET request.
+   */
+  @GetMapping("/signup")
+  public String getSignup() {
+    return view.display();
+  }
+
+  /**
+   * Handle http POST request and access model and view.
+   */
+  @PostMapping("/signup")
+  public String create(SignupModel form, RedirectAttributes redirectAttributes) {
+    LOGGER.info(form.getName());
+    LOGGER.info(form.getEmail());
+    redirectAttributes.addAttribute("name", form.getName());
+    redirectAttributes.addAttribute("email", form.getEmail());
+    redirectAttributes.addFlashAttribute("userInfo", form);
+    return view.redirect(form);
   }
 }
