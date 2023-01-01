@@ -79,15 +79,12 @@ public class ServiceContextTest {
 
   @Test
   void testToString() {
-    assertEquals(layerA.getContext().toString(),
-        "ServiceContext(accountService=null, sessionService=null, searchService=null)");
+    assertEquals("ServiceContext(accountService=null, sessionService=null, searchService=null)", layerA.getContext().toString());
     layerA.addAccountInfo(SERVICE);
-    assertEquals(layerA.getContext().toString(),
-        "ServiceContext(accountService=SERVICE, sessionService=null, searchService=null)");
+    assertEquals("ServiceContext(accountService=SERVICE, sessionService=null, searchService=null)", layerA.getContext().toString());
     var layerB = new LayerB(layerA);
     layerB.addSessionInfo(SERVICE);
     var layerC = new LayerC(layerB);
-    assertEquals(layerC.getContext().toString(),
-        "ServiceContext(accountService=SERVICE, sessionService=SERVICE, searchService=null)");
+    assertEquals("ServiceContext(accountService=SERVICE, sessionService=SERVICE, searchService=null)", layerC.getContext().toString());
   }
 }
