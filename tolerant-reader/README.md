@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Tolerant Reader
-folder: tolerant-reader
-permalink: /patterns/tolerant-reader/
-categories: Integration
+category: Integration
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

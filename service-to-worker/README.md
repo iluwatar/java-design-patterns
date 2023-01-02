@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Service to Worker
-folder: service-to-worker
-permalink: /patterns/service-to-worker/
-categories: Architectural
-tags:
+category: Architectural
+language: en
+tag:
 - Decoupling
 ---
 

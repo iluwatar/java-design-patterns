@@ -28,7 +28,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.google.common.collect.Lists;
 import java.util.List;
 import javax.annotation.Resource;
 import org.junit.jupiter.api.AfterEach;
@@ -60,13 +59,13 @@ class AnnotationBasedRepositoryTest {
    * Prepare data for test
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     repository.saveAll(persons);
   }
 
   @Test
   void testFindAll() {
-    var actuals = Lists.newArrayList(repository.findAll());
+    var actuals = repository.findAll();
     assertTrue(actuals.containsAll(persons) && persons.containsAll(actuals));
   }
 
@@ -112,7 +111,7 @@ class AnnotationBasedRepositoryTest {
   }
 
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     repository.deleteAll();
   }
 

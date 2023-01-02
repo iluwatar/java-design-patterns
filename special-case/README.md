@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Special Case
-folder: special-case
-permalink: /patterns/special-case/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

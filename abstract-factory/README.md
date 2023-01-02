@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Abstract Factory
-folder: abstract-factory
-permalink: /patterns/abstract-factory/
-categories: Creational
+category: Creational
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

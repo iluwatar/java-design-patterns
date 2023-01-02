@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class SimpleMessageTest {
+class SimpleMessageTest {
 
   @Test
   void testGetHeaders() {

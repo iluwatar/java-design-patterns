@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Page Object
-folder: page-object
-permalink: /patterns/page-object/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
 - Decoupling
 ---
 

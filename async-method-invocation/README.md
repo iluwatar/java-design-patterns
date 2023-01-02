@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Async Method Invocation
-folder: async-method-invocation
-permalink: /patterns/async-method-invocation/
-categories: Concurrency
+category: Concurrency
 language: en
-tags:
+tag:
  - Reactive
 ---
 

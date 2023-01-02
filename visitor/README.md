@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Visitor
-folder: visitor
-permalink: /patterns/visitor/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -53,11 +50,11 @@ public abstract class Unit {
 
 public interface UnitVisitor {
 
-  void visitSoldier(Soldier soldier);
+  void visit(Soldier soldier);
 
-  void visitSergeant(Sergeant sergeant);
+  void visit(Sergeant sergeant);
 
-  void visitCommander(Commander commander);
+  void visit(Commander commander);
 }
 ```
 

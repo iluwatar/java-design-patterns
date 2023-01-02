@@ -27,7 +27,6 @@ package com.iluwatar.model.view.controller;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import org.junit.jupiter.api.Test;
 
@@ -36,7 +35,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class GiantControllerTest {
+class GiantControllerTest {
 
   /**
    * Verify if the controller passes the health level through to the model and vice versa
@@ -47,12 +46,12 @@ public class GiantControllerTest {
     final var view = mock(GiantView.class);
     final var controller = new GiantController(model, view);
 
-    verifyZeroInteractions(model, view);
+    verifyNoMoreInteractions(model, view);
 
     for (final var health : Health.values()) {
       controller.setHealth(health);
       verify(model).setHealth(health);
-      verifyZeroInteractions(view);
+      verifyNoMoreInteractions(view);
     }
 
     controller.getHealth();
@@ -71,12 +70,12 @@ public class GiantControllerTest {
     final var view = mock(GiantView.class);
     final var controller = new GiantController(model, view);
 
-    verifyZeroInteractions(model, view);
+    verifyNoMoreInteractions(model, view);
 
     for (final var fatigue : Fatigue.values()) {
       controller.setFatigue(fatigue);
       verify(model).setFatigue(fatigue);
-      verifyZeroInteractions(view);
+      verifyNoMoreInteractions(view);
     }
 
     controller.getFatigue();
@@ -95,12 +94,12 @@ public class GiantControllerTest {
     final var view = mock(GiantView.class);
     final var controller = new GiantController(model, view);
 
-    verifyZeroInteractions(model, view);
+    verifyNoMoreInteractions(model, view);
 
     for (final var nourishment : Nourishment.values()) {
       controller.setNourishment(nourishment);
       verify(model).setNourishment(nourishment);
-      verifyZeroInteractions(view);
+      verifyNoMoreInteractions(view);
     }
 
     controller.getNourishment();
@@ -116,7 +115,7 @@ public class GiantControllerTest {
     final var view = mock(GiantView.class);
     final var controller = new GiantController(model, view);
 
-    verifyZeroInteractions(model, view);
+    verifyNoMoreInteractions(model, view);
 
     controller.updateView();
     verify(view).displayGiant(model);

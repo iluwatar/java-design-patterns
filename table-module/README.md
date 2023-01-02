@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Table Module
-folder: table-module
-permalink: /patterns/table-module/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
  - Data access
 ---
 

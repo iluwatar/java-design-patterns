@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
  * <p>
  * Could be done with mock objects as well where the call method call is verified.
  */
-public class CallbackTest {
+class CallbackTest {
 
   private Integer callingCount = 0;
 

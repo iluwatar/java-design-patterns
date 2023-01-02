@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Collection Pipeline
-folder: collection-pipeline
-permalink: /patterns/collection-pipeline/
-categories: Functional
+category: Functional
 language: en
-tags:
+tag:
  - Reactive
 ---
 

@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Template method
-folder: template-method
-permalink: /patterns/template-method/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 

@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Composite Entity
-folder: composite-entity
-permalink: /patterns/composite-entity/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
  - Enterprise Integration Pattern
 ---
 

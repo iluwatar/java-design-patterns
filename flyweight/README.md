@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Flyweight
-folder: flyweight
-permalink: /patterns/flyweight/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
  - Gang of Four
  - Performance
 ---

@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Unit Of Work
-folder: unit-of-work
-permalink: /patterns/unit-of-work/
-categories: Architectural
+category: Architectural
 language: en
-tags:
+tag:
  - Data access
  - Performance
 ---
@@ -182,7 +179,7 @@ Here is the console output.
 
 ## Class diagram
 
-![alt text](etc/unit-of-work.urm.png "unit-of-work")
+![alt text](./etc/unit-of-work.urm.png "unit-of-work")
 
 ## Applicability
 

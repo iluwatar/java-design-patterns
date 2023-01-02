@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 /**
  * Test for Guarded Queue
  */
-public class GuardedQueueTest {
+class GuardedQueueTest {
   private volatile Integer value;
 
   @Test

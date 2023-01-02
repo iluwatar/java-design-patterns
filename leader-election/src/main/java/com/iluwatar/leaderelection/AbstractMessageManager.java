@@ -24,9 +24,7 @@
  */
 package com.iluwatar.leaderelection;
 
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * Abstract class of all the message manager classes.
@@ -56,13 +54,13 @@ public abstract class AbstractMessageManager implements MessageManager {
         .stream()
         .filter((i) -> i > currentId && instanceMap.get(i).isAlive())
         .sorted()
-        .collect(Collectors.toList());
+        .toList();
     if (candidateList.isEmpty()) {
       var index = instanceMap.keySet()
           .stream()
           .filter((i) -> instanceMap.get(i).isAlive())
           .sorted()
-          .collect(Collectors.toList())
+          .toList()
           .get(0);
       result = instanceMap.get(index);
     } else {

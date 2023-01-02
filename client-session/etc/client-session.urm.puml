@@ -1,0 +1,51 @@
+@startuml
+package com.iluwatar.client.session {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Request {
+    - data : String
+    - session : Session
+    + Request(data : String, session : Session)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getData() : String
+    + getSession() : Session
+    + hashCode() : int
+    + setData(data : String)
+    + setSession(session : Session)
+    + toString() : String
+  }
+  class Server {
+    - LOGGER : Logger {static}
+    - host : String
+    - port : int
+    + Server(host : String, port : int)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getHost() : String
+    + getPort() : int
+    + getSession(name : String) : Session
+    + hashCode() : int
+    + process(request : Request)
+    + setHost(host : String)
+    + setPort(port : int)
+    + toString() : String
+  }
+  class Session {
+    - clientName : String
+    - id : String
+    + Session(id : String, clientName : String)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getClientName() : String
+    + getId() : String
+    + hashCode() : int
+    + setClientName(clientName : String)
+    + setId(id : String)
+    + toString() : String
+  }
+}
+Request -->  "-session" Session
+@enduml

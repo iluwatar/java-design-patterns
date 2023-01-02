@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Facade
-folder: facade
-permalink: /patterns/facade/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
  - Gang Of Four
  - Decoupling
 ---

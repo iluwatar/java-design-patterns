@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Role Object
-folder: role-object
-permalink: /patterns/role-object/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

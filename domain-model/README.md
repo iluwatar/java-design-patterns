@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Domain Model
-folder: domain-model
-permalink: /patterns/domain-model/
-categories: Architectural
+category: Architectural
 language: en
-tags:
+tag:
  - Domain
 ---
 

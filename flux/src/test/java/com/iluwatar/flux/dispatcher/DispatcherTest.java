@@ -39,7 +39,6 @@ import com.iluwatar.flux.action.ContentAction;
 import com.iluwatar.flux.action.MenuAction;
 import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.store.Store;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -49,7 +48,7 @@ import org.mockito.ArgumentCaptor;
  *
  * @author Jeroen Meulemeester
  */
-public class DispatcherTest {
+class DispatcherTest {
 
   /**
    * Dispatcher is a singleton with no way to reset it's internal state back to the beginning.
@@ -57,7 +56,7 @@ public class DispatcherTest {
    * influence on each other.
    */
   @BeforeEach
-  public void setUp() throws Exception {
+  void setUp() throws Exception {
     final var constructor = Dispatcher.class.getDeclaredConstructor();
     constructor.setAccessible(true);
 
@@ -90,12 +89,12 @@ public class DispatcherTest {
     final var menuActions = actions.stream()
         .filter(a -> a.getType().equals(ActionType.MENU_ITEM_SELECTED))
         .map(a -> (MenuAction) a)
-        .collect(Collectors.toList());
+        .toList();
 
     final var contentActions = actions.stream()
         .filter(a -> a.getType().equals(ActionType.CONTENT_CHANGED))
         .map(a -> (ContentAction) a)
-        .collect(Collectors.toList());
+        .toList();
 
     assertEquals(2, menuActions.size());
     assertEquals(1, menuActions.stream().map(MenuAction::getMenuItem).filter(MenuItem.HOME::equals)

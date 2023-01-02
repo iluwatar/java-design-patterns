@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Multiton
-folder: multiton
-permalink: /patterns/multiton/
-categories: Creational
+category: Creational
 language: en
-tags:
+tag:
  - Instantiation
 ---
 

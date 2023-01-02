@@ -56,31 +56,31 @@ class MongoEventLogTest {
 
   @Test
   void testSetup() {
-    assertEquals(0, mongoEventLog.getEventsCollection().count());
+    assertEquals(0, mongoEventLog.getEventsCollection().countDocuments());
   }
 
   @Test
   void testFundTransfers() {
     var playerDetails = new PlayerDetails("john@wayne.com", "000-000", "03432534543");
     mongoEventLog.prizeError(playerDetails, 1000);
-    assertEquals(1, mongoEventLog.getEventsCollection().count());
+    assertEquals(1, mongoEventLog.getEventsCollection().countDocuments());
     mongoEventLog.prizeError(playerDetails, 1000);
-    assertEquals(2, mongoEventLog.getEventsCollection().count());
+    assertEquals(2, mongoEventLog.getEventsCollection().countDocuments());
     mongoEventLog.ticketDidNotWin(playerDetails);
-    assertEquals(3, mongoEventLog.getEventsCollection().count());
+    assertEquals(3, mongoEventLog.getEventsCollection().countDocuments());
     mongoEventLog.ticketDidNotWin(playerDetails);
-    assertEquals(4, mongoEventLog.getEventsCollection().count());
+    assertEquals(4, mongoEventLog.getEventsCollection().countDocuments());
     mongoEventLog.ticketSubmitError(playerDetails);
-    assertEquals(5, mongoEventLog.getEventsCollection().count());
+    assertEquals(5, mongoEventLog.getEventsCollection().countDocuments());
     mongoEventLog.ticketSubmitError(playerDetails);
-    assertEquals(6, mongoEventLog.getEventsCollection().count());
+    assertEquals(6, mongoEventLog.getEventsCollection().countDocuments());
     mongoEventLog.ticketSubmitted(playerDetails);
-    assertEquals(7, mongoEventLog.getEventsCollection().count());
+    assertEquals(7, mongoEventLog.getEventsCollection().countDocuments());
     mongoEventLog.ticketSubmitted(playerDetails);
-    assertEquals(8, mongoEventLog.getEventsCollection().count());
+    assertEquals(8, mongoEventLog.getEventsCollection().countDocuments());
     mongoEventLog.ticketWon(playerDetails, 1000);
-    assertEquals(9, mongoEventLog.getEventsCollection().count());
+    assertEquals(9, mongoEventLog.getEventsCollection().countDocuments());
     mongoEventLog.ticketWon(playerDetails, 1000);
-    assertEquals(10, mongoEventLog.getEventsCollection().count());
+    assertEquals(10, mongoEventLog.getEventsCollection().countDocuments());
   }
 }

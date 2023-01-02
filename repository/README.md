@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Repository
-folder: repository
-permalink: /patterns/repository/
-categories: Architectural
+category: Architectural
 language: en
-tags:
+tag:
  - Data access
 ---
 

@@ -37,7 +37,7 @@ class SearchServiceTest {
   private SearchService searchService;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     //Creating parameter object with default values set
     parameterObject = ParameterObject.newBuilder()
         .withType("sneakers")
@@ -50,7 +50,7 @@ class SearchServiceTest {
    *  Testing parameter object against the overloaded method to verify if the behaviour is same.
    */
   @Test
-  public void testDefaultParametersMatch() {
+  void testDefaultParametersMatch() {
     assertEquals(searchService.search(parameterObject), searchService.search("sneakers",
         SortOrder.ASC), "Default Parameter values do not not match.");
     LOGGER.info("SortBy Default parameter value matches.");

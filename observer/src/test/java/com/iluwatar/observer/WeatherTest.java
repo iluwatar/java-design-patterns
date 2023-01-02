@@ -29,7 +29,6 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import com.iluwatar.observer.utils.InMemoryAppender;
 import org.junit.jupiter.api.AfterEach;
@@ -41,17 +40,17 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class WeatherTest {
+class WeatherTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(Weather.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -65,7 +64,7 @@ public class WeatherTest {
 
     final var weather = new Weather();
     weather.addObserver(observer);
-    verifyZeroInteractions(observer);
+    verifyNoMoreInteractions(observer);
 
     weather.timePasses();
     assertEquals("The weather changed to rainy.", appender.getLastMessage());

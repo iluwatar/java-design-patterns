@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Event Driven Architecture
-folder: event-driven-architecture
-permalink: /patterns/event-driven-architecture/
-categories: Architectural
+category: Architectural
 language: en
-tags:
+tag:
  - Reactive
 ---
 

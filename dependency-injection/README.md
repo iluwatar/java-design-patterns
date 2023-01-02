@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Dependency Injection
-folder: dependency-injection
-permalink: /patterns/dependency-injection/
-categories: Creational
+category: Creational
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

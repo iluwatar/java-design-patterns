@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Singleton
-folder: singleton
-permalink: /patterns/singleton/
-categories: Creational
+category: Creational
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 
