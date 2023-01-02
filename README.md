@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-257-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-258-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -405,6 +405,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/nakul251197"><img src="https://avatars.githubusercontent.com/u/39953357?v=4?s=100" width="100px;" alt="Nakul Nambiar"/><br /><sub><b>Nakul Nambiar</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=nakul251197" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/KarmaTashiCat"><img src="https://avatars.githubusercontent.com/u/76797146?v=4?s=100" width="100px;" alt="KarmaTashiCat"/><br /><sub><b>KarmaTashiCat</b></sub></a><br /><a href="#translation-KarmaTashiCat" title="Translation">🌍</a></td>
       <td align="center"><a href="https://github.com/Marikattt"><img src="https://avatars.githubusercontent.com/u/49302558?v=4?s=100" width="100px;" alt="marikattt"/><br /><sub><b>marikattt</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Marikattt" title="Code">💻</a></td>
+      <td align="center"><a href="https://github.com/Harsh4902"><img src="https://avatars.githubusercontent.com/u/84663071?v=4?s=100" width="100px;" alt="Hashvardhan Parmar"/><br /><sub><b>Hashvardhan Parmar</b></sub></a><br /><a href="#translation-Harsh4902" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
