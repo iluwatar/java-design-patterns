@@ -66,6 +66,8 @@ public class App {
 
     var car = new Car(carProperties);
 
+    asdf
+
     LOGGER.info("Here is our car:");
     LOGGER.info("-> model: {}", car.getModel().orElseThrow());
     LOGGER.info("-> price: {}", car.getPrice().orElseThrow());
