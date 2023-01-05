@@ -49,6 +49,8 @@ public class App {
   public static void main(String[] args) {
     LOGGER.info("Constructing parts and car");
 
+    asdfasdfdsa
+
     var wheelProperties = Map.of(
         Property.TYPE.toString(), "wheel",
         Property.MODEL.toString(), "15C",
