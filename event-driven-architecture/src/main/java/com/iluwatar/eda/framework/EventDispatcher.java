@@ -53,7 +53,7 @@ public class EventDispatcher {
   }
 
   /**
-   * Dispatches an {@link Event} depending on it's type.
+   * Dispatches an {@link Event} depending on its type.
    *
    * @param event The {@link Event} to be dispatched
    */
