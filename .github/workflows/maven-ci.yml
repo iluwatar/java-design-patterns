@@ -54,6 +54,14 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
 
+    - name: Cache local Maven repository
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+        restore-keys: |
+          ${{ runner.os }}-maven-
+
     # Cache Sonar packages which as used to run analysis and collect metrics
     - name: Cache SonarCloud packages
       uses: actions/cache@v3
