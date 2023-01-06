@@ -406,7 +406,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center"><a href="https://github.com/KarmaTashiCat"><img src="https://avatars.githubusercontent.com/u/76797146?v=4?s=100" width="100px;" alt="KarmaTashiCat"/><br /><sub><b>KarmaTashiCat</b></sub></a><br /><a href="#translation-KarmaTashiCat" title="Translation">🌍</a></td>
       <td align="center"><a href="https://github.com/Marikattt"><img src="https://avatars.githubusercontent.com/u/49302558?v=4?s=100" width="100px;" alt="marikattt"/><br /><sub><b>marikattt</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Marikattt" title="Code">💻</a></td>
       <td align="center"><a href="https://github.com/Harsh4902"><img src="https://avatars.githubusercontent.com/u/84663071?v=4?s=100" width="100px;" alt="Hashvardhan Parmar"/><br /><sub><b>Hashvardhan Parmar</b></sub></a><br /><a href="#translation-Harsh4902" title="Translation">🌍</a></td>
-      <td align="center"><a href="https://hwan33.tistory.com/"><img src="https://avatars.githubusercontent.com/u/67625677?v=4?s=100" width="100px;" alt="YongHwan"/><br /><sub><b>YongHwan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yongyongkr" title="Documentation">📖</a></td>
+      <td align="center"><a href="https://hwan33.tistory.com/"><img src="https://avatars.githubusercontent.com/u/67625677?v=4?s=100" width="100px;" alt="YongHwan"/><br /><sub><b>YongHwan</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yongyongkr" title="Documentation">📖</a> <a href="#translation-yongyongkr" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
