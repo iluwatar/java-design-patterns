@@ -2351,6 +2351,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "yongyongkr",
+      "name": "YongHwan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67625677?v=4",
+      "profile": "https://hwan33.tistory.com/",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
