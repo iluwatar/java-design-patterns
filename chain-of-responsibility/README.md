@@ -67,47 +67,39 @@ public enum RequestType {
 Next, we show the request handler hierarchy.
 
 ```java
-@Slf4j
-public abstract class RequestHandler {
-  private final RequestHandler next;
+public interface RequestHandler {
 
-  public RequestHandler(RequestHandler next) {
-    this.next = next;
-  }
+    boolean canHandleRequest(Request req);
 
-  public void handleRequest(Request req) {
-    if (next != null) {
-      next.handleRequest(req);
-    }
-  }
+    int getPriority();
 
-  protected void printHandling(Request req) {
-    LOGGER.info("{} handling request \"{}\"", this, req);
-  }
+    void handle(Request req);
 
-  @Override
-  public abstract String toString();
+    String name();
 }
 
-public class OrcCommander extends RequestHandler {
-  public OrcCommander(RequestHandler handler) {
-    super(handler);
-  }
-
-  @Override
-  public void handleRequest(Request req) {
-    if (req.getRequestType().equals(RequestType.DEFEND_CASTLE)) {
-      printHandling(req);
-      req.markHandled();
-    } else {
-      super.handleRequest(req);
+@Slf4j
+public class OrcCommander implements RequestHandler {
+    @Override
+    public boolean canHandleRequest(Request req) {
+        return req.getRequestType() == RequestType.DEFEND_CASTLE;
     }
-  }
 
-  @Override
-  public String toString() {
-    return "Orc commander";
-  }
+    @Override
+    public int getPriority() {
+        return 2;
+    }
+
+    @Override
+    public void handle(Request req) {
+        req.markHandled();
+        LOGGER.info("{} handling request \"{}\"", name(), req);
+    }
+
+    @Override
+    public String name() {
+        return "Orc commander";
+    }
 }
 
 // OrcOfficer and OrcSoldier are defined similarly as OrcCommander
