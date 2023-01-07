@@ -3,7 +3,6 @@ title: Event Sourcing
 category: Architectural
 language: ko
 tag:
-
 - Performance
 - Cloud distributed
 
