@@ -1,0 +1,59 @@
+@startuml
+package com.iluwatar.page.controller {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class SignupController {
+    - LOGGER : Logger {static}
+    ~ view : SignupView
+    ~ SignupController()
+    + create(form : SignupModel, redirectAttributes : RedirectAttributes) : String
+    + getSignup() : String
+  }
+  class SignupModel {
+    - email : String
+    - name : String
+    - password : String
+    + SignupModel()
+    + SignupModel(name : String, email : String, password : String)
+    + getEmail() : String
+    + getName() : String
+    + getPassword() : String
+    + setEmail(email : String)
+    + setName(name : String)
+    + setPassword(password : String)
+  }
+  class SignupView {
+    - LOGGER : Logger {static}
+    + SignupView()
+    + display() : String
+    + redirect(form : SignupModel) : String
+  }
+  class UserController {
+    - LOGGER : Logger {static}
+    ~ view : UserView
+    + UserController()
+    + getUserPath(form : SignupModel, model : Model) : String
+  }
+  class UserModel {
+    - email : String
+    - name : String
+    + UserModel()
+    + getEmail() : String
+    + getName() : String
+    + setEmail(email : String)
+    + setName(name : String)
+  }
+  class UserView {
+    - LOGGER : Logger {static}
+    + UserView()
+    + display(user : SignupModel) : String
+  }
+}
+UserController -->  "-view" UserView
+UserController -->  "-model" UserModel
+SignupController -->  "-view" SignupView
+SignupController -->  "-model" SignupModel
+@enduml

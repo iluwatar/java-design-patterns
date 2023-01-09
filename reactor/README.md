@@ -20,10 +20,6 @@ Use Reactor pattern when
 * A server application needs to be available for receiving requests from new clients even when handling older client requests.
 * A server must maximize throughput, minimize latency and use CPU efficiently without blocking.
 
-## Real world examples
-
-* [Spring Reactor](http://projectreactor.io/)
-
 ## Credits
 
 * [Douglas C. Schmidt - Reactor](https://www.dre.vanderbilt.edu/~schmidt/PDF/Reactor.pdf)

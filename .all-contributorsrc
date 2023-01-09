@@ -2306,6 +2306,61 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Chak-C",
+      "name": "Chak-C",
+      "avatar_url": "https://avatars.githubusercontent.com/u/114961815?v=4",
+      "profile": "https://github.com/Chak-C",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "nakul251197",
+      "name": "Nakul Nambiar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39953357?v=4",
+      "profile": "https://github.com/nakul251197",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "KarmaTashiCat",
+      "name": "KarmaTashiCat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76797146?v=4",
+      "profile": "https://github.com/KarmaTashiCat",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Marikattt",
+      "name": "marikattt",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49302558?v=4",
+      "profile": "https://github.com/Marikattt",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Harsh4902",
+      "name": "Hashvardhan Parmar",
+      "avatar_url": "https://avatars.githubusercontent.com/u/84663071?v=4",
+      "profile": "https://github.com/Harsh4902",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "yongyongkr",
+      "name": "YongHwan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67625677?v=4",
+      "profile": "https://hwan33.tistory.com/",
+      "contributions": [
+        "doc",
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
