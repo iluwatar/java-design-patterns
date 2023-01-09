@@ -2361,6 +2361,15 @@
         "doc",
         "translation"
       ]
+    },
+    {
+      "login": "shogohida",
+      "name": "Shogo Hida",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10365357?v=4",
+      "profile": "https://github.com/shogohida",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
