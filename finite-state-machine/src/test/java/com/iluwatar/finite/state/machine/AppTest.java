@@ -35,7 +35,7 @@ public class AppTest {
 
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> Main.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 
 }
