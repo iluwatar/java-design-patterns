@@ -91,7 +91,7 @@ public class JsonFileJournal {
     } else if (domainEvent instanceof MoneyTransferEvent) {
       jsonElement = gson.toJsonTree(domainEvent, MoneyTransferEvent.class);
     } else {
-      throw new RuntimeException("Journal Event not recegnized");
+      throw new RuntimeException("Journal Event not recognized");
     }
 
     try (var output = new BufferedWriter(
@@ -113,7 +113,7 @@ public class JsonFileJournal {
 
 
   /**
-   * Read next domain event.
+   * Read the next domain event.
    *
    * @return the domain event
    */

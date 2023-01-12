@@ -37,7 +37,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Intergartion Test for Event Sourcing state recovery
+ * Integration Test for Event-Sourcing state recovery
  * <p>
  * Created by Serdar Hamzaogullari on 19.08.2017.
  */

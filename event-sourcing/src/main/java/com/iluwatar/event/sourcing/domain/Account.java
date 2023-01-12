@@ -115,7 +115,7 @@ public class Account {
   /**
    * Handles the AccountCreateEvent.
    *
-   * @param accountCreateEvent the account create event
+   * @param accountCreateEvent the account created event
    */
   public void handleEvent(AccountCreateEvent accountCreateEvent) {
     AccountAggregate.putAccount(this);
