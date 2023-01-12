@@ -52,7 +52,7 @@ public class IncorrectNameState implements AutomatonInterfaceI {
    * @param character -> value of inputted character.
    */
   @Override
-  public void inputCharacter(final char character) {
+  public void inputCharacter(final Character character) {
     model.addCharacter(character);
   }
 

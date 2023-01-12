@@ -53,9 +53,9 @@ public class CorrectFirstLetterState implements AutomatonInterfaceI {
    * @param character -> value of inputted character.
    * */
   @Override
-  public void inputCharacter(final char character) {
+  public void inputCharacter(final Character character) {
     // check if character is a lowercase letter
-    if ((int) 'a' <= (int) character && (int) character <= (int) 'z') {
+    if (Character.isLowerCase(character)) {
       eventSink.castEvent(Event.CORRECT);
     } else {
       eventSink.castEvent(Event.INCORRECT);

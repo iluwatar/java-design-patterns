@@ -52,9 +52,9 @@ public class EmptyState implements AutomatonInterfaceI {
    * @param character -> value of inputted character.
    * */
   @Override
-  public void inputCharacter(final char character) {
+  public void inputCharacter(final Character character) {
     // check if character is an uppercase letter
-    if ((int) 'A' <= (int) character && (int) character <= (int) 'Z') {
+    if (Character.isUpperCase(character)) {
       eventSink.castEvent(Event.CORRECT);
     } else {
       eventSink.castEvent(Event.INCORRECT);
