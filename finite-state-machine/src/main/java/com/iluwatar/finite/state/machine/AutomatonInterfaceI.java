@@ -15,7 +15,7 @@ public interface AutomatonInterfaceI {
    *
    * @param character -> value of inputted character.
    * */
-  void inputCharacter(char character);
+  void inputCharacter(Character character);
 
   /**
    * Log if a name inputted up to now is correct.
