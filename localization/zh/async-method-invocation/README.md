@@ -2,7 +2,7 @@
 title: Async Method Invocation
 category: Concurrency
 language: zh
-tags:
+tag:
  - Reactive
 ---
 

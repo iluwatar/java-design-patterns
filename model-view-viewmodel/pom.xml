@@ -37,10 +37,8 @@
   <version>1.26.0-SNAPSHOT</version>
   <properties>
     <zk.version>9.0.0</zk.version>
-    <guava.version>19.0</guava.version>
     <jetty-maven-plugin.version>9.4.28.v20200408</jetty-maven-plugin.version>
     <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
-    <maven-assembly-plugin.version>2.2</maven-assembly-plugin.version>
     <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
     <packname>-${project.version}-FL-${maven.build.timestamp}</packname>
   </properties>
@@ -84,12 +82,6 @@
       <artifactId>junit-jupiter-engine</artifactId>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava-testlib</artifactId>
-      <version>${guava.version}</version>
-      <scope>test</scope>
-    </dependency>
   </dependencies>
   <build>
     <finalName>${project.artifactId}</finalName>
@@ -116,7 +108,6 @@
       <!-- Pack zips -->
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>${maven-assembly-plugin.version}</version>
         <executions>
           <execution>
             <id>webapp</id>

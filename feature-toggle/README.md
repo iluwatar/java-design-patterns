@@ -2,7 +2,7 @@
 title: Feature Toggle
 category: Behavioral
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

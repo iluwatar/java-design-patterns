@@ -74,8 +74,7 @@ public class SimpleThreatAwareSystem implements ThreatAwareSystem {
 
   private List<Threat> filteredItems(Predicate<? super Threat> predicate) {
     return this.issues.stream()
-        .filter(predicate)
-        .collect(Collectors.toUnmodifiableList());
+            .filter(predicate).toList();
   }
 
 }

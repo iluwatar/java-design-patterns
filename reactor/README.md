@@ -2,7 +2,7 @@
 title: Reactor
 category: Concurrency
 language: en
-tags:
+tag:
  - Performance
  - Reactive
 ---
@@ -19,10 +19,6 @@ Use Reactor pattern when
 * A server application needs to handle concurrent service requests from multiple clients.
 * A server application needs to be available for receiving requests from new clients even when handling older client requests.
 * A server must maximize throughput, minimize latency and use CPU efficiently without blocking.
-
-## Real world examples
-
-* [Spring Reactor](http://projectreactor.io/)
 
 ## Credits
 

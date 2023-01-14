@@ -2,7 +2,7 @@
 title: Parameter Object
 category: Behavioral
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

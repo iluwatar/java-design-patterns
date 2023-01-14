@@ -2,7 +2,7 @@
 title: Data Mapper
 category: Architectural
 language: en
-tags:
+tag:
 - Decoupling
 ---
 

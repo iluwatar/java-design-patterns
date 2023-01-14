@@ -2,7 +2,7 @@
 title: Specification
 category: Behavioral
 language: en
-tags:
+tag:
  - Data access
 ---
 

@@ -40,3 +40,4 @@ Projeye katkıda bulunmaya istekliysen, ilgili bilgileri [geliştirici wiki'mizd
 # Lisans
 
 Bu proje, MIT lisansı koşulları altında lisanslanmıştır.
+

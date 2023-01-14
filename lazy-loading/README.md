@@ -2,7 +2,7 @@
 title: Lazy Loading
 category: Idiom
 language: en
-tags:
+tag:
  - Performance
 ---
 

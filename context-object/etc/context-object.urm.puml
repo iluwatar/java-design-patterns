@@ -1,0 +1,50 @@
+@startuml
+package com.iluwatar.context.object {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class ServiceContext {
+    - ACCOUNT_SERVICE : String
+    - SESSION_SERVICE : String
+    - SEARCH_SERVICE : String
+    + ServiceContext()
+    + getACCOUNT_SERVICE() : String
+    + getSESSION_SERVICE() : String
+    + getSEARCH_SERVICE() : String
+    + setACCOUNT_SERVICE(service : String)
+    + setSESSION_SERVICE(service : String)
+    + setSEARCH_SERVICE(service : String)
+  }
+  class ServiceContextFactory {
+    + ServiceContextFactory()
+    + createContext() : ServiceContext
+  }
+  class LayerA {
+    - context : ServiceContext
+    + LayerA()
+    + getContext() : ServiceContext
+    + addAccountInfo()
+  }
+  class LayerB {
+    - context : ServiceContext
+    + LayerB(layerA : LayerA)
+    + getContext() : ServiceContext
+    + addAccountInfo()
+  }
+  class LayerC {
+    - context : ServiceContext
+    + LayerC(layerB : LayerB)
+    + getContext() : ServiceContext
+    + addAccountInfo()
+  }
+}
+
+LayerC ..|> LayerB
+ServiceContext --> LayerC
+ServiceContext --> LayerB
+ServiceContext --> LayerA
+ServiceContextFactory ..|>  "<<creates>>" ServiceContext
+LayerB ..|> LayerA
+@enduml

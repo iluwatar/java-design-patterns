@@ -2,7 +2,7 @@
 title: Front Controller
 category: Structural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 
