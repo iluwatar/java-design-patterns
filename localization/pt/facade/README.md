@@ -2,7 +2,7 @@
 title: Facade
 category: Structural
 language: pt
-tags:
+tag:
  - Gang Of Four
  - Decoupling
 ---
