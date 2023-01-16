@@ -16,7 +16,7 @@ Instead of storing just the current state of the data in a domain, use an append
 ## Applicability
 Use the Event Sourcing pattern when
 
-* You need very high performance on persisting your application state even your application state have a complex relational data structure  
+* You need very high performance on persisting your application state even your application state has a complex relational data structure  
 * You need log of changes of your application state and ability to restore a state of any moment in time.
 * You need to debug production problems by replaying the past events. 
 

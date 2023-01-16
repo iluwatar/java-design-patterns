@@ -1,0 +1,25 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  - package-ecosystem: "maven" # See documentation for possible values
+    directory: "/" # Location of package manifests
+    schedule:
+      interval: "weekly"
+    allow:
+      - dependency-name: "org.springframework.boot:spring-boot-dependencies"
+      - dependency-name: "commons-dbcp:commons-dbcp"
+      - dependency-name: "net.sourceforge.htmlunit:htmlunit"
+      - dependency-name: "com.google.code.gson:gson"
+      - dependency-name: "com.google.inject:guice"
+      - dependency-name: "com.github.stefanbirkner:system-lambda"
+      - dependency-name: "org.apache.maven.plugins:maven-surefire-plugin"
+      - dependency-name: "org.apache.maven.plugins:maven-assembly-plugin"
+      - dependency-name: "org.sonarsource.scanner.maven:sonar-maven-plugin"
+      - dependency-name: "org.apache.maven.plugins:maven-checkstyle-plugin"
+      - dependency-name: "com.mycila:license-maven-plugin"
+      - dependency-name: "org.jacoco:jacoco-maven-plugin"
+      - dependency-name: "com.iluwatar.urm:urm-maven-plugin"

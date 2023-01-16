@@ -31,7 +31,7 @@ import lombok.Getter;
 
 /**
  * This is the class that implements money deposit event. Holds the necessary info for a money
- * deposit event. Implements the process function that finds the event related domain objects and
+ * deposit event. Implements the process function that finds the event-related domain objects and
  * calls the related domain object's handle event functions
  *
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
