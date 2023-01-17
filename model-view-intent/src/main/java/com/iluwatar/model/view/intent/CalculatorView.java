@@ -5,6 +5,7 @@ import com.iluwatar.model.view.intent.actions.DivisionCalculatorAction;
 import com.iluwatar.model.view.intent.actions.MultiplicationCalculatorAction;
 import com.iluwatar.model.view.intent.actions.SetVariableCalculatorAction;
 import com.iluwatar.model.view.intent.actions.SubtractionCalculatorAction;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -14,12 +15,13 @@ import lombok.extern.slf4j.Slf4j;
  * and displays its updated {@link CalculatorModel}.
  */
 @Slf4j
+@Data
 public class CalculatorView {
 
   /**
    * View model param handling the operations.
    * */
-  private final CalculatorViewModel viewModel = new CalculatorViewModel();
+  final CalculatorViewModel viewModel;
 
   /**
    * Display current view model output with logger.

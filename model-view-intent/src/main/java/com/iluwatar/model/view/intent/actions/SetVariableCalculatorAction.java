@@ -1,8 +1,11 @@
 package com.iluwatar.model.view.intent.actions;
 
+import lombok.Data;
+
 /**
  * SetVariable {@link CalculatorAction}.
  */
+@Data
 public final class SetVariableCalculatorAction implements CalculatorAction {
 
   /**
@@ -13,26 +16,7 @@ public final class SetVariableCalculatorAction implements CalculatorAction {
   /**
    * Used by {@link com.iluwatar.model.view.intent.CalculatorViewModel}.
    */
-  private final Double variable;
-
-
-  /**
-   * Constructor.
-   *
-   * @param variableParam -> variable parameter value.
-   * */
-  public SetVariableCalculatorAction(final Double variableParam) {
-    this.variable = variableParam;
-  }
-
-  /**
-   * Simple getter.
-   *
-   * @return variable.
-   * */
-  public Double getVariable() {
-    return variable;
-  }
+  final Double variable;
 
   /**
    * Makes checking subclass type trivial.

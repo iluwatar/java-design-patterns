@@ -8,8 +8,7 @@ import com.iluwatar.model.view.intent.actions.SetVariableCalculatorAction;
 import com.iluwatar.model.view.intent.actions.SubtractionCalculatorAction;
 
 /**
- * Handle transformations to {@link CalculatorModel}
- * based on intercepted {@link CalculatorAction}.
+ * Handle transformations to {@link CalculatorModel} based on intercepted {@link CalculatorAction}.
  */
 public final class CalculatorViewModel {
 
@@ -26,30 +25,17 @@ public final class CalculatorViewModel {
    */
   void handleAction(final CalculatorAction action) {
     switch (action.tag()) {
-      case AdditionCalculatorAction.TAG:
-        add();
-        break;
-
-      case SubtractionCalculatorAction.TAG:
-        subtract();
-        break;
-
-      case MultiplicationCalculatorAction.TAG:
-        multiply();
-        break;
-
-      case DivisionCalculatorAction.TAG:
-        divide();
-        break;
-
-      case SetVariableCalculatorAction.TAG:
+      case AdditionCalculatorAction.TAG -> add();
+      case SubtractionCalculatorAction.TAG -> subtract();
+      case MultiplicationCalculatorAction.TAG -> multiply();
+      case DivisionCalculatorAction.TAG -> divide();
+      case SetVariableCalculatorAction.TAG -> {
         SetVariableCalculatorAction setVariableAction =
             (SetVariableCalculatorAction) action;
         setVariable(setVariableAction.getVariable());
-        break;
-
-      default:
-        break;
+      }
+      default -> {
+      }
     }
   }
 
@@ -68,16 +54,19 @@ public final class CalculatorViewModel {
    * @param variable -> value of new calculator model variable.
    */
   private void setVariable(final Double variable) {
-    model = model.copy(model.getOutput(), variable);
+    model = new CalculatorModel(
+        variable,
+        model.getOutput()
+    );
   }
 
   /**
    * Add variable to model output.
    */
   private void add() {
-    model = model.copy(
-        model.getOutput() + model.getVariable(),
-        model.getVariable()
+    model = new CalculatorModel(
+        model.getVariable(),
+        model.getOutput() + model.getVariable()
     );
   }
 
@@ -85,9 +74,9 @@ public final class CalculatorViewModel {
    * Subtract variable from model output.
    */
   private void subtract() {
-    model = model.copy(
-        model.getOutput() - model.getVariable(),
-        model.getVariable()
+    model = new CalculatorModel(
+        model.getVariable(),
+        model.getOutput() - model.getVariable()
     );
   }
 
@@ -95,10 +84,9 @@ public final class CalculatorViewModel {
    * Multiply model output by variable.
    */
   private void multiply() {
-    model = model.copy(
-        model.getOutput() * model.getVariable(),
-        model.getVariable()
-
+    model = new CalculatorModel(
+        model.getVariable(),
+        model.getOutput() * model.getVariable()
     );
   }
 
@@ -106,9 +94,9 @@ public final class CalculatorViewModel {
    * Divide model output by variable.
    */
   private void divide() {
-    model = model.copy(
-        model.getOutput() / model.getVariable(),
-        model.getVariable()
+    model = new CalculatorModel(
+        model.getVariable(),
+        model.getOutput() / model.getVariable()
     );
   }
 }
