@@ -27,14 +27,16 @@
 package com.iluwatar.model.view.intent;
 
 /**
-  * Model-View-Intent is a pattern for implementing user interfaces.
- * Its main advantage over MVVM which it closely mirrors is a minimal public api with which
- * user events can be exposed to the ViewModel. In case of the MVI every event is exposed by using
- * a single method with 1 argument which implements UserEvent interface. Specific parameters can be
- * expressed as its parameters.
- * In this case, we'll be using MVI to implement a simple calculator with +, -, /, * operations and
- * ability to set the variable. It's important to note, that every user action happens through
- * the view, we never interact with the ViewModel directly.
+ * Model-View-Intent is a pattern for implementing user interfaces.
+ * Its main advantage over MVVM  which it closely mirrors is a
+ * minimal public api with which user events can be exposed to the ViewModel.
+ * In case of the MVI every event is exposed by using a single method
+ * with 1 argument which implements UserEvent interface.
+ * Specific parameters can be expressed as its parameters. In this case,
+ * we'll be using MVI to implement a simple calculator
+ * with +, -, /, * operations and the ability to set the variable.
+ * It's important to note, that every user action happens through the
+ * view, we never interact with the ViewModel directly.
  */
 public final class App {
 
@@ -51,23 +53,35 @@ public final class App {
    */
   public static void main(final String[] args) {
     // create model, view and controller
-    var view = new CalculatorView(new CalculatorViewModel()); // initialize calculator view, output and variable = 0
+
+    // initialize calculator view, output and variable = 0
+    var view = new CalculatorView(new CalculatorViewModel());
     var variable1 = RANDOM_VARIABLE;
-    view.setVariable(variable1);  // calculator variable = RANDOM_VARIABLE -> 10.0
-    view.add(); // add calculator variable to output -> calculator output = 10.0
+
+    // calculator variable = RANDOM_VARIABLE -> 10.0
+    view.setVariable(variable1);
+
+    // add calculator variable to output -> calculator output = 10.0
+    view.add();
     view.displayTotal();  // display output
 
     variable1 = 2.0;
     view.setVariable(variable1);  // calculator variable = 2.0
-    view.subtract();  // subtract calculator variable from output -> calculator output = 8
-    view.divide();  // divide calculator output by variable -> calculator output = 4.0
-    view.multiply();  // multiply calculator output by variable -> calculator output = 8.0
+
+    // subtract calculator variable from output -> calculator output = 8
+    view.subtract();
+
+    // divide calculator output by variable -> calculator output = 4.0
+    view.divide();
+
+    // multiply calculator output by variable -> calculator output = 8.0
+    view.multiply();
     view.displayTotal();
   }
 
   /**
    * Avoid default constructor lint error.
-   * */
+   */
   private App() {
   }
 }

@@ -8,7 +8,8 @@ import com.iluwatar.model.view.intent.actions.SetVariableCalculatorAction;
 import com.iluwatar.model.view.intent.actions.SubtractionCalculatorAction;
 
 /**
- * Handle transformations to {@link CalculatorModel} based on intercepted {@link CalculatorAction}.
+ * Handle transformations to {@link CalculatorModel}
+ * based on intercepted {@link CalculatorAction}.
  */
 public final class CalculatorViewModel {
 
@@ -25,17 +26,30 @@ public final class CalculatorViewModel {
    */
   void handleAction(final CalculatorAction action) {
     switch (action.tag()) {
-      case AdditionCalculatorAction.TAG -> add();
-      case SubtractionCalculatorAction.TAG -> subtract();
-      case MultiplicationCalculatorAction.TAG -> multiply();
-      case DivisionCalculatorAction.TAG -> divide();
-      case SetVariableCalculatorAction.TAG -> {
+      case AdditionCalculatorAction.TAG:
+        add();
+        break;
+
+      case SubtractionCalculatorAction.TAG:
+        subtract();
+        break;
+
+      case MultiplicationCalculatorAction.TAG:
+        multiply();
+        break;
+
+      case DivisionCalculatorAction.TAG:
+        divide();
+        break;
+
+      case SetVariableCalculatorAction.TAG:
         SetVariableCalculatorAction setVariableAction =
             (SetVariableCalculatorAction) action;
         setVariable(setVariableAction.getVariable());
-      }
-      default -> {
-      }
+        break;
+
+      default:
+        break;
     }
   }
 

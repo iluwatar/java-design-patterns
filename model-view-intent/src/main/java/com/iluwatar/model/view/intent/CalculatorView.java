@@ -6,6 +6,7 @@ import com.iluwatar.model.view.intent.actions.MultiplicationCalculatorAction;
 import com.iluwatar.model.view.intent.actions.SetVariableCalculatorAction;
 import com.iluwatar.model.view.intent.actions.SubtractionCalculatorAction;
 import lombok.Data;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -20,12 +21,13 @@ public class CalculatorView {
 
   /**
    * View model param handling the operations.
-   * */
-  final CalculatorViewModel viewModel;
+   */
+  @Getter
+  private final CalculatorViewModel viewModel;
 
   /**
    * Display current view model output with logger.
-   * */
+   */
   void displayTotal() {
     LOGGER.info(
         "Total value = {}",
@@ -35,28 +37,28 @@ public class CalculatorView {
 
   /**
    * Handle addition action.
-   * */
+   */
   void add() {
     viewModel.handleAction(new AdditionCalculatorAction());
   }
 
   /**
    * Handle subtraction action.
-   * */
+   */
   void subtract() {
     viewModel.handleAction(new SubtractionCalculatorAction());
   }
 
   /**
    * Handle multiplication action.
-   * */
+   */
   void multiply() {
     viewModel.handleAction(new MultiplicationCalculatorAction());
   }
 
   /**
    * Handle division action.
-   * */
+   */
   void divide() {
     viewModel.handleAction(new DivisionCalculatorAction());
   }
@@ -65,7 +67,7 @@ public class CalculatorView {
    * Handle setting new variable action.
    *
    * @param value -> new calculator variable.
-   * */
+   */
   void setVariable(final Double value) {
     viewModel.handleAction(new SetVariableCalculatorAction(value));
   }
