@@ -25,13 +25,18 @@ public final class App {
     // being followed by lowercase letters (at least 1)
     fsm.logStreamNameCorrectness(); // Empty name is incorrect
     fsm.inputCharacter('J');
-    fsm.logStreamNameCorrectness(); // Name consisting of only capital letter is incorrect
+
+    // Name consisting of only capital letter is incorrect
+    fsm.logStreamNameCorrectness();
     fsm.inputCharacter('o');
     fsm.inputCharacter('h');
     fsm.inputCharacter('n');
-    fsm.logStreamNameCorrectness(); // Name == John -> name is correct
 
+    // Name == John -> name is correct
+    fsm.logStreamNameCorrectness();
     fsm.inputCharacter('1');
-    fsm.logStreamNameCorrectness(); // Name contains an illegal character -> name is incorrect
+
+    // Name contains an illegal character -> name is incorrect
+    fsm.logStreamNameCorrectness();
   }
 }
