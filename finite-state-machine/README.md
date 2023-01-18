@@ -3,7 +3,7 @@ title: Finite State Machine
 category: Behavioral
 language: en
 tags:
- - Gang of Four
+ - Decoupling
 ---
 
 ## Intent
