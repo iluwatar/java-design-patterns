@@ -18,7 +18,7 @@ public final class App {
    * @param args -> not used
    */
   public static void main(final String[] args) {
-    RecognizeCorrectNameStateMachine fsm =
+    var fsm =
         new RecognizeCorrectNameStateMachine();
 
     // Correct name is string starting with an uppercase letter
