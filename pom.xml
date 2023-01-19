@@ -59,7 +59,6 @@
     <module>abstract-factory</module>
     <module>collecting-parameter</module>
     <module>monitor</module>
-    <module>tls</module>
     <module>builder</module>
     <module>factory-method</module>
     <module>prototype</module>
@@ -205,6 +204,7 @@
     <module>identity-map</module>
     <module>component</module>
     <module>context-object</module>
+    <module>thread-local-storage</module>
   </modules>
   <repositories>
     <repository>
