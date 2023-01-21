@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-260-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-261-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -410,6 +410,7 @@ This project is licensed under the terms of the MIT license.
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/shogohida"><img src="https://avatars.githubusercontent.com/u/10365357?v=4?s=100" width="100px;" alt="Shogo Hida"/><br /><sub><b>Shogo Hida</b></sub></a><br /><a href="#translation-shogohida" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Regyl"><img src="https://avatars.githubusercontent.com/u/48804404?v=4?s=100" width="100px;" alt="Eugene"/><br /><sub><b>Eugene</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Regyl" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
