@@ -17,7 +17,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class RecognizeCorrectNameStateMachine
-    implements AutomatonInterfaceI, EventSink {
+    implements AutomatonInterface, EventSink {
 
   /**
    * Incorrect state id in state list.
@@ -27,7 +27,7 @@ public class RecognizeCorrectNameStateMachine
   /**
    * List of FSM graph nodes (states).
    */
-  private final List<AutomatonInterfaceI> states = new ArrayList<>();
+  private final List<AutomatonInterface> states = new ArrayList<>();
 
   /**
    * Representation of FSM graph.

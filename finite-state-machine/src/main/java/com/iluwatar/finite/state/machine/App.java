@@ -2,8 +2,13 @@ package com.iluwatar.finite.state.machine;
 
 /**
  * Finite State Machine Pattern is very similar to the State Pattern.
- * Key difference is decoupling states from graph,
+ * Key difference is decoupling states from transition graph,
  * which allows us to easily reuse them in different FSMs.
+ * Transition Graph in this case is the State Machine Transition Table, which
+ * describes what will be the new FSM state based on its current state
+ * and the event passed to it.
+ * Because the states don't hold transition logic, they can be reused
+ * in FSMs with different transition graphs.
  */
 public final class App {
   /**
