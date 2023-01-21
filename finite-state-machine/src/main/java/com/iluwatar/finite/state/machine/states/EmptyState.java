@@ -1,6 +1,6 @@
 package com.iluwatar.finite.state.machine.states;
 
-import com.iluwatar.finite.state.machine.AutomatonInterfaceI;
+import com.iluwatar.finite.state.machine.AutomatonInterface;
 import com.iluwatar.finite.state.machine.DataModel;
 import com.iluwatar.finite.state.machine.Event;
 import com.iluwatar.finite.state.machine.EventSink;
@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * State when current model string is empty.
  */
 @Slf4j
-public class EmptyState implements AutomatonInterfaceI {
+public class EmptyState implements AutomatonInterface {
 
   /**
    * Event sink for sending state changes.
@@ -54,11 +54,8 @@ public class EmptyState implements AutomatonInterfaceI {
   @Override
   public void inputCharacter(final Character character) {
     // check if character is an uppercase letter
-    if (Character.isUpperCase(character)) {
-      eventSink.castEvent(Event.CORRECT);
-    } else {
-      eventSink.castEvent(Event.INCORRECT);
-    }
+    var event = Character.isUpperCase(character) ? Event.CORRECT : Event.INCORRECT;
+    eventSink.castEvent(event);
 
     model.addCharacter(character);
   }

@@ -1,6 +1,6 @@
 package com.iluwatar.finite.state.machine.states;
 
-import com.iluwatar.finite.state.machine.AutomatonInterfaceI;
+import com.iluwatar.finite.state.machine.AutomatonInterface;
 import com.iluwatar.finite.state.machine.DataModel;
 import com.iluwatar.finite.state.machine.Event;
 import com.iluwatar.finite.state.machine.EventSink;
@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * State when current model string is an incorrect name.
  */
 @Slf4j
-public class IncorrectNameState implements AutomatonInterfaceI {
+public class IncorrectNameState implements AutomatonInterface {
 
   /**
    * Event sink for sending state changes.

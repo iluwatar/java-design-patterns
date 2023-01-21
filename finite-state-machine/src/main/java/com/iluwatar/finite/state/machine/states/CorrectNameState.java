@@ -1,6 +1,6 @@
 package com.iluwatar.finite.state.machine.states;
 
-import com.iluwatar.finite.state.machine.AutomatonInterfaceI;
+import com.iluwatar.finite.state.machine.AutomatonInterface;
 import com.iluwatar.finite.state.machine.DataModel;
 import com.iluwatar.finite.state.machine.Event;
 import com.iluwatar.finite.state.machine.EventSink;
@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
  * State when current model string is a correct name.
  */
 @Slf4j
-public class CorrectNameState implements AutomatonInterfaceI {
+public class CorrectNameState implements AutomatonInterface {
 
   /**
    * Event sink for sending state changes.
@@ -54,12 +54,8 @@ public class CorrectNameState implements AutomatonInterfaceI {
   @Override
   public void inputCharacter(final Character character) {
     // check if character is an uppercase letter
-    if (Character.isLowerCase(character)) {
-      eventSink.castEvent(Event.CORRECT);
-    } else {
-      eventSink.castEvent(Event.INCORRECT);
-    }
-
+    var event = Character.isLowerCase(character) ? Event.CORRECT : Event.INCORRECT;
+    eventSink.castEvent(event);
     model.addCharacter(character);
   }
 

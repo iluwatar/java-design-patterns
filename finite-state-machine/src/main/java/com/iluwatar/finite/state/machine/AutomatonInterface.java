@@ -3,7 +3,7 @@ package com.iluwatar.finite.state.machine;
 /**
  * Interface for interaction with FSM.
  */
-public interface AutomatonInterfaceI {
+public interface AutomatonInterface {
 
   /**
    * Restarts the FSM.
