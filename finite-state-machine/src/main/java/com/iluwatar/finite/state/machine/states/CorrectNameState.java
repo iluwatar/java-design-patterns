@@ -54,7 +54,8 @@ public class CorrectNameState implements AutomatonInterface {
   @Override
   public void inputCharacter(final Character character) {
     // check if character is an uppercase letter
-    var event = Character.isLowerCase(character) ? Event.CORRECT : Event.INCORRECT;
+    var event =
+        Character.isLowerCase(character) ? Event.CORRECT : Event.INCORRECT;
     eventSink.castEvent(event);
     model.addCharacter(character);
   }

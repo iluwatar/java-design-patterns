@@ -54,7 +54,8 @@ public class EmptyState implements AutomatonInterface {
   @Override
   public void inputCharacter(final Character character) {
     // check if character is an uppercase letter
-    var event = Character.isUpperCase(character) ? Event.CORRECT : Event.INCORRECT;
+    var event =
+        Character.isUpperCase(character) ? Event.CORRECT : Event.INCORRECT;
     eventSink.castEvent(event);
 
     model.addCharacter(character);

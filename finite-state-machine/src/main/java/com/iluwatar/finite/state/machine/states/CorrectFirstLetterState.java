@@ -55,7 +55,8 @@ public class CorrectFirstLetterState implements AutomatonInterface {
   @Override
   public void inputCharacter(final Character character) {
     // check if character is a lowercase letter
-    var event = Character.isLowerCase(character) ? Event.CORRECT : Event.INCORRECT;
+    var event =
+        Character.isLowerCase(character) ? Event.CORRECT : Event.INCORRECT;
     eventSink.castEvent(event);
     model.addCharacter(character);
   }
