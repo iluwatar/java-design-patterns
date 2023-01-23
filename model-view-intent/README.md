@@ -1,5 +1,5 @@
 ---
-title: Model-View-Controller
+title: Model-View-Intent
 category: Architectural
 language: en
 tags:
