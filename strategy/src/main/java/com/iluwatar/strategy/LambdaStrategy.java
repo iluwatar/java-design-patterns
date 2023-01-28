@@ -26,9 +26,15 @@ package com.iluwatar.strategy;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Lambda implementation for enum strategy pattern.
+ */
 @Slf4j
 public class LambdaStrategy {
 
+  /**
+   * Enum to demonstrate strategy pattern.
+   */
   public enum Strategy implements DragonSlayingStrategy {
     MeleeStrategy(() -> LOGGER.info(
         "With your Excalibur you severe the dragon's head!")),

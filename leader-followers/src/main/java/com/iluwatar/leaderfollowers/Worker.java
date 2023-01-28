@@ -27,6 +27,9 @@ package com.iluwatar.leaderfollowers;
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Worker class that takes work from work center.
+ */
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Slf4j
 public class Worker implements Runnable {

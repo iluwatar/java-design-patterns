@@ -26,7 +26,6 @@ package com.iluwatar.presentationmodel;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 

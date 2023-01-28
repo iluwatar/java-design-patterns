@@ -26,7 +26,6 @@ package com.iluwatar.activeobject;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -58,7 +57,7 @@ public class App implements Runnable {
   public void run() {
     List<ActiveCreature> creatures = new ArrayList<>();
     try {
-      for (int i = 0;i < NUM_CREATURES;i++) {
+      for (int i = 0; i < NUM_CREATURES; i++) {
         creatures.add(new Orc(Orc.class.getSimpleName() + i));
         creatures.get(i).eat();
         creatures.get(i).roam();
@@ -68,7 +67,7 @@ public class App implements Runnable {
       logger.error(e.getMessage());
       Thread.currentThread().interrupt();
     } finally {
-      for (int i = 0;i < NUM_CREATURES;i++) {
+      for (int i = 0; i < NUM_CREATURES; i++) {
         creatures.get(i).kill(0);
       }
     }

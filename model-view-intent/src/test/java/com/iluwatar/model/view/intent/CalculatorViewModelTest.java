@@ -2,7 +2,6 @@ package com.iluwatar.model.view.intent;
 
 import com.iluwatar.model.view.intent.actions.*;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 

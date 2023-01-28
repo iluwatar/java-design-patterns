@@ -25,7 +25,6 @@
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -34,7 +33,7 @@ import java.util.List;
  *
  * @author Jeroen Meulemeester
  */
-class OrcsTest extends ObserverTest<GOrcs> {
+class OrcsTest extends ObserverTest<GenOrcs> {
 
   @Override
   public Collection<Object[]> dataProvider() {
@@ -50,7 +49,7 @@ class OrcsTest extends ObserverTest<GOrcs> {
    * Create a new test with the given weather and expected response
    */
   public OrcsTest() {
-    super(GOrcs::new);
+    super(GenOrcs::new);
   }
 
 }

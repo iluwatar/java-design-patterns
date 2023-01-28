@@ -26,6 +26,9 @@ package com.iluwatar.context.object;
 
 import lombok.Getter;
 
+/**
+ * Layer B in the context object pattern.
+ */
 @Getter
 public class LayerB {
 

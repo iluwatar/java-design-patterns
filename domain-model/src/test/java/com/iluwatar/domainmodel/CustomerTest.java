@@ -28,7 +28,6 @@ import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;

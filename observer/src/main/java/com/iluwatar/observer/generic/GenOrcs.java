@@ -22,17 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.event.asynchronous;
+package com.iluwatar.observer.generic;
+
+import com.iluwatar.observer.WeatherType;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Events that fulfill the start stop and list out current status behaviour follow this interface.
+ * GOrcs.
  */
-public interface IEvent {
+@Slf4j
+public class GenOrcs implements Race {
 
-  void start();
-
-  void stop();
-
-  void status();
-
+  @Override
+  public void update(GenWeather weather, WeatherType weatherType) {
+    LOGGER.info("The orcs are facing " + weatherType.getDescription() + " weather now");
+  }
 }
