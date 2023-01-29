@@ -86,7 +86,7 @@ public class AsyncEvent implements Event, Runnable {
     this.eventListener = listener;
   }
 
-  public final void removeListener(final ThreadCompleteListener listener) {
+  public final void removeListener() {
     this.eventListener = null;
   }
 
