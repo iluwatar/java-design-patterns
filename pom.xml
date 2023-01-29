@@ -40,11 +40,11 @@
     <spring-boot.version>2.7.5</spring-boot.version>
     <jacoco.version>0.8.8</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <htmlunit.version>2.68.0</htmlunit.version>
-    <gson.version>2.10</gson.version>
+    <htmlunit.version>2.69.0</htmlunit.version>
+    <gson.version>2.10.1</gson.version>
     <guice.version>5.1.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
-    <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>3.0.0-M8</maven-surefire-plugin.version>
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
     <license-maven-plugin.version>4.1</license-maven-plugin.version>
     <urm-maven-plugin.version>2.1.1</urm-maven-plugin.version>
@@ -59,7 +59,6 @@
     <module>abstract-factory</module>
     <module>collecting-parameter</module>
     <module>monitor</module>
-    <module>tls</module>
     <module>builder</module>
     <module>factory-method</module>
     <module>prototype</module>
@@ -199,12 +198,14 @@
     <module>metadata-mapping</module>
     <module>service-to-worker</module>
     <module>client-session</module>
+    <module>model-view-intent</module>
     <module>embedded-value</module>
     <module>currying</module>
     <module>serialized-entity</module>
     <module>identity-map</module>
     <module>component</module>
     <module>context-object</module>
+    <module>thread-local-storage</module>
   </modules>
   <repositories>
     <repository>
