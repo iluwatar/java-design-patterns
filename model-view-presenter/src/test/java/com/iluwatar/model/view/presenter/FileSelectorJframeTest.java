@@ -24,6 +24,8 @@
  */
 package com.iluwatar.model.view.presenter;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import java.awt.event.ActionEvent;
 
 import org.junit.jupiter.api.Test;
@@ -33,16 +35,18 @@ import org.junit.jupiter.api.Test;
  *
  * @author Rahul Raj
  */
-public class FileSelectorJframeTest {
+class FileSelectorJframeTest {
     
     /**
      * Tests if the jframe action event is triggered without any exception.
      */
     @Test
     void testActionEvent() {
-      FileSelectorJframe jFrame = new FileSelectorJframe();
-      ActionEvent action = new ActionEvent("dummy", 1, "dummy");
-      jFrame.actionPerformed(action);
+      assertDoesNotThrow(() ->{
+        FileSelectorJframe jFrame = new FileSelectorJframe();
+        ActionEvent action = new ActionEvent("dummy", 1, "dummy");
+        jFrame.actionPerformed(action);
+      });
     }
 
 }

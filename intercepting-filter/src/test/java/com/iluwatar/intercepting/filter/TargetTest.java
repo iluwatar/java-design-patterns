@@ -34,13 +34,13 @@ import org.junit.jupiter.api.Test;
  *
  * @author Rahul Raj
  */
-public class TargetTest {
+class TargetTest {
     
     @Test
     void testSetup(){
         final var target = new Target();
         assertEquals(target.getSize().getWidth(), Double.valueOf(640));
         assertEquals(target.getSize().getHeight(), Double.valueOf(480));
-        assertEquals(target.isVisible(), true);
+        assertEquals(true,target.isVisible());
     }
 }
