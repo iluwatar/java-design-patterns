@@ -27,6 +27,9 @@ package com.iluwatar.model.view.viewmodel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+ * Book class.
+ */
 @AllArgsConstructor
 @Data
 public class Book {

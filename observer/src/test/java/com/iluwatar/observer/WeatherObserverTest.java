@@ -28,7 +28,6 @@ import com.iluwatar.observer.utils.InMemoryAppender;
 
 import java.util.Collection;
 import java.util.function.Supplier;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;

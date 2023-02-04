@@ -25,22 +25,20 @@
 package com.iluwatar.embedded.value;
 
 import java.util.stream.Collectors;
-
 import lombok.extern.slf4j.Slf4j;
 
-/* 
- * Many small objects make sense in an OO system that don’t make sense as
+/** 
+ * <p> Many small objects make sense in an OO system that don’t make sense as
  * tables in a database. Examples include currency-aware money objects (amount, currency) and date
  * ranges. Although the default thinking is to save an object as a table, no sane
- * person would want a table of money values.
+ * person would want a table of money values. </p>
  * 
- * An Embedded Value maps the values of an object to fields in the record of
+ * <p> An Embedded Value maps the values of an object to fields in the record of
  * the object’s owner. In this implementation we have an Order object with links to an
  * ShippingAddress object. In the resulting table the fields in the ShippingAddress
  * object map to fields in the Order table rather than make new records
- * themselves.  
+ * themselves. </p>  
  */
-
 @Slf4j
 public class App {
                                       
@@ -62,11 +60,9 @@ public class App {
     final var order3 = new Order("Carrie Soto is Back", "Shiva",
         new ShippingAddress("Bangalore", "Karnataka", "560004"));
     
-    /**
-     * Create table for orders - Orders(id, name, orderedBy, city, state, pincode).
-     * We can see that table is different from the Order object we have.
-     * We're mapping ShippingAddress into city, state, pincode colummns of the database and not creating a separate table.
-     */ 
+    // Create table for orders - Orders(id, name, orderedBy, city, state, pincode).
+    // We can see that table is different from the Order object we have.
+    // We're mapping ShippingAddress into city, state, pincode colummns of the database and not creating a separate table.
     if (dataSource.createSchema()) {
       LOGGER.info("TABLE CREATED");
       LOGGER.info("Table \"Orders\" schema:\n" + dataSource.getSchema());
@@ -84,21 +80,17 @@ public class App {
     dataSource.insertOrder(order2);
     dataSource.insertOrder(order3);
     
-    /**
-     * Query orders
-     * We'll create ShippingAddress object from city, state, pincode values from the table 
-     * and add it to Order object
-     */
+
+    // Query orders.
+    // We'll create ShippingAddress object from city, state, pincode values from the table and add it to Order object
     LOGGER.info("Orders Query: {}", dataSource.queryOrders().collect(Collectors.toList()) + "\n");
     
     //Query order by given id
     LOGGER.info("Query Order with id=2: {}", dataSource.queryOrder(2));
     
-    /**
-     * Remove order by given id. 
-     * Since we'd mapped address in the same table, deleting order will also take
-     * out the shipping address details
-     */
+
+    //Remove order by given id. 
+    //Since we'd mapped address in the same table, deleting order will also take out the shipping address details.
     LOGGER.info("Remove Order with id=1");
     dataSource.removeOrder(1);
     LOGGER.info("\nOrders Query: {}", dataSource.queryOrders().collect(Collectors.toList()) + "\n");

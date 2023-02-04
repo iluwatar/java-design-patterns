@@ -29,5 +29,5 @@ import com.iluwatar.observer.WeatherType;
 /**
  * Race.
  */
-public interface Race extends Observer<GWeather, Race, WeatherType> {
+public interface Race extends Observer<GenWeather, Race, WeatherType> {
 }

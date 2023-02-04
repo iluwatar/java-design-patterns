@@ -34,51 +34,51 @@ import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 
 /**
- * This class is an implementation of {@link IQueryService}. It uses Hibernate native queries to
+ * This class is an implementation of {@link QueryService}. It uses Hibernate native queries to
  * return DTOs from the database.
  */
-public class QueryServiceImpl implements IQueryService {
+public class QueryServiceImpl implements QueryService {
 
   private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
   @Override
   public Author getAuthorByUsername(String username) {
-    Author authorDTo;
+    Author authorDto;
     try (var session = sessionFactory.openSession()) {
       Query<Author> sqlQuery = session.createQuery(
               "select new com.iluwatar.cqrs.dto.Author(a.name, a.email, a.username)"
                       + " from com.iluwatar.cqrs.domain.model.Author a where a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
-      authorDTo = sqlQuery.uniqueResult();
+      authorDto = sqlQuery.uniqueResult();
     }
-    return authorDTo;
+    return authorDto;
   }
 
   @Override
   public Book getBook(String title) {
-    Book bookDTo;
+    Book bookDto;
     try (var session = sessionFactory.openSession()) {
       Query<Book> sqlQuery = session.createQuery(
               "select new com.iluwatar.cqrs.dto.Book(b.title, b.price)"
                       + " from com.iluwatar.cqrs.domain.model.Book b where b.title=:title");
       sqlQuery.setParameter("title", title);
-      bookDTo = sqlQuery.uniqueResult();
+      bookDto = sqlQuery.uniqueResult();
     }
-    return bookDTo;
+    return bookDto;
   }
 
   @Override
   public List<Book> getAuthorBooks(String username) {
-    List<Book> bookDTos;
+    List<Book> bookDtos;
     try (var session = sessionFactory.openSession()) {
       Query<Book> sqlQuery = session.createQuery(
               "select new com.iluwatar.cqrs.dto.Book(b.title, b.price)"
                       + " from com.iluwatar.cqrs.domain.model.Author a, com.iluwatar.cqrs.domain.model.Book b "
                       + "where b.author.id = a.id and a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
-      bookDTos = sqlQuery.list();
+      bookDtos = sqlQuery.list();
     }
-    return bookDTos;
+    return bookDtos;
   }
 
   @Override

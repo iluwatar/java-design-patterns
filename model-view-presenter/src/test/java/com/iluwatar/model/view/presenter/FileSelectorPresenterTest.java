@@ -144,4 +144,16 @@ class FileSelectorPresenterTest {
 
     assertFalse(stub.isOpened());
   }
+
+  @Test
+  void testNullFile() {
+    stub.setFileName(null);
+    presenter.start();
+    presenter.fileNameChanged();
+    presenter.confirmed();
+
+    assertFalse(loader.isLoaded());
+    assertFalse(stub.dataDisplayed());
+  }
+
 }

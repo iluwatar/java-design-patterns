@@ -31,36 +31,29 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.stream.Stream;
-
 import lombok.extern.slf4j.Slf4j;
-/*
- * Communicates with H2 database with the help of JDBC API
- * 
- * Inherits the SQL queries and methods from @link AbstractDataSource class
- */
 
+/**
+ * Communicates with H2 database with the help of JDBC API.
+ * Inherits the SQL queries and methods from @link AbstractDataSource class.
+ */
 @Slf4j
 public class DataSource implements DataSourceInterface {
   private Connection conn;
 
-  /** 
-   * Statements are objects which are used to execute queries which will not be
-   * repeated.
-   */
+  // Statements are objects which are used to execute queries which will not be repeated.
   private Statement getschema;
   private Statement deleteschema;
   private Statement queryOrders;
 
-  /*
-   * PreparedStatements are used to execute queries which will be repeated.
-   */
+  // PreparedStatements are used to execute queries which will be repeated.
   private PreparedStatement insertIntoOrders;
   private PreparedStatement removeorder;
-  private PreparedStatement queyOrderByID;
+  private PreparedStatement queyOrderById;
   
   /**
-   * {@summary} 
-   * Establish connection to database.
+   * {@summary Establish connection to database.
+   * Constructor to create DataSource object.}   
    */
   public DataSource() {
     try {
@@ -79,7 +72,7 @@ public class DataSource implements DataSourceInterface {
       getschema = conn.createStatement();
       queryOrders = conn.createStatement();
       removeorder = conn.prepareStatement(REMOVE_ORDER);
-      queyOrderByID = conn.prepareStatement(QUERY_ORDER);
+      queyOrderById = conn.prepareStatement(QUERY_ORDER);
       deleteschema = conn.createStatement();
     } catch (SQLException e) {
       LOGGER.error(e.getLocalizedMessage(), e.getCause());
@@ -156,7 +149,6 @@ public class DataSource implements DataSourceInterface {
   }
 
   /**
-   * {@summary}
    * Query order by given id.
    * @param id as the parameter
    * @return Order objct
@@ -166,9 +158,9 @@ public class DataSource implements DataSourceInterface {
   @Override
   public Order queryOrder(int id) throws SQLException {
     Order order = null;
-    queyOrderByID.setInt(1, id);
-    try (var rSet = queyOrderByID.executeQuery()) {
-      queyOrderByID.setInt(1, id);
+    queyOrderById.setInt(1, id);
+    try (var rSet = queyOrderById.executeQuery()) {
+      queyOrderById.setInt(1, id);
       if (rSet.next()) {
         var address = new ShippingAddress(rSet.getString(4),
             rSet.getString(5), rSet.getString(6));
@@ -204,7 +196,7 @@ public class DataSource implements DataSourceInterface {
     try {
       deleteschema.execute(DELETE_SCHEMA);
       queryOrders.close();
-      queyOrderByID.close();
+      queyOrderById.close();
       deleteschema.close();
       insertIntoOrders.close();
       conn.close();

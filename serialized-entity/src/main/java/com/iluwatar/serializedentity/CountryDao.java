@@ -41,6 +41,9 @@ package com.iluwatar.serializedentity;
 
 import java.io.IOException;
 
+/**
+ * DAO interface for Country transactions.
+ */
 public interface CountryDao {
   int insertCountry() throws IOException;
   int selectCountry() throws IOException, ClassNotFoundException;

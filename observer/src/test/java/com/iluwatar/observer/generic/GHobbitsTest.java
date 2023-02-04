@@ -25,7 +25,6 @@
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -34,7 +33,7 @@ import java.util.List;
  *
  * @author Jeroen Meulemeester
  */
-class GHobbitsTest extends ObserverTest<GHobbits> {
+class GHobbitsTest extends ObserverTest<GenHobbits> {
 
   @Override
   public Collection<Object[]> dataProvider() {
@@ -50,7 +49,7 @@ class GHobbitsTest extends ObserverTest<GHobbits> {
    * Create a new test with the given weather and expected response
    */
   public GHobbitsTest() {
-    super(GHobbits::new);
+    super(GenHobbits::new);
   }
 
 }

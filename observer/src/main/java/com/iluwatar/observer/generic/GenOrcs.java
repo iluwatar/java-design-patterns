@@ -28,13 +28,13 @@ import com.iluwatar.observer.WeatherType;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * GHobbits.
+ * GOrcs.
  */
 @Slf4j
-public class GHobbits implements Race {
+public class GenOrcs implements Race {
 
   @Override
-  public void update(GWeather weather, WeatherType weatherType) {
-    LOGGER.info("The hobbits are facing " + weatherType.getDescription() + " weather now");
+  public void update(GenWeather weather, WeatherType weatherType) {
+    LOGGER.info("The orcs are facing " + weatherType.getDescription() + " weather now");
   }
 }
