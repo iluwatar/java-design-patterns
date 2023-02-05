@@ -37,10 +37,8 @@ import com.iluwatar.commander.paymentservice.PaymentService;
 import com.iluwatar.commander.queue.QueueDatabase;
 import com.iluwatar.commander.shippingservice.ShippingDatabase;
 import com.iluwatar.commander.shippingservice.ShippingService;
-
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.util.StringUtils;
-
 import java.util.ArrayList;
 import java.util.List;
 

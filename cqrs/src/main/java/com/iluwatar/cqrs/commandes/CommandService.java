@@ -22,33 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.unitofwork;
+package com.iluwatar.cqrs.commandes;
 
 /**
- * UnitOfWork interface.
- *
- * @param <T> Any generic entity
+ * This interface represents the commands of the CQRS pattern.
  */
-public interface IUnitOfWork<T> {
+public interface CommandService {
 
-  /**
-   * Any register new operation occurring on UnitOfWork is only going to be performed on commit.
-   */
-  void registerNew(T entity);
+  void authorCreated(String username, String name, String email);
 
-  /**
-   * Any register modify operation occurring on UnitOfWork is only going to be performed on commit.
-   */
-  void registerModified(T entity);
+  void bookAddedToAuthor(String title, double price, String username);
 
-  /**
-   * Any register delete operation occurring on UnitOfWork is only going to be performed on commit.
-   */
-  void registerDeleted(T entity);
+  void authorNameUpdated(String username, String name);
 
-  /**
-   * All UnitOfWork operations batched together executed in commit only.
-   */
-  void commit();
+  void authorUsernameUpdated(String oldUsername, String newUsername);
+
+  void authorEmailUpdated(String username, String email);
+
+  void bookTitleUpdated(String oldTitle, String newTitle);
+
+  void bookPriceUpdated(String title, double price);
 
 }

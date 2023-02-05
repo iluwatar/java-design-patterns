@@ -22,19 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.observer.generic;
-
-import com.iluwatar.observer.WeatherType;
-import lombok.extern.slf4j.Slf4j;
+package com.iluwatar.unitofwork;
 
 /**
- * GOrcs.
+ * UnitOfWork interface.
+ *
+ * @param <T> Any generic entity
  */
-@Slf4j
-public class GOrcs implements Race {
+public interface UnitOfWork<T> {
 
-  @Override
-  public void update(GWeather weather, WeatherType weatherType) {
-    LOGGER.info("The orcs are facing " + weatherType.getDescription() + " weather now");
-  }
+  /**
+   * Any register new operation occurring on UnitOfWork is only going to be performed on commit.
+   */
+  void registerNew(T entity);
+
+  /**
+   * Any register modify operation occurring on UnitOfWork is only going to be performed on commit.
+   */
+  void registerModified(T entity);
+
+  /**
+   * Any register delete operation occurring on UnitOfWork is only going to be performed on commit.
+   */
+  void registerDeleted(T entity);
+
+  /**
+   * All UnitOfWork operations batched together executed in commit only.
+   */
+  void commit();
+
 }

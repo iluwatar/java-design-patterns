@@ -25,7 +25,6 @@
 package com.iluwatar.separatedinterface;
 
 import org.junit.jupiter.api.Test;
-
 import com.iluwatar.separatedinterface.App;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;

@@ -52,7 +52,7 @@ public class MongoDb implements DbManager {
   private MongoClient client;
   private MongoDatabase db;
 
-  void setDB(MongoDatabase db) {
+  void setDb(MongoDatabase db) {
     this.db = db;
   }
 

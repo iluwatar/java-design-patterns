@@ -27,6 +27,9 @@ package com.iluwatar.abstractfactory;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Helper class to manufacture {@link KingdomFactory} beans. 
+ */
 @Getter
 @Setter
 public class Kingdom {

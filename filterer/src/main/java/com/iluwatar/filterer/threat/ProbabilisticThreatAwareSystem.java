@@ -25,7 +25,6 @@
 package com.iluwatar.filterer.threat;
 
 import com.iluwatar.filterer.domain.Filterer;
-
 import java.util.List;
 
 /**
@@ -35,14 +34,14 @@ public interface ProbabilisticThreatAwareSystem extends ThreatAwareSystem {
 
   /**
    * {@inheritDoc}
-   * @return
+   * @return {@link ProbableThreat}
    */
   @Override
   List<? extends ProbableThreat> threats();
 
   /**
    * {@inheritDoc}
-   * @return
+   * @return {@link Filterer}
    */
   @Override
   Filterer<? extends ProbabilisticThreatAwareSystem, ? extends ProbableThreat> filtered();

@@ -24,6 +24,9 @@
  */
 package com.iluwatar.registry;
 
+/**
+ * Customer entity used in registry pattern example.
+ */
 public class Customer {
 
   private final String id;

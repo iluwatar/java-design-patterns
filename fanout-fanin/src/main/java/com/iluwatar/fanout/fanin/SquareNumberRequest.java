@@ -25,7 +25,6 @@
 package com.iluwatar.fanout.fanin;
 
 import java.security.SecureRandom;
-
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 

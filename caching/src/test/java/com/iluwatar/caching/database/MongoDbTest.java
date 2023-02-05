@@ -55,7 +55,7 @@ class MongoDbTest {
   @BeforeEach
   void init() {
     db = mock(MongoDatabase.class);
-    mongoDb.setDB(db);
+    mongoDb.setDb(db);
     userAccount = new UserAccount(ID, NAME, ADDITIONAL_INFO);
   }
 

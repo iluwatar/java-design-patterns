@@ -25,7 +25,6 @@
 package com.iluwatar.caching.database;
 
 import com.iluwatar.caching.UserAccount;
-
 import java.util.HashMap;
 import java.util.Map;
 

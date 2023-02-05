@@ -53,7 +53,7 @@ import lombok.extern.slf4j.Slf4j;
  * Communicate with pending asynchronous operations using the familiar events-and-delegates model.
  *
  * @see EventManager
- * @see Event
+ * @see AsyncEvent
  */
 @Slf4j
 public class App {

@@ -62,7 +62,7 @@ public class App {
     // get service
     var userService = new UserService();
     // use create service to add users
-    for (var user: generateSampleUsers()) {
+    for (var user : generateSampleUsers()) {
       var id = userService.createUser(user);
       LOGGER.info("Add user" + user + "at" + id + ".");
     }

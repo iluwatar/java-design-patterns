@@ -31,10 +31,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import javax.sql.DataSource;
-
 import org.joda.money.Money;
 
-
+/**
+ * Implementations for database transactions of Product.
+ */
 public class ProductDaoImpl implements ProductDao {
 
   private final DataSource dataSource;

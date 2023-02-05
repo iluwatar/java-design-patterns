@@ -1,5 +1,5 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license. Module model-view-presenter is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -22,17 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.event.asynchronous;
+package com.iluwatar.model.view.presenter;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import java.awt.event.ActionEvent;
+
+import org.junit.jupiter.api.Test;
 
 /**
- * Events that fulfill the start stop and list out current status behaviour follow this interface.
+ * Date: 01/29/23 - 6:00 PM
+ *
+ * @author Rahul Raj
  */
-public interface IEvent {
-
-  void start();
-
-  void stop();
-
-  void status();
+class FileSelectorJframeTest {
+    
+    /**
+     * Tests if the jframe action event is triggered without any exception.
+     */
+    @Test
+    void testActionEvent() {
+      assertDoesNotThrow(() ->{
+        FileSelectorJframe jFrame = new FileSelectorJframe();
+        ActionEvent action = new ActionEvent("dummy", 1, "dummy");
+        jFrame.actionPerformed(action);
+      });
+    }
 
 }

@@ -22,30 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.observer.generic;
+package com.iluwatar.cqrs.queries;
 
-import com.iluwatar.observer.WeatherType;
-import lombok.extern.slf4j.Slf4j;
+import com.iluwatar.cqrs.dto.Author;
+import com.iluwatar.cqrs.dto.Book;
+import java.math.BigInteger;
+import java.util.List;
 
 /**
- * GWeather.
+ * This interface represents the query methods of the CQRS pattern.
  */
-@Slf4j
-public class GWeather extends Observable<GWeather, Race, WeatherType> {
+public interface QueryService {
 
-  private WeatherType currentWeather;
+  Author getAuthorByUsername(String username);
 
-  public GWeather() {
-    currentWeather = WeatherType.SUNNY;
-  }
+  Book getBook(String title);
 
-  /**
-   * Makes time pass for weather.
-   */
-  public void timePasses() {
-    var enumValues = WeatherType.values();
-    currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
-    LOGGER.info("The weather changed to {}.", currentWeather);
-    notifyObservers(currentWeather);
-  }
+  List<Book> getAuthorBooks(String username);
+
+  BigInteger getAuthorBooksCount(String username);
+
+  BigInteger getAuthorsCount();
+
 }
