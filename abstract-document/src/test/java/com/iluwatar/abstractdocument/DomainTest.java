@@ -28,7 +28,6 @@ import com.iluwatar.abstractdocument.domain.Car;
 import com.iluwatar.abstractdocument.domain.Part;
 import com.iluwatar.abstractdocument.domain.enums.Property;
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
 import java.util.Map;
 

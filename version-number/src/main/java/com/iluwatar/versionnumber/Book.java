@@ -24,6 +24,9 @@
  */
 package com.iluwatar.versionnumber;
 
+/**
+ * Model class for Book entity.
+ */
 public class Book {
   private long id;
   private String title = "";

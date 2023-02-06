@@ -24,6 +24,9 @@
  */
 package com.iluwatar.parameter.object;
 
+/**
+ * ParameterObject.
+ */
 public class ParameterObject {
 
   /**
@@ -83,6 +86,9 @@ public class ParameterObject {
         type, sortBy, sortOrder);
   }
 
+  /**
+   * Builder for ParameterObject.
+   */
   public static final class Builder {
 
     private String type;

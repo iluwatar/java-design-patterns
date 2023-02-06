@@ -25,7 +25,6 @@
 package com.iluwatar.factorykit;
 
 import java.util.ArrayList;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**

@@ -26,6 +26,9 @@ package com.iluwatar.specialcase;
 
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * View representing insufficient funds.
+ */
 @Slf4j
 public class InsufficientFunds implements ReceiptViewModel {
 

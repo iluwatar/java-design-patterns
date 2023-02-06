@@ -1,5 +1,5 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license. Module intercepting-filter is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -22,46 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.abstractfactory;
+package com.iluwatar.intercepting.filter;
 
-import lombok.Getter;
-import lombok.Setter;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
 
 /**
- * Helper class to manufacture {@link KingdomFactory} beans. 
+ * Date: 01/29/23 - 1:33 PM
+ *
+ * @author Rahul Raj
  */
-@Getter
-@Setter
-public class Kingdom {
-
-  private King king;
-  private Castle castle;
-  private Army army;
-
-  /**
-   * The factory of kingdom factories.
-   */
-  public static class FactoryMaker {
-
-    /**
-     * Enumeration for the different types of Kingdoms.
-     */
-    public enum KingdomType {
-      ELF, ORC
+class TargetTest {
+    
+    @Test
+    void testSetup(){
+        final var target = new Target();
+        assertEquals(target.getSize().getWidth(), Double.valueOf(640));
+        assertEquals(target.getSize().getHeight(), Double.valueOf(480));
+        assertEquals(true,target.isVisible());
     }
-
-    /**
-     * The factory method to create KingdomFactory concrete objects.
-     */
-    public static KingdomFactory makeFactory(KingdomType type) {
-      switch (type) {
-        case ELF:
-          return new ElfKingdomFactory();
-        case ORC:
-          return new OrcKingdomFactory();
-        default:
-          throw new IllegalArgumentException("KingdomType not supported.");
-      }
-    }
-  }
 }

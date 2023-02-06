@@ -27,6 +27,13 @@ package com.iluwatar.registry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * In Registry pattern, objects of a single class are stored and provide a global point of access to them.
+ * Note that there is no restriction on the number of objects.
+ * 
+ * <p> The given example {@link CustomerRegistry} represents the registry used to store and
+ * access {@link Customer} objects. </p>
+ */
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);

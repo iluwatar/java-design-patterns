@@ -27,7 +27,8 @@ package com.iluwatar.embedded.value;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-/* 
+
+/**
  * A POJO which represents the Order object.
  */
 @ToString

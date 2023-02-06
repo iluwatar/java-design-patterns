@@ -24,6 +24,9 @@
  */
 package com.iluwatar.specialcase;
 
+/**
+ * Represents the money transaction taking place at a given moment.
+ */
 public class MoneyTransaction {
 
   private Double amount;

@@ -68,9 +68,9 @@ public class Bubble extends Point<Bubble> {
     var toBePopped = false; //if any other bubble collides with it, made true
     for (var point : toCheck) {
       var otherId = point.id;
-      if (allBubbles.get(otherId) != null && //the bubble hasn't been popped yet
-          this.id != otherId && //the two bubbles are not the same
-          this.touches(allBubbles.get(otherId))) { //the bubbles touch
+      if (allBubbles.get(otherId) != null //the bubble hasn't been popped yet
+          && this.id != otherId  //the two bubbles are not the same
+          && this.touches(allBubbles.get(otherId))) { //the bubbles touch
         allBubbles.get(otherId).pop(allBubbles);
         toBePopped = true;
       }
