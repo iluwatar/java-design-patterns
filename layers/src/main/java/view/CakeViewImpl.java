@@ -24,18 +24,18 @@
  */
 package view;
 
-import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import service.CakeBakingService;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * View implementation for displaying cakes.
  */
-@Slf4j
-@Component
 public class CakeViewImpl implements View {
 
     private final CakeBakingService cakeBakingService;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CakeViewImpl.class);
 
     public CakeViewImpl(CakeBakingService cakeBakingService) {
         this.cakeBakingService = cakeBakingService;

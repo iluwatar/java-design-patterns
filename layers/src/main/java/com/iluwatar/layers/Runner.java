@@ -4,6 +4,8 @@ import dto.CakeInfo;
 import dto.CakeLayerInfo;
 import dto.CakeToppingInfo;
 import exception.CakeBakingException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import service.CakeBakingService;
 import view.CakeViewImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,14 +19,14 @@ public class Runner implements CommandLineRunner {
     private final CakeBakingService cakeBakingService;
     public static final String STRAWBERRY = "strawberry";
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Runner.class);
+
     @Autowired
     public Runner(CakeBakingService cakeBakingService) {
         this.cakeBakingService = cakeBakingService;
     }
     @Override
     public void run(String... args) {
-        System.out.println("Hello World!");
-
         //initialize sample data
         initializeData();
         // create view and render it
@@ -53,7 +55,7 @@ public class Runner implements CommandLineRunner {
         try {
             cakeBakingService.bakeNewCake(cake1);
         } catch (CakeBakingException e) {
-            e.printStackTrace();
+            LOGGER.debug("Cake baking exception", e);
         }
         var cake2 = new CakeInfo(new CakeToppingInfo("cherry", 0), List.of(
                 new CakeLayerInfo("vanilla", 0),
@@ -62,7 +64,7 @@ public class Runner implements CommandLineRunner {
         try {
             cakeBakingService.bakeNewCake(cake2);
         } catch (CakeBakingException e) {
-            e.printStackTrace();
+            LOGGER.debug("Cake baking exception", e);
         }
     }
 }
