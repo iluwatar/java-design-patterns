@@ -16,52 +16,22 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.layers.service;
+package dao;
 
-import com.iluwatar.layers.dto.CakeInfo;
-import com.iluwatar.layers.dto.CakeLayerInfo;
-import com.iluwatar.layers.dto.CakeToppingInfo;
-import com.iluwatar.layers.exception.CakeBakingException;
-import java.util.List;
+import entity.CakeLayer;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
- * Service for cake baking operations.
+ * CRUD repository for cake layers.
  */
-public interface CakeBakingService {
+@Repository
+public interface CakeLayerDao extends JpaRepository<CakeLayer, Long> {
 
-  /**
-   * Bakes new cake according to parameters.
-   */
-  void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
-
-  /**
-   * Get all cakes.
-   */
-  List<CakeInfo> getAllCakes();
-
-  /**
-   * Store new cake topping.
-   */
-  void saveNewTopping(CakeToppingInfo toppingInfo);
-
-  /**
-   * Get available cake toppings.
-   */
-  List<CakeToppingInfo> getAvailableToppings();
-
-  /**
-   * Add new cake layer.
-   */
-  void saveNewLayer(CakeLayerInfo layerInfo);
-
-  /**
-   * Get available cake layers.
-   */
-  List<CakeLayerInfo> getAvailableLayers();
 }

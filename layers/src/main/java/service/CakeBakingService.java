@@ -22,24 +22,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.layers.view;
+package service;
 
-import com.iluwatar.layers.service.CakeBakingService;
-import lombok.extern.slf4j.Slf4j;
+import dto.CakeInfo;
+import dto.CakeLayerInfo;
+import dto.CakeToppingInfo;
+import exception.CakeBakingException;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
- * View implementation for displaying cakes.
+ * Service for cake baking operations.
  */
-@Slf4j
-public class CakeViewImpl implements View {
+@Service
+public interface CakeBakingService {
 
-  private final CakeBakingService cakeBakingService;
+    /**
+     * Bakes new cake according to parameters.
+     */
+    void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
 
-  public CakeViewImpl(CakeBakingService cakeBakingService) {
-    this.cakeBakingService = cakeBakingService;
-  }
+    /**
+     * Get all cakes.
+     */
+    List<CakeInfo> getAllCakes();
 
-  public void render() {
-    cakeBakingService.getAllCakes().forEach(cake -> LOGGER.info(cake.toString()));
-  }
+    /**
+     * Store new cake topping.
+     */
+    void saveNewTopping(CakeToppingInfo toppingInfo);
+
+    /**
+     * Get available cake toppings.
+     */
+    List<CakeToppingInfo> getAvailableToppings();
+
+    /**
+     * Add new cake layer.
+     */
+    void saveNewLayer(CakeLayerInfo layerInfo);
+
+    /**
+     * Get available cake layers.
+     */
+    List<CakeLayerInfo> getAvailableLayers();
+
+    void deleteAllCakes();
+
+    void deleteAllLayers();
+
+    void deleteAllToppings();
+
 }

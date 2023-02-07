@@ -333,7 +333,7 @@
             <configuration>
               <configLocation>google_checks.xml</configLocation>
               <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
-              <encoding>UTF-8</encoding>
+
               <failOnViolation>true</failOnViolation>
               <violationSeverity>warning</violationSeverity>
               <includeTestSourceDirectory>false</includeTestSourceDirectory>

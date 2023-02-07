@@ -16,22 +16,20 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NON INFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.layers.dao;
+package dao;
 
-import com.iluwatar.layers.entity.CakeTopping;
-import org.springframework.data.repository.CrudRepository;
+import entity.Cake;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * CRUD repository cake toppings.
+ * CRUD repository for cakes.
  */
 @Repository
-public interface CakeToppingDao extends CrudRepository<CakeTopping, Long> {
-
-}
+public interface CakeDao extends JpaRepository<Cake, Long> {}

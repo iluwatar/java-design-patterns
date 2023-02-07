@@ -22,68 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.layers.entity;
+package exception;
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import org.springframework.stereotype.Component;
 
 /**
- * Cake entity.
+ * Custom exception used in cake baking.
  */
-@Entity
-public class Cake {
+@Component
+public class CakeBakingException extends Exception {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+    private static final long serialVersionUID = 1L;
 
-  @OneToOne(cascade = CascadeType.REMOVE)
-  private CakeTopping topping;
+    public CakeBakingException() {
+    }
 
-  @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-  private Set<CakeLayer> layers;
-
-  public Cake() {
-    setLayers(new HashSet<>());
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public CakeTopping getTopping() {
-    return topping;
-  }
-
-  public void setTopping(CakeTopping topping) {
-    this.topping = topping;
-  }
-
-  public Set<CakeLayer> getLayers() {
-    return layers;
-  }
-
-  public void setLayers(Set<CakeLayer> layers) {
-    this.layers = layers;
-  }
-
-  public void addLayer(CakeLayer layer) {
-    this.layers.add(layer);
-  }
-
-  @Override
-  public String toString() {
-    return String.format("id=%s topping=%s layers=%s", id, topping, layers.toString());
-  }
+    public CakeBakingException(String message) {
+        super(message);
+    }
 }

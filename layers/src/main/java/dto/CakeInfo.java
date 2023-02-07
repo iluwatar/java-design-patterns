@@ -22,16 +22,50 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.layers.dao;
+package dto;
 
-import com.iluwatar.layers.entity.CakeLayer;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import java.util.List;
+import java.util.Optional;
 
 /**
- * CRUD repository for cake layers.
+ * DTO for cakes.
  */
-@Repository
-public interface CakeLayerDao extends CrudRepository<CakeLayer, Long> {
+public class CakeInfo {
 
+    public final Optional<Long> id;
+    public final CakeToppingInfo cakeToppingInfo;
+    public final List<CakeLayerInfo> cakeLayerInfos;
+
+    /**
+     * Constructor.
+     */
+    public CakeInfo(Long id, CakeToppingInfo cakeToppingInfo, List<CakeLayerInfo> cakeLayerInfos) {
+        this.id = Optional.of(id);
+        this.cakeToppingInfo = cakeToppingInfo;
+        this.cakeLayerInfos = cakeLayerInfos;
+    }
+
+    /**
+     * Constructor.
+     */
+    public CakeInfo(CakeToppingInfo cakeToppingInfo, List<CakeLayerInfo> cakeLayerInfos) {
+        this.id = Optional.empty();
+        this.cakeToppingInfo = cakeToppingInfo;
+        this.cakeLayerInfos = cakeLayerInfos;
+    }
+
+    /**
+     * Calculate calories.
+     */
+    public int calculateTotalCalories() {
+        var total = cakeToppingInfo != null ? cakeToppingInfo.calories : 0;
+        total += cakeLayerInfos.stream().mapToInt(c -> c.calories).sum();
+        return total;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("CakeInfo id=%d topping=%s layers=%s totalCalories=%d", id.orElse(-1L),
+                cakeToppingInfo, cakeLayerInfos, calculateTotalCalories());
+    }
 }
