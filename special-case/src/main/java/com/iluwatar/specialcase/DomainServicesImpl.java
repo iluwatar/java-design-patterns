@@ -24,6 +24,9 @@
  */
 package com.iluwatar.specialcase;
 
+/**
+ * Implementation of DomainServices for special case.
+ */
 public class DomainServicesImpl implements DomainServices {
 
   /**

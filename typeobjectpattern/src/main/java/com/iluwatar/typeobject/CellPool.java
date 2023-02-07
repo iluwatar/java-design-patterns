@@ -26,7 +26,6 @@ package com.iluwatar.typeobject;
 
 import com.google.gson.JsonParseException;
 import com.iluwatar.typeobject.Candy.Type;
-
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;

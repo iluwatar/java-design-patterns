@@ -22,25 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cqrs.commandes;
+package com.iluwatar.observer.generic;
+
+import com.iluwatar.observer.WeatherType;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * This interface represents the commands of the CQRS pattern.
+ * GWeather.
  */
-public interface ICommandService {
+@Slf4j
+public class GenWeather extends Observable<GenWeather, Race, WeatherType> {
 
-  void authorCreated(String username, String name, String email);
+  private WeatherType currentWeather;
 
-  void bookAddedToAuthor(String title, double price, String username);
+  public GenWeather() {
+    currentWeather = WeatherType.SUNNY;
+  }
 
-  void authorNameUpdated(String username, String name);
-
-  void authorUsernameUpdated(String oldUsername, String newUsername);
-
-  void authorEmailUpdated(String username, String email);
-
-  void bookTitleUpdated(String oldTitle, String newTitle);
-
-  void bookPriceUpdated(String title, double price);
-
+  /**
+   * Makes time pass for weather.
+   */
+  public void timePasses() {
+    var enumValues = WeatherType.values();
+    currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];
+    LOGGER.info("The weather changed to {}.", currentWeather);
+    notifyObservers(currentWeather);
+  }
 }

@@ -24,6 +24,9 @@
  */
 package com.iluwatar.filterer.threat;
 
+/**
+ * Enum class representing Threat types.
+ */
 public enum ThreatType {
   TROJAN,
   WORM,

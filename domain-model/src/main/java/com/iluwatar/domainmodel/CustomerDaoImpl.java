@@ -30,9 +30,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 import javax.sql.DataSource;
-
 import org.joda.money.Money;
 
+/**
+ * Implementations for database operations of Customer.
+ */
 public class CustomerDaoImpl implements CustomerDao {
 
   private final DataSource dataSource;

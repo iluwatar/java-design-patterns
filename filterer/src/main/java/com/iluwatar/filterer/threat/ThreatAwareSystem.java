@@ -25,7 +25,6 @@
 package com.iluwatar.filterer.threat;
 
 import com.iluwatar.filterer.domain.Filterer;
-
 import java.util.List;
 
 /**

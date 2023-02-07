@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.iluwatar.cqrs.commandes.CommandServiceImpl;
 import com.iluwatar.cqrs.dto.Author;
 import com.iluwatar.cqrs.dto.Book;
-import com.iluwatar.cqrs.queries.IQueryService;
+import com.iluwatar.cqrs.queries.QueryService;
 import com.iluwatar.cqrs.queries.QueryServiceImpl;
 import java.math.BigInteger;
 import org.junit.jupiter.api.BeforeAll;
@@ -41,7 +41,7 @@ import org.junit.jupiter.api.Test;
  */
 class IntegrationTest {
 
-  private static IQueryService queryService;
+  private static QueryService queryService;
 
   @BeforeAll
   static void initializeAndPopulateDatabase() {

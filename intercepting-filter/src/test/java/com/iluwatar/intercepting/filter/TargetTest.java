@@ -1,5 +1,5 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license. Module intercepting-filter is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -22,36 +22,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.specialcase;
+package com.iluwatar.intercepting.filter;
 
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import org.junit.jupiter.api.Test;
 
 /**
- * View representing insufficient funds.
+ * Date: 01/29/23 - 1:33 PM
+ *
+ * @author Rahul Raj
  */
-@Slf4j
-public class InsufficientFunds implements ReceiptViewModel {
-
-  private String userName;
-  private Double amount;
-  private String itemName;
-
-  /**
-   * Constructor of InsufficientFunds.
-   *
-   * @param userName of the user
-   * @param amount of the user's account
-   * @param itemName of the item
-   */
-  public InsufficientFunds(String userName, Double amount, String itemName) {
-    this.userName = userName;
-    this.amount = amount;
-    this.itemName = itemName;
-  }
-
-  @Override
-  public void show() {
-    LOGGER.info("Insufficient funds: " + amount + " of user: " + userName
-        + " for buying item: " + itemName);
-  }
+class TargetTest {
+    
+    @Test
+    void testSetup(){
+        final var target = new Target();
+        assertEquals(target.getSize().getWidth(), Double.valueOf(640));
+        assertEquals(target.getSize().getHeight(), Double.valueOf(480));
+        assertEquals(true,target.isVisible());
+    }
 }

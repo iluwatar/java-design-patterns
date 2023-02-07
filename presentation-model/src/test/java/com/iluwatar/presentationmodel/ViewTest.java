@@ -39,8 +39,8 @@ class ViewTest {
     String testArtist = "testArtist";
     view.getTxtArtist().setText(testArtist);
     view.getTxtTitle().setText(testTitle);
-    view.saveToPMod();
-    view.loadFromPMod();
+    view.saveToMod();
+    view.loadFromMod();
     assertEquals(testTitle, view.getModel().getTitle());
     assertEquals(testArtist, view.getModel().getArtist());
   }
@@ -53,8 +53,8 @@ class ViewTest {
     String testComposer = "testComposer";
     view.getChkClassical().setSelected(isClassical);
     view.getTxtComposer().setText(testComposer);
-    view.saveToPMod();
-    view.loadFromPMod();
+    view.saveToMod();
+    view.loadFromMod();
     assertTrue(view.getModel().getIsClassical());
     assertEquals(testComposer, view.getModel().getComposer());
   }
@@ -64,7 +64,7 @@ class ViewTest {
     View view = new View();
     view.createView();
     view.getModel().setSelectedAlbumNumber(2);
-    view.loadFromPMod();
+    view.loadFromMod();
     assertEquals(albumList[1], view.getModel().getTitle());
   }
 
@@ -73,7 +73,7 @@ class ViewTest {
     View view = new View();
     view.createView();
     view.getModel().setSelectedAlbumNumber(4);
-    view.loadFromPMod();
+    view.loadFromMod();
     assertEquals(albumList[3], view.getModel().getTitle());
   }
 }

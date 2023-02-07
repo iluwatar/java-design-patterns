@@ -25,9 +25,7 @@
 package com.iluwatar.caching;
 
 import com.iluwatar.caching.database.DbManager;
-
 import java.util.Optional;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**

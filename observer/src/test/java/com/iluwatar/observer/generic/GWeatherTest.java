@@ -48,7 +48,7 @@ class GWeatherTest {
 
   @BeforeEach
   void setUp() {
-    appender = new InMemoryAppender(GWeather.class);
+    appender = new InMemoryAppender(GenWeather.class);
   }
 
   @AfterEach
@@ -64,7 +64,7 @@ class GWeatherTest {
   void testAddRemoveObserver() {
     final var observer = mock(Race.class);
 
-    final var weather = new GWeather();
+    final var weather = new GenWeather();
     weather.addObserver(observer);
     verifyNoMoreInteractions(observer);
 
@@ -86,7 +86,7 @@ class GWeatherTest {
   @Test
   void testTimePasses() {
     final var observer = mock(Race.class);
-    final var weather = new GWeather();
+    final var weather = new GenWeather();
     weather.addObserver(observer);
 
     final var inOrder = inOrder(observer);

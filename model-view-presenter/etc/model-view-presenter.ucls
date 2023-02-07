@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.8" icons="true" automaticImage="PNG" always-add-relationships="false" generalizations="true" 
   realizations="true" associations="true" dependencies="false" nesting-relationships="true">  
-  <class id="1" language="java" name="com.iluwatar.model.view.presenter.FileSelectorJFrame" 
+  <class id="1" language="java" name="com.iluwatar.model.view.presenter.FileSelectorJframe" 
     project="model-view-presenter" 
-    file="/model-view-presenter/src/main/java/com/iluwatar/model/view/presenter/FileSelectorJFrame.java" binary="false" 
+    file="/model-view-presenter/src/main/java/com/iluwatar/model/view/presenter/FileSelectorJframe.java" binary="false" 
     corner="BOTTOM_RIGHT">    
     <position height="430" width="259" x="33" y="149"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

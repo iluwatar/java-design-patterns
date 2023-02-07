@@ -31,7 +31,6 @@ import ch.qos.logback.core.read.ListAppender;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import units.CommanderUnit;
-
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

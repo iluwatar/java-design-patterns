@@ -25,7 +25,6 @@
 package com.iluwatar.throttling;
 
 import org.junit.jupiter.api.Test;
-
 import java.security.InvalidParameterException;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
