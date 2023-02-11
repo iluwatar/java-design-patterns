@@ -44,13 +44,9 @@ public final class ThreadSafeLazyLoadedIvoryTower {
    * The instance doesn't get created until the method is called for the first time.
    */
   public static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
-    if (instance == null) {
-      synchronized (ThreadSafeLazyLoadedIvoryTower.class) {
-        if (instance == null) {
+      if (instance == null) {
           instance = new ThreadSafeLazyLoadedIvoryTower();
-        }
       }
-    }
     return instance;
   }
 }
