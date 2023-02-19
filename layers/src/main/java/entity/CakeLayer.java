@@ -25,22 +25,18 @@
 package entity;
 
 
+import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.Hibernate;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.CascadeType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.Objects;
 
 /**
  * CakeLayer entity.
  */
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -67,4 +63,16 @@ public class CakeLayer {
         return String.format("id=%s name=%s calories=%d", id, name, calories);
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+        CakeLayer cakeLayer = (CakeLayer) o;
+        return id != null && Objects.equals(id, cakeLayer.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return getClass().hashCode();
+    }
 }
