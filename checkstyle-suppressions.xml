@@ -7,4 +7,5 @@
   <suppress checks="[a-zA-Z0-9]*" files="[\\/]src[\\/]main[\\/]resources[\\/]" />
   <suppress checks="LineLength" files="." />
   <suppress checks="EmptyLineSeparator" files="." />
+  <suppress checks="RequireEmptyLineBeforeBlockTagGroup" files=".*\.java"/>
 </suppressions>

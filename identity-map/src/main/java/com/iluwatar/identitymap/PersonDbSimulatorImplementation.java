@@ -27,7 +27,6 @@ package com.iluwatar.identitymap;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -49,10 +48,10 @@ public class PersonDbSimulatorImplementation implements PersonDbSimulator {
   static final String ID_STR = "ID : ";
 
   @Override
-  public Person find(int personNationalID) throws IdNotFoundException {
-    Optional<Person> elem = personList.stream().filter(p -> p.getPersonNationalId() == personNationalID).findFirst();
+  public Person find(int personNationalId) throws IdNotFoundException {
+    Optional<Person> elem = personList.stream().filter(p -> p.getPersonNationalId() == personNationalId).findFirst();
     if (elem.isEmpty()) {
-      throw new IdNotFoundException(ID_STR + personNationalID + NOT_IN_DATA_BASE);
+      throw new IdNotFoundException(ID_STR + personNationalId + NOT_IN_DATA_BASE);
     }
     LOGGER.info(elem.get().toString());
     return elem.get();

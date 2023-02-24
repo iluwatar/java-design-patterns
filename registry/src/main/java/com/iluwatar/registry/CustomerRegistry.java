@@ -27,6 +27,9 @@ package com.iluwatar.registry;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * CustomerRegistry class used to store/access {@link Customer} objects.
+ */
 public final class CustomerRegistry {
 
   private static final CustomerRegistry instance = new CustomerRegistry();

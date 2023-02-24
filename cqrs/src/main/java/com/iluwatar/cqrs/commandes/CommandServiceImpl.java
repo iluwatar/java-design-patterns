@@ -30,10 +30,10 @@ import com.iluwatar.cqrs.util.HibernateUtil;
 import org.hibernate.SessionFactory;
 
 /**
- * This class is an implementation of {@link ICommandService} interface. It uses Hibernate as an api
+ * This class is an implementation of {@link CommandService} interface. It uses Hibernate as an api
  * for persistence.
  */
-public class CommandServiceImpl implements ICommandService {
+public class CommandServiceImpl implements CommandService {
 
   private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 

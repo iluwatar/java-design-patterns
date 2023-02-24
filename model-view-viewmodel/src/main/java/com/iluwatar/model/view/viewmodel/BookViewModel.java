@@ -25,11 +25,13 @@
 package com.iluwatar.model.view.viewmodel;
 
 import java.util.List;
-
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 
+/**
+ * BookViewModel class.
+ */
 public class BookViewModel {
   
   @WireVariable
@@ -56,7 +58,7 @@ public class BookViewModel {
    * and used to delete the selected book from the list of books. 
    */
   @Command
-  @NotifyChange({"selectedBook","bookList"})
+  @NotifyChange({"selectedBook", "bookList"})
   public void deleteBook() {
     if (selectedBook != null) {
       getBookList().remove(selectedBook);

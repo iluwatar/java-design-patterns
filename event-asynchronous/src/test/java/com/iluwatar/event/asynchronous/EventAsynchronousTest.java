@@ -136,4 +136,26 @@ class EventAsynchronousTest {
       LOGGER.error(e.getMessage());
     }
   }
+
+  @Test
+  void testLongRunningEventException(){
+    assertThrows(LongRunningEventException.class, () -> {
+      var eventManager = new EventManager();
+      eventManager.createAsync(2000);
+    });
+  }
+
+
+  @Test
+  void testMaxNumOfEventsAllowedException(){
+    assertThrows(MaxNumOfEventsAllowedException.class, () -> {
+      final var eventManager = new EventManager();
+      for(int i=0;i<1100;i++){
+        eventManager.createAsync(i);
+      }
+    });
+  }
+
+
+
 }

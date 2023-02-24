@@ -35,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @RequiredArgsConstructor
-public class ArmsDealer implements IUnitOfWork<Weapon> {
+public class ArmsDealer implements UnitOfWork<Weapon> {
 
   private final Map<String, List<Weapon>> context;
   private final WeaponDatabase weaponDatabase;

@@ -24,6 +24,9 @@
  */
 package com.iluwatar.roleobject;
 
+/**
+ * Borrower role.
+ */
 public class BorrowerRole extends CustomerRole {
 
   private String name;

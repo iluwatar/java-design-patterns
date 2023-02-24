@@ -16,7 +16,7 @@ package com.iluwatar.model.view.presenter {
     + loadData() : String
     + setFileName(fileName : String)
   }
-  class FileSelectorJFrame {
+  class FileSelectorJframe {
     - area : JTextArea
     - cancel : JButton
     - contents : JLabel
@@ -27,7 +27,7 @@ package com.iluwatar.model.view.presenter {
     - panel : JPanel
     - presenter : FileSelectorPresenter
     - serialVersionUID : long {static}
-    + FileSelectorJFrame()
+    + FileSelectorJframe()
     + actionPerformed(e : ActionEvent)
     + close()
     + displayData(data : String)
@@ -81,10 +81,10 @@ package com.iluwatar.model.view.presenter {
     + showMessage(String) {abstract}
   }
 }
-FileSelectorJFrame -->  "-presenter" FileSelectorPresenter
+FileSelectorJframe -->  "-presenter" FileSelectorPresenter
 FileSelectorStub -->  "-presenter" FileSelectorPresenter
 FileSelectorPresenter -->  "-view" FileSelectorView
 FileSelectorPresenter -->  "-loader" FileLoader
-FileSelectorJFrame ..|> FileSelectorView 
+FileSelectorJframe ..|> FileSelectorView 
 FileSelectorStub ..|> FileSelectorView 
 @enduml

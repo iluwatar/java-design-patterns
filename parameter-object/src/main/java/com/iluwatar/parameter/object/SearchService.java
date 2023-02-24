@@ -24,6 +24,9 @@
  */
 package com.iluwatar.parameter.object;
 
+/**
+ * SearchService to demonstrate parameter object pattern.
+ */
 public class SearchService {
 
   /**
