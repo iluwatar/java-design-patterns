@@ -2415,6 +2415,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "TheClerici",
+      "name": "Enrique Clerici",
+      "avatar_url": "https://avatars.githubusercontent.com/u/115318468?v=4",
+      "profile": "http://twitch.tv/clerici",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
