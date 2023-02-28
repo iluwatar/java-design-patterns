@@ -20,7 +20,7 @@ public class MediumPriceCriteria implements Criteria<Product> {
   public List<Product> meetCriteria(List<Product> items) {
     List<Product> products = new ArrayList<Product>();
     for (Product product : items) {
-      if (product.getPrice() < 800 || product.getPrice() > 200) {
+      if (product.getPrice() < 800 && product.getPrice() > 200) {
         products.add(product);
       }
     }

@@ -20,7 +20,7 @@ public class HighPriceCriteria implements Criteria<Product> {
   public List<Product> meetCriteria(List<Product> items) {
     List<Product> products = new ArrayList<Product>();
     for (Product product : items) {
-      if (product.getPrice() < 1000) {
+      if (product.getPrice() > 1000) {
         products.add(product);
       }
     }
