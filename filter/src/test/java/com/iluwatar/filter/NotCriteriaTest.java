@@ -25,6 +25,7 @@
 
 package com.iluwatar.filter;
 
+import com.iluwatar.filter.criteria.Criteria;
 import com.iluwatar.filter.criteria.NotCriteria;
 import com.iluwatar.filter.criteria.InStockCriteria;
 import com.iluwatar.filter.product.Product;
