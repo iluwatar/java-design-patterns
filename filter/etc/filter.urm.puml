@@ -1,2 +1,83 @@
 @startuml
+package com.iluwatar.filter.product {
+  class Product {
+    - category : ProductCategory
+    - nrInStock : int
+    - price : int
+    - productName : String
+    + Product(productName : String, price : int, category : ProductCategory, nrInStock : int)
+    + compareTo(other : Product) : int
+    + getCategory() : ProductCategory
+    + getNrInStock() : int
+    + getPrice() : int
+    + getProductName() : String
+  }
+  enum ProductCategory {
+    + CLOTHING {static}
+    + ELECTRONICS {static}
+    + valueOf(String) : ProductCategory {static}
+    + values() : ProductCategory[] {static}
+  }
+}
+package com.iluwatar.filter.criteria {
+  class AndCriteria {
+    ~ criteria : List<Criteria<T>>
+    + AndCriteria(criteria : List<Criteria<T>>)
+    + meetCriteria(items : List<Product>) : List<Product>
+  }
+  class CategoryCriteria {
+    ~ category : ProductCategory
+    + CategoryCriteria(category : ProductCategory)
+    + meetCriteria(items : List<Product>) : List<Product>
+  }
+  interface Criteria<T> {
+    + meetCriteria(List<T>) : List<T> {abstract}
+  }
+  class HighPriceCriteria {
+    + HighPriceCriteria()
+    + meetCriteria(items : List<Product>) : List<Product>
+  }
+  class InStockCriteria {
+    + InStockCriteria()
+    + meetCriteria(items : List<Product>) : List<Product>
+  }
+  class LowPriceCriteria {
+    + LowPriceCriteria()
+    + meetCriteria(items : List<Product>) : List<Product>
+  }
+  class MediumPriceCriteria {
+    + MediumPriceCriteria()
+    + meetCriteria(items : List<Product>) : List<Product>
+  }
+  class NotCriteria {
+    ~ exclusions : List<Criteria<T>>
+    + NotCriteria(exclusions : List<Criteria<T>>)
+    + meetCriteria(items : List<Product>) : List<Product>
+  }
+  class OrCriteria<T> {
+    - firstCriteria : Criteria<T>
+    - secondCriteria : Criteria<T>
+    + OrCriteria<T>(firstCriteria : Criteria<T>, secondCriteria : Criteria<T>)
+    + meetCriteria(items : List<T>) : List<T>
+  }
+}
+package com.iluwatar.filter {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+CategoryCriteria -->  "-category" ProductCategory
+NotCriteria -->  "-exclusions" Criteria
+OrCriteria -->  "-firstCriteria" Criteria
+Product -->  "-category" ProductCategory
+AndCriteria -->  "-criteria" Criteria
+AndCriteria ..|> Criteria 
+CategoryCriteria ..|> Criteria 
+HighPriceCriteria ..|> Criteria 
+InStockCriteria ..|> Criteria 
+LowPriceCriteria ..|> Criteria 
+MediumPriceCriteria ..|> Criteria 
+NotCriteria ..|> Criteria 
+OrCriteria ..|> Criteria 
 @enduml
