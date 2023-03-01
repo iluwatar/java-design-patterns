@@ -31,15 +31,10 @@ public class NotCriteria implements Criteria<Product> {
       for (Criteria criterion : exclusions) {
 
         List<Product> met = criterion.meetCriteria(items);
-        for (Product product : met) {
-            for (Product e : meetNone) {
-                if (e.getProductName().equals(product.getProductName())) {
-                    meetNone.remove(e);
-                    break;
-                }
-            }
+        for (Product p : met) {
+          meetNone.remove(p);
         }
-
+        
       }
       
       return meetNone;
