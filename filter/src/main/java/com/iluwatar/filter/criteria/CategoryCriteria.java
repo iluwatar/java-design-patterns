@@ -31,23 +31,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A class for filtering clothing items.
+ * A class for filtering items on category.
+ * @param category the category to filter on
  */
-public class CategoryClothingCriteria implements Criteria<Product> {
+public class CategoryCriteria implements Criteria<Product> {
+
+  ProductCategory category;
+
+  public CategoryCriteria(ProductCategory category) {
+    this.category = category;
+  }
 
   /**
-   * Overrides method meetCriteria. Items meet criteria if the product category is clothing.
+   * Overrides method meetCriteria. Items meet criteria if the product category meets the criteria category.
    * @param items the list of items to filter
    * @return a list of items that meets the criteria
    */
   @Override
   public List<Product> meetCriteria(List<Product> items) {
-    List<Product> clothingProducts = new ArrayList<>();
+    List<Product> categoryProducts = new ArrayList<>();
     for (Product product : items) {
-      if (product.getCategory() == ProductCategory.CLOTHING) {
-        clothingProducts.add(product);
+      if (product.getCategory() == category) {
+        categoryProducts.add(product);
       }
     }
-    return clothingProducts;
+    return categoryProducts;
   }
 }

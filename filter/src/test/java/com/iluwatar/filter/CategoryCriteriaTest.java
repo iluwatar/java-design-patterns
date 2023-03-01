@@ -24,9 +24,11 @@
  */
 package com.iluwatar.filter;
 
-import com.iluwatar.filter.criteria.CategoryClothingCriteria;
+import com.iluwatar.filter.criteria.Criteria;
+import com.iluwatar.filter.criteria.CategoryCriteria;
 import com.iluwatar.filter.product.Product;
 import com.iluwatar.filter.product.ProductCategory;
+
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
@@ -34,9 +36,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Contains tests for category clothing criteria.
+ * Contains tests for category criteria.
  */
-public class CategoryClothingCriteriaTest {
+public class CategoryCriteriaTest {
 
     /**
      * Test when some items meets the criteria.
@@ -44,14 +46,17 @@ public class CategoryClothingCriteriaTest {
      */
     @Test
     void testSomeMeetCriteria(){
-        CategoryClothingCriteria criteria = new CategoryClothingCriteria();
+        Criteria criteria = new CategoryCriteria(ProductCategory.CLOTHING);
+
         Product computer = new Product("computer", 4000, ProductCategory.ELECTRONICS, 50);
         Product tshirt = new Product("t-shirt", 200, ProductCategory.CLOTHING, 0);
         Product headphones = new Product("headphones", 400, ProductCategory.ELECTRONICS, 4);
+
         ArrayList<Product> products = new ArrayList<>();
         products.add(computer);
         products.add(tshirt);
         products.add(headphones);
+
         List<Product> criteriaRes = criteria.meetCriteria(products);
         List<Product> clothingProducts = new ArrayList<>();
         clothingProducts.add(tshirt);
@@ -64,7 +69,7 @@ public class CategoryClothingCriteriaTest {
      */
     @Test
     void testNoneMeetsCriteria(){
-        CategoryClothingCriteria criteria = new CategoryClothingCriteria();
+        Criteria criteria = new CategoryCriteria(ProductCategory.CLOTHING);
         Product computer = new Product("computer", 4000, ProductCategory.ELECTRONICS, 50);
         Product headphones = new Product("headphones", 400, ProductCategory.ELECTRONICS, 4);
         ArrayList<Product> products = new ArrayList<>();
@@ -81,7 +86,7 @@ public class CategoryClothingCriteriaTest {
      */
     @Test
     void testAllMeetsCriteria(){
-        CategoryClothingCriteria criteria = new CategoryClothingCriteria();
+        Criteria criteria = new CategoryCriteria(ProductCategory.CLOTHING);
         Product jeans = new Product("jeans", 4000, ProductCategory.CLOTHING, 50);
         Product tshirt = new Product("t-shirt", 200, ProductCategory.CLOTHING, 0);
         ArrayList<Product> products = new ArrayList<>();
@@ -90,7 +95,4 @@ public class CategoryClothingCriteriaTest {
         List<Product> criteriaRes = criteria.meetCriteria(products);
         Assert.assertEquals(criteriaRes, products);
     }
-
-
-
 }

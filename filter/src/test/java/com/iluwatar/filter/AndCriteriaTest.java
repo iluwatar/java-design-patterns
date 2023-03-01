@@ -27,8 +27,7 @@ package com.iluwatar.filter;
 
 import com.iluwatar.filter.criteria.Criteria;
 import com.iluwatar.filter.criteria.InStockCriteria;
-import com.iluwatar.filter.criteria.CategoryClothingCriteria;
-import com.iluwatar.filter.criteria.CategoryElectronicsCriteria;
+import com.iluwatar.filter.criteria.CategoryCriteria;
 import com.iluwatar.filter.criteria.AndCriteria;
 
 import com.iluwatar.filter.product.Product;
@@ -52,7 +51,7 @@ public class AndCriteriaTest {
     void testAllItemsMeetCriteria(){
 
         Criteria inStockCriteria = new InStockCriteria();
-        Criteria clothingCriteria = new CategoryClothingCriteria();
+        Criteria clothingCriteria = new CategoryCriteria(ProductCategory.CLOTHING);
 
         List<Criteria> criteria = new ArrayList();
         criteria.add(inStockCriteria);
@@ -81,7 +80,7 @@ public class AndCriteriaTest {
     void testSomeItemsMeetCriteria(){
 
         Criteria inStockCriteria = new InStockCriteria();
-        Criteria clothingCriteria = new CategoryClothingCriteria();
+        Criteria clothingCriteria = new CategoryCriteria(ProductCategory.CLOTHING);
 
         List<Criteria> criteria = new ArrayList();
         criteria.add(inStockCriteria);
@@ -123,7 +122,7 @@ public class AndCriteriaTest {
     void testNoItemsMeetCriteria(){
 
         Criteria inStockCriteria = new InStockCriteria();
-        Criteria electronicsCriteria = new CategoryElectronicsCriteria();
+        Criteria electronicsCriteria = new CategoryCriteria(ProductCategory.ELECTRONICS);
 
         List<Criteria> criteria = new ArrayList();
         criteria.add(inStockCriteria);
