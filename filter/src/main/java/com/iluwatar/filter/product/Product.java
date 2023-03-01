@@ -27,7 +27,7 @@ package com.iluwatar.filter.product;
 /**
  * Class for a product.
  */
-public class Product {
+public class Product implements Comparable<Product> {
   /** Name of product. */
   private String productName;
 
@@ -89,6 +89,19 @@ public class Product {
    */
   public int getNrInStock() {
     return this.nrInStock;
+  }
+
+  /**
+   * Compares this product with the specified product for order based on the
+   * product name.
+   * 
+   * @param other the product to be compared
+   * @return a negative integer, zero, or a positive integer as this product is
+   *         less than, equal to, or greater than the specified product
+   */
+  @Override
+  public int compareTo(Product other) {
+    return this.productName.compareTo(other.productName);
   }
 
 }
