@@ -1,7 +1,7 @@
 package com.iluwatar.filter;
 
 import com.iluwatar.filter.criteria.InStockCriteria;
-import com.iluwatar.filter.criteria.CategoryClothingCriteria;
+import com.iluwatar.filter.criteria.CategoryCriteria;
 import com.iluwatar.filter.criteria.OrCriteria;
 import com.iluwatar.filter.product.Product;
 import com.iluwatar.filter.product.ProductCategory;
@@ -27,7 +27,7 @@ public class OrCriteriaTest {
   void testMeetCriteria() {
     // Criterias to apply
     InStockCriteria inStockCriteria = new InStockCriteria();
-    CategoryClothingCriteria categoryClothingCriteria = new CategoryClothingCriteria();
+    CategoryCriteria categoryClothingCriteria = new CategoryCriteria(ProductCategory.CLOTHING);
 
     // Union of criterias
     OrCriteria<Product> criteria = new OrCriteria<Product>(inStockCriteria, categoryClothingCriteria);
@@ -64,7 +64,7 @@ public class OrCriteriaTest {
   void testNoneMeetCriteria() {
     // Criterias to apply
     InStockCriteria inStockCriteria = new InStockCriteria();
-    CategoryClothingCriteria categoryClothingCriteria = new CategoryClothingCriteria();
+    CategoryCriteria categoryClothingCriteria = new CategoryCriteria(ProductCategory.CLOTHING);
 
     // Union of criterias
     OrCriteria<Product> criteria = new OrCriteria<Product>(inStockCriteria, categoryClothingCriteria);
@@ -92,7 +92,7 @@ public class OrCriteriaTest {
   void testAllMeetCriteria() {
     // Criterias to apply
     InStockCriteria inStockCriteria = new InStockCriteria();
-    CategoryClothingCriteria categoryClothingCriteria = new CategoryClothingCriteria();
+    CategoryCriteria categoryClothingCriteria = new CategoryCriteria(ProductCategory.ELECTRONICS);
 
     // Union of criterias
     OrCriteria<Product> criteria = new OrCriteria<Product>(inStockCriteria, categoryClothingCriteria);
@@ -130,7 +130,7 @@ public class OrCriteriaTest {
   void testEmptyFiltering() {
     // Criterias to apply
     InStockCriteria inStockCriteria = new InStockCriteria();
-    CategoryClothingCriteria categoryClothingCriteria = new CategoryClothingCriteria();
+    CategoryCriteria categoryClothingCriteria = new CategoryCriteria(ProductCategory.CLOTHING);
 
     // Union of criterias
     OrCriteria<Product> criteria = new OrCriteria<Product>(inStockCriteria, categoryClothingCriteria);
