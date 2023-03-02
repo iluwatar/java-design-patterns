@@ -1,0 +1,39 @@
+@startuml
+package com.iluwatar.fanout.fanin {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Consumer {
+    - sumOfSquaredNumbers : AtomicLong
+    ~ Consumer(init : Long)
+    + add(num : Long) : Long
+    + getSumOfSquaredNumbers() : AtomicLong
+  }
+  class FanOutFanIn {
+    + FanOutFanIn()
+    + fanOutFanIn(requests : List<SquareNumberRequest>, consumer : Consumer) : Long {static}
+  }
+  class SquareNumberRequest {
+    - LOGGER : Logger {static}
+    - number : Long
+    + SquareNumberRequest(number : Long)
+    + delayedSquaring(consumer : Consumer)
+  }
+
+  object SquareNumberRequest1
+  object SquareNumberRequest2
+  object SquareNumberRequest3
+  diamond dia
+}
+
+App --> FanOutFanIn
+FanOutFanIn --> "fan out - running in parallel" SquareNumberRequest1
+FanOutFanIn --> "fan out" SquareNumberRequest2
+FanOutFanIn --> "fan out" SquareNumberRequest3
+SquareNumberRequest1 --> "fan in - aggregate using callback" dia
+SquareNumberRequest2 --> "fan in" dia
+SquareNumberRequest3 --> "fan in" dia
+dia --> Consumer
+@enduml

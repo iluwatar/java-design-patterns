@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Partial Response
-folder: partial-response
-permalink: /patterns/partial-response/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Decoupling
 ---
 

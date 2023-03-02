@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import com.google.common.collect.Lists;
 import java.util.List;
 import javax.annotation.Resource;
 import org.junit.jupiter.api.AfterEach;
@@ -59,13 +59,13 @@ class AnnotationBasedRepositoryTest {
    * Prepare data for test
    */
   @BeforeEach
-  public void setup() {
+  void setup() {
     repository.saveAll(persons);
   }
 
   @Test
   void testFindAll() {
-    var actuals = Lists.newArrayList(repository.findAll());
+    var actuals = repository.findAll();
     assertTrue(actuals.containsAll(persons) && persons.containsAll(actuals));
   }
 
@@ -111,7 +111,7 @@ class AnnotationBasedRepositoryTest {
   }
 
   @AfterEach
-  public void cleanup() {
+  void cleanup() {
     repository.deleteAll();
   }
 

@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Mute Idiom
-folder: mute-idiom
-permalink: /patterns/mute-idiom/
-categories: Idiom
-tags: 
+category: Idiom
+language: en
+tag: 
  - Decoupling
 ---
 

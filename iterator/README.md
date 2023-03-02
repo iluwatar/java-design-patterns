@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Iterator
-folder: iterator
-permalink: /patterns/iterator/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Gang of Four
 ---
 
@@ -18,10 +16,10 @@ underlying representation.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Treasure chest contains a set of magical items. There multiple types of items such as rings, 
-> potions and weapons. The items can be browsed by type using an iterator the treasure chest 
+> potions, and weapons. The items can be browsed by type using an iterator the treasure chest 
 > provides. 
 
 In plain words
@@ -112,7 +110,7 @@ public interface Iterator<T> {
 }
 ```
 
-In the following example we iterate through the ring type items found in the chest. 
+In the following example, we iterate through the ring-type items found in the chest. 
 
 ```java
 var itemIterator = TREASURE_CHEST.iterator(ItemType.RING);
@@ -144,7 +142,7 @@ Use the Iterator pattern
 
 * [How to Use Iterator?](http://www.tutorialspoint.com/java/java_using_iterator.htm)
 
-## Real world examples
+## Known uses
 
 * [java.util.Iterator](http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)
 * [java.util.Enumeration](http://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html)

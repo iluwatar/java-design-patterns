@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.execute.around;
 
+import java.io.File;
 import java.io.IOException;
+import java.util.Scanner;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * The Execute Around idiom specifies some code to be executed before and after a method. Typically
+ * The Execute Around idiom specifies executable code before and after a method. Typically
  * the idiom is used when the API has methods to be executed in pairs, such as resource
  * allocation/deallocation or lock acquisition/release.
  *
@@ -34,6 +38,7 @@ import java.io.IOException;
  * the user. The user specifies only what to do with the file by providing the {@link
  * FileWriterAction} implementation.
  */
+@Slf4j
 public class App {
 
   /**
@@ -41,11 +46,17 @@ public class App {
    */
   public static void main(String[] args) throws IOException {
 
+    // create the file writer and execute the custom action
     FileWriterAction writeHello = writer -> {
-      writer.write("Hello");
-      writer.append(" ");
-      writer.append("there!");
+      writer.write("Gandalf was here");
     };
     new SimpleFileWriter("testfile.txt", writeHello);
+
+    // print the file contents
+    try (var scanner = new Scanner(new File("testfile.txt"))) {
+      while (scanner.hasNextLine()) {
+        LOGGER.info(scanner.nextLine());
+      }
+    }
   }
 }

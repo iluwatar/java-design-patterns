@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Callback
-folder: callback
-permalink: /patterns/callback/
-categories: Idiom
-tags:
+category: Idiom
+language: en
+tag:
  - Reactive
 ---
 

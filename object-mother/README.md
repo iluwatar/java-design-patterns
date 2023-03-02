@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Object Mother
-folder: object-mother
-permalink: /patterns/object-mother/
-categories: Creational
-tags:
+category: Creational
+language: en
+tag:
  - Instantiation
 ---
 

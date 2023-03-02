@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.flux.store;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.action.ContentAction;
@@ -43,7 +43,7 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class MenuStoreTest {
+class MenuStoreTest {
 
   @Test
   void testOnAction() {
@@ -52,11 +52,11 @@ public class MenuStoreTest {
     final var view = mock(View.class);
     menuStore.registerView(view);
 
-    verifyZeroInteractions(view);
+    verifyNoMoreInteractions(view);
 
     // Menu should not react on content action ...
     menuStore.onAction(new ContentAction(Content.COMPANY));
-    verifyZeroInteractions(view);
+    verifyNoMoreInteractions(view);
 
     // ... but it should react on a menu action
     menuStore.onAction(new MenuAction(MenuItem.PRODUCTS));

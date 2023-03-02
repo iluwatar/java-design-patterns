@@ -1,0 +1,55 @@
+@startuml
+package com.iluwatar.metamapping.model {
+  class User {
+    - id : Integer
+    - password : String
+    - username : String
+    + User()
+    + User(username : String, password : String)
+    + getId() : Integer
+    + getPassword() : String
+    + getUsername() : String
+    + setId(id : Integer)
+    + setPassword(password : String)
+    + setUsername(username : String)
+    + toString() : String
+  }
+}
+package com.iluwatar.metamapping.utils {
+  class DatabaseUtil {
+    - CREATE_SCHEMA_SQL : String {static}
+    - DB_URL : String {static}
+    - LOGGER : Logger {static}
+    - DatabaseUtil()
+  }
+  class HibernateUtil {
+    - LOGGER : Logger {static}
+    - sessionFactory : SessionFactory {static}
+    - HibernateUtil()
+    - buildSessionFactory() : SessionFactory {static}
+    + getSessionFactory() : SessionFactory {static}
+    + shutdown() {static}
+  }
+}
+package com.iluwatar.metamapping {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + generateSampleUsers() : List<User> {static}
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.metamapping.service {
+  class UserService {
+    - LOGGER : Logger {static}
+    - factory : SessionFactory {static}
+    + UserService()
+    + close()
+    + createUser(user : User) : int
+    + deleteUser(id : Integer)
+    + getUser(id : Integer) : User
+    + listUser() : List<User>
+    + updateUser(id : Integer, user : User)
+  }
+}
+@enduml

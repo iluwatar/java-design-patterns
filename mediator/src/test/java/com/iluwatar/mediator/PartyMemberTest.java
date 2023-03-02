@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.mediator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,7 +47,7 @@ import org.slf4j.LoggerFactory;
  *
  * @author Jeroen Meulemeester
  */
-public class PartyMemberTest {
+class PartyMemberTest {
 
   static Stream<Arguments> dataProvider() {
     return Stream.of(
@@ -60,12 +61,12 @@ public class PartyMemberTest {
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender(PartyMemberBase.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -74,7 +75,7 @@ public class PartyMemberTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testPartyAction(Supplier<PartyMember> memberSupplier) {
+  void testPartyAction(Supplier<PartyMember> memberSupplier) {
     final var member = memberSupplier.get();
 
     for (final var action : Action.values()) {
@@ -90,7 +91,7 @@ public class PartyMemberTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testAct(Supplier<PartyMember> memberSupplier) {
+  void testAct(Supplier<PartyMember> memberSupplier) {
     final var member = memberSupplier.get();
 
     member.act(Action.GOLD);
@@ -114,7 +115,7 @@ public class PartyMemberTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testToString(Supplier<PartyMember> memberSupplier) {
+  void testToString(Supplier<PartyMember> memberSupplier) {
     final var member = memberSupplier.get();
     final var memberClass = member.getClass();
     assertEquals(memberClass.getSimpleName(), member.toString());

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.leaderfollowers;
 
 import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * Worker class that takes work from work center.
+ */
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Slf4j
 public class Worker implements Runnable {
@@ -57,9 +61,11 @@ public class Worker implements Runnable {
       try {
         if (workCenter.getLeader() != null && !workCenter.getLeader().equals(this)) {
           synchronized (workCenter) {
-            workCenter.wait();
+            if (workCenter.getLeader() != null && !workCenter.getLeader().equals(this)) {
+              workCenter.wait();
+              continue;
+            }
           }
-          continue;
         }
         final Task task = taskSet.getTask();
         synchronized (workCenter) {

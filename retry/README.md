@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Retry
-folder: retry
-permalink: /patterns/retry/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
   - Performance
   - Cloud distributed
 ---

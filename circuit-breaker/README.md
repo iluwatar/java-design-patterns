@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Circuit Breaker
-folder: circuit-breaker
-permalink: /patterns/circuit-breaker/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
   - Performance
   - Decoupling
   - Cloud distributed

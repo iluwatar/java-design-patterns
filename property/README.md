@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Property
-folder: property
-permalink: /patterns/property/
-categories: Creational
-tags:
+category: Creational
+language: en
+tag:
  - Instantiation
 ---
 

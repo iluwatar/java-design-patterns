@@ -1,0 +1,67 @@
+@startuml
+package com.iluwatar.chain {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class OrcCommander {
+    - LOGGER : Logger {static}
+    + OrcCommander()
+    + canHandleRequest(req : Request) : boolean
+    + getPriority() : int
+    + handle(req : Request)
+    + name() : String
+  }
+  class OrcKing {
+    - handlers : List<RequestHandler>
+    + OrcKing()
+    - buildChain()
+    + makeRequest(req : Request)
+  }
+  class OrcOfficer {
+    - LOGGER : Logger {static}
+    + OrcOfficer()
+    + canHandleRequest(req : Request) : boolean
+    + getPriority() : int
+    + handle(req : Request)
+    + name() : String
+  }
+  class OrcSoldier {
+    - LOGGER : Logger {static}
+    + OrcSoldier()
+    + canHandleRequest(req : Request) : boolean
+    + getPriority() : int
+    + handle(req : Request)
+    + name() : String
+  }
+  class Request {
+    - handled : boolean
+    - requestDescription : String
+    - requestType : RequestType
+    + Request(requestType : RequestType, requestDescription : String)
+    + getRequestDescription() : String
+    + getRequestType() : RequestType
+    + isHandled() : boolean
+    + markHandled()
+    + toString() : String
+  }
+  interface RequestHandler {
+    + canHandleRequest(Request) : boolean {abstract}
+    + getPriority() : int {abstract}
+    + handle(Request) {abstract}
+    + name() : String {abstract}
+  }
+  enum RequestType {
+    + COLLECT_TAX {static}
+    + DEFEND_CASTLE {static}
+    + TORTURE_PRISONER {static}
+    + valueOf(name : String) : RequestType {static}
+    + values() : RequestType[] {static}
+  }
+}
+OrcKing -->  "-handlers" RequestHandler
+Request -->  "-requestType" RequestType
+OrcCommander ..|> RequestHandler 
+OrcOfficer ..|> RequestHandler 
+OrcSoldier ..|> RequestHandler 
+@enduml

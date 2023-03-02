@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Hexagonal Architecture
-folder: hexagonal
-permalink: /patterns/hexagonal/
-pumlformat: svg
-categories: Architectural
-tags:
+category: Architectural
+language: en
+tag:
  - Decoupling
 ---
 

@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Visitor
-folder: visitor
-permalink: /patterns/visitor/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Gang of Four
 ---
 
@@ -15,11 +13,11 @@ define a new operation without changing the classes of the elements on which it 
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Consider a tree structure with army units. Commander has two sergeants under it and each sergeant 
 > has three soldiers under them. Given that the hierarchy implements the visitor pattern, we can 
-> easily create new objects that interact with the commander, sergeants, soldiers or all of them. 
+> easily create new objects that interact with the commander, sergeants, soldiers, or all of them. 
 
 In plain words
 
@@ -52,11 +50,11 @@ public abstract class Unit {
 
 public interface UnitVisitor {
 
-  void visitSoldier(Soldier soldier);
+  void visit(Soldier soldier);
 
-  void visitSergeant(Sergeant sergeant);
+  void visit(Sergeant sergeant);
 
-  void visitCommander(Commander commander);
+  void visit(Commander commander);
 }
 ```
 
@@ -71,7 +69,7 @@ public class Commander extends Unit {
 
   @Override
   public void accept(UnitVisitor visitor) {
-    visitor.visitCommander(this);
+    visitor.visit(this);
     super.accept(visitor);
   }
 
@@ -89,7 +87,7 @@ public class Sergeant extends Unit {
 
   @Override
   public void accept(UnitVisitor visitor) {
-    visitor.visitSergeant(this);
+    visitor.visit(this);
     super.accept(visitor);
   }
 
@@ -107,7 +105,7 @@ public class Soldier extends Unit {
 
   @Override
   public void accept(UnitVisitor visitor) {
-    visitor.visitSoldier(this);
+    visitor.visit(this);
     super.accept(visitor);
   }
 
@@ -125,17 +123,17 @@ Here are then some concrete visitors.
 public class CommanderVisitor implements UnitVisitor {
 
   @Override
-  public void visitSoldier(Soldier soldier) {
+  public void visit(Soldier soldier) {
     // Do nothing
   }
 
   @Override
-  public void visitSergeant(Sergeant sergeant) {
+  public void visit(Sergeant sergeant) {
     // Do nothing
   }
 
   @Override
-  public void visitCommander(Commander commander) {
+  public void visit(Commander commander) {
     LOGGER.info("Good to see you {}", commander);
   }
 }
@@ -144,17 +142,17 @@ public class CommanderVisitor implements UnitVisitor {
 public class SergeantVisitor implements UnitVisitor {
 
   @Override
-  public void visitSoldier(Soldier soldier) {
+  public void visit(Soldier soldier) {
     // Do nothing
   }
 
   @Override
-  public void visitSergeant(Sergeant sergeant) {
+  public void visit(Sergeant sergeant) {
     LOGGER.info("Hello {}", sergeant);
   }
 
   @Override
-  public void visitCommander(Commander commander) {
+  public void visit(Commander commander) {
     // Do nothing
   }
 }
@@ -163,17 +161,17 @@ public class SergeantVisitor implements UnitVisitor {
 public class SoldierVisitor implements UnitVisitor {
 
   @Override
-  public void visitSoldier(Soldier soldier) {
+  public void visit(Soldier soldier) {
     LOGGER.info("Greetings {}", soldier);
   }
 
   @Override
-  public void visitSergeant(Sergeant sergeant) {
+  public void visit(Sergeant sergeant) {
     // Do nothing
   }
 
   @Override
-  public void visitCommander(Commander commander) {
+  public void visit(Commander commander) {
     // Do nothing
   }
 }
@@ -213,7 +211,13 @@ Use the Visitor pattern when
 * Many distinct and unrelated operations need to be performed on objects in an object structure, and you want to avoid "polluting" their classes with these operations. Visitor lets you keep related operations together by defining them in one class. When the object structure is shared by many applications, use Visitor to put operations in just those applications that need them.
 * The classes defining the object structure rarely change, but you often want to define new operations over the structure. Changing the object structure classes requires redefining the interface to all visitors, which is potentially costly. If the object structure classes change often, then it's probably better to define the operations in those classes.
 
-## Real world examples
+## Tutorials
+
+* [Refactoring Guru](https://refactoring.guru/design-patterns/visitor)
+* [Dzone](https://dzone.com/articles/design-patterns-visitor)
+* [Sourcemaking](https://sourcemaking.com/design_patterns/visitor)
+
+## Known uses
 
 * [Apache Wicket](https://github.com/apache/wicket) component tree, see [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
 * [javax.lang.model.element.AnnotationValue](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValue.html) and [AnnotationValueVisitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/AnnotationValueVisitor.html)

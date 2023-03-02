@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Servant
-folder: servant
-permalink: /patterns/servant/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Decoupling
 ---
 

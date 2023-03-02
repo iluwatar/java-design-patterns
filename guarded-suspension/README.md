@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Guarded Suspension
-folder: guarded-suspension
-permalink: /patterns/guarded-suspension/
-categories: Concurrency
-tags:
+category: Concurrency
+language: en
+tag:
  - Decoupling
 ---
 

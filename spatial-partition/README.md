@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Spatial Partition
-folder: spatial-partition
-permalink: /patterns/spatial-partition/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Performance
  - Game programming
 ---

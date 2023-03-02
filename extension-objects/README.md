@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Extension objects
-folder: extension-objects
-permalink: /patterns/extension-objects/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Extensibility
 ---
 

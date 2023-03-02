@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Service Locator
-folder: service-locator
-permalink: /patterns/service-locator/
-categories: Architectural
-tags:
+category: Architectural
+language: en
+tag:
  - Game programming
  - Performance
 ---

@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Double Dispatch
-folder: double-dispatch
-permalink: /patterns/double-dispatch/
-categories: Idiom
-tags:
+category: Idiom
+language: en
+tag:
  - Extensibility
 ---
 

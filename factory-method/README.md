@@ -1,12 +1,10 @@
 ---
-layout: pattern
 title: Factory Method
-folder: factory-method
-permalink: /patterns/factory-method/
-categories: Creational
-tags:
+category: Creational
+language: en
+tag:
  - Extensibility
- - Gang Of Four
+ - Gang of Four
 ---
 
 ## Also known as
@@ -20,7 +18,7 @@ Factory Method lets a class defer instantiation to subclasses.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Blacksmith manufactures weapons. Elves require Elvish weapons and orcs require Orcish weapons. 
 > Depending on the customer at hand the right type of blacksmith is summoned.
@@ -39,7 +37,7 @@ Wikipedia says
 
  **Programmatic Example**
 
-Taking our blacksmith example above. First of all we have a `Blacksmith` interface and some 
+Taking our blacksmith example above. First of all, we have a `Blacksmith` interface and some 
 implementations for it:
 
 ```java
@@ -64,15 +62,25 @@ When the customers come, the correct type of blacksmith is summoned and requeste
 manufactured:
 
 ```java
-var blacksmith = new ElfBlacksmith();
-blacksmith.manufactureWeapon(WeaponType.SPEAR);
-blacksmith.manufactureWeapon(WeaponType.AXE);
+Blacksmith blacksmith = new OrcBlacksmith();
+Weapon weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
+LOGGER.info("{} manufactured {}", blacksmith, weapon);
+weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
+LOGGER.info("{} manufactured {}", blacksmith, weapon);
+
+blacksmith = new ElfBlacksmith();
+weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
+LOGGER.info("{} manufactured {}", blacksmith, weapon);
+weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
+LOGGER.info("{} manufactured {}", blacksmith, weapon);
 ```
 
 Program output:
-```java
-// Elven spear
-// Elven axe
+```
+The orc blacksmith manufactured an orcish spear
+The orc blacksmith manufactured an orcish axe
+The elf blacksmith manufactured an elven spear
+The elf blacksmith manufactured an elven axe
 ```
 
 ## Class diagram
@@ -88,7 +96,7 @@ Use the Factory Method pattern when:
 * Classes delegate responsibility to one of several helper subclasses, and you want to localize the 
 knowledge of which helper subclass is the delegate.
 
-## Real world examples
+## Known uses
 
 * [java.util.Calendar](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
 * [java.util.ResourceBundle](http://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)

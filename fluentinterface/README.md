@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Fluent Interface
-folder: fluentinterface
-permalink: /patterns/fluentinterface/
-categories: Functional
-tags: 
+category: Functional
+language: en
+tag: 
  - Reactive
 ---
 

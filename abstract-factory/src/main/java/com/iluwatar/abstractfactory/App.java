@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.abstractfactory;
 
 import lombok.extern.slf4j.Slf4j;
@@ -37,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>The essence of the Abstract Factory pattern is a factory interface ({@link KingdomFactory})
  * and its implementations ( {@link ElfKingdomFactory}, {@link OrcKingdomFactory}). The example uses
- * both concrete implementations to create a king, a castle and an army.
+ * both concrete implementations to create a king, a castle, and an army.
  */
 @Slf4j
 public class App implements Runnable {
@@ -60,13 +61,13 @@ public class App implements Runnable {
 
   @Override
   public void run() {
-    LOGGER.info("Elf Kingdom");
+    LOGGER.info("elf kingdom");
     createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     LOGGER.info(kingdom.getArmy().getDescription());
     LOGGER.info(kingdom.getCastle().getDescription());
     LOGGER.info(kingdom.getKing().getDescription());
 
-    LOGGER.info("Orc Kingdom");
+    LOGGER.info("orc kingdom");
     createKingdom(Kingdom.FactoryMaker.KingdomType.ORC);
     LOGGER.info(kingdom.getArmy().getDescription());
     LOGGER.info(kingdom.getCastle().getDescription());

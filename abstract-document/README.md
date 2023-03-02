@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Abstract Document
-folder: abstract-document
-permalink: /patterns/abstract-document/
-categories: Structural
-tags: 
+category: Structural
+language: en
+tag: 
  - Extensibility
 ---
 

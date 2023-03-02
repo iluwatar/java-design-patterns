@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.iterator.list;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,7 +37,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  *
  * @author Jeroen Meulemeester
  */
-public class TreasureChestTest {
+class TreasureChestTest {
 
   /**
    * Create a list of all expected items in the chest.
@@ -64,7 +65,7 @@ public class TreasureChestTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testIterator(Item expectedItem) {
+  void testIterator(Item expectedItem) {
     final var chest = new TreasureChest();
     final var iterator = chest.iterator(expectedItem.getType());
     assertNotNull(iterator);
@@ -91,7 +92,7 @@ public class TreasureChestTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testGetItems(Item expectedItem) throws Exception {
+  void testGetItems(Item expectedItem) throws Exception {
     final var chest = new TreasureChest();
     final var items = chest.getItems();
     assertNotNull(items);

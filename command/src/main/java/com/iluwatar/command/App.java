@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.command;
 
 /**
  * The Command pattern is a behavioral design pattern in which an object is used to encapsulate all
  * information needed to perform an action or trigger an event at a later time. This information
- * includes the method name, the object that owns the method and values for the method parameters.
+ * includes the method name, the object that owns the method, and values for the method parameters.
  *
  * <p>Four terms always associated with the command pattern are command, receiver, invoker and
  * client. A command object (spell) knows about the receiver (target) and invokes a method of the

@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Marker Interface
-folder: marker
-permalink: /patterns/marker/
-categories: Structural
-tags:
+category: Structural
+language: en
+tag:
  - Decoupling
 ---
 

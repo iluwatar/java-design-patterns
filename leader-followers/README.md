@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Leader/Followers
-folder: leader-followers
-permalink: /patterns/leader-followers/
-categories: Concurrency
-tags:
+category: Concurrency
+language: en
+tag:
  - Performance
 ---
 

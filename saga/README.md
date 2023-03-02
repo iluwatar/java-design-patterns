@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Saga
-folder: saga
-permalink: /patterns/saga/
-categories: Concurrency
-tags:
+category: Concurrency
+language: en
+tag:
  - Cloud distributed
 ---
 

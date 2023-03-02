@@ -1,14 +1,8 @@
 ---
-layout: pattern
 title: Version Number
-folder: versionnumber
-permalink: /patterns/versionnumber/
-description: Entity versioning with version number
-
-categories:
- - Concurrency
-
-tags:
+category: Concurrency
+language: en
+tag:
  - Data access
  - Microservices
 ---

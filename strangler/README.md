@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Strangler
-folder: strangler
-permalink: /patterns/strangler/
-categories: Structural
-tags:
+category: Structural
+language: en
+tag:
  - Extensibility
  - Cloud distributed
 ---

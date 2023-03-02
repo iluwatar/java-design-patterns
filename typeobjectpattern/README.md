@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Type-Object
-folder: typeobjectpattern
-permalink: /patterns/typeobjectpattern/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Game programming
  - Extensibility
 ---

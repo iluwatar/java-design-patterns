@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Specification
-folder: specification
-permalink: /patterns/specification/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Data access
 ---
 

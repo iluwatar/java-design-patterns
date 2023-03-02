@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Object Pool
-folder: object-pool
-permalink: /patterns/object-pool/
-categories: Creational
-tags:
+category: Creational
+language: en
+tag:
  - Game programming
  - Performance
 ---

@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Event-based Asynchronous
-folder: event-asynchronous
-permalink: /patterns/event-asynchronous/
-categories: Concurrency
-tags:
+category: Concurrency
+language: en
+tag:
  - Reactive
 ---
 

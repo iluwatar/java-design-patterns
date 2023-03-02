@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Registry
-folder: registry
-permalink: /patterns/registry/
-categories: Creational
-tags:
+category: Creational
+language: en
+tag:
  - Instantiation
 ---
 

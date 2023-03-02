@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: CQRS
-folder: cqrs
-permalink: /patterns/cqrs/
-categories: Architectural
-tags:
+category: Architectural
+language: en
+tag:
   - Performance
   - Cloud distributed
 ---

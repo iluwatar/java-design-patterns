@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Leader Election
-folder: leader-election
-permalink: /patterns/leader-election/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Cloud distributed
 ---
 

@@ -1,10 +1,8 @@
 ---  
-layout: pattern  
 title: Double Buffer 
-folder:  double-buffer  
-permalink: /patterns/double-buffer/  
-categories: Behavioral
-tags:  
+category: Behavioral
+language: en
+tag:  
  - Performance
  - Game programming  
 ---  

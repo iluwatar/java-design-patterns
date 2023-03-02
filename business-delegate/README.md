@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Business Delegate
-folder: business-delegate
-permalink: /patterns/business-delegate/
-categories: Structural
-tags:
+category: Structural
+language: en
+tag:
  - Decoupling
 ---
 

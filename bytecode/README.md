@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Bytecode
-folder: bytecode
-permalink: /patterns/bytecode/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Game programming
 ---
 

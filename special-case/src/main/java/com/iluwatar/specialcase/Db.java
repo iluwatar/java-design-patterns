@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.specialcase;
 
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * DB class for seeding user info.
+ */
 public class Db {
 
   private static Db instance;
@@ -112,6 +116,9 @@ public class Db {
     return itemName2Product.get(itemName);
   }
 
+  /**
+   * User class to store user info.
+   */
   public class User {
 
     private String userName;
@@ -129,6 +136,9 @@ public class Db {
     }
   }
 
+  /**
+   * Account info.
+   */
   public class Account {
 
     private Double amount;
@@ -155,6 +165,9 @@ public class Db {
     }
   }
 
+  /**
+   * Product info.
+   */
   public class Product {
 
     private Double price;

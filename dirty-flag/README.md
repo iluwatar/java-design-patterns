@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Dirty Flag
-folder: dirty-flag
-permalink: /patterns/dirty-flag/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Game programming
  - Performance
 ---

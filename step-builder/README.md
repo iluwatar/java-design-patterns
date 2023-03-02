@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Step Builder
-folder: step-builder
-permalink: /patterns/step-builder/
-categories: Creational
-tags:
+category: Creational
+language: en
+tag:
  - Instantiation
 ---
 

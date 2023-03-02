@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Intercepting Filter
-folder: intercepting-filter
-permalink: /patterns/intercepting-filter/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Decoupling
 ---
 

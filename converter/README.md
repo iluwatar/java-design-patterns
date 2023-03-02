@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Converter
-folder: converter
-permalink: /patterns/converter/
-categories: Creational
-tags:
+category: Creational
+language: en
+tag:
  - Decoupling
 ---
 

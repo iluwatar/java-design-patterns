@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Priority Queue Pattern
-folder: priority-queue
-permalink: /patterns/priority-queue/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Decoupling
  - Cloud distributed
 ---

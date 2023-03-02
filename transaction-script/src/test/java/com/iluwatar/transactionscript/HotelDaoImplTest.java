@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.transactionscript;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -46,7 +47,7 @@ import org.mockito.Mockito;
 /**
  * Tests {@link HotelDaoImpl}.
  */
-public class HotelDaoImplTest {
+class HotelDaoImplTest {
 
   private static final String DB_URL = "jdbc:h2:~/test";
   private HotelDaoImpl dao;
@@ -58,7 +59,7 @@ public class HotelDaoImplTest {
    * @throws SQLException if there is any error while creating schema.
    */
   @BeforeEach
-  public void createSchema() throws SQLException {
+  void createSchema() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL);
          var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.DELETE_SCHEMA_SQL);
@@ -70,7 +71,7 @@ public class HotelDaoImplTest {
    * Represents the scenario where DB connectivity is present.
    */
   @Nested
-  public class ConnectionSuccess {
+  class ConnectionSuccess {
 
     /**
      * Setup for connection success scenario.
@@ -78,7 +79,7 @@ public class HotelDaoImplTest {
      * @throws Exception if any error occurs.
      */
     @BeforeEach
-    public void setUp() throws Exception {
+    void setUp() throws Exception {
       var dataSource = new JdbcDataSource();
       dataSource.setURL(DB_URL);
       dao = new HotelDaoImpl(dataSource);
@@ -90,7 +91,7 @@ public class HotelDaoImplTest {
      * Represents the scenario when DAO operations are being performed on a non existing room.
      */
     @Nested
-    public class NonExistingRoom {
+    class NonExistingRoom {
 
       @Test
       void addingShouldResultInSuccess() throws Exception {
@@ -138,7 +139,7 @@ public class HotelDaoImplTest {
      * room.
      */
     @Nested
-    public class ExistingRoom {
+    class ExistingRoom {
 
       @Test
       void addingShouldResultInFailureAndNotAffectExistingRooms() throws Exception {
@@ -183,7 +184,7 @@ public class HotelDaoImplTest {
    * unavailable.
    */
   @Nested
-  public class ConnectivityIssue {
+  class ConnectivityIssue {
 
     private static final String EXCEPTION_CAUSE = "Connection not available";
 
@@ -193,7 +194,7 @@ public class HotelDaoImplTest {
      * @throws SQLException if any error occurs.
      */
     @BeforeEach
-    public void setUp() throws SQLException {
+    void setUp() throws SQLException {
       dao = new HotelDaoImpl(mockedDatasource());
     }
 
@@ -252,7 +253,7 @@ public class HotelDaoImplTest {
    * @throws SQLException if any error occurs.
    */
   @AfterEach
-  public void deleteSchema() throws SQLException {
+  void deleteSchema() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL);
          var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.DELETE_SCHEMA_SQL);

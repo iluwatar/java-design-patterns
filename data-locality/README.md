@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Data Locality
-folder: data-locality
-permalink: /patterns/data-locality/
-categories: Behavioral
-tags:
+category: Behavioral
+language: en
+tag:
  - Game programming
  - Performance
 ---

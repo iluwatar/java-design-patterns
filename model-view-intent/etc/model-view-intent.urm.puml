@@ -1,0 +1,74 @@
+@startuml
+package com.iluwatar.model.view.intent.actions {
+  class AdditionCalculatorAction {
+    + TAG : String {static}
+    + AdditionCalculatorAction()
+    + tag() : String
+  }
+  interface CalculatorAction {
+    + tag() : String {abstract}
+  }
+  class DivisionCalculatorAction {
+    + TAG : String {static}
+    + DivisionCalculatorAction()
+    + tag() : String
+  }
+  class MultiplicationCalculatorAction {
+    + TAG : String {static}
+    + MultiplicationCalculatorAction()
+    + tag() : String
+  }
+  class SetVariableCalculatorAction {
+    + TAG : String {static}
+    + variable : Double
+    + SetVariableCalculatorAction(variable : Double)
+    + tag() : String
+  }
+  class SubtractionCalculatorAction {
+    + TAG : String {static}
+    + SubtractionCalculatorAction()
+    + tag() : String
+  }
+}
+package com.iluwatar.model.view.intent {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class CalculatorModel {
+    + output : Double
+    + variable : Double
+    + CalculatorModel(output : Double, variable : Double)
+    + copy(output : Double, variable : Double) : CalculatorModel
+  }
+  class CalculatorView {
+    - LOGGER : Logger {static}
+    ~ viewModel : CalculatorViewModel
+    + CalculatorView()
+    ~ add()
+    ~ displayTotal()
+    ~ divide()
+    ~ multiply()
+    ~ setVariable(value : Double)
+    ~ subtract()
+  }
+  class CalculatorViewModel {
+    - model : CalculatorModel
+    + CalculatorViewModel()
+    - add()
+    - divide()
+    + getCalculatorModel() : CalculatorModel
+    ~ handleAction(action : CalculatorAction)
+    - multiply()
+    - setVariable(variable : Double)
+    - subtract()
+  }
+}
+CalculatorView -->  "-viewModel" CalculatorViewModel
+CalculatorViewModel -->  "-model" CalculatorModel
+AdditionCalculatorAction ..|> CalculatorAction 
+DivisionCalculatorAction ..|> CalculatorAction 
+MultiplicationCalculatorAction ..|> CalculatorAction 
+SetVariableCalculatorAction ..|> CalculatorAction 
+SubtractionCalculatorAction ..|> CalculatorAction 
+@enduml

@@ -1,10 +1,8 @@
 ---
-layout: pattern
 title: Aggregator Microservices
-folder: aggregator-microservices
-permalink: /patterns/aggregator-microservices/
-categories: Architectural
-tags:
+category: Architectural
+language: en
+tag:
 - Cloud distributed
 - Decoupling
 - Microservices

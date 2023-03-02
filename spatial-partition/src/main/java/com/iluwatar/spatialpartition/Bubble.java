@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.spatialpartition;
 
 import java.security.SecureRandom;
@@ -67,9 +68,9 @@ public class Bubble extends Point<Bubble> {
     var toBePopped = false; //if any other bubble collides with it, made true
     for (var point : toCheck) {
       var otherId = point.id;
-      if (allBubbles.get(otherId) != null && //the bubble hasn't been popped yet
-          this.id != otherId && //the two bubbles are not the same
-          this.touches(allBubbles.get(otherId))) { //the bubbles touch
+      if (allBubbles.get(otherId) != null //the bubble hasn't been popped yet
+          && this.id != otherId  //the two bubbles are not the same
+          && this.touches(allBubbles.get(otherId))) { //the bubbles touch
         allBubbles.get(otherId).pop(allBubbles);
         toBePopped = true;
       }

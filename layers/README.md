@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Layers
-folder: layers
-permalink: /patterns/layers/
-pumlformat: svg
-categories: Architectural
-tags:
+category: Architectural
+language: en
+tag:
  - Decoupling
 ---
 

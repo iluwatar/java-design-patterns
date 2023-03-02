@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.circuitbreaker;
 
 /**
@@ -38,16 +39,16 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   int failureCount;
   private final int failureThreshold;
   private State state;
-  private final long futureTime = 1000 * 1000 * 1000 * 1000;
+  private final long futureTime = 1000L * 1000 * 1000 * 1000;
 
   /**
    * Constructor to create an instance of Circuit Breaker.
    *
    * @param timeout          Timeout for the API request. Not necessary for this simple example
-   * @param failureThreshold Number of failures we receive from the depended service before changing
-   *                         state to 'OPEN'
-   * @param retryTimePeriod  Time period after which a new request is made to remote service for
-   *                         status check.
+   * @param failureThreshold Number of failures we receive from the depended on service before
+   *                         changing state to 'OPEN'
+   * @param retryTimePeriod  Time, in nanoseconds, period after which a new request is made to
+   *                         remote service for status check.
    */
   DefaultCircuitBreaker(RemoteService serviceToCall, long timeout, int failureThreshold,
       long retryTimePeriod) {

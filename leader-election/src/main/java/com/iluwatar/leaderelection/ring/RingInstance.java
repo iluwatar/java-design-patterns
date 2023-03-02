@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.leaderelection.ring;
 
 import com.iluwatar.leaderelection.AbstractInstance;
 import com.iluwatar.leaderelection.Message;
 import com.iluwatar.leaderelection.MessageManager;
 import java.util.Arrays;
-import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -87,7 +87,7 @@ public class RingInstance extends AbstractInstance {
     var candidateList = Arrays.stream(content.trim().split(","))
         .map(Integer::valueOf)
         .sorted()
-        .collect(Collectors.toList());
+        .toList();
     if (candidateList.contains(localId)) {
       var newLeaderId = candidateList.get(0);
       LOGGER.info(INSTANCE + localId + " - New leader should be " + newLeaderId + ".");
