@@ -1,4 +1,4 @@
-package crtp;
+package crtp.space;
 
 public sealed abstract class Spaceship permits WarSpaceship, CargoSpaceship {
 

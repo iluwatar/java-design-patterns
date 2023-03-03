@@ -1,4 +1,4 @@
-package crtp;
+package crtp.space;
 
 public final class CargoSpaceship extends Spaceship {
 

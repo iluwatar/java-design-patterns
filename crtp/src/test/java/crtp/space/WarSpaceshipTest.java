@@ -1,4 +1,4 @@
-package crtp;
+package crtp.space;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -20,7 +20,7 @@ class WarSpaceshipTest {
   }
 
   @Test
-  void testBuildCargoShip() {
+  void testBuildWarShip() {
     final var ship = new WarSpaceship.Builder("Gravity", 500)
         .withSpeed(Speed.HALF_C)
         .withWeapon(Weapon.PLASMA_CANNON)
