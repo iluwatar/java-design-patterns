@@ -24,13 +24,17 @@
  */
 package com.iluwatar.filter;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 public class AppTest {
+  /**
+   * Tests that the main method does not throw.
+   */
   @Test
-  void dummyTest() {
-    assertTrue(true);
+  void shouldExecuteAppWithoutException() {
+    assertDoesNotThrow(() -> App.main(null));
   }
 }

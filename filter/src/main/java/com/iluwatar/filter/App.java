@@ -24,11 +24,48 @@
  */
 package com.iluwatar.filter;
 
+import com.iluwatar.filter.criteria.AndCriteria;
+import com.iluwatar.filter.criteria.Criteria;
+import com.iluwatar.filter.criteria.InStockCriteria;
+import com.iluwatar.filter.criteria.MediumPriceCriteria;
+import com.iluwatar.filter.product.Product;
+import com.iluwatar.filter.product.ProductCategory;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Main class.
+ * Demonstrates how two filters can be used together using the and filter.
  */
 public class App {
+  /**
+   * Program entry point.
+   * @param args runtime arguments.
+   */
   public static void main(String[] args) {
-    System.out.println("HEJ");
+    Criteria<Product> inStockCriteria = new InStockCriteria();
+    Criteria<Product> mediumPriceCriteria = new MediumPriceCriteria();
+
+    List<Criteria> criteria = new ArrayList<>();
+    criteria.add(inStockCriteria);
+    criteria.add(mediumPriceCriteria);
+
+    AndCriteria andCriteria = new AndCriteria(criteria);
+
+    Product jeans = new Product("Jeans", 1000, ProductCategory.CLOTHING, 4);
+    Product shirt = new Product("Shirt", 400, ProductCategory.CLOTHING, 0);
+    Product shoes = new Product("Shoes", 600, ProductCategory.CLOTHING, 2);
+    List<Product> products = new ArrayList<>();
+    products.add(jeans);
+    products.add(shirt);
+    products.add(shoes);
+
+    List<Product> mediumPriceInStock = andCriteria.meetCriteria(products);
+
+    // mediumPriceInStock contains Shoes, shirt is not in stock and jeans does not meet the price criteria.
+    System.out.println("Products in stock:");
+    for (Product p : mediumPriceInStock) {
+      System.out.println(p.getProductName());
+    }
   }
 }
