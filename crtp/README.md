@@ -23,7 +23,7 @@ TODO: add real-world example
 
 In plain words
 
-Modify certain methods within a type to accept arguments specific to its subtypes.
+Make certain methods within a type to accept arguments specific to its subtypes.
 
 Wikipedia says
 
@@ -42,7 +42,9 @@ TODO: add class diagram
 
 Use the Curiously Recurring Template Pattern when
 
-* TODO: add use cases
+* You have type conflicts when chaining methods in an object hierarchy
+* You want to use a parameterized class method that can accept subclasses of the class as arguments, allowing it to be applied to objects that inherit from the class
+* You want certain methods to work only with instances of the same type, such as for achieving mutual comparability.
 
 ## Tutorials
 
