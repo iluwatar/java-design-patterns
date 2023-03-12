@@ -52,4 +52,3 @@ vores [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). V
 # Licens
 
 Dette projekt er licenseret under vilkårene for MIT-licensen.
-
