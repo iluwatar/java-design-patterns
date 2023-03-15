@@ -45,11 +45,7 @@ public final class ThreadSafeLazyLoadedIvoryTower {
    */
   public static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
     if (instance == null) {
-      synchronized (ThreadSafeLazyLoadedIvoryTower.class) {
-        if (instance == null) {
-          instance = new ThreadSafeLazyLoadedIvoryTower();
-        }
-      }
+      instance = new ThreadSafeLazyLoadedIvoryTower();
     }
     return instance;
   }
