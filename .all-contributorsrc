@@ -2433,6 +2433,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "pikapiu",
+      "name": "东方未白",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50656114?v=4",
+      "profile": "https://pkq.xyz",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
