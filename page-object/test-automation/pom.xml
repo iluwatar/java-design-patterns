@@ -37,11 +37,13 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <scope>test</scope>
+        <version>5.9.2</version>
+        <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>net.sourceforge.htmlunit</groupId>
       <artifactId>htmlunit</artifactId>
+        <version>2.70.0</version>
     </dependency>
   </dependencies>
 </project>

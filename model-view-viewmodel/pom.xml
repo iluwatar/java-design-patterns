@@ -36,7 +36,7 @@
   <artifactId>model-view-viewmodel</artifactId>
   <version>1.26.0-SNAPSHOT</version>
   <properties>
-    <zk.version>9.0.0</zk.version>
+    <zk.version>9.6.0.2</zk.version>
     <jetty-maven-plugin.version>9.4.28.v20200408</jetty-maven-plugin.version>
     <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
     <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
@@ -80,7 +80,8 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <scope>test</scope>
+        <version>5.9.2</version>
+        <scope>test</scope>
     </dependency>
   </dependencies>
   <build>

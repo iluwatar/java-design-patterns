@@ -37,11 +37,13 @@
     <dependency>
       <groupId>com.github.stefanbirkner</groupId>
       <artifactId>system-lambda</artifactId>
+        <version>1.2.1</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <scope>test</scope>
+        <version>5.9.2</version>
+        <scope>test</scope>
     </dependency>
   </dependencies>
 </project>

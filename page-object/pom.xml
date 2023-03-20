@@ -35,7 +35,8 @@
     <dependency>
       <groupId>net.sourceforge.htmlunit</groupId>
       <artifactId>htmlunit</artifactId>
-      <scope>test</scope>
+        <version>2.70.0</version>
+        <scope>test</scope>
     </dependency>
   </dependencies>
   <parent>
