@@ -26,30 +26,17 @@ public final class CalculatorViewModel {
    */
   void handleAction(final CalculatorAction action) {
     switch (action.tag()) {
-      case AdditionCalculatorAction.TAG:
-        add();
-        break;
-
-      case SubtractionCalculatorAction.TAG:
-        subtract();
-        break;
-
-      case MultiplicationCalculatorAction.TAG:
-        multiply();
-        break;
-
-      case DivisionCalculatorAction.TAG:
-        divide();
-        break;
-
-      case SetVariableCalculatorAction.TAG:
+      case AdditionCalculatorAction.TAG -> add();
+      case SubtractionCalculatorAction.TAG -> subtract();
+      case MultiplicationCalculatorAction.TAG -> multiply();
+      case DivisionCalculatorAction.TAG -> divide();
+      case SetVariableCalculatorAction.TAG -> {
         SetVariableCalculatorAction setVariableAction =
-            (SetVariableCalculatorAction) action;
+                (SetVariableCalculatorAction) action;
         setVariable(setVariableAction.getVariable());
-        break;
-
-      default:
-        break;
+      }
+      default -> {
+      }
     }
   }
 

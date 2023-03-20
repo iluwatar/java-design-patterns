@@ -101,13 +101,10 @@ public class App {
    * @return expression
    */
   public static Expression getOperatorInstance(String s, Expression left, Expression right) {
-    switch (s) {
-      case "+":
-        return new PlusExpression(left, right);
-      case "-":
-        return new MinusExpression(left, right);
-      default:
-        return new MultiplyExpression(left, right);
-    }
+    return switch (s) {
+      case "+" -> new PlusExpression(left, right);
+      case "-" -> new MinusExpression(left, right);
+      default -> new MultiplyExpression(left, right);
+    };
   }
 }

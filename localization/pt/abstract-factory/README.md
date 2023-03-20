@@ -145,39 +145,35 @@ Agora, podemos projetar uma fábrica para nossas diferentes fábricas do reino. 
 O cliente pode usar o `FactoryMaker` para criar uma fatoração concreta, que uma vez, produzirá diferentes objetos concretos (derivados de `Army`, `King`, `Castle`).
 Neste exemplo, também usamos um enum para parametrizar qual tipo de fábrica do reino o cliente solicitará.
 
-
 ```java
 public static class FactoryMaker {
 
-  public enum KingdomType {
-    ELF, ORC
-  }
-
-  public static KingdomFactory makeFactory(KingdomType type) {
-    switch (type) {
-      case ELF:
-        return new ElfKingdomFactory();
-      case ORC:
-        return new OrcKingdomFactory();
-      default:
-        throw new IllegalArgumentException("KingdomType not supported.");
+    public enum KingdomType {
+        ELF, ORC
     }
-  }
+
+    public static KingdomFactory makeFactory(KingdomType type) {
+        return switch (type) {
+            case ELF -> new ElfKingdomFactory();
+            case ORC -> new OrcKingdomFactory();
+            default -> throw new IllegalArgumentException("KingdomType not supported.");
+        };
+    }
 }
 
-public static void main(String[] args) {
-  var app = new App();
+    public static void main(String[] args) {
+        var app = new App();
 
-  LOGGER.info("Elf Kingdom");
-  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
-  LOGGER.info(app.getArmy().getDescription());
-  LOGGER.info(app.getCastle().getDescription());
-  LOGGER.info(app.getKing().getDescription());
+        LOGGER.info("Elf Kingdom");
+        app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
+        LOGGER.info(app.getArmy().getDescription());
+        LOGGER.info(app.getCastle().getDescription());
+        LOGGER.info(app.getKing().getDescription());
 
-  LOGGER.info("Orc Kingdom");
-  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
-  -- similar use of the orc factory
-}
+        LOGGER.info("Orc Kingdom");
+        app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
+        --similar use of the orc factory
+    }
 ```
 
 ## Diagrama de classes
