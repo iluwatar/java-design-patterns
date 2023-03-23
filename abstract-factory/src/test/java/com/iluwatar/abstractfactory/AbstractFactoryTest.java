@@ -37,7 +37,7 @@ class AbstractFactoryTest {
   private final App app = new App();
 
   @Test
-  void verifyKingCreation() {
+   void verifyKingCreation() {
     app.createKingdom(Kingdom.FactoryMaker.KingdomType.ELF);
     final var kingdom = app.getKingdom();
 

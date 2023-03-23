@@ -26,13 +26,7 @@ package com.iluwatar.servicelayer.spell;
 
 import com.iluwatar.servicelayer.common.BaseEntity;
 import com.iluwatar.servicelayer.spellbook.Spellbook;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import jakarta.persistence.*;
 
 /**
  * Spell entity.
@@ -41,51 +35,51 @@ import javax.persistence.Table;
 @Table(name = "SPELL")
 public class Spell extends BaseEntity {
 
-  private String name;
+    private String name;
 
-  @Id
-  @GeneratedValue
-  @Column(name = "SPELL_ID")
-  private Long id;
+    @Id
+    @GeneratedValue
+    @Column(name = "SPELL_ID")
+    private Long id;
 
-  @ManyToOne
-  @JoinColumn(name = "SPELLBOOK_ID_FK", referencedColumnName = "SPELLBOOK_ID")
-  private Spellbook spellbook;
+    @ManyToOne
+    @JoinColumn(name = "SPELLBOOK_ID_FK", referencedColumnName = "SPELLBOOK_ID")
+    private Spellbook spellbook;
 
-  public Spell() {
-  }
+    public Spell() {
+    }
 
-  public Spell(String name) {
-    this();
-    this.name = name;
-  }
+    public Spell(String name) {
+        this();
+        this.name = name;
+    }
 
-  public Long getId() {
-    return id;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public Spellbook getSpellbook() {
-    return spellbook;
-  }
+    public Spellbook getSpellbook() {
+        return spellbook;
+    }
 
-  public void setSpellbook(Spellbook spellbook) {
-    this.spellbook = spellbook;
-  }
+    public void setSpellbook(Spellbook spellbook) {
+        this.spellbook = spellbook;
+    }
 
-  @Override
-  public String toString() {
-    return name;
-  }
+    @Override
+    public String toString() {
+        return name;
+    }
 }

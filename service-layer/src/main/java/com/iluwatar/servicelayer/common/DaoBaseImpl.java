@@ -26,10 +26,10 @@ package com.iluwatar.servicelayer.common;
 
 import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 import java.lang.reflect.ParameterizedType;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import java.util.List;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;

@@ -24,9 +24,9 @@
  */
 package com.iluwatar.servicelayer.common;
 
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.MappedSuperclass;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.MappedSuperclass;
 
 /**
  * Base class for entities.

@@ -27,6 +27,7 @@ package com.iluwatar.servicelayer.magic;
 import com.iluwatar.servicelayer.spell.Spell;
 import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.wizard.Wizard;
+
 import java.util.List;
 
 
@@ -35,13 +36,13 @@ import java.util.List;
  */
 public interface MagicService {
 
-  List<Wizard> findAllWizards();
+    List<Wizard> findAllWizards();
 
-  List<Spellbook> findAllSpellbooks();
+    List<Spellbook> findAllSpellbooks();
 
-  List<Spell> findAllSpells();
+    List<Spell> findAllSpells();
 
-  List<Wizard> findWizardsWithSpellbook(String name);
+    List<Wizard> findWizardsWithSpellbook(String name);
 
-  List<Wizard> findWizardsWithSpell(String name);
+    List<Wizard> findWizardsWithSpell(String name);
 }
