@@ -31,6 +31,18 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
+<<<<<<< HEAD
+=======
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+>>>>>>> 9835aa2dc4da0563412f5c66b0db4b09bdad50c3
 
 /**
  * Spellbook entity.

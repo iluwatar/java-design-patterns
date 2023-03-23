@@ -26,7 +26,17 @@ package com.iluwatar.servicelayer.spell;
 
 import com.iluwatar.servicelayer.common.BaseEntity;
 import com.iluwatar.servicelayer.spellbook.Spellbook;
+<<<<<<< HEAD
 import jakarta.persistence.*;
+=======
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+>>>>>>> 9835aa2dc4da0563412f5c66b0db4b09bdad50c3
 
 /**
  * Spell entity.
