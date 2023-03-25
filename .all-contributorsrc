@@ -2442,6 +2442,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "swashb0ckler",
+      "name": "Fredrik Sejr",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62488841?v=4",
+      "profile": "https://github.com/swashb0ckler",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
