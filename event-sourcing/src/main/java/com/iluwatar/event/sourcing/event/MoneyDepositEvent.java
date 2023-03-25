@@ -47,10 +47,6 @@ public class MoneyDepositEvent extends DomainEvent {
     /**
      * Instantiates a new Money deposit event.
      *
-     * @param sequenceId  the sequence id
-     * @param createdTime the created time
-     * @param accountNo   the account no
-     * @param money       the money
      */
 
     public MoneyDepositEvent() {

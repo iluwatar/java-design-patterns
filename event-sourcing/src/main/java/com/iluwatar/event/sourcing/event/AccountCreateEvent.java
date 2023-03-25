@@ -44,11 +44,6 @@ public class AccountCreateEvent extends DomainEvent {
 
     /**
      * Instantiates a new Account created event.
-     *
-     * @param sequenceId  the sequence id
-     * @param createdTime the created time
-     * @param accountNo   the account no
-     * @param owner       the owner
      */
 
     public AccountCreateEvent() {

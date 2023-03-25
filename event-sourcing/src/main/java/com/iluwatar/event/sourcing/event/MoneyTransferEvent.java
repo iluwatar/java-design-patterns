@@ -48,11 +48,6 @@ public class MoneyTransferEvent extends DomainEvent {
     /**
      * Instantiates a new Money transfer event.
      *
-     * @param sequenceId    the sequence id
-     * @param createdTime   the created time
-     * @param money         the money
-     * @param accountNoFrom the account no from
-     * @param accountNoTo   the account no to
      */
 
     public MoneyTransferEvent() {
