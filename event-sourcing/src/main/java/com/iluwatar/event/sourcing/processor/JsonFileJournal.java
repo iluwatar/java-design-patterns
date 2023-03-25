@@ -24,6 +24,11 @@
  */
 package com.iluwatar.event.sourcing.processor;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
@@ -31,6 +36,7 @@ import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.DomainEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -51,95 +57,84 @@ import java.util.List;
  */
 public class JsonFileJournal {
 
-  private final File file;
-  private final List<String> events = new ArrayList<>();
-  private int index = 0;
+    private final File file;
+    private final List<String> events = new ArrayList<>();
+    private int index = 0;
 
-  /**
-   * Instantiates a new Json file journal.
-   */
-  public JsonFileJournal() {
-    file = new File("Journal.json");
-    if (file.exists()) {
-      try (var input = new BufferedReader(
-          new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
-        String line;
-        while ((line = input.readLine()) != null) {
-          events.add(line);
+    /**
+     * Instantiates a new Json file journal.
+     */
+    public JsonFileJournal() {
+        file = new File("Journal.json");
+        if (file.exists()) {
+            try (var input = new BufferedReader(
+                    new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
+                String line;
+                while ((line = input.readLine()) != null) {
+                    events.add(line);
+                }
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            reset();
         }
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
-    } else {
-      reset();
-    }
-  }
-
-
-  /**
-   * Write.
-   *
-   * @param domainEvent the domain event
-   */
-  public void write(DomainEvent domainEvent) {
-    var gson = new Gson();
-    JsonElement jsonElement;
-    if (domainEvent instanceof AccountCreateEvent) {
-      jsonElement = gson.toJsonTree(domainEvent, AccountCreateEvent.class);
-    } else if (domainEvent instanceof MoneyDepositEvent) {
-      jsonElement = gson.toJsonTree(domainEvent, MoneyDepositEvent.class);
-    } else if (domainEvent instanceof MoneyTransferEvent) {
-      jsonElement = gson.toJsonTree(domainEvent, MoneyTransferEvent.class);
-    } else {
-      throw new RuntimeException("Journal Event not recognized");
     }
 
-    try (var output = new BufferedWriter(
-        new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8))) {
-      var eventString = jsonElement.toString();
-      output.write(eventString + "\r\n");
-    } catch (IOException e) {
-      throw new RuntimeException(e);
-    }
-  }
 
-
-  /**
-   * Reset.
-   */
-  public void reset() {
-    file.delete();
-  }
-
-
-  /**
-   * Read the next domain event.
-   *
-   * @return the domain event
-   */
-  public DomainEvent readNext() {
-    if (index >= events.size()) {
-      return null;
-    }
-    var event = events.get(index);
-    index++;
-
-    var parser = new JsonParser();
-    var jsonElement = parser.parse(event);
-    var eventClassName = jsonElement.getAsJsonObject().get("eventClassName").getAsString();
-    var gson = new Gson();
-    DomainEvent domainEvent;
-    if (eventClassName.equals("AccountCreateEvent")) {
-      domainEvent = gson.fromJson(jsonElement, AccountCreateEvent.class);
-    } else if (eventClassName.equals("MoneyDepositEvent")) {
-      domainEvent = gson.fromJson(jsonElement, MoneyDepositEvent.class);
-    } else if (eventClassName.equals("MoneyTransferEvent")) {
-      domainEvent = gson.fromJson(jsonElement, MoneyTransferEvent.class);
-    } else {
-      throw new RuntimeException("Journal Event not recegnized");
+    /**
+     * Write.
+     *
+     * @param domainEvent the domain event
+     */
+    public void write(DomainEvent domainEvent) {
+        try (var output = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8))) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            String json = objectMapper.writeValueAsString(domainEvent);
+            output.write(json);
+            output.newLine();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    domainEvent.setRealTime(false);
-    return domainEvent;
-  }
+    /**
+     * Reset.
+     */
+    public void reset() {
+        file.delete();
+    }
+
+
+    /**
+     * Read the next domain event.
+     *
+     * @return the domain event
+     */
+    public DomainEvent readNext() {
+        if (index >= events.size()) {
+            return null;
+        }
+        var event = events.get(index);
+        index++;
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        DomainEvent domainEvent;
+        try {
+            var jsonNode = objectMapper.readTree(event);
+            var eventClassName = jsonNode.get("eventClassName").asText();
+            domainEvent = switch (eventClassName) {
+                case "AccountCreateEvent" -> objectMapper.treeToValue(jsonNode, AccountCreateEvent.class);
+                case "MoneyDepositEvent" -> objectMapper.treeToValue(jsonNode, MoneyDepositEvent.class);
+                case "MoneyTransferEvent" -> objectMapper.treeToValue(jsonNode, MoneyTransferEvent.class);
+                default -> throw new RuntimeException("Journal Event not recegnized");
+            };
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
+        domainEvent.setRealTime(false);
+        return domainEvent;
+    }
 }

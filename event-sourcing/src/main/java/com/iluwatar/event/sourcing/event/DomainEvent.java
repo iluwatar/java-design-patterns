@@ -25,6 +25,7 @@
 package com.iluwatar.event.sourcing.event;
 
 import java.io.Serializable;
+
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -36,17 +37,25 @@ import lombok.Setter;
  */
 @Setter
 @Getter
-@RequiredArgsConstructor
 public abstract class DomainEvent implements Serializable {
 
-  private final long sequenceId;
-  private final long createdTime;
-  private final String eventClassName;
-  private boolean realTime = true;
+    private long sequenceId;
+    private long createdTime;
+    private String eventClassName;
+    private boolean realTime = true;
 
-  /**
-   * Process.
-   */
-  public abstract void process();
+    public DomainEvent() {
+    }
+
+    public DomainEvent(long sequenceId, long createdTime, String eventClassName) {
+        this.sequenceId = sequenceId;
+        this.createdTime = createdTime;
+        this.eventClassName = eventClassName;
+    }
+
+    /**
+     * Process.
+     */
+    public abstract void process();
 
 }
