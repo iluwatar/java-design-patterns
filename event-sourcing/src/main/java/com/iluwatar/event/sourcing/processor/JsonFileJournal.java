@@ -25,13 +25,7 @@
 package com.iluwatar.event.sourcing.processor;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.DomainEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
