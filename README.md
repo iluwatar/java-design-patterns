@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-268-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-269-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -420,6 +420,7 @@ This project is licensed under the terms of the MIT license.
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ramilS"><img src="https://avatars.githubusercontent.com/u/13589365?v=4?s=100" width="100px;" alt="Ramil Sayetov"/><br /><sub><b>Ramil Sayetov</b></sub></a><br /><a href="#translation-ramilS" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://pkq.xyz"><img src="https://avatars.githubusercontent.com/u/50656114?v=4?s=100" width="100px;" alt="东方未白"/><br /><sub><b>东方未白</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=pikapiu" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/swashb0ckler"><img src="https://avatars.githubusercontent.com/u/62488841?v=4?s=100" width="100px;" alt="Fredrik Sejr"/><br /><sub><b>Fredrik Sejr</b></sub></a><br /><a href="#translation-swashb0ckler" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
