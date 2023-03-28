@@ -38,7 +38,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-      <version>6.0.6</version>
+      <version>6.0.7</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
