@@ -132,40 +132,52 @@ public class CandyGame {
     var start = System.currentTimeMillis();
     var end = System.currentTimeMillis();
     while (end - start + timeSoFar < totalTime && continueRound()) {
-      for (var i = 0; i < this.cells.length; i++) {
-        var points = 0;
-        var j = this.cells.length - 1;
-        while (this.cells[j][i].candy.getType().equals(Type.REWARD_FRUIT)) {
-          points = this.cells[j][i].candy.getPoints();
-          this.cells[j][i].crush(pool, this.cells);
-          handleChange(points);
-        }
-      }
-      for (var i = 0; i < this.cells.length; i++) {
-        var j = cells.length - 1;
-        var points = 0;
-        while (j > 0) {
-          points = this.cells[j][i].interact(this.cells[j - 1][i], this.pool, this.cells);
-          if (points != 0) {
-            handleChange(points);
-          } else {
-            j = j - 1;
-          }
-        }
-      }
-      for (Cell[] cell : this.cells) {
-        var j = 0;
-        var points = 0;
-        while (j < cells.length - 1) {
-          points = cell[j].interact(cell[j + 1], this.pool, this.cells);
-          if (points != 0) {
-            handleChange(points);
-          } else {
-            j = j + 1;
-          }
-        }
-      }
+      this.collectRewardFruit();
+      this.cellInteractionRowReverse();
+      this.cellInteractionRowForward();
       end = System.currentTimeMillis();
+    }
+  }
+
+  private void cellInteractionRowForward() {
+    for (Cell[] cell : this.cells) {
+      var j = 0;
+      var points = 0;
+      while (j < cells.length - 1) {
+        points = cell[j].interact(cell[j + 1], this.pool, this.cells);
+        if (points != 0) {
+          handleChange(points);
+        } else {
+          j = j + 1;
+        }
+      }
+    }
+  }
+
+  private void cellInteractionRowReverse() {
+    for (var i = 0; i < this.cells.length; i++) {
+      var j = cells.length - 1;
+      var points = 0;
+      while (j > 0) {
+        points = this.cells[j][i].interact(this.cells[j - 1][i], this.pool, this.cells);
+        if (points != 0) {
+          handleChange(points);
+        } else {
+          j = j - 1;
+        }
+      }
+    }
+  }
+
+  private void collectRewardFruit() {
+    for (var i = 0; i < this.cells.length; i++) {
+      var points = 0;
+      var j = this.cells.length - 1;
+      while (this.cells[j][i].candy.getType().equals(Type.REWARD_FRUIT)) {
+        points = this.cells[j][i].candy.getPoints();
+        this.cells[j][i].crush(pool, this.cells);
+        handleChange(points);
+      }
     }
   }
 
