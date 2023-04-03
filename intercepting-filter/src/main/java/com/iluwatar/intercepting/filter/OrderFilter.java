@@ -32,13 +32,17 @@ package com.iluwatar.intercepting.filter;
 public class OrderFilter extends AbstractFilter {
 
   @Override
-  public String execute(Order order) {
-    var result = super.execute(order);
-    var orderItem = order.getOrderItem();
-    if (orderItem == null || orderItem.isEmpty()) {
-      return result + "Invalid order! ";
-    } else {
-      return result;
-    }
+  public String getElement(Order order) {
+    return order.getOrderItem();
+  }
+
+  @Override
+  public Boolean getConditonal(String element) {
+    return (element == null || element.isEmpty());
+  }
+
+  @Override
+  public String getInvalidString(String element) {
+    return "Invalid order! ";
   }
 }

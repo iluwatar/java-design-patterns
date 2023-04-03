@@ -56,8 +56,9 @@ public class CustomerDaoImpl implements CustomerDao {
       if (rs.next()) {
         return Optional.of(
             Customer.builder()
-                .name(rs.getString("name"))
-                .money(Money.of(USD, rs.getBigDecimal("money")))
+                    .account(Account.builder()
+                            .name(rs.getString("name"))
+                            .money(Money.of(USD, rs.getBigDecimal("money"))).build())
                 .customerDao(this)
                 .build());
       } else {
@@ -71,8 +72,8 @@ public class CustomerDaoImpl implements CustomerDao {
     var sql = "update CUSTOMERS set money = ? where name = ?;";
     try (var connection = dataSource.getConnection();
         var preparedStatement = connection.prepareStatement(sql)) {
-      preparedStatement.setBigDecimal(1, customer.getMoney().getAmount());
-      preparedStatement.setString(2, customer.getName());
+      preparedStatement.setBigDecimal(1, customer.getAccount().getMoney().getAmount());
+      preparedStatement.setString(2, customer.getAccount().getName());
       preparedStatement.executeUpdate();
     }
   }
@@ -82,8 +83,8 @@ public class CustomerDaoImpl implements CustomerDao {
     var sql = "insert into CUSTOMERS (name, money) values (?, ?)";
     try (var connection = dataSource.getConnection();
         var preparedStatement = connection.prepareStatement(sql)) {
-      preparedStatement.setString(1, customer.getName());
-      preparedStatement.setBigDecimal(2, customer.getMoney().getAmount());
+      preparedStatement.setString(1, customer.getAccount().getName());
+      preparedStatement.setBigDecimal(2, customer.getAccount().getMoney().getAmount());
       preparedStatement.executeUpdate();
     }
   }
@@ -94,7 +95,7 @@ public class CustomerDaoImpl implements CustomerDao {
     try (var connection = dataSource.getConnection();
         var preparedStatement = connection.prepareStatement(sql)) {
       preparedStatement.setString(1, product.getName());
-      preparedStatement.setString(2, customer.getName());
+      preparedStatement.setString(2, customer.getAccount().getName());
       preparedStatement.executeUpdate();
     }
   }
@@ -105,7 +106,7 @@ public class CustomerDaoImpl implements CustomerDao {
     try (var connection = dataSource.getConnection();
         var preparedStatement = connection.prepareStatement(sql)) {
       preparedStatement.setString(1, product.getName());
-      preparedStatement.setString(2, customer.getName());
+      preparedStatement.setString(2, customer.getAccount().getName());
       preparedStatement.executeUpdate();
     }
   }

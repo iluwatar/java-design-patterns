@@ -57,12 +57,35 @@ public abstract class AbstractFilter implements Filter {
     return last;
   }
 
-  @Override
-  public String execute(Order order) {
+//  @Override
+//  public String execute(Order order) {
+//    if (getNext() != null) {
+//      return getNext().execute(order);
+//    } else {
+//      return "";
+//    }
+//  }
+
+  public String getResult(Order order) {
     if (getNext() != null) {
       return getNext().execute(order);
     } else {
       return "";
     }
   }
+
+  @Override
+  public String execute(Order order) {
+    var result = this.getResult(order);
+    var orderElement = this.getElement(order);
+    if (this.getConditonal(orderElement)) {
+      return result + this.getInvalidString(orderElement);
+    } else {
+      return result;
+    }
+  }
+
+  public abstract String getElement(Order order);
+  public abstract Boolean getConditonal(String element);
+  public abstract String getInvalidString(String element);
 }

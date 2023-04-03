@@ -39,6 +39,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
+import org.bson.conversions.Bson;
 
 /**
  * Implementation of DatabaseManager.
@@ -141,14 +142,16 @@ public class MongoDb implements DbManager {
     String userId = userAccount.getUserId();
     String userName = userAccount.getUserName();
     String additionalInfo = userAccount.getAdditionalInfo();
+    Bson filter = new Document(USER_ID, userId);
+    Document document = new Document(USER_ID, userId)
+            .append(USER_NAME, userName)
+            .append(ADD_INFO, additionalInfo);
+    Bson update  = new Document("$set", document);
+    UpdateOptions updateOptions = new UpdateOptions().upsert(true);
     db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
-            new Document(USER_ID, userId),
-            new Document("$set",
-                    new Document(USER_ID, userId)
-                            .append(USER_NAME, userName)
-                            .append(ADD_INFO, additionalInfo)
-            ),
-            new UpdateOptions().upsert(true)
+            filter,
+            update,
+            updateOptions
     );
     return userAccount;
   }

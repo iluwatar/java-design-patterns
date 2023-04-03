@@ -81,8 +81,9 @@ public class App {
 
     var tom =
         Customer.builder()
-            .name("Tom")
-            .money(Money.of(USD, 30))
+                .account(Account.builder()
+                        .name("Tom")
+                        .money(Money.of(USD, 30)).build())
             .customerDao(customerDao)
             .build();
 
@@ -120,25 +121,25 @@ public class App {
     cheese.save();
 
     // show money balance of customer after each purchase
-    tom.showBalance();
+    tom.getAccount().showBalance();
     tom.showPurchases();
 
     // buy eggs
     tom.buyProduct(eggs);
-    tom.showBalance();
+    tom.getAccount().showBalance();
 
     // buy butter
     tom.buyProduct(butter);
-    tom.showBalance();
+    tom.getAccount().showBalance();
 
     // trying to buy cheese, but receive a refusal
     // because he didn't have enough money
     tom.buyProduct(cheese);
-    tom.showBalance();
+    tom.getAccount().showBalance();
 
     // return butter and get money back
     tom.returnProduct(butter);
-    tom.showBalance();
+    tom.getAccount().showBalance();
 
     // Tom can buy cheese now because he has enough money
     // and there is a discount on cheese because it expires in 2 days
@@ -147,7 +148,7 @@ public class App {
     tom.save();
 
     // show money balance and purchases after shopping
-    tom.showBalance();
+    tom.getAccount().showBalance();
     tom.showPurchases();
   }
 

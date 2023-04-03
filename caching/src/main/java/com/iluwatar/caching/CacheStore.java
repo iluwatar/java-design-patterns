@@ -38,16 +38,16 @@ public class CacheStore {
   /**
    * Cache capacity.
    */
-  private static final int CAPACITY = 3;
+  protected static final int CAPACITY = 3;
 
   /**
    * Lru cache see {@link LruCache}.
    */
-  private LruCache cache;
+  protected LruCache cache;
   /**
    * DbManager.
    */
-  private final DbManager dbManager;
+  protected final DbManager dbManager;
 
   /**
    * Cache Store.
@@ -68,84 +68,6 @@ public class CacheStore {
     } else {
       cache.setCapacity(capacity);
     }
-  }
-
-  /**
-   * Get user account using read-through cache.
-   * @param userId {@link String}
-   * @return {@link UserAccount}
-   */
-  public UserAccount readThrough(final String userId) {
-    if (cache.contains(userId)) {
-      LOGGER.info("# Found in Cache!");
-      return cache.get(userId);
-    }
-    LOGGER.info("# Not found in cache! Go to DB!!");
-    UserAccount userAccount = dbManager.readFromDb(userId);
-    cache.set(userId, userAccount);
-    return userAccount;
-  }
-
-  /**
-   * Get user account using write-through cache.
-   * @param userAccount {@link UserAccount}
-   */
-  public void writeThrough(final UserAccount userAccount) {
-    if (cache.contains(userAccount.getUserId())) {
-      dbManager.updateDb(userAccount);
-    } else {
-      dbManager.writeToDb(userAccount);
-    }
-    cache.set(userAccount.getUserId(), userAccount);
-  }
-
-  /**
-   * Get user account using write-around cache.
-   * @param userAccount {@link UserAccount}
-   */
-  public void writeAround(final UserAccount userAccount) {
-    if (cache.contains(userAccount.getUserId())) {
-      dbManager.updateDb(userAccount);
-      // Cache data has been updated -- remove older
-      cache.invalidate(userAccount.getUserId());
-      // version from cache.
-    } else {
-      dbManager.writeToDb(userAccount);
-    }
-  }
-
-  /**
-   * Get user account using read-through cache with write-back policy.
-   * @param userId {@link String}
-   * @return {@link UserAccount}
-   */
-  public UserAccount readThroughWithWriteBackPolicy(final String userId) {
-    if (cache.contains(userId)) {
-      LOGGER.info("# Found in cache!");
-      return cache.get(userId);
-    }
-    LOGGER.info("# Not found in Cache!");
-    UserAccount userAccount = dbManager.readFromDb(userId);
-    if (cache.isFull()) {
-      LOGGER.info("# Cache is FULL! Writing LRU data to DB...");
-      UserAccount toBeWrittenToDb = cache.getLruData();
-      dbManager.upsertDb(toBeWrittenToDb);
-    }
-    cache.set(userId, userAccount);
-    return userAccount;
-  }
-
-  /**
-   * Set user account.
-   * @param userAccount {@link UserAccount}
-   */
-  public void writeBehind(final UserAccount userAccount) {
-    if (cache.isFull() && !cache.contains(userAccount.getUserId())) {
-      LOGGER.info("# Cache is FULL! Writing LRU data to DB...");
-      UserAccount toBeWrittenToDb = cache.getLruData();
-      dbManager.upsertDb(toBeWrittenToDb);
-    }
-    cache.set(userAccount.getUserId(), userAccount);
   }
 
   /**

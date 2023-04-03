@@ -48,15 +48,15 @@ public class Customer {
 
   @NonNull private final CustomerDao customerDao;
   @Builder.Default private List<Product> purchases = new ArrayList<>();
-  @NonNull private String name;
-  @NonNull private Money money;
+  private Account account = Account.builder().build();
+
 
   /**
    * Save customer or update if customer already exist.
    */
   public void save() {
     try {
-      Optional<Customer> customer = customerDao.findByName(name);
+      Optional<Customer> customer = customerDao.findByName(account.getName());
       if (customer.isPresent()) {
         customerDao.update(this);
       } else {
@@ -76,9 +76,9 @@ public class Customer {
     LOGGER.info(
         String.format(
             "%s want to buy %s($%.2f)...",
-            name, product.getName(), product.getSalePrice().getAmount()));
+            account.getName(), product.getName(), product.getSalePrice().getAmount()));
     try {
-      withdraw(product.getSalePrice());
+      account.withdraw(product.getSalePrice());
     } catch (IllegalArgumentException ex) {
       LOGGER.error(ex.getMessage());
       return;
@@ -86,9 +86,9 @@ public class Customer {
     try {
       customerDao.addProduct(product, this);
       purchases.add(product);
-      LOGGER.info(String.format("%s bought %s!", name, product.getName()));
+      LOGGER.info(String.format("%s bought %s!", account.getName(), product.getName()));
     } catch (SQLException exception) {
-      receiveMoney(product.getSalePrice());
+      account.receiveMoney(product.getSalePrice());
       LOGGER.error(exception.getMessage());
     }
   }
@@ -102,18 +102,18 @@ public class Customer {
     LOGGER.info(
         String.format(
             "%s want to return %s($%.2f)...",
-            name, product.getName(), product.getSalePrice().getAmount()));
+            account.getName(), product.getName(), product.getSalePrice().getAmount()));
     if (purchases.contains(product)) {
       try {
         customerDao.deleteProduct(product, this);
         purchases.remove(product);
-        receiveMoney(product.getSalePrice());
-        LOGGER.info(String.format("%s returned %s!", name, product.getName()));
+        account.receiveMoney(product.getSalePrice());
+        LOGGER.info(String.format("%s returned %s!", account.getName(), product.getName()));
       } catch (SQLException ex) {
         LOGGER.error(ex.getMessage());
       }
     } else {
-      LOGGER.error(String.format("%s didn't buy %s...", name, product.getName()));
+      LOGGER.error(String.format("%s didn't buy %s...", account.getName(), product.getName()));
     }
   }
 
@@ -127,27 +127,9 @@ public class Customer {
             .reduce((p1, p2) -> p1 + ", " + p2);
 
     if (purchasesToShow.isPresent()) {
-      LOGGER.info(name + " bought: " + purchasesToShow.get());
+      LOGGER.info(account.getName() + " bought: " + purchasesToShow.get());
     } else {
-      LOGGER.info(name + " didn't bought anything");
+      LOGGER.info(account.getName() + " didn't bought anything");
     }
-  }
-
-  /**
-   * Print customer's money balance.
-   */
-  public void showBalance() {
-    LOGGER.info(name + " balance: " + money);
-  }
-
-  private void withdraw(Money amount) throws IllegalArgumentException {
-    if (money.compareTo(amount) < 0) {
-      throw new IllegalArgumentException("Not enough money!");
-    }
-    money = money.minus(amount);
-  }
-
-  private void receiveMoney(Money amount) {
-    money = money.plus(amount);
   }
 }

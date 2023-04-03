@@ -44,13 +44,15 @@ class CustomerTest {
     private Customer customer;
     private Product product;
 
+
     @BeforeEach
     void setUp() {
         customerDao = mock(CustomerDao.class);
 
         customer = Customer.builder()
-                .name("customer")
-                .money(Money.of(CurrencyUnit.USD, 100.0))
+                .account(Account.builder()
+                        .name("customer")
+                        .money(Money.of(CurrencyUnit.USD, 100.0)).build())
                 .customerDao(customerDao)
                 .build();
 
@@ -84,14 +86,14 @@ class CustomerTest {
         customer.buyProduct(product);
 
         assertEquals(customer.getPurchases(), new ArrayList<>());
-        assertEquals(customer.getMoney(), Money.of(USD,100));
+        assertEquals(customer.getAccount().getMoney(), Money.of(USD,100));
 
         product.setPrice(Money.of(USD, 100.0));
 
         customer.buyProduct(product);
 
         assertEquals(new ArrayList<>(Arrays.asList(product)), customer.getPurchases());
-        assertEquals(Money.zero(USD), customer.getMoney());
+        assertEquals(Money.zero(USD), customer.getAccount().getMoney());
     }
 
     @Test
@@ -101,12 +103,12 @@ class CustomerTest {
         customer.returnProduct(product);
 
         assertEquals(new ArrayList<>(), customer.getPurchases());
-        assertEquals(Money.of(USD, 200), customer.getMoney());
+        assertEquals(Money.of(USD, 200), customer.getAccount().getMoney());
 
         customer.returnProduct(product);
 
         assertEquals(new ArrayList<>(), customer.getPurchases());
-        assertEquals(Money.of(USD, 200), customer.getMoney());
+        assertEquals(Money.of(USD, 200), customer.getAccount().getMoney());
     }
 }
 

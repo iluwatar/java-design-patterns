@@ -32,13 +32,17 @@ package com.iluwatar.intercepting.filter;
 public class DepositFilter extends AbstractFilter {
 
   @Override
-  public String execute(Order order) {
-    var result = super.execute(order);
-    var depositNumber = order.getDepositNumber();
-    if (depositNumber == null || depositNumber.isEmpty()) {
-      return result + "Invalid deposit number! ";
-    } else {
-      return result;
-    }
+  public String getElement(Order order) {
+    return order.getDepositNumber();
+  }
+
+  @Override
+  public Boolean getConditonal(String element) {
+    return (element == null || element.isEmpty());
+  }
+
+  @Override
+  public String getInvalidString(String element) {
+    return "Invalid deposit number! ";
   }
 }

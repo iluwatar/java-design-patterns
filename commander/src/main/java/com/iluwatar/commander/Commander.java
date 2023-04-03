@@ -245,12 +245,7 @@ public class Commander {
       // additional check not needed
       LOG.trace(ORDER_ID + ": Queue time for order over, failed..", qt.order.id);
       return;
-    } else if (qt.taskType.equals(TaskType.PAYMENT) && !qt.order.paid.equals(PaymentStatus.TRYING)
-        || qt.taskType.equals(TaskType.MESSAGING) && (qt.messageType == 1
-        && !qt.order.messageSent.equals(MessageSent.NONE_SENT)
-        || qt.order.messageSent.equals(MessageSent.PAYMENT_FAIL)
-        || qt.order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL))
-        || qt.taskType.equals(TaskType.EMPLOYEE_DB) && qt.order.addedToEmployeeHandle) {
+    } else if (this.isTaskDone(qt)) {
       LOG.trace(ORDER_ID + ": Not queueing task since task already done..", qt.order.id);
       return;
     }
@@ -286,6 +281,16 @@ public class Commander {
       }
     });
     t.start();
+  }
+
+  // Checking if the task has already been done.
+  private boolean isTaskDone(QueueTask qt) {
+    return (qt.taskType.equals(TaskType.PAYMENT) && !qt.order.paid.equals(PaymentStatus.TRYING)
+            || qt.taskType.equals(TaskType.MESSAGING) && (qt.messageType == 1
+            && !qt.order.messageSent.equals(MessageSent.NONE_SENT)
+            || qt.order.messageSent.equals(MessageSent.PAYMENT_FAIL)
+            || qt.order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL))
+            || qt.taskType.equals(TaskType.EMPLOYEE_DB) && qt.order.addedToEmployeeHandle);
   }
 
   private void tryDoingTasksInQueue() { //commander controls operations done to queue

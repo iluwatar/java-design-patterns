@@ -50,6 +50,8 @@ public class AppManager {
    * Cache Store.
    */
   private final CacheStore cacheStore;
+  private final CacheStoreRead cacheStoreRead;
+  private final CacheStoreWrite cacheStoreWrite;
 
   /**
    * Constructor.
@@ -59,6 +61,8 @@ public class AppManager {
   public AppManager(final DbManager newDbManager) {
     this.dbManager = newDbManager;
     this.cacheStore = new CacheStore(newDbManager);
+    this.cacheStoreRead = new CacheStoreRead(newDbManager);
+    this.cacheStoreWrite = new CacheStoreWrite(newDbManager);
   }
 
   /**
@@ -93,9 +97,9 @@ public class AppManager {
     LOGGER.info("Trying to find {} in cache", userId);
     if (cachingPolicy == CachingPolicy.THROUGH
             || cachingPolicy == CachingPolicy.AROUND) {
-      return cacheStore.readThrough(userId);
+      return cacheStoreRead.readThrough(userId);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
-      return cacheStore.readThroughWithWriteBackPolicy(userId);
+      return cacheStoreRead.readThroughWithWriteBackPolicy(userId);
     } else if (cachingPolicy == CachingPolicy.ASIDE) {
       return findAside(userId);
     }
@@ -110,11 +114,11 @@ public class AppManager {
   public void save(final UserAccount userAccount) {
     LOGGER.info("Save record!");
     if (cachingPolicy == CachingPolicy.THROUGH) {
-      cacheStore.writeThrough(userAccount);
+      cacheStoreWrite.writeThrough(userAccount);
     } else if (cachingPolicy == CachingPolicy.AROUND) {
-      cacheStore.writeAround(userAccount);
+      cacheStoreWrite.writeAround(userAccount);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
-      cacheStore.writeBehind(userAccount);
+      cacheStoreWrite.writeBehind(userAccount);
     } else if (cachingPolicy == CachingPolicy.ASIDE) {
       saveAside(userAccount);
     }

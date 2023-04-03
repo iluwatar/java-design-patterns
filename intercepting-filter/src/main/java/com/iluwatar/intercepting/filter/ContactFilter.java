@@ -34,15 +34,19 @@ package com.iluwatar.intercepting.filter;
 public class ContactFilter extends AbstractFilter {
 
   @Override
-  public String execute(Order order) {
-    var result = super.execute(order);
-    var contactNumber = order.getContactNumber();
-    if (contactNumber == null || contactNumber.isEmpty()
-        || contactNumber.matches(".*[^\\d]+.*")
-        || contactNumber.length() != 11) {
-      return result + "Invalid contact number! ";
-    } else {
-      return result;
-    }
+  public String getElement(Order order) {
+    return order.getContactNumber();
+  }
+
+  @Override
+  public Boolean getConditonal(String element) {
+    return (element == null || element.isEmpty()
+            || element.matches(".*[^\\d]+.*")
+            || element.length() != 11);
+  }
+
+  @Override
+  public String getInvalidString(String element) {
+    return "Invalid contact number! ";
   }
 }

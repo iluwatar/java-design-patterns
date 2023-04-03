@@ -33,12 +33,17 @@ package com.iluwatar.intercepting.filter;
 public class AddressFilter extends AbstractFilter {
 
   @Override
-  public String execute(Order order) {
-    var result = super.execute(order);
-    if (order.getAddress() == null || order.getAddress().isEmpty()) {
-      return result + "Invalid address! ";
-    } else {
-      return result;
-    }
+  public String getElement(Order order) {
+    return order.getAddress();
+  }
+
+  @Override
+  public Boolean getConditonal(String element) {
+    return (element == null || element.isEmpty());
+  }
+
+  @Override
+  public String getInvalidString(String element) {
+    return "Invalid address! ";
   }
 }

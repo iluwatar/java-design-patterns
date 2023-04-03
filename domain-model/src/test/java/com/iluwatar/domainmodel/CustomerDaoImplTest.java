@@ -62,7 +62,12 @@ class CustomerDaoImplTest {
     // setup objects
     customerDao = new CustomerDaoImpl(dataSource);
 
-    customer = Customer.builder().name("customer").money(Money.of(CurrencyUnit.USD,100.0)).customerDao(customerDao).build();
+    customer = Customer.builder()
+            .account(Account.builder()
+                    .name("customer")
+                    .money(Money.of(CurrencyUnit.USD,100.0)).build())
+            .customerDao(customerDao)
+            .build();
 
     product =
         Product.builder()
@@ -89,8 +94,8 @@ class CustomerDaoImplTest {
     customer = customerDao.findByName("customer");
 
     assertTrue(customer.isPresent());
-    assertEquals("customer", customer.get().getName());
-    assertEquals(Money.of(USD, 100), customer.get().getMoney());
+    assertEquals("customer", customer.get().getAccount().getName());
+    assertEquals(Money.of(USD, 100), customer.get().getAccount().getMoney());
   }
 
   @Test
@@ -102,8 +107,8 @@ class CustomerDaoImplTest {
         ResultSet rs = statement.executeQuery(SELECT_CUSTOMERS_SQL)) {
 
       assertTrue(rs.next());
-      assertEquals(customer.getName(), rs.getString("name"));
-      assertEquals(customer.getMoney(), Money.of(USD, rs.getBigDecimal("money")));
+      assertEquals(customer.getAccount().getName(), rs.getString("name"));
+      assertEquals(customer.getAccount().getMoney(), Money.of(USD, rs.getBigDecimal("money")));
     }
 
     assertThrows(SQLException.class, () -> customerDao.save(customer));
@@ -113,7 +118,7 @@ class CustomerDaoImplTest {
   void shouldUpdateCustomer() throws SQLException {
     TestUtils.executeSQL(INSERT_CUSTOMER_SQL, dataSource);
 
-    customer.setMoney(Money.of(CurrencyUnit.USD, 99));
+    customer.getAccount().setMoney(Money.of(CurrencyUnit.USD, 99));
 
     customerDao.update(customer);
 
@@ -122,8 +127,8 @@ class CustomerDaoImplTest {
         ResultSet rs = statement.executeQuery(SELECT_CUSTOMERS_SQL)) {
 
       assertTrue(rs.next());
-      assertEquals(customer.getName(), rs.getString("name"));
-      assertEquals(customer.getMoney(), Money.of(USD, rs.getBigDecimal("money")));
+      assertEquals(customer.getAccount().getName(), rs.getString("name"));
+      assertEquals(customer.getAccount().getMoney(), Money.of(USD, rs.getBigDecimal("money")));
       assertFalse(rs.next());
     }
   }
@@ -141,7 +146,7 @@ class CustomerDaoImplTest {
 
       assertTrue(rs.next());
       assertEquals(product.getName(), rs.getString("product_name"));
-      assertEquals(customer.getName(), rs.getString("customer_name"));
+      assertEquals(customer.getAccount().getName(), rs.getString("customer_name"));
       assertFalse(rs.next());
     }
   }

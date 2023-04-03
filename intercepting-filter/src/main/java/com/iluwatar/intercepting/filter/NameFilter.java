@@ -33,13 +33,17 @@ package com.iluwatar.intercepting.filter;
 public class NameFilter extends AbstractFilter {
 
   @Override
-  public String execute(Order order) {
-    var result = super.execute(order);
-    var name = order.getName();
-    if (name == null || name.isEmpty() || name.matches(".*[^\\w|\\s]+.*")) {
-      return result + "Invalid name! ";
-    } else {
-      return result;
-    }
+  public String getElement(Order order) {
+    return order.getName();
+  }
+
+  @Override
+  public Boolean getConditonal(String element) {
+    return (element == null || element.isEmpty() || element.matches(".*[^\\w|\\s]+.*"));
+  }
+
+  @Override
+  public String getInvalidString(String element) {
+    return "Invalid name! ";
   }
 }
