@@ -78,8 +78,8 @@ public class WashingMachine {
       this.washingMachineState = WashingMachineState.WASHING;
     }
     LOGGER.info("{}: Doing the washing", Thread.currentThread().getName());
-
-    this.delayProvider.executeAfterDelay(50, TimeUnit.MILLISECONDS, this::endOfWashing);
+    int interval = 50;
+    this.delayProvider.executeAfterDelay(interval, TimeUnit.MILLISECONDS, this::endOfWashing);
   }
 
   /**
