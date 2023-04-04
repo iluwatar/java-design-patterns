@@ -57,15 +57,12 @@ public abstract class AbstractFilter implements Filter {
     return last;
   }
 
-//  @Override
-//  public String execute(Order order) {
-//    if (getNext() != null) {
-//      return getNext().execute(order);
-//    } else {
-//      return "";
-//    }
-//  }
 
+  /**
+   * Helper method for execute.
+   * @param order Order instance.
+   * @return result string for execute.
+   */
   public String getResult(Order order) {
     if (getNext() != null) {
       return getNext().execute(order);
@@ -74,6 +71,11 @@ public abstract class AbstractFilter implements Filter {
     }
   }
 
+  /**
+   * Created a template 'execute method for all child classes'.
+   * @param order Order instance.
+   * @return String
+   */
   @Override
   public String execute(Order order) {
     var result = this.getResult(order);
@@ -85,7 +87,24 @@ public abstract class AbstractFilter implements Filter {
     }
   }
 
+  /**
+   * Helper functions for the template execute method.
+   * @param order order instance.
+   * @return String.
+   */
   public abstract String getElement(Order order);
+
+  /**
+   * Helper functions for the template execute method.
+   * @param element Element returned by execute method.
+   * @return Boolean.
+   */
   public abstract Boolean getConditonal(String element);
+
+  /**
+   * Helper functions for the template execute method.
+   * @param element Element returned by execute method.
+   * @return string.
+   */
   public abstract String getInvalidString(String element);
 }
