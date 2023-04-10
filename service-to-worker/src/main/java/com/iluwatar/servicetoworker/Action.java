@@ -27,9 +27,9 @@ public class Action {
    * @param command the command
    */
   public void updateModel(Command command) {
-    setFatigue(command.getFatigue());
-    setHealth(command.getHealth());
-    setNourishment(command.getNourishment());
+    setFatigue(command.fatigue());
+    setHealth(command.health());
+    setNourishment(command.nourishment());
   }
 
   /**

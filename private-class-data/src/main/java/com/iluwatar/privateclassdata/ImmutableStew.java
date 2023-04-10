@@ -44,6 +44,6 @@ public class ImmutableStew {
   public void mix() {
     LOGGER
         .info("Mixing the immutable stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
-            data.getNumPotatoes(), data.getNumCarrots(), data.getNumMeat(), data.getNumPeppers());
+            data.numPotatoes(), data.numCarrots(), data.numMeat(), data.numPeppers());
   }
 }
