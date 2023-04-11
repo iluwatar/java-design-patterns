@@ -30,12 +30,11 @@ package com.iluwatar.separatedinterface.invoice;
  *
  */
 public record InvoiceGenerator(double amount, TaxCalculator taxCalculator) {
-    /** TaxCalculator description:
-     * The TaxCalculator interface to calculate the payable tax.
-     *
-     * Amount description:
-     * The base product amount without tax.
-     */
+  /** TaxCalculator description:
+   * The TaxCalculator interface to calculate the payable tax.
+   * Amount description:
+   * The base product amount without tax.
+   */
   public double getAmountWithTax() {
     return amount + taxCalculator.calculate(amount);
   }
