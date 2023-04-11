@@ -31,8 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
-public record NodeImpl(String name,Node left,Node right) implements Node
-{
+public record NodeImpl(String name, Node left, Node right) implements Node {
   @Override
   public Node getLeft() {
     return left;

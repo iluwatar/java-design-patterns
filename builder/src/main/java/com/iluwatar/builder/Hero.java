@@ -25,14 +25,13 @@
 package com.iluwatar.builder;
 
 /**
- * Hero, the record class
+ * Hero,the record class.
  */
 
-public record Hero(Profession profession,String name,HairType hairType,HairColor hairColor,Armor armor,Weapon weapon)
-{
+public record Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
 
   private Hero(Builder builder) {
-    this(builder.profession,builder.name,builder.hairType,builder.hairColor,builder.armor,builder.weapon);
+    this(builder.profession, builder.name, builder.hairType, builder.hairColor, builder.armor, builder.weapon);
   }
 
   @Override

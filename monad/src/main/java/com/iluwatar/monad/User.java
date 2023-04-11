@@ -36,7 +36,6 @@ package com.iluwatar.monad;
  * @param sex   - sex
  * @param email - email address
  */
-public record User(String name, int age, Sex sex, String email)
-{
+public record User(String name, int age, Sex sex, String email) {
 }
 

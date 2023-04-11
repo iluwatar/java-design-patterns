@@ -37,8 +37,7 @@ import java.util.Map;
  * @param videos          initialize resource with existing videos. Act as database.
  */
 
-public record VideoResource(FieldJsonMapper fieldJsonMapper, Map<Integer, Video> videos)
-{
+public record VideoResource(FieldJsonMapper fieldJsonMapper, Map<Integer, Video> videos) {
   /**
    * Get Details.
    *

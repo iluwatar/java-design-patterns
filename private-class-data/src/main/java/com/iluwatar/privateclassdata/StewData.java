@@ -29,9 +29,8 @@ package com.iluwatar.privateclassdata;
  */
 
 /**
- * Record class
+ * Record class.
  */
 
-public record StewData(int numPotatoes, int numCarrots, int numMeat, int numPeppers)
-{
+public record StewData(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
 }

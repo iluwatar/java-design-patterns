@@ -15,6 +15,5 @@ import com.iluwatar.model.view.controller.Nourishment;
  * @param health      the health
  * @param nourishment the nourishment
  */
-public record Command(Fatigue fatigue,Health health,Nourishment nourishment)
-{
+public record Command(Fatigue fatigue, Health health, Nourishment nourishment) {
 }

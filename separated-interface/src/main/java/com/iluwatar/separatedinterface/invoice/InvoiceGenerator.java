@@ -38,8 +38,7 @@ package com.iluwatar.separatedinterface.invoice;
  * Amount description:
  * The base product amount without tax.
  */
-public record InvoiceGenerator(double amount,TaxCalculator taxCalculator)
-{
+public record InvoiceGenerator(double amount, TaxCalculator taxCalculator) {
   public double getAmountWithTax() {
     return amount + taxCalculator.calculate(amount);
   }

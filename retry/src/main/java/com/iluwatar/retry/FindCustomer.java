@@ -25,7 +25,6 @@
 package com.iluwatar.retry;
 
 import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
@@ -47,10 +46,8 @@ import java.util.List;
  * @param errors     the errors to throw before returning {@code customerId}
  */
 
-public record FindCustomer(String customerId, Deque<BusinessException> errors) implements BusinessOperation<String>
-{
-  public FindCustomer(String customerId, BusinessException... errors)
-  {
+public record FindCustomer(String customerId, Deque<BusinessException> errors) implements BusinessOperation<String> {
+  public FindCustomer(String customerId, BusinessException... errors) {
     this(customerId,new ArrayDeque<>(List.of(errors)));
   }
   @Override

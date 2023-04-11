@@ -27,7 +27,7 @@ package com.iluwatar.registry;
 /**
  * Customer entity used in registry pattern example.
  */
-public record Customer(String id,String name) {
+public record Customer(String id, String name) {
 
   @Override
   public String toString() {

@@ -26,11 +26,15 @@ package com.iluwatar.partialresponse;
 
 /**
  * {@link Video} is a entity to serve from server.It contains all video related information.
- * Video is a record class
+ * Video is a record class.
  */
 
-public record Video(Integer id, String title, Integer length, String description, String director, String language)
-{
+public record Video(Integer id, String title, Integer length, String description, String director, String language) {
+    /**
+     * ToString.
+     *
+     * @return json representaion of video
+     */
     @Override
     public String toString() {
         return "{"
