@@ -25,11 +25,7 @@
 package com.iluwatar.monad;
 
 /**
- * User Definition.
- */
-
-/**
- * Record class
+ * Record class.
  *
  * @param name  - name
  * @param age   - age

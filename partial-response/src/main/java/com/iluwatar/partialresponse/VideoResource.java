@@ -29,9 +29,6 @@ import java.util.Map;
 /**
  * The resource record class which serves video information. This class act as server in the demo. Which
  * has all video details.
- */
-
-/**
  *
  * @param fieldJsonMapper map object to json.
  * @param videos          initialize resource with existing videos. Act as database.

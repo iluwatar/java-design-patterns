@@ -30,20 +30,20 @@ package com.iluwatar.partialresponse;
  */
 
 public record Video(Integer id, String title, Integer length, String description, String director, String language) {
-    /**
-     * ToString.
-     *
-     * @return json representaion of video
-     */
-    @Override
-    public String toString() {
-        return "{"
-                + "\"id\": " + id + ","
-                + "\"title\": \"" + title + "\","
-                + "\"length\": " + length + ","
-                + "\"description\": \"" + description + "\","
-                + "\"director\": \"" + director + "\","
-                + "\"language\": \"" + language + "\","
-                + "}";
-    }
+  /**
+   * ToString.
+   *
+   * @return json representaion of video
+   */
+  @Override
+  public String toString() {
+    return "{"
+            + "\"id\": " + id + ","
+            + "\"title\": \"" + title + "\","
+            + "\"length\": " + length + ","
+            + "\"description\": \"" + description + "\","
+            + "\"director\": \"" + director + "\","
+            + "\"language\": \"" + language + "\","
+            + "}";
+  }
 }

@@ -27,18 +27,15 @@ package com.iluwatar.separatedinterface.invoice;
 /**
  * InvoiceGenerator class generates an invoice, accepting the product cost and calculating the total
  * price payable inclusive tax (calculated by {@link TaxCalculator}).
- */
-
-/**
- * TaxCalculator description:
- * The TaxCalculator interface to calculate the payable tax.
- */
-
-/**
- * Amount description:
- * The base product amount without tax.
+ *
  */
 public record InvoiceGenerator(double amount, TaxCalculator taxCalculator) {
+    /** TaxCalculator description:
+     * The TaxCalculator interface to calculate the payable tax.
+     *
+     * Amount description:
+     * The base product amount without tax.
+     */
   public double getAmountWithTax() {
     return amount + taxCalculator.calculate(amount);
   }
