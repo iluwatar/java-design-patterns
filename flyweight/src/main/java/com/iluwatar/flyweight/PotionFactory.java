@@ -44,23 +44,13 @@ public class PotionFactory {
     var potion = potions.get(type);
     if (potion == null) {
       switch (type) {
-        case HEALING:
-          potion = new HealingPotion();
-          break;
-        case HOLY_WATER:
-          potion = new HolyWaterPotion();
-          break;
-        case INVISIBILITY:
-          potion = new InvisibilityPotion();
-          break;
-        case POISON:
-          potion = new PoisonPotion();
-          break;
-        case STRENGTH:
-          potion = new StrengthPotion();
-          break;
-        default:
-          break;
+        case HEALING -> potion = new HealingPotion();
+        case HOLY_WATER -> potion = new HolyWaterPotion();
+        case INVISIBILITY -> potion = new InvisibilityPotion();
+        case POISON -> potion = new PoisonPotion();
+        case STRENGTH -> potion = new StrengthPotion();
+        default -> {
+        }
       }
       if (potion != null) {
         potions.put(type, potion);

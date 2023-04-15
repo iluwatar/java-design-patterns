@@ -105,32 +105,32 @@ public abstract class AbstractInstance implements Instance, Runnable {
    */
   private void processMessage(Message message) {
     switch (message.getType()) {
-      case ELECTION:
+      case ELECTION -> {
         LOGGER.info(INSTANCE + localId + " - Election Message handling...");
         handleElectionMessage(message);
-        break;
-      case LEADER:
+      }
+      case LEADER -> {
         LOGGER.info(INSTANCE + localId + " - Leader Message handling...");
         handleLeaderMessage(message);
-        break;
-      case HEARTBEAT:
+      }
+      case HEARTBEAT -> {
         LOGGER.info(INSTANCE + localId + " - Heartbeat Message handling...");
         handleHeartbeatMessage(message);
-        break;
-      case ELECTION_INVOKE:
+      }
+      case ELECTION_INVOKE -> {
         LOGGER.info(INSTANCE + localId + " - Election Invoke Message handling...");
         handleElectionInvokeMessage();
-        break;
-      case LEADER_INVOKE:
+      }
+      case LEADER_INVOKE -> {
         LOGGER.info(INSTANCE + localId + " - Leader Invoke Message handling...");
         handleLeaderInvokeMessage();
-        break;
-      case HEARTBEAT_INVOKE:
+      }
+      case HEARTBEAT_INVOKE -> {
         LOGGER.info(INSTANCE + localId + " - Heartbeat Invoke Message handling...");
         handleHeartbeatInvokeMessage();
-        break;
-      default:
-        break;
+      }
+      default -> {
+      }
     }
   }
 

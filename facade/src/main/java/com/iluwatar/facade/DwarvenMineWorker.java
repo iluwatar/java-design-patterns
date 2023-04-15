@@ -51,24 +51,12 @@ public abstract class DwarvenMineWorker {
 
   private void action(Action action) {
     switch (action) {
-      case GO_TO_SLEEP:
-        goToSleep();
-        break;
-      case WAKE_UP:
-        wakeUp();
-        break;
-      case GO_HOME:
-        goHome();
-        break;
-      case GO_TO_MINE:
-        goToMine();
-        break;
-      case WORK:
-        work();
-        break;
-      default:
-        LOGGER.info("Undefined action");
-        break;
+      case GO_TO_SLEEP -> goToSleep();
+      case WAKE_UP -> wakeUp();
+      case GO_HOME -> goHome();
+      case GO_TO_MINE -> goToMine();
+      case WORK -> work();
+      default -> LOGGER.info("Undefined action");
     }
   }
 

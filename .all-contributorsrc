@@ -2433,6 +2433,33 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "pikapiu",
+      "name": "东方未白",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50656114?v=4",
+      "profile": "https://pkq.xyz",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "swashb0ckler",
+      "name": "Fredrik Sejr",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62488841?v=4",
+      "profile": "https://github.com/swashb0ckler",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "akshatarora0013",
+      "name": "akshatarora0013",
+      "avatar_url": "https://avatars.githubusercontent.com/u/102645021?v=4",
+      "profile": "https://github.com/akshatarora0013",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
