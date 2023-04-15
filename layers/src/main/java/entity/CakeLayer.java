@@ -27,9 +27,6 @@ package entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.Hibernate;
-
-import java.util.Objects;
 
 /**
  * CakeLayer entity.
@@ -40,6 +37,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@EqualsAndHashCode
 public class CakeLayer {
 
     @Id
@@ -61,18 +59,5 @@ public class CakeLayer {
     @Override
     public String toString() {
         return String.format("id=%s name=%s calories=%d", id, name, calories);
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        CakeLayer cakeLayer = (CakeLayer) o;
-        return id != null && Objects.equals(id, cakeLayer.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
     }
 }
