@@ -22,15 +22,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package crtp.fight;
+package crtp;
+
+import crtp.Fighter;
+import crtp.MmaBantamweightFighter;
+import crtp.MmaFighter;
+import crtp.MmaHeavyweightFighter;
+import org.junit.jupiter.api.Test;
 
 /**
- * MmaLightweightFighter class.
+ * Tests the {@link Fighter} fight method call on some implementations of {@link MmaFighter}. Note
+ * that fighters can only fight against opponents of their same weight class.
  */
-class MmaLightweightFighter extends MmaFighter<MmaLightweightFighter> {
+class FighterTest {
 
-  public MmaLightweightFighter(String name, String surname, String nickName, String speciality) {
-    super(name, surname, nickName, speciality);
+  @Test
+  void fight() {
+    MmaBantamweightFighter fighter1 = new MmaBantamweightFighter("Joe", "Johnson", "The Geek",
+        "Muay Thai");
+    MmaBantamweightFighter fighter2 = new MmaBantamweightFighter("Ed", "Edwards",
+        "The Problem Solver",
+        "Judo");
+    fighter1.fight(fighter2);
+
+    MmaHeavyweightFighter fighter3 = new MmaHeavyweightFighter("Dave", "Davidson",
+        "The Bug Smasher", "Kickboxing");
+    MmaHeavyweightFighter fighter4 = new MmaHeavyweightFighter("Jack", "Jackson",
+        "The Pragmatic", "Brazilian Jiu-Jitsu");
+
+    fighter3.fight(fighter4);
+
+
   }
-
 }

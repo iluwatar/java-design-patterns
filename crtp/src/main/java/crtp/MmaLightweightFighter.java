@@ -22,14 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package crtp.fight;
+package crtp;
 
 /**
- * MmaHeavyweightFighter.
+ * MmaLightweightFighter class.
  */
-public class MmaHeavyweightFighter extends MmaFighter<MmaHeavyweightFighter> {
+class MmaLightweightFighter extends MmaFighter<MmaLightweightFighter> {
 
-  public MmaHeavyweightFighter(String name, String surname, String nickName, String speciality) {
+  public MmaLightweightFighter(String name, String surname, String nickName, String speciality) {
     super(name, surname, nickName, speciality);
   }
 

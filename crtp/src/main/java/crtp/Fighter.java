@@ -22,46 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package crtp.fight;
-
-import lombok.extern.slf4j.Slf4j;
+package crtp;
 
 /**
- * MmaFighter class.
+ * Fighter interface.
  *
- * @param <T> MmaFighter derived class that uses itself as type parameter.
+ * @param <T> The type of fighter.
  */
-@Slf4j
-public class MmaFighter<T extends MmaFighter<T>> implements Fighter<T> {
+public interface Fighter<T> {
 
-  private final String name;
-  private final String surname;
-  private final String nickName;
-  private final String speciality;
-
-  /**
-   * MmaFighter constructor.
-   *
-   * @param name       MmaFighter name.
-   * @param surname    MmaFighter surname.
-   * @param nickName   MmaFighter nickName.
-   * @param speciality MmaFighter speciality.
-   */
-  public MmaFighter(String name, String surname, String nickName, String speciality) {
-    this.name = name;
-    this.surname = surname;
-    this.nickName = nickName;
-    this.speciality = speciality;
-  }
-
-  @Override
-  public void fight(T opponent) {
-    LOGGER.info("{} is going to fight against {}", this, opponent);
-  }
-
-  @Override
-  public String toString() {
-    return name + " \"" + nickName + "\" " + surname;
-  }
+  void fight(T t);
 
 }
