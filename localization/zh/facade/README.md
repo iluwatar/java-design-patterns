@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Facade
-folder: facade
-permalink: /patterns/facade/
-categories: Structural
+category: Structural
 language: zh
-tags:
+tag:
  - Gang Of Four
  - Decoupling
 ---
@@ -32,101 +29,90 @@ tags:
 使用上面金矿的例子。这里我们有矮人的矿工等级制度。
 
 ```java
+
 @Slf4j
 public abstract class DwarvenMineWorker {
 
-  public void goToSleep() {
-    LOGGER.info("{} goes to sleep.", name());
-  }
-
-  public void wakeUp() {
-    LOGGER.info("{} wakes up.", name());
-  }
-
-  public void goHome() {
-    LOGGER.info("{} goes home.", name());
-  }
-
-  public void goToMine() {
-    LOGGER.info("{} goes to the mine.", name());
-  }
-
-  private void action(Action action) {
-    switch (action) {
-      case GO_TO_SLEEP:
-        goToSleep();
-        break;
-      case WAKE_UP:
-        wakeUp();
-        break;
-      case GO_HOME:
-        goHome();
-        break;
-      case GO_TO_MINE:
-        goToMine();
-        break;
-      case WORK:
-        work();
-        break;
-      default:
-        LOGGER.info("Undefined action");
-        break;
+    public void goToSleep() {
+        LOGGER.info("{} goes to sleep.", name());
     }
-  }
 
-  public void action(Action... actions) {
-    Arrays.stream(actions).forEach(this::action);
-  }
+    public void wakeUp() {
+        LOGGER.info("{} wakes up.", name());
+    }
 
-  public abstract void work();
+    public void goHome() {
+        LOGGER.info("{} goes home.", name());
+    }
 
-  public abstract String name();
+    public void goToMine() {
+        LOGGER.info("{} goes to the mine.", name());
+    }
 
-  enum Action {
-    GO_TO_SLEEP, WAKE_UP, GO_HOME, GO_TO_MINE, WORK
-  }
+    private void action(Action action) {
+        switch (action) {
+            case GO_TO_SLEEP -> goToSleep();
+            case WAKE_UP -> wakeUp();
+            case GO_HOME -> goHome();
+            case GO_TO_MINE -> goToMine();
+            case WORK -> work();
+            default -> LOGGER.info("Undefined action");
+        }
+    }
+
+    public void action(Action... actions) {
+        Arrays.stream(actions).forEach(this::action);
+    }
+
+    public abstract void work();
+
+    public abstract String name();
+
+    enum Action {
+        GO_TO_SLEEP, WAKE_UP, GO_HOME, GO_TO_MINE, WORK
+    }
 }
 
 @Slf4j
 public class DwarvenTunnelDigger extends DwarvenMineWorker {
 
-  @Override
-  public void work() {
-    LOGGER.info("{} creates another promising tunnel.", name());
-  }
+    @Override
+    public void work() {
+        LOGGER.info("{} creates another promising tunnel.", name());
+    }
 
-  @Override
-  public String name() {
-    return "Dwarven tunnel digger";
-  }
+    @Override
+    public String name() {
+        return "Dwarven tunnel digger";
+    }
 }
 
 @Slf4j
 public class DwarvenGoldDigger extends DwarvenMineWorker {
 
-  @Override
-  public void work() {
-    LOGGER.info("{} digs for gold.", name());
-  }
+    @Override
+    public void work() {
+        LOGGER.info("{} digs for gold.", name());
+    }
 
-  @Override
-  public String name() {
-    return "Dwarf gold digger";
-  }
+    @Override
+    public String name() {
+        return "Dwarf gold digger";
+    }
 }
 
 @Slf4j
 public class DwarvenCartOperator extends DwarvenMineWorker {
 
-  @Override
-  public void work() {
-    LOGGER.info("{} moves gold chunks out of the mine.", name());
-  }
+    @Override
+    public void work() {
+        LOGGER.info("{} moves gold chunks out of the mine.", name());
+    }
 
-  @Override
-  public String name() {
-    return "Dwarf cart operator";
-  }
+    @Override
+    public String name() {
+        return "Dwarf cart operator";
+    }
 }
 
 ```
@@ -189,7 +175,7 @@ facade.endDay();
 ```
 
 ## 类图
-![alt text](../../../facade/etc/facade.urm.png "Facade pattern class diagram")
+![alt text](./etc/facade.urm.png "Facade pattern class diagram")
 
 ## 适用性
 使用外观模式当

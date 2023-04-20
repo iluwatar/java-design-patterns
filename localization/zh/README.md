@@ -4,7 +4,7 @@
 
 # 设计模式Java版
 
-![Java CI with Maven](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI%20with%20Maven/badge.svg) [](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)![License MIT](https://img.shields.io/badge/license-MIT-blue.svg) [](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg) [](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)
+![Java CI with Maven](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg) [](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)![License MIT](https://img.shields.io/badge/license-MIT-blue.svg) [](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg) [](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=alert_status)
 
 # 介绍
 
@@ -32,8 +32,10 @@
 
 # 如何做出贡献
 
-如果您愿意为该项目做出贡献，则可以在我们的[开发人员Wiki中](https://github.com/iluwatar/java-design-patterns/wiki)找到相关信息。我们将在[Gitter聊天室为](https://gitter.im/iluwatar/java-design-patterns)您提供帮助并回答您的问题。
+如果您愿意为该项目做出贡献，则可以在我们的[开发人员Wiki中](https://github.com/iluwatar/java-design-patterns/wiki)找到相关信息。我们将在[Gitter聊天室](https://gitter.im/iluwatar/java-design-patterns)为您提供帮助并回答您的问题。
 
 # 许可证
 
 该项目使用MIT许可证。
+
+

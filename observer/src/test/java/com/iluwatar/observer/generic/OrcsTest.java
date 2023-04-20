@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,11 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.observer.generic;
 
 import com.iluwatar.observer.WeatherType;
-
 import java.util.Collection;
 import java.util.List;
 
@@ -33,7 +33,7 @@ import java.util.List;
  *
  * @author Jeroen Meulemeester
  */
-public class OrcsTest extends ObserverTest<GOrcs> {
+class OrcsTest extends ObserverTest<GenOrcs> {
 
   @Override
   public Collection<Object[]> dataProvider() {
@@ -49,7 +49,7 @@ public class OrcsTest extends ObserverTest<GOrcs> {
    * Create a new test with the given weather and expected response
    */
   public OrcsTest() {
-    super(GOrcs::new);
+    super(GenOrcs::new);
   }
 
 }

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.observer.generic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -28,7 +29,6 @@ import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.verifyZeroInteractions;
 
 import com.iluwatar.observer.WeatherObserver;
 import com.iluwatar.observer.WeatherType;
@@ -42,17 +42,17 @@ import org.junit.jupiter.api.Test;
  *
  * @author Jeroen Meulemeester
  */
-public class GWeatherTest {
+class GWeatherTest {
 
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
-    appender = new InMemoryAppender(GWeather.class);
+  void setUp() {
+    appender = new InMemoryAppender(GenWeather.class);
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -64,9 +64,9 @@ public class GWeatherTest {
   void testAddRemoveObserver() {
     final var observer = mock(Race.class);
 
-    final var weather = new GWeather();
+    final var weather = new GenWeather();
     weather.addObserver(observer);
-    verifyZeroInteractions(observer);
+    verifyNoMoreInteractions(observer);
 
     weather.timePasses();
     assertEquals("The weather changed to rainy.", appender.getLastMessage());
@@ -86,7 +86,7 @@ public class GWeatherTest {
   @Test
   void testTimePasses() {
     final var observer = mock(Race.class);
-    final var weather = new GWeather();
+    final var weather = new GenWeather();
     weather.addObserver(observer);
 
     final var inOrder = inOrder(observer);

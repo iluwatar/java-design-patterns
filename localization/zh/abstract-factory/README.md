@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Abstract Factory
-folder: abstract-factory
-permalink: /patterns/abstract-factory/
-categories: Creational
+category: Creational
 language: zh
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -21,7 +18,7 @@ tags:
 
 真实世界例子
 
-> 要创建一个王国，我们需要具有共同主题的对象。 精灵王国需要精灵王，精灵城堡和精灵军队，而兽人王国需要兽王，兽人城堡和兽人军队。 王国中的对象之间存在依赖性。
+> 要创建一个王国，我们需要具有共同主题的对象。精灵王国需要精灵国王、精灵城堡和精灵军队，而兽人王国需要兽人国王、兽人城堡和兽人军队。王国中的对象之间存在依赖关系。
 
 通俗的说
 
@@ -135,40 +132,37 @@ This is the Elven Army!
 ```java
 public static class FactoryMaker {
 
-  public enum KingdomType {
-    ELF, ORC
-  }
-
-  public static KingdomFactory makeFactory(KingdomType type) {
-    switch (type) {
-      case ELF:
-        return new ElfKingdomFactory();
-      case ORC:
-        return new OrcKingdomFactory();
-      default:
-        throw new IllegalArgumentException("KingdomType not supported.");
+    public enum KingdomType {
+        ELF, ORC
     }
-  }
+
+    public static KingdomFactory makeFactory(KingdomType type) {
+        return switch (type) {
+            case ELF -> new ElfKingdomFactory();
+            case ORC -> new OrcKingdomFactory();
+            default -> throw new IllegalArgumentException("KingdomType not supported.");
+        };
+    }
 }
 
-public static void main(String[] args) {
-  var app = new App();
+    public static void main(String[] args) {
+        var app = new App();
 
-  LOGGER.info("Elf Kingdom");
-  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
-  LOGGER.info(app.getArmy().getDescription());
-  LOGGER.info(app.getCastle().getDescription());
-  LOGGER.info(app.getKing().getDescription());
+        LOGGER.info("Elf Kingdom");
+        app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
+        LOGGER.info(app.getArmy().getDescription());
+        LOGGER.info(app.getCastle().getDescription());
+        LOGGER.info(app.getKing().getDescription());
 
-  LOGGER.info("Orc Kingdom");
-  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
-  -- similar use of the orc factory
-}
+        LOGGER.info("Orc Kingdom");
+        app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
+        --similar use of the orc factory
+    }
 ```
 
 ## 类图
 
-![alt text](../../../abstract-factory/etc/abstract-factory.urm.png "Abstract Factory class diagram")
+![alt text](./etc/abstract-factory.urm.png "Abstract Factory class diagram")
 
 
 ## 适用性

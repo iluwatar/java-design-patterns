@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Balking
-folder: balking
-permalink: /patterns/balking/
-categories: Concurrency
+category: Concurrency
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

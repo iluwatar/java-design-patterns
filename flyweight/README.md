@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Flyweight
-folder: flyweight
-permalink: /patterns/flyweight/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
  - Gang of Four
  - Performance
 ---
@@ -95,20 +92,20 @@ public class PotionFactory {
     var potion = potions.get(type);
     if (potion == null) {
       switch (type) {
-        case HEALING:
+        case HEALING -> {
           potion = new HealingPotion();
           potions.put(type, potion);
-          break;
-        case HOLY_WATER:
+        }
+        case HOLY_WATER -> {
           potion = new HolyWaterPotion();
           potions.put(type, potion);
-          break;
-        case INVISIBILITY:
+        }
+        case INVISIBILITY -> {
           potion = new InvisibilityPotion();
           potions.put(type, potion);
-          break;
-        default:
-          break;
+        }
+        default -> {
+        }
       }
     }
     return potion;

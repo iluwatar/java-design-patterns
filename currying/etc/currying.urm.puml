@@ -1,0 +1,39 @@
+@startuml
+package com.iluwatar.currying {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Book {
+    ~ BOOK_CREATOR : Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> {static}
+    - author : String
+    - genre : Genre
+    - publicationDate : LocalDate
+    - title : String
+    ~ Book(genre : Genre, author : String, title : String, publicationDate : LocalDate)
+    + builder() : AddGenre {static}
+  }
+  interface AddAuthor {
+    + withAuthor(String) : AddTitle {abstract}
+  }
+  interface AddGenre {
+    + withGenre(Genre) : AddAuthor {abstract}
+  }
+  interface AddPublicationDate {
+    + withPublicationDate(LocalDate) : Book {abstract}
+  }
+  interface AddTitle {
+    + withTitle(String) : AddPublicationDate {abstract}
+  }
+  enum Genre {
+    + FANTASY {static}
+    + HORROR {static}
+    + SCI_FI {static}
+  }
+}
+Book -->  "-genre" Genre
+AddPublicationDate ..+ Book
+AddAuthor ..+ Book
+AddTitle ..+ Book
+AddGenre ..+ Book
+@enduml

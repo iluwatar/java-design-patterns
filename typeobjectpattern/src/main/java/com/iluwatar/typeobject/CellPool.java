@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,16 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.typeobject;
 
+import com.google.gson.JsonParseException;
 import com.iluwatar.typeobject.Candy.Type;
-
-import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
-import org.json.simple.parser.ParseException;
 
 /**
  * The CellPool class allows the reuse of crushed cells instead of creation of new cells each time.
@@ -79,7 +78,7 @@ public class CellPool {
     pointer++;
   }
 
-  Candy[] assignRandomCandytypes() throws IOException, ParseException {
+  Candy[] assignRandomCandytypes() throws JsonParseException {
     var jp = new JsonParser();
     jp.parse();
     var randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'

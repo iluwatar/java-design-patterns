@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.intercepting.filter;
 
 import java.awt.BorderLayout;
@@ -75,7 +76,7 @@ public class Target extends JFrame { //NOSONAR
     jsp.setPreferredSize(new Dimension(500, 250));
     add(jsp, BorderLayout.CENTER);
 
-    del.addActionListener(new DListener());
+    del.addActionListener(new TargetListener());
 
     var rootPane = SwingUtilities.getRootPane(del);
     rootPane.setDefaultButton(del);
@@ -86,7 +87,7 @@ public class Target extends JFrame { //NOSONAR
     dtm.addRow(new Object[]{request[0], request[1], request[2], request[3], request[4]});
   }
 
-  class DListener implements ActionListener {
+  class TargetListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
       var temp = jt.getSelectedRow();

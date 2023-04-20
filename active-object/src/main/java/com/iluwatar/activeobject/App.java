@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.activeobject;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -57,7 +57,7 @@ public class App implements Runnable {
   public void run() {
     List<ActiveCreature> creatures = new ArrayList<>();
     try {
-      for (int i = 0;i < NUM_CREATURES;i++) {
+      for (int i = 0; i < NUM_CREATURES; i++) {
         creatures.add(new Orc(Orc.class.getSimpleName() + i));
         creatures.get(i).eat();
         creatures.get(i).roam();
@@ -67,7 +67,7 @@ public class App implements Runnable {
       logger.error(e.getMessage());
       Thread.currentThread().interrupt();
     } finally {
-      for (int i = 0;i < NUM_CREATURES;i++) {
+      for (int i = 0; i < NUM_CREATURES; i++) {
         creatures.get(i).kill(0);
       }
     }

@@ -1,0 +1,86 @@
+@startuml
+package com.iluwatar.servicetoworker {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  enum Health {
+    + DEAD {static}
+    + HEALTHY {static}
+    + WOUNDED {static}
+    - title : String
+    + toString() : String
+  }
+  enum Nourishment {
+    + HUNGRY {static}
+    + SATURATED {static}
+    + STARVING {static}
+    - title : String
+    + toString() : String
+  }
+  enum Fatigue {
+    + ALERT {static}
+    + SLEEPING {static}
+    + TIRED {static}
+    - title : String
+    + toString() : String
+  }
+
+  class GiantController {
+    - dispatcher : Dispatcher
+    + GiantController(dispatcher : Dispatcher)
+    + setCommand(s : Command, index : int)
+    + updateView(giantModel : GiantModel)
+  }
+
+  class GiantModel {
+    - fatigue : Fatigue
+    - health : Health
+    - nourishment : Nourishment
+    # GiantModel(health : Health, fatigue : Fatigue, nourishment : Nourishment)
+    + getFatigue() : Fatigue
+    + getHealth() : Health
+    + getNourishment() : Nourishment
+    + setFatigue(fatigue : Fatigue)
+    + setHealth(health : Health)
+    + setNourishment(nourishment : Nourishment)
+    + toString() : String
+  }
+  class GiantView {
+    - LOGGER : Logger {static}
+    + GiantView()
+    + displayGiant(giant : GiantModel)
+  }
+
+  class Action{
+    - giant : GiantModel
+    + Action(giant: GiantModel)
+    + updateModel(command: Command)
+    + setHealth(health : Health)
+    + setFatigue(fatigue : Fatigue)
+    + setNourishment(nourishment : Nourishment)
+  }
+
+  class Dispatcher{
+    - giantView : GiantView
+    - actions : ArrayList<Action>
+    + Dispatcher(giantView : GiantView)
+    + addAction(action: Action)
+    + performAction(s: Command, actionIndex: int)
+    + updateView(giant : GiantModel)
+  }
+}
+GiantModel --> Nourishment
+GiantModel --> Fatigue
+GiantModel --> Health
+
+GiantView ..>  GiantModel
+Dispatcher o-up- Action
+GiantController -up-> Dispatcher
+
+GiantController .up.> GiantModel
+Action --> GiantModel
+Dispatcher -up-> GiantView
+Dispatcher .left.> GiantModel
+
+@enduml

@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.event.asynchronous;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -135,4 +136,26 @@ class EventAsynchronousTest {
       LOGGER.error(e.getMessage());
     }
   }
+
+  @Test
+  void testLongRunningEventException(){
+    assertThrows(LongRunningEventException.class, () -> {
+      var eventManager = new EventManager();
+      eventManager.createAsync(2000);
+    });
+  }
+
+
+  @Test
+  void testMaxNumOfEventsAllowedException(){
+    assertThrows(MaxNumOfEventsAllowedException.class, () -> {
+      final var eventManager = new EventManager();
+      for(int i=0;i<1100;i++){
+        eventManager.createAsync(i);
+      }
+    });
+  }
+
+
+
 }

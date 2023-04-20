@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Data Access Object
-folder: dao
-permalink: /patterns/dao/
-categories: Architectural
+category: Architectural
 language: en
-tags:
+tag:
  - Data access
 ---
 
@@ -156,6 +153,11 @@ Use the Data Access Object in any of the following situations:
 
 * When you want to consolidate how the data layer is accessed.
 * When you want to avoid writing multiple data retrieval/persistence layers.
+
+## Tutorials
+
+* [The DAO Pattern in Java](https://www.baeldung.com/java-dao-pattern)
+* [Data Access Object Pattern](https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm)
 
 ## Credits
 

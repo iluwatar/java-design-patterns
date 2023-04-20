@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,10 +26,8 @@ package com.iluwatar.fanout.fanin;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 class FanOutFanInTest {
 
@@ -36,7 +36,7 @@ class FanOutFanInTest {
     final List<Long> numbers = Arrays.asList(1L, 3L, 4L, 7L, 8L);
 
     final List<SquareNumberRequest> requests =
-        numbers.stream().map(SquareNumberRequest::new).collect(Collectors.toList());
+        numbers.stream().map(SquareNumberRequest::new).toList();
 
     final Consumer consumer = new Consumer(0L);
 

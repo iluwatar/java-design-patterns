@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Twin
-folder: twin
-permalink: /patterns/twin/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

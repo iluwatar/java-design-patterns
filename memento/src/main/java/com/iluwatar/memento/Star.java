@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.memento;
 
 /**
@@ -48,24 +49,16 @@ public class Star {
     ageYears *= 2;
     massTons *= 8;
     switch (type) {
-      case RED_GIANT:
-        type = StarType.WHITE_DWARF;
-        break;
-      case SUN:
-        type = StarType.RED_GIANT;
-        break;
-      case SUPERNOVA:
-        type = StarType.DEAD;
-        break;
-      case WHITE_DWARF:
-        type = StarType.SUPERNOVA;
-        break;
-      case DEAD:
+      case RED_GIANT -> type = StarType.WHITE_DWARF;
+      case SUN -> type = StarType.RED_GIANT;
+      case SUPERNOVA -> type = StarType.DEAD;
+      case WHITE_DWARF -> type = StarType.SUPERNOVA;
+      case DEAD -> {
         ageYears *= 2;
         massTons = 0;
-        break;
-      default:
-        break;
+      }
+      default -> {
+      }
     }
   }
 

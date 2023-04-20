@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,13 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.execute.around;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -53,9 +53,10 @@ public class App {
     new SimpleFileWriter("testfile.txt", writeHello);
 
     // print the file contents
-    var scanner = new Scanner(new File("testfile.txt"));
-    while (scanner.hasNextLine()) {
-      LOGGER.info(scanner.nextLine());
+    try (var scanner = new Scanner(new File("testfile.txt"))) {
+      while (scanner.hasNextLine()) {
+        LOGGER.info(scanner.nextLine());
+      }
     }
   }
 }

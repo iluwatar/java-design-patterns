@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Abstract Factory
-folder: abstract-factory
-permalink: /patterns/abstract-factory/
-categories: Creational
+category: Creational
 language: en
-tags:
+tag:
  - Gang of Four
 ---
 
@@ -151,35 +148,32 @@ In this example, we also used an enum to parameterize which type of kingdom fact
 ```java
 public static class FactoryMaker {
 
-  public enum KingdomType {
-    ELF, ORC
-  }
-
-  public static KingdomFactory makeFactory(KingdomType type) {
-    switch (type) {
-      case ELF:
-        return new ElfKingdomFactory();
-      case ORC:
-        return new OrcKingdomFactory();
-      default:
-        throw new IllegalArgumentException("KingdomType not supported.");
+    public enum KingdomType {
+        ELF, ORC
     }
-  }
+
+    public static KingdomFactory makeFactory(KingdomType type) {
+        return switch (type) {
+            case ELF -> new ElfKingdomFactory();
+            case ORC -> new OrcKingdomFactory();
+            default -> throw new IllegalArgumentException("KingdomType not supported.");
+        };
+    }
 }
 
-public static void main(String[] args) {
-  var app = new App();
+    public static void main(String[] args) {
+        var app = new App();
 
-  LOGGER.info("Elf Kingdom");
-  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
-  LOGGER.info(app.getArmy().getDescription());
-  LOGGER.info(app.getCastle().getDescription());
-  LOGGER.info(app.getKing().getDescription());
+        LOGGER.info("Elf Kingdom");
+        app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
+        LOGGER.info(app.getArmy().getDescription());
+        LOGGER.info(app.getCastle().getDescription());
+        LOGGER.info(app.getKing().getDescription());
 
-  LOGGER.info("Orc Kingdom");
-  app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
-  -- similar use of the orc factory
-}
+        LOGGER.info("Orc Kingdom");
+        app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
+        --similar use of the orc factory
+    }
 ```
 
 ## Class diagram

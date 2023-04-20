@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,7 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.visitor;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,12 +48,12 @@ public abstract class VisitorTest<V extends UnitVisitor> {
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -97,7 +98,7 @@ public abstract class VisitorTest<V extends UnitVisitor> {
 
   @Test
   void testVisitCommander() {
-    this.visitor.visitCommander(new Commander());
+    this.visitor.visit(new Commander());
     if (this.commanderResponse.isPresent()) {
       assertEquals(this.commanderResponse.get(), appender.getLastMessage());
       assertEquals(1, appender.getLogSize());
@@ -106,7 +107,7 @@ public abstract class VisitorTest<V extends UnitVisitor> {
 
   @Test
   void testVisitSergeant() {
-    this.visitor.visitSergeant(new Sergeant());
+    this.visitor.visit(new Sergeant());
     if (this.sergeantResponse.isPresent()) {
       assertEquals(this.sergeantResponse.get(), appender.getLastMessage());
       assertEquals(1, appender.getLogSize());
@@ -115,7 +116,7 @@ public abstract class VisitorTest<V extends UnitVisitor> {
 
   @Test
   void testVisitSoldier() {
-    this.visitor.visitSoldier(new Soldier());
+    this.visitor.visit(new Soldier());
     if (this.soldierResponse.isPresent()) {
       assertEquals(this.soldierResponse.get(), appender.getLastMessage());
       assertEquals(1, appender.getLogSize());

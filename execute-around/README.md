@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Execute Around
-folder: execute-around
-permalink: /patterns/execute-around/
-categories: Idiom
+category: Idiom
 language: en
-tags:
+tag:
  - Extensibility
 ---
 

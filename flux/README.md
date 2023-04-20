@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Flux
-folder: flux
-permalink: /patterns/flux/
-categories: Structural
+category: Structural
 language: en
-tags:
+tag:
  - Decoupling
 ---
 

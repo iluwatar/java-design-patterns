@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Transaction Script
-folder: transaction-script
-permalink: /patterns/transaction-script/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Data access
 ---
 

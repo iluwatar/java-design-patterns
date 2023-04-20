@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Prototype
-folder: prototype
-permalink: /patterns/prototype/
-categories: Creational
+category: Creational
 language: en
-tags: 
+tag: 
  - Gang Of Four
  - Instantiation
 ---
@@ -26,7 +23,7 @@ used for creating new objects from prototype instances.
 
 Real-world example
 
-> Remember Dolly? The sheep that was cloned! Lets not get into the details but the key point here is 
+> Remember Dolly? The sheep that was cloned! Let's not get into the details but the key point here is 
 > that it is all about cloning.
 > 
 > 还记得多莉?克隆的那只羊!让我们不进入细节，但关键是，这是关于克隆。
@@ -59,8 +56,11 @@ this with its `copy` method.
 在Java中，建议将原型模式实现如下。首先，创建一个带有用于克隆对象的方法的接口。在这个例子中，“Prototype”接口通过它的“copy”方法来实现这一点。
 
 ```java
-public interface Prototype {
-  Object copy();
+public abstract class Prototype<T> implements Cloneable {
+    @SneakyThrows
+    public T copy() {
+        return (T) super.clone();
+    }
 }
 ```
 
@@ -70,15 +70,13 @@ Our example contains a hierarchy of different creatures. For example, let's look
 我们的例子包含了不同生物的层次结构。例如，让我们看看' Beast '和' OrcBeast '类。
 
 ```java
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
-public abstract class Beast implements Prototype {
+public abstract class Beast extends Prototype<Beast> {
 
   public Beast(Beast source) {
   }
 
-  @Override
-  public abstract Beast copy();
 }
 
 @EqualsAndHashCode(callSuper = false)
@@ -93,18 +91,14 @@ public class OrcBeast extends Beast {
   }
 
   @Override
-  public OrcBeast copy() {
-    return new OrcBeast(this);
-  }
-
-  @Override
   public String toString() {
     return "Orcish wolf attacks with " + weapon;
   }
+
 }
 ```
 
-We don't want to go into too much details, but the full example contains also base classes `Mage`
+We don't want to go into too many details, but the full example contains also base classes `Mage`
 and `Warlord` and there are specialized implementations for those for elves in addition to orcs.
 
 我们不想透露太多细节，但是完整的例子还包含了基类“法师”和“军阀”，除了兽人之外，精灵还有专门的实现。

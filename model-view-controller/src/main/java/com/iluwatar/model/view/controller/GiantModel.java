@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,47 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.model.view.controller;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * GiantModel contains the giant data.
  */
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class GiantModel {
 
   private Health health;
   private Fatigue fatigue;
   private Nourishment nourishment;
 
-  GiantModel(Health health, Fatigue fatigue, Nourishment nourishment) {
-    this.health = health;
-    this.fatigue = fatigue;
-    this.nourishment = nourishment;
-  }
-
-  public Health getHealth() {
-    return health;
-  }
-
-  public void setHealth(Health health) {
-    this.health = health;
-  }
-
-  public Fatigue getFatigue() {
-    return fatigue;
-  }
-
-  public void setFatigue(Fatigue fatigue) {
-    this.fatigue = fatigue;
-  }
-
-  public Nourishment getNourishment() {
-    return nourishment;
-  }
-
-  public void setNourishment(Nourishment nourishment) {
-    this.nourishment = nourishment;
-  }
 
   @Override
   public String toString() {

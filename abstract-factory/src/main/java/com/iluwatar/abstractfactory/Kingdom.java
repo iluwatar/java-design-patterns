@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,12 +22,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.abstractfactory;
 
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Helper class to manufacture {@link KingdomFactory} beans. 
+ */
 @Getter
 @Setter
 public class Kingdom {
@@ -50,14 +54,11 @@ public class Kingdom {
      * The factory method to create KingdomFactory concrete objects.
      */
     public static KingdomFactory makeFactory(KingdomType type) {
-      switch (type) {
-        case ELF:
-          return new ElfKingdomFactory();
-        case ORC:
-          return new OrcKingdomFactory();
-        default:
-          throw new IllegalArgumentException("KingdomType not supported.");
-      }
+      return switch (type) {
+        case ELF -> new ElfKingdomFactory();
+        case ORC -> new OrcKingdomFactory();
+        default -> throw new IllegalArgumentException("KingdomType not supported.");
+      };
     }
   }
 }

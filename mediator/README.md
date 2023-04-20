@@ -1,11 +1,8 @@
 ---
-layout: pattern
 title: Mediator
-folder: mediator
-permalink: /patterns/mediator/
-categories: Behavioral
+category: Behavioral
 language: en
-tags:
+tag:
  - Gang Of Four
  - Decoupling
 ---

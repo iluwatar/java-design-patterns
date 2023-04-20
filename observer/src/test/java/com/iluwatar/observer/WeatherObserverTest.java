@@ -1,6 +1,8 @@
 /*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
  * The MIT License
- * Copyright © 2014-2021 Ilkka Seppälä
+ * Copyright © 2014-2022 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.observer;
 
 import com.iluwatar.observer.utils.InMemoryAppender;
 
 import java.util.Collection;
 import java.util.function.Supplier;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -49,12 +49,12 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
   private InMemoryAppender appender;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     appender = new InMemoryAppender();
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     appender.stop();
   }
 
@@ -79,7 +79,7 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  public void testObserver(WeatherType weather, String response) {
+  void testObserver(WeatherType weather, String response) {
     final var observer = this.factory.get();
     assertEquals(0, appender.getLogSize());
 
