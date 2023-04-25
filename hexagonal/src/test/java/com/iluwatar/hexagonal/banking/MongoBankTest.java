@@ -26,11 +26,11 @@ class MongoBankTest {
 
   private static final String TEST_DB = "lotteryDBTest";
   private static final String TEST_ACCOUNTS_COLLECTION = "testAccounts";
-  private static final String LOCALHOST = "localhost";
-  private static final int MONGO_TEST_PORT = 27017;
+  private static final String TEST_HOST = "localhost";
+  private static final int TEST_PORT = 27017;
 
   private static MongodExecutable mongodExe;
-  private static MongodProcess mongod;
+  private static MongodProcess mongodProcess;
   private static MongoClient mongoClient;
   private static MongoDatabase mongoDatabase;
 
@@ -39,23 +39,18 @@ class MongoBankTest {
   @BeforeAll
   static void setUp() throws Exception {
     MongodStarter starter = MongodStarter.getDefaultInstance();
-    MongodConfig mongodConfig = MongodConfig.builder()
-            .version(Version.Main.PRODUCTION)
-            .net(new de.flapdoodle.embed.mongo.config.Net(LOCALHOST, MONGO_TEST_PORT, true))
-            .build();
+    MongodConfig mongodConfig = buildMongoConfig();
+
+    mongoClient = buildMongoClient();
     mongodExe = starter.prepare(mongodConfig);
-    mongod = mongodExe.start();
-    mongoClient = MongoClients.create(
-            MongoClientSettings.builder()
-                    .applyToClusterSettings(builder -> builder.hosts(List.of(new ServerAddress(LOCALHOST, MONGO_TEST_PORT))))
-                    .build());
+    mongodProcess = mongodExe.start();
     mongoDatabase = mongoClient.getDatabase(TEST_DB);
   }
 
   @BeforeEach
   void init() {
-    System.setProperty("mongo-host", LOCALHOST);
-    System.setProperty("mongo-port", String.valueOf(MONGO_TEST_PORT));
+    System.setProperty("mongo-host", TEST_HOST);
+    System.setProperty("mongo-port", String.valueOf(TEST_PORT));
     mongoDatabase.drop();
     mongoBank = new MongoBank(mongoDatabase.getName(), TEST_ACCOUNTS_COLLECTION);
   }
@@ -63,7 +58,7 @@ class MongoBankTest {
   @AfterAll
   static void tearDown() {
     mongoClient.close();
-    mongod.stop();
+    mongodProcess.stop();
     mongodExe.stop();
   }
 
@@ -81,5 +76,20 @@ class MongoBankTest {
     mongoBank.transferFunds(9, "000-000", "111-111");
     assertEquals(1, mongoBank.getFunds("000-000"));
     assertEquals(9, mongoBank.getFunds("111-111"));
+  }
+
+  private static MongodConfig buildMongoConfig() {
+    return MongodConfig.builder()
+            .version(Version.Main.PRODUCTION)
+            .net(new de.flapdoodle.embed.mongo.config.Net(TEST_HOST, TEST_PORT, true))
+            .build();
+  }
+
+  private static MongoClient buildMongoClient() {
+    return MongoClients.create(
+            MongoClientSettings.builder()
+                .applyToClusterSettings(builder -> builder.hosts(List.of(new ServerAddress(TEST_HOST, TEST_PORT))))
+                .build()
+    );
   }
 }
