@@ -2,9 +2,9 @@ package com.iluwatar.builder;
 
 public class BuilderTest {
     // Builder Pattern 실습 !!!!
-
-
     public static void main(String[] args) {
+        String hairVal = AnimalHairType.CURLY.toString();
+        String hairExplain = AnimalHairType.STRAIGHT.getHairExplain();
 
         // Java 10 이후 부터 var 키워드 사용이 가능
         var animalTest = new Animal
@@ -20,9 +20,7 @@ public class BuilderTest {
                 .buildAnimal();
 
         System.out.println("BUILDER ANIMAL OBJECT 2 : " + builderAnimalTest);
-
     }
-
 }
 
 enum AnimalHairType {
@@ -37,6 +35,10 @@ enum AnimalHairType {
 
     @Override
     public String toString() {
+        return this.explainHair;
+    }
+
+    public String getHairExplain() {
         return this.explainHair;
     }
 }
@@ -61,6 +63,8 @@ class Animal {
             this.name = name;
         }
 
+        // Builder Pattern 에서 자기 자신 this 를 return 하면서
+        // 계속 체이닝 메서드를 사용할 수 있게 해줌
         AnimalBuilder setHairType(AnimalHairType hairT) {
             this.animalHairType = hairT;
             return this;
