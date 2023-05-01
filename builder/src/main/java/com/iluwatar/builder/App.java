@@ -57,23 +57,30 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
+    // Builder Pattern - 빌더 패턴은 복잡한 객체를 생성하는 방법을 정의하는 클래스와 표현하는 방법을 정의하는 클래스를 별도로 분리하여
+    // 서로 다른 표현이라도, 이를 생성할 수 있는 동일한 절차를 제공하는 패턴
+    // 빌더 패턴은 생성해야 되는 객체가 Operational 한 속성을 많이 가질 때 빛을 발함
+
+    // var 변수 키워드는
+    // 지역변수 키워드로 사용이 가능하며
+    // Type 추론이 가능함
 
     var mage = new Hero.Builder(Profession.MAGE, "Riobard")
         .withHairColor(HairColor.BLACK)
         .withWeapon(Weapon.DAGGER)
         .build();
-    LOGGER.info(mage.toString());
+    LOGGER.info("This is mage Builder : {} ", mage.toString());
 
     var warrior = new Hero.Builder(Profession.WARRIOR, "Amberjill")
         .withHairColor(HairColor.BLOND)
         .withHairType(HairType.LONG_CURLY).withArmor(Armor.CHAIN_MAIL).withWeapon(Weapon.SWORD)
         .build();
-    LOGGER.info(warrior.toString());
+    LOGGER.info("This is warrior Builder : {} ", warrior.toString());
 
     var thief = new Hero.Builder(Profession.THIEF, "Desmond")
         .withHairType(HairType.BALD)
         .withWeapon(Weapon.BOW)
         .build();
-    LOGGER.info(thief.toString());
+    LOGGER.info("This is thief Builder : {} ", thief.toString());
   }
 }

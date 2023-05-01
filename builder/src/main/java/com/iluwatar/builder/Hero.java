@@ -101,9 +101,11 @@ public final class Hero {
    * The builder class.
    */
   public static class Builder {
-
+  
+    // profession / name 은 필수 값 이기에 생성자 생성시 넣어 줌
     private final Profession profession;
     private final String name;
+    
     private HairType hairType;
     private HairColor hairColor;
     private Armor armor;
@@ -112,6 +114,7 @@ public final class Hero {
     /**
      * Constructor.
      */
+    // Builder 생성할 시 NOT NULL 값을 생성자에 넣어줌
     public Builder(Profession profession, String name) {
       if (profession == null || name == null) {
         throw new IllegalArgumentException("profession and name can not be null");

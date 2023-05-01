@@ -37,11 +37,14 @@ public enum HairType {
   CURLY("curly"),
   LONG_STRAIGHT("long straight"),
   LONG_CURLY("long curly");
-
+  
+  // Enum 안에 내부 속성 정의
   private final String title;
-
+  
   @Override
   public String toString() {
+    // Enum 값에 가로쳐져 있는 String title 값이 return 이 됨
     return title;
   }
+
 }
