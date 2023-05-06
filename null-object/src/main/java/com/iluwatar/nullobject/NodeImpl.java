@@ -29,27 +29,9 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Implementation for binary tree's normal nodes.
  */
+
 @Slf4j
-public class NodeImpl implements Node {
-
-  private final String name;
-  private final Node left;
-  private final Node right;
-
-  /**
-   * Constructor.
-   */
-  public NodeImpl(String name, Node left, Node right) {
-    this.name = name;
-    this.left = left;
-    this.right = right;
-  }
-
-  @Override
-  public int getTreeSize() {
-    return 1 + left.getTreeSize() + right.getTreeSize();
-  }
-
+public record NodeImpl(String name, Node left, Node right) implements Node {
   @Override
   public Node getLeft() {
     return left;
@@ -64,7 +46,10 @@ public class NodeImpl implements Node {
   public String getName() {
     return name;
   }
-
+  @Override
+  public int getTreeSize() {
+    return 1 + left.getTreeSize() + right.getTreeSize();
+  }
   @Override
   public void walk() {
     LOGGER.info(name);

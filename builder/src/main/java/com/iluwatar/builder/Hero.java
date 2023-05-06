@@ -25,48 +25,13 @@
 package com.iluwatar.builder;
 
 /**
- * Hero, the class with many parameters.
+ * Hero,the record class.
  */
-public final class Hero {
 
-  private final Profession profession;
-  private final String name;
-  private final HairType hairType;
-  private final HairColor hairColor;
-  private final Armor armor;
-  private final Weapon weapon;
+public record Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
 
   private Hero(Builder builder) {
-    this.profession = builder.profession;
-    this.name = builder.name;
-    this.hairColor = builder.hairColor;
-    this.hairType = builder.hairType;
-    this.weapon = builder.weapon;
-    this.armor = builder.armor;
-  }
-
-  public Profession getProfession() {
-    return profession;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public HairType getHairType() {
-    return hairType;
-  }
-
-  public HairColor getHairColor() {
-    return hairColor;
-  }
-
-  public Armor getArmor() {
-    return armor;
-  }
-
-  public Weapon getWeapon() {
-    return weapon;
+    this(builder.profession, builder.name, builder.hairType, builder.hairColor, builder.armor, builder.weapon);
   }
 
   @Override
