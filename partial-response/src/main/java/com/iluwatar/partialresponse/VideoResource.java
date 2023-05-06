@@ -27,24 +27,14 @@ package com.iluwatar.partialresponse;
 import java.util.Map;
 
 /**
- * The resource class which serves video information. This class act as server in the demo. Which
+ * The resource record class which serves video information. This class act as server in the demo. Which
  * has all video details.
+ *
+ * @param fieldJsonMapper map object to json.
+ * @param videos          initialize resource with existing videos. Act as database.
  */
-public class VideoResource {
-  private final FieldJsonMapper fieldJsonMapper;
-  private final Map<Integer, Video> videos;
 
-  /**
-   * Constructor.
-   *
-   * @param fieldJsonMapper map object to json.
-   * @param videos          initialize resource with existing videos. Act as database.
-   */
-  public VideoResource(FieldJsonMapper fieldJsonMapper, Map<Integer, Video> videos) {
-    this.fieldJsonMapper = fieldJsonMapper;
-    this.videos = videos;
-  }
-
+public record VideoResource(FieldJsonMapper fieldJsonMapper, Map<Integer, Video> videos) {
   /**
    * Get Details.
    *

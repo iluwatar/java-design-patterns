@@ -27,25 +27,5 @@ package com.iluwatar.producer.consumer;
 /**
  * Class take part of an {@link Producer}-{@link Consumer} exchange.
  */
-public class Item {
-
-  private final String producer;
-
-  private final int id;
-
-  public Item(String producer, int id) {
-    this.id = id;
-    this.producer = producer;
-  }
-
-  public int getId() {
-
-    return id;
-  }
-
-  public String getProducer() {
-
-    return producer;
-  }
-
+public record Item(String producer, int id) {
 }

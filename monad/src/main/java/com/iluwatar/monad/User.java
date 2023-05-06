@@ -25,43 +25,13 @@
 package com.iluwatar.monad;
 
 /**
- * User Definition.
+ * Record class.
+ *
+ * @param name  - name
+ * @param age   - age
+ * @param sex   - sex
+ * @param email - email address
  */
-public class User {
-
-  private final String name;
-  private final int age;
-  private final Sex sex;
-  private final String email;
-
-  /**
-   * Constructor.
-   *
-   * @param name  - name
-   * @param age   - age
-   * @param sex   - sex
-   * @param email - email address
-   */
-  public User(String name, int age, Sex sex, String email) {
-    this.name = name;
-    this.age = age;
-    this.sex = sex;
-    this.email = email;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getAge() {
-    return age;
-  }
-
-  public Sex getSex() {
-    return sex;
-  }
-
-  public String getEmail() {
-    return email;
-  }
+public record User(String name, int age, Sex sex, String email) {
 }
+

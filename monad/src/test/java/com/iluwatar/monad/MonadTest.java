@@ -41,7 +41,7 @@ class MonadTest {
     assertThrows(
         IllegalStateException.class,
         () -> Validator.of(tom)
-            .validate(User::getName, Objects::nonNull, "name cannot be null")
+            .validate(User::name, Objects::nonNull, "name cannot be null")
             .get()
     );
   }
@@ -52,8 +52,8 @@ class MonadTest {
     assertThrows(
         IllegalStateException.class,
         () -> Validator.of(john)
-            .validate(User::getName, Objects::nonNull, "name cannot be null")
-            .validate(User::getAge, age -> age > 21, "user is underage")
+            .validate(User::name, Objects::nonNull, "name cannot be null")
+            .validate(User::age, age -> age > 21, "user is underage")
             .get()
     );
   }
@@ -62,10 +62,10 @@ class MonadTest {
   void testForValid() {
     var sarah = new User("Sarah", 42, Sex.FEMALE, "sarah@det.org");
     var validated = Validator.of(sarah)
-        .validate(User::getName, Objects::nonNull, "name cannot be null")
-        .validate(User::getAge, age -> age > 21, "user is underage")
-        .validate(User::getSex, sex -> sex == Sex.FEMALE, "user is not female")
-        .validate(User::getEmail, email -> email.contains("@"), "email does not contain @ sign")
+        .validate(User::name, Objects::nonNull, "name cannot be null")
+        .validate(User::age, age -> age > 21, "user is underage")
+        .validate(User::sex, sex -> sex == Sex.FEMALE, "user is not female")
+        .validate(User::email, email -> email.contains("@"), "email does not contain @ sign")
         .get();
     assertSame(validated, sarah);
   }

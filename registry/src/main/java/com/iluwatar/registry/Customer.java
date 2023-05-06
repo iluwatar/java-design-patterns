@@ -27,23 +27,7 @@ package com.iluwatar.registry;
 /**
  * Customer entity used in registry pattern example.
  */
-public class Customer {
-
-  private final String id;
-  private final String name;
-
-  public Customer(String id, String name) {
-    this.id = id;
-    this.name = name;
-  }
-
-  public String getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
+public record Customer(String id, String name) {
 
   @Override
   public String toString() {
