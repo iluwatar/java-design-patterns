@@ -2,10 +2,12 @@ package com.iluwatar.event.sourcing.processor;
 
 import com.iluwatar.event.sourcing.event.DomainEvent;
 import java.io.File;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Base class for Journaling implementations.
  */
+@Slf4j
 public abstract class EventJournal {
 
   File file;
@@ -20,9 +22,10 @@ public abstract class EventJournal {
   /**
    * Reset.
    */
-  @SuppressWarnings("ResultOfMethodCallIgnored")
   void reset() {
-    file.delete();
+    if (file.delete()) {
+      LOGGER.info("File cleared successfully............");
+    }
   }
 
   /**
