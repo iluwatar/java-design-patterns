@@ -30,10 +30,8 @@ import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
 import com.iluwatar.event.sourcing.processor.DomainEventProcessor;
 import com.iluwatar.event.sourcing.processor.JsonFileJournal;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
-
 import java.math.BigDecimal;
 import java.util.Date;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -45,16 +43,18 @@ import lombok.extern.slf4j.Slf4j;
  * transactional data, and maintain full audit trails and history that can enable compensating
  * actions.
  *
- * <p>This App class is an example usage of an Event Sourcing pattern. As an example, two bank accounts
- * are created, then some money deposit and transfer actions are taken, so a new state of accounts is
- * created. At that point, state is cleared in order to represent a system shut-down. After the shut-down,
- * system state is recovered by re-creating the past events from event journals. Then state is
- * printed so a user can view the last state is same with the state before a system shut-down.
+ * <p>This App class is an example usage of an Event Sourcing pattern. As an example, two bank
+ * accounts are created, then some money deposit and transfer actions are taken, so a new state of
+ * accounts is created. At that point, state is cleared in order to represent a system shut-down.
+ * After the shut-down, system state is recovered by re-creating the past events from event
+ * journals. Then state is printed so a user can view the last state is same with the state before a
+ * system shut-down.
  *
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
 @Slf4j
 public class App {
+
   /**
    * The constant ACCOUNT OF DAENERYS.
    */
@@ -72,7 +72,6 @@ public class App {
   public static void main(String[] args) {
 
     var eventProcessor = new DomainEventProcessor(new JsonFileJournal());
-
 
     LOGGER.info("Running the system first time............");
     eventProcessor.reset();

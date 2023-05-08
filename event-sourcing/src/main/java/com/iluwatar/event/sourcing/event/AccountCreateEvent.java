@@ -31,9 +31,8 @@ import com.iluwatar.event.sourcing.state.AccountAggregate;
 import lombok.Getter;
 
 /**
- * This is the class that implements account created event.
- * Holds the necessary info for an account created event.
- * Implements the process function that finds the event-related domain objects and
+ * This is the class that implements account created event. Holds the necessary info for an account
+ * created event. Implements the process function that finds the event-related domain objects and
  * calls the related domain object's handle event functions
  *
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
@@ -53,8 +52,9 @@ public class AccountCreateEvent extends DomainEvent {
    * @param owner       the owner
    */
   @JsonCreator
-  public AccountCreateEvent(@JsonProperty("sequenceId") long sequenceId, @JsonProperty("createdTime") long createdTime,
-                            @JsonProperty("accountNo") int accountNo, @JsonProperty("owner") String owner) {
+  public AccountCreateEvent(@JsonProperty("sequenceId") long sequenceId,
+      @JsonProperty("createdTime") long createdTime,
+      @JsonProperty("accountNo") int accountNo, @JsonProperty("owner") String owner) {
     super(sequenceId, createdTime, "AccountCreateEvent");
     this.accountNo = accountNo;
     this.owner = owner;

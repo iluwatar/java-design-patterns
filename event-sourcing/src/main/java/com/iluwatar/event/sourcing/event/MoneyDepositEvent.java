@@ -53,8 +53,9 @@ public class MoneyDepositEvent extends DomainEvent {
    * @param money       the money
    */
   @JsonCreator
-  public MoneyDepositEvent(@JsonProperty("sequenceId") long sequenceId, @JsonProperty("createdTime") long createdTime,
-                           @JsonProperty("accountNo") int accountNo, @JsonProperty("money") BigDecimal money) {
+  public MoneyDepositEvent(@JsonProperty("sequenceId") long sequenceId,
+      @JsonProperty("createdTime") long createdTime,
+      @JsonProperty("accountNo") int accountNo, @JsonProperty("money") BigDecimal money) {
     super(sequenceId, createdTime, "MoneyDepositEvent");
     this.money = money;
     this.accountNo = accountNo;

@@ -30,8 +30,14 @@ import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.DomainEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,8 +107,8 @@ public class JsonFileJournal extends EventJournal {
     var mapper = new ObjectMapper();
     DomainEvent domainEvent;
     try {
-    var jsonElement = mapper.readTree(event);
-    var eventClassName = jsonElement.get("eventClassName").asText();
+      var jsonElement = mapper.readTree(event);
+      var eventClassName = jsonElement.get("eventClassName").asText();
       domainEvent = switch (eventClassName) {
         case "AccountCreateEvent" -> mapper.treeToValue(jsonElement, AccountCreateEvent.class);
         case "MoneyDepositEvent" -> mapper.treeToValue(jsonElement, MoneyDepositEvent.class);

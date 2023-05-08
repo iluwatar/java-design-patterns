@@ -35,10 +35,11 @@ import com.iluwatar.event.sourcing.event.DomainEvent;
 public class DomainEventProcessor {
 
   private final EventJournal eventJournal;
-  
-  public DomainEventProcessor(EventJournal eventJournal){
+
+  public DomainEventProcessor(EventJournal eventJournal) {
     this.eventJournal = eventJournal;
   }
+
   /**
    * Process.
    *
