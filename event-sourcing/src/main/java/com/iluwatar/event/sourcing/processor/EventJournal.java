@@ -4,7 +4,7 @@ import com.iluwatar.event.sourcing.event.DomainEvent;
 import java.io.File;
 
 /**
- * Base class for Journaling implementations
+ * Base class for Journaling implementations.
  */
 public abstract class EventJournal {
 
