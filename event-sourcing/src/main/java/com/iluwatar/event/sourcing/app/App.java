@@ -28,9 +28,12 @@ import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
 import com.iluwatar.event.sourcing.processor.DomainEventProcessor;
+import com.iluwatar.event.sourcing.processor.JsonFileJournal;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
+
 import java.math.BigDecimal;
 import java.util.Date;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -68,7 +71,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    var eventProcessor = new DomainEventProcessor();
+    var eventProcessor = new DomainEventProcessor(new JsonFileJournal());
 
 
     LOGGER.info("Running the system first time............");
@@ -103,7 +106,7 @@ public class App {
 
     LOGGER.info("Recover the system by the events in journal file............");
 
-    eventProcessor = new DomainEventProcessor();
+    eventProcessor = new DomainEventProcessor(new JsonFileJournal());
     eventProcessor.recover();
 
     LOGGER.info("...............Recovered State:............");

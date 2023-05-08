@@ -24,9 +24,12 @@
  */
 package com.iluwatar.event.sourcing.event;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iluwatar.event.sourcing.domain.Account;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * This is the class that implements account created event.
@@ -37,6 +40,7 @@ import lombok.Getter;
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
 @Getter
+@Setter
 public class AccountCreateEvent extends DomainEvent {
 
   private final int accountNo;
@@ -50,7 +54,9 @@ public class AccountCreateEvent extends DomainEvent {
    * @param accountNo   the account no
    * @param owner       the owner
    */
-  public AccountCreateEvent(long sequenceId, long createdTime, int accountNo, String owner) {
+  @JsonCreator
+  public AccountCreateEvent(@JsonProperty("sequenceId") long sequenceId, @JsonProperty("createdTime") long createdTime,
+                            @JsonProperty("accountNo") int accountNo, @JsonProperty("owner") String owner) {
     super(sequenceId, createdTime, "AccountCreateEvent");
     this.accountNo = accountNo;
     this.owner = owner;
