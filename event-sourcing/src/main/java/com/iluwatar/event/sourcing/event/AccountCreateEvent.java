@@ -29,7 +29,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.iluwatar.event.sourcing.domain.Account;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import lombok.Getter;
-import lombok.Setter;
 
 /**
  * This is the class that implements account created event.
@@ -40,7 +39,6 @@ import lombok.Setter;
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
 @Getter
-@Setter
 public class AccountCreateEvent extends DomainEvent {
 
   private final int accountNo;
