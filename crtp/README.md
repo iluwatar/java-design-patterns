@@ -19,7 +19,9 @@ Allow derived components to inherit certain functionalities from a base componen
 
 Real-world example
 
-TODO: add real-world example
+> For a mixed martial arts promotion planning an event, it's important to ensure that the fights are
+> organized between athletes of the same weight class to prevent mismatches between fighters of vastly
+> different sizes, such as a heavyweight facing off against a bantamweight.
 
 In plain words
 
