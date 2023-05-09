@@ -15,60 +15,60 @@
 
 <br/>
 
-Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/ne/README.md), [**it**](localization/it/README.md), [**da**](localization/da/README.md)
+Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/ne/README.md), [**it**](localization/it/README.md), [**da**](localization/da/README.md), [**hi**](localization/hi/README.md)
 <br/>
 
-# Introduction
+# परिचय
 
-Design patterns are the best, formalized practices a programmer can use to
-solve common problems when designing an application or system.
+डिज़ाइन पैटर्न सर्वोत्तम, औपचारिक प्रथाएँ हैं जिनका एक प्रोग्रामर उपयोग कर सकता है
+किसी एप्लिकेशन या सिस्टम को डिज़ाइन करते समय सामान्य समस्याओं को हल करें।
 
-Design patterns can speed up the development process by providing tested, proven
-development paradigms.
+डिजाइन पैटर्न परीक्षण, सिद्ध प्रदान करके विकास प्रक्रिया को गति दे सकते हैं
+विकास प्रतिमान।
 
-Reusing design patterns help prevent subtle issues that cause major
-problems, and it also improves code readability for coders and architects who
-are familiar with the patterns.
+डिज़ाइन पैटर्न का पुन: उपयोग करने से सूक्ष्म मुद्दों को रोकने में मदद मिलती है जो प्रमुख कारण बनते हैं
+समस्याएं, और यह कोडर्स और आर्किटेक्ट्स के लिए कोड पठनीयता में भी सुधार करता है
+प्रतिमानों से परिचित हैं।
 
-# Getting started
+# शुरू करना
 
-This site showcases Java Design Patterns. The solutions have been developed by
-experienced programmers and architects from the open-source community. The
-patterns can be browsed by their high-level descriptions or by looking at their
-source code. The source code examples are well commented and can be thought of as
-programming tutorials on how to implement a specific pattern. We use the most
-popular battle-proven open-source Java technologies.
+यह साइट जावा डिज़ाइन पैटर्न प्रदर्शित करती है। द्वारा समाधान विकसित किए गए हैं
+अनुभवी प्रोग्रामर और आर्किटेक्ट ओपन-सोर्स समुदाय से। 
+पैटर्न को उनके उच्च-स्तरीय विवरणों द्वारा या उनके द्वारा देखे जा सकते हैं
+सोर्स कोड। स्रोत कोड के उदाहरणों पर अच्छी तरह से टिप्पणी की गई है और इसके बारे में सोचा जा सकता है
+एक विशिष्ट पैटर्न को लागू करने के तरीके पर प्रोग्रामिंग ट्यूटोरियल। हम सबसे ज्यादा इस्तेमाल करते हैं
+लोकप्रिय युद्ध-सिद्ध ओपन-सोर्स जावा प्रौद्योगिकियाँ।
 
-Before you dive into the material, you should be familiar with various
-[Software Design Principles](https://java-design-patterns.com/principles/).
+सामग्री में गोता लगाने से पहले, आपको विभिन्न से परिचित होना चाहिए
+[सॉफ्टवेयर डिजाइन सिद्धांत](https://java-design-patterns.com/principles/).
 
-All designs should be as simple as possible. You should start with KISS, YAGNI,
-and Do The Simplest Thing That Could Possibly Work principles. Complexity and
-patterns should only be introduced when they are needed for practical
-extensibility.
+सभी डिज़ाइन यथासंभव सरल होने चाहिए। आपको KISS, YAGNI से शुरुआत करनी चाहिए,
+और सबसे आसान काम करें जो संभवतः सिद्धांतों पर काम कर सके। जटिलता और
+पैटर्न केवल तभी पेश किए जाने चाहिए जब उन्हें व्यावहारिक के लिए आवश्यक हो
+विस्तारशीलता।
 
-Once you are familiar with these concepts you can start drilling down into the
-[available design patterns](https://java-design-patterns.com/patterns/) by any
-of the following approaches
+एक बार जब आप इन अवधारणाओं से परिचित हो जाते हैं, तो आप इसमें ड्रिलिंग शुरू कर सकते हैं
+[उपलब्ध डिजाइन पैटर्न]](https://java-design-patterns.com/patterns/) किसी के भी द्वारा
+निम्नलिखित दृष्टिकोणों में से
 
- - Search for a specific pattern by name. Can't find one? Please report a new pattern [here](https://github.com/iluwatar/java-design-patterns/issues).
- - Using tags such as `Performance`, `Gang of Four` or `Data access`.
- - Using pattern categories, `Creational`, `Behavioral`, and others.
+ - नाम से एक विशिष्ट पैटर्न खोजें। एक नहीं मिल रहा है? कृपया एक नए पैटर्न की रिपोर्ट करें [यहाँ](https://github.com/iluwatar/java-design-patterns/issues)।
+  - `प्रदर्शन`, `गैंग ऑफ़ फोर` या `डेटा एक्सेस` जैसे टैग का उपयोग करना।
+  - पैटर्न श्रेणियों, `रचनात्मक`, `व्यवहार`, और अन्य का उपयोग करना।
 
-Hopefully, you find the object-oriented solutions presented on this site useful
-in your architectures and have as much fun learning them as we had while developing them.
+उम्मीद है, आपको इस साइट पर प्रस्तुत वस्तु-उन्मुख समाधान उपयोगी लगेंगे
+अपने आर्किटेक्चर में और उन्हें सीखने में उतना ही मज़ा आता है जितना हमें उन्हें विकसित करते समय मिला था।
 
-# How to contribute
+# योगदान कैसे करें
 
-If you are willing to contribute to the project you will find the relevant information in
-our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help
-you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
+यदि आप परियोजना में योगदान करने के इच्छुक हैं तो आपको संबंधित जानकारी इसमें मिल जाएगी
+हमारे [डेवलपर विकि](https://github.com/iluwatar/java-design-patterns/wiki). हम मदद करेंगे
+आप और में अपने सवालों के जवाब [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
-# License
+# लाइसेंस
 
-This project is licensed under the terms of the MIT license.
+यह परियोजना एमआईटी लाइसेंस की शर्तों के तहत लाइसेंस प्राप्त है।
 
-# Contributors
+# योगदानकर्ताओं
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
