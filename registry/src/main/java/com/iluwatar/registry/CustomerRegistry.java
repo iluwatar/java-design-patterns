@@ -45,7 +45,7 @@ public final class CustomerRegistry {
   }
 
   public Customer addCustomer(Customer customer) {
-    return customerMap.put(customer.getId(), customer);
+    return customerMap.put(customer.id(), customer);
   }
 
   public Customer getCustomer(String id) {

@@ -37,21 +37,11 @@ import java.util.List;
  *
  * @author George Aristy (george.aristy@gmail.com)
  */
-public final class FindCustomer implements BusinessOperation<String> {
-  private final String customerId;
-  private final Deque<BusinessException> errors;
 
-  /**
-   * Ctor.
-   *
-   * @param customerId the final result of the remote operation
-   * @param errors     the errors to throw before returning {@code customerId}
-   */
+public record FindCustomer(String customerId, Deque<BusinessException> errors) implements BusinessOperation<String> {
   public FindCustomer(String customerId, BusinessException... errors) {
-    this.customerId = customerId;
-    this.errors = new ArrayDeque<>(List.of(errors));
+    this(customerId, new ArrayDeque<>(List.of(errors)));
   }
-
   @Override
   public String perform() throws BusinessException {
     if (!this.errors.isEmpty()) {

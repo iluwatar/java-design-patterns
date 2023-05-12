@@ -50,13 +50,13 @@ class CustomerRegistryTest {
 
     Customer customerWithId1 = customerRegistry.getCustomer("1");
     assertNotNull(customerWithId1);
-    assertEquals("1", customerWithId1.getId());
-    assertEquals("john", customerWithId1.getName());
+    assertEquals("1", customerWithId1.id());
+    assertEquals("john", customerWithId1.name());
 
     Customer customerWithId2 = customerRegistry.getCustomer("2");
     assertNotNull(customerWithId2);
-    assertEquals("2", customerWithId2.getId());
-    assertEquals("julia", customerWithId2.getName());
+    assertEquals("2", customerWithId2.id());
+    assertEquals("julia", customerWithId2.name());
   }
 
   @Test
