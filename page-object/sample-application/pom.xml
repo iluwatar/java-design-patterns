@@ -33,4 +33,11 @@
     <version>1.26.0-SNAPSHOT</version>
   </parent>
   <artifactId>sample-application</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+    </dependencies>
 </project>

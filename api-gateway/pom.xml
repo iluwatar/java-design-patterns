@@ -39,4 +39,11 @@
     <module>price-microservice</module>
     <module>api-gateway-service</module>
   </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+    </dependencies>
 </project>
