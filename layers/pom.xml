@@ -43,7 +43,7 @@
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
-        <version>6.1.7.Final</version>
+        <version>6.2.0.CR3</version>
     </dependency>
     <dependency>
       <groupId>javax.xml.bind</groupId>
