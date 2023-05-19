@@ -52,6 +52,11 @@
       <groupId>org.mongodb</groupId>
       <artifactId>mongodb-driver-legacy</artifactId>
     </dependency>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot</artifactId>
+          <version>3.0.4</version>
+      </dependency>
   </dependencies>
   <!--
     Due to the use of MongoDB in the test of this pattern, TRAVIS and/or MAVEN might fail if the DB connection is

@@ -39,4 +39,11 @@
     <module>aggregator-service</module>
     <module>inventory-microservice</module>
   </modules>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot</artifactId>
+            <version>3.0.4</version>
+        </dependency>
+    </dependencies>
 </project>

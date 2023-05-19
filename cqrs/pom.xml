@@ -57,6 +57,11 @@
       <artifactId>jaxb-api</artifactId>
       <scope>test</scope>
     </dependency>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot</artifactId>
+          <version>3.0.4</version>
+      </dependency>
   </dependencies>
   <build>
     <plugins>
