@@ -49,24 +49,16 @@ public class Star {
     ageYears *= 2;
     massTons *= 8;
     switch (type) {
-      case RED_GIANT:
-        type = StarType.WHITE_DWARF;
-        break;
-      case SUN:
-        type = StarType.RED_GIANT;
-        break;
-      case SUPERNOVA:
-        type = StarType.DEAD;
-        break;
-      case WHITE_DWARF:
-        type = StarType.SUPERNOVA;
-        break;
-      case DEAD:
+      case RED_GIANT -> type = StarType.WHITE_DWARF;
+      case SUN -> type = StarType.RED_GIANT;
+      case SUPERNOVA -> type = StarType.DEAD;
+      case WHITE_DWARF -> type = StarType.SUPERNOVA;
+      case DEAD -> {
         ageYears *= 2;
         massTons = 0;
-        break;
-      default:
-        break;
+      }
+      default -> {
+      }
     }
   }
 

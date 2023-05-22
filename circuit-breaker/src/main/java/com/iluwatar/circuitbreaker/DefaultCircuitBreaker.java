@@ -113,16 +113,15 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
   public void setState(State state) {
     this.state = state;
     switch (state) {
-      case OPEN:
+      case OPEN -> {
         this.failureCount = failureThreshold;
         this.lastFailureTime = System.nanoTime();
-        break;
-      case HALF_OPEN:
+      }
+      case HALF_OPEN -> {
         this.failureCount = failureThreshold;
         this.lastFailureTime = System.nanoTime() - retryTimePeriod;
-        break;
-      default:
-        this.failureCount = 0;
+      }
+      default -> this.failureCount = 0;
     }
   }
 
