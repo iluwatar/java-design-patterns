@@ -69,12 +69,12 @@ class HeroTest {
 
     assertNotNull(hero);
     assertNotNull(hero.toString());
-    assertEquals(Profession.WARRIOR, hero.getProfession());
-    assertEquals(heroName, hero.getName());
-    assertEquals(Armor.CHAIN_MAIL, hero.getArmor());
-    assertEquals(Weapon.SWORD, hero.getWeapon());
-    assertEquals(HairType.LONG_CURLY, hero.getHairType());
-    assertEquals(HairColor.BLOND, hero.getHairColor());
+    assertEquals(Profession.WARRIOR, hero.profession());
+    assertEquals(heroName, hero.name());
+    assertEquals(Armor.CHAIN_MAIL, hero.armor());
+    assertEquals(Weapon.SWORD, hero.weapon());
+    assertEquals(HairType.LONG_CURLY, hero.hairType());
+    assertEquals(HairColor.BLOND, hero.hairColor());
 
   }
 

@@ -152,127 +152,126 @@ public class MonitoringService {
 ```java
 public class DefaultCircuitBreaker implements CircuitBreaker {
 
-  private final long timeout;
-  private final long retryTimePeriod;
-  private final RemoteService service;
-  long lastFailureTime;
-  private String lastFailureResponse;
-  int failureCount;
-  private final int failureThreshold;
-  private State state;
-  private final long futureTime = 1000 * 1000 * 1000 * 1000;
+    private final long timeout;
+    private final long retryTimePeriod;
+    private final RemoteService service;
+    long lastFailureTime;
+    private String lastFailureResponse;
+    int failureCount;
+    private final int failureThreshold;
+    private State state;
+    private final long futureTime = 1000 * 1000 * 1000 * 1000;
 
-  /**
-   * Constructor to create an instance of Circuit Breaker.
-   *
-   * @param timeout          Timeout for the API request. Not necessary for this simple example
-   * @param failureThreshold Number of failures we receive from the depended service before changing
-   *                         state to 'OPEN'
-   * @param retryTimePeriod  Time period after which a new request is made to remote service for
-   *                         status check.
-   */
-  DefaultCircuitBreaker(RemoteService serviceToCall, long timeout, int failureThreshold,
-      long retryTimePeriod) {
-    this.service = serviceToCall;
-    //  我们从关闭状态开始希望一切都是正常的
-    this.state = State.CLOSED;
-    this.failureThreshold = failureThreshold;
-    // API的超时时间.
-    // 用于在超过限制时中断对远程资源的调用
-    this.timeout = timeout;
-    this.retryTimePeriod = retryTimePeriod;
-    //An absurd amount of time in future which basically indicates the last failure never happened
-    this.lastFailureTime = System.nanoTime() + futureTime;
-    this.failureCount = 0;
-  }
-
-  // 重置所有
-  @Override
-  public void recordSuccess() {
-    this.failureCount = 0;
-    this.lastFailureTime = System.nanoTime() + futureTime;
-    this.state = State.CLOSED;
-  }
-
-  @Override
-  public void recordFailure(String response) {
-    failureCount = failureCount + 1;
-    this.lastFailureTime = System.nanoTime();
-    // Cache the failure response for returning on open state
-    this.lastFailureResponse = response;
-  }
-
-  // 根据 failureThreshold、failureCount 和 lastFailureTime 评估当前状态。
-  protected void evaluateState() {
-    if (failureCount >= failureThreshold) { //Then something is wrong with remote service
-      if ((System.nanoTime() - lastFailureTime) > retryTimePeriod) {
-        // 我们已经等得够久了，应该尝试检查服务是否已启动
-        state = State.HALF_OPEN;
-      } else {
-        // 服务可能仍会出现故障
-        state = State.OPEN;
-      }
-    } else {
-      // 一切正常
-      state = State.CLOSED;
-    }
-  }
-
-  @Override
-  public String getState() {
-    evaluateState();
-    return state.name();
-  }
-
-  /**
-   * Break the circuit beforehand if it is known service is down Or connect the circuit manually if
-   * service comes online before expected.
-   *
-   * @param state State at which circuit is in
-   */
-  @Override
-  public void setState(State state) {
-    this.state = state;
-    switch (state) {
-      case OPEN:
-        this.failureCount = failureThreshold;
-        this.lastFailureTime = System.nanoTime();
-        break;
-      case HALF_OPEN:
-        this.failureCount = failureThreshold;
-        this.lastFailureTime = System.nanoTime() - retryTimePeriod;
-        break;
-      default:
+    /**
+     * Constructor to create an instance of Circuit Breaker.
+     *
+     * @param timeout          Timeout for the API request. Not necessary for this simple example
+     * @param failureThreshold Number of failures we receive from the depended service before changing
+     *                         state to 'OPEN'
+     * @param retryTimePeriod  Time period after which a new request is made to remote service for
+     *                         status check.
+     */
+    DefaultCircuitBreaker(RemoteService serviceToCall, long timeout, int failureThreshold,
+                          long retryTimePeriod) {
+        this.service = serviceToCall;
+        //  我们从关闭状态开始希望一切都是正常的
+        this.state = State.CLOSED;
+        this.failureThreshold = failureThreshold;
+        // API的超时时间.
+        // 用于在超过限制时中断对远程资源的调用
+        this.timeout = timeout;
+        this.retryTimePeriod = retryTimePeriod;
+        //An absurd amount of time in future which basically indicates the last failure never happened
+        this.lastFailureTime = System.nanoTime() + futureTime;
         this.failureCount = 0;
     }
-  }
 
-  /**
-   * Executes service call.
-   *
-   * @return Value from the remote resource, stale response or a custom exception
-   */
-  @Override
-  public String attemptRequest() throws RemoteServiceException {
-    evaluateState();
-    if (state == State.OPEN) {
-      // 如果电路处于打开状态，则返回缓存的响应
-      return this.lastFailureResponse;
-    } else {
-      // 如果电路未打开，则发出 API 请求
-      try {
-	//在实际应用程序中，这将在线程中运行，并且将利用断路器的超时参数来了解服务
-    // 是否正在工作。 在这里，我们根据服务器响应本身模拟
-        var response = service.call();
-        // api 响应正常，重置所有。
-        recordSuccess();
-        return response;
-      } catch (RemoteServiceException ex) {
-        recordFailure(ex.getMessage());
-        throw ex;
-      }
+    // 重置所有
+    @Override
+    public void recordSuccess() {
+        this.failureCount = 0;
+        this.lastFailureTime = System.nanoTime() + futureTime;
+        this.state = State.CLOSED;
     }
-  }
+
+    @Override
+    public void recordFailure(String response) {
+        failureCount = failureCount + 1;
+        this.lastFailureTime = System.nanoTime();
+        // Cache the failure response for returning on open state
+        this.lastFailureResponse = response;
+    }
+
+    // 根据 failureThreshold、failureCount 和 lastFailureTime 评估当前状态。
+    protected void evaluateState() {
+        if (failureCount >= failureThreshold) { //Then something is wrong with remote service
+            if ((System.nanoTime() - lastFailureTime) > retryTimePeriod) {
+                // 我们已经等得够久了，应该尝试检查服务是否已启动
+                state = State.HALF_OPEN;
+            } else {
+                // 服务可能仍会出现故障
+                state = State.OPEN;
+            }
+        } else {
+            // 一切正常
+            state = State.CLOSED;
+        }
+    }
+
+    @Override
+    public String getState() {
+        evaluateState();
+        return state.name();
+    }
+
+    /**
+     * Break the circuit beforehand if it is known service is down Or connect the circuit manually if
+     * service comes online before expected.
+     *
+     * @param state State at which circuit is in
+     */
+    @Override
+    public void setState(State state) {
+        this.state = state;
+        switch (state) {
+            case OPEN -> {
+                this.failureCount = failureThreshold;
+                this.lastFailureTime = System.nanoTime();
+            }
+            case HALF_OPEN -> {
+                this.failureCount = failureThreshold;
+                this.lastFailureTime = System.nanoTime() - retryTimePeriod;
+            }
+            default -> this.failureCount = 0;
+        }
+    }
+
+    /**
+     * Executes service call.
+     *
+     * @return Value from the remote resource, stale response or a custom exception
+     */
+    @Override
+    public String attemptRequest() throws RemoteServiceException {
+        evaluateState();
+        if (state == State.OPEN) {
+            // 如果电路处于打开状态，则返回缓存的响应
+            return this.lastFailureResponse;
+        } else {
+            // 如果电路未打开，则发出 API 请求
+            try {
+                //在实际应用程序中，这将在线程中运行，并且将利用断路器的超时参数来了解服务
+                // 是否正在工作。 在这里，我们根据服务器响应本身模拟
+                var response = service.call();
+                // api 响应正常，重置所有。
+                recordSuccess();
+                return response;
+            } catch (RemoteServiceException ex) {
+                recordFailure(ex.getMessage());
+                throw ex;
+            }
+        }
+    }
 }
 ```
 
