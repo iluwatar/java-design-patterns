@@ -100,5 +100,11 @@ public class App {
     LOGGER.info(demandHolderIdiom.toString());
     var demandHolderIdiom2 = InitializingOnDemandHolderIdiom.getInstance();
     LOGGER.info(demandHolderIdiom2.toString());
+
+    // initialize singleton using Bill Pugh's implementation
+    var billPughSingleton = BillPughImplementation.getInstance();
+    LOGGER.info(billPughSingleton.toString());
+    var billPughSingleton2 = BillPughImplementation.getInstance();
+    LOGGER.info(billPughSingleton2.toString());
   }
 }
