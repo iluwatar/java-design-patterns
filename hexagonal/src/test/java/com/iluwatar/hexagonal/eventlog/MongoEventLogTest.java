@@ -27,16 +27,14 @@ package com.iluwatar.hexagonal.eventlog;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.iluwatar.hexagonal.domain.PlayerDetails;
-import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.mongodb.MongoClient;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.utility.DockerImageName;
 
 /**
  * Tests for Mongo event log
  */
-@Disabled
 class MongoEventLogTest {
 
   private static final String TEST_DB = "lotteryDBTest";
@@ -44,13 +42,28 @@ class MongoEventLogTest {
 
   private MongoEventLog mongoEventLog;
 
-  @BeforeEach
-  void init() {
-    MongoConnectionPropertiesLoader.load();
-    var mongoClient = new MongoClient(System.getProperty("mongo-host"),
-        Integer.parseInt(System.getProperty("mongo-port")));
+  private static MongoDBContainer mongoDBContainer;
+
+  @BeforeAll
+  static void init() {
+    mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:latest"));
+    mongoDBContainer.start();
+
+    final var mongoClient = new MongoClient(mongoDBContainer.getHost(), mongoDBContainer.getExposedPorts().stream().findFirst().get());
+    System.setProperty("mongo-host", mongoDBContainer.getHost());
+    System.setProperty("mongo-port", String.valueOf(mongoDBContainer.getExposedPorts().stream().findFirst().get()));
+
     mongoClient.dropDatabase(TEST_DB);
     mongoClient.close();
+  }
+
+  @AfterAll
+  static void tearDown() {
+    mongoDBContainer.stop();
+  }
+
+  @BeforeEach
+  void createEventLog() {
     mongoEventLog = new MongoEventLog(TEST_DB, TEST_EVENTS_COLLECTION);
   }
 

@@ -31,33 +31,47 @@ import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import com.iluwatar.hexagonal.domain.LotteryTicket;
 import com.iluwatar.hexagonal.domain.LotteryTicketId;
 import com.iluwatar.hexagonal.domain.PlayerDetails;
-import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.mongodb.MongoClient;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.utility.DockerImageName;
 
 /**
  * Tests for Mongo based ticket repository
  */
-@Disabled
 class MongoTicketRepositoryTest {
 
   private static final String TEST_DB = "lotteryTestDB";
   private static final String TEST_TICKETS_COLLECTION = "lotteryTestTickets";
   private static final String TEST_COUNTERS_COLLECTION = "testCounters";
 
+  private static MongoDBContainer mongoDBContainer;
+
   private MongoTicketRepository repository;
 
-  @BeforeEach
-  void init() {
-    MongoConnectionPropertiesLoader.load();
-    var mongoClient = new MongoClient(System.getProperty("mongo-host"),
-        Integer.parseInt(System.getProperty("mongo-port")));
+
+  @BeforeAll
+  static void init() {
+    mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:latest"));
+    mongoDBContainer.start();
+
+    final var mongoClient = new MongoClient(mongoDBContainer.getHost(), mongoDBContainer.getExposedPorts().stream().findFirst().get());
+    System.setProperty("mongo-host", mongoDBContainer.getHost());
+    System.setProperty("mongo-port", String.valueOf(mongoDBContainer.getExposedPorts().stream().findFirst().get()));
+
     mongoClient.dropDatabase(TEST_DB);
     mongoClient.close();
+  }
+
+  @AfterAll
+  static void tearDown() {
+    mongoDBContainer.stop();
+  }
+
+  @BeforeEach
+  void createRepository() {
     repository = new MongoTicketRepository(TEST_DB, TEST_TICKETS_COLLECTION,
-        TEST_COUNTERS_COLLECTION);
+            TEST_COUNTERS_COLLECTION);
   }
 
   @Test

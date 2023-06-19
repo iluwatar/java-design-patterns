@@ -26,16 +26,16 @@ package com.iluwatar.hexagonal.banking;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import com.mongodb.MongoClient;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.testcontainers.containers.MongoDBContainer;
+import org.testcontainers.utility.DockerImageName;
 
 /**
  * Tests for Mongo banking adapter
  */
-@Disabled
 class MongoBankTest {
 
   private static final String TEST_DB = "lotteryDBTest";
@@ -43,23 +43,37 @@ class MongoBankTest {
 
   private MongoBank mongoBank;
 
-  @BeforeEach
-  void init() {
-    MongoConnectionPropertiesLoader.load();
-    var mongoClient = new MongoClient(System.getProperty("mongo-host"),
-        Integer.parseInt(System.getProperty("mongo-port")));
+  private static MongoDBContainer mongoDBContainer;
+
+  @BeforeAll
+  static void init() {
+    mongoDBContainer = new MongoDBContainer(DockerImageName.parse("mongo:latest"));
+    mongoDBContainer.start();
+
+    final var mongoClient = new MongoClient(mongoDBContainer.getHost(),
+            mongoDBContainer.getExposedPorts().stream().findFirst().get());
+    System.setProperty("mongo-host", mongoDBContainer.getHost());
+    System.setProperty("mongo-port",
+            String.valueOf(mongoDBContainer.getExposedPorts().stream().findFirst().get()));
+
     mongoClient.dropDatabase(TEST_DB);
     mongoClient.close();
-    mongoBank = new MongoBank(TEST_DB, TEST_ACCOUNTS_COLLECTION);
+  }
+
+  @AfterAll
+  static void tearDown() {
+    mongoDBContainer.stop();
   }
 
   @Test
   void testSetup() {
+    mongoBank = new MongoBank(TEST_DB, TEST_ACCOUNTS_COLLECTION);
     assertEquals(0, mongoBank.getAccountsCollection().countDocuments());
   }
 
   @Test
   void testFundTransfers() {
+    mongoBank = new MongoBank(TEST_DB, TEST_ACCOUNTS_COLLECTION);
     assertEquals(0, mongoBank.getFunds("000-000"));
     mongoBank.setFunds("000-000", 10);
     assertEquals(10, mongoBank.getFunds("000-000"));

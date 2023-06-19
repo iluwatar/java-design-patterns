@@ -51,6 +51,12 @@
       <groupId>org.mongodb</groupId>
       <artifactId>mongodb-driver-legacy</artifactId>
     </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>mongodb</artifactId>
+      <version>1.18.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
   <build>
     <plugins>
