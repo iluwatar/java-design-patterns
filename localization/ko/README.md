@@ -4,13 +4,20 @@
 
 # 자바로 구현된 디자인 패턴
 
-![Java CI with Maven](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI%20with%20Maven/badge.svg)[](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)[](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)
-
+![Java CI](https://github.com/iluwatar/java-design-patterns/workflows/Java%20CI/badge.svg)
+[![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/LICENSE.md)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=ncloc)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
+[![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-
-[](#contributors-)![All Contributors](https://img.shields.io/badge/all_contributors-133-orange.svg?style=flat-square)
-
+[![All Contributors](https://img.shields.io/badge/all_contributors-270-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
+
+<br/>
+
+다른 언어로 읽기 : [**zh**](localization/zh/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/ne/README.md), [**it**](localization/it/README.md), [**da**](localization/da/README.md)
+
+<br />
 
 # 소개
 
