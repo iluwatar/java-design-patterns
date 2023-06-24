@@ -27,7 +27,7 @@ Según Wikipedia
 
 > Balking es un patrón de diseño de software donde solamente se ejecuta una acción sobre un objeto 
 > cuando dicho objecto se encuentra en un estado particular. Por ejemplo, si un objeto lee ficheros ZIP y 
-> otros objecto hace una llamada a los métodos de dicho objeto mientras el fichero ZIP se encuentras cerrado,
+> otros objeto hace una llamada a los métodos de dicho objeto mientras el fichero ZIP se encuentras cerrado,
 > la llamada es "obstaculizada" (balk).
 
 **Ejemplos Programáticos**
