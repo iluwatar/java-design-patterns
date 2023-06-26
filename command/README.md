@@ -40,8 +40,8 @@ Here's the sample code with wizard and goblin. Let's start from the `Wizard` cla
 @Slf4j
 public class Wizard {
 
-  private final Deque<Command> undoStack = new LinkedList<>();
-  private final Deque<Command> redoStack = new LinkedList<>();
+  private final Deque<Runnable> undoStack = new LinkedList<>();
+  private final Deque<Runnable> redoStack = new LinkedList<>();
 
   public Wizard() {}
 
