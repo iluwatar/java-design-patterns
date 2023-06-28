@@ -60,7 +60,6 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class App {
-  private static final String BUBBLE = "Bubble ";
 
   static void noSpatialPartition(int numOfMovements, Map<Integer, Bubble> bubbles) {
     //all bubbles have to be checked for collision for all bubbles
