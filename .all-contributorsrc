@@ -2487,6 +2487,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "boscha1",
+      "name": "Anthony Bosch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55814237?v=4",
+      "profile": "https://github.com/boscha1",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
