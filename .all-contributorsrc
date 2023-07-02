@@ -2505,6 +2505,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "beef-e",
+      "name": "Giammaria Biffi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/102854627?v=4",
+      "profile": "https://github.com/beef-e",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
