@@ -1,6 +1,6 @@
 ---
 title: Abstract Factory
-category: Creationsl
+category: Creational
 language: ru
 tag:
  - Gang of Four
