@@ -2496,6 +2496,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "AnsonTran",
+      "name": "trananso",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37683428?v=4",
+      "profile": "https://github.com/AnsonTran",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
