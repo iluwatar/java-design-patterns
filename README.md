@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-273-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-274-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -425,6 +425,9 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="14.28%"><a href="https://mugheesqasimmq.wixsite.com/portfolio-website"><img src="https://avatars.githubusercontent.com/u/45170085?v=4?s=100" width="100px;" alt="Mughees Qasim"/><br /><sub><b>Mughees Qasim</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=MugheesQasim" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/behappyleee"><img src="https://avatars.githubusercontent.com/u/72903623?v=4?s=100" width="100px;" alt="behappyleee"/><br /><sub><b>behappyleee</b></sub></a><br /><a href="#translation-behappyleee" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Ayush-Thakur-geek"><img src="https://avatars.githubusercontent.com/u/116510022?v=4?s=100" width="100px;" alt="Ayush Thakur"/><br /><sub><b>Ayush Thakur</b></sub></a><br /><a href="#translation-Ayush-Thakur-geek" title="Translation">🌍</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/boscha1"><img src="https://avatars.githubusercontent.com/u/55814237?v=4?s=100" width="100px;" alt="Anthony Bosch"/><br /><sub><b>Anthony Bosch</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=boscha1" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
