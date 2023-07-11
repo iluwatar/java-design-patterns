@@ -49,9 +49,9 @@ public final class BillPughImplementation {
    * It is not loaded into memory until the getInstance() method is called.
    */
   private static class InstanceHolder {
-  /**
-   * Singleton instance of the class.
-   */
+    /**
+     * Singleton instance of the class.
+     */
     private static BillPughImplementation instance = new BillPughImplementation();
   }
 
