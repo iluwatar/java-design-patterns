@@ -52,20 +52,22 @@ public final class BillPughImplementation {
   /**
    * Singleton instance of the class.
    */
-    private static BillPughImplementation instance = new BillPughImplementation();
+  private static BillPughImplementation instance = new BillPughImplementation();
   }
 
   /**
    * Public accessor for the singleton instance.
    *
+   * <p>
    * When this method is called, the InstanceHolder is loaded into memory
    * and creates the Singleton instance. This method provides a global access point
    * for the singleton instance.
+   * </p>
    *
    * @return an instance of the class.
    */
-    // global access point
+  // global access point
   public static BillPughImplementation getInstance() {
-        return InstanceHolder.instance;
-    }
+    return InstanceHolder.instance;
+  }
 }
