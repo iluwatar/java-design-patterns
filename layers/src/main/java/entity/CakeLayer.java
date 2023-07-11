@@ -22,46 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.layers.service;
+package entity;
 
-import com.iluwatar.layers.dto.CakeInfo;
-import com.iluwatar.layers.dto.CakeLayerInfo;
-import com.iluwatar.layers.dto.CakeToppingInfo;
-import com.iluwatar.layers.exception.CakeBakingException;
-import java.util.List;
+
+import jakarta.persistence.*;
+import lombok.*;
 
 /**
- * Service for cake baking operations.
+ * CakeLayer entity.
  */
-public interface CakeBakingService {
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode
+public class CakeLayer {
 
-  /**
-   * Bakes new cake according to parameters.
-   */
-  void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-  /**
-   * Get all cakes.
-   */
-  List<CakeInfo> getAllCakes();
+    private String name;
 
-  /**
-   * Store new cake topping.
-   */
-  void saveNewTopping(CakeToppingInfo toppingInfo);
+    private int calories;
 
-  /**
-   * Get available cake toppings.
-   */
-  List<CakeToppingInfo> getAvailableToppings();
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Cake cake;
 
-  /**
-   * Add new cake layer.
-   */
-  void saveNewLayer(CakeLayerInfo layerInfo);
+    public CakeLayer(String name, int calories) {
+        this.setName(name);
+        this.setCalories(calories);
+    }
 
-  /**
-   * Get available cake layers.
-   */
-  List<CakeLayerInfo> getAvailableLayers();
+    @Override
+    public String toString() {
+        return String.format("id=%s name=%s calories=%d", id, name, calories);
+    }
 }

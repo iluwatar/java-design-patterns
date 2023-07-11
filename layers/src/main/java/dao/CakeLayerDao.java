@@ -22,13 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.layers.view;
+package dao;
+
+import entity.CakeLayer;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
- * View interface.
+ * CRUD repository for cake layers.
  */
-public interface View {
-
-  void render();
+@Repository
+public interface CakeLayerDao extends JpaRepository<CakeLayer, Long> {
 
 }
