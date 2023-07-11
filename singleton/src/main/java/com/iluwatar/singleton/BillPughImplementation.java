@@ -52,7 +52,7 @@ public final class BillPughImplementation {
   /**
    * Singleton instance of the class.
    */
-  private static BillPughImplementation instance = new BillPughImplementation();
+    private static BillPughImplementation instance = new BillPughImplementation();
   }
 
   /**
