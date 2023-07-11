@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_DAENERYS;
 import static com.iluwatar.event.sourcing.app.App.ACCOUNT_OF_JON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -30,6 +31,7 @@ import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
 import com.iluwatar.event.sourcing.event.MoneyTransferEvent;
 import com.iluwatar.event.sourcing.processor.DomainEventProcessor;
+import com.iluwatar.event.sourcing.processor.JsonFileJournal;
 import com.iluwatar.event.sourcing.state.AccountAggregate;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -53,7 +55,7 @@ class IntegrationTest {
    */
   @BeforeEach
   void initialize() {
-    eventProcessor = new DomainEventProcessor();
+    eventProcessor = new DomainEventProcessor(new JsonFileJournal());
   }
 
   /**
@@ -84,7 +86,7 @@ class IntegrationTest {
 
     AccountAggregate.resetState();
 
-    eventProcessor = new DomainEventProcessor();
+    eventProcessor = new DomainEventProcessor(new JsonFileJournal());
     eventProcessor.recover();
 
     var accountOfDaenerysAfterShotDown = AccountAggregate.getAccount(ACCOUNT_OF_DAENERYS);
