@@ -22,24 +22,43 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.layers.view;
+package entity;
 
-import com.iluwatar.layers.service.CakeBakingService;
-import lombok.extern.slf4j.Slf4j;
+
+import jakarta.persistence.*;
+import lombok.*;
 
 /**
- * View implementation for displaying cakes.
+ * CakeTopping entity.
  */
-@Slf4j
-public class CakeViewImpl implements View {
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode
+public class CakeTopping {
 
-  private final CakeBakingService cakeBakingService;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-  public CakeViewImpl(CakeBakingService cakeBakingService) {
-    this.cakeBakingService = cakeBakingService;
-  }
+    private String name;
 
-  public void render() {
-    cakeBakingService.getAllCakes().forEach(cake -> LOGGER.info(cake.toString()));
-  }
+    private int calories;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Cake cake;
+
+    public CakeTopping(String name, int calories) {
+        this.setName(name);
+        this.setCalories(calories);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("id=%s name=%s calories=%d", id, name, calories);
+    }
+
 }

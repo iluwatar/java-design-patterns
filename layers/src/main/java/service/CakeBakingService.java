@@ -22,16 +22,56 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.layers.dao;
+package service;
 
-import com.iluwatar.layers.entity.Cake;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
+import dto.CakeInfo;
+import dto.CakeLayerInfo;
+import dto.CakeToppingInfo;
+import exception.CakeBakingException;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
- * CRUD repository for cakes.
+ * Service for cake baking operations.
  */
-@Repository
-public interface CakeDao extends CrudRepository<Cake, Long> {
+@Service
+public interface CakeBakingService {
+
+    /**
+     * Bakes new cake according to parameters.
+     */
+    void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
+
+    /**
+     * Get all cakes.
+     */
+    List<CakeInfo> getAllCakes();
+
+    /**
+     * Store new cake topping.
+     */
+    void saveNewTopping(CakeToppingInfo toppingInfo);
+
+    /**
+     * Get available cake toppings.
+     */
+    List<CakeToppingInfo> getAvailableToppings();
+
+    /**
+     * Add new cake layer.
+     */
+    void saveNewLayer(CakeLayerInfo layerInfo);
+
+    /**
+     * Get available cake layers.
+     */
+    List<CakeLayerInfo> getAvailableLayers();
+
+    void deleteAllCakes();
+
+    void deleteAllLayers();
+
+    void deleteAllToppings();
 
 }

@@ -131,6 +131,6 @@ CakeViewImpl -->  "-cakeBakingService" CakeBakingService
 App -->  "-cakeBakingService" CakeBakingService
 Cake -->  "-topping" CakeTopping
 CakeLayer -->  "-cake" Cake
-CakeBakingServiceImpl ..|> CakeBakingService 
-CakeViewImpl ..|> View 
+CakeBakingServiceImpl ..|> CakeBakingService
+CakeViewImpl ..|> View
 @enduml

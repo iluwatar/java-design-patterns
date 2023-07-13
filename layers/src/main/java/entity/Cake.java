@@ -22,73 +22,68 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.layers.entity;
+package entity;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import java.util.HashSet;
+import java.util.Set;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.FetchType;
 
 /**
- * CakeTopping entity.
+ * Cake entity.
  */
 @Entity
-public class CakeTopping {
+public class Cake {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-  private String name;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private CakeTopping topping;
 
-  private int calories;
+    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+    private Set<CakeLayer> layers;
 
-  @OneToOne(cascade = CascadeType.ALL)
-  private Cake cake;
+    public Cake() {
+        setLayers(new HashSet<>());
+    }
 
-  public CakeTopping() {
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public CakeTopping(String name, int calories) {
-    this.setName(name);
-    this.setCalories(calories);
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public Long getId() {
-    return id;
-  }
+    public CakeTopping getTopping() {
+        return topping;
+    }
 
-  public void setId(Long id) {
-    this.id = id;
-  }
+    public void setTopping(CakeTopping topping) {
+        this.topping = topping;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public Set<CakeLayer> getLayers() {
+        return layers;
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public void setLayers(Set<CakeLayer> layers) {
+        this.layers = layers;
+    }
 
-  public int getCalories() {
-    return calories;
-  }
+    public void addLayer(CakeLayer layer) {
+        this.layers.add(layer);
+    }
 
-  public void setCalories(int calories) {
-    this.calories = calories;
-  }
-
-  @Override
-  public String toString() {
-    return String.format("id=%s name=%s calories=%d", id, name, calories);
-  }
-
-  public Cake getCake() {
-    return cake;
-  }
-
-  public void setCake(Cake cake) {
-    this.cake = cake;
-  }
+    @Override
+    public String toString() {
+        return String.format("id=%s topping=%s layers=%s", id, topping, layers.toString());
+    }
 }
