@@ -47,10 +47,13 @@
 
 package com.iluwatar.monitor;
 
-import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 
-/** Bank Definition. */
+import java.util.Arrays;
+
+/**
+ * Bank Definition.
+ */
 @Slf4j
 public class Bank {
 
@@ -72,19 +75,21 @@ public class Bank {
    *
    * @param accountA - source account
    * @param accountB - destination account
-   * @param amount - amount to be transferred
+   * @param amount   - amount to be transferred
    */
   public synchronized void transfer(int accountA, int accountB, int amount) {
-    if (accounts[accountA] >= amount) {
+    if (accounts[accountA] >= amount && accountA != accountB) {
       accounts[accountB] += amount;
       accounts[accountA] -= amount;
       if (LOGGER.isDebugEnabled()) {
         LOGGER.debug(
-            "Transferred from account: {} to account: {} , amount: {} , balance: {}",
+            "Transferred from account: {} to account: {} , amount: {} , bank balance at: {}, source account balance: {}, destination account balance: {}",
             accountA,
             accountB,
             amount,
-            getBalance());
+            getBalance(),
+            getBalance(accountA),
+            getBalance(accountB));
       }
     }
   }
@@ -100,6 +105,16 @@ public class Bank {
       balance += account;
     }
     return balance;
+  }
+
+  /**
+   * Get the accountNumber balance.
+   *
+   * @param accountNumber - accountNumber number
+   * @return accounts[accountNumber]
+   */
+  public synchronized int getBalance(int accountNumber) {
+    return accounts[accountNumber];
   }
 
   /**

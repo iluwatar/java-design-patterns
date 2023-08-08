@@ -24,10 +24,11 @@
  */
 package com.iluwatar.monitor;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.security.SecureRandom;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Monitor pattern is used in concurrent algorithms to achieve mutual exclusion.
@@ -41,6 +42,8 @@ import lombok.extern.slf4j.Slf4j;
 public class Main {
 
   private static final int NUMBER_OF_THREADS = 5;
+  private static final int BASE_AMOUNT = 1000;
+  private static final int ACCOUNT_NUM = 4;
 
   /**
    * Runner to perform a bunch of transfers and handle exception.
@@ -54,7 +57,7 @@ public class Main {
       Thread.sleep(random.nextInt(1000));
       LOGGER.info("Start transferring...");
       for (int i = 0; i < 1000000; i++) {
-        bank.transfer(random.nextInt(4), random.nextInt(4), random.nextInt());
+        bank.transfer(random.nextInt(4), random.nextInt(4), random.nextInt(0, BASE_AMOUNT));
       }
       LOGGER.info("Finished transferring.");
       latch.countDown();
@@ -70,7 +73,7 @@ public class Main {
    * @param args command line args
    */
   public static void main(String[] args) throws InterruptedException {
-    var bank = new Bank(4, 1000);
+    var bank = new Bank(ACCOUNT_NUM, BASE_AMOUNT);
     var latch = new CountDownLatch(NUMBER_OF_THREADS);
     var executorService = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
