@@ -24,12 +24,10 @@
  */
 package com.iluwatar.monitor;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.security.SecureRandom;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
-
+import lombok.extern.slf4j.Slf4j;
 /**
  * The Monitor pattern is used in concurrent algorithms to achieve mutual exclusion.
  *
