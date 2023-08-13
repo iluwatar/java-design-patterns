@@ -24,6 +24,12 @@
  */
 package com.iluwatar.abstractfactory;
 
+import com.iluwatar.abstractfactory.elf_kingdom.ElfArmy;
+import com.iluwatar.abstractfactory.elf_kingdom.ElfCastle;
+import com.iluwatar.abstractfactory.elf_kingdom.ElfKing;
+import com.iluwatar.abstractfactory.orc_kingdom.OrcArmy;
+import com.iluwatar.abstractfactory.orc_kingdom.OrcCastle;
+import com.iluwatar.abstractfactory.orc_kingdom.OrcKing;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

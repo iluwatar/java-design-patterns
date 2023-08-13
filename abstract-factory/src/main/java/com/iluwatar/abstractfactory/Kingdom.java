@@ -24,6 +24,8 @@
  */
 package com.iluwatar.abstractfactory;
 
+import com.iluwatar.abstractfactory.elf_kingdom.ElfKingdomFactory;
+import com.iluwatar.abstractfactory.orc_kingdom.OrcKingdomFactory;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -54,11 +56,14 @@ public class Kingdom {
      * The factory method to create KingdomFactory concrete objects.
      */
     public static KingdomFactory makeFactory(KingdomType type) {
-      return switch (type) {
-        case ELF -> new ElfKingdomFactory();
-        case ORC -> new OrcKingdomFactory();
-        default -> throw new IllegalArgumentException("KingdomType not supported.");
-      };
+      switch (type) {
+        case ELF:
+          return new ElfKingdomFactory();
+        case ORC:
+          return new OrcKingdomFactory();
+        default:
+          throw new IllegalArgumentException("KingdomType not supported.");
+      }
     }
   }
 }

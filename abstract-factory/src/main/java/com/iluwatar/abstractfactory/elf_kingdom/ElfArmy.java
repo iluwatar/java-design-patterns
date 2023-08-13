@@ -22,25 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.abstractfactory;
+package com.iluwatar.abstractfactory.elf_kingdom;
+
+import com.iluwatar.abstractfactory.Army;
 
 /**
- * OrcKingdomFactory concrete factory.
+ * ElfArmy.
  */
-public class OrcKingdomFactory implements KingdomFactory {
+public class ElfArmy implements Army {
+
+  public static final String DESCRIPTION = "This is the elven army!";
 
   @Override
-  public Castle createCastle() {
-    return new OrcCastle();
-  }
-
-  @Override
-  public King createKing() {
-    return new OrcKing();
-  }
-
-  @Override
-  public Army createArmy() {
-    return new OrcArmy();
+  public String getDescription() {
+    return DESCRIPTION;
   }
 }

@@ -24,6 +24,8 @@
  */
 package com.iluwatar.abstractfactory;
 
+import com.iluwatar.abstractfactory.elf_kingdom.ElfKingdomFactory;
+import com.iluwatar.abstractfactory.orc_kingdom.OrcKingdomFactory;
 import lombok.extern.slf4j.Slf4j;
 
 /**
