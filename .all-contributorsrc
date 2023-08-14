@@ -2532,6 +2532,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "konstantin-goldman",
+      "name": "konstantin-goldman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47669472?v=4",
+      "profile": "https://github.com/konstantin-goldman",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
