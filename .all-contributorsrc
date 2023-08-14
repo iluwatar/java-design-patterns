@@ -2469,6 +2469,69 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "behappyleee",
+      "name": "behappyleee",
+      "avatar_url": "https://avatars.githubusercontent.com/u/72903623?v=4",
+      "profile": "https://github.com/behappyleee",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Ayush-Thakur-geek",
+      "name": "Ayush Thakur",
+      "avatar_url": "https://avatars.githubusercontent.com/u/116510022?v=4",
+      "profile": "https://github.com/Ayush-Thakur-geek",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "boscha1",
+      "name": "Anthony Bosch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/55814237?v=4",
+      "profile": "https://github.com/boscha1",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "AnsonTran",
+      "name": "trananso",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37683428?v=4",
+      "profile": "https://github.com/AnsonTran",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "beef-e",
+      "name": "Giammaria Biffi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/102854627?v=4",
+      "profile": "https://github.com/beef-e",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "saif7159",
+      "name": "Saiful Haque",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36008396?v=4",
+      "profile": "https://github.com/saif7159",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "JabezBrew",
+      "name": "JabezBrew",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74483609?v=4",
+      "profile": "https://github.com/JabezBrew",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -2477,5 +2540,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true,
-  "commitConvention": "angular"
+  "commitConvention": "angular",
+  "commitType": "docs"
 }

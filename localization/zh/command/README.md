@@ -34,8 +34,8 @@ public class Wizard {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Wizard.class);
 
-  private final Deque<Command> undoStack = new LinkedList<>();
-  private final Deque<Command> redoStack = new LinkedList<>();
+  private final Deque<Runnable> undoStack = new LinkedList<>();
+  private final Deque<Runnable> redoStack = new LinkedList<>();
 
   public Wizard() {}
 
