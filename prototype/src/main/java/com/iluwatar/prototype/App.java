@@ -24,6 +24,12 @@
  */
 package com.iluwatar.prototype;
 
+import com.iluwatar.prototype.elf.ElfBeast;
+import com.iluwatar.prototype.elf.ElfMage;
+import com.iluwatar.prototype.elf.ElfWarlord;
+import com.iluwatar.prototype.orc.OrcBeast;
+import com.iluwatar.prototype.orc.OrcMage;
+import com.iluwatar.prototype.orc.OrcWarlord;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -45,14 +51,14 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    var factory = new HeroFactoryImpl(
+    HeroFactory factory = new HeroFactoryImpl(
         new ElfMage("cooking"),
         new ElfWarlord("cleaning"),
         new ElfBeast("protecting")
     );
-    var mage = factory.createMage();
-    var warlord = factory.createWarlord();
-    var beast = factory.createBeast();
+    Mage mage = factory.createMage();
+    Warlord warlord = factory.createWarlord();
+    Beast beast = factory.createBeast();
     LOGGER.info(mage.toString());
     LOGGER.info(warlord.toString());
     LOGGER.info(beast.toString());

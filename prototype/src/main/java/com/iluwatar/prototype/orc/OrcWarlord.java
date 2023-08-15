@@ -22,28 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.prototype;
+package com.iluwatar.prototype.orc;
 
+import com.iluwatar.prototype.Warlord;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
 /**
- * OrcBeast.
+ * OrcWarlord.
  */
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor
-public class OrcBeast extends Beast {
+public class OrcWarlord extends Warlord {
 
   private final String weapon;
 
-  public OrcBeast(OrcBeast orcBeast) {
-    super(orcBeast);
-    this.weapon = orcBeast.weapon;
+  public OrcWarlord(OrcWarlord orcWarlord) {
+    super(orcWarlord);
+    this.weapon = orcWarlord.weapon;
   }
 
   @Override
   public String toString() {
-    return "Orcish wolf attacks with " + weapon;
+    return "Orcish warlord attacks with " + weapon;
   }
 
 }

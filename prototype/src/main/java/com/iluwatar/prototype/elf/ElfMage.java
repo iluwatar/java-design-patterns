@@ -22,8 +22,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.prototype;
+package com.iluwatar.prototype.elf;
 
+import com.iluwatar.prototype.Mage;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 

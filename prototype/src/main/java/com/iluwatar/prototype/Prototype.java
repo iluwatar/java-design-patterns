@@ -34,7 +34,8 @@ import lombok.extern.slf4j.Slf4j;
 public abstract class Prototype<T> implements Cloneable {
 
   /**
-   * Object a shallow copy of this object or null if this object is not Cloneable.
+   * Object a shallow copy of this object or null if this object is not Cloneable.<br/>
+   * 实现接口后直接调用父类的复制器
    */
   @SuppressWarnings("unchecked")
   @SneakyThrows

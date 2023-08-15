@@ -22,27 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.prototype;
+package com.iluwatar.prototype.orc;
 
+import com.iluwatar.prototype.Beast;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
 /**
- * ElfWarlord.
+ * OrcBeast.
  */
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper = false)
 @RequiredArgsConstructor
-public class ElfWarlord extends Warlord {
+public class OrcBeast extends Beast {
 
-  private final String helpType;
+  private final String weapon;
 
-  public ElfWarlord(ElfWarlord elfWarlord) {
-    super(elfWarlord);
-    this.helpType = elfWarlord.helpType;
+  public OrcBeast(OrcBeast orcBeast) {
+    super(orcBeast);
+    this.weapon = orcBeast.weapon;
   }
 
   @Override
   public String toString() {
-    return "Elven warlord helps in " + helpType;
+    return "Orcish wolf attacks with " + weapon;
   }
+
 }
