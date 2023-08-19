@@ -146,17 +146,14 @@ public class ConfigureForUnixVisitor implements ZoomVisitor {
 اچھائی:
 
 * طبقاتی درجہ بندی کے درمیان کوئی انحصار سائیکل نہیں ہے۔
-
 * اگر کوئی نیا شامل کیا جائے تو تمام زائرین کو دوبارہ مرتب کرنے کی ضرورت نہیں ہے۔
-
 * اگر کلاس کے درجہ بندی میں کوئی نیا ممبر ہے تو موجودہ زائرین میں تالیف کی ناکامی کا سبب نہیں بنتا ہے۔
 
 برائی:
 
- خلاف ورزی کرتا ہے۔ [Liskov's Substitution Principle](https://java-design-patterns.com/principles/#liskov-substitution-principle) 
+ * خلاف ورزی کرتا ہے۔ [Liskov's Substitution Principle](https://java-design-patterns.com/principles/#liskov-substitution-principle) 
  یہ ظاہر کر کے کہ یہ تمام زائرین کو قبول کر سکتا ہے لیکن اصل میں صرف خاص مہمانوں میں دلچسپی رکھتا ہے۔
-
- ملاحظہ کرنے کے قابل طبقاتی درجہ بندی میں تمام اراکین کے لیے زائرین کا متوازی درجہ بندی بنانا ضروری ہے۔
+*  ملاحظہ کرنے کے قابل طبقاتی درجہ بندی میں تمام اراکین کے لیے زائرین کا متوازی درجہ بندی بنانا ضروری ہے۔
 
  ## متعلقہ پیٹرن
 
