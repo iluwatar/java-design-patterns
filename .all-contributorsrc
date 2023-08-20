@@ -2569,6 +2569,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "bakazhou",
+      "name": "bakazhou",
+      "avatar_url": "https://avatars.githubusercontent.com/u/81795984?v=4",
+      "profile": "https://github.com/bakazhou",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
