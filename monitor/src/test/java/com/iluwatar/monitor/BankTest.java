@@ -69,4 +69,11 @@ class BankTest {
   void BalanceHaveToBeOK() {
     assertEquals(4000, bank.getBalance());
   }
+
+  @Test
+  void ReturnBalanceWhenGivenAccountNumber() {
+    bank.transfer(0, 1, 1000);
+    assertEquals(0, bank.getBalance(0));
+    assertEquals(2000, bank.getBalance(1));
+  }
 }
