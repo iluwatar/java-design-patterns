@@ -25,7 +25,8 @@
 package com.iluwatar.spatialpartition;
 
 import java.util.Collection;
-import java.util.Hashtable;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * The quadtree data structure is being used to keep track of the objects' locations. It has the
@@ -37,7 +38,7 @@ public class QuadTree {
   Rect boundary;
   int capacity;
   boolean divided;
-  Hashtable<Integer, Point> points;
+  Map<Integer, Point> points;
   QuadTree northwest;
   QuadTree northeast;
   QuadTree southwest;
@@ -47,7 +48,7 @@ public class QuadTree {
     this.boundary = boundary;
     this.capacity = capacity;
     this.divided = false;
-    this.points = new Hashtable<>();
+    this.points = new HashMap<>();
     this.northwest = null;
     this.northeast = null;
     this.southwest = null;
