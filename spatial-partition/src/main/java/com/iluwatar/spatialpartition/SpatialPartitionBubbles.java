@@ -25,7 +25,7 @@
 package com.iluwatar.spatialpartition;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This class extends the generic SpatialPartition abstract class and is used in our example to keep
@@ -34,10 +34,10 @@ import java.util.HashMap;
 
 public class SpatialPartitionBubbles extends SpatialPartitionGeneric<Bubble> {
 
-  private final HashMap<Integer, Bubble> bubbles;
+  private final Map<Integer, Bubble> bubbles;
   private final QuadTree bubblesQuadTree;
 
-  SpatialPartitionBubbles(HashMap<Integer, Bubble> bubbles, QuadTree bubblesQuadTree) {
+  SpatialPartitionBubbles(Map<Integer, Bubble> bubbles, QuadTree bubblesQuadTree) {
     this.bubbles = bubbles;
     this.bubblesQuadTree = bubblesQuadTree;
   }
