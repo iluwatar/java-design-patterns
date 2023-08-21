@@ -13,8 +13,13 @@ As explained in the book Game Programming Patterns by Robert Nystrom, type objec
 > Allowing flexible creation of new “classes” by creating a single class, each instance of which represents a different type of object
 
 ## Explanation
-Say, we are working on a game which has a hero and many monsters which are going to attack the hero. These monsters have certain attributes like attack, points etc. and come in different 'breeds' like zombie or ogres. The obvious answer is to have a base Monster class which has some fields and methods, which may be overriden by subclasses like the Zombie or Ogre class. But as we continue to build the game, there may be more and more breeds of monsters added and certain attributes may need to be changed in the existing monsters too. The OOP solution of inheriting from the base class would not be an efficient method in this case.
-Using the type-object pattern, instead of creating many classes inheriting from a base class, we have 1 class with a field which represents the 'type' of object. This makes the code cleaner and object instantiation also becomes as easy as parsing a json file with the object properties.
+Real-world example
+> You are working on a game with many different breeds of monsters. Each monster breed has different values for the attributes, such as attack, health, intelligence, etc. You want to create new monster breeds, or modify the attributes of an existing breed, without needing to modify the code and recompiling the game.
+
+In plain words
+> Define a type object class, and a typed object class. We give each type object instance a reference to a typed object, containing the information for that type.
+
+**Programmatic example**
 
 ## Class diagram
 ![alt text](./etc/typeobjectpattern.urm.png "Type-Object pattern class diagram")
