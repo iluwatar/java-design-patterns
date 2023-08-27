@@ -2587,6 +2587,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "thestbar",
+      "name": "Stavros Barousis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20283468?v=4",
+      "profile": "https://github.com/thestbar",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
