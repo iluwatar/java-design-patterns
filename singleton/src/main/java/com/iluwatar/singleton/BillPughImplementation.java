@@ -25,36 +25,49 @@
 package com.iluwatar.singleton;
 
 /**
- * <p>Thread-safe Singleton class. The instance is lazily initialized and thus needs synchronization
- * mechanism.</p>
+ * <p>Bill Pugh Singleton Implementation.</p>
  *
+ * <p>This implementation of the singleton design pattern takes advantage of the
+ * Java memory model's guarantees about class initialization. Each class is
+ * initialized only once, when it is first used. If the class hasn't been used
+ * yet, it won't be loaded into memory, and no memory will be allocated for
+ * a static instance. This makes the singleton instance lazy-loaded and thread-safe.</p>
+ *
+ * @author owen.leung2@gmail.com
  */
-public final class ThreadSafeLazyLoadedIvoryTower {
-
-  /**
-   * Singleton instance of the class, declared as volatile to ensure atomic access by multiple threads.
-   */
-  private static volatile ThreadSafeLazyLoadedIvoryTower instance;
+public final class BillPughImplementation {
 
   /**
    * Private constructor to prevent instantiation from outside the class.
    */
-  private ThreadSafeLazyLoadedIvoryTower() {
-    // Protect against instantiation via reflection
-    if (instance != null) {
-      throw new IllegalStateException("Already initialized.");
-    }
+  private BillPughImplementation() {
+    // private constructor
   }
 
   /**
-   * The instance doesn't get created until the method is called for the first time.
+   * The InstanceHolder is a static inner class and it holds the Singleton instance.
+   * It is not loaded into memory until the getInstance() method is called.
+   */
+  private static class InstanceHolder {
+    /**
+     * Singleton instance of the class.
+     */
+    private static BillPughImplementation instance = new BillPughImplementation();
+  }
+
+  /**
+   * Public accessor for the singleton instance.
+   *
+   * <p>
+   * When this method is called, the InstanceHolder is loaded into memory
+   * and creates the Singleton instance. This method provides a global access point
+   * for the singleton instance.
+   * </p>
    *
    * @return an instance of the class.
    */
-  public static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
-    if (instance == null) {
-      instance = new ThreadSafeLazyLoadedIvoryTower();
-    }
-    return instance;
+  // global access point
+  public static BillPughImplementation getInstance() {
+    return InstanceHolder.instance;
   }
 }
