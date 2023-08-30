@@ -27,13 +27,26 @@ package crtp;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Curiously Recurring Template Pattern.
- * TODO Add more info.
+ * Shows the {@link Fighter} fight method call on some implementations of {@link MmaFighter}. Note
+ * that fighters can only fight against opponents of their same weight class.
  */
 @Slf4j
 public class App {
 
+  /**
+   * Program entry point.
+   *
+   * @param args command line args
+   */
   public static void main(String[] args) {
+    MmaBantamweightFighter fighter1 = new MmaBantamweightFighter("Joe", "Johnson", "The Geek", "Muay Thai");
+    MmaBantamweightFighter fighter2 = new MmaBantamweightFighter("Ed", "Edwards", "The Problem Solver", "Judo");
+    fighter1.fight(fighter2);
+
+    MmaHeavyweightFighter fighter3 = new MmaHeavyweightFighter("Dave", "Davidson", "The Bug Smasher", "Kickboxing");
+    MmaHeavyweightFighter fighter4 = new MmaHeavyweightFighter("Jack", "Jackson", "The Pragmatic", "Brazilian Jiu-Jitsu");
+
+    fighter3.fight(fighter4);
 
   }
 }

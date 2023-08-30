@@ -29,8 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import org.junit.jupiter.api.Test;
 
 /**
- * Curiously Recurring Template Pattern.
- * TODO Add more info.
+ * Application test
  */
 class AppTest {
 
