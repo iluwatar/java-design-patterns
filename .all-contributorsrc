@@ -2578,6 +2578,42 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Owen-CH-Leung",
+      "name": "Owen Leung",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43698890?v=4",
+      "profile": "https://github.com/Owen-CH-Leung",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "thestbar",
+      "name": "Stavros Barousis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20283468?v=4",
+      "profile": "https://github.com/thestbar",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "ibrahim89",
+      "name": "Syyed Ibrahim Abdullah",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20753671?v=4",
+      "profile": "https://github.com/ibrahim89",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "JanisZhang",
+      "name": "JiaDi Zhang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95570096?v=4",
+      "profile": "https://github.com/JanisZhang",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
