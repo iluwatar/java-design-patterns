@@ -37,7 +37,7 @@ class MainTest {
   }
 
   @Test
-  void RunnerExecuteWithoutException() {
+  void runnerShouldExecuteWithoutException() {
     var bank = new Bank(4, 1000);
     var latch = new CountDownLatch(1);
 

@@ -24,7 +24,7 @@
  */
 package com.iluwatar.spatialpartition;
 
-import java.util.Hashtable;
+import java.util.Map;
 
 /**
  * This abstract class has 2 fields, one of which is a hashtable containing all objects that
@@ -35,7 +35,7 @@ import java.util.Hashtable;
 
 public abstract class SpatialPartitionGeneric<T> {
 
-  Hashtable<Integer, T> playerPositions;
+  Map<Integer, T> playerPositions;
   QuadTree quadTree;
 
   /**

@@ -2532,6 +2532,88 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "konstantin-goldman",
+      "name": "konstantin-goldman",
+      "avatar_url": "https://avatars.githubusercontent.com/u/47669472?v=4",
+      "profile": "https://github.com/konstantin-goldman",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "tiennm99",
+      "name": "Tien Nguyen Minh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39063457?v=4",
+      "profile": "http://miti99.dev",
+      "contributions": [
+        "code",
+        "translation"
+      ]
+    },
+    {
+      "login": "VladimirCreator",
+      "name": "Vladimir",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49140851?v=4",
+      "profile": "https://github.com/VladimirCreator",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "surjendu104",
+      "name": "Surjendu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/101238933?v=4",
+      "profile": "https://surjendu-pal.netlify.app/",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "bakazhou",
+      "name": "bakazhou",
+      "avatar_url": "https://avatars.githubusercontent.com/u/81795984?v=4",
+      "profile": "https://github.com/bakazhou",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Owen-CH-Leung",
+      "name": "Owen Leung",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43698890?v=4",
+      "profile": "https://github.com/Owen-CH-Leung",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "thestbar",
+      "name": "Stavros Barousis",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20283468?v=4",
+      "profile": "https://github.com/thestbar",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "ibrahim89",
+      "name": "Syyed Ibrahim Abdullah",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20753671?v=4",
+      "profile": "https://github.com/ibrahim89",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "JanisZhang",
+      "name": "JiaDi Zhang",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95570096?v=4",
+      "profile": "https://github.com/JanisZhang",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
