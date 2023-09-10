@@ -5,6 +5,7 @@ import java.beans.PropertyChangeListener;
 import java.util.LinkedList;
 import java.util.Queue;
 
+/**Tasks are scheduled in the order they arrive. */
 public class FirstComeFirstServedScheduler implements TaskScheduler, PropertyChangeListener {
   private final Queue<Task> taskQueue = new LinkedList<>();
 
@@ -17,7 +18,9 @@ public class FirstComeFirstServedScheduler implements TaskScheduler, PropertyCha
   @Override
   public void update(int deltaTime) {
     Task task = taskQueue.peek();
-    if (task == null) return;
+    if (task == null) {
+      return;
+    }
     task.execute(deltaTime);
   }
 
