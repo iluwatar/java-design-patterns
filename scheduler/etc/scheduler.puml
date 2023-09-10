@@ -1,0 +1,41 @@
+@startuml
+
+class Task {
+  -id: int
+  -totalExecutionTime: int
+  -priority: int
+  --
+  +Task(id: int, totalExecutionTime: int, priority: int)
+  +Task(id: int, totalExecutionTime: int)
+  +getId(): int
+  +getTotalExecutionTime(): int
+  +getPriority(): int
+}
+
+interface TaskScheduler {
+  +scheduleTask(task: Task): void
+  +update(int deltaTime): void
+}
+
+class FirstComeFirstServedScheduler extends TaskScheduler {}
+class PriorityScheduler extends TaskScheduler {}
+class RoundRobinScheduler extends TaskScheduler {}
+class ShortestRemainingTimeFirstScheduler extends TaskScheduler {}
+
+class Simulator {
+  -scheduler: TaskScheduler
+  -Map<Integer, List<Task>> tasks
+  -deltaTime: int
+  -simulateTime: int
+  -LinkedHashMap<Integer, Integer> taskCompletedOrder
+  -elapsedTime: int
+  --
+  +Simulator(scheduler: TaskScheduler, tasks: Map<Integer, List<Task>>, deltaTime: int, simulateTime: int)
+  +simulate(): LinkedHashMap<Integer, Integer>
+}
+
+Task -- TaskScheduler : "1..*"
+TaskScheduler -- Simulator : "1"
+Simulator ..> Task : "1..*"
+
+@enduml
