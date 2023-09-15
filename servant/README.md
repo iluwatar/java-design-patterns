@@ -3,7 +3,7 @@ title: Servant
 category: Behavioral
 language: en
 tag:
-  - Decoupling
+- Decoupling
 ---
 
 ## Intent
@@ -30,8 +30,6 @@ Wikipedia says
 > objects for which (or with whom) the servant does something, are taken as parameters.
 
 **Programmatic Example**
-
-Md Saiful Islam, Effective Java 2nd Edition p.18
 
 Servant class which can give services to other royal members of palace.
 
