@@ -24,6 +24,7 @@
  */
 package crtp;
 
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -32,6 +33,7 @@ import lombok.extern.slf4j.Slf4j;
  * @param <T> MmaFighter derived class that uses itself as type parameter.
  */
 @Slf4j
+@Data
 public class MmaFighter<T extends MmaFighter<T>> implements Fighter<T> {
 
   private final String name;
@@ -39,29 +41,9 @@ public class MmaFighter<T extends MmaFighter<T>> implements Fighter<T> {
   private final String nickName;
   private final String speciality;
 
-  /**
-   * MmaFighter constructor.
-   *
-   * @param name       MmaFighter name.
-   * @param surname    MmaFighter surname.
-   * @param nickName   MmaFighter nickName.
-   * @param speciality MmaFighter speciality.
-   */
-  public MmaFighter(String name, String surname, String nickName, String speciality) {
-    this.name = name;
-    this.surname = surname;
-    this.nickName = nickName;
-    this.speciality = speciality;
-  }
-
   @Override
   public void fight(T opponent) {
     LOGGER.info("{} is going to fight against {}", this, opponent);
-  }
-
-  @Override
-  public String toString() {
-    return name + " \"" + nickName + "\" " + surname;
   }
 
 }
