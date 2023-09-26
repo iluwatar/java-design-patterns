@@ -1,6 +1,10 @@
 ---
 title: Curiously Recurring Template Pattern
 language: en
+category: Structural
+tag:
+- Extensibility
+- Instantiation
 ---
 
 ## Name / classification
