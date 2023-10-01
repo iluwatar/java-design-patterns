@@ -82,18 +82,14 @@ public class PotionFactory {
       switch (type) {
         case HEALING -> {
           potion = new HealingPotion();
-          potions.put(type, potion);
         }
         case HOLY_WATER -> {
           potion = new HolyWaterPotion();
-          potions.put(type, potion);
         }
         case INVISIBILITY -> {
           potion = new InvisibilityPotion();
-          potions.put(type, potion);
         }
-        default -> {
-        }
+  potions.put(type, potion);
       }
     }
     return potion;
