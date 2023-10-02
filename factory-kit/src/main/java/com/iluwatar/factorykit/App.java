@@ -59,6 +59,6 @@ public class App {
     list.add(factory.create(WeaponType.SPEAR));
     list.add(factory.create(WeaponType.SWORD));
     list.add(factory.create(WeaponType.BOW));
-    list.forEach(weapon -> LOGGER.info("{}", weapon.toString()));
+    list.parallelStream().forEach(weapon -> LOGGER.info("{}", weapon));
   }
 }
