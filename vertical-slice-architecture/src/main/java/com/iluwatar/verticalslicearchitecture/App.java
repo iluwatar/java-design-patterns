@@ -28,7 +28,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * main application.
+ * Main application.
+ * The main objective of this code sample is for you to have a look at how the view, entity, repository and Service are
+ * organized.
+ * No matter what application you are building Layer by Feature will always give the upper hand of better
+ * maintainability.
  */
 
 @SpringBootApplication

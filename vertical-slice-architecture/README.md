@@ -42,3 +42,4 @@ Use Vertical Slice Architecture when
 * [How to Implement Vertical Slice Architecture by Gary Woodfine](https://garywoodfine.com/implementing-vertical-slice-architecture/)
 * [youtube](https://www.youtube.com/watch?v=B1d95I7-zsw)
 * [medium](https://medium.com/sahibinden-technology/package-by-layer-vs-package-by-feature-7e89cde2ae3a)
+* [A reference application](https://github.com/sugan0tech/Event-Manager)
