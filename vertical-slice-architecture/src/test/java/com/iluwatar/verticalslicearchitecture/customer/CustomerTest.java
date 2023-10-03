@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class CustomerTest {
 
   @Test
-  public void testCustomerEntity() {
+  void testCustomerEntity() {
     // Arrange
     Integer id = 1;
     String name = "John Doe";
