@@ -64,20 +64,20 @@ public class Runner implements CommandLineRunner {
 
   public void initializeData() {
 
-    Customer customer = Customer.builder().id(1).name("sugan0tech").email("sugan@gmail.com").build();
+    var customer = Customer.builder().id(1).name("sugan0tech").email("sugan@gmail.com").build();
     customerService.createCustomer(customer);
 
-    Product oreo = Product.builder().id(1).price(2.00).name("Oreo").build();
-    Product cone = Product.builder().id(3).price(1.15).name("Ice Cream Cone").build();
-    Product apple = Product.builder().id(4).price(2.00).name("Apple").build();
-    Product sandwich = Product.builder().id(2).price(6.00).name("Sandwich").build();
+    var oreo = Product.builder().id(1).price(2.00).name("Oreo").build();
+    var cone = Product.builder().id(3).price(1.15).name("Ice Cream Cone").build();
+    var apple = Product.builder().id(4).price(2.00).name("Apple").build();
+    var sandwich = Product.builder().id(2).price(6.00).name("Sandwich").build();
     productService.createProduct(oreo);
     productService.createProduct(cone);
     productService.createProduct(apple);
     productService.createProduct(sandwich);
 
     orderService.createOrder(1, customer, oreo);
-    orderService.createOrder(2, customer, sandwich);
     orderService.createOrder(3, customer, apple);
+    orderService.createOrder(2, customer, sandwich);
   }
 }
