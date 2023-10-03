@@ -15,6 +15,8 @@ class AppTests {
 
   @Test
   void contextLoads() {
+    App.main(new String[] {});
+    assertNotNull(App.class);
     assertNotNull(applicationContext);
   }
 
