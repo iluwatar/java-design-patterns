@@ -1,11 +1,7 @@
-﻿---
-title: Observer (अवलोकक पैटर्न)
-category: Behavioral (व्यावहारिक पैटर्न)
-language: हिन्दी
-tag:
- - Gang Of Four(गैंग ऑफ फोर) 
- - Reactive (रीएक्टिव)
----
+
+|        **Title**       | **Category**                | **Language** | **Tag**                                     |
+|:----------------------:|-----------------------------|--------------|---------------------------------------------|
+| Observer (अवलोकक पैटर्न) | Behavioral (व्यावहारिक पैटर्न) | हिन्दी        | Gang Of Four(गैंग ऑफ फोर)<br/>Reactive (रीएक्टिव) |
 
 ## के रूप में भी जाना जाता है
 
@@ -131,7 +127,7 @@ The hobbits are facing sunny weather now
 
 ## Class diagram
 
-![alt text](./etc/observer.png "Observer")
+![alt text](/observer/etc/observer.png "Observer")
 
 ## अनुप्रयोगिता
 
