@@ -189,7 +189,7 @@ Voici quelques scénarios dans lesquels le patron de conception Abstract Documen
 
 * Outils de gestion de projet : Dans les applications de gestion de projet, vous pouvez avoir différents types de tâches comme les tâches à faire, les étapes et les problèmes. Le modèle de document abstrait peut être utilisé pour gérer des attributs généraux tels que le nom de la tâche et le destinataire, tout en autorisant des attributs spécifiques tels que la date du jalon ou la priorité du problème.
 
-L'idée principale du modèle de conception Abstract Document est de fournir un moyen flexible et extensible de gérer différents types de documents ou d'entités avec des attributs partagés et distincts. En définissant une interface commune et en l'implémentant
+L'idée principale du patron de conception Abstract Document est de fournir un moyen flexible et extensible de gérer différents types de documents ou d'entités avec des attributs partagés et distincts. En définissant une interface commune et en l'implémentant
 dans les différents types de documents, vous pouvez obtenir une approche plus organisée et cohérente de la manipulation de structures de données complexes.
 
 ## Crédits
