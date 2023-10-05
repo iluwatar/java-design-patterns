@@ -1,0 +1,11 @@
+@startuml
+
+class Person {
+    + id : long
+    + name : String
+    + age : int
+}
+
+Person <|-- Person
+
+@enduml
