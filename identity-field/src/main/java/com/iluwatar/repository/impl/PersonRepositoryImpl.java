@@ -47,7 +47,7 @@ public class PersonRepositoryImpl implements PersonRepository {
   @Override
   public Optional<Person> findById(Long id) {
     String sql = "SELECT * FROM person WHERE id = ?";
-    return jdbcTemplate.queryForObject(sql, new PersonMapper(), id);
+    return Optional.ofNullable(jdbcTemplate.queryForObject(sql, new PersonMapper(), id));
   }
 
   /**
