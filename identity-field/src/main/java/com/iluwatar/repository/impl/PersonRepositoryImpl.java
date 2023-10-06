@@ -71,7 +71,7 @@ public class PersonRepositoryImpl implements PersonRepository {
   /**
    * A `RowMapper` that maps a row in the `person` table to a `Person` object.
    */
-  private static class PersonMapper implements RowMapper<Person> {
+  public static class PersonMapper implements RowMapper<Person> {
 
     /**
      * Maps a row in the `person` table to a `Person` object.
