@@ -10,6 +10,13 @@
     </parent>
 
     <artifactId>identity-field</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>6.0.4</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

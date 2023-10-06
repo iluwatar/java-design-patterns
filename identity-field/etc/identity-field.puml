@@ -1,0 +1,36 @@
+@startuml
+
+package com.iluwatar {
+
+  class Person {
+    id: long
+    name: String
+    age: int
+  }
+
+  interface PersonRepository {
+    save(person: Person): Person
+    findById(id: long): Person?
+    findAll(): List<Person>
+    deleteById(id: long): void
+  }
+
+  class PersonService {
+    personRepository: PersonRepository
+
+    createPerson(name: String, age: int): Person
+    getPersonById(id: long): Person?
+    updatePerson(person: Person)
+    deletePersonById(id: long)
+  }
+
+  class PersonNotFoundException {
+    id: long
+
+    constructor(id: long) {
+      this.id = id;
+    }
+  }
+}
+
+@enduml
