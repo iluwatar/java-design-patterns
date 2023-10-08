@@ -119,4 +119,7 @@ Contras
 
   ## Usos conhecidos
 
-* [java.util.Calendar#getInstance()]https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--
+* [java.util.Calendar#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
+* [java.util.ResourceBundle#getBundle()](https://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
+* [java.text.NumberFormat#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html#getInstance--)
+* 
