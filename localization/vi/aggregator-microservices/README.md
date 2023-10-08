@@ -1,7 +1,7 @@
 ---
-title: Aggregator Microservices (Microservices Tổng Hợp)
+title: Microservices Tổng Hợp
 category: Architectural
-language: en
+language: vi
 tag:
 - Cloud distributed
 - Decoupling
