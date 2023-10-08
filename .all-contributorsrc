@@ -2614,6 +2614,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "sanchitbansal10",
+      "name": "Sanchit Bansal",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16536741?v=4",
+      "profile": "https://github.com/sanchitbansal10",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
