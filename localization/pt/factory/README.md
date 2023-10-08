@@ -1,4 +1,3 @@
-
 ---
 title: Factory
 categories: Creational
