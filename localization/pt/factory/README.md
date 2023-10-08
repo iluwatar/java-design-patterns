@@ -102,7 +102,7 @@ This is a gold coin.
 
 ## Diagrama de classes
 
-(https://java-design-patterns.com/patterns/factory/#class-diagram)
+![alt text]((../../../factory/etc/factory.urm.png "Diagrama de Classes de Factory")
 
 ## Aplicabilidade
 
