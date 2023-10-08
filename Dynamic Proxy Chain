@@ -1,0 +1,87 @@
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+import java.util.ArrayList;
+import java.util.List;
+
+// Step 1: Define the ProxyHandler interface
+interface ProxyHandler {
+    void before(Object proxy, Method method, Object[] args);
+    void after(Object proxy, Method method, Object[] args);
+}
+
+// Step 3: Create the DynamicProxyChain class
+class DynamicProxyChain implements InvocationHandler {
+    private final Object target;
+    private final List<ProxyHandler> handlers = new ArrayList<>();
+
+    public DynamicProxyChain(Object target) {
+        this.target = target;
+    }
+
+    public void addHandler(ProxyHandler handler) {
+        handlers.add(handler);
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        for (ProxyHandler handler : handlers) {
+            handler.before(proxy, method, args);
+        }
+
+        Object result = method.invoke(target, args);
+
+        for (ProxyHandler handler : handlers) {
+            handler.after(proxy, method, args);
+        }
+
+        return result;
+    }
+
+    // Step 2: Create a static method to create proxy instances
+    public static <T> T createProxy(Object target, Class<T> targetInterface) {
+        ClassLoader classLoader = target.getClass().getClassLoader();
+        Class<?>[] interfaces = new Class[]{targetInterface};
+        DynamicProxyChain proxyChain = new DynamicProxyChain(target);
+
+        return (T) Proxy.newProxyInstance(classLoader, interfaces, proxyChain);
+    }
+}
+
+// Step 4: Example usage
+public class Main {
+    public static void main(String[] args) {
+        // Create the target object
+        MyService targetService = new MyService();
+
+        // Create a dynamic proxy chain for logging
+        DynamicProxyChain proxyChain = new DynamicProxyChain(targetService);
+
+        // Add a logging handler
+        proxyChain.addHandler(new LoggingHandler());
+
+        // Create a proxy instance
+        MyService proxyService = proxyChain.createProxy(targetService, MyService.class);
+
+        // Use the proxy
+        proxyService.doSomething();
+    }
+}
+
+class MyService {
+    public void doSomething() {
+        System.out.println("MyService: Doing something.");
+    }
+}
+
+class LoggingHandler implements ProxyHandler {
+    @Override
+    public void before(Object proxy, Method method, Object[] args) {
+        System.out.println("Before method: " + method.getName());
+    }
+
+    @Override
+    public void after(Object proxy, Method method, Object[] args) {
+        System.out.println("After method: " + method.getName());
+    }
+}
