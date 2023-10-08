@@ -13,7 +13,7 @@ Policy
 ## Intent
 
 Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets 
-the algorithm vary independently from the clients that use it.
+the algorithm vary independently of the clients that use it.
 
 ## Explanation
 

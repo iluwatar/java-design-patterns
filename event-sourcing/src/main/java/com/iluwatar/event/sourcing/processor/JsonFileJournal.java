@@ -24,9 +24,8 @@
  */
 package com.iluwatar.event.sourcing.processor;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.iluwatar.event.sourcing.event.AccountCreateEvent;
 import com.iluwatar.event.sourcing.event.DomainEvent;
 import com.iluwatar.event.sourcing.event.MoneyDepositEvent;
@@ -49,9 +48,8 @@ import java.util.List;
  *
  * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
-public class JsonFileJournal {
+public class JsonFileJournal extends EventJournal {
 
-  private final File file;
   private final List<String> events = new ArrayList<>();
   private int index = 0;
 
@@ -81,34 +79,16 @@ public class JsonFileJournal {
    *
    * @param domainEvent the domain event
    */
+  @Override
   public void write(DomainEvent domainEvent) {
-    var gson = new Gson();
-    JsonElement jsonElement;
-    if (domainEvent instanceof AccountCreateEvent) {
-      jsonElement = gson.toJsonTree(domainEvent, AccountCreateEvent.class);
-    } else if (domainEvent instanceof MoneyDepositEvent) {
-      jsonElement = gson.toJsonTree(domainEvent, MoneyDepositEvent.class);
-    } else if (domainEvent instanceof MoneyTransferEvent) {
-      jsonElement = gson.toJsonTree(domainEvent, MoneyTransferEvent.class);
-    } else {
-      throw new RuntimeException("Journal Event not recognized");
-    }
-
+    var mapper = new ObjectMapper();
     try (var output = new BufferedWriter(
         new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8))) {
-      var eventString = jsonElement.toString();
+      var eventString = mapper.writeValueAsString(domainEvent);
       output.write(eventString + "\r\n");
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-  }
-
-
-  /**
-   * Reset.
-   */
-  public void reset() {
-    file.delete();
   }
 
 
@@ -124,19 +104,19 @@ public class JsonFileJournal {
     var event = events.get(index);
     index++;
 
-    var parser = new JsonParser();
-    var jsonElement = parser.parse(event);
-    var eventClassName = jsonElement.getAsJsonObject().get("eventClassName").getAsString();
-    var gson = new Gson();
+    var mapper = new ObjectMapper();
     DomainEvent domainEvent;
-    if (eventClassName.equals("AccountCreateEvent")) {
-      domainEvent = gson.fromJson(jsonElement, AccountCreateEvent.class);
-    } else if (eventClassName.equals("MoneyDepositEvent")) {
-      domainEvent = gson.fromJson(jsonElement, MoneyDepositEvent.class);
-    } else if (eventClassName.equals("MoneyTransferEvent")) {
-      domainEvent = gson.fromJson(jsonElement, MoneyTransferEvent.class);
-    } else {
-      throw new RuntimeException("Journal Event not recegnized");
+    try {
+      var jsonElement = mapper.readTree(event);
+      var eventClassName = jsonElement.get("eventClassName").asText();
+      domainEvent = switch (eventClassName) {
+        case "AccountCreateEvent" -> mapper.treeToValue(jsonElement, AccountCreateEvent.class);
+        case "MoneyDepositEvent" -> mapper.treeToValue(jsonElement, MoneyDepositEvent.class);
+        case "MoneyTransferEvent" -> mapper.treeToValue(jsonElement, MoneyTransferEvent.class);
+        default -> throw new RuntimeException("Journal Event not recognized");
+      };
+    } catch (JsonProcessingException jsonProcessingException) {
+      throw new RuntimeException("Failed to convert JSON");
     }
 
     domainEvent.setRealTime(false);

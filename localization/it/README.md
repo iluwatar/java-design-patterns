@@ -21,12 +21,12 @@ Leggi in lingue diverse: [**it**](localization/it/README.md), [**zh**](localizat
 # Introduzione
 
 I design patterns sono le migliori pratiche di programmazione che uno sviluppatore puó usare per
-risolvere problemi durante il design di un'applicazione o sistema.
+risolvere problemi durante il design di un'applicazione o di un sistema.
 
 I design patterns possono velocizzare lo sviluppo fornendo paradigmi di 
 sviluppo testati e approvati.
 
-Riutilizzare i design patterns aiuta a prevenire problematiche che possono causare maggiori problemi, inoltre, migliorano la leggibilità del codice per gli sviluppatori e ingegneri che hanno familiarità con questi patterns.
+Riutilizzare i design patterns aiuta a prevenire problematiche che possono causare maggiori problemi, inoltre migliorano la leggibilità del codice per gli sviluppatori e ingegneri che hanno familiarità con questi patterns.
 
 # Come iniziare
 
@@ -47,7 +47,7 @@ Quando hai familiarizzato con questi concetti puoi cominciare a immergerti nei
 uno dei seguenti approcci:
 
  - Cercando uno specifico pattern tramite il nome. Non riesci a trovarlo? Allora comunicacelo [qui](https://github.com/iluwatar/java-design-patterns/issues).
- - Usando tags come `Performence`, `Gang of four` o `Data access`.
+ - Usando tags come `Performance`, `Gang of four` o `Data access`.
  - Usando categorie appartenenti ai patterns come `Creational`, `Behavioral`, etc.
 
 Speriamo che le soluzioni object-oriented mostrate ti siano utili per i tuoi progetti e che tu 
@@ -61,4 +61,4 @@ ogni tua domanda nella [chatroom Gitter](https://gitter.im/iluwatar/java-design-
 
 # Licenza
 
-Questo progetto sotto licenza MIT.
+Questo progetto è licanziato nei termini della licenza MIT.
