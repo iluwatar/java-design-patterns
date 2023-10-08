@@ -78,6 +78,7 @@ Consequences involved with using the Feature Toggle pattern
 * Code complexity is increased
 * Testing of multiple states is harder and more time-consuming
 * Confusion between friends on why features are missing
+* Keeping documentation up to date with all features can be difficult 
 
 ## Credits
 
