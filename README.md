@@ -447,6 +447,7 @@ This project is licensed under the terms of the MIT license.
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sanchitbansal10"><img src="https://avatars.githubusercontent.com/u/16536741?v=4?s=100" width="100px;" alt="Sanchit Bansal"/><br /><sub><b>Sanchit Bansal</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=sanchitbansal10" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mm-saiful6854"><img src="https://avatars.githubusercontent.com/u/48361160?v=4?s=100" width="100px;" alt="Md Saiful Islam"/><br /><sub><b>Md Saiful Islam</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mm-saiful6854" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/AddeusExMachina"><img src="https://avatars.githubusercontent.com/u/39912670?v=4?s=100" width="100px;" alt="Antonio Addeo"/><br /><sub><b>Antonio Addeo</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=AddeusExMachina" title="Documentation">📖</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=AddeusExMachina" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
