@@ -100,3 +100,23 @@ This is a copper coin.
 This is a gold coin.
 ```
 
+## Diagrama de classes
+
+(yet to be added)
+
+## Aplicabilidade
+
+Use o padrão de fábrica quando você se preocupa apenas com a criação de um objeto, e não com como criá-lo e gerenciá-lo.
+
+Prós
+
+* Permite manter a criação de todos os objetos em um só lugar e evitar a propagação de 'novas' palavras-chave pela base de código.
+* Permite escrever código fracamente acoplado. Algumas de suas principais vantagens incluem melhor testabilidade, código fácil de entender, componentes trocáveis, escalabilidade e recursos isolados.
+
+Contras
+
+* O código se torna mais complicado do que deveria.
+
+  ## Usos conhecidos
+
+* [java.util.Calendar#getInstance()]https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--
