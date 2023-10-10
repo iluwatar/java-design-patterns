@@ -207,6 +207,7 @@
     <module>context-object</module>
     <module>thread-local-storage</module>
     <module>optimistic-offline-lock</module>
+    <module>crtp</module>
   </modules>
   <repositories>
     <repository>
