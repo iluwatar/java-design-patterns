@@ -7,14 +7,18 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
+/**
+ * A class that extends the PassengerVehicle class
+ * and provides the concrete inheritance implementation of the Car
+ *
+ * @see com.iluwatar.abstractEntity.PassengerVehicle PassengerVehicle
+ * @see com.iluwatar.abstractEntity.Vehicle Vehicle
+ */
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorValue(value = "TRAIN")
 public class Train extends PassengerVehicle {
 
@@ -25,6 +29,7 @@ public class Train extends PassengerVehicle {
         this.noOfCarriages = noOfCarriages;
     }
 
+    // Overridden the toString method to specify the Vehicle object
     @Override
     public String toString() {
         return "Train{" +

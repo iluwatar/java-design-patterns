@@ -4,11 +4,16 @@ import lombok.*;
 
 import javax.persistence.*;
 
+/**
+ * An abstract class that is the root of the Vehicle Inheritance hierarchy
+ * and basic provides properties for all the vehicles
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "VEHICLE_TYPE")
 public abstract class Vehicle {
 

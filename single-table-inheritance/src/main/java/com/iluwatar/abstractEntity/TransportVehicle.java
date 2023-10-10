@@ -4,6 +4,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * An abstract class that extends the Vehicle class
+ * and provides properties for the Transport type of Vehicles
+ *
+ * @see com.iluwatar.abstractEntity.Vehicle
+ */
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
