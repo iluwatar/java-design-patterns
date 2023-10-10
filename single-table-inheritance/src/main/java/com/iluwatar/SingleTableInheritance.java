@@ -4,11 +4,12 @@ import com.iluwatar.entity.Car;
 import com.iluwatar.entity.Truck;
 import com.iluwatar.entity.Vehicle;
 import com.iluwatar.service.VehicleService;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.List;
 
 /**
  * Single Table Inheritance pattern :
@@ -25,8 +26,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * to the Vehicle table to save the type of the subclass object that
  * is being stored in the database. This value is specified by the @DiscriminatorValue annotation
  * value for each subclass in case of Hibernate. <br>
- * </p>
- * <br>
+ * </p><br>
  * Below is the main Spring Boot Application class from where the Program Runs.
  * <p>
  * It implements the CommandLineRunner to run the statements at the
