@@ -1,19 +1,17 @@
 package com.iluwatar.entity;
 
-import com.iluwatar.abstractEntity.TransportVehicle;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-
 /**
  * A class that extends the TransportVehicle class
- * and provides the concrete inheritance implementation of the Car
+ * and provides the concrete inheritance implementation of the Car.
  *
- * @see com.iluwatar.abstractEntity.TransportVehicle TransportVehicle
- * @see com.iluwatar.abstractEntity.Vehicle Vehicle
+ * @see TransportVehicle TransportVehicle
+ * @see Vehicle Vehicle
  */
 @Data
 @NoArgsConstructor
@@ -22,20 +20,22 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = "FREIGHTER")
 public class Freighter extends TransportVehicle {
 
-    private double flightLength;
+  private double flightLength;
 
-    public Freighter(String manufacturer, String model, int countOfSeats, int loadCapacity, double flightLength) {
-        super(manufacturer, model, loadCapacity);
-        this.flightLength = flightLength;
-    }
+  public Freighter(String manufacturer, String model, int countOfSeats, int loadCapacity, double flightLength) {
+    super(manufacturer, model, loadCapacity);
+    this.flightLength = flightLength;
+  }
 
-    // Overridden the toString method to specify the Vehicle object
-    @Override
-    public String toString() {
-        return "Freighter{ " +
-                super.toString() + " ," +
-                "flightLength=" + flightLength +
-                '}';
-    }
+  // Overridden the toString method to specify the Vehicle object
+  @Override
+  public String toString() {
+    return "Freighter{ "
+            + super.toString()
+            + " ,"
+            + "flightLength="
+            + flightLength
+            + '}';
+  }
 
 }
