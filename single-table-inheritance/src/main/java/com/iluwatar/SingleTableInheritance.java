@@ -4,12 +4,11 @@ import com.iluwatar.entity.Car;
 import com.iluwatar.entity.Truck;
 import com.iluwatar.entity.Vehicle;
 import com.iluwatar.service.VehicleService;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.List;
 
 /**
  * Single Table Inheritance pattern :
