@@ -51,16 +51,8 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: 'temurin'
+        distribution: 'corretto'
         cache: 'maven'
-
-    - name: Cache local Maven repository
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-
 
     # Cache Sonar packages which as used to run analysis and collect metrics
     - name: Cache SonarCloud packages
@@ -75,8 +67,8 @@ jobs:
       run: sudo apt-get install -y xvfb
 
     - name: Build with Maven and run SonarQube analysis
-      run: xvfb-run ./mvnw clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
       env:
         # These two env variables are needed for sonar analysis
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: xvfb-run ./mvnw clean verify sonar:sonar

@@ -50,16 +50,8 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'
-        distribution: 'temurin'
+        distribution: 'corretto'
         cache: 'maven'
-
-    - name: Cache local Maven repository
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-      
 
     # Cache Sonar packages which as used to run analysis and collect metrics
     - name: Cache SonarCloud packages
@@ -77,7 +69,15 @@ jobs:
       env:
         # Intermediate variable
         HEAD_REF: ${{ github.head_ref }}
+        PR_BASE_REF: ${{ github.base_ref }}
+        PR_NUMBER: ${{ github.event.pull_request.number }}
         # These two env variables are needed for sonar analysis
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: xvfb-run ./mvnw clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=iluwatar -Dsonar.projectKey=iluwatar_java-design-patterns -Dsonar.pullrequest.branch=$HEAD_REF -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
+      run: |
+        xvfb-run
+        ./mvnw clean verify
+        sonar:sonar
+        -Dsonar.pullrequest.branch=$HEAD_REF
+        -Dsonar.pullrequest.base=$PR_BASE_REF
+        -Dsonar.pullrequest.key=$PR_NUMBER
