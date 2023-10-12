@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,13 +24,10 @@
  */
 package entity;
 
-
 import jakarta.persistence.*;
 import lombok.*;
 
-/**
- * CakeLayer entity.
- */
+/** CakeLayer entity. */
 @Entity
 @Getter
 @Setter
@@ -40,24 +37,22 @@ import lombok.*;
 @EqualsAndHashCode
 public class CakeLayer {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id @GeneratedValue private Long id;
 
-    private String name;
+  private String name;
 
-    private int calories;
+  private int calories;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Cake cake;
+  @ManyToOne(cascade = CascadeType.ALL)
+  private Cake cake;
 
-    public CakeLayer(String name, int calories) {
-        this.setName(name);
-        this.setCalories(calories);
-    }
+  public CakeLayer(String name, int calories) {
+    this.setName(name);
+    this.setCalories(calories);
+  }
 
-    @Override
-    public String toString() {
-        return String.format("id=%s name=%s calories=%d", id, name, calories);
-    }
+  @Override
+  public String toString() {
+    return String.format("id=%s name=%s calories=%d", id, name, calories);
+  }
 }

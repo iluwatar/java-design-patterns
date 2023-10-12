@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,66 +24,56 @@
  */
 package entity;
 
+import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.FetchType;
 
-/**
- * Cake entity.
- */
+/** Cake entity. */
 @Entity
 public class Cake {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id @GeneratedValue private Long id;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    private CakeTopping topping;
+  @OneToOne(cascade = CascadeType.REMOVE)
+  private CakeTopping topping;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    private Set<CakeLayer> layers;
+  @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+  private Set<CakeLayer> layers;
 
-    public Cake() {
-        setLayers(new HashSet<>());
-    }
+  public Cake() {
+    setLayers(new HashSet<>());
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public CakeTopping getTopping() {
-        return topping;
-    }
+  public CakeTopping getTopping() {
+    return topping;
+  }
 
-    public void setTopping(CakeTopping topping) {
-        this.topping = topping;
-    }
+  public void setTopping(CakeTopping topping) {
+    this.topping = topping;
+  }
 
-    public Set<CakeLayer> getLayers() {
-        return layers;
-    }
+  public Set<CakeLayer> getLayers() {
+    return layers;
+  }
 
-    public void setLayers(Set<CakeLayer> layers) {
-        this.layers = layers;
-    }
+  public void setLayers(Set<CakeLayer> layers) {
+    this.layers = layers;
+  }
 
-    public void addLayer(CakeLayer layer) {
-        this.layers.add(layer);
-    }
+  public void addLayer(CakeLayer layer) {
+    this.layers.add(layer);
+  }
 
-    @Override
-    public String toString() {
-        return String.format("id=%s topping=%s layers=%s", id, topping, layers.toString());
-    }
+  @Override
+  public String toString() {
+    return String.format("id=%s topping=%s layers=%s", id, topping, layers.toString());
+  }
 }

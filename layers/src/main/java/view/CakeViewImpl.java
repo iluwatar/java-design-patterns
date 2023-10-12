@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,20 +28,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import service.CakeBakingService;
 
-/**
- * View implementation for displaying cakes.
- */
+/** View implementation for displaying cakes. */
 public class CakeViewImpl implements View {
 
-    private final CakeBakingService cakeBakingService;
+  private static final Logger LOGGER = LoggerFactory.getLogger(CakeViewImpl.class);
+  private final CakeBakingService cakeBakingService;
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CakeViewImpl.class);
+  public CakeViewImpl(CakeBakingService cakeBakingService) {
+    this.cakeBakingService = cakeBakingService;
+  }
 
-    public CakeViewImpl(CakeBakingService cakeBakingService) {
-        this.cakeBakingService = cakeBakingService;
-    }
-
-    public void render() {
-        cakeBakingService.getAllCakes().forEach(cake -> LOGGER.info(cake.toString()));
-    }
+  public void render() {
+    cakeBakingService.getAllCakes().forEach(cake -> LOGGER.info(cake.toString()));
+  }
 }

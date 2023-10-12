@@ -40,14 +40,14 @@
         </encoder>
     </appender>
     <logger name="com.iluwatar" additivity="false">
-        <level value="DEBUG" />
-        <appender-ref ref="FILE" />
+        <level value="DEBUG"/>
+        <appender-ref ref="FILE"/>
     </logger>
     <logger name="org.hibernate" additivity="false">
-        <level value="ERROR" />
-        <appender-ref ref="STDOUT" />
+        <level value="ERROR"/>
+        <appender-ref ref="STDOUT"/>
     </logger>
     <root level="WARN">
-        <appender-ref ref="STDOUT" />
+        <appender-ref ref="STDOUT"/>
     </root>
 </configuration>

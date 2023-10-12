@@ -18,12 +18,12 @@ Real world example
 > Consider a website displaying decorated cakes for weddings and such. Instead of the web page
 > directly reaching into the database, it relies on a service to deliver this information. The
 > service then queries the data layer to assimilate the needed information.
-In plain words
+> In plain words
 
 > With Layers architectural pattern different concerns reside on separate layers. View layer is
 > interested only in rendering, service layer assembles the requested data from various sources, and
 > data layer gets the bits from the data storage.
-Wikipedia says
+> Wikipedia says
 
 > In software engineering, multitier architecture (often referred to as n-tier architecture) or
 > multilayered architecture is a client–server architecture in which presentation, application

@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,18 +26,15 @@ package exception;
 
 import org.springframework.stereotype.Component;
 
-/**
- * Custom exception used in cake baking.
- */
+/** Custom exception used in cake baking. */
 @Component
 public class CakeBakingException extends Exception {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    public CakeBakingException() {
-    }
+  public CakeBakingException() {}
 
-    public CakeBakingException(String message) {
-        super(message);
-    }
+  public CakeBakingException(String message) {
+    super(message);
+  }
 }

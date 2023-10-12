@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,10 +28,6 @@ import entity.CakeLayer;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- * CRUD repository for cake layers.
- */
+/** CRUD repository for cake layers. */
 @Repository
-public interface CakeLayerDao extends JpaRepository<CakeLayer, Long> {
-
-}
+public interface CakeLayerDao extends JpaRepository<CakeLayer, Long> {}

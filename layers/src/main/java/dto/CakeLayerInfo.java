@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,35 +26,29 @@ package dto;
 
 import java.util.Optional;
 
-/**
- * DTO for cake layers.
- */
+/** DTO for cake layers. */
 public class CakeLayerInfo {
 
-    public final Optional<Long> id;
-    public final String name;
-    public final int calories;
+  public final Optional<Long> id;
+  public final String name;
+  public final int calories;
 
-    /**
-     * Constructor.
-     */
-    public CakeLayerInfo(Long id, String name, int calories) {
-        this.id = Optional.of(id);
-        this.name = name;
-        this.calories = calories;
-    }
+  /** Constructor. */
+  public CakeLayerInfo(Long id, String name, int calories) {
+    this.id = Optional.of(id);
+    this.name = name;
+    this.calories = calories;
+  }
 
-    /**
-     * Constructor.
-     */
-    public CakeLayerInfo(String name, int calories) {
-        this.id = Optional.empty();
-        this.name = name;
-        this.calories = calories;
-    }
+  /** Constructor. */
+  public CakeLayerInfo(String name, int calories) {
+    this.id = Optional.empty();
+    this.name = name;
+    this.calories = calories;
+  }
 
-    @Override
-    public String toString() {
-        return String.format("CakeLayerInfo id=%d name=%s calories=%d", id.orElse(-1L), name, calories);
-    }
+  @Override
+  public String toString() {
+    return String.format("CakeLayerInfo id=%d name=%s calories=%d", id.orElse(-1L), name, calories);
+  }
 }

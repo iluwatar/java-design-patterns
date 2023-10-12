@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,17 +24,13 @@
  */
 package com.iluwatar.layers.entity;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.HashSet;
-import java.util.Set;
+import static org.junit.jupiter.api.Assertions.*;
 
 import entity.Cake;
 import entity.CakeLayer;
 import entity.CakeTopping;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -70,10 +66,11 @@ class CakeTest {
     assertNotNull(cake.getLayers());
     assertTrue(cake.getLayers().isEmpty());
 
-    final var expectedLayers = Set.of(
-        new CakeLayer("layer1", 1000),
-        new CakeLayer("layer2", 2000),
-        new CakeLayer("layer3", 3000));
+    final var expectedLayers =
+        Set.of(
+            new CakeLayer("layer1", 1000),
+            new CakeLayer("layer2", 2000),
+            new CakeLayer("layer3", 3000));
     cake.setLayers(expectedLayers);
     assertEquals(expectedLayers, cake.getLayers());
   }
@@ -114,10 +111,9 @@ class CakeTest {
     cake.setTopping(topping);
     cake.addLayer(layer);
 
-    final var expected = "id=1234 topping=id=2345 name=topping calories=20 "
-        + "layers=[id=3456 name=layer calories=100]";
+    final var expected =
+        "id=1234 topping=id=2345 name=topping calories=20 "
+            + "layers=[id=3456 name=layer calories=100]";
     assertEquals(expected, cake.toString());
-
   }
-
 }

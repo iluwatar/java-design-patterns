@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,50 +28,34 @@ import dto.CakeInfo;
 import dto.CakeLayerInfo;
 import dto.CakeToppingInfo;
 import exception.CakeBakingException;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
-/**
- * Service for cake baking operations.
- */
+/** Service for cake baking operations. */
 @Service
 public interface CakeBakingService {
 
-    /**
-     * Bakes new cake according to parameters.
-     */
-    void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
+  /** Bakes new cake according to parameters. */
+  void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
 
-    /**
-     * Get all cakes.
-     */
-    List<CakeInfo> getAllCakes();
+  /** Get all cakes. */
+  List<CakeInfo> getAllCakes();
 
-    /**
-     * Store new cake topping.
-     */
-    void saveNewTopping(CakeToppingInfo toppingInfo);
+  /** Store new cake topping. */
+  void saveNewTopping(CakeToppingInfo toppingInfo);
 
-    /**
-     * Get available cake toppings.
-     */
-    List<CakeToppingInfo> getAvailableToppings();
+  /** Get available cake toppings. */
+  List<CakeToppingInfo> getAvailableToppings();
 
-    /**
-     * Add new cake layer.
-     */
-    void saveNewLayer(CakeLayerInfo layerInfo);
+  /** Add new cake layer. */
+  void saveNewLayer(CakeLayerInfo layerInfo);
 
-    /**
-     * Get available cake layers.
-     */
-    List<CakeLayerInfo> getAvailableLayers();
+  /** Get available cake layers. */
+  List<CakeLayerInfo> getAvailableLayers();
 
-    void deleteAllCakes();
+  void deleteAllCakes();
 
-    void deleteAllLayers();
+  void deleteAllLayers();
 
-    void deleteAllToppings();
-
+  void deleteAllToppings();
 }

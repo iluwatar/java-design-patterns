@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,33 +24,26 @@
  */
 package com.iluwatar.layers.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.iluwatar.layers.app.LayersApp;
 import dto.CakeInfo;
 import dto.CakeLayerInfo;
 import dto.CakeToppingInfo;
 import exception.CakeBakingException;
+import java.util.Collections;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import service.CakeBakingServiceImpl;
-import java.util.Collections;
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-
 
 /**
  * Date: 12/15/15 - 9:55 PM
  *
  * @author Jeroen Meulemeester
  */
-
 @SpringBootTest(classes = LayersApp.class)
 class CakeBakingServiceImplTest {
 
@@ -62,15 +55,13 @@ class CakeBakingServiceImplTest {
   }
 
   @BeforeEach
-    void setUp() {
-        cakeBakingService.deleteAllCakes();
-        cakeBakingService.deleteAllLayers();
-        cakeBakingService.deleteAllToppings();
-    }
-
+  void setUp() {
+    cakeBakingService.deleteAllCakes();
+    cakeBakingService.deleteAllLayers();
+    cakeBakingService.deleteAllToppings();
+  }
 
   @Test
-
   void testLayers() {
     final var initialLayers = cakeBakingService.getAvailableLayers();
     assertNotNull(initialLayers);
@@ -88,7 +79,6 @@ class CakeBakingServiceImplTest {
       assertNotNull(layer.toString());
       assertTrue(layer.calories > 0);
     }
-
   }
 
   @Test
@@ -109,7 +99,6 @@ class CakeBakingServiceImplTest {
       assertNotNull(topping.toString());
       assertTrue(topping.calories > 0);
     }
-
   }
 
   @Test
@@ -145,7 +134,6 @@ class CakeBakingServiceImplTest {
       assertFalse(cakeInfo.cakeLayerInfos.isEmpty());
       assertTrue(cakeInfo.calculateTotalCalories() > 0);
     }
-
   }
 
   @Test
@@ -156,7 +144,9 @@ class CakeBakingServiceImplTest {
     cakeBakingService.saveNewLayer(layer2);
 
     final var missingTopping = new CakeToppingInfo("Topping1", 1000);
-    assertThrows(CakeBakingException.class, () -> cakeBakingService.bakeNewCake(new CakeInfo(missingTopping, List.of(layer1, layer2))));
+    assertThrows(
+        CakeBakingException.class,
+        () -> cakeBakingService.bakeNewCake(new CakeInfo(missingTopping, List.of(layer1, layer2))));
   }
 
   @Test
@@ -172,7 +162,9 @@ class CakeBakingServiceImplTest {
     cakeBakingService.saveNewLayer(layer1);
 
     final var missingLayer = new CakeLayerInfo("Layer2", 2000);
-    assertThrows(CakeBakingException.class, () -> cakeBakingService.bakeNewCake(new CakeInfo(topping1, List.of(layer1, missingLayer))));
+    assertThrows(
+        CakeBakingException.class,
+        () -> cakeBakingService.bakeNewCake(new CakeInfo(topping1, List.of(layer1, missingLayer))));
   }
 
   @Test
@@ -192,7 +184,10 @@ class CakeBakingServiceImplTest {
     cakeBakingService.saveNewLayer(layer2);
 
     cakeBakingService.bakeNewCake(new CakeInfo(topping1, List.of(layer1, layer2)));
-    assertThrows(CakeBakingException.class, () -> cakeBakingService.bakeNewCake(new CakeInfo(topping2, Collections.singletonList(layer2))));
+    assertThrows(
+        CakeBakingException.class,
+        () ->
+            cakeBakingService.bakeNewCake(
+                new CakeInfo(topping2, Collections.singletonList(layer2))));
   }
-
 }

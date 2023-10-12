@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -34,13 +34,13 @@ import ch.qos.logback.core.AppenderBase;
 import dto.CakeInfo;
 import dto.CakeLayerInfo;
 import dto.CakeToppingInfo;
-import service.CakeBakingService;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
+import service.CakeBakingService;
 import view.CakeViewImpl;
 
 /**
@@ -62,13 +62,12 @@ class CakeViewImplTest {
     appender.stop();
   }
 
-  /**
-   * Verify if the cake view renders the expected result
-   */
+  /** Verify if the cake view renders the expected result */
   @Test
   void testRender() {
 
-    final var layers = List.of(
+    final var layers =
+        List.of(
             new CakeLayerInfo("layer1", 1000),
             new CakeLayerInfo("layer2", 2000),
             new CakeLayerInfo("layer3", 3000));
@@ -85,7 +84,6 @@ class CakeViewImplTest {
 
     cakeView.render();
     assertEquals(cake.toString(), appender.getLastMessage());
-
   }
 
   private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
@@ -110,5 +108,4 @@ class CakeViewImplTest {
       return log.size();
     }
   }
-
 }
