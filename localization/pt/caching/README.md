@@ -1,7 +1,7 @@
 ---
-title: Caching
+title: Cache
 category: Behavioral
-language: en
+language: pt
 tag:
   - Performance
   - Cloud distributed
