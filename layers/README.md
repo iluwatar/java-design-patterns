@@ -3,7 +3,7 @@ title: Layers
 category: Architectural
 language: en
 tag:
-- Decoupling
+  - Decoupling
 ---
 
 ## Intent
@@ -33,8 +33,10 @@ Real world example
 On the data layer, we keep our cake building blocks. `Cake` consist of layers and topping.
 
 ```java
+
 @Entity
 public class Cake {
+
   @Id
   @GeneratedValue
   private Long id;
@@ -49,11 +51,17 @@ The service layer offers `CakeBakingService` for easy access to different aspect
 
 ```java
 public interface CakeBakingService {
+
   void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
+
   List<CakeInfo> getAllCakes();
+
   void saveNewTopping(CakeToppingInfo toppingInfo);
+
   List<CakeToppingInfo> getAvailableToppings();
+
   void saveNewLayer(CakeLayerInfo layerInfo);
+
   List<CakeLayerInfo> getAvailableLayers();
 }
 ```
@@ -62,14 +70,19 @@ On the top we have our `View` responsible of rendering the cakes.
 
 ```java
 public interface View {
+
   void render();
 }
+
 @Slf4j
 public class CakeViewImpl implements View {
+
   private final CakeBakingService cakeBakingService;
+
   public CakeViewImpl(CakeBakingService cakeBakingService) {
     this.cakeBakingService = cakeBakingService;
   }
+
   public void render() {
     cakeBakingService.getAllCakes().forEach(cake -> LOGGER.info(cake.toString()));
   }

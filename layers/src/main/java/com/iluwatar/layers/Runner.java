@@ -36,6 +36,10 @@ import org.springframework.stereotype.Component;
 import service.CakeBakingService;
 import view.CakeViewImpl;
 
+/**
+ * Runner class.
+ */
+
 @Component
 @Slf4j
 public class Runner implements CommandLineRunner {

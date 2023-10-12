@@ -39,11 +39,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import service.CakeBakingServiceImpl;
 
-/**
- * Date: 12/15/15 - 9:55 PM
- *
- * @author Jeroen Meulemeester
- */
 @SpringBootTest(classes = LayersApp.class)
 class CakeBakingServiceImplTest {
 

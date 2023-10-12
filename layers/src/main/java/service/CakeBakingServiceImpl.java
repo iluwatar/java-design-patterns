@@ -51,6 +51,13 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   private final CakeLayerDao cakeLayerDao;
   private final CakeToppingDao cakeToppingDao;
 
+  /**
+   * Constructor.
+   *
+   * @param cakeDao cakeDao
+   * @param cakeLayerDao cakeLayerDao
+   * @param cakeToppingDao cakeToppingDao
+   */
   @Autowired
   public CakeBakingServiceImpl(
       CakeDao cakeDao, CakeLayerDao cakeLayerDao, CakeToppingDao cakeToppingDao) {
