@@ -2641,7 +2641,35 @@
       "contributions": [
         "doc",
         "code"
-      ]      
+      ]
+    },
+    {
+      "login": "Upendra-Allagadda",
+      "name": "Allagadda Sai Upendranath",
+      "avatar_url": "https://avatars.githubusercontent.com/u/25962010?v=4",
+      "profile": "https://github.com/Upendra-Allagadda",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "mathbraga",
+      "name": "Matheus Braga",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31048764?v=4",
+      "profile": "https://www.linkedin.com/in/mobraga/",
+      "contributions": [
+        "translation",
+        "doc"
+      ]
+    },
+    {
+      "login": "satyabarghav",
+      "name": "Appari Satya Barghav",
+      "avatar_url": "https://avatars.githubusercontent.com/u/36763910?v=4",
+      "profile": "https://github.com/satyabarghav",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
