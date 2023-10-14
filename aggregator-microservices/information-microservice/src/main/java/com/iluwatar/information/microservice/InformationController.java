@@ -34,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class InformationController {
 
   /**
-   * Endpoint to retrieve a product's informations.
+   * Endpoint to retrieve a product's information.
    *
    * @return product inventory.
    */
