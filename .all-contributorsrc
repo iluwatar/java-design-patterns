@@ -2670,6 +2670,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "mribeirodantas",
+      "name": "Marcel Ribeiro-Dantas",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1023197?v=4",
+      "profile": "http://mribeirodantas.me",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
