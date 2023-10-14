@@ -22,33 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.front.controller;
+package crtp;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import org.junit.jupiter.api.Test;
 
 /**
- * FrontController is the handler class that takes in all the requests and renders the correct
- * response.
+ * Application test
  */
-public class FrontController {
+class AppTest {
 
-  public void handleRequest(String request) {
-    var command = getCommand(request);
-    command.process();
-  }
-
-  private Command getCommand(String request) {
-    var commandClass = getCommandClass(request);
-    try {
-      return (Command) commandClass.getDeclaredConstructor().newInstance();
-    } catch (Exception e) {
-      throw new ApplicationException(e);
-    }
-  }
-
-  private static Class<?> getCommandClass(String request) {
-    try {
-      return Class.forName("com.iluwatar.front.controller." + request + "Command");
-    } catch (ClassNotFoundException e) {
-      return UnknownCommand.class;
-    }
+  @Test
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

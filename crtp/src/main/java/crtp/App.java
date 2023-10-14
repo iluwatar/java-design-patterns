@@ -22,33 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.front.controller;
+package crtp;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * FrontController is the handler class that takes in all the requests and renders the correct
- * response.
+ * Shows the {@link Fighter} fight method call on some implementations of {@link MmaFighter}. Note
+ * that fighters can only fight against opponents of their same weight class.
  */
-public class FrontController {
+@Slf4j
+public class App {
 
-  public void handleRequest(String request) {
-    var command = getCommand(request);
-    command.process();
-  }
+  /**
+   * Program entry point.
+   *
+   * @param args command line args
+   */
+  public static void main(String[] args) {
 
-  private Command getCommand(String request) {
-    var commandClass = getCommandClass(request);
-    try {
-      return (Command) commandClass.getDeclaredConstructor().newInstance();
-    } catch (Exception e) {
-      throw new ApplicationException(e);
-    }
-  }
+    MmaBantamweightFighter fighter1 = new MmaBantamweightFighter("Joe", "Johnson", "The Geek", "Muay Thai");
+    MmaBantamweightFighter fighter2 = new MmaBantamweightFighter("Ed", "Edwards", "The Problem Solver", "Judo");
+    fighter1.fight(fighter2);
 
-  private static Class<?> getCommandClass(String request) {
-    try {
-      return Class.forName("com.iluwatar.front.controller." + request + "Command");
-    } catch (ClassNotFoundException e) {
-      return UnknownCommand.class;
-    }
+    MmaHeavyweightFighter fighter3 = new MmaHeavyweightFighter("Dave", "Davidson", "The Bug Smasher", "Kickboxing");
+    MmaHeavyweightFighter fighter4 = new MmaHeavyweightFighter("Jack", "Jackson", "The Pragmatic", "Brazilian Jiu-Jitsu");
+    fighter3.fight(fighter4);
+
   }
 }
