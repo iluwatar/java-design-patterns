@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-289-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-291-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -448,6 +448,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sanchitbansal10"><img src="https://avatars.githubusercontent.com/u/16536741?v=4?s=100" width="100px;" alt="Sanchit Bansal"/><br /><sub><b>Sanchit Bansal</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=sanchitbansal10" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/mm-saiful6854"><img src="https://avatars.githubusercontent.com/u/48361160?v=4?s=100" width="100px;" alt="Md Saiful Islam"/><br /><sub><b>Md Saiful Islam</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mm-saiful6854" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/AddeusExMachina"><img src="https://avatars.githubusercontent.com/u/39912670?v=4?s=100" width="100px;" alt="Antonio Addeo"/><br /><sub><b>Antonio Addeo</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=AddeusExMachina" title="Documentation">📖</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=AddeusExMachina" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Upendra-Allagadda"><img src="https://avatars.githubusercontent.com/u/25962010?v=4?s=100" width="100px;" alt="Allagadda Sai Upendranath"/><br /><sub><b>Allagadda Sai Upendranath</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Upendra-Allagadda" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
