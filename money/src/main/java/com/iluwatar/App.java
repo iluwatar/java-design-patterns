@@ -10,8 +10,10 @@ public final class App {
     private App() {
         // Private constructor to hide the default public constructor
     }
+
     /**
      * Entry point of the application.
+     *
      * @param args Command-line arguments.
      */
     public static void main(final String[] args) {
@@ -22,7 +24,6 @@ public final class App {
         final Money money2 = new Money(5_000, eur);
         final int amount1 = 70;
         final int amount2 = 30;
-
 
         final Account account = new Account(usd, eur);
 
@@ -46,8 +47,7 @@ public final class App {
         accounts[0] = account;
         accounts[1] = new Account(usd, eur);
 
-        allocationMoney.allocate(accounts, amount1,
-                amount2);
+        allocationMoney.allocate(accounts, amount1, amount2);
 
         System.out.println("Allocated Balances:");
         for (int i = 0; i < accounts.length; i++) {

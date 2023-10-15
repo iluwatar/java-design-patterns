@@ -31,8 +31,8 @@ package com.iluwatar;
  * different currencies. It allows deposits and withdrawals in the account's
  * primary and secondary currencies.
  */
-
 public class Account {
+
     /**
      * The primary currency for the account.
      */
@@ -53,16 +53,14 @@ public class Account {
      */
     private Money secondaryBalance;
 
-
     /**
      * Constructs an Account with the specified primary and secondary
      * currencies.
      *
-     * @param pCurr   The primary currency for the account.
+     * @param pCurr The primary currency for the account.
      * @param sCurr The secondary currency for the account.
      */
-    public Account(final Currency pCurr, final Currency
-            sCurr) {
+    public Account(final Currency pCurr, final Currency sCurr) {
         this.primaryCurrency = pCurr;
         this.secondaryCurrency = sCurr;
         this.primaryBalance = new Money(0, primaryCurrency);

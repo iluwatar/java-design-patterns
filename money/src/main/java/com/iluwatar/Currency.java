@@ -1,4 +1,5 @@
 package com.iluwatar;
+
 /*
  * This project is licensed under the MIT license. Module model-view-viewmodel
  * is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
@@ -33,12 +34,10 @@ package com.iluwatar;
  * calculations.
  * The string representation is a human-readable identifier for the currency.
  */
-
 public class Currency {
     /**
      * The default cent factor for the currency.
      */
-
     private static final int DEFAULT_VALUE = 100;
 
     /**
@@ -47,7 +46,6 @@ public class Currency {
      * equivalent to 100 cents. Adjust this factor if the currency operates in
      * a different denomination.
      */
-
     private int centFactor;
 
     /**
@@ -55,14 +53,13 @@ public class Currency {
      * This string is used to display the money value to users or for debugging
      * purposes.
      */
-
     private String stringRepresentation;
 
     /**
      * Constructs a Currency with the specified cent factor and string
      * representation.
      *
-     * @param cF           The cent factor for the currency.
+     * @param cF The cent factor for the currency.
      * @param sR The string representation of the currency.
      */
     public Currency(final int cF, final String sR) {
@@ -106,4 +103,3 @@ public class Currency {
         return new Currency(DEFAULT_VALUE, "EUR");
     }
 }
-

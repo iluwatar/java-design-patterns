@@ -1,7 +1,8 @@
 package com.iluwatar;
+
 /*
  * This project is licensed under the MIT license. Module model-view-viewmodel
- is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -24,7 +25,6 @@ package com.iluwatar;
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 /**
  * The Money class represents a financial amount with a specific currency.
  * It provides methods for
@@ -32,34 +32,28 @@ package com.iluwatar;
  * multiplication. Additionally,
  * it supports the allocation of money to an array of financial accounts.
  */
-
 public class Money {
     /**
      * The amount of money, expressed as a long value.
      */
-
     private long amount;
 
     /**
      * The currency in which the money amount is denominated.
      */
-
     private Currency currency;
 
     /**
      * The default cent factor for the currency.
      */
-
-
     private static final double DEFAULT_AMOUNT = 100.0;
 
     /**
      * Creates a new Money object with the specified amount and currency.
      *
-     * @param amon   The amount of money.
+     * @param amon The amount of money.
      * @param curr The currency associated with the money amount.
      */
-
     public Money(final long amon, final Currency curr) {
         this.amount = amon;
         this.currency = curr;
@@ -120,7 +114,6 @@ public class Money {
      * @param multiplier The multiplier to apply to the money amount.
      * @return A new Money object representing the result of the multiplication.
      */
-
     public Money multiplyBy(final double multiplier) {
         long newAmount = (long) (this.amount * multiplier);
         return new Money(newAmount, this.currency);
@@ -130,12 +123,11 @@ public class Money {
      * Allocates the money amount to an array of financial accounts based on
      * specified percentages.
      *
-     * @param accounts     An array of Account objects to allocate the money to.
-     * @param percentages  The percentages to allocate to each account.
+     * @param accounts An array of Account objects to allocate the money to.
+     * @param percentages The percentages to allocate to each account.
      * @throws IllegalArgumentException if the sum of percentages is not 100%
      * or if the currencies of Money and accounts are not the same.
      */
-
     public void allocate(final Account[] accounts, final int... percentages) {
         long remainingAmount = this.amount;
         for (int i = 0; i < accounts.length; i++) {
@@ -157,7 +149,6 @@ public class Money {
      * @throws IllegalArgumentException if the currencies of the two Money
      * objects are not the same.
      */
-
     private void validateSameCurrency(final Money other) {
         if (!this.currency.equals(other.currency)) {
             throw new IllegalArgumentException("Money objects must have the "
