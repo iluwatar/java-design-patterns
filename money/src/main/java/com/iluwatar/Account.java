@@ -48,21 +48,21 @@ public class Account {
    */
   private Money primaryBalance;
 
-    /**
-     * The balance in the secondary currency.
-     */
-    private Money secondaryBalance;
+  /**
+   * The balance in the secondary currency.
+   */
+  private Money secondaryBalance;
 
   /**
    * Constructs an Account with the specified primary and secondary
    * currencies.
    *
-   * @param pCurr The primary currency for the account.
-   * @param sCurr The secondary currency for the account.
+   * @param pcurr The primary currency for the account.
+   * @param scurr The secondary currency for the account.
    */
-  public Account(final Currency pCurr, final Currency sCurr) {
-    this.primaryCurrency = pCurr;
-    this.secondaryCurrency = sCurr;
+  public Account(final Currency pcurr, final Currency scurr) {
+    this.primaryCurrency = pcurr;
+    this.secondaryCurrency = scurr;
     this.primaryBalance = new Money(0, primaryCurrency);
     this.secondaryBalance = new Money(0, secondaryCurrency);
   }
@@ -72,14 +72,14 @@ public class Account {
    *
    * @param money The Money object to deposit into the account.
    * @throws IllegalArgumentException if the deposited money has an invalid
-   * currency.
+    * currency.
    */
   public void deposit(final Money money) {
     validateCurrency(money);
     if (money.getCurrency().equals(primaryCurrency)) {
-        primaryBalance = primaryBalance.add(money);
+      primaryBalance = primaryBalance.add(money);
     } else {
-        secondaryBalance = secondaryBalance.add(money);
+      secondaryBalance = secondaryBalance.add(money);
     }
   }
 
@@ -88,19 +88,19 @@ public class Account {
    *
    * @param money The Money object to withdraw from the account.
    * @throws IllegalArgumentException if the withdrawn money has an invalid
-   * currency or if there is insufficient balance.
+    * currency or if there is insufficient balance.
    */
   public void withdraw(final Money money) {
     validateCurrency(money);
     if (money.getCurrency().equals(primaryCurrency)) {
-        if (primaryBalance.getAmount() < money.getAmount()) {
-            throw new IllegalArgumentException("Insufficient balance in "
+      if (primaryBalance.getAmount() < money.getAmount()) {
+        throw new IllegalArgumentException("Insufficient balance in "
                     + "primary currency");
-        }
+      }
         primaryBalance = primaryBalance.subtract(money);
     } else {
         if (secondaryBalance.getAmount() < money.getAmount()) {
-            throw new IllegalArgumentException("Insufficient balance in "
+          throw new IllegalArgumentException("Insufficient balance in "
                     + "secondary currency");
         }
         secondaryBalance = secondaryBalance.subtract(money);
@@ -113,12 +113,12 @@ public class Account {
    *
    * @param money The Money object to validate.
    * @throws IllegalArgumentException if the currency is invalid for this
-   * account.
+    * account.
    */
   private void validateCurrency(final Money money) {
     if (!money.getCurrency().equals(primaryCurrency)
             && !money.getCurrency().equals(secondaryCurrency)) {
-        throw new IllegalArgumentException("Invalid currency for this "
+      throw new IllegalArgumentException("Invalid currency for this "
                 + "account");
     }
   }
@@ -129,8 +129,8 @@ public class Account {
    * @return The primary currency balance.
    */
   public Money getPrimaryBalance() {
-        return primaryBalance;
-    }
+    return primaryBalance;
+  }
 
   /**
    * Gets the secondary currency balance of the account.
@@ -138,6 +138,6 @@ public class Account {
    * @return The secondary currency balance.
    */
   public Money getSecondaryBalance() {
-        return secondaryBalance;
-    }
+    return secondaryBalance;
+  }
 }

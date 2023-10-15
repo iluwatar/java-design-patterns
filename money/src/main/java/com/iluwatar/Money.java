@@ -83,7 +83,7 @@ public class Money {
    * @param other The Money object to add.
    * @return A new Money object representing the result of the addition.
    * @throws IllegalArgumentException if the currencies of the two Money
-   * objects are not the same.
+    * objects are not the same.
    */
   public Money add(final Money other) {
     validateSameCurrency(other);
@@ -96,13 +96,13 @@ public class Money {
    * @param other The Money object to subtract.
    * @return A new Money object representing the result of the subtraction.
    * @throws IllegalArgumentException if the currencies of the two Money
-   * objects are not the same,
-   * or if the subtraction would result in a negative amount.
+    * objects are not the same, or if the subtraction would result in a
+    * negative amount.
    */
   public Money subtract(final Money other) {
     validateSameCurrency(other);
     if (this.amount < other.amount) {
-        throw new IllegalArgumentException("Subtracted money is more than "
+      throw new IllegalArgumentException("Subtracted money is more than "
                 + "what we have");
     }
     return new Money(this.amount - other.amount, this.currency);
@@ -126,18 +126,18 @@ public class Money {
    * @param accounts An array of Account objects to allocate the money to.
    * @param percentages The percentages to allocate to each account.
    * @throws IllegalArgumentException if the sum of percentages is not 100%
-   * or if the currencies of Money and accounts are not the same.
+    * or if the currencies of Money and accounts are not the same.
    */
   public void allocate(final Account[] accounts, final int... percentages) {
     long remainingAmount = this.amount;
     for (int i = 0; i < accounts.length; i++) {
-        long allocation = (long) (this.amount * percentages[i]
+      long allocation = (long) (this.amount * percentages[i]
                 / DEFAULT_AMOUNT);
-        if (i == accounts.length - 1) {
-            allocation = remainingAmount;
-        }
-        accounts[i].deposit(new Money(allocation, this.currency));
-        remainingAmount -= allocation;
+      if (i == accounts.length - 1) {
+        allocation = remainingAmount;
+      }
+      accounts[i].deposit(new Money(allocation, this.currency));
+      remainingAmount -= allocation;
     }
   }
 
@@ -147,11 +147,11 @@ public class Money {
    *
    * @param other The Money object to validate.
    * @throws IllegalArgumentException if the currencies of the two Money
-   * objects are not the same.
+     * objects are not the same.
    */
   private void validateSameCurrency(final Money other) {
     if (!this.currency.equals(other.currency)) {
-        throw new IllegalArgumentException("Money objects must have the "
+      throw new IllegalArgumentException("Money objects must have the "
                 + "same currency");
     }
   }

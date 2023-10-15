@@ -58,12 +58,12 @@ public class Currency {
    * Constructs a Currency with the specified cent factor and string
    * representation.
    *
-   * @param cF The cent factor for the currency.
-   * @param sR The string representation of the currency.
+   * @param cf The cent factor for the currency.
+   * @param sr The string representation of the currency.
    */
-  public Currency(final int cF, final String sR) {
-    this.centFactor = cF;
-    this.stringRepresentation = sR;
+  public Currency(final int cf, final String sr) {
+    this.centFactor = cf;
+    this.stringRepresentation = sr;
   }
 
   /**
