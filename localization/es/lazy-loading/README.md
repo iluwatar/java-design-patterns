@@ -7,7 +7,7 @@ tag:
 ---
 
 ## Propósito
-La carga perezosa (*Lazy loading* en inglés) es un patrón de diseño comúnmente usado para diferir
+La carga diferida (*Lazy loading* en inglés) es un patrón de diseño comúnmente usado para diferir
 la inicialización de un objeto hasta el punto en que se necesita. Puede
 contribuir a la eficiencia en la operación del programa si se usa de manera adecuada.
 
@@ -15,7 +15,7 @@ contribuir a la eficiencia en la operación del programa si se usa de manera ade
 ![alt text](../../../lazy-loading/etc/lazy-loading.png "Lazy Loading")
 
 ## Aplicabilidad
-Utilice el modelo de Carga Perezosa cuando:
+Utilice el modelo de Carga Diferida cuando:
 
 * la carga anticipada es costosa o el objeto a cargar podría no ser necesario en absoluto
 
