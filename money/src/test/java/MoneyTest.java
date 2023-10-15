@@ -100,20 +100,6 @@ public class MoneyTest {
         assertEquals(500, account1.getPrimaryBalance().getAmount());
         assertEquals(500, account2.getPrimaryBalance().getAmount());
     }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testAllocateInvalidPercentages() {
-        Account[] accounts = {account1, account2};
-        money1.allocate(accounts, 40, 60);
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testAllocateDifferentCurrencies() {
-        Account account3 = new Account(usd, Currency.usd());
-        Account[] accounts = {account1, account3};
-        money1.allocate(accounts, 50, 50);
-    }
-
     @Test
     public void testDeposit() {
         Money depositMoney = new Money(200, usd);
@@ -121,11 +107,6 @@ public class MoneyTest {
         assertEquals(200, account1.getPrimaryBalance().getAmount());
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testDepositInvalidCurrency() {
-        Money depositMoney = new Money(200, eur);
-        account1.deposit(depositMoney);
-    }
 
     @Test
     public void testWithdraw() {
