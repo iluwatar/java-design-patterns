@@ -72,7 +72,7 @@ public class Account {
    *
    * @param money The Money object to deposit into the account.
    * @throws IllegalArgumentException if the deposited money has an invalid
-    * currency.
+   * currency.
    */
   public void deposit(final Money money) {
     validateCurrency(money);
@@ -88,7 +88,7 @@ public class Account {
    *
    * @param money The Money object to withdraw from the account.
    * @throws IllegalArgumentException if the withdrawn money has an invalid
-    * currency or if there is insufficient balance.
+   * currency or if there is insufficient balance.
    */
   public void withdraw(final Money money) {
     validateCurrency(money);
@@ -97,13 +97,13 @@ public class Account {
         throw new IllegalArgumentException("Insufficient balance in "
                     + "primary currency");
       }
-        primaryBalance = primaryBalance.subtract(money);
+      primaryBalance = primaryBalance.subtract(money);
     } else {
-        if (secondaryBalance.getAmount() < money.getAmount()) {
-          throw new IllegalArgumentException("Insufficient balance in "
+      if (secondaryBalance.getAmount() < money.getAmount()) {
+        throw new IllegalArgumentException("Insufficient balance in "
                     + "secondary currency");
-        }
-        secondaryBalance = secondaryBalance.subtract(money);
+      }
+      secondaryBalance = secondaryBalance.subtract(money);
     }
   }
 
@@ -113,7 +113,7 @@ public class Account {
    *
    * @param money The Money object to validate.
    * @throws IllegalArgumentException if the currency is invalid for this
-    * account.
+   * account.
    */
   private void validateCurrency(final Money money) {
     if (!money.getCurrency().equals(primaryCurrency)
