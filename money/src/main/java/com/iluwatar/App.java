@@ -8,7 +8,7 @@ package com.iluwatar;
  */
 public final class App {
   private App() {
-        // Private constructor to hide the default public constructor
+    // Private constructor to hide the default public constructor
   }
 
   /**
@@ -44,19 +44,26 @@ public final class App {
     final Money allocationMoney = new Money(6_000, usd);
 
     final Account[] accounts = new Account[2];
+
+    // Allocate the money equally among the accounts
+    final long allocatedAmount = allocationMoney.getAmount() / accounts.length;
+
     accounts[0] = account;
     accounts[1] = new Account(usd, eur);
 
-    allocationMoney.allocate(accounts, amount1, amount2);
+    // Deposit the allocated money into accounts
+    for (Account acc : accounts) {
+      acc.deposit(new Money(allocatedAmount, usd));
+    }
 
     System.out.println("Allocated Balances:");
     for (int i = 0; i < accounts.length; i++) {
       System.out.println("Account "
-                + (i + 1)
-                + ": " + accounts[i].getPrimaryBalance().getAmount()
-                + " "
-                + accounts[i].getPrimaryBalance().getCurrency()
-                .getStringRepresentation());
+              + (i + 1)
+              + ": " + accounts[i].getPrimaryBalance().getAmount()
+              + " "
+              + accounts[i].getPrimaryBalance().getCurrency()
+              .getStringRepresentation());
     }
   }
 }
