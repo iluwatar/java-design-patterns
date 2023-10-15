@@ -62,7 +62,7 @@ public class App {
     
     // Create table for orders - Orders(id, name, orderedBy, city, state, pincode).
     // We can see that table is different from the Order object we have.
-    // We're mapping ShippingAddress into city, state, pincode colummns of the database and not creating a separate table.
+    // We're mapping ShippingAddress into city, state, pincode columns of the database and not creating a separate table.
     if (dataSource.createSchema()) {
       LOGGER.info("TABLE CREATED");
       LOGGER.info("Table \"Orders\" schema:\n" + dataSource.getSchema());
@@ -95,7 +95,7 @@ public class App {
     dataSource.removeOrder(1);
     LOGGER.info("\nOrders Query: {}", dataSource.queryOrders().collect(Collectors.toList()) + "\n");
     
-    //After successfull demonstration of the pattern, drop the table
+    //After successful demonstration of the pattern, drop the table
     if (dataSource.deleteSchema()) {
       LOGGER.info("TABLE DROPPED");
     } else {
