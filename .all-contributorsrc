@@ -2706,6 +2706,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "inishantjain",
+      "name": "Nishant Jain",
+      "avatar_url": "https://avatars.githubusercontent.com/u/121454072?v=4",
+      "profile": "https://github.com/inishantjain",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
