@@ -2697,6 +2697,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "versus2004",
+      "name": "Shubham",
+      "avatar_url": "https://avatars.githubusercontent.com/u/132815243?v=4",
+      "profile": "https://github.com/versus2004",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
