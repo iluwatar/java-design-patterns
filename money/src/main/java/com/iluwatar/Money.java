@@ -119,6 +119,13 @@ public class Money {
         }
     }
 
+    /**
+     * Validates that the specified Money object has the same currency as this Money object.
+     *
+     * @param other The Money object to validate.
+     * @throws IllegalArgumentException if the currencies of the two Money objects are not the same.
+     */
+
     private void validateSameCurrency(Money other) {
         if (!this.currency.equals(other.currency)) {
             throw new IllegalArgumentException("Money objects must have the same currency");
