@@ -1,12 +1,12 @@
 ---
 title: Singleton
 category: Creational
-language: en
+language: es
 tag:
  - Gang of Four
 ---
 
-## Intención
+## Propósito
 
 Asegurar que una clase solo tenga una instancia y proporcionar un punto de acceso global a ella.
 
@@ -17,7 +17,7 @@ Ejemplo del mundo real
 > Solo puede haber una torre de marfil donde los magos estudian su magia. La misma torre de marfil encantada
 > siempre es utilizada por los magos. La torre de marfil aquí es un singleton.
 
-En palabras simples
+En otras palabras
 
 > Asegura que solo se cree un objeto de una clase en particular.
 
