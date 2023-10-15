@@ -2679,6 +2679,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "hamexhanif",
+      "name": "Muhammad Hanif Amrullah",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74542852?v=4",
+      "profile": "https://github.com/hamexhanif",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
