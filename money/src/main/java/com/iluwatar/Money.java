@@ -1,5 +1,7 @@
-package com.iluwatar;/*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+package com.iluwatar;
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel
+ is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -22,24 +24,45 @@ package com.iluwatar;/*
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 /**
- * The Money class represents a financial amount with a specific currency. It provides methods for
- * performing operations on money values, such as addition, subtraction, and multiplication. Additionally,
+ * The Money class represents a financial amount with a specific currency.
+ * It provides methods for
+ * performing operations on money values, such as addition, subtraction, and
+ * multiplication. Additionally,
  * it supports the allocation of money to an array of financial accounts.
  */
+
 public class Money {
+    /**
+     * The amount of money, expressed as a long value.
+     */
+
     private long amount;
+
+    /**
+     * The currency in which the money amount is denominated.
+     */
+
     private Currency currency;
+
+    /**
+     * The default cent factor for the currency.
+     */
+
+
+    private static final double DEFAULT_AMOUNT = 100.0;
 
     /**
      * Creates a new Money object with the specified amount and currency.
      *
-     * @param amount   The amount of money.
-     * @param currency The currency associated with the money amount.
+     * @param amon   The amount of money.
+     * @param curr The currency associated with the money amount.
      */
-    public Money(long amount, Currency currency) {
-        this.amount = amount;
-        this.currency = currency;
+
+    public Money(final long amon, final Currency curr) {
+        this.amount = amon;
+        this.currency = curr;
     }
 
     /**
@@ -65,9 +88,10 @@ public class Money {
      *
      * @param other The Money object to add.
      * @return A new Money object representing the result of the addition.
-     * @throws IllegalArgumentException if the currencies of the two Money objects are not the same.
+     * @throws IllegalArgumentException if the currencies of the two Money
+     * objects are not the same.
      */
-    public Money add(Money other) {
+    public Money add(final Money other) {
         validateSameCurrency(other);
         return new Money(this.amount + other.amount, this.currency);
     }
@@ -77,13 +101,15 @@ public class Money {
      *
      * @param other The Money object to subtract.
      * @return A new Money object representing the result of the subtraction.
-     * @throws IllegalArgumentException if the currencies of the two Money objects are not the same,
-     *                                or if the subtraction would result in a negative amount.
+     * @throws IllegalArgumentException if the currencies of the two Money
+     * objects are not the same,
+     * or if the subtraction would result in a negative amount.
      */
-    public Money subtract(Money other) {
+    public Money subtract(final Money other) {
         validateSameCurrency(other);
         if (this.amount < other.amount) {
-            throw new IllegalArgumentException("Subtracted money is more than what we have");
+            throw new IllegalArgumentException("Subtracted money is more than "
+                    + "what we have");
         }
         return new Money(this.amount - other.amount, this.currency);
     }
@@ -94,23 +120,27 @@ public class Money {
      * @param multiplier The multiplier to apply to the money amount.
      * @return A new Money object representing the result of the multiplication.
      */
-    public Money multiplyBy(double multiplier) {
+
+    public Money multiplyBy(final double multiplier) {
         long newAmount = (long) (this.amount * multiplier);
         return new Money(newAmount, this.currency);
     }
 
     /**
-     * Allocates the money amount to an array of financial accounts based on specified percentages.
+     * Allocates the money amount to an array of financial accounts based on
+     * specified percentages.
      *
      * @param accounts     An array of Account objects to allocate the money to.
      * @param percentages  The percentages to allocate to each account.
-     * @throws IllegalArgumentException if the sum of percentages is not 100% or if the currencies of
-     *                                  Money and accounts are not the same.
+     * @throws IllegalArgumentException if the sum of percentages is not 100%
+     * or if the currencies of Money and accounts are not the same.
      */
-    public void allocate(Account[] accounts, int... percentages) {
+
+    public void allocate(final Account[] accounts, final int... percentages) {
         long remainingAmount = this.amount;
         for (int i = 0; i < accounts.length; i++) {
-            long allocation = (long) (this.amount * percentages[i] / 100.0);
+            long allocation = (long) (this.amount * percentages[i]
+                    / DEFAULT_AMOUNT);
             if (i == accounts.length - 1) {
                 allocation = remainingAmount;
             }
@@ -120,15 +150,18 @@ public class Money {
     }
 
     /**
-     * Validates that the specified Money object has the same currency as this Money object.
+     * Validates that the specified Money object has the same currency as this
+     * Money object.
      *
      * @param other The Money object to validate.
-     * @throws IllegalArgumentException if the currencies of the two Money objects are not the same.
+     * @throws IllegalArgumentException if the currencies of the two Money
+     * objects are not the same.
      */
 
-    private void validateSameCurrency(Money other) {
+    private void validateSameCurrency(final Money other) {
         if (!this.currency.equals(other.currency)) {
-            throw new IllegalArgumentException("Money objects must have the same currency");
+            throw new IllegalArgumentException("Money objects must have the "
+                    + "same currency");
         }
     }
 }

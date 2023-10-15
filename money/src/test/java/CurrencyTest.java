@@ -33,8 +33,8 @@ public class CurrencyTest {
 
     @Before
     public void setUp() {
-        usd = Currency.USD();
-        eur = Currency.EUR();
+        usd = Currency.usd();
+        eur = Currency.eur();
     }
 
     @Test
@@ -51,14 +51,14 @@ public class CurrencyTest {
 
     @Test
     public void testUSD() {
-        Currency currency = Currency.USD();
+        Currency currency = Currency.usd();
         assertEquals(100, currency.getCentFactor());
         assertEquals("USD", currency.getStringRepresentation());
     }
 
     @Test
     public void testEUR() {
-        Currency currency = Currency.EUR();
+        Currency currency = Currency.eur();
         assertEquals(100, currency.getCentFactor());
         assertEquals("EUR", currency.getStringRepresentation());
     }

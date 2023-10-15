@@ -31,7 +31,6 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 import static org.testng.Assert.assertFalse;
-import org.testng.asserts.SoftAssert;
 
 public class AccountTest {
     private Account account;
@@ -40,8 +39,8 @@ public class AccountTest {
 
     @BeforeMethod
     public void setUp() {
-        usd = Currency.USD();
-        eur = Currency.EUR();
+        usd = Currency.usd();
+        eur = Currency.eur();
         account = new Account(usd, eur);
     }
 

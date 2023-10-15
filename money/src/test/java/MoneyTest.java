@@ -39,8 +39,8 @@ public class MoneyTest {
 
     @Before
     public void setUp() {
-        usd = Currency.USD();
-        eur = Currency.EUR();
+        usd = Currency.usd();
+        eur = Currency.eur();
         money1 = new Money(1000, usd);
         money2 = new Money(500, usd);
         account1 = new Account(usd, eur);
@@ -109,7 +109,7 @@ public class MoneyTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void testAllocateDifferentCurrencies() {
-        Account account3 = new Account(usd, Currency.USD());
+        Account account3 = new Account(usd, Currency.usd());
         Account[] accounts = {account1, account3};
         money1.allocate(accounts, 50, 50);
     }
