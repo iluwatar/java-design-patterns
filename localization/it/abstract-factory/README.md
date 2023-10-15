@@ -200,7 +200,7 @@ Esempi di casi d'uso
 * La scrittura di casi di unit test diventa molto più semplice. 
 * Strumenti UI per diversi sistemi operativi.
 
-## Consequenze
+## Conseguenze
 
 * La dependency injection in Java nasconde le dipendenze delle classi di servizio, il che può portare a errori a runtime che sarebbero stati rilevati in fase di compilazione. 
 * Se da un lato il pattern è ottimo per la creazione di oggetti predefiniti, l'aggiunta di nuovi oggetti potrebbe essere complicato. 
