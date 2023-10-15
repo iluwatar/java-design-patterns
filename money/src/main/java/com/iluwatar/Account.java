@@ -33,19 +33,19 @@ package com.iluwatar;
  */
 public class Account {
 
-    /**
-     * The primary currency for the account.
-     */
+  /**
+   * The primary currency for the account.
+   */
   private final Currency primaryCurrency;
 
-    /**
-     * The secondary currency for the account.
-     */
+  /**
+   * The secondary currency for the account.
+   */
   private final Currency secondaryCurrency;
 
-    /**
-     * The balance in the primary currency.
-     */
+  /**
+   * The balance in the primary currency.
+   */
   private Money primaryBalance;
 
     /**
@@ -53,27 +53,27 @@ public class Account {
      */
     private Money secondaryBalance;
 
-    /**
-     * Constructs an Account with the specified primary and secondary
-     * currencies.
-     *
-     * @param pCurr The primary currency for the account.
-     * @param sCurr The secondary currency for the account.
-     */
+  /**
+   * Constructs an Account with the specified primary and secondary
+   * currencies.
+   *
+   * @param pCurr The primary currency for the account.
+   * @param sCurr The secondary currency for the account.
+   */
   public Account(final Currency pCurr, final Currency sCurr) {
     this.primaryCurrency = pCurr;
     this.secondaryCurrency = sCurr;
     this.primaryBalance = new Money(0, primaryCurrency);
     this.secondaryBalance = new Money(0, secondaryCurrency);
-    }
+  }
 
-    /**
-     * Deposits the specified amount of money into the account.
-     *
-     * @param money The Money object to deposit into the account.
-     * @throws IllegalArgumentException if the deposited money has an invalid
-     * currency.
-     */
+  /**
+   * Deposits the specified amount of money into the account.
+   *
+   * @param money The Money object to deposit into the account.
+   * @throws IllegalArgumentException if the deposited money has an invalid
+   * currency.
+   */
   public void deposit(final Money money) {
     validateCurrency(money);
     if (money.getCurrency().equals(primaryCurrency)) {
@@ -81,15 +81,15 @@ public class Account {
     } else {
         secondaryBalance = secondaryBalance.add(money);
     }
-    }
+  }
 
-    /**
-     * Withdraws the specified amount of money from the account.
-     *
-     * @param money The Money object to withdraw from the account.
-     * @throws IllegalArgumentException if the withdrawn money has an invalid
-     * currency or if there is insufficient balance.
-     */
+  /**
+   * Withdraws the specified amount of money from the account.
+   *
+   * @param money The Money object to withdraw from the account.
+   * @throws IllegalArgumentException if the withdrawn money has an invalid
+   * currency or if there is insufficient balance.
+   */
   public void withdraw(final Money money) {
     validateCurrency(money);
     if (money.getCurrency().equals(primaryCurrency)) {
@@ -105,38 +105,38 @@ public class Account {
         }
         secondaryBalance = secondaryBalance.subtract(money);
     }
-    }
+  }
 
-    /**
-     * Validates that the specified Money object has a valid currency for this
-     * account.
-     *
-     * @param money The Money object to validate.
-     * @throws IllegalArgumentException if the currency is invalid for this
-     * account.
-     */
+  /**
+   * Validates that the specified Money object has a valid currency for this
+   * account.
+   *
+   * @param money The Money object to validate.
+   * @throws IllegalArgumentException if the currency is invalid for this
+   * account.
+   */
   private void validateCurrency(final Money money) {
     if (!money.getCurrency().equals(primaryCurrency)
             && !money.getCurrency().equals(secondaryCurrency)) {
         throw new IllegalArgumentException("Invalid currency for this "
                 + "account");
     }
-    }
+  }
 
-    /**
-     * Gets the primary currency balance of the account.
-     *
-     * @return The primary currency balance.
-     */
+  /**
+   * Gets the primary currency balance of the account.
+   *
+   * @return The primary currency balance.
+   */
   public Money getPrimaryBalance() {
         return primaryBalance;
     }
 
-    /**
-     * Gets the secondary currency balance of the account.
-     *
-     * @return The secondary currency balance.
-     */
+  /**
+   * Gets the secondary currency balance of the account.
+   *
+   * @return The secondary currency balance.
+   */
   public Money getSecondaryBalance() {
         return secondaryBalance;
     }

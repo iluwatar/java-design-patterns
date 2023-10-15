@@ -28,78 +28,77 @@ package com.iluwatar;
 /**
  * The Currency class represents a currency type with a cent factor and a
  * string representation.
- * It is used to define different currencies in the monetary system.
- *
- * The cent factor is used to convert currency amounts to cents for internal
- * calculations.
- * The string representation is a human-readable identifier for the currency.
+ * It is used to define different currencies in the monetary system. The cent
+ * factor is used to convert currency amounts to cents for internal
+ * calculations. The string representation is a human-readable identifier
+ * for the currency.
  */
 public class Currency {
-    /**
-     * The default cent factor for the currency.
-     */
+  /**
+   * The default cent factor for the currency.
+   */
   private static final int DEFAULT_VALUE = 100;
 
-    /**
-     * The factor used to convert currency amounts between whole numbers and
-     * cents. This is typically set to 100 for most currencies, where 1 unit is
-     * equivalent to 100 cents. Adjust this factor if the currency operates in
-     * a different denomination.
-     */
+  /**
+   * The factor used to convert currency amounts between whole numbers and
+   * cents. This is typically set to 100 for most currencies, where 1 unit is
+   * equivalent to 100 cents. Adjust this factor if the currency operates in
+   * a different denomination.
+   */
   private int centFactor;
 
-    /**
-     * A human-readable string representation of the money amount and currency.
-     * This string is used to display the money value to users or for debugging
-     * purposes.
-     */
+  /**
+   * A human-readable string representation of the money amount and currency.
+   * This string is used to display the money value to users or for debugging
+   * purposes.
+   */
   private String stringRepresentation;
 
-    /**
-     * Constructs a Currency with the specified cent factor and string
-     * representation.
-     *
-     * @param cF The cent factor for the currency.
-     * @param sR The string representation of the currency.
-     */
+  /**
+   * Constructs a Currency with the specified cent factor and string
+   * representation.
+   *
+   * @param cF The cent factor for the currency.
+   * @param sR The string representation of the currency.
+   */
   public Currency(final int cF, final String sR) {
     this.centFactor = cF;
     this.stringRepresentation = sR;
-    }
+  }
 
-    /**
-     * Gets the cent factor for the currency.
-     *
-     * @return The cent factor of the currency.
-     */
+  /**
+   * Gets the cent factor for the currency.
+   *
+   * @return The cent factor of the currency.
+   */
   public int getCentFactor() {
     return centFactor;
-    }
+  }
 
-    /**
-     * Gets the string representation of the currency.
-     *
-     * @return The string representation of the currency.
-     */
+  /**
+   * Gets the string representation of the currency.
+   *
+   * @return The string representation of the currency.
+   */
   public String getStringRepresentation() {
     return stringRepresentation;
-    }
+  }
 
-    /**
-     * Creates a new Currency instance representing the US Dollar (USD).
-     *
-     * @return A Currency instance for USD.
-     */
+  /**
+   * Creates a new Currency instance representing the US Dollar (USD).
+   *
+   * @return A Currency instance for USD.
+   */
   public static Currency usd() {
     return new Currency(DEFAULT_VALUE, "USD");
-    }
+  }
 
-    /**
-     * Creates a new Currency instance representing the Euro (EUR).
-     *
-     * @return A Currency instance for EUR.
-     */
+  /**
+   * Creates a new Currency instance representing the Euro (EUR).
+   *
+   * @return A Currency instance for EUR.
+   */
   public static Currency eur() {
     return new Currency(DEFAULT_VALUE, "EUR");
-    }
+  }
 }
