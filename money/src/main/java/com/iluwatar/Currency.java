@@ -38,7 +38,7 @@ public class Currency {
     /**
      * The default cent factor for the currency.
      */
-    private static final int DEFAULT_VALUE = 100;
+  private static final int DEFAULT_VALUE = 100;
 
     /**
      * The factor used to convert currency amounts between whole numbers and
@@ -46,14 +46,14 @@ public class Currency {
      * equivalent to 100 cents. Adjust this factor if the currency operates in
      * a different denomination.
      */
-    private int centFactor;
+  private int centFactor;
 
     /**
      * A human-readable string representation of the money amount and currency.
      * This string is used to display the money value to users or for debugging
      * purposes.
      */
-    private String stringRepresentation;
+  private String stringRepresentation;
 
     /**
      * Constructs a Currency with the specified cent factor and string
@@ -62,9 +62,9 @@ public class Currency {
      * @param cF The cent factor for the currency.
      * @param sR The string representation of the currency.
      */
-    public Currency(final int cF, final String sR) {
-        this.centFactor = cF;
-        this.stringRepresentation = sR;
+  public Currency(final int cF, final String sR) {
+    this.centFactor = cF;
+    this.stringRepresentation = sR;
     }
 
     /**
@@ -72,8 +72,8 @@ public class Currency {
      *
      * @return The cent factor of the currency.
      */
-    public int getCentFactor() {
-        return centFactor;
+  public int getCentFactor() {
+    return centFactor;
     }
 
     /**
@@ -81,8 +81,8 @@ public class Currency {
      *
      * @return The string representation of the currency.
      */
-    public String getStringRepresentation() {
-        return stringRepresentation;
+  public String getStringRepresentation() {
+    return stringRepresentation;
     }
 
     /**
@@ -90,8 +90,8 @@ public class Currency {
      *
      * @return A Currency instance for USD.
      */
-    public static Currency usd() {
-        return new Currency(DEFAULT_VALUE, "USD");
+  public static Currency usd() {
+    return new Currency(DEFAULT_VALUE, "USD");
     }
 
     /**
@@ -99,7 +99,7 @@ public class Currency {
      *
      * @return A Currency instance for EUR.
      */
-    public static Currency eur() {
-        return new Currency(DEFAULT_VALUE, "EUR");
+  public static Currency eur() {
+    return new Currency(DEFAULT_VALUE, "EUR");
     }
 }

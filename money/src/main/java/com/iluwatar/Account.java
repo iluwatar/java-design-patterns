@@ -36,17 +36,17 @@ public class Account {
     /**
      * The primary currency for the account.
      */
-    private final Currency primaryCurrency;
+  private final Currency primaryCurrency;
 
     /**
      * The secondary currency for the account.
      */
-    private final Currency secondaryCurrency;
+  private final Currency secondaryCurrency;
 
     /**
      * The balance in the primary currency.
      */
-    private Money primaryBalance;
+  private Money primaryBalance;
 
     /**
      * The balance in the secondary currency.
@@ -60,11 +60,11 @@ public class Account {
      * @param pCurr The primary currency for the account.
      * @param sCurr The secondary currency for the account.
      */
-    public Account(final Currency pCurr, final Currency sCurr) {
-        this.primaryCurrency = pCurr;
-        this.secondaryCurrency = sCurr;
-        this.primaryBalance = new Money(0, primaryCurrency);
-        this.secondaryBalance = new Money(0, secondaryCurrency);
+  public Account(final Currency pCurr, final Currency sCurr) {
+    this.primaryCurrency = pCurr;
+    this.secondaryCurrency = sCurr;
+    this.primaryBalance = new Money(0, primaryCurrency);
+    this.secondaryBalance = new Money(0, secondaryCurrency);
     }
 
     /**
@@ -74,13 +74,13 @@ public class Account {
      * @throws IllegalArgumentException if the deposited money has an invalid
      * currency.
      */
-    public void deposit(final Money money) {
-        validateCurrency(money);
-        if (money.getCurrency().equals(primaryCurrency)) {
-            primaryBalance = primaryBalance.add(money);
-        } else {
-            secondaryBalance = secondaryBalance.add(money);
-        }
+  public void deposit(final Money money) {
+    validateCurrency(money);
+    if (money.getCurrency().equals(primaryCurrency)) {
+        primaryBalance = primaryBalance.add(money);
+    } else {
+        secondaryBalance = secondaryBalance.add(money);
+    }
     }
 
     /**
@@ -90,21 +90,21 @@ public class Account {
      * @throws IllegalArgumentException if the withdrawn money has an invalid
      * currency or if there is insufficient balance.
      */
-    public void withdraw(final Money money) {
-        validateCurrency(money);
-        if (money.getCurrency().equals(primaryCurrency)) {
-            if (primaryBalance.getAmount() < money.getAmount()) {
-                throw new IllegalArgumentException("Insufficient balance in "
-                        + "primary currency");
-            }
-            primaryBalance = primaryBalance.subtract(money);
-        } else {
-            if (secondaryBalance.getAmount() < money.getAmount()) {
-                throw new IllegalArgumentException("Insufficient balance in "
-                        + "secondary currency");
-            }
-            secondaryBalance = secondaryBalance.subtract(money);
+  public void withdraw(final Money money) {
+    validateCurrency(money);
+    if (money.getCurrency().equals(primaryCurrency)) {
+        if (primaryBalance.getAmount() < money.getAmount()) {
+            throw new IllegalArgumentException("Insufficient balance in "
+                    + "primary currency");
         }
+        primaryBalance = primaryBalance.subtract(money);
+    } else {
+        if (secondaryBalance.getAmount() < money.getAmount()) {
+            throw new IllegalArgumentException("Insufficient balance in "
+                    + "secondary currency");
+        }
+        secondaryBalance = secondaryBalance.subtract(money);
+    }
     }
 
     /**
@@ -115,12 +115,12 @@ public class Account {
      * @throws IllegalArgumentException if the currency is invalid for this
      * account.
      */
-    private void validateCurrency(final Money money) {
-        if (!money.getCurrency().equals(primaryCurrency)
-                && !money.getCurrency().equals(secondaryCurrency)) {
-            throw new IllegalArgumentException("Invalid currency for this "
-                    + "account");
-        }
+  private void validateCurrency(final Money money) {
+    if (!money.getCurrency().equals(primaryCurrency)
+            && !money.getCurrency().equals(secondaryCurrency)) {
+        throw new IllegalArgumentException("Invalid currency for this "
+                + "account");
+    }
     }
 
     /**
@@ -128,7 +128,7 @@ public class Account {
      *
      * @return The primary currency balance.
      */
-    public Money getPrimaryBalance() {
+  public Money getPrimaryBalance() {
         return primaryBalance;
     }
 
@@ -137,7 +137,7 @@ public class Account {
      *
      * @return The secondary currency balance.
      */
-    public Money getSecondaryBalance() {
+  public Money getSecondaryBalance() {
         return secondaryBalance;
     }
 }
