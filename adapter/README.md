@@ -107,6 +107,8 @@ Use the Adapter pattern when
 * [Dzone](https://dzone.com/articles/adapter-design-pattern-in-java)
 * [Refactoring Guru](https://refactoring.guru/design-patterns/adapter/java/example)
 * [Baeldung](https://www.baeldung.com/java-adapter-pattern)
+* [GeeksforGeeks](https://www.geeksforgeeks.org/adapter-pattern/)
+
 
 ## Consequences
 Class and object adapters have different trade-offs. A class adapter
