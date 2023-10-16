@@ -2679,6 +2679,51 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "hamexhanif",
+      "name": "Muhammad Hanif Amrullah",
+      "avatar_url": "https://avatars.githubusercontent.com/u/74542852?v=4",
+      "profile": "https://github.com/hamexhanif",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "JackH408",
+      "name": "JackH408",
+      "avatar_url": "https://avatars.githubusercontent.com/u/141727294?v=4",
+      "profile": "https://github.com/JackH408",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "versus2004",
+      "name": "Shubham",
+      "avatar_url": "https://avatars.githubusercontent.com/u/132815243?v=4",
+      "profile": "https://github.com/versus2004",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "inishantjain",
+      "name": "Nishant Jain",
+      "avatar_url": "https://avatars.githubusercontent.com/u/121454072?v=4",
+      "profile": "https://github.com/inishantjain",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "hallowshaw",
+      "name": "Rhitam Chaudhury",
+      "avatar_url": "https://avatars.githubusercontent.com/u/90751158?v=4",
+      "profile": "https://github.com/hallowshaw",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
