@@ -37,13 +37,16 @@ public class Task {
 
     elapsedTime += seconds;
 
-    // Uncomment the following line to see the execution of tasks
-    // System.out.printf("%d, %d/%d\n", id, elapsedTime, totalExecutionTime);
+    logTaskProgress();
 
     if (elapsedTime >= totalExecutionTime) {
       complete = true;
       support.firePropertyChange(COMPLETE_PROPERTY, false, true);
     }
+  }
+
+  private void logTaskProgress() {
+    System.out.printf("Task %d is %d/%d complete\n", id, elapsedTime, totalExecutionTime);
   }
 
   public int getRemainingTime() {
