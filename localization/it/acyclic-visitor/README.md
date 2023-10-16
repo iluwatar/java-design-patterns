@@ -130,6 +130,8 @@ Questo pattern può essere utilizzato nei seguenti casi:
 * Quando è necessario aggiungere una nuova funzione a una gerarchia esistente senza la necessità di modificarla o influenzarla. 
 * Quando ci sono funzioni che operano su una gerarchia, ma che non appartengono alla gerarchia stessa, ad esempio, il problema di ConfigureForDOS / ConfigureForUnix / ConfigureForX. 
 * Quando è necessario eseguire operazioni molto diverse su un oggetto a seconda del suo tipo.
+* Quando la gerarchia delle classi visitate sarà frequentemente estesa con nuovi derivati dalla classe Element.
+* Quando la ricompilazione, il relinking, il ritestare o la ridistribuzione dei derivati da Element è molto costoso.
 
 ## Tutorial
 
