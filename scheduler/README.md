@@ -2,7 +2,8 @@
 title: Scheduler Pattern
 category: Creational
 language: en
-tag:
+tag: 
+  - Generic
 ---
 
 ## Name
@@ -12,7 +13,53 @@ Scheduler Design Pattern
 The Scheduler Design Pattern is used to manage and coordinate the execution of tasks or jobs in a system. It provides a mechanism for scheduling and executing tasks at specific times, intervals, or in response to certain events. This pattern is especially useful when dealing with asynchronous operations, background processing, and resource allocation.
 
 ## Explanation
-The Scheduler Design Pattern is designed to decouple task scheduling from the actual execution of tasks. It abstracts the scheduling logic, making it possible to change or extend the scheduling behavior without affecting the tasks themselves. This pattern allows for efficient resource utilization, load balancing, and prioritization of tasks.
+
+### Real-world example
+> Think of a restaurant kitchen with various dishes to be prepared – the chef is like a scheduler who ensures that each dish is cooked at the right time and served to customers without letting the kitchen become chaotic or the food getting cold.
+
+### In plain words
+> The Scheduler Design Pattern ensures your tasks get done at the right time and order.
+
+### Wikipedia says
+> In computing, scheduling is the action of assigning resources to perform tasks. The resources may be processors, network links or expansion cards. The tasks may be threads, processes or data flows.
+
+> The scheduling activity is carried out by a process called scheduler. Schedulers are often designed so as to keep all computer resources busy (as in load balancing), allow multiple users to share system resources effectively, or to achieve a target quality-of-service.
+
+> Scheduling is fundamental to computation itself, and an intrinsic part of the execution model of a computer system; the concept of scheduling makes it possible to have computer multitasking with a single central processing unit (CPU).
+
+### Programmatic example
+In our demo, we will have a class `Task` with following attributes:
+```java
+public class Task {
+  int id;
+  int totalExecutionTime;
+  int priority = 0;
+}
+```
+And a `Scheduler` class which will be responsible for scheduling the tasks:
+```java
+public interface TaskScheduler {
+  void scheduleTask(Task task);
+}
+```
+Base on the strategy of the scheduler, we can have different implementations of `TaskScheduler` interface. For example, a `PriorityScheduler` which will schedule the tasks based on their priority:
+```java
+public class PriorityScheduler implements TaskScheduler {
+  private final Queue<Task> taskQueue =
+      new PriorityQueue<>(
+          (task1, task2) -> {
+            if (task2.priority != task1.priority) {
+              return task2.priority - task1.priority;
+            }
+            return task1.id - task2.id;
+          });
+
+  @Override
+  public void scheduleTask(Task task) {
+    taskQueue.add(task);
+  }
+}
+```
 
 ## Class diagram
 ![Scheduler Pattern](etc/scheduler.png)
