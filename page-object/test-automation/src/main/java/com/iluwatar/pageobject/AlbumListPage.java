@@ -59,7 +59,7 @@ public class AlbumListPage extends Page {
     try {
       page = this.webClient.getPage(PAGE_URL);
     } catch (IOException e) {
-      LOGGER.error("An error occured on navigateToPage.", e);
+      LOGGER.error("An error occurred on navigateToPage.", e);
     }
     return this;
   }
@@ -87,7 +87,7 @@ public class AlbumListPage extends Page {
           ((HtmlAnchor) anchor).click();
           return new AlbumPage(webClient);
         } catch (IOException e) {
-          LOGGER.error("An error occured on selectAlbum", e);
+          LOGGER.error("An error occurred on selectAlbum", e);
         }
       }
     }
