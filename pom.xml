@@ -36,7 +36,7 @@
   <description>Java Design Patterns</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
+    <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
     <spring-boot.version>2.7.5</spring-boot.version>
     <jacoco.version>0.8.10</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
@@ -46,7 +46,7 @@
     <system-lambda.version>1.1.0</system-lambda.version>
     <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
     <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
-    <license-maven-plugin.version>4.2</license-maven-plugin.version>
+    <license-maven-plugin.version>4.3</license-maven-plugin.version>
     <urm-maven-plugin.version>2.1.1</urm-maven-plugin.version>
     <!-- SonarCloud -->
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -207,6 +207,7 @@
     <module>context-object</module>
     <module>thread-local-storage</module>
     <module>optimistic-offline-lock</module>
+    <module>crtp</module>
   </modules>
   <repositories>
     <repository>

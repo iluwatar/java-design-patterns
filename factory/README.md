@@ -60,7 +60,7 @@ public class CopperCoin implements Coin {
 }
 ```
 
-Enumeration above represents types of coins that we support (`GoldCoin` and `CopperCoin`).
+Enumeration below represents types of coins that we support (`GoldCoin` and `CopperCoin`).
 
 ```java
 @RequiredArgsConstructor

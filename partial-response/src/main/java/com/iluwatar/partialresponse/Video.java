@@ -33,7 +33,7 @@ public record Video(Integer id, String title, Integer length, String description
   /**
    * ToString.
    *
-   * @return json representaion of video
+   * @return json representation of video
    */
   @Override
   public String toString() {
