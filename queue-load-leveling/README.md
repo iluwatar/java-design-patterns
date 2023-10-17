@@ -14,6 +14,8 @@ intermittent heavy loads that may otherwise cause the service to fail or the tas
 This pattern can help to minimize the impact of peaks in demand on availability and responsiveness 
 for both the task and the service.
 
+## Explanation
+
 Real world example
 > A Microsoft Azure web role stores data by using a separate storage service. If a large number of instances of the web 
 > role run concurrently, it is possible that the storage service could be overwhelmed and be unable to respond to requests 
