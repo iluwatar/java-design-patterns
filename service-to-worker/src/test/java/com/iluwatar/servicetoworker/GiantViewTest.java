@@ -37,7 +37,7 @@ import org.junit.jupiter.api.Test;
 class GiantViewTest {
 
   /**
-   * Test dispaly giant.
+   * Test display giant.
    */
   @Test
   void testDispalyGiant() {
