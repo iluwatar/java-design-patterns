@@ -32,8 +32,8 @@ public abstract class Superpower {
     logger.info("Move to ( " + x + ", " + y + ", " + z + " )");
   }
 
-  protected void playSound(String soundName, int volumn) {
-    logger.info("Play " + soundName + " with volumn " + volumn);
+  protected void playSound(String soundName, int volume) {
+    logger.info("Play " + soundName + " with volume " + volume);
   }
 
   protected void spawnParticles(String particleType, int count) {
@@ -88,11 +88,11 @@ Program output:
 ```
 // Use superpower: sky launch
 // Move to ( 0.0, 0.0, 20.0 )
-// Play SKYLAUNCH_SOUND with volumn 1
+// Play SKYLAUNCH_SOUND with volume 1
 // Spawn 100 particle with type SKYLAUNCH_PARTICLE
 // Use superpower: ground dive
 // Move to ( 0.0, 0.0, -20.0 )
-// Play GROUNDDIVE_SOUND with volumn 5
+// Play GROUNDDIVE_SOUND with volume 5
 // Spawn 20 particle with type GROUNDDIVE_PARTICLE
 ```
 ## Class diagram
