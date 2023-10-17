@@ -24,7 +24,7 @@ the system has other primary focuses and loans are just a small aspect that can 
 
 ## Real world examples
 
-* [Raft Leader Election](https://github.com/ronenhamias/raft-leader-election)
+
 
 ## Credits
 
