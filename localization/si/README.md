@@ -1,6 +1,6 @@
-<!-- පහත පේළිය හිස් රේඛාවක් විය යුතුය C: (එය kramdown නොවන බැවිනි
-     ශීර්ෂයකට පෙර හිස් රේඛාවක් අවශ්‍ය බව බුද්ධිමත් හා ආදරණීයයි
-     එය එසේ පෙන්වන්න, උදා. වෙබ් අඩවිය) -->
+<!-- The line below should be a blank line C: (because it's not kramdown
+     It's smart and lovely that a blank line is required before a heading
+     Show it like this, e.g. website) -->
 
 # ජාවා නිර්මාණ රටා
 
