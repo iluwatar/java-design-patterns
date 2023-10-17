@@ -1,6 +1,6 @@
 ---
-title: Vertical-Slice-Architecture
-aka: Layer-By-Feature
+title: Vertical Slice Architecture
+aka: Layer By Feature
 category: Architectural
 language: en
 tag:
@@ -9,21 +9,38 @@ tag:
 
 ## Intent
 
-package the application based on features. Each feature will have its own set of layers (
-Models, Services, Repository and Controllers ).
+Organize the application according to its features.
+Each feature will comprise its distinct set of layers (Models, Services, Repository, and Controllers).
 
 ## Explanation
 
-> With vertical slice architecture we can have high cohesion within package and low coupling
-> among the packages. In Conceptual term
+Real-World Examples (Consider E-commerce)
 
-> Consider that you are going to make a backend service for a online e-commerce application.
-> initially you make it with usual grouping of controllers, models etc. but as the application
-> grows more it's requires implementation of new features. Let's say that you thought of having
-> orders, customers and products associated layers. But now you need to include another set of
-> features with Cart system and wishlists. Now it's really hard to integrate those features it
-> requires lot's of dependency modifications and mocking. So if you make the package by feature
-> it will be really feasible for future additions. General example.
+> In the context of an e-commerce application, the concept of vertical slice architecture becomes clear.
+> Imagine you're building a backend service for an online store.
+> Initially, you may organize it with the typical grouping of controllers, models, and other components.
+> As the application grows, the need arises to implement new features.
+
+> For instance, you might have distinct layers for orders, customers, and products. However, as the application
+> evolves, you realize the necessity of integrating additional features like a Cart system and wishlists.
+> At this point, integrating these new features into the existing structure becomes challenging.
+> It demands significant dependency modifications and mocking, which can be time-consuming and error-prone.
+
+> This is where vertical slice architecture proves its value. 
+> By structuring the application based on features,
+> you create self-contained modules that encapsulate all the necessary components
+> (Models, Services, Repository, and Controllers) for a particular feature.
+> When you need to add new features, you can do so in a more isolated and manageable manner.
+
+In Plain Words
+
+> Vertical slice architecture is like organizing your toolbox.
+> Instead of having all your tools mixed together, you group them based on the type of task they perform.
+> This way, when you need a specific tool for a particular job,
+> you can quickly find it without rummaging through a jumble of items.
+
+> Similarly, in software development, vertical slice architecture involves organizing the codebase based on features. 
+> Each feature has its own self-contained set of components, making it easier to add, modify, or remove features without disrupting the entire application.
 
 ## Class diagram
 

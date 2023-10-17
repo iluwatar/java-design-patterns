@@ -28,11 +28,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Main application.
- * The main objective of this code sample is for you to have a look at how the view, entity, repository and Service are
- * organized.
- * No matter what application you are building Layer by Feature will always give the upper hand of better
- * maintainability.
+ * This application is designed with a vertical slice architecture, organizing features such as
+ * customer management, order processing, and product catalog in separate modules. Each feature encapsulates
+ * its own set of components (Models, Services, Repository, and Controllers), promoting high cohesion
+ * within each module and low coupling between them. This architecture allows for seamless integration of new
+ * features and functionalities as the application evolves over time.
  */
 
 @SpringBootApplication
