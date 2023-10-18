@@ -18,7 +18,7 @@ package com.iluwatar.subclasssandbox {
     + Superpower()
     # activate() {abstract}
     # move(x : double, y : double, z : double)
-    # playSound(soundName : String, volumn : int)
+    # playSound(soundName : String, volume : int)
     # spawnParticles(particleType : String, count : int)
   }
 }
