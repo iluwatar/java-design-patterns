@@ -37,7 +37,7 @@ public static void main(String[] args) {
     // this is not necessary if the models/instances already exist, but it shows
     // it can be easy to move data all the way from a .txt to a nice webpage   
     // also note, this class can be anything, the transformer is generic to any model    
-    List<Patient> patients = Patient.readPatientsFromFile("transform-view/src/main/java/patients.txt");
+    List<Patient> patients = Patient.readPatientsFromFile("patients.txt");
 
     // create a hashmap of all of the options for the output of the table
     // so you can make it look nice    

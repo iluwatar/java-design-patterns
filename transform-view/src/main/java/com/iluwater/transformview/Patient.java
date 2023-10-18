@@ -73,6 +73,7 @@ public class Patient {
       }
     } catch (IOException e) {
       // return an empty list if it couldn't open the file
+      e.printStackTrace();
     }
 
     return patients;
