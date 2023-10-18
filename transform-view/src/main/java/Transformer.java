@@ -1,128 +1,154 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 
+/**
+ * The Transformer class is responsible for transforming data into an HTML table and saving it to a file.
+ */
 public class Transformer {
-    private List<List<String>> data;
-    private Map<String, String> options;
+  private List<List<String>> data;
+  private Map<String, String> options;
 
-    public Transformer(Map<String, String> options) {
-        this.options = options;
+  public Transformer(Map<String, String> options) {
+    this.options = options;
+  }
+
+  public List<List<String>> getData() {
+    return data;
+  }
+
+  public void setData(List<List<String>> data) {
+    this.data = data;
+  }
+
+  public Map<String, String> getOptions() {
+    return options;
+  }
+
+  public void setOptions(Map<String, String> options) {
+    this.options = options;
+  }
+
+  /**
+   * Generates an HTML table based on the provided data and styling options.
+   *
+   * @return The generated HTML table as a string.
+   */
+  public String generateHtmlTable() {
+    StringBuilder html = new StringBuilder();
+    html.append("<!DOCTYPE html>\n");
+    html.append("<html>\n<head>\n<title>Generated Table</title>\n");
+    html.append("<style>\n");
+
+    // CSS styles based on the options
+    if (options != null) {
+      if (options.containsKey("font-size")) {
+        html.append("table { font-size: ")
+                .append(options.get("font-size")).append("; }\n");
+      }
+      if (options.containsKey("table-margin")) {
+        html.append("table { margin: ")
+                .append(options.get("table-margin")).append("; }\n");
+      }
+      if (options.containsKey("cell-padding")) {
+        html.append("td, th { padding: ")
+                .append(options.get("cell-padding")).append("; }\n");
+      }
+      if (options.containsKey("border")) {
+        html.append("table { border: ")
+                .append(options.get("border")).append("; }\n");
+      }
+      if (options.containsKey("column-spacing")) {
+        html.append("td, th { margin-right: ")
+                .append(options.get("column-spacing")).append("; }\n");
+      }
+      if (options.containsKey("cell-border")) {
+        html.append("td, th { border: ")
+                .append(options.get("cell-border")).append("; }\n");
+      }
     }
 
-    public List<List<String>> getData() {
-        return data;
-    }
+    html.append("</style>\n");
+    html.append("</head>\n<body>\n");
+    html.append("<table>\n");
 
-    public void setData(List<List<String>> data) {
-        this.data = data;
-    }
+    // Ensure that there's data to include in the table
+    if (data != null && !data.isEmpty()) {
+      List<String> headerRow = data.get(0);
+      html.append("<tr>");
+      for (String cell : headerRow) {
+        html.append("<th>").append(cell).append("</th>");
+      }
+      html.append("</tr>\n");
 
-    public Map<String, String> getOptions() {
-        return options;
-    }
-
-    public void setOptions(Map<String, String> options) {
-        this.options = options;
-    }
-
-    public String generateHtmlTable() {
-        StringBuilder html = new StringBuilder();
-        html.append("<!DOCTYPE html>\n");
-        html.append("<html>\n<head>\n<title>Generated Table</title>\n");
-        html.append("<style>\n");
-
-        // CSS styles based on the options
-        if (options != null) {
-            if (options.containsKey("font-size")) {
-                html.append("table { font-size: ").append(options.get("font-size")).append("; }\n");
-            }
-            if (options.containsKey("table-margin")) {
-                html.append("table { margin: ").append(options.get("table-margin")).append("; }\n");
-            }
-            if (options.containsKey("cell-padding")) {
-                html.append("td, th { padding: ").append(options.get("cell-padding")).append("; }\n");
-            }
-            if (options.containsKey("border")) {
-                html.append("table { border: ").append(options.get("border")).append("; }\n");
-            }
-            if (options.containsKey("column-spacing")) {
-                html.append("td, th { margin-right: ").append(options.get("column-spacing")).append("; }\n");
-            }
-            if (options.containsKey("cell-border")) {
-                html.append("td, th { border: ").append(options.get("cell-border")).append("; }\n");
-            }
+      for (int i = 1; i < data.size(); i++) {
+        List<String> rowData = data.get(i);
+        html.append("<tr>");
+        for (String cell : rowData) {
+          html.append("<td>").append(cell).append("</td>");
         }
-
-        html.append("</style>\n");
-        html.append("</head>\n<body>\n");
-        html.append("<table>\n");
-
-        // Ensure that there's data to include in the table
-        if (data != null && !data.isEmpty()) {
-            List<String> headerRow = data.get(0);
-            html.append("<tr>");
-            for (String cell : headerRow) {
-                html.append("<th>").append(cell).append("</th>");
-            }
-            html.append("</tr>\n");
-
-            for (int i = 1; i < data.size(); i++) {
-                List<String> rowData = data.get(i);
-                html.append("<tr>");
-                for (String cell : rowData) {
-                    html.append("<td>").append(cell).append("</td>");
-                }
-                html.append("</tr>\n");
-            }
-        }
-
-        html.append("</table>\n</body>\n</html>");
-        return html.toString();
+        html.append("</tr>\n");
+      }
     }
 
+    html.append("</table>\n</body>\n</html>");
+    return html.toString();
+  }
 
-    public <T> void convertModelsToStrings(List<T> models, Class<T> modelClass) {
-        // Get the fields of the specified model class
-        Field[] fields = modelClass.getDeclaredFields();
+  /**
+   * Converts a list of models to a list of strings, which can be used as data for an HTML table.
+   *
+   * @param models      The list of models to convert.
+   * @param modelClass  The class of the models.
+   * @param <T>         The type of the models.
+   */
+  public <T> void convertModelsToStrings(List<T> models, Class<T> modelClass) {
+    // Get the fields of the specified model class
+    Field[] fields = modelClass.getDeclaredFields();
 
-        List<List<String>> dataRows = new ArrayList<>();
+    List<List<String>> dataRows = new ArrayList<>();
 
-        // Create a header row with field names
-        List<String> headerRow = new ArrayList<>();
-        for (Field field : fields) {
-            headerRow.add(field.getName());
+    // Create a header row with field names
+    List<String> headerRow = new ArrayList<>();
+    for (Field field : fields) {
+      headerRow.add(field.getName());
+    }
+    dataRows.add(headerRow);
+
+    // Iterate through models and retrieve field values
+    for (T model : models) {
+      List<String> fieldValues = new ArrayList<>();
+      for (Field field : fields) {
+        field.setAccessible(true);
+        try {
+          Object value = field.get(model);
+          String fieldValue = (value != null) ? value.toString() : "null";
+          fieldValues.add(fieldValue);
+        } catch (IllegalAccessException e) {
+          e.printStackTrace();
         }
-        dataRows.add(headerRow);
-
-        // Iterate through models and retrieve field values
-        for (T model : models) {
-            List<String> fieldValues = new ArrayList<>();
-            for (Field field : fields) {
-                field.setAccessible(true);
-                try {
-                    Object value = field.get(model);
-                    String fieldValue = (value != null) ? value.toString() : "null";
-                    fieldValues.add(fieldValue);
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-            dataRows.add(fieldValues);
-        }
-
-        data = dataRows;
+      }
+      dataRows.add(fieldValues);
     }
 
-    public void saveHtmlToFile(String htmlContent, String filePath) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(htmlContent);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    data = dataRows;
+  }
+
+  /**
+   * Saves the provided HTML content to a file.
+   *
+   * @param htmlContent The HTML content to be saved.
+   * @param filePath    The path to the file where the HTML content will be saved.
+   */
+  public void saveHtmlToFile(String htmlContent, String filePath) {
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+      writer.write(htmlContent);
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 }
