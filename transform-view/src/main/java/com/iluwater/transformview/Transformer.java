@@ -1,4 +1,4 @@
-package com.iluwater.transformView;
+package com.iluwater.transformview;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -59,6 +59,7 @@ public class Transformer {
           case "border" -> html.append("table { border: ").append(value).append(end);
           case "column-spacing" -> html.append("td, th { margin-right: ").append(value).append(end);
           case "cell-border" -> html.append("td, th { border: ").append(value).append(end);
+          default -> { } // do nothing if not recognised
         }
       }
     }

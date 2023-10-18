@@ -1,7 +1,7 @@
 import static org.junit.Assert.assertTrue;
 
-import com.iluwater.transformView.Patient;
-import com.iluwater.transformView.Transformer;
+import com.iluwater.transformview.Patient;
+import com.iluwater.transformview.Transformer;
 import org.junit.Before;
 import org.junit.Test;
 
