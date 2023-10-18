@@ -36,6 +36,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Predicate;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -98,11 +99,13 @@ class InventoryTest {
       assertNotNull(items);
       assertEquals(INVENTORY_SIZE, items.size());
 
-      assertEquals(INVENTORY_SIZE, appender.getLogSize());
+      final var addedItemsLogs = appender
+          .getLogsMatching(log -> log.getMessage().contains("New item added to inventory"));
+      assertEquals(INVENTORY_SIZE, addedItemsLogs.size());
 
       // ... and check if the inventory size is increasing continuously
       IntStream.range(0, items.size())
-          .mapToObj(i -> appender.log.get(i).getFormattedMessage()
+          .mapToObj(i -> addedItemsLogs.get(i).getFormattedMessage()
               .contains("items.size()=" + (i + 1)))
           .forEach(Assertions::assertTrue);
     });
@@ -122,8 +125,8 @@ class InventoryTest {
       log.add(eventObject);
     }
 
-    public int getLogSize() {
-      return log.size();
+    public List<ILoggingEvent> getLogsMatching(Predicate<ILoggingEvent> condition) {
+        return log.stream().filter(condition).toList();
     }
   }
 

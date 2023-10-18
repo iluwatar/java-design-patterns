@@ -49,12 +49,12 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    final var inventory = new Inventory(1000);
-    var executorService = Executors.newFixedThreadPool(3);
-    IntStream.range(0, 3).<Runnable>mapToObj(i -> () -> {
-      while (inventory.addItem(new Item())) {
-        LOGGER.info("Adding another item");
-      }
+    final var inventory = new Inventory(3);
+    var executorService = Executors.newFixedThreadPool(2);
+    IntStream.range(0, 2).<Runnable>mapToObj(i -> () -> {
+      IntStream.range(0, 3).forEach(j -> {
+        inventory.addItem(new Item());
+      });
     }).forEach(executorService::execute);
 
     executorService.shutdown();

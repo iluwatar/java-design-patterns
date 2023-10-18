@@ -53,18 +53,23 @@ public class Inventory {
    * Add item.
    */
   public boolean addItem(Item item) {
+    final var threadId = Thread.currentThread().getId();
     if (items.size() < inventorySize) {
+      LOGGER.info("ThreadId={}: Item can be added to inventory, trying to acquire lock...", threadId);
       lock.lock();
       try {
         if (items.size() < inventorySize) {
           items.add(item);
-          var thread = Thread.currentThread();
-          LOGGER.info("{}: items.size()={}, inventorySize={}", thread, items.size(), inventorySize);
+          LOGGER.info("ThreadId={}: New item added to inventory, items.size()={}, inventorySize={}", threadId, items.size(), inventorySize);
           return true;
+        } else {
+          LOGGER.info("ThreadId={}: Cannot add new items to inventory", threadId);
         }
       } finally {
         lock.unlock();
       }
+    } else {
+      LOGGER.info("ThreadId={}: Cannot add new items to inventory, lock acquiring skipped", threadId);
     }
     return false;
   }

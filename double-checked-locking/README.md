@@ -79,20 +79,63 @@ result may have changed.
 public class Inventory {
   ...
   public boolean addItem(Item item) {
+    final var threadId = Thread.currentThread().getId();
     if (items.size() < inventorySize) {
+      LOGGER.info("ThreadId={}: Item can be added to inventory, trying to acquire lock...", threadId);
       lock.lock();
       try {
         if (items.size() < inventorySize) {
           items.add(item);
-          var thread = Thread.currentThread();
-          LOGGER.info("{}: items.size()={}, inventorySize={}", thread, items.size(), inventorySize);
+          LOGGER.info("ThreadId={}: New item added to inventory, items.size()={}, inventorySize={}", threadId, items.size(), inventorySize);
           return true;
+        } else {
+          LOGGER.info("ThreadId={}: Cannot add new items to inventory", threadId);
         }
       } finally {
         lock.unlock();
       }
+    } else {
+      LOGGER.info("ThreadId={}: Cannot add new items to inventory, lock acquiring skipped", threadId);
     }
     return false;
   }
 }
 ```
+
+We can check the following scenario: let's run two threads in parallel, each of them will try to add three items to inventory one by one. Let's set inventorySize to 3. In total there will be 6 attempts to add an item and only 3 of them will finish successfully.
+
+```java
+public class App {
+  public static void main(String[] args) {
+    final var inventory = new Inventory(3);
+    var executorService = Executors.newFixedThreadPool(2);
+    IntStream.range(0, 2).<Runnable>mapToObj(i -> () -> {
+      IntStream.range(0, 3).forEach(j -> {
+        inventory.addItem(new Item());
+      });
+    }).forEach(executorService::execute);
+    ...
+  }
+}
+```
+
+Here's the output of some of the program execution. Note output may differ between executions because of unpredictable threads allocation.
+
+```text
+Line | Output
+   1 | ThreadId=16: Item can be added to inventory, trying to acquire lock...
+   2 | ThreadId=15: Item can be added to inventory, trying to acquire lock...
+   3 | ThreadId=16: New item added to inventory, items.size()=1, inventorySize=3
+   4 | ThreadId=16: Item can be added to inventory, trying to acquire lock...
+   5 | ThreadId=15: New item added to inventory, items.size()=2, inventorySize=3
+   6 | ThreadId=15: Item can be added to inventory, trying to acquire lock...
+   7 | ThreadId=16: New item added to inventory, items.size()=3, inventorySize=3
+   8 | ThreadId=16: Cannot add new items to inventory, lock acquiring skipped
+   9 | ThreadId=15: Cannot add new items to inventory
+  10 | ThreadId=15: Cannot add new items to inventory, lock acquiring skipped
+```
+
+In line `6` we can see that thread `15` already checked that new item can be added, as at this point there are 2 of 3 items already added to the inventory.
+In line `7` we can see that thread `16` adds new item. Now there are 3 items in the inventory, so it is full and cannot take more items.
+In line `9` thread `15` checks one again, after acquiring the lock. It turns out that inventory is full, so item cannot be added.
+In lines `8` and `10` we can see that inventory is already full, so lock acquiring is skipped.
