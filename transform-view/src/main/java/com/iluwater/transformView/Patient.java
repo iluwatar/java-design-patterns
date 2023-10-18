@@ -1,3 +1,5 @@
+package com.iluwater.transformView;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -70,7 +72,7 @@ public class Patient {
         }
       }
     } catch (IOException e) {
-      e.printStackTrace();
+      // return an empty list if it couldn't open the file
     }
 
     return patients;

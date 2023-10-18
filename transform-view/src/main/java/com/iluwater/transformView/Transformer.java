@@ -1,3 +1,5 @@
+package com.iluwater.transformView;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -46,29 +48,18 @@ public class Transformer {
 
     // CSS styles based on the options
     if (options != null) {
-      if (options.containsKey("font-size")) {
-        html.append("table { font-size: ")
-                .append(options.get("font-size")).append("; }\n");
-      }
-      if (options.containsKey("table-margin")) {
-        html.append("table { margin: ")
-                .append(options.get("table-margin")).append("; }\n");
-      }
-      if (options.containsKey("cell-padding")) {
-        html.append("td, th { padding: ")
-                .append(options.get("cell-padding")).append("; }\n");
-      }
-      if (options.containsKey("border")) {
-        html.append("table { border: ")
-                .append(options.get("border")).append("; }\n");
-      }
-      if (options.containsKey("column-spacing")) {
-        html.append("td, th { margin-right: ")
-                .append(options.get("column-spacing")).append("; }\n");
-      }
-      if (options.containsKey("cell-border")) {
-        html.append("td, th { border: ")
-                .append(options.get("cell-border")).append("; }\n");
+      for (Map.Entry<String, String> entry : options.entrySet()) {
+        String key = entry.getKey();
+        String value = entry.getValue();
+        String end = "; }\n";
+        switch (key) {
+          case "font-size" -> html.append("table { font-size: ").append(value).append(end);
+          case "table-margin" -> html.append("table { margin: ").append(value).append(end);
+          case "cell-padding" -> html.append("td, th { padding: ").append(value).append(end);
+          case "border" -> html.append("table { border: ").append(value).append(end);
+          case "column-spacing" -> html.append("td, th { margin-right: ").append(value).append(end);
+          case "cell-border" -> html.append("td, th { border: ").append(value).append(end);
+        }
       }
     }
 
@@ -129,7 +120,7 @@ public class Transformer {
           String fieldValue = (value != null) ? value.toString() : "null";
           fieldValues.add(fieldValue);
         } catch (IllegalAccessException e) {
-          e.printStackTrace();
+          // skip this field
         }
       }
       dataRows.add(fieldValues);
@@ -148,7 +139,7 @@ public class Transformer {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
       writer.write(htmlContent);
     } catch (IOException e) {
-      e.printStackTrace();
+      // don't write to file
     }
   }
 }
