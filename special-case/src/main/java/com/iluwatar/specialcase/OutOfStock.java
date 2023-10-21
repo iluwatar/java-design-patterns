@@ -44,6 +44,8 @@ public class OutOfStock implements ReceiptViewModel {
 
   @Override
   public void show() {
-    LOGGER.info("Out of stock: {} for user = {} to buy", itemName, userName);
+    if (LOGGER.isInfoEnabled()) {
+      LOGGER.info(String.format("Out of stock: %s for user = %s to buy", itemName, userName));
+    }
   }
 }
