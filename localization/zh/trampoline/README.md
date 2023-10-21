@@ -122,7 +122,7 @@ public static Trampoline<Integer> loop(int times, int prod) {
 
 ## 现实案例
 
-* [cyclops-react](https://github.com/aol/cyclops-react)
+* [cyclops-react](https://github.com/aol/cyclops-react) 
 
 ## 鸣谢
 
