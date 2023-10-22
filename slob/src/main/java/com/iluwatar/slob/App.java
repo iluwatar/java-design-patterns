@@ -24,12 +24,47 @@
  */
 package com.iluwatar.slob;
 
+import com.iluwatar.slob.lob.Customer;
+import com.iluwatar.slob.lob.Product;
+import com.iluwatar.slob.serializers.ClobSerializer;
+import com.iluwatar.slob.serializers.LobSerializer;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import lombok.extern.slf4j.Slf4j;
+import org.xml.sax.SAXException;
+
 /**
  * Application.
  */
+@Slf4j
 public class App {
 
-  public static void main(String[] args) {
-    // TODO Completion
+  public static void main(String[] args) throws SQLException {
+
+    Product product = new Product("Mountains", List.of(new Product("Iron", null)));
+    Customer customer = new Customer("Ram", List.of(product));
+
+    LobSerializer serializer = new ClobSerializer();
+    executeSerializer(customer, serializer);
+
+  }
+
+  private static void executeSerializer(Customer customer, LobSerializer lobSerializer) {
+    try (LobSerializer serializer = lobSerializer) {
+
+      Object serialized = serializer.serialize(customer);
+      int id = serializer.persistToDb(1, customer.getName(), serialized);
+
+      Object fromDb = serializer.loadFromDb(id, "products");
+      Customer customerFromDb = serializer.deSerialize(fromDb);
+
+      System.out.println(customerFromDb);
+    } catch (SQLException | IOException | TransformerException | ParserConfigurationException |
+             SAXException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
