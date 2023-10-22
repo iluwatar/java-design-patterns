@@ -7,12 +7,6 @@ tag:
  - Extensibility
 ---
 
-# Type-Object Pattern in Java
-
-## Explanation
-
-In Java, the Type-Object pattern is a design pattern that encapsulates type information in an object. This pattern is particularly useful when dealing with multiple objects of the same kind, and there is a need to add new types without altering existing code.
-
 ## Intent
 As explained in the book Game Programming Patterns by Robert Nystrom, type object pattern helps in
 
