@@ -18,10 +18,142 @@ As explained in the book Game Programming Patterns by Robert Nystrom, type objec
 
 > Allowing flexible creation of new “classes” by creating a single class, each instance of which represents a different type of object
 
-## Real World Example
+## Explanation
+Real-world example
+> You are working on a game with many different breeds of monsters. Each monster breed has different values for the attributes, such as attack, health, intelligence, etc. You want to create new monster breeds, or modify the attributes of an existing breed, without needing to modify the code and recompiling the game.
 
-Let's consider a real-world example. Say, we are working on a game which has a hero and many monsters which are going to attack the hero. These monsters have certain attributes like attack, points etc. and come in different 'breeds' like zombie or ogres. The obvious answer is to have a base Monster class which has some fields and methods, which may be overriden by subclasses like the Zombie or Ogre class. But as we continue to build the game, there may be more and more breeds of monsters added and certain attributes may need to be changed in the existing monsters too. The OOP solution of inheriting from the base class would not be an efficient method in this case.
-Using the type-object pattern, instead of creating many classes inheriting from a base class, we have 1 class with a field which represents the 'type' of object. This makes the code cleaner and object instantiation also becomes as easy as parsing a json file with the object properties.
+In plain words
+> Define a type object class, and a typed object class. We give each type object instance a reference to a typed object, containing the information for that type.
+
+**Programmatic example**
+
+Suppose we are developing a game of Candy Crush. There are many different candy types, and we may want to edit or create new ones over time as we develop the game.
+
+First, we have a type for the candies, with a field name, parent, points and Type.
+
+```java
+@Getter(AccessLevel.PACKAGE)
+public class Candy {
+
+  enum Type {
+    CRUSHABLE_CANDY,
+    REWARD_FRUIT
+  }
+
+  String name;
+  Candy parent;
+  String parentName;
+
+  @Setter
+  private int points;
+  private final Type type;
+
+  Candy(String name, String parentName, Type type, int points) {
+    this.name = name;
+    this.parent = null;
+    this.type = type;
+    this.points = points;
+    this.parentName = parentName;
+  }
+
+}
+```
+
+The field data for candy types are stored in the JSON file ```candy.json```. New candies can be added just by appending it to this file.
+
+```json
+{"candies" : [
+  {
+    "name" : "fruit",
+    "parent" : "null",
+    "type" : "rewardFruit",
+    "points" : 20
+  },
+  {
+    "name" : "candy",
+    "parent" : "null",
+    "type" : "crushableCandy",
+    "points" : 10
+  },
+  {
+    "name" : "cherry",
+    "parent" : "fruit",
+    "type" : "rewardFruit",
+    "points" : 0
+  },
+  {
+    "name" : "mango",
+    "parent" : "fruit",
+    "type" : "rewardFruit",
+    "points" : 0
+  },
+  {
+    "name" : "purple popsicle",
+    "parent" : "candy",
+    "type" : "crushableCandy",
+    "points" : 0
+  },
+  {
+    "name" : "green jellybean",
+    "parent" : "candy",
+    "type" : "crushableCandy",
+    "points" : 0
+  },
+  {
+    "name" : "orange gum",
+    "parent" : "candy",
+    "type" : "crushableCandy",
+    "points" : 0
+  }
+  ]
+}
+```
+
+The JSON file is parsed, instanciating each Candy type, and storing it in a hashtable. The ```type``` field is matched with the ```Type``` enum defined in the Candy class.
+```java
+public class JsonParser {
+  Hashtable<String, Candy> candies;
+
+  JsonParser() {
+    this.candies = new Hashtable<>();
+  }
+
+  void parse() throws JsonParseException {
+    var is = this.getClass().getClassLoader().getResourceAsStream("candy.json");
+    var reader = new InputStreamReader(is);
+    var json = (JsonObject) com.google.gson.JsonParser.parseReader(reader);
+    var array = (JsonArray) json.get("candies");
+    for (var item : array) {
+      var candy = (JsonObject) item;
+      var name = candy.get("name").getAsString();
+      var parentName = candy.get("parent").getAsString();
+      var t = candy.get("type").getAsString();
+      var type = Type.CRUSHABLE_CANDY;
+      if (t.equals("rewardFruit")) {
+        type = Type.REWARD_FRUIT;
+      }
+      var points = candy.get("points").getAsInt();
+      var c = new Candy(name, parentName, type, points);
+      this.candies.put(name, c);
+    }
+    setParentAndPoints();
+  }
+
+  void setParentAndPoints() {
+    for (var e = this.candies.keys(); e.hasMoreElements(); ) {
+      var c = this.candies.get(e.nextElement());
+      if (c.parentName == null) {
+        c.parent = null;
+      } else {
+        c.parent = this.candies.get(c.parentName);
+      }
+      if (c.getPoints() == 0 && c.parent != null) {
+        c.setPoints(c.parent.getPoints());
+      }
+    }
+  }
+}
+```
 
 ## In Plain Words
 
