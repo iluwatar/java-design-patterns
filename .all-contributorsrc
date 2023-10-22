@@ -2733,6 +2733,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "leonardol",
+      "name": "Leonardo Lisanti",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1445890?v=4",
+      "profile": "https://twitter.com/llisant",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
