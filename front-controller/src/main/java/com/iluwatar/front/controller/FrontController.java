@@ -38,7 +38,7 @@ public class FrontController {
   private Command getCommand(String request) {
     var commandClass = getCommandClass(request);
     try {
-      return (Command) commandClass.newInstance();
+      return (Command) commandClass.getDeclaredConstructor().newInstance();
     } catch (Exception e) {
       throw new ApplicationException(e);
     }

@@ -60,7 +60,7 @@ public class LoginPage extends Page {
     try {
       page = this.webClient.getPage(PAGE_URL);
     } catch (IOException e) {
-      LOGGER.error("An error occured on navigateToPage.", e);
+      LOGGER.error("An error occurred on navigateToPage.", e);
     }
     return this;
   }
@@ -111,7 +111,7 @@ public class LoginPage extends Page {
     try {
       loginButton.click();
     } catch (IOException e) {
-      LOGGER.error("An error occured on login.", e);
+      LOGGER.error("An error occurred on login.", e);
     }
     return new AlbumListPage(webClient);
   }

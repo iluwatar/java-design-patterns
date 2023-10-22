@@ -25,7 +25,7 @@
 package com.iluwatar.caching.database;
 
 /**
- * Creates the database connection accroding the input parameter.
+ * Creates the database connection according the input parameter.
  */
 public final class DbManagerFactory {
   /**

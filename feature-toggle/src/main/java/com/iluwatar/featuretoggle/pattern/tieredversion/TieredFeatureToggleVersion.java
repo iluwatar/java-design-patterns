@@ -29,7 +29,7 @@ import com.iluwatar.featuretoggle.user.User;
 import com.iluwatar.featuretoggle.user.UserGroup;
 
 /**
- * This example of the Feature Toogle pattern shows how it could be implemented based on a {@link
+ * This example of the Feature Toggle pattern shows how it could be implemented based on a {@link
  * User}. Therefore showing its use within a tiered application where the paying users get access to
  * different content or better versions of features. So in this instance a {@link User} is passed in
  * and if they are found to be on the {@link UserGroup#isPaid(User)} they are welcomed with a

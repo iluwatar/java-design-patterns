@@ -74,7 +74,7 @@ class DefaultCircuitBreakerTest {
       }
     };
     var circuitBreaker = new DefaultCircuitBreaker(mockService, 1, 1, 100);
-    //Call with the paramater start_time set to huge amount of time in past so that service
+    //Call with the parameter start_time set to huge amount of time in past so that service
     //replies with "Ok". Also, state is CLOSED in start
     var serviceStartTime = System.nanoTime() - 60 * 1000 * 1000 * 1000;
     var response = circuitBreaker.attemptRequest();

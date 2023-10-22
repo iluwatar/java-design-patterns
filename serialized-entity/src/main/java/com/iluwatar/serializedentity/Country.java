@@ -31,7 +31,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * A Country POJO taht represents the data that will serialize and store in database.
+ * A Country POJO that represents the data that will serialize and store in database.
  */
 @Getter
 @Setter

@@ -83,7 +83,7 @@ public final class App {
       }
 
     } catch (IOException ex) {
-      LOGGER.error("An error occured.", ex);
+      LOGGER.error("An error occurred.", ex);
     }
 
   }

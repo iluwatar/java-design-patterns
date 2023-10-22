@@ -53,10 +53,10 @@ public abstract class Superpower {
   /**
    * Play sound effect for the superpower.
    * @param soundName Sound name.
-   * @param volumn Value of volumn.
+   * @param volume Value of volume.
    */
-  protected void playSound(String soundName, int volumn) {
-    logger.info("Play " + soundName + " with volumn " + volumn);
+  protected void playSound(String soundName, int volume) {
+    logger.info("Play " + soundName + " with volume " + volume);
   }
 
   /**

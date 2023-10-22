@@ -144,7 +144,7 @@ public class Audio {
       clip.open(audioStream);
       clip.start();
     } catch (LineUnavailableException e) {
-      LOGGER.trace("Error occoured while loading the audio: The line is unavailable", e);
+      LOGGER.trace("Error occurred while loading the audio: The line is unavailable", e);
     } catch (IOException e) {
       LOGGER.trace("Input/Output error while loading the audio", e);
     } catch (IllegalArgumentException e) {
