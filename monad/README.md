@@ -3,7 +3,7 @@ title: Monad
 category: Functional
 language: en
 tag:
-- Reactive
+ - Reactive
 ---
 
 ## Intent
