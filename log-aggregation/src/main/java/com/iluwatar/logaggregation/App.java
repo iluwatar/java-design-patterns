@@ -30,6 +30,12 @@ package com.iluwatar.logaggregation;
  */
 public class App {
 
+  /**
+   * The entry point of the application.
+   *
+   * @param args Command line arguments.
+   * @throws InterruptedException If any thread has interrupted the current thread.
+   */
   public static void main(String[] args) throws InterruptedException {
     final CentralLogStore centralLogStore = new CentralLogStore();
     final LogAggregator aggregator = new LogAggregator(centralLogStore, LogLevel.INFO);

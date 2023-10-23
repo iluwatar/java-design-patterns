@@ -37,6 +37,11 @@ public class CentralLogStore {
 
   private final ConcurrentLinkedQueue<LogEntry> logs = new ConcurrentLinkedQueue<>();
 
+  /**
+   * Stores the given log entry into the central log store.
+   *
+   * @param logEntry The log entry to store.
+   */
   public void storeLog(LogEntry logEntry) {
     if (logEntry == null) {
       LOGGER.error("Received null log entry. Skipping.");
@@ -45,6 +50,9 @@ public class CentralLogStore {
     logs.offer(logEntry);
   }
 
+  /**
+   * Displays all logs currently stored in the central log store.
+   */
   public void displayLogs() {
     LOGGER.info("----- Centralized Logs -----");
     for (LogEntry logEntry : logs) {
