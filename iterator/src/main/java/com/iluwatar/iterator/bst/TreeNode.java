@@ -132,9 +132,27 @@ public class TreeNode<T extends Comparable<T>> {
     return this.val.compareTo(val) < 1;
   }
 
+  /*get height of tree**/
+  public int getHeight() {
+    if (left == null && right == null) {
+      return 1;
+    }
+
+    int leftHeight = this.left == null ? 0 : this.left.getHeight();
+    int rightHeight = this.right == null ? 0 : this.right.getHeight();
+    return 1 + Math.max(leftHeight, rightHeight);
+  }
+
+  public int getCount() {
+    if (left == null && right == null) {
+      return 1;
+    }
+    int leftCount = this.left == null ? 0 : this.left.getCount();
+    int rightCount = this.right == null ? 0 : this.right.getCount();
+    return 1 + leftCount + rightCount;
+  }
   @Override
   public String toString() {
     return val.toString();
   }
-
 }

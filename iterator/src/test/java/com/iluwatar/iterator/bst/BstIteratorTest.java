@@ -101,4 +101,41 @@ class BstIteratorTest {
     assertFalse(iter.hasNext(), "Iterator hasNext() should be false, end of tree.");
   }
 
+  @Test
+  void heightOfTree() {
+    nonEmptyRoot = new TreeNode<>(5);
+    nonEmptyRoot.insert(3);
+    nonEmptyRoot.insert(7);
+    nonEmptyRoot.insert(1);
+    nonEmptyRoot.insert(4);
+    nonEmptyRoot.insert(6);
+
+    int height1 = nonEmptyRoot.getHeight();
+    assertEquals(3, height1);
+
+    TreeNode<Integer> head = new TreeNode<>(1);
+    head.insert(5);
+
+    int height2 = head.getHeight();
+    assertEquals(2, height2);
+  }
+
+  @Test
+  void countOfTree() {
+    nonEmptyRoot = new TreeNode<>(5);
+    nonEmptyRoot.insert(3);
+    nonEmptyRoot.insert(7);
+    nonEmptyRoot.insert(1);
+    nonEmptyRoot.insert(4);
+    nonEmptyRoot.insert(6);
+
+    int count1 = nonEmptyRoot.getCount();
+    assertEquals(6, count1);
+
+    TreeNode<Integer> head = new TreeNode<>(1);
+
+    int count2 = head.getHeight();
+    assertEquals(1, count2);
+  }
+
 }
