@@ -6,7 +6,7 @@ tag:
  - Gang of Four
 ---
 
-## Conosciuto anche come
+## Anche conosciuto come
 
 Kit
 
