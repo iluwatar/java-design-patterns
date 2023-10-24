@@ -30,12 +30,12 @@ import java.util.concurrent.Future;
 
 
 /**
- * The "App" class serves as the main entry point for the application implementing the Gateway design pattern.
+ * The App class serves as the main entry point for the application implementing the Gateway design pattern.
  * It demonstrates the use of the GatewayFactory to manage different gateway implementations, allowing for the
  * execution of various services asynchronously.
  *
- * <p>In this example, there are three virtual service. GateFactory is the factory class and it
- * provides a method to create different kinds of external services.
+ * <p>In this example, there are three virtual service. GateFactory is the factory class and it provides a method
+ * to create different kinds of external services.
  */
 public class App {
     public static void main(String[] args) {
