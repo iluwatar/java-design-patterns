@@ -27,3 +27,5 @@ tag:
 ## Related patterns
 
 ## Credits
+
+- [Implicit Lock Design Pattern](https://www.youtube.com/watch?v=kDck7QuFzzg)
