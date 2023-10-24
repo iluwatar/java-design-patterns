@@ -13,22 +13,52 @@ public abstract class LobSerializer implements Serializable, Closeable {
 
   public static final DatabaseService databaseService = new DatabaseService();
 
+  /**
+   * @throws SQLException
+   */
   protected LobSerializer() throws SQLException {
     databaseService.startupService();
   }
 
+  /**
+   * @param toSerialize
+   * @return
+   * @throws SQLException
+   * @throws ParserConfigurationException
+   * @throws TransformerException
+   */
   public abstract Object serialize(Customer toSerialize)
       throws SQLException, ParserConfigurationException, TransformerException;
 
+  /**
+   * @param id
+   * @param name
+   * @param customer
+   * @return
+   * @throws SQLException
+   */
   public int persistToDb(int id, String name, Object customer) throws SQLException {
     databaseService.insert(id, name, customer);
     return id;
   }
 
+  /**
+   * @param id
+   * @param columnName
+   * @return
+   * @throws SQLException
+   */
   public Object loadFromDb(int id, String columnName) throws SQLException {
     return databaseService.select(id, columnName);
   }
 
+  /**
+   * @param toSerialize
+   * @return
+   * @throws ParserConfigurationException
+   * @throws IOException
+   * @throws SAXException
+   */
   public abstract Customer deSerialize(Object toSerialize)
       throws ParserConfigurationException, IOException, SAXException;
 

@@ -34,6 +34,8 @@ import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 /**
@@ -42,6 +44,12 @@ import org.xml.sax.SAXException;
 @Slf4j
 public class App {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
+  /**
+   * @param args
+   * @throws SQLException
+   */
   public static void main(String[] args) throws SQLException {
 
     Product product = new Product("Mountains", List.of(new Product("Iron", null)));
@@ -52,6 +60,10 @@ public class App {
 
   }
 
+  /**
+   * @param customer
+   * @param lobSerializer
+   */
   private static void executeSerializer(Customer customer, LobSerializer lobSerializer) {
     try (LobSerializer serializer = lobSerializer) {
 
@@ -61,9 +73,9 @@ public class App {
       Object fromDb = serializer.loadFromDb(id, "products");
       Customer customerFromDb = serializer.deSerialize(fromDb);
 
-      System.out.println(customerFromDb);
-    } catch (SQLException | IOException | TransformerException | ParserConfigurationException |
-             SAXException e) {
+      LOGGER.info(customerFromDb.toString());
+    } catch (SQLException | IOException | TransformerException | ParserConfigurationException
+             | SAXException e) {
       throw new RuntimeException(e);
     }
   }

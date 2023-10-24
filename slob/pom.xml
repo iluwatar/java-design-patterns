@@ -58,6 +58,11 @@
       <artifactId>h2</artifactId>
       <groupId>com.h2database</groupId>
     </dependency>
+    <dependency>
+      <artifactId>lombok</artifactId>
+      <groupId>org.projectlombok</groupId>
+      <scope>provided</scope>
+    </dependency>
   </dependencies>
   <modelVersion>4.0.0</modelVersion>
   <parent>

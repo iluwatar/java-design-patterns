@@ -43,6 +43,11 @@ public class Product {
   private String name;
   private List<Product> products;
 
+  /**
+   * @param xmlDoc
+   * @return
+   * @throws ParserConfigurationException
+   */
   public Element toXmlElement(Document xmlDoc) throws ParserConfigurationException {
     Element root = xmlDoc.createElement("department");
     root.setAttribute("name", name);

@@ -45,6 +45,11 @@ public class Customer {
   private String name;
   private List<Product> products;
 
+  /**
+   * @param xmlDoc
+   * @return
+   * @throws ParserConfigurationException
+   */
   public Element departmentsToXmlElement(Document xmlDoc) throws ParserConfigurationException {
     Element root = xmlDoc.createElement("departments");
     for (Product product : products) {
@@ -57,12 +62,16 @@ public class Customer {
     return (Element) xmlDoc.getFirstChild();
   }
 
+  /**
+   * @param source
+   * @return
+   */
   public Customer readDepartments(Element source) {
     List result = new ArrayList();
     Node child = source.getFirstChild();
     while (child != null) {
-      if (child.getNodeType() == 1) {
-        System.out.println(child);
+      if (child.getNodeType() == Node.ELEMENT_NODE && child.getTextContent() != null) {
+        System.out.println(child.getAttributes());
       }
       child = child.getNextSibling();
     }

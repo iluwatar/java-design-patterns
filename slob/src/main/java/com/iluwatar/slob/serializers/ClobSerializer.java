@@ -24,6 +24,11 @@ public class ClobSerializer extends LobSerializer {
     super();
   }
 
+  /**
+   * @param node
+   * @return
+   * @throws TransformerException
+   */
   private static String elementToXmlString(Element node) throws TransformerException {
     StringWriter sw = new StringWriter();
     Transformer t = TransformerFactory.newDefaultInstance().newTransformer();
@@ -33,6 +38,12 @@ public class ClobSerializer extends LobSerializer {
     return sw.toString();
   }
 
+  /**
+   * @param customer
+   * @return
+   * @throws ParserConfigurationException
+   * @throws TransformerException
+   */
   @Override
   public Object serialize(Customer customer)
       throws ParserConfigurationException, TransformerException {
@@ -40,10 +51,21 @@ public class ClobSerializer extends LobSerializer {
     return elementToXmlString(customer.departmentsToXmlElement(xmlDoc));
   }
 
+  /**
+   * @return
+   * @throws ParserConfigurationException
+   */
   private Document getXmlDoc() throws ParserConfigurationException {
     return DocumentBuilderFactory.newDefaultInstance().newDocumentBuilder().newDocument();
   }
 
+  /**
+   * @param toDeSerialize
+   * @return
+   * @throws ParserConfigurationException
+   * @throws IOException
+   * @throws SAXException
+   */
   @Override
   public Customer deSerialize(Object toDeSerialize)
       throws ParserConfigurationException, IOException, SAXException {
@@ -52,7 +74,6 @@ public class ClobSerializer extends LobSerializer {
     var stream = new ByteArrayInputStream(toDeSerialize.toString().getBytes());
     Document parse = documentBuilder.parse(stream);
     Customer customer = new Customer();
-    customer.readDepartments(parse.getDocumentElement());
-    return null;
+    return customer.readDepartments(parse.getDocumentElement());
   }
 }
