@@ -24,11 +24,6 @@
  */
 package com.iluwatar.gateway;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-
 /**
  * The App class serves as the main entry point for the application implementing the Gateway design pattern.
  * It demonstrates the use of the GatewayFactory to manage different gateway implementations, allowing for the
@@ -41,7 +36,7 @@ public class App {
   /**
    * Simulate an application calling external services.
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws Exception {
     GatewayFactory gatewayFactory = new GatewayFactory();
 
     // Register different gateways
@@ -50,55 +45,17 @@ public class App {
     gatewayFactory.registerGateway("ServiceC", new ExternalServiceC());
 
     // Use an executor service for asynchronous execution
-    ExecutorService executorService = Executors.newFixedThreadPool(2);
+    Gateway serviceA = gatewayFactory.getGateway("ServiceA");
+    Gateway serviceB = gatewayFactory.getGateway("ServiceB");
+    Gateway serviceC = gatewayFactory.getGateway("ServiceC");
 
+    // Execute external services
     try {
-      // Execute Service A asynchronously
-      Future<?> serviceFutureA = executorService.submit(() -> {
-        try {
-          Gateway serviceA = gatewayFactory.getGateway("ServiceA");
-          serviceA.execute();
-        } catch (Exception e) {
-          System.err.println("Error executing Service A: " + e.getMessage());
-        }
-      });
-
-      // Execute Service B asynchronously
-      Future<?> serviceFutureB = executorService.submit(() -> {
-        try {
-          Gateway serviceB = gatewayFactory.getGateway("ServiceB");
-          serviceB.execute();
-        } catch (Exception e) {
-          System.err.println("Error executing Service B: " + e.getMessage());
-        }
-      });
-
-      // Execute Service C asynchronously
-      Future<?> serviceFutureC  = executorService.submit(() -> {
-        try {
-          Gateway serviceC = gatewayFactory.getGateway("ServiceC");
-          serviceC.execute();
-        } catch (Exception e) {
-          System.err.println("Error executing Service C: " + e.getMessage());
-        }
-      });
-
-      // Wait for both tasks to complete
-      try {
-        serviceFutureA.get();
-        serviceFutureB.get();
-        serviceFutureC.get();
-      } catch (InterruptedException e) {
-        System.err.println("Error in the main client: " + e.getMessage());
-        Thread.currentThread().interrupt();
-      } finally {
-        executorService.shutdown();
-      }
-    } catch (Exception e) {
-      System.err.println("Error in the main client: " + e.getMessage());
-      Thread.currentThread().interrupt();
-    } finally {
-      executorService.shutdown();
+      serviceA.execute();
+      serviceB.execute();
+      serviceC.execute();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
     }
   }
 }
