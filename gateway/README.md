@@ -42,23 +42,13 @@ class ExternalServiceA implements Gateway {
     }
 }
 
-// Concrete Gateway for Service B
+/**
+ * ExternalServiceB is one of external services.
+ */
 class ExternalServiceB implements Gateway {
     @Override
     public void execute() throws Exception {
         System.out.println("Executing Service B");
-        // Simulate a time-consuming task
-        Thread.sleep(1000);
-        // Simulate an exception
-        // throw new RuntimeException("Service B encountered an error");
-    }
-}
-
-// Concrete Gateway for Service B
-class ExternalServiceC implements Gateway {
-    @Override
-    public void execute() throws Exception {
-        System.out.println("Executing Service C");
         // Simulate a time-consuming task
         Thread.sleep(1000);
     }
@@ -69,6 +59,22 @@ class ExternalServiceC implements Gateway {
     }
 }
 
+/**
+ * ExternalServiceC is one of external services.
+ */
+class ExternalServiceC implements Gateway {
+    @Override
+    public void execute() throws Exception {
+        System.out.println("Executing Service C");
+        // Simulate a time-consuming task
+        Thread.sleep(1000);
+    }
+
+    public void error() throws Exception{
+        // Simulate an exception
+        throw new RuntimeException("Service C encountered an error");
+    }
+}
 ```
 
 To operate these external services, Here's the `App` class:
