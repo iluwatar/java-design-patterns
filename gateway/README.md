@@ -79,7 +79,10 @@ To operate these external services, Here's the `App` class:
 
 ```java
 public class App {
-    public static void main(String[] args) {
+    /**
+     * Simulate an application calling external services.
+     */
+    public static void main(String[] args) throws Exception {
         GatewayFactory gatewayFactory = new GatewayFactory();
 
         // Register different gateways
@@ -88,47 +91,18 @@ public class App {
         gatewayFactory.registerGateway("ServiceC", new ExternalServiceC());
 
         // Use an executor service for asynchronous execution
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        Gateway serviceA = gatewayFactory.getGateway("ServiceA");
+        Gateway serviceB = gatewayFactory.getGateway("ServiceB");
+        Gateway serviceC = gatewayFactory.getGateway("ServiceC");
 
+        // Execute external services
         try {
-            // Execute Service A asynchronously
-            Future<?> serviceAFuture = executorService.submit(() -> {
-                try {
-                    Gateway serviceA = gatewayFactory.getGateway("ServiceA");
-                    serviceA.execute();
-                } catch (Exception e) {
-                    System.err.println("Error executing Service A: " + e.getMessage());
-                }
-            });
-
-            // Execute Service B asynchronously
-            Future<?> serviceBFuture = executorService.submit(() -> {
-                try {
-                    Gateway serviceB = gatewayFactory.getGateway("ServiceB");
-                    serviceB.execute();
-                } catch (Exception e) {
-                    System.err.println("Error executing Service B: " + e.getMessage());
-                }
-            });
-
-            // Execute Service C asynchronously
-            Future<?> servicecFuture = executorService.submit(() -> {
-                try {
-                    Gateway serviceC = gatewayFactory.getGateway("ServiceC");
-                    serviceC.execute();
-                } catch (Exception e) {
-                    System.err.println("Error executing Service C: " + e.getMessage());
-                }
-            });
-
-            // Wait for both tasks to complete
-            serviceAFuture.get();
-            serviceBFuture.get();
-            servicecFuture.get();
-        } catch (Exception e) {
-            System.err.println("Error in the main client: " + e.getMessage());
-        } finally {
-            executorService.shutown();
+            serviceA.execute();
+            serviceB.execute();
+            serviceC.execute();
+        } catch (ThreadDeath e) {
+            System.out.println("Interrupted!" + e);
+            throw e;
         }
     }
 }

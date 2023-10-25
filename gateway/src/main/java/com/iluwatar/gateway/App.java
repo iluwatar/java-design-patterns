@@ -54,8 +54,9 @@ public class App {
       serviceA.execute();
       serviceB.execute();
       serviceC.execute();
-    } catch (InterruptedException e) {
-      e.printStackTrace();
+    } catch (ThreadDeath e) {
+      System.out.println("Interrupted!" + e);
+      throw e;
     }
   }
 }
