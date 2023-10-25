@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar;
+package com.iluwatar.gateway;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -127,7 +127,7 @@ class ExternalServiceC implements Gateway {
         Thread.sleep(1000);
     }
 
-    public void error() throws Exception{
+    public void error() throws Exception {
         // Simulate an exception
         throw new RuntimeException("Service C encountered an error");
     }

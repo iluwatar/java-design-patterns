@@ -1,5 +1,6 @@
-package com.iluwatar;
+package com.iluwatar.gateway;
 
+import com.iluwatar.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -14,6 +15,7 @@ import static org.junit.Assert.assertTrue;
 public class ServiceFactoryTest {
     private GatewayFactory gatewayFactory;
     private ExecutorService executorService;
+
     @Before
     public void setUp() {
         gatewayFactory = new GatewayFactory();
@@ -22,6 +24,7 @@ public class ServiceFactoryTest {
         gatewayFactory.registerGateway("ServiceB", new ExternalServiceB());
         gatewayFactory.registerGateway("ServiceC", new ExternalServiceC());
     }
+
     @Test
     public void testGatewayFactoryRegistrationAndRetrieval() {
         Gateway serviceA = gatewayFactory.getGateway("ServiceA");

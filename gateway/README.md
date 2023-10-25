@@ -3,21 +3,24 @@ title: Gateway
 category: Structural
 language: en
 tag:
- - Gang of Four
- - Decoupling
+
+- Gang of Four
+- Decoupling
+
 ---
 
 ## Intent
-Provide a interface to access a set of external systems or functionalities. Gateway provides a simple uniform view of 
+
+Provide a interface to access a set of external systems or functionalities. Gateway provides a simple uniform view of
 external resources to the internals of an application.
 
 ## Explanation
 
 Real-world example
 
-> Gateway acts like a real front gate of a certain city. The people inside the city are called 
+> Gateway acts like a real front gate of a certain city. The people inside the city are called
 > internal system, and different outside cities are called external services. The gateway is here
-> to provide access for internal system to different external services. 
+> to provide access for internal system to different external services.
 
 In plain words
 
@@ -25,7 +28,7 @@ In plain words
 
 Wikipedia says
 
-> A server that acts as an API front-end, receives API requests, enforces throttling and security 
+> A server that acts as an API front-end, receives API requests, enforces throttling and security
 > policies, passes requests to the back-end service and then passes the response back to the requester.
 
 **Programmatic Example**
@@ -65,7 +68,7 @@ class ExternalServiceC implements Gateway {
         Thread.sleep(1000);
     }
 
-    public void error() throws Exception{
+    public void error() throws Exception {
         // Simulate an exception
         throw new RuntimeException("Service C encountered an error");
     }
@@ -142,7 +145,7 @@ interface Gateway {
 Program output:
 
 ```java
-        Executing Service A 
+        Executing Service A
         Executing Service B
         Executing Service C
 ```
