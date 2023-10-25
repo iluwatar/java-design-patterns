@@ -84,9 +84,16 @@ public class App {
       });
 
       // Wait for both tasks to complete
-      serviceFutureA.get();
-      serviceFutureB.get();
-      serviceFutureC.get();
+      try {
+        serviceFutureA.get();
+        serviceFutureB.get();
+        serviceFutureC.get();
+      } catch (Exception e) {
+        System.err.println("Error in the main client: " + e.getMessage());
+      } finally {
+        executorService.shutdown();
+      }
+
     } catch (Exception e) {
       System.err.println("Error in the main client: " + e.getMessage());
     } finally {
