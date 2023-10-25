@@ -11,6 +11,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ServiceFactoryTest {
     private GatewayFactory gatewayFactory;
@@ -31,9 +32,10 @@ public class ServiceFactoryTest {
         Gateway serviceB = gatewayFactory.getGateway("ServiceB");
         Gateway serviceC = gatewayFactory.getGateway("ServiceC");
 
-        assertTrue(serviceA instanceof ExternalServiceA);
-        assertTrue(serviceB instanceof ExternalServiceB);
-        assertTrue(serviceC instanceof ExternalServiceC);
+        // Check if the retrieved instances match their expected types
+        assertTrue("ServiceA should be an instance of ExternalServiceA", serviceA instanceof ExternalServiceA);
+        assertTrue("ServiceB should be an instance of ExternalServiceB", serviceB instanceof ExternalServiceB);
+        assertTrue("ServiceC should be an instance of ExternalServiceC", serviceC instanceof ExternalServiceC);
     }
 
     @Test
@@ -62,6 +64,6 @@ public class ServiceFactoryTest {
         }
 
         latch.await();
-        assertTrue(!failed.get());
+        assertTrue("This should not fail", !failed.get());
     }
 }

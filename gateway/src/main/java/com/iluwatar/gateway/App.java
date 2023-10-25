@@ -38,97 +38,59 @@ import java.util.concurrent.Future;
  * to create different kinds of external services.
  */
 public class App {
-    public static void main(String[] args) {
-        GatewayFactory gatewayFactory = new GatewayFactory();
+  /**
+   * Simulate an application calling external services.
+   */
+  public static void main(String[] args) {
+    GatewayFactory gatewayFactory = new GatewayFactory();
 
-        // Register different gateways
-        gatewayFactory.registerGateway("ServiceA", new ExternalServiceA());
-        gatewayFactory.registerGateway("ServiceB", new ExternalServiceB());
-        gatewayFactory.registerGateway("ServiceC", new ExternalServiceC());
+    // Register different gateways
+    gatewayFactory.registerGateway("ServiceA", new ExternalServiceA());
+    gatewayFactory.registerGateway("ServiceB", new ExternalServiceB());
+    gatewayFactory.registerGateway("ServiceC", new ExternalServiceC());
 
-        // Use an executor service for asynchronous execution
-        ExecutorService executorService = Executors.newFixedThreadPool(2);
+    // Use an executor service for asynchronous execution
+    ExecutorService executorService = Executors.newFixedThreadPool(2);
 
+    try {
+      // Execute Service A asynchronously
+      Future<?> serviceFutureA = executorService.submit(() -> {
         try {
-            // Execute Service A asynchronously
-            Future<?> serviceAFuture = executorService.submit(() -> {
-                try {
-                    Gateway serviceA = gatewayFactory.getGateway("ServiceA");
-                    serviceA.execute();
-                } catch (Exception e) {
-                    System.err.println("Error executing Service A: " + e.getMessage());
-                }
-            });
-
-            // Execute Service B asynchronously
-            Future<?> serviceBFuture = executorService.submit(() -> {
-                try {
-                    Gateway serviceB = gatewayFactory.getGateway("ServiceB");
-                    serviceB.execute();
-                } catch (Exception e) {
-                    System.err.println("Error executing Service B: " + e.getMessage());
-                }
-            });
-
-            // Execute Service C asynchronously
-            Future<?> servicecFuture = executorService.submit(() -> {
-                try {
-                    Gateway serviceC = gatewayFactory.getGateway("ServiceC");
-                    serviceC.execute();
-                } catch (Exception e) {
-                    System.err.println("Error executing Service C: " + e.getMessage());
-                }
-            });
-
-            // Wait for both tasks to complete
-            serviceAFuture.get();
-            serviceBFuture.get();
-            servicecFuture.get();
+          Gateway serviceA = gatewayFactory.getGateway("ServiceA");
+          serviceA.execute();
         } catch (Exception e) {
-            System.err.println("Error in the main client: " + e.getMessage());
-        } finally {
-            executorService.shutdown();
+          System.err.println("Error executing Service A: " + e.getMessage());
         }
-    }
-}
+      });
 
-/**
- * ExternalServiceA is one of external services.
- */
-class ExternalServiceA implements Gateway {
-    @Override
-    public void execute() throws Exception {
-        System.out.println("Executing Service A");
-        // Simulate a time-consuming task
-        Thread.sleep(1000);
-    }
-}
+      // Execute Service B asynchronously
+      Future<?> serviceFutureB = executorService.submit(() -> {
+        try {
+          Gateway serviceB = gatewayFactory.getGateway("ServiceB");
+          serviceB.execute();
+        } catch (Exception e) {
+          System.err.println("Error executing Service B: " + e.getMessage());
+        }
+      });
 
-/**
- * ExternalServiceB is one of external services.
- */
-class ExternalServiceB implements Gateway {
-    @Override
-    public void execute() throws Exception {
-        System.out.println("Executing Service B");
-        // Simulate a time-consuming task
-        Thread.sleep(1000);
-    }
-}
+      // Execute Service C asynchronously
+      Future<?> serviceFutureC  = executorService.submit(() -> {
+        try {
+          Gateway serviceC = gatewayFactory.getGateway("ServiceC");
+          serviceC.execute();
+        } catch (Exception e) {
+          System.err.println("Error executing Service C: " + e.getMessage());
+        }
+      });
 
-/**
- * ExternalServiceC is one of external services.
- */
-class ExternalServiceC implements Gateway {
-    @Override
-    public void execute() throws Exception {
-        System.out.println("Executing Service C");
-        // Simulate a time-consuming task
-        Thread.sleep(1000);
+      // Wait for both tasks to complete
+      serviceFutureA.get();
+      serviceFutureB.get();
+      serviceFutureC.get();
+    } catch (Exception e) {
+      System.err.println("Error in the main client: " + e.getMessage());
+    } finally {
+      executorService.shutdown();
     }
-
-    public void error() throws Exception {
-        // Simulate an exception
-        throw new RuntimeException("Service C encountered an error");
-    }
+  }
 }
