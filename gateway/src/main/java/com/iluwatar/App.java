@@ -114,11 +114,6 @@ class ExternalServiceB implements Gateway {
         // Simulate a time-consuming task
         Thread.sleep(1000);
     }
-
-    public void error() throws Exception{
-        // Simulate an exception
-        throw new RuntimeException("Service B encountered an error");
-    }
 }
 
 /**
