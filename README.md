@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-302-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-303-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -464,6 +464,7 @@ This project is licensed under the terms of the MIT license.
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="http://www.linkedin.com/in/yenniferh"><img src="https://avatars.githubusercontent.com/u/19285706?v=4?s=100" width="100px;" alt="Yennifer Herrera"/><br /><sub><b>Yennifer Herrera</b></sub></a><br /><a href="#translation-Yenniferh" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jnniu-n"><img src="https://avatars.githubusercontent.com/u/141746282?v=4?s=100" width="100px;" alt="jnniu-n"/><br /><sub><b>jnniu-n</b></sub></a><br /><a href="#translation-jnniu-n" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
