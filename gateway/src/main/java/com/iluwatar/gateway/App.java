@@ -96,6 +96,7 @@ public class App {
       }
     } catch (Exception e) {
       System.err.println("Error in the main client: " + e.getMessage());
+      Thread.currentThread().interrupt();
     } finally {
       executorService.shutdown();
     }
