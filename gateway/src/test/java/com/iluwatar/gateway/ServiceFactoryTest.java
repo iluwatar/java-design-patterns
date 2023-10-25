@@ -1,6 +1,6 @@
 package com.iluwatar.gateway;
 
-import com.iluwatar.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
