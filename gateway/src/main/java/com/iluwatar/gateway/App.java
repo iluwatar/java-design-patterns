@@ -24,6 +24,7 @@
  */
 package com.iluwatar.gateway;
 
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
@@ -88,12 +89,11 @@ public class App {
         serviceFutureA.get();
         serviceFutureB.get();
         serviceFutureC.get();
-      } catch (Exception e) {
+      } catch (InterruptedException e) {
         System.err.println("Error in the main client: " + e.getMessage());
       } finally {
         executorService.shutdown();
       }
-
     } catch (Exception e) {
       System.err.println("Error in the main client: " + e.getMessage());
     } finally {
