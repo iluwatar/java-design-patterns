@@ -2771,6 +2771,15 @@
         "review",
         "translation"
       ]
+    },
+    {
+      "login": "SuwanSankaja",
+      "name": "Suwan Sankaja",
+      "avatar_url": "https://avatars.githubusercontent.com/u/86839778?v=4",
+      "profile": "https://github.com/SuwanSankaja",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
