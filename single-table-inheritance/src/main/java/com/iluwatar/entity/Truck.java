@@ -1,10 +1,9 @@
 package com.iluwatar.entity;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * A class that extends the PassengerVehicle class

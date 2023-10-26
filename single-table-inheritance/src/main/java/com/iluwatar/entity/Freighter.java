@@ -1,11 +1,10 @@
 package com.iluwatar.entity;
 
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 
 /**
  * A class that extends the TransportVehicle class

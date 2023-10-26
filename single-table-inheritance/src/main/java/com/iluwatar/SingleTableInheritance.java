@@ -4,13 +4,13 @@ import com.iluwatar.entity.Car;
 import com.iluwatar.entity.Truck;
 import com.iluwatar.entity.Vehicle;
 import com.iluwatar.service.VehicleService;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import java.util.List;
 
 /**
  * Single Table Inheritance pattern :
@@ -88,6 +88,6 @@ public class SingleTableInheritance implements CommandLineRunner {
 
     // Fetching the Vehicles present in the DB
     List<Vehicle> allVehiclesFromDb = vehicleService.getAllVehicles();
-    allVehiclesFromDb.forEach( s -> log.info(s.toString()));
+    allVehiclesFromDb.forEach(s -> log.info(s.toString()));
   }
 }
