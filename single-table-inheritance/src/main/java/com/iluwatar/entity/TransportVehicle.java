@@ -17,14 +17,9 @@ public abstract class TransportVehicle extends Vehicle {
 
   private int loadCapacity;
 
-  public TransportVehicle(String manufacturer, String model, int loadCapacity) {
+  protected TransportVehicle(String manufacturer, String model, int loadCapacity) {
     super(manufacturer, model);
     this.loadCapacity = loadCapacity;
-  }
-
-  @Override
-  public String toString() {
-    return super.toString();
   }
 
 }

@@ -1,16 +1,11 @@
 package com.iluwatar.entity;
 
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 /**
  * An abstract class that is the root of the Vehicle Inheritance hierarchy
@@ -33,7 +28,7 @@ public abstract class Vehicle {
 
   private String model;
 
-  public Vehicle(String manufacturer, String model) {
+  protected Vehicle(String manufacturer, String model) {
     this.manufacturer = manufacturer;
     this.model = model;
   }

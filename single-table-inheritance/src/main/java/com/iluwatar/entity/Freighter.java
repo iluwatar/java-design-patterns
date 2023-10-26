@@ -1,10 +1,11 @@
 package com.iluwatar.entity;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 /**
  * A class that extends the TransportVehicle class
@@ -22,7 +23,7 @@ public class Freighter extends TransportVehicle {
 
   private double flightLength;
 
-  public Freighter(String manufacturer, String model, int countOfSeats, int loadCapacity, double flightLength) {
+  public Freighter(String manufacturer, String model, int loadCapacity, double flightLength) {
     super(manufacturer, model, loadCapacity);
     this.flightLength = flightLength;
   }

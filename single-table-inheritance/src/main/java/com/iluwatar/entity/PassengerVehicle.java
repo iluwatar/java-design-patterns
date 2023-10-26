@@ -17,7 +17,7 @@ public abstract class PassengerVehicle extends Vehicle {
 
   private int noOfPassengers;
 
-  public PassengerVehicle(String manufacturer, String model, int noOfPassengers) {
+  protected PassengerVehicle(String manufacturer, String model, int noOfPassengers) {
     super(manufacturer, model);
     this.noOfPassengers = noOfPassengers;
   }

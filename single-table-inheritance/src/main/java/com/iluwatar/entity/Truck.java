@@ -1,9 +1,10 @@
 package com.iluwatar.entity;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 /**
  * A class that extends the PassengerVehicle class
@@ -18,7 +19,7 @@ import lombok.NoArgsConstructor;
 @DiscriminatorValue(value = "TRUCK")
 public class Truck extends TransportVehicle {
 
-  public int towingCapacity;
+  private int towingCapacity;
 
   public Truck(String manufacturer, String model, int loadCapacity, int towingCapacity) {
     super(manufacturer, model, loadCapacity);
