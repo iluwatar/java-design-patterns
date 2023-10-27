@@ -31,10 +31,11 @@ public class AppTest {
     public void testAppOutput() {
         App.main(new String[]{});
         String[] lines = outContent.toString().split(System.lineSeparator());
-        assertEquals("Primary Balance: 10000 USD", lines[0].trim().substring(lines[0].length()-26));
-        assertEquals("Secondary Balance: 5000 EUR", lines[1].trim().substring(lines[1].length()-27));
-        assertEquals("Allocated Balances:", lines[2].trim().substring(lines[2].length()-19));
-        assertEquals("Account 1: 13000 USD", lines[3].trim().substring(lines[3].length()-20));
-        assertEquals("Account 2: 3000 USD", lines[4].trim().substring(lines[4].length()-19));
+        assertEquals(lines[0].substring(lines[0].length() - 26).trim(), "Primary Balance: 10000 USD");
+        assertEquals(lines[1].substring(lines[1].length() - 27).trim(), "Secondary Balance: 5000 EUR");
+        assertEquals(lines[2].substring(lines[2].length() - 19).trim(), "Allocated Balances:");
+        assertEquals(lines[3].substring(lines[3].length() - 20).trim(), "Account 1: 13000 USD");
+        assertEquals(lines[4].substring(lines[4].length() - 19).trim(), "Account 2: 3000 USD");
+
     }
 }
