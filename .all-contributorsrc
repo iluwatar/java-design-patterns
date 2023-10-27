@@ -2749,7 +2749,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/19285706?v=4",
       "profile": "http://www.linkedin.com/in/yenniferh",
       "contributions": [
-        "translation"
+        "translation",
+        "review"
       ]
     },
     {
@@ -2767,7 +2768,17 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/48435117?v=4",
       "profile": "https://github.com/miguel-is-coding",
       "contributions": [
-        "review"
+        "review",
+        "translation"
+      ]
+    },
+    {
+      "login": "SuwanSankaja",
+      "name": "Suwan Sankaja",
+      "avatar_url": "https://avatars.githubusercontent.com/u/86839778?v=4",
+      "profile": "https://github.com/SuwanSankaja",
+      "contributions": [
+        "translation"
       ]
     }
   ],
