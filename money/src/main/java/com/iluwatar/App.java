@@ -3,7 +3,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The Main class is the entry point for the application that demonstrates
+ * The Main class is an entry point for the application that demonstrates
  * financial account operations using the Account, Currency, and Money classes.
  * It creates accounts, performs deposit and allocation operations, and
  * displays the account balances.
