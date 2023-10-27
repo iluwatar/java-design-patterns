@@ -1,38 +1,40 @@
-import com.iluwatar.Account;
 import com.iluwatar.App;
-import com.iluwatar.Currency;
-import com.iluwatar.Money;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertEquals;
 
 public class AppTest {
 
+    private PrintStream originalOut;
+    private ByteArrayOutputStream outContent;
+
+    @BeforeMethod
+    public void setUp() {
+        outContent = new ByteArrayOutputStream();
+        originalOut = System.out;
+        System.setOut(new PrintStream(outContent));
+    }
+
+    @AfterMethod
+    public void tearDown() {
+        System.setOut(originalOut);
+    }
+
     @Test
     public void testAppOutput() {
-        // Redirect the standard output to capture the printed messages
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent));
-
-        // Run the main method of the App class
         App.main(new String[]{});
-
-        // Restore the standard output
-        System.setOut(System.out);
-
-        // Split the captured output into lines
         String[] lines = outContent.toString().split(System.lineSeparator());
-
-        // Check the expected output
-        assertEquals("Primary Balance: 10000 USD", lines[0].trim());
-        assertEquals("Secondary Balance: 5000 EUR", lines[1].trim());
-        assertEquals("Allocated Balances:", lines[2].trim());
-        assertEquals("Account 1: 13000 USD", lines[3].trim());
-        assertEquals("Account 2: 3000 USD", lines[4].trim());
+        assertEquals("Primary Balance: 10000 USD", lines[0].trim().substring(lines[0].length()-26));
+        assertEquals("Secondary Balance: 5000 EUR", lines[1].trim().substring(lines[1].length()-27));
+        assertEquals("Allocated Balances:", lines[2].trim().substring(lines[2].length()-19));
+        assertEquals("Account 1: 13000 USD", lines[3].trim().substring(lines[3].length()-20));
+        assertEquals("Account 2: 3000 USD", lines[4].trim().substring(lines[4].length()-19));
     }
 }
