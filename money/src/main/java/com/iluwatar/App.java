@@ -1,4 +1,6 @@
 package com.iluwatar;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Main class is the entry point for the application that demonstrates
@@ -17,29 +19,25 @@ public final class App {
    * @param args Command-line arguments.
    */
   public static void main(final String[] args) {
+    final Logger logger = LoggerFactory.getLogger(App.class);
     final Currency usd = Currency.usd();
     final Currency eur = Currency.eur();
 
     final Money money1 = new Money(10_000, usd);
     final Money money2 = new Money(5_000, eur);
-    final int amount1 = 70;
-    final int amount2 = 30;
 
     final Account account = new Account(usd, eur);
 
     account.deposit(money1);
     account.deposit(money2);
 
-    System.out.println("Primary Balance: "
-            + account.getPrimaryBalance().getAmount()
-            + " "
-            + account.getPrimaryBalance().getCurrency()
-            .getStringRepresentation());
-    System.out.println("Secondary Balance: "
-            + account.getSecondaryBalance().getAmount()
-            + " "
-            + account.getSecondaryBalance().getCurrency()
-            .getStringRepresentation());
+    logger.info("Primary Balance: {} {}",
+            account.getPrimaryBalance().getAmount(),
+            account.getPrimaryBalance().getCurrency().getStringRepresentation());
+
+    logger.info("Secondary Balance: {} {}",
+            account.getSecondaryBalance().getAmount(),
+            account.getSecondaryBalance().getCurrency().getStringRepresentation());
 
     final Money allocationMoney = new Money(6_000, usd);
 
@@ -56,14 +54,12 @@ public final class App {
       acc.deposit(new Money(allocatedAmount, usd));
     }
 
-    System.out.println("Allocated Balances:");
+    logger.info("Allocated Balances:");
     for (int i = 0; i < accounts.length; i++) {
-      System.out.println("Account "
-              + (i + 1)
-              + ": " + accounts[i].getPrimaryBalance().getAmount()
-              + " "
-              + accounts[i].getPrimaryBalance().getCurrency()
-              .getStringRepresentation());
+      logger.info("Account {}: {} {}",
+              i + 1,
+              accounts[i].getPrimaryBalance().getAmount(),
+              accounts[i].getPrimaryBalance().getCurrency().getStringRepresentation());
     }
   }
 }
