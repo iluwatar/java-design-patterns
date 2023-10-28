@@ -1,5 +1,5 @@
 ---  
-title: Microservices Architecture : Shared Database  
+title: Microservices Architecture - Shared Database  
 category: Architectural  
 language: en  
 tag:
