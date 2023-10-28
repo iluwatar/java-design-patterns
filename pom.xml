@@ -208,6 +208,7 @@
     <module>thread-local-storage</module>
     <module>optimistic-offline-lock</module>
     <module>crtp</module>
+      <module>client-side</module>
   </modules>
   <repositories>
     <repository>
