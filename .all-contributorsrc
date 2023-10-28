@@ -2789,6 +2789,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "dlvideira",
+      "name": "Daniel Lisboa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53951425?v=4",
+      "profile": "https://github.com/dlvideira",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
