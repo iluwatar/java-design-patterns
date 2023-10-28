@@ -1,5 +1,5 @@
 ---
-title: Strategy
+title: Trampoline
 category: Behavioral
 language: zh
 tag:
