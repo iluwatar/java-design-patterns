@@ -1,9 +1,9 @@
 @startuml
-interface com.iluwater.microservice.shared.database.IOrderService {
+interface com.iluwater.microservices.shared.database.IOrderService {
 ~ String makeOrder(int,double)
 ~ Optional<String[]> getOrderTotalByCustomerId(int)
 }
-class com.iluwater.microservice.shared.database.CustomerService {
+class com.iluwater.microservices.shared.database.CustomerService {
 - {static} String DB_FILE
 - Optional<String[]> findCustomerById(int)
 - void setCreditLimit(int,double)
@@ -12,12 +12,12 @@ class com.iluwater.microservice.shared.database.CustomerService {
 + void updateCreditLimit(int,double)
 + String newCustomer(double)
 }
-class com.iluwater.microservice.shared.database.OrderController {
+class com.iluwater.microservices.shared.database.OrderController {
 - IOrderService orderService
 + Optional<String[]> findOrderTotalByCustomerId(int)
 + ResponseEntity<String> createOrder(int,double)
 }
-class com.iluwater.microservice.shared.database.OrderService {
+class com.iluwater.microservices.shared.database.OrderService {
 - {static} String DB_FILE
 - Optional<String[]> findOrderTotalByCustomerId(int)
 - String createOrder(int,double)
@@ -25,25 +25,25 @@ class com.iluwater.microservice.shared.database.OrderService {
 + String makeOrder(int,double)
 + Optional<String[]> getOrderTotalByCustomerId(int)
 }
-class com.iluwater.microservice.shared.database.CustomerController {
+class com.iluwater.microservices.shared.database.CustomerController {
 - ICustomerService customerService
 + ResponseEntity<String[]> getCustomer(int)
 + ResponseEntity<String> updateCreditLimit(int,double)
 + ResponseEntity<String> createCustomer(double)
 }
-interface com.iluwater.microservice.shared.database.ICustomerService {
+interface com.iluwater.microservices.shared.database.ICustomerService {
 ~ Optional<String[]> getCustomerById(int)
 ~ void updateCreditLimit(int,double)
 ~ String newCustomer(double)
 }
-class com.iluwater.microservice.shared.database.App {
+class com.iluwater.microservices.shared.database.App {
 + {static} void main(String[])
 }
 
 
-com.iluwater.microservice.shared.database.ICustomerService <|.. com.iluwater.microservice.shared.database.CustomerService
-com.iluwater.microservice.shared.database.IOrderService <|.. com.iluwater.microservice.shared.database.OrderService
+com.iluwater.microservices.shared.database.ICustomerService <|.. com.iluwater.microservices.shared.database.CustomerService
+com.iluwater.microservices.shared.database.IOrderService <|.. com.iluwater.microservices.shared.database.OrderService
 
-com.iluwater.microservice.shared.database.CustomerController --> com.iluwater.microservice.shared.database.ICustomerService : uses
-com.iluwater.microservice.shared.database.OrderController --> com.iluwater.microservice.shared.database.IOrderService : uses
+com.iluwater.microservices.shared.database.CustomerController --> com.iluwater.microservices.shared.database.ICustomerService : uses
+com.iluwater.microservices.shared.database.OrderController --> com.iluwater.microservices.shared.database.IOrderService : uses
 @enduml

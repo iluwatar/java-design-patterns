@@ -1,4 +1,4 @@
-package com.iluwater.microservice.shared.database;
+package com.iluwater.microservices.shared.database;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;

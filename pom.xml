@@ -208,7 +208,7 @@
     <module>thread-local-storage</module>
     <module>optimistic-offline-lock</module>
     <module>crtp</module>
-    <module>microservice-shared-database</module>
+    <module>microservices-shared-database</module>
   </modules>
   <repositories>
     <repository>

@@ -1,4 +1,4 @@
-package com.iluwater.microservice.shared.database;
+package com.iluwater.microservices.shared.database;
 
 import lombok.Synchronized;
 import org.springframework.stereotype.Service;
@@ -57,6 +57,33 @@ public class OrderService implements IOrderService{
         }
         return out;
     }
+    /**
+     * Finds the customer's credit limit in the local database file by their customer ID.
+     *
+     * @param customerId The ID of the customer to find.
+     * @return A positive double value of the customer credit limit if found, otherwise -1.
+     * @throws Exception If there's an error during data retrieval.
+     */
+    @Synchronized
+    private double findCreditLimitByCustomerId(int customerId) throws Exception {
+        var file = new File(DB_FILE);
+        var scanner = new Scanner(file);
+
+        while (scanner.hasNextLine()) {
+            var line = scanner.nextLine();
+            if (line.startsWith("CUSTOMERS")) {
+                if (!scanner.nextLine().isEmpty()) {
+                    while (scanner.hasNextLine() && !(line = scanner.nextLine()).isEmpty()) {
+                        var parts = line.split(", ");
+                        if (Integer.parseInt(parts[0]) == customerId) {
+                            return Integer.parseInt(parts[1]);
+                        }
+                    }
+                }
+            }
+        }
+        return -1;
+    }
 
     /**
      * Creates an order for the given customer ID and amount.
@@ -69,22 +96,25 @@ public class OrderService implements IOrderService{
     @Synchronized
     private String createOrder(int customerId, double amount) throws Exception {
         var newOrderID = -1;
-        var customerService = new CustomerService();
-        var customer = customerService.getCustomerById(customerId);
+        var creditLimit = findCreditLimitByCustomerId(customerId);
         var orders = findOrderTotalByCustomerId(customerId);
 
-        if (customer.isPresent() && orders.isPresent()) {
-            var creditLimit = Double.parseDouble(customer.get()[1]);
-            var orderTotal = calculateAllOrders(orders.get());
 
-            if (orderTotal + amount <= creditLimit) {
-                newOrderID = insertOrder(new ArrayList<>(List.of(
-                        String.valueOf(customerId),
-                        "ACCEPTED",
-                        String.valueOf(amount)
-                )));
-            } else {
-                throw new Exception("Exceed the CREDIT_LIMIT.");
+        if (creditLimit != -1) {
+            if (orders.isPresent() && orders.get().length > 1) {
+                var orderTotal = calculateAllOrders(orders.get());
+
+                if (orderTotal + amount <= creditLimit) {
+                    newOrderID = insertOrder(new ArrayList<>(List.of(
+                            String.valueOf(customerId),
+                            "ACCEPTED",
+                            String.valueOf(amount)
+                    )));
+                } else {
+                    throw new Exception("Exceed the CREDIT_LIMIT.");
+                }
+            }else {
+                throw new Exception("Order for "+ customerId + " not found.");
             }
         } else {
             throw new Exception("Customer not found.");

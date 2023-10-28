@@ -1,4 +1,4 @@
-package com.iluwater.microservice.shared.database;
+package com.iluwater.microservices.shared.database;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 /**
  * Entry point for the shared database microservice application.
  * This application is configured to exclude the default DataSource auto-configuration as
- * it might be using a custom or no database configuration.
+ * it is using a custom database configuration.
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
 public class App {

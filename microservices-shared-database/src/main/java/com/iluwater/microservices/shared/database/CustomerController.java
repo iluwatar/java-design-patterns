@@ -1,4 +1,4 @@
-package com.iluwater.microservice.shared.database;
+package com.iluwater.microservices.shared.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
