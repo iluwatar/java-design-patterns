@@ -2807,6 +2807,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "jppf22",
+      "name": "João Fernandes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/104360594?v=4",
+      "profile": "https://github.com/jppf22",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
