@@ -44,7 +44,7 @@ public class App {
     gatewayFactory.registerGateway("ServiceB", new ExternalServiceB());
     gatewayFactory.registerGateway("ServiceC", new ExternalServiceC());
 
-    // Use an executor service for asynchronous execution
+    // Use an executor service for execution
     Gateway serviceA = gatewayFactory.getGateway("ServiceA");
     Gateway serviceB = gatewayFactory.getGateway("ServiceB");
     Gateway serviceC = gatewayFactory.getGateway("ServiceC");
