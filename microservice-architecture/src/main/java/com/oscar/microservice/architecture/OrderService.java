@@ -1,27 +1,24 @@
 package com.oscar.microservice.architecture;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-// Order Service and Components
 @Service
 public class OrderService {
-    @Autowired
-    private OrderManagement orderManagement;
+    private final Order order = new Order();
 
     public String createOrder() {
-        return orderManagement.createOrder();
+        return order.create();
     }
 
     public String findOrderHistory() {
-        return orderManagement.findOrderHistory();
+        return order.history();
     }
 
     public String modifyOrder(Long orderId, String details) {
-        return orderManagement.modifyOrder(orderId, details);
+        return order.modify(orderId, details);
     }
 
     public String deleteOrder(Long orderId) {
-        return orderManagement.deleteOrder(orderId);
+        return order.delete(orderId);
     }
 }

@@ -9,7 +9,7 @@ public class Order {
 
     public String create() {
         currentId++;
-        orders.put(currentId, "Sample Order Details for ID: " + currentId);
+        orders.put(currentId, "Sample Order Details for ID: " + currentId + "details\n");
         return "Order Created with ID: " + currentId;
     }
 
