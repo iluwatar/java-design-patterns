@@ -1,6 +1,9 @@
 package com.oscar.microservice.architecture;
 
-public class ConsumerManagement {
+import org.springframework.stereotype.Service;
+
+@Service
+public class ConsumeService {
     private final Consumer consumer = new Consumer();
 
     public String createConsumer() {
