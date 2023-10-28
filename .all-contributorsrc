@@ -2798,6 +2798,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "ComplexOW",
+      "name": "Sam Powell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/105279107?v=4",
+      "profile": "https://github.com/ComplexOW",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
