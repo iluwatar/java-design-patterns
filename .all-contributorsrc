@@ -2789,6 +2789,33 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "dlvideira",
+      "name": "Daniel Lisboa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53951425?v=4",
+      "profile": "https://github.com/dlvideira",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "ComplexOW",
+      "name": "Sam Powell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/105279107?v=4",
+      "profile": "https://github.com/ComplexOW",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "jppf22",
+      "name": "João Fernandes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/104360594?v=4",
+      "profile": "https://github.com/jppf22",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
