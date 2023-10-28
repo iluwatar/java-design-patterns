@@ -2780,6 +2780,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Iamalok007",
+      "name": "alok",
+      "avatar_url": "https://avatars.githubusercontent.com/u/97467835?v=4",
+      "profile": "https://github.com/Iamalok007",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
