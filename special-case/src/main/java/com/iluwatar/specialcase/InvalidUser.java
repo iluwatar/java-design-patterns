@@ -42,8 +42,6 @@ public class InvalidUser implements ReceiptViewModel {
 
   @Override
   public void show() {
-    if (LOGGER.isInfoEnabled()) {
-      LOGGER.info(String.format("Invalid user: %s", userName));
-    }
+    LOGGER.info(String.format("Invalid user: %s", userName));
   }
 }

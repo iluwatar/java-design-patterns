@@ -46,8 +46,6 @@ public class ReceiptDto implements ReceiptViewModel {
 
   @Override
   public void show() {
-    if (LOGGER.isInfoEnabled()) {
-      LOGGER.info(String.format("Receipt: %s paid", price));
-    }
+    LOGGER.info(String.format("Receipt: %s paid", price));
   }
 }
