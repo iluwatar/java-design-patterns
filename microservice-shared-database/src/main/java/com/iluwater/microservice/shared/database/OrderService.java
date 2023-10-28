@@ -1,95 +1,144 @@
 package com.iluwater.microservice.shared.database;
 
+import lombok.Synchronized;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+/**
+ * Service class responsible for order-related operations.
+ */
 @Service
 public class OrderService implements IOrderService{
     private static final String DB_FILE = "microservice-shared-database/etc/localdb.txt";
 
-    private Optional<String[]> findOrderTotalByCustomerId(int customerId) {
-        try (Scanner scanner = new Scanner(new File(DB_FILE))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                if (line.startsWith("ORDERS")) {
-                    if (!scanner.nextLine().isEmpty()){
-                        while (scanner.hasNextLine() && !(line = scanner.nextLine()).isEmpty()) {
-                            String[] parts = line.split(", ");
-                            if (Integer.parseInt(parts[1]) == customerId) {
-                                return Optional.of(parts);
-                            }
+    /**
+     * Retrieves all the orders associated with a given customer ID.
+     *
+     * @param customerId The ID of the customer whose orders are to be fetched.
+     * @return An Optional containing a list of orders in String array format or an error message if not found.
+     * @throws Exception If an error occurs during the operation.
+     */
+    @Synchronized
+    private Optional<String[]> findOrderTotalByCustomerId(int customerId) throws Exception {
+        var scanner = new Scanner(new File(DB_FILE));
+        var out = new ArrayList<String>();
+        while (scanner.hasNextLine()) {
+            var line = scanner.nextLine();
+            if (line.startsWith("ORDERS")) {
+                if (!scanner.nextLine().isEmpty()){
+                    while (scanner.hasNextLine() && !(line = scanner.nextLine()).isEmpty()) {
+                        var parts = line.split(", ");
+                        if (Integer.parseInt(parts[1]) == customerId) {
+                            out.addAll(List.of(parts));
                         }
                     }
                 }
             }
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found in findOrderTotalByCustomerId().");
         }
-        return Optional.of(new String[]{"Error getting total orders of " + customerId + " : orderID not found"});
+        return out.isEmpty() ? Optional.of(new String[]{"No order found for customer " + customerId + "."}) : Optional.of(out.toArray(new String[0]));
     }
 
-    private String createOrder(int customerId, double amount) throws Exception {
-        int newOrderID = -1;
-        CustomerService customerService = new CustomerService();
-        Optional<String[]> customer = customerService.getCustomerById(customerId);
-        Optional<String[]> order = findOrderTotalByCustomerId(customerId);
+    /**
+     * Calculate the total amount of all orders for a customer.
+     *
+     * @param orders A String array of orders.
+     * @return The total amount.
+     */
+    private double calculateAllOrders(String[] orders){
+        int index = 3;
+        var out = 0;
+        while (index < orders.length){
+            out += Double.parseDouble(orders[index]);
+            index += 4;
+        }
+        return out;
+    }
 
-        if (customer.isPresent() && order.isPresent()) {
-            double creditLimit = Double.parseDouble(customer.get()[1]);
-            double orderTotal = Double.parseDouble(order.get()[3]);
+    /**
+     * Creates an order for the given customer ID and amount.
+     *
+     * @param customerId The ID of the customer making the order.
+     * @param amount The amount of the order.
+     * @return The ID of the new order or an error message.
+     * @throws Exception If an error occurs during the operation.
+     */
+    @Synchronized
+    private String createOrder(int customerId, double amount) throws Exception {
+        var newOrderID = -1;
+        var customerService = new CustomerService();
+        var customer = customerService.getCustomerById(customerId);
+        var orders = findOrderTotalByCustomerId(customerId);
+
+        if (customer.isPresent() && orders.isPresent()) {
+            var creditLimit = Double.parseDouble(customer.get()[1]);
+            var orderTotal = calculateAllOrders(orders.get());
 
             if (orderTotal + amount <= creditLimit) {
-                newOrderID =
-                        insertOrder(List.of(new String[]{
+                newOrderID = insertOrder(new ArrayList<>(List.of(
                         String.valueOf(customerId),
                         "ACCEPTED",
                         String.valueOf(amount)
-                }));
+                )));
             } else {
-                // Handle credit limit exceeded
                 throw new Exception("Exceed the CREDIT_LIMIT.");
             }
         } else {
-            // Handle customer not found or other issues
             throw new Exception("Customer not found.");
         }
-        return String.valueOf(newOrderID);
+        return newOrderID == -1 ?  "New order created failed." : String.valueOf(newOrderID);
     }
 
-    private int insertOrder(List<String> order) {
+    /**
+     * Inserts a new order into the database.
+     *
+     * @param order A list containing order details.
+     * @return The ID of the inserted order.
+     * @throws Exception If an error occurs during the operation.
+     */
+    @Synchronized
+    private int insertOrder(List<String> order) throws Exception {
         int orderID = -1;
-        try {
-            Path path = Paths.get(DB_FILE);
-            List<String> lines = new ArrayList<>(Files.readAllLines(path));
-            int index = lines.indexOf("ORDERS") + 2;
-            while (index < lines.size()) {
-                String[] parts = lines.get(index).split(", ");
-                orderID = Integer.parseInt(parts[0]);
-                index++;
-            }
-            orderID++;
-            order.add(0, String.valueOf(orderID));
-            lines.add(index, String.join(", ", order));
-            Files.write(path, lines);
-        } catch (IOException e) {
-            System.out.println("File not found in insertOrder().");
+        var path = Paths.get(DB_FILE);
+        var lines = new ArrayList<>(Files.readAllLines(path));
+        var index = lines.indexOf("ORDERS") + 2;
+        while (index < lines.size()) {
+            var parts = lines.get(index).split(", ");
+            orderID = Integer.parseInt(parts[0]);
+            index++;
         }
+        orderID++;
+        order.add(0, String.valueOf(orderID));
+        lines.add(index, String.join(", ", order));
+        Files.write(path, lines);
         return orderID;
     }
 
+    /**
+     * Public method to initiate order creation.
+     *
+     * @param customerId The ID of the customer making the order.
+     * @param amount The amount of the order.
+     * @return The ID of the new order or an error message.
+     * @throws Exception If an error occurs during the operation.
+     */
     @Override
     public String makeOrder(int customerId, double amount) throws Exception {
         return createOrder(customerId, amount);
     }
+
+    /**
+     * Public method to retrieve all the orders for a given customer.
+     *
+     * @param customerId The ID of the customer whose orders are to be fetched.
+     * @return An Optional containing a list of orders in String array format or an error message if not found.
+     * @throws Exception If an error occurs during the operation.
+     */
     @Override
-    public Optional<String[]> getOrderTotalByCustomerId(int customerId){ return findOrderTotalByCustomerId(customerId); }
-
-
+    public Optional<String[]> getOrderTotalByCustomerId(int customerId) throws Exception {
+        return findOrderTotalByCustomerId(customerId);
+    }
 }

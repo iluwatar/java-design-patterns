@@ -208,7 +208,6 @@
     <module>thread-local-storage</module>
     <module>optimistic-offline-lock</module>
     <module>crtp</module>
-      <module>monolithic-architecture</module>
     <module>microservice-shared-database</module>
   </modules>
   <repositories>
