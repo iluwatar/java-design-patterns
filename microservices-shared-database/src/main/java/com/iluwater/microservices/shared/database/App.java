@@ -12,12 +12,12 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})
 public class App {
 
-    /**
-     * Main method which starts the Spring Boot application.
-     *
-     * @param args Command-line arguments passed to the application.
-     */
-    public static void main(String[] args) {
-        SpringApplication.run(App.class, args);
-    }
+  /**
+   * Main method which starts the Spring Boot application.
+   *
+   * @param args Command-line arguments passed to the application.
+   */
+  public static void main(String[] args) {
+    SpringApplication.run(App.class, args);
+  }
 }
