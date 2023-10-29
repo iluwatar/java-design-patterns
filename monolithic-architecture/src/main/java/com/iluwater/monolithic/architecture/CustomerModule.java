@@ -1,10 +1,10 @@
 package com.iluwater.monolithic.architecture;
 
-import lombok.Synchronized;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+
+import lombok.Synchronized;
 
 /**
  * Module class for managing customer-related operations.

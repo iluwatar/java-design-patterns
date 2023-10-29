@@ -1,11 +1,11 @@
 package com.iluwater.monolithic.architecture;
 
-import lombok.Synchronized;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import lombok.Synchronized;
 
 /**
  * Module class responsible for order-related operations.
