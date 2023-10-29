@@ -1,45 +1,59 @@
-package com.iluwater.microservices.shared.database;
+package com.iluwater.monolithic.architecture;
 
 import lombok.Synchronized;
-import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
 /**
- * Service class responsible for order-related operations.
+ * Module class responsible for order-related operations.
  */
-@Service
-public class OrderService implements IOrderService{
-    private static final String DB_FILE = "microservice-shared-database/etc/localdb.txt";
+public class OrderModule implements IOrderModule {
 
     /**
      * Retrieves all the orders associated with a given customer ID.
      *
      * @param customerId The ID of the customer whose orders are to be fetched.
-     * @return An Optional containing a list of orders in String array format or an error message if not found.
+     * @return An array of string containing a list of orders format or an error message if not found.
      * @throws Exception If an error occurs during the operation.
      */
     @Synchronized
-    private Optional<String[]> findOrderTotalByCustomerId(int customerId) throws Exception {
-        var scanner = new Scanner(new File(DB_FILE));
+    private String[] findOrderTotalByCustomerId(int customerId) throws Exception {
+
+        var path = Paths.get(DB_FILE);
+        var lines = Files.readAllLines(path);
         var out = new ArrayList<String>();
-        while (scanner.hasNextLine()) {
-            var line = scanner.nextLine();
+
+        boolean orderSectionStarted = false;
+        boolean infoStart = false;
+
+        for (String line : lines) {
             if (line.startsWith("ORDERS")) {
-                if (!scanner.nextLine().isEmpty()){
-                    while (scanner.hasNextLine() && !(line = scanner.nextLine()).isEmpty()) {
-                        var parts = line.split(", ");
-                        if (Integer.parseInt(parts[1]) == customerId) {
-                            out.addAll(List.of(parts));
-                        }
-                    }
+                orderSectionStarted = true;
+                continue;
+            }
+
+            if ((orderSectionStarted || infoStart) && line.isEmpty()) {
+                break; // end of ORDERS section
+            }
+
+            if(orderSectionStarted){
+                infoStart = true;
+                orderSectionStarted = false;
+                continue;
+            }
+
+            if (infoStart) {
+                var parts = line.split(", ");
+                if (Integer.parseInt(parts[1]) == customerId) {
+                    out.addAll(List.of(parts));
                 }
             }
         }
-        return out.isEmpty() ? Optional.of(new String[]{"No order found for customer " + customerId + "."}) : Optional.of(out.toArray(new String[0]));
+
+        return out.isEmpty() ? new String[]{"No order found for customer " + customerId + "."} : out.toArray(new String[0]);
+
     }
 
     /**
@@ -57,33 +71,7 @@ public class OrderService implements IOrderService{
         }
         return out;
     }
-    /**
-     * Finds the customer's credit limit in the local database file by their customer ID.
-     *
-     * @param customerId The ID of the customer to find.
-     * @return A positive double value of the customer credit limit if found, otherwise -1.
-     * @throws Exception If there's an error during data retrieval.
-     */
-    @Synchronized
-    private double findCreditLimitByCustomerId(int customerId) throws Exception {
-        var file = new File(DB_FILE);
-        var scanner = new Scanner(file);
 
-        while (scanner.hasNextLine()) {
-            var line = scanner.nextLine();
-            if (line.startsWith("CUSTOMERS")) {
-                if (!scanner.nextLine().isEmpty()) {
-                    while (scanner.hasNextLine() && !(line = scanner.nextLine()).isEmpty()) {
-                        var parts = line.split(", ");
-                        if (Integer.parseInt(parts[0]) == customerId) {
-                            return Integer.parseInt(parts[1]);
-                        }
-                    }
-                }
-            }
-        }
-        return -1;
-    }
 
     /**
      * Creates an order for the given customer ID and amount.
@@ -96,13 +84,17 @@ public class OrderService implements IOrderService{
     @Synchronized
     private String createOrder(int customerId, double amount) throws Exception {
         var newOrderID = -1;
-        var creditLimit = findCreditLimitByCustomerId(customerId);
+        var customer = customerModule.getCustomerById(customerId);
+
+        if (customer.length == 1) throw new Exception(customer[0]);
+
+        var creditLimit = Double.parseDouble(customer[1]);
         var orders = findOrderTotalByCustomerId(customerId);
 
 
         if (creditLimit != -1) {
-            if (orders.isPresent() && orders.get().length > 1) {
-                var orderTotal = calculateAllOrders(orders.get());
+
+                var orderTotal = orders.length == 1 ? 0 : calculateAllOrders(orders);
 
                 if (orderTotal + amount <= creditLimit) {
                     newOrderID = insertOrder(new ArrayList<>(List.of(
@@ -116,9 +108,7 @@ public class OrderService implements IOrderService{
             }else {
                 throw new Exception("Order for "+ customerId + " not found.");
             }
-        } else {
-            throw new Exception("Customer not found.");
-        }
+
         return newOrderID == -1 ?  "New order created failed." : String.valueOf(newOrderID);
     }
 
@@ -168,7 +158,7 @@ public class OrderService implements IOrderService{
      * @throws Exception If an error occurs during the operation.
      */
     @Override
-    public Optional<String[]> getOrderTotalByCustomerId(int customerId) throws Exception {
+    public String[] getOrderTotalByCustomerId(int customerId) throws Exception {
         return findOrderTotalByCustomerId(customerId);
     }
 }

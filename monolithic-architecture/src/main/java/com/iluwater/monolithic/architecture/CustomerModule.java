@@ -1,48 +1,60 @@
-package com.iluwater.microservices.shared.database;
+package com.iluwater.monolithic.architecture;
 
 import lombok.Synchronized;
-import org.springframework.stereotype.Service;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
 /**
- * Service class for managing customer-related operations.
+ * Module class for managing customer-related operations.
  */
-@Service
-public class CustomerService implements ICustomerService {
 
-    private static final String DB_FILE = "microservice-shared-database/etc/localdb.txt";
+public class CustomerModule implements ICustomeModule {
+
 
     /**
      * Finds a customer in the local database file by their customer ID.
      *
      * @param customerId The ID of the customer to find.
-     * @return An Optional containing the customer data if found, otherwise an error message.
+     * @return An array of string containing the customer data if found, otherwise an error message.
      * @throws Exception If there's an error during data retrieval.
      */
     @Synchronized
-    private Optional<String[]> findCustomerById(int customerId) throws Exception {
-        var file = new File(DB_FILE);
-        var scanner = new Scanner(file);
+    private String[] findCustomerById(int customerId) throws Exception {
+        var path = Paths.get(DB_FILE);
+        var lines = Files.readAllLines(path);
 
-        while (scanner.hasNextLine()) {
-            var line = scanner.nextLine();
+        boolean customerSectionStarted = false;
+        boolean infoStart = false;
+
+        for (String line : lines) {
             if (line.startsWith("CUSTOMERS")) {
-                if (!scanner.nextLine().isEmpty()) {
-                    while (scanner.hasNextLine() && !(line = scanner.nextLine()).isEmpty()) {
-                        var parts = line.split(", ");
-                        if (Integer.parseInt(parts[0]) == customerId) {
-                            return Optional.of(parts);
-                        }
-                    }
+                customerSectionStarted = true;
+                continue;
+            }
+
+            if ((customerSectionStarted || infoStart) && line.isEmpty()) {
+                break; // end of CUSTOMERS section
+            }
+
+            if(customerSectionStarted){
+                infoStart = true;
+                customerSectionStarted = false;
+                continue;
+            }
+
+            if (infoStart) {
+                var parts = line.split(", ");
+                if (Integer.parseInt(parts[0]) == customerId) {
+                    return parts;
                 }
             }
         }
-        return Optional.of(new String[]{"Error getting data of " + customerId + " : customerID not found"});
+
+        return new String[]{"Error getting data of " + customerId + " : customerID not found"};
     }
+
 
     /**
      * Updates the credit limit for a given customer.
@@ -70,6 +82,7 @@ public class CustomerService implements ICustomerService {
                 }
             }
         }
+        throw new Exception("Customer not found.");
     }
 
     /**
@@ -102,11 +115,11 @@ public class CustomerService implements ICustomerService {
      * Retrieves customer details by their ID.
      *
      * @param customerId The ID of the customer to retrieve.
-     * @return An Optional containing the customer details if found, otherwise an error message.
+     * @return An array of sting containing the customer details if found, otherwise an error message.
      * @throws Exception If there's an error during data retrieval.
      */
     @Override
-    public Optional<String[]> getCustomerById(int customerId) throws Exception {
+    public String[] getCustomerById(int customerId) throws Exception {
         return findCustomerById(customerId);
     }
 

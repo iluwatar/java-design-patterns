@@ -1,0 +1,42 @@
+@startuml
+interface com.iluwater.monolithic.architecture.ICustomerService {
+~ {static} String DB_FILE
+~ String[] getCustomerById(int)
+~ void updateCreditLimit(int,double)
+~ String newCustomer(double)
+}
+class com.iluwater.monolithic.architecture.App {
+- {static} ICustomerService customerService
+- {static} IOrderService orderService
++ {static} void main(String[])
+- {static} void displayMenu()
+}
+interface com.iluwater.monolithic.architecture.IOrderService {
+~ {static} ICustomerService customerService
+~ {static} String DB_FILE
+~ String makeOrder(int,double)
+~ String[] getOrderTotalByCustomerId(int)
+}
+class com.iluwater.monolithic.architecture.CustomerService {
+- String[] findCustomerById(int)
+- void setCreditLimit(int,double)
+- String createCustomer(double)
++ String[] getCustomerById(int)
++ void updateCreditLimit(int,double)
++ String newCustomer(double)
+}
+class com.iluwater.monolithic.architecture.OrderService {
+- String[] findOrderTotalByCustomerId(int)
+- double calculateAllOrders(String[])
+- String createOrder(int,double)
+- int insertOrder(List<String>)
++ String makeOrder(int,double)
++ String[] getOrderTotalByCustomerId(int)
+}
+
+
+com.iluwater.monolithic.architecture.ICustomerService <|.. com.iluwater.monolithic.architecture.CustomerService
+com.iluwater.monolithic.architecture.IOrderService <|.. com.iluwater.monolithic.architecture.OrderService
+
+com.iluwater.monolithic.architecture.IOrderService --> com.iluwater.monolithic.architecture.ICustomerService : uses
+@enduml
