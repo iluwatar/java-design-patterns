@@ -4,7 +4,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-
 import lombok.Synchronized;
 
 /**
@@ -87,7 +86,9 @@ public class OrderModule implements OrderModuleInterface {
     var newOrderId = -1;
     var customer = customerModule.getCustomerById(customerId);
 
-    if (customer.length == 1) throw new Exception(customer[0]);
+    if (customer.length == 1) {
+      throw new Exception(customer[0]);
+    }
 
     var creditLimit = Double.parseDouble(customer[1]);
     var orders = findOrderTotalByCustomerId(customerId);
@@ -122,20 +123,20 @@ public class OrderModule implements OrderModuleInterface {
    */
   @Synchronized
   private int insertOrder(List<String> order) throws Exception {
-    int orderID = -1;
+    int orderId = -1;
     var path = Paths.get(DB_FILE);
     var lines = new ArrayList<>(Files.readAllLines(path));
     var index = lines.indexOf("ORDERS") + 2;
     while (index < lines.size()) {
       var parts = lines.get(index).split(", ");
-      orderID = Integer.parseInt(parts[0]);
+      orderId = Integer.parseInt(parts[0]);
       index++;
     }
-    orderID++;
-    order.add(0, String.valueOf(orderID));
+    orderId++;
+    order.add(0, String.valueOf(orderId));
     lines.add(index, String.join(", ", order));
     Files.write(path, lines);
-    return orderID;
+    return orderId;
   }
 
   /**
