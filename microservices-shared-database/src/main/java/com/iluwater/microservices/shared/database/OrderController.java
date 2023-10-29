@@ -36,7 +36,7 @@ public class OrderController {
      * Endpoint to create an order for a specific customer.
      *
      * @param customerId The ID of the customer making the order.
-     * @param amount The amount of the order.
+     * @param amount     The amount of the order.
      * @return A ResponseEntity containing a success message if the order was created or an error message if not.
      */
     @PostMapping("/create/{customerId}")

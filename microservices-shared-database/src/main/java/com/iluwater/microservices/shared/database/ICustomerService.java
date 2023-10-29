@@ -17,7 +17,7 @@ public interface ICustomerService {
      *
      * @param customerId The unique ID of the customer to retrieve.
      * @return An Optional containing the customer details as a String array
-     *         or an empty Optional if the customer is not found.
+     * or an empty Optional if the customer is not found.
      * @throws Exception If any error occurs during the operation.
      */
     Optional<String[]> getCustomerById(int customerId) throws Exception;

@@ -6,13 +6,16 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 
 /**
  * Service class responsible for order-related operations.
  */
 @Service
-public class OrderService implements IOrderService{
+public class OrderService implements IOrderService {
 
     /**
      * Retrieves all the orders associated with a given customer ID.
@@ -28,7 +31,7 @@ public class OrderService implements IOrderService{
         while (scanner.hasNextLine()) {
             var line = scanner.nextLine();
             if (line.startsWith("ORDERS")) {
-                if (!scanner.nextLine().isEmpty()){
+                if (!scanner.nextLine().isEmpty()) {
                     while (scanner.hasNextLine() && !(line = scanner.nextLine()).isEmpty()) {
                         var parts = line.split(", ");
                         if (Integer.parseInt(parts[1]) == customerId) {
@@ -47,15 +50,16 @@ public class OrderService implements IOrderService{
      * @param orders A String array of orders.
      * @return The total amount.
      */
-    private double calculateAllOrders(String[] orders){
+    private double calculateAllOrders(String[] orders) {
         int index = 3;
         var out = 0;
-        while (index < orders.length){
+        while (index < orders.length) {
             out += Double.parseDouble(orders[index]);
             index += 4;
         }
         return out;
     }
+
     /**
      * Finds the customer's credit limit in the local database file by their customer ID.
      *
@@ -88,7 +92,7 @@ public class OrderService implements IOrderService{
      * Creates an order for the given customer ID and amount.
      *
      * @param customerId The ID of the customer making the order.
-     * @param amount The amount of the order.
+     * @param amount     The amount of the order.
      * @return The ID of the new order or an error message.
      * @throws Exception If an error occurs during the operation.
      */
@@ -112,13 +116,13 @@ public class OrderService implements IOrderService{
                 } else {
                     throw new Exception("Exceed the CREDIT_LIMIT.");
                 }
-            }else {
-                throw new Exception("Order for "+ customerId + " not found.");
+            } else {
+                throw new Exception("Order for " + customerId + " not found.");
             }
         } else {
             throw new Exception("Customer not found.");
         }
-        return newOrderID == -1 ?  "New order created failed." : String.valueOf(newOrderID);
+        return newOrderID == -1 ? "New order created failed." : String.valueOf(newOrderID);
     }
 
     /**
@@ -150,7 +154,7 @@ public class OrderService implements IOrderService{
      * Public method to initiate order creation.
      *
      * @param customerId The ID of the customer making the order.
-     * @param amount The amount of the order.
+     * @param amount     The amount of the order.
      * @return The ID of the new order or an error message.
      * @throws Exception If an error occurs during the operation.
      */

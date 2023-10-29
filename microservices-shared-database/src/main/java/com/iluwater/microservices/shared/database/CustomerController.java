@@ -1,9 +1,10 @@
 package com.iluwater.microservices.shared.database;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.http.HttpStatus;
+
 import java.util.Optional;
 
 /**
@@ -27,7 +28,7 @@ public class CustomerController {
         try {
             Optional<String[]> customer = customerService.getCustomerById(customerId);
             return customer.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
-        } catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(new String[]{"Error getting customer: " + e.getMessage()});
         }
 
@@ -36,7 +37,7 @@ public class CustomerController {
     /**
      * Endpoint to update the credit limit of a specific customer.
      *
-     * @param customerId The ID of the customer to update.
+     * @param customerId     The ID of the customer to update.
      * @param newCreditLimit The new credit limit value.
      * @return A ResponseEntity indicating the success or failure of the operation.
      */

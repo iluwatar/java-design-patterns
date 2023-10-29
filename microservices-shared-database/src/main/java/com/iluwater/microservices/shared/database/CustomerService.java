@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.Scanner;
 
 /**
  * Service class for managing customer-related operations.
@@ -45,7 +47,7 @@ public class CustomerService implements ICustomerService {
     /**
      * Updates the credit limit for a given customer.
      *
-     * @param customerId The ID of the customer.
+     * @param customerId     The ID of the customer.
      * @param newCreditLimit The new credit limit for the customer.
      * @throws Exception If there's an error during data update.
      */
@@ -111,7 +113,7 @@ public class CustomerService implements ICustomerService {
     /**
      * Updates the credit limit for a specified customer.
      *
-     * @param customerId The ID of the customer to update.
+     * @param customerId     The ID of the customer to update.
      * @param newCreditLimit The new credit limit for the customer.
      * @throws Exception If there's an error during data update.
      */
