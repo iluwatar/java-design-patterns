@@ -4,7 +4,8 @@ import lombok.Synchronized;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Module class responsible for order-related operations.
@@ -38,7 +39,7 @@ public class OrderModule implements IOrderModule {
                 break; // end of ORDERS section
             }
 
-            if(orderSectionStarted){
+            if (orderSectionStarted) {
                 infoStart = true;
                 orderSectionStarted = false;
                 continue;
@@ -62,10 +63,10 @@ public class OrderModule implements IOrderModule {
      * @param orders A String array of orders.
      * @return The total amount.
      */
-    private double calculateAllOrders(String[] orders){
+    private double calculateAllOrders(String[] orders) {
         int index = 3;
         var out = 0;
-        while (index < orders.length){
+        while (index < orders.length) {
             out += Double.parseDouble(orders[index]);
             index += 4;
         }
@@ -77,7 +78,7 @@ public class OrderModule implements IOrderModule {
      * Creates an order for the given customer ID and amount.
      *
      * @param customerId The ID of the customer making the order.
-     * @param amount The amount of the order.
+     * @param amount     The amount of the order.
      * @return The ID of the new order or an error message.
      * @throws Exception If an error occurs during the operation.
      */
@@ -94,22 +95,22 @@ public class OrderModule implements IOrderModule {
 
         if (creditLimit != -1) {
 
-                var orderTotal = orders.length == 1 ? 0 : calculateAllOrders(orders);
+            var orderTotal = orders.length == 1 ? 0 : calculateAllOrders(orders);
 
-                if (orderTotal + amount <= creditLimit) {
-                    newOrderID = insertOrder(new ArrayList<>(List.of(
-                            String.valueOf(customerId),
-                            "ACCEPTED",
-                            String.valueOf(amount)
-                    )));
-                } else {
-                    throw new Exception("Exceed the CREDIT_LIMIT.");
-                }
-            }else {
-                throw new Exception("Order for "+ customerId + " not found.");
+            if (orderTotal + amount <= creditLimit) {
+                newOrderID = insertOrder(new ArrayList<>(List.of(
+                        String.valueOf(customerId),
+                        "ACCEPTED",
+                        String.valueOf(amount)
+                )));
+            } else {
+                throw new Exception("Exceed the CREDIT_LIMIT.");
             }
+        } else {
+            throw new Exception("Order for " + customerId + " not found.");
+        }
 
-        return newOrderID == -1 ?  "New order created failed." : String.valueOf(newOrderID);
+        return newOrderID == -1 ? "New order created failed." : String.valueOf(newOrderID);
     }
 
     /**
@@ -141,7 +142,7 @@ public class OrderModule implements IOrderModule {
      * Public method to initiate order creation.
      *
      * @param customerId The ID of the customer making the order.
-     * @param amount The amount of the order.
+     * @param amount     The amount of the order.
      * @return The ID of the new order or an error message.
      * @throws Exception If an error occurs during the operation.
      */

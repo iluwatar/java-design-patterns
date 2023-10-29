@@ -10,8 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.times;
 
 /**
  * CombinedTest tests the functionalities of CustomerModule and OrderModule
@@ -46,6 +47,7 @@ public class CombinedTest {
 
     /**
      * Tests the scenario of adding a new customer and placing an order.
+     *
      * @throws Exception If there's an error during test execution
      */
     @Test
@@ -98,6 +100,7 @@ public class CombinedTest {
     /**
      * Tests the scenario where a customer places multiple orders
      * and exceeds their credit limit.
+     *
      * @throws Exception If there's an error during test execution
      */
     @Test
@@ -114,6 +117,7 @@ public class CombinedTest {
 
     /**
      * Tests querying for a non-existent customer.
+     *
      * @throws Exception If there's an error during test execution
      */
     @Test
@@ -141,12 +145,13 @@ public class CombinedTest {
 
     /**
      * Tests getting the total order value for a customer who hasn't placed any orders.
+     *
      * @throws Exception If there's an error during test execution
      */
     @Test
     void testGetOrderTotalForCustomerWithNoOrders() throws Exception {
         try (MockedStatic<java.nio.file.Files> ignored = mockFiles()) {
-            String actualMessage =  orderModule.getOrderTotalByCustomerId(235)[0];
+            String actualMessage = orderModule.getOrderTotalByCustomerId(235)[0];
             String expectedMessage = "No order found for customer 235.";
             assertTrue(actualMessage.contains(expectedMessage));
         }
@@ -154,6 +159,7 @@ public class CombinedTest {
 
     /**
      * Mocks file operations for the tests.
+     *
      * @return MockedStatic instance for java.nio.file.Files.
      */
     private MockedStatic<java.nio.file.Files> mockFiles() {

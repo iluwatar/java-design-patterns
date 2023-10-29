@@ -9,17 +9,16 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.times;
 
 /**
  * CustomerModuleTest tests the functionalities of the CustomerModule
  * by mocking file operations to simulate database interactions.
  */
 public class CustomerModuleTest {
-
-    private CustomerModule module;
 
     /**
      * Mocked content of the database.
@@ -35,6 +34,7 @@ public class CustomerModuleTest {
                     ID, CUSTOMER_ID, STATUS, TOTAL
                     4567, 234, ACCEPTED, 54044.30
                     """;
+    private CustomerModule module;
 
     /**
      * Initializes the CustomerModule for each test.
@@ -46,6 +46,7 @@ public class CustomerModuleTest {
 
     /**
      * Tests fetching customer data by their ID.
+     *
      * @throws Exception If there's an error during test execution
      */
     @Test
@@ -61,6 +62,7 @@ public class CustomerModuleTest {
 
     /**
      * Tests updating the credit limit for a customer.
+     *
      * @throws Exception If there's an error during test execution
      */
     @Test
@@ -77,6 +79,7 @@ public class CustomerModuleTest {
 
     /**
      * Tests creating a new customer.
+     *
      * @throws Exception If there's an error during test execution
      */
     @Test

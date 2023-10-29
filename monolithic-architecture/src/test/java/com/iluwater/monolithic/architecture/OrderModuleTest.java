@@ -10,16 +10,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.Mockito.times;
 
 /**
  * OrderModuleTest tests the functionalities of the OrderModule
  * by mocking file operations to simulate database interactions.
  */
 public class OrderModuleTest {
-
-    private OrderModule module;
 
     /**
      * Mocked content of the database.
@@ -35,6 +34,7 @@ public class OrderModuleTest {
                     ID, CUSTOMER_ID, STATUS, TOTAL
                     4567, 234, ACCEPTED, 54044.30
                     """;
+    private OrderModule module;
 
     /**
      * Initializes the OrderModule for each test.
@@ -46,6 +46,7 @@ public class OrderModuleTest {
 
     /**
      * Tests fetching the total order details by customer ID.
+     *
      * @throws Exception If there's an error during test execution
      */
     @Test
@@ -61,6 +62,7 @@ public class OrderModuleTest {
 
     /**
      * Tests making a new order for a customer.
+     *
      * @throws Exception If there's an error during test execution
      */
     @Test

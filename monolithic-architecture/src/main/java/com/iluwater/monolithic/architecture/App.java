@@ -18,10 +18,14 @@ import java.util.Scanner;
  */
 public class App {
 
-    /** An instance of the customer module for performing customer-related operations. */
+    /**
+     * An instance of the customer module for performing customer-related operations.
+     */
     private static final ICustomeModule customerModule = new CustomerModule();
 
-    /** An instance of the order module for performing order-related operations. */
+    /**
+     * An instance of the order module for performing order-related operations.
+     */
     private static final IOrderModule orderModule = new OrderModule();
 
     /**

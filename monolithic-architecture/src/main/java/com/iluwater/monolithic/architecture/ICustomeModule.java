@@ -5,7 +5,9 @@ package com.iluwater.monolithic.architecture;
  */
 public interface ICustomeModule {
 
-    /** Path to the database file where customer data is stored. */
+    /**
+     * Path to the database file where customer data is stored.
+     */
     String DB_FILE = "monolithic-architecture/etc/localdb.txt";
 
     /**
@@ -20,7 +22,7 @@ public interface ICustomeModule {
     /**
      * Updates the credit limit for the customer with the specified ID.
      *
-     * @param customerId The ID of the customer whose credit limit needs to be updated.
+     * @param customerId     The ID of the customer whose credit limit needs to be updated.
      * @param newCreditLimit The new credit limit value to be set for the customer.
      * @throws Exception If any error occurs while updating the credit limit.
      */

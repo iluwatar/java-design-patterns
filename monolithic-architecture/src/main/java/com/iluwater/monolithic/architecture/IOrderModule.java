@@ -13,7 +13,7 @@ public interface IOrderModule {
      * Create a new order for a given customer with a specified total.
      *
      * @param customerId The ID of the customer making the order.
-     * @param total The total amount for the order.
+     * @param total      The total amount for the order.
      * @return The ID of the newly created order.
      * @throws Exception If there's an error during order creation.
      */

@@ -4,7 +4,7 @@ import lombok.Synchronized;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
 
 /**
  * Module class for managing customer-related operations.
@@ -38,7 +38,7 @@ public class CustomerModule implements ICustomeModule {
                 break; // end of CUSTOMERS section
             }
 
-            if(customerSectionStarted){
+            if (customerSectionStarted) {
                 infoStart = true;
                 customerSectionStarted = false;
                 continue;
@@ -59,7 +59,7 @@ public class CustomerModule implements ICustomeModule {
     /**
      * Updates the credit limit for a given customer.
      *
-     * @param customerId The ID of the customer.
+     * @param customerId     The ID of the customer.
      * @param newCreditLimit The new credit limit for the customer.
      * @throws Exception If there's an error during data update.
      */
@@ -126,7 +126,7 @@ public class CustomerModule implements ICustomeModule {
     /**
      * Updates the credit limit for a specified customer.
      *
-     * @param customerId The ID of the customer to update.
+     * @param customerId     The ID of the customer to update.
      * @param newCreditLimit The new credit limit for the customer.
      * @throws Exception If there's an error during data update.
      */
