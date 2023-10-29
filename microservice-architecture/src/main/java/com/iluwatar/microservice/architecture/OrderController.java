@@ -1,7 +1,6 @@
-package com.oscar.microservice.architecture;
+package com.iluwatar.microservice.architecture;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 // Order Service and Components

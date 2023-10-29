@@ -1,4 +1,4 @@
-package com.oscar.microservice.architecture;
+package com.iluwatar.microservice.architecture;
 
 import org.springframework.stereotype.Service;
 
