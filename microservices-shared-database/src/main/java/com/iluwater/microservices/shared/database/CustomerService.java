@@ -6,7 +6,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Scanner;
-
 import lombok.Synchronized;
 import org.springframework.stereotype.Service;
 

@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
-
 import lombok.Synchronized;
 import org.springframework.stereotype.Service;
 
@@ -134,20 +133,20 @@ public class OrderService implements OrderServiceInterface {
    */
   @Synchronized
   private int insertOrder(List<String> order) throws Exception {
-    int orderID = -1;
+    int orderId = -1;
     var path = Paths.get(DB_FILE);
     var lines = new ArrayList<>(Files.readAllLines(path));
     var index = lines.indexOf("ORDERS") + 2;
     while (index < lines.size()) {
       var parts = lines.get(index).split(", ");
-      orderID = Integer.parseInt(parts[0]);
+      orderId = Integer.parseInt(parts[0]);
       index++;
     }
-    orderID++;
-    order.add(0, String.valueOf(orderID));
+    orderId++;
+    order.add(0, String.valueOf(orderId));
     lines.add(index, String.join(", ", order));
     Files.write(path, lines);
-    return orderID;
+    return orderId;
   }
 
   /**
