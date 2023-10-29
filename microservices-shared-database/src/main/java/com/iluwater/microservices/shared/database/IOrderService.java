@@ -8,6 +8,11 @@ import java.util.Optional;
 public interface IOrderService {
 
     /**
+     * The path to the database file.
+     */
+    String DB_FILE = "microservice-shared-database/etc/localdb.txt";
+
+    /**
      * Create a new order for a given customer with a specified total.
      *
      * @param customerId The ID of the customer making the order.

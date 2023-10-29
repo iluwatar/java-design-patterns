@@ -146,7 +146,7 @@ curl -X POST http://localhost:8080/api/orders/create/234 -d "amount=5000"
 ```  
 ## Class diagram
 
-![alt text](./etc/shared-database.png "Microservices : shared-database")
+![alt text](./etc/microservices-shared-database.png "Microservices : shared-database")
 
 ## Applicability
 

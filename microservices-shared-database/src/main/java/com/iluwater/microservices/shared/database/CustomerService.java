@@ -14,8 +14,6 @@ import java.util.*;
 @Service
 public class CustomerService implements ICustomerService {
 
-    private static final String DB_FILE = "microservice-shared-database/etc/localdb.txt";
-
     /**
      * Finds a customer in the local database file by their customer ID.
      *

@@ -13,7 +13,6 @@ import java.util.*;
  */
 @Service
 public class OrderService implements IOrderService{
-    private static final String DB_FILE = "microservice-shared-database/etc/localdb.txt";
 
     /**
      * Retrieves all the orders associated with a given customer ID.

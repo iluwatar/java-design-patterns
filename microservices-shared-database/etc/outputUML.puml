@@ -1,10 +1,10 @@
 @startuml
 interface com.iluwater.microservices.shared.database.IOrderService {
+- String DB_FILE
 ~ String makeOrder(int,double)
 ~ Optional<String[]> getOrderTotalByCustomerId(int)
 }
 class com.iluwater.microservices.shared.database.CustomerService {
-- {static} String DB_FILE
 - Optional<String[]> findCustomerById(int)
 - void setCreditLimit(int,double)
 - String createCustomer(double)
@@ -18,7 +18,6 @@ class com.iluwater.microservices.shared.database.OrderController {
 + ResponseEntity<String> createOrder(int,double)
 }
 class com.iluwater.microservices.shared.database.OrderService {
-- {static} String DB_FILE
 - Optional<String[]> findOrderTotalByCustomerId(int)
 - String createOrder(int,double)
 - int insertOrder(List<String>)
@@ -32,6 +31,7 @@ class com.iluwater.microservices.shared.database.CustomerController {
 + ResponseEntity<String> createCustomer(double)
 }
 interface com.iluwater.microservices.shared.database.ICustomerService {
+- String DB_FILE
 ~ Optional<String[]> getCustomerById(int)
 ~ void updateCreditLimit(int,double)
 ~ String newCustomer(double)
