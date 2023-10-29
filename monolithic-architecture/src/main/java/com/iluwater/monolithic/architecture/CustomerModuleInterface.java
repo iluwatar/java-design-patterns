@@ -3,7 +3,7 @@ package com.iluwater.monolithic.architecture;
 /**
  * Module interface defining the operations related to customers.
  */
-public interface ICustomeModule {
+public interface CustomerModuleInterface {
 
   /**
    * Path to the database file where customer data is stored.

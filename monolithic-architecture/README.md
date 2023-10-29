@@ -49,7 +49,7 @@ Next we can introduce our `CustomerModule`. It contains `getCustomer`, `updateCr
 /**
  * Module interface defining the operations related to customers.
  */
-public interface ICustomeModule {
+public interface CustomerModuleInterface {
 
     /** Path to the database file where customer data is stored. */
     String DB_FILE = "monolithic-architecture/etc/localdb.txt";
@@ -90,7 +90,7 @@ Then we can introduce our `OrderModule`. It contains find method `getOrderTotalB
 /**
  * Module interface defining the operations related to orders.
  */
-public interface IOrderModule {
+public interface OrderModuleInterface {
 
     ICustomeModule customerModule = new CustomerModule();
     String DB_FILE = "monolithic-architecture/etc/localdb.txt";

@@ -4,9 +4,9 @@ package com.iluwater.monolithic.architecture;
 /**
  * Module interface defining the operations related to orders.
  */
-public interface IOrderModule {
+public interface OrderModuleInterface {
 
-  ICustomeModule customerModule = new CustomerModule();
+  CustomerModuleInterface customerModule = new CustomerModule();
   String DB_FILE = "monolithic-architecture/etc/localdb.txt";
 
   /**

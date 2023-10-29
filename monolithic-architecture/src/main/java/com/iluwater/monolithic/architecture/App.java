@@ -12,8 +12,8 @@ import java.util.Scanner;
  * creating new customers, making orders, and fetching order totals for a given customer.
  * </p>
  * <p>
- * The underlying data operations are performed through {@link ICustomeModule} and
- * {@link IOrderModule} implementations.
+ * The underlying data operations are performed through {@link CustomerModuleInterface} and
+ * {@link OrderModuleInterface} implementations.
  * </p>
  */
 public class App {
@@ -21,12 +21,12 @@ public class App {
   /**
    * An instance of the customer module for performing customer-related operations.
    */
-  private static final ICustomeModule customerModule = new CustomerModule();
+  private static final CustomerModuleInterface customerModule = new CustomerModule();
 
   /**
    * An instance of the order module for performing order-related operations.
    */
-  private static final IOrderModule orderModule = new OrderModule();
+  private static final OrderModuleInterface orderModule = new OrderModule();
 
   /**
    * The main entry point of the application.

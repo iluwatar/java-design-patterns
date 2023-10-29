@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Module class responsible for order-related operations.
  */
-public class OrderModule implements IOrderModule {
+public class OrderModule implements OrderModuleInterface {
 
   /**
    * Retrieves all the orders associated with a given customer ID.
@@ -84,7 +84,7 @@ public class OrderModule implements IOrderModule {
    */
   @Synchronized
   private String createOrder(int customerId, double amount) throws Exception {
-    var newOrderID = -1;
+    var newOrderId = -1;
     var customer = customerModule.getCustomerById(customerId);
 
     if (customer.length == 1) throw new Exception(customer[0]);
@@ -98,7 +98,7 @@ public class OrderModule implements IOrderModule {
       var orderTotal = orders.length == 1 ? 0 : calculateAllOrders(orders);
 
       if (orderTotal + amount <= creditLimit) {
-        newOrderID = insertOrder(new ArrayList<>(List.of(
+        newOrderId = insertOrder(new ArrayList<>(List.of(
             String.valueOf(customerId),
             "ACCEPTED",
             String.valueOf(amount)
@@ -110,7 +110,7 @@ public class OrderModule implements IOrderModule {
       throw new Exception("Order for " + customerId + " not found.");
     }
 
-    return newOrderID == -1 ? "New order created failed." : String.valueOf(newOrderID);
+    return newOrderId == -1 ? "New order created failed." : String.valueOf(newOrderId);
   }
 
   /**
