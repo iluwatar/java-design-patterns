@@ -1,8 +1,5 @@
 package com.iluwater.microservices.shared.database;
 
-import lombok.Synchronized;
-import org.springframework.stereotype.Service;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -10,11 +7,14 @@ import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Scanner;
 
+import lombok.Synchronized;
+import org.springframework.stereotype.Service;
+
 /**
  * Service class for managing customer-related operations.
  */
 @Service
-public class CustomerService implements ICustomerService {
+public class CustomerService implements CustomerServiceInterface {
 
   /**
    * Finds a customer in the local database file by their customer ID.
@@ -81,21 +81,21 @@ public class CustomerService implements ICustomerService {
    */
   @Synchronized
   private String createCustomer(double creditLimit) throws Exception {
-    int newCustomerID = -1;
+    int newCustomerId = -1;
     var path = Paths.get(DB_FILE);
     var lines = new ArrayList<>(Files.readAllLines(path));
     var index = lines.indexOf("CUSTOMERS") + 2;
     while (!lines.get(index).isEmpty()) {
       var parts = lines.get(index).split(", ");
-      newCustomerID = Integer.parseInt(parts[0]);
+      newCustomerId = Integer.parseInt(parts[0]);
       index++;
     }
-    newCustomerID++;
-    var customerData = String.join(", ", String.valueOf(newCustomerID), String.valueOf(creditLimit));
+    newCustomerId++;
+    var customerData = String.join(", ", String.valueOf(newCustomerId), String.valueOf(creditLimit));
     lines.add(index, customerData);
     Files.write(path, lines);
 
-    return newCustomerID == -1 ? "New customer created failed." : String.valueOf(newCustomerID);
+    return newCustomerId == -1 ? "New customer created failed." : String.valueOf(newCustomerId);
   }
 
   /**

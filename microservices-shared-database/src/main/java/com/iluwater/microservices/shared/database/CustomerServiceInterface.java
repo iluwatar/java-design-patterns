@@ -5,7 +5,7 @@ import java.util.Optional;
 /**
  * Service interface defining the operations related to customers.
  */
-public interface ICustomerService {
+public interface CustomerServiceInterface {
 
   /**
    * The path to the database file.

@@ -1,11 +1,11 @@
 package com.iluwater.microservices.shared.database;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 /**
  * REST Controller for handling customer-related endpoints.
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class CustomerController {
 
   @Autowired
-  private ICustomerService customerService;
+  private CustomerServiceInterface customerService;
 
   /**
    * Endpoint to retrieve a specific customer's details by their ID.

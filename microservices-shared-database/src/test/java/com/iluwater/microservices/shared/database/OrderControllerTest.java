@@ -27,9 +27,9 @@ class OrderControllerTest {
   // MockMvc instance to mock and test Spring MVC behavior
   private MockMvc mockMvc;
 
-  // Mock instance of the IOrderService interface
+  // Mock instance of the OrderServiceInterface interface
   @Mock
-  private IOrderService orderService;
+  private OrderServiceInterface orderService;
 
   // Controller instance with mocked services injected
   @InjectMocks

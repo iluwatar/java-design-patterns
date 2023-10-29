@@ -26,9 +26,9 @@ class CustomerControllerTest {
   // MockMvc instance to mock and test Spring MVC behavior
   private MockMvc mockMvc;
 
-  // Mock instance of the ICustomerService interface
+  // Mock instance of the CustomerServiceInterface interface
   @Mock
-  private ICustomerService customerService;
+  private CustomerServiceInterface customerService;
 
   // Controller instance with mocked services injected
   @InjectMocks

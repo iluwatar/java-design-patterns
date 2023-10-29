@@ -28,10 +28,10 @@ public class CombinedControllerTest {
 
   // Mock instances of the services
   @Mock
-  private ICustomerService customerService;
+  private CustomerServiceInterface customerService;
 
   @Mock
-  private IOrderService orderService;
+  private OrderServiceInterface orderService;
 
   // Controller instances with injected mock services
   @InjectMocks

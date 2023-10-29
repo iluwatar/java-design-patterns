@@ -1,8 +1,5 @@
 package com.iluwater.microservices.shared.database;
 
-import lombok.Synchronized;
-import org.springframework.stereotype.Service;
-
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -11,11 +8,14 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import lombok.Synchronized;
+import org.springframework.stereotype.Service;
+
 /**
  * Service class responsible for order-related operations.
  */
 @Service
-public class OrderService implements IOrderService {
+public class OrderService implements OrderServiceInterface {
 
   /**
    * Retrieves all the orders associated with a given customer ID.
@@ -98,7 +98,7 @@ public class OrderService implements IOrderService {
    */
   @Synchronized
   private String createOrder(int customerId, double amount) throws Exception {
-    var newOrderID = -1;
+    var newOrderId = -1;
     var creditLimit = findCreditLimitByCustomerId(customerId);
     var orders = findOrderTotalByCustomerId(customerId);
 
@@ -108,7 +108,7 @@ public class OrderService implements IOrderService {
         var orderTotal = calculateAllOrders(orders.get());
 
         if (orderTotal + amount <= creditLimit) {
-          newOrderID = insertOrder(new ArrayList<>(List.of(
+          newOrderId = insertOrder(new ArrayList<>(List.of(
               String.valueOf(customerId),
               "ACCEPTED",
               String.valueOf(amount)
@@ -122,7 +122,7 @@ public class OrderService implements IOrderService {
     } else {
       throw new Exception("Customer not found.");
     }
-    return newOrderID == -1 ? "New order created failed." : String.valueOf(newOrderID);
+    return newOrderId == -1 ? "New order created failed." : String.valueOf(newOrderId);
   }
 
   /**

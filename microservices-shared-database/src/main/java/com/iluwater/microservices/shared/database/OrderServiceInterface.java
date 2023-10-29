@@ -5,7 +5,7 @@ import java.util.Optional;
 /**
  * Service interface defining the operations related to orders.
  */
-public interface IOrderService {
+public interface OrderServiceInterface {
 
   /**
    * The path to the database file.

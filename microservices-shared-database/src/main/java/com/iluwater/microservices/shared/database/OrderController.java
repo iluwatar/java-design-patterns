@@ -1,10 +1,10 @@
 package com.iluwater.microservices.shared.database;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
 
 /**
  * REST Controller responsible for handling order-related endpoints.
@@ -14,7 +14,7 @@ import java.util.Optional;
 public class OrderController {
 
   @Autowired
-  private IOrderService orderService;
+  private OrderServiceInterface orderService;
 
   /**
    * Endpoint to retrieve the total orders of a specific customer.
