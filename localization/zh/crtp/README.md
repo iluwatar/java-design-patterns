@@ -47,7 +47,7 @@ public interface Fighter<T> {
 
 MmaFighter类用于实例化按重量级别区分的拳手
 
-```java
+``` Java
 public class MmaFighter<T extends MmaFighter<T>> implements Fighter<T> {
 
   private final String name;
@@ -75,7 +75,7 @@ public class MmaFighter<T extends MmaFighter<T>> implements Fighter<T> {
 
 以下是 MmaFighter 的一些子类型
 
-```java
+```Java
 class MmaBantamweightFighter extends MmaFighter<MmaBantamweightFighter> {
 
   public MmaBantamweightFighter(String name, String surname, String nickName, String speciality) {
@@ -95,7 +95,7 @@ public class MmaHeavyweightFighter extends MmaFighter<MmaHeavyweightFighter> {
 
 允许拳手与相同重量级的对手交手，如果对手是不同重量级，则会出现错误
 
-```java
+``` Java
 MmaBantamweightFighter fighter1 = new MmaBantamweightFighter("Joe", "Johnson", "The Geek", "Muay Thai");
 MmaBantamweightFighter fighter2 = new MmaBantamweightFighter("Ed", "Edwards", "The Problem Solver", "Judo");
 fighter1.fight(fighter2); // This is fine
