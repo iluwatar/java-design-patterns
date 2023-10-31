@@ -31,7 +31,7 @@ Wikipedia dice
 
 > Il pattern observer è un design pattern in cui un oggetto, chiamato soggetto,
 > mantiene una lista dei suoi dipendenti, chiamati osservatori, e li avvisa automaticamente di eventuali cambiamenti di stato,
-> di solito chiamando uno dei loro metodi. _(Testo tradotto dalla voce Adapter Pattern da Wikipedia in lingua inglese)._
+> di solito chiamando uno dei loro metodi. _(Testo tradotto dalla voce Observer Pattern da Wikipedia in lingua inglese)._
 
 **Esempio di codice**
 
