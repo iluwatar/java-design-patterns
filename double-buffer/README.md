@@ -1,11 +1,11 @@
----  
+---
 title: Double Buffer 
 category: Behavioral
 language: en
 tag:  
  - Performance
  - Game programming  
----  
+---
   
 ## Intent  
 Double buffering is a term used to describe a device that has two buffers. The usage of multiple 
