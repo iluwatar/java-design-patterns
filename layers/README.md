@@ -28,6 +28,7 @@ Wikipedia says
 > In software engineering, multitier architecture (often referred to as n-tier architecture) or
 > multilayered architecture is a client–server architecture in which presentation, application
 > processing, and data management functions are physically separated.
+
 **Programmatic Example**
 
 On the data layer, we keep our cake building blocks. `Cake` consist of layers and topping.
