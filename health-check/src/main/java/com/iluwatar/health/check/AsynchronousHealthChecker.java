@@ -86,8 +86,10 @@ public class AsynchronousHealthChecker {
    *     executor service to terminate
    */
   private boolean awaitTerminationWithTimeout() throws InterruptedException {
+    boolean isTerminationIncomplete = !healthCheckExecutor.awaitTermination(5, TimeUnit.SECONDS);
+    LOGGER.info("Termination status: {}", isTerminationIncomplete);
     // Await termination and return true if termination is incomplete (timeout elapsed)
-    return !healthCheckExecutor.awaitTermination(5, TimeUnit.SECONDS);
+    return isTerminationIncomplete;
   }
 
   /** Shuts down the executor service, allowing in-flight tasks to complete. */

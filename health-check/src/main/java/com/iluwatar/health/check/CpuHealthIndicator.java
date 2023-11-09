@@ -63,9 +63,12 @@ public class CpuHealthIndicator implements HealthIndicator {
   private String defaultWarningMessage;
 
   private static final String ERROR_MESSAGE = "error";
+
   private static final String HIGH_SYSTEM_CPU_LOAD_MESSAGE = "High system CPU load: {}";
   private static final String HIGH_PROCESS_CPU_LOAD_MESSAGE = "High process CPU load: {}";
   private static final String HIGH_LOAD_AVERAGE_MESSAGE = "High load average: {}";
+  private static final String HIGH_PROCESS_CPU_LOAD_MESSAGE_WITHOUT_PARAM = "High process CPU load";
+  private static final String HIGH_SYSTEM_CPU_LOAD_MESSAGE_WITHOUT_PARAM = "High system CPU load";
   private static final String HIGH_LOAD_AVERAGE_MESSAGE_WITHOUT_PARAM = "High load average";
 
   /**
@@ -99,13 +102,13 @@ public class CpuHealthIndicator implements HealthIndicator {
       LOGGER.error(HIGH_SYSTEM_CPU_LOAD_MESSAGE, systemCpuLoad);
       return Health.down()
           .withDetails(details)
-          .withDetail(ERROR_MESSAGE, HIGH_SYSTEM_CPU_LOAD_MESSAGE)
+          .withDetail(ERROR_MESSAGE, HIGH_SYSTEM_CPU_LOAD_MESSAGE_WITHOUT_PARAM)
           .build();
     } else if (processCpuLoad > processCpuLoadThreshold) {
       LOGGER.error(HIGH_PROCESS_CPU_LOAD_MESSAGE, processCpuLoad);
       return Health.down()
           .withDetails(details)
-          .withDetail(ERROR_MESSAGE, HIGH_PROCESS_CPU_LOAD_MESSAGE)
+          .withDetail(ERROR_MESSAGE, HIGH_PROCESS_CPU_LOAD_MESSAGE_WITHOUT_PARAM)
           .build();
     } else if (loadAverage > (availableProcessors * loadAverageThreshold)) {
       LOGGER.error(HIGH_LOAD_AVERAGE_MESSAGE, loadAverage);

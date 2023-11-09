@@ -1,9 +1,12 @@
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.when;
 
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import com.iluwatar.health.check.AsynchronousHealthChecker;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.List;
 import java.util.concurrent.*;
 import java.util.function.Supplier;
@@ -11,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.health.Health;
@@ -28,6 +33,12 @@ class AsynchronousHealthCheckerTest {
   private AsynchronousHealthChecker healthChecker;
 
   private ListAppender<ILoggingEvent> listAppender;
+
+  @Mock private ScheduledExecutorService executorService;
+
+  public AsynchronousHealthCheckerTest() {
+    MockitoAnnotations.openMocks(this);
+  }
 
   /**
    * Sets up the test environment before each test method.
@@ -152,7 +163,7 @@ class AsynchronousHealthCheckerTest {
    */
   private boolean doesLogContainMessage(Runnable action) {
     action.run();
-    List<ch.qos.logback.classic.spi.ILoggingEvent> events = listAppender.list;
+    List<ILoggingEvent> events = listAppender.list;
     return events.stream()
         .anyMatch(event -> event.getMessage().contains("Health check executor did not terminate"));
   }
@@ -164,7 +175,6 @@ class AsynchronousHealthCheckerTest {
   @Test
   void whenShutdownExecutorDoesNotTerminateAfterCanceling_LogsErrorMessage() {
     // Given
-    AsynchronousHealthChecker healthChecker = new AsynchronousHealthChecker();
     healthChecker.shutdown(); // To trigger the scenario
 
     // When/Then
@@ -177,5 +187,37 @@ class AsynchronousHealthCheckerTest {
       }
     }
     assertTrue(containsMessage, "Expected log message not found");
+  }
+
+  /**
+   * Verifies that {@link AsynchronousHealthChecker#awaitTerminationWithTimeout} returns true even
+   * if the executor service does not terminate completely within the specified timeout.
+   *
+   * @throws NoSuchMethodException if the private method cannot be accessed.
+   * @throws InvocationTargetException if the private method throws an exception.
+   * @throws IllegalAccessException if the private method is not accessible.
+   * @throws InterruptedException if the thread is interrupted while waiting for the executor
+   *     service to terminate.
+   */
+  @Test
+  void awaitTerminationWithTimeout_IncompleteTermination_ReturnsTrue()
+      throws NoSuchMethodException,
+          InvocationTargetException,
+          IllegalAccessException,
+          InterruptedException {
+
+    // Mock executor service to return false (incomplete termination)
+    when(executorService.awaitTermination(5, TimeUnit.SECONDS)).thenReturn(false);
+
+    // Use reflection to access the private method for code coverage.
+    Method privateMethod =
+        AsynchronousHealthChecker.class.getDeclaredMethod("awaitTerminationWithTimeout");
+    privateMethod.setAccessible(true);
+
+    // When
+    boolean result = (boolean) privateMethod.invoke(healthChecker);
+
+    // Then
+    assertTrue(result, "Termination should be incomplete");
   }
 }
