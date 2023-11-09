@@ -40,9 +40,16 @@ public class CustomHealthIndicator implements HealthIndicator {
   @Cacheable(value = "health-check", unless = "#result.status == 'DOWN'")
   public Health health() {
     LOGGER.info("Performing health check");
-    CompletableFuture<Health> healthFuture = healthChecker.performCheck(this::check, timeoutInSeconds);
+    CompletableFuture<Health> healthFuture =
+        healthChecker.performCheck(this::check, timeoutInSeconds);
     try {
       return healthFuture.get(timeoutInSeconds, TimeUnit.SECONDS);
+    } catch (InterruptedException e) {
+      // Re-interrupt the thread if interrupted during health check
+      Thread.currentThread().interrupt();
+      LOGGER.error("Health check interrupted", e);
+      // Rethrow the InterruptedException to propagate it
+      throw new RuntimeException(e);
     } catch (Exception e) {
       LOGGER.error("Health check failed", e);
       return Health.down(e).build();

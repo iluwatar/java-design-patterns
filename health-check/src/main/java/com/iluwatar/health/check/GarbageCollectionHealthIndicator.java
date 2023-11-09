@@ -49,42 +49,67 @@ public class GarbageCollectionHealthIndicator implements HealthIndicator {
     Map<String, Map<String, String>> gcDetails = new HashMap<>();
 
     for (GarbageCollectorMXBean gcBean : gcBeans) {
-      Map<String, String> collectorDetails = new HashMap<>();
-      long count = gcBean.getCollectionCount();
-      long time = gcBean.getCollectionTime();
-      collectorDetails.put("count", String.format("%d", count));
-      collectorDetails.put("time", String.format("%dms", time));
-
-      String[] memoryPoolNames = gcBean.getMemoryPoolNames();
-      List<String> memoryPoolNamesList = Arrays.asList(memoryPoolNames);
-      if (!memoryPoolNamesList.isEmpty()) {
-        // Use ManagementFactory to get a list of all memory pools and iterate over it
-        for (MemoryPoolMXBean memoryPoolmxbean : memoryPoolMxBeans) {
-          if (memoryPoolMxBeans.contains(memoryPoolmxbean)) {
-            double memoryUsage =
-                memoryPoolmxbean.getUsage().getUsed()
-                    / (double) memoryPoolmxbean.getUsage().getMax();
-            if (memoryUsage > memoryUsageThreshold) {
-              collectorDetails.put(
-                  "warning",
-                  String.format(
-                      "Memory pool '%s' usage is high (%2f%%)",
-                      memoryPoolmxbean.getName(), memoryUsage));
-            }
-
-            collectorDetails.put(
-                "memoryPools", String.format("%s: %s%%", memoryPoolmxbean.getName(), memoryUsage));
-          }
-        }
-      } else {
-        // If the garbage collector does not have any memory pools, log a warning
-        LOGGER.error("Garbage collector '{}' does not have any memory pools", gcBean.getName());
-      }
-
+      Map<String, String> collectorDetails = createCollectorDetails(gcBean, memoryPoolMxBeans);
       gcDetails.put(gcBean.getName(), collectorDetails);
     }
 
     return Health.up().withDetails(gcDetails).build();
+  }
+
+  /**
+   * Creates details for the given garbage collector, including collection count, collection time,
+   * and memory pool information.
+   *
+   * @param gcBean The garbage collector MXBean
+   * @param memoryPoolMxBeans List of memory pool MXBeans
+   * @return Map containing details for the garbage collector
+   */
+  private Map<String, String> createCollectorDetails(
+      GarbageCollectorMXBean gcBean, List<MemoryPoolMXBean> memoryPoolMxBeans) {
+    Map<String, String> collectorDetails = new HashMap<>();
+    long count = gcBean.getCollectionCount();
+    long time = gcBean.getCollectionTime();
+    collectorDetails.put("count", String.format("%d", count));
+    collectorDetails.put("time", String.format("%dms", time));
+
+    String[] memoryPoolNames = gcBean.getMemoryPoolNames();
+    List<String> memoryPoolNamesList = Arrays.asList(memoryPoolNames);
+    if (!memoryPoolNamesList.isEmpty()) {
+      addMemoryPoolDetails(collectorDetails, memoryPoolMxBeans, memoryPoolNamesList);
+    } else {
+      LOGGER.error("Garbage collector '{}' does not have any memory pools", gcBean.getName());
+    }
+
+    return collectorDetails;
+  }
+
+  /**
+   * Adds memory pool details to the collector details.
+   *
+   * @param collectorDetails Map containing details for the garbage collector
+   * @param memoryPoolMxBeans List of memory pool MXBeans
+   * @param memoryPoolNamesList List of memory pool names associated with the garbage collector
+   */
+  private void addMemoryPoolDetails(
+      Map<String, String> collectorDetails,
+      List<MemoryPoolMXBean> memoryPoolMxBeans,
+      List<String> memoryPoolNamesList) {
+    for (MemoryPoolMXBean memoryPoolmxbean : memoryPoolMxBeans) {
+      if (memoryPoolNamesList.contains(memoryPoolmxbean.getName())) {
+        double memoryUsage =
+            memoryPoolmxbean.getUsage().getUsed() / (double) memoryPoolmxbean.getUsage().getMax();
+        if (memoryUsage > memoryUsageThreshold) {
+          collectorDetails.put(
+              "warning",
+              String.format(
+                  "Memory pool '%s' usage is high (%2f%%)",
+                  memoryPoolmxbean.getName(), memoryUsage));
+        }
+
+        collectorDetails.put(
+            "memoryPools", String.format("%s: %s%%", memoryPoolmxbean.getName(), memoryUsage));
+      }
+    }
   }
 
   /**

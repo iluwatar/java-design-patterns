@@ -7,7 +7,6 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,7 +31,7 @@ import org.springframework.http.HttpStatus;
 @SpringBootTest(
     classes = {App.class},
     webEnvironment = WebEnvironment.RANDOM_PORT)
-public class HealthEndpointIntegrationTest {
+class HealthEndpointIntegrationTest {
 
   /** Autowired TestRestTemplate instance for making HTTP requests. */
   @Autowired private TestRestTemplate restTemplate;
@@ -55,7 +54,7 @@ public class HealthEndpointIntegrationTest {
 
   /** Test that the health endpoint returns the UP status. */
   @Test
-  public void healthEndpointReturnsUpStatus() {
+  void healthEndpointReturnsUpStatus() {
     Response response = given(requestSpec).get(getEndpointBasePath()).andReturn();
     logResponseDetails(response);
 
@@ -83,7 +82,7 @@ public class HealthEndpointIntegrationTest {
    * response for visibility.
    */
   @Test
-  public void healthEndpointReturnsCompleteDetails() {
+  void healthEndpointReturnsCompleteDetails() {
     // Make the HTTP request to the health endpoint
     Response response = given(requestSpec).get(getEndpointBasePath()).andReturn();
 
@@ -132,7 +131,7 @@ public class HealthEndpointIntegrationTest {
    * responsive.
    */
   @Test
-  public void livenessEndpointShouldReturnUpStatus() {
+  void livenessEndpointShouldReturnUpStatus() {
     // Make the HTTP request to the liveness endpoint
     Response response = given(requestSpec).get(getEndpointBasePath() + "/liveness").andReturn();
 
@@ -173,7 +172,7 @@ public class HealthEndpointIntegrationTest {
    * a particular component or aspect of the application.
    */
   @Test
-  public void customHealthIndicatorShouldReturnUpStatusAndDetails() {
+  void customHealthIndicatorShouldReturnUpStatusAndDetails() {
     // Make the HTTP request to the health endpoint
     Response response = given(requestSpec).get(getEndpointBasePath()).andReturn();
 

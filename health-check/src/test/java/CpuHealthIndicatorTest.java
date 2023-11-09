@@ -15,7 +15,7 @@ import org.springframework.boot.actuate.health.Status;
  *
  * @author ydoksanbir
  */
-public class CpuHealthIndicatorTest {
+class CpuHealthIndicatorTest {
 
   /** The CPU health indicator to be tested. */
   private CpuHealthIndicator cpuHealthIndicator;
@@ -30,7 +30,7 @@ public class CpuHealthIndicatorTest {
    * instance.
    */
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     // Mock the com.sun.management.OperatingSystemMXBean
     mockOsBean = Mockito.mock(com.sun.management.OperatingSystemMXBean.class);
     cpuHealthIndicator = new CpuHealthIndicator();
@@ -62,7 +62,7 @@ public class CpuHealthIndicatorTest {
    * indicates high system CPU load.
    */
   @Test
-  public void whenSystemCpuLoadIsHigh_thenHealthIsDown() {
+  void whenSystemCpuLoadIsHigh_thenHealthIsDown() {
     // Set thresholds for testing within the test method to avoid issues with Spring's @Value
     cpuHealthIndicator.setSystemCpuLoadThreshold(80.0);
     cpuHealthIndicator.setProcessCpuLoadThreshold(50.0);
@@ -95,7 +95,7 @@ public class CpuHealthIndicatorTest {
    * indicates high process CPU load.
    */
   @Test
-  public void whenProcessCpuLoadIsHigh_thenHealthIsDown() {
+  void whenProcessCpuLoadIsHigh_thenHealthIsDown() {
     // Set thresholds for testing within the test method to avoid issues with Spring's @Value
     cpuHealthIndicator.setSystemCpuLoadThreshold(80.0);
     cpuHealthIndicator.setProcessCpuLoadThreshold(50.0);

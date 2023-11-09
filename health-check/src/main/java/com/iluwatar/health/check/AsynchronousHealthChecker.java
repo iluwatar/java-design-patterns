@@ -27,6 +27,9 @@ public class AsynchronousHealthChecker {
   private final ScheduledExecutorService healthCheckExecutor =
       Executors.newSingleThreadScheduledExecutor();
 
+  private static final String HEALTH_CHECK_TIMEOUT_MESSAGE = "Health check timed out";
+  private static final String HEALTH_CHECK_FAILED_MESSAGE = "Health check failed";
+
   /**
    * Performs a health check asynchronously using the provided health check logic with a specified
    * timeout.
@@ -45,8 +48,8 @@ public class AsynchronousHealthChecker {
     healthCheckExecutor.schedule(
         () -> {
           if (!future.isDone()) {
-            LOGGER.error("Health check timed out");
-            future.completeExceptionally(new TimeoutException("Health check timed out"));
+            LOGGER.error(HEALTH_CHECK_TIMEOUT_MESSAGE);
+            future.completeExceptionally(new TimeoutException(HEALTH_CHECK_TIMEOUT_MESSAGE));
           }
         },
         timeoutInSeconds,
@@ -55,15 +58,15 @@ public class AsynchronousHealthChecker {
     return future.handle(
         (result, throwable) -> {
           if (throwable != null) {
-            LOGGER.error("Health check failed", throwable);
+            LOGGER.error(HEALTH_CHECK_FAILED_MESSAGE, throwable);
             // Check if the throwable is a TimeoutException or caused by a TimeoutException
             Throwable rootCause =
                 throwable instanceof CompletionException ? throwable.getCause() : throwable;
             if (!(rootCause instanceof TimeoutException)) {
-              LOGGER.error("Health check failed", rootCause);
+              LOGGER.error(HEALTH_CHECK_FAILED_MESSAGE, rootCause);
               return Health.down().withException(rootCause).build();
             } else {
-              LOGGER.error("Health check timed out", rootCause);
+              LOGGER.error(HEALTH_CHECK_TIMEOUT_MESSAGE, rootCause);
               // If it is a TimeoutException, rethrow it wrapped in a CompletionException
               throw new CompletionException(rootCause);
             }
@@ -84,13 +87,12 @@ public class AsynchronousHealthChecker {
    */
   private boolean awaitTerminationWithTimeout() throws InterruptedException {
     // Await termination and return true if termination is incomplete (timeout elapsed)
-    return !healthCheckExecutor.awaitTermination(60, TimeUnit.SECONDS);
+    return !healthCheckExecutor.awaitTermination(5, TimeUnit.SECONDS);
   }
 
   /** Shuts down the executor service, allowing in-flight tasks to complete. */
   @PreDestroy
   public void shutdown() {
-    healthCheckExecutor.shutdown(); // Disable new tasks from being submitted
     try {
       // Wait a while for existing tasks to terminate
       if (awaitTerminationWithTimeout()) {

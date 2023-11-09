@@ -1,11 +1,18 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.read.ListAppender;
 import com.iluwatar.health.check.AsynchronousHealthChecker;
+import java.util.List;
 import java.util.concurrent.*;
 import java.util.function.Supplier;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Status;
 
@@ -14,10 +21,13 @@ import org.springframework.boot.actuate.health.Status;
  *
  * @author ydoksanbir
  */
-public class AsynchronousHealthCheckerTest {
+@Slf4j
+class AsynchronousHealthCheckerTest {
 
   /** The {@link AsynchronousHealthChecker} instance to be tested. */
   private AsynchronousHealthChecker healthChecker;
+
+  private ListAppender<ILoggingEvent> listAppender;
 
   /**
    * Sets up the test environment before each test method.
@@ -25,8 +35,18 @@ public class AsynchronousHealthCheckerTest {
    * <p>Creates a new {@link AsynchronousHealthChecker} instance.
    */
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     healthChecker = new AsynchronousHealthChecker();
+    // Replace the logger with the root logger of logback
+    LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+
+    // Create and start a ListAppender
+    LoggerContext loggerContext = (LoggerContext) LoggerFactory.getILoggerFactory();
+    listAppender = new ListAppender<>();
+    listAppender.start();
+
+    // Add the appender to the root logger context
+    loggerContext.getLogger(Logger.ROOT_LOGGER_NAME).addAppender(listAppender);
   }
 
   /**
@@ -35,8 +55,9 @@ public class AsynchronousHealthCheckerTest {
    * <p>Shuts down the {@link AsynchronousHealthChecker} instance to prevent resource leaks.
    */
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     healthChecker.shutdown();
+    ((LoggerContext) LoggerFactory.getILoggerFactory()).reset();
   }
 
   /**
@@ -47,8 +68,7 @@ public class AsynchronousHealthCheckerTest {
    * performCheck()} method completes normally and returns the expected health object.
    */
   @Test
-  public void whenPerformCheck_thenCompletesNormally()
-      throws ExecutionException, InterruptedException {
+  void whenPerformCheck_thenCompletesNormally() throws ExecutionException, InterruptedException {
     // Given
     Supplier<Health> healthSupplier = () -> Health.up().build();
 
@@ -68,7 +88,7 @@ public class AsynchronousHealthCheckerTest {
    * performCheck()} method returns a health object with a status of UP.
    */
   @Test
-  public void whenHealthCheckIsSuccessful_ReturnsHealthy()
+  void whenHealthCheckIsSuccessful_ReturnsHealthy()
       throws ExecutionException, InterruptedException {
     // Arrange
     Supplier<Health> healthSupplier = () -> Health.up().build();
@@ -89,7 +109,7 @@ public class AsynchronousHealthCheckerTest {
    * to submit a new health check task.
    */
   @Test
-  public void whenShutdown_thenRejectsNewTasks() {
+  void whenShutdown_thenRejectsNewTasks() {
     // Given
     healthChecker.shutdown();
 
@@ -109,7 +129,7 @@ public class AsynchronousHealthCheckerTest {
    * containing the exception message.
    */
   @Test
-  public void whenHealthCheckThrowsException_thenReturnsDown() {
+  void whenHealthCheckThrowsException_thenReturnsDown() {
     // Arrange
     Supplier<Health> healthSupplier =
         () -> {
@@ -122,5 +142,40 @@ public class AsynchronousHealthCheckerTest {
     assertEquals(Status.DOWN, health.getStatus());
     String errorMessage = health.getDetails().get("error").toString();
     assertTrue(errorMessage.contains("Health check failed"));
+  }
+
+  /**
+   * Helper method to check if the log contains a specific message.
+   *
+   * @param action The action that triggers the log statement.
+   * @return True if the log contains the message after the action is performed, false otherwise.
+   */
+  private boolean doesLogContainMessage(Runnable action) {
+    action.run();
+    List<ch.qos.logback.classic.spi.ILoggingEvent> events = listAppender.list;
+    return events.stream()
+        .anyMatch(event -> event.getMessage().contains("Health check executor did not terminate"));
+  }
+
+  /**
+   * Tests that the {@link AsynchronousHealthChecker#shutdown()} method logs an error message when
+   * the executor does not terminate after attempting to cancel tasks.
+   */
+  @Test
+  void whenShutdownExecutorDoesNotTerminateAfterCanceling_LogsErrorMessage() {
+    // Given
+    AsynchronousHealthChecker healthChecker = new AsynchronousHealthChecker();
+    healthChecker.shutdown(); // To trigger the scenario
+
+    // When/Then
+    boolean containsMessage = doesLogContainMessage(healthChecker::shutdown);
+    if (!containsMessage) {
+      List<ch.qos.logback.classic.spi.ILoggingEvent> events = listAppender.list;
+      LOGGER.info("Logged events:");
+      for (ch.qos.logback.classic.spi.ILoggingEvent event : events) {
+        LOGGER.info(event.getMessage());
+      }
+    }
+    assertTrue(containsMessage, "Expected log message not found");
   }
 }

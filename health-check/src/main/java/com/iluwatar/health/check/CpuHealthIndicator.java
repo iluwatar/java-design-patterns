@@ -62,6 +62,12 @@ public class CpuHealthIndicator implements HealthIndicator {
   @Value("${cpu.warning.message:High load average}")
   private String defaultWarningMessage;
 
+  private static final String ERROR_MESSAGE = "error";
+  private static final String HIGH_SYSTEM_CPU_LOAD_MESSAGE = "High system CPU load: {}";
+  private static final String HIGH_PROCESS_CPU_LOAD_MESSAGE = "High process CPU load: {}";
+  private static final String HIGH_LOAD_AVERAGE_MESSAGE = "High load average: {}";
+  private static final String HIGH_LOAD_AVERAGE_MESSAGE_WITHOUT_PARAM = "High load average";
+
   /**
    * Checks the health of the system's CPU and returns a health indicator object.
    *
@@ -72,7 +78,9 @@ public class CpuHealthIndicator implements HealthIndicator {
 
     if (!(osBean instanceof com.sun.management.OperatingSystemMXBean sunOsBean)) {
       LOGGER.error("Unsupported operating system MXBean: {}", osBean.getClass().getName());
-      return Health.unknown().withDetail("error", "Unsupported operating system MXBean").build();
+      return Health.unknown()
+          .withDetail(ERROR_MESSAGE, "Unsupported operating system MXBean")
+          .build();
     }
 
     double systemCpuLoad = sunOsBean.getCpuLoad() * 100;
@@ -88,17 +96,23 @@ public class CpuHealthIndicator implements HealthIndicator {
     details.put("loadAverage", loadAverage);
 
     if (systemCpuLoad > systemCpuLoadThreshold) {
-      LOGGER.error("High system CPU load: {}", systemCpuLoad);
-      return Health.down().withDetails(details).withDetail("error", "High system CPU load").build();
-    } else if (processCpuLoad > processCpuLoadThreshold) {
-      LOGGER.error("High process CPU load: {}", processCpuLoad);
+      LOGGER.error(HIGH_SYSTEM_CPU_LOAD_MESSAGE, systemCpuLoad);
       return Health.down()
           .withDetails(details)
-          .withDetail("error", "High process CPU load")
+          .withDetail(ERROR_MESSAGE, HIGH_SYSTEM_CPU_LOAD_MESSAGE)
+          .build();
+    } else if (processCpuLoad > processCpuLoadThreshold) {
+      LOGGER.error(HIGH_PROCESS_CPU_LOAD_MESSAGE, processCpuLoad);
+      return Health.down()
+          .withDetails(details)
+          .withDetail(ERROR_MESSAGE, HIGH_PROCESS_CPU_LOAD_MESSAGE)
           .build();
     } else if (loadAverage > (availableProcessors * loadAverageThreshold)) {
-      LOGGER.error("High load average: {}", loadAverage);
-      return Health.up().withDetails(details).withDetail("warning", defaultWarningMessage).build();
+      LOGGER.error(HIGH_LOAD_AVERAGE_MESSAGE, loadAverage);
+      return Health.up()
+          .withDetails(details)
+          .withDetail(ERROR_MESSAGE, HIGH_LOAD_AVERAGE_MESSAGE_WITHOUT_PARAM)
+          .build();
     } else {
       return Health.up().withDetails(details).build();
     }

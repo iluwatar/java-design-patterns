@@ -14,7 +14,7 @@ import org.springframework.retry.support.RetryTemplate;
  * @author ydoksanbir
  */
 @SpringBootTest(classes = RetryConfig.class)
-public class RetryConfigTest {
+class RetryConfigTest {
 
   /** Injected RetryTemplate instance. */
   @Autowired private RetryTemplate retryTemplate;
@@ -26,7 +26,7 @@ public class RetryConfigTest {
    * and that the total elapsed time for the retries is at least four seconds.
    */
   @Test
-  public void shouldRetryThreeTimesWithTwoSecondDelay() {
+  void shouldRetryThreeTimesWithTwoSecondDelay() {
     AtomicInteger attempts = new AtomicInteger();
     Runnable retryableOperation =
         () -> {
