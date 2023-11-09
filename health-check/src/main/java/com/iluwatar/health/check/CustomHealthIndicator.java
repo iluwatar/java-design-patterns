@@ -34,6 +34,7 @@ public class CustomHealthIndicator implements HealthIndicator {
   /**
    * Perform a health check and cache the result.
    *
+   * @throws HealthCheckInterruptedException if the health check is interrupted
    * @return the health status of the application
    */
   @Override
@@ -45,11 +46,9 @@ public class CustomHealthIndicator implements HealthIndicator {
     try {
       return healthFuture.get(timeoutInSeconds, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      // Re-interrupt the thread if interrupted during health check
       Thread.currentThread().interrupt();
       LOGGER.error("Health check interrupted", e);
-      // Rethrow the InterruptedException to propagate it
-      throw new RuntimeException(e);
+      throw new HealthCheckInterruptedException(e);
     } catch (Exception e) {
       LOGGER.error("Health check failed", e);
       return Health.down(e).build();
