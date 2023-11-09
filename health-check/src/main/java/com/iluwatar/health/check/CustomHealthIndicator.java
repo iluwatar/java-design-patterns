@@ -34,8 +34,8 @@ public class CustomHealthIndicator implements HealthIndicator {
   /**
    * Perform a health check and cache the result.
    *
-   * @throws HealthCheckInterruptedException if the health check is interrupted
    * @return the health status of the application
+   * @throws HealthCheckInterruptedException if the health check is interrupted
    */
   @Override
   @Cacheable(value = "health-check", unless = "#result.status == 'DOWN'")
