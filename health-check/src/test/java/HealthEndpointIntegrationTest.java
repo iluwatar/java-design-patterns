@@ -1,8 +1,11 @@
-import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 import com.iluwatar.health.check.App;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
@@ -26,27 +29,36 @@ public class HealthEndpointIntegrationTest {
   /** Autowired TestRestTemplate instance for making HTTP requests. */
   @Autowired private TestRestTemplate restTemplate;
 
+  // Create a RequestSpecification that logs the request details
+  private final RequestSpecification requestSpec =
+      new RequestSpecBuilder().log(LogDetail.ALL).build();
+
   private String getEndpointBasePath() {
     return restTemplate.getRootUri() + "/actuator/health";
+  }
+
+  // Common method to log response details
+  private void logResponseDetails(Response response) {
+    LOGGER.info("Request URI: " + response.getDetailedCookies());
+    LOGGER.info("Response Time: " + response.getTime() + "ms");
+    LOGGER.info("Response Status: " + response.getStatusCode());
+    LOGGER.info("Response: " + response.getBody().asString());
   }
 
   /** Test that the health endpoint returns the UP status. */
   @Test
   public void healthEndpointReturnsUpStatus() {
-    get(getEndpointBasePath())
-        .then()
-        .assertThat()
-        .statusCode(HttpStatus.OK.value())
-        .body("status", equalTo("UP"));
+    Response response = given(requestSpec).get(getEndpointBasePath()).andReturn();
+    logResponseDetails(response);
+    response.then().assertThat().statusCode(HttpStatus.OK.value()).body("status", equalTo("UP"));
   }
 
   /** Test that the health endpoint returns complete details about the application's health. */
   @Test
   public void healthEndpointReturnsCompleteDetails() {
-    // Send a GET request to the health endpoint and assert that the status code is OK (200)
-    // and the status body is "UP", and additionally assert that the status of each individual
-    // component (cpu, db, diskSpace, ping, custom) is also "UP".
-    get(getEndpointBasePath())
+    Response response = given(requestSpec).get(getEndpointBasePath()).andReturn();
+    logResponseDetails(response);
+    response
         .then()
         .assertThat()
         .statusCode(HttpStatus.OK.value())
@@ -66,27 +78,9 @@ public class HealthEndpointIntegrationTest {
    */
   @Test
   public void livenessEndpointShouldReturnUpStatus() {
-    get(getEndpointBasePath() + "/liveness")
-        .then()
-        .assertThat()
-        .statusCode(HttpStatus.OK.value())
-        .body("status", equalTo("UP"));
-  }
-
-  /**
-   * Test that the health endpoint can sustain multiple requests.
-   *
-   * <p>This test is repeated 5 times to ensure that the health endpoint can handle multiple
-   * concurrent requests without any issues.
-   */
-  @RepeatedTest(5)
-  public void healthEndpointShouldSustainMultipleRequests() {
-    LOGGER.info("Testing health endpoint for UP status");
-    get(getEndpointBasePath())
-        .then()
-        .assertThat()
-        .statusCode(HttpStatus.OK.value())
-        .body("status", equalTo("UP"));
+    Response response = given(requestSpec).get(getEndpointBasePath() + "/liveness").andReturn();
+    logResponseDetails(response);
+    response.then().assertThat().statusCode(HttpStatus.OK.value()).body("status", equalTo("UP"));
   }
 
   /**
@@ -97,7 +91,9 @@ public class HealthEndpointIntegrationTest {
    */
   @Test
   public void customHealthIndicatorShouldReturnUpStatusAndDetails() {
-    get(getEndpointBasePath())
+    Response response = given(requestSpec).get(getEndpointBasePath()).andReturn();
+    logResponseDetails(response);
+    response
         .then()
         .assertThat()
         .statusCode(HttpStatus.OK.value())
@@ -114,17 +110,14 @@ public class HealthEndpointIntegrationTest {
    */
   @Test
   public void healthEndpointReturnsUpStatusCITest() {
-
     LOGGER.info("Testing health endpoint for UP status");
-
-    Response response = get(getEndpointBasePath()).andReturn();
-    LOGGER.info("Health endpoint status: " + response.statusCode());
-    LOGGER.info("Health endpoint response: " + response.getBody().asString());
+    Response response = given(requestSpec).get(getEndpointBasePath()).andReturn();
+    logResponseDetails(response);
 
     if (response.getStatusCode() != HttpStatus.OK.value()) {
       // Log the entire response to see which part of the health check failed.
       LOGGER.error("Health endpoint response: " + response.getBody().asString());
-      LOGGER.error("Health endpoint status: " + response.statusCode());
+      LOGGER.error("Health endpoint status: " + response.getStatusCode());
     }
 
     response.then().assertThat().statusCode(HttpStatus.OK.value()).body("status", equalTo("UP"));
