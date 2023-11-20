@@ -31,16 +31,17 @@ import static org.mockito.Mockito.when;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
-import com.iluwatar.layers.dto.CakeInfo;
-import com.iluwatar.layers.dto.CakeLayerInfo;
-import com.iluwatar.layers.dto.CakeToppingInfo;
-import com.iluwatar.layers.service.CakeBakingService;
+import dto.CakeInfo;
+import dto.CakeLayerInfo;
+import dto.CakeToppingInfo;
+import service.CakeBakingService;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
+import view.CakeViewImpl;
 
 /**
  * Date: 12/15/15 - 10:04 PM
@@ -68,9 +69,9 @@ class CakeViewImplTest {
   void testRender() {
 
     final var layers = List.of(
-        new CakeLayerInfo("layer1", 1000),
-        new CakeLayerInfo("layer2", 2000),
-        new CakeLayerInfo("layer3", 3000));
+            new CakeLayerInfo("layer1", 1000),
+            new CakeLayerInfo("layer2", 2000),
+            new CakeLayerInfo("layer3", 3000));
 
     final var cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
     final var cakes = List.of(cake);

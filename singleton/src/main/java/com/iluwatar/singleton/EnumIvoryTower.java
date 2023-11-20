@@ -34,6 +34,9 @@ package com.iluwatar.singleton;
  */
 public enum EnumIvoryTower {
 
+  /**
+   * The singleton instance of the class, created by the Java enum singleton pattern.
+   */
   INSTANCE;
 
   @Override

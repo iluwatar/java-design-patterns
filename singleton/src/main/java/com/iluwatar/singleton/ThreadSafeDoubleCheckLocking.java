@@ -34,7 +34,9 @@ package com.iluwatar.singleton;
  * @author mortezaadi@gmail.com
  */
 public final class ThreadSafeDoubleCheckLocking {
-
+  /**
+   * Singleton instance of the class, declared as volatile to ensure atomic access by multiple threads.
+   */
   private static volatile ThreadSafeDoubleCheckLocking instance;
 
   /**
@@ -80,7 +82,8 @@ public final class ThreadSafeDoubleCheckLocking {
           // (no other thread can enter this zone)
           // create an instance and make it our singleton instance.
           // 实例仍然没有初始化，所以我们可以安全地(没有其他线程可以进入这个区域)创建一个实例，使它成为我们的单例实例。
-          instance = result = new ThreadSafeDoubleCheckLocking();
+          result = new ThreadSafeDoubleCheckLocking();
+          instance = result;
         }
       }
     }

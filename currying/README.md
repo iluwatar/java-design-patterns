@@ -100,7 +100,7 @@ Book withPublicationDate(LocalDate publicationDate);
 The semantics of the `builder` function can easily be understood. The `builder` function returns a function `AddGenre`, which adds the genre to the book. Similarity, the `AddGenre` function returns another function `AddTitle`, which adds the title to the book and so on, until the `AddPublicationDate` function returns a `Book`. 
 For example, we could create a `Book` as follows:
 ```java
-Book book = Book.builder().withGenre(Genre.FANTAST)
+Book book = Book.builder().withGenre(Genre.FANTASY)
         .withAuthor("Author")
         .withTitle("Title")
         .withPublicationDate(LocalDate.of(2000, 7, 2));
@@ -183,7 +183,7 @@ Cons
 * As shown in the programmatic example above, curried functions with several parameters have a cumbersome type signature (in Java).
 
 ## Related patterns
-* [Builder patter](https://java-design-patterns.com/patterns/builder/)
+* [Builder pattern](https://java-design-patterns.com/patterns/builder/)
 
 ## Credits
 * [Currying in Java](https://www.baeldung.com/java-currying)

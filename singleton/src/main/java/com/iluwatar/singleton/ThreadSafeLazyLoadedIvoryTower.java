@@ -33,8 +33,14 @@ package com.iluwatar.singleton;
  */
 public final class ThreadSafeLazyLoadedIvoryTower {
 
+  /**
+   * Singleton instance of the class, declared as volatile to ensure atomic access by multiple threads.
+   */
   private static volatile ThreadSafeLazyLoadedIvoryTower instance;
 
+  /**
+   * Private constructor to prevent instantiation from outside the class.
+   */
   private ThreadSafeLazyLoadedIvoryTower() {
     // Protect against instantiation via reflection
     // 通过反射防止实例化
@@ -46,7 +52,11 @@ public final class ThreadSafeLazyLoadedIvoryTower {
   /**
    * The instance doesn't get created until the method is called for the first time.
    * 直到第一次调用方法时，才会创建实例。
-   */
+   *
+   * @return an instance of the class.
+   */>>>>>>> master
+58
+
   public static synchronized ThreadSafeLazyLoadedIvoryTower getInstance() {
     if (instance == null) {
       instance = new ThreadSafeLazyLoadedIvoryTower();

@@ -58,6 +58,10 @@ public final class InitializingOnDemandHolderIdiom {
    * Provides the lazy-loaded Singleton instance.
    */
   private static class HelperHolder {
+
+    /**
+     * Singleton instance of the class.
+     */
     private static final InitializingOnDemandHolderIdiom INSTANCE =
         new InitializingOnDemandHolderIdiom();
   }

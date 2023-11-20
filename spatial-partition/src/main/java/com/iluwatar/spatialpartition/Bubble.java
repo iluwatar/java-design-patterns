@@ -26,7 +26,7 @@ package com.iluwatar.spatialpartition;
 
 import java.security.SecureRandom;
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -58,13 +58,12 @@ public class Bubble extends Point<Bubble> {
         <= (this.radius + b.radius) * (this.radius + b.radius);
   }
 
-  void pop(HashMap<Integer, Bubble> allBubbles) {
-    LOGGER.info("Bubble ", this.id,
-        " popped at (", this.coordinateX, ",", this.coordinateY, ")!");
+  void pop(Map<Integer, Bubble> allBubbles) {
+    LOGGER.info("Bubble {} popped at ({},{})!", this.id, this.coordinateX, this.coordinateY);
     allBubbles.remove(this.id);
   }
 
-  void handleCollision(Collection<? extends Point> toCheck, HashMap<Integer, Bubble> allBubbles) {
+  void handleCollision(Collection<? extends Point> toCheck, Map<Integer, Bubble> allBubbles) {
     var toBePopped = false; //if any other bubble collides with it, made true
     for (var point : toCheck) {
       var otherId = point.id;

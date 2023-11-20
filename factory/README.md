@@ -70,7 +70,7 @@ public class CopperCoin implements Coin {
 }
 ```
 
-Enumeration above represents types of coins that we support (`GoldCoin` and `CopperCoin`).
+Enumeration below represents types of coins that we support (`GoldCoin` and `CopperCoin`).
 
 上面的枚举表示我们支持的硬币类型(“GoldCoin”和“CopperCoin”)。
 
@@ -127,7 +127,7 @@ This is a gold coin.
 ## Applicability
 适用性
 
-Use the factory pattern when you only care about the creation of a object, not how to create 
+Use the factory pattern when you only care about the creation of an object, not how to create 
 and manage it.
 
 在你只关心对象的创建，但不关心如何创建、管理它的时候，请使用简单工厂模式。
