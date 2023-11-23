@@ -44,7 +44,7 @@ import org.h2.jdbcx.JdbcDataSource;
  */
 @Slf4j
 public class App {
-  private static final String DB_URL = "jdbc:h2:~/dao";
+  private static final String DB_URL = "jdbc:h2:mem:dao;DB_CLOSE_DELAY=-1";
   private static final String ALL_CUSTOMERS = "customerDao.getAllCustomers(): ";
 
   /**
