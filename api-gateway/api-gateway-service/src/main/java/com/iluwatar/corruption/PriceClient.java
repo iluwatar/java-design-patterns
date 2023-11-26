@@ -22,46 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.api.gateway;
-
-import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+package com.iluwatar.corruption;
 
 /**
- * The ApiGateway aggregates calls to microservices based on the needs of the individual clients.
+ * An interface used to communicate with the Price microservice.
  */
-@RestController
-public class ApiGateway {
-
-  @Resource
-  private ImageClient imageClient;
-
-  @Resource
-  private PriceClient priceClient;
-
-  /**
-   * Retrieves product information that desktop clients need.
-   *
-   * @return Product information for clients on a desktop
-   */
-  @GetMapping("/desktop")
-  public DesktopProduct getProductDesktop() {
-    var desktopProduct = new DesktopProduct();
-    desktopProduct.setImagePath(imageClient.getImagePath());
-    desktopProduct.setPrice(priceClient.getPrice());
-    return desktopProduct;
-  }
-
-  /**
-   * Retrieves product information that mobile clients need.
-   *
-   * @return Product information for clients on a mobile device
-   */
-  @GetMapping("/mobile")
-  public MobileProduct getProductMobile() {
-    var mobileProduct = new MobileProduct();
-    mobileProduct.setPrice(priceClient.getPrice());
-    return mobileProduct;
-  }
+public interface PriceClient {
+  String getPrice();
 }
