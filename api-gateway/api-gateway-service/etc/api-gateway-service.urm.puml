@@ -1,5 +1,5 @@
 @startuml
-package com.iluwatar.api.gateway {
+package com.iluwatar.api.corruption {
   class ApiGateway {
     - imageClient : ImageClient
     - priceClient : PriceClient

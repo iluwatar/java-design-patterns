@@ -22,11 +22,26 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.api.gateway;
+package com.iluwatar.corruption;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * An interface used to communicate with the Image microservice.
+ * Encapsulates all of the information that a desktop client needs to display a product.
  */
-public interface ImageClient {
-  String getImagePath();
+@Getter
+@Setter
+public class DesktopProduct {
+
+  /**
+   * The price of the product.
+   */
+  private String price;
+
+  /**
+   * The path to the image of the product.
+   */
+  private String imagePath;
+
 }

@@ -2,7 +2,7 @@
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
+ * Copyright © 2014-2023 Ilkka Seppälä
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,19 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.api.gateway;
+package com.iluwatar.corruption;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Encapsulates all of the information that mobile client needs to display a product.
+
  */
-@Getter
-@Setter
-public class MobileProduct {
+@SpringBootApplication
+public class App {
+
   /**
-   * The price of the product.
+   * Program entry point.
+   *
+   * @param args command line args
    */
-  private String price;
+  public static void main(String[] args) {
+    SpringApplication.run(App.class, args);
+  }
 }
