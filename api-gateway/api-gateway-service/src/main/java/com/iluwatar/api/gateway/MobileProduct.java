@@ -22,46 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.corruption;
+package com.iluwatar.api.gateway;
 
-import javax.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
- * The ApiGateway aggregates calls to microservices based on the needs of the individual clients.
+ * Encapsulates all of the information that mobile client needs to display a product.
  */
-@RestController
-public class ApiGateway {
-
-  @Resource
-  private ImageClient imageClient;
-
-  @Resource
-  private PriceClient priceClient;
-
+@Getter
+@Setter
+public class MobileProduct {
   /**
-   * Retrieves product information that desktop clients need.
-   *
-   * @return Product information for clients on a desktop
+   * The price of the product.
    */
-  @GetMapping("/desktop")
-  public DesktopProduct getProductDesktop() {
-    var desktopProduct = new DesktopProduct();
-    desktopProduct.setImagePath(imageClient.getImagePath());
-    desktopProduct.setPrice(priceClient.getPrice());
-    return desktopProduct;
-  }
-
-  /**
-   * Retrieves product information that mobile clients need.
-   *
-   * @return Product information for clients on a mobile device
-   */
-  @GetMapping("/mobile")
-  public MobileProduct getProductMobile() {
-    var mobileProduct = new MobileProduct();
-    mobileProduct.setPrice(priceClient.getPrice());
-    return mobileProduct;
-  }
+  private String price;
 }

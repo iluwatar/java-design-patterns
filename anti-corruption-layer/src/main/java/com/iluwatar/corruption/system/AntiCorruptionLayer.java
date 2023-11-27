@@ -4,23 +4,29 @@ import com.iluwatar.corruption.system.modern.Customer;
 import com.iluwatar.corruption.system.modern.ModernOrder;
 import com.iluwatar.corruption.system.modern.ModernShop;
 import com.iluwatar.corruption.system.modern.Shipment;
-import com.iluwatar.corruption.system.obsolete.ObsoleteShop;
-import com.iluwatar.corruption.system.obsolete.Order;
+import com.iluwatar.corruption.system.legacy.LegacyShop;
+import com.iluwatar.corruption.system.legacy.LegacyOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
+/**
+ * The class represents an anti-corruption layer.
+ * The main purpose of the class is to provide a layer between the modern and legacy systems.
+ * The class is responsible for converting the data from one system to another
+ * decoupling the systems to each other
+ */
 public class AntiCorruptionLayer {
 
     @Autowired
     private ModernShop modernShop;
 
     @Autowired
-    private ObsoleteShop obsoleteShop;
+    private LegacyShop legacyShop;
 
-    public Optional<Order> findOrderInModernSystem(String id) {
+    public Optional<LegacyOrder> findOrderInModernSystem(String id) {
         return modernShop.findOrder(id).map(o ->
-                new Order(
+                new LegacyOrder(
                         o.getId(),
                         o.getCustomer().getAddress(),
                         o.getShipment().getItem(),
@@ -29,9 +35,9 @@ public class AntiCorruptionLayer {
                 ));
     }
 
-    public Optional<ModernOrder> findOrderInObsoleteSystem(String id) {
+    public Optional<ModernOrder> findOrderInLegacySystem(String id) {
 
-        return obsoleteShop.findOrder(id).map(o ->
+        return legacyShop.findOrder(id).map(o ->
                 new ModernOrder(
                         o.getId(),
                         new Customer(o.getCustomer()),

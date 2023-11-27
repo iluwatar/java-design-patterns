@@ -1,8 +1,8 @@
-package com.iluwatar.corruption.system.obsolete;
+package com.iluwatar.corruption.system.legacy;
 
 import java.util.Objects;
 
-public class Order {
+public class LegacyOrder {
     private String id;
     private String customer;
 
@@ -10,7 +10,7 @@ public class Order {
     private String qty;
     private String price;
 
-    public Order(String id, String customer, String item, String qty, String price) {
+    public LegacyOrder(String id, String customer, String item, String qty, String price) {
         this.id = id;
         this.customer = customer;
         this.item = item;
@@ -34,13 +34,13 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Order order = (Order) o;
+        LegacyOrder legacyOrder = (LegacyOrder) o;
 
-        if (!Objects.equals(id, order.id)) return false;
-        if (!Objects.equals(customer, order.customer)) return false;
-        if (!Objects.equals(item, order.item)) return false;
-        if (!Objects.equals(qty, order.qty)) return false;
-        return Objects.equals(price, order.price);
+        if (!Objects.equals(id, legacyOrder.id)) return false;
+        if (!Objects.equals(customer, legacyOrder.customer)) return false;
+        if (!Objects.equals(item, legacyOrder.item)) return false;
+        if (!Objects.equals(qty, legacyOrder.qty)) return false;
+        return Objects.equals(price, legacyOrder.price);
     }
 
     @Override
