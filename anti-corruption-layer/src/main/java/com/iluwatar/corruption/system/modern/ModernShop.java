@@ -3,6 +3,7 @@ package com.iluwatar.corruption.system.modern;
 import com.iluwatar.corruption.system.AntiCorruptionLayer;
 import com.iluwatar.corruption.system.ShopException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -10,9 +11,10 @@ import java.util.Optional;
  * The class represents a modern shop system.
  * The main purpose of the class is to place orders and find orders.
  */
+@Service
 public class ModernShop {
     @Autowired
-    private Store store;
+    private ModernStore store;
 
     @Autowired
     private AntiCorruptionLayer acl;
@@ -32,11 +34,9 @@ public class ModernShop {
         Optional<ModernOrder> orderInObsoleteSystem = acl.findOrderInLegacySystem(id);
 
         if (orderInObsoleteSystem.isPresent()) {
-            var modernOrder = orderInObsoleteSystem.get();
-            if (modernOrder.equals(order)) {
-                store.put(order.getId(), order);
-            } else {
-                throw ShopException.throwIncorrectData(order.toString(), modernOrder.toString());
+            var legacyOrder = orderInObsoleteSystem.get();
+            if (!order.equals(legacyOrder)) {
+                throw ShopException.throwIncorrectData(legacyOrder.toString(), order.toString());
             }
         } else {
             store.put(order.getId(), order);

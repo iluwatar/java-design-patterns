@@ -7,6 +7,7 @@ import com.iluwatar.corruption.system.modern.Shipment;
 import com.iluwatar.corruption.system.legacy.LegacyShop;
 import com.iluwatar.corruption.system.legacy.LegacyOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -16,6 +17,7 @@ import java.util.Optional;
  * The class is responsible for converting the data from one system to another
  * decoupling the systems to each other
  */
+@Service
 public class AntiCorruptionLayer {
 
     @Autowired
