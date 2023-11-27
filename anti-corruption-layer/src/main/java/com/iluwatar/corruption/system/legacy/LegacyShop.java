@@ -3,6 +3,7 @@ package com.iluwatar.corruption.system.legacy;
 import com.iluwatar.corruption.system.AntiCorruptionLayer;
 import com.iluwatar.corruption.system.ShopException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
@@ -10,9 +11,10 @@ import java.util.Optional;
  * The class represents a legacy shop system.
  * The main purpose is to place the order from the customers.
  */
+@Service
 public class LegacyShop {
     @Autowired
-    private Store store;
+    private LegacyStore store;
 
     @Autowired
     private AntiCorruptionLayer acl;
@@ -33,9 +35,7 @@ public class LegacyShop {
         // if the order is present in the modern system, then check that the data is the same
         if (orderInModernSystem.isPresent()) {
             var modernOrder = orderInModernSystem.get();
-            if (modernOrder.equals(legacyOrder)) {
-                store.put(legacyOrder.getId(), legacyOrder);
-            } else {
+            if (!modernOrder.equals(legacyOrder)) {
                 throw ShopException.throwIncorrectData(legacyOrder.toString(), modernOrder.toString());
             }
         } else {

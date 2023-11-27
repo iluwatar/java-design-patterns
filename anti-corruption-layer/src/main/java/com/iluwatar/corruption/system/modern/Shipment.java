@@ -2,14 +2,14 @@ package com.iluwatar.corruption.system.modern;
 
 public class Shipment {
     private String item;
-    private String qty;
-    private String price;
+    private int qty;
+    private int price;
 
     public String getItem() {
         return item;
     }
 
-    public Shipment(String item, String qty, String price) {
+    public Shipment(String item, int qty, int price) {
         this.item = item;
         this.qty = qty;
         this.price = price;
@@ -19,19 +19,19 @@ public class Shipment {
         this.item = item;
     }
 
-    public String getQty() {
+    public int getQty() {
         return qty;
     }
 
-    public void setQty(String qty) {
+    public void setQty(int qty) {
         this.qty = qty;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }

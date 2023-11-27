@@ -7,10 +7,10 @@ public class LegacyOrder {
     private String customer;
 
     private String item;
-    private String qty;
-    private String price;
+    private int qty;
+    private int price;
 
-    public LegacyOrder(String id, String customer, String item, String qty, String price) {
+    public LegacyOrder(String id, String customer, String item, int qty, int price) {
         this.id = id;
         this.customer = customer;
         this.item = item;
@@ -72,19 +72,19 @@ public class LegacyOrder {
         this.item = item;
     }
 
-    public String getQty() {
+    public int getQty() {
         return qty;
     }
 
-    public void setQty(String qty) {
+    public void setQty(int qty) {
         this.qty = qty;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 }
