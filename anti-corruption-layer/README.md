@@ -40,9 +40,95 @@ This layer translates communications between the two systems, allowing one syste
 while the other can avoid compromising its design and technological approach.
 
 ### Programmatic example
+#### Introduction
+The example shows why the anti-corruption layer is needed.
+Here are 2 shop-ordering systems: `Legacy` and `Modern`. \
+(
+*It is important to state the separation is very conditional, and is drawn for learning purposes*. 
+*In reality the pattern does not depend on the so-called ageness but rather relies on the different domain models.*)
 
+The aforementioned systems have different domain models and have to operate simultaneously.
+Since they work independently the orders can come either from the `Legacy` or `Modern` system.
+Therefore, the system that receives the legacyOrder needs to check if the legacyOrder is valid and not present in the other system.
+Then it can place the legacyOrder in its own system.
 
+But for that, the system needs to know the domain model of the other system and to avoid that, 
+the anti-corruption layer(ACL) is introduced. 
+The ACL is a layer that translates the domain model of the `Legacy` system to the domain model of the `Modern` system and vice versa.
+Also, it hides all other operations with the other system, uncoupling the systems.
 
+#### Domain model of the `Legacy` system
+```java
+public class LegacyOrder {
+    private String id;
+    private String customer;
+    private String item;
+    private String qty;
+    private String price;
+}
+```
+#### Domain model of the `Modern` system
+```java
+public class ModernOrder {
+    private String id;
+    private Customer customer;
+
+    private Shipment shipment;
+
+    private String extra;
+}
+public class Customer {
+    private String address;
+}
+public class Shipment {
+    private String item;
+    private String qty;
+    private String price;
+}
+```
+#### Anti-corruption layer
+```java
+public class AntiCorruptionLayer {
+
+    @Autowired
+    private ModernShop modernShop;
+
+    @Autowired
+    private LegacyShop legacyShop;
+
+    public Optional<LegacyOrder> findOrderInModernSystem(String id) {
+        return modernShop.findOrder(id).map(o -> /* map to legacyOrder*/);
+    }
+
+    public Optional<ModernOrder> findOrderInLegacySystem(String id) {
+        return legacyShop.findOrder(id).map(o -> /* map to modernOrder*/);
+    }
+
+}
+```
+#### The connection
+Wherever the `Legacy` or `Modern` system needs to communicate with the counterpart 
+the ACL needs to be used to avoid corrupting the current domain model.
+The example below shows how the `Legacy` system places an order with a validation from the `Modern` system.
+```java
+public class LegacyShop {
+    @Autowired
+    private AntiCorruptionLayer acl;
+
+    public void placeOrder(LegacyOrder legacyOrder) throws ShopException {
+
+        String id = legacyOrder.getId();
+
+        Optional<LegacyOrder> orderInModernSystem = acl.findOrderInModernSystem(id);
+
+        if (orderInModernSystem.isPresent()) {
+            // order is already in the modern system
+        } else {
+            // place order in the current system
+        }
+    }
+}
+```
 
 ### Issues and considerations
  - The anti-corruption layer may add latency to calls made between the two systems.
@@ -54,9 +140,6 @@ while the other can avoid compromising its design and technological approach.
  - Consider whether the anti-corruption layer needs to handle all communication between different subsystems, or just a subset of features.
  - If the anti-corruption layer is part of an application migration strategy, consider whether it will be permanent, or will be retired after all legacy functionality has been migrated.
  - This pattern is illustrated with distinct subsystems above, but can apply to other service architectures as well, such as when integrating legacy code together in a monolithic architecture.
-
-## Class diagram
-![alt text](./etc/api-gateway.png "API Gateway")
 
 ## Applicability
 

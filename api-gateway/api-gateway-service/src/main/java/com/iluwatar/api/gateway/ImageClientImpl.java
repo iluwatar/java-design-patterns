@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.corruption;
+package com.iluwatar.api.gateway;
 
 import java.io.IOException;
 import java.net.URI;
@@ -33,36 +33,35 @@ import java.net.http.HttpResponse.BodyHandlers;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-
 /**
- * An adapter to communicate with the Price microservice.
+ * An adapter to communicate with the Image microservice.
  */
 @Slf4j
 @Component
-public class PriceClientImpl implements PriceClient {
+public class ImageClientImpl implements ImageClient {
 
   /**
-   * Makes a simple HTTP Get request to the Price microservice.
+   * Makes a simple HTTP Get request to the Image microservice.
    *
-   * @return The price of the product
+   * @return The path to the image
    */
   @Override
-  public String getPrice() {
+  public String getImagePath() {
     var httpClient = HttpClient.newHttpClient();
     var httpGet = HttpRequest.newBuilder()
         .GET()
-        .uri(URI.create("http://localhost:50006/price"))
+        .uri(URI.create("http://localhost:50005/image-path"))
         .build();
 
     try {
-      LOGGER.info("Sending request to fetch price info");
+      LOGGER.info("Sending request to fetch image path");
       var httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
       logResponse(httpResponse);
       return httpResponse.body();
-    } catch (IOException e) {
-      LOGGER.error("Failure occurred while getting price info", e);
-    } catch (InterruptedException e) {
-      LOGGER.error("Failure occurred while getting price info", e);
+    } catch (IOException ioe) {
+      LOGGER.error("Failure occurred while getting image path", ioe);
+    } catch (InterruptedException ie) {
+      LOGGER.error("Failure occurred while getting image path", ie);
       Thread.currentThread().interrupt();
     }
 
@@ -71,9 +70,9 @@ public class PriceClientImpl implements PriceClient {
 
   private void logResponse(HttpResponse<String> httpResponse) {
     if (isSuccessResponse(httpResponse.statusCode())) {
-      LOGGER.info("Price info received successfully");
+      LOGGER.info("Image path received successfully");
     } else {
-      LOGGER.warn("Price info request failed");
+      LOGGER.warn("Image path request failed");
     }
   }
 

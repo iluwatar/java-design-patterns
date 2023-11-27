@@ -22,19 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.corruption;
-
-import lombok.Getter;
-import lombok.Setter;
+package com.iluwatar.api.gateway;
 
 /**
- * Encapsulates all of the information that mobile client needs to display a product.
+ * An interface used to communicate with the Price microservice.
  */
-@Getter
-@Setter
-public class MobileProduct {
-  /**
-   * The price of the product.
-   */
-  private String price;
+public interface PriceClient {
+  String getPrice();
 }
