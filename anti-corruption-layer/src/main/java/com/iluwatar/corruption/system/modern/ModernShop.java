@@ -21,16 +21,12 @@ public class ModernShop {
 
     /**
      * Places the order in the modern system.
-     * If the order is already present in the legacy system, then the order is placed only if the data is the same.
-     * If the order is not present in the legacy system, then the order is placed in the modern system.
+     * If the order is already present in the legacy system, then no need to place it again.
      */
     public void placeOrder(ModernOrder order) throws ShopException {
 
         String id = order.getId();
-        if (store.get(id).isPresent()) {
-            throw ShopException.throwDupEx(id);
-        }
-
+        // check if the order is already present in the legacy system
         Optional<ModernOrder> orderInObsoleteSystem = acl.findOrderInLegacySystem(id);
 
         if (orderInObsoleteSystem.isPresent()) {
@@ -39,7 +35,7 @@ public class ModernShop {
                 throw ShopException.throwIncorrectData(legacyOrder.toString(), order.toString());
             }
         } else {
-            store.put(order.getId(), order);
+            store.put(id, order);
         }
     }
 
