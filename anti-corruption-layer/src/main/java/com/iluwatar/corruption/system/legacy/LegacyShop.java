@@ -27,9 +27,6 @@ public class LegacyShop {
     public void placeOrder(LegacyOrder legacyOrder) throws ShopException {
 
         String id = legacyOrder.getId();
-        if (store.get(id).isPresent()) {
-            throw ShopException.throwDupEx(id);
-        }
         // ensure that the order is not present in the modern system
         Optional<LegacyOrder> orderInModernSystem = acl.findOrderInModernSystem(id);
         // if the order is present in the modern system, then check that the data is the same
@@ -39,7 +36,7 @@ public class LegacyShop {
                 throw ShopException.throwIncorrectData(legacyOrder.toString(), modernOrder.toString());
             }
         } else {
-            store.put(legacyOrder.getId(), legacyOrder);
+            store.put(id, legacyOrder);
         }
     }
 

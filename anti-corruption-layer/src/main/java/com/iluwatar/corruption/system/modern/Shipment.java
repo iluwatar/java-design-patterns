@@ -1,5 +1,7 @@
 package com.iluwatar.corruption.system.modern;
 
+import java.util.Objects;
+
 public class Shipment {
     private String item;
     private int qty;
@@ -13,6 +15,26 @@ public class Shipment {
         this.item = item;
         this.qty = qty;
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Shipment shipment = (Shipment) o;
+
+        if (qty != shipment.qty) return false;
+        if (price != shipment.price) return false;
+        return Objects.equals(item, shipment.item);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = item != null ? item.hashCode() : 0;
+        result = 31 * result + qty;
+        result = 31 * result + price;
+        return result;
     }
 
     public void setItem(String item) {
