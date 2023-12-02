@@ -2816,6 +2816,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "HongGeonUi",
+      "name": "Hong Geon-ui",
+      "avatar_url": "https://avatars.githubusercontent.com/u/89684956?v=4",
+      "profile": "https://github.com/HongGeonUi",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
