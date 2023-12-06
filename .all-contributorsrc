@@ -2816,6 +2816,24 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "HongGeonUi",
+      "name": "Hong Geon-ui",
+      "avatar_url": "https://avatars.githubusercontent.com/u/89684956?v=4",
+      "profile": "https://github.com/HongGeonUi",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "ylcn91",
+      "name": "Doksanbir",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7249450?v=4",
+      "profile": "https://github.com/ylcn91",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
