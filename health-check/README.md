@@ -1,8 +1,9 @@
 ---
 title: Health Check Pattern
-category: Performance
+category: Behavioral
 language: en
 tag:
+  - Performance
   - Microservices
   - Resilience
   - Observability
