@@ -47,16 +47,16 @@ public abstract class Superpower {
    * @param z Z coordinate.
    */
   protected void move(double x, double y, double z) {
-    logger.info("Move to ( " + x + ", " + y + ", " + z + " )");
+    logger.info("Move to ( {}, {}, {} )", x, y, z);
   }
 
   /**
    * Play sound effect for the superpower.
    * @param soundName Sound name.
-   * @param volumn Value of volumn.
+   * @param volume Value of volume.
    */
-  protected void playSound(String soundName, int volumn) {
-    logger.info("Play " + soundName + " with volumn " + volumn);
+  protected void playSound(String soundName, int volume) {
+    logger.info("Play {} with volume {}", soundName, volume);
   }
 
   /**
@@ -65,6 +65,6 @@ public abstract class Superpower {
    * @param count Count of particles to be spawned.
    */
   protected void spawnParticles(String particleType, int count) {
-    logger.info("Spawn " + count + " particle with type " + particleType);
+    logger.info("Spawn {} particle with type {}", count, particleType);
   }
 }

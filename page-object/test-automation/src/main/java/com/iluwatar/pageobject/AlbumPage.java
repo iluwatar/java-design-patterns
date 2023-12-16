@@ -61,7 +61,7 @@ public class AlbumPage extends Page {
     try {
       page = this.webClient.getPage(PAGE_URL);
     } catch (IOException e) {
-      LOGGER.error("An error occured on navigateToPage.", e);
+      LOGGER.error("An error occurred on navigateToPage.", e);
     }
     return this;
   }
@@ -151,7 +151,7 @@ public class AlbumPage extends Page {
     try {
       cancelButton.click();
     } catch (IOException e) {
-      LOGGER.error("An error occured on cancelChanges.", e);
+      LOGGER.error("An error occurred on cancelChanges.", e);
     }
     return new AlbumListPage(webClient);
   }
@@ -167,7 +167,7 @@ public class AlbumPage extends Page {
     try {
       saveButton.click();
     } catch (IOException e) {
-      LOGGER.error("An error occured on saveChanges.", e);
+      LOGGER.error("An error occurred on saveChanges.", e);
     }
     return this;
   }

@@ -62,7 +62,7 @@ public class App {
     final var logger = LoggerFactory.getLogger(App.class);
 
     var name = unit.getName();
-    Function<String, Runnable> func = (e) -> () -> logger.info(name + " without " + e);
+    Function<String, Runnable> func = e -> () -> logger.info("{} without {}", name, e);
 
     var extension = "SoldierExtension";
     Optional.ofNullable(unit.getUnitExtension(extension))
