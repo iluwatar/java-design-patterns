@@ -74,7 +74,7 @@ public class World {
   }
 
   /**
-   * Update internal status. The update method pattern invoke udpate method for
+   * Update internal status. The update method pattern invoke update method for
    * each entity in the game.
    */
   private void update() {

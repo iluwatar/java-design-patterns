@@ -1,0 +1,90 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class App {
+  + App(): 
+  + main(String[]): void
+}
+class AsynchronousHealthChecker {
+  + AsynchronousHealthChecker(): 
+  + performCheck(Supplier<Health>, long): CompletableFuture<Health>
+  - awaitTerminationWithTimeout(): boolean
+  + shutdown(): void
+}
+class CpuHealthIndicator {
+  + CpuHealthIndicator(): 
+  - processCpuLoadThreshold: double
+  - systemCpuLoadThreshold: double
+  - loadAverageThreshold: double
+  - osBean: OperatingSystemMXBean
+  - defaultWarningMessage: String
+  + init(): void
+  + health(): Health
+   defaultWarningMessage: String
+   osBean: OperatingSystemMXBean
+   loadAverageThreshold: double
+   processCpuLoadThreshold: double
+   systemCpuLoadThreshold: double
+}
+class CustomHealthIndicator {
+  + CustomHealthIndicator(AsynchronousHealthChecker, CacheManager, HealthCheckRepository): 
+  + evictHealthCache(): void
+  - check(): Health
+  + health(): Health
+}
+class DatabaseTransactionHealthIndicator {
+  + DatabaseTransactionHealthIndicator(HealthCheckRepository, AsynchronousHealthChecker, RetryTemplate): 
+  - retryTemplate: RetryTemplate
+  - healthCheckRepository: HealthCheckRepository
+  - timeoutInSeconds: long
+  - asynchronousHealthChecker: AsynchronousHealthChecker
+  + health(): Health
+   timeoutInSeconds: long
+   retryTemplate: RetryTemplate
+   healthCheckRepository: HealthCheckRepository
+   asynchronousHealthChecker: AsynchronousHealthChecker
+}
+class GarbageCollectionHealthIndicator {
+  + GarbageCollectionHealthIndicator(): 
+  - memoryUsageThreshold: double
+  + health(): Health
+   memoryPoolMxBeans: List<MemoryPoolMXBean>
+   garbageCollectorMxBeans: List<GarbageCollectorMXBean>
+   memoryUsageThreshold: double
+}
+class HealthCheck {
+  + HealthCheck(): 
+  - status: String
+  - id: Integer
+  + equals(Object): boolean
+  # canEqual(Object): boolean
+  + hashCode(): int
+  + toString(): String
+   id: Integer
+   status: String
+}
+class HealthCheckRepository {
+  + HealthCheckRepository(): 
+  + performTestTransaction(): void
+  + checkHealth(): Integer
+}
+class MemoryHealthIndicator {
+  + MemoryHealthIndicator(AsynchronousHealthChecker): 
+  + checkMemory(): Health
+  + health(): Health
+}
+class RetryConfig {
+  + RetryConfig(): 
+  + retryTemplate(): RetryTemplate
+}
+
+CustomHealthIndicator              "1" *-[#595959,plain]-> "healthChecker\n1" AsynchronousHealthChecker          
+CustomHealthIndicator              "1" *-[#595959,plain]-> "healthCheckRepository\n1" HealthCheckRepository              
+DatabaseTransactionHealthIndicator "1" *-[#595959,plain]-> "asynchronousHealthChecker\n1" AsynchronousHealthChecker          
+DatabaseTransactionHealthIndicator "1" *-[#595959,plain]-> "healthCheckRepository\n1" HealthCheckRepository              
+HealthCheckRepository               -[#595959,dashed]->  HealthCheck                        : "«create»"
+MemoryHealthIndicator              "1" *-[#595959,plain]-> "asynchronousHealthChecker\n1" AsynchronousHealthChecker          
+@enduml

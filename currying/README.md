@@ -183,7 +183,7 @@ Cons
 * As shown in the programmatic example above, curried functions with several parameters have a cumbersome type signature (in Java).
 
 ## Related patterns
-* [Builder patter](https://java-design-patterns.com/patterns/builder/)
+* [Builder pattern](https://java-design-patterns.com/patterns/builder/)
 
 ## Credits
 * [Currying in Java](https://www.baeldung.com/java-currying)
