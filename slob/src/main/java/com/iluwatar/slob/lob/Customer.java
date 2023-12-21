@@ -32,6 +32,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 /**
@@ -51,14 +52,17 @@ public class Customer {
    * @throws ParserConfigurationException
    */
   public Element departmentsToXmlElement(Document xmlDoc) throws ParserConfigurationException {
-    Element root = xmlDoc.createElement("departments");
+    Element customers = xmlDoc.createElement(Customer.class.getSimpleName()+'s');
     for (Product product : products) {
       Element xmlElement = product.toXmlElement(xmlDoc);
       if (xmlElement != null) {
-        root.appendChild(xmlElement);
+        Element customer = xmlDoc.createElement(Customer.class.getSimpleName());
+        customer.setAttribute("name",this.getName());
+        customer.appendChild(xmlElement);
+        customers.appendChild(customer);
       }
     }
-    xmlDoc.appendChild(root);
+    xmlDoc.appendChild(customers);
     return (Element) xmlDoc.getFirstChild();
   }
 
@@ -67,14 +71,18 @@ public class Customer {
    * @return
    */
   public Customer readDepartments(Element source) {
-    List result = new ArrayList();
+    Customer customer = new Customer();
     Node child = source.getFirstChild();
     while (child != null) {
-      if (child.getNodeType() == Node.ELEMENT_NODE && child.getTextContent() != null) {
-        System.out.println(child.getAttributes());
+      if (child.getNodeType() == Node.ELEMENT_NODE && child.getNodeName().equals(Customer.class.getSimpleName())) {
+        NamedNodeMap attributes = child.getAttributes();
+        customer.setName(child.getAttributes().getNamedItem("name").getNodeValue());
+        for (int i = 0; i < attributes.getLength(); i++) {
+          System.out.println(child.getAttributes().item(i));
+        }
       }
       child = child.getNextSibling();
     }
-    return null;
+    return customer;
   }
 }

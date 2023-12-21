@@ -26,6 +26,7 @@ package com.iluwatar.slob.lob;
 
 import java.util.List;
 import javax.xml.parsers.ParserConfigurationException;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,26 +41,35 @@ import org.w3c.dom.Element;
 @NoArgsConstructor
 public class Product {
 
-  private String name;
-  private List<Product> products;
+    private String name;
+    private List<Product> products;
 
-  /**
-   * @param xmlDoc
-   * @return
-   * @throws ParserConfigurationException
-   */
-  public Element toXmlElement(Document xmlDoc) throws ParserConfigurationException {
-    Element root = xmlDoc.createElement("department");
-    root.setAttribute("name", name);
-    if (products != null) {
-      for (Product product : products) {
-        Element productXmlElement = product.toXmlElement(xmlDoc);
-        if (productXmlElement != null) {
-          root.appendChild(productXmlElement);
-        }
-      }
+    /**
+     * @param xmlDoc
+     * @return
+     * @throws ParserConfigurationException
+     */
+    public Element toXmlElement(Document xmlDoc) throws ParserConfigurationException {
+        Element productsNode = xmlDoc.createElement(Product.class.getSimpleName() + "s");
+
+        addToProducts(xmlDoc, productsNode, this);
+        xmlDoc.appendChild(productsNode);
+        return xmlDoc.getDocumentElement();
     }
-    xmlDoc.appendChild(root);
-    return xmlDoc.getDocumentElement();
-  }
+
+    private Element addToProducts(Document xmlDoc, Element productsNode, Product productI) throws ParserConfigurationException {
+        Element productNode = null;
+        if (productI != null) {
+            productNode = xmlDoc.createElement(Product.class.getSimpleName());
+            productNode.setAttribute("name", name);
+            productsNode.appendChild(productNode);
+            if (productI.getProducts() != null) {
+                for (Product product : productI.getProducts()) {
+                    Element productXmlElement = product.addToProducts(xmlDoc, productsNode, product);
+                    productsNode.appendChild(productXmlElement);
+                }
+            }
+        }
+        return productNode;
+    }
 }

@@ -74,6 +74,7 @@ public class ClobSerializer extends LobSerializer {
     var stream = new ByteArrayInputStream(toDeSerialize.toString().getBytes());
     Document parse = documentBuilder.parse(stream);
     Customer customer = new Customer();
+    parse.getDocumentElement().normalize();
     return customer.readDepartments(parse.getDocumentElement());
   }
 }
