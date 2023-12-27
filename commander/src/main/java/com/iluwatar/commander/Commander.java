@@ -477,8 +477,8 @@ public class Commander {
         && System.currentTimeMillis() - o.createdTime < messageTime) {
       var qt = new QueueTask(order, TaskType.MESSAGING, 1);
       updateQueue(qt);
-      LOG.warn("Order " + order.id + ": Error in sending Payment Error message, "
-              + "trying to queue task and add to employee handle..");
+      LOG.warn("Order {}: Error in sending Payment Error message, trying to queue task and add to employee handle..",
+              order.id);
       employeeHandleIssue(o);
     }
   }

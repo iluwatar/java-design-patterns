@@ -65,6 +65,6 @@ public class Statue extends Entity {
   }
 
   private void shootLightning() {
-    logger.info("Statue " + id + " shoots lightning!");
+    logger.info("Statue {} shoots lightning!", id);
   }
 }

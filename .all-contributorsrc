@@ -2742,6 +2742,98 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Yenniferh",
+      "name": "Yennifer Herrera",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19285706?v=4",
+      "profile": "http://www.linkedin.com/in/yenniferh",
+      "contributions": [
+        "translation",
+        "review"
+      ]
+    },
+    {
+      "login": "jnniu-n",
+      "name": "jnniu-n",
+      "avatar_url": "https://avatars.githubusercontent.com/u/141746282?v=4",
+      "profile": "https://github.com/jnniu-n",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "miguel-is-coding",
+      "name": "Miguel Angel Perez Garcia",
+      "avatar_url": "https://avatars.githubusercontent.com/u/48435117?v=4",
+      "profile": "https://github.com/miguel-is-coding",
+      "contributions": [
+        "review",
+        "translation"
+      ]
+    },
+    {
+      "login": "SuwanSankaja",
+      "name": "Suwan Sankaja",
+      "avatar_url": "https://avatars.githubusercontent.com/u/86839778?v=4",
+      "profile": "https://github.com/SuwanSankaja",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Iamalok007",
+      "name": "alok",
+      "avatar_url": "https://avatars.githubusercontent.com/u/97467835?v=4",
+      "profile": "https://github.com/Iamalok007",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "dlvideira",
+      "name": "Daniel Lisboa",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53951425?v=4",
+      "profile": "https://github.com/dlvideira",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "ComplexOW",
+      "name": "Sam Powell",
+      "avatar_url": "https://avatars.githubusercontent.com/u/105279107?v=4",
+      "profile": "https://github.com/ComplexOW",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "jppf22",
+      "name": "João Fernandes",
+      "avatar_url": "https://avatars.githubusercontent.com/u/104360594?v=4",
+      "profile": "https://github.com/jppf22",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "HongGeonUi",
+      "name": "Hong Geon-ui",
+      "avatar_url": "https://avatars.githubusercontent.com/u/89684956?v=4",
+      "profile": "https://github.com/HongGeonUi",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "ylcn91",
+      "name": "Doksanbir",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7249450?v=4",
+      "profile": "https://github.com/ylcn91",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
