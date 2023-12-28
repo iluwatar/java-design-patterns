@@ -64,7 +64,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.corruption.App</mainClass>
+                  <mainClass>com.iluwatar.api.gateway.App</mainClass>
                 </manifest>
               </archive>
             </configuration>
