@@ -25,13 +25,16 @@
 package com.iluwatar.gateway;
 
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
 * ExternalServiceB is one of external services.
 */
+@Slf4j
 class ExternalServiceB implements Gateway {
   @Override
   public void execute() throws Exception {
-    System.out.println("Executing Service B");
+    LOGGER.info("Executing Service B");
     // Simulate a time-consuming task
     Thread.sleep(1000);
   }

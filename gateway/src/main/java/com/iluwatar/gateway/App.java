@@ -24,14 +24,20 @@
  */
 package com.iluwatar.gateway;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * The App class serves as the main entry point for the application implementing the Gateway design pattern.
- * It demonstrates the use of the GatewayFactory to manage different gateway implementations, allowing for the
- * execution of various services asynchronously.
+ * The Gateway design pattern is a structural design pattern that provides an interface to a set of services
+ * in a subsystem. It involves creating a Gateway interface that serves as a common entry point for interacting
+ * with various services, and concrete implementations of this interface for different external services.
  *
- * <p>In this example, there are three virtual service. GateFactory is the factory class and it provides a method
- * to create different kinds of external services.
+ * <p>In this example, there are three virtual service. GateFactory is the factory class, and it provides a method
+ * to create different kinds of external services. ExternalServiceA, ExternalServiceB, and ExternalServiceC are concrete
+ * implementations of the Gateway interface. Each service provides its own implementation of the execute() method.
+ * The interface in App class is the common interface for all external services. It calls execute() method in different
+ * classes that represents the functionality to be executed by each service.
  */
+@Slf4j
 public class App {
   /**
    * Simulate an application calling external services.
@@ -55,8 +61,7 @@ public class App {
       serviceB.execute();
       serviceC.execute();
     } catch (ThreadDeath e) {
-      System.out.println("Interrupted!" + e);
+      LOGGER.info("Interrupted!" + e);
       throw e;
     }
-  }
-}
+  }}
