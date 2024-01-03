@@ -3,6 +3,7 @@ title: Gateway
 category: Structural
 language: en
 tag:
+
 - Gang of Four
 - Decoupling
 
