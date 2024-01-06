@@ -2834,6 +2834,25 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Chant3ll3",
+      "name": "Chant3ll3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/141697333?v=4",
+      "profile": "https://github.com/Chant3ll3",
+      "contributions": [
+        "doc",
+        "translation"
+      ]
+    },
+    {
+      "login": "hwan33",
+      "name": "YongHwan Kwon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67625677?v=4",
+      "profile": "https://hwan33.tistory.com/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
