@@ -68,7 +68,6 @@ class AppTest {
 
     @Test
     void clobSerializerTest() {
-
         Forest forest = createForest();
         try (LobSerializer serializer = new ClobSerializer()) {
 
