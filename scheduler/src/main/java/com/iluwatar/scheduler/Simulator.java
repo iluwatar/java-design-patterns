@@ -24,7 +24,7 @@ public class Simulator implements PropertyChangeListener {
    * Simulate scheduler schedule tasks, then return a LinkedHashMap present the completed order of
    * tasks, which map task id to the time it completed.
    */
-  public LinkedHashMap<Integer, Integer> simulate() {
+  public Map<Integer, Integer> simulate() {
     while (elapsedTime < simulateTime) {
       if (tasks.containsKey(elapsedTime)) {
         for (Task task : tasks.get(elapsedTime)) {

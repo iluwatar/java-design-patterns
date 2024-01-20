@@ -16,7 +16,7 @@ class FirstComeFirstServedSchedulerTest {
 
     Simulator simulator = new Simulator(new FirstComeFirstServedScheduler(), tasks, 1, 100);
 
-    LinkedHashMap<Integer, Integer> taskCompletedOrder = simulator.simulate();
+    Map<Integer, Integer> taskCompletedOrder = simulator.simulate();
 
     assertEquals(3, taskCompletedOrder.size());
     assertIterableEquals(List.of(1, 2, 3), taskCompletedOrder.keySet());
@@ -36,7 +36,7 @@ class FirstComeFirstServedSchedulerTest {
 
     Simulator simulator = new Simulator(new FirstComeFirstServedScheduler(), tasks, 1, 100);
 
-    LinkedHashMap<Integer, Integer> taskCompletedOrder = simulator.simulate();
+    Map<Integer, Integer> taskCompletedOrder = simulator.simulate();
 
     assertEquals(5, taskCompletedOrder.size());
     assertIterableEquals(List.of(1, 2, 3, 4, 5), taskCompletedOrder.keySet());

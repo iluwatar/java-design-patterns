@@ -16,7 +16,7 @@ class ShortestRemainingTimeFirstSchedulerTest {
 
     Simulator simulator = new Simulator(new ShortestRemainingTimeFirstScheduler(), tasks, 1, 10);
 
-    LinkedHashMap<Integer, Integer> taskCompletedOrder = simulator.simulate();
+    Map<Integer, Integer> taskCompletedOrder = simulator.simulate();
     assertEquals(3, taskCompletedOrder.size());
     assertIterableEquals(List.of(2, 1, 3), taskCompletedOrder.keySet());
   }
@@ -32,7 +32,7 @@ class ShortestRemainingTimeFirstSchedulerTest {
 
     Simulator simulator = new Simulator(new ShortestRemainingTimeFirstScheduler(), tasks, 1, 100);
 
-    LinkedHashMap<Integer, Integer> taskCompletedOrder = simulator.simulate();
+    Map<Integer, Integer> taskCompletedOrder = simulator.simulate();
 
     assertEquals(5, taskCompletedOrder.size());
     assertIterableEquals(List.of(1, 2, 3, 5, 4), taskCompletedOrder.keySet());
