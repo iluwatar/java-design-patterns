@@ -24,17 +24,82 @@
  */
 package com.iluwatar.slob;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
+import com.iluwatar.slob.lob.Animal;
+import com.iluwatar.slob.lob.Forest;
+import com.iluwatar.slob.lob.Plant;
+import com.iluwatar.slob.serializers.BlobSerializer;
+import com.iluwatar.slob.serializers.ClobSerializer;
+import com.iluwatar.slob.serializers.LobSerializer;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Set;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /**
  * Application test
  */
+@Slf4j
 class AppTest {
 
-	@Test
-	void shouldExecuteWithoutException() {
-		assertDoesNotThrow(() -> App.main(new String[]{}));
-	}
+    private static Forest createForest() {
+        Plant grass = new Plant("Grass", "Herb");
+        Plant oak = new Plant("Oak", "Tree");
+
+        Animal zebra = new Animal("Zebra", Set.of(grass), Collections.emptySet());
+        Animal buffalo = new Animal("Buffalo", Set.of(grass), Collections.emptySet());
+        Animal lion = new Animal("Lion", Collections.emptySet(), Set.of(zebra, buffalo));
+
+        return new Forest("Amazon", Set.of(lion, buffalo, zebra), Set.of(grass, oak));
+    }
+
+    @Test
+    void shouldExecuteWithoutException() {
+        assertDoesNotThrow(() -> App.main(new String[]{}));
+    }
+
+    @Test
+    void clobSerializerTest() {
+
+        Forest forest = createForest();
+        try (LobSerializer serializer = new ClobSerializer()) {
+
+            Object serialized = serializer.serialize(forest);
+            int id = serializer.persistToDb(1, forest.getName(), serialized);
+
+            Object fromDb = serializer.loadFromDb(id, Forest.class.getSimpleName());
+            Forest forestFromDb = serializer.deSerialize(fromDb);
+
+            Assertions.assertEquals(forest.hashCode(), forestFromDb.hashCode(), "Hashes of objects after Serializing and Deserializing are the same");
+        } catch (SQLException | IOException | TransformerException | ParserConfigurationException | SAXException |
+                 ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    void blobSerializerTest() {
+        Forest forest = createForest();
+        try (LobSerializer serializer = new BlobSerializer()) {
+
+            Object serialized = serializer.serialize(forest);
+            int id = serializer.persistToDb(1, forest.getName(), serialized);
+
+            Object fromDb = serializer.loadFromDb(id, Forest.class.getSimpleName());
+            Forest forestFromDb = serializer.deSerialize(fromDb);
+
+            Assertions.assertEquals(forest.hashCode(), forestFromDb.hashCode(), "Hashes of objects after Serializing and Deserializing are the same");
+        } catch (SQLException | IOException | TransformerException | ParserConfigurationException | SAXException |
+                 ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

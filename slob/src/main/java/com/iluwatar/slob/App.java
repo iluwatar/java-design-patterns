@@ -24,19 +24,22 @@
  */
 package com.iluwatar.slob;
 
-import com.iluwatar.slob.lob.Customer;
-import com.iluwatar.slob.lob.Product;
+import com.iluwatar.slob.lob.Animal;
+import com.iluwatar.slob.lob.Forest;
+import com.iluwatar.slob.lob.Plant;
 import com.iluwatar.slob.serializers.ClobSerializer;
 import com.iluwatar.slob.serializers.LobSerializer;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Collections;
+import java.util.Set;
 
 /**
  * Application.
@@ -44,39 +47,47 @@ import org.xml.sax.SAXException;
 @Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  /**
-   * @param args
-   * @throws SQLException
-   */
-  public static void main(String[] args) throws SQLException {
+    /**
+     * @param args
+     * @throws SQLException
+     */
+    public static void main(String[] args) throws SQLException {
 
-    Product product = new Product("Mountains", List.of(new Product("Iron", null)));
-    Customer customer = new Customer("Ram", List.of(product));
+        Plant grass = new Plant("Grass", "Herb");
+        Plant oak = new Plant("Oak", "Tree");
 
-    LobSerializer serializer = new ClobSerializer();
-    executeSerializer(customer, serializer);
+        Animal zebra = new Animal("Zebra", Set.of(grass), Collections.emptySet());
+        Animal buffalo = new Animal("Buffalo", Set.of(grass), Collections.emptySet());
+        Animal lion = new Animal("Lion", Collections.emptySet(), Set.of(zebra, buffalo));
 
-  }
+        Forest forest = new Forest("Amazon", Set.of(lion, buffalo, zebra), Set.of(grass, oak));
 
-  /**
-   * @param customer
-   * @param lobSerializer
-   */
-  private static void executeSerializer(Customer customer, LobSerializer lobSerializer) {
-    try (LobSerializer serializer = lobSerializer) {
-
-      Object serialized = serializer.serialize(customer);
-      int id = serializer.persistToDb(1, customer.getName(), serialized);
-
-      Object fromDb = serializer.loadFromDb(id, "products");
-      Customer customerFromDb = serializer.deSerialize(fromDb);
-
-      LOGGER.info(customerFromDb.toString());
-    } catch (SQLException | IOException | TransformerException | ParserConfigurationException
-             | SAXException e) {
-      throw new RuntimeException(e);
+        LobSerializer serializer = new ClobSerializer();
+        executeSerializer(forest, serializer);
     }
-  }
+
+    /**
+     * @param forest
+     * @param lobSerializer
+     */
+    private static void executeSerializer(Forest forest, LobSerializer lobSerializer) {
+        try (LobSerializer serializer = lobSerializer) {
+
+            Object serialized = serializer.serialize(forest);
+            int id = serializer.persistToDb(1, forest.getName(), serialized);
+
+            Object fromDb = serializer.loadFromDb(id, Forest.class.getSimpleName());
+            Forest forestFromDb = serializer.deSerialize(fromDb);
+
+            LOGGER.info(forestFromDb.toString());
+            if (forest.hashCode() == forestFromDb.hashCode()) {
+                LOGGER.info("Objects Before And After Serialization are Same");
+            }
+        } catch (SQLException | IOException | TransformerException | ParserConfigurationException | SAXException |
+                 ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

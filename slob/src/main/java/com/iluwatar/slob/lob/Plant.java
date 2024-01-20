@@ -24,15 +24,17 @@
  */
 package com.iluwatar.slob.lob;
 
-import java.util.ArrayList;
-import java.util.List;
-import javax.xml.parsers.ParserConfigurationException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.Serializable;
+import java.util.StringJoiner;
 
 /**
  * Application.
@@ -40,41 +42,35 @@ import org.w3c.dom.Node;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Customer {
+public class Plant implements Serializable {
 
-  private String name;
-  private List<Product> products;
+    private String name;
+    private String type;
 
-  /**
-   * @param xmlDoc
-   * @return
-   * @throws ParserConfigurationException
-   */
-  public Element departmentsToXmlElement(Document xmlDoc) throws ParserConfigurationException {
-    Element root = xmlDoc.createElement("departments");
-    for (Product product : products) {
-      Element xmlElement = product.toXmlElement(xmlDoc);
-      if (xmlElement != null) {
-        root.appendChild(xmlElement);
-      }
+    /**
+     * @param xmlDoc
+     * @return
+     * @throws ParserConfigurationException
+     */
+    public Element toXmlElement(Document xmlDoc) throws ParserConfigurationException {
+        Element root = xmlDoc.createElement(Plant.class.getSimpleName());
+        root.setAttribute("name", name);
+        root.setAttribute("type", type);
+        xmlDoc.appendChild(root);
+        return xmlDoc.getDocumentElement();
     }
-    xmlDoc.appendChild(root);
-    return (Element) xmlDoc.getFirstChild();
-  }
 
-  /**
-   * @param source
-   * @return
-   */
-  public Customer readDepartments(Element source) {
-    List result = new ArrayList();
-    Node child = source.getFirstChild();
-    while (child != null) {
-      if (child.getNodeType() == Node.ELEMENT_NODE && child.getTextContent() != null) {
-        System.out.println(child.getAttributes());
-      }
-      child = child.getNextSibling();
+    public void createObjectFromXml(Node node) {
+        NamedNodeMap attributes = node.getAttributes();
+        name = attributes.getNamedItem("name").getNodeValue();
+        type = attributes.getNamedItem("type").getNodeValue();
     }
-    return null;
-  }
+
+    @Override
+    public String toString() {
+        StringJoiner stringJoiner = new StringJoiner(",");
+        stringJoiner.add("Name = " + name);
+        stringJoiner.add("Type = " + type);
+        return stringJoiner.toString();
+    }
 }
