@@ -16,7 +16,7 @@ class PrioritySchedulerTest {
 
     Simulator simulator = new Simulator(new PriorityScheduler(), tasks, 1, 10);
 
-    LinkedHashMap<Integer, Integer> taskCompletedOrder = simulator.simulate();
+    Map<Integer, Integer> taskCompletedOrder = simulator.simulate();
 
     assertEquals(3, taskCompletedOrder.size());
     assertIterableEquals(List.of(2, 3, 1), taskCompletedOrder.keySet());
@@ -36,7 +36,7 @@ class PrioritySchedulerTest {
 
     Simulator simulator = new Simulator(new PriorityScheduler(), tasks, 1, 100);
 
-    LinkedHashMap<Integer, Integer> taskCompletedOrder = simulator.simulate();
+    Map<Integer, Integer> taskCompletedOrder = simulator.simulate();
 
     assertEquals(5, taskCompletedOrder.size());
     assertIterableEquals(List.of(3, 1, 4, 5, 2), taskCompletedOrder.keySet());
