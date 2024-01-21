@@ -26,7 +26,6 @@ package com.iluwatar.slob.lob;
 
 import java.io.Serializable;
 import java.util.StringJoiner;
-import javax.xml.parsers.ParserConfigurationException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -36,7 +35,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 /**
- * Application.
+ * Creates an object Plant which contains its name and type
  */
 @Data
 @AllArgsConstructor
@@ -47,11 +46,12 @@ public class Plant implements Serializable {
   private String type;
 
   /**
-   * @param xmlDoc
-   * @return
-   * @throws ParserConfigurationException
+   * Provides XML Representation of the Plant
+   *
+   * @param xmlDoc to which the XML representation is to be written to
+   * @return XML Element contain the Animal representation
    */
-  public Element toXmlElement(Document xmlDoc) throws ParserConfigurationException {
+  public Element toXmlElement(Document xmlDoc) {
     Element root = xmlDoc.createElement(Plant.class.getSimpleName());
     root.setAttribute("name", name);
     root.setAttribute("type", type);
@@ -59,6 +59,11 @@ public class Plant implements Serializable {
     return xmlDoc.getDocumentElement();
   }
 
+  /**
+   * Parses the Plant Object from the input XML Node.
+   *
+   * @param node the XML Node from which the Animal Object is to be parsed
+   */
   public void createObjectFromXml(Node node) {
     NamedNodeMap attributes = node.getAttributes();
     name = attributes.getNamedItem("name").getNodeValue();

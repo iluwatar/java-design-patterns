@@ -14,6 +14,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+/**
+ * Creates an object Forest which contains animals and plants as its constituents. Animals may eat
+ * plants or other animals in the forest.
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -23,6 +27,11 @@ public class Forest implements Serializable {
   private Set<Animal> animals = new HashSet<>();
   private Set<Plant> plants = new HashSet<>();
 
+  /**
+   * Provides the representation of Forest in XML form.
+   *
+   * @return XML Element
+   */
   public Element toXmlElement() throws ParserConfigurationException {
     Document xmlDoc = getXmlDoc();
 
@@ -45,10 +54,21 @@ public class Forest implements Serializable {
     return forestXml;
   }
 
+  /**
+   * Returns XMLDoc to use for XML creation
+   *
+   * @return XML DOC Object
+   * @throws ParserConfigurationException {@inheritDoc}
+   */
   private Document getXmlDoc() throws ParserConfigurationException {
     return DocumentBuilderFactory.newDefaultInstance().newDocumentBuilder().newDocument();
   }
 
+  /**
+   * Parses the Forest Object from the input XML Document.
+   *
+   * @param document the XML document from which the Forest is to be parsed
+   */
   public void createObjectFromXml(Document document) {
     name = document.getDocumentElement().getAttribute("name");
     NodeList nodeList = document.getElementsByTagName("*");
