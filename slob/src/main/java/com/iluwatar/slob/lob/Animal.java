@@ -27,7 +27,6 @@ package com.iluwatar.slob.lob;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
-import javax.xml.parsers.ParserConfigurationException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -37,7 +36,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
- * Application.
+ * Creates an object Animal with a list of animals and/or plants it consumes.
  */
 @Data
 @AllArgsConstructor
@@ -48,6 +47,14 @@ public class Animal implements Serializable {
   private Set<Plant> plantsEaten = new HashSet<>();
   private Set<Animal> animalsEaten = new HashSet<>();
 
+  /**
+   * Iterates over the input nodes recursively and adds new plants or animals found to input sets
+   * respectively
+   *
+   * @param childNodes   contains the XML Node containing the Forest
+   * @param animalsEaten set of Animals eaten
+   * @param plantsEaten  set of Plants eaten
+   */
   protected static void iterateXmlForAnimalAndPlants(NodeList childNodes, Set<Animal> animalsEaten,
       Set<Plant> plantsEaten) {
     for (int i = 0; i < childNodes.getLength(); i++) {
@@ -67,11 +74,12 @@ public class Animal implements Serializable {
   }
 
   /**
-   * @param xmlDoc
-   * @return
-   * @throws ParserConfigurationException
+   * Provides XML Representation of the Animal
+   *
+   * @param xmlDoc object to which the XML representation is to be written to
+   * @return XML Element contain the Animal representation
    */
-  public Element toXmlElement(Document xmlDoc) throws ParserConfigurationException {
+  public Element toXmlElement(Document xmlDoc) {
     Element root = xmlDoc.createElement(Animal.class.getSimpleName());
     root.setAttribute("name", name);
     for (Plant plant : plantsEaten) {
@@ -91,7 +99,9 @@ public class Animal implements Serializable {
   }
 
   /**
-   * @param node
+   * Parses the Animal Object from the input XML Node.
+   *
+   * @param node the XML Node from which the Animal Object is to be parsed
    * @return
    */
   public void createObjectFromXml(Node node) {
