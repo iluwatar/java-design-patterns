@@ -19,18 +19,23 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.sql.SQLException;
 
+/**
+ * Creates a Serializer that uses Character based serialization and deserialization of objects
+ * graph to and from XML Representation.
+ */
 public class ClobSerializer extends LobSerializer {
 
-    public static final String typeOfDataForDB = "TEXT";
+    public static final String TYPE_OF_DATA_FOR_DB = "TEXT";
 
     public ClobSerializer() throws SQLException {
-        super(typeOfDataForDB);
+        super(TYPE_OF_DATA_FOR_DB);
     }
 
     /**
-     * @param node
-     * @return
-     * @throws TransformerException
+     * Converts the input node to its XML String Representation
+     * @param node XML Node that is to be converted to string
+     * @return String representation of XML parsed from the Node
+     * @throws TransformerException If any issues occur in Transformation from Node to XML
      */
     private static String elementToXmlString(Element node) throws TransformerException {
         StringWriter sw = new StringWriter();
@@ -42,10 +47,11 @@ public class ClobSerializer extends LobSerializer {
     }
 
     /**
-     * @param forest
-     * @return
-     * @throws ParserConfigurationException
-     * @throws TransformerException
+     * Serialize the input object graph to its XML Representation using DOM Elements
+     * @param forest Object which is to be serialized
+     * @return Serialized object
+     * @throws ParserConfigurationException If any issues occur in parsing input object
+     * @throws TransformerException If any issues occur in Transformation from Node to XML
      */
     @Override
     public Object serialize(Forest forest) throws ParserConfigurationException, TransformerException {
@@ -54,10 +60,12 @@ public class ClobSerializer extends LobSerializer {
     }
 
     /**
-     * @return
-     * @throws ParserConfigurationException
-     * @throws IOException
-     * @throws SAXException
+     * Deserialize the input XML string using DOM Parser and return its Object Graph Representation
+     * @param toDeSerialize Input Object to De-serialize
+     * @return Deserialized Object
+     * @throws ParserConfigurationException If any issues occur in parsing input object
+     * @throws IOException if any issues occur during reading object
+     * @throws SAXException If any issues occur in Transformation from Node to XML
      */
     @Override
     public Forest deSerialize(Object toDeSerialize) throws ParserConfigurationException, IOException, SAXException {

@@ -42,7 +42,7 @@ import java.util.Collections;
 import java.util.Set;
 
 /**
- * Application.
+ * SLOB Application using Serializer.
  */
 @Slf4j
 public class App {
@@ -50,8 +50,7 @@ public class App {
     private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
     /**
-     * @param args
-     * @throws SQLException
+     * @param args NA
      */
     public static void main(String[] args) throws SQLException {
 
@@ -69,8 +68,12 @@ public class App {
     }
 
     /**
-     * @param forest
-     * @param lobSerializer
+     * Serialize the input object using the input serializer and persist to DB, then load the object
+     * back from DB and deserializing using the provided input Serializer.
+     * After loading from DB the method matches the hash of the input object with the hash of the object
+     * that was loaded from DB and deserialized.
+     * @param forest Object to Serialize and Persist
+     * @param lobSerializer Serializer to Serialize and Deserialize Object
      */
     private static void executeSerializer(Forest forest, LobSerializer lobSerializer) {
         try (LobSerializer serializer = lobSerializer) {

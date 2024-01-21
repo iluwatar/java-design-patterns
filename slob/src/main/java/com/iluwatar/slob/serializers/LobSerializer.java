@@ -11,9 +11,13 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.sql.SQLException;
 
+/**
+ * Creates a Serializer that uses Binary serialization and deserialization of objects
+ * graph to and from their Binary Representation.
+ */
 public abstract class LobSerializer implements Serializable, Closeable {
 
-    public final DatabaseService databaseService;
+    private final transient DatabaseService databaseService;
 
     /**
      * @throws SQLException
