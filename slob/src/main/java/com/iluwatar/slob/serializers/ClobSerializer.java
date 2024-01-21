@@ -71,7 +71,7 @@ public class ClobSerializer extends LobSerializer {
   }
 
   /**
-   * Serialize the input object graph to its XML Representation using DOM Elements.
+   * Serializes the input object graph to its XML Representation using DOM Elements.
    *
    * @param forest Object which is to be serialized
    * @return Serialized object
@@ -85,7 +85,7 @@ public class ClobSerializer extends LobSerializer {
   }
 
   /**
-   * Deserialize the input XML string using DOM Parser and return its Object Graph Representation.
+   * Deserializes the input XML string using DOM Parser and return its Object Graph Representation.
    *
    * @param toDeserialize Input Object to De-serialize
    * @return Deserialized Object

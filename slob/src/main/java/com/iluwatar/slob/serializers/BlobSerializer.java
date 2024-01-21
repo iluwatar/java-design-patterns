@@ -47,7 +47,7 @@ public class BlobSerializer extends LobSerializer {
   }
 
   /**
-   * Serialize the input object graph to its Binary Representation using Object Stream.
+   * Serializes the input object graph to its Binary Representation using Object Stream.
    *
    * @param toSerialize Object which is to be serialized
    * @return Serialized object
@@ -63,7 +63,7 @@ public class BlobSerializer extends LobSerializer {
   }
 
   /**
-   * Deserialize the input Byte Array Stream using Object Stream and return its Object Graph
+   * Deserializes the input Byte Array Stream using Object Stream and return its Object Graph
    * Representation.
    *
    * @param toDeserialize Input Object to De-serialize
