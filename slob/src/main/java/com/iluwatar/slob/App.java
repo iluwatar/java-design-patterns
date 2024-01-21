@@ -29,17 +29,16 @@ import com.iluwatar.slob.lob.Forest;
 import com.iluwatar.slob.lob.Plant;
 import com.iluwatar.slob.serializers.ClobSerializer;
 import com.iluwatar.slob.serializers.LobSerializer;
-import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Set;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
 
 /**
  * SLOB Application using Serializer.
@@ -47,50 +46,52 @@ import java.util.Set;
 @Slf4j
 public class App {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-    /**
-     * @param args NA
-     */
-    public static void main(String[] args) throws SQLException {
+  /**
+   * @param args NA
+   */
+  public static void main(String[] args) throws SQLException {
 
-        Plant grass = new Plant("Grass", "Herb");
-        Plant oak = new Plant("Oak", "Tree");
+    Plant grass = new Plant("Grass", "Herb");
+    Plant oak = new Plant("Oak", "Tree");
 
-        Animal zebra = new Animal("Zebra", Set.of(grass), Collections.emptySet());
-        Animal buffalo = new Animal("Buffalo", Set.of(grass), Collections.emptySet());
-        Animal lion = new Animal("Lion", Collections.emptySet(), Set.of(zebra, buffalo));
+    Animal zebra = new Animal("Zebra", Set.of(grass), Collections.emptySet());
+    Animal buffalo = new Animal("Buffalo", Set.of(grass), Collections.emptySet());
+    Animal lion = new Animal("Lion", Collections.emptySet(), Set.of(zebra, buffalo));
 
-        Forest forest = new Forest("Amazon", Set.of(lion, buffalo, zebra), Set.of(grass, oak));
+    Forest forest = new Forest("Amazon", Set.of(lion, buffalo, zebra), Set.of(grass, oak));
 
-        LobSerializer serializer = new ClobSerializer();
-        executeSerializer(forest, serializer);
+    LobSerializer serializer = new ClobSerializer();
+    executeSerializer(forest, serializer);
+  }
+
+  /**
+   * Serialize the input object using the input serializer and persist to DB, then load the object
+   * back from DB and deserializing using the provided input Serializer. After loading from DB the
+   * method matches the hash of the input object with the hash of the object that was loaded from DB
+   * and deserialized.
+   *
+   * @param forest        Object to Serialize and Persist
+   * @param lobSerializer Serializer to Serialize and Deserialize Object
+   */
+  private static void executeSerializer(Forest forest, LobSerializer lobSerializer) {
+    try (LobSerializer serializer = lobSerializer) {
+
+      Object serialized = serializer.serialize(forest);
+      int id = serializer.persistToDb(1, forest.getName(), serialized);
+
+      Object fromDb = serializer.loadFromDb(id, Forest.class.getSimpleName());
+      Forest forestFromDb = serializer.deSerialize(fromDb);
+
+      LOGGER.info(forestFromDb.toString());
+      if (forest.hashCode() == forestFromDb.hashCode()) {
+        LOGGER.info("Objects Before And After Serialization are Same");
+      }
+    } catch (SQLException | IOException | TransformerException | ParserConfigurationException |
+             SAXException |
+             ClassNotFoundException e) {
+      throw new RuntimeException(e);
     }
-
-    /**
-     * Serialize the input object using the input serializer and persist to DB, then load the object
-     * back from DB and deserializing using the provided input Serializer.
-     * After loading from DB the method matches the hash of the input object with the hash of the object
-     * that was loaded from DB and deserialized.
-     * @param forest Object to Serialize and Persist
-     * @param lobSerializer Serializer to Serialize and Deserialize Object
-     */
-    private static void executeSerializer(Forest forest, LobSerializer lobSerializer) {
-        try (LobSerializer serializer = lobSerializer) {
-
-            Object serialized = serializer.serialize(forest);
-            int id = serializer.persistToDb(1, forest.getName(), serialized);
-
-            Object fromDb = serializer.loadFromDb(id, Forest.class.getSimpleName());
-            Forest forestFromDb = serializer.deSerialize(fromDb);
-
-            LOGGER.info(forestFromDb.toString());
-            if (forest.hashCode() == forestFromDb.hashCode()) {
-                LOGGER.info("Objects Before And After Serialization are Same");
-            }
-        } catch (SQLException | IOException | TransformerException | ParserConfigurationException | SAXException |
-                 ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-    }
+  }
 }
