@@ -61,7 +61,12 @@ class AppTest {
   }
 
   @Test
-  void shouldExecuteWithoutException() {
+  void shouldExecuteWithoutExceptionClob() {
+    assertDoesNotThrow(() -> App.main(new String[]{"CLOB"}));
+  }
+
+  @Test
+  void shouldExecuteWithoutExceptionBlob() {
     assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 
