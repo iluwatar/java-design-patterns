@@ -50,7 +50,13 @@ import org.xml.sax.SAXException;
 class AppTest {
 
   /**
-   * Creates a Forest with Animals and Plants along with their respective relationships
+   * Creates a Forest with Animals and Plants along with their respective relationships.
+   * <p> The method creates a forest with 2 Plants Grass and Oak of type Herb and tree
+   * respectively.</p>
+   * <p> It also creates 3 animals Zebra and Buffalo which eat the plant grass. Lion consumes the
+   * Zebra and the Buffalo.</p>
+   * <p>With the above animals and plants and their relationships a forest
+   * object is created which represents the Object Graph.</p>
    *
    * @return Forest Object
    */

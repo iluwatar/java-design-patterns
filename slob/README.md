@@ -16,7 +16,7 @@ tag:
 
 ## Explanation
 
-* Forest here represents the object graph.
+* The Forest here represents the object graph.
 * A forest contains animals and plants. As is in real life the forest object contains plants and
   animals
   where some animals eat other animals and some eat only plants.
