@@ -102,7 +102,6 @@ public class Animal implements Serializable {
    * Parses the Animal Object from the input XML Node.
    *
    * @param node the XML Node from which the Animal Object is to be parsed
-   * @return
    */
   public void createObjectFromXml(Node node) {
     name = node.getAttributes().getNamedItem("name").getNodeValue();
