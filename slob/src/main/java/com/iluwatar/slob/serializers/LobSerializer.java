@@ -55,7 +55,7 @@ public abstract class LobSerializer implements Serializable, Closeable {
   }
 
   /**
-   * Provide specification to Serialize the input object.
+   * Provides the specification to Serialize the input object.
    *
    * @param toSerialize Input Object to serialize
    * @return Serialized Object
@@ -67,7 +67,7 @@ public abstract class LobSerializer implements Serializable, Closeable {
       throws ParserConfigurationException, TransformerException, IOException;
 
   /**
-   * Save the object to DB with the provided ID.
+   * Saves the object to DB with the provided ID.
    *
    * @param id     key to be sent to DB service
    * @param name   Object name to store in DB
@@ -81,7 +81,7 @@ public abstract class LobSerializer implements Serializable, Closeable {
   }
 
   /**
-   * Load the object from db using the ID and column name.
+   * Loads the object from db using the ID and column name.
    *
    * @param id         to query the DB
    * @param columnName column from which object is to be extracted
@@ -93,7 +93,7 @@ public abstract class LobSerializer implements Serializable, Closeable {
   }
 
   /**
-   * Provide specification to Deserialize the input object.
+   * Provides the specification to Deserialize the input object.
    *
    * @param toDeserialize object to deserialize
    * @return Deserialized Object

@@ -42,7 +42,7 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 /**
- * SLOB Application using Serializer and H2 DB.
+ * SLOB Application using {@link LobSerializer} and H2 DB.
  */
 public class App {
 
