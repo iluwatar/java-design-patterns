@@ -13,12 +13,13 @@ import java.sql.SQLException;
 
 public abstract class LobSerializer implements Serializable, Closeable {
 
-    public static final DatabaseService databaseService = new DatabaseService();
+    public final DatabaseService databaseService;
 
     /**
      * @throws SQLException
      */
-    protected LobSerializer() throws SQLException {
+    protected LobSerializer(String typeOfDataForDB) throws SQLException {
+        databaseService = new DatabaseService(typeOfDataForDB);
         databaseService.startupService();
     }
 

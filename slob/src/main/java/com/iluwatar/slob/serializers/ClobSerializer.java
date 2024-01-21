@@ -21,8 +21,10 @@ import java.sql.SQLException;
 
 public class ClobSerializer extends LobSerializer {
 
+    public static final String typeOfDataForDB = "CLOB";
+
     public ClobSerializer() throws SQLException {
-        super();
+        super(typeOfDataForDB);
     }
 
     /**

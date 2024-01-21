@@ -9,16 +9,20 @@ import java.sql.SQLException;
 
 @Slf4j
 public class DatabaseService {
-
-    public static final String CREATE_SCHEMA_SQL =
+    public static final String CREATE_BLOB_SCHEMA_SQL =
+            "CREATE TABLE IF NOT EXISTS FORESTS (ID NUMBER UNIQUE, NAME VARCHAR(30),FOREST VARBINARY)";
+    public static final String CREATE_CLOB_SCHEMA_SQL =
             "CREATE TABLE IF NOT EXISTS FORESTS (ID NUMBER UNIQUE, NAME VARCHAR(30),FOREST VARCHAR)";
     public static final String DELETE_SCHEMA_SQL = "DROP TABLE FORESTS IF EXISTS";
     private static final String DB_URL = "jdbc:h2:~/test";
     private static final String INSERT = "insert into FORESTS (id,name, forest) values (?,?,?)";
-
     private static final String SELECT = "select FOREST from FORESTS where id = ?";
-
     private static final DataSource dataSource = createDataSource();
+    public String typeOfDataForDB;
+
+    public DatabaseService(String typeOfDataForDB) {
+        this.typeOfDataForDB = typeOfDataForDB;
+    }
 
     private static DataSource createDataSource() {
         var dataSource = new JdbcDataSource();
@@ -38,7 +42,11 @@ public class DatabaseService {
             throws SQLException {
         try (var connection = dataSource.getConnection();
              var statement = connection.createStatement()) {
-            statement.execute(CREATE_SCHEMA_SQL);
+            if (typeOfDataForDB.equals("BLOB")) {
+                statement.execute(CREATE_BLOB_SCHEMA_SQL);
+            } else {
+                statement.execute(CREATE_CLOB_SCHEMA_SQL);
+            }
         }
     }
 
@@ -61,11 +69,15 @@ public class DatabaseService {
              var preparedStatement =
                      connection.prepareStatement(SELECT)
         ) {
-            var result = "";
+            Object result = null;
             preparedStatement.setLong(1, id1);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                result = resultSet.getString(columnsName);
+                if (typeOfDataForDB.equals("BLOB")) {
+                    result = resultSet.getBinaryStream(columnsName);
+                } else {
+                    result = resultSet.getString(columnsName);
+                }
             }
             return result;
         } finally {

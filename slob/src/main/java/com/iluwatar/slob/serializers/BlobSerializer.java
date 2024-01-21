@@ -4,14 +4,16 @@ import com.iluwatar.slob.lob.Forest;
 
 import java.io.*;
 import java.sql.SQLException;
-import java.util.Base64;
 
 public class BlobSerializer extends LobSerializer {
+
+    public static final String typeOfDataForDB = "BLOB";
 
     /**
      * @throws SQLException
      */
     public BlobSerializer() throws SQLException {
+        super(typeOfDataForDB);
     }
 
     /**
@@ -24,7 +26,7 @@ public class BlobSerializer extends LobSerializer {
         ObjectOutputStream oos = new ObjectOutputStream(baos);
         oos.writeObject(toSerialize);
         oos.close();
-        return Base64.getEncoder().encodeToString(baos.toByteArray());
+        return new ByteArrayInputStream(baos.toByteArray());
     }
 
     /**
@@ -33,8 +35,7 @@ public class BlobSerializer extends LobSerializer {
      */
     @Override
     public Forest deSerialize(Object toDeserialize) throws IOException, ClassNotFoundException {
-        byte[] decoded = Base64.getDecoder().decode(toDeserialize.toString());
-        InputStream bis = new ByteArrayInputStream(decoded);
+        InputStream bis = (InputStream) toDeserialize;
         Forest forest;
         try (ObjectInput in = new ObjectInputStream(bis)) {
             forest = (Forest) in.readObject();
