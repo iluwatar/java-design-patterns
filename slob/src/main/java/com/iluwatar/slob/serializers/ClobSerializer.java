@@ -63,18 +63,18 @@ public class ClobSerializer extends LobSerializer {
   /**
    * Deserialize the input XML string using DOM Parser and return its Object Graph Representation
    *
-   * @param toDeSerialize Input Object to De-serialize
+   * @param toDeserialize Input Object to De-serialize
    * @return Deserialized Object
    * @throws ParserConfigurationException If any issues occur in parsing input object
    * @throws IOException                  if any issues occur during reading object
    * @throws SAXException                 If any issues occur in Transformation from Node to XML
    */
   @Override
-  public Forest deSerialize(Object toDeSerialize)
+  public Forest deSerialize(Object toDeserialize)
       throws ParserConfigurationException, IOException, SAXException {
     DocumentBuilder documentBuilder = DocumentBuilderFactory.newDefaultInstance()
         .newDocumentBuilder();
-    var stream = new ByteArrayInputStream(toDeSerialize.toString().getBytes());
+    var stream = new ByteArrayInputStream(toDeserialize.toString().getBytes());
     Document parsed = documentBuilder.parse(stream);
     Forest forest = new Forest();
     forest.createObjectFromXml(parsed);
