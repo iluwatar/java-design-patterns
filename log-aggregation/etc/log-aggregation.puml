@@ -1,0 +1,51 @@
+@startuml
+
+package com.iluwatar.logaggregation {
+
+  class App {
+    + main(args: String[]) {static}
+  }
+
+  class CentralLogStore {
+    - logs: ConcurrentLinkedQueue<LogEntry>
+    + storeLog(logEntry: LogEntry)
+    + displayLogs()
+  }
+
+  class LogAggregator {
+    - BUFFER_THRESHOLD: int {static}
+    - centralLogStore: CentralLogStore
+    - buffer: ConcurrentLinkedQueue<LogEntry>
+    - minLogLevel: LogLevel
+    - executorService: ExecutorService
+    - logCount: AtomicInteger
+    + collectLog(logEntry: LogEntry)
+    + stop()
+  }
+
+  class LogEntry {
+    - serviceName: String
+    - level: LogLevel
+    - message: String
+    - timestamp: LocalDateTime
+  }
+
+  enum LogLevel {
+    DEBUG
+    INFO
+    ERROR
+  }
+
+  class LogProducer {
+    - serviceName: String
+    - aggregator: LogAggregator
+    + generateLog(level: LogLevel, message: String)
+  }
+}
+
+LogProducer --> "-aggregator" LogAggregator
+LogAggregator --> "-centralLogStore" CentralLogStore
+LogAggregator --> "-buffer" LogEntry
+CentralLogStore --> "-logs" LogEntry
+
+@enduml
