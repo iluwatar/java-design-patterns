@@ -37,7 +37,6 @@ import java.util.Objects;
 import java.util.Set;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
-import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
@@ -45,13 +44,12 @@ import org.xml.sax.SAXException;
 /**
  * SLOB Application using Serializer and H2 DB.
  */
-@Slf4j
 public class App {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Main entry point to program
+   * Main entry point to program.
    *
    * @param args if first arg is CLOB then ClobSerializer is used else BlobSerializer is used.
    */
@@ -67,7 +65,7 @@ public class App {
   }
 
   /**
-   * Creates a Forest with Animals and Plants along with their respective relationships
+   * Creates a Forest with Animals and Plants along with their respective relationships.
    *
    * @return Forest Object
    */
@@ -83,10 +81,8 @@ public class App {
   }
 
   /**
-   * Serialize the input object using the input serializer and persist to DB, then load the object
-   * back from DB and deserializing using the provided input Serializer. After loading from DB the
-   * method matches the hash of the input object with the hash of the object that was loaded from DB
-   * and deserialized.
+   * Serialize the input object using the input serializer and persist to DB. After this it loads
+   * the same object back from DB and deserializes using the provided serializer.
    *
    * @param forest        Object to Serialize and Persist
    * @param lobSerializer Serializer to Serialize and Deserialize Object
@@ -101,12 +97,9 @@ public class App {
       Forest forestFromDb = serializer.deSerialize(fromDb);
 
       LOGGER.info(forestFromDb.toString());
-      if (forest.hashCode() == forestFromDb.hashCode()) {
-        LOGGER.info("Objects Before And After Serialization are Same");
-      }
-    } catch (SQLException | IOException | TransformerException | ParserConfigurationException |
-             SAXException |
-             ClassNotFoundException e) {
+    } catch (SQLException | IOException | TransformerException | ParserConfigurationException
+             | SAXException
+             | ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
   }

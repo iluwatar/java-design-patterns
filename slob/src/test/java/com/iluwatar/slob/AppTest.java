@@ -44,11 +44,16 @@ import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
 /**
- * Application test
+ * SLOB Application test
  */
 @Slf4j
 class AppTest {
 
+  /**
+   * Creates a Forest with Animals and Plants along with their respective relationships
+   *
+   * @return Forest Object
+   */
   private static Forest createForest() {
     Plant grass = new Plant("Grass", "Herb");
     Plant oak = new Plant("Oak", "Tree");
@@ -60,16 +65,30 @@ class AppTest {
     return new Forest("Amazon", Set.of(lion, buffalo, zebra), Set.of(grass, oak));
   }
 
+  /**
+   * Tests the {@link App} without passing any argument in the args to test the
+   * {@link ClobSerializer}.
+   */
   @Test
   void shouldExecuteWithoutExceptionClob() {
     assertDoesNotThrow(() -> App.main(new String[]{"CLOB"}));
   }
 
+  /**
+   * Tests the {@link App} without passing any argument in the args to test the
+   * {@link BlobSerializer}.
+   */
   @Test
   void shouldExecuteWithoutExceptionBlob() {
     assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 
+  /**
+   * Tests the serialization of the input object using the {@link ClobSerializer} and persists the
+   * serialized object to DB, then load the object back from DB and deserializes it using the
+   * provided {@link ClobSerializer}.<p>After loading the object back from DB the test matches the
+   * hash of the input object with the hash of the object that was loaded from DB and deserialized.
+   */
   @Test
   void clobSerializerTest() {
     Forest forest = createForest();
@@ -90,6 +109,12 @@ class AppTest {
     }
   }
 
+  /**
+   * Tests the serialization of the input object using the {@link BlobSerializer} and persists the
+   * serialized object to DB, then loads the object back from DB and deserializes it using the
+   * {@link BlobSerializer}.<p>After loading the object back from DB the test matches the hash of
+   * the input object with the hash of the object that was loaded from DB and deserialized.
+   */
   @Test
   void blobSerializerTest() {
     Forest forest = createForest();

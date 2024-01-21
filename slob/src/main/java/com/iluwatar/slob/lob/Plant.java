@@ -35,7 +35,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 /**
- * Creates an object Plant which contains its name and type
+ * Creates an object Plant which contains its name and type.
  */
 @Data
 @AllArgsConstructor
@@ -46,7 +46,7 @@ public class Plant implements Serializable {
   private String type;
 
   /**
-   * Provides XML Representation of the Plant
+   * Provides XML Representation of the Plant.
    *
    * @param xmlDoc to which the XML representation is to be written to
    * @return XML Element contain the Animal representation

@@ -48,8 +48,8 @@ public class Animal implements Serializable {
   private Set<Animal> animalsEaten = new HashSet<>();
 
   /**
-   * Iterates over the input nodes recursively and adds new plants or animals found to input sets
-   * respectively
+   * Iterates over the input nodes recursively and adds new plants to {@link Animal#plantsEaten} or
+   * animals to {@link Animal#animalsEaten} found to input sets respectively.
    *
    * @param childNodes   contains the XML Node containing the Forest
    * @param animalsEaten set of Animals eaten
@@ -74,7 +74,7 @@ public class Animal implements Serializable {
   }
 
   /**
-   * Provides XML Representation of the Animal
+   * Provides XML Representation of the Animal.
    *
    * @param xmlDoc object to which the XML representation is to be written to
    * @return XML Element contain the Animal representation
