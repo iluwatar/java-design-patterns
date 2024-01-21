@@ -41,7 +41,7 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 /**
- * SLOB Application using Serializer.
+ * SLOB Application using Serializer and H2 DB.
  */
 @Slf4j
 public class App {
@@ -49,6 +49,8 @@ public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
+   * Main entry point to program
+   *
    * @param args NA
    */
   public static void main(String[] args) throws SQLException {
