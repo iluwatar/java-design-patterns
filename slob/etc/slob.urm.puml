@@ -1,84 +1,49 @@
 @startuml
-package com.iluwatar.stepbuilder {
-  class App {
-    - LOGGER : Logger {static}
-    + App()
-    + main(args : String[]) {static}
-  }
-  class Character {
-    - abilities : List<String>
-    - fighterClass : String
-    - name : String
-    - spell : String
-    - weapon : String
-    - wizardClass : String
-    + Character(name : String)
-    + getAbilities() : List<String>
-    + getFighterClass() : String
-    + getName() : String
-    + getSpell() : String
-    + getWeapon() : String
-    + getWizardClass() : String
-    + setAbilities(abilities : List<String>)
-    + setFighterClass(fighterClass : String)
-    + setName(name : String)
-    + setSpell(spell : String)
-    + setWeapon(weapon : String)
-    + setWizardClass(wizardClass : String)
-    + toString() : String
-  }
-  class CharacterStepBuilder {
-    - CharacterStepBuilder()
-    + newBuilder() : NameStep {static}
-  }
-  interface AbilityStep {
-    + noAbilities() : BuildStep {abstract}
-    + noMoreAbilities() : BuildStep {abstract}
-    + withAbility(String) : AbilityStep {abstract}
-  }
-  interface BuildStep {
-    + build() : Character {abstract}
-  }
-  -class CharacterSteps {
-    - abilities : List<String>
-    - fighterClass : String
-    - name : String
-    - spell : String
-    - weapon : String
-    - wizardClass : String
-    - CharacterSteps()
-    + build() : Character
-    + fighterClass(fighterClass : String) : WeaponStep
-    + name(name : String) : ClassStep
-    + noAbilities() : BuildStep
-    + noMoreAbilities() : BuildStep
-    + noSpell() : BuildStep
-    + noWeapon() : BuildStep
-    + withAbility(ability : String) : AbilityStep
-    + withSpell(spell : String) : AbilityStep
-    + withWeapon(weapon : String) : AbilityStep
-    + wizardClass(wizardClass : String) : SpellStep
-  }
-  interface ClassStep {
-    + fighterClass(String) : WeaponStep {abstract}
-    + wizardClass(String) : SpellStep {abstract}
-  }
-  interface NameStep {
-    + name(String) : ClassStep {abstract}
-  }
-  interface SpellStep {
-    + noSpell() : BuildStep {abstract}
-    + withSpell(String) : AbilityStep {abstract}
-  }
-  interface WeaponStep {
-    + noWeapon() : BuildStep {abstract}
-    + withWeapon(String) : AbilityStep {abstract}
-  }
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Animal {
+  - animalsEaten: Set<Animal>
+  - name: String
+  - plantsEaten: Set<Plant>
+   animalsEaten: Set<Animal>
+   name: String
+   plantsEaten: Set<Plant>
 }
-CharacterSteps ..|> NameStep 
-CharacterSteps ..|> ClassStep 
-CharacterSteps ..|> WeaponStep 
-CharacterSteps ..|> SpellStep 
-CharacterSteps ..|> AbilityStep 
-CharacterSteps ..|> BuildStep 
+class App
+class BlobSerializer
+class ClobSerializer
+class DatabaseService
+class Forest {
+  - animals: Set<Animal>
+  - name: String
+  - plants: Set<Plant>
+   animals: Set<Animal>
+   name: String
+   plants: Set<Plant>
+   xmlDoc: Document
+}
+class LobSerializer
+class Plant {
+  - name: String
+  - type: String
+   name: String
+   type: String
+}
+
+Animal           -[#595959,dashed]->  Plant           : "«create»"
+Animal          "1" *-[#595959,plain]-> "plantsEaten\n*" Plant
+App              -[#595959,dashed]->  Animal          : "«create»"
+App              -[#595959,dashed]->  ClobSerializer  : "«create»"
+App              -[#595959,dashed]->  Forest          : "«create»"
+App              -[#595959,dashed]->  Plant           : "«create»"
+BlobSerializer   -[#000082,plain]-^  LobSerializer
+ClobSerializer   -[#595959,dashed]->  Forest          : "«create»"
+ClobSerializer   -[#000082,plain]-^  LobSerializer
+Forest          "1" *-[#595959,plain]-> "animals\n*" Animal
+Forest          "1" *-[#595959,plain]-> "plants\n*" Plant
+LobSerializer   "1" *-[#595959,plain]-> "databaseService\n1" DatabaseService
+LobSerializer    -[#595959,dashed]->  DatabaseService : "«create»"
 @enduml

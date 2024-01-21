@@ -1,21 +1,33 @@
 ---
-title: Step Builder
-category: Creational
+title: Serialized LOB
+category: Structural
 language: en
 tag:
- - Instantiation
+  - Object Instantiation
 ---
 
 ## Intent
-An extension of the Builder pattern that fully guides the user through the creation of the object with no chances of confusion.
-The user experience will be much more improved by the fact that he will only see the next step methods available, NO build method until is the right time to build the object.
+
+Object models often contain complicated graphs of small objects. Much of the
+information in these structures isn’t in the objects but in the links between
+them. Objects don’t have to be persisted as table rows related to each other.
+Another form of persistence is serialization, where a whole graph of objects is
+written out as a single large object (LOB) in a table.
 
 ## Class diagram
-![alt text](./etc/step-builder.png "Step Builder")
+
+![alt text](./etc/slob.urm.png "Serialized LOB")
 
 ## Applicability
-Use the Step Builder pattern when the algorithm for creating a complex object should be independent of the parts that make up the object and how they're assembled the construction process must allow different representations for the object that's constructed when in the process of constructing the order is important.
+
+Serialized LOB isn’t considered as often as it might be. XML makes it much more
+attractive since it yields a easy-to-implement textual approach. Its main disadvantage is that you can’t query the
+structure using SQL.
+SQL extensions appear to get at XML data within a field, but that’s still not the same (or portable).
+This pattern works best when you can chop out a piece of the object model and use it to represent the LOB. Think of a
+LOB as a way to take a bunch of
+objects that aren’t likely to be queried from any SQL route outside the application. This graph can then be hooked into
+the SQL schema.
 
 ## Credits
 
-* [Marco Castigliego - Step Builder](http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html)
