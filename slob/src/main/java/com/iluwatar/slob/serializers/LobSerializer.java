@@ -30,8 +30,7 @@ public abstract class LobSerializer implements Serializable, Closeable {
      * @throws ParserConfigurationException
      * @throws TransformerException
      */
-    public abstract Object serialize(Forest toSerialize)
-            throws SQLException, ParserConfigurationException, TransformerException, IOException;
+    public abstract Object serialize(Forest toSerialize) throws SQLException, ParserConfigurationException, TransformerException, IOException;
 
     /**
      * @param id
@@ -63,8 +62,7 @@ public abstract class LobSerializer implements Serializable, Closeable {
      * @throws IOException
      * @throws SAXException
      */
-    public abstract Forest deSerialize(Object toSerialize)
-            throws ParserConfigurationException, IOException, SAXException, ClassNotFoundException;
+    public abstract Forest deSerialize(Object toSerialize) throws ParserConfigurationException, IOException, SAXException, ClassNotFoundException;
 
     @Override
     public void close() throws IOException {

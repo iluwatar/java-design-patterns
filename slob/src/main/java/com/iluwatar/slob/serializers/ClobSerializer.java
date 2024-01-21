@@ -48,8 +48,7 @@ public class ClobSerializer extends LobSerializer {
      * @throws TransformerException
      */
     @Override
-    public Object serialize(Forest forest)
-            throws ParserConfigurationException, TransformerException {
+    public Object serialize(Forest forest) throws ParserConfigurationException, TransformerException {
         Element xmlElement = forest.toXmlElement();
         return elementToXmlString(xmlElement);
     }
