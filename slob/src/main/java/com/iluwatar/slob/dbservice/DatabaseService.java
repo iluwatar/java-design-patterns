@@ -9,11 +9,12 @@ import java.sql.SQLException;
 
 @Slf4j
 public class DatabaseService {
-    public static final String CREATE_BLOB_SCHEMA_SQL =
+    public static final String CREATE_BINARY_SCHEMA_DDL =
             "CREATE TABLE IF NOT EXISTS FORESTS (ID NUMBER UNIQUE, NAME VARCHAR(30),FOREST VARBINARY)";
-    public static final String CREATE_CLOB_SCHEMA_SQL =
+    public static final String CREATE_TEXT_SCHEMA_DDL =
             "CREATE TABLE IF NOT EXISTS FORESTS (ID NUMBER UNIQUE, NAME VARCHAR(30),FOREST VARCHAR)";
     public static final String DELETE_SCHEMA_SQL = "DROP TABLE FORESTS IF EXISTS";
+    public static final String BINARY_DATA = "BINARY";
     private static final String DB_URL = "jdbc:h2:~/test";
     private static final String INSERT = "insert into FORESTS (id,name, forest) values (?,?,?)";
     private static final String SELECT = "select FOREST from FORESTS where id = ?";
@@ -42,10 +43,10 @@ public class DatabaseService {
             throws SQLException {
         try (var connection = dataSource.getConnection();
              var statement = connection.createStatement()) {
-            if (typeOfDataForDB.equals("BLOB")) {
-                statement.execute(CREATE_BLOB_SCHEMA_SQL);
+            if (typeOfDataForDB.equals("BINARY")) {
+                statement.execute(CREATE_BINARY_SCHEMA_DDL);
             } else {
-                statement.execute(CREATE_CLOB_SCHEMA_SQL);
+                statement.execute(CREATE_TEXT_SCHEMA_DDL);
             }
         }
     }
@@ -73,7 +74,7 @@ public class DatabaseService {
             preparedStatement.setLong(1, id1);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
-                if (typeOfDataForDB.equals("BLOB")) {
+                if (typeOfDataForDB.equals(BINARY_DATA)) {
                     result = resultSet.getBinaryStream(columnsName);
                 } else {
                     result = resultSet.getString(columnsName);

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class BlobSerializer extends LobSerializer {
 
-    public static final String typeOfDataForDB = "BLOB";
+    public static final String typeOfDataForDB = "BINARY";
 
     /**
      * @throws SQLException
