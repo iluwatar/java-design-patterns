@@ -27,11 +27,13 @@ package com.iluwatar.slob;
 import com.iluwatar.slob.lob.Animal;
 import com.iluwatar.slob.lob.Forest;
 import com.iluwatar.slob.lob.Plant;
+import com.iluwatar.slob.serializers.BlobSerializer;
 import com.iluwatar.slob.serializers.ClobSerializer;
 import com.iluwatar.slob.serializers.LobSerializer;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Collections;
+import java.util.Objects;
 import java.util.Set;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -51,10 +53,25 @@ public class App {
   /**
    * Main entry point to program
    *
-   * @param args NA
+   * @param args if first arg is CLOB then ClobSerializer is used else BlobSerializer is used.
    */
   public static void main(String[] args) throws SQLException {
+    Forest forest = createForest();
+    LobSerializer serializer;
+    if (args.length > 0 && Objects.equals(args[0], "CLOB")) {
+      serializer = new ClobSerializer();
+    } else {
+      serializer = new BlobSerializer();
+    }
+    executeSerializer(forest, serializer);
+  }
 
+  /**
+   * Creates a Forest with Animals and Plants along with their respective relationships
+   *
+   * @return Forest Object
+   */
+  private static Forest createForest() {
     Plant grass = new Plant("Grass", "Herb");
     Plant oak = new Plant("Oak", "Tree");
 
@@ -62,10 +79,7 @@ public class App {
     Animal buffalo = new Animal("Buffalo", Set.of(grass), Collections.emptySet());
     Animal lion = new Animal("Lion", Collections.emptySet(), Set.of(zebra, buffalo));
 
-    Forest forest = new Forest("Amazon", Set.of(lion, buffalo, zebra), Set.of(grass, oak));
-
-    LobSerializer serializer = new ClobSerializer();
-    executeSerializer(forest, serializer);
+    return new Forest("Amazon", Set.of(lion, buffalo, zebra), Set.of(grass, oak));
   }
 
   /**
