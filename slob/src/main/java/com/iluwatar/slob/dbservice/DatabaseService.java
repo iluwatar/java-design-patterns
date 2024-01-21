@@ -111,7 +111,6 @@ public class DatabaseService {
    */
   public void insert(int id, String name, Object data)
       throws SQLException {
-    boolean execute;
     try (var connection = dataSource.getConnection();
         var insert = connection.prepareStatement(INSERT)) {
       insert.setInt(1, id);
