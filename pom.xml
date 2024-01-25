@@ -207,6 +207,9 @@
     <module>context-object</module>
     <module>thread-local-storage</module>
     <module>optimistic-offline-lock</module>
+    <module>crtp</module>
+    <module>log-aggregation</module>
+    <module>health-check</module>
     <module>single-table-inheritance</module>
   </modules>
   <repositories>
