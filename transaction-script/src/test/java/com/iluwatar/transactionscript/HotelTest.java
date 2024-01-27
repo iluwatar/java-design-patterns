@@ -39,7 +39,7 @@ import org.junit.jupiter.api.Test;
  */
 class HotelTest {
 
-  private static final String H2_DB_URL = "jdbc:h2:~/test";
+  private static final String H2_DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
 
   private Hotel hotel;
   private HotelDaoImpl dao;
