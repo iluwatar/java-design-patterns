@@ -2863,6 +2863,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "bachbil",
+      "name": "believe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28935461?v=4",
+      "profile": "https://github.com/bachbil",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
