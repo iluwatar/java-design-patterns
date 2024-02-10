@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-315-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-316-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -479,6 +479,9 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="14.28%"><a href="https://hwan33.tistory.com/"><img src="https://avatars.githubusercontent.com/u/67625677?v=4?s=100" width="100px;" alt="YongHwan Kwon"/><br /><sub><b>YongHwan Kwon</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=hwan33" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/takikuba"><img src="https://avatars.githubusercontent.com/u/58841343?v=4?s=100" width="100px;" alt="Jakub Klimek"/><br /><sub><b>Jakub Klimek</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=takikuba" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/bachbil"><img src="https://avatars.githubusercontent.com/u/28935461?v=4?s=100" width="100px;" alt="believe"/><br /><sub><b>believe</b></sub></a><br /><a href="#translation-bachbil" title="Translation">🌍</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/egg0102030405"><img src="https://avatars.githubusercontent.com/u/59650695?v=4?s=100" width="100px;" alt="egg0102030405"/><br /><sub><b>egg0102030405</b></sub></a><br /><a href="#translation-egg0102030405" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
