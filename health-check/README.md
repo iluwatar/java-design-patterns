@@ -19,7 +19,8 @@ To ensure the stability and resilience of services in a microservices architectu
 
 ## Explanation
 In microservices architecture, it's critical to continuously check the health of individual services. The Health Check Pattern is a mechanism for microservices to expose their health status. This pattern is implemented by including a health check endpoint in microservices that returns the service's current state. This is vital for maintaining system resilience and operational readiness.
-<p>For more information, see the Health Check API pattern on [Microservices.io](https://microservices.io/patterns/observability/health-check-api.html).
+
+For more information, see the Health Check API pattern on [Microservices.io](https://microservices.io/patterns/observability/health-check-api.html).
 
 
 ## Real World Example
