@@ -210,7 +210,9 @@ types of documents or entities with shared and distinct attributes. By defining 
 across various document types, you can achieve a more organized and consistent approach to handling complex data 
 structures.
 
-## Benefits
+## Consequences
+
+Benefits
 
 * Flexibility: Accommodates varied document structures and properties.
 
@@ -220,8 +222,7 @@ structures.
 
 * Reusability: Typed views enable code reuse for accessing specific attribute types.
 
-
-## Trade-offs
+Trade-offs
 
 * Complexity: Requires defining interfaces and views, adding implementation overhead.
 
