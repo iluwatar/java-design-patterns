@@ -3,6 +3,8 @@ title: Abstract Factory
 category: Creational
 language: en
 tag:
+ - Abstraction
+ - Decoupling
  - Gang of Four
 ---
 
@@ -12,22 +14,27 @@ Kit
 
 ## Intent
 
-Provide an interface for creating families of related or dependent
-objects without specifying their concrete classes.
+The Abstract Factory design pattern provides a way to create families of related objects without specifying their 
+concrete classes. This allows for code that is independent of the specific classes of objects it uses, promoting 
+flexibility and maintainability.
 
 ## Explanation
 
 Real-world example
 
-> To create a kingdom we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency between the objects in the kingdom.
+> To create a kingdom we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and 
+> elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency 
+> between the objects in the kingdom.
 
 In plain words
 
-> A factory of factories; a factory that groups the individual but related/dependent factories together without specifying their concrete classes.
+> A factory of factories; a factory that groups the individual but related/dependent factories together without 
+> specifying their concrete classes.
 
 Wikipedia says
 
-> The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
+> The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme 
+> without specifying their concrete classes
 
 **Programmatic Example**
 
@@ -156,7 +163,6 @@ public static class FactoryMaker {
         return switch (type) {
             case ELF -> new ElfKingdomFactory();
             case ORC -> new OrcKingdomFactory();
-            default -> throw new IllegalArgumentException("KingdomType not supported.");
         };
     }
 }
@@ -204,13 +210,26 @@ Example use cases
 
 ## Consequences
 
-* Dependency injection in java hides the service class dependencies that can lead to runtime errors that would have been caught at compile time.
-* While the pattern is great when creating predefined objects, adding the new ones might be challenging.
-* The code becomes more complicated than it should be since a lot of new interfaces and classes are introduced along with the pattern.
+Benefits
+
+* Flexibility: Easily switch between product families without code modifications.
+
+* Decoupling: Client code only interacts with abstract interfaces, promoting portability and maintainability.
+
+* Reusability: Abstract factories and products facilitate component reuse across projects.
+
+* Maintainability: Changes to individual product families are localized, simplifying updates.
+
+Trade-offs
+
+* Complexity: Defining abstract interfaces and concrete factories adds initial overhead.
+
+* Indirectness: Client code interacts with products indirectly through factories, potentially reducing transparency.
 
 ## Tutorials
 
 * [Abstract Factory Pattern Tutorial](https://www.journaldev.com/1418/abstract-factory-design-pattern-in-java) 
+* [Refactoring Guru - Abstract Factory](https://refactoring.guru/design-patterns/abstract-factory)
 
 ## Known uses
 
@@ -227,3 +246,5 @@ Example use cases
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
 * [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+* [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3HWNf4U)
+* [Design Patterns in Java](https://amzn.to/3Syw0vC)
