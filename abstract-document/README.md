@@ -3,13 +3,16 @@ title: Abstract Document
 category: Structural
 language: en
 tag: 
- - Extensibility
+ - Abstraction
+ - Extensibility 
+ - Decoupling
 ---
 
 ## Intent
 
-The "Abstract Document" design pattern is a structural design pattern that aims to provide a consistent way to handle 
-hierarchical and tree-like data structures by defining a common interface for various document types.
+The Abstract Document design pattern is a structural design pattern that aims to provide a consistent way to handle 
+hierarchical and tree-like data structures by defining a common interface for various document types. It separates 
+the core document structure from specific data formats, enabling dynamic updates and simplified maintenance.
 
 ## Explanation
 
@@ -194,13 +197,38 @@ some scenarios where the Abstract Document design pattern can be applicable:
 
 * Project Management Tools: In project management applications, you could have different types of tasks like to-do items, milestones, and issues. The Abstract Document pattern could be used to handle general attributes like task name and assignee, while allowing for specific attributes like milestone date or issue priority.
 
+* Documents have diverse and evolving attribute structures.
+
+* Dynamically adding new properties is a common requirement.
+
+* Decoupling data access from specific formats is crucial.
+
+* Maintainability and flexibility are critical for the codebase.
+
 The key idea behind the Abstract Document design pattern is to provide a flexible and extensible way to manage different 
 types of documents or entities with shared and distinct attributes. By defining a common interface and implementing it 
 across various document types, you can achieve a more organized and consistent approach to handling complex data 
 structures.
 
+## Benefits
+
+* Flexibility: Accommodates varied document structures and properties.
+
+* Extensibility: Dynamically add new attributes without breaking existing code.
+
+* Maintainability: Promotes clean and adaptable code due to separation of concerns.
+
+* Reusability: Typed views enable code reuse for accessing specific attribute types.
+
+
+## Trade-offs
+
+* Complexity: Requires defining interfaces and views, adding implementation overhead.
+
+* Performance: Might introduce slight performance overhead compared to direct data access.
+
 ## Credits
 
 * [Wikipedia: Abstract Document Pattern](https://en.wikipedia.org/wiki/Abstract_Document_Pattern)
 * [Martin Fowler: Dealing with properties](http://martinfowler.com/apsupp/properties.pdf)
-* [Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing (v. 4)](https://www.amazon.com/gp/product/0470059028/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0470059028&linkId=e3aacaea7017258acf184f9f3283b492)
+* [Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing (v. 4)](https://amzn.to/49zRP4R)
