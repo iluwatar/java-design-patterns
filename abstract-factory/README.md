@@ -14,32 +14,25 @@ Kit
 
 ## Intent
 
-The Abstract Factory design pattern provides a way to create families of related objects without specifying their 
-concrete classes. This allows for code that is independent of the specific classes of objects it uses, promoting 
-flexibility and maintainability.
+The Abstract Factory design pattern provides a way to create families of related objects without specifying their concrete classes. This allows for code that is independent of the specific classes of objects it uses, promoting flexibility and maintainability.
 
 ## Explanation
 
 Real-world example
 
-> To create a kingdom we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and 
-> elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency 
-> between the objects in the kingdom.
+> To create a kingdom we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency between the objects in the kingdom.
 
 In plain words
 
-> A factory of factories; a factory that groups the individual but related/dependent factories together without 
-> specifying their concrete classes.
+> A factory of factories; a factory that groups the individual but related/dependent factories together without specifying their concrete classes.
 
 Wikipedia says
 
-> The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme 
-> without specifying their concrete classes
+> The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
 
 **Programmatic Example**
 
-Translating the kingdom example above. First of all, we have some interfaces and implementation for the objects in the 
-kingdom.
+Translating the kingdom example above. First of all, we have some interfaces and implementation for the objects in the kingdom.
 
 ```java
 public interface Castle {
@@ -148,9 +141,7 @@ This is the elven king!
 This is the elven Army!
 ```
 
-Now, we can design a factory for our different kingdom factories. In this example, we created `FactoryMaker`, responsible for returning an instance of either `ElfKingdomFactory` or `OrcKingdomFactory`.  
-The client can use `FactoryMaker` to create the desired concrete factory which, in turn, will produce different concrete objects (derived from `Army`, `King`, `Castle`).  
-In this example, we also used an enum to parameterize which type of kingdom factory the client will ask for.
+Now, we can design a factory for our different kingdom factories. In this example, we created `FactoryMaker`, responsible for returning an instance of either `ElfKingdomFactory` or `OrcKingdomFactory`. The client can use `FactoryMaker` to create the desired concrete factory which, in turn, will produce different concrete objects (derived from `Army`, `King`, `Castle`). In this example, we also used an enum to parameterize which type of kingdom factory the client will ask for.
 
 ```java
 public static class FactoryMaker {
