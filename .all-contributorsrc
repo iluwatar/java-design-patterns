@@ -2759,7 +2759,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/141746282?v=4",
       "profile": "https://github.com/jnniu-n",
       "contributions": [
-        "translation"
+        "translation",
+        "doc"
       ]
     },
     {
@@ -2832,7 +2833,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/7249450?v=4",
       "profile": "https://github.com/ylcn91",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -2852,6 +2854,34 @@
       "profile": "https://hwan33.tistory.com/",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "takikuba",
+      "name": "Jakub Klimek",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58841343?v=4",
+      "profile": "https://github.com/takikuba",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "bachbil",
+      "name": "believe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28935461?v=4",
+      "profile": "https://github.com/bachbil",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "egg0102030405",
+      "name": "egg0102030405",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59650695?v=4",
+      "profile": "https://github.com/egg0102030405",
+      "contributions": [
+        "translation",
+        "doc"
       ]
     }
   ],

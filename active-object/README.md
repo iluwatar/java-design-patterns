@@ -8,7 +8,8 @@ tag:
 
 
 ## Intent
-The active object design pattern decouples method execution from method invocation for objects that each reside in their thread of control. The goal is to introduce concurrency, by using asynchronous method invocation, and a scheduler for handling requests.
+
+The Active Object design pattern provides a safe and reliable way to implement asynchronous behavior in concurrent systems. It achieves this by encapsulating tasks within objects that have their own thread and message queue. This separation keeps the main thread responsive and avoids issues like direct thread manipulation or shared state access.
 
 ## Explanation
 
@@ -122,6 +123,41 @@ Now, we can create multiple creatures such as Orcs, tell them to eat and roam, a
 
 ![alt text](./etc/active-object.urm.png "Active Object class diagram")
 
+## Applicability
+
+* When you need to perform long-running operations without blocking the main thread.
+* When you need to interact with external resources asynchronously.
+* When you want to improve the responsiveness of your application.
+* When you need to manage concurrent tasks in a modular and maintainable way.
+
 ## Tutorials
 
 * [Android and Java Concurrency: The Active Object Pattern](https://www.youtube.com/watch?v=Cd8t2u5Qmvc)
+
+## Consequences
+
+Benefits
+
+* Improves responsiveness of the main thread.
+* Encapsulates concurrency concerns within objects.
+* Promotes better code organization and maintainability.
+* Provides thread safety and avoids shared state access problems.
+
+Trade-offs
+
+* Introduces additional overhead due to message passing and thread management.
+* May not be suitable for all types of concurrency problems.
+
+## Related patterns
+
+* Observer
+* Reactor
+* Producer-consumer
+* Thread pool
+
+## Credits
+
+* [Design Patterns: Elements of Reusable Object Software](https://amzn.to/3HYqrBE)
+* [Concurrent Programming in Java: Design Principles and Patterns](https://amzn.to/498SRVq)
+* [Learning Concurrent Programming in Scala](https://amzn.to/3UE07nV)
+* [Pattern Languages of Program Design 3](https://amzn.to/3OI1j61)
