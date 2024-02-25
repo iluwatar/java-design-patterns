@@ -2892,6 +2892,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Holiday-C",
+      "name": "NewMorning",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95869761?v=4",
+      "profile": "https://github.com/Holiday-C",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
