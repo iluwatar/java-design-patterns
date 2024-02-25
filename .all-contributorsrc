@@ -2883,6 +2883,15 @@
         "translation",
         "doc"
       ]
+    },
+    {
+      "login": "ved-asole",
+      "name": "Ved Asole",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77259804?v=4",
+      "profile": "http://vedasole.cloud",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
