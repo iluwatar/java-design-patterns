@@ -8,8 +8,7 @@ tag:
 
 ## Intent
 
-Allow new functions to be added to existing class hierarchies without affecting those hierarchies, and without creating 
-the troublesome dependency cycles that are inherent to the GoF Visitor Pattern.
+The Acyclic Visitor pattern decouples operations from an object hierarchy, allowing you to add new operations without modifying the object structure directly.
 
 ## Explanation
 
@@ -135,19 +134,19 @@ This pattern can be used:
 * When the visited class hierarchy will be frequently extended with new derivatives of the Element class.
 * When the recompilation, relinking, retesting or redistribution of the derivatives of Element is very expensive.
 
-## Tutorial
+## Tutorials
 
 * [Acyclic Visitor Pattern Example](https://codecrafter.blogspot.com/2012/12/the-acyclic-visitor-pattern.html)
 
 ## Consequences
 
-The good:
+Benefits:
 
 * No dependency cycles between class hierarchies.
 * No need to recompile all the visitors if a new one is added.
 * Does not cause compilation failure in existing visitors if class hierarchy has a new member.
 
-The bad:
+Trade-offs:
 
 * Violates [Liskov's Substitution Principle](https://java-design-patterns.com/principles/#liskov-substitution-principle) by showing that it can accept all visitors but actually only being interested in particular visitors.
 * Parallel hierarchy of visitors has to be created for all members in visitable class hierarchy.
