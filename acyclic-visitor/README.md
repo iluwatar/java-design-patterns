@@ -3,7 +3,8 @@ title: Acyclic Visitor
 category: Behavioral
 language: en
 tag:
- - Extensibility
+  - Decoupling
+  - Extensibility
 ---
 
 ## Intent
