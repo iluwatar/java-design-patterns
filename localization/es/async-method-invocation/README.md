@@ -150,7 +150,7 @@ Aquí está la salida de la consola del programa.
 
 # Diagrama de clase
 
-![texto alternativo](./etc/async-method-invocation.png "Invocación de método asíncrono")
+![texto alternativo](../../../async-method-invocation/etc/async-method-invocation.png "Invocación de método asíncrono")
 
 ## Aplicabilidad
 

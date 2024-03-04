@@ -22,7 +22,7 @@ Ejemplo del mundo real
 
 En palabras sencillas
 
-> Aggregator Microservice recopila datos de varios micro  y devuelve un agregado para su procesamiento.
+> Aggregator Microservice recopila datos de varios microservicios y devuelve un agregado para su procesamiento.
 
 StackOverflow dice
 
@@ -94,7 +94,7 @@ curl http://localhost:50004/product
 
 ## Diagrama de clase
 
-![alt text](./aggregator-service/etc/aggregator-service.png "Aggregator Microservice")
+![alt text](../../../aggregator-microservices/aggregator-service/etc/aggregator-service.png "Aggregator Microservice")
 
 ## Aplicabilidad
 

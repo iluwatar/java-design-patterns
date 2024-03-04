@@ -12,7 +12,7 @@ Se utiliza para definir una fábrica de contenido inmutable con interfaces de co
 
 ## Diagrama de Clases
 
-![alt text](./etc/object-mother.png "Object Mother")
+![alt text](../../../object-mother/etc/object-mother.png "Object Mother")
 
 ## Aplicabilidad
 

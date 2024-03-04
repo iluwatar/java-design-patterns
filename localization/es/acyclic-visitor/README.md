@@ -99,7 +99,7 @@ public class ConfigureForUnixVisitor implements ZoomVisitor {
 }
 ```
 
-Finalmente aquí están los "visitors" en acción.
+Finalmente, aquí están los "visitors" en acción.
 
 ```java
     var conUnix = new ConfigureForUnixVisitor();
@@ -130,7 +130,7 @@ Output del programa:
 Este patrón puede ser usado:
 
 * Cuando necesitas añadir una nueva función a una jerarquía de clases sin que esta se vea afectada o alterada.
-* Cuando hay funciones que operan sobre la jerarquía pero no pertenecen a la jerarquía como tal. Las clases ConfigureForDOS / ConfigureForUnix / ConfigureForX por ejemplo.
+* Cuando hay funciones que operan sobre la jerarquía, pero no pertenecen a la jerarquía como tal. Las clases ConfigureForDOS / ConfigureForUnix / ConfigureForX por ejemplo.
 * Cuando necesitas ejecutar operaciones muy diferentes en un objeto dependiendo de su tipo.
 * Cuando la jerarquía visitada va a ser frecuentemente extendida con derivados de la clase elemento.
 * Cuando el proceso de volver a compilar, enlazar, probar o distribuir los derivados de la clase elemento es muy pesado.

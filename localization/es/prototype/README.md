@@ -156,7 +156,7 @@ Orcish wolf attacks with laser
 
 ## Diagrama de Clases
 
-![alt text](./etc/prototype.urm.png "Prototype pattern class diagram")
+![alt text](../../../prototype/etc/prototype.urm.png "Prototype pattern class diagram")
 
 ## Aplicabilidad
 

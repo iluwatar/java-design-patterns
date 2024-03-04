@@ -137,7 +137,7 @@ Pool available=0 inUse=3
 
 ## Diagrama de Clases
 
-![alt text](./etc/object-pool.png "Object Pool")
+![alt text](../../../object-pool/etc/object-pool.png "Object Pool")
 
 ## Aplicabilidad
 

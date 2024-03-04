@@ -25,7 +25,7 @@ Ejemplo del mundo real
 
 Dicho de otra forma
 
-> Una factoría de factorías; una factoría que agrupa otras factorias individuales pero relacionadas/dependientes sin especificar su clase concreta.
+> Una factoría de factorías; una factoría que agrupa otras factorías individuales pero relacionadas/dependientes sin especificar su clase concreta.
 
 Según Wikipedia
 
@@ -121,7 +121,7 @@ public class OrcKingdomFactory implements KingdomFactory {
 }
 ```
 
-Ahora tenemos la factoría abstracta que nos permite hacer familias de objetos relacionados por ejemplo la factoria del reino élfico `ElfKingdomFactory` crea el castillo `castle`, rey `king` y ejército `army` etc.
+Ahora tenemos la factoría abstracta que nos permite hacer familias de objetos relacionados por ejemplo la factoría del reino élfico `ElfKingdomFactory` crea el castillo `castle`, rey `king` y ejército `army` etc.
 
 
 ```java
@@ -191,24 +191,24 @@ Usar el patrón Abstract Factory cuando
 * El sistema debe ser configurado con una de las múltiples familias de productos.
 * La familia de objetos relacionados está diseñada para ser usada en conjunto y necesitas forzar esta premisa.
 * Quieres proveer de una librería de productos y solo quieres revelar sus interfaces, no su implementación.
-* El tiempo de vida de la dependencia es conceptualmente mas corte que el del cliente.
+* El tiempo de vida de la dependencia es conceptualmente más corto que el del cliente.
 * Necesitas un valor en tiempo de ejecución para construir una dependencia.
 * Quieres decidir que producto de una familia llamar en tiempo de ejecución.
-* Necesitas proveer de uno o mas parámetros solo conocidos en tiempo de ejecución antes de poder resolver la dependencia.
+* Necesitas proveer de uno o más parámetros solo conocidos en tiempo de ejecución antes de poder resolver la dependencia.
 * Necesitas consistencia entre productos.
 * No quieres cambiar el código existente al añadir nuevos productos o familias de productos al programa.
 
 Ejemplos de casos de uso
 
 * Elegir llamar a la implementación correcta de FileSystemAcmeService o DatabaseAcmeService o NetworkAcmeService en tiempo de ejecución.
-* Escribir test unitarios se hace mucho mas sencillo.
+* Escribir test unitarios se hace mucho más sencillo.
 * Herramientas UI (User Interface) para diferentes SO (Sistemas Operativos).
 
 ## Consecuencias
 
-* La inyección de dependencias en java esconde las dependencias de la clase servicio lo que puede llevar a errores de ejecución que se podrian haber evitado al compilar.
+* La inyección de dependencias en java esconde las dependencias de la clase servicio lo que puede llevar a errores de ejecución que se podrían haber evitado al compilar.
 * Mientras que el patrón es muy bueno creando objetos predefinidos, añadir nuevos puede ser complicado.
-* El código es mas complicado de lo que deberia porque se añaden muchas interfaces y clases nuevas junto con el patrón.
+* El código es más complicado de lo que debería porque se añaden muchas interfaces y clases nuevas junto con el patrón.
 
 ## Tutoriales
 

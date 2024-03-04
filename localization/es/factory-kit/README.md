@@ -105,7 +105,7 @@ Esta es la salida de la consola cuando se ejecuta el ejemplo.
 
 ## Diagrama de clases
 
-![alt text](./etc/factory-kit.png "Factory Kit")
+![alt text](../../../factory-kit/etc/factory-kit.png "Factory Kit")
 
 ## Aplicabilidad
 

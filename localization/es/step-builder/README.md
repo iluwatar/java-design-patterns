@@ -116,7 +116,7 @@ el objeto que se construye cuando en el proceso de construcción el orden es imp
 
 ## Otro ejemplo con diagrama de clases
 
-![alt text](./etc/step-builder.png "Step Builder pattern")
+![alt text](../../../step-builder/etc/step-builder.png "Step Builder pattern")
 
 ## Créditos
 

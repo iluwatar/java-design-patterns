@@ -126,7 +126,7 @@ class CashAAATest {
 
 ## Aplicabilidad
 
-Utilice el patrón Arrange/Act/Asert cuando
+Utilice el patrón Arrange/Act/Assert cuando
 
 * Necesitas estructurar tus UnitTests para que sean más fáciles de leer, mantener y mejorar.
 
@@ -136,5 +136,5 @@ Utilice el patrón Arrange/Act/Asert cuando
 * [Bill Wake: 3A – Arrange, Act, Assert](https://xp123.com/articles/3a-arrange-act-assert/)
 * [Martin Fowler: DadoCuandoEntonces](https://martinfowler.com/bliki/GivenWhenThen.html)
 * [Patrones de prueba xUnit: Refactorizando Código de prueba](https://www.amazon.com/gp/product/0131495054/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0131495054&linkId=99701e8f4af2f63d0bcf50)
-* [Principios, prácticas y patrones UnitTesting](https://www.amazon.com/gp/product/1617296279/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617296279&linkId=74c75cfae3a5a)accae3a5a)
+* [Principios, prácticas y patrones UnitTesting](https://www.amazon.com/gp/product/1617296279/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617296279&linkId=74c75cfae3a5aaccae3a5a)
 * [Desarrollo basado en pruebas: Ejemplo](https://www.amazon.com/gp/product/0321146530/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0321146530&linkId=5c63a93d8c1175b47caef50875)

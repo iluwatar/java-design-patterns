@@ -72,7 +72,7 @@ public final class CustomerRegistry {
 
 ## Diagrama de Clases
 
-![Registry](./etc/registry.png)
+![Registry](../../../registry/etc/registry.png "Registry pattern diagrama de clases")
 
 ## Aplicabilidad
 

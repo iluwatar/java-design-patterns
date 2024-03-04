@@ -21,7 +21,7 @@ Utilice el modelo de Carga Diferida cuando:
 
 ## Ejemplos del mundo real
 
-* Anotaciones JPA @OneToOne, @OneToMany, @ManyToOne, @ManyToMany y fetch = FetchType.LAZY
+* Anotaciones JPA `@OneToOne`, `@OneToMany`, `@ManyToOne`, `@ManyToMany` y `fetch = FetchType.LAZY`
 
 ## Créditos
 

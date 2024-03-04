@@ -12,7 +12,7 @@ Registry
 
 ## Propósito
 
-Asegúrese de que una clase sólo tiene un número limitado de instancias y proporcione un punto de acceso global a las
+Asegúrese de que una clase solo tiene un número limitado de instancias y proporcione un punto de acceso global a las
 mismas.
 
 ## Explicación
@@ -130,7 +130,7 @@ Salida del programa:
 
 ## Diagrama de Clases
 
-![alt text](./etc/multiton.png "Multiton")
+![alt text](../../../multiton/etc/multiton.png "Multiton")
 
 ## Aplicabilidad
 

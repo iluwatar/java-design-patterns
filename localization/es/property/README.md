@@ -14,7 +14,7 @@ Crear jerarquía de objetos y nuevos objetos utilizando objetos existentes como 
 
 Ejemplo del mundo real
 
-> En la mística tierra de "Elandria", los aventureros pueden aprovechar el poder de las reliquias antiguas para
+> En la mística tierra de _"Elandria"_, los aventureros pueden aprovechar el poder de las reliquias antiguas para
 > personalizar sus habilidades. Cada reliquia representa una propiedad o habilidad única. A medida que los aventureros
 > exploran, descubren e integran nuevas reliquias, mejorando dinámicamente sus habilidades en función de las reliquias
 > que
@@ -130,7 +130,7 @@ Character{name='null', type=WARRIOR, properties={ARMOR=15, AGILITY=5, ATTACK_POW
 
 ## Diagrama de Clases
 
-![alt text](./etc/property.png "Property")
+![alt text](../../../property/etc/property.png "Property")
 
 ## Aplicabilidad
 

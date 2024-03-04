@@ -86,7 +86,7 @@ Y por último podemos demostrar lo fácil que es darle al viejo mago cualquier m
 
 ## Diagrama de Clases
 
-![alt text](./etc/dependency-injection.png "Dependency Injection")
+![alt text](../../../dependency-injection/etc/dependency-injection.png "Dependency Injection")
 
 ## Aplicabilidad
 

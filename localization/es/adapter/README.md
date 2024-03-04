@@ -22,7 +22,7 @@ Ejemplo del mundo real
 
 En otras palabras
 
-> El patrón Adapter permite envolver un objeto en un adaptador para hacerlo compatible con una clase con la que seria incompatible de otra manera.
+> El patrón Adapter permite envolver un objeto en un adaptador para hacerlo compatible con una clase con la que sería incompatible de otra manera.
 
 Según Wikipedia
 
@@ -117,7 +117,7 @@ Los adaptadores de clases y objetos tienen distintas cualidades. Un adaptador de
 Un adaptador de objetos
 
 *	Permite a un solo adaptador trabajar con varias clases, esto es, con la clase adaptada y todas sus subclases (si tiene alguna). El adaptador también puede añadir funcionalidad a todas las clases adaptadas a la vez.
-*	Hace mas complicado modificar el comportamiento de la clase adaptada. Sería necesario hacer una subclase de la clase a adaptar y hacer que el adaptador referencie la subclase en lugar de la clase a adaptar.
+*	Hace más complicado modificar el comportamiento de la clase adaptada. Sería necesario hacer una subclase de la clase a adaptar y hacer que el adaptador referencie la subclase en lugar de la clase a adaptar.
 
 
 ## Ejemplos del mundo real

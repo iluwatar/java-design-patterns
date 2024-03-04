@@ -106,7 +106,7 @@ This is a gold coin.
 
 ## Diagrama de clases
 
-![alt text](./etc/factory.urm.png "Factory pattern diagrama de clases")
+![alt text](../../../factory/etc/factory.urm.png "Factory pattern diagrama de clases")
 
 ## Aplicabilidad
 

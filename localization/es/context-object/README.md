@@ -163,7 +163,7 @@ Context = SERVICE SERVICE SERVICE
 
 ## Diagrama de clases
 
-![alt text](./etc/context-object.png "Context object")
+![alt text](../../../context-object/etc/context-object.png "Context object")
 
 ## Aplicabilidad
 
