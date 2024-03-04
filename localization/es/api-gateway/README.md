@@ -17,7 +17,7 @@ hace una llamada simple a la API Gateway, y la API Gateway hace la llamada a cad
 
 Con el patrón de microservicios, el cliente puede necesitar datos de múltiples microservicios. Si el 
 cliente llamara a cada microservicio de forma directe, podría ocasionar tiempos de carga largos, ya que
-el cliente tendría que hacer una solicitud de red para cada microservicio llamado. Además, tener la
+el cliente tendría que hacer una solicitud de red para cada microservicio llamado. Además, tener
 la llamada del cliente a cada microservicio vincula directamente al cliente con ese microservicio - si la
 implementacion interna del cambio de microservicios (por ejemplo, si dos microservicios se combinan en 
 algún momento en el futuro) o si la ubicación (host y puerto) de un microservicio cambia, entonces cada 
@@ -26,7 +26,7 @@ cliente que hace uso de esos microservicios debe ser actualizado.
 La intención del patrón API Gateway es aliviar algunos de estos problemas. En el patrón API Gateway, 
 se coloca una entidad adicional (la API Gateway) entre el cliente y los microservicios.
 El trabajo de API Gateway es agregar las llamadas a los microservicios. En lugar de que el cliente
-llame a cada microservicio individualmente, el cliente llama a la API Gateway una sola vez. la API
+llame a cada microservicio individualmente, el cliente llama a la API Gateway una sola vez. La API
 Gateway luego llama a cada uno de los microservicios que necesita el cliente.
 
 Ejemplo real
@@ -152,7 +152,7 @@ public class ApiGateway {
 
 Usa el patrón de API Gateway cuando
 
-* Estés usando una arquitectura de microservicios y necesites un único punto de agregación para las llamadas de microservicios.
+* Estás usando una arquitectura de microservicios y necesites un único punto de agregación para las llamadas de microservicios.
 
 ## Tutoriales
 

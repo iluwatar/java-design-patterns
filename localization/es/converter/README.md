@@ -18,7 +18,7 @@ bidireccional, reduciendo al mínimo el código repetitivo.
 Ejemplo del mundo real
 
 > En las aplicaciones del mundo real, a menudo se da el caso de que la capa de base de datos consta de entidades que
-> necesitan ser mapeadas en DTOs para su uso en la capa de lógica de negocio. Un mapeo similar se realiza para
+> necesitan ser mapeadas en DTO para su uso en la capa de lógica de negocio. Un mapeo similar se realiza para
 > potencialmente enorme cantidad de clases y necesitamos una forma genérica de lograrlo.
 
 En palabras sencillas

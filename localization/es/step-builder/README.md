@@ -18,7 +18,7 @@ más legible y reduciendo la necesidad de múltiples constructores o métodos se
 
 Una extensión del patrón Builder que guía completamente al usuario a través de la creación del objeto sin posibilidades
 de confusión.
-La experiencia del usuario será mucho más mejorada por el hecho de que sólo verá los métodos del siguiente paso
+La experiencia del usuario será mucho más mejorada por el hecho de que solo verá los métodos del siguiente paso
 disponibles, NINGÚN método constructor hasta que sea el momento adecuado para construir el objeto.
 
 ## Ejemplo del mundo real

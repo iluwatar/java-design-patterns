@@ -22,7 +22,7 @@ Ejemplo cotidiano
 En otras palabras
 
 > La invocación del método asíncrono inicia el procedimiento y vuelve inmediatamente antes de que la tarea termine
-> Los resultados del procedimiento se devuelven a la llamada  posteriormente (callback).
+> Los resultados del procedimiento se devuelven a la llamada posteriormente (callback).
 
 Según Wikipedia
 

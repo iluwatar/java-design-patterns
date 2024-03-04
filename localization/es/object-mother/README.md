@@ -30,7 +30,7 @@ Imagine que está desarrollando una aplicación Java para una agencia de viajes.
 viajeros, como turistas, viajeros de negocios y agentes de viajes, cada uno con atributos y comportamientos específicos.
 Para realizar pruebas exhaustivas, necesita crear y manipular estos objetos viajeros en varios contextos. El patrón
 Object Mother puede ayudarle a generar objetos viajeros coherentes y predefinidos para las pruebas, garantizando que
-éstas se basen en datos conocidos y fiables.
+estas se basen en datos conocidos y fiables.
 
 ### En palabras simples
 
