@@ -21,7 +21,7 @@ Proveer de una interfaz para crear familias de objetos relacionados dependientes
 
 Ejemplo del mundo real
 
-> Para crear un reino necesitamos objetos con una temática común. El reino élfico necesita un rey elfo, un castillo élfico y un ejército élfico mientras que el reino orco necesita un rey orco, un castillo orco y un ejércico orco. Hay una dependencia entre los objetos del reino.
+> Para crear un reino necesitamos objetos con una temática común. El reino élfico necesita un rey elfo, un castillo élfico y un ejército élfico mientras que el reino orco necesita un rey orco, un castillo orco y un ejército orco. Hay una dependencia entre los objetos del reino.
 
 Dicho de otra forma
 
@@ -33,7 +33,7 @@ Según Wikipedia
 
 **Ejemplo Programático**
 
-Traduciendo el ejemplo anterior sobre los reinos. Primero tenemos algunas interfaces e implementaciones de los objetos del reino.
+Traduciendo el ejemplo anterior sobre los reinos. Primero tenemos algunas interfaces e implementaciones de los objetos del `Castle`.
 
 ```java
 public interface Castle {
@@ -75,7 +75,7 @@ public class ElfArmy implements Army {
 
 ```
 
-Luego tenemos la abstracción e implementación de la factoría del reino.
+Luego tenemos la abstracción e implementación de la factoría del reino `KingdomFactory`.
 
 ```java
 public interface KingdomFactory {
@@ -121,7 +121,7 @@ public class OrcKingdomFactory implements KingdomFactory {
 }
 ```
 
-Ahora tenemos la factoría abstracta que nos permite hacer familias de objetos relacionados por ejemplo la factoria del reino élfico crea el castillo, rey y ejercito élficos etc.
+Ahora tenemos la factoría abstracta que nos permite hacer familias de objetos relacionados por ejemplo la factoria del reino élfico `ElfKingdomFactory` crea el castillo `castle`, rey `king` y ejército `army` etc.
 
 
 ```java
@@ -135,7 +135,7 @@ king.getDescription();
 army.getDescription();
 ```
 
-Output del programa:
+Salida del programa:
 
 ```java
 This is the elven castle!

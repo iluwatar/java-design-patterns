@@ -8,12 +8,12 @@ tag:
   - Microservices
 ---
 
-## Motivo
+## Propósito
 
 Agregar llamadas a los microservicios en un mismo lugar, la puerta de enlace API (API Gateway). El usuario 
-hace un llamada simple al API Gateway, y la API Gateway hace la llamada a cada microservicio relevante.
+hace una llamada simple a la API Gateway, y la API Gateway hace la llamada a cada microservicio relevante.
 
-## Explicaición
+## Explicación
 
 Con el patrón de microservicios, el cliente puede necesitar datos de múltiples microservicios. Si el 
 cliente llamara a cada microservicio de forma directe, podría ocasionar tiempos de carga largos, ya que
@@ -26,7 +26,7 @@ cliente que hace uso de esos microservicios debe ser actualizado.
 La intención del patrón API Gateway es aliviar algunos de estos problemas. En el patrón API Gateway, 
 se coloca una entidad adicional (la API Gateway) entre el cliente y los microservicios.
 El trabajo de API Gateway es agregar las llamadas a los microservicios. En lugar de que el cliente
-llame a cada microservicio individualmente, el cliente llama al API Gateway una sola vez. la API
+llame a cada microservicio individualmente, el cliente llama a la API Gateway una sola vez. la API
 Gateway luego llama a cada uno de los microservicios que necesita el cliente.
 
 Ejemplo real

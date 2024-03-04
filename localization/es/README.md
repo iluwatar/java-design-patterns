@@ -29,7 +29,7 @@ programadores y arquitectos experimentados de la comunidad de código abierto. L
 Antes de sumergirte en el material deberías estar familiarizado con varios
 [Principios de diseño de software](https://java-design-patterns.com/principles/).
 
-Todos los diseños deben ser lo más simples posible. Deberías comenzar con los principios KISS, YAGNI y hacer lo mas simple que funcione. La complejidad y los patrones solo deben introducirse cuando sean necesarios para una extensibilidad práctica.
+Todos los diseños deben ser lo más simples posible. Deberías comenzar con los principios KISS, YAGNI y hacer lo más simple que funcione. La complejidad y los patrones solo deben introducirse cuando sean necesarios para una extensibilidad práctica.
 
 Una vez que esté familiarizado con estos conceptos, puedes comenzar a profundizar con los
 [patrones de diseño disponibles](https://java-design-patterns.com/patterns/) por cualquiera de los siguientes enfoques
@@ -46,5 +46,5 @@ Si estás dispuesto a contribuir al proyecto encontrarás la información releva
 
 # Licencia
 
-Este proyecto esta licenciado de acuerdo con los términos de la licencia del MIT.
+Este proyecto está licenciado de acuerdo con los términos de la licencia del MIT.
 

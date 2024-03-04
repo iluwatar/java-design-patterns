@@ -10,7 +10,7 @@ tag:
 
 Dado/Cuando/Entonces
 
-## Intención
+## Propósito
 
 Arrange/Act/Assert (AAA) es un patrón para organizar UnitTests.
 Divide las UnitTests en tres pasos claros y diferenciados:
@@ -19,7 +19,7 @@ Divide las UnitTests en tres pasos claros y diferenciados:
 2. Act(Actuar): Toma las medidas necesarias para el test.
 3. Assert(Afirmar): Verifica los resultados del test.
 
-## Explicacación
+## Explicación
 
 Este patrón tiene varios beneficios significativos. Crea una clara separación entre la configuración, operaciones y resultados de un test. Esta estructura hace que el código sea más fácil de leer y comprender. Si
 colocas los pasos en orden y formateas su código para separarlos, puedes escanear un test y
@@ -128,7 +128,7 @@ class CashAAATest {
 
 Utilice el patrón Arrange/Act/Asert cuando
 
-* Necesites estructurar tus UnitTests para que sean más fáciles de leer, mantener y mejorar.
+* Necesitas estructurar tus UnitTests para que sean más fáciles de leer, mantener y mejorar.
 
 ## Créditos
 

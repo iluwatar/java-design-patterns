@@ -8,13 +8,13 @@ tag:
 - Microservices
 ---
 
-## Intención
+## Propósito
 
 El usuario realiza una sola llamada al servicio del agregador y, a continuación, el agregador llama a cada microservicio relevante.
 
 ## Explicación
 
-ejemplo del mundo real
+Ejemplo del mundo real
 
 > Nuestro mercado web necesita información sobre los productos y su inventario actual. Hace una llamada a un agregador
 > servicio que a su vez llama al microservicio de información del producto y al microservicio de inventario del producto que devuelve la
@@ -22,7 +22,7 @@ ejemplo del mundo real
 
 En palabras sencillas
 
-> Aggregator Microservice recopila datos de varios microservicios y devuelve un agregado para su procesamiento.
+> Aggregator Microservice recopila datos de varios micro  y devuelve un agregado para su procesamiento.
 
 StackOverflow dice
 
@@ -41,7 +41,7 @@ public class Product {
 }
 ```
 
-A continuación, podemos presentar nuestro microservicio `Aggregator` (Agregador de microservicios). Contiene el `ProductInformationClient` (Información del producto del cliente) y el
+A continuación, podemos presentar nuestro micro  `Aggregator` (Agregador de microservicios). Contiene él `ProductInformationClient` (Información del producto del cliente) y él
 `ProductInventoryClient` (Inventario del producto del cliente) de los clientes para llamar a los respectivos microservicios.
 
 ```java

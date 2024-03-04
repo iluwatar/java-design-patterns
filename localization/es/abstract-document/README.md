@@ -11,7 +11,7 @@ tag:
 
 ## Propósito
 
-Usar propiedades dinámicas y conseguir la felexibilidad de los lenguajes no tipados manteniendo la seguridad de tipos.
+Usar propiedades dinámicas y conseguir la flexibilidad de los lenguajes no tipados manteniendo la seguridad de tipos.
 
 ## Explicación
 

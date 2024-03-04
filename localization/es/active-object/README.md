@@ -19,7 +19,7 @@ La clase que implementa el patrón de diseño de objeto activo contendrá un mec
 
 Ejemplo del mundo real
 
-> Los orcos son conocidos por su salvajismo y filosofía de no hacer equipo. Basandonos en este comportamiento se podría decir que tienen su propio hilo de control.
+> Los orcos son conocidos por su salvajismo y filosofía de no hacer equipo. Basándonos en este comportamiento se podría decir que tienen su propio hilo de control.
 
 Podemos usar el patrón Active Object para implementar una criatura que tiene su propio hilo de control y exponer su API pero no la ejecución como tal.
 

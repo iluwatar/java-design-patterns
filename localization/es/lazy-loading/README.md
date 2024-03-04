@@ -17,7 +17,7 @@ contribuir a la eficiencia en la operación del programa si se usa de manera ade
 ## Aplicabilidad
 Utilice el modelo de Carga Diferida cuando:
 
-* la carga anticipada es costosa o el objeto a cargar podría no ser necesario en absoluto
+* La carga anticipada es costosa o el objeto a cargar podría no ser necesario en absoluto
 
 ## Ejemplos del mundo real
 

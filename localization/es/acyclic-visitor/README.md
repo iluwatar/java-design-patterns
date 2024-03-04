@@ -25,7 +25,7 @@ En otras palabras
 
 [WikiWikiWeb](https://wiki.c2.com/?AcyclicVisitor) dice
 
-> El patrón Acyclic Visitor permite que nuevas funciones sean añadidas a jerarquías de clases existentes sin afectar a las mismas, y sin crear los círculos de dependencias que son inherentes al patrón Visitor Pattern de GangOfFour.
+> El patrón Acyclic Visitor permite que nuevas funciones sean añadidas a jerarquías de clases existentes sin afectar a las mismas, y sin crear los círculos de dependencias que son inherentes al patrón de visitante (Visitor Pattern) de GangOfFour.
 
 **Ejemplo Programático**
 
