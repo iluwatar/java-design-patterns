@@ -13,7 +13,7 @@ Borg
 Impone un comportamiento como compartir el mismo estado entre todas las instancias.
 
 ## Diagrama de Clases
-![alt text](../../../monostate/etc/monostate.png "MonoState")
+![alt text](./etc/monostate.png "MonoState")
 
 ## Applicability
 Utilice el patrón Monostate cuando

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Abstract Factory
-folder: abstract-factory
-permalink: /patterns/abstract-factory/
-categories: Creational
+category: Creational
 language: es
 tag:
  - Gang of Four
@@ -180,7 +177,7 @@ public static class FactoryMaker {
 
 ## Diagrama de clases
 
-![alt text](../../../abstract-factory/etc/abstract-factory.urm.png "Diagrama de Clases de Abstract Factory")
+![alt text](./etc/abstract-factory.urm.png "Diagrama de Clases de Abstract Factory")
 
 
 ## Aplicación

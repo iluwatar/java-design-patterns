@@ -130,7 +130,7 @@ Salida del programa:
 
 ## Diagrama de Clases
 
-![alt text](../../../multiton/etc/multiton.png "Multiton")
+![alt text](./etc/multiton.png "Multiton")
 
 ## Aplicabilidad
 

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Acyclic Visitor
-folder: acyclic-visitor
-permalink: /patterns/acyclic-visitor/
-categories: Behavioral
+category: Behavioral
 language: es
 tag:
  - Extensibility
@@ -123,7 +120,7 @@ Output del programa:
 
 ## Diagrama de clases
 
-![alt text](../../../acyclic-visitor/etc/acyclic-visitor.png "Acyclic Visitor")
+![alt text](./etc/acyclic-visitor.png "Acyclic Visitor")
 
 ## Aplicación
 

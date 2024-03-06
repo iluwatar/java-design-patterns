@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Active Object
-folder: active-object
-permalink: /patterns/active-object/
-categories: Concurrency
+category: Concurrency
 language: es
 tag:
  - Performance
@@ -123,7 +120,7 @@ Ahora podemos crear múltiples criaturas como los Orcos, diles que coman y deamb
 
 ## Diagrama de clases
 
-![alt text](../../../active-object/etc/active-object.urm.png "Active Object class diagram")
+![alt text](./etc/active-object.urm.png "Active Object class diagram")
 
 ## Tutoriales
 

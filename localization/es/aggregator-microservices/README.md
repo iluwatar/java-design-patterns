@@ -41,7 +41,7 @@ public class Product {
 }
 ```
 
-A continuación, podemos presentar nuestro micro  `Aggregator` (Agregador de microservicios). Contiene él `ProductInformationClient` (Información del producto del cliente) y él
+A continuación, podemos presentar nuestro microservicio `Aggregator` (Agregador de microservicios). Contiene él `ProductInformationClient` (Información del producto del cliente) y él
 `ProductInventoryClient` (Inventario del producto del cliente) de los clientes para llamar a los respectivos microservicios.
 
 ```java
@@ -94,7 +94,7 @@ curl http://localhost:50004/product
 
 ## Diagrama de clase
 
-![alt text](../../../aggregator-microservices/aggregator-service/etc/aggregator-service.png "Aggregator Microservice")
+![alt text](./aggregator-service/etc/aggregator-service.png "Aggregator Microservice")
 
 ## Aplicabilidad
 

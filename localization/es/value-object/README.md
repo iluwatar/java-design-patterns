@@ -71,7 +71,7 @@ Aquí está la salida de la consola.
 
 ## Diagrama de Clases
 
-![alt text](../../../value-object/etc/value-object.png "Value Object")
+![alt text](./etc/value-object.png "Value Object")
 
 ## Aplicabilidad
 

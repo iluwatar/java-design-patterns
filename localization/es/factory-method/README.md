@@ -86,7 +86,7 @@ The elf blacksmith manufactured an elven axe
 
 ## Diagrama de clases
 
-![alt text](../../../factory-method/etc/factory-method.urm.png "Factory Method pattern diagrama de clases")
+![alt text](./etc/factory-method.urm.png "Factory Method pattern diagrama de clases")
 
 ## Aplicabilidad
 

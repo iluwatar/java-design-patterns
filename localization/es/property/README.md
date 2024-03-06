@@ -130,7 +130,7 @@ Character{name='null', type=WARRIOR, properties={ARMOR=15, AGILITY=5, ATTACK_POW
 
 ## Diagrama de Clases
 
-![alt text](../../../property/etc/property.png "Property")
+![alt text](./etc/property.png "Property")
 
 ## Aplicabilidad
 

@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Abstract Document
-folder: abstract-document
-permalink: /patterns/abstract-document/
-categories: Structural
+category: Structural
 language: es
 tag:
   - Extensibility
@@ -175,7 +172,7 @@ Y finalmente asi es como construimos y usamos el Coche `Car` en un ejemplo compl
 
 ## Diagrama de clases
 
-![alt text](../../../abstract-document/etc/abstract-document.png "Abstract Document Traits and Domain")
+![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
 ## Aplicación
 

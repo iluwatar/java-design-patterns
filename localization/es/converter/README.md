@@ -88,7 +88,7 @@ var user = userConverter.convertFromDto(dtoUser);
 
 ## Diagrama de Clases
 
-![alt text](../../../converter/etc/converter.png "Converter Pattern")
+![alt text](./etc/converter.png "Converter Pattern")
 
 ## Aplicabilidad
 

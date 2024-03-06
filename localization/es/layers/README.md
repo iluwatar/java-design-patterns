@@ -81,7 +81,7 @@ public class CakeViewImpl implements View {
 
 ## Diagrama de clases
 
-![alt text](../../../layers/etc/layers.png "Layers")
+![alt text](./etc/layers.png "Layers")
 
 ## Aplicabilidad
 
