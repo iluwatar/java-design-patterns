@@ -211,6 +211,7 @@
     <module>log-aggregation</module>
     <module>health-check</module>
     <module>single-table-inheritance</module>
+    <module>dynamic-proxy</module>
   </modules>
   <repositories>
     <repository>
