@@ -27,12 +27,13 @@ package com.iluwatar.dynamicproxy;
 import java.lang.reflect.Proxy;
 
 /**
- * Application to demonstrate the Dynamic Proxy pattern.
- * The calling Proxy.newProxyInstance creates a new dynamic proxy for the AlbumService interface and
+ * Application to demonstrate the Dynamic Proxy pattern. This application allow ua to hit the public
+ * fake API https://jsonplaceholder.typicode.com for the resource Album through an interface.
+ * The call to Proxy.newProxyInstance creates a new dynamic proxy for the AlbumService interface and
  * sets the AlbumInvocationHandler class as the handler to intercept all the interface's methods.
- * Everytime that we call an AlbumService's method, the method 'invoke' on the handler class will be
- * call automatically, and we will pass all the method's metadata and arguments to other specialized
- * class TinyRestClient to prepare the Rest API call accordingly.
+ * Everytime that we call an AlbumService's method, the handler's method "invoke" will be call
+ * automatically, and it will pass all the method's metadata and arguments to other specialized
+ * class - TinyRestClient - to prepare the Rest API call accordingly.
  * In this demo, the Dynamic Proxy pattern help us to run business logic through interfaces without
  * an explicit implementation of the interfaces and supported on the Java Reflection approach.
  */
@@ -53,7 +54,8 @@ public class App {
   }
 
   /**
-   * Call the methods of the Dynamic Proxy, in other words, the AlbumService interface's methods.
+   * Call the methods of the Dynamic Proxy, in other words, the AlbumService interface's methods
+   * and receive the responses from the Rest API.
    */
   public void callMethods() {
     int albumId = 17;
