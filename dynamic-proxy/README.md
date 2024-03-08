@@ -34,6 +34,8 @@ In this demo, the Dynamic Proxy pattern help us to run business logic through an
 ```java
 public class App {
 
+  private static final Logger logger = LoggerFactory.getLogger(App.class);
+
   static final String REST_API_URL = "https://jsonplaceholder.typicode.com";
 
   private String baseUrl;
@@ -70,21 +72,21 @@ public class App {
     int userId = 3;
 
     var albums = albumServiceProxy.readAlbums();
-    albums.forEach(System.out::println);
+    albums.forEach(album -> logger.info("{}", album));
 
     var album = albumServiceProxy.readAlbum(albumId);
-    System.out.println(album);
+    logger.info("{}", album);
 
     var newAlbum = albumServiceProxy.createAlbum(Album.builder()
         .title("Big World").userId(userId).build());
-    System.out.println(newAlbum);
+    logger.info("{}", newAlbum);
 
     var editAlbum = albumServiceProxy.updateAlbum(albumId, Album.builder()
         .title("Green Valley").userId(userId).build());
-    System.out.println(editAlbum);
+    logger.info("{}", editAlbum);
 
     var removedAlbum = albumServiceProxy.deleteAlbum(albumId);
-    System.out.println(removedAlbum);
+    logger.info("{}", removedAlbum);
   }
 
   /**
@@ -159,6 +161,8 @@ Declaration of the AlbumInvocationHandler class whose method _invoke_ will be ca
 ```java
 public class AlbumInvocationHandler implements InvocationHandler {
 
+  private static final Logger logger = LoggerFactory.getLogger(AlbumInvocationHandler.class);
+
   private TinyRestClient restClient;
 
   /**
@@ -174,10 +178,8 @@ public class AlbumInvocationHandler implements InvocationHandler {
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-    System.out.println();
-    System.out.println("Calling the method " + method.getDeclaringClass().getSimpleName()
-        + "." + method.getName() + "()");
-    System.out.println("-".repeat(50));
+    logger.info("===== Calling the method {}.{}()",
+        method.getDeclaringClass().getSimpleName(), method.getName());
 
     return restClient.send(method, args);
   }
@@ -215,10 +217,12 @@ public class TinyRestClient {
    */
   public Object send(Method method, Object[] args) throws IOException, InterruptedException {
     var httpMethodAnnotation = getHttpMethodAnnotation(method.getDeclaredAnnotations());
+    if (httpMethodAnnotation == null) {
+      return  null;
+    }
     var httpMethodName = httpMethodAnnotation.annotationType().getSimpleName().toUpperCase();
     var url = baseUrl + buildUrl(method, args, httpMethodAnnotation);
     var bodyPublisher = buildBodyPublisher(method, args);
-    var httpClient = HttpClient.newHttpClient();
     var httpRequest = HttpRequest.newBuilder()
         .uri(URI.create(url))
         .header("Content-Type", "application/json")
@@ -297,7 +301,7 @@ public class TinyRestClient {
     } catch (Exception e) {
       result = null;
     }
-    return (result instanceof String ? (String) result : null);
+    return (result instanceof String strResult ? strResult : null);
   }
 }
 ```

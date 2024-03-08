@@ -26,28 +26,23 @@ package com.iluwatar.dynamicproxy;
 
 import java.lang.reflect.Proxy;
 import java.net.http.HttpClient;
-import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * Application to demonstrate the Dynamic Proxy pattern. This application allow
- * ua to hit the public
- * fake API https://jsonplaceholder.typicode.com for the resource Album through
- * an interface.
- * The call to Proxy.newProxyInstance creates a new dynamic proxy for the
- * AlbumService interface and
- * sets the AlbumInvocationHandler class as the handler to intercept all the
- * interface's methods.
- * Everytime that we call an AlbumService's method, the handler's method
- * "invoke" will be call
- * automatically, and it will pass all the method's metadata and arguments to
- * other specialized
+ * Application to demonstrate the Dynamic Proxy pattern. This application allow us to hit the public
+ * fake API https://jsonplaceholder.typicode.com for the resource Album through an interface.
+ * The call to Proxy.newProxyInstance creates a new dynamic proxy for the AlbumService interface and
+ * sets the AlbumInvocationHandler class as the handler to intercept all the interface's methods.
+ * Everytime that we call an AlbumService's method, the handler's method "invoke" will be call
+ * automatically, and it will pass all the method's metadata and arguments to other specialized
  * class - TinyRestClient - to prepare the Rest API call accordingly.
- * In this demo, the Dynamic Proxy pattern help us to run business logic through
- * interfaces without
- * an explicit implementation of the interfaces and supported on the Java
- * Reflection approach.
+ * In this demo, the Dynamic Proxy pattern help us to run business logic through interfaces without
+ * an explicit implementation of the interfaces and supported on the Java Reflection approach.
  */
 public class App {
+
+  private static final Logger logger = LoggerFactory.getLogger(App.class);
 
   static final String REST_API_URL = "https://jsonplaceholder.typicode.com";
 
@@ -85,21 +80,21 @@ public class App {
     int userId = 3;
 
     var albums = albumServiceProxy.readAlbums();
-    albums.forEach(System.out::println);
+    albums.forEach(album -> logger.info("{}", album));
 
     var album = albumServiceProxy.readAlbum(albumId);
-    System.out.println(album);
+    logger.info("{}", album);
 
     var newAlbum = albumServiceProxy.createAlbum(Album.builder()
         .title("Big World").userId(userId).build());
-    System.out.println(newAlbum);
+    logger.info("{}", newAlbum);
 
     var editAlbum = albumServiceProxy.updateAlbum(albumId, Album.builder()
         .title("Green Valley").userId(userId).build());
-    System.out.println(editAlbum);
+    logger.info("{}", editAlbum);
 
     var removedAlbum = albumServiceProxy.deleteAlbum(albumId);
-    System.out.println(removedAlbum);
+    logger.info("{}", removedAlbum);
   }
 
   /**

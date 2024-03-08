@@ -68,6 +68,9 @@ public class TinyRestClient {
    */
   public Object send(Method method, Object[] args) throws IOException, InterruptedException {
     var httpMethodAnnotation = getHttpMethodAnnotation(method.getDeclaredAnnotations());
+    if (httpMethodAnnotation == null) {
+      return  null;
+    }
     var httpMethodName = httpMethodAnnotation.annotationType().getSimpleName().toUpperCase();
     var url = baseUrl + buildUrl(method, args, httpMethodAnnotation);
     var bodyPublisher = buildBodyPublisher(method, args);
@@ -149,6 +152,6 @@ public class TinyRestClient {
     } catch (Exception e) {
       result = null;
     }
-    return (result instanceof String ? (String) result : null);
+    return (result instanceof String strResult ? strResult : null);
   }
 }

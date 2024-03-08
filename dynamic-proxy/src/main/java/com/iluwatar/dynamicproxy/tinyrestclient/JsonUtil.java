@@ -30,11 +30,15 @@ import com.fasterxml.jackson.databind.type.CollectionType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Utility class to handle Json operations.
  */
 public class JsonUtil {
+
+  private static final Logger logger = LoggerFactory.getLogger(JsonUtil.class);
 
   private static ObjectMapper objectMapper = new ObjectMapper();
 
@@ -52,7 +56,8 @@ public class JsonUtil {
     try {
       return objectMapper.writeValueAsString(object);
     } catch (JsonProcessingException e) {
-      throw new RuntimeException("Cannot convert the object " + object + " to Json.", e);
+      logger.error("Cannot convert the object " + object + " to Json.", e);
+      return null;
     }
   }
 
@@ -68,8 +73,8 @@ public class JsonUtil {
     try {
       return objectMapper.readValue(json, clazz);
     } catch (IOException e) {
-      throw new RuntimeException("Cannot convert the Json " + json + " to class "
-          + clazz.getName() + ".", e);
+      logger.error("Cannot convert the Json " + json + " to class " + clazz.getName() + ".", e);
+      return null;
     }
   }
 
@@ -87,8 +92,8 @@ public class JsonUtil {
           .constructCollectionType(ArrayList.class, clazz);
       return objectMapper.reader().forType(listType).readValue(json);
     } catch (JsonProcessingException e) {
-      throw new RuntimeException("Cannot convert the Json " + json + " to List of "
-          + clazz.getName() + ".", e);
+      logger.error("Cannot convert the Json " + json + " to List of " + clazz.getName() + ".", e);
+      return List.of();
     }
   }
 
