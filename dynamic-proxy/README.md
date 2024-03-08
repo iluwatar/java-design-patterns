@@ -12,24 +12,24 @@ Dynamic proxy is a Java mechanism that allows developers to create a proxy insta
 ## Explanation
 
 ### Real-world example
-Mockito, a popular Java mocking framework, employs Dynamic Proxy to create mock objects for testing. Mock objects mimic the behavior of real objects, allowing developers to isolate components and verify interactions in unit tests.
+Mockito, a popular Java mocking framework, employs dynamic proxy to create mock objects for testing. Mock objects mimic the behavior of real objects, allowing developers to isolate components and verify interactions in unit tests.
 
 Consider a scenario where a service class depends on an external component, such as a database access object (DAO). Instead of interacting with a real DAO in a test, Mockito can dynamically generate a proxy, intercepting method invocations and returning predefined values. This enables focused unit testing without the need for a real database connection.
 
 ### In plain words
 Dynamic proxy is a specialized form of proxy in Java, serving as a flexible and dynamic method to intercept and manipulate method calls. By utilizing dynamic proxies, developers can implement additional functionalities without modifying the original class code.
 
-### Documentation says
+### Wikipedia says
 A dynamic proxy class is a class that implements a list of interfaces specified at runtime such that a method invocation through one of the interfaces on an instance of the class will be encoded and dispatched to another object through a uniform interface. Thus, a dynamic proxy class can be used to create a type-safe proxy object for a list of interfaces without requiring pre-generation of the proxy class, such as with compile-time tools. Method invocations on an instance of a dynamic proxy class are dispatched to a single method in the instance's invocation handler, and they are encoded with a _java.lang.reflect.Method_ object identifying the method that was invoked and an array of type _Object_ containing the arguments.
 
 ### Programmatic Example
-This example allow ua to hit the public fake API https://jsonplaceholder.typicode.com for the resource Album through an interface.
+This example allow us to hit the public fake API https://jsonplaceholder.typicode.com for the resource Album through an interface.
 
-The call to _Proxy.newProxyInstance_ creates a new dynamic proxy for the _AlbumService_ interface and sets the _AlbumInvocationHandler_ class as the handler to intercept all the interface's methods. Everytime that we call an _AlbumService_'s method, the handler's method _invoke_ will be call automatically, and it will pass all the method's metadata and arguments to other specialized class - _TinyRestClient_ - to prepare the Rest API call accordingly.
+The call to _Proxy.newProxyInstance_ creates a new dynamic proxy for the _AlbumService_ interface and sets the _AlbumInvocationHandler_ class as the handler to intercept all the interface's methods. Everytime that we call an _AlbumService_'s method, the handler's method `invoke` will be call automatically, and it will pass all the method's metadata and arguments to other specialized class - _TinyRestClient_ - to prepare the Rest API call accordingly.
 
 ![Sequence diagram](./etc/dynamic-proxy-sequence.png "Dynamic Proxy sequence diagram")
 
-In this demo, the Dynamic Proxy pattern help us to run business logic through interfaces without an explicit implementation of the interfaces and supported on the Java Reflection approach.
+In this demo, the Dynamic Proxy pattern help us to run business logic through an interface without an explicit implementation of that interface and supported on the Java Reflection approach.
 
 ```java
 public class App {
@@ -101,7 +101,7 @@ public class App {
 }
 ```
 
-Definition of the AlbumService interface. Annotations were used to provide additional information such as: http method (Get, Post, Put, Delete), endpoint's url, path parameters, body parameters, among others.
+Declaration of the AlbumService interface. Annotations were used to provide additional information such as: http method (Get, Post, Put, Delete), endpoint's url, path parameters, body parameters, among others.
 
 ```java
 public interface AlbumService {
@@ -154,7 +154,7 @@ public interface AlbumService {
 }
 ```
 
-Definition of the AlbumInvocationHandler class whose method _invoke_ will be called automatically every time that an AlbumService's method is called. The process of the call is derivated towards the _TinyRestClient_. This last class is an optional part of the pattern.
+Declaration of the AlbumInvocationHandler class whose method _invoke_ will be called automatically every time that an AlbumService's method is called. The call processing is delegated to the _TinyRestClient_.
 
 ```java
 public class AlbumInvocationHandler implements InvocationHandler {
@@ -185,7 +185,7 @@ public class AlbumInvocationHandler implements InvocationHandler {
 }
 ```
 
-The TinyRestClient class handle all the http communication with a Rest API. It is supported by the HttpClient Java library. This class is an optional part of the pattern.
+The TinyRestClient class handle all the http communication with a Rest API. It is supported by the built-in component HttpClient. This class is an optional part of the pattern.
 
 ```java
 public class TinyRestClient {
@@ -306,7 +306,7 @@ public class TinyRestClient {
 ![Class diagram](./etc/dynamic-proxy-classes.png "Dynamic Proxy class diagram")
 
 ## Applicability
-Dynamic proxy should be used when you need to augment or enhance your current functionality without modifying your current code. Some exmples of that usage could be:
+Dynamic proxy should be used when you need to augment or enhance your current functionality without modifying your current code. Some examples of that usage could be:
 
 - _Logging and Monitoring_: By creating a logging proxy, developers can intercept method invocations and log relevant information like method names, parameters, and execution times.
 
@@ -319,7 +319,7 @@ Dynamic proxy should be used when you need to augment or enhance your current fu
 - [Introduction To Java Dynamic Proxy - Xperti](https://xperti.io/blogs/java-dynamic-proxies-introduction/)
 
 ## Known uses
-Many frameworks and libraries use Dynamic Proxy to implement their funcionalites:
+Many frameworks and libraries use dynamic proxy to implement their functionalities:
 - [Spring Framework](https://docs.spring.io/spring-framework/reference/core/aop.html), for aspect oriented programming.
 - [Hibernate](https://hibernate.org/orm/), for data lazy loading.
 - [Mockito](https://site.mockito.org/), for mocking objects in testing.
