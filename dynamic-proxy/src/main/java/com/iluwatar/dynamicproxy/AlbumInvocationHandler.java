@@ -27,6 +27,7 @@ package com.iluwatar.dynamicproxy;
 import com.iluwatar.dynamicproxy.tinyrestclient.TinyRestClient;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.net.http.HttpClient;
 
 /**
  * Class whose method 'invoke' will be called every time that an interface's method is called.
@@ -39,10 +40,11 @@ public class AlbumInvocationHandler implements InvocationHandler {
   /**
    * Class constructor. It instantiates a TinyRestClient object.
    *
-   * @param baseUrl Root url for endpoints.
+   * @param baseUrl    Root url for endpoints.
+   * @param httpClient Handle the http communication.
    */
-  public AlbumInvocationHandler(String baseUrl) {
-    this.restClient = new TinyRestClient(baseUrl);
+  public AlbumInvocationHandler(String baseUrl, HttpClient httpClient) {
+    this.restClient = new TinyRestClient(baseUrl, httpClient);
   }
 
   @Override

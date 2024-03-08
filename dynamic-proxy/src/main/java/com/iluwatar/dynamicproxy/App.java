@@ -25,32 +25,56 @@
 package com.iluwatar.dynamicproxy;
 
 import java.lang.reflect.Proxy;
+import java.net.http.HttpClient;
+import lombok.Getter;
 
 /**
- * Application to demonstrate the Dynamic Proxy pattern. This application allow ua to hit the public
- * fake API https://jsonplaceholder.typicode.com for the resource Album through an interface.
- * The call to Proxy.newProxyInstance creates a new dynamic proxy for the AlbumService interface and
- * sets the AlbumInvocationHandler class as the handler to intercept all the interface's methods.
- * Everytime that we call an AlbumService's method, the handler's method "invoke" will be call
- * automatically, and it will pass all the method's metadata and arguments to other specialized
+ * Application to demonstrate the Dynamic Proxy pattern. This application allow
+ * ua to hit the public
+ * fake API https://jsonplaceholder.typicode.com for the resource Album through
+ * an interface.
+ * The call to Proxy.newProxyInstance creates a new dynamic proxy for the
+ * AlbumService interface and
+ * sets the AlbumInvocationHandler class as the handler to intercept all the
+ * interface's methods.
+ * Everytime that we call an AlbumService's method, the handler's method
+ * "invoke" will be call
+ * automatically, and it will pass all the method's metadata and arguments to
+ * other specialized
  * class - TinyRestClient - to prepare the Rest API call accordingly.
- * In this demo, the Dynamic Proxy pattern help us to run business logic through interfaces without
- * an explicit implementation of the interfaces and supported on the Java Reflection approach.
+ * In this demo, the Dynamic Proxy pattern help us to run business logic through
+ * interfaces without
+ * an explicit implementation of the interfaces and supported on the Java
+ * Reflection approach.
  */
 public class App {
 
   static final String REST_API_URL = "https://jsonplaceholder.typicode.com";
 
+  private String baseUrl;
+  private HttpClient httpClient;
+  @Getter
   private AlbumService albumServiceProxy;
+
+  /**
+   * Class constructor.
+   *
+   * @param baseUrl    Root url for endpoints.
+   * @param httpClient Handle the http communication.
+   */
+  public App(String baseUrl, HttpClient httpClient) {
+    this.baseUrl = baseUrl;
+    this.httpClient = httpClient;
+  }
 
   /**
    * Create the Dynamic Proxy linked to the AlbumService interface and to the AlbumInvocationHandler.
    */
   public void createDynamicProxy() {
-    AlbumInvocationHandler albumInvocationHandler = new AlbumInvocationHandler(REST_API_URL);
+    AlbumInvocationHandler albumInvocationHandler = new AlbumInvocationHandler(baseUrl, httpClient);
 
     albumServiceProxy = (AlbumService) Proxy.newProxyInstance(
-        App.class.getClassLoader(), new Class<?>[]{AlbumService.class}, albumInvocationHandler);
+        App.class.getClassLoader(), new Class<?>[] { AlbumService.class }, albumInvocationHandler);
   }
 
   /**
@@ -85,7 +109,7 @@ public class App {
    * @param args External arguments to be passed. Optional.
    */
   public static void main(String[] args) {
-    App app = new App();
+    App app = new App(App.REST_API_URL, HttpClient.newHttpClient());
     app.createDynamicProxy();
     app.callMethods();
   }

@@ -44,14 +44,17 @@ import java.util.Arrays;
 public class TinyRestClient {
 
   private String baseUrl;
+  private HttpClient httpClient;
 
   /**
    * Class constructor.
    *
-   * @param baseUrl Root url for endpoints.
+   * @param baseUrl    Root url for endpoints.
+   * @param httpClient Handle the http communication.
    */
-  public TinyRestClient(String baseUrl) {
+  public TinyRestClient(String baseUrl, HttpClient httpClient) {
     this.baseUrl = baseUrl;
+    this.httpClient = httpClient;
   }
 
   /**
@@ -68,7 +71,6 @@ public class TinyRestClient {
     var httpMethodName = httpMethodAnnotation.annotationType().getSimpleName().toUpperCase();
     var url = baseUrl + buildUrl(method, args, httpMethodAnnotation);
     var bodyPublisher = buildBodyPublisher(method, args);
-    var httpClient = HttpClient.newHttpClient();
     var httpRequest = HttpRequest.newBuilder()
         .uri(URI.create(url))
         .header("Content-Type", "application/json")
