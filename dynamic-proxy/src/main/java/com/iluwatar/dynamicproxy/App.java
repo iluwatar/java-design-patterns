@@ -53,7 +53,6 @@ public class App {
 
   private String baseUrl;
   private HttpClient httpClient;
-  @Getter
   private AlbumService albumServiceProxy;
 
   /**
