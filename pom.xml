@@ -210,6 +210,7 @@
     <module>crtp</module>
     <module>log-aggregation</module>
     <module>health-check</module>
+    <module>notification</module>
     <module>single-table-inheritance</module>
   </modules>
   <repositories>
