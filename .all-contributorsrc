@@ -2759,7 +2759,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/141746282?v=4",
       "profile": "https://github.com/jnniu-n",
       "contributions": [
-        "translation"
+        "translation",
+        "doc"
       ]
     },
     {
@@ -2832,7 +2833,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/7249450?v=4",
       "profile": "https://github.com/ylcn91",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -2852,6 +2854,70 @@
       "profile": "https://hwan33.tistory.com/",
       "contributions": [
         "code"
+      ]
+    },
+    {
+      "login": "takikuba",
+      "name": "Jakub Klimek",
+      "avatar_url": "https://avatars.githubusercontent.com/u/58841343?v=4",
+      "profile": "https://github.com/takikuba",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "bachbil",
+      "name": "believe",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28935461?v=4",
+      "profile": "https://github.com/bachbil",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "egg0102030405",
+      "name": "egg0102030405",
+      "avatar_url": "https://avatars.githubusercontent.com/u/59650695?v=4",
+      "profile": "https://github.com/egg0102030405",
+      "contributions": [
+        "translation",
+        "doc"
+      ]
+    },
+    {
+      "login": "ved-asole",
+      "name": "Ved Asole",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77259804?v=4",
+      "profile": "http://vedasole.cloud",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Holiday-C",
+      "name": "NewMorning",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95869761?v=4",
+      "profile": "https://github.com/Holiday-C",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Kiro-Young",
+      "name": "资深老萌新",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98251397?v=4",
+      "profile": "https://github.com/Kiro-Young",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Nickolodeon98",
+      "name": "Seunghwan Jeon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/113348293?v=4",
+      "profile": "https://itistori.tistory.com/",
+      "contributions": [
+        "translation"
       ]
     }
   ],
