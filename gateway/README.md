@@ -3,7 +3,6 @@ title: Gateway
 category: Structural
 language: en
 tag:
-- Gang of Four
 - Decoupling
 
 ---
@@ -38,7 +37,7 @@ The main class in our example is the `ExternalService` that contains items.
 class ExternalServiceA implements Gateway {
     @Override
     public void execute() throws Exception {
-        System.out.println("Executing Service A");
+        LOGGER.info("Executing Service A");
         // Simulate a time-consuming task
         Thread.sleep(1000);
     }
@@ -50,7 +49,7 @@ class ExternalServiceA implements Gateway {
 class ExternalServiceB implements Gateway {
     @Override
     public void execute() throws Exception {
-        System.out.println("Executing Service B");
+        LOGGER.info("Executing Service B");
         // Simulate a time-consuming task
         Thread.sleep(1000);
     }
@@ -62,7 +61,7 @@ class ExternalServiceB implements Gateway {
 class ExternalServiceC implements Gateway {
     @Override
     public void execute() throws Exception {
-        System.out.println("Executing Service C");
+        LOGGER.info("Executing Service C");
         // Simulate a time-consuming task
         Thread.sleep(1000);
     }
@@ -100,7 +99,7 @@ public class App {
             serviceB.execute();
             serviceC.execute();
         } catch (ThreadDeath e) {
-            System.out.println("Interrupted!" + e);
+            LOGGER.info("Interrupted!" + e);
             throw e;
         }
     }
