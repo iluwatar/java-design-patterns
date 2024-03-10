@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-322-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-323-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -488,6 +488,9 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="14.28%"><a href="https://itistori.tistory.com/"><img src="https://avatars.githubusercontent.com/u/113348293?v=4?s=100" width="100px;" alt="Seunghwan Jeon"/><br /><sub><b>Seunghwan Jeon</b></sub></a><br /><a href="#translation-Nickolodeon98" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sugan0tech"><img src="https://avatars.githubusercontent.com/u/71312159?v=4?s=100" width="100px;" alt="sugavanesh"/><br /><sub><b>sugavanesh</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=sugan0tech" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/FinnS-F"><img src="https://avatars.githubusercontent.com/u/126026830?v=4?s=100" width="100px;" alt="FinnS-F"/><br /><sub><b>FinnS-F</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=FinnS-F" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/jerryyummy"><img src="https://avatars.githubusercontent.com/u/62087610?v=4?s=100" width="100px;" alt="jerryyummy"/><br /><sub><b>jerryyummy</b></sub></a><br /><a href="#translation-jerryyummy" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
