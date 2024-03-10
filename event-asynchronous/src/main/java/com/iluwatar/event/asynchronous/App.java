@@ -150,7 +150,12 @@ public class App {
     var option = -1;
     while (option != 4) {
       LOGGER.info("Hello. Would you like to boil some eggs?");
-      LOGGER.info("(1) BOIL AN EGG \n(2) STOP BOILING THIS EGG \n(3) HOW ARE MY EGGS? \n(4) EXIT");
+      LOGGER.info("""
+              (1) BOIL AN EGG
+              (2) STOP BOILING THIS EGG
+              (3) HOW ARE MY EGGS?
+              (4) EXIT
+              """);
       LOGGER.info("Choose [1,2,3,4]: ");
       option = s.nextInt();
 
