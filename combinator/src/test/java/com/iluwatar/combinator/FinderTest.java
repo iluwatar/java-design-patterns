@@ -32,7 +32,10 @@ class FinderTest {
 
   @Test
   void contains() {
-    var example = "the first one \nthe second one \n";
+    var example = """
+                the first one 
+                the second one\s
+                """;
 
     var result = Finder.contains("second").find(example);
     assertEquals(1, result.size());
