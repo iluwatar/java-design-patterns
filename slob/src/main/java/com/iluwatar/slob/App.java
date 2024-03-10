@@ -46,30 +46,58 @@ import org.xml.sax.SAXException;
  */
 public class App {
 
+  public static final String CLOB = "CLOB";
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
    * Main entry point to program.
    *
+   * <p>A Forest is created using {@link #createForest()} with Animals and Plants along with their
+   * respective relationships.</p>
+   *
+   * <p>Creates a {@link LobSerializer} using the method
+   * {@link #createLobSerializer(String[])}.</p>
+   *
+   * <p>Once created the serializer is passed to the
+   * {@link #executeSerializer(Forest, LobSerializer)} which handles the serialization,
+   * deserialization and persisting and loading from DB.</p>
+   *
    * @param args if first arg is CLOB then ClobSerializer is used else BlobSerializer is used.
    */
   public static void main(String[] args) throws SQLException {
     Forest forest = createForest();
-    LobSerializer serializer;
-    if (args.length > 0 && Objects.equals(args[0], "CLOB")) {
-      serializer = new ClobSerializer();
-    } else {
-      serializer = new BlobSerializer();
-    }
+    LobSerializer serializer = createLobSerializer(args);
     executeSerializer(forest, serializer);
   }
 
   /**
-   * Creates a Forest with Animals and Plants along with their respective relationships.
-   * <p> The method creates a forest with 2 Plants Grass and Oak of type Herb and tree
+   * <p>Creates a {@link LobSerializer} on the basis of input args. </p>
+   * <p>If input args are not empty and the value equals {@link App#CLOB}  then a
+   * {@link ClobSerializer} is created else a {@link BlobSerializer} is created.</p>
+   *
+   * @param args if first arg is {@link App#CLOB} then ClobSerializer is instantiated else
+   *             BlobSerializer is instantiated.
+   */
+  private static LobSerializer createLobSerializer(String[] args) throws SQLException {
+    LobSerializer serializer;
+    if (args.length > 0 && Objects.equals(args[0], CLOB)) {
+      serializer = new ClobSerializer();
+    } else {
+      serializer = new BlobSerializer();
+    }
+    return serializer;
+  }
+
+  /**
+   * Creates a Forest with {@link Animal} and {@link Plant} along with their respective
+   * relationships.
+   *
+   * <p> The method creates a {@link Forest} with 2 Plants Grass and Oak of type Herb and tree
    * respectively.</p>
+   *
    * <p> It also creates 3 animals Zebra and Buffalo which eat the plant grass. Lion consumes the
    * Zebra and the Buffalo.</p>
+   *
    * <p>With the above animals and plants and their relationships a forest
    * object is created which represents the Object Graph.</p>
    *
@@ -88,7 +116,7 @@ public class App {
 
   /**
    * Serialize the input object using the input serializer and persist to DB. After this it loads
-   * the same object back from DB and deserializes using the provided serializer.
+   * the same object back from DB and deserializes using the same serializer.
    *
    * @param forest        Object to Serialize and Persist
    * @param lobSerializer Serializer to Serialize and Deserialize Object
