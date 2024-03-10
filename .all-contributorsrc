@@ -2946,6 +2946,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Manojkumarchow",
+      "name": "Manoj Chowdary",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28005510?v=4",
+      "profile": "https://manojkumarchow.github.io/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
