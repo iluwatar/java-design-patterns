@@ -2883,6 +2883,51 @@
         "translation",
         "doc"
       ]
+    },
+    {
+      "login": "ved-asole",
+      "name": "Ved Asole",
+      "avatar_url": "https://avatars.githubusercontent.com/u/77259804?v=4",
+      "profile": "http://vedasole.cloud",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Holiday-C",
+      "name": "NewMorning",
+      "avatar_url": "https://avatars.githubusercontent.com/u/95869761?v=4",
+      "profile": "https://github.com/Holiday-C",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Kiro-Young",
+      "name": "资深老萌新",
+      "avatar_url": "https://avatars.githubusercontent.com/u/98251397?v=4",
+      "profile": "https://github.com/Kiro-Young",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Nickolodeon98",
+      "name": "Seunghwan Jeon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/113348293?v=4",
+      "profile": "https://itistori.tistory.com/",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "sugan0tech",
+      "name": "sugavanesh",
+      "avatar_url": "https://avatars.githubusercontent.com/u/71312159?v=4",
+      "profile": "https://github.com/sugan0tech",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
