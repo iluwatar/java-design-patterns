@@ -1,10 +1,8 @@
 package com.iluwatar.corruption.system;
 
-import com.iluwatar.corruption.system.legacy.LegacyOrder;
 import com.iluwatar.corruption.system.legacy.LegacyShop;
 import com.iluwatar.corruption.system.modern.Customer;
 import com.iluwatar.corruption.system.modern.ModernOrder;
-import com.iluwatar.corruption.system.modern.ModernShop;
 import com.iluwatar.corruption.system.modern.Shipment;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,26 +21,8 @@ import org.springframework.stereotype.Service;
 public class AntiCorruptionLayer {
 
   @Autowired
-  private ModernShop modernShop;
-
-  @Autowired
   private LegacyShop legacyShop;
 
-  /**
-   * The method converts the order from the modern system to the legacy system.
-   * @param id the id of the order
-   * @return the order in the legacy system
-   */
-  public Optional<LegacyOrder> findOrderInModernSystem(String id) {
-    return modernShop.findOrder(id).map(o ->
-        new LegacyOrder(
-            o.getId(),
-            o.getCustomer().getAddress(),
-            o.getShipment().getItem(),
-            o.getShipment().getQty(),
-            o.getShipment().getPrice()
-        ));
-  }
 
   /**
    * The method converts the order from the legacy system to the modern system.

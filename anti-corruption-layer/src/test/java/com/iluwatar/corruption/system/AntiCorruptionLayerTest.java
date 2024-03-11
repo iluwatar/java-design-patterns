@@ -27,8 +27,6 @@ public class AntiCorruptionLayerTest {
     private ModernShop modernShop;
 
 
-
-
     /**
      * Test the anti-corruption layer.
      * Main intention is to demonstrate how the anti-corruption layer works.
