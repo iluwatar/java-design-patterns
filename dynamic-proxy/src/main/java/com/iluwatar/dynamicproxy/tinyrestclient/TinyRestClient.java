@@ -25,23 +25,33 @@
 package com.iluwatar.dynamicproxy.tinyrestclient;
 
 import com.iluwatar.dynamicproxy.tinyrestclient.annotation.Body;
-import com.iluwatar.dynamicproxy.tinyrestclient.annotation.HttpMethod;
+import com.iluwatar.dynamicproxy.tinyrestclient.annotation.Http;
 import com.iluwatar.dynamicproxy.tinyrestclient.annotation.Path;
 import java.io.IOException;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
+import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.util.UriUtils;
 
 /**
  * Class to handle all the http communication with a Rest API.
  * It is supported by the HttpClient Java library.
  */
+@Slf4j
 public class TinyRestClient {
+
+  private static Map<Method, Annotation> httpAnnotationByMethod = new HashMap<>();
 
   private String baseUrl;
   private HttpClient httpClient;
@@ -67,19 +77,25 @@ public class TinyRestClient {
    * @throws InterruptedException Exception thrown when call is interrupted.
    */
   public Object send(Method method, Object[] args) throws IOException, InterruptedException {
-    var httpMethodAnnotation = getHttpMethodAnnotation(method.getDeclaredAnnotations());
-    if (httpMethodAnnotation == null) {
-      return  null;
+    var httpAnnotation = getHttpAnnotation(method);
+    if (httpAnnotation == null) {
+      return null;
     }
-    var httpMethodName = httpMethodAnnotation.annotationType().getSimpleName().toUpperCase();
-    var url = baseUrl + buildUrl(method, args, httpMethodAnnotation);
+    var httpAnnotationName = httpAnnotation.annotationType().getSimpleName().toUpperCase();
+    var url = baseUrl + buildUrl(method, args, httpAnnotation);
     var bodyPublisher = buildBodyPublisher(method, args);
     var httpRequest = HttpRequest.newBuilder()
         .uri(URI.create(url))
         .header("Content-Type", "application/json")
-        .method(httpMethodName, bodyPublisher)
+        .method(httpAnnotationName, bodyPublisher)
         .build();
     var httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
+    var statusCode = httpResponse.statusCode();
+    if (statusCode >= HttpURLConnection.HTTP_BAD_REQUEST) {
+      var errorDetail = httpResponse.body();
+      LOGGER.error("Error from server: " + errorDetail);
+      return null;
+    }
     return getResponse(method, httpResponse);
   }
 
@@ -93,7 +109,7 @@ public class TinyRestClient {
       var pathAnnotation = getAnnotationOf(parameter.getDeclaredAnnotations(), Path.class);
       if (pathAnnotation != null) {
         var pathParam = "{" + annotationValue(pathAnnotation) + "}";
-        var pathValue = args[index].toString();
+        var pathValue = UriUtils.encodePath(args[index].toString(), StandardCharsets.UTF_8);
         url = url.replace(pathParam, pathValue);
       }
       index++;
@@ -116,7 +132,13 @@ public class TinyRestClient {
 
   private Object getResponse(Method method, HttpResponse<String> httpResponse) {
     var rawData = httpResponse.body();
-    var returnType = method.getGenericReturnType();
+    Type returnType = null;
+    try {
+      returnType = method.getGenericReturnType();
+    } catch (Exception e) {
+      LOGGER.error("Cannot get the generic return type of the method " + method.getName() + "()");
+      return null;
+    }
     if (returnType instanceof ParameterizedType) {
       Class<?> responseClass = (Class<?>) (((ParameterizedType) returnType)
           .getActualTypeArguments()[0]);
@@ -127,10 +149,11 @@ public class TinyRestClient {
     }
   }
 
-  private Annotation getHttpMethodAnnotation(Annotation[] annotations) {
-    return Arrays.stream(annotations)
-        .filter(annot -> annot.annotationType().isAnnotationPresent(HttpMethod.class))
-        .findFirst().orElse(null);
+  private Annotation getHttpAnnotation(Method method) {
+    return httpAnnotationByMethod.computeIfAbsent(method, m ->
+        Arrays.stream(m.getDeclaredAnnotations())
+            .filter(annot -> annot.annotationType().isAnnotationPresent(Http.class))
+            .findFirst().orElse(null));
   }
 
   private Annotation getAnnotationOf(Annotation[] annotations, Class<?> clazz) {
@@ -150,6 +173,8 @@ public class TinyRestClient {
     try {
       result = valueMethod.invoke(annotation, (Object[]) null);
     } catch (Exception e) {
+      LOGGER.error("Cannot read the value " + annotation.annotationType().getSimpleName()
+          + "." + valueMethod.getName() + "()", e);
       result = null;
     }
     return (result instanceof String strResult ? strResult : null);

@@ -26,8 +26,7 @@ package com.iluwatar.dynamicproxy;
 
 import java.lang.reflect.Proxy;
 import java.net.http.HttpClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Application to demonstrate the Dynamic Proxy pattern. This application allow us to hit the public
@@ -40,9 +39,8 @@ import org.slf4j.LoggerFactory;
  * In this demo, the Dynamic Proxy pattern help us to run business logic through interfaces without
  * an explicit implementation of the interfaces and supported on the Java Reflection approach.
  */
+@Slf4j
 public class App {
-
-  private static final Logger logger = LoggerFactory.getLogger(App.class);
 
   static final String REST_API_URL = "https://jsonplaceholder.typicode.com";
 
@@ -62,13 +60,24 @@ public class App {
   }
 
   /**
+   * Application entry point.
+   *
+   * @param args External arguments to be passed. Optional.
+   */
+  public static void main(String[] args) {
+    App app = new App(App.REST_API_URL, HttpClient.newHttpClient());
+    app.createDynamicProxy();
+    app.callMethods();
+  }
+
+  /**
    * Create the Dynamic Proxy linked to the AlbumService interface and to the AlbumInvocationHandler.
    */
   public void createDynamicProxy() {
     AlbumInvocationHandler albumInvocationHandler = new AlbumInvocationHandler(baseUrl, httpClient);
 
     albumServiceProxy = (AlbumService) Proxy.newProxyInstance(
-        App.class.getClassLoader(), new Class<?>[] { AlbumService.class }, albumInvocationHandler);
+        App.class.getClassLoader(), new Class<?>[]{AlbumService.class}, albumInvocationHandler);
   }
 
   /**
@@ -80,32 +89,21 @@ public class App {
     int userId = 3;
 
     var albums = albumServiceProxy.readAlbums();
-    albums.forEach(album -> logger.info("{}", album));
+    albums.forEach(album -> LOGGER.info("{}", album));
 
     var album = albumServiceProxy.readAlbum(albumId);
-    logger.info("{}", album);
+    LOGGER.info("{}", album);
 
     var newAlbum = albumServiceProxy.createAlbum(Album.builder()
         .title("Big World").userId(userId).build());
-    logger.info("{}", newAlbum);
+    LOGGER.info("{}", newAlbum);
 
     var editAlbum = albumServiceProxy.updateAlbum(albumId, Album.builder()
         .title("Green Valley").userId(userId).build());
-    logger.info("{}", editAlbum);
+    LOGGER.info("{}", editAlbum);
 
     var removedAlbum = albumServiceProxy.deleteAlbum(albumId);
-    logger.info("{}", removedAlbum);
-  }
-
-  /**
-   * Application entry point.
-   *
-   * @param args External arguments to be passed. Optional.
-   */
-  public static void main(String[] args) {
-    App app = new App(App.REST_API_URL, HttpClient.newHttpClient());
-    app.createDynamicProxy();
-    app.callMethods();
+    LOGGER.info("{}", removedAlbum);
   }
 
 }

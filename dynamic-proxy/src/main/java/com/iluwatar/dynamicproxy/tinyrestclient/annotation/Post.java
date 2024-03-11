@@ -32,7 +32,7 @@ import java.lang.annotation.Target;
 /**
  * Annotation to mark an interface's method as a POST http method.
  */
-@HttpMethod
+@Http
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)
 public @interface Post {

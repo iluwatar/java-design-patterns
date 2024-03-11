@@ -28,16 +28,14 @@ import com.iluwatar.dynamicproxy.tinyrestclient.TinyRestClient;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.net.http.HttpClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class whose method 'invoke' will be called every time that an interface's method is called.
  * That interface is linked to this class by the Proxy class.
  */
+@Slf4j
 public class AlbumInvocationHandler implements InvocationHandler {
-
-  private static final Logger logger = LoggerFactory.getLogger(AlbumInvocationHandler.class);
 
   private TinyRestClient restClient;
 
@@ -54,7 +52,7 @@ public class AlbumInvocationHandler implements InvocationHandler {
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-    logger.info("===== Calling the method {}.{}()",
+    LOGGER.info("===== Calling the method {}.{}()",
         method.getDeclaringClass().getSimpleName(), method.getName());
 
     return restClient.send(method, args);
