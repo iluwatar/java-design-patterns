@@ -24,6 +24,7 @@
  */
 package com.iluwatar.abstractfactory;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -41,13 +42,10 @@ import lombok.extern.slf4j.Slf4j;
  * both concrete implementations to create a king, a castle, and an army.
  */
 @Slf4j
+@Getter
 public class App implements Runnable {
 
   private final Kingdom kingdom = new Kingdom();
-
-  public Kingdom getKingdom() {
-    return kingdom;
-  }
 
   /**
    * Program entry point.

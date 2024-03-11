@@ -1,0 +1,163 @@
+@startuml
+package com.iluwatar.repository {
+  interface VehicleRepository {
+  }
+}
+package com.iluwatar.service {
+  class VehicleService {
+    - vehicleRepository : VehicleRepository
+    + VehicleService(vehicleRepository : VehicleRepository)
+    + deleteVehicle(vehicle : Vehicle)
+    + getAllVehicles() : List<Vehicle>
+    + getVehicle(vehicleId : int) : Vehicle
+    + saveVehicle(vehicle : Vehicle) : Vehicle
+    + updateVehicle(vehicle : Vehicle) : Vehicle
+  }
+}
+package com.iluwatar.entity {
+  class Car {
+    - engineCapacity : int
+    + Car()
+    + Car(manufacturer : String, model : String, noOfPassengers : int, engineCapacity : int)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getEngineCapacity() : int
+    + hashCode() : int
+    + setEngineCapacity(engineCapacity : int)
+    + toString() : String
+  }
+  class Freighter {
+    - flightLength : double
+    + Freighter()
+    + Freighter(manufacturer : String, model : String, countOfSeats : int, loadCapacity : int, flightLength : double)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getFlightLength() : double
+    + hashCode() : int
+    + setFlightLength(flightLength : double)
+    + toString() : String
+  }
+  abstract class PassengerVehicle {
+    - noOfPassengers : int
+    + PassengerVehicle()
+    + PassengerVehicle(manufacturer : String, model : String, noOfPassengers : int)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getNoOfPassengers() : int
+    + hashCode() : int
+    + setNoOfPassengers(noOfPassengers : int)
+    + toString() : String
+  }
+  class Train {
+    - noOfCarriages : int
+    + Train()
+    + Train(manufacturer : String, model : String, noOfPassengers : int, noOfCarriages : int)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getNoOfCarriages() : int
+    + hashCode() : int
+    + setNoOfCarriages(noOfCarriages : int)
+    + toString() : String
+  }
+  abstract class TransportVehicle {
+    - loadCapacity : int
+    + TransportVehicle()
+    + TransportVehicle(manufacturer : String, model : String, loadCapacity : int)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getLoadCapacity() : int
+    + hashCode() : int
+    + setLoadCapacity(loadCapacity : int)
+    + toString() : String
+  }
+  class Truck {
+    + towingCapacity : int
+    + Truck()
+    + Truck(manufacturer : String, model : String, loadCapacity : int, towingCapacity : int)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getTowingCapacity() : int
+    + hashCode() : int
+    + setTowingCapacity(towingCapacity : int)
+    + toString() : String
+  }
+  abstract class Vehicle {
+    - manufacturer : String
+    - model : String
+    - vehicleId : int
+    + Vehicle()
+    + Vehicle(manufacturer : String, model : String)
+    + Vehicle(vehicleId : int, manufacturer : String, model : String)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getManufacturer() : String
+    + getModel() : String
+    + getVehicleId() : int
+    + hashCode() : int
+    + setManufacturer(manufacturer : String)
+    + setModel(model : String)
+    + setVehicleId(vehicleId : int)
+    + toString() : String
+  }
+}
+package com.iluwatar.abstractEntity {
+  abstract class PassengerVehicle {
+    - noOfPassengers : int
+    + PassengerVehicle()
+    + PassengerVehicle(manufacturer : String, model : String, noOfPassengers : int)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getNoOfPassengers() : int
+    + hashCode() : int
+    + setNoOfPassengers(noOfPassengers : int)
+    + toString() : String
+  }
+  abstract class TransportVehicle {
+    - loadCapacity : int
+    + TransportVehicle()
+    + TransportVehicle(manufacturer : String, model : String, loadCapacity : int)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getLoadCapacity() : int
+    + hashCode() : int
+    + setLoadCapacity(loadCapacity : int)
+    + toString() : String
+  }
+  abstract class Vehicle {
+    - manufacturer : String
+    - model : String
+    - vehicleId : int
+    + Vehicle()
+    + Vehicle(manufacturer : String, model : String)
+    + Vehicle(vehicleId : int, manufacturer : String, model : String)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getManufacturer() : String
+    + getModel() : String
+    + getVehicleId() : int
+    + hashCode() : int
+    + setManufacturer(manufacturer : String)
+    + setModel(model : String)
+    + setVehicleId(vehicleId : int)
+    + toString() : String
+  }
+}
+package com.iluwatar {
+  class SingleTableInheritance {
+    - vehicleService : VehicleService
+    + SingleTableInheritance(vehicleService : VehicleService)
+    + main(args : String[]) {static}
+    + run(args : String[])
+  }
+}
+SingleTableInheritance -->  "-vehicleService" VehicleService
+VehicleService -->  "-vehicleRepository" VehicleRepository
+PassengerVehicle --|> Vehicle 
+TransportVehicle --|> Vehicle 
+Car --|> PassengerVehicle 
+Freighter --|> TransportVehicle 
+PassengerVehicle --|> Vehicle 
+Train --|> PassengerVehicle 
+TransportVehicle --|> Vehicle 
+Truck --|> TransportVehicle 
+@enduml

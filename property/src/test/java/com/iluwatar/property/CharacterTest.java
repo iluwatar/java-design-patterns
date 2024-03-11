@@ -79,15 +79,33 @@ class CharacterTest {
     prototype.set(Stats.ARMOR, 1);
     prototype.set(Stats.AGILITY, 2);
     prototype.set(Stats.INTELLECT, 3);
-    assertEquals("Stats:\n - AGILITY:2\n - ARMOR:1\n - INTELLECT:3\n", prototype.toString());
+    var message = """
+            Stats:
+             - AGILITY:2
+             - ARMOR:1
+             - INTELLECT:3
+            """;
+    assertEquals(message, prototype.toString());
 
     final var stupid = new Character(Type.ROGUE, prototype);
     stupid.remove(Stats.INTELLECT);
-    assertEquals("Character type: ROGUE\nStats:\n - AGILITY:2\n - ARMOR:1\n", stupid.toString());
+    String expectedStupidString = """
+            Character type: ROGUE
+            Stats:
+             - AGILITY:2
+             - ARMOR:1
+            """;
+    assertEquals(expectedStupidString, stupid.toString());
 
     final var weak = new Character("weak", prototype);
     weak.remove(Stats.ARMOR);
-    assertEquals("Player: weak\nStats:\n - AGILITY:2\n - INTELLECT:3\n", weak.toString());
+    String expectedWeakString = """
+            Player: weak
+            Stats:
+             - AGILITY:2
+             - INTELLECT:3
+            """;
+    assertEquals(expectedWeakString, weak.toString());
 
   }
 
