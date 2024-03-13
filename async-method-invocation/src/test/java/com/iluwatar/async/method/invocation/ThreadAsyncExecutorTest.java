@@ -75,7 +75,7 @@ class ThreadAsyncExecutorTest {
    * Test used to verify the happy path of {@link ThreadAsyncExecutor#startProcess(Callable)}
    */
   @Test
-  void testSuccessfulTaskWithoutCallback() throws Exception {
+  void testSuccessfulTaskWithoutCallback() {
     assertTimeout(ofMillis(3000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -101,7 +101,7 @@ class ThreadAsyncExecutorTest {
    * AsyncCallback)}
    */
   @Test
-  void testSuccessfulTaskWithCallback() throws Exception {
+  void testSuccessfulTaskWithCallback() {
     assertTimeout(ofMillis(3000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -134,7 +134,7 @@ class ThreadAsyncExecutorTest {
    * task takes a while to execute
    */
   @Test
-  void testLongRunningTaskWithoutCallback() throws Exception {
+  void testLongRunningTaskWithoutCallback() {
     assertTimeout(ofMillis(5000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -174,7 +174,7 @@ class ThreadAsyncExecutorTest {
    * AsyncCallback)} when a task takes a while to execute
    */
   @Test
-  void testLongRunningTaskWithCallback() throws Exception {
+  void testLongRunningTaskWithCallback() {
     assertTimeout(ofMillis(5000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -222,7 +222,7 @@ class ThreadAsyncExecutorTest {
    * ThreadAsyncExecutor#endProcess(AsyncResult)}
    */
   @Test
-  void testEndProcess() throws Exception {
+  void testEndProcess() {
     assertTimeout(ofMillis(5000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -259,7 +259,7 @@ class ThreadAsyncExecutorTest {
    * the callable is 'null'
    */
   @Test
-  void testNullTask() throws Exception {
+  void testNullTask() {
     assertTimeout(ofMillis(3000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -286,7 +286,7 @@ class ThreadAsyncExecutorTest {
    * AsyncCallback)} when the callable is 'null', but the asynchronous callback is provided
    */
   @Test
-  void testNullTaskWithCallback() throws Exception {
+  void testNullTaskWithCallback() {
     assertTimeout(ofMillis(3000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -322,7 +322,7 @@ class ThreadAsyncExecutorTest {
    * AsyncCallback)} when both the callable and the asynchronous callback are 'null'
    */
   @Test
-  void testNullTaskWithNullCallback() throws Exception {
+  void testNullTaskWithNullCallback() {
     assertTimeout(ofMillis(3000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();

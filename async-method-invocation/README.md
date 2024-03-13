@@ -3,7 +3,9 @@ title: Async Method Invocation
 category: Concurrency
 language: en
 tag:
+ - Asynchronous
  - Reactive
+ - Scalability
 ---
 
 ## Intent
@@ -12,6 +14,10 @@ Asynchronous method invocation is a pattern where the calling thread
 is not blocked while waiting results of tasks. The pattern provides parallel
 processing of multiple independent tasks and retrieving the results via
 callbacks or waiting until everything is done. 
+
+## Also known as
+
+* Asynchronous Procedure Call
 
 ## Explanation
 
@@ -158,13 +164,42 @@ Here's the program console output.
 
 Use the async method invocation pattern when
 
-* You have multiple independent tasks that can run in parallel
-* You need to improve the performance of a group of sequential tasks
-* You have a limited amount of processing capacity or long-running tasks and the caller should not wait for the tasks to be ready
+* When operations do not need to complete before proceeding with the next steps in a program.
+* For tasks that are resource-intensive or time-consuming, such as IO operations, network requests, or complex computations, where making the operation synchronous would significantly impact performance or user experience.
+* In GUI applications to prevent freezing or unresponsiveness during long-running tasks.
+* In web applications for non-blocking IO operations.
 
-## Real world examples
+## Known Uses
 
+* Web servers handling HTTP requests asynchronously to improve throughput and reduce latency.
+* Desktop and mobile applications using background threads to perform time-consuming operations without blocking the user interface.
+* Microservices architectures where services perform asynchronous communications via messaging queues or event streams.
 * [FutureTask](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/FutureTask.html)
 * [CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html)
 * [ExecutorService](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ExecutorService.html)
 * [Task-based Asynchronous Pattern](https://msdn.microsoft.com/en-us/library/hh873175.aspx)
+
+## Consequences
+
+Benefits:
+
+* Improved Responsiveness: The main thread or application flow remains unblocked, improving the user experience in GUI applications and overall responsiveness.
+* Better Resource Utilization: By enabling parallel execution, system resources (like CPU and IO) are utilized more efficiently, potentially improving the application's throughput.
+* Scalability: Easier to scale applications, as tasks can be distributed across available resources more effectively.
+
+Trade-offs:
+
+* Complexity: Introducing asynchronous operations can complicate the codebase, making it more challenging to understand, debug, and maintain.
+* Resource Management: Requires careful management of threads or execution contexts, which can introduce overhead and potential resource exhaustion issues.
+* Error Handling: Asynchronous operations can make error handling more complex, as exceptions may occur in different threads or at different times.
+
+Related Patterns:
+
+* [Command](https://java-design-patterns.com/patterns/command/): Asynchronous method invocation can be used to implement the Command pattern, where commands are executed asynchronously.
+* [Observer](https://java-design-patterns.com/patterns/observer/): Asynchronous method invocation can be used to notify observers asynchronously when a subject's state changes.
+* [Promise](https://java-design-patterns.com/patterns/promise/): The AsyncResult interface can be considered a form of Promise, representing a value that may not be available yet.
+
+## Credits
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3Ti1N4f)
+* [Java Concurrency in Practice](https://amzn.to/4ab97VU)

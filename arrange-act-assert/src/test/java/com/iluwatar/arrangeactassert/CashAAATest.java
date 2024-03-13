@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Arrange/Act/Assert (AAA) is a pattern for organizing unit tests. It is a way to structure your
- * tests so they're easier to read, maintain and enhance.
+ * tests, so they're easier to read, maintain and enhance.
  *
  * <p>It breaks tests down into three clear and distinct steps:
  * <p>1. Arrange: Perform the setup and initialization required for the test.

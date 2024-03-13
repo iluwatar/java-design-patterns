@@ -24,7 +24,6 @@
  */
 package com.iluwatar.embedded.value;
 
-import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 
 /** 
@@ -73,7 +72,7 @@ public class App {
     }
 
     // Initially, database is empty
-    LOGGER.info("Orders Query: {}", dataSource.queryOrders().collect(Collectors.toList()));
+    LOGGER.info("Orders Query: {}", dataSource.queryOrders().toList());
     
     //Insert orders where shippingAddress is mapped to different columns of the same table 
     dataSource.insertOrder(order1);
@@ -83,7 +82,7 @@ public class App {
 
     // Query orders.
     // We'll create ShippingAddress object from city, state, pincode values from the table and add it to Order object
-    LOGGER.info("Orders Query: {}", dataSource.queryOrders().collect(Collectors.toList()) + "\n");
+    LOGGER.info("Orders Query: {}", dataSource.queryOrders().toList() + "\n");
     
     //Query order by given id
     LOGGER.info("Query Order with id=2: {}", dataSource.queryOrder(2));
@@ -93,7 +92,7 @@ public class App {
     //Since we'd mapped address in the same table, deleting order will also take out the shipping address details.
     LOGGER.info("Remove Order with id=1");
     dataSource.removeOrder(1);
-    LOGGER.info("\nOrders Query: {}", dataSource.queryOrders().collect(Collectors.toList()) + "\n");
+    LOGGER.info("\nOrders Query: {}", dataSource.queryOrders().toList() + "\n");
     
     //After successful demonstration of the pattern, drop the table
     if (dataSource.deleteSchema()) {
