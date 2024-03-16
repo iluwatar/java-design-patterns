@@ -34,12 +34,12 @@ import lombok.extern.slf4j.Slf4j;
  * The Server class. The client communicates with the server and request processing and getting a new session.
  */
 @Slf4j
-@Data
-@AllArgsConstructor
-public class Server {
-  private String host;
-
-  private int port;
+//@Data
+//@AllArgsConstructor
+public record Server (String host, int port) {
+//  private String host;
+//
+//  private int port;
 
 
   /**
@@ -59,7 +59,7 @@ public class Server {
    * @param request Request object with data and Session
    */
   public void process(Request request) {
-    LOGGER.info("Processing Request with client: " + request.getSession().getClientName() + " data: " + request.getData());
+    LOGGER.info("Processing Request with client: " + request.session().clientName() + " data: " + request.data());
   }
 
 }

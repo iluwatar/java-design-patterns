@@ -25,18 +25,10 @@
 package com.iluwatar.logaggregation;
 
 import java.time.LocalDateTime;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 /**
  * Represents a single log entry, capturing essential details like the service name,
  * log level, message, and the timestamp when the log was generated.
  */
-@Data
-@AllArgsConstructor
-public class LogEntry {
-  private String serviceName;
-  private LogLevel level;
-  private String message;
-  private LocalDateTime timestamp;
-}
+//@Dat
+
+public record LogEntry(String serviceName, LogLevel level, String message, LocalDateTime timestamp) {}

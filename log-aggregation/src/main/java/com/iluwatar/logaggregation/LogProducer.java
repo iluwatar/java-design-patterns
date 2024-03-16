@@ -48,7 +48,7 @@ public class LogProducer {
    */
   public void generateLog(LogLevel level, String message) {
     final LogEntry logEntry = new LogEntry(serviceName, level, message, LocalDateTime.now());
-    LOGGER.info("Producing log: " + logEntry.getMessage());
+    LOGGER.info("Producing log: " + logEntry.message());
     aggregator.collectLog(logEntry);
   }
 }

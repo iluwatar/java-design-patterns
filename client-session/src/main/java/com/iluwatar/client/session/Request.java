@@ -31,12 +31,12 @@ import lombok.Data;
 /**
  * The Request class which contains the Session details and data.
  */
-@Data
-@AllArgsConstructor
-public class Request {
-
-  private String data;
-
-  private Session session;
+//@Data
+//@AllArgsConstructor
+public record Request (String data, Session session) {
+//
+//  private String data;
+//
+//  private Session session;
 
 }

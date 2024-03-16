@@ -25,24 +25,8 @@
 
 package com.iluwatar.client.session;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 
 /**
  * The Session class. Each client get assigned a Session which is then used for further communications.
  */
-@Data
-@AllArgsConstructor
-public class Session {
-
-  /**
-   * Session id.
-   */
-  private String id;
-
-  /**
-   * Client name.
-   */
-  private String clientName;
-
-}
+public record Session(String id, String clientName) {}
