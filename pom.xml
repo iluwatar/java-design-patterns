@@ -209,6 +209,7 @@
     <module>optimistic-offline-lock</module>
     <module>crtp</module>
     <module>log-aggregation</module>
+    <module>anti-corruption-layer</module>
     <module>health-check</module>
     <module>notification</module>
     <module>single-table-inheritance</module>
