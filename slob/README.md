@@ -38,20 +38,6 @@ tag:
   the animals in the forest and details of what they eat from the forest plants/animals or both.
 
 ```java
-import static com.iluwatar.slob.lob.Animal.iterateXmlForAnimalAndPlants;
-
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-
 /**
  * Creates an object Forest which contains animals and plants as its constituents. Animals may eat
  * plants or other animals in the forest.
@@ -62,8 +48,8 @@ import org.w3c.dom.NodeList;
 public class Forest implements Serializable {
 
   private String name;
-  private Set<Animal> animals = new HashSet<>();
-  private Set<Plant> plants = new HashSet<>();
+  private final Set<Animal> animals = new HashSet<>();
+  private final Set<Plant> plants = new HashSet<>();
 
   /**
    * Provides the representation of Forest in XML form.
@@ -139,16 +125,6 @@ public class Forest implements Serializable {
   deserialize the input object and persist and load that object into a DB.
 
 ```java
-import com.iluwatar.slob.dbservice.DatabaseService;
-import com.iluwatar.slob.lob.Forest;
-import java.io.Closeable;
-import java.io.IOException;
-import java.io.Serializable;
-import java.sql.SQLException;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import org.xml.sax.SAXException;
-
 /**
  * A LobSerializer can be used to create an instance of a serializer which can serialize and
  * deserialize an object and persist and load that object into a DB. from their Binary
@@ -237,23 +213,6 @@ public abstract class LobSerializer implements Serializable, Closeable {
   using XML to represent the object graph.
 
 ```java
-import com.iluwatar.slob.lob.Forest;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.sql.SQLException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.xml.sax.SAXException;
 
 /**
  * Creates a Serializer that uses Character based serialization and deserialization of objects graph
@@ -327,42 +286,6 @@ public class ClobSerializer extends LobSerializer {
   in DB.
 
 ```java
-/*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
- * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-package com.iluwatar.slob.serializers;
-
-import com.iluwatar.slob.lob.Forest;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInput;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.sql.SQLException;
-
 /**
  * Creates a Serializer that uses Binary serialization and deserialization of objects graph to and
  * from their Binary Representation.
