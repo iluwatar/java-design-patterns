@@ -28,10 +28,6 @@ tag:
 > * BlobSerializer uses binary data for serialization, here the Object graph is converted to Byte
 > * Array and then stored as a blob in DB.
 
-**Wikipedia says**
-
-> TODO
-
 **Programmatic Example**
 
 * Here is the `Animal` class. It represents the Animal object in the Forest. It contains the name of
