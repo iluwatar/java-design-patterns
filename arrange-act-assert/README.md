@@ -1,9 +1,10 @@
 ---
 title: Arrange/Act/Assert
-category: Idiom
+category: Testing
 language: en
 tag:
- - Testing
+  - Idiom
+  - Testing
 ---
 
 ## Also known as
