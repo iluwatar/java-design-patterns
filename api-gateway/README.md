@@ -3,6 +3,7 @@ title: API Gateway
 category: Architectural
 language: en
 tag:
+  - API design
   - Cloud distributed
   - Decoupling
   - Microservices
@@ -10,8 +11,11 @@ tag:
 
 ## Intent
 
-Aggregate calls to microservices in a single location, the API Gateway. The user makes a single call 
-to the API Gateway, and the API Gateway then calls each relevant microservice.
+The API Gateway design pattern aims to provide a unified interface to a set of microservices. It acts as a single entry point for clients, routing requests to the appropriate microservices and aggregating results, thereby simplifying the client-side code.
+
+## Also known as
+
+* Backend for Frontends (BFF)
 
 ## Explanation
 
@@ -144,13 +148,42 @@ public class ApiGateway {
 ```
 
 ## Class diagram
+
 ![alt text](./etc/api-gateway.png "API Gateway")
 
 ## Applicability
 
-Use the API Gateway pattern when
+* When building a microservices architecture, and there's a need to abstract the complexity of microservices from the client.
+* When multiple microservices need to be consumed in a single request.
+* For authentication, authorization, and security enforcement at a single point.
+* To optimize communication between clients and services, especially in a cloud environment.
 
-* You're using microservices architecture and need a single point of aggregation for your microservice calls.
+## Consequences
+
+Benefits:
+
+* Decouples client from microservices, allowing services to evolve independently.
+* Simplifies client by aggregating requests to multiple services.
+* Centralized location for cross-cutting concerns like security, logging, and rate limiting.
+* Potential for performance optimizations like caching and request compression.
+
+Trade-offs:
+
+* Introduces a single point of failure, although this can be mitigated with high availability setups.
+* Can become a bottleneck if not properly scaled.
+* Adds complexity in terms of deployment and management.
+
+## Known uses
+
+* E-commerce platforms where multiple services (product info, pricing, inventory) are aggregated for a single view.
+* Mobile applications that consume various backend services but require a simplified interface for ease of use.
+* Cloud-native applications that leverage multiple microservices architectures.
+
+## Related patterns
+
+* [Aggregator Microservice](../aggregator-microservices/README.md) - The API Gateway pattern is often used in conjunction with the Aggregator Microservice pattern to provide a unified interface to a set of microservices.
+* [Proxy](../proxy/README.md) - The API Gateway pattern is a specialized form of the Proxy pattern, where the gateway acts as a single entry point for clients, routing requests to the appropriate microservices and aggregating results.
+* [Circuit Breaker](../circuit-breaker/README.md) - API Gateways can use the Circuit Breaker pattern to prevent cascading failures when calling multiple microservices.
 
 ## Tutorials
 
@@ -164,3 +197,5 @@ Use the API Gateway pattern when
 * [NGINX - Building Microservices: Using an API Gateway](https://www.nginx.com/blog/building-microservices-using-an-api-gateway/)
 * [Microservices Patterns: With examples in Java](https://www.amazon.com/gp/product/1617294543/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617294543&linkId=ac7b6a57f866ac006a309d9086e8cfbd)
 * [Building Microservices: Designing Fine-Grained Systems](https://www.amazon.com/gp/product/1491950358/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1491950358&linkId=4c95ca9831e05e3f0dadb08841d77bf1)
+* [Designing Data-Intensive Applications](https://amzn.to/3PfRk7Y)
+* [Cloud Native Patterns: Designing change-tolerant software](https://amzn.to/3uV12WN)

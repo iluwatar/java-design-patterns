@@ -1,0 +1,43 @@
+@startuml GatewayPattern
+package com.iluwatar.gateway{
+class App {
+  +main(args: String[]): void
+}
+
+class GatewayFactory {
+  -gateways: Map<String, Gateway>
+  +registerGateway(key: String, gateway: Gateway): void
+  +getGateway(key: String): Gateway
+}
+
+interface Gateway {
+  {abstract} +execute(): void
+}
+
+class ExternalServiceA {
+  +execute(): void
+}
+
+class ExternalServiceB {
+  +execute(): void
+}
+
+class ExternalServiceC {
+  +execute(): void
+  +error(): void
+}
+
+App --> GatewayFactory : Uses
+
+
+GatewayFactory --> Gateway : Creates
+
+GatewayFactory --> ExternalServiceA : Registers
+GatewayFactory --> ExternalServiceB : Registers
+GatewayFactory --> ExternalServiceC : Registers
+
+ExternalServiceA --> Gateway : Implements
+ExternalServiceB --> Gateway : Implements
+ExternalServiceC --> Gateway : Implements
+
+@enduml
