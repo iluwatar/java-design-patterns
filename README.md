@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-331-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-332-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -501,6 +501,7 @@ This project is licensed under the terms of the MIT license.
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/sashirestela"><img src="https://avatars.githubusercontent.com/u/14045506?v=4?s=100" width="100px;" alt="Sashir Estela"/><br /><sub><b>Sashir Estela</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=sashirestela" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/omahs"><img src="https://avatars.githubusercontent.com/u/73983677?v=4?s=100" width="100px;" alt="omahs"/><br /><sub><b>omahs</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=omahs" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/leiferksn"><img src="https://avatars.githubusercontent.com/u/4026636?v=4?s=100" width="100px;" alt="leif e."/><br /><sub><b>leif e.</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=leiferksn" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
