@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-328-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-329-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -496,6 +496,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/nooynayr"><img src="https://avatars.githubusercontent.com/u/141696269?v=4?s=100" width="100px;" alt="nooynayr"/><br /><sub><b>nooynayr</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=nooynayr" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/pushpander1010"><img src="https://avatars.githubusercontent.com/u/41006191?v=4?s=100" width="100px;" alt="CYBERCRUX2"/><br /><sub><b>CYBERCRUX2</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=pushpander1010" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/luismateoh"><img src="https://avatars.githubusercontent.com/u/44934142?v=4?s=100" width="100px;" alt="Luis Mateo Hincapié Martinez"/><br /><sub><b>Luis Mateo Hincapié Martinez</b></sub></a><br /><a href="#translation-luismateoh" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://guqing.io"><img src="https://avatars.githubusercontent.com/u/38999863?v=4?s=100" width="100px;" alt="guqing"/><br /><sub><b>guqing</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=guqing" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
