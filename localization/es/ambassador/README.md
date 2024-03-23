@@ -7,7 +7,7 @@ tag:
   - Cloud distributed
 ---
 
-## Motivo
+## Propósito
 
 Proporcionar una instancia de servicio auxiliar a un cliente y delegar en ella las funcionalidades comunes de un recurso compartido.
 
@@ -170,7 +170,7 @@ Service result: -1
 
 ## Diagrama de clase
 
-![alt text](/ambassador/etc/ambassador.urm.png "Ambassador class diagram")
+![alt text](./etc/ambassador.urm.png "Ambassador class diagram")
 
 ## Aplicaciones
 
