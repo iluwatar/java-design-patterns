@@ -159,7 +159,7 @@ Here's the program console output.
 
 # Class diagram
 
-![alt text](./etc/async-method-invocation.png "Async Method Invocation")
+![alt text](./etc/async-method-invocation.urm.png "Async Method Invocation")
 
 ## Applicability
 
