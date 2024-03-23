@@ -213,6 +213,7 @@
     <module>health-check</module>
     <module>notification</module>
     <module>single-table-inheritance</module>
+    <module>dynamic-proxy</module>
     <module>gateway</module>
   </modules>
   <repositories>
