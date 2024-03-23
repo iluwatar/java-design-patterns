@@ -2982,6 +2982,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "luismateoh",
+      "name": "Luis Mateo Hincapié Martinez",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44934142?v=4",
+      "profile": "https://github.com/luismateoh",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
