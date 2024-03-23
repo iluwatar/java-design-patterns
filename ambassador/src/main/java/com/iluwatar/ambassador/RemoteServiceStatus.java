@@ -24,6 +24,8 @@
  */
 package com.iluwatar.ambassador;
 
+import lombok.Getter;
+
 /**
  * Holds information regarding the status of the Remote Service.
  *
@@ -36,13 +38,10 @@ package com.iluwatar.ambassador;
 public enum RemoteServiceStatus {
   FAILURE(-1);
 
+  @Getter
   private final long remoteServiceStatusValue;
 
   RemoteServiceStatus(long remoteServiceStatusValue) {
     this.remoteServiceStatusValue = remoteServiceStatusValue;
-  }
-
-  public long getRemoteServiceStatusValue() {
-    return remoteServiceStatusValue;
   }
 }

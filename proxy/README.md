@@ -157,7 +157,7 @@ Typically, the proxy pattern is used to
 * [Apache Commons Proxy](https://commons.apache.org/proper/commons-proxy/)
 * Mocking frameworks [Mockito](https://site.mockito.org/), 
 [Powermock](https://powermock.github.io/), [EasyMock](https://easymock.org/)
-* Apple UIKit's [UIAppearance](https://developer.apple.com/documentation/uikit/uiappearance)
+* [UIAppearance](https://developer.apple.com/documentation/uikit/uiappearance)
 
 ## Related patterns
 

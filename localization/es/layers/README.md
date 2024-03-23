@@ -27,7 +27,7 @@ En otras palabras
 
 Wikipedia dice
 
-> En ingeniería de software, la arquitectura multitier (a menudo referida como arquitectura n-tier) o
+> En ingeniería de software, la arquitectura de varios niveles _multitier_ (a menudo referida como arquitectura n-tier) o
 > arquitectura multicapa es una arquitectura cliente-servidor en la que las funciones de presentación, procesamiento de aplicaciones
 > y gestión de datos están físicamente separadas.
 
@@ -81,7 +81,7 @@ public class CakeViewImpl implements View {
 
 ## Diagrama de clases
 
-![alt text](../../../layers/etc/layers.png "Layers")
+![alt text](./etc/layers.png "Layers")
 
 ## Aplicabilidad
 

@@ -18,11 +18,11 @@ Ejemplo del mundo real
 
 > Imagina que tienes unas imágenes en una tarjeta de memoria y quieres transferirlas a tu ordenador. Para transferirlas necesitas algún tipo de adaptador compatible con los puertos de tu ordenador que te permita introducir tu tarjeta. En este caso el lector de tarjetas es un adaptador (adapter).
 > Otro ejemplo podría ser el famoso adaptador de corriente; un enchufe con tres patas no se puede conectar a una toma de corriente con dos agujeros, necesita un adaptador para hacerlo compatible con la toma de corriente.
-> Otro ejemplo mas seria un traductor traduciendo palabras de una persona para otra.
+> Otro ejemplo más sería un traductor traduciendo palabras de una persona para otra.
 
 En otras palabras
 
-> El patrón Adapter permite envolver un objeto en un adaptador para hacerlo compatible con una clase con la que seria incompatible de otra manera.
+> El patrón Adapter permite envolver un objeto en un adaptador para hacerlo compatible con una clase con la que sería incompatible de otra manera.
 
 Según Wikipedia
 
@@ -64,7 +64,7 @@ public class Captain {
 }
 ```
 
-Ahora supongamos que viene un grupo de piratas y nuestro capitán tiene que escapar pero solo hay un bote de pesca. Necesitamos crear un adaptador que permita al capitán usar el bote de pesca con sus habilidades para usar botes de remo.
+Ahora supongamos que viene un grupo de piratas y nuestro capitán tiene que escapar, pero solo hay un bote de pesca. Necesitamos crear un adaptador que permita al capitán usar el bote de pesca con sus habilidades para usar botes de remo.
 
 ```java
 @Slf4j
@@ -91,14 +91,14 @@ captain.row();
 ```
 
 ## Diagrama de clases
-![alt text](../../../adapter/etc/adapter.urm.png "Adapter class diagram")
+![alt text](./etc/adapter.urm.png "Adapter class diagram")
 
 ## Aplicación
 Usa el patrón Adapter cuando
 
 * Quieres usar una clase existente y su interfaz no coincide con la que necesitas.
 * Quieres crear una clase reutilizable que coopere con clases que no están relacionadas o con las que su cooperación no estaba planeada, esto es, clases que no necesariamente tienen interfaces compatibles.
-* Necesitas usar varias subclases existentes pero es impráctico adaptar su interfaz creando subclases para todas. Un adaptador puede adaptar la interfaz de la clase padre.
+* Necesitas usar varias subclases existentes, pero no es práctico adaptar su interfaz creando subclases para todas. Un adaptador puede adaptar la interfaz de la clase padre.
 * Muchas aplicaciones que usan librerías de terceros usan adaptadores como capas intermedias entre la aplicación y la librería para desacoplar la aplicación de la librería. Si es necesario usar otra librería solo hace falta crear un adaptador para la nueva librería sin necesidad de modificar el código de la aplicación.
 
 ## Tutoriales
@@ -117,7 +117,7 @@ Los adaptadores de clases y objetos tienen distintas cualidades. Un adaptador de
 Un adaptador de objetos
 
 *	Permite a un solo adaptador trabajar con varias clases, esto es, con la clase adaptada y todas sus subclases (si tiene alguna). El adaptador también puede añadir funcionalidad a todas las clases adaptadas a la vez.
-*	Hace mas complicado modificar el comportamiento de la clase adaptada. Sería necesario hacer una subclase de la clase a adaptar y hacer que el adaptador referencie la subclase en lugar de la clase a adaptar.
+*	Hace más complicado modificar el comportamiento de la clase adaptada. Sería necesario hacer una subclase de la clase a adaptar y hacer que el adaptador referencie la subclase en lugar de la clase a adaptar.
 
 
 ## Ejemplos del mundo real

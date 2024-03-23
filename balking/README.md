@@ -8,8 +8,7 @@ tag:
 
 ## Intent
 
-Balking Pattern is used to prevent an object from executing a certain code if it is in an incomplete 
-or inappropriate state.
+Balking Pattern is used to prevent an object from executing a certain code if it is in an incomplete  or inappropriate state. If the state is not suitable for the action, the method call is ignored (or "balked").
 
 ## Explanation
 
@@ -126,11 +125,31 @@ Use the Balking pattern when
 * You want to invoke an action on an object only when it is in a particular state
 * Objects are generally only in a state that is prone to balking temporarily but for an unknown 
   amount of time
+* In multithreaded applications where certain actions should only proceed when specific conditions are met, and those conditions are expected to change over time due to external factors or concurrent operations.
+
+## Known Uses:
+
+* Resource pooling, where resources are only allocated if they are in a valid state for allocation.
+* Thread management, where threads only proceed with tasks if certain conditions (like task availability or resource locks) are met.
+
+## Consequences:
+
+Benefits:
+
+* Reduces unnecessary lock acquisitions in situations where actions cannot proceed, enhancing performance in concurrent applications.
+* Encourages clear separation of state management and behavior, leading to cleaner code.
+* Simplifies the handling of operations that should only be performed under certain conditions without cluttering the caller code with state checks.
+
+Trade-offs:
+
+* Can introduce complexity by obscuring the conditions under which actions are taken or ignored, potentially making the system harder to debug and understand.
+* May lead to missed opportunities or actions if the state changes are not properly monitored or if the balking condition is too restrictive.
 
 ## Related patterns
 
+* [Double-Checked Locking Pattern](https://java-design-patterns.com/patterns/double-checked-locking/)
 * [Guarded Suspension Pattern](https://java-design-patterns.com/patterns/guarded-suspension/)
-* [Double Checked Locking Pattern](https://java-design-patterns.com/patterns/double-checked-locking/)
+* [State](https://java-design-patterns.com/patterns/state/)
 
 ## Credits
 

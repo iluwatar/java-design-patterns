@@ -1,0 +1,89 @@
+@startuml
+package com.iluwatar {
+  class App {
+    - DATE_OF_BIRTH : LocalDate {static}
+    - NAME : String {static}
+    - OCCUPATION : String {static}
+    - App()
+    + main(args : String[]) {static}
+  }
+  class DataTransferObject {
+    # notification : Notification
+    + DataTransferObject()
+    + getNotification() : Notification
+  }
+  class Notification {
+    - errors : List<NotificationError>
+    + Notification()
+    + addError(error : NotificationError)
+    + getErrors() : List<NotificationError>
+    + hasErrors() : boolean
+  }
+  class NotificationError {
+    - errorId : int
+    - errorMessage : String
+    + NotificationError(errorId : int, errorMessage : String)
+    + getErrorId() : int
+    + getErrorMessage() : String
+    + toString() : String
+  }
+  class RegisterWorker {
+    - LOGGER : Logger {static}
+    # RegisterWorker(worker : RegisterWorkerDto)
+    # fail(condition : boolean, error : NotificationError)
+    # failIfNullOrBlank(s : String, error : NotificationError)
+    # isNullOrBlank(s : String) : boolean
+    + run()
+    - validate()
+  }
+  class RegisterWorkerDto {
+    + DOB_TOO_SOON : NotificationError {static}
+    + MISSING_DOB : NotificationError {static}
+    + MISSING_NAME : NotificationError {static}
+    + MISSING_OCCUPATION : NotificationError {static}
+    - dateOfBirth : LocalDate
+    - name : String
+    - occupation : String
+    # RegisterWorkerDto()
+    + getDateOfBirth() : LocalDate
+    + getName() : String
+    + getOccupation() : String
+    + setDateOfBirth(dateOfBirth : LocalDate)
+    + setName(name : String)
+    + setOccupation(occupation : String)
+    + setupWorkerDto(name : String, occupation : String, dateOfBirth : LocalDate)
+  }
+  class RegisterWorkerForm {
+    - LOGGER : Logger {static}
+    ~ dateOfBirth : LocalDate
+    ~ name : String
+    ~ occupation : String
+    ~ service : RegisterWorkerService
+    ~ worker : RegisterWorkerDto
+    + RegisterWorkerForm(name : String, occupation : String, dateOfBirth : LocalDate)
+    - checkError(error : NotificationError, info : String)
+    - indicateErrors()
+    - saveToWorker()
+    ~ showError(info : String, message : String)
+    + submit()
+  }
+  class RegisterWorkerService {
+    + RegisterWorkerService()
+    + registerWorker(registration : RegisterWorkerDto)
+  }
+  class ServerCommand {
+    # data : DataTransferObject
+    + ServerCommand(data : DataTransferObject)
+    + getNotification() : Notification
+  }
+}
+Notification -->  "-errors" NotificationError
+DataTransferObject -->  "-notification" Notification
+RegisterWorkerForm -->  "-service" RegisterWorkerService
+RegisterWorkerForm -->  "-worker" RegisterWorkerDto
+ServerCommand -->  "-data" DataTransferObject
+RegisterWorkerDto -->  "-MISSING_DOB" NotificationError
+RegisterWorkerDto -->  "-MISSING_NAME" NotificationError
+RegisterWorker --|> ServerCommand 
+RegisterWorkerDto --|> DataTransferObject 
+@enduml
