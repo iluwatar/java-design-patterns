@@ -57,7 +57,8 @@ public interface AsyncResult<T> {
 
 ```java
 public interface AsyncCallback<T> {
-  void onComplete(T value, Optional<Exception> ex);
+    void onComplete(T value);
+    void onError(Exception ex);
 }
 ```
 
@@ -158,7 +159,7 @@ Here's the program console output.
 
 # Class diagram
 
-![alt text](./etc/async-method-invocation.png "Async Method Invocation")
+![alt text](./etc/async-method-invocation.urm.png "Async Method Invocation")
 
 ## Applicability
 
