@@ -1,7 +1,7 @@
 package com.iluwatar.corruption.system;
 
 /**
- * The class represents an general exception for the shop.
+ * The class represents a general exception for the shop.
  */
 public class ShopException extends Exception {
   public ShopException(String message) {
