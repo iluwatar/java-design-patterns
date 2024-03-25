@@ -81,7 +81,7 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
     static final int COMPLETED = 3;
 
     final Object lock;
-    final Optional<AsyncCallback<T>> callback;
+    final AsyncCallback<T> callback;
 
     volatile int state = RUNNING;
     T value;
@@ -89,7 +89,11 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
 
     CompletableResult(AsyncCallback<T> callback) {
       this.lock = new Object();
-      this.callback = Optional.ofNullable(callback);
+      this.callback = callback;
+    }
+
+    boolean hasCallback() {
+      return callback != null;
     }
 
     /**
@@ -101,7 +105,9 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
     void setValue(T value) {
       this.value = value;
       this.state = COMPLETED;
-      this.callback.ifPresent(ac -> ac.onComplete(value, Optional.empty()));
+      if (hasCallback()) {
+        callback.onComplete(value);
+      }
       synchronized (lock) {
         lock.notifyAll();
       }
@@ -116,7 +122,9 @@ public class ThreadAsyncExecutor implements AsyncExecutor {
     void setException(Exception exception) {
       this.exception = exception;
       this.state = FAILED;
-      this.callback.ifPresent(ac -> ac.onComplete(null, Optional.of(exception)));
+      if (hasCallback()) {
+        callback.onError(exception);
+      }
       synchronized (lock) {
         lock.notifyAll();
       }
