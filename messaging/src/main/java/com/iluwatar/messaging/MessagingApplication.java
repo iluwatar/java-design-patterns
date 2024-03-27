@@ -22,13 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.component.component.physiccomponent;
+package com.iluwatar.messaging;
 
-import com.iluwatar.component.GameObject;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * Generic PhysicComponent interface.
+
+/***
+ * Design pattern : Event Driven / Message Stream Based MicroService
+ * An Implementation for Kafka Based messaging service and events will be published based on transactions, and
+ * it has implementation of asynchronous messaging for inter-service communication. Services communicating by
+ * exchanging messages over messaging channels.
  */
-public interface PhysicComponent {
-  void update(GameObject gameObject);
+
+@SpringBootApplication
+public class MessagingApplication {
+
+  public static void main(String[] args) {
+    SpringApplication.run(MessagingApplication.class, args);
+  }
+
 }

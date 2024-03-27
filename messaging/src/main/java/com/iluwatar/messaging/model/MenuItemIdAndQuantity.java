@@ -22,13 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.component.component.physiccomponent;
+package com.iluwatar.messaging.model;
 
-import com.iluwatar.component.GameObject;
+import lombok.Getter;
+import lombok.Setter;
 
-/**
- * Generic PhysicComponent interface.
- */
-public interface PhysicComponent {
-  void update(GameObject gameObject);
+@Getter
+@Setter
+public class MenuItemIdAndQuantity {
+
+  private String item;
+
+  private int quantity;
+
+  public MenuItemIdAndQuantity() {
+    quantity = 1;
+  }
+
+  public MenuItemIdAndQuantity(String item, int quantity) {
+    this.item = item;
+    this.quantity = quantity;
+  }
+
 }
+
+

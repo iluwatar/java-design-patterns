@@ -22,13 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.component.component.physiccomponent;
+package com.iluwatar.messaging;
 
-import com.iluwatar.component.GameObject;
+import com.iluwatar.messaging.kafka.KafkaConsumer;
+import com.iluwatar.messaging.kafka.KafkaProducer;
+import com.iluwatar.messaging.service.OrderService;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
-/**
- * Generic PhysicComponent interface.
- */
-public interface PhysicComponent {
-  void update(GameObject gameObject);
+
+@SpringBootTest
+class MessagingApplicationTests {
+
+  @Autowired OrderService orderService;
+
+  /***
+   * Simple context test which will load all the IOC beans and properties to validate the spring boot application
+   */
+  @Test
+  void contextLoads() {
+    Assertions.assertNotNull(orderService);
+  }
+
 }

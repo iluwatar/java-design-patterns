@@ -22,13 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.component.component.physiccomponent;
+package com.iluwatar.messaging.exception;
 
-import com.iluwatar.component.GameObject;
+public class ConsumerNotFoundException extends Exception{
 
-/**
- * Generic PhysicComponent interface.
- */
-public interface PhysicComponent {
-  void update(GameObject gameObject);
+  public ConsumerNotFoundException(long consumerId) {
+    super(consumerId + "Is Not found");
+  }
 }

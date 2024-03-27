@@ -22,13 +22,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.component.component.physiccomponent;
+package com.iluwatar.messaging.model;
 
-import com.iluwatar.component.GameObject;
+import java.util.List;
 
-/**
- * Generic PhysicComponent interface.
- */
-public interface PhysicComponent {
-  void update(GameObject gameObject);
+public class OrderRequest {
+
+  private long consumerId;
+
+  private long restaurantId;
+
+  private List<MenuItemIdAndQuantity> menuItemIdAndQuantityList;
+
+  public OrderRequest() {
+    super();
+  }
+
+  public OrderRequest(long consumerId, long restaurantId, List<MenuItemIdAndQuantity> menuItemIdAndQuantityList) {
+    this.consumerId = consumerId;
+    this.restaurantId = restaurantId;
+    this.menuItemIdAndQuantityList = menuItemIdAndQuantityList;
+  }
+
+  public long getConsumerId() {
+    return consumerId;
+  }
+
+  public void setConsumerId(long consumerId) {
+    this.consumerId = consumerId;
+  }
+
+  public long getRestaurantId() {
+    return restaurantId;
+  }
+
+  public void setRestaurantId(long restaurantId) {
+    this.restaurantId = restaurantId;
+  }
+
+  public List<MenuItemIdAndQuantity> getMenuItemIdAndQuantityList() {
+    return menuItemIdAndQuantityList;
+  }
+
+  public void setMenuItemIdAndQuantityList(List<MenuItemIdAndQuantity> menuItemIdAndQuantityList) {
+    this.menuItemIdAndQuantityList = menuItemIdAndQuantityList;
+  }
 }
