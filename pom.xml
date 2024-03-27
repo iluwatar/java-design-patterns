@@ -209,6 +209,7 @@
     <module>context-object</module>
     <module>thread-local-storage</module>
     <module>optimistic-offline-lock</module>
+    <module>vertical-slice-architecture</module>
     <module>crtp</module>
     <module>log-aggregation</module>
     <module>anti-corruption-layer</module>
