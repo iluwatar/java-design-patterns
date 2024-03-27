@@ -1,9 +1,9 @@
 package com.iluwatar.health.check;
 
+import jakarta.annotation.PostConstruct;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
 import java.time.Instant;
-import jakarta.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
