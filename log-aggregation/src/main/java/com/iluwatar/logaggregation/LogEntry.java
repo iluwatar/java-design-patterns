@@ -29,6 +29,5 @@ import java.time.LocalDateTime;
  * Represents a single log entry, capturing essential details like the service name,
  * log level, message, and the timestamp when the log was generated.
  */
-//@Dat
 
 public record LogEntry(String serviceName, LogLevel level, String message, LocalDateTime timestamp) {}

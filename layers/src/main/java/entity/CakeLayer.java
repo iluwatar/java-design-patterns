@@ -24,36 +24,20 @@
  */
 package entity;
 
-
 import jakarta.persistence.*;
-import lombok.*;
 
 /**
  * CakeLayer entity.
  */
 @Entity
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@EqualsAndHashCode
-public class CakeLayer {
-
-    @Id
-    @GeneratedValue
-    private Long id;
-
-    private String name;
-
-    private int calories;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Cake cake;
+public record CakeLayer(
+        @Id @GeneratedValue Long id,
+        String name,
+        int calories,
+        @ManyToOne(cascade = CascadeType.ALL) Cake cake) {
 
     public CakeLayer(String name, int calories) {
-        this.setName(name);
-        this.setCalories(calories);
+        this(null, name, calories, null);
     }
 
     @Override
