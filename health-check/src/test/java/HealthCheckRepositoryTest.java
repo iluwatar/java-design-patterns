@@ -3,8 +3,8 @@ import static org.mockito.Mockito.*;
 
 import com.iluwatar.health.check.HealthCheck;
 import com.iluwatar.health.check.HealthCheckRepository;
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Query;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;

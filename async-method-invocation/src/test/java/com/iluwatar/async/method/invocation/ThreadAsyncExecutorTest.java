@@ -25,15 +25,8 @@
 package com.iluwatar.async.method.invocation;
 
 import static java.time.Duration.ofMillis;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTimeout;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.ArgumentMatchers.isNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -58,7 +51,7 @@ import org.mockito.MockitoAnnotations;
 class ThreadAsyncExecutorTest {
 
   @Captor
-  private ArgumentCaptor<Optional<Exception>> optionalCaptor;
+  private ArgumentCaptor<Exception> exceptionCaptor;
 
   @Mock
   private Callable<Object> task;
@@ -118,11 +111,8 @@ class ThreadAsyncExecutorTest {
       verify(task, times(1)).call();
 
       // ... same for the callback, we expect our object
-      verify(callback, times(1)).onComplete(eq(result), optionalCaptor.capture());
-
-      final var optionalException = optionalCaptor.getValue();
-      assertNotNull(optionalException);
-      assertFalse(optionalException.isPresent());
+      verify(callback, times(1)).onComplete(eq(result));
+      verify(callback, times(0)).onError(exceptionCaptor.capture());
 
       // ... and the result should be exactly the same object
       assertSame(result, asyncResult.getValue());
@@ -200,11 +190,8 @@ class ThreadAsyncExecutorTest {
 
       // Our task should only execute once, but it can take a while ...
       verify(task, timeout(3000).times(1)).call();
-      verify(callback, timeout(3000).times(1)).onComplete(eq(result), optionalCaptor.capture());
-
-      final var optionalException = optionalCaptor.getValue();
-      assertNotNull(optionalException);
-      assertFalse(optionalException.isPresent());
+      verify(callback, timeout(3000).times(1)).onComplete(eq(result));
+      verify(callback, times(0)).onError(isA(Exception.class));
 
       // Prevent timing issues, and wait until the result is available
       asyncResult.await();
@@ -295,14 +282,12 @@ class ThreadAsyncExecutorTest {
       assertNotNull(asyncResult, "The AsyncResult should not be 'null', even though the task was 'null'.");
       asyncResult.await(); // Prevent timing issues, and wait until the result is available
       assertTrue(asyncResult.isCompleted());
-      verify(callback, times(1)).onComplete(isNull(), optionalCaptor.capture());
+      verify(callback, times(0)).onComplete(any());
+      verify(callback, times(1)).onError(exceptionCaptor.capture());
 
-      final var optionalException = optionalCaptor.getValue();
-      assertNotNull(optionalException);
-      assertTrue(optionalException.isPresent());
-
-      final var exception = optionalException.get();
+      final var exception = exceptionCaptor.getValue();
       assertNotNull(exception);
+
       assertEquals(NullPointerException.class, exception.getClass());
 
       try {

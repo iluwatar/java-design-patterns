@@ -29,8 +29,8 @@ import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * An implementation of a Lockable object. This is the the Sword of Aragorn and every creature wants
- * to posses it!
+ * An implementation of a Lockable object. This is the Sword of Aragorn and every creature wants
+ * to possess it!
  */
 @Slf4j
 public class SwordOfAragorn implements Lockable {
