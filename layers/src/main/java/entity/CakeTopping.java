@@ -24,24 +24,41 @@
  */
 package entity;
 
+
 import jakarta.persistence.*;
+import lombok.*;
 
 /**
  * CakeTopping entity.
  */
 @Entity
-public record CakeTopping(
-        @Id @GeneratedValue Long id,
-        String name,
-        int calories,
-        @OneToOne(cascade = CascadeType.ALL) Cake cake) {
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@EqualsAndHashCode
+public class CakeTopping {
+
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    private String name;
+
+    private int calories;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Cake cake;
 
     public CakeTopping(String name, int calories) {
-        this(null, name, calories, null);
+        this.setName(name);
+        this.setCalories(calories);
     }
 
     @Override
     public String toString() {
         return String.format("id=%s name=%s calories=%d", id, name, calories);
     }
+
 }
