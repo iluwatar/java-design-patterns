@@ -1,0 +1,68 @@
+@startuml
+package com.iluwatar.logaggregation {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class CentralLogStore {
+    - LOGGER : Logger {static}
+    - logs : ConcurrentLinkedQueue<LogEntry>
+    + CentralLogStore()
+    + displayLogs()
+    + storeLog(logEntry : LogEntry)
+  }
+  class LogAggregator {
+    - BUFFER_THRESHOLD : int {static}
+    - LOGGER : Logger {static}
+    - buffer : ConcurrentLinkedQueue<LogEntry>
+    - centralLogStore : CentralLogStore
+    - executorService : ExecutorService
+    - logCount : AtomicInteger
+    - minLogLevel : LogLevel
+    + LogAggregator(centralLogStore : CentralLogStore, minLogLevel : LogLevel)
+    + collectLog(logEntry : LogEntry)
+    - flushBuffer()
+    - startBufferFlusher()
+    + stop()
+  }
+  class LogEntry {
+    - level : LogLevel
+    - message : String
+    - serviceName : String
+    - timestamp : LocalDateTime
+    + LogEntry(serviceName : String, level : LogLevel, message : String, timestamp : LocalDateTime)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getLevel() : LogLevel
+    + getMessage() : String
+    + getServiceName() : String
+    + getTimestamp() : LocalDateTime
+    + hashCode() : int
+    + setLevel(level : LogLevel)
+    + setMessage(message : String)
+    + setServiceName(serviceName : String)
+    + setTimestamp(timestamp : LocalDateTime)
+    + toString() : String
+  }
+  enum LogLevel {
+    + DEBUG {static}
+    + ERROR {static}
+    + INFO {static}
+    + valueOf(name : String) : LogLevel {static}
+    + values() : LogLevel[] {static}
+  }
+  class LogProducer {
+    - LOGGER : Logger {static}
+    - aggregator : LogAggregator
+    - serviceName : String
+    + LogProducer(serviceName : String, aggregator : LogAggregator)
+    + generateLog(level : LogLevel, message : String)
+  }
+}
+LogAggregator -->  "-centralLogStore" CentralLogStore
+LogEntry -->  "-level" LogLevel
+CentralLogStore -->  "-logs" LogEntry
+LogAggregator -->  "-buffer" LogEntry
+LogAggregator -->  "-minLogLevel" LogLevel
+LogProducer -->  "-aggregator" LogAggregator
+@enduml

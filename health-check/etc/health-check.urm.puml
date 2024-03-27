@@ -1,0 +1,124 @@
+@startuml
+package com.iluwatar.health.check {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class AsynchronousHealthChecker {
+    - HEALTH_CHECK_FAILED_MESSAGE : String {static}
+    - HEALTH_CHECK_TIMEOUT_MESSAGE : String {static}
+    - LOGGER : Logger {static}
+    - healthCheckExecutor : ScheduledExecutorService
+    + AsynchronousHealthChecker()
+    - awaitTerminationWithTimeout() : boolean
+    + performCheck(healthCheck : Supplier<Health>, timeoutInSeconds : long) : CompletableFuture<Health>
+    + shutdown()
+  }
+  class CpuHealthIndicator {
+    - ERROR_MESSAGE : String {static}
+    - HIGH_LOAD_AVERAGE_MESSAGE : String {static}
+    - HIGH_LOAD_AVERAGE_MESSAGE_WITHOUT_PARAM : String {static}
+    - HIGH_PROCESS_CPU_LOAD_MESSAGE : String {static}
+    - HIGH_PROCESS_CPU_LOAD_MESSAGE_WITHOUT_PARAM : String {static}
+    - HIGH_SYSTEM_CPU_LOAD_MESSAGE : String {static}
+    - HIGH_SYSTEM_CPU_LOAD_MESSAGE_WITHOUT_PARAM : String {static}
+    - LOGGER : Logger {static}
+    - defaultWarningMessage : String
+    - loadAverageThreshold : double
+    - osBean : OperatingSystemMXBean
+    - processCpuLoadThreshold : double
+    - systemCpuLoadThreshold : double
+    + CpuHealthIndicator()
+    + getDefaultWarningMessage() : String
+    + getLoadAverageThreshold() : double
+    + getOsBean() : OperatingSystemMXBean
+    + getProcessCpuLoadThreshold() : double
+    + getSystemCpuLoadThreshold() : double
+    + health() : Health
+    + init()
+    + setDefaultWarningMessage(defaultWarningMessage : String)
+    + setLoadAverageThreshold(loadAverageThreshold : double)
+    + setOsBean(osBean : OperatingSystemMXBean)
+    + setProcessCpuLoadThreshold(processCpuLoadThreshold : double)
+    + setSystemCpuLoadThreshold(systemCpuLoadThreshold : double)
+  }
+  class CustomHealthIndicator {
+    - LOGGER : Logger {static}
+    - cacheManager : CacheManager
+    - healthCheckRepository : HealthCheckRepository
+    - healthChecker : AsynchronousHealthChecker
+    - timeoutInSeconds : long
+    + CustomHealthIndicator(healthChecker : AsynchronousHealthChecker, cacheManager : CacheManager, healthCheckRepository : HealthCheckRepository)
+    - check() : Health
+    + evictHealthCache()
+    + health() : Health
+  }
+  class DatabaseTransactionHealthIndicator {
+    - LOGGER : Logger {static}
+    - asynchronousHealthChecker : AsynchronousHealthChecker
+    - healthCheckRepository : HealthCheckRepository
+    - retryTemplate : RetryTemplate
+    - timeoutInSeconds : long
+    + DatabaseTransactionHealthIndicator(healthCheckRepository : HealthCheckRepository, asynchronousHealthChecker : AsynchronousHealthChecker, retryTemplate : RetryTemplate)
+    + getAsynchronousHealthChecker() : AsynchronousHealthChecker
+    + getHealthCheckRepository() : HealthCheckRepository
+    + getRetryTemplate() : RetryTemplate
+    + getTimeoutInSeconds() : long
+    + health() : Health
+    + setTimeoutInSeconds(timeoutInSeconds : long)
+  }
+  class GarbageCollectionHealthIndicator {
+    - LOGGER : Logger {static}
+    - memoryUsageThreshold : double
+    + GarbageCollectionHealthIndicator()
+    - addMemoryPoolDetails(collectorDetails : Map<String, String>, memoryPoolMxBeans : List<MemoryPoolMXBean>, memoryPoolNamesList : List<String>)
+    - createCollectorDetails(gcBean : GarbageCollectorMXBean, memoryPoolMxBeans : List<MemoryPoolMXBean>) : Map<String, String>
+    # getGarbageCollectorMxBeans() : List<GarbageCollectorMXBean>
+    # getMemoryPoolMxBeans() : List<MemoryPoolMXBean>
+    + getMemoryUsageThreshold() : double
+    + health() : Health
+    + setMemoryUsageThreshold(memoryUsageThreshold : double)
+  }
+  class HealthCheck {
+    - id : Integer
+    - status : String
+    + HealthCheck()
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getId() : Integer
+    + getStatus() : String
+    + hashCode() : int
+    + setId(id : Integer)
+    + setStatus(status : String)
+    + toString() : String
+  }
+  class HealthCheckRepository {
+    - HEALTH_CHECK_OK : String {static}
+    - LOGGER : Logger {static}
+    - entityManager : EntityManager
+    + HealthCheckRepository()
+    + checkHealth() : Integer
+    + performTestTransaction()
+  }
+  class MemoryHealthIndicator {
+    - LOGGER : Logger {static}
+    - asynchronousHealthChecker : AsynchronousHealthChecker
+    - memoryThreshold : double
+    - timeoutInSeconds : long
+    + MemoryHealthIndicator(asynchronousHealthChecker : AsynchronousHealthChecker)
+    + checkMemory() : Health
+    + health() : Health
+  }
+  class RetryConfig {
+    - backOffPeriod : long
+    - maxAttempts : int
+    + RetryConfig()
+    + retryTemplate() : RetryTemplate
+  }
+}
+DatabaseTransactionHealthIndicator -->  "-asynchronousHealthChecker" AsynchronousHealthChecker
+DatabaseTransactionHealthIndicator -->  "-healthCheckRepository" HealthCheckRepository
+CustomHealthIndicator -->  "-healthCheckRepository" HealthCheckRepository
+CustomHealthIndicator -->  "-healthChecker" AsynchronousHealthChecker
+MemoryHealthIndicator -->  "-asynchronousHealthChecker" AsynchronousHealthChecker
+@enduml
