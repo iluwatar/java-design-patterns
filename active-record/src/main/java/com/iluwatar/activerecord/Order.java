@@ -13,6 +13,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Order {
 
-    private Long id;
-    private String orderNumber;
+  private Long id;
+  private String orderNumber;
 }
