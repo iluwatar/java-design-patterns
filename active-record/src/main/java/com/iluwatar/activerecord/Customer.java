@@ -1,16 +1,14 @@
 package com.iluwatar.activerecord;
 
+import java.sql.ResultSet;
 import java.util.List;
-import lombok.EqualsAndHashCode;
+import javax.sql.DataSource;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Customer {
+public class Customer extends RecordBase {
 
   private Long id;
   private String customerNumber;
@@ -18,20 +16,23 @@ public class Customer {
   private String lastName;
   private List<Order> orders;
 
-  public Customer findById(Long id) {
-    return new Customer();
+  public Customer(DataSource dataSource) {
+    super(dataSource);
   }
 
   public Customer findByNumber(String customerNumber) {
-    return new Customer();
+    // TODO
+    return null;
+//    return new Customer();
   }
 
-  public List<Customer> findAll() {
-    return List.of();
+  @Override
+  protected String getTableName() {
+    return "customer";
   }
 
-  public void save(Customer customer) {
+  @Override
+  protected void setFieldsFromResultSet(ResultSet rs) {
 
   }
-
 }
