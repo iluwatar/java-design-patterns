@@ -40,7 +40,7 @@
     <spring-boot.version>2.7.5</spring-boot.version>
     <jacoco.version>0.8.11</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <htmlunit.version>2.70.0</htmlunit.version>
+    <htmlunit.version>3.11.0</htmlunit.version>
     <gson.version>2.10.1</gson.version>
     <guice.version>5.1.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
@@ -240,7 +240,7 @@
         <version>${commons-dbcp.version}</version>
       </dependency>
       <dependency>
-        <groupId>net.sourceforge.htmlunit</groupId>
+        <groupId>org.htmlunit</groupId>
         <artifactId>htmlunit</artifactId>
         <version>${htmlunit.version}</version>
       </dependency>
