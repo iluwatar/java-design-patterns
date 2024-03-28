@@ -41,7 +41,9 @@ public abstract class RecordBase {
         return recordList;
       }
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(
+          "Unable to find all the records for the following domain model : " + clazz.getName()
+              + " due to the data persistence error", e);
     }
   }
 
@@ -66,7 +68,10 @@ public abstract class RecordBase {
         return getDeclaredClassInstance(clazz);
       }
     } catch (SQLException e) {
-      throw new RuntimeException(e);
+      throw new RuntimeException(
+          "Unable to the record for the following domain model : " + clazz.getName() + " by id="
+              + id
+              + " due to the data persistence error", e);
     }
   }
 
