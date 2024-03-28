@@ -218,6 +218,7 @@
     <module>dynamic-proxy</module>
     <module>gateway</module>
     <module>slob</module>
+    <module>active-record</module>
   </modules>
   <repositories>
     <repository>
