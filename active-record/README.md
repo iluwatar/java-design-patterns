@@ -1,27 +1,28 @@
---- # this is so-called 'YAML front matter' used to categorize the patterns and format the web pages. Fill it as follows:
-title: Best Pattern Ever # the properly formatted title
-category: Creational # usable categories and tags are listed here: https://github.com/iluwatar/java-design-patterns/wiki/07.-Categories-and-Tags
-language: en # Provide the language in which the pattern is done. Mostly it is in English, so we would put *en* over here.
+---
+title: Active Record
+category: Architectural
+language: en
 tag:
-- awesome # usable categories and tags are listed here: https://github.com/iluwatar/java-design-patterns/wiki/07.-Categories-and-Tags
-- blue
+  - Data access
 ---
 
-## Name / classification
-
-## Also known as
-
 ## Intent
+
+An Active Record pattern provides a data persistence mechanism having that one encapsulated within
+the domain model itself.
+While DAO pattern strictly adheres to the separation of concerns principle an Active Record encapsulates 
+all the data persistence and business logic within the domain model itself.
+The following pattern might be particularly useful when it's required to quickly draft data access
+implementation with as less effort as possible.
 
 ## Explanation
 
 ## Class diagram
 
-## Applicability
-
 ## Tutorials
 
-## Known uses
+* [Panache – Active Record Pattern](https://thorben-janssen.com/panache-active-record-pattern/)
+* [Active Record pattern in Java](https://objsql.hashnode.dev/active-record-pattern-in-java)
 
 ## Consequences
 
