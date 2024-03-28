@@ -24,12 +24,12 @@
  */
 package com.iluwatar.pageobject;
 
-import org.htmlunit.WebClient;
-import org.htmlunit.html.HtmlAnchor;
-import org.htmlunit.html.HtmlPage;
 import java.io.IOException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.htmlunit.WebClient;
+import org.htmlunit.html.HtmlAnchor;
+import org.htmlunit.html.HtmlPage;
 
 /**
  * Page Object encapsulating the Album List page (album-list.html)
