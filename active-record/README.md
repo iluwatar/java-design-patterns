@@ -8,10 +8,16 @@ tag:
 
 ## Intent
 
-An Active Record pattern provides a data persistence mechanism having that one encapsulated within
-the domain model itself.
-The following pattern might be particularly useful when it's required to quickly draft data access
-implementation with as less effort as possible.
+The Active Record pattern is a design pattern that integrates data access logic directly into the
+domain model, typically within the model classes themselves. This means that each domain object is
+responsible for its own persistence, including tasks such as database querying, saving, updating,
+and deleting records.
+
+This pattern is particularly useful in scenarios where simplicity and rapid development are
+prioritized, as it allows developers to quickly implement data access functionality with minimal
+effort. By encapsulating persistence logic within the domain objects, the Active Record pattern
+promotes a straightforward and intuitive approach to working with data, making it easier to
+understand and maintain codebases.
 
 ## Explanation
 
