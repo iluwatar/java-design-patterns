@@ -10,8 +10,6 @@ tag:
 
 An Active Record pattern provides a data persistence mechanism having that one encapsulated within
 the domain model itself.
-While DAO pattern strictly adheres to the separation of concerns principle an Active Record encapsulates 
-all the data persistence and business logic within the domain model itself.
 The following pattern might be particularly useful when it's required to quickly draft data access
 implementation with as less effort as possible.
 
