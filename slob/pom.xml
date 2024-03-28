@@ -68,11 +68,6 @@
             <groupId>com.h2database</groupId>
             <version>2.2.220</version>
         </dependency>
-        <dependency>
-            <artifactId>lombok</artifactId>
-            <groupId>org.projectlombok</groupId>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
 </project>
