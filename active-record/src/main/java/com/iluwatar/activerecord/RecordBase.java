@@ -28,6 +28,13 @@ public abstract class RecordBase {
 
   protected abstract void setFieldsFromResultSet(ResultSet rs);
 
+  /**
+   * Find all the records for a corresponding domain model.
+   *
+   * @param clazz domain model class.
+   * @param <T>   domain model type.
+   * @return all the domain model related records.
+   */
   public <T extends RecordBase> List<T> findAll(Class<T> clazz) {
     List<T> recordList = new ArrayList<>();
     try (Connection conn = getConnection();
@@ -75,6 +82,9 @@ public abstract class RecordBase {
     }
   }
 
+  /**
+   * Save the record.
+   */
   public void save() {
     // TODO
   }
