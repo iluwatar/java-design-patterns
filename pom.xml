@@ -242,7 +242,7 @@
       <dependency>
         <groupId>org.htmlunit</groupId>
         <artifactId>htmlunit</artifactId>
-        <version>3.11.0</version>
+        <version>${htmlunit.version}</version>
       </dependency>
       <dependency>
         <groupId>com.google.code.gson</groupId>
