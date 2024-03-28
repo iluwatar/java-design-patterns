@@ -138,6 +138,7 @@
     <module>abstract-document</module>
     <module>aggregator-microservices</module>
     <module>promise</module>
+    <module>page-controller</module>
     <module>page-object</module>
     <module>event-asynchronous</module>
     <module>event-queue</module>

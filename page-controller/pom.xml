@@ -29,12 +29,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>page-controller</artifactId>
     <parent>
       <groupId>com.iluwatar</groupId>
       <artifactId>java-design-patterns</artifactId>
       <version>1.26.0-SNAPSHOT</version>
     </parent>
+    <artifactId>page-controller</artifactId>
+    <name>page-controller</name>
+    <description>page-controller</description>
+    <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <type>pom</type>
+        <version>3.2.4</version>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -61,6 +75,11 @@
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
         <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
     </dependency>
     <dependency>
         <groupId>org.springframework</groupId>
