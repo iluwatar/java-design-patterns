@@ -13,6 +13,9 @@ import lombok.Setter;
 
 /**
  * An active record base supposed to hold all the necessary active record pattern logic.
+ * <p>
+ * This is the base class which is supposed to be extended by all the domain models that are
+ * expected to be persistent.
  *
  * @param <T> an active record type.
  */
