@@ -1,6 +1,6 @@
 ---
 
-title: Exploring the Monolithic Architecture in E-commerce  
+title: Monolithic Architecture 
 category: Architectural  
 language: en  
 tag:
