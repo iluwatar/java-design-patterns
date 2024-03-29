@@ -9,11 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 @RequiredArgsConstructor
-public abstract class RecordBase {
+public abstract class RecordBase<T extends RecordBase<?>> {
 
-  private final DataSource dataSource;
+  @Setter
+  private static DataSource dataSource;
+
+  @SuppressWarnings({"unchecked"})
+  private final Class<T> clazz = (Class<T>) getClass();
 
   protected Connection getConnection() throws SQLException {
     return dataSource.getConnection();
@@ -26,22 +31,22 @@ public abstract class RecordBase {
    */
   protected abstract String getTableName();
 
-  protected abstract void setFieldsFromResultSet(ResultSet rs);
+  protected abstract void setFieldsFromResultSet(ResultSet rs) throws SQLException;
+
+  protected abstract void setPreparedStatementParams(PreparedStatement pstmt) throws SQLException;
 
   /**
    * Find all the records for a corresponding domain model.
    *
-   * @param clazz domain model class.
-   * @param <T>   domain model type.
    * @return all the domain model related records.
    */
-  public <T extends RecordBase> List<T> findAll(Class<T> clazz) {
+  public List<T> findAll() {
     List<T> recordList = new ArrayList<>();
     try (Connection conn = getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(constructGetByIdQuery(clazz))) {
+        PreparedStatement pstmt = conn.prepareStatement(constructFindAllQuery())) {
       try (ResultSet rs = pstmt.executeQuery()) {
         while (rs.next()) {
-          T record = getDeclaredClassInstance(clazz);
+          T record = getDeclaredClassInstance();
           record.setFieldsFromResultSet(rs);
           recordList.add(record);
         }
@@ -57,26 +62,24 @@ public abstract class RecordBase {
   /**
    * Find a domain model by its ID.
    *
-   * @param id    domain model identifier.
-   * @param clazz domain model class.
-   * @param <T>   domain model type.
+   * @param id domain model identifier.
    * @return the domain model.
    */
-  public <T extends RecordBase> T findById(Long id, Class<T> clazz) {
+  public T findById(Long id) {
     try (Connection conn = getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(constructGetByIdQuery(clazz))) {
+        PreparedStatement pstmt = conn.prepareStatement(constructFindByIdQuery())) {
       pstmt.setLong(1, id);
       try (ResultSet rs = pstmt.executeQuery()) {
         if (rs.next()) {
-          T record = getDeclaredClassInstance(clazz);
+          T record = getDeclaredClassInstance();
           record.setFieldsFromResultSet(rs);
           return record;
         }
-        return getDeclaredClassInstance(clazz);
+        return getDeclaredClassInstance();
       }
     } catch (SQLException e) {
       throw new RuntimeException(
-          "Unable to fine a record for the following domain model : " + clazz.getName() + " by id="
+          "Unable to find a record for the following domain model : " + clazz.getName() + " by id="
               + id
               + " due to the data persistence error", e);
     }
@@ -86,15 +89,32 @@ public abstract class RecordBase {
    * Save the record.
    */
   public void save() {
-    // TODO
+    try (Connection connection = getConnection();
+        // TODO
+        PreparedStatement pstmt = connection.prepareStatement(null,
+            PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+      setPreparedStatementParams(pstmt);
+      pstmt.executeUpdate();
+
+    } catch (SQLException e) {
+      throw new RuntimeException(
+          "Unable to save the record for the following domain model : " + clazz.getName()
+              + " due to the data persistence error", e);
+    }
   }
 
-  private <T extends RecordBase> String constructGetByIdQuery(Class<T> clazz) {
-    return "SELECT * FROM " + getDeclaredClassInstance(clazz).getTableName()
+
+  private String constructFindAllQuery() {
+    return "SELECT * FROM " + getDeclaredClassInstance().getTableName();
+  }
+
+  private String constructFindByIdQuery() {
+    return "SELECT * FROM " + getDeclaredClassInstance().getTableName()
         + " WHERE id = ?";
   }
 
-  private <T extends RecordBase> T getDeclaredClassInstance(Class<T> clazz) {
+  private T getDeclaredClassInstance() {
     try {
       return clazz.getDeclaredConstructor().newInstance();
     } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException |

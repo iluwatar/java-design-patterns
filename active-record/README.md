@@ -25,8 +25,8 @@ understand and maintain codebases.
 
 ## Tutorials
 
-* [Panache – Active Record Pattern](https://thorben-janssen.com/panache-active-record-pattern/)
-* [Active Record pattern in Java](https://objsql.hashnode.dev/active-record-pattern-in-java)
+* [Active Record](https://www.martinfowler.com/eaaCatalog/activeRecord.html/)
+* [Overview of the Active Record Pattern](https://blog.savetchuk.com/overview-of-the-active-record-pattern)
 
 ## Consequences
 

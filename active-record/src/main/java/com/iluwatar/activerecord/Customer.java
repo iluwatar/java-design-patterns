@@ -1,14 +1,17 @@
 package com.iluwatar.activerecord;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
-import javax.sql.DataSource;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
-public class Customer extends RecordBase {
+@ToString
+public class Customer extends RecordBase<Customer> {
 
   private Long id;
   private String customerNumber;
@@ -16,14 +19,13 @@ public class Customer extends RecordBase {
   private String lastName;
   private List<Order> orders;
 
-  public Customer(DataSource dataSource) {
-    super(dataSource);
-  }
-
   public Customer findByNumber(String customerNumber) {
     // TODO
     return null;
-//    return new Customer();
+  }
+
+  public void addOrder(Order order) {
+    orders.add(order);
   }
 
   @Override
@@ -32,7 +34,15 @@ public class Customer extends RecordBase {
   }
 
   @Override
-  protected void setFieldsFromResultSet(ResultSet rs) {
+  protected void setFieldsFromResultSet(ResultSet rs) throws SQLException {
+    this.id = rs.getLong("id");
+    this.customerNumber = rs.getString("customer_number");
+    this.firstName = rs.getString("first_name");
+    this.lastName = rs.getString("last_name");
+  }
+
+  @Override
+  protected void setPreparedStatementParams(PreparedStatement pstmt) throws SQLException {
 
   }
 }
