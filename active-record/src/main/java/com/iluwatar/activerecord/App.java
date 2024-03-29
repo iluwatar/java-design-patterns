@@ -5,6 +5,9 @@ import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
+/**
+ * The amin application for the manual testing purposes.
+ */
 @Slf4j
 public class App {
 
@@ -28,7 +31,12 @@ public class App {
       + "    CONSTRAINT customer_id_fk FOREIGN KEY (customer_id) REFERENCES customer (id)\n"
       + ")";
 
-
+  /**
+   * Java main method to execute all the logic out there.
+   *
+   * @param args arguments.
+   * @throws Exception Any sort of exception that have to be picked up by the JVM.
+   */
   public static void main(final String[] args) throws Exception {
     final var dataSource = createDataSource();
     createSchema(dataSource);
@@ -48,7 +56,7 @@ public class App {
     order.setId(1L);
     order.setOrderNumber("O123");
 
-//    customer.addOrder(order);
+    // customer.addOrder(order);
     customer.save();
 
     LOGGER.info("The customer data by ID={}", customer.findById(1L));

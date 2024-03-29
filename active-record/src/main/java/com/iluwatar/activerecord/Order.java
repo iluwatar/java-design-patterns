@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+/**
+ * An order domain model.
+ */
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)

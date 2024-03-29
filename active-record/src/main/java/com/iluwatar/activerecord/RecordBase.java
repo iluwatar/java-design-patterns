@@ -11,6 +11,11 @@ import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+/**
+ * An active record base supposed to hold all the necessary active record pattern logic.
+ *
+ * @param <T> an active record type.
+ */
 @RequiredArgsConstructor
 public abstract class RecordBase<T extends RecordBase<?>> {
 
@@ -117,8 +122,10 @@ public abstract class RecordBase<T extends RecordBase<?>> {
   private T getDeclaredClassInstance() {
     try {
       return clazz.getDeclaredConstructor().newInstance();
-    } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException |
-             InstantiationException e) {
+    } catch (InvocationTargetException
+             | NoSuchMethodException
+             | IllegalAccessException
+             | InstantiationException e) {
       throw new IllegalStateException(
           "Unable to create a new instance of the class=" + clazz.getName(), e);
     }
