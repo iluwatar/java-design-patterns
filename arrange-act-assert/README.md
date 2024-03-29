@@ -42,7 +42,7 @@ In plain words
 
 WikiWikiWeb says
 
-> Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods. 
+> Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods.
 
 **Programmatic Example**
 
@@ -132,13 +132,14 @@ class CashAAATest {
 
 Use Arrange/Act/Assert pattern when
 
-* Unit testing, especially within the context of TDD and BDD 
+* Unit testing, especially within the context of TDD and BDD
 * Anywhere clarity and structure are needed in test cases
 
 ## Known uses
 
 * Widely adopted in software projects using TDD and BDD methodologies.
-* Utilized in various programming languages and testing frameworks, such as JUnit (Java), NUnit (.NET), and xUnit frameworks.
+* Utilized in various programming languages and testing frameworks, such as JUnit (Java), NUnit (.NET), and xUnit
+  frameworks.
 
 ## Consequences
 
@@ -151,11 +152,13 @@ Benefits:
 Trade-offs:
 
 * May introduce redundancy in tests, as similar arrangements may be repeated across tests.
-* Some complex tests might not fit neatly into this structure, requiring additional context or setup outside these three phases.
+* Some complex tests might not fit neatly into this structure, requiring additional context or setup outside these three
+  phases.
 
 ## Related patterns
 
-* [Page Object](https://java-design-patterns.com/patterns/page-object/): A pattern for organizing UI tests that can be used in conjunction with Arrange/Act/Assert.
+* [Page Object](https://java-design-patterns.com/patterns/page-object/): A pattern for organizing UI tests that can be
+  used in conjunction with Arrange/Act/Assert.
 
 ## Credits
 

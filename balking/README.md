@@ -3,18 +3,19 @@ title: Balking
 category: Concurrency
 language: en
 tag:
- - Decoupling
+  - Decoupling
 ---
 
 ## Intent
 
-Balking Pattern is used to prevent an object from executing a certain code if it is in an incomplete  or inappropriate state. If the state is not suitable for the action, the method call is ignored (or "balked").
+Balking Pattern is used to prevent an object from executing a certain code if it is in an incomplete or inappropriate
+state. If the state is not suitable for the action, the method call is ignored (or "balked").
 
 ## Explanation
 
 Real world example
 
-> There's a start-button in a washing machine to initiate the laundry washing. When the washing 
+> There's a start-button in a washing machine to initiate the laundry washing. When the washing
 > machine is inactive the button works as expected, but if it's already washing the button does
 > nothing.
 
@@ -24,21 +25,22 @@ In plain words
 
 Wikipedia says
 
-> The balking pattern is a software design pattern that only executes an action on an object when 
-> the object is in a particular state. For example, if an object reads ZIP files and a calling 
-> method invokes a get method on the object when the ZIP file is not open, the object would "balk" 
+> The balking pattern is a software design pattern that only executes an action on an object when
+> the object is in a particular state. For example, if an object reads ZIP files and a calling
+> method invokes a get method on the object when the ZIP file is not open, the object would "balk"
 > at the request.
 
 **Programmatic Example**
 
-In this example implementation, `WashingMachine` is an object that has two states in which it can 
+In this example implementation, `WashingMachine` is an object that has two states in which it can
 be: ENABLED and WASHING. If the machine is ENABLED, the state changes to WASHING using a thread-safe
-method. On the other hand, if it already has been washing and any other thread executes `wash()` 
+method. On the other hand, if it already has been washing and any other thread executes `wash()`
 it won't do that and returns without doing anything.
 
 Here are the relevant parts of the `WashingMachine` class.
 
 ```java
+
 @Slf4j
 public class WashingMachine {
 
@@ -86,20 +88,20 @@ public interface DelayProvider {
 Now we introduce the application using the `WashingMachine`.
 
 ```java
-  public static void main(String... args) {
-    final var washingMachine = new WashingMachine();
-    var executorService = Executors.newFixedThreadPool(3);
-    for (int i = 0; i < 3; i++) {
-      executorService.execute(washingMachine::wash);
+  public static void main(String...args){
+final var washingMachine=new WashingMachine();
+    var executorService=Executors.newFixedThreadPool(3);
+    for(int i=0;i< 3;i++){
+    executorService.execute(washingMachine::wash);
     }
     executorService.shutdown();
-    try {
-      executorService.awaitTermination(10, TimeUnit.SECONDS);
-    } catch (InterruptedException ie) {
-      LOGGER.error("ERROR: Waiting on executor service shutdown!");
-      Thread.currentThread().interrupt();
+    try{
+    executorService.awaitTermination(10,TimeUnit.SECONDS);
+    }catch(InterruptedException ie){
+    LOGGER.error("ERROR: Waiting on executor service shutdown!");
+    Thread.currentThread().interrupt();
     }
-  }
+    }
 ```
 
 Here is the console output of the program.
@@ -123,27 +125,33 @@ Here is the console output of the program.
 Use the Balking pattern when
 
 * You want to invoke an action on an object only when it is in a particular state
-* Objects are generally only in a state that is prone to balking temporarily but for an unknown 
+* Objects are generally only in a state that is prone to balking temporarily but for an unknown
   amount of time
-* In multithreaded applications where certain actions should only proceed when specific conditions are met, and those conditions are expected to change over time due to external factors or concurrent operations.
+* In multithreaded applications where certain actions should only proceed when specific conditions are met, and those
+  conditions are expected to change over time due to external factors or concurrent operations.
 
 ## Known Uses:
 
 * Resource pooling, where resources are only allocated if they are in a valid state for allocation.
-* Thread management, where threads only proceed with tasks if certain conditions (like task availability or resource locks) are met.
+* Thread management, where threads only proceed with tasks if certain conditions (like task availability or resource
+  locks) are met.
 
 ## Consequences:
 
 Benefits:
 
-* Reduces unnecessary lock acquisitions in situations where actions cannot proceed, enhancing performance in concurrent applications.
+* Reduces unnecessary lock acquisitions in situations where actions cannot proceed, enhancing performance in concurrent
+  applications.
 * Encourages clear separation of state management and behavior, leading to cleaner code.
-* Simplifies the handling of operations that should only be performed under certain conditions without cluttering the caller code with state checks.
+* Simplifies the handling of operations that should only be performed under certain conditions without cluttering the
+  caller code with state checks.
 
 Trade-offs:
 
-* Can introduce complexity by obscuring the conditions under which actions are taken or ignored, potentially making the system harder to debug and understand.
-* May lead to missed opportunities or actions if the state changes are not properly monitored or if the balking condition is too restrictive.
+* Can introduce complexity by obscuring the conditions under which actions are taken or ignored, potentially making the
+  system harder to debug and understand.
+* May lead to missed opportunities or actions if the state changes are not properly monitored or if the balking
+  condition is too restrictive.
 
 ## Related patterns
 
