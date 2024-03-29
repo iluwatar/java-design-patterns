@@ -43,7 +43,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.dao.App</mainClass>
+                  <mainClass>com.iluwatar.activerecord.App</mainClass>
                 </manifest>
               </archive>
             </configuration>
