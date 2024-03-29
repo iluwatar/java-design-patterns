@@ -3,9 +3,9 @@ title: Abstract Document
 category: Structural
 language: en
 tag:
-  - Abstraction
-  - Extensibility
-  - Decoupling
+    - Abstraction
+    - Extensibility
+    - Decoupling
 ---
 
 ## Intent
@@ -43,43 +43,43 @@ map and any amount of child objects.
 ```java
 public interface Document {
 
-  Void put(String key, Object value);
+    Void put(String key, Object value);
 
-  Object get(String key);
+    Object get(String key);
 
-  <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor);
+    <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor);
 }
 
 public abstract class AbstractDocument implements Document {
 
-  private final Map<String, Object> properties;
+    private final Map<String, Object> properties;
 
-  protected AbstractDocument(Map<String, Object> properties) {
-    Objects.requireNonNull(properties, "properties map is required");
-    this.properties = properties;
-  }
+    protected AbstractDocument(Map<String, Object> properties) {
+        Objects.requireNonNull(properties, "properties map is required");
+        this.properties = properties;
+    }
 
-  @Override
-  public Void put(String key, Object value) {
-    properties.put(key, value);
-    return null;
-  }
+    @Override
+    public Void put(String key, Object value) {
+        properties.put(key, value);
+        return null;
+    }
 
-  @Override
-  public Object get(String key) {
-    return properties.get(key);
-  }
+    @Override
+    public Object get(String key) {
+        return properties.get(key);
+    }
 
-  @Override
-  public <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor) {
-    return Stream.ofNullable(get(key))
-        .filter(Objects::nonNull)
-        .map(el -> (List<Map<String, Object>>) el)
-        .findAny()
-        .stream()
-        .flatMap(Collection::stream)
-        .map(constructor);
-  }
+    @Override
+    public <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor) {
+        return Stream.ofNullable(get(key))
+                .filter(Objects::nonNull)
+                .map(el -> (List<Map<String, Object>>) el)
+                .findAny()
+                .stream()
+                .flatMap(Collection::stream)
+                .map(constructor);
+    }
   ...
 }
 ```
@@ -90,35 +90,35 @@ static looking interface to our `Car` class.
 ```java
 public enum Property {
 
-  PARTS, TYPE, PRICE, MODEL
+    PARTS, TYPE, PRICE, MODEL
 }
 
 public interface HasType extends Document {
 
-  default Optional<String> getType() {
-    return Optional.ofNullable((String) get(Property.TYPE.toString()));
-  }
+    default Optional<String> getType() {
+        return Optional.ofNullable((String) get(Property.TYPE.toString()));
+    }
 }
 
 public interface HasPrice extends Document {
 
-  default Optional<Number> getPrice() {
-    return Optional.ofNullable((Number) get(Property.PRICE.toString()));
-  }
+    default Optional<Number> getPrice() {
+        return Optional.ofNullable((Number) get(Property.PRICE.toString()));
+    }
 }
 
 public interface HasModel extends Document {
 
-  default Optional<String> getModel() {
-    return Optional.ofNullable((String) get(Property.MODEL.toString()));
-  }
+    default Optional<String> getModel() {
+        return Optional.ofNullable((String) get(Property.MODEL.toString()));
+    }
 }
 
 public interface HasParts extends Document {
 
-  default Stream<Part> getParts() {
-    return children(Property.PARTS.toString(), Part::new);
-  }
+    default Stream<Part> getParts() {
+        return children(Property.PARTS.toString(), Part::new);
+    }
 }
 ```
 
@@ -127,9 +127,9 @@ Now we are ready to introduce the `Car`.
 ```java
 public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts {
 
-  public Car(Map<String, Object> properties) {
-    super(properties);
-  }
+    public Car(Map<String, Object> properties) {
+        super(properties);
+    }
 }
 ```
 
@@ -138,32 +138,32 @@ And finally here's how we construct and use the `Car` in a full example.
 ```java
     LOGGER.info("Constructing parts and car");
 
-    var wheelProperties=Map.of(
-    Property.TYPE.toString(),"wheel",
-    Property.MODEL.toString(),"15C",
-    Property.PRICE.toString(),100L);
+        var wheelProperties=Map.of(
+        Property.TYPE.toString(),"wheel",
+        Property.MODEL.toString(),"15C",
+        Property.PRICE.toString(),100L);
 
-    var doorProperties=Map.of(
-    Property.TYPE.toString(),"door",
-    Property.MODEL.toString(),"Lambo",
-    Property.PRICE.toString(),300L);
+        var doorProperties=Map.of(
+        Property.TYPE.toString(),"door",
+        Property.MODEL.toString(),"Lambo",
+        Property.PRICE.toString(),300L);
 
-    var carProperties=Map.of(
-    Property.MODEL.toString(),"300SL",
-    Property.PRICE.toString(),10000L,
-    Property.PARTS.toString(),List.of(wheelProperties,doorProperties));
+        var carProperties=Map.of(
+        Property.MODEL.toString(),"300SL",
+        Property.PRICE.toString(),10000L,
+        Property.PARTS.toString(),List.of(wheelProperties,doorProperties));
 
-    var car=new Car(carProperties);
+        var car=new Car(carProperties);
 
-    LOGGER.info("Here is our car:");
-    LOGGER.info("-> model: {}",car.getModel().orElseThrow());
-    LOGGER.info("-> price: {}",car.getPrice().orElseThrow());
-    LOGGER.info("-> parts: ");
-    car.getParts().forEach(p->LOGGER.info("\t{}/{}/{}",
-    p.getType().orElse(null),
-    p.getModel().orElse(null),
-    p.getPrice().orElse(null))
-    );
+        LOGGER.info("Here is our car:");
+        LOGGER.info("-> model: {}",car.getModel().orElseThrow());
+        LOGGER.info("-> price: {}",car.getPrice().orElseThrow());
+        LOGGER.info("-> parts: ");
+        car.getParts().forEach(p->LOGGER.info("\t{}/{}/{}",
+        p.getType().orElse(null),
+        p.getModel().orElse(null),
+        p.getPrice().orElse(null))
+        );
 
 // Constructing parts and car
 // Here is our car:

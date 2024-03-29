@@ -3,9 +3,9 @@ title: Adapter
 category: Structural
 language: en
 tag:
-  - Compatibility
-  - Gang of Four
-  - Integration
+    - Compatibility
+    - Gang of Four
+    - Integration
 ---
 
 ## Also known as
@@ -22,11 +22,11 @@ compatibility.
 Real-world example
 
 > Consider that you have some pictures on your memory card and you need to transfer them to your computer. To transfer
-> them, you need some kind of adapter that is compatible with your computer ports so that you can attach a memory card to
-> your computer. In this case card reader is an adapter.
-> Another example would be the famous power adapter; a three-legged plug can't be connected to a two-pronged outlet, it
-> needs to use a power adapter that makes it compatible with the two-pronged outlets.
-> Yet another example would be a translator translating words spoken by one person to another
+> them, you need some kind of adapter that is compatible with your computer ports so that you can attach a memory card
+> to your computer. In this case card reader is an adapter. Another example would be the famous power adapter; a
+> three-legged plug can't be connected to a two-pronged outlet, it needs to use a power adapter that makes it compatible
+> with the two-pronged outlets. Yet another example would be a translator translating words spoken by one person to
+> another
 
 In plain words
 
@@ -46,14 +46,14 @@ First, we have interfaces `RowingBoat` and `FishingBoat`
 
 ```java
 public interface RowingBoat {
-  void row();
+    void row();
 }
 
 @Slf4j
 public class FishingBoat {
-  public void sail() {
-    LOGGER.info("The fishing boat is sailing");
-  }
+    public void sail() {
+        LOGGER.info("The fishing boat is sailing");
+    }
 }
 ```
 
@@ -62,16 +62,16 @@ And captain expects an implementation of `RowingBoat` interface to be able to mo
 ```java
 public class Captain {
 
-  private final RowingBoat rowingBoat;
+    private final RowingBoat rowingBoat;
 
-  // default constructor and setter for rowingBoat
-  public Captain(RowingBoat rowingBoat) {
-    this.rowingBoat = rowingBoat;
-  }
+    // default constructor and setter for rowingBoat
+    public Captain(RowingBoat rowingBoat) {
+        this.rowingBoat = rowingBoat;
+    }
 
-  public void row() {
-    rowingBoat.row();
-  }
+    public void row() {
+        rowingBoat.row();
+    }
 }
 ```
 
@@ -83,16 +83,16 @@ to create an adapter that allows the captain to operate the fishing boat with hi
 @Slf4j
 public class FishingBoatAdapter implements RowingBoat {
 
-  private final FishingBoat boat;
+    private final FishingBoat boat;
 
-  public FishingBoatAdapter() {
-    boat = new FishingBoat();
-  }
+    public FishingBoatAdapter() {
+        boat = new FishingBoat();
+    }
 
-  @Override
-  public void row() {
-    boat.sail();
-  }
+    @Override
+    public void row() {
+        boat.sail();
+    }
 }
 ```
 
@@ -100,7 +100,7 @@ And now the `Captain` can use the `FishingBoat` to escape the pirates.
 
 ```java
 var captain=new Captain(new FishingBoatAdapter());
-    captain.row();
+        captain.row();
 ```
 
 ## Class diagram

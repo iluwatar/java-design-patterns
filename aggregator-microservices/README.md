@@ -3,10 +3,10 @@ title: Aggregator Microservices
 category: Architectural
 language: en
 tag:
-  - API design
-  - Cloud distributed
-  - Decoupling
-  - Microservices
+    - API design
+    - Cloud distributed
+    - Decoupling
+    - Microservices
 ---
 
 ## Intent
@@ -37,9 +37,9 @@ Let's start from the data model. Here's our `Product`.
 
 ```java
 public class Product {
-  private String title;
-  private int productInventories;
-  // Getters and setters omitted for brevity ->
+    private String title;
+    private int productInventories;
+    // Getters and setters omitted for brevity ->
   ...
 }
 ```
@@ -52,27 +52,27 @@ Next we can introduce our `Aggregator` microservice. It contains clients `Produc
 @RestController
 public class Aggregator {
 
-  @Resource
-  private ProductInformationClient informationClient;
+    @Resource
+    private ProductInformationClient informationClient;
 
-  @Resource
-  private ProductInventoryClient inventoryClient;
+    @Resource
+    private ProductInventoryClient inventoryClient;
 
-  @RequestMapping(path = "/product", method = RequestMethod.GET)
-  public Product getProduct() {
+    @RequestMapping(path = "/product", method = RequestMethod.GET)
+    public Product getProduct() {
 
-    var product = new Product();
-    var productTitle = informationClient.getProductTitle();
-    var productInventory = inventoryClient.getProductInventories();
+        var product = new Product();
+        var productTitle = informationClient.getProductTitle();
+        var productInventory = inventoryClient.getProductInventories();
 
-    //Fallback to error message
-    product.setTitle(requireNonNullElse(productTitle, "Error: Fetching Product Title Failed"));
+        //Fallback to error message
+        product.setTitle(requireNonNullElse(productTitle, "Error: Fetching Product Title Failed"));
 
-    //Fallback to default error inventory
-    product.setProductInventories(requireNonNullElse(productInventory, -1));
+        //Fallback to default error inventory
+        product.setProductInventories(requireNonNullElse(productInventory, -1));
 
-    return product;
-  }
+        return product;
+    }
 }
 ```
 
@@ -83,10 +83,10 @@ inventory counts.
 
 @RestController
 public class InformationController {
-  @RequestMapping(value = "/information", method = RequestMethod.GET)
-  public String getProductTitle() {
-    return "The Product Title.";
-  }
+    @RequestMapping(value = "/information", method = RequestMethod.GET)
+    public String getProductTitle() {
+        return "The Product Title.";
+    }
 }
 ```
 

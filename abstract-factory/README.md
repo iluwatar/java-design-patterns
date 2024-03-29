@@ -3,9 +3,9 @@ title: Abstract Factory
 category: Creational
 language: en
 tag:
-  - Abstraction
-  - Decoupling
-  - Gang of Four
+    - Abstraction
+    - Decoupling
+    - Gang of Four
 ---
 
 ## Also known as
@@ -43,43 +43,43 @@ kingdom.
 
 ```java
 public interface Castle {
-  String getDescription();
+    String getDescription();
 }
 
 public interface King {
-  String getDescription();
+    String getDescription();
 }
 
 public interface Army {
-  String getDescription();
+    String getDescription();
 }
 
 // Elven implementations ->
 public class ElfCastle implements Castle {
-  static final String DESCRIPTION = "This is the elven castle!";
+    static final String DESCRIPTION = "This is the elven castle!";
 
-  @Override
-  public String getDescription() {
-    return DESCRIPTION;
-  }
+    @Override
+    public String getDescription() {
+        return DESCRIPTION;
+    }
 }
 
 public class ElfKing implements King {
-  static final String DESCRIPTION = "This is the elven king!";
+    static final String DESCRIPTION = "This is the elven king!";
 
-  @Override
-  public String getDescription() {
-    return DESCRIPTION;
-  }
+    @Override
+    public String getDescription() {
+        return DESCRIPTION;
+    }
 }
 
 public class ElfArmy implements Army {
-  static final String DESCRIPTION = "This is the elven Army!";
+    static final String DESCRIPTION = "This is the elven Army!";
 
-  @Override
-  public String getDescription() {
-    return DESCRIPTION;
-  }
+    @Override
+    public String getDescription() {
+        return DESCRIPTION;
+    }
 }
 
 // Orcish implementations similarly -> ...
@@ -90,47 +90,47 @@ Then we have the abstraction and implementations for the kingdom factory.
 
 ```java
 public interface KingdomFactory {
-  Castle createCastle();
+    Castle createCastle();
 
-  King createKing();
+    King createKing();
 
-  Army createArmy();
+    Army createArmy();
 }
 
 public class ElfKingdomFactory implements KingdomFactory {
 
-  @Override
-  public Castle createCastle() {
-    return new ElfCastle();
-  }
+    @Override
+    public Castle createCastle() {
+        return new ElfCastle();
+    }
 
-  @Override
-  public King createKing() {
-    return new ElfKing();
-  }
+    @Override
+    public King createKing() {
+        return new ElfKing();
+    }
 
-  @Override
-  public Army createArmy() {
-    return new ElfArmy();
-  }
+    @Override
+    public Army createArmy() {
+        return new ElfArmy();
+    }
 }
 
 public class OrcKingdomFactory implements KingdomFactory {
 
-  @Override
-  public Castle createCastle() {
-    return new OrcCastle();
-  }
+    @Override
+    public Castle createCastle() {
+        return new OrcCastle();
+    }
 
-  @Override
-  public King createKing() {
-    return new OrcKing();
-  }
+    @Override
+    public King createKing() {
+        return new OrcKing();
+    }
 
-  @Override
-  public Army createArmy() {
-    return new OrcArmy();
-  }
+    @Override
+    public Army createArmy() {
+        return new OrcArmy();
+    }
 }
 ```
 
@@ -139,21 +139,21 @@ castle, king and army, etc.
 
 ```java
 var factory=new ElfKingdomFactory();
-    var castle=factory.createCastle();
-    var king=factory.createKing();
-    var army=factory.createArmy();
+        var castle=factory.createCastle();
+        var king=factory.createKing();
+        var army=factory.createArmy();
 
-    castle.getDescription();
-    king.getDescription();
-    army.getDescription();
+        castle.getDescription();
+        king.getDescription();
+        army.getDescription();
 ```
 
 Program output:
 
 ```java
 This is the elven castle!
-    This is the elven king!
-    This is the elven Army!
+        This is the elven king!
+        This is the elven Army!
 ```
 
 Now, we can design a factory for our different kingdom factories. In this example, we created `FactoryMaker`,
@@ -165,31 +165,31 @@ factory the client will ask for.
 ```java
 public static class FactoryMaker {
 
-  public enum KingdomType {
-    ELF, ORC
-  }
+    public enum KingdomType {
+        ELF, ORC
+    }
 
-  public static KingdomFactory makeFactory(KingdomType type) {
-    return switch (type) {
-      case ELF -> new ElfKingdomFactory();
-      case ORC -> new OrcKingdomFactory();
-    };
-  }
+    public static KingdomFactory makeFactory(KingdomType type) {
+        return switch (type) {
+            case ELF -> new ElfKingdomFactory();
+            case ORC -> new OrcKingdomFactory();
+        };
+    }
 }
 
-  public static void main(String[] args) {
-    var app = new App();
+    public static void main(String[] args) {
+        var app = new App();
 
-    LOGGER.info("Elf Kingdom");
-    app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
-    LOGGER.info(app.getArmy().getDescription());
-    LOGGER.info(app.getCastle().getDescription());
-    LOGGER.info(app.getKing().getDescription());
+        LOGGER.info("Elf Kingdom");
+        app.createKingdom(FactoryMaker.makeFactory(KingdomType.ELF));
+        LOGGER.info(app.getArmy().getDescription());
+        LOGGER.info(app.getCastle().getDescription());
+        LOGGER.info(app.getKing().getDescription());
 
-    LOGGER.info("Orc Kingdom");
-    app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
-    --similar use of the orc factory
-  }
+        LOGGER.info("Orc Kingdom");
+        app.createKingdom(FactoryMaker.makeFactory(KingdomType.ORC));
+        --similar use of the orc factory
+    }
 ```
 
 ## Class diagram

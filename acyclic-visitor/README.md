@@ -3,8 +3,8 @@ title: Acyclic Visitor
 category: Behavioral
 language: en
 tag:
-  - Decoupling
-  - Extensibility
+    - Decoupling
+    - Extensibility
 ---
 
 ## Intent
@@ -34,33 +34,33 @@ Here's the `Modem` hierarchy.
 
 ```java
 public abstract class Modem {
-  public abstract void accept(ModemVisitor modemVisitor);
+    public abstract void accept(ModemVisitor modemVisitor);
 }
 
 public class Zoom extends Modem {
   ...
 
-  @Override
-  public void accept(ModemVisitor modemVisitor) {
-    if (modemVisitor instanceof ZoomVisitor) {
-      ((ZoomVisitor) modemVisitor).visit(this);
-    } else {
-      LOGGER.info("Only ZoomVisitor is allowed to visit Zoom modem");
+    @Override
+    public void accept(ModemVisitor modemVisitor) {
+        if (modemVisitor instanceof ZoomVisitor) {
+            ((ZoomVisitor) modemVisitor).visit(this);
+        } else {
+            LOGGER.info("Only ZoomVisitor is allowed to visit Zoom modem");
+        }
     }
-  }
 }
 
 public class Hayes extends Modem {
   ...
 
-  @Override
-  public void accept(ModemVisitor modemVisitor) {
-    if (modemVisitor instanceof HayesVisitor) {
-      ((HayesVisitor) modemVisitor).visit(this);
-    } else {
-      LOGGER.info("Only HayesVisitor is allowed to visit Hayes modem");
+    @Override
+    public void accept(ModemVisitor modemVisitor) {
+        if (modemVisitor instanceof HayesVisitor) {
+            ((HayesVisitor) modemVisitor).visit(this);
+        } else {
+            LOGGER.info("Only HayesVisitor is allowed to visit Hayes modem");
+        }
     }
-  }
 }
 ```
 
@@ -71,11 +71,11 @@ public interface ModemVisitor {
 }
 
 public interface HayesVisitor extends ModemVisitor {
-  void visit(Hayes hayes);
+    void visit(Hayes hayes);
 }
 
 public interface ZoomVisitor extends ModemVisitor {
-  void visit(Zoom zoom);
+    void visit(Zoom zoom);
 }
 
 public interface AllModemVisitor extends ZoomVisitor, HayesVisitor {
@@ -84,24 +84,24 @@ public interface AllModemVisitor extends ZoomVisitor, HayesVisitor {
 public class ConfigureForDosVisitor implements AllModemVisitor {
   ...
 
-  @Override
-  public void visit(Hayes hayes) {
-    LOGGER.info(hayes + " used with Dos configurator.");
-  }
+    @Override
+    public void visit(Hayes hayes) {
+        LOGGER.info(hayes + " used with Dos configurator.");
+    }
 
-  @Override
-  public void visit(Zoom zoom) {
-    LOGGER.info(zoom + " used with Dos configurator.");
-  }
+    @Override
+    public void visit(Zoom zoom) {
+        LOGGER.info(zoom + " used with Dos configurator.");
+    }
 }
 
 public class ConfigureForUnixVisitor implements ZoomVisitor {
   ...
 
-  @Override
-  public void visit(Zoom zoom) {
-    LOGGER.info(zoom + " used with Unix configurator.");
-  }
+    @Override
+    public void visit(Zoom zoom) {
+        LOGGER.info(zoom + " used with Unix configurator.");
+    }
 }
 ```
 
@@ -109,13 +109,13 @@ Finally, here are the visitors in action.
 
 ```java
     var conUnix=new ConfigureForUnixVisitor();
-    var conDos=new ConfigureForDosVisitor();
-    var zoom=new Zoom();
-    var hayes=new Hayes();
-    hayes.accept(conDos);
-    zoom.accept(conDos);
-    hayes.accept(conUnix);
-    zoom.accept(conUnix);   
+        var conDos=new ConfigureForDosVisitor();
+        var zoom=new Zoom();
+        var hayes=new Hayes();
+        hayes.accept(conDos);
+        zoom.accept(conDos);
+        hayes.accept(conUnix);
+        zoom.accept(conUnix);   
 ```
 
 Program output:

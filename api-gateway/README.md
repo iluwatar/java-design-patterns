@@ -3,10 +3,10 @@ title: API Gateway
 category: Architectural
 language: en
 tag:
-  - API design
-  - Cloud distributed
-  - Decoupling
-  - Microservices
+    - API design
+    - Cloud distributed
+    - Decoupling
+    - Microservices
 ---
 
 ## Intent
@@ -68,27 +68,27 @@ Here's the Image microservice implementation.
 
 ```java
 public interface ImageClient {
-  String getImagePath();
+    String getImagePath();
 }
 
 public class ImageClientImpl implements ImageClient {
-  @Override
-  public String getImagePath() {
-    var httpClient = HttpClient.newHttpClient();
-    var httpGet = HttpRequest.newBuilder()
-        .GET()
-        .uri(URI.create("http://localhost:50005/image-path"))
-        .build();
+    @Override
+    public String getImagePath() {
+        var httpClient = HttpClient.newHttpClient();
+        var httpGet = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:50005/image-path"))
+                .build();
 
-    try {
-      var httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
-      return httpResponse.body();
-    } catch (IOException | InterruptedException e) {
-      e.printStackTrace();
+        try {
+            var httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
+            return httpResponse.body();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
-
-    return null;
-  }
 }
 ```
 
@@ -96,28 +96,28 @@ Here's the Price microservice implementation.
 
 ```java
 public interface PriceClient {
-  String getPrice();
+    String getPrice();
 }
 
 public class PriceClientImpl implements PriceClient {
 
-  @Override
-  public String getPrice() {
-    var httpClient = HttpClient.newHttpClient();
-    var httpGet = HttpRequest.newBuilder()
-        .GET()
-        .uri(URI.create("http://localhost:50006/price"))
-        .build();
+    @Override
+    public String getPrice() {
+        var httpClient = HttpClient.newHttpClient();
+        var httpGet = HttpRequest.newBuilder()
+                .GET()
+                .uri(URI.create("http://localhost:50006/price"))
+                .build();
 
-    try {
-      var httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
-      return httpResponse.body();
-    } catch (IOException | InterruptedException e) {
-      e.printStackTrace();
+        try {
+            var httpResponse = httpClient.send(httpGet, BodyHandlers.ofString());
+            return httpResponse.body();
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
-
-    return null;
-  }
 }
 ```
 
@@ -126,26 +126,26 @@ Here we can see how API Gateway maps the requests to the microservices.
 ```java
 public class ApiGateway {
 
-  @Resource
-  private ImageClient imageClient;
+    @Resource
+    private ImageClient imageClient;
 
-  @Resource
-  private PriceClient priceClient;
+    @Resource
+    private PriceClient priceClient;
 
-  @RequestMapping(path = "/desktop", method = RequestMethod.GET)
-  public DesktopProduct getProductDesktop() {
-    var desktopProduct = new DesktopProduct();
-    desktopProduct.setImagePath(imageClient.getImagePath());
-    desktopProduct.setPrice(priceClient.getPrice());
-    return desktopProduct;
-  }
+    @RequestMapping(path = "/desktop", method = RequestMethod.GET)
+    public DesktopProduct getProductDesktop() {
+        var desktopProduct = new DesktopProduct();
+        desktopProduct.setImagePath(imageClient.getImagePath());
+        desktopProduct.setPrice(priceClient.getPrice());
+        return desktopProduct;
+    }
 
-  @RequestMapping(path = "/mobile", method = RequestMethod.GET)
-  public MobileProduct getProductMobile() {
-    var mobileProduct = new MobileProduct();
-    mobileProduct.setPrice(priceClient.getPrice());
-    return mobileProduct;
-  }
+    @RequestMapping(path = "/mobile", method = RequestMethod.GET)
+    public MobileProduct getProductMobile() {
+        var mobileProduct = new MobileProduct();
+        mobileProduct.setPrice(priceClient.getPrice());
+        return mobileProduct;
+    }
 }
 ```
 

@@ -3,10 +3,10 @@ title: Callback
 category: Functional
 language: en
 tag:
-  - Asynchronous
-  - Decoupling
-  - Idiom
-  - Reactive
+    - Asynchronous
+    - Decoupling
+    - Idiom
+    - Reactive
 ---
 
 ## Intent
@@ -42,7 +42,7 @@ Callback is a simple interface with single method.
 ```java
 public interface Callback {
 
-  void call();
+    void call();
 }
 ```
 
@@ -51,21 +51,21 @@ Next we define a task that will execute the callback after the task execution ha
 ```java
 public abstract class Task {
 
-  final void executeWith(Callback callback) {
-    execute();
-    Optional.ofNullable(callback).ifPresent(Callback::call);
-  }
+    final void executeWith(Callback callback) {
+        execute();
+        Optional.ofNullable(callback).ifPresent(Callback::call);
+    }
 
-  public abstract void execute();
+    public abstract void execute();
 }
 
 @Slf4j
 public final class SimpleTask extends Task {
 
-  @Override
-  public void execute() {
-    LOGGER.info("Perform some important activity and after call the callback method.");
-  }
+    @Override
+    public void execute() {
+        LOGGER.info("Perform some important activity and after call the callback method.");
+    }
 }
 ```
 
@@ -73,7 +73,7 @@ Finally, here's how we execute a task and receive a callback when it's finished.
 
 ```java
     var task=new SimpleTask();
-    task.executeWith(()->LOGGER.info("I'm done now."));
+        task.executeWith(()->LOGGER.info("I'm done now."));
 ```
 
 ## Class diagram

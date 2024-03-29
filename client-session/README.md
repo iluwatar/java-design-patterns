@@ -3,8 +3,8 @@ title: Client Session
 category: Behavioral
 language: en
 tags:
-  - Session management
-  - Web development
+    - Session management
+    - Web development
 ---
 
 ## Also known as
@@ -21,17 +21,17 @@ application, ensuring a continuous and personalized user experience.
 Real-World Example
 
 > You're looking to create a data management app allowing users to send requests to the server to modify and make
-> changes to data stored on their devices. These requests are small and the data is individual to each user, negating the
-> need for a large scale database implementation. Using the client session pattern, you are able to handle multiple
+> changes to data stored on their devices. These requests are small and the data is individual to each user, negating
+> the need for a large scale database implementation. Using the client session pattern, you are able to handle multiple
 > concurrent requests, load balancing clients across different servers with ease due to servers remaining stateless. You
-> also remove the need to store session IDs on the server side due to clients providing all the information that a server
-> needs to perform their process.
+> also remove the need to store session IDs on the server side due to clients providing all the information that a
+> server needs to perform their process.
 
 In Plain words
 
 > Instead of storing information about the current client and the information being accessed on the server, it is
-> maintained client side only. Client has to send session data with each request to the server and has to send an updated
-> state back to the client, which is stored on the clients machine. The server doesn't have to store the client
+> maintained client side only. Client has to send session data with each request to the server and has to send an
+> updated state back to the client, which is stored on the clients machine. The server doesn't have to store the client
 > information. ([ref](https://dzone.com/articles/practical-php-patterns/practical-php-patterns-client))
 
 **Programmatic Example**
@@ -46,30 +46,30 @@ session information in every request helps the server identify the client and pr
 ```java
 public class App {
 
-  public static void main(String[] args) {
-    var server = new Server("localhost", 8080);
-    var session1 = server.getSession("Session1");
-    var session2 = server.getSession("Session2");
-    var request1 = new Request("Data1", session1);
-    var request2 = new Request("Data2", session2);
-    server.process(request1);
-    server.process(request2);
-  }
+    public static void main(String[] args) {
+        var server = new Server("localhost", 8080);
+        var session1 = server.getSession("Session1");
+        var session2 = server.getSession("Session2");
+        var request1 = new Request("Data1", session1);
+        var request2 = new Request("Data2", session2);
+        server.process(request1);
+        server.process(request2);
+    }
 }
 
 @Data
 @AllArgsConstructor
 public class Session {
 
-  /**
-   * Session id.
-   */
-  private String id;
+    /**
+     * Session id.
+     */
+    private String id;
 
-  /**
-   * Client name.
-   */
-  private String clientName;
+    /**
+     * Client name.
+     */
+    private String clientName;
 
 }
 
@@ -77,9 +77,9 @@ public class Session {
 @AllArgsConstructor
 public class Request {
 
-  private String data;
+    private String data;
 
-  private Session session;
+    private Session session;
 
 }
 ```

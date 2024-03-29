@@ -3,7 +3,7 @@ title: Business Delegate
 category: Structural
 language: en
 tag:
-  - Decoupling
+    - Decoupling
 ---
 
 ## Intent
@@ -41,23 +41,23 @@ First, we have an abstraction for video streaming services and a couple of imple
 
 ```java
 public interface VideoStreamingService {
-  void doProcessing();
+    void doProcessing();
 }
 
 @Slf4j
 public class NetflixService implements VideoStreamingService {
-  @Override
-  public void doProcessing() {
-    LOGGER.info("NetflixService is now processing");
-  }
+    @Override
+    public void doProcessing() {
+        LOGGER.info("NetflixService is now processing");
+    }
 }
 
 @Slf4j
 public class YouTubeService implements VideoStreamingService {
-  @Override
-  public void doProcessing() {
-    LOGGER.info("YouTubeService is now processing");
-  }
+    @Override
+    public void doProcessing() {
+        LOGGER.info("YouTubeService is now processing");
+    }
 }
 ```
 
@@ -68,16 +68,16 @@ Then, we have a lookup service that decides which video streaming service to use
 @Setter
 public class BusinessLookup {
 
-  private NetflixService netflixService;
-  private YouTubeService youTubeService;
+    private NetflixService netflixService;
+    private YouTubeService youTubeService;
 
-  public VideoStreamingService getBusinessService(String movie) {
-    if (movie.toLowerCase(Locale.ROOT).contains("die hard")) {
-      return netflixService;
-    } else {
-      return youTubeService;
+    public VideoStreamingService getBusinessService(String movie) {
+        if (movie.toLowerCase(Locale.ROOT).contains("die hard")) {
+            return netflixService;
+        } else {
+            return youTubeService;
+        }
     }
-  }
 }
 ```
 
@@ -89,12 +89,12 @@ video streaming service.
 @Setter
 public class BusinessDelegate {
 
-  private BusinessLookup lookupService;
+    private BusinessLookup lookupService;
 
-  public void playbackMovie(String movie) {
-    VideoStreamingService videoStreamingService = lookupService.getBusinessService(movie);
-    videoStreamingService.doProcessing();
-  }
+    public void playbackMovie(String movie) {
+        VideoStreamingService videoStreamingService = lookupService.getBusinessService(movie);
+        videoStreamingService.doProcessing();
+    }
 }
 ```
 
@@ -103,15 +103,15 @@ The mobile client utilizes Business Delegate to call the business tier.
 ```java
 public class MobileClient {
 
-  private final BusinessDelegate businessDelegate;
+    private final BusinessDelegate businessDelegate;
 
-  public MobileClient(BusinessDelegate businessDelegate) {
-    this.businessDelegate = businessDelegate;
-  }
+    public MobileClient(BusinessDelegate businessDelegate) {
+        this.businessDelegate = businessDelegate;
+    }
 
-  public void playbackMovie(String movie) {
-    businessDelegate.playbackMovie(movie);
-  }
+    public void playbackMovie(String movie) {
+        businessDelegate.playbackMovie(movie);
+    }
 }
 ```
 
@@ -120,18 +120,18 @@ Finally, we can demonstrate the complete example in action.
 ```java
   public static void main(String[]args){
 
-    // prepare the objects
-    var businessDelegate=new BusinessDelegate();
-    var businessLookup=new BusinessLookup();
-    businessLookup.setNetflixService(new NetflixService());
-    businessLookup.setYouTubeService(new YouTubeService());
-    businessDelegate.setLookupService(businessLookup);
+        // prepare the objects
+        var businessDelegate=new BusinessDelegate();
+        var businessLookup=new BusinessLookup();
+        businessLookup.setNetflixService(new NetflixService());
+        businessLookup.setYouTubeService(new YouTubeService());
+        businessDelegate.setLookupService(businessLookup);
 
-    // create the client and use the Business Delegate
-    var client=new MobileClient(businessDelegate);
-    client.playbackMovie("Die Hard 2");
-    client.playbackMovie("Maradona: The Greatest Ever");
-    }
+        // create the client and use the Business Delegate
+        var client=new MobileClient(businessDelegate);
+        client.playbackMovie("Die Hard 2");
+        client.playbackMovie("Maradona: The Greatest Ever");
+        }
 ```
 
 Here is the console output.

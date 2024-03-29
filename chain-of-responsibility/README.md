@@ -3,8 +3,8 @@ title: Chain of responsibility
 category: Behavioral
 language: en
 tag:
-  - Gang of Four
-  - Decoupling
+    - Gang of Four
+    - Decoupling
 ---
 
 ## Also known as
@@ -48,27 +48,27 @@ import lombok.Getter;
 @Getter
 public class Request {
 
-  private final RequestType requestType;
-  private final String requestDescription;
-  private boolean handled;
+    private final RequestType requestType;
+    private final String requestDescription;
+    private boolean handled;
 
-  public Request(final RequestType requestType, final String requestDescription) {
-    this.requestType = Objects.requireNonNull(requestType);
-    this.requestDescription = Objects.requireNonNull(requestDescription);
-  }
+    public Request(final RequestType requestType, final String requestDescription) {
+        this.requestType = Objects.requireNonNull(requestType);
+        this.requestDescription = Objects.requireNonNull(requestDescription);
+    }
 
-  public void markHandled() {
-    this.handled = true;
-  }
+    public void markHandled() {
+        this.handled = true;
+    }
 
-  @Override
-  public String toString() {
-    return getRequestDescription();
-  }
+    @Override
+    public String toString() {
+        return getRequestDescription();
+    }
 }
 
 public enum RequestType {
-  DEFEND_CASTLE, TORTURE_PRISONER, COLLECT_TAX
+    DEFEND_CASTLE, TORTURE_PRISONER, COLLECT_TAX
 }
 ```
 
@@ -77,37 +77,37 @@ Next, we show the request handler hierarchy.
 ```java
 public interface RequestHandler {
 
-  boolean canHandleRequest(Request req);
+    boolean canHandleRequest(Request req);
 
-  int getPriority();
+    int getPriority();
 
-  void handle(Request req);
+    void handle(Request req);
 
-  String name();
+    String name();
 }
 
 @Slf4j
 public class OrcCommander implements RequestHandler {
-  @Override
-  public boolean canHandleRequest(Request req) {
-    return req.getRequestType() == RequestType.DEFEND_CASTLE;
-  }
+    @Override
+    public boolean canHandleRequest(Request req) {
+        return req.getRequestType() == RequestType.DEFEND_CASTLE;
+    }
 
-  @Override
-  public int getPriority() {
-    return 2;
-  }
+    @Override
+    public int getPriority() {
+        return 2;
+    }
 
-  @Override
-  public void handle(Request req) {
-    req.markHandled();
-    LOGGER.info("{} handling request \"{}\"", name(), req);
-  }
+    @Override
+    public void handle(Request req) {
+        req.markHandled();
+        LOGGER.info("{} handling request \"{}\"", name(), req);
+    }
 
-  @Override
-  public String name() {
-    return "Orc commander";
-  }
+    @Override
+    public String name() {
+        return "Orc commander";
+    }
 }
 
 // OrcOfficer and OrcSoldier are defined similarly as OrcCommander
@@ -119,24 +119,24 @@ The Orc King gives the orders and forms the chain.
 ```java
 public class OrcKing {
 
-  private List<RequestHandler> handlers;
+    private List<RequestHandler> handlers;
 
-  public OrcKing() {
-    buildChain();
-  }
+    public OrcKing() {
+        buildChain();
+    }
 
-  private void buildChain() {
-    handlers = Arrays.asList(new OrcCommander(), new OrcOfficer(), new OrcSoldier());
-  }
+    private void buildChain() {
+        handlers = Arrays.asList(new OrcCommander(), new OrcOfficer(), new OrcSoldier());
+    }
 
-  public void makeRequest(Request req) {
-    handlers
-        .stream()
-        .sorted(Comparator.comparing(RequestHandler::getPriority))
-        .filter(handler -> handler.canHandleRequest(req))
-        .findFirst()
-        .ifPresent(handler -> handler.handle(req));
-  }
+    public void makeRequest(Request req) {
+        handlers
+                .stream()
+                .sorted(Comparator.comparing(RequestHandler::getPriority))
+                .filter(handler -> handler.canHandleRequest(req))
+                .findFirst()
+                .ifPresent(handler -> handler.handle(req));
+    }
 }
 ```
 
@@ -144,9 +144,9 @@ The chain of responsibility in action.
 
 ```java
 var king=new OrcKing();
-    king.makeRequest(new Request(RequestType.DEFEND_CASTLE,"defend castle"));
-    king.makeRequest(new Request(RequestType.TORTURE_PRISONER,"torture prisoner"));
-    king.makeRequest(new Request(RequestType.COLLECT_TAX,"collect tax"));
+        king.makeRequest(new Request(RequestType.DEFEND_CASTLE,"defend castle"));
+        king.makeRequest(new Request(RequestType.TORTURE_PRISONER,"torture prisoner"));
+        king.makeRequest(new Request(RequestType.COLLECT_TAX,"collect tax"));
 ```
 
 The console output.

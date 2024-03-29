@@ -3,9 +3,9 @@ title: Circuit Breaker
 category: Resilience
 language: en
 tag:
-  - Cloud distributed
-  - Fault tolerance
-  - Microservices
+    - Cloud distributed
+    - Fault tolerance
+    - Microservices
 ---
 
 ## Also known as
@@ -28,10 +28,9 @@ Real world example
 > services is slow or not responding successfully, our application will try to fetch response from
 > the remote service using multiple threads/processes, soon all of them will hang (also called
 > [thread starvation](https://en.wikipedia.org/wiki/Starvation_(computer_science))) causing our entire web application
-> to crash. We should be able to detect
-> this situation and show the user an appropriate message so that he/she can explore other parts of
-> the app unaffected by the remote service failure. Meanwhile, the other services that are working
-> normally, should keep functioning unaffected by this failure.
+> to crash. We should be able to detect this situation and show the user an appropriate message so that he/she can
+> explore other parts of the app unaffected by the remote serv'ice failure. Meanwhile, the other services that are
+> working normally, should keep functioning unaffected by this failure.
 
 In plain words
 
@@ -62,59 +61,59 @@ In terms of code, the end user application is:
 @Slf4j
 public class App {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-  /**
-   * Program entry point.
-   *
-   * @param args command line args
-   */
-  public static void main(String[] args) {
+    /**
+     * Program entry point.
+     *
+     * @param args command line args
+     */
+    public static void main(String[] args) {
 
-    var serverStartTime = System.nanoTime();
+        var serverStartTime = System.nanoTime();
 
-    var delayedService = new DelayedRemoteService(serverStartTime, 5);
-    var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000, 2,
-        2000 * 1000 * 1000);
+        var delayedService = new DelayedRemoteService(serverStartTime, 5);
+        var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000, 2,
+                2000 * 1000 * 1000);
 
-    var quickService = new QuickRemoteService();
-    var quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, 2,
-        2000 * 1000 * 1000);
+        var quickService = new QuickRemoteService();
+        var quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, 2,
+                2000 * 1000 * 1000);
 
-    //Create an object of monitoring service which makes both local and remote calls
-    var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,
-        quickServiceCircuitBreaker);
+        //Create an object of monitoring service which makes both local and remote calls
+        var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,
+                quickServiceCircuitBreaker);
 
-    //Fetch response from local resource
-    LOGGER.info(monitoringService.localResourceResponse());
+        //Fetch response from local resource
+        LOGGER.info(monitoringService.localResourceResponse());
 
-    //Fetch response from delayed service 2 times, to meet the failure threshold
-    LOGGER.info(monitoringService.delayedServiceResponse());
-    LOGGER.info(monitoringService.delayedServiceResponse());
+        //Fetch response from delayed service 2 times, to meet the failure threshold
+        LOGGER.info(monitoringService.delayedServiceResponse());
+        LOGGER.info(monitoringService.delayedServiceResponse());
 
-    //Fetch current state of delayed service circuit breaker after crossing failure threshold limit
-    //which is OPEN now
-    LOGGER.info(delayedServiceCircuitBreaker.getState());
+        //Fetch current state of delayed service circuit breaker after crossing failure threshold limit
+        //which is OPEN now
+        LOGGER.info(delayedServiceCircuitBreaker.getState());
 
-    //Meanwhile, the delayed service is down, fetch response from the healthy quick service
-    LOGGER.info(monitoringService.quickServiceResponse());
-    LOGGER.info(quickServiceCircuitBreaker.getState());
+        //Meanwhile, the delayed service is down, fetch response from the healthy quick service
+        LOGGER.info(monitoringService.quickServiceResponse());
+        LOGGER.info(quickServiceCircuitBreaker.getState());
 
-    //Wait for the delayed service to become responsive
-    try {
-      LOGGER.info("Waiting for delayed service to become responsive");
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      LOGGER.error("An error occurred: ", e);
+        //Wait for the delayed service to become responsive
+        try {
+            LOGGER.info("Waiting for delayed service to become responsive");
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            LOGGER.error("An error occurred: ", e);
+        }
+        //Check the state of delayed circuit breaker, should be HALF_OPEN
+        LOGGER.info(delayedServiceCircuitBreaker.getState());
+
+        //Fetch response from delayed service, which should be healthy by now
+        LOGGER.info(monitoringService.delayedServiceResponse());
+        //As successful response is fetched, it should be CLOSED again.
+        LOGGER.info(delayedServiceCircuitBreaker.getState());
     }
-    //Check the state of delayed circuit breaker, should be HALF_OPEN
-    LOGGER.info(delayedServiceCircuitBreaker.getState());
-
-    //Fetch response from delayed service, which should be healthy by now
-    LOGGER.info(monitoringService.delayedServiceResponse());
-    //As successful response is fetched, it should be CLOSED again.
-    LOGGER.info(delayedServiceCircuitBreaker.getState());
-  }
 }
 ```
 
@@ -123,45 +122,45 @@ The monitoring service:
 ```java
 public class MonitoringService {
 
-  private final CircuitBreaker delayedService;
+    private final CircuitBreaker delayedService;
 
-  private final CircuitBreaker quickService;
+    private final CircuitBreaker quickService;
 
-  public MonitoringService(CircuitBreaker delayedService, CircuitBreaker quickService) {
-    this.delayedService = delayedService;
-    this.quickService = quickService;
-  }
-
-  //Assumption: Local service won't fail, no need to wrap it in a circuit breaker logic
-  public String localResourceResponse() {
-    return "Local Service is working";
-  }
-
-  /**
-   * Fetch response from the delayed service (with some simulated startup time).
-   *
-   * @return response string
-   */
-  public String delayedServiceResponse() {
-    try {
-      return this.delayedService.attemptRequest();
-    } catch (RemoteServiceException e) {
-      return e.getMessage();
+    public MonitoringService(CircuitBreaker delayedService, CircuitBreaker quickService) {
+        this.delayedService = delayedService;
+        this.quickService = quickService;
     }
-  }
 
-  /**
-   * Fetches response from a healthy service without any failure.
-   *
-   * @return response string
-   */
-  public String quickServiceResponse() {
-    try {
-      return this.quickService.attemptRequest();
-    } catch (RemoteServiceException e) {
-      return e.getMessage();
+    //Assumption: Local service won't fail, no need to wrap it in a circuit breaker logic
+    public String localResourceResponse() {
+        return "Local Service is working";
     }
-  }
+
+    /**
+     * Fetch response from the delayed service (with some simulated startup time).
+     *
+     * @return response string
+     */
+    public String delayedServiceResponse() {
+        try {
+            return this.delayedService.attemptRequest();
+        } catch (RemoteServiceException e) {
+            return e.getMessage();
+        }
+    }
+
+    /**
+     * Fetches response from a healthy service without any failure.
+     *
+     * @return response string
+     */
+    public String quickServiceResponse() {
+        try {
+            return this.quickService.attemptRequest();
+        } catch (RemoteServiceException e) {
+            return e.getMessage();
+        }
+    }
 }
 ```
 
@@ -171,128 +170,128 @@ remote (costly) service in a circuit breaker object, which prevents faults as fo
 ```java
 public class DefaultCircuitBreaker implements CircuitBreaker {
 
-  private final long timeout;
-  private final long retryTimePeriod;
-  private final RemoteService service;
-  long lastFailureTime;
-  private String lastFailureResponse;
-  int failureCount;
-  private final int failureThreshold;
-  private State state;
-  // Future time offset, in nanoseconds
-  private final long futureTime = 1_000_000_000_000L;
+    private final long timeout;
+    private final long retryTimePeriod;
+    private final RemoteService service;
+    long lastFailureTime;
+    private String lastFailureResponse;
+    int failureCount;
+    private final int failureThreshold;
+    private State state;
+    // Future time offset, in nanoseconds
+    private final long futureTime = 1_000_000_000_000L;
 
-  /**
-   * Constructor to create an instance of Circuit Breaker.
-   *
-   * @param timeout          Timeout for the API request. Not necessary for this simple example
-   * @param failureThreshold Number of failures we receive from the depended service before changing
-   *                         state to 'OPEN'
-   * @param retryTimePeriod  Time period after which a new request is made to remote service for
-   *                         status check.
-   */
-  DefaultCircuitBreaker(RemoteService serviceToCall, long timeout, int failureThreshold,
-                        long retryTimePeriod) {
-    this.service = serviceToCall;
-    // We start in a closed state hoping that everything is fine
-    this.state = State.CLOSED;
-    this.failureThreshold = failureThreshold;
-    // Timeout for the API request.
-    // Used to break the calls made to remote resource if it exceeds the limit
-    this.timeout = timeout;
-    this.retryTimePeriod = retryTimePeriod;
-    //An absurd amount of time in future which basically indicates the last failure never happened
-    this.lastFailureTime = System.nanoTime() + futureTime;
-    this.failureCount = 0;
-  }
-
-  // Reset everything to defaults
-  @Override
-  public void recordSuccess() {
-    this.failureCount = 0;
-    this.lastFailureTime = System.nanoTime() + futureTime;
-    this.state = State.CLOSED;
-  }
-
-  @Override
-  public void recordFailure(String response) {
-    failureCount = failureCount + 1;
-    this.lastFailureTime = System.nanoTime();
-    // Cache the failure response for returning on open state
-    this.lastFailureResponse = response;
-  }
-
-  // Evaluate the current state based on failureThreshold, failureCount and lastFailureTime.
-  protected void evaluateState() {
-    if (failureCount >= failureThreshold) { //Then something is wrong with remote service
-      if ((System.nanoTime() - lastFailureTime) > retryTimePeriod) {
-        //We have waited long enough and should try checking if service is up
-        state = State.HALF_OPEN;
-      } else {
-        //Service would still probably be down
-        state = State.OPEN;
-      }
-    } else {
-      //Everything is working fine
-      state = State.CLOSED;
+    /**
+     * Constructor to create an instance of Circuit Breaker.
+     *
+     * @param timeout          Timeout for the API request. Not necessary for this simple example
+     * @param failureThreshold Number of failures we receive from the depended service before changing
+     *                         state to 'OPEN'
+     * @param retryTimePeriod  Time period after which a new request is made to remote service for
+     *                         status check.
+     */
+    DefaultCircuitBreaker(RemoteService serviceToCall, long timeout, int failureThreshold,
+                          long retryTimePeriod) {
+        this.service = serviceToCall;
+        // We start in a closed state hoping that everything is fine
+        this.state = State.CLOSED;
+        this.failureThreshold = failureThreshold;
+        // Timeout for the API request.
+        // Used to break the calls made to remote resource if it exceeds the limit
+        this.timeout = timeout;
+        this.retryTimePeriod = retryTimePeriod;
+        //An absurd amount of time in future which basically indicates the last failure never happened
+        this.lastFailureTime = System.nanoTime() + futureTime;
+        this.failureCount = 0;
     }
-  }
 
-  @Override
-  public String getState() {
-    evaluateState();
-    return state.name();
-  }
+    // Reset everything to defaults
+    @Override
+    public void recordSuccess() {
+        this.failureCount = 0;
+        this.lastFailureTime = System.nanoTime() + futureTime;
+        this.state = State.CLOSED;
+    }
 
-  /**
-   * Break the circuit beforehand if it is known service is down Or connect the circuit manually if
-   * service comes online before expected.
-   *
-   * @param state State at which circuit is in
-   */
-  @Override
-  public void setState(State state) {
-    this.state = state;
-    switch (state) {
-      case OPEN -> {
-        this.failureCount = failureThreshold;
+    @Override
+    public void recordFailure(String response) {
+        failureCount = failureCount + 1;
         this.lastFailureTime = System.nanoTime();
-      }
-      case HALF_OPEN -> {
-        this.failureCount = failureThreshold;
-        this.lastFailureTime = System.nanoTime() - retryTimePeriod;
-      }
-      default -> this.failureCount = 0;
+        // Cache the failure response for returning on open state
+        this.lastFailureResponse = response;
     }
-  }
 
-  /**
-   * Executes service call.
-   *
-   * @return Value from the remote resource, stale response or a custom exception
-   */
-  @Override
-  public String attemptRequest() throws RemoteServiceException {
-    evaluateState();
-    if (state == State.OPEN) {
-      // return cached response if the circuit is in OPEN state
-      return this.lastFailureResponse;
-    } else {
-      // Make the API request if the circuit is not OPEN
-      try {
-        //In a real application, this would be run in a thread and the timeout
-        //parameter of the circuit breaker would be utilized to know if service
-        //is working. Here, we simulate that based on server response itself
-        var response = service.call();
-        // Yay!! the API responded fine. Let's reset everything.
-        recordSuccess();
-        return response;
-      } catch (RemoteServiceException ex) {
-        recordFailure(ex.getMessage());
-        throw ex;
-      }
+    // Evaluate the current state based on failureThreshold, failureCount and lastFailureTime.
+    protected void evaluateState() {
+        if (failureCount >= failureThreshold) { //Then something is wrong with remote service
+            if ((System.nanoTime() - lastFailureTime) > retryTimePeriod) {
+                //We have waited long enough and should try checking if service is up
+                state = State.HALF_OPEN;
+            } else {
+                //Service would still probably be down
+                state = State.OPEN;
+            }
+        } else {
+            //Everything is working fine
+            state = State.CLOSED;
+        }
     }
-  }
+
+    @Override
+    public String getState() {
+        evaluateState();
+        return state.name();
+    }
+
+    /**
+     * Break the circuit beforehand if it is known service is down Or connect the circuit manually if
+     * service comes online before expected.
+     *
+     * @param state State at which circuit is in
+     */
+    @Override
+    public void setState(State state) {
+        this.state = state;
+        switch (state) {
+            case OPEN -> {
+                this.failureCount = failureThreshold;
+                this.lastFailureTime = System.nanoTime();
+            }
+            case HALF_OPEN -> {
+                this.failureCount = failureThreshold;
+                this.lastFailureTime = System.nanoTime() - retryTimePeriod;
+            }
+            default -> this.failureCount = 0;
+        }
+    }
+
+    /**
+     * Executes service call.
+     *
+     * @return Value from the remote resource, stale response or a custom exception
+     */
+    @Override
+    public String attemptRequest() throws RemoteServiceException {
+        evaluateState();
+        if (state == State.OPEN) {
+            // return cached response if the circuit is in OPEN state
+            return this.lastFailureResponse;
+        } else {
+            // Make the API request if the circuit is not OPEN
+            try {
+                //In a real application, this would be run in a thread and the timeout
+                //parameter of the circuit breaker would be utilized to know if service
+                //is working. Here, we simulate that based on server response itself
+                var response = service.call();
+                // Yay!! the API responded fine. Let's reset everything.
+                recordSuccess();
+                return response;
+            } catch (RemoteServiceException ex) {
+                recordFailure(ex.getMessage());
+                throw ex;
+            }
+        }
+    }
 }
 ```
 

@@ -3,9 +3,9 @@ title: Anti-corruption layer
 category: Integration
 language: en
 tag:
-  - Architecture
-  - Decoupling
-  - Isolation
+    - Architecture
+    - Decoupling
+    - Isolation
 ---
 
 ## Also known as
@@ -67,11 +67,11 @@ systems.
 
 ```java
 public class LegacyOrder {
-  private String id;
-  private String customer;
-  private String item;
-  private String qty;
-  private String price;
+    private String id;
+    private String customer;
+    private String item;
+    private String qty;
+    private String price;
 }
 ```
 
@@ -79,22 +79,22 @@ public class LegacyOrder {
 
 ```java
 public class ModernOrder {
-  private String id;
-  private Customer customer;
+    private String id;
+    private Customer customer;
 
-  private Shipment shipment;
+    private Shipment shipment;
 
-  private String extra;
+    private String extra;
 }
 
 public class Customer {
-  private String address;
+    private String address;
 }
 
 public class Shipment {
-  private String item;
-  private String qty;
-  private String price;
+    private String item;
+    private String qty;
+    private String price;
 }
 ```
 
@@ -103,19 +103,19 @@ public class Shipment {
 ```java
 public class AntiCorruptionLayer {
 
-  @Autowired
-  private ModernShop modernShop;
+    @Autowired
+    private ModernShop modernShop;
 
-  @Autowired
-  private LegacyShop legacyShop;
+    @Autowired
+    private LegacyShop legacyShop;
 
-  public Optional<LegacyOrder> findOrderInModernSystem(String id) {
-    return modernShop.findOrder(id).map(o -> /* map to legacyOrder*/);
-  }
+    public Optional<LegacyOrder> findOrderInModernSystem(String id) {
+        return modernShop.findOrder(id).map(o -> /* map to legacyOrder*/);
+    }
 
-  public Optional<ModernOrder> findOrderInLegacySystem(String id) {
-    return legacyShop.findOrder(id).map(o -> /* map to modernOrder*/);
-  }
+    public Optional<ModernOrder> findOrderInLegacySystem(String id) {
+        return legacyShop.findOrder(id).map(o -> /* map to modernOrder*/);
+    }
 
 }
 ```
@@ -128,21 +128,21 @@ from the `Modern` system.
 
 ```java
 public class LegacyShop {
-  @Autowired
-  private AntiCorruptionLayer acl;
+    @Autowired
+    private AntiCorruptionLayer acl;
 
-  public void placeOrder(LegacyOrder legacyOrder) throws ShopException {
+    public void placeOrder(LegacyOrder legacyOrder) throws ShopException {
 
-    String id = legacyOrder.getId();
+        String id = legacyOrder.getId();
 
-    Optional<LegacyOrder> orderInModernSystem = acl.findOrderInModernSystem(id);
+        Optional<LegacyOrder> orderInModernSystem = acl.findOrderInModernSystem(id);
 
-    if (orderInModernSystem.isPresent()) {
-      // order is already in the modern system
-    } else {
-      // place order in the current system
+        if (orderInModernSystem.isPresent()) {
+            // order is already in the modern system
+        } else {
+            // place order in the current system
+        }
     }
-  }
 }
 ```
 

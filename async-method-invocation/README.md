@@ -3,9 +3,9 @@ title: Async Method Invocation
 category: Concurrency
 language: en
 tag:
-  - Asynchronous
-  - Reactive
-  - Scalability
+    - Asynchronous
+    - Reactive
+    - Scalability
 ---
 
 ## Intent
@@ -48,29 +48,29 @@ manages the execution of the async tasks.
 
 ```java
 public interface AsyncResult<T> {
-  boolean isCompleted();
+    boolean isCompleted();
 
-  T getValue() throws ExecutionException;
+    T getValue() throws ExecutionException;
 
-  void await() throws InterruptedException;
+    void await() throws InterruptedException;
 }
 ```
 
 ```java
 public interface AsyncCallback<T> {
-  void onComplete(T value);
+    void onComplete(T value);
 
-  void onError(Exception ex);
+    void onError(Exception ex);
 }
 ```
 
 ```java
 public interface AsyncExecutor {
-  <T> AsyncResult<T> startProcess(Callable<T> task);
+    <T> AsyncResult<T> startProcess(Callable<T> task);
 
-  <T> AsyncResult<T> startProcess(Callable<T> task, AsyncCallback<T> callback);
+    <T> AsyncResult<T> startProcess(Callable<T> task, AsyncCallback<T> callback);
 
-  <T> T endProcess(AsyncResult<T> asyncResult) throws ExecutionException, InterruptedException;
+    <T> T endProcess(AsyncResult<T> asyncResult) throws ExecutionException, InterruptedException;
 }
 ```
 
@@ -80,35 +80,35 @@ next.
 ```java
 public class ThreadAsyncExecutor implements AsyncExecutor {
 
-  @Override
-  public <T> AsyncResult<T> startProcess(Callable<T> task) {
-    return startProcess(task, null);
-  }
-
-  @Override
-  public <T> AsyncResult<T> startProcess(Callable<T> task, AsyncCallback<T> callback) {
-    var result = new CompletableResult<>(callback);
-    new Thread(
-        () -> {
-          try {
-            result.setValue(task.call());
-          } catch (Exception ex) {
-            result.setException(ex);
-          }
-        },
-        "executor-" + idx.incrementAndGet())
-        .start();
-    return result;
-  }
-
-  @Override
-  public <T> T endProcess(AsyncResult<T> asyncResult)
-      throws ExecutionException, InterruptedException {
-    if (!asyncResult.isCompleted()) {
-      asyncResult.await();
+    @Override
+    public <T> AsyncResult<T> startProcess(Callable<T> task) {
+        return startProcess(task, null);
     }
-    return asyncResult.getValue();
-  }
+
+    @Override
+    public <T> AsyncResult<T> startProcess(Callable<T> task, AsyncCallback<T> callback) {
+        var result = new CompletableResult<>(callback);
+        new Thread(
+                () -> {
+                    try {
+                        result.setValue(task.call());
+                    } catch (Exception ex) {
+                        result.setException(ex);
+                    }
+                },
+                "executor-" + idx.incrementAndGet())
+                .start();
+        return result;
+    }
+
+    @Override
+    public <T> T endProcess(AsyncResult<T> asyncResult)
+            throws ExecutionException, InterruptedException {
+        if (!asyncResult.isCompleted()) {
+            asyncResult.await();
+        }
+        return asyncResult.getValue();
+    }
 }
 ```
 
@@ -116,8 +116,8 @@ Then we are ready to launch some rockets to see how everything works together.
 
 ```java
 public static void main(String[]args)throws Exception{
-    // construct a new executor that will run async tasks
-    var executor=new ThreadAsyncExecutor();
+        // construct a new executor that will run async tasks
+        var executor=new ThreadAsyncExecutor();
 
 // start few async tasks with varying processing times, two last with callback handlers
 final var asyncResult1=executor.startProcess(lazyval(10,500));
@@ -125,40 +125,40 @@ final var asyncResult2=executor.startProcess(lazyval("test",300));
 final var asyncResult3=executor.startProcess(lazyval(50L,700));
 final var asyncResult4=executor.startProcess(lazyval(20,400),callback("Deploying lunar rover"));
 final var asyncResult5=
-    executor.startProcess(lazyval("callback",600),callback("Deploying lunar rover"));
+        executor.startProcess(lazyval("callback",600),callback("Deploying lunar rover"));
 
-    // emulate processing in the current thread while async tasks are running in their own threads
-    Thread.sleep(350); // Oh boy, we are working hard here
-    log("Mission command is sipping coffee");
+        // emulate processing in the current thread while async tasks are running in their own threads
+        Thread.sleep(350); // Oh boy, we are working hard here
+        log("Mission command is sipping coffee");
 
 // wait for completion of the tasks
 final var result1=executor.endProcess(asyncResult1);
 final var result2=executor.endProcess(asyncResult2);
 final var result3=executor.endProcess(asyncResult3);
-    asyncResult4.await();
-    asyncResult5.await();
+        asyncResult4.await();
+        asyncResult5.await();
 
-    // log the results of the tasks, callbacks log immediately when complete
-    log("Space rocket <"+result1+"> launch complete");
-    log("Space rocket <"+result2+"> launch complete");
-    log("Space rocket <"+result3+"> launch complete");
-    }
+        // log the results of the tasks, callbacks log immediately when complete
+        log("Space rocket <"+result1+"> launch complete");
+        log("Space rocket <"+result2+"> launch complete");
+        log("Space rocket <"+result3+"> launch complete");
+        }
 ```
 
 Here's the program console output.
 
 ```java
 21:47:08.227[executor-2]INFO com.iluwatar.async.method.invocation.App-Space rocket<test> launched successfully
-    21:47:08.269[main]INFO com.iluwatar.async.method.invocation.App-Mission command is sipping coffee
-    21:47:08.318[executor-4]INFO com.iluwatar.async.method.invocation.App-Space rocket<20>launched successfully
-    21:47:08.335[executor-4]INFO com.iluwatar.async.method.invocation.App-Deploying lunar rover<20>
-    21:47:08.414[executor-1]INFO com.iluwatar.async.method.invocation.App-Space rocket<10>launched successfully
-    21:47:08.519[executor-5]INFO com.iluwatar.async.method.invocation.App-Space rocket<callback> launched successfully
-    21:47:08.519[executor-5]INFO com.iluwatar.async.method.invocation.App-Deploying lunar rover<callback>
+        21:47:08.269[main]INFO com.iluwatar.async.method.invocation.App-Mission command is sipping coffee
+        21:47:08.318[executor-4]INFO com.iluwatar.async.method.invocation.App-Space rocket<20>launched successfully
+        21:47:08.335[executor-4]INFO com.iluwatar.async.method.invocation.App-Deploying lunar rover<20>
+        21:47:08.414[executor-1]INFO com.iluwatar.async.method.invocation.App-Space rocket<10>launched successfully
+        21:47:08.519[executor-5]INFO com.iluwatar.async.method.invocation.App-Space rocket<callback> launched successfully
+        21:47:08.519[executor-5]INFO com.iluwatar.async.method.invocation.App-Deploying lunar rover<callback>
 21:47:08.616[executor-3]INFO com.iluwatar.async.method.invocation.App-Space rocket<50>launched successfully
-    21:47:08.617[main]INFO com.iluwatar.async.method.invocation.App-Space rocket<10>launch complete
-    21:47:08.617[main]INFO com.iluwatar.async.method.invocation.App-Space rocket<test> launch complete
-    21:47:08.618[main]INFO com.iluwatar.async.method.invocation.App-Space rocket<50>launch complete
+        21:47:08.617[main]INFO com.iluwatar.async.method.invocation.App-Space rocket<10>launch complete
+        21:47:08.617[main]INFO com.iluwatar.async.method.invocation.App-Space rocket<test> launch complete
+        21:47:08.618[main]INFO com.iluwatar.async.method.invocation.App-Space rocket<50>launch complete
 ```
 
 # Class diagram

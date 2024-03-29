@@ -3,7 +3,7 @@ title: Builder
 category: Creational
 language: en
 tag:
-  - Gang of Four
+    - Gang of Four
 ---
 
 ## Intent
@@ -34,7 +34,7 @@ all seen a constructor like below:
 
 ```java
 public Hero(Profession profession,String name,HairType hairType,HairColor hairColor,Armor armor,Weapon weapon){
-    }
+        }
 ```
 
 As you can see the number of constructor parameters can quickly get out of hand, and it may become difficult to
@@ -47,21 +47,21 @@ The sane alternative is to use the Builder pattern. First of all, we have our he
 
 ```java
 public final class Hero {
-  private final Profession profession;
-  private final String name;
-  private final HairType hairType;
-  private final HairColor hairColor;
-  private final Armor armor;
-  private final Weapon weapon;
+    private final Profession profession;
+    private final String name;
+    private final HairType hairType;
+    private final HairColor hairColor;
+    private final Armor armor;
+    private final Weapon weapon;
 
-  private Hero(Builder builder) {
-    this.profession = builder.profession;
-    this.name = builder.name;
-    this.hairColor = builder.hairColor;
-    this.hairType = builder.hairType;
-    this.weapon = builder.weapon;
-    this.armor = builder.armor;
-  }
+    private Hero(Builder builder) {
+        this.profession = builder.profession;
+        this.name = builder.name;
+        this.hairColor = builder.hairColor;
+        this.hairType = builder.hairType;
+        this.weapon = builder.weapon;
+        this.armor = builder.armor;
+    }
 }
 ```
 
@@ -69,44 +69,44 @@ Then we have the builder:
 
 ```java
   public static class Builder {
-  private final Profession profession;
-  private final String name;
-  private HairType hairType;
-  private HairColor hairColor;
-  private Armor armor;
-  private Weapon weapon;
+    private final Profession profession;
+    private final String name;
+    private HairType hairType;
+    private HairColor hairColor;
+    private Armor armor;
+    private Weapon weapon;
 
-  public Builder(Profession profession, String name) {
-    if (profession == null || name == null) {
-      throw new IllegalArgumentException("profession and name can not be null");
+    public Builder(Profession profession, String name) {
+        if (profession == null || name == null) {
+            throw new IllegalArgumentException("profession and name can not be null");
+        }
+        this.profession = profession;
+        this.name = name;
     }
-    this.profession = profession;
-    this.name = name;
-  }
 
-  public Builder withHairType(HairType hairType) {
-    this.hairType = hairType;
-    return this;
-  }
+    public Builder withHairType(HairType hairType) {
+        this.hairType = hairType;
+        return this;
+    }
 
-  public Builder withHairColor(HairColor hairColor) {
-    this.hairColor = hairColor;
-    return this;
-  }
+    public Builder withHairColor(HairColor hairColor) {
+        this.hairColor = hairColor;
+        return this;
+    }
 
-  public Builder withArmor(Armor armor) {
-    this.armor = armor;
-    return this;
-  }
+    public Builder withArmor(Armor armor) {
+        this.armor = armor;
+        return this;
+    }
 
-  public Builder withWeapon(Weapon weapon) {
-    this.weapon = weapon;
-    return this;
-  }
+    public Builder withWeapon(Weapon weapon) {
+        this.weapon = weapon;
+        return this;
+    }
 
-  public Hero build() {
-    return new Hero(this);
-  }
+    public Hero build() {
+        return new Hero(this);
+    }
 }
 ```
 
