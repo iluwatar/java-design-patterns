@@ -19,14 +19,20 @@ import lombok.Setter;
 @RequiredArgsConstructor
 public abstract class RecordBase<T extends RecordBase<?>> {
 
+  private static final String EXCEPTION_MESSAGE = "Couldn't execute database query for the following domain model :";
+
   @Setter
   private static DataSource dataSource;
 
   @SuppressWarnings({"unchecked"})
   private final Class<T> clazz = (Class<T>) getClass();
 
-  protected Connection getConnection() throws SQLException {
-    return dataSource.getConnection();
+  protected Connection getConnection() {
+    try {
+      return dataSource.getConnection();
+    } catch (SQLException e) {
+      throw new RuntimeException("Unable to acquire database connection", e);
+    }
   }
 
   /**
@@ -58,9 +64,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
         return recordList;
       }
     } catch (SQLException e) {
-      throw new RuntimeException(
-          "Unable to find all the records for the following domain model : " + clazz.getName()
-              + " due to the data persistence error", e);
+      throw new RuntimeException(EXCEPTION_MESSAGE + clazz.getName(), e);
     }
   }
 
@@ -83,10 +87,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
         return getDeclaredClassInstance();
       }
     } catch (SQLException e) {
-      throw new RuntimeException(
-          "Unable to find a record for the following domain model : " + clazz.getName() + " by id="
-              + id
-              + " due to the data persistence error", e);
+      throw new RuntimeException(EXCEPTION_MESSAGE + clazz.getName() + " with id=" + id, e);
     }
   }
 
@@ -103,9 +104,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
       pstmt.executeUpdate();
 
     } catch (SQLException e) {
-      throw new RuntimeException(
-          "Unable to save the record for the following domain model : " + clazz.getName()
-              + " due to the data persistence error", e);
+      throw new RuntimeException(EXCEPTION_MESSAGE + clazz.getName(), e);
     }
   }
 
