@@ -49,7 +49,7 @@ import org.mockito.Mockito;
  */
 class DbCustomerDaoTest {
 
-  private static final String DB_URL = "jdbc:h2:~/dao";
+  private static final String DB_URL = "jdbc:h2:mem:dao;DB_CLOSE_DELAY=-1";
   private DbCustomerDao dao;
   private final Customer existingCustomer = new Customer(1, "Freddy", "Krueger");
 

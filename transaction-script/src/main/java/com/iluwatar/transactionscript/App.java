@@ -46,7 +46,7 @@ import org.slf4j.LoggerFactory;
  */
 public class App {
 
-  private static final String H2_DB_URL = "jdbc:h2:~/test";
+  private static final String H2_DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**

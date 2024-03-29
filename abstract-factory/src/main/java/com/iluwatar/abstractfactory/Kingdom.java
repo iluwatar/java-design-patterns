@@ -57,7 +57,6 @@ public class Kingdom {
       return switch (type) {
         case ELF -> new ElfKingdomFactory();
         case ORC -> new OrcKingdomFactory();
-        default -> throw new IllegalArgumentException("KingdomType not supported.");
       };
     }
   }

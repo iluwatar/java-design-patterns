@@ -8,29 +8,25 @@ tag:
 
 ## Intent
 
-The Business Delegate pattern adds an abstraction layer between
-presentation and business tiers. By using the pattern we gain loose coupling
-between the tiers and encapsulate knowledge about how to locate, connect to,
-and interact with the business objects that make up the application.
+The Business Delegate pattern adds an abstraction layer between presentation and business tiers. By using the pattern we gain loose coupling between the tiers and encapsulate knowledge about how to locate, connect to, and interact with the business objects that make up the application.
+
+## Also known as
+
+Service Representative
 
 ## Explanation
 
 Real world example
 
-> A mobile phone application promises to stream any movie in existence to your phone. It captures
-> the user's search string and passes this on to the business delegate. The business delegate
-> selects the most suitable video streaming service and plays the video from there.
+> A mobile phone application promises to stream any movie in existence to your device. It captures the user's search string and passes this on to the Business Delegate. The Business Delegate selects the most suitable video streaming service and plays the video from there.
 
 In Plain Words
 
-> Business delegate adds an abstraction layer between the presentation and business tiers.
+> Business Delegate adds an abstraction layer between the presentation and business tiers.
 
 Wikipedia says
 
-> Business delegate is a Java EE design pattern. This pattern is directing to reduce the coupling 
-> in between business services and the connected presentation tier, and to hide the implementation 
-> details of services (including lookup and accessibility of EJB architecture). Business delegates 
-> acts as an adaptor to invoke business objects from the presentation tier.
+> Business Delegate is a Java EE design pattern. This pattern is directing to reduce the coupling in between business services and the connected presentation tier, and to hide the implementation details of services (including lookup and accessibility of EJB architecture). Business Delegates acts as an adaptor to invoke business objects from the presentation tier.
 
 **Programmatic Example**
 
@@ -58,7 +54,7 @@ public class YouTubeService implements VideoStreamingService {
 }
 ```
 
-Then we have a lookup service that decides which video streaming service is used.
+Then, we have a lookup service that decides which video streaming service to use.
 
 ```java
 @Setter
@@ -77,7 +73,7 @@ public class BusinessLookup {
 }
 ```
 
-The business delegate uses a business lookup to route movie playback requests to a suitable
+The Business Delegate uses a business lookup to route movie playback requests to a suitable
 video streaming service.
 
 ```java
@@ -93,7 +89,7 @@ public class BusinessDelegate {
 }
 ```
 
-The mobile client utilizes business delegate to call the business tier.
+The mobile client utilizes Business Delegate to call the business tier.
 
 ```java
 public class MobileClient {
@@ -110,7 +106,7 @@ public class MobileClient {
 }
 ```
 
-Finally, we can show the full example in action.
+Finally, we can demonstrate the complete example in action.
 
 ```java
   public static void main(String[] args) {
@@ -122,7 +118,7 @@ Finally, we can show the full example in action.
     businessLookup.setYouTubeService(new YouTubeService());
     businessDelegate.setLookupService(businessLookup);
 
-    // create the client and use the business delegate
+    // create the client and use the Business Delegate
     var client = new MobileClient(businessDelegate);
     client.playbackMovie("Die Hard 2");
     client.playbackMovie("Maradona: The Greatest Ever");
@@ -151,10 +147,35 @@ Use the Business Delegate pattern when
 * You want loose coupling between presentation and business tiers
 * You want to orchestrate calls to multiple business services
 * You want to encapsulate service lookups and service calls
+* There is a need to abstract and encapsulate the communication between the client tier and business services
 
 ## Tutorials
 
 * [Business Delegate Pattern at TutorialsPoint](https://www.tutorialspoint.com/design_pattern/business_delegate_pattern.htm)
+
+## Known Uses
+
+* Enterprise applications using Java EE (Java Platform, Enterprise Edition)
+* Applications requiring remote access to business services
+
+## Consequences
+
+Benefits:
+
+* Decoupling of Presentation and Business Tiers: Allows the client tier and business services to evolve independently.
+* Location Transparency: Clients remain unaffected by changes in the location or the instantiation of business services.
+* Reuse and Scalability: Business Delegate objects can be reused by multiple clients, and the pattern supports load balancing and scalability.
+
+Trade-offs:
+
+* Complexity: Introduces additional layers and abstractions, which may increase complexity.
+* Performance Overhead: The additional indirection may incur a slight performance penalty.
+
+## Related patterns
+
+* [Service Locator](https://java-design-patterns.com/patterns/service-locator/): Business Delegate uses Service Locator to locate business services.
+* [Session Facade](https://java-design-patterns.com/patterns/session-facade/): Business Delegate may use Session Facade to provide a unified interface to a set of business services.
+* [Composite Entity](https://java-design-patterns.com/patterns/composite-entity/): Business Delegate may use Composite Entity to manage the state of business services.
 
 ## Credits
 
