@@ -54,7 +54,7 @@ class AppTest {
   private CircuitBreaker quickServiceCircuitBreaker;
 
   /**
-   * Setup the circuit breakers and services, where {@link DelayedRemoteService} will be start with
+   * Set up the circuit breakers and services, where {@link DelayedRemoteService} will be start with
    * a delay of 4 seconds and a {@link QuickRemoteService} responding healthy. Both services are
    * wrapped in a {@link DefaultCircuitBreaker} implementation with failure threshold of 1 failure
    * and retry time period of 2 seconds.
@@ -104,7 +104,7 @@ class AppTest {
       LOGGER.info("Waiting 2s for delayed service to become responsive");
       Thread.sleep(2000);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error("An error occurred: ", e);
     }
     //After 2 seconds, the circuit breaker should move to "HALF_OPEN" state and retry fetching response from service again
     assertEquals("HALF_OPEN", delayedServiceCircuitBreaker.getState());
@@ -123,7 +123,7 @@ class AppTest {
       LOGGER.info("Waiting 4s for delayed service to become responsive");
       Thread.sleep(4000);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error("An error occurred: ", e);
     }
     //As retry period is 2 seconds (<4 seconds of wait), hence the circuit breaker should be back in HALF_OPEN state.
     assertEquals("HALF_OPEN", delayedServiceCircuitBreaker.getState());

@@ -1,25 +1,24 @@
 ---
-layout: pattern
 title: Abstract Document
-folder: abstract-document
-permalink: /patterns/abstract-document/
-categories: Structural
+category: Structural
 language: es
-tag: 
- - Extensibility
+tag:
+  - Extensibility
 ---
 
 ## Propósito
 
-Usar propiedades dinámicas y conseguir la felexibilidad de los lenguajes no tipados manteniendo la seguridad de tipos.
+Usar propiedades dinámicas y conseguir la flexibilidad de los lenguajes no tipados manteniendo la seguridad de tipos.
 
 ## Explicación
 
-El uso del patrón Abstract Document permite gestionar propiedades no estáticas adicionales. Este patrón usa el concepto de atributos para permitir seguridad de tipos y propiedades separadas de diferentes clases en un grupo de interfaces.
+El uso del patrón Abstract Document permite gestionar propiedades no estáticas adicionales. Este patrón usa el concepto
+de atributos para permitir seguridad de tipos y propiedades separadas de diferentes clases en un grupo de interfaces.
 
 Ejemplo del mundo real
 
->  Toma como ejemplo un coche que está formado por muchas partes. Sin embargo, no sabemos si el coche tiene todas las partes o solo una parte de ellas. Nuestros coches son dinámicos y extremadamente flexibles.
+> Toma como ejemplo un coche que está formado por muchas partes. Sin embargo, no sabemos si el coche tiene todas las
+> partes o solo una parte de ellas. Nuestros coches son dinámicos y extremadamente flexibles.
 
 Dicho de otra forma
 
@@ -27,11 +26,16 @@ Dicho de otra forma
 
 Según Wikipedia
 
-> Un patrón de diseño estructural orientado a objetos para organizar objetos en contenedores clave-valor vagamente tipados y exponiendo los datos usando vistas tipadas. El propósito del patrón es conseguir un alto grado de flexibilidad entre componentes en un lenguaje de tipado fuerte donde nuevas propiedades pueden añadirse al arbol de objetos sobre la marcha sin perder el soporte de la seguridad de tipos. El patrón hace uso de atributos para separar diferentes propiedades de una clase en distintas interfaces.
+> Un patrón de diseño estructural orientado a objetos para organizar objetos en contenedores clave-valor vagamente
+> tipados y exponiendo los datos usando vistas tipadas. El propósito del patrón es conseguir un alto grado de flexibilidad
+> entre componentes en un lenguaje de tipado fuerte donde nuevas propiedades pueden añadirse al árbol de objetos sobre la
+> marcha sin perder el soporte de la seguridad de tipos. El patrón hace uso de atributos para separar diferentes
+> propiedades de una clase en distintas interfaces.
 
 **Ejemplo Programático**
 
-Primero definamos las clases base `Document` y `AbstractDocument`. Básicamente hacen que el objeto contenga un mapa de propiedades y cualquier número de objetos hijo.
+Primero definamos las clases base `Document` y `AbstractDocument`. Básicamente, hacen que el objeto contenga un mapa de
+propiedades y cualquier número de objetos hijo.
 
 ```java
 public interface Document {
@@ -76,7 +80,9 @@ public abstract class AbstractDocument implements Document {
   ...
 }
 ```
-A continuación definimos un enum `Property` y un grupo de interfaces para tipo, precio, modelo y partes. Esto nos permite crear interfaces de apariencia estática para nuestra clase `Car`.
+
+A continuación definimos un enum `Property` y un grupo de interfaces para tipo, precio, modelo y partes. Esto nos
+permite crear interfaces de apariencia estática para nuestra clase `Car`.
 
 ```java
 public enum Property {
@@ -166,14 +172,14 @@ Y finalmente asi es como construimos y usamos el Coche `Car` en un ejemplo compl
 
 ## Diagrama de clases
 
-![alt text](../../../abstract-document/etc/abstract-document.png "Abstract Document Traits and Domain")
+![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
 ## Aplicación
 
 Usar el patrón Abstract Document cuando
 
 * Existe la necesidad de añadir propiedades sobre la marcha.
-* Quieres una manera flexible de organizar el dominio en una estructura similar a un arbol.
+* Quieres una manera flexible de organizar el dominio en una estructura similar a un árbol.
 * Quieres un sistema menos acoplado.
 
 ## Créditos

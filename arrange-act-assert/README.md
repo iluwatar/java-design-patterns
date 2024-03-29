@@ -1,9 +1,10 @@
 ---
 title: Arrange/Act/Assert
-category: Idiom
+category: Testing
 language: en
 tag:
- - Testing
+  - Idiom
+  - Testing
 ---
 
 ## Also known as
@@ -131,7 +132,30 @@ class CashAAATest {
 
 Use Arrange/Act/Assert pattern when
 
-* You need to structure your unit tests so that they're easier to read, maintain, and enhance. 
+* Unit testing, especially within the context of TDD and BDD 
+* Anywhere clarity and structure are needed in test cases
+
+## Known uses
+
+* Widely adopted in software projects using TDD and BDD methodologies.
+* Utilized in various programming languages and testing frameworks, such as JUnit (Java), NUnit (.NET), and xUnit frameworks.
+
+## Consequences
+
+Benefits:
+
+* Improved readability of tests by clearly separating the setup, action, and verification steps.
+* Easier maintenance and understanding of tests, as each test is structured in a predictable way.
+* Facilitates debugging by isolating test failures to specific phases within the test.
+
+Trade-offs:
+
+* May introduce redundancy in tests, as similar arrangements may be repeated across tests.
+* Some complex tests might not fit neatly into this structure, requiring additional context or setup outside these three phases.
+
+## Related patterns
+
+* [Page Object](https://java-design-patterns.com/patterns/page-object/): A pattern for organizing UI tests that can be used in conjunction with Arrange/Act/Assert.
 
 ## Credits
 
@@ -141,3 +165,4 @@ Use Arrange/Act/Assert pattern when
 * [xUnit Test Patterns: Refactoring Test Code](https://www.amazon.com/gp/product/0131495054/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0131495054&linkId=99701e8f4af2f7e8dd50d720c9b63dbf)
 * [Unit Testing Principles, Practices, and Patterns](https://www.amazon.com/gp/product/1617296279/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617296279&linkId=74c75cf22a63c3e4758ae08aa0a0cc35)
 * [Test Driven Development: By Example](https://www.amazon.com/gp/product/0321146530/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0321146530&linkId=5c63a93d8c1175b84ca5087472ef0e05)
+* [The Art of Unit Testing: with examples in C#](https://amzn.to/49IbdwO)

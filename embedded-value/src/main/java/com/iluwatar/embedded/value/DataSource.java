@@ -87,7 +87,7 @@ public class DataSource implements DataSourceInterface {
       var resultSet = getschema.executeQuery(GET_SCHEMA);
       var sb = new StringBuilder();
       while (resultSet.next()) {
-        sb.append("Col name: " + resultSet.getString(1) + ",  Col type: " + resultSet.getString(2) + "\n");
+        sb.append("Col name: ").append(resultSet.getString(1)).append(",  Col type: ").append(resultSet.getString(2)).append("\n");
       }
       getschema.close();
       return sb.toString();

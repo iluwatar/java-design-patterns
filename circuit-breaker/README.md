@@ -1,17 +1,20 @@
 ---
 title: Circuit Breaker
-category: Behavioral
+category: Resilience
 language: en
 tag:
-  - Performance
-  - Decoupling
   - Cloud distributed
+  - Fault tolerance
+  - Microservices
 ---
+
+## Also known as
+
+* Fault tolerance switch
 
 ## Intent
 
-Handle costly remote service calls in such a way that the failure of a single service/component 
-cannot bring the whole application down, and we can reconnect to the service as soon as possible.
+The Circuit Breaker pattern aims to prevent a software system from making calls to a part of the system that is either failing or showing signs of distress. It is a way to gracefully degrade functionality when a dependent service is not responding, rather than failing completely.
 
 ## Explanation
 
@@ -98,7 +101,7 @@ public class App {
       LOGGER.info("Waiting for delayed service to become responsive");
       Thread.sleep(5000);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error("An error occurred: ", e);
     }
     //Check the state of delayed circuit breaker, should be HALF_OPEN
     LOGGER.info(delayedServiceCircuitBreaker.getState());
@@ -171,7 +174,8 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
     int failureCount;
     private final int failureThreshold;
     private State state;
-    private final long futureTime = 1000 * 1000 * 1000 * 1000;
+    // Future time offset, in nanoseconds
+    private final long futureTime = 1_000_000_000_000L;
 
     /**
      * Constructor to create an instance of Circuit Breaker.
@@ -304,19 +308,36 @@ implemented by it.
 
 ## Applicability
 
-Use the Circuit Breaker pattern when
+* In distributed systems where individual service failures can lead to cascading system-wide failures
+* For applications that interact with third-party services or databases that might become unresponsive or slow
+* In microservices architectures where the failure of one service can affect the availability of others
 
-- Building a fault-tolerant application where failure of some services shouldn't bring the entire application down.
-- Building a continuously running (always-on) application, so that its components can be upgraded without shutting it down entirely.
+## Known Uses
+
+* Cloud-based services to gracefully handle the failure of external services
+* E-commerce platforms to manage high volumes of transactions and dependency on external APIs
+* Microservices architectures for maintaining system stability and responsiveness
+* [Spring Circuit Breaker module](https://spring.io/guides/gs/circuit-breaker)
+* [Netflix Hystrix API](https://github.com/Netflix/Hystrix)
+
+## Consequences
+
+Benefits:
+
+* Prevents the system from performing futile operations that are likely to fail, thus saving resources
+* Helps in maintaining the stability and performance of the application during partial system failures
+* Facilitates faster system recovery by avoiding the overwhelming of failing services with repeated requests
+
+Trade-Offs:
+
+* The complexity of the system increases as the pattern requires additional logic to detect failures and manage the state of the circuit breaker
+* May lead to system degradation if not properly configured, as legitimate requests might be blocked if the circuit is open
+* Requires careful tuning of thresholds and timeout periods to balance between responsiveness and protection
 
 ## Related Patterns
 
-- [Retry Pattern](https://github.com/iluwatar/java-design-patterns/tree/master/retry)
-
-## Real world examples
-
-* [Spring Circuit Breaker module](https://spring.io/guides/gs/circuit-breaker)
-* [Netflix Hystrix API](https://github.com/Netflix/Hystrix)
+- [Retry Pattern](https://github.com/iluwatar/java-design-patterns/tree/master/retry): Can be used in conjunction with the Circuit Breaker pattern to retry failed operations before opening the circuit
+- [Bulkhead Pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead): Can be used to isolate different parts of the system to prevent failures from spreading across the system
 
 ## Credits
 
@@ -324,3 +345,6 @@ Use the Circuit Breaker pattern when
 * [Martin Fowler on Circuit Breaker](https://martinfowler.com/bliki/CircuitBreaker.html)
 * [Fault tolerance in a high volume, distributed system](https://medium.com/netflix-techblog/fault-tolerance-in-a-high-volume-distributed-system-91ab4faae74a)
 * [Circuit Breaker pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/circuit-breaker)
+* [Release It! Design and Deploy Production-Ready Software](https://amzn.to/4aqTNEP)
+* [Microservices Patterns: With examples in Java](https://amzn.to/3xaZwk0)
+* [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/43Dx86g)

@@ -3,15 +3,18 @@ title: Adapter
 category: Structural
 language: en
 tag:
- - Gang of Four
+  - Compatibility
+  - Gang of Four
+  - Integration
 ---
 
 ## Also known as
+
 Wrapper
 
 ## Intent
-Convert the interface of a class into another interface the clients expect. Adapter lets classes work together that 
-couldn't otherwise because of incompatible interfaces.
+
+The Adapter pattern converts the interface of a class into another interface that clients expect, enabling compatibility.
 
 ## Explanation
 
@@ -92,9 +95,11 @@ captain.row();
 ```
 
 ## Class diagram
+
 ![alt text](./etc/adapter.urm.png "Adapter class diagram")
 
 ## Applicability
+
 Use the Adapter pattern when
 
 * You want to use an existing class, and its interface does not match the one you need
@@ -111,6 +116,7 @@ Use the Adapter pattern when
 
 
 ## Consequences
+
 Class and object adapters have different trade-offs. A class adapter
 
 *	Adapts Adaptee to Target by committing to a concrete Adaptee class. As a consequence, a class adapter won’t work when we want to adapt a class and all its subclasses.
