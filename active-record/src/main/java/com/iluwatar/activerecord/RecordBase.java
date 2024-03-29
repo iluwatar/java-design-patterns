@@ -76,7 +76,7 @@ public abstract class RecordBase {
       }
     } catch (SQLException e) {
       throw new RuntimeException(
-          "Unable to the record for the following domain model : " + clazz.getName() + " by id="
+          "Unable to fine a record for the following domain model : " + clazz.getName() + " by id="
               + id
               + " due to the data persistence error", e);
     }
