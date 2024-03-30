@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.layers.view;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -34,19 +35,19 @@ import ch.qos.logback.core.AppenderBase;
 import dto.CakeInfo;
 import dto.CakeLayerInfo;
 import dto.CakeToppingInfo;
-import service.CakeBakingService;
 import java.util.LinkedList;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
+import service.CakeBakingService;
 import view.CakeViewImpl;
 
 /**
- * Date: 12/15/15 - 10:04 PM
- *
- * @author Jeroen Meulemeester
+ * This class contains unit tests for the CakeViewImpl class.
+ * It tests the functionality of rendering cakes using the CakeViewImpl class.
+ * It also tests the logging functionality of the CakeViewImpl class.
  */
 class CakeViewImplTest {
 
@@ -63,15 +64,13 @@ class CakeViewImplTest {
   }
 
   /**
-   * Verify if the cake view renders the expected result
+   * Verify if the cake view renders the expected result.
    */
   @Test
   void testRender() {
 
-    final var layers = List.of(
-            new CakeLayerInfo("layer1", 1000),
-            new CakeLayerInfo("layer2", 2000),
-            new CakeLayerInfo("layer3", 3000));
+    final var layers = List.of(new CakeLayerInfo("layer1", 1000), new CakeLayerInfo("layer2", 2000),
+        new CakeLayerInfo("layer3", 3000));
 
     final var cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
     final var cakes = List.of(cake);

@@ -40,7 +40,7 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>net.sourceforge.htmlunit</groupId>
+      <groupId>org.htmlunit</groupId>
       <artifactId>htmlunit</artifactId>
     </dependency>
   </dependencies>
