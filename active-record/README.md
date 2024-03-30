@@ -14,7 +14,7 @@ responsible for its own persistence, including tasks such as database querying, 
 and deleting records.
 
 This pattern is particularly useful in scenarios where simplicity and rapid development are
-prioritized, as it allows developers to quickly implement data access functionality with minimal
+prioritized, as it allows engineers to quickly implement data access functionality with minimal
 effort. By encapsulating persistence logic within the domain objects, the Active Record pattern
 promotes a straightforward and intuitive approach to working with data, making it easier to
 understand and maintain codebases.
