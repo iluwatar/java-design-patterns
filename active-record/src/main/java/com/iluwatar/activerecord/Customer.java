@@ -37,6 +37,11 @@ public class Customer extends RecordBase<Customer> {
   }
 
   @Override
+  protected String constructInsertQuery() {
+    return "INSERT INTO " + getTableName() + " VALUES(?, ?, ?, ?)";
+  }
+
+  @Override
   protected void setFieldsFromResultSet(ResultSet rs) throws SQLException {
     this.id = rs.getLong("id");
     this.customerNumber = rs.getString("customer_number");
@@ -46,6 +51,9 @@ public class Customer extends RecordBase<Customer> {
 
   @Override
   protected void setPreparedStatementParams(PreparedStatement pstmt) throws SQLException {
-
+    pstmt.setLong(1, id);
+    pstmt.setString(2, customerNumber);
+    pstmt.setString(3, firstName);
+    pstmt.setString(4, lastName);
   }
 }

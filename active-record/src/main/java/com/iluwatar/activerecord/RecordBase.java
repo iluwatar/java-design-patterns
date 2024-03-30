@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
@@ -59,6 +60,13 @@ public abstract class RecordBase<T extends RecordBase<?>> {
   protected abstract String getTableName();
 
   /**
+   * Constructs an INSERT query which is being used for an insertion purposes.
+   *
+   * @return an insertion query.
+   */
+  protected abstract String constructInsertQuery();
+
+  /**
    * Set all the fields into the underlying domain model from the result set.
    *
    * @param rs the result set {@link ResultSet}.
@@ -85,9 +93,9 @@ public abstract class RecordBase<T extends RecordBase<?>> {
         PreparedStatement pstmt = conn.prepareStatement(constructFindAllQuery())) {
       try (ResultSet rs = pstmt.executeQuery()) {
         while (rs.next()) {
-          T record = getDeclaredClassInstance();
-          record.setFieldsFromResultSet(rs);
-          recordList.add(record);
+          T theRecord = getDeclaredClassInstance();
+          theRecord.setFieldsFromResultSet(rs);
+          recordList.add(theRecord);
         }
         return recordList;
       }
@@ -108,9 +116,9 @@ public abstract class RecordBase<T extends RecordBase<?>> {
       pstmt.setLong(1, id);
       try (ResultSet rs = pstmt.executeQuery()) {
         if (rs.next()) {
-          T record = getDeclaredClassInstance();
-          record.setFieldsFromResultSet(rs);
-          return record;
+          T theRecord = getDeclaredClassInstance();
+          theRecord.setFieldsFromResultSet(rs);
+          return theRecord;
         }
         return getDeclaredClassInstance();
       }
@@ -125,9 +133,8 @@ public abstract class RecordBase<T extends RecordBase<?>> {
    */
   public void save() {
     try (Connection connection = getConnection();
-        // TODO
-        PreparedStatement pstmt = connection.prepareStatement(null,
-            PreparedStatement.RETURN_GENERATED_KEYS)) {
+        PreparedStatement pstmt = connection.prepareStatement(constructInsertQuery(),
+            Statement.RETURN_GENERATED_KEYS)) {
 
       setPreparedStatementParams(pstmt);
       pstmt.executeUpdate();

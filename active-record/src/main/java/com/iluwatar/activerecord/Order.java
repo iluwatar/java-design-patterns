@@ -26,6 +26,11 @@ public class Order extends RecordBase<Order> {
   }
 
   @Override
+  protected String constructInsertQuery() {
+    return null;
+  }
+
+  @Override
   protected void setFieldsFromResultSet(ResultSet rs) throws SQLException {
     this.id = rs.getLong("id");
     this.orderNumber = rs.getString("order_number");
