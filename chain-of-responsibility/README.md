@@ -3,8 +3,8 @@ title: Chain of responsibility
 category: Behavioral
 language: en
 tag:
-  - Gang of Four
-  - Decoupling
+    - Gang of Four
+    - Decoupling
 ---
 
 ## Also known as
@@ -15,27 +15,27 @@ tag:
 
 ## Intent
 
-Avoid coupling the sender of a request to its receiver by giving more than one object a chance to 
-handle the request. Chain the receiving objects and pass the request along the chain until an object 
+Avoid coupling the sender of a request to its receiver by giving more than one object a chance to
+handle the request. Chain the receiving objects and pass the request along the chain until an object
 handles it.
 
 ## Explanation
 
 Real-world example
 
-> The Orc King gives loud orders to his army. The closest one to react is the commander, then 
+> The Orc King gives loud orders to his army. The closest one to react is the commander, then
 > an officer, and then a soldier. The commander, officer, and soldier form a chain of responsibility.
 
 In plain words
 
-> It helps to build a chain of objects. A request enters from one end and keeps going from an object 
+> It helps to build a chain of objects. A request enters from one end and keeps going from an object
 > to another until it finds a suitable handler.
 
 Wikipedia says
 
-> In object-oriented design, the chain-of-responsibility pattern is a design pattern consisting of 
-> a source of command objects and a series of processing objects. Each processing object contains 
-> logic that defines the types of command objects that it can handle; the rest are passed to the 
+> In object-oriented design, the chain-of-responsibility pattern is a design pattern consisting of
+> a source of command objects and a series of processing objects. Each processing object contains
+> logic that defines the types of command objects that it can handle; the rest are passed to the
 > next processing object in the chain.
 
 **Programmatic Example**
@@ -48,27 +48,27 @@ import lombok.Getter;
 @Getter
 public class Request {
 
-  private final RequestType requestType;
-  private final String requestDescription;
-  private boolean handled;
+    private final RequestType requestType;
+    private final String requestDescription;
+    private boolean handled;
 
-  public Request(final RequestType requestType, final String requestDescription) {
-    this.requestType = Objects.requireNonNull(requestType);
-    this.requestDescription = Objects.requireNonNull(requestDescription);
-  }
-  
-  public void markHandled() {
-    this.handled = true;
-  }
-  
-  @Override
-  public String toString() {
-    return getRequestDescription();
-  }
+    public Request(final RequestType requestType, final String requestDescription) {
+        this.requestType = Objects.requireNonNull(requestType);
+        this.requestDescription = Objects.requireNonNull(requestDescription);
+    }
+
+    public void markHandled() {
+        this.handled = true;
+    }
+
+    @Override
+    public String toString() {
+        return getRequestDescription();
+    }
 }
 
 public enum RequestType {
-  DEFEND_CASTLE, TORTURE_PRISONER, COLLECT_TAX
+    DEFEND_CASTLE, TORTURE_PRISONER, COLLECT_TAX
 }
 ```
 
@@ -119,34 +119,34 @@ The Orc King gives the orders and forms the chain.
 ```java
 public class OrcKing {
 
-  private List<RequestHandler> handlers;
+    private List<RequestHandler> handlers;
 
-  public OrcKing() {
-    buildChain();
-  }
+    public OrcKing() {
+        buildChain();
+    }
 
-  private void buildChain() {
-    handlers = Arrays.asList(new OrcCommander(), new OrcOfficer(), new OrcSoldier());
-  }
+    private void buildChain() {
+        handlers = Arrays.asList(new OrcCommander(), new OrcOfficer(), new OrcSoldier());
+    }
 
-  public void makeRequest(Request req) {
-    handlers
-        .stream()
-        .sorted(Comparator.comparing(RequestHandler::getPriority))
-        .filter(handler -> handler.canHandleRequest(req))
-        .findFirst()
-        .ifPresent(handler -> handler.handle(req));
-  }
+    public void makeRequest(Request req) {
+        handlers
+                .stream()
+                .sorted(Comparator.comparing(RequestHandler::getPriority))
+                .filter(handler -> handler.canHandleRequest(req))
+                .findFirst()
+                .ifPresent(handler -> handler.handle(req));
+    }
 }
 ```
 
 The chain of responsibility in action.
 
 ```java
-var king = new OrcKing();
-king.makeRequest(new Request(RequestType.DEFEND_CASTLE, "defend castle"));
-king.makeRequest(new Request(RequestType.TORTURE_PRISONER, "torture prisoner"));
-king.makeRequest(new Request(RequestType.COLLECT_TAX, "collect tax"));
+var king=new OrcKing();
+        king.makeRequest(new Request(RequestType.DEFEND_CASTLE,"defend castle"));
+        king.makeRequest(new Request(RequestType.TORTURE_PRISONER,"torture prisoner"));
+        king.makeRequest(new Request(RequestType.COLLECT_TAX,"collect tax"));
 ```
 
 The console output.
@@ -165,7 +165,8 @@ Orc soldier handling request "collect tax"
 
 Use Chain of Responsibility when
 
-* More than one object may handle a request, and the handler isn't known a priori. The handler should be ascertained automatically.
+* More than one object may handle a request, and the handler isn't known a priori. The handler should be ascertained
+  automatically.
 * You want to issue a request to one of several objects without specifying the receiver explicitly.
 * The set of objects that can handle a request should be specified dynamically.
 
@@ -183,20 +184,25 @@ Use Chain of Responsibility when
 Benefits:
 
 * Reduced coupling. The sender of a request does not need to know the concrete handler that will process the request.
-* Increased flexibility in assigning responsibilities to objects. You can add or change responsibilities for handling a request by changing the members and order of the chain.
+* Increased flexibility in assigning responsibilities to objects. You can add or change responsibilities for handling a
+  request by changing the members and order of the chain.
 * Allows you to set a default handler if no concrete handler can handle the request.
 
 Trade-Offs:
 
 * It can be challenging to debug and understand the flow, especially if the chain is long and complex.
 * The request might end up unhandled if the chain doesn't include a catch-all handler.
-* Performance concerns might arise due to potentially going through several handlers before finding the right one, or not finding it at all.
+* Performance concerns might arise due to potentially going through several handlers before finding the right one, or
+  not finding it at all.
 
 ## Related Patterns
 
-[Command](https://java-design-patterns.com/patterns/command/): can be used to encapsulate a request as an object, which might be passed along the chain.
-[Composite](https://java-design-patterns.com/patterns/composite/): the Chain of Responsibility is often applied in conjunction with the Composite pattern.
-[Decorator](https://java-design-patterns.com/patterns/decorator/): decorators can be chained in a similar manner as responsibilities in the Chain of Responsibility pattern.
+[Command](https://java-design-patterns.com/patterns/command/): can be used to encapsulate a request as an object, which
+might be passed along the chain.
+[Composite](https://java-design-patterns.com/patterns/composite/): the Chain of Responsibility is often applied in
+conjunction with the Composite pattern.
+[Decorator](https://java-design-patterns.com/patterns/decorator/): decorators can be chained in a similar manner as
+responsibilities in the Chain of Responsibility pattern.
 
 ## Credits
 

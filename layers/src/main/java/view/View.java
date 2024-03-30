@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package view;
 
 /**
@@ -29,6 +30,6 @@ package view;
  */
 public interface View {
 
-    void render();
+  void render();
 
 }
