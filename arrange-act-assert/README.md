@@ -3,8 +3,8 @@ title: Arrange/Act/Assert
 category: Testing
 language: en
 tag:
-  - Idiom
-  - Testing
+    - Idiom
+    - Testing
 ---
 
 ## Also known as
@@ -42,7 +42,7 @@ In plain words
 
 WikiWikiWeb says
 
-> Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods. 
+> Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods.
 
 **Programmatic Example**
 
@@ -51,28 +51,28 @@ Let's first introduce our `Cash` class to be unit tested.
 ```java
 public class Cash {
 
-  private int amount;
+    private int amount;
 
-  Cash(int amount) {
-    this.amount = amount;
-  }
-
-  void plus(int addend) {
-    amount += addend;
-  }
-
-  boolean minus(int subtrahend) {
-    if (amount >= subtrahend) {
-      amount -= subtrahend;
-      return true;
-    } else {
-      return false;
+    Cash(int amount) {
+        this.amount = amount;
     }
-  }
 
-  int count() {
-    return amount;
-  }
+    void plus(int addend) {
+        amount += addend;
+    }
+
+    boolean minus(int subtrahend) {
+        if (amount >= subtrahend) {
+            amount -= subtrahend;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    int count() {
+        return amount;
+    }
 }
 ```
 
@@ -82,49 +82,49 @@ separated steps for each unit test.
 ```java
 class CashAAATest {
 
-  @Test
-  void testPlus() {
-    //Arrange
-    var cash = new Cash(3);
-    //Act
-    cash.plus(4);
-    //Assert
-    assertEquals(7, cash.count());
-  }
+    @Test
+    void testPlus() {
+        //Arrange
+        var cash = new Cash(3);
+        //Act
+        cash.plus(4);
+        //Assert
+        assertEquals(7, cash.count());
+    }
 
-  @Test
-  void testMinus() {
-    //Arrange
-    var cash = new Cash(8);
-    //Act
-    var result = cash.minus(5);
-    //Assert
-    assertTrue(result);
-    assertEquals(3, cash.count());
-  }
+    @Test
+    void testMinus() {
+        //Arrange
+        var cash = new Cash(8);
+        //Act
+        var result = cash.minus(5);
+        //Assert
+        assertTrue(result);
+        assertEquals(3, cash.count());
+    }
 
-  @Test
-  void testInsufficientMinus() {
-    //Arrange
-    var cash = new Cash(1);
-    //Act
-    var result = cash.minus(6);
-    //Assert
-    assertFalse(result);
-    assertEquals(1, cash.count());
-  }
+    @Test
+    void testInsufficientMinus() {
+        //Arrange
+        var cash = new Cash(1);
+        //Act
+        var result = cash.minus(6);
+        //Assert
+        assertFalse(result);
+        assertEquals(1, cash.count());
+    }
 
-  @Test
-  void testUpdate() {
-    //Arrange
-    var cash = new Cash(5);
-    //Act
-    cash.plus(6);
-    var result = cash.minus(3);
-    //Assert
-    assertTrue(result);
-    assertEquals(8, cash.count());
-  }
+    @Test
+    void testUpdate() {
+        //Arrange
+        var cash = new Cash(5);
+        //Act
+        cash.plus(6);
+        var result = cash.minus(3);
+        //Assert
+        assertTrue(result);
+        assertEquals(8, cash.count());
+    }
 }
 ```
 
@@ -132,13 +132,14 @@ class CashAAATest {
 
 Use Arrange/Act/Assert pattern when
 
-* Unit testing, especially within the context of TDD and BDD 
+* Unit testing, especially within the context of TDD and BDD
 * Anywhere clarity and structure are needed in test cases
 
 ## Known uses
 
 * Widely adopted in software projects using TDD and BDD methodologies.
-* Utilized in various programming languages and testing frameworks, such as JUnit (Java), NUnit (.NET), and xUnit frameworks.
+* Utilized in various programming languages and testing frameworks, such as JUnit (Java), NUnit (.NET), and xUnit
+  frameworks.
 
 ## Consequences
 
@@ -151,11 +152,13 @@ Benefits:
 Trade-offs:
 
 * May introduce redundancy in tests, as similar arrangements may be repeated across tests.
-* Some complex tests might not fit neatly into this structure, requiring additional context or setup outside these three phases.
+* Some complex tests might not fit neatly into this structure, requiring additional context or setup outside these three
+  phases.
 
 ## Related patterns
 
-* [Page Object](https://java-design-patterns.com/patterns/page-object/): A pattern for organizing UI tests that can be used in conjunction with Arrange/Act/Assert.
+* [Page Object](https://java-design-patterns.com/patterns/page-object/): A pattern for organizing UI tests that can be
+  used in conjunction with Arrange/Act/Assert.
 
 ## Credits
 

@@ -22,15 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package service;
 
 import dto.CakeInfo;
 import dto.CakeLayerInfo;
 import dto.CakeToppingInfo;
 import exception.CakeBakingException;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  * Service for cake baking operations.
@@ -38,40 +38,40 @@ import java.util.List;
 @Service
 public interface CakeBakingService {
 
-    /**
-     * Bakes new cake according to parameters.
-     */
-    void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
+  /**
+   * Bakes new cake according to parameters.
+   */
+  void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
 
-    /**
-     * Get all cakes.
-     */
-    List<CakeInfo> getAllCakes();
+  /**
+   * Get all cakes.
+   */
+  List<CakeInfo> getAllCakes();
 
-    /**
-     * Store new cake topping.
-     */
-    void saveNewTopping(CakeToppingInfo toppingInfo);
+  /**
+   * Store new cake topping.
+   */
+  void saveNewTopping(CakeToppingInfo toppingInfo);
 
-    /**
-     * Get available cake toppings.
-     */
-    List<CakeToppingInfo> getAvailableToppings();
+  /**
+   * Get available cake toppings.
+   */
+  List<CakeToppingInfo> getAvailableToppings();
 
-    /**
-     * Add new cake layer.
-     */
-    void saveNewLayer(CakeLayerInfo layerInfo);
+  /**
+   * Add new cake layer.
+   */
+  void saveNewLayer(CakeLayerInfo layerInfo);
 
-    /**
-     * Get available cake layers.
-     */
-    List<CakeLayerInfo> getAvailableLayers();
+  /**
+   * Get available cake layers.
+   */
+  List<CakeLayerInfo> getAvailableLayers();
 
-    void deleteAllCakes();
+  void deleteAllCakes();
 
-    void deleteAllLayers();
+  void deleteAllLayers();
 
-    void deleteAllToppings();
+  void deleteAllToppings();
 
 }
