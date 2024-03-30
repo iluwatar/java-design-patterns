@@ -1,25 +1,36 @@
 ---
 title: Component
-categories: Behavioral
+categories: Structural
 language: en
 tag:
-- Game programming
-- Domain
+    - Game programming
+    - Decoupling
+    - Modularity
 ---
+
+## Also known as
+
+* Entity-Component-System (ECS)
+* Component-Entity-System (CES)
+* Component-Based Architecture (CBA)
 
 ## Intent
 
-The component design pattern enables developers to decouple attributes of an objects. Essentially allowing a single
-component to be inheritable by multiple domains/objects without linking the objects to each other. In addition to this
-benefit, the component design pattern allows developer to write maintainable and comprehensible code which is less
-likely to result in monolithic classes.
+The Component design pattern aims to organize code into reusable, interchangeable components, promoting flexibility and
+ease of maintenance in game development by allowing entities to be configured with varying behaviors.
 
 ![Intent](./etc/component.duplication.png "Component Design Pattern")
 
 ## Explanation
 
 Real world example
-> Suppose your video game consists of a graphics component and a sound component. Including the methods and attributes of both of these features in a single java class can be problematic due to many reasons. Firstly, the graphics and sound code can create an extremely long java class which can be hard to maintain. Furthermore, graphics components may be written and implemented by a separate team as to the sound contents. If both parties work simultaneously on the same java class, this may cause conflicts and major delay. Using the component design pattern, the development team is able to create individual component classes for graphics and sound whilst providing the domain/object the reach to both of these attributes.
+> Suppose your video game consists of a graphics component and a sound component. Including the methods and attributes
+> of both of these features in a single java class can be problematic due to many reasons. Firstly, the graphics and sound
+> code can create an extremely long java class which can be hard to maintain. Furthermore, graphics components may be
+> written and implemented by a separate team as to the sound contents. If both parties work simultaneously on the same
+> java class, this may cause conflicts and major delay. Using the component design pattern, the development team is able
+> to create individual component classes for graphics and sound whilst providing the domain/object the reach to both of
+> these attributes.
 
 
 In plain words
@@ -63,48 +74,48 @@ components.
 
 ```java
 public class GameObject {
-  private final InputComponent inputComponent;
-  private final PhysicComponent physicComponent;
-  private final GraphicComponent graphicComponent;
+    private final InputComponent inputComponent;
+    private final PhysicComponent physicComponent;
+    private final GraphicComponent graphicComponent;
 
-  public String name;
-  public int velocity = 0;
-  public int coordinate = 0;
+    public String name;
+    public int velocity = 0;
+    public int coordinate = 0;
 
-  public static GameObject createPlayer() {
-    return new GameObject(new PlayerInputComponent(),
-        new ObjectPhysicComponent(),
-        new ObjectGraphicComponent(),
-        "player");
-  }
+    public static GameObject createPlayer() {
+        return new GameObject(new PlayerInputComponent(),
+                new ObjectPhysicComponent(),
+                new ObjectGraphicComponent(),
+                "player");
+    }
 
-  public static GameObject createNpc() {
-    return new GameObject(
-        new DemoInputComponent(),
-        new ObjectPhysicComponent(),
-        new ObjectGraphicComponent(),
-        "npc");
-  }
+    public static GameObject createNpc() {
+        return new GameObject(
+                new DemoInputComponent(),
+                new ObjectPhysicComponent(),
+                new ObjectGraphicComponent(),
+                "npc");
+    }
 
-  public void demoUpdate() {
-    inputComponent.update(this);
-    physicComponent.update(this);
-    graphicComponent.update(this);
-  }
+    public void demoUpdate() {
+        inputComponent.update(this);
+        physicComponent.update(this);
+        graphicComponent.update(this);
+    }
 
-  public void update(int e) {
-    inputComponent.update(this, e);
-    physicComponent.update(this);
-    graphicComponent.update(this);
-  }
+    public void update(int e) {
+        inputComponent.update(this, e);
+        physicComponent.update(this);
+        graphicComponent.update(this);
+    }
 
-  public void updateVelocity(int acceleration) {
-    this.velocity += acceleration;
-  }
-  
-  public void updateCoordinate() {
-    this.coordinate += this.velocity;
-  }
+    public void updateVelocity(int acceleration) {
+        this.velocity += acceleration;
+    }
+
+    public void updateCoordinate() {
+        this.coordinate += this.velocity;
+    }
 }
 ```
 
@@ -148,13 +159,47 @@ public class PlayerInputComponent implements InputComponent {
 
 ## Applicability
 
-Use the component design pattern when
+* Used in game development and simulations where game entities (e.g., characters, items) can have a dynamic set of
+  abilities or states.
+* Suitable for systems requiring high modularity and systems where entities might need to change behavior at runtime
+  without inheritance hierarchies.
 
-- you have a class which access multiple features which you would like to keep separate.
-- you want to reduce the length of a class.
-- you require a variety of objects to share a collection of components but the use of inheritance isn't specific enough.
+## Known Uses
+
+* Game engines like Unity, Unreal Engine, and various custom engines in AAA and indie games.
+* Simulation systems that require flexible, dynamic object composition.
+
+## Consequences
+
+Benefits:
+
+* Flexibility and Reusability: Components can be reused across different entities, making it easier to add new features
+  or modify existing ones.
+* Decoupling: Reduces dependencies between game entity states and behaviors, facilitating easier changes and
+  maintenance.
+* Dynamic Composition: Entities can alter their behavior at runtime by adding or removing components, providing
+  significant flexibility in game design.
+
+Trade-offs:
+
+* Complexity: Can introduce additional complexity in system architecture, particularly in managing dependencies and
+  communications between components.
+* Performance Considerations: Depending on implementation, may incur a performance overhead due to indirection and
+  dynamic behavior, especially critical in high-performance game loops.
+
+## Related Patterns
+
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar concept of adding responsibilities
+  dynamically, but without the focus on game entities.
+* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Can be used in conjunction with the Component
+  pattern to share component instances among many entities to save memory.
+* [Observer](https://java-design-patterns.com/patterns/observer/): Often used in Component systems to communicate state
+  changes between components.
 
 ## Credits
 
-- [Component Design Pattern] (https://gameprogrammingpatterns.com/component.html)
-- [Component pattern - game programming series - Tutemic] (https://www.youtube.com/watch?v=n92GBp2WMkg&ab_channel=Tutemic)
+* [Component Design Pattern] (https://gameprogrammingpatterns.com/component.html)
+* [Component pattern - game programming series - Tutemic] (https://www.youtube.com/watch?v=n92GBp2WMkg&ab_channel=Tutemic)
+* [Game Programming Patterns](https://amzn.to/4cDRWhV)
+* [Unity in Action: Multiplatform Game Development in C#](https://amzn.to/3THO6vw)
+* [Procedural Content Generation for Unity Game Development](https://amzn.to/3vBKCTp)
