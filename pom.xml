@@ -38,6 +38,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
     <spring-boot.version>2.7.5</spring-boot.version>
+    <jackson-databind.version>2.17.0</jackson-databind.version>
     <jacoco.version>0.8.11</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <htmlunit.version>3.11.0</htmlunit.version>
@@ -227,6 +228,11 @@
   </repositories>
   <dependencyManagement>
     <dependencies>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson-databind.version}</version>
+    </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
