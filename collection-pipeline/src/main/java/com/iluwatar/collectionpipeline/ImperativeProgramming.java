@@ -66,7 +66,12 @@ public class ImperativeProgramming {
       }
     }
 
-    carsSortedByYear.sort(Comparator.comparingInt(Car::year));
+    Collections.sort(carsSortedByYear, new Comparator<Car>() {
+      @Override
+      public int compare(Car car1, Car car2) {
+        return car1.year() - car2.year();
+      }
+    });
 
     List<String> models = new ArrayList<>();
     for (Car car : carsSortedByYear) {
@@ -116,7 +121,12 @@ public class ImperativeProgramming {
       }
     }
 
-    sedanCars.sort(Comparator.comparingInt(Car::year));
+    sedanCars.sort(new Comparator<Car>() {
+      @Override
+      public int compare(Car o1, Car o2) {
+        return o1.year() - o2.year();
+      }
+    });
 
     return sedanCars;
   }
