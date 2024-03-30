@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 
 /**
  * An active record base supposed to hold all the necessary active record pattern logic.
@@ -24,17 +23,31 @@ public abstract class RecordBase<T extends RecordBase<?>> {
 
   private static final String EXCEPTION_MESSAGE = "Couldn't execute database query for the following domain model :";
 
-  @Setter
   private static DataSource dataSource;
 
   @SuppressWarnings({"unchecked"})
   private final Class<T> clazz = (Class<T>) getClass();
 
+  /**
+   * Sets the data source. Preferably to eb done during the application startup or within the
+   * configuration.
+   *
+   * @param dataSource the data source {@link DataSource}.
+   */
+  public static void setDataSource(DataSource dataSource) {
+    RecordBase.dataSource = dataSource;
+  }
+
+  /**
+   * Get an SQL exception for the sake of all other internal persistence methods.
+   *
+   * @return the connection {@link Connection}.
+   */
   protected Connection getConnection() {
     try {
       return dataSource.getConnection();
     } catch (SQLException e) {
-      throw new RuntimeException("Unable to acquire database connection", e);
+      throw new RecordDataAccessException("Unable to acquire database connection", e);
     }
   }
 
@@ -45,8 +58,20 @@ public abstract class RecordBase<T extends RecordBase<?>> {
    */
   protected abstract String getTableName();
 
+  /**
+   * Set all the fields into the underlying domain model from the result set.
+   *
+   * @param rs the result set {@link ResultSet}.
+   * @throws SQLException an SQL exception.
+   */
   protected abstract void setFieldsFromResultSet(ResultSet rs) throws SQLException;
 
+  /**
+   * Set the prepared statement parameters for the SQL statement to insert/update record.
+   *
+   * @param pstmt prepared statement {@link PreparedStatement}.
+   * @throws SQLException an SQL exception.
+   */
   protected abstract void setPreparedStatementParams(PreparedStatement pstmt) throws SQLException;
 
   /**
@@ -67,7 +92,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
         return recordList;
       }
     } catch (SQLException e) {
-      throw new RuntimeException(EXCEPTION_MESSAGE + clazz.getName(), e);
+      throw new RecordDataAccessException(EXCEPTION_MESSAGE + clazz.getName(), e);
     }
   }
 
@@ -90,7 +115,8 @@ public abstract class RecordBase<T extends RecordBase<?>> {
         return getDeclaredClassInstance();
       }
     } catch (SQLException e) {
-      throw new RuntimeException(EXCEPTION_MESSAGE + clazz.getName() + " with id=" + id, e);
+      throw new RecordDataAccessException(EXCEPTION_MESSAGE + clazz.getName() + " with id=" + id,
+          e);
     }
   }
 
@@ -107,18 +133,16 @@ public abstract class RecordBase<T extends RecordBase<?>> {
       pstmt.executeUpdate();
 
     } catch (SQLException e) {
-      throw new RuntimeException(EXCEPTION_MESSAGE + clazz.getName(), e);
+      throw new RecordDataAccessException(EXCEPTION_MESSAGE + clazz.getName(), e);
     }
   }
 
+  private String constructFindByIdQuery() {
+    return constructFindAllQuery() + " WHERE id = ?";
+  }
 
   private String constructFindAllQuery() {
     return "SELECT * FROM " + getDeclaredClassInstance().getTableName();
-  }
-
-  private String constructFindByIdQuery() {
-    return "SELECT * FROM " + getDeclaredClassInstance().getTableName()
-        + " WHERE id = ?";
   }
 
   private T getDeclaredClassInstance() {

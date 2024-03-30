@@ -1,12 +1,14 @@
 package com.iluwatar.activerecord;
 
+import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Statement;
 import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
 /**
- * The amin application for the manual testing purposes.
+ * The main application for the manual testing purposes.
  */
 @Slf4j
 public class App {
@@ -35,10 +37,10 @@ public class App {
    * Java main method to execute all the logic out there.
    *
    * @param args arguments.
-   * @throws Exception Any sort of exception that have to be picked up by the JVM.
+   * @throws Exception Any sort of exception that has to be picked up by the JVM.
    */
   public static void main(final String[] args) throws Exception {
-    final var dataSource = createDataSource();
+    final DataSource dataSource = createDataSource();
     createSchema(dataSource);
     RecordBase.setDataSource(dataSource);
     executeOperation();
@@ -65,14 +67,14 @@ public class App {
   }
 
   private static void createSchema(DataSource dataSource) throws SQLException {
-    try (var connection = dataSource.getConnection();
-        var statement = connection.createStatement()) {
-      statement.execute(CREATE_SCHEMA_SQL);
+    try (Connection conn = dataSource.getConnection();
+        Statement stmt = conn.createStatement()) {
+      stmt.execute(CREATE_SCHEMA_SQL);
     }
   }
 
   private static DataSource createDataSource() {
-    var dataSource = new JdbcDataSource();
+    JdbcDataSource dataSource = new JdbcDataSource();
     dataSource.setURL(DB_URL);
     return dataSource;
   }
