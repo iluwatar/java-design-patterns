@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.layers.exception;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -31,27 +32,40 @@ import exception.CakeBakingException;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/15/15 - 7:57 PM
- *
- * @author Jeroen Meulemeester
+ * Tests for the {@link CakeBakingException} class.
+ * This class contains unit tests to verify the correct functionality
+ * of the {@code CakeBakingException} class constructors, including the default constructor
+ * and the constructor that accepts a message parameter.
  */
-
 class CakeBakingExceptionTest {
 
-
+  /**
+   * Tests the default constructor of {@link CakeBakingException}.
+   * Ensures that an exception created with the default constructor has
+   * {@code null} as its message and cause.
+   */
   @Test
   void testConstructor() {
     final var exception = new CakeBakingException();
-    assertNull(exception.getMessage());
-    assertNull(exception.getCause());
+    assertNull(exception.getMessage(), "The message should be null for the default constructor.");
+    assertNull(exception.getCause(), "The cause should be null for the default constructor.");
   }
 
+  /**
+   * Tests the constructor of {@link CakeBakingException} that accepts a message.
+   * Ensures that an exception created with this constructor correctly stores the provided message
+   * and has {@code null} as its cause.
+   *
+   * @param expectedMessage The message provided to the constructor.
+   */
   @Test
   void testConstructorWithMessage() {
     final var expectedMessage = "message";
     final var exception = new CakeBakingException(expectedMessage);
-    assertEquals(expectedMessage, exception.getMessage());
-    assertNull(exception.getCause());
+    assertEquals(expectedMessage, exception.getMessage(),
+        "The stored message should match the expected message.");
+    assertNull(exception.getCause(),
+        "The cause should be null when an exception is created with only a message.");
   }
 
 }
