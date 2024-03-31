@@ -26,15 +26,19 @@ package com.iluwatar.separatedinterface.taxes;
 
 import com.iluwatar.separatedinterface.invoice.TaxCalculator;
 
+import static com.iluwatar.separatedinterface.taxes.AbstractTaxCalculator.TAX_PERCENTAGE;
+import com.iluwatar.separatedinterface.taxes.AbstractTaxCalculator.*;
+
 /**
  * TaxCalculator for Domestic goods with 20% tax.
  */
-public class DomesticTaxCalculator implements TaxCalculator {
+public class DomesticTaxCalculator extends AbstractTaxCalculator implements TaxCalculator {
 
-  public static final double TAX_PERCENTAGE = 20;
+  //public static final double TAX_PERCENTAGE = 20;
 
   @Override
   public double calculate(double amount) {
+    double percent = getTaxPercentage();
     return amount * TAX_PERCENTAGE / 100.0;
   }
 
