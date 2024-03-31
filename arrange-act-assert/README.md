@@ -13,8 +13,7 @@ Given/When/Then
 
 ## Intent
 
-Arrange/Act/Assert (AAA) is a pattern for organizing unit tests.
-It breaks tests down into three clear and distinct steps:
+Arrange/Act/Assert (AAA) is a pattern for organizing unit tests. It breaks tests down into three clear and distinct steps:
 
 1. Arrange: Perform the setup and initialization required for the test.
 2. Act: Take action(s) required for the test.
@@ -22,14 +21,9 @@ It breaks tests down into three clear and distinct steps:
 
 ## Explanation
 
-This pattern has several significant benefits. It creates a clear separation between a test's
-setup, operations, and results. This structure makes the code easier to read and understand. If
-you place the steps in order and format your code to separate them, you can scan a test and
-quickly comprehend what it does.
+This pattern has several significant benefits. It creates a clear separation between a test's setup, operations, and results. This structure makes the code easier to read and understand. If you place the steps in order and format your code to separate them, you can scan a test and quickly comprehend what it does.
 
-It also enforces a certain degree of discipline when you write your tests. You have to think
-clearly about the three steps your test will perform. It makes tests more natural to write at
-the same time since you already have an outline.
+It also enforces a certain degree of discipline when you write your tests. You have to think clearly about the three steps your test will perform. It makes tests more natural to write at the same time since you already have an outline.
 
 Real world example
 
@@ -37,8 +31,7 @@ Real world example
 
 In plain words
 
-> Arrange/Act/Assert is a testing pattern that organizes tests into three clear steps for easy
-> maintenance.
+> Arrange/Act/Assert is a testing pattern that organizes tests into three clear steps for easy maintenance.
 
 WikiWikiWeb says
 
@@ -76,8 +69,7 @@ public class Cash {
 }
 ```
 
-Then we write our unit tests according to Arrange/Act/Assert pattern. Notice the clearly
-separated steps for each unit test.
+Then we write our unit tests according to Arrange/Act/Assert pattern. Notice the clearly separated steps for each unit test.
 
 ```java
 class CashAAATest {
@@ -138,8 +130,7 @@ Use Arrange/Act/Assert pattern when
 ## Known uses
 
 * Widely adopted in software projects using TDD and BDD methodologies.
-* Utilized in various programming languages and testing frameworks, such as JUnit (Java), NUnit (.NET), and xUnit
-  frameworks.
+* Utilized in various programming languages and testing frameworks, such as JUnit (Java), NUnit (.NET), and xUnit frameworks.
 
 ## Consequences
 
@@ -152,13 +143,11 @@ Benefits:
 Trade-offs:
 
 * May introduce redundancy in tests, as similar arrangements may be repeated across tests.
-* Some complex tests might not fit neatly into this structure, requiring additional context or setup outside these three
-  phases.
+* Some complex tests might not fit neatly into this structure, requiring additional context or setup outside these three phases.
 
 ## Related patterns
 
-* [Page Object](https://java-design-patterns.com/patterns/page-object/): A pattern for organizing UI tests that can be
-  used in conjunction with Arrange/Act/Assert.
+* [Page Object](https://java-design-patterns.com/patterns/page-object/): A pattern for organizing UI tests that can be used in conjunction with Arrange/Act/Assert.
 
 ## Credits
 

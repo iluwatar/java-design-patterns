@@ -8,22 +8,17 @@ tag:
 
 ## Intent
 
-The Active Object design pattern provides a safe and reliable way to implement asynchronous behavior in concurrent
-systems. It achieves this by encapsulating tasks within objects that have their own thread and message queue. This
-separation keeps the main thread responsive and avoids issues like direct thread manipulation or shared state access.
+The Active Object design pattern provides a safe and reliable way to implement asynchronous behavior in concurrent systems. It achieves this by encapsulating tasks within objects that have their own thread and message queue. This separation keeps the main thread responsive and avoids issues like direct thread manipulation or shared state access.
 
 ## Explanation
 
-The class that implements the active object pattern will contain a self-synchronization mechanism without using '
-synchronized' methods.
+The class that implements the active object pattern will contain a self-synchronization mechanism without using 'synchronized' methods.
 
 Real-world example
 
-> The Orcs are known for their wildness and untameable soul. It seems like they have their own thread of control based
-> on previous behavior.
+> The Orcs are known for their wildness and untameable soul. It seems like they have their own thread of control based on previous behavior.
 
-To implement a creature that has its own thread of control mechanism and expose its API only and not the execution
-itself, we can use the Active Object pattern.
+To implement a creature that has its own thread of control mechanism and expose its API only and not the execution itself, we can use the Active Object pattern.
 
 **Programmatic Example**
 
@@ -83,8 +78,7 @@ public abstract class ActiveCreature {
 }
 ```
 
-We can see that any class that will extend the ActiveCreature class will have its own thread of control to invoke and
-execute methods.
+We can see that any class that will extend the ActiveCreature class will have its own thread of control to invoke and execute methods.
 
 For example, the Orc class:
 
@@ -98,8 +92,7 @@ public class Orc extends ActiveCreature {
 }
 ```
 
-Now, we can create multiple creatures such as Orcs, tell them to eat and roam, and they will execute it on their own
-thread of control:
+Now, we can create multiple creatures such as Orcs, tell them to eat and roam, and they will execute it on their own thread of control:
 
 ```java
   public static void main(String[]args){

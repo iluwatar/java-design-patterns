@@ -14,16 +14,13 @@ tag:
 
 ## Intent
 
-The Composite Entity design pattern is aimed at managing a set of interrelated persistent objects as if they were a
-single entity. It is commonly used in the context of Enterprise JavaBeans (EJB) and similar enterprise frameworks to
-represent graph-based data structures within business models, enabling clients to treat them as a single unit.
+The Composite Entity design pattern is aimed at managing a set of interrelated persistent objects as if they were a single entity. It is commonly used in the context of Enterprise JavaBeans (EJB) and similar enterprise frameworks to represent graph-based data structures within business models, enabling clients to treat them as a single unit.
 
 ## Explanation
 
 Real world example
 
-> For a console, there may be many interfaces that need to be managed and controlled. Using the composite entity
-> pattern, dependent objects such as messages and signals can be combined and controlled using a single object.
+> For a console, there may be many interfaces that need to be managed and controlled. Using the composite entity pattern, dependent objects such as messages and signals can be combined and controlled using a single object.
 
 In plain words
 
@@ -31,8 +28,7 @@ In plain words
 
 **Programmatic Example**
 
-We need a generic solution for the problem. To achieve this, let's introduce a generic
-Composite Entity Pattern.
+We need a generic solution for the problem. To achieve this, let's introduce a generic Composite Entity Pattern.
 
 ```java
 public abstract class DependentObject<T> {
@@ -122,8 +118,7 @@ var console=new CompositeEntity();
 ## Applicability
 
 * Useful in enterprise applications where business objects are complex and involve various interdependent objects.
-* Ideal for scenarios where clients need to work with a unified interface to a set of objects rather than individual
-  entities.
+* Ideal for scenarios where clients need to work with a unified interface to a set of objects rather than individual entities.
 * Applicable in systems that require a simplified view of a complex data model for external clients or services.
 
 ## Known Uses
@@ -137,8 +132,7 @@ var console=new CompositeEntity();
 Benefits:
 
 * Simplifies client interactions with complex entity models by providing a unified interface.
-* Enhances reusability and maintainability of the business layer by decoupling client code from the complex internals of
-  business entities.
+* Enhances reusability and maintainability of the business layer by decoupling client code from the complex internals of business entities.
 * Facilitates easier transaction management and consistency enforcement across a set of related objects.
 
 Trade-offs:
@@ -149,12 +143,9 @@ Trade-offs:
 
 ## Related Patterns
 
-* [Decorator](https://java-design-patterns.com/patterns/decorator/): For dynamically adding behavior to individual
-  objects within the composite entity without affecting the structure.
-* [Facade](https://java-design-patterns.com/patterns/facade/): Provides a simplified interface to a complex subsystem,
-  similar to how a composite entity simplifies access to a set of objects.
-* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Useful for managing shared objects within a
-  composite entity to reduce memory footprint.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): For dynamically adding behavior to individual objects within the composite entity without affecting the structure.
+* [Facade](https://java-design-patterns.com/patterns/facade/): Provides a simplified interface to a complex subsystem, similar to how a composite entity simplifies access to a set of objects.
+* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Useful for managing shared objects within a composite entity to reduce memory footprint.
 
 ## Credits
 

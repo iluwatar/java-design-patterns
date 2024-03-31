@@ -14,41 +14,25 @@ tag:
 
 ## Intent
 
-The Circuit Breaker pattern aims to prevent a software system from making calls to a part of the system that is either
-failing or showing signs of distress. It is a way to gracefully degrade functionality when a dependent service is not
-responding, rather than failing completely.
+The Circuit Breaker pattern aims to prevent a software system from making calls to a part of the system that is either failing or showing signs of distress. It is a way to gracefully degrade functionality when a dependent service is not responding, rather than failing completely.
 
 ## Explanation
 
 Real world example
 
-> Imagine a web application that has both local files/images and remote services that are used for
-> fetching data. These remote services may be either healthy and responsive at times, or may become
-> slow and unresponsive at some point of time due to variety of reasons. So if one of the remote
-> services is slow or not responding successfully, our application will try to fetch response from
-> the remote service using multiple threads/processes, soon all of them will hang (also called
-> [thread starvation](https://en.wikipedia.org/wiki/Starvation_(computer_science))) causing our entire web application
-> to crash. We should be able to detect this situation and show the user an appropriate message so that he/she can
-> explore other parts of the app unaffected by the remote serv'ice failure. Meanwhile, the other services that are
-> working normally, should keep functioning unaffected by this failure.
+> Imagine a web application that has both local files/images and remote services that are used for fetching data. These remote services may be either healthy and responsive at times, or may become slow and unresponsive at some point of time due to variety of reasons. So if one of the remote services is slow or not responding successfully, our application will try to fetch response from the remote service using multiple threads/processes, soon all of them will hang (also called[thread starvation](https://en.wikipedia.org/wiki/Starvation_(computer_science))) causing our entire web application to crash. We should be able to detect this situation and show the user an appropriate message so that he/she can explore other parts of the app unaffected by the remote serv'ice failure. Meanwhile, the other services that are working normally, should keep functioning unaffected by this failure.
 
 In plain words
 
-> Circuit Breaker allows graceful handling of failed remote services. It's especially useful when
-> all parts of our application are highly decoupled from each other, and failure of one component
-> doesn't mean the other parts will stop working.
+> Circuit Breaker allows graceful handling of failed remote services. It's especially useful when all parts of our application are highly decoupled from each other, and failure of one component doesn't mean the other parts will stop working.
 
 Wikipedia says
 
-> Circuit breaker is a design pattern used in modern software development. It is used to detect
-> failures and encapsulates the logic of preventing a failure from constantly recurring, during
-> maintenance, temporary external system failure or unexpected system difficulties.
+> Circuit breaker is a design pattern used in modern software development. It is used to detect failures and encapsulates the logic of preventing a failure from constantly recurring, during maintenance, temporary external system failure or unexpected system difficulties.
 
 ## Programmatic Example
 
-So, how does this all come together? With the above example in mind we will imitate the
-functionality in a simple example. A monitoring service mimics the web app and makes both local and
-remote calls.
+So, how does this all come together? With the above example in mind we will imitate the functionality in a simple example. A monitoring service mimics the web app and makes both local and remote calls.
 
 The service architecture is as follows:
 
@@ -164,8 +148,7 @@ public class MonitoringService {
 }
 ```
 
-As it can be seen, it does the call to get local resources directly, but it wraps the call to
-remote (costly) service in a circuit breaker object, which prevents faults as follows:
+As it can be seen, it does the call to get local resources directly, but it wraps the call to remote (costly) service in a circuit breaker object, which prevents faults as follows:
 
 ```java
 public class DefaultCircuitBreaker implements CircuitBreaker {
@@ -295,22 +278,15 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
 }
 ```
 
-How does the above pattern prevent failures? Let's understand via this finite state machine
-implemented by it.
+How does the above pattern prevent failures? Let's understand via this finite state machine implemented by it.
 
 ![alt text](./etc/StateDiagram.png "State Diagram")
 
-- We initialize the Circuit Breaker object with certain parameters: `timeout`, `failureThreshold` and `retryTimePeriod`
-  which help determine how resilient the API is.
+- We initialize the Circuit Breaker object with certain parameters: `timeout`, `failureThreshold` and `retryTimePeriod`which help determine how resilient the API is.
 - Initially, we are in the `closed` state and nos remote calls to the API have occurred.
 - Every time the call succeeds, we reset the state to as it was in the beginning.
-- If the number of failures cross a certain threshold, we move to the `open` state, which acts just like an open circuit
-  and prevents remote service calls from being made, thus saving resources. (Here, we return the response
-  called ```stale response from API```)
-- Once we exceed the retry timeout period, we move to the `half-open` state and make another call to the remote service
-  again to check if the service is working so that we can serve fresh content. A failure sets it back to `open` state
-  and another attempt is made after retry timeout period, while a success sets it to `closed` state so that everything
-  starts working normally again.
+- If the number of failures cross a certain threshold, we move to the `open` state, which acts just like an open circuit and prevents remote service calls from being made, thus saving resources. (Here, we return the response called ```stale response from API```)
+- Once we exceed the retry timeout period, we move to the `half-open` state and make another call to the remote service again to check if the service is working so that we can serve fresh content. A failure sets it back to `open` state and another attempt is made after retry timeout period, while a success sets it to `closed` state so that everything starts working normally again.
 
 ## Class diagram
 
@@ -340,18 +316,14 @@ Benefits:
 
 Trade-Offs:
 
-* The complexity of the system increases as the pattern requires additional logic to detect failures and manage the
-  state of the circuit breaker
-* May lead to system degradation if not properly configured, as legitimate requests might be blocked if the circuit is
-  open
+* The complexity of the system increases as the pattern requires additional logic to detect failures and manage the state of the circuit breaker
+* May lead to system degradation if not properly configured, as legitimate requests might be blocked if the circuit is open
 * Requires careful tuning of thresholds and timeout periods to balance between responsiveness and protection
 
 ## Related Patterns
 
-- [Retry Pattern](https://github.com/iluwatar/java-design-patterns/tree/master/retry): Can be used in conjunction with
-  the Circuit Breaker pattern to retry failed operations before opening the circuit
-- [Bulkhead Pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead): Can be used to isolate
-  different parts of the system to prevent failures from spreading across the system
+- [Retry Pattern](https://github.com/iluwatar/java-design-patterns/tree/master/retry): Can be used in conjunction with the Circuit Breaker pattern to retry failed operations before opening the circuit
+- [Bulkhead Pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/bulkhead): Can be used to isolate different parts of the system to prevent failures from spreading across the system
 
 ## Credits
 

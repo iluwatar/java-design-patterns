@@ -9,15 +9,13 @@ tag:
 
 ## Intent
 
-The Acyclic Visitor pattern decouples operations from an object hierarchy, allowing you to add new operations without
-modifying the object structure directly.
+The Acyclic Visitor pattern decouples operations from an object hierarchy, allowing you to add new operations without modifying the object structure directly.
 
 ## Explanation
 
 Real world example
 
-> We have a hierarchy of modem classes. The modems in this hierarchy need to be visited by an external algorithm based
-> on filtering criteria (is it Unix or DOS compatible modem).
+> We have a hierarchy of modem classes. The modems in this hierarchy need to be visited by an external algorithm based on filtering criteria (is it Unix or DOS compatible modem).
 
 In plain words
 
@@ -25,8 +23,7 @@ In plain words
 
 [WikiWikiWeb](https://wiki.c2.com/?AcyclicVisitor) says
 
-> The Acyclic Visitor pattern allows new functions to be added to existing class hierarchies without affecting those
-> hierarchies, and without creating the dependency cycles that are inherent to the GangOfFour VisitorPattern.
+> The Acyclic Visitor pattern allows new functions to be added to existing class hierarchies without affecting those hierarchies, and without creating the dependency cycles that are inherent to the GangOfFour VisitorPattern.
 
 **Programmatic Example**
 
@@ -136,8 +133,7 @@ Program output:
 This pattern can be used:
 
 * When you need to add a new function to an existing hierarchy without the need to alter or affect that hierarchy.
-* When there are functions that operate upon a hierarchy, but which do not belong in the hierarchy itself. e.g. the
-  ConfigureForDOS / ConfigureForUnix / ConfigureForX issue.
+* When there are functions that operate upon a hierarchy, but which do not belong in the hierarchy itself. e.g. the ConfigureForDOS / ConfigureForUnix / ConfigureForX issue.
 * When you need to perform very different operations on an object depending upon its type.
 * When the visited class hierarchy will be frequently extended with new derivatives of the Element class.
 * When the recompilation, relinking, retesting or redistribution of the derivatives of Element is very expensive.
@@ -156,8 +152,7 @@ Benefits:
 
 Trade-offs:
 
-* Violates [Liskov's Substitution Principle](https://java-design-patterns.com/principles/#liskov-substitution-principle)
-  by showing that it can accept all visitors but actually only being interested in particular visitors.
+* Violates [Liskov's Substitution Principle](https://java-design-patterns.com/principles/#liskov-substitution-principle) by showing that it can accept all visitors but actually only being interested in particular visitors.
 * Parallel hierarchy of visitors has to be created for all members in visitable class hierarchy.
 
 ## Related patterns

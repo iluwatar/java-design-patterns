@@ -15,16 +15,13 @@ tag:
 
 ## Intent
 
-Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients
-treat individual objects and compositions of objects uniformly.
+Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 
 ## Explanation
 
 Real-world example
 
-> Every sentence is composed of words which are in turn composed of characters. Each of these
-> objects are printable and they can have something printed before or after them like sentence
-> always ends with full stop and word always has space before it.
+> Every sentence is composed of words which are in turn composed of characters. Each of these objects are printable and they can have something printed before or after them like sentence always ends with full stop and word always has space before it.
 
 In plain words
 
@@ -32,16 +29,11 @@ In plain words
 
 Wikipedia says
 
-> In software engineering, the composite pattern is a partitioning design pattern. The composite
-> pattern describes that a group of objects is to be treated in the same way as a single instance of
-> an object. The intent of a composite is to "compose" objects into tree structures to represent
-> part-whole hierarchies. Implementing the composite pattern lets clients treat individual objects
-> and compositions uniformly.
+> In software engineering, the composite pattern is a partitioning design pattern. The composite pattern describes that a group of objects is to be treated in the same way as a single instance of an object. The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies. Implementing the composite pattern lets clients treat individual objects and compositions uniformly.
 
 **Programmatic Example**
 
-Taking our sentence example from above. Here we have the base class `LetterComposite` and the
-different printable types `Letter`, `Word` and `Sentence`.
+Taking our sentence example from above. Here we have the base class `LetterComposite` and the different printable types `Letter`, `Word` and `Sentence`.
 
 ```java
 public abstract class LetterComposite {
@@ -185,20 +177,15 @@ Message from the elves:
 Use the Composite pattern when
 
 * You want to represent part-whole hierarchies of objects.
-* You want clients to be able to ignore the difference between compositions of objects and
-  individual objects. Clients will treat all objects in the composite structure uniformly.
+* You want clients to be able to ignore the difference between compositions of objects and individual objects. Clients will treat all objects in the composite structure uniformly.
 
 ## Known uses
 
-* Graphical user interfaces where components can contain other components (e.g., panels containing buttons, labels,
-  other panels).
+* Graphical user interfaces where components can contain other components (e.g., panels containing buttons, labels, other panels).
 * File system representations where directories can contain files and other directories.
 * Organizational structures where a department can contain sub-departments and employees.
-* [java.awt.Container](http://docs.oracle.com/javase/8/docs/api/java/awt/Container.html)
-  and [java.awt.Component](http://docs.oracle.com/javase/8/docs/api/java/awt/Component.html)
-* [Apache Wicket](https://github.com/apache/wicket) component tree,
-  see [Component](https://github.com/apache/wicket/blob/91e154702ab1ff3481ef6cbb04c6044814b7e130/wicket-core/src/main/java/org/apache/wicket/Component.java)
-  and [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
+* [java.awt.Container](http://docs.oracle.com/javase/8/docs/api/java/awt/Container.html) and [java.awt.Component](http://docs.oracle.com/javase/8/docs/api/java/awt/Component.html)
+* [Apache Wicket](https://github.com/apache/wicket) component tree, see [Component](https://github.com/apache/wicket/blob/91e154702ab1ff3481ef6cbb04c6044814b7e130/wicket-core/src/main/java/org/apache/wicket/Component.java) and [MarkupContainer](https://github.com/apache/wicket/blob/b60ec64d0b50a611a9549809c9ab216f0ffa3ae3/wicket-core/src/main/java/org/apache/wicket/MarkupContainer.java)
 
 ## Consequences
 
@@ -214,8 +201,7 @@ Trade-offs:
 
 ## Related Patterns
 
-* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Composite can use Flyweight to share component
-  instances among several composites.
+* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Composite can use Flyweight to share component instances among several composites.
 * [Iterator](https://java-design-patterns.com/patterns/iterator/): Can be used to traverse Composite structures.
 * [Visitor](https://java-design-patterns.com/patterns/visitor/): Can apply an operation over a Composite structure.
 

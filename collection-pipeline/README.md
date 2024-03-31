@@ -9,44 +9,31 @@ tag:
 
 ## Intent
 
-The Collection Pipeline design pattern is intended to process collections of data by chaining together operations in a
-sequence where the output of one operation is the input for the next. It promotes a declarative approach to handling
-collections, focusing on what should be done rather than how.
+The Collection Pipeline design pattern is intended to process collections of data by chaining together operations in a sequence where the output of one operation is the input for the next. It promotes a declarative approach to handling collections, focusing on what should be done rather than how.
 
 ## Explanation
 
 Real-world example
 
-> Imagine you're in a large library filled with books, and you're tasked with finding all the science fiction books
-> published after 2000, then arranging them by author name in alphabetical order, and finally picking out the top 5 based
-> on their popularity or ratings.
+> Imagine you're in a large library filled with books, and you're tasked with finding all the science fiction books published after 2000, then arranging them by author name in alphabetical order, and finally picking out the top 5 based on their popularity or ratings.
 
 In plain words
 
-> The Collection Pipeline pattern involves processing data by passing it through a series of operations, each
-> transforming the data in sequence, much like an assembly line in a factory.
+> The Collection Pipeline pattern involves processing data by passing it through a series of operations, each transforming the data in sequence, much like an assembly line in a factory.
 
 Wikipedia says
 
-> In software engineering, a pipeline consists of a chain of processing elements (processes, threads, coroutines,
-> functions, etc.), arranged so that the output of each element is the input of the next; the name is by analogy to a
-> physical pipeline. Usually some amount of buffering is provided between consecutive elements. The information that flows
-> in these pipelines is often a stream of records, bytes, or bits, and the elements of a pipeline may be called filters;
-> this is also called the pipe(s) and filters design pattern. Connecting elements into a pipeline is analogous to function
-> composition.
+> In software engineering, a pipeline consists of a chain of processing elements (processes, threads, coroutines, functions, etc.), arranged so that the output of each element is the input of the next; the name is by analogy to a physical pipeline. Usually some amount of buffering is provided between consecutive elements. The information that flows in these pipelines is often a stream of records, bytes, or bits, and the elements of a pipeline may be called filters; this is also called the pipe(s) and filters design pattern. Connecting elements into a pipeline is analogous to function composition.
 
 **Programmatic Example**
 
-The Collection Pipeline pattern is implemented in this code example by using Java's Stream API to perform a series of
-transformations on a collection of Car objects. The transformations are chained together to form a pipeline. Here's a
-breakdown of how it's done:
+The Collection Pipeline pattern is implemented in this code example by using Java's Stream API to perform a series of transformations on a collection of Car objects. The transformations are chained together to form a pipeline. Here's a breakdown of how it's done:
 
 1. Creation of Cars: A list of Car objects is created using the `CarFactory.createCars()` method.
 
 `var cars = CarFactory.createCars();`
 
-2. Filtering and Transforming: The `FunctionalProgramming.getModelsAfter2000(cars)` method filters the cars to only
-   include those made after the year 2000, and then transforms the filtered cars into a list of their model names.
+2. Filtering and Transforming: The `FunctionalProgramming.getModelsAfter2000(cars)` method filters the cars to only include those made after the year 2000, and then transforms the filtered cars into a list of their model names.
 
 `var modelsFunctional = FunctionalProgramming.getModelsAfter2000(cars);`
 
@@ -73,9 +60,7 @@ public static Map<Category, List<Car>>getGroupingOfCarsByCategory(List<Car> cars
         }
 ```
 
-4. Filtering, Sorting and Transforming: The `FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john))` method
-   filters the cars owned by a person to only include sedans, sorts them by date, and then transforms the sorted cars
-   into a list of Car objects.
+4. Filtering, Sorting and Transforming: The `FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john))` method filters the cars owned by a person to only include sedans, sorts them by date, and then transforms the sorted cars into a list of Car objects.
 
 `var sedansOwnedFunctional = FunctionalProgramming.getSedanCarsOwnedSortedByDate(List.of(john));`
 
@@ -90,8 +75,7 @@ public static List<Car> getSedanCarsOwnedSortedByDate(List<Person> persons){
         }
 ```
 
-In each of these methods, the Collection Pipeline pattern is used to perform a series of operations on the collection of
-cars in a declarative manner, which improves readability and maintainability.
+In each of these methods, the Collection Pipeline pattern is used to perform a series of operations on the collection of cars in a declarative manner, which improves readability and maintainability.
 
 ## Class diagram
 
@@ -99,9 +83,7 @@ cars in a declarative manner, which improves readability and maintainability.
 
 ## Applicability
 
-This pattern is applicable in scenarios involving bulk data operations such as filtering, mapping, sorting, or reducing
-collections. It's particularly useful in data analysis, transformation tasks, and where a sequence of operations needs
-to be applied to each element of a collection.
+This pattern is applicable in scenarios involving bulk data operations such as filtering, mapping, sorting, or reducing collections. It's particularly useful in data analysis, transformation tasks, and where a sequence of operations needs to be applied to each element of a collection.
 
 ## Known Uses
 
@@ -121,21 +103,15 @@ Benefits:
 
 Trade-offs:
 
-* Performance Overhead: Chaining multiple operations can introduce overhead compared to traditional loops, especially
-  for short pipelines or very large collections.
-* Debugging Difficulty: Debugging a chain of operations might be more challenging due to the lack of intermediate
-  variables.
-* Limited to Collections: Primarily focused on collections, and its utility might be limited outside of collection
-  processing.
+* Performance Overhead: Chaining multiple operations can introduce overhead compared to traditional loops, especially for short pipelines or very large collections.
+* Debugging Difficulty: Debugging a chain of operations might be more challenging due to the lack of intermediate variables.
+* Limited to Collections: Primarily focused on collections, and its utility might be limited outside of collection processing.
 
 ## Related Patterns
 
-* [Builder](https://java-design-patterns.com/patterns/builder/): Similar fluent interface style but used for object
-  construction.
-* [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Conceptually similar in
-  chaining handlers, but applied to object requests rather than data collection processing.
-* [Strategy](https://java-design-patterns.com/patterns/strategy/): Can be used within a pipeline stage to encapsulate
-  different algorithms that can be selected at runtime.
+* [Builder](https://java-design-patterns.com/patterns/builder/): Similar fluent interface style but used for object construction.
+* [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Conceptually similar in chaining handlers, but applied to object requests rather than data collection processing.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Can be used within a pipeline stage to encapsulate different algorithms that can be selected at runtime.
 
 ## Credits
 

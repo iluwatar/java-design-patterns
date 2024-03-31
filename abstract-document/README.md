@@ -10,19 +10,15 @@ tag:
 
 ## Intent
 
-The Abstract Document design pattern is a structural design pattern that aims to provide a consistent way to handle
-hierarchical and tree-like data structures by defining a common interface for various document types. It separates the
-core document structure from specific data formats, enabling dynamic updates and simplified maintenance.
+The Abstract Document design pattern is a structural design pattern that aims to provide a consistent way to handle hierarchical and tree-like data structures by defining a common interface for various document types. It separates the core document structure from specific data formats, enabling dynamic updates and simplified maintenance.
 
 ## Explanation
 
-The Abstract Document pattern enables handling additional, non-static properties. This pattern uses concept of traits to
-enable type safety and separate properties of different classes into set of interfaces.
+The Abstract Document pattern enables handling additional, non-static properties. This pattern uses concept of traits to enable type safety and separate properties of different classes into set of interfaces.
 
 Real world example
 
-> Consider a car that consists of multiple parts. However, we don't know if the specific car really has all the parts,
-> or just some of them. Our cars are dynamic and extremely flexible.
+> Consider a car that consists of multiple parts. However, we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
 
 In plain words
 
@@ -30,15 +26,11 @@ In plain words
 
 Wikipedia says
 
-> An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing the
-> data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components in a
-> strongly typed language where new properties can be added to the object-tree on the fly, without losing the support of
-> type-safety. The pattern makes use of traits to separate different properties of a class into different interfaces.
+> An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the support of type-safety. The pattern makes use of traits to separate different properties of a class into different interfaces.
 
 **Programmatic Example**
 
-Let's first define the base classes `Document` and `AbstractDocument`. They basically make the object hold a property
-map and any amount of child objects.
+Let's first define the base classes `Document` and `AbstractDocument`. They basically make the object hold a property map and any amount of child objects.
 
 ```java
 public interface Document {
@@ -84,8 +76,7 @@ public abstract class AbstractDocument implements Document {
 }
 ```
 
-Next we define an enum `Property` and a set of interfaces for type, price, model and parts. This allows us to create
-static looking interface to our `Car` class.
+Next we define an enum `Property` and a set of interfaces for type, price, model and parts. This allows us to create static looking interface to our `Car` class.
 
 ```java
 public enum Property {
@@ -180,38 +171,21 @@ And finally here's how we construct and use the `Car` in a full example.
 
 ## Applicability
 
-This pattern is particularly useful in scenarios where you have different types of documents that share some common
-attributes or behaviors, but also have unique attributes or behaviors specific to their individual types. Here are some
-scenarios where the Abstract Document design pattern can be applicable:
+This pattern is particularly useful in scenarios where you have different types of documents that share some common attributes or behaviors, but also have unique attributes or behaviors specific to their individual types. Here are some scenarios where the Abstract Document design pattern can be applicable:
 
-* Content Management Systems (CMS): In a CMS, you might have various types of content such as articles, images, videos,
-  etc. Each type of content could have shared attributes like creation date, author, and tags, while also having
-  specific attributes like image dimensions for images or video duration for videos.
+* Content Management Systems (CMS): In a CMS, you might have various types of content such as articles, images, videos, etc. Each type of content could have shared attributes like creation date, author, and tags, while also having specific attributes like image dimensions for images or video duration for videos.
 
-* File Systems: If you're designing a file system where different types of files need to be managed, such as documents,
-  images, audio files, and directories, the Abstract Document pattern can help provide a consistent way to access
-  attributes like file size, creation date, etc., while allowing for specific attributes like image resolution or audio
-  duration.
+* File Systems: If you're designing a file system where different types of files need to be managed, such as documents, images, audio files, and directories, the Abstract Document pattern can help provide a consistent way to access attributes like file size, creation date, etc., while allowing for specific attributes like image resolution or audio duration.
 
-* E-commerce Systems: An e-commerce platform might have different product types such as physical products, digital
-  downloads, and subscriptions. Each type could share common attributes like name, price, and description, while having
-  unique attributes like shipping weight for physical products or download link for digital products.
+* E-commerce Systems: An e-commerce platform might have different product types such as physical products, digital downloads, and subscriptions. Each type could share common attributes like name, price, and description, while having unique attributes like shipping weight for physical products or download link for digital products.
 
-* Medical Records Systems: In healthcare, patient records might include various types of data such as demographics,
-  medical history, test results, and prescriptions. The Abstract Document pattern can help manage shared attributes like
-  patient ID and date of birth, while accommodating specialized attributes like test results or prescribed medications.
+* Medical Records Systems: In healthcare, patient records might include various types of data such as demographics, medical history, test results, and prescriptions. The Abstract Document pattern can help manage shared attributes like patient ID and date of birth, while accommodating specialized attributes like test results or prescribed medications.
 
-* Configuration Management: When dealing with configuration settings for software applications, there can be different
-  types of configuration elements, each with its own set of attributes. The Abstract Document pattern can be used to
-  manage these configuration elements while ensuring a consistent way to access and manipulate their attributes.
+* Configuration Management: When dealing with configuration settings for software applications, there can be different types of configuration elements, each with its own set of attributes. The Abstract Document pattern can be used to manage these configuration elements while ensuring a consistent way to access and manipulate their attributes.
 
-* Educational Platforms: Educational systems might have various types of learning materials such as text-based content,
-  videos, quizzes, and assignments. Common attributes like title, author, and publication date can be shared, while
-  unique attributes like video duration or assignment due dates can be specific to each type.
+* Educational Platforms: Educational systems might have various types of learning materials such as text-based content, videos, quizzes, and assignments. Common attributes like title, author, and publication date can be shared, while unique attributes like video duration or assignment due dates can be specific to each type.
 
-* Project Management Tools: In project management applications, you could have different types of tasks like to-do
-  items, milestones, and issues. The Abstract Document pattern could be used to handle general attributes like task name
-  and assignee, while allowing for specific attributes like milestone date or issue priority.
+* Project Management Tools: In project management applications, you could have different types of tasks like to-do items, milestones, and issues. The Abstract Document pattern could be used to handle general attributes like task name and assignee, while allowing for specific attributes like milestone date or issue priority.
 
 * Documents have diverse and evolving attribute structures.
 
@@ -221,10 +195,7 @@ scenarios where the Abstract Document design pattern can be applicable:
 
 * Maintainability and flexibility are critical for the codebase.
 
-The key idea behind the Abstract Document design pattern is to provide a flexible and extensible way to manage different
-types of documents or entities with shared and distinct attributes. By defining a common interface and implementing it
-across various document types, you can achieve a more organized and consistent approach to handling complex data
-structures.
+The key idea behind the Abstract Document design pattern is to provide a flexible and extensible way to manage different types of documents or entities with shared and distinct attributes. By defining a common interface and implementing it across various document types, you can achieve a more organized and consistent approach to handling complex data structures.
 
 ## Consequences
 

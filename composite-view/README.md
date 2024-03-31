@@ -9,39 +9,27 @@ tag:
 
 ## Intent
 
-The primary goal of the Composite View design pattern is to compose objects into tree structures to represent part-whole
-hierarchies. This allows clients to treat individual objects and compositions of objects uniformly, simplifying the
-management of complex structures.
+The primary goal of the Composite View design pattern is to compose objects into tree structures to represent part-whole hierarchies. This allows clients to treat individual objects and compositions of objects uniformly, simplifying the management of complex structures.
 
 ## Explanation
 
 Real World Example
 
-> A news site wants to display the current date and news to different users
-> based on that user's preferences. The news site will substitute in different news feed
-> components depending on the user's interest, defaulting to local news.
+> A news site wants to display the current date and news to different users based on that user's preferences. The news site will substitute in different news feed components depending on the user's interest, defaulting to local news.
 
 In Plain Words
 
-> Composite View Pattern is having a main view being composed of smaller subviews.
-> The layout of this composite view is based on a template. A View-manager then decides which
-> subviews to include in this template.
+> Composite View Pattern is having a main view being composed of smaller subviews. The layout of this composite view is based on a template. A View-manager then decides which subviews to include in this template.
 
 Wikipedia Says
 
-> Composite views that are composed of multiple atomic subviews. Each component of
-> the template may be included dynamically into the whole and the layout of the page may be managed independently of the
-> content.
-> This solution provides for the creation of a composite view based on the inclusion and substitution of
-> modular dynamic and static template fragments.
-> It promotes the reuse of atomic portions of the view by encouraging modular design.
+> Composite views that are composed of multiple atomic subviews. Each component of the template may be included dynamically into the whole and the layout of the page may be managed independently of the content. This solution provides for the creation of a composite view based on the inclusion and substitution of modular dynamic and static template fragments. It promotes the reuse of atomic portions of the view by encouraging modular design.
 
 **Programmatic Example**
 
-Since this is a web development pattern, a server is required to demonstrate it.
-This example uses Tomcat 10.0.13 to run the servlet, and this programmatic example will only work with Tomcat 10+.
+Since this is a web development pattern, a server is required to demonstrate it. This example uses Tomcat 10.0.13 to run the servlet, and this programmatic example will only work with Tomcat 10+.
 
-Firstly there is `AppServlet` which is an `HttpServlet` that runs on Tomcat 10+.
+Firstly, there is `AppServlet` which is an `HttpServlet` that runs on Tomcat 10+.
 
 ```java
 public class AppServlet extends HttpServlet {
@@ -95,8 +83,7 @@ public class AppServlet extends HttpServlet {
 
 ```
 
-This servlet is not part of the pattern, and simply forwards GET requests to the correct JSP.
-PUT, POST, and DELETE requests are not supported and will simply show an error message.
+This servlet is not part of the pattern, and simply forwards GET requests to the correct JSP. PUT, POST, and DELETE requests are not supported and will simply show an error message.
 
 The view management in this example is done via a javabean class: `ClientPropertiesBean`, which stores user preferences.
 
@@ -141,8 +128,8 @@ public class ClientPropertiesBean implements Serializable {
 ```
 
 This javabean has a default constructor, and another that takes an `HttpServletRequest`.
-This second constructor takes the request object, parses out the request parameters which contain the
-user preferences for different types of news.
+
+This second constructor takes the request object, parses out the request parameters which contain the user preferences for different types of news.
 
 The template for the news page is in `newsDisplay.jsp`
 
@@ -223,14 +210,11 @@ The template for the news page is in `newsDisplay.jsp`
 </html>
 ```
 
-This JSP page is the template. It declares a table with three rows, with one component in the first row,
-two components in the second row, and one component in the third row.
+This JSP page is the template. It declares a table with three rows, with one component in the first row, two components in the second row, and one component in the third row.
 
-The scriplets in the file are part of the
-view management strategy that include different atomic subviews based on the user preferences in the Javabean.
+The scriplets in the file are part of the view management strategy that include different atomic subviews based on the user preferences in the Javabean.
 
-Here are two examples of the mock atomic subviews used in the composite:
-`businessNews.jsp`
+Here are two examples of the mock atomic subviews used in the composite: `businessNews.jsp`
 
 ```html
 
@@ -303,37 +287,26 @@ Here are two examples of the mock atomic subviews used in the composite:
 
 The results are as such:
 
-1) The user has put their name as `Tammy` in the request parameters and no preferences:
-   ![alt text](./etc/images/noparam.png)
-2) The user has put their name as `Johnny` in the request parameters and has a preference for world, business, and
-   science news:
-   ![alt text](./etc/images/threeparams.png)
+1) The user has put their name as `Tammy` in the request parameters and no preferences: ![alt text](./etc/images/noparam.png)
+2) The user has put their name as `Johnny` in the request parameters and has a preference for world, business, and science news: ![alt text](./etc/images/threeparams.png)
 
-The different subviews such as `worldNews.jsp`, `businessNews.jsp`, etc. are included conditionally
-based on the request parameters.
+The different subviews such as `worldNews.jsp`, `businessNews.jsp`, etc. are included conditionally based on the request parameters.
 
 **How To Use**
 
-To try this example, make sure you have Tomcat 10+ installed.
-Set up your IDE to build a WAR file from the module and deploy that file to the server
+To try this example, make sure you have Tomcat 10+ installed. Set up your IDE to build a WAR file from the module and deploy that file to the server
 
 IntelliJ:
 
-Under `Run` and `edit configurations` Make sure Tomcat server is one of the run configurations.
-Go to the deployment tab, and make sure there is one artifact being built called `composite-view:war exploded`.
-If not present, add one.
+Under `Run` and `edit configurations` Make sure Tomcat server is one of the run configurations. Go to the deployment tab, and make sure there is one artifact being built called `composite-view:war exploded`. If not present, add one.
 
-Ensure that the artifact is being built from the content of the `web` directory and the compilation results of the
-module.
-Point the output of the artifact to a convenient place. Run the configuration and view the landing page,
-follow instructions on that page to continue.
+Ensure that the artifact is being built from the content of the `web` directory and the compilation results of the module. Point the output of the artifact to a convenient place. Run the configuration and view the landing page, follow instructions on that page to continue.
 
 ## Class diagram
 
 ![alt text](./etc/composite_view.png)
 
-The class diagram here displays the Javabean which is the view manager.
-The views are JSP's held inside the web directory.
+The class diagram here displays the Javabean which is the view manager. The views are JSP's held inside the web directory.
 
 ## Applicability:
 
@@ -341,40 +314,30 @@ Use the Composite View design pattern when:
 
 * You want to represent part-whole hierarchies of objects.
 * You expect that the composite structures might include any new components in the future.
-* You want clients to be able to ignore the difference between compositions of objects and individual objects. Clients
-  will treat all objects in the composite structure uniformly.
+* You want clients to be able to ignore the difference between compositions of objects and individual objects. Clients will treat all objects in the composite structure uniformly.
 
 ## Known Uses
 
-* Graphical User Interfaces (GUIs) where widgets can contain other widgets (e.g., a window containing panels, buttons,
-  and text fields).
-* Document structures, such as the representation of tables containing rows, which in turn contain cells, all of which
-  can be treated as elements in a unified hierarchy.
+* Graphical User Interfaces (GUIs) where widgets can contain other widgets (e.g., a window containing panels, buttons, and text fields).
+* Document structures, such as the representation of tables containing rows, which in turn contain cells, all of which can be treated as elements in a unified hierarchy.
 
 ## Consequences
 
 Benefits:
 
-* High flexibility in adding new components: Since composites and leaf nodes are treated uniformly, it's easier to add
-  new kinds of components.
-* Simplified client code: Clients can treat composite structures and individual elements uniformly, reducing the
-  complexity in client code.
+* High flexibility in adding new components: Since composites and leaf nodes are treated uniformly, it's easier to add new kinds of components.
+* Simplified client code: Clients can treat composite structures and individual elements uniformly, reducing the complexity in client code.
 
 Trade-offs:
 
-* Overgeneralization: Designing the system might become more complex if you make everything composite, especially if
-  your application doesn't require it.
-* Difficulty in constraint enforcement: It can be harder to restrict the components of a composite to only certain
-  types.
+* Overgeneralization: Designing the system might become more complex if you make everything composite, especially if your application doesn't require it.
+* Difficulty in constraint enforcement: It can be harder to restrict the components of a composite to only certain types.
 
 ## Related Patterns
 
-* [Decorator](https://java-design-patterns.com/patterns/decorator/): While Decorator is used to add responsibilities to
-  objects, Composite is meant for building structures of objects.
-* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Composite can often be combined with Flyweight to
-  implement shared leaf nodes in a composite structure, reducing the memory footprint.
-* [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Can be used with
-  Composite to let components pass requests through the hierarchy.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): While Decorator is used to add responsibilities to objects, Composite is meant for building structures of objects.
+* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Composite can often be combined with Flyweight to implement shared leaf nodes in a composite structure, reducing the memory footprint.
+* [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Can be used with Composite to let components pass requests through the hierarchy.
 * [Composite](https://java-design-patterns.com/patterns/composite/)
 * [View Helper](https://www.oracle.com/java/technologies/viewhelper.html)
 

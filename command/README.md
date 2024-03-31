@@ -13,16 +13,13 @@ tag:
 
 ## Intent
 
-The Command design pattern encapsulates a request as an object, thereby allowing for parameterization of clients with
-queues, requests, and operations. It also allows for the support of undoable operations.
+The Command design pattern encapsulates a request as an object, thereby allowing for parameterization of clients with queues, requests, and operations. It also allows for the support of undoable operations.
 
 ## Explanation
 
 Real-world example
 
-> There is a wizard casting spells on a goblin. The spells are executed on the goblin one by one.
-> The first spell shrinks the goblin and the second makes him invisible. Then the wizard reverses
-> the spells one by one. Each spell here is a command object that can be undone.
+> There is a wizard casting spells on a goblin. The spells are executed on the goblin one by one. The first spell shrinks the goblin and the second makes him invisible. Then the wizard reverses the spells one by one. Each spell here is a command object that can be undone.
 
 In plain words
 
@@ -30,9 +27,7 @@ In plain words
 
 Wikipedia says
 
-> In object-oriented programming, the command pattern is a behavioral design pattern in which an
-> object is used to encapsulate all information needed to perform an action or trigger an event at
-> a later time.
+> In object-oriented programming, the command pattern is a behavioral design pattern in which an object is used to encapsulate all information needed to perform an action or trigger an event at a later time.
 
 **Programmatic Example**
 
@@ -201,27 +196,11 @@ Goblin,[size=normal][visibility=visible]
 
 Use the Command pattern when you want to:
 
-* Parameterize objects by an action to perform. You can express such parameterization in a
-  procedural language with a callback function, that is, a function that's registered somewhere to be
-  called at a later point. Commands are an object-oriented replacement for callbacks.
-* Specify, queue, and execute requests at different times. A Command object can have a life
-  independent of the original request. If the receiver of a request can be represented in an address
-  space-independent way, then you can transfer a command object for the request to a different process
-  and fulfill the request there.
-* Support undo. The Command's execute operation can store state for reversing its effects in the
-  command itself. The Command interface must have an added un-execute operation that reverses the
-  effects of a previous call to execute. The executed commands are stored in a history list.
-  Unlimited-level undo and redo functionality is achieved by traversing this list backward and forward
-  calling un-execute and execute, respectively.
-* Support logging changes so that they can be reapplied in case of a system crash. By augmenting the
-  Command interface with load and store operations, you can keep a persistent log of changes.
-  Recovering from a crash involves reloading logged commands from the disk and re-executing them with
-  the execute operation.
-* Structure a system around high-level operations build on primitive operations. Such a structure is
-  common in information systems that support transactions. A transaction encapsulates a set of data
-  changes. The Command pattern offers a way to model transactions. Commands have a common interface,
-  letting you invoke all transactions the same way. The pattern also makes it easy to extend the
-  system with new transactions.
+* Parameterize objects by an action to perform. You can express such parameterization in a procedural language with a callback function, that is, a function that's registered somewhere to be called at a later point. Commands are an object-oriented replacement for callbacks.
+* Specify, queue, and execute requests at different times. A Command object can have a life independent of the original request. If the receiver of a request can be represented in an address space-independent way, then you can transfer a command object for the request to a different process and fulfill the request there.
+* Support undo. The Command's execute operation can store state for reversing its effects in the command itself. The Command interface must have an added un-execute operation that reverses the effects of a previous call to execute. The executed commands are stored in a history list. Unlimited-level undo and redo functionality is achieved by traversing this list backward and forward calling un-execute and execute, respectively.
+* Support logging changes so that they can be reapplied in case of a system crash. By augmenting the Command interface with load and store operations, you can keep a persistent log of changes. Recovering from a crash involves reloading logged commands from the disk and re-executing them with the execute operation.
+* Structure a system around high-level operations build on primitive operations. Such a structure is common in information systems that support transactions. A transaction encapsulates a set of data changes. The Command pattern offers a way to model transactions. Commands have a common interface, letting you invoke all transactions the same way. The pattern also makes it easy to extend the system with new transactions.
 * Keep a history of requests.
 * Implement callback functionality.
 * Implement the undo functionality.
@@ -251,12 +230,9 @@ Trade-offs:
 
 ## Related Patterns
 
-* [Composite](https://java-design-patterns.com/patterns/composite/): Commands can be composed using the Composite
-  pattern
-  to create macro commands.
+* [Composite](https://java-design-patterns.com/patterns/composite/): Commands can be composed using the Composite pattern to create macro commands.
 * [Memento](https://java-design-patterns.com/patterns/memento/): Can be used for implementing undo mechanisms.
-* [Observer](https://java-design-patterns.com/patterns/observer/): The pattern can be observed for changes that trigger
-  commands.
+* [Observer](https://java-design-patterns.com/patterns/observer/): The pattern can be observed for changes that trigger commands.
 
 ## Credits
 

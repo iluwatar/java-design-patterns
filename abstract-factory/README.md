@@ -14,32 +14,25 @@ Kit
 
 ## Intent
 
-The Abstract Factory design pattern provides a way to create families of related objects without specifying their
-concrete classes. This allows for code that is independent of the specific classes of objects it uses, promoting
-flexibility and maintainability.
+The Abstract Factory design pattern provides a way to create families of related objects without specifying their concrete classes. This allows for code that is independent of the specific classes of objects it uses, promoting flexibility and maintainability.
 
 ## Explanation
 
 Real-world example
 
-> To create a kingdom we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and
-> elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency
-> between the objects in the kingdom.
+> To create a kingdom we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency between the objects in the kingdom.
 
 In plain words
 
-> A factory of factories; a factory that groups the individual but related/dependent factories together without
-> specifying their concrete classes.
+> A factory of factories; a factory that groups the individual but related/dependent factories together without specifying their concrete classes.
 
 Wikipedia says
 
-> The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme
-> without specifying their concrete classes
+> The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
 
 **Programmatic Example**
 
-Translating the kingdom example above. First of all, we have some interfaces and implementation for the objects in the
-kingdom.
+Translating the kingdom example above. First of all, we have some interfaces and implementation for the objects in the kingdom.
 
 ```java
 public interface Castle {
@@ -134,8 +127,7 @@ public class OrcKingdomFactory implements KingdomFactory {
 }
 ```
 
-Now we have the abstract factory that lets us make a family of related objects i.e. elven kingdom factory creates elven
-castle, king and army, etc.
+Now we have the abstract factory that lets us make a family of related objects i.e. elven kingdom factory creates elven castle, king and army, etc.
 
 ```java
 var factory=new ElfKingdomFactory();
@@ -156,11 +148,7 @@ This is the elven castle!
         This is the elven Army!
 ```
 
-Now, we can design a factory for our different kingdom factories. In this example, we created `FactoryMaker`,
-responsible for returning an instance of either `ElfKingdomFactory` or `OrcKingdomFactory`. The client can
-use `FactoryMaker` to create the desired concrete factory which, in turn, will produce different concrete objects (
-derived from `Army`, `King`, `Castle`). In this example, we also used an enum to parameterize which type of kingdom
-factory the client will ask for.
+Now, we can design a factory for our different kingdom factories. In this example, we created `FactoryMaker`, responsible for returning an instance of either `ElfKingdomFactory` or `OrcKingdomFactory`. The client can use `FactoryMaker` to create the desired concrete factory which, in turn, will produce different concrete objects (derived from `Army`, `King`, `Castle`). In this example, we also used an enum to parameterize which type of kingdom factory the client will ask for.
 
 ```java
 public static class FactoryMaker {
@@ -203,8 +191,7 @@ Use the Abstract Factory pattern when
 * The system should be independent of how its products are created, composed, and represented
 * The system should be configured with one of the multiple families of products
 * The family of related product objects is designed to be used together, and you need to enforce this constraint
-* You want to provide a class library of products, and you want to reveal just their interfaces, not their
-  implementations
+* You want to provide a class library of products, and you want to reveal just their interfaces, not their implementations
 * The lifetime of the dependency is conceptually shorter than the lifetime of the consumer.
 * You need a run-time value to construct a particular dependency
 * You want to decide which product to call from a family at runtime.
@@ -214,8 +201,7 @@ Use the Abstract Factory pattern when
 
 Example use cases
 
-* Selecting to call to the appropriate implementation of FileSystemAcmeService or DatabaseAcmeService or
-  NetworkAcmeService at runtime.
+* Selecting to call to the appropriate implementation of FileSystemAcmeService or DatabaseAcmeService or NetworkAcmeService at runtime.
 * Unit test case writing becomes much easier
 * UI tools for different OS
 
@@ -259,3 +245,4 @@ Trade-offs
 * [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3HWNf4U)
 * [Design Patterns in Java](https://amzn.to/3Syw0vC)
+* 

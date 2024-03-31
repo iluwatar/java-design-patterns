@@ -14,16 +14,13 @@ tag:
 
 ## Intent
 
-The Combinator pattern is intended to enable complex functionalities by combining simple functions into more complex
-ones. It aims to achieve modularization and reusability by breaking down a task into simpler, interchangeable components
-that can be composed in various ways.
+The Combinator pattern is intended to enable complex functionalities by combining simple functions into more complex ones. It aims to achieve modularization and reusability by breaking down a task into simpler, interchangeable components that can be composed in various ways.
 
 ## Explanation
 
 Real world example
 
-> In computer science, combinatory logic is used as a simplified model of computation, used in computability theory and
-> proof theory. Despite its simplicity, combinatory logic captures many essential features of computation.
+> In computer science, combinatory logic is used as a simplified model of computation, used in computability theory and proof theory. Despite its simplicity, combinatory logic captures many essential features of computation.
 
 In plain words
 
@@ -31,13 +28,11 @@ In plain words
 
 Wikipedia says
 
-> A combinator is a higher-order function that uses only function application and earlier defined combinators to define
-> a result from its arguments.
+> A combinator is a higher-order function that uses only function application and earlier defined combinators to define a result from its arguments.
 
 **Programmatic Example**
 
-Translating the combinator example above. First of all, we have an interface consist of several
-methods `contains`, `not`, `or`, `and` .
+Translating the combinator example above. First of all, we have an interface consist of several methods `contains`, `not`, `or`, `and` .
 
 ```java
 // Functional interface to find lines in text.
@@ -84,8 +79,7 @@ public interface Finder {
 }
 ```
 
-Then we have also another combinator for some complex finders `advancedFinder`, `filteredFinder`, `specializedFinder`
-and `expandedFinder`.
+Then we have also another combinator for some complex finders `advancedFinder`, `filteredFinder`, `specializedFinder` and `expandedFinder`.
 
 ```java
 // Complex finders consisting of simple finder.
@@ -181,9 +175,7 @@ the result of expanded(or)query[[many,Annabel]]is[It was many and many a year ag
         the result of filtered query is[But we loved with a love that was more than love-]
 ```
 
-Now we can design our app to with the queries finding
-feature `expandedFinder`, `specializedFinder`, `advancedFinder`, `filteredFinder` which are all derived
-from `contains`, `or`, `not`, `and`.
+Now we can design our app to with the queries finding feature `expandedFinder`, `specializedFinder`, `advancedFinder`, `filteredFinder` which are all derived from `contains`, `or`, `not`, `and`.
 
 ## Class diagram
 
@@ -199,8 +191,7 @@ This pattern is applicable in scenarios where:
 
 ## Known Uses
 
-* Functional programming languages like Haskell and Scala extensively use combinators for tasks ranging from parsing to
-  UI construction.
+* Functional programming languages like Haskell and Scala extensively use combinators for tasks ranging from parsing to UI construction.
 * In domain-specific languages, particularly those involved in parsing, such as parsing expression grammars.
 * In libraries for functional programming in languages like JavaScript, Python, and Ruby.
 * java.util.function.Function#compose
@@ -222,12 +213,9 @@ Trade-offs:
 
 ## Related Patterns
 
-[Strategy](https://java-design-patterns.com/patterns/strategy/): Both involve selecting an algorithm at runtime, but
-Combinator uses composition of functions.
-[Decorator](https://java-design-patterns.com/patterns/decorator/): Similar to Combinator in enhancing functionality, but
-Decorator focuses on object augmentation.
-[Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Relies on chaining
-objects, whereas Combinator chains functions.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Both involve selecting an algorithm at runtime, but Combinator uses composition of functions.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar to Combinator in enhancing functionality, but Decorator focuses on object augmentation.
+* [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Relies on chaining objects, whereas Combinator chains functions.
 
 ## Credits
 

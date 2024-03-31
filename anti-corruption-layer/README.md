@@ -16,34 +16,21 @@ tag:
 
 ## Intent
 
-Implement a façade or adapter layer between different subsystems that don't share the same semantics. It translates
-between different data formats and systems, ensuring that the integration between systems does not lead to corruption of
-business logic or data integrity.
+Implement a façade or adapter layer between different subsystems that don't share the same semantics. It translates between different data formats and systems, ensuring that the integration between systems does not lead to corruption of business logic or data integrity.
 
 ## Explanation
 
 ### Context and problem
 
-Most applications rely on other systems for some data or functionality. For example, when a legacy application is
-migrated to a modern system, it may still need existing legacy resources. New features must be able to call the legacy
-system. This is especially true of gradual migrations, where different features of a larger application are moved to a
-modern system over time.
+Most applications rely on other systems for some data or functionality. For example, when a legacy application is migrated to a modern system, it may still need existing legacy resources. New features must be able to call the legacy system. This is especially true of gradual migrations, where different features of a larger application are moved to a modern system over time.
 
-Often these legacy systems suffer from quality issues such as convoluted data schemas or obsolete APIs. The features and
-technologies used in legacy systems can vary widely from more modern systems. To interoperate with the legacy system,
-the new application may need to support outdated infrastructure, protocols, data models, APIs, or other features that
-you wouldn't otherwise put into a modern application.
+Often these legacy systems suffer from quality issues such as convoluted data schemas or obsolete APIs. The features and technologies used in legacy systems can vary widely from more modern systems. To interoperate with the legacy system, the new application may need to support outdated infrastructure, protocols, data models, APIs, or other features that you wouldn't otherwise put into a modern application.
 
-Maintaining access between new and legacy systems can force the new system to adhere to at least some of the legacy
-system's APIs or other semantics. When these legacy features have quality issues, supporting them "corrupts" what might
-otherwise be a cleanly designed modern application. Similar issues can arise with any external system that your
-development team doesn't control, not just legacy systems.
+Maintaining access between new and legacy systems can force the new system to adhere to at least some of the legacy system's APIs or other semantics. When these legacy features have quality issues, supporting them "corrupts" what might otherwise be a cleanly designed modern application. Similar issues can arise with any external system that your development team doesn't control, not just legacy systems.
 
 ### Solution
 
-Isolate the different subsystems by placing an anti-corruption layer between them. This layer translates communications
-between the two systems, allowing one system to remain unchanged while the other can avoid compromising its design and
-technological approach.
+Isolate the different subsystems by placing an anti-corruption layer between them. This layer translates communications between the two systems, allowing one system to remain unchanged while the other can avoid compromising its design and technological approach.
 
 ### Programmatic example
 
@@ -53,15 +40,9 @@ The example shows why the anti-corruption layer is needed.
 
 Here are 2 shop-ordering systems: `Legacy` and `Modern`.
 
-The aforementioned systems have different domain models and have to operate simultaneously. Since they work
-independently the orders can come either from the `Legacy` or `Modern` system. Therefore, the system that receives the
-legacyOrder needs to check if the legacyOrder is valid and not present in the other system. Then it can place the
-legacyOrder in its own system.
+The aforementioned systems have different domain models and have to operate simultaneously. Since they work independently the orders can come either from the `Legacy` or `Modern` system. Therefore, the system that receives the legacyOrder needs to check if the legacyOrder is valid and not present in the other system. Then it can place the legacyOrder in its own system.
 
-But for that, the system needs to know the domain model of the other system and to avoid that, the anti-corruption
-layer(ACL) is introduced. The ACL is a layer that translates the domain model of the `Legacy` system to the domain model
-of the `Modern` system and vice versa. Also, it hides all other operations with the other system, uncoupling the
-systems.
+But for that, the system needs to know the domain model of the other system and to avoid that, the anti-corruption layer(ACL) is introduced. The ACL is a layer that translates the domain model of the `Legacy` system to the domain model of the `Modern` system and vice versa. Also, it hides all other operations with the other system, uncoupling the systems.
 
 #### Domain model of the `Legacy` system
 
@@ -122,9 +103,7 @@ public class AntiCorruptionLayer {
 
 #### The connection
 
-Wherever the `Legacy` or `Modern` system needs to communicate with the counterpart the ACL needs to be used to avoid
-corrupting the current domain model. The example below shows how the `Legacy` system places an order with a validation
-from the `Modern` system.
+Wherever the `Legacy` or `Modern` system needs to communicate with the counterpart the ACL needs to be used to avoid corrupting the current domain model. The example below shows how the `Legacy` system places an order with a validation from the `Modern` system.
 
 ```java
 public class LegacyShop {
@@ -150,14 +129,11 @@ public class LegacyShop {
 
 Use this pattern when:
 
-* A migration is planned to happen over multiple stages, but integration between new and legacy systems needs to be
-  maintained
+* A migration is planned to happen over multiple stages, but integration between new and legacy systems needs to be maintained
 * Two or more subsystems have different semantics, but still need to communicate
-* When integrating with legacy systems or external systems where direct integration might pollute the domain model of
-  the new system
+* When integrating with legacy systems or external systems where direct integration might pollute the domain model of the new system
 * In scenarios where different subsystems within a larger system use different data formats or structures
-* When there is a need to ensure loose coupling between different subsystems or external services to facilitate easier
-  maintenance and scalability
+* When there is a need to ensure loose coupling between different subsystems or external services to facilitate easier maintenance and scalability
 
 ## Tutorials
 
@@ -166,11 +142,9 @@ Use this pattern when:
 
 ## Known Uses
 
-* Microservices architectures where individual services must communicate without being tightly coupled to each other’s
-  data schemas
+* Microservices architectures where individual services must communicate without being tightly coupled to each other’s data schemas
 * Enterprise systems integration, especially when integrating modern systems with legacy systems
-* In bounded contexts within Domain-Driven Design (DDD) to maintain the integrity of a domain model when interacting
-  with external systems or subsystems
+* In bounded contexts within Domain-Driven Design (DDD) to maintain the integrity of a domain model when interacting with external systems or subsystems
 
 ## Consequences
 
@@ -188,12 +162,9 @@ Trade-offs:
 
 ## Related Patterns
 
-* [Facade](https://java-design-patterns.com/patterns/facade/): The Anti-Corruption Layer can be seen as a specialized
-  form of the Facade pattern that is used to isolate different subsystems
-* [Adapter](https://java-design-patterns.com/patterns/adapter/): The Anti-Corruption Layer can be implemented using the
-  Adapter pattern to translate between different data formats or structures
-* [Gateway](https://java-design-patterns.com/patterns/gateway/): The Anti-Corruption Layer can be used as a Gateway to
-  external systems to provide a unified interface
+* [Facade](https://java-design-patterns.com/patterns/facade/): The Anti-Corruption Layer can be seen as a specialized form of the Facade pattern that is used to isolate different subsystems
+* [Adapter](https://java-design-patterns.com/patterns/adapter/): The Anti-Corruption Layer can be implemented using the Adapter pattern to translate between different data formats or structures
+* [Gateway](https://java-design-patterns.com/patterns/gateway/): The Anti-Corruption Layer can be used as a Gateway to external systems to provide a unified interface
 
 ## Credits
 
