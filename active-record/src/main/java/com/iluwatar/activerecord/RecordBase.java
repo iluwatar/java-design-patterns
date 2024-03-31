@@ -60,6 +60,8 @@ public abstract class RecordBase<T extends RecordBase<?>> {
   protected abstract String getTableName();
 
   /**
+   * TODO: An INSERT statement has to be constructed based on the fields
+   *  and not hardcoded in the domain models themselves.
    * Constructs an INSERT query which is being used for an insertion purposes.
    *
    * @return an insertion query.
