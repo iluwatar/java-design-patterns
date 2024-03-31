@@ -40,7 +40,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
   }
 
   /**
-   * Get an SQL exception for the sake of all other internal persistence methods.
+   * Get a database connection.
    *
    * @return the connection {@link Connection}.
    */
@@ -53,7 +53,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
   }
 
   /**
-   * Returns an underlying table name defined within the domain model.
+   * A database table name of the underlying domain model.
    *
    * @return the table name.
    */
