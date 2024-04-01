@@ -1,3 +1,47 @@
 @startuml
+package com.iluwatar.activerecord {
+  abstract class RecordBase<T extends RecordBase<?>> {
+    - dataSource : DataSource
+    - clazz : Class<T>
+    + setDataSource(DataSource) : void
+    # getConnection() : Connection
+    # abstract getTableName() : String
+    # abstract setFieldsFromResultSet(ResultSet rs) : void
+    # abstract setPreparedStatementParams(PreparedStatement pstmt) : void
+    + findAll() : List<T>
+    + findById(Long id): T
+    + save() : void
+    + delete() : void
+    - constructFindByIdQuery() : String
+    - constructFindAllQuery() : String
+    - getDeclaredClassInstance() : T
+  }
 
+  class Customer extends RecordBase {
+    - id : Long
+    - customerNumber : String
+    - firstName : String
+    - lastName : String
+    - List<Order> orders
+    + getId() : Long
+    + setId(Long id) : void
+    + getCustomerNumber() : String
+    + setCustomerNumber(String customerNumber) : void
+    + getfirstName() : String
+    + setFirstName(String firstName) : void
+    + getLastName() : String
+    + setLastName(String lastName) : void
+    + findByNumber(String customerNumber) : Customer
+    + addOrder(Order order) : void
+  }
+
+  class Order extends RecordBase {
+    - id : Long
+    - orderNumber : String
+    + getId() : Long
+    + setId(Long id) : void
+    + getOrderNumber() : String
+    + setOrderNumber(String orderNumber) : String
+  }
+}
 @enduml
