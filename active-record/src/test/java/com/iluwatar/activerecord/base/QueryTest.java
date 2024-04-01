@@ -1,7 +1,8 @@
-package com.iluwatar.activerecord;
+package com.iluwatar.activerecord.base;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.iluwatar.activerecord.Courier;
 import org.junit.jupiter.api.Test;
 
 class QueryTest {
