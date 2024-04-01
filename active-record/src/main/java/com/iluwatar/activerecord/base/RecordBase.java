@@ -171,6 +171,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
         .toList();
   }
 
+  // TODO: implement Select query within the Query class
   private String constructFindByIdQuery() {
     return constructFindAllQuery() + " WHERE id = ?";
   }
