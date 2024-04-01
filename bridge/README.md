@@ -3,9 +3,9 @@ title: Bridge
 category: Structural
 language: en
 tag:
-  - Decoupling
-  - Extensibility
-  - Gang of Four
+    - Decoupling
+    - Extensibility
+    - Gang of Four
 ---
 
 ## Also known as
@@ -36,74 +36,77 @@ Translating our weapon example from above. Here we have the `Weapon` hierarchy:
 
 ```java
 public interface Weapon {
-  void wield();
-  void swing();
-  void unwield();
-  Enchantment getEnchantment();
+    void wield();
+
+    void swing();
+
+    void unwield();
+
+    Enchantment getEnchantment();
 }
 
 public class Sword implements Weapon {
 
-  private final Enchantment enchantment;
+    private final Enchantment enchantment;
 
-  public Sword(Enchantment enchantment) {
-    this.enchantment = enchantment;
-  }
+    public Sword(Enchantment enchantment) {
+        this.enchantment = enchantment;
+    }
 
-  @Override
-  public void wield() {
-    LOGGER.info("The sword is wielded.");
-    enchantment.onActivate();
-  }
+    @Override
+    public void wield() {
+        LOGGER.info("The sword is wielded.");
+        enchantment.onActivate();
+    }
 
-  @Override
-  public void swing() {
-    LOGGER.info("The sword is swung.");
-    enchantment.apply();
-  }
+    @Override
+    public void swing() {
+        LOGGER.info("The sword is swung.");
+        enchantment.apply();
+    }
 
-  @Override
-  public void unwield() {
-    LOGGER.info("The sword is unwielded.");
-    enchantment.onDeactivate();
-  }
+    @Override
+    public void unwield() {
+        LOGGER.info("The sword is unwielded.");
+        enchantment.onDeactivate();
+    }
 
-  @Override
-  public Enchantment getEnchantment() {
-    return enchantment;
-  }
+    @Override
+    public Enchantment getEnchantment() {
+        return enchantment;
+    }
 }
 
 public class Hammer implements Weapon {
 
-  private final Enchantment enchantment;
+    private final Enchantment enchantment;
 
-  public Hammer(Enchantment enchantment) {
-    this.enchantment = enchantment;
-  }
+    public Hammer(Enchantment enchantment) {
+        this.enchantment = enchantment;
+    }
 
-  @Override
-  public void wield() {
-    LOGGER.info("The hammer is wielded.");
-    enchantment.onActivate();
-  }
+    @Override
+    public void wield() {
+        LOGGER.info("The hammer is wielded.");
+        enchantment.onActivate();
+    }
 
-  @Override
-  public void swing() {
-    LOGGER.info("The hammer is swung.");
-    enchantment.apply();
-  }
+    @Override
+    public void swing() {
+        LOGGER.info("The hammer is swung.");
+        enchantment.apply();
+    }
 
-  @Override
-  public void unwield() {
-    LOGGER.info("The hammer is unwielded.");
-    enchantment.onDeactivate();
-  }
+    @Override
+    public void unwield() {
+        LOGGER.info("The hammer is unwielded.");
+        enchantment.onDeactivate();
+    }
 
-  @Override
-  public Enchantment getEnchantment() {
-    return enchantment;
-  }
+    @Override
+    public Enchantment getEnchantment() {
+        return enchantment;
+    }
 }
 ```
 
@@ -111,45 +114,47 @@ Here's the separate enchantment hierarchy:
 
 ```java
 public interface Enchantment {
-  void onActivate();
-  void apply();
-  void onDeactivate();
+    void onActivate();
+
+    void apply();
+
+    void onDeactivate();
 }
 
 public class FlyingEnchantment implements Enchantment {
 
-  @Override
-  public void onActivate() {
-    LOGGER.info("The item begins to glow faintly.");
-  }
+    @Override
+    public void onActivate() {
+        LOGGER.info("The item begins to glow faintly.");
+    }
 
-  @Override
-  public void apply() {
-    LOGGER.info("The item flies and strikes the enemies finally returning to owner's hand.");
-  }
+    @Override
+    public void apply() {
+        LOGGER.info("The item flies and strikes the enemies finally returning to owner's hand.");
+    }
 
-  @Override
-  public void onDeactivate() {
-    LOGGER.info("The item's glow fades.");
-  }
+    @Override
+    public void onDeactivate() {
+        LOGGER.info("The item's glow fades.");
+    }
 }
 
 public class SoulEatingEnchantment implements Enchantment {
 
-  @Override
-  public void onActivate() {
-    LOGGER.info("The item spreads bloodlust.");
-  }
+    @Override
+    public void onActivate() {
+        LOGGER.info("The item spreads bloodlust.");
+    }
 
-  @Override
-  public void apply() {
-    LOGGER.info("The item eats the soul of enemies.");
-  }
+    @Override
+    public void apply() {
+        LOGGER.info("The item eats the soul of enemies.");
+    }
 
-  @Override
-  public void onDeactivate() {
-    LOGGER.info("Bloodlust slowly disappears.");
-  }
+    @Override
+    public void onDeactivate() {
+        LOGGER.info("Bloodlust slowly disappears.");
+    }
 }
 ```
 
@@ -157,16 +162,16 @@ Here are both hierarchies in action:
 
 ```java
 LOGGER.info("The knight receives an enchanted sword.");
-var enchantedSword = new Sword(new SoulEatingEnchantment());
-enchantedSword.wield();
-enchantedSword.swing();
-enchantedSword.unwield();
+        var enchantedSword=new Sword(new SoulEatingEnchantment());
+        enchantedSword.wield();
+        enchantedSword.swing();
+        enchantedSword.unwield();
 
-LOGGER.info("The valkyrie receives an enchanted hammer.");
-var hammer = new Hammer(new FlyingEnchantment());
-hammer.wield();
-hammer.swing();
-hammer.unwield();
+        LOGGER.info("The valkyrie receives an enchanted hammer.");
+        var hammer=new Hammer(new FlyingEnchantment());
+        hammer.wield();
+        hammer.swing();
+        hammer.unwield();
 ```
 
 Here's the console output.

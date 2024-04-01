@@ -3,10 +3,10 @@ title: Callback
 category: Functional
 language: en
 tag:
-  - Asynchronous
-  - Decoupling
-  - Idiom
-  - Reactive
+    - Asynchronous
+    - Decoupling
+    - Idiom
+    - Reactive
 ---
 
 ## Intent
@@ -22,11 +22,11 @@ Callback is a piece of executable code that is passed as an argument to other co
 
 Real world example
 
-> We need to be notified after the executing task has finished. We pass a callback method for the executor and wait for it to call back on us.     
+> We need to be notified after the executing task has finished. We pass a callback method for the executor and wait for it to call back on us.
 
 In plain words
 
-> Callback is a method passed to an executor which will be called at a defined moment. 
+> Callback is a method passed to an executor which will be called at a defined moment.
 
 Wikipedia says
 
@@ -39,7 +39,7 @@ Callback is a simple interface with single method.
 ```java
 public interface Callback {
 
-  void call();
+    void call();
 }
 ```
 
@@ -48,29 +48,29 @@ Next we define a task that will execute the callback after the task execution ha
 ```java
 public abstract class Task {
 
-  final void executeWith(Callback callback) {
-    execute();
-    Optional.ofNullable(callback).ifPresent(Callback::call);
-  }
+    final void executeWith(Callback callback) {
+        execute();
+        Optional.ofNullable(callback).ifPresent(Callback::call);
+    }
 
-  public abstract void execute();
+    public abstract void execute();
 }
 
 @Slf4j
 public final class SimpleTask extends Task {
 
-  @Override
-  public void execute() {
-    LOGGER.info("Perform some important activity and after call the callback method.");
-  }
+    @Override
+    public void execute() {
+        LOGGER.info("Perform some important activity and after call the callback method.");
+    }
 }
 ```
 
 Finally, here's how we execute a task and receive a callback when it's finished.
 
 ```java
-    var task = new SimpleTask();
-    task.executeWith(() -> LOGGER.info("I'm done now."));
+    var task=new SimpleTask();
+        task.executeWith(()->LOGGER.info("I'm done now."));
 ```
 
 ## Class diagram
@@ -107,9 +107,9 @@ Trade-offs:
 
 ## Related patterns
 
-[Observer](https://java-design-patterns.com/patterns/observer/): Callbacks can be seen as a more dynamic and lightweight form of the Observer pattern, with the ability to subscribe and unsubscribe callback functions dynamically
-[Command](https://java-design-patterns.com/patterns/command/): Callbacks can be implemented as Command objects in scenarios where more flexibility or statefulness is required in the callback operation
-[Promise](https://java-design-patterns.com/patterns/promise/): In some languages or frameworks, Promises or Futures can be used to handle asynchronous operations more cleanly, often using callbacks for success or failure cases
+* [Observer](https://java-design-patterns.com/patterns/observer/): Callbacks can be seen as a more dynamic and lightweight form of the Observer pattern, with the ability to subscribe and unsubscribe callback functions dynamically
+* [Command](https://java-design-patterns.com/patterns/command/): Callbacks can be implemented as Command objects in scenarios where more flexibility or statefulness is required in the callback operation
+* [Promise](https://java-design-patterns.com/patterns/promise/): In some languages or frameworks, Promises or Futures can be used to handle asynchronous operations more cleanly, often using callbacks for success or failure cases
 
 ## Real world examples
 

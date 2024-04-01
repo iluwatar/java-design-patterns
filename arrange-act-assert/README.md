@@ -3,8 +3,8 @@ title: Arrange/Act/Assert
 category: Testing
 language: en
 tag:
-  - Idiom
-  - Testing
+    - Idiom
+    - Testing
 ---
 
 ## Also known as
@@ -13,8 +13,7 @@ Given/When/Then
 
 ## Intent
 
-Arrange/Act/Assert (AAA) is a pattern for organizing unit tests.
-It breaks tests down into three clear and distinct steps:
+Arrange/Act/Assert (AAA) is a pattern for organizing unit tests. It breaks tests down into three clear and distinct steps:
 
 1. Arrange: Perform the setup and initialization required for the test.
 2. Act: Take action(s) required for the test.
@@ -22,14 +21,9 @@ It breaks tests down into three clear and distinct steps:
 
 ## Explanation
 
-This pattern has several significant benefits. It creates a clear separation between a test's
-setup, operations, and results. This structure makes the code easier to read and understand. If
-you place the steps in order and format your code to separate them, you can scan a test and
-quickly comprehend what it does.
+This pattern has several significant benefits. It creates a clear separation between a test's setup, operations, and results. This structure makes the code easier to read and understand. If you place the steps in order and format your code to separate them, you can scan a test and quickly comprehend what it does.
 
-It also enforces a certain degree of discipline when you write your tests. You have to think
-clearly about the three steps your test will perform. It makes tests more natural to write at
-the same time since you already have an outline.
+It also enforces a certain degree of discipline when you write your tests. You have to think clearly about the three steps your test will perform. It makes tests more natural to write at the same time since you already have an outline.
 
 Real world example
 
@@ -37,12 +31,11 @@ Real world example
 
 In plain words
 
-> Arrange/Act/Assert is a testing pattern that organizes tests into three clear steps for easy
-> maintenance.
+> Arrange/Act/Assert is a testing pattern that organizes tests into three clear steps for easy maintenance.
 
 WikiWikiWeb says
 
-> Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods. 
+> Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods.
 
 **Programmatic Example**
 
@@ -51,80 +44,79 @@ Let's first introduce our `Cash` class to be unit tested.
 ```java
 public class Cash {
 
-  private int amount;
+    private int amount;
 
-  Cash(int amount) {
-    this.amount = amount;
-  }
-
-  void plus(int addend) {
-    amount += addend;
-  }
-
-  boolean minus(int subtrahend) {
-    if (amount >= subtrahend) {
-      amount -= subtrahend;
-      return true;
-    } else {
-      return false;
+    Cash(int amount) {
+        this.amount = amount;
     }
-  }
 
-  int count() {
-    return amount;
-  }
+    void plus(int addend) {
+        amount += addend;
+    }
+
+    boolean minus(int subtrahend) {
+        if (amount >= subtrahend) {
+            amount -= subtrahend;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    int count() {
+        return amount;
+    }
 }
 ```
 
-Then we write our unit tests according to Arrange/Act/Assert pattern. Notice the clearly
-separated steps for each unit test.
+Then we write our unit tests according to Arrange/Act/Assert pattern. Notice the clearly separated steps for each unit test.
 
 ```java
 class CashAAATest {
 
-  @Test
-  void testPlus() {
-    //Arrange
-    var cash = new Cash(3);
-    //Act
-    cash.plus(4);
-    //Assert
-    assertEquals(7, cash.count());
-  }
+    @Test
+    void testPlus() {
+        //Arrange
+        var cash = new Cash(3);
+        //Act
+        cash.plus(4);
+        //Assert
+        assertEquals(7, cash.count());
+    }
 
-  @Test
-  void testMinus() {
-    //Arrange
-    var cash = new Cash(8);
-    //Act
-    var result = cash.minus(5);
-    //Assert
-    assertTrue(result);
-    assertEquals(3, cash.count());
-  }
+    @Test
+    void testMinus() {
+        //Arrange
+        var cash = new Cash(8);
+        //Act
+        var result = cash.minus(5);
+        //Assert
+        assertTrue(result);
+        assertEquals(3, cash.count());
+    }
 
-  @Test
-  void testInsufficientMinus() {
-    //Arrange
-    var cash = new Cash(1);
-    //Act
-    var result = cash.minus(6);
-    //Assert
-    assertFalse(result);
-    assertEquals(1, cash.count());
-  }
+    @Test
+    void testInsufficientMinus() {
+        //Arrange
+        var cash = new Cash(1);
+        //Act
+        var result = cash.minus(6);
+        //Assert
+        assertFalse(result);
+        assertEquals(1, cash.count());
+    }
 
-  @Test
-  void testUpdate() {
-    //Arrange
-    var cash = new Cash(5);
-    //Act
-    cash.plus(6);
-    var result = cash.minus(3);
-    //Assert
-    assertTrue(result);
-    assertEquals(8, cash.count());
-  }
+    @Test
+    void testUpdate() {
+        //Arrange
+        var cash = new Cash(5);
+        //Act
+        cash.plus(6);
+        var result = cash.minus(3);
+        //Assert
+        assertTrue(result);
+        assertEquals(8, cash.count());
+    }
 }
 ```
 
@@ -132,7 +124,7 @@ class CashAAATest {
 
 Use Arrange/Act/Assert pattern when
 
-* Unit testing, especially within the context of TDD and BDD 
+* Unit testing, especially within the context of TDD and BDD
 * Anywhere clarity and structure are needed in test cases
 
 ## Known uses

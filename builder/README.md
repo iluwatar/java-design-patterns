@@ -3,7 +3,7 @@ title: Builder
 category: Creational
 language: en
 tag:
- - Gang of Four
+    - Gang of Four
 ---
 
 ## Intent
@@ -27,8 +27,8 @@ Wikipedia says
 Having said that let me add a bit about what telescoping constructor antipattern is. At one point or the other, we have all seen a constructor like below:
 
 ```java
-public Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
-}
+public Hero(Profession profession,String name,HairType hairType,HairColor hairColor,Armor armor,Weapon weapon){
+        }
 ```
 
 As you can see the number of constructor parameters can quickly get out of hand, and it may become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in the future. This is called telescoping constructor antipattern.
@@ -39,21 +39,21 @@ The sane alternative is to use the Builder pattern. First of all, we have our he
 
 ```java
 public final class Hero {
-  private final Profession profession;
-  private final String name;
-  private final HairType hairType;
-  private final HairColor hairColor;
-  private final Armor armor;
-  private final Weapon weapon;
+    private final Profession profession;
+    private final String name;
+    private final HairType hairType;
+    private final HairColor hairColor;
+    private final Armor armor;
+    private final Weapon weapon;
 
-  private Hero(Builder builder) {
-    this.profession = builder.profession;
-    this.name = builder.name;
-    this.hairColor = builder.hairColor;
-    this.hairType = builder.hairType;
-    this.weapon = builder.weapon;
-    this.armor = builder.armor;
-  }
+    private Hero(Builder builder) {
+        this.profession = builder.profession;
+        this.name = builder.name;
+        this.hairColor = builder.hairColor;
+        this.hairType = builder.hairType;
+        this.weapon = builder.weapon;
+        this.armor = builder.armor;
+    }
 }
 ```
 
@@ -69,43 +69,43 @@ Then we have the builder:
     private Weapon weapon;
 
     public Builder(Profession profession, String name) {
-      if (profession == null || name == null) {
-        throw new IllegalArgumentException("profession and name can not be null");
-      }
-      this.profession = profession;
-      this.name = name;
+        if (profession == null || name == null) {
+            throw new IllegalArgumentException("profession and name can not be null");
+        }
+        this.profession = profession;
+        this.name = name;
     }
 
     public Builder withHairType(HairType hairType) {
-      this.hairType = hairType;
-      return this;
+        this.hairType = hairType;
+        return this;
     }
 
     public Builder withHairColor(HairColor hairColor) {
-      this.hairColor = hairColor;
-      return this;
+        this.hairColor = hairColor;
+        return this;
     }
 
     public Builder withArmor(Armor armor) {
-      this.armor = armor;
-      return this;
+        this.armor = armor;
+        return this;
     }
 
     public Builder withWeapon(Weapon weapon) {
-      this.weapon = weapon;
-      return this;
+        this.weapon = weapon;
+        return this;
     }
 
     public Hero build() {
-      return new Hero(this);
+        return new Hero(this);
     }
-  }
+}
 ```
 
 Then it can be used as:
 
 ```java
-var mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
+var mage=new Hero.Builder(Profession.MAGE,"Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
 ```
 
 ## Class diagram

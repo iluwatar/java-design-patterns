@@ -2963,7 +2963,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/76624290?v=4",
       "profile": "https://github.com/MaverickWingman",
       "contributions": [
-        "doc"
+        "doc",
+        "code"
       ]
     },
     {
@@ -3043,6 +3044,15 @@
       "name": "Kishalay Pandey",
       "avatar_url": "https://avatars.githubusercontent.com/u/71012321?v=4",
       "profile": "https://github.com/KishalayP",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "drishtii7",
+      "name": "drishtii7",
+      "avatar_url": "https://avatars.githubusercontent.com/u/82076566?v=4",
+      "profile": "https://github.com/drishtii7",
       "contributions": [
         "code"
       ]

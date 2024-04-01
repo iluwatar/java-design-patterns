@@ -3,8 +3,8 @@ title: Client Session
 category: Behavioral
 language: en
 tags:
-  - Session management
-  - Web development
+    - Session management
+    - Web development
 ---
 
 ## Also known as
@@ -32,30 +32,30 @@ Here is the sample code to describe the client-session pattern. In the below cod
 ```java
 public class App {
 
-  public static void main(String[] args) {
-    var server = new Server("localhost", 8080);
-    var session1 = server.getSession("Session1");
-    var session2 = server.getSession("Session2");
-    var request1 = new Request("Data1", session1);
-    var request2 = new Request("Data2", session2);
-    server.process(request1);
-    server.process(request2);
-  }
+    public static void main(String[] args) {
+        var server = new Server("localhost", 8080);
+        var session1 = server.getSession("Session1");
+        var session2 = server.getSession("Session2");
+        var request1 = new Request("Data1", session1);
+        var request2 = new Request("Data2", session2);
+        server.process(request1);
+        server.process(request2);
+    }
 }
 
 @Data
 @AllArgsConstructor
 public class Session {
 
-  /**
-   * Session id.
-   */
-  private String id;
+    /**
+     * Session id.
+     */
+    private String id;
 
-  /**
-   * Client name.
-   */
-  private String clientName;
+    /**
+     * Client name.
+     */
+    private String clientName;
 
 }
 
@@ -63,9 +63,9 @@ public class Session {
 @AllArgsConstructor
 public class Request {
 
-  private String data;
+    private String data;
 
-  private Session session;
+    private Session session;
 
 }
 ```

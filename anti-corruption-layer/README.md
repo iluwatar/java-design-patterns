@@ -3,9 +3,9 @@ title: Anti-corruption layer
 category: Integration
 language: en
 tag:
-  - Architecture
-  - Decoupling
-  - Isolation
+    - Architecture
+    - Decoupling
+    - Isolation
 ---
 
 ## Also known as
@@ -22,7 +22,7 @@ Implement a façade or adapter layer between different subsystems that don't sha
 
 ### Context and problem
 
-Most applications rely on other systems for some data or functionality. For example, when a legacy application is migrated to a modern system, it may still need existing legacy resources.  New features must be able to call the legacy system. This is especially true of gradual migrations, where different features of a larger application are moved to a modern system over time.
+Most applications rely on other systems for some data or functionality. For example, when a legacy application is migrated to a modern system, it may still need existing legacy resources. New features must be able to call the legacy system. This is especially true of gradual migrations, where different features of a larger application are moved to a modern system over time.
 
 Often these legacy systems suffer from quality issues such as convoluted data schemas or obsolete APIs. The features and technologies used in legacy systems can vary widely from more modern systems. To interoperate with the legacy system, the new application may need to support outdated infrastructure, protocols, data models, APIs, or other features that you wouldn't otherwise put into a modern application.
 
@@ -40,7 +40,7 @@ The example shows why the anti-corruption layer is needed.
 
 Here are 2 shop-ordering systems: `Legacy` and `Modern`.
 
-The aforementioned systems have different domain models and have to operate simultaneously. Since they work independently the orders can come either from the `Legacy` or `Modern` system.  Therefore, the system that receives the legacyOrder needs to check if the legacyOrder is valid and not present in the other system.  Then it can place the legacyOrder in its own system.
+The aforementioned systems have different domain models and have to operate simultaneously. Since they work independently the orders can come either from the `Legacy` or `Modern` system. Therefore, the system that receives the legacyOrder needs to check if the legacyOrder is valid and not present in the other system. Then it can place the legacyOrder in its own system.
 
 But for that, the system needs to know the domain model of the other system and to avoid that, the anti-corruption layer(ACL) is introduced. The ACL is a layer that translates the domain model of the `Legacy` system to the domain model of the `Modern` system and vice versa. Also, it hides all other operations with the other system, uncoupling the systems.
 
@@ -67,9 +67,11 @@ public class ModernOrder {
 
     private String extra;
 }
+
 public class Customer {
     private String address;
 }
+
 public class Shipment {
     private String item;
     private String qty;
