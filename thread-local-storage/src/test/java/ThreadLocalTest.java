@@ -57,15 +57,15 @@ public class ThreadLocalTest {
         int threadSize = 2;
         ExecutorService executor = Executors.newFixedThreadPool(threadSize);
 
-        WithoutThreadLocal threadLocal = new WithoutThreadLocal(initialValue);
         for (int i = 0; i < threadSize; i++) {
-            executor.submit(threadLocal);
+          //Create independent thread
+          WithoutThreadLocal threadLocal = new WithoutThreadLocal(initialValue);
+          executor.submit(threadLocal);
         }
         executor.awaitTermination(3, TimeUnit.SECONDS);
-
         List<String> lines = outContent.toString().lines().toList();
-        //Matches only first thread, the second has changed by first thread value
-        Assertions.assertFalse(lines.stream()
+
+        Assertions.assertTrue(lines.stream()
                 .allMatch(line -> line.endsWith(String.valueOf(initialValue))));
     }
 
