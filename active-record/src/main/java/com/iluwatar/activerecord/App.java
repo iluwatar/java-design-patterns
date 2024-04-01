@@ -1,5 +1,6 @@
 package com.iluwatar.activerecord;
 
+import com.iluwatar.activerecord.base.RecordBase;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -18,19 +19,19 @@ public class App {
   private static final String CREATE_SCHEMA_SQL = "CREATE TABLE customer\n"
       + "(\n"
       + "    id              BIGINT      NOT NULL,\n"
-      + "    customer_number VARCHAR(15) NOT NULL,\n"
-      + "    first_name      VARCHAR(45) NOT NULL,\n"
-      + "    last_name       VARCHAR(45) NOT NULL,\n"
+      + "    customerNumber VARCHAR(15) NOT NULL,\n"
+      + "    firstName      VARCHAR(45) NOT NULL,\n"
+      + "    lastName       VARCHAR(45) NOT NULL,\n"
       + "    CONSTRAINT customer_pkey PRIMARY KEY (id)\n"
       + ");\n"
       + "\n"
       + "CREATE TABLE \"order\"\n"
       + "(\n"
       + "    id           BIGINT      NOT NULL,\n"
-      + "    order_number VARCHAR(15) NOT NULL,\n"
-      + "    customer_id  BIGINT      NOT NULL,\n"
+      + "    orderNumber VARCHAR(15) NOT NULL,\n"
+      + "    customerId  BIGINT      NOT NULL,\n"
       + "    CONSTRAINT order_pkey PRIMARY KEY (id),\n"
-      + "    CONSTRAINT customer_id_fk FOREIGN KEY (customer_id) REFERENCES customer (id)\n"
+      + "    CONSTRAINT customer_id_fk FOREIGN KEY (customerId) REFERENCES customer (id)\n"
       + ")";
 
   /**

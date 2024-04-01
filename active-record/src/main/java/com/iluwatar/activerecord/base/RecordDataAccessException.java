@@ -1,4 +1,4 @@
-package com.iluwatar.activerecord;
+package com.iluwatar.activerecord.base;
 
 public class RecordDataAccessException extends RuntimeException {
 

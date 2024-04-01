@@ -1,5 +1,7 @@
-package com.iluwatar.activerecord;
+package com.iluwatar.activerecord.base;
 
+import com.iluwatar.activerecord.base.Query.InsertionQuery;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
 
@@ -28,6 +32,11 @@ public abstract class RecordBase<T extends RecordBase<?>> {
 
   @SuppressWarnings({"unchecked"})
   private final Class<T> clazz = (Class<T>) getClass();
+
+  private static final Set<Class<?>> STANDARD_TYPES = Set.of(
+      Boolean.class, Character.class, Byte.class, Short.class, Integer.class,
+      Long.class, Float.class, Double.class, String.class
+  );
 
   /**
    * Sets the data source. Preferably to eb done during the application startup or within the
@@ -58,15 +67,6 @@ public abstract class RecordBase<T extends RecordBase<?>> {
    * @return the table name.
    */
   protected abstract String getTableName();
-
-  /**
-   * TODO: An INSERT statement has to be constructed based on the fields
-   *  and not hardcoded in the domain models themselves.
-   * Constructs an INSERT query which is being used for an insertion purposes.
-   *
-   * @return an insertion query.
-   */
-  protected abstract String constructInsertQuery();
 
   /**
    * Set all the fields into the underlying domain model from the result set.
@@ -135,7 +135,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
    */
   public void save() {
     try (Connection connection = getConnection();
-        PreparedStatement pstmt = connection.prepareStatement(constructInsertQuery(),
+        PreparedStatement pstmt = connection.prepareStatement(constructInsertionQuery(),
             Statement.RETURN_GENERATED_KEYS)) {
 
       setPreparedStatementParams(pstmt);
@@ -144,6 +144,31 @@ public abstract class RecordBase<T extends RecordBase<?>> {
     } catch (SQLException e) {
       throw new RecordDataAccessException(EXCEPTION_MESSAGE + clazz.getName(), e);
     }
+  }
+
+  String constructInsertionQuery() {
+    List<Object> arguments = new ArrayList<>();
+    try {
+      InsertionQuery insert = Query.insertInto(getClass().getSimpleName());
+
+      List<Field> standardFields = filterStandardTypes();
+
+      for (Field field : standardFields) {
+        field.setAccessible(true);
+        arguments.add(field.get(this));
+        insert.column(field.getName()).value("?");
+      }
+      return insert.toString();
+    } catch (IllegalAccessException ignored) {
+      // NOOP
+    }
+    return null;
+  }
+
+  private List<Field> filterStandardTypes() {
+    return Arrays.stream(getClass().getDeclaredFields())
+        .filter(field -> STANDARD_TYPES.contains(field.getType()))
+        .toList();
   }
 
   private String constructFindByIdQuery() {

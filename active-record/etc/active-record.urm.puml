@@ -6,8 +6,8 @@ package com.iluwatar.activerecord {
     + setDataSource(DataSource) : void
     # getConnection() : Connection
     # abstract getTableName() : String
-    # abstract setFieldsFromResultSet(ResultSet rs) : void
-    # abstract setPreparedStatementParams(PreparedStatement pstmt) : void
+    # abstract setFieldsFromResultSet(ResultSet) : void
+    # abstract setPreparedStatementParams(PreparedStatement) : void
     + findAll() : List<T>
     + findById(Long id): T
     + save() : void

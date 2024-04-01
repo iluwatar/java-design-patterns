@@ -1,5 +1,6 @@
 package com.iluwatar.activerecord;
 
+import com.iluwatar.activerecord.base.RecordBase;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -37,16 +38,11 @@ public class Customer extends RecordBase<Customer> {
   }
 
   @Override
-  protected String constructInsertQuery() {
-    return "INSERT INTO " + getTableName() + " VALUES(?, ?, ?, ?)";
-  }
-
-  @Override
   protected void setFieldsFromResultSet(ResultSet rs) throws SQLException {
     this.id = rs.getLong("id");
-    this.customerNumber = rs.getString("customer_number");
-    this.firstName = rs.getString("first_name");
-    this.lastName = rs.getString("last_name");
+    this.customerNumber = rs.getString("customerNumber");
+    this.firstName = rs.getString("firstName");
+    this.lastName = rs.getString("lastName");
   }
 
   @Override
