@@ -24,7 +24,7 @@
  */
 package com.iluwatar.api.gateway;
 
-import jakarta.annotation.Resource;
+import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
