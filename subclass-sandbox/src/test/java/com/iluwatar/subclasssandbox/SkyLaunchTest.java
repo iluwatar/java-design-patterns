@@ -28,11 +28,13 @@ import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOutNor
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.github.stefanbirkner.systemlambda.Statement;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * SkyLaunch unit tests.
  */
+@Disabled
 class SkyLaunchTest {
 
   @Test

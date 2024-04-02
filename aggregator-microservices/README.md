@@ -3,10 +3,10 @@ title: Aggregator Microservices
 category: Architectural
 language: en
 tag:
-- API design
-- Cloud distributed
-- Decoupling
-- Microservices
+    - API design
+    - Cloud distributed
+    - Decoupling
+    - Microservices
 ---
 
 ## Intent
@@ -21,7 +21,7 @@ Real world example
 
 In plain words
 
-> Aggregator Microservice collects pieces of data from various microservices and returns an aggregate for processing. 
+> Aggregator Microservice collects pieces of data from various microservices and returns an aggregate for processing.
 
 Stack Overflow says
 
@@ -33,54 +33,54 @@ Let's start from the data model. Here's our `Product`.
 
 ```java
 public class Product {
-  private String title;
-  private int productInventories;
-  // Getters and setters omitted for brevity ->
+    private String title;
+    private int productInventories;
+    // Getters and setters omitted for brevity ->
   ...
 }
 ```
 
-Next we can introduce our `Aggregator` microservice. It contains clients `ProductInformationClient` and
-`ProductInventoryClient` for calling respective microservices.
+Next we can introduce our `Aggregator` microservice. It contains clients `ProductInformationClient` and `ProductInventoryClient` for calling respective microservices.
 
 ```java
+
 @RestController
 public class Aggregator {
 
-  @Resource
-  private ProductInformationClient informationClient;
+    @Resource
+    private ProductInformationClient informationClient;
 
-  @Resource
-  private ProductInventoryClient inventoryClient;
+    @Resource
+    private ProductInventoryClient inventoryClient;
 
-  @RequestMapping(path = "/product", method = RequestMethod.GET)
-  public Product getProduct() {
+    @RequestMapping(path = "/product", method = RequestMethod.GET)
+    public Product getProduct() {
 
-    var product = new Product();
-    var productTitle = informationClient.getProductTitle();
-    var productInventory = inventoryClient.getProductInventories();
+        var product = new Product();
+        var productTitle = informationClient.getProductTitle();
+        var productInventory = inventoryClient.getProductInventories();
 
-    //Fallback to error message
-    product.setTitle(requireNonNullElse(productTitle, "Error: Fetching Product Title Failed"));
+        //Fallback to error message
+        product.setTitle(requireNonNullElse(productTitle, "Error: Fetching Product Title Failed"));
 
-    //Fallback to default error inventory
-    product.setProductInventories(requireNonNullElse(productInventory, -1));
+        //Fallback to default error inventory
+        product.setProductInventories(requireNonNullElse(productInventory, -1));
 
-    return product;
-  }
+        return product;
+    }
 }
 ```
 
-Here's the essence of information microservice implementation. Inventory microservice is similar, it just returns
-inventory counts.
+Here's the essence of information microservice implementation. Inventory microservice is similar, it just returns inventory counts.
 
 ```java
+
 @RestController
 public class InformationController {
-  @RequestMapping(value = "/information", method = RequestMethod.GET)
-  public String getProductTitle() {
-    return "The Product Title.";
-  }
+    @RequestMapping(value = "/information", method = RequestMethod.GET)
+    public String getProductTitle() {
+        return "The Product Title.";
+    }
 }
 ```
 

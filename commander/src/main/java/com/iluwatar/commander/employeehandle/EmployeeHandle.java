@@ -47,7 +47,7 @@ public class EmployeeHandle extends Service {
     var o = (Order) parameters[0];
     if (database.get(o.id) == null) {
       database.add(o);
-      return o.id; //true rcvd - change addedToEmployeeHandle to true else dont do anything
+      return o.id; //true rcvd - change addedToEmployeeHandle to true else don't do anything
     }
     return null;
   }

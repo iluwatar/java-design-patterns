@@ -1,0 +1,25 @@
+@startuml
+package com.iluwatar.corruption {
+class LegacyShop {
+    private Store store;
+    private AntiCorruptionLayer acl;
+}
+
+class ModernShop {
+    private Store store;
+    private AntiCorruptionLayer acl;
+}
+
+class AntiCorruptionLayer{
+    private LegacyShop legacyShop;
+    private ModernShop modernShop;
+
+
+ }
+LegacyShop --->  "findOrderInModernSystem" AntiCorruptionLayer
+ModernShop --->  "findOrderInLegacySystem" AntiCorruptionLayer
+AntiCorruptionLayer ..|>   ModernShop
+AntiCorruptionLayer ..|> LegacyShop
+}
+
+@enduml

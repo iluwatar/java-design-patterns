@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.combinator;
 
 import static com.iluwatar.combinator.Finders.advancedFinder;
@@ -38,48 +39,47 @@ class FindersTest {
   void advancedFinderTest() {
     var res = advancedFinder("it was", "kingdom", "sea").find(text());
     assertEquals(1, res.size());
-    assertEquals( "It was many and many a year ago,", res.get(0));
+    assertEquals("It was many and many a year ago,", res.get(0));
   }
 
   @Test
   void filteredFinderTest() {
     var res = filteredFinder(" was ", "many", "child").find(text());
     assertEquals(1, res.size());
-    assertEquals( "But we loved with a love that was more than love-", res.get(0));
+    assertEquals("But we loved with a love that was more than love-", res.get(0));
   }
 
   @Test
   void specializedFinderTest() {
     var res = specializedFinder("love", "heaven").find(text());
     assertEquals(1, res.size());
-    assertEquals( "With a love that the winged seraphs of heaven", res.get(0));
+    assertEquals("With a love that the winged seraphs of heaven", res.get(0));
   }
 
   @Test
   void expandedFinderTest() {
     var res = expandedFinder("It was", "kingdom").find(text());
     assertEquals(3, res.size());
-    assertEquals( "It was many and many a year ago,", res.get(0));
-    assertEquals( "In a kingdom by the sea,", res.get(1));
-    assertEquals( "In this kingdom by the sea;", res.get(2));
+    assertEquals("It was many and many a year ago,", res.get(0));
+    assertEquals("In a kingdom by the sea,", res.get(1));
+    assertEquals("In this kingdom by the sea;", res.get(2));
   }
 
 
   private String text() {
-    return
-            """
-                    It was many and many a year ago,
-                    In a kingdom by the sea,
-                    That a maiden there lived whom you may know
-                    By the name of ANNABEL LEE;
-                    And this maiden she lived with no other thought
-                    Than to love and be loved by me.
-                    I was a child and she was a child,
-                    In this kingdom by the sea;
-                    But we loved with a love that was more than love-
-                    I and my Annabel Lee;
-                    With a love that the winged seraphs of heaven
-                    Coveted her and me.""";
+    return """
+        It was many and many a year ago,
+        In a kingdom by the sea,
+        That a maiden there lived whom you may know
+        By the name of ANNABEL LEE;
+        And this maiden she lived with no other thought
+        Than to love and be loved by me.
+        I was a child and she was a child,
+        In this kingdom by the sea;
+        But we loved with a love that was more than love-
+        I and my Annabel Lee;
+        With a love that the winged seraphs of heaven
+        Coveted her and me.""";
   }
 
 }

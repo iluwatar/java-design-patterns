@@ -32,13 +32,12 @@
     <groupId>com.iluwatar</groupId>
     <version>1.26.0-SNAPSHOT</version>
   </parent>
-  <groupId>com.iluwatar</groupId>
   <artifactId>model-view-viewmodel</artifactId>
   <version>1.26.0-SNAPSHOT</version>
   <properties>
     <zk.version>9.0.0</zk.version>
-    <jetty-maven-plugin.version>9.4.28.v20200408</jetty-maven-plugin.version>
-    <maven-war-plugin.version>3.3.2</maven-war-plugin.version>
+    <jetty-maven-plugin.version>11.0.20</jetty-maven-plugin.version>
+    <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
     <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
     <packname>-${project.version}-FL-${maven.build.timestamp}</packname>
   </properties>

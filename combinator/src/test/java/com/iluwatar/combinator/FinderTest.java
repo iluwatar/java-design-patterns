@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.combinator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,12 +34,12 @@ class FinderTest {
   @Test
   void contains() {
     var example = """
-                the first one 
-                the second one\s
-                """;
+        the first one
+        the second one\s
+        """;
 
     var result = Finder.contains("second").find(example);
     assertEquals(1, result.size());
-    assertEquals( "the second one ", result.get(0));
+    assertEquals("the second one ", result.get(0));
   }
 }
