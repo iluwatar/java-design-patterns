@@ -3,9 +3,9 @@ title: Adapter
 category: Structural
 language: en
 tag:
-  - Compatibility
-  - Gang of Four
-  - Integration
+    - Compatibility
+    - Gang of Four
+    - Integration
 ---
 
 ## Also known as
@@ -20,9 +20,7 @@ The Adapter pattern converts the interface of a class into another interface tha
 
 Real-world example
 
-> Consider that you have some pictures on your memory card and you need to transfer them to your computer. To transfer them, you need some kind of adapter that is compatible with your computer ports so that you can attach a memory card to your computer. In this case card reader is an adapter.
-> Another example would be the famous power adapter; a three-legged plug can't be connected to a two-pronged outlet, it needs to use a power adapter that makes it compatible with the two-pronged outlets.
-> Yet another example would be a translator translating words spoken by one person to another
+> Consider that you have some pictures on your memory card and you need to transfer them to your computer. To transfer them, you need some kind of adapter that is compatible with your computer ports so that you can attach a memory card to your computer. In this case card reader is an adapter. Another example would be the famous power adapter; a three-legged plug can't be connected to a two-pronged outlet, it needs to use a power adapter that makes it compatible with the two-pronged outlets. Yet another example would be a translator translating words spoken by one person to another
 
 In plain words
 
@@ -40,14 +38,14 @@ First, we have interfaces `RowingBoat` and `FishingBoat`
 
 ```java
 public interface RowingBoat {
-  void row();
+    void row();
 }
 
 @Slf4j
 public class FishingBoat {
-  public void sail() {
-    LOGGER.info("The fishing boat is sailing");
-  }
+    public void sail() {
+        LOGGER.info("The fishing boat is sailing");
+    }
 }
 ```
 
@@ -56,42 +54,44 @@ And captain expects an implementation of `RowingBoat` interface to be able to mo
 ```java
 public class Captain {
 
-  private final RowingBoat rowingBoat;
-  // default constructor and setter for rowingBoat
-  public Captain(RowingBoat rowingBoat) {
-    this.rowingBoat = rowingBoat;
-  }
+    private final RowingBoat rowingBoat;
 
-  public void row() {
-    rowingBoat.row();
-  }
+    // default constructor and setter for rowingBoat
+    public Captain(RowingBoat rowingBoat) {
+        this.rowingBoat = rowingBoat;
+    }
+
+    public void row() {
+        rowingBoat.row();
+    }
 }
 ```
 
 Now let's say the pirates are coming and our captain needs to escape but there is only a fishing boat available. We need to create an adapter that allows the captain to operate the fishing boat with his rowing boat skills.
 
 ```java
+
 @Slf4j
 public class FishingBoatAdapter implements RowingBoat {
 
-  private final FishingBoat boat;
+    private final FishingBoat boat;
 
-  public FishingBoatAdapter() {
-    boat = new FishingBoat();
-  }
+    public FishingBoatAdapter() {
+        boat = new FishingBoat();
+    }
 
-  @Override
-  public void row() {
-    boat.sail();
-  }
+    @Override
+    public void row() {
+        boat.sail();
+    }
 }
 ```
 
 And now the `Captain` can use the `FishingBoat` to escape the pirates.
 
 ```java
-var captain = new Captain(new FishingBoatAdapter());
-captain.row();
+var captain=new Captain(new FishingBoatAdapter());
+        captain.row();
 ```
 
 ## Class diagram
@@ -114,20 +114,18 @@ Use the Adapter pattern when
 * [Baeldung](https://www.baeldung.com/java-adapter-pattern)
 * [GeeksforGeeks](https://www.geeksforgeeks.org/adapter-pattern/)
 
-
 ## Consequences
 
 Class and object adapters have different trade-offs. A class adapter
 
-*	Adapts Adaptee to Target by committing to a concrete Adaptee class. As a consequence, a class adapter won’t work when we want to adapt a class and all its subclasses.
-*	Lets Adapter override some of Adaptee’s behavior since Adapter is a subclass of Adaptee.
-*	Introduces only one object, and no additional pointer indirection is needed to get to the adaptee.
+* Adapts Adaptee to Target by committing to a concrete Adaptee class. As a consequence, a class adapter won’t work when we want to adapt a class and all its subclasses.
+* Lets Adapter override some of Adaptee’s behavior since Adapter is a subclass of Adaptee.
+* Introduces only one object, and no additional pointer indirection is needed to get to the adaptee.
 
-An object adapter	
+An object adapter
 
-*	Lets a single Adapter work with many Adaptees, that is, the Adaptee itself and all of its subclasses (if any). The Adapter can also add functionality to all Adaptees at once.
-*	Makes it harder to override Adaptee behavior. It will require subclassing Adaptee and making the Adapter refer to the subclass rather than the Adaptee itself.
-
+* Lets a single Adapter work with many Adaptees, that is, the Adaptee itself and all of its subclasses (if any). The Adapter can also add functionality to all Adaptees at once.
+* Makes it harder to override Adaptee behavior. It will require subclassing Adaptee and making the Adapter refer to the subclass rather than the Adaptee itself.
 
 ## Real-world examples
 
@@ -135,7 +133,6 @@ An object adapter
 * [java.util.Collections#list()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#list-java.util.Enumeration-)
 * [java.util.Collections#enumeration()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#enumeration-java.util.Collection-)
 * [javax.xml.bind.annotation.adapters.XMLAdapter](http://docs.oracle.com/javase/8/docs/api/javax/xml/bind/annotation/adapters/XmlAdapter.html#marshal-BoundType-)
-
 
 ## Credits
 

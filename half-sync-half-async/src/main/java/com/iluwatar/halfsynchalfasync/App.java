@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
  * requirements.
  *
  * <p><i>INTENT</i> <br>
- * The intent of this pattern is to separate the the synchronous and asynchronous processing in the
+ * The intent of this pattern is to separate the synchronous and asynchronous processing in the
  * concurrent application by introducing two intercommunicating layers - one for sync and one for
  * async. This simplifies the programming without unduly affecting the performance.
  *

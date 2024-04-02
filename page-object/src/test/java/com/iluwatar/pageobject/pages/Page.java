@@ -24,7 +24,7 @@
  */
 package com.iluwatar.pageobject.pages;
 
-import com.gargoylesoftware.htmlunit.WebClient;
+import org.htmlunit.WebClient;
 
 /**
  * Encapsulation for a generic 'Page'

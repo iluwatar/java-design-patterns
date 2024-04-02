@@ -118,7 +118,7 @@ Aquí está la salida en consola de la aplicación.
 
 ## Diagrama de clases
 
-![alt text](../../../balking/etc/balking.png "Balking")
+![alt text](./etc/balking.png "Balking")
 
 ## Aplicabilidad
 

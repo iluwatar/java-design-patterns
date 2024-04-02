@@ -1,0 +1,59 @@
+@startuml
+package com.iluwatar.repository {
+  interface JpaRepository<T> {
+    + findById(long) : T {abstract}
+    + getEntityVersionById(long) : int {abstract}
+    + update(T) : int {abstract}
+  }
+}
+package com.iluwatar.api {
+  interface UpdateService<T> {
+    + doUpdate(T, long) : T {abstract}
+  }
+}
+package com.iluwatar.service {
+  class CardUpdateService {
+    - cardJpaRepository : JpaRepository<Card>
+    + CardUpdateService(cardJpaRepository : JpaRepository<Card>)
+    + doUpdate(obj : Card, id : long) : Card
+  }
+}
+package com.iluwatar.model {
+  class Card {
+    - id : long
+    - personId : long
+    - sum : float
+    - version : int
+    + Card()
+    + Card(id : long, personId : long, sum : float, version : int)
+    + builder() : CardBuilder {static}
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getId() : long
+    + getPersonId() : long
+    + getSum() : float
+    + getVersion() : int
+    + hashCode() : int
+    + setId(id : long)
+    + setPersonId(personId : long)
+    + setSum(sum : float)
+    + setVersion(version : int)
+    + toString() : String
+  }
+  class CardBuilder {
+    - id : long
+    - personId : long
+    - sum : float
+    - version : int
+    ~ CardBuilder()
+    + build() : Card
+    + id(id : long) : CardBuilder
+    + personId(personId : long) : CardBuilder
+    + sum(sum : float) : CardBuilder
+    + toString() : String
+    + version(version : int) : CardBuilder
+  }
+}
+CardUpdateService -->  "-cardJpaRepository" JpaRepository
+CardUpdateService ..|> UpdateService 
+@enduml

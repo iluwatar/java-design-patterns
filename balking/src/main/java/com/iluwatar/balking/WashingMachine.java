@@ -25,6 +25,7 @@
 package com.iluwatar.balking;
 
 import java.util.concurrent.TimeUnit;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -34,6 +35,8 @@ import lombok.extern.slf4j.Slf4j;
 public class WashingMachine {
 
   private final DelayProvider delayProvider;
+
+  @Getter
   private WashingMachineState washingMachineState;
 
   /**
@@ -60,10 +63,6 @@ public class WashingMachine {
     this.washingMachineState = WashingMachineState.ENABLED;
   }
 
-  public WashingMachineState getWashingMachineState() {
-    return washingMachineState;
-  }
-
   /**
    * Method responsible for washing if the object is in appropriate state.
    */
@@ -83,7 +82,7 @@ public class WashingMachine {
   }
 
   /**
-   * Method responsible of ending the washing by changing machine state.
+   * Method is responsible for ending the washing by changing machine state.
    */
   public synchronized void endOfWashing() {
     washingMachineState = WashingMachineState.ENABLED;

@@ -22,17 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package entity;
 
-import java.util.HashSet;
-import java.util.Set;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.FetchType;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Cake entity.
@@ -40,50 +41,50 @@ import jakarta.persistence.FetchType;
 @Entity
 public class Cake {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+  @Id
+  @GeneratedValue
+  private Long id;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
-    private CakeTopping topping;
+  @OneToOne(cascade = CascadeType.REMOVE)
+  private CakeTopping topping;
 
-    @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-    private Set<CakeLayer> layers;
+  @OneToMany(cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+  private Set<CakeLayer> layers;
 
-    public Cake() {
-        setLayers(new HashSet<>());
-    }
+  public Cake() {
+    setLayers(new HashSet<>());
+  }
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public CakeTopping getTopping() {
-        return topping;
-    }
+  public CakeTopping getTopping() {
+    return topping;
+  }
 
-    public void setTopping(CakeTopping topping) {
-        this.topping = topping;
-    }
+  public void setTopping(CakeTopping topping) {
+    this.topping = topping;
+  }
 
-    public Set<CakeLayer> getLayers() {
-        return layers;
-    }
+  public Set<CakeLayer> getLayers() {
+    return layers;
+  }
 
-    public void setLayers(Set<CakeLayer> layers) {
-        this.layers = layers;
-    }
+  public void setLayers(Set<CakeLayer> layers) {
+    this.layers = layers;
+  }
 
-    public void addLayer(CakeLayer layer) {
-        this.layers.add(layer);
-    }
+  public void addLayer(CakeLayer layer) {
+    this.layers.add(layer);
+  }
 
-    @Override
-    public String toString() {
-        return String.format("id=%s topping=%s layers=%s", id, topping, layers.toString());
-    }
+  @Override
+  public String toString() {
+    return String.format("id=%s topping=%s layers=%s", id, topping, layers.toString());
+  }
 }

@@ -1,0 +1,49 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class Animal {
+  - animalsEaten: Set<Animal>
+  - name: String
+  - plantsEaten: Set<Plant>
+   animalsEaten: Set<Animal>
+   name: String
+   plantsEaten: Set<Plant>
+}
+class App
+class BlobSerializer
+class ClobSerializer
+class DatabaseService
+class Forest {
+  - animals: Set<Animal>
+  - name: String
+  - plants: Set<Plant>
+   animals: Set<Animal>
+   name: String
+   plants: Set<Plant>
+   xmlDoc: Document
+}
+class LobSerializer
+class Plant {
+  - name: String
+  - type: String
+   name: String
+   type: String
+}
+
+Animal           -[#595959,dashed]->  Plant           : "«create»"
+Animal          "1" *-[#595959,plain]-> "plantsEaten\n*" Plant
+App              -[#595959,dashed]->  Animal          : "«create»"
+App              -[#595959,dashed]->  ClobSerializer  : "«create»"
+App              -[#595959,dashed]->  Forest          : "«create»"
+App              -[#595959,dashed]->  Plant           : "«create»"
+BlobSerializer   -[#000082,plain]-^  LobSerializer
+ClobSerializer   -[#595959,dashed]->  Forest          : "«create»"
+ClobSerializer   -[#000082,plain]-^  LobSerializer
+Forest          "1" *-[#595959,plain]-> "animals\n*" Animal
+Forest          "1" *-[#595959,plain]-> "plants\n*" Plant
+LobSerializer   "1" *-[#595959,plain]-> "databaseService\n1" DatabaseService
+LobSerializer    -[#595959,dashed]->  DatabaseService : "«create»"
+@enduml

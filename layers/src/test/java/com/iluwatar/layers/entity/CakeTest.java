@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.layers.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -29,18 +30,17 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import entity.Cake;
 import entity.CakeLayer;
 import entity.CakeTopping;
+import java.util.HashSet;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/15/15 - 8:02 PM
- *
- * @author Jeroen Meulemeester
+ * This class contains unit tests for the Cake class.
+ * It tests the functionality of setting and getting the id, topping, and layers of a Cake object.
+ * It also tests the functionality of adding a layer to a Cake object and converting a Cake object to a string.
  */
 class CakeTest {
 
@@ -70,9 +70,7 @@ class CakeTest {
     assertNotNull(cake.getLayers());
     assertTrue(cake.getLayers().isEmpty());
 
-    final var expectedLayers = Set.of(
-        new CakeLayer("layer1", 1000),
-        new CakeLayer("layer2", 2000),
+    final var expectedLayers = Set.of(new CakeLayer("layer1", 1000), new CakeLayer("layer2", 2000),
         new CakeLayer("layer3", 3000));
     cake.setLayers(expectedLayers);
     assertEquals(expectedLayers, cake.getLayers());
