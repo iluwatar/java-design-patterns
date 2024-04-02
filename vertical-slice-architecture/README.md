@@ -1,6 +1,5 @@
 ---
 title: Vertical Slice Architecture
-aka: Layer By Feature
 category: Architectural
 language: en
 tag:
