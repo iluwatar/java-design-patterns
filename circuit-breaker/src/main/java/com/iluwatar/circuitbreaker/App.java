@@ -99,7 +99,7 @@ public class App {
       LOGGER.info("Waiting for delayed service to become responsive");
       Thread.sleep(5000);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error("An error occurred: ", e);
     }
     //Check the state of delayed circuit breaker, should be HALF_OPEN
     LOGGER.info(delayedServiceCircuitBreaker.getState());

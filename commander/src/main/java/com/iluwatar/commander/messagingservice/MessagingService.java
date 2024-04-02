@@ -44,11 +44,7 @@ public class MessagingService extends Service {
     PAYMENT_SUCCESSFUL
   }
 
-  @RequiredArgsConstructor
-  static class MessageRequest {
-    final String reqId;
-    final MessageToSend msg;
-  }
+  record MessageRequest(String reqId, MessageToSend msg) {}
 
   public MessagingService(MessagingDatabase db, Exception... exc) {
     super(db, exc);

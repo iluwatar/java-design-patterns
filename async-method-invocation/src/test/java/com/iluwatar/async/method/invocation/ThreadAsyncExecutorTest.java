@@ -25,15 +25,8 @@
 package com.iluwatar.async.method.invocation;
 
 import static java.time.Duration.ofMillis;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTimeout;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.ArgumentMatchers.isNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.timeout;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -58,7 +51,7 @@ import org.mockito.MockitoAnnotations;
 class ThreadAsyncExecutorTest {
 
   @Captor
-  private ArgumentCaptor<Optional<Exception>> optionalCaptor;
+  private ArgumentCaptor<Exception> exceptionCaptor;
 
   @Mock
   private Callable<Object> task;
@@ -75,7 +68,7 @@ class ThreadAsyncExecutorTest {
    * Test used to verify the happy path of {@link ThreadAsyncExecutor#startProcess(Callable)}
    */
   @Test
-  void testSuccessfulTaskWithoutCallback() throws Exception {
+  void testSuccessfulTaskWithoutCallback() {
     assertTimeout(ofMillis(3000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -101,7 +94,7 @@ class ThreadAsyncExecutorTest {
    * AsyncCallback)}
    */
   @Test
-  void testSuccessfulTaskWithCallback() throws Exception {
+  void testSuccessfulTaskWithCallback() {
     assertTimeout(ofMillis(3000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -118,11 +111,8 @@ class ThreadAsyncExecutorTest {
       verify(task, times(1)).call();
 
       // ... same for the callback, we expect our object
-      verify(callback, times(1)).onComplete(eq(result), optionalCaptor.capture());
-
-      final var optionalException = optionalCaptor.getValue();
-      assertNotNull(optionalException);
-      assertFalse(optionalException.isPresent());
+      verify(callback, times(1)).onComplete(eq(result));
+      verify(callback, times(0)).onError(exceptionCaptor.capture());
 
       // ... and the result should be exactly the same object
       assertSame(result, asyncResult.getValue());
@@ -134,7 +124,7 @@ class ThreadAsyncExecutorTest {
    * task takes a while to execute
    */
   @Test
-  void testLongRunningTaskWithoutCallback() throws Exception {
+  void testLongRunningTaskWithoutCallback() {
     assertTimeout(ofMillis(5000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -174,7 +164,7 @@ class ThreadAsyncExecutorTest {
    * AsyncCallback)} when a task takes a while to execute
    */
   @Test
-  void testLongRunningTaskWithCallback() throws Exception {
+  void testLongRunningTaskWithCallback() {
     assertTimeout(ofMillis(5000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -200,11 +190,8 @@ class ThreadAsyncExecutorTest {
 
       // Our task should only execute once, but it can take a while ...
       verify(task, timeout(3000).times(1)).call();
-      verify(callback, timeout(3000).times(1)).onComplete(eq(result), optionalCaptor.capture());
-
-      final var optionalException = optionalCaptor.getValue();
-      assertNotNull(optionalException);
-      assertFalse(optionalException.isPresent());
+      verify(callback, timeout(3000).times(1)).onComplete(eq(result));
+      verify(callback, times(0)).onError(isA(Exception.class));
 
       // Prevent timing issues, and wait until the result is available
       asyncResult.await();
@@ -222,7 +209,7 @@ class ThreadAsyncExecutorTest {
    * ThreadAsyncExecutor#endProcess(AsyncResult)}
    */
   @Test
-  void testEndProcess() throws Exception {
+  void testEndProcess() {
     assertTimeout(ofMillis(5000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -259,7 +246,7 @@ class ThreadAsyncExecutorTest {
    * the callable is 'null'
    */
   @Test
-  void testNullTask() throws Exception {
+  void testNullTask() {
     assertTimeout(ofMillis(3000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -286,7 +273,7 @@ class ThreadAsyncExecutorTest {
    * AsyncCallback)} when the callable is 'null', but the asynchronous callback is provided
    */
   @Test
-  void testNullTaskWithCallback() throws Exception {
+  void testNullTaskWithCallback() {
     assertTimeout(ofMillis(3000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();
@@ -295,14 +282,12 @@ class ThreadAsyncExecutorTest {
       assertNotNull(asyncResult, "The AsyncResult should not be 'null', even though the task was 'null'.");
       asyncResult.await(); // Prevent timing issues, and wait until the result is available
       assertTrue(asyncResult.isCompleted());
-      verify(callback, times(1)).onComplete(isNull(), optionalCaptor.capture());
+      verify(callback, times(0)).onComplete(any());
+      verify(callback, times(1)).onError(exceptionCaptor.capture());
 
-      final var optionalException = optionalCaptor.getValue();
-      assertNotNull(optionalException);
-      assertTrue(optionalException.isPresent());
-
-      final var exception = optionalException.get();
+      final var exception = exceptionCaptor.getValue();
       assertNotNull(exception);
+
       assertEquals(NullPointerException.class, exception.getClass());
 
       try {
@@ -322,7 +307,7 @@ class ThreadAsyncExecutorTest {
    * AsyncCallback)} when both the callable and the asynchronous callback are 'null'
    */
   @Test
-  void testNullTaskWithNullCallback() throws Exception {
+  void testNullTaskWithNullCallback() {
     assertTimeout(ofMillis(3000), () -> {
       // Instantiate a new executor and start a new 'null' task ...
       final var executor = new ThreadAsyncExecutor();

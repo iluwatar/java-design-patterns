@@ -22,22 +22,11 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.collectionpipeline;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+package com.iluwatar.collectionpipeline;
 
 /**
  * A Car class that has the properties of make, model, year and category.
  */
-@Getter
-@EqualsAndHashCode
-@RequiredArgsConstructor
-public class Car {
-  private final String make;
-  private final String model;
-  private final int year;
-  private final Category category;
-
+public record Car(String make, String model, int year, Category category) {
 }

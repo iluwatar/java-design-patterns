@@ -34,6 +34,17 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>api-gateway</artifactId>
   <packaging>pom</packaging>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <type>pom</type>
+        <version>3.2.4</version>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <modules>
     <module>image-microservice</module>
     <module>price-microservice</module>

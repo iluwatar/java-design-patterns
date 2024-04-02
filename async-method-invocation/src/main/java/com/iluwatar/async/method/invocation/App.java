@@ -118,11 +118,15 @@ public class App {
    * @return new async callback
    */
   private static <T> AsyncCallback<T> callback(String name) {
-    return (value, ex) -> {
-      if (ex.isPresent()) {
-        log(name + " failed: " + ex.map(Exception::getMessage).orElse(""));
-      } else {
+    return new AsyncCallback<>() {
+      @Override
+      public void onComplete(T value) {
         log(name + " <" + value + ">");
+      }
+
+      @Override
+      public void onError(Exception ex) {
+        log(name + " failed: " + ex.getMessage());
       }
     };
   }

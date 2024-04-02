@@ -30,7 +30,7 @@
   </bean>
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     <property name="driverClassName" value="org.h2.Driver" />
-    <property name="url" value="jdbc:h2:~/databases/person" />
+    <property name="url" value="jdbc:h2:mem:databases-person;DB_CLOSE_DELAY=-1" />
     <property name="username" value="sa" />
     <property name="password" value="sa" />
   </bean>

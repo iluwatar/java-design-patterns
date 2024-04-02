@@ -37,7 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class acts as Synchronous Event De-multiplexer and Initiation Dispatcher of Reactor pattern.
- * Multiple handles i.e. {@link AbstractNioChannel}s can be registered to the reactor and it blocks
+ * Multiple handles i.e. {@link AbstractNioChannel}s can be registered to the reactor, and it blocks
  * for events from all these handles. Whenever an event occurs on any of the registered handles, it
  * synchronously de-multiplexes the event which can be any of read, write or accept, and dispatches
  * the event to the appropriate {@link ChannelHandler} using the {@link Dispatcher}.
@@ -46,7 +46,7 @@ import lombok.extern.slf4j.Slf4j;
  * #start()} method. {@link NioReactor} uses {@link Selector} for realizing Synchronous Event
  * De-multiplexing.
  *
- * <p>NOTE: This is one of the ways to implement NIO reactor and it does not take care of all
+ * <p>NOTE: This is one of the ways to implement NIO reactor, and it does not take care of all
  * possible edge cases which are required in a real application. This implementation is meant to
  * demonstrate the fundamental concepts that lie behind Reactor pattern.
  */
@@ -212,7 +212,7 @@ public class NioReactor {
 
   /**
    * Queues the change of operations request of a channel, which will change the interested
-   * operations of the channel sometime in future.
+   * operations of the channel sometime in the future.
    *
    * <p>This is a non-blocking method and does not guarantee that the operations have changed when
    * this method returns.
@@ -228,7 +228,7 @@ public class NioReactor {
   /**
    * A command that changes the interested operations of the key provided.
    */
-  class ChangeKeyOpsCommand implements Runnable {
+  static class ChangeKeyOpsCommand implements Runnable {
     private final SelectionKey key;
     private final int interestedOps;
 

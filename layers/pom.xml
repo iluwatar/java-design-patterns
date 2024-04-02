@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+
     This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+
     The MIT License
     Copyright © 2014-2022 Ilkka Seppälä
+
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
     in the Software without restriction, including without limitation the rights
@@ -19,21 +22,35 @@
     AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
     LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
     OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-    THE SOFTWARE.-->
+    THE SOFTWARE.
+
+-->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.0.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.iluwatar</groupId>
+        <artifactId>java-design-patterns</artifactId>
+        <version>1.26.0-SNAPSHOT</version>
     </parent>
     <groupId>com.iluwatar</groupId>
     <artifactId>layers</artifactId>
     <name>layers</name>
     <description>layers</description>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <type>pom</type>
+                <version>3.2.4</version>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
