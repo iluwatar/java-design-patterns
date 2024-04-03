@@ -25,18 +25,17 @@
 package com.iluwatar.compositeview;
 
 import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.PrintWriter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * A servlet object that extends HttpServlet.
  * Runs on Tomcat 10 and handles Http requests
  */
-
+@Slf4j
 public final class AppServlet extends HttpServlet {
   private static final String CONTENT_TYPE = "text/html";
   private String msgPartOne = "<h1>This Server Doesn't Support";
@@ -56,39 +55,44 @@ public final class AppServlet extends HttpServlet {
   }
 
   @Override
-  public void doGet(HttpServletRequest req, HttpServletResponse resp)
-          throws ServletException, IOException {
-    RequestDispatcher requestDispatcher = req.getRequestDispatcher(destination);
-    ClientPropertiesBean reqParams = new ClientPropertiesBean(req);
-    req.setAttribute("properties", reqParams);
-    requestDispatcher.forward(req, resp);
+  public void doGet(HttpServletRequest req, HttpServletResponse resp) {
+    try {
+      RequestDispatcher requestDispatcher = req.getRequestDispatcher(destination);
+      ClientPropertiesBean reqParams = new ClientPropertiesBean(req);
+      req.setAttribute("properties", reqParams);
+      requestDispatcher.forward(req, resp);
+    } catch (Exception e) {
+      LOGGER.error("Exception occurred GET request processing ", e);
+    }
   }
 
   @Override
-  public void doPost(HttpServletRequest req, HttpServletResponse resp)
-          throws ServletException, IOException {
+  public void doPost(HttpServletRequest req, HttpServletResponse resp) {
     resp.setContentType(CONTENT_TYPE);
     try (PrintWriter out = resp.getWriter()) {
       out.println(msgPartOne + " Post " + msgPartTwo);
+    } catch (Exception e) {
+      LOGGER.error("Exception occurred POST request processing ", e);
     }
-
   }
 
   @Override
-  public void doDelete(HttpServletRequest req, HttpServletResponse resp)
-          throws ServletException, IOException {
+  public void doDelete(HttpServletRequest req, HttpServletResponse resp) {
     resp.setContentType(CONTENT_TYPE);
     try (PrintWriter out = resp.getWriter()) {
       out.println(msgPartOne + " Delete " + msgPartTwo);
+    } catch (Exception e) {
+      LOGGER.error("Exception occurred DELETE request processing ", e);
     }
   }
 
   @Override
-  public void doPut(HttpServletRequest req, HttpServletResponse resp)
-          throws ServletException, IOException {
+  public void doPut(HttpServletRequest req, HttpServletResponse resp) {
     resp.setContentType(CONTENT_TYPE);
     try (PrintWriter out = resp.getWriter()) {
       out.println(msgPartOne + " Put " + msgPartTwo);
+    } catch (Exception e) {
+      LOGGER.error("Exception occurred PUT request processing ", e);
     }
   }
 }
