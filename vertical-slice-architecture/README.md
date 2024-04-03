@@ -41,6 +41,29 @@ In Plain Words
 > Similarly, in software development, vertical slice architecture involves organizing the codebase based on features. 
 > Each feature has its own self-contained set of components, making it easier to add, modify, or remove features without disrupting the entire application.
 
+**File structure**
+> have a look in the below file structure, as per vertical slice architecture we are grouping model, view and controller per package associated with the feature.
+
+```
+- ecommerce
+  ├── customer
+  │   ├── Customer.java
+  │   ├── CustomerRepository.java
+  │   ├── CustomerService.java
+  │   └── CustomerView.java
+  ├── order
+  │   ├── Orders.java
+  │   ├── OrderRepository.java
+  │   ├── OrderService.java
+  │   └── OrderView.java
+  ├── product
+  │   ├── Product.java
+  │   ├── ProductRepository.java
+  │   ├── ProductService.java
+  │   └── ProductView.java
+  └── App.java
+```
+
 ## Class diagram
 
 ![Vertical Slice Architecture](./etc/vertical-slice-architecture.urm.png)
