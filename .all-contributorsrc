@@ -3057,6 +3057,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "DavidMedinaO",
+      "name": "David Medina Orozco",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53974843?v=4",
+      "profile": "https://github.com/DavidMedinaO",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 7,
