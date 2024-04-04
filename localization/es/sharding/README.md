@@ -1,7 +1,7 @@
 ---
 title: Sharding 
 category: Behavioral
-language: en
+language: es
 tag:  
  - Performance
  - Cloud distributed

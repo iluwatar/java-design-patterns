@@ -1,7 +1,7 @@
 ---
 title: Servant
 category: Behavioral
-language: en
+language: es
 tag:
 - Decoupling
 ---

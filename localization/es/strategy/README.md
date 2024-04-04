@@ -1,7 +1,7 @@
 ---
 title: Strategy
 category: Behavioral
-language: en
+language: es
 tag:
  - Gang of Four
 ---

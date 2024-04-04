@@ -1,7 +1,7 @@
 ---
 title: Spatial Partition
 category: Behavioral
-language: en
+language: es
 tag:
  - Performance
  - Game programming

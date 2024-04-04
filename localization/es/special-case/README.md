@@ -1,7 +1,7 @@
 ---
 title: Special Case
 category: Behavioral
-language: en
+language: es
 tag:
  - Extensibility
 ---

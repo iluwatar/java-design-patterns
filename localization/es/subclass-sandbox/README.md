@@ -1,7 +1,7 @@
 ---  
 title: Subclass Sandbox 
 category: Behavioral
-language: en
+language: es
 tag:  
  - Game programming
 ---  
