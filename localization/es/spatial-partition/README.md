@@ -16,7 +16,7 @@ estructura de datos organizada por sus posiciones.
 ## Explicación
 
 Digamos que usted está construyendo un juego de guerra con cientos, o incluso miles de jugadores, que se enfrentan en el campo de batalla.
-en el campo de batalla. La posición de cada jugador se actualiza en cada fotograma. La forma más sencilla de manejar
+La posición de cada jugador se actualiza en cada fotograma. La forma más sencilla de manejar
 todas las interacciones que tienen lugar en el campo es comprobar la posición de cada jugador con la de todos los demás.
 posición de cada jugador:
 

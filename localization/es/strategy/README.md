@@ -12,8 +12,8 @@ Policy
 
 ## Propósito
 
-Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets 
-the algorithm vary independently of the clients that use it.
+Definir una familia de algoritmos, encapsular cada uno de ellos y hacerlos intercambiables. La estrategia permite
+que el algoritmo varíe independientemente de los clientes que lo utilicen.
 
 ## Explicación
 

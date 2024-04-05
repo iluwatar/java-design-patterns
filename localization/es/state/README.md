@@ -148,10 +148,12 @@ Salida del programa:
 
 ## Aplicabilidad
 
-Use the State pattern in either of the following cases
+Utiliza el patrón State en cualquiera de los siguientes casos:
 
-* An object's behavior depends on its state, and it must change its behavior at run-time depending on that state
-* Operations have large, multipart conditional statements that depend on the object's state. This state is usually represented by one or more enumerated constants. Often, several operations will contain this same conditional structure. The State pattern puts each branch of the conditional in a separate class. This lets you treat the object's state as an object in its own right that can vary independently from other objects.
+* El comportamiento de un objeto depende de su estado, y debe cambiar su comportamiento en tiempo de ejecución dependiendo de ese estado.
+* Las operaciones tienen grandes sentencias condicionales multiparte que dependen del estado del objeto. Este estado suele estar representado por una o más constantes enumeradas. A menudo, varias operaciones contendrán esta misma estructura condicional. El patrón State coloca cada rama de la condicional en una clase separada. Esto permite tratar el estado del objeto como un objeto en sí mismo que puede variar independientemente de otros objetos.
+
+Traducción realizada con la versión gratuita del traductor www.DeepL.com/Translator
 
 ## Usos conocidos
 

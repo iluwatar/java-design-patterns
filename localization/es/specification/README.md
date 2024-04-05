@@ -12,9 +12,9 @@ Filter, Criteria
 
 ## Propósito
 
-Specification pattern separates the statement of how to match a candidate, from the candidate object 
-that it is matched against. As well as its usefulness in selection, it is also valuable for 
-validation and for building to order.
+El patrón de Specification separa la declaración de cómo emparejar un candidato, del objeto candidato
+con el que se compara. Además de su utilidad en la selección, también es valioso para la
+validación y para la construcción por encargo.
 
 ## Explicación
 
@@ -177,7 +177,7 @@ public class ConjunctionSelector<T> extends AbstractSelector<T> {
 
 Todo lo que queda por hacer ahora es crear selectores de hoja (ya sean de código duro o parametrizados) que
 sean lo más genéricos posible, y podremos instanciar la clase ``AbstractSelector`` combinando
-combinando cualquier cantidad de selectores, como se ejemplificó anteriormente. Debemos tener cuidado, sin embargo, ya que es fácil
+cualquier cantidad de selectores, como se ejemplificó anteriormente. Debemos tener cuidado, sin embargo, ya que es fácil
 cometer un error al combinar muchos operadores lógicos; en particular, debemos prestar atención a la prioridad de las operaciones.
 la prioridad de las operaciones. En general, la especificación compuesta es una gran manera de escribir más
 código reutilizable, ya que no es necesario crear una clase Selector para cada operación de filtrado. En su lugar
