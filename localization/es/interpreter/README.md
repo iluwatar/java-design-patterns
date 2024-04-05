@@ -39,7 +39,7 @@ public abstract class Expression {
 }
 ```
 
-The simplest of the expressions is the `NumberExpression` that contains only a single integer number.
+La más sencilla de las expresiones es la `NumberExpression` que contiene un único número entero.
 
 ```java
 public class NumberExpression extends Expression {
@@ -66,8 +66,8 @@ public class NumberExpression extends Expression {
 }
 ```
 
-The more complex expressions are operations such as `PlusExpression`, `MinusExpression`, and
-`MultiplyExpression`. Here's the first of them, the others are similar.
+Las expresiones más complejas son operaciones como `PlusExpression`, `MinusExpression` y
+`MultiplicarExpresión`. Aquí está la primera de ellas, las otras son similares.
 
 ```java
 public class PlusExpression extends Expression {

@@ -26,7 +26,7 @@ En palabras llanas
 
 **Ejemplo programático**
 
-Uno de los objetos más importantes del juego es la clase `Mago`.
+Uno de los objetos más importantes del juego es la clase Mago `Wizard`.
 
 ```java
 
@@ -171,7 +171,7 @@ public class VirtualMachine {
 }
 ```
 
-Now we can show the full example utilizing the virtual machine.
+Ahora podemos mostrar el ejemplo completo utilizando la máquina virtual.
 
 ```java
   public static void main(String[]args){
@@ -238,7 +238,7 @@ Ventajas:
 * Seguridad: La máquina virtual puede aplicar controles de seguridad al código de bytes.
 * Rendimiento: Los compiladores JIT pueden optimizar el código de bytes en tiempo de ejecución, mejorando potencialmente el rendimiento respecto al código interpretado.
 
-Contrapartidas:
+Desventajas:
 
 * Sobrecarga: Ejecutar bytecode normalmente implica más sobrecarga que ejecutar código nativo, lo que puede afectar al rendimiento.
 * Complejidad: Implementar y mantener una máquina virtual añade complejidad al sistema.

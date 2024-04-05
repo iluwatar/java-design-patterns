@@ -8,7 +8,7 @@ tag:
 
 ## Propósito
 
-In most object-oriented languages, such as Java or C#, references may be null. These references need to be checked to ensure they are not null before invoking any methods, because methods typically cannot be invoked on null references. Instead of using a null reference to convey absence of an object (for instance, a non-existent customer), one uses an object which implements the expected interface, but whose method body is empty. The advantage of this approach over a working default implementation is that a Null Object is very predictable and has no side effects: it does nothing.
+En la mayoría de los lenguajes orientados a objetos, como Java o C#, las referencias pueden ser nulas. Estas referencias deben comprobarse para asegurarse de que no son nulas antes de invocar cualquier método, porque normalmente los métodos no pueden invocarse sobre referencias nulas. En lugar de utilizar una referencia nula para indicar la ausencia de un objeto (por ejemplo, un cliente inexistente), se utiliza un objeto que implementa la interfaz esperada, pero cuyo cuerpo de método está vacío. La ventaja de este enfoque sobre una implementación por defecto es que un objeto nulo es muy predecible y no tiene efectos secundarios: no hace nada.
 
 ## Explicación
 
