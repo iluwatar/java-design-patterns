@@ -65,20 +65,20 @@ class ConverterTest {
   void testCustomConverter() {
     var converter = new Converter<UserDto, User>(
         userDto -> new User(
-            userDto.getFirstName(),
-            userDto.getLastName(),
-            userDto.isActive(),
+            userDto.firstName(),
+            userDto.lastName(),
+            userDto.active(),
             String.valueOf(new Random().nextInt())
         ),
         user -> new UserDto(
-            user.getFirstName(),
-            user.getLastName(),
-            user.isActive(),
-            user.getFirstName().toLowerCase() + user.getLastName().toLowerCase() + "@whatever.com")
+            user.firstName(),
+            user.lastName(),
+            user.active(),
+            user.firstName().toLowerCase() + user.lastName().toLowerCase() + "@whatever.com")
     );
     var u1 = new User("John", "Doe", false, "12324");
     var userDto = converter.convertFromEntity(u1);
-    assertEquals("johndoe@whatever.com", userDto.getEmail());
+    assertEquals("johndoe@whatever.com", userDto.email());
   }
 
   /**

@@ -24,23 +24,7 @@
  */
 package com.iluwatar.converter;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-
 /**
- * User DTO class.
+ * UserDto record.
  */
-@RequiredArgsConstructor
-@Getter
-@EqualsAndHashCode
-@ToString
-public class UserDto {
-
-  private final String firstName;
-  private final String lastName;
-  private final boolean active;
-  private final String email;
-
-}
+public record UserDto(String firstName, String lastName, boolean active, String email) {}

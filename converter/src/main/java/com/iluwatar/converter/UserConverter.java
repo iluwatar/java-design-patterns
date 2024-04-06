@@ -34,11 +34,10 @@ public class UserConverter extends Converter<UserDto, User> {
   }
 
   private static UserDto convertToDto(User user) {
-    return new UserDto(user.getFirstName(), user.getLastName(), user.isActive(), user.getUserId());
+    return new UserDto(user.firstName(), user.lastName(), user.active(), user.userId());
   }
 
   private static User convertToEntity(UserDto dto) {
-    return new User(dto.getFirstName(), dto.getLastName(), dto.isActive(), dto.getEmail());
+    return new User(dto.firstName(), dto.lastName(), dto.active(), dto.email());
   }
-
 }
