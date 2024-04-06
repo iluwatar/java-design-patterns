@@ -16,6 +16,14 @@ import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
 
 /**
+ * TODO: Think on potential simplification - perhaps for this use case we could just KISS by moving all the logic into the domain model itself.
+ *  Hence at the same time each domain model will contain lots of boilerplate code.
+ *  Let's think - Ruby has the record base parent object which encapsulates all the active record pattern logic.
+ *  Therefore this one "the parent" hsa all the public API.
+ *  This one adheres to the same pattern at the moment by implementing all the boilerplate persistence logic.
+ *  Potentially two course of actions at this stage:
+ *    1. Just KISS it - and move all the persistence logic into the domain models themselves and just copy-paste, copy-paste, copy-paste, copy-...
+ *    2. Finish this abstract class and make things smoooth
  * An active record base supposed to hold all the necessary active record pattern logic.
  * <p>This is the base class which is supposed to be extended by all the domain models that are
  * expected to be persistent.
@@ -91,7 +99,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
   public List<T> findAll() {
     List<T> recordList = new ArrayList<>();
     try (Connection conn = getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(constructFindAllQuery())) {
+         PreparedStatement pstmt = conn.prepareStatement(constructFindAllQuery())) {
       try (ResultSet rs = pstmt.executeQuery()) {
         while (rs.next()) {
           T theRecord = getDeclaredClassInstance();
@@ -113,7 +121,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
    */
   public T findById(Long id) {
     try (Connection conn = getConnection();
-        PreparedStatement pstmt = conn.prepareStatement(constructFindByIdQuery())) {
+         PreparedStatement pstmt = conn.prepareStatement(constructFindByIdQuery())) {
       pstmt.setLong(1, id);
       try (ResultSet rs = pstmt.executeQuery()) {
         if (rs.next()) {
@@ -134,8 +142,8 @@ public abstract class RecordBase<T extends RecordBase<?>> {
    */
   public void save() {
     try (Connection connection = getConnection();
-        PreparedStatement pstmt = connection.prepareStatement(constructInsertionQuery(),
-            Statement.RETURN_GENERATED_KEYS)) {
+         PreparedStatement pstmt = connection.prepareStatement(constructInsertionQuery(),
+             Statement.RETURN_GENERATED_KEYS)) {
 
       setPreparedStatementParams(pstmt);
       pstmt.executeUpdate();
