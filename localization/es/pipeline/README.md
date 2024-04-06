@@ -26,7 +26,7 @@ Wikipedia dice
 
 > En ingeniería de software, un pipeline consiste en una cadena de elementos de procesamiento (procesos, hilos, coroutines, funciones, etc.), dispuestos de forma que la salida de cada elemento es la entrada del siguiente; el nombre es por analogía a un pipeline físico.
 
-**Ejemplo programático
+**Ejemplo programático**
 
 Las etapas de nuestro pipeline se llaman `Handler`s.
 ```java
