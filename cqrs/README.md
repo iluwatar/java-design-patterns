@@ -10,7 +10,7 @@ tag:
 
 ## Intent
 
-CQRS aims to segregate the operations that modify the state of an application (commands) from the operations that read the state (queries). This separation allows for more flexible and optimized designs, especially in complex systems.
+Command Query Responsibility Segregation (CQRS) aims to segregate the operations that modify the state of an application (commands) from the operations that read the state (queries). This separation allows for more flexible and optimized designs, especially in complex systems.
 
 ## Explanation
 
