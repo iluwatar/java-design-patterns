@@ -25,6 +25,7 @@ import lombok.RequiredArgsConstructor;
  *    1. Just KISS it - and move all the persistence logic into the domain models themselves and just copy-paste, copy-paste, copy-paste, copy-...
  *    2. Finish this abstract class and make things smoooth
  * An active record base supposed to hold all the necessary active record pattern logic.
+ *
  * <p>This is the base class which is supposed to be extended by all the domain models that are
  * expected to be persistent.
  *
