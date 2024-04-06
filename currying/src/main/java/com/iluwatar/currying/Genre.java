@@ -30,5 +30,5 @@ package com.iluwatar.currying;
 public enum Genre {
   FANTASY,
   HORROR,
-  SCIFI;
+  SCIFI
 }
