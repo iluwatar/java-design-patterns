@@ -154,7 +154,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
     }
   }
 
-  String constructInsertionQuery() {
+  protected String constructInsertionQuery() {
     List<Object> arguments = new ArrayList<>();
     try {
       InsertionQuery insert = Query.insertInto(getClass().getSimpleName());
