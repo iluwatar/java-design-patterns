@@ -29,8 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.iluwatar.datatransfer.customer.CustomerDto;
-import com.iluwatar.datatransfer.customer.CustomerResource;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -42,12 +40,12 @@ class CustomerResourceTest {
   void shouldGetAllCustomers() {
     var customers = List.of(new CustomerDto("1", "Melody", "Yates"));
     var customerResource = new CustomerResource(customers);
-    var allCustomers = customerResource.getAllCustomers();
+    var allCustomers = customerResource.customers();
 
     assertEquals(1, allCustomers.size());
-    assertEquals("1", allCustomers.get(0).getId());
-    assertEquals("Melody", allCustomers.get(0).getFirstName());
-    assertEquals("Yates", allCustomers.get(0).getLastName());
+    assertEquals("1", allCustomers.get(0).id());
+    assertEquals("Melody", allCustomers.get(0).firstName());
+    assertEquals("Yates", allCustomers.get(0).lastName());
   }
 
   @Test
@@ -57,10 +55,10 @@ class CustomerResourceTest {
 
     customerResource.save(customer);
 
-    var allCustomers = customerResource.getAllCustomers();
-    assertEquals("1", allCustomers.get(0).getId());
-    assertEquals("Rita", allCustomers.get(0).getFirstName());
-    assertEquals("Reynolds", allCustomers.get(0).getLastName());
+    var allCustomers = customerResource.customers();
+    assertEquals("1", allCustomers.get(0).id());
+    assertEquals("Rita", allCustomers.get(0).firstName());
+    assertEquals("Reynolds", allCustomers.get(0).lastName());
   }
 
   @Test
@@ -69,10 +67,9 @@ class CustomerResourceTest {
     var customers = new ArrayList<>(List.of(customer));
     var customerResource = new CustomerResource(customers);
 
-    customerResource.delete(customer.getId());
+    customerResource.delete(customer.id());
 
-    var allCustomers = customerResource.getAllCustomers();
+    var allCustomers = customerResource.customers();
     assertTrue(allCustomers.isEmpty());
   }
-
 }

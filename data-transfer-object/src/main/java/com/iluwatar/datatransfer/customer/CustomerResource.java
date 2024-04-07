@@ -25,25 +25,14 @@
 package com.iluwatar.datatransfer.customer;
 
 import java.util.List;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
  * The resource class which serves customer information. This class act as server in the demo. Which
  * has all customer details.
  */
-@RequiredArgsConstructor
-public class CustomerResource {
-  private final List<CustomerDto> customers;
-
-  /**
-   * Get all customers.
-   *
-   * @return : all customers in list.
-   */
-  public List<CustomerDto> getAllCustomers() {
-    return customers;
-  }
-
+public record CustomerResource(List<CustomerDto> customers) {
   /**
    * Save new customer.
    *
@@ -59,6 +48,6 @@ public class CustomerResource {
    * @param customerId delete customer with id {@code customerId}
    */
   public void delete(String customerId) {
-    customers.removeIf(customer -> customer.getId().equals(customerId));
+    customers.removeIf(customer -> customer.id().equals(customerId));
   }
 }
