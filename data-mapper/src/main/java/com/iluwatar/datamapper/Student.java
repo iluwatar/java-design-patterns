@@ -24,6 +24,7 @@
  */
 package com.iluwatar.datamapper;
 
+import java.io.Serial;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -41,6 +42,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public final class Student implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   @EqualsAndHashCode.Include
