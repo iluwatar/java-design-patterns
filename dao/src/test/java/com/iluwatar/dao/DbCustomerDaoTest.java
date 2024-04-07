@@ -87,7 +87,7 @@ class DbCustomerDaoTest {
     }
 
     /**
-     * Represents the scenario when DAO operations are being performed on a non existing customer.
+     * Represents the scenario when DAO operations are being performed on a non-existing customer.
      */
     @Nested
     class NonExistingCustomer {
@@ -206,39 +206,29 @@ class DbCustomerDaoTest {
 
     @Test
     void addingACustomerFailsWithExceptionAsFeedbackToClient() {
-      assertThrows(Exception.class, () -> {
-        dao.add(new Customer(2, "Bernard", "Montgomery"));
-      });
+      assertThrows(Exception.class, () -> dao.add(new Customer(2, "Bernard", "Montgomery")));
     }
 
     @Test
     void deletingACustomerFailsWithExceptionAsFeedbackToTheClient() {
-      assertThrows(Exception.class, () -> {
-        dao.delete(existingCustomer);
-      });
+      assertThrows(Exception.class, () -> dao.delete(existingCustomer));
     }
 
     @Test
     void updatingACustomerFailsWithFeedbackToTheClient() {
       final var newFirstname = "Bernard";
       final var newLastname = "Montgomery";
-      assertThrows(Exception.class, () -> {
-        dao.update(new Customer(existingCustomer.getId(), newFirstname, newLastname));
-      });
+      assertThrows(Exception.class, () -> dao.update(new Customer(existingCustomer.getId(), newFirstname, newLastname)));
     }
 
     @Test
     void retrievingACustomerByIdFailsWithExceptionAsFeedbackToClient() {
-      assertThrows(Exception.class, () -> {
-        dao.getById(existingCustomer.getId());
-      });
+      assertThrows(Exception.class, () -> dao.getById(existingCustomer.getId()));
     }
 
     @Test
     void retrievingAllCustomersFailsWithExceptionAsFeedbackToClient() {
-      assertThrows(Exception.class, () -> {
-        dao.getAll();
-      });
+      assertThrows(Exception.class, () -> dao.getAll());
     }
 
   }

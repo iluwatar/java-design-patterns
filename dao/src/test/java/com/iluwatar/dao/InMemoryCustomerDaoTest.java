@@ -48,7 +48,7 @@ class InMemoryCustomerDaoTest {
   }
 
   /**
-   * Represents the scenario when the DAO operations are being performed on a non existent
+   * Represents the scenario when the DAO operations are being performed on a non-existent
    * customer.
    */
   @Nested
@@ -78,7 +78,7 @@ class InMemoryCustomerDaoTest {
     }
 
     @Test
-    void updationShouldBeFailureAndNotAffectExistingCustomers() throws Exception {
+    void updateShouldBeFailureAndNotAffectExistingCustomers() {
       final var nonExistingId = getNonExistingCustomerId();
       final var newFirstname = "Douglas";
       final var newLastname = "MacArthur";
