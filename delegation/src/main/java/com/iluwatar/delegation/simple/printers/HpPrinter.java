@@ -28,7 +28,7 @@ import com.iluwatar.delegation.simple.Printer;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Specialised Implementation of {@link Printer} for a HP Printer, in this case the message to be
+ * Specialised Implementation of {@link Printer} for an HP Printer, in this case the message to be
  * printed is appended to "HP Printer : ".
  *
  * @see Printer

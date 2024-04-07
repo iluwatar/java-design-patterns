@@ -59,7 +59,7 @@ class DelegateTest {
   private static final String MESSAGE = "Test Message Printed";
 
   @Test
-  void testCanonPrinter() throws Exception {
+  void testCanonPrinter() {
     var printerController = new PrinterController(new CanonPrinter());
     printerController.print(MESSAGE);
 
@@ -67,7 +67,7 @@ class DelegateTest {
   }
 
   @Test
-  void testHpPrinter() throws Exception {
+  void testHpPrinter() {
     var printerController = new PrinterController(new HpPrinter());
     printerController.print(MESSAGE);
 
@@ -75,7 +75,7 @@ class DelegateTest {
   }
 
   @Test
-  void testEpsonPrinter() throws Exception {
+  void testEpsonPrinter() {
     var printerController = new PrinterController(new EpsonPrinter());
     printerController.print(MESSAGE);
 

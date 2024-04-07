@@ -1,34 +1,29 @@
 ---
 title: Delegation
-category: Structural
+category: Behavioral
 language: en
 tag:
- - Decoupling
+    - Delegation
 ---
 
 ## Also known as
-Proxy Pattern
+
+* Helper
+* Surrogate
 
 ## Intent
-It is a technique where an object expresses certain behavior to the outside but in 
-reality delegates responsibility for implementing that behaviour to an associated object. 
+
+The Delegation pattern in Java allows an object to delegate one or more tasks to a helper object. It is a technique where an object expresses certain behavior but actually delegates responsibility for implementing that behavior to an associated helper object.
 
 ## Explanation
 
 Real-world example
 
-> Imagine that we have adventurers who fight monsters with different weapons depending on their 
-> abilities and skills. We must be able to equip them with different ones without having to 
-> modify their source code for each one. The delegation pattern makes it possible by delegating
-> the dynamic work to a specific object implementing an interface with relevant methods.
+> In a restaurant, the head chef delegates tasks to sous-chefs: one manages grilling, another handles salads, and a third is in charge of desserts. Each sous-chef specializes in their area, allowing the head chef to focus on overall kitchen management. This mirrors the Delegation design pattern, where a main object delegates specific tasks to helper objects, each expert in their domain.
 
 Wikipedia says
 
-> In object-oriented programming, delegation refers to evaluating a member (property or method) of
-> one object (the receiver) in the context of another original object (the sender). Delegation can
-> be done explicitly, by passing the sending object to the receiving object, which can be done in 
-> any object-oriented language; or implicitly, by the member lookup rules of the language, which 
-> requires language support for the feature.
+> In object-oriented programming, delegation refers to evaluating a member (property or method) of one object (the receiver) in the context of another original object (the sender). Delegation can be done explicitly, by passing the sending object to the receiving object, which can be done in any object-oriented language; or implicitly, by the member lookup rules of the language, which requires language support for the feature.
 
 **Programmatic Example**
 
@@ -36,84 +31,119 @@ We have an interface `Printer` and three implementations `CanonPrinter`, `EpsonP
 
 ```java
 public interface Printer {
-  void print(final String message);
+    void print(final String message);
 }
 
 @Slf4j
 public class CanonPrinter implements Printer {
-  @Override
-  public void print(String message) {
-    LOGGER.info("Canon Printer : {}", message);
-  }
+    @Override
+    public void print(String message) {
+        LOGGER.info("Canon Printer : {}", message);
+    }
 }
 
 @Slf4j
 public class EpsonPrinter implements Printer {
-  @Override
-  public void print(String message) {
-    LOGGER.info("Epson Printer : {}", message);
-  }
+    @Override
+    public void print(String message) {
+        LOGGER.info("Epson Printer : {}", message);
+    }
 }
 
 @Slf4j
 public class HpPrinter implements Printer {
-  @Override
-  public void print(String message) {
-    LOGGER.info("HP Printer : {}", message);
-  }
+    @Override
+    public void print(String message) {
+        LOGGER.info("HP Printer : {}", message);
+    }
 }
 ```
-The `PrinterController` can be used as a `Printer` by delegating any work handled by this 
+
+The `PrinterController` can be used as a `Printer` by delegating any work handled by this
 interface to an object implementing it.
+
 ```java
 public class PrinterController implements Printer {
-  
-  private final Printer printer;
-  
-  public PrinterController(Printer printer) {
-    this.printer = printer;
-  }
-  
-  @Override
-  public void print(String message) {
-    printer.print(message);
-  }
+
+    private final Printer printer;
+
+    public PrinterController(Printer printer) {
+        this.printer = printer;
+    }
+
+    @Override
+    public void print(String message) {
+        printer.print(message);
+    }
 }
 ```
 
 Now on the client code printer controllers can print messages differently depending on the
-object they're delegating that work to. 
+object they're delegating that work to.
 
 ```java
-private static final String MESSAGE_TO_PRINT = "hello world";
+public class App {
 
-var hpPrinterController = new PrinterController(new HpPrinter());
-var canonPrinterController = new PrinterController(new CanonPrinter());
-var epsonPrinterController = new PrinterController(new EpsonPrinter());
+    private static final String MESSAGE_TO_PRINT = "hello world";
 
-hpPrinterController.print(MESSAGE_TO_PRINT);
-canonPrinterController.print(MESSAGE_TO_PRINT);
-epsonPrinterController.print(MESSAGE_TO_PRINT)
+    public static void main(String[] args) {
+        var hpPrinterController = new PrinterController(new HpPrinter());
+        var canonPrinterController = new PrinterController(new CanonPrinter());
+        var epsonPrinterController = new PrinterController(new EpsonPrinter());
+
+        hpPrinterController.print(MESSAGE_TO_PRINT);
+        canonPrinterController.print(MESSAGE_TO_PRINT);
+        epsonPrinterController.print(MESSAGE_TO_PRINT);
+    }
+}
 ```
 
 Program output:
 
-```java
-HP Printer : hello world
-Canon Printer : hello world
-Epson Printer : hello world
+```
+HP Printer:hello world
+Canon Printer:hello world
+Epson Printer:hello world
 ```
 
 ## Class diagram
-![alt text](./etc/delegation.png "Delegate")
+
+![Delegate class diagram](./etc/delegation.png "Delegate")
 
 ## Applicability
-Use the Delegate pattern in order to achieve the following
 
-* Reduce the coupling of methods to their class
-* Components that behave identically, but realize that this situation can change in the future.
+* When you want to pass responsibility from one class to another without inheritance.
+* To achieve composition-based reuse instead of inheritance-based.
+* When you need to use several interchangeable helper classes at runtime.
+
+## Known Uses
+
+* Java's java.awt.event package, where listeners are often used to handle events.
+* Wrapper classes in Java's Collections Framework (java.util.Collections), which delegate to other collection objects.
+* In Spring Framework, delegation is used extensively in the IoC container where beans delegate tasks to other beans.
+
+## Consequences
+
+Benefits:
+
+* Reduces subclassing: Objects can delegate operations to different objects and change them at runtime, reducing the need for subclassing.
+* Encourages reuse: Delegation promotes the reuse of the helper object's code.
+* Increases flexibility: By delegating tasks to helper objects, you can change the behavior of your classes at runtime.
+
+Trade-offs:
+
+* Runtime Overhead: Delegation can introduce additional layers of indirection, which may result in slight performance costs.
+* Complexity: The design can become more complicated since it involves additional classes and interfaces to manage delegation.
+
+## Related Patterns
+
+* [Composite](https://java-design-patterns.com/patterns/composite/): Delegation can be used within a composite pattern to delegate component-specific behavior to child components.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Delegation is often used in the strategy pattern where a context object delegates tasks to a strategy object.
+* https://java-design-patterns.com/patterns/proxy/: The proxy pattern is a form of delegation where a proxy object controls access to another object, which it delegates work to.
 
 ## Credits
 
+* [Effective Java](https://amzn.to/4aGE7gX)
+* [Head First Design Patterns](https://amzn.to/3J9tuaB)
+* [Refactoring: Improving the Design of Existing Code](https://amzn.to/3VOcRsw)
 * [Delegate Pattern: Wikipedia ](https://en.wikipedia.org/wiki/Delegation_pattern)
-* [Proxy Pattern: Wikipedia ](https://en.wikipedia.org/wiki/Proxy_pattern)
