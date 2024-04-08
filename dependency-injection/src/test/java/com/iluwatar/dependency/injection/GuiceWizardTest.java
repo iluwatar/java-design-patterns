@@ -58,7 +58,7 @@ class GuiceWizardTest {
    * through the constructor parameter
    */
   @Test
-  void testSmokeEveryThingThroughConstructor() throws Exception {
+  void testSmokeEveryThingThroughConstructor() {
 
     List<Tobacco> tobaccos = List.of(
         new OldTobyTobacco(),
@@ -83,7 +83,7 @@ class GuiceWizardTest {
    * through the Guice google inject framework
    */
   @Test
-  void testSmokeEveryThingThroughInjectionFramework() throws Exception {
+  void testSmokeEveryThingThroughInjectionFramework() {
 
     List<Class<? extends Tobacco>> tobaccos = List.of(
         OldTobyTobacco.class,

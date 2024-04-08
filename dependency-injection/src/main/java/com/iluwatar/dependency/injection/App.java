@@ -28,7 +28,7 @@ import com.google.inject.Guice;
 
 /**
  * Dependency Injection pattern deals with how objects handle their dependencies. The pattern
- * implements so called inversion of control principle. Inversion of control has two specific rules:
+ * implements so-called inversion of control principle. Inversion of control has two specific rules:
  * - High-level modules should not depend on low-level modules. Both should depend on abstractions.
  * - Abstractions should not depend on details. Details should depend on abstractions.
  *
@@ -37,7 +37,7 @@ import com.google.inject.Guice;
  * concrete implementation which cannot be changed.
  *
  * <p>The second and third wizards({@link AdvancedWizard} and {@link AdvancedSorceress}) are more
- * flexible. They do not depend on any concrete implementation but abstraction. They utilizes
+ * flexible. They do not depend on any concrete implementation but abstraction. They utilize
  * Dependency Injection pattern allowing their {@link Tobacco} dependency to be injected through
  * constructor ({@link AdvancedWizard}) or setter ({@link AdvancedSorceress}). This way, handling
  * the dependency is no longer the wizard's responsibility. It is resolved outside the wizard

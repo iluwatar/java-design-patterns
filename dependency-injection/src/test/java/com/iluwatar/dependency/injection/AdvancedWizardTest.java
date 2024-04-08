@@ -57,7 +57,7 @@ class AdvancedWizardTest {
    * through the constructor parameter
    */
   @Test
-  void testSmokeEveryThing() throws Exception {
+  void testSmokeEveryThing() {
 
     List<Tobacco> tobaccos = List.of(
         new OldTobyTobacco(),
