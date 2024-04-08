@@ -1,4 +1,3 @@
-This is great you have something to contribute! 
+The project guidelines can be found in [Java Design Patterns developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). 
 
-Before going any further please read the [wiki](https://github.com/iluwatar/java-design-patterns/wiki)
-with conventions and rules we used for this project.
+A good place to start is: https://github.com/iluwatar/java-design-patterns/wiki/01.-How-to-contribute
