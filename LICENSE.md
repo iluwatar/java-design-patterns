@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright © 2014-2021 Ilkka Sepp‰l‰
+Copyright ÔøΩ 2014-2024 Ilkka Sepp√§l√§
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
