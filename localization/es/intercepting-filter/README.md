@@ -13,7 +13,7 @@ Un filtro de intercepción es un útil patrón de diseño Java que se utiliza cu
 Ejemplo del mundo real
 > Un ejemplo de uso del patrón de diseño Filtro Interceptor es relevante a la hora de realizar una plataforma de comercio electrónico. Es importante implementar varios filtros para la autenticación de la cuenta, la autenticación del pago, el registro y el almacenamiento en caché. Los tipos de filtros importantes en este ejemplo son los filtros de autenticación, registro, seguridad y almacenamiento en caché.
 
-En palabras llanas
+En palabras sencillas
 > Un filtro de intercepción en Java es como una serie de puntos de control de seguridad para peticiones y respuestas en una aplicación de software. Comprueba y procesa los datos a medida que entran y salen, ayudando con tareas como la autenticación, el registro y la seguridad, mientras mantiene el núcleo de la aplicación seguro y limpio.
 
 Wikipedia dice

@@ -26,7 +26,7 @@ Ejemplo real
 > En una consola, puede haber muchas interfaces que necesiten ser gestionadas y controladas. Usando el patrón de entidad
 > compuesta, objetos dependientes como mensajes y señales pueden ser combinados y controlados usando un único objeto.
 
-En palabras llanas
+En palabras sencillas
 
 > El patrón de entidad compuesta permite representar y gestionar un conjunto de objetos relacionados mediante un objeto
 > unificado.

@@ -23,7 +23,7 @@ Ejemplo real
 
 > El Rey Orco da órdenes en voz alta a su ejército. El más cercano a reaccionar es el comandante, luego un oficial y después un soldado. El comandante, el oficial y el soldado forman una cadena de responsabilidad.
 
-En palabras llanas
+En palabras sencillas
 
 > Ayuda a construir una cadena de objetos. Una solicitud entra por un extremo y sigue pasando de un objeto a otro hasta que encuentra un gestor adecuado.
 
@@ -187,9 +187,9 @@ Desventajas:
 
 ## Patrones Relacionados
 
-* Comando](https://java-design-patterns.com/patterns/command/): puede ser usado para encapsular una petición como un objeto, que puede ser pasado a lo largo de la cadena.
+* [Comando](https://java-design-patterns.com/patterns/command/): puede ser usado para encapsular una petición como un objeto, que puede ser pasado a lo largo de la cadena.
 * [Composite](https://java-design-patterns.com/patterns/composite/): la Cadena de Responsabilidad se aplica a menudo junto con el patrón Composite.
-* Decorator](https://java-design-patterns.com/patterns/decorator/): los decoradores pueden encadenarse de forma similar a las responsabilidades en el patrón Cadena de responsabilidad.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): los decoradores pueden encadenarse de forma similar a las responsabilidades en el patrón Cadena de responsabilidad.
 
 ## Créditos
 

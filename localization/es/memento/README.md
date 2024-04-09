@@ -20,7 +20,7 @@ Ejemplo del mundo real
 
 > Estamos trabajando en una aplicación de astrología en la que necesitamos analizar las propiedades de las estrellas a lo largo del tiempo. Estamos creando instantáneas de los estados de las estrellas utilizando el patrón Memento.
 
-En palabras llanas
+En palabras sencillas
 
 > El patrón Memento captura el estado interno de los objetos facilitando su almacenamiento y restauración en cualquier punto del tiempo.
 

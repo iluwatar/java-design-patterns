@@ -18,7 +18,7 @@ Ejemplo del mundo real
 
 > Supongamos que queremos pasar una cadena a una serie de etapas de filtrado y convertirla como una matriz char en la última etapa.
 
-En palabras llanas
+En palabras sencillas
 
 > El patrón pipeline es una cadena de montaje donde los resultados parciales pasan de una etapa a otra.
 

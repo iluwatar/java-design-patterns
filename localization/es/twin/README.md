@@ -15,7 +15,7 @@ Ejemplo real
 
 > Consideremos un juego con una pelota que necesita características de dos tipos, Game Item, e hilos para funcionar sin problemas en el juego. Podemos utilizar dos objetos, con un objeto compatible con el primer tipo y el otro compatible con el segundo tipo. El par de objetos juntos pueden funcionar como una pelota en el juego.
 
-En palabras llanas
+En palabras sencillas
 
 > Proporciona una forma de formar dos subclases estrechamente acopladas que pueden actuar como una clase gemela que tiene dos extremos.
 

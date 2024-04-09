@@ -96,7 +96,7 @@ Beneficios:
 * Mejora de la experiencia del usuario a través de contenidos personalizados y navegación fluida a través de las diferentes partes de la aplicación.
 * Flexibilidad en la gestión de sesiones a través de varios mecanismos de almacenamiento del lado del cliente (por ejemplo, cookies, Web Storage API).
 
-Contrapartidas:
+Desventajas:
 
 * Riesgos potenciales de seguridad si se almacena información sensible en las sesiones del cliente sin el cifrado y la validación adecuados.
 * Dependencia de las capacidades y ajustes del cliente, como las políticas de cookies, que pueden variar según el navegador y la configuración del usuario.
@@ -106,7 +106,7 @@ Contrapartidas:
 
 * Sesión Servidor: A menudo se utiliza junto con el patrón Client Session para proporcionar un equilibrio entre la eficiencia del lado del cliente y el control del lado del servidor.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Asegurar una única instancia de la sesión de un usuario en toda la aplicación.
-* Estado](https://java-design-patterns.com/patterns/state/): Gestionar las transiciones de estado en una sesión, como los estados autenticado, invitado o caducado.
+* [Estado](https://java-design-patterns.com/patterns/state/): Gestionar las transiciones de estado en una sesión, como los estados autenticado, invitado o caducado.
 
 ## Créditos
 

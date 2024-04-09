@@ -16,7 +16,7 @@ Ejemplo del mundo real
 
 > Un equipo está trabajando en un nuevo juego en el que los magos luchan entre sí. El comportamiento de los magos necesita ser cuidadosamente ajustado e iterado cientos de veces a través de pruebas de juego. No es óptimo pedir al programador que haga cambios cada vez que el diseñador del juego quiere variar el comportamiento, así que el comportamiento del mago se implementa como una máquina virtual basada en datos.
 
-En palabras llanas
+En palabras sencillas
 
 > El patrón Bytecode permite un comportamiento dirigido por datos en lugar de por código.
 

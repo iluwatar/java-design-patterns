@@ -22,7 +22,7 @@ Su objetivo es simplificar los métodos que recopilan información pasando un ú
 
 Dentro de un gran edificio corporativo, existe una cola de impresión global que es una colección de todos los trabajos de impresión que están actualmente pendientes. Las diferentes plantas contienen diferentes modelos de impresoras, cada una con una política de impresión diferente. Debemos construir un programa que pueda añadir continuamente trabajos de impresión apropiados a una colección, que se llama el *parámetro de recogida*.
 
-### En palabras llanas
+### En palabras sencillas
 
 En lugar de tener un método gigante que contenga numerosas políticas para recoger información en una variable, podemos crear numerosas funciones más pequeñas que tomen cada parámetro, y añadan nueva información. Podemos pasar el parámetro a todas estas funciones más pequeñas y al final, tendremos lo que queríamos originalmente. Esta vez, el código es más limpio y fácil de entender. Debido a que la función más grande se ha dividido, el código también es más fácil de modificar ya que los cambios se localizan en las funciones más pequeñas.
 

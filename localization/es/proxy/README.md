@@ -21,7 +21,7 @@ Ejemplo real
 
 > Imagina una torre donde los magos locales van a estudiar sus hechizos. A la torre de marfil sólo se puede acceder a través de un proxy que asegura que sólo los tres primeros magos pueden entrar. Aquí el proxy representa la funcionalidad de la torre y le añade control de acceso.
 
-En palabras llanas
+En palabras sencillas
 
 > Usando el patrón proxy, una clase representa la funcionalidad de otra clase.
 

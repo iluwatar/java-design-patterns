@@ -23,7 +23,7 @@ Ejemplo real
 
 > Imagine que organiza un gran festival internacional de música en el que están programadas actuaciones de varios grupos de todo el mundo. La llegada, la prueba de sonido y la actuación de cada grupo son como transacciones individuales en un sistema distribuido. El organizador del festival actúa como el "Comandante", coordinando estas transacciones para garantizar que si el vuelo de una banda se retrasa (similar a un fallo de transacción), hay un plan de respaldo, como reprogramar o intercambiar franjas horarias con otra banda (acciones compensatorias), para mantener intacto el programa general. Esta configuración refleja el patrón del Comandante en las transacciones distribuidas, en las que varios componentes deben coordinarse para lograr un resultado satisfactorio a pesar de los fallos individuales.
 
-En palabras llanas
+En palabras sencillas
 
 > El patrón Commander convierte una petición en un objeto independiente, permitiendo la parametrización de comandos, la puesta en cola de acciones y la implementación de operaciones de deshacer.
 

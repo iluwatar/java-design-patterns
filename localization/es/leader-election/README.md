@@ -14,7 +14,7 @@ El patrón de elección (Leader pattern) del líder se utiliza habitualmente en 
 Ejemplo del mundo real
 > En un sistema basado en la nube de escalado horizontal, múltiples instancias de la misma tarea podrían estar ejecutándose al mismo tiempo con cada instancia sirviendo a un usuario diferente. Si estas instancias escriben en un recurso compartido, es necesario coordinar sus acciones para evitar que cada instancia sobrescriba los cambios realizados por las demás. En otro escenario, si las tareas están realizando elementos individuales de un cálculo complejo en paralelo, los resultados necesitan ser agregados cuando todos ellos se completan.
 
-En palabras llanas
+En palabras sencillas
 > este patrón se utiliza en sistemas distribuidos basados en la nube en los que el líder debe actuar como coordinador/agregador entre instancias de escalado horizontal para evitar conflictos en los recursos compartidos.
 
 Wikipedia dice

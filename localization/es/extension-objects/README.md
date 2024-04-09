@@ -16,7 +16,7 @@ Ejemplo real
 
 > Suponga que está desarrollando un juego basado en Java para un cliente y, en mitad del proceso de desarrollo, le sugieren nuevas funcionalidades. El patrón Extension Objects permite a su programa adaptarse a cambios imprevistos con una refactorización mínima, especialmente al integrar funcionalidades adicionales en su proyecto.
 
-En palabras llanas
+En palabras sencillas
 
 > El patrón Extension Objects se utiliza para añadir dinámicamente funcionalidad a los objetos sin modificar sus clases principales. Es un patrón de diseño de comportamiento utilizado para añadir nuevas funcionalidades a clases y objetos existentes dentro de un programa. Este patrón proporciona a los programadores la capacidad de extender/modificar la funcionalidad de las clases sin tener que refactorizar el código fuente existente.
 
