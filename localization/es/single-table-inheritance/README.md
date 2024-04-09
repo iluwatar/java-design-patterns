@@ -18,7 +18,7 @@ Un ejemplo real
 
 > Puede haber muchos tipos diferentes de vehículos en este mundo pero todos ellos se engloban bajo el único paraguas de Vehículo
 
-En palabras llanas
+En palabras sencillas
 
 > Mapea cada instancia de clase de un árbol de herencia en una única tabla.
 
