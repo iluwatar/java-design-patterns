@@ -28,7 +28,6 @@ En palabras sencillas
 
 > Controlar el consumo de recursos utilizados por una instancia de una aplicación, un tenant individual,
 > o un servicio completo. Esto puede permitir que el sistema continúe funcionando y cumpla con los acuerdos de nivel de servicio, incluso cuando un aumento de la demanda impone una carga extrema sobre los recursos.
-> acuerdos de nivel de servicio, incluso cuando un aumento de la demanda impone una carga extrema sobre los recursos.
 
 **Ejemplo programático**
 
@@ -77,7 +76,6 @@ public final class CallsCount {
 ```
 
 A continuación, se introduce el servicio al que llaman los inquilinos. Para realizar un seguimiento del número de llamadas, se utiliza un temporizador de estrangulamiento.
-temporizador.
 
 ```java
 public interface Throttler {

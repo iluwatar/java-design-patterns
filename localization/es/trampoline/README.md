@@ -14,7 +14,7 @@ y para intercalar la ejecución de funciones sin codificarlas juntas.
 ## Explicación
 
 La recursión es una técnica frecuentemente adoptada para resolver problemas algorítmicos en un estilo de divide y vencerás.
-estilo divide y vencerás. Por ejemplo, el cálculo de la suma acumulativa de Fibonacci y los factoriales. En este tipo de
+Por ejemplo, el cálculo de la suma acumulativa de Fibonacci y los factoriales. En este tipo de
 problemas, la recursividad es más directa que su homóloga de bucle. Además, la recursividad puede
 necesitar menos código y parecer más concisa. Hay un dicho que dice que todo problema de recursión puede resolverse
 utilizando un bucle a costa de escribir código más difícil de entender.
@@ -36,10 +36,9 @@ En palabras sencillas
 
 Wikipedia dice
 
-> En Java, trampoline se refiere al uso de reflection para evitar el uso de clases internas, por ejemplo en event
+> En Java, trampoline se refiere al uso de reflection para evitar el uso de clases internas, por ejemplo en
 > eventos. La sobrecarga de tiempo de una llamada a reflection se intercambia por la sobrecarga de espacio de una clase interna.
-> clase interna. Trampolines en Java generalmente implican la creación de un GenericListener para pasar eventos a una clase externa.
-> una clase externa.
+> Trampolines en Java generalmente implican la creación de un GenericListener para pasar eventos a una clase externa.
 
 **Ejemplo programático**
 

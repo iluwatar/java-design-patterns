@@ -23,7 +23,6 @@ Ejemplo del mundo real
 En palabras sencillas
 
 > El patrón Template Method esboza los pasos generales en la clase padre y deja que las implementaciones hijas concretas definan los detalles.
-> definan los detalles.
 
 Wikipedia dice
 
