@@ -24,19 +24,15 @@
  */
 package com.iluwatar.price.microservice;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /**
- * Test for Price Rest Controller
+ * Service to get a product's price.
  */
-class PriceControllerTest {
+public interface PriceService {
 
-  @Test
-  void getPriceTest() {
-    var priceController = new PriceController(new PriceServiceImpl());
-    var price = priceController.getPrice();
-    assertEquals("20", price);
-  }
+  /**
+   * Getting the price of a product.
+   *
+   * @return A product's price
+   */
+  String getPrice();
 }
