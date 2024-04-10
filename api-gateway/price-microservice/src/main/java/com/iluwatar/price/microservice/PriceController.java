@@ -24,7 +24,7 @@
  */
 package com.iluwatar.price.microservice;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,9 +32,11 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * Exposes the Price microservice's endpoints.
  */
-@Slf4j
 @RestController
+@RequiredArgsConstructor
 public class PriceController {
+
+  private final PriceService priceService;
 
   /**
    * An endpoint for a user to retrieve a product's price.
@@ -43,7 +45,6 @@ public class PriceController {
    */
   @GetMapping("/price")
   public String getPrice() {
-    LOGGER.info("Successfully found price info");
-    return "20";
+    return priceService.getPrice();
   }
 }

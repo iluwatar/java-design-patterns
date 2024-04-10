@@ -29,14 +29,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Test for Price Rest Controller
+ * Test for Price Service
  */
-class PriceControllerTest {
+class PriceServiceTest {
 
   @Test
   void getPriceTest() {
-    var priceController = new PriceController(new PriceServiceImpl());
-    var price = priceController.getPrice();
+    var priceService = new PriceServiceImpl();
+    var price = priceService.getPrice();
     assertEquals("20", price);
   }
 }
