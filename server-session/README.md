@@ -1,7 +1,11 @@
 ---
 title: Server Session
-category: Architectural
+category: Behavioral
 language: en
+tag:
+    - Session Management 
+    - Session Tracking
+    - Cookies
 ---
 
 ## Also known as
@@ -52,7 +56,7 @@ public class LoginHandler implements HttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
+    public void handle(HttpExchange exchange) {
         // Generate session ID
         String sessionID = UUID.randomUUID().toString();
 
@@ -60,6 +64,7 @@ public class LoginHandler implements HttpHandler {
         int newUser = sessions.size() + 1;
         sessions.put(sessionID, newUser);
         sessionCreationTimes.put(sessionID, Instant.now());
+        LOGGER.info("User " + newUser + " created at time " + sessionCreationTimes.get(sessionID));
 
         // Set session ID as cookie
         exchange.getResponseHeaders().add("Set-Cookie", "sessionID=" + sessionID);
@@ -67,10 +72,16 @@ public class LoginHandler implements HttpHandler {
         // Send response
         String response = "Login successful!\n" +
                 "Session ID: " + sessionID;
-        exchange.sendResponseHeaders(200, response.length());
-        OutputStream os = exchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
+        try {
+            exchange.sendResponseHeaders(200, response.length());
+        } catch (IOException e) {
+            LOGGER.error("An error occurred: ", e);
+        }
+        try(OutputStream os = exchange.getResponseBody()) {
+            os.write(response.getBytes());
+        } catch(IOException e) {
+            LOGGER.error("An error occurred: ", e);
+        }
     }
 }
 ```
@@ -96,7 +107,7 @@ public class LogoutHandler implements HttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
+    public void handle(HttpExchange exchange) {
         // Get session ID from cookie
         String sessionID = exchange.getRequestHeaders().getFirst("Cookie").replace("sessionID=", "");
         String currentSessionID = sessions.get(sessionID) == null ? null : sessionID;
@@ -112,12 +123,24 @@ public class LogoutHandler implements HttpHandler {
         }
 
         //Remove session
+        if(currentSessionID != null)
+            LOGGER.info("User " + sessions.get(currentSessionID) + " deleted!");
+        else
+            LOGGER.info("User already deleted!");
         sessions.remove(sessionID);
         sessionCreationTimes.remove(sessionID);
-        exchange.sendResponseHeaders(200, response.length());
-        OutputStream os = exchange.getResponseBody();
-        os.write(response.getBytes());
-        os.close();
+
+        try {
+            exchange.sendResponseHeaders(200, response.length());
+        } catch(IOException e) {
+            LOGGER.error("An error has occurred: ", e);
+        }
+
+        try(OutputStream os = exchange.getResponseBody()) {
+            os.write(response.getBytes());
+        } catch(IOException e) {
+            LOGGER.error("An error has occurred: ", e);
+        }
     }
 }
 ```
@@ -125,11 +148,11 @@ public class LogoutHandler implements HttpHandler {
 Sessions are often given a maximum time in which they will be maintained. The sessionExpirationTask() creates a thread which runs every 1 minute to check for sessions that have exceeded the maximum amount of time, in this case 1 minute and removes the session data from the server's storage.
 
 ```java
-    private static void startSessionExpirationTask() {
+    private static void sessionExpirationTask() {
     new Thread(() -> {
         while (true) {
             try {
-                System.out.println("Session expiration checker started...");
+                LOGGER.info("Session expiration checker started...");
                 Thread.sleep(SESSION_EXPIRATION_TIME); // Sleep for expiration time
                 Instant currentTime = Instant.now();
                 synchronized (sessions) {
@@ -144,9 +167,10 @@ Sessions are often given a maximum time in which they will be maintained. The se
                         }
                     }
                 }
-                System.out.println("Session expiration checker finished!");
+                LOGGER.info("Session expiration checker finished!");
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                LOGGER.error("An error occurred: ", e);
+                Thread.currentThread().interrupt();
             }
         }
     }).start();
