@@ -152,7 +152,7 @@ Orc soldier handling request "collect tax"
 
 ## Diagrama de clases
 
-![alt text](./etc/cadena-de-responsabilidad.urm.png "Diagrama de clases de la cadena de responsabilidad")
+![alt text](./etc/chain-of-responsibility.urm.png "Diagrama de clases de la cadena de responsabilidad")
 
 ## Aplicabilidad
 

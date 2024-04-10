@@ -3068,6 +3068,15 @@
         "translation",
         "review"
       ]
+    },
+    {
+      "login": "Romo4ka-bot",
+      "name": "Roman Leontev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/61774094?v=4",
+      "profile": "https://github.com/Romo4ka-bot",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

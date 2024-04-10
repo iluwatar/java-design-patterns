@@ -24,19 +24,22 @@
  */
 package com.iluwatar.price.microservice;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
 /**
- * Test for Price Rest Controller
+ * {@inheritDoc}
  */
-class PriceControllerTest {
+@Service
+@Slf4j
+public class PriceServiceImpl implements PriceService {
 
-  @Test
-  void getPriceTest() {
-    var priceController = new PriceController(new PriceServiceImpl());
-    var price = priceController.getPrice();
-    assertEquals("20", price);
+  /**
+   * {@inheritDoc}
+   */
+  @Override
+  public String getPrice() {
+    LOGGER.info("Successfully found price info");
+    return "20";
   }
 }
