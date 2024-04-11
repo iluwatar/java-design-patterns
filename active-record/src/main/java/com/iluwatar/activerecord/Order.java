@@ -1,7 +1,6 @@
 package com.iluwatar.activerecord;
 
 import com.iluwatar.activerecord.base.RecordBase;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import lombok.AllArgsConstructor;
@@ -32,8 +31,4 @@ public class Order extends RecordBase<Order> {
     this.orderNumber = rs.getString("order_number");
   }
 
-  @Override
-  protected void setPreparedStatementParams(PreparedStatement pstmt) throws SQLException {
-    // TODO
-  }
 }

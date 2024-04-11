@@ -3,6 +3,7 @@ package com.iluwatar.activerecord.base;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.iluwatar.activerecord.Courier;
+import com.iluwatar.activerecord.Customer;
 import org.junit.jupiter.api.Test;
 
 class QueryTest {
@@ -16,7 +17,7 @@ class QueryTest {
 
     final String expected = "INSERT INTO Courier (id,firstName,lastName) VALUES (?,?,?)";
 
-    String insertQuery = courier.constructInsertionQuery();
+    String insertQuery = courier.constructInsertionQuery(Customer.class);
 
     assertEquals(expected, insertQuery);
   }

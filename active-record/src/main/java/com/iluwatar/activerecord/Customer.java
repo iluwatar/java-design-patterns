@@ -1,7 +1,6 @@
 package com.iluwatar.activerecord;
 
 import com.iluwatar.activerecord.base.RecordBase;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -45,11 +44,11 @@ public class Customer extends RecordBase<Customer> {
     this.lastName = rs.getString("lastName");
   }
 
-  @Override
-  protected void setPreparedStatementParams(PreparedStatement pstmt) throws SQLException {
-    pstmt.setLong(1, id);
-    pstmt.setString(2, customerNumber);
-    pstmt.setString(3, firstName);
-    pstmt.setString(4, lastName);
-  }
+//  @Override
+//  protected void setPreparedStatementParams(PreparedStatement pstmt) throws SQLException {
+//    pstmt.setLong(1, id);
+//    pstmt.setString(2, customerNumber);
+//    pstmt.setString(3, firstName);
+//    pstmt.setString(4, lastName);
+//  }
 }

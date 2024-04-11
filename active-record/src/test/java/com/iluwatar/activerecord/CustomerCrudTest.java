@@ -16,7 +16,7 @@ class CustomerCrudTest extends BaseTest {
     customer.setFirstName("John");
     customer.setLastName("Smith");
 
-    customer.save();
+    customer.save(Customer.class);
 
     Customer customerTwo = new Customer();
     customerTwo.setId(2L);
@@ -24,10 +24,10 @@ class CustomerCrudTest extends BaseTest {
     customerTwo.setFirstName("SecondCustomerName");
     customerTwo.setLastName("SecondCustomerLastName");
 
-    customerTwo.save();
+    customerTwo.save(Customer.class);
 
     // find all the customers
-    List<Customer> customers = customerTwo.findAll();
+    List<Customer> customers = customerTwo.findAll(Customer.class);
     Customer firstCustomer = customers.get(0);
     assertEquals(2, customers.size());
     assertEquals(1L, firstCustomer.getId());
@@ -36,8 +36,7 @@ class CustomerCrudTest extends BaseTest {
     assertEquals("Smith", firstCustomer.getLastName());
 
     // find the second customer
-    Customer secondCustomer =
-        new Customer().findById(2L); // TODO: has to be referenced fom the static context
+    Customer secondCustomer = Customer.findById(2L, Customer.class);
     assertEquals(2L, secondCustomer.getId());
     assertEquals("C798237", secondCustomer.getCustomerNumber());
     assertEquals("SecondCustomerName", secondCustomer.getFirstName());

@@ -60,16 +60,16 @@ public class App {
     order.setOrderNumber("O123");
 
     // customer.addOrder(order);
-    customer.save();
+    customer.save(Customer.class);
 
-    LOGGER.info("The customer data by ID={}", customer.findById(1L));
+    LOGGER.info("The customer data by ID={}", customer.findById(1L, Customer.class));
 
-    LOGGER.info("find all the customers={}", customer.findAll());
+    LOGGER.info("find all the customers={}", customer.findAll(Customer.class));
   }
 
   private static void createSchema(DataSource dataSource) throws SQLException {
     try (Connection conn = dataSource.getConnection();
-        Statement stmt = conn.createStatement()) {
+         Statement stmt = conn.createStatement()) {
       stmt.execute(CREATE_SCHEMA_SQL);
     }
   }
