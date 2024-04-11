@@ -9,7 +9,7 @@
         <artifactId>java-design-patterns</artifactId>
         <version>1.26.0-SNAPSHOT</version>
     </parent>
-    <artifactId>serversession</artifactId>
+    <artifactId>server-session</artifactId>
 
     <dependencies>
         <dependency>

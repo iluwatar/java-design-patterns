@@ -3,9 +3,9 @@ title: Server Session
 category: Behavioral
 language: en
 tag:
-    - Session Management 
-    - Session Tracking
     - Cookies
+    - Session management 
+    - State tracking
 ---
 
 ## Also known as
@@ -20,7 +20,7 @@ Within the context of a client-server relationship, the server is responsible fo
 
 Real-world example
 
-> Consider a gaming website which stores user profile data such as username, password, highscore, hours played, etc. Since this website is accessed over the internet which uses the HTTP protocol, all requests sent to the server are stateless. In order for the page to display user relevent information without re-authenticating the user on every request a session must be created. Once the session is created the user can access the homescreen, statistics page, setting page, etc. and view profile specific data without needing to login in on every page request.
+> Consider a gaming website which stores user profile data such as username, password, high-score, hours played, etc. Since this website is accessed over the internet which uses the HTTP protocol, all requests sent to the server are stateless. In order for the page to display user relevant information without re-authenticating the user on every request a session must be created. Once the session is created the user can access the homescreen, statistics page, setting page, etc. and view profile specific data without needing to log in on every page request.
 
 In plain words
 
@@ -179,13 +179,13 @@ Sessions are often given a maximum time in which they will be maintained. The se
 
 ## Class diagram
 
-![alt text](./etc/adapter.urm.png "Adapter class diagram")
+![Server Session class diagram](./etc/server-session.urm.puml "Server Session class diagram")
 
 ## Applicability
 
 Use the Adapter pattern when
 
-* When a user logs into a website or web application and you want to keep track of their authentication status.
+* When a user logs into a website or web application, and you want to keep track of their authentication status.
 * In e-commerce websites when you want to maintain the contents of a user's shopping cart across different pages and visits.
 * When you want to store user preferences and settings, such as language preferences, theme choices, or any other customizable options. 
 * When you want to keep track of user activity and behavior on a website for the sake of analytics purposes.
