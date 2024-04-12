@@ -179,7 +179,7 @@ Sessions are often given a maximum time in which they will be maintained. The se
 
 ## Class diagram
 
-![Server Session class diagram](./etc/server-session.urm.puml "Server Session class diagram")
+![Server Session class diagram](./etc/server-session.urm.png "Server Session class diagram")
 
 ## Applicability
 
