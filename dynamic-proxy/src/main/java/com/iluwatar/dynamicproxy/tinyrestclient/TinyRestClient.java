@@ -132,7 +132,7 @@ public class TinyRestClient {
 
   private Object getResponse(Method method, HttpResponse<String> httpResponse) {
     var rawData = httpResponse.body();
-    Type returnType = null;
+    Type returnType;
     try {
       returnType = method.getGenericReturnType();
     } catch (Exception e) {
