@@ -52,7 +52,7 @@ class RectangleTest {
    * #toString()}
    */
   @Test
-  void testToString() throws Exception {
+  void testToString() {
     final var rectangle = new Rectangle(1, 2, 3, 4);
     assertEquals("[1,2,3,4]", rectangle.toString());
   }
