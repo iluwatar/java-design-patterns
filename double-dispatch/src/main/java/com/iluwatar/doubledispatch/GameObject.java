@@ -24,9 +24,14 @@
  */
 package com.iluwatar.doubledispatch;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Game objects have coordinates and some other status information.
  */
+@Getter
+@Setter
 public abstract class GameObject extends Rectangle {
 
   private boolean damaged;
@@ -40,22 +45,6 @@ public abstract class GameObject extends Rectangle {
   public String toString() {
     return String.format("%s at %s damaged=%b onFire=%b", this.getClass().getSimpleName(),
         super.toString(), isDamaged(), isOnFire());
-  }
-
-  public boolean isOnFire() {
-    return onFire;
-  }
-
-  public void setOnFire(boolean onFire) {
-    this.onFire = onFire;
-  }
-
-  public boolean isDamaged() {
-    return damaged;
-  }
-
-  public void setDamaged(boolean damaged) {
-    this.damaged = damaged;
   }
 
   public abstract void collision(GameObject gameObject);
