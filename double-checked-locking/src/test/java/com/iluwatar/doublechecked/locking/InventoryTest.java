@@ -80,7 +80,7 @@ class InventoryTest {
    * item limit.
    */
   @Test
-  void testAddItem() throws Exception {
+  void testAddItem() {
     assertTimeout(ofMillis(10000), () -> {
       // Create a new inventory with a limit of 1000 items and put some load on the add method
       final var inventory = new Inventory(INVENTORY_SIZE);
@@ -109,7 +109,7 @@ class InventoryTest {
   }
 
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender(Class clazz) {
