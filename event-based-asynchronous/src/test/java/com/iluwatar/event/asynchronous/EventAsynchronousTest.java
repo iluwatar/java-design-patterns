@@ -106,7 +106,7 @@ class EventAsynchronousTest {
         try {
           Thread.sleep(sleepTime);
         } catch (InterruptedException e) {
-          LOGGER.error("Error occurred: ", e);
+          LOGGER.error("Thread interrupted: ", e);
           Thread.currentThread().interrupt();
         }
       }
@@ -143,7 +143,7 @@ class EventAsynchronousTest {
         try {
           Thread.sleep(sleepTime);
         } catch (InterruptedException e) {
-          LOGGER.error("Error occurred: ", e);
+          LOGGER.error("Thread interrupted: ", e);
           Thread.currentThread().interrupt();
         }
       }

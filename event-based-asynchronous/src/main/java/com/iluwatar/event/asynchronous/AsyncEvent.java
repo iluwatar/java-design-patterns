@@ -77,7 +77,7 @@ public class AsyncEvent implements Event, Runnable {
       try {
         TimeUnit.SECONDS.sleep(1);
       } catch (InterruptedException e) {
-//        LOGGER.error("Thread was interrupted: ", e);
+        LOGGER.error("Thread was interrupted: ", e);
         Thread.currentThread().interrupt();
         return;
       }
