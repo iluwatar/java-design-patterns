@@ -1,14 +1,12 @@
- ---
+---
 title: Dynamic Proxy
 category: Structural
 language: en
 tag:
-
-- Decoupling
-- Dynamic typing
-- Proxy
-- Runtime
-
+  - Decoupling
+  - Dynamic typing
+  - Proxy
+  - Runtime
 ---
 
 ## Also known as
