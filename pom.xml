@@ -219,6 +219,7 @@
     <module>dynamic-proxy</module>
     <module>gateway</module>
     <module>slob</module>
+    <module>server-session</module>
   </modules>
   <repositories>
     <repository>
