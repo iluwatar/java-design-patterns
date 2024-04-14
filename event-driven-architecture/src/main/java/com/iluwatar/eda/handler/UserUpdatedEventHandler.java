@@ -36,6 +36,6 @@ public class UserUpdatedEventHandler implements Handler<UserUpdatedEvent> {
 
   @Override
   public void onEvent(UserUpdatedEvent event) {
-    LOGGER.info("User '{}' has been Updated!", event.getUser().getUsername());
+    LOGGER.info("User '{}' has been Updated!", event.getUser().username());
   }
 }
