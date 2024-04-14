@@ -27,6 +27,7 @@ package com.iluwatar.event.asynchronous;
 import java.security.SecureRandom;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import lombok.Getter;
 
 /**
  * EventManager handles and maintains a pool of event threads. {@link AsyncEvent} threads are created
@@ -39,12 +40,14 @@ import java.util.concurrent.ConcurrentHashMap;
 public class EventManager implements ThreadCompleteListener {
 
   public static final int MAX_RUNNING_EVENTS = 1000;
-  // Just don't wanna have too many running events. :)
+  // Just don't want to have too many running events. :)
   public static final int MIN_ID = 1;
   public static final int MAX_ID = MAX_RUNNING_EVENTS;
   public static final int MAX_EVENT_TIME = 1800; // in seconds / 30 minutes.
   private int currentlyRunningSyncEvent = -1;
   private final SecureRandom rand;
+
+  @Getter
   private final Map<Integer, AsyncEvent> eventPool;
 
   private static final String DOES_NOT_EXIST = " does not exist.";
@@ -66,7 +69,7 @@ public class EventManager implements ThreadCompleteListener {
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
    * @throws InvalidOperationException      No new synchronous events can be created when one is
    *                                        already running.
-   * @throws LongRunningEventException      Long running events are not allowed in the app.
+   * @throws LongRunningEventException      Long-running events are not allowed in the app.
    */
   public int create(int eventTime)
       throws MaxNumOfEventsAllowedException, InvalidOperationException, LongRunningEventException {
@@ -87,7 +90,7 @@ public class EventManager implements ThreadCompleteListener {
    * @param eventTime Time an event should run for.
    * @return eventId
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
-   * @throws LongRunningEventException      Long running events are not allowed in the app.
+   * @throws LongRunningEventException      Long-running events are not allowed in the app.
    */
   public int createAsync(int eventTime) throws MaxNumOfEventsAllowedException,
       LongRunningEventException {
@@ -204,13 +207,6 @@ public class EventManager implements ThreadCompleteListener {
       currentlyRunningSyncEvent = -1;
     }
     eventPool.remove(eventId);
-  }
-
-  /**
-   * Getter method for event pool.
-   */
-  public Map<Integer, AsyncEvent> getEventPool() {
-    return eventPool;
   }
 
   /**

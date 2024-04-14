@@ -24,11 +24,14 @@
  */
 package com.iluwatar.event.asynchronous;
 
+import java.io.Serial;
+
 /**
- * Custom Exception Class for Non Existent Event.
+ * Custom Exception Class for Non-Existent Event.
  */
 public class EventDoesNotExistException extends Exception {
 
+  @Serial
   private static final long serialVersionUID = -3398463738273811509L;
 
   public EventDoesNotExistException(String message) {
