@@ -30,6 +30,7 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -49,6 +50,7 @@ public class Audio {
 
   private volatile Thread updateThread = null;
 
+  @Getter
   private final PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
 
   // Visible only for testing purposes
@@ -81,8 +83,8 @@ public class Audio {
   }
 
   /**
-   * Starts the thread for the Update Method pattern if it was not started previously. Also when the
-   * thread is is ready initializes the indexes of the queue
+   * Starts the thread for the Update Method pattern if it was not started previously. Also, when the
+   * thread is ready initializes the indexes of the queue
    */
   public void init() {
     if (updateThread == null) {
@@ -164,14 +166,4 @@ public class Audio {
       throws UnsupportedAudioFileException, IOException {
     return AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
   }
-
-  /**
-   * Returns with the message array of the queue.
-   *
-   * @return PlayMessage[]
-   */
-  public PlayMessage[] getPendingAudio() {
-    return pendingAudio;
-  }
-
 }
