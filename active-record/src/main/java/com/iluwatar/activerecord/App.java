@@ -1,5 +1,7 @@
 package com.iluwatar.activerecord;
 
+import static com.iluwatar.activerecord.SchemaConstants.CREATE_SCHEMA_SQL;
+
 import com.iluwatar.activerecord.base.RecordBase;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,24 +17,6 @@ import org.h2.jdbcx.JdbcDataSource;
 public class App {
 
   private static final String DB_URL = "jdbc:h2:mem:dao;DB_CLOSE_DELAY=-1";
-
-  private static final String CREATE_SCHEMA_SQL = "CREATE TABLE customer\n"
-      + "(\n"
-      + "    id              BIGINT      NOT NULL,\n"
-      + "    customerNumber VARCHAR(15) NOT NULL,\n"
-      + "    firstName      VARCHAR(45) NOT NULL,\n"
-      + "    lastName       VARCHAR(45) NOT NULL,\n"
-      + "    CONSTRAINT customer_pkey PRIMARY KEY (id)\n"
-      + ");\n"
-      + "\n"
-      + "CREATE TABLE \"order\"\n"
-      + "(\n"
-      + "    id           BIGINT      NOT NULL,\n"
-      + "    orderNumber VARCHAR(15) NOT NULL,\n"
-      + "    customerId  BIGINT      NOT NULL,\n"
-      + "    CONSTRAINT order_pkey PRIMARY KEY (id),\n"
-      + "    CONSTRAINT customer_id_fk FOREIGN KEY (customerId) REFERENCES customer (id)\n"
-      + ")";
 
   /**
    * Java main method to execute all the logic out there.
