@@ -1,5 +1,8 @@
 package com.iluwatar.activerecord;
 
+/**
+ * Database schema related constants.
+ */
 public final class SchemaConstants {
 
   private SchemaConstants() {
@@ -26,7 +29,7 @@ public final class SchemaConstants {
       + "    CONSTRAINT customer_id_fk FOREIGN KEY (customerId) REFERENCES customer (id)\n"
       + ")";
 
-  public static final String DELETE_SCHEMA_SQL = "DROP TABLE \"order\";" +
-      "DROP TABLE customer";
+  public static final String DELETE_SCHEMA_SQL = "DROP TABLE \"order\";"
+      + "DROP TABLE customer";
 
 }
