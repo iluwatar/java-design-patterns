@@ -27,7 +27,7 @@ class CustomerCrudTest extends BaseTest {
     customerTwo.save(Customer.class);
 
     // find all the customers
-    List<Customer> customers = customerTwo.findAll(Customer.class);
+    List<Customer> customers = Customer.findAll(Customer.class);
     Customer firstCustomer = customers.get(0);
     assertEquals(2, customers.size());
     assertEquals(1L, firstCustomer.getId());

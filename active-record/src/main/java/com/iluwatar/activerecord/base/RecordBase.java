@@ -20,11 +20,9 @@ import lombok.RequiredArgsConstructor;
  *
  * <p>This is the base class which is supposed to be extended by all the domain models that are
  * expected to be persistent.
- *
- * @param <T> an active record type.
  */
 @RequiredArgsConstructor
-public abstract class RecordBase<T extends RecordBase<?>> {
+public abstract class RecordBase {
 
   private static final String EXCEPTION_MESSAGE =
       "Couldn't execute database query for the following domain model :";
@@ -79,7 +77,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
    *
    * @return all the domain model related records.
    */
-  public static <T extends RecordBase<?>> List<T> findAll(Class<T> clazz) {
+  public static <T extends RecordBase> List<T> findAll(Class<T> clazz) {
     List<T> recordList = new ArrayList<>();
     try (Connection conn = getConnection();
          PreparedStatement pstmt = conn.prepareStatement(constructFindAllQuery(clazz))) {
@@ -102,7 +100,7 @@ public abstract class RecordBase<T extends RecordBase<?>> {
    * @param id domain model identifier.
    * @return the domain model.
    */
-  public static <T extends RecordBase<?>> T findById(Long id, Class<T> clazz) {
+  public static <T extends RecordBase> T findById(Long id, Class<T> clazz) {
     try (Connection conn = getConnection();
          PreparedStatement pstmt = conn.prepareStatement(constructFindByIdQuery(clazz))) {
       pstmt.setLong(1, id);
@@ -123,12 +121,12 @@ public abstract class RecordBase<T extends RecordBase<?>> {
   /**
    * Save the record.
    */
-  public static <T extends RecordBase<?>> void save(Class<T> clazz) {
+  public <T extends RecordBase> void save(Class<T> clazz) {
     try (Connection connection = getConnection();
          PreparedStatement pstmt = connection.prepareStatement(constructInsertionQuery(clazz),
              Statement.RETURN_GENERATED_KEYS)) {
 
-      setPreparedStatementParams(pstmt, clazz);
+      setPreparedStatementParams(pstmt);
       pstmt.executeUpdate();
 
     } catch (SQLException e) {
@@ -136,24 +134,20 @@ public abstract class RecordBase<T extends RecordBase<?>> {
     }
   }
 
-  private static <T extends RecordBase<?>> void setPreparedStatementParams(PreparedStatement pstmt,
-                                                                           Class<T> clazz)
-      throws SQLException {
-    List<Field> standardFields = filterStandardTypes(clazz);
+  protected abstract void setPreparedStatementParams(PreparedStatement pstmt) throws SQLException;
 
-  }
-
-  protected static <T extends RecordBase<?>> String constructInsertionQuery(Class<T> clazz) {
+  protected static <T extends RecordBase> String constructInsertionQuery(Class<T> clazz) {
     List<Object> arguments = new ArrayList<>();
     try {
+      T recordInstance = getDeclaredClassInstance(clazz);
       InsertionQuery insert = Query.insertInto(clazz.getSimpleName());
 
       List<Field> standardFields = filterStandardTypes(clazz);
 
       for (Field field : standardFields) {
         field.setAccessible(true);
-        arguments.add(field.get(clazz)); // FIXME: it doesn't work and fail - fix it
-        insert.column(field.getName()).value(String.valueOf(field.get(clazz)));
+        arguments.add(field.get(recordInstance));
+        insert.column(field.getName()).value("?");
       }
       return insert.toString();
     } catch (IllegalAccessException ignored) {
@@ -162,22 +156,22 @@ public abstract class RecordBase<T extends RecordBase<?>> {
     return null;
   }
 
-  private static <T extends RecordBase<?>> List<Field> filterStandardTypes(Class<T> clazz) {
+  private static <T extends RecordBase> List<Field> filterStandardTypes(Class<T> clazz) {
     return Arrays.stream(clazz.getDeclaredFields())
         .filter(field -> STANDARD_TYPES.contains(field.getType()))
         .toList();
   }
 
   // TODO: implement Select query within the Query class
-  private static <T extends RecordBase<?>> String constructFindByIdQuery(Class<T> clazz) {
+  private static <T extends RecordBase> String constructFindByIdQuery(Class<T> clazz) {
     return constructFindAllQuery(clazz) + " WHERE id = ?";
   }
 
-  private static <T extends RecordBase<?>> String constructFindAllQuery(Class<T> clazz) {
+  private static <T extends RecordBase> String constructFindAllQuery(Class<T> clazz) {
     return "SELECT * FROM " + getDeclaredClassInstance(clazz).getTableName();
   }
 
-  private static <T extends RecordBase<?>> T getDeclaredClassInstance(Class<T> clazz) {
+  private static <T extends RecordBase> T getDeclaredClassInstance(Class<T> clazz) {
     try {
       return clazz.getDeclaredConstructor().newInstance();
     } catch (InvocationTargetException
