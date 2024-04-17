@@ -28,13 +28,11 @@ import static com.github.stefanbirkner.systemlambda.SystemLambda.tapSystemOutNor
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.github.stefanbirkner.systemlambda.Statement;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 /**
  * GroundDive unit tests.
  */
-@Disabled
 class GroundDiveTest {
 
   @Test
@@ -69,7 +67,7 @@ class GroundDiveTest {
     var logs = tapSystemOutNormalized(groundDive::activate)
         .split("\n");
     final var expectedSize = 3;
-    final var log1 = logs[0].split("-")[1].trim() + " -" + logs[0].split("-")[2].trim();
+    final var log1 = logs[0].split("--")[1].trim();
     final var expectedLog1 = "Move to ( 0.0, 0.0, -20.0 )";
     final var log2 = getLogContent(logs[1]);
     final var expectedLog2 = "Play GROUNDDIVE_SOUND with volume 5";
@@ -87,7 +85,7 @@ class GroundDiveTest {
   }
 
   private String getLogContent(String log) {
-    return log.split("-")[1].trim();
+    return log.split("--")[1].trim();
   }
 
 }
