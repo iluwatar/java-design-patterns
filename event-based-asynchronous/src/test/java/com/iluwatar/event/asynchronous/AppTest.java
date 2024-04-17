@@ -24,14 +24,23 @@
  */
 package com.iluwatar.event.asynchronous;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 /**
- * Type of Exception raised when the max number of allowed events is exceeded.
+ * Tests that EventAsynchronous example runs without errors.
  */
-public class MaxNumOfEventsAllowedException extends Exception {
+class AppTest {
 
-  private static final long serialVersionUID = -8430876973516292695L;
+  /**
+   * Issue: Add at least one assertion to this test case.
+   * Solution: Inserted assertion to check whether the execution of the main method in {@link App#main(String[])}
+   * throws an exception.
+   */
 
-  public MaxNumOfEventsAllowedException(String message) {
-    super(message);
+  @Test
+  void shouldExecuteApplicationWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

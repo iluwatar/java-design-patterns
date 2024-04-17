@@ -67,14 +67,14 @@ class KingJoffreyTest {
       assertEquals(i, appender.getLogSize());
       var event = Event.values()[i];
       kingJoffrey.onEvent(event);
-      final var expectedMessage = "Received event from the King's Hand: " + event.toString();
+      final var expectedMessage = "Received event from the King's Hand: " + event;
       assertEquals(expectedMessage, appender.getLastMessage());
       assertEquals(i + 1, appender.getLogSize());
     });
 
   }
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender(Class<?> clazz) {

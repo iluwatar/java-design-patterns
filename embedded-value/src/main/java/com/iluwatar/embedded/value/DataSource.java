@@ -141,7 +141,6 @@ public class DataSource implements DataSourceInterface {
             rSet.getString(6)));
         ordersList.add(order);
       }
-      rSet.close();
     } catch (SQLException e) {
       LOGGER.error(e.getMessage(), e.getCause());
     }
@@ -166,7 +165,6 @@ public class DataSource implements DataSourceInterface {
             rSet.getString(5), rSet.getString(6));
         order = new Order(rSet.getInt(1), rSet.getString(2), rSet.getString(3), address);
       }
-      rSet.close();
     } catch (Exception e) {
       LOGGER.error(e.getLocalizedMessage(), e.getCause());
     }
@@ -192,7 +190,7 @@ public class DataSource implements DataSourceInterface {
   }
 
   @Override
-  public boolean deleteSchema() throws Exception {
+  public boolean deleteSchema()  {
     try {
       deleteschema.execute(DELETE_SCHEMA);
       queryOrders.close();
