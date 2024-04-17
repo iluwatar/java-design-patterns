@@ -65,7 +65,7 @@ public class TBorrower implements MessageListener {
 
     try {
       BytesMessage bMessage = (BytesMessage) message;
-      double newRate = ((BytesMessage) message).readDouble();
+      double newRate = ((BytesMessage) bMessage).readDouble();
 
       if (currentRate - newRate >= 1)
         System.out.println("New Rate is " + newRate + " - Consider refinancing");
