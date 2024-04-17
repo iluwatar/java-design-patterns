@@ -100,7 +100,16 @@ class EventAsynchronousTest {
       var currentTime = System.currentTimeMillis();
       // +2 to give a bit of buffer time for event to complete properly.
       var endTime = currentTime + (eventTime + 2 * 1000);
-      while (System.currentTimeMillis() < endTime) ;
+
+      long sleepTime = endTime - System.currentTimeMillis();
+      if (sleepTime > 0) {
+        try {
+          Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+          LOGGER.error("Thread interrupted: ", e);
+          Thread.currentThread().interrupt();
+        }
+      }
 
       assertTrue(eventManager.getEventPool().isEmpty());
 
@@ -128,7 +137,16 @@ class EventAsynchronousTest {
       var currentTime = System.currentTimeMillis();
       // +2 to give a bit of buffer time for event to complete properly.
       var endTime = currentTime + (eventTime + 2 * 1000);
-      while (System.currentTimeMillis() < endTime) ;
+
+      long sleepTime = endTime - System.currentTimeMillis();
+      if (sleepTime > 0) {
+        try {
+          Thread.sleep(sleepTime);
+        } catch (InterruptedException e) {
+          LOGGER.error("Thread interrupted: ", e);
+          Thread.currentThread().interrupt();
+        }
+      }
 
       assertTrue(eventManager.getEventPool().isEmpty());
 

@@ -24,6 +24,8 @@
  */
 package com.iluwatar.event.asynchronous;
 
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +42,7 @@ public class AsyncEvent implements Event, Runnable {
   @Getter
   private final boolean synchronous;
   private Thread thread;
-  private boolean isComplete = false;
+  private AtomicBoolean isComplete = new AtomicBoolean(false);
   private ThreadCompleteListener eventListener;
 
   @Override
@@ -59,7 +61,7 @@ public class AsyncEvent implements Event, Runnable {
 
   @Override
   public void status() {
-    if (!isComplete) {
+    if (isComplete.get()) {
       LOGGER.info("[{}] is not done.", eventId);
     } else {
       LOGGER.info("[{}] is done.", eventId);
@@ -68,17 +70,19 @@ public class AsyncEvent implements Event, Runnable {
 
   @Override
   public void run() {
+
     var currentTime = System.currentTimeMillis();
-    var endTime = currentTime + (eventTime * 1000);
+    var endTime = currentTime + (eventTime * 1000L);
     while (System.currentTimeMillis() < endTime) {
       try {
-        Thread.sleep(1000); // Sleep for 1 second.
+        TimeUnit.SECONDS.sleep(1);
       } catch (InterruptedException e) {
+        LOGGER.error("Thread was interrupted: ", e);
         Thread.currentThread().interrupt();
         return;
       }
     }
-    isComplete = true;
+    isComplete.set(true);
     completed();
   }
 
@@ -95,5 +99,4 @@ public class AsyncEvent implements Event, Runnable {
       eventListener.completedEventHandler(eventId);
     }
   }
-
 }
