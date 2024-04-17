@@ -53,6 +53,22 @@
             <artifactId>activemq-core</artifactId>
             <version>5.7.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.xbean</groupId>
+            <artifactId>xbean-spring</artifactId>
+            <version>4.24</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.17</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.activemq.tooling</groupId>
+            <artifactId>activemq-junit</artifactId>
+            <version>6.1.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
