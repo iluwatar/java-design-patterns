@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 class UnitTest {
 
   @Test
-  void testConstGetSet() throws Exception {
+  void testConstGetSet() {
     final var name = "testName";
     final var unit = new Unit(name);
     assertEquals(name, unit.getName());
