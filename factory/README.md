@@ -7,10 +7,6 @@ tag:
     - Instantiation
 ---
 
-## Also known as
-
-* Factory Method
-
 ## Intent
 
 The Factory design pattern is intended to define an interface for creating an object, but allows subclasses to alter the type of objects that will be created. This pattern is particularly useful when the creation process involves complexity.
