@@ -36,9 +36,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Created by Srdjan on 03-May-17.
- *
- * Modified by ToxicDreamz on 15-Aug-20
+ * CommanderTest
  */
 class CommanderTest {
 
@@ -56,10 +54,9 @@ class CommanderTest {
     commander.commanderReady();
 
     List<ILoggingEvent> logsList = listAppender.list;
-    assertEquals("[Commander] " + commander.getUnit().getName() + " is ready!", logsList.get(0)
+    assertEquals("[Commander] " + commander.unit().getName() + " is ready!", logsList.get(0)
         .getMessage());
     assertEquals(Level.INFO, logsList.get(0)
         .getLevel());
   }
-
 }
