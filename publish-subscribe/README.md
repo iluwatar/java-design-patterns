@@ -1,5 +1,5 @@
 ---
-title: Publish-Subscribe pattern
+title: Publish-Subscribe
 category: Behavioral
 language: en
 tag:
@@ -135,7 +135,7 @@ public class TLender {
             LOGGER.error("An error has occurred!", e);
         }
 
-        TLender tLender = new TLender(topicCFName, topicName);
+        TLender lender = new TLender(topicCFName, topicName);
 
         System.out.println ("TLender Application Started");
         System.out.println ("Press enter to quit application");
@@ -151,11 +151,11 @@ public class TLender {
                 //Exit if user pressed enter or line is blank
                 if (line == null || line.trim().length() == 0) {
                     System.out.println("Exiting...");
-                    tLender.exit();
+                    lender.exit();
                 }
                 else { //publish the entered rate
                     double newRate = Double.parseDouble(line);
-                    tLender.publishRate(newRate);
+                    lender.publishRate(newRate);
                 }
             }
         } catch(IOException e) {
@@ -185,15 +185,6 @@ output:
 Initial rate is 6.0
 Waiting for new rates...
 Press enter to quit application
-
-Running the class:
-
-The class must be run after the TLender class is running since TLender spins up the activeMQ broker.
-
-In order to see the messages being sent to multiple subscribers multiple instance of the TBorrower class need to be run. Either run multiple instances in an IDE or execute the following command in a command line from the root folder after generating the target folder:
-
-
-mvn exec:java -Dexec.mainClass=com.iluwatar.publishersubscriber.TBorrower -Dexec.args="TopicCF RateTopic 6"
 
 ```java
 public class TBorrower implements MessageListener {
@@ -282,7 +273,7 @@ public class TBorrower implements MessageListener {
             System.exit(0);
         }
 
-        TBorrower tBorrower = new TBorrower(topicCF, topicName, rate);
+        TBorrower borrower = new TBorrower(topicCF, topicName, rate);
 
         try {
             // Run until enter is pressed
@@ -291,7 +282,7 @@ public class TBorrower implements MessageListener {
             System.out.println ("TBorrower application started");
             System.out.println ("Press enter to quit application");
             reader.readLine();
-            tBorrower.exit();
+            borrower.exit();
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -316,6 +307,7 @@ public class TBorrower implements MessageListener {
 ```
 
 ## Class diagram
+![alt text](./etc/publishsubscribe.urm.png "Publish Subscribe class diagram")
 
 ## Applicability
 

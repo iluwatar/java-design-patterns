@@ -1,4 +1,4 @@
-package com.iluwatar.publishersubscriber;
+package com.iluwatar.publishsubscribe;
 
 import lombok.extern.slf4j.Slf4j;
 import javax.jms.BytesMessage;
@@ -19,14 +19,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 @Slf4j
-public class TBorrower implements MessageListener {
+public class Borrower implements MessageListener {
 
   private TopicConnection tConnection;
   private TopicSession tSession;
   private Topic topic;
   private double currentRate;
+  private static final String ERROR = "An error has occured!";
+  private double newRate;
 
-  public TBorrower(String topicCFName, String topicName, double initialRate) {
+  public Borrower(String topicCFName, String topicName, double initialRate) {
 
     currentRate = initialRate;
 
@@ -50,44 +52,37 @@ public class TBorrower implements MessageListener {
       tConnection.start();
       System.out.println("Initial rate is " + currentRate + " \nWaiting for new rates...");
     } catch(NamingException e) {
-      e.printStackTrace();
-      LOGGER.error("An error has occurred!", e);
-      System.exit(1);
+      LOGGER.error(ERROR, e);
     } catch(JMSException e) {
-      e.printStackTrace();
-      LOGGER.error("An error has occurred!", e);
-      System.exit(1);
+      LOGGER.error(ERROR, e);
     }
   }
 
   //This method is called asynchronously by the activeMQ broker
   public void onMessage(Message message) {
-
     try {
       BytesMessage bMessage = (BytesMessage) message;
-      double newRate = ((BytesMessage) bMessage).readDouble();
+      double newRate = bMessage.readDouble();
+      setNewRate(newRate);
 
       if (currentRate - newRate >= 1)
         System.out.println("New Rate is " + newRate + " - Consider refinancing");
       else
         System.out.println("New Rate is " + newRate + " - Consider keeping current rate");
     } catch(JMSException e) {
-      e.printStackTrace();
-      LOGGER.error("An error occurred!", e);
-      System.exit(1);
+      LOGGER.error(ERROR, e);
     }
     System.out.println("Waiting for new rates...");
   }
 
-  private void exit() {
+  public boolean close() {
     try {
       tConnection.close();
+      return true;
     } catch(JMSException e) {
-      e.printStackTrace();
-      LOGGER.error("An error has occurred!", e);
-      System.exit(1);
+      LOGGER.error(ERROR, e);
+      return false;
     }
-    System.exit(0);
   }
 
   public static void main(String[] args) {
@@ -105,7 +100,7 @@ public class TBorrower implements MessageListener {
       System.exit(0);
     }
 
-    TBorrower tBorrower = new TBorrower(topicCF, topicName, rate);
+    Borrower borrower = new Borrower(topicCF, topicName, rate);
 
     try {
       // Run until enter is pressed
@@ -114,9 +109,10 @@ public class TBorrower implements MessageListener {
       System.out.println ("TBorrower application started");
       System.out.println ("Press enter to quit application");
       reader.readLine();
-      tBorrower.exit();
-    } catch (IOException ioe) {
-      ioe.printStackTrace();
+      borrower.close();
+      System.exit(0);
+    } catch (IOException e) {
+      LOGGER.error(ERROR, e);
     }
   }
 
@@ -135,4 +131,8 @@ public class TBorrower implements MessageListener {
   public double getCurrentRate() {
     return currentRate;
   }
+
+  public double getNewRate() { return newRate; }
+
+  private void setNewRate(double newRate) { this.newRate = newRate; }
 }

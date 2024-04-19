@@ -1,4 +1,4 @@
-package com.iluwatar.publishersubscriber;
+package com.iluwatar.publishsubscribe;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.activemq.broker.BrokerService;
@@ -14,18 +14,23 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Properties;
 
 @Slf4j
-public class TLender {
+public class Lender {
 
   private TopicConnection tConnection;
   private TopicSession tSession;
   private Topic topic;
   private TopicPublisher publisher;
+  private static final String ERROR = "An error has occured!";
 
-  public TLender(String topicCFName, String topicName) {
+  public Lender(String topicCFName, String topicName) {
 
     try {
       //create context and retrieve objects from directory
@@ -44,17 +49,13 @@ public class TLender {
 
       tConnection.start();
     } catch(NamingException e) {
-      e.printStackTrace();
-      LOGGER.error("An error has occurred!", e);
-      System.exit(1);
+      LOGGER.error(ERROR, e);
     } catch(JMSException e) {
-      e.printStackTrace();
-      LOGGER.error("An error has occurred!", e);
-      System.exit(1);
+      LOGGER.error(ERROR, e);
     }
   }
 
-  private void publishRate(double newRate) {
+  public void publishRate(double newRate) {
 
     try {
       //create JMS message
@@ -64,21 +65,18 @@ public class TLender {
       //publish message
       publisher.publish(message);
     } catch(JMSException e) {
-      e.printStackTrace();
-      LOGGER.error("An error has occurred!", e);
-      System.exit(1);
+      LOGGER.error(ERROR, e);
     }
   }
 
-  private void exit() {
+  public boolean close() {
     try {
       tConnection.close();
+      return true;
     } catch(JMSException e) {
-      e.printStackTrace();
-      LOGGER.error("An error has occurred!", e);
-      System.exit(1);
+      LOGGER.error(ERROR, e);
+      return false;
     }
-    System.exit(0);
   }
 
   public static void main(String[] args) {
@@ -90,26 +88,35 @@ public class TLender {
       topicCFName = args[0];
       topicName = args[1];
     } else {
-      System.out.println("Invalid arguments. Should be: ");
-      System.out.println("java TLender [factory] [topic]");
+      LOGGER.info("Invalid arguments. Should be: ");
+      LOGGER.info("java TLender [factory] [topic]");
       System.exit(1);
     }
 
     try {
+      //Get configuration properties
+      Properties props = new Properties();
+      InputStream in = new FileInputStream("publish-subscribe/src/main/resources/config.properties");
+      props.load(in);
+      in.close();
+
       // Create and start activeMQ broker. Broker decouples publishers and subscribers.
-      //Additionally brokers manage threads and asynchronous sending and receiving of messages.
+      // Additionally brokers manage threads and asynchronous sending and receiving of messages.
       BrokerService broker = new BrokerService();
-      broker.addConnector("tcp://localhost:61616");
+      broker.addConnector(props.getProperty("ADDRESS"));
       broker.start();
 
+    } catch(FileNotFoundException e) {
+      LOGGER.error(ERROR, e);
+    } catch(IOException e) {
+      LOGGER.error(ERROR, e);
     } catch(Exception e) {
-      e.printStackTrace();
-      LOGGER.error("An error has occurred!", e);
+      LOGGER.error(ERROR, e);
     }
 
-    TLender tLender = new TLender(topicCFName, topicName);
+    Lender lender = new Lender(topicCFName, topicName);
 
-    System.out.println ("TLender Application Started");
+    LOGGER.info("TLender Application Started");
     System.out.println ("Press enter to quit application");
     System.out.println ("Enter: Rate");
     System.out.println("\ne.g. 6.8");
@@ -123,16 +130,16 @@ public class TLender {
         //Exit if user pressed enter or line is blank
         if (line == null || line.trim().length() == 0) {
           System.out.println("Exiting...");
-          tLender.exit();
+          lender.close();
+          System.exit(0);
         }
         else { //publish the entered rate
           double newRate = Double.parseDouble(line);
-          tLender.publishRate(newRate);
+          lender.publishRate(newRate);
         }
       }
     } catch(IOException e) {
-      e.printStackTrace();
-      LOGGER.error("An error has occurred!", e);
+      LOGGER.error(ERROR, e);
     }
   }
 
