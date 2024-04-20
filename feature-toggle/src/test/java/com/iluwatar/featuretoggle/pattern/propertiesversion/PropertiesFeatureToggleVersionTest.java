@@ -40,9 +40,7 @@ class PropertiesFeatureToggleVersionTest {
 
   @Test
   void testNullPropertiesPassed() {
-    assertThrows(IllegalArgumentException.class, () -> {
-      new PropertiesFeatureToggleVersion(null);
-    });
+    assertThrows(IllegalArgumentException.class, () -> new PropertiesFeatureToggleVersion(null));
   }
 
   @Test

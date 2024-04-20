@@ -53,17 +53,13 @@ class UserGroupTest {
   void testAddUserToPaidWhenOnFree() {
     var user = new User("Paid User");
     UserGroup.addUserToFreeGroup(user);
-    assertThrows(IllegalArgumentException.class, () -> {
-      UserGroup.addUserToPaidGroup(user);
-    });
+    assertThrows(IllegalArgumentException.class, () -> UserGroup.addUserToPaidGroup(user));
   }
 
   @Test
   void testAddUserToFreeWhenOnPaid() {
     var user = new User("Free User");
     UserGroup.addUserToPaidGroup(user);
-    assertThrows(IllegalArgumentException.class, () -> {
-      UserGroup.addUserToFreeGroup(user);
-    });
+    assertThrows(IllegalArgumentException.class, () -> UserGroup.addUserToFreeGroup(user));
   }
 }
