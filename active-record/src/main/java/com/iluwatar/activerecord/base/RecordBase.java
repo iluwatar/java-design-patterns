@@ -25,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 public abstract class RecordBase {
 
   private static final String EXCEPTION_MESSAGE =
-      "Couldn't execute database query for the following domain model :";
+      "Couldn't execute database query for the following domain model: ";
 
   private static DataSource dataSource;
 
@@ -79,8 +79,11 @@ public abstract class RecordBase {
    */
   public static <T extends RecordBase> List<T> findAll(Class<T> clazz) {
     List<T> recordList = new ArrayList<>();
+    String selectQuery = Query
+        .selectFrom(getDeclaredClassInstance(clazz).getTableName())
+        .toString();
     try (Connection conn = getConnection();
-         PreparedStatement pstmt = conn.prepareStatement(constructFindAllQuery(clazz))) {
+         PreparedStatement pstmt = conn.prepareStatement(selectQuery)) {
       try (ResultSet rs = pstmt.executeQuery()) {
         while (rs.next()) {
           T theRecord = getDeclaredClassInstance(clazz);
@@ -101,8 +104,12 @@ public abstract class RecordBase {
    * @return the domain model.
    */
   public static <T extends RecordBase> T findById(Long id, Class<T> clazz) {
+    String selectStatement = Query
+        .selectFrom(getDeclaredClassInstance(clazz).getTableName())
+        .where("id")
+        .toString();
     try (Connection conn = getConnection();
-         PreparedStatement pstmt = conn.prepareStatement(constructFindByIdQuery(clazz))) {
+         PreparedStatement pstmt = conn.prepareStatement(selectStatement)) {
       pstmt.setLong(1, id);
       try (ResultSet rs = pstmt.executeQuery()) {
         if (rs.next()) {
@@ -160,15 +167,6 @@ public abstract class RecordBase {
     return Arrays.stream(clazz.getDeclaredFields())
         .filter(field -> STANDARD_TYPES.contains(field.getType()))
         .toList();
-  }
-
-  // TODO: implement Select query within the Query class
-  private static <T extends RecordBase> String constructFindByIdQuery(Class<T> clazz) {
-    return constructFindAllQuery(clazz) + " WHERE id = ?";
-  }
-
-  private static <T extends RecordBase> String constructFindAllQuery(Class<T> clazz) {
-    return "SELECT * FROM " + getDeclaredClassInstance(clazz).getTableName();
   }
 
   private static <T extends RecordBase> T getDeclaredClassInstance(Class<T> clazz) {
