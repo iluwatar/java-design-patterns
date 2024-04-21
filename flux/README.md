@@ -116,3 +116,5 @@ Trade-offs:
 ## Credits
 
 * [Flux - Application architecture for building user interfaces](http://facebook.github.io/flux/)
+* [Learning React: Modern Patterns for Developing React Apps](https://amzn.to/3Qdn9Pg)
+* [Pro React](https://amzn.to/3xNRttK)
