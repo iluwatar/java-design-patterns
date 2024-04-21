@@ -68,10 +68,10 @@ final class Query {
         return "";
       }
 
-      return constructWhereFromMap(whereKeys);
+      return constructWhereFromKeys(whereKeys);
     }
 
-    private static String constructWhereFromMap(List<String> whereKeys) {
+    private String constructWhereFromKeys(List<String> whereKeys) {
       StringBuilder whereClause = new StringBuilder(" WHERE ");
       for (String key : whereKeys) {
         whereClause.append(key)
