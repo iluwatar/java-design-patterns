@@ -130,7 +130,7 @@ public abstract class RecordBase {
   public static <T extends RecordBase> T findById(Long id, Class<T> clazz) {
     String selectStatement = Query
         .selectFrom(getDeclaredClassInstance(clazz).getTableName())
-        .where("id")
+        .withKey("id")
         .toString();
     try (Connection conn = getConnection();
          PreparedStatement pstmt = conn.prepareStatement(selectStatement)) {

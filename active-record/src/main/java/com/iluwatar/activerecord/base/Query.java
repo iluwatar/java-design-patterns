@@ -58,7 +58,7 @@ final class Query {
           + constructWhere(whereKeys);
     }
 
-    SelectionQuery where(String column) {
+    SelectionQuery withKey(String column) {
       whereKeys.add(column);
       return this;
     }
