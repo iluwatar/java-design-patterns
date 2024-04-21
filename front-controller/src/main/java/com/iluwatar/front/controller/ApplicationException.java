@@ -24,11 +24,14 @@
  */
 package com.iluwatar.front.controller;
 
+import java.io.Serial;
+
 /**
  * Custom exception type.
  */
 public class ApplicationException extends RuntimeException {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   public ApplicationException(Throwable cause) {
