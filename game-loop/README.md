@@ -1,44 +1,40 @@
----  
+---
 title: Game Loop 
 category: Behavioral
 language: en
 tag:  
- - Game programming
+    - Concurrency
+    - Event-driven
+    - Game programming
+    - Performance
 ---  
-  
+
+## Also known as
+
+* Game Cycle
+* Main Game Loop
+
 ## Intent
-  
-A game loop runs continuously during gameplay. Each turn of the loop, it processes user input 
-without blocking, updates the game state, and renders the game. It tracks the passage of time to 
-control the rate of gameplay.
 
-This pattern decouples progression of game time from user input and processor speed.
-
-## Applicability
-  
-This pattern is used in every game engine. 
+The Game Loop design pattern aims to facilitate the continuous execution of a game, where each loop cycle processes input, updates game state, and renders the game state to the screen, maintaining a smooth and interactive gaming experience.
 
 ## Explanation
 
 Real world example
 
-> Game loop is the main process of all the game rendering threads. It's present in all modern games. 
-> It drives input process, internal status update, rendering, AI and all the other processes.
+> Game loop is the main process of all the game rendering threads. It's present in all modern games. It drives input process, internal status update, rendering, AI and all the other processes.
 
 In plain words
 
-> Game Loop pattern ensures that game time progresses in equal speed in all different hardware 
-> setups. 
+> Game Loop pattern ensures that game time progresses in equal speed in all different hardware setups. 
 
 Wikipedia says
 
-> The central component of any game, from a programming standpoint, is the game loop. The game loop 
-> allows the game to run smoothly regardless of a user's input, or lack thereof.
+> The central component of any game, from a programming standpoint, is the game loop. The game loop allows the game to run smoothly regardless of a user's input, or lack thereof.
 
 **Programmatic Example**
 
-Let's start with something simple. Here's `Bullet` class. Bullets will move in our game. For 
-demonstration purposes it's enough that it has 1-dimensional position.
+Let's start with something simple. Here's `Bullet` class. Bullets will move in our game. For demonstration purposes it's enough that it has 1-dimensional position.
 
 ```java
 public class Bullet {
@@ -81,8 +77,7 @@ public class GameController {
 }
 ```
 
-Now we introduce the game loop. Or actually in this demo we have 3 different game loops. Let's see
-the base class `GameLoop` first.
+Now we introduce the game loop. Or actually in this demo we have 3 different game loops. Let's see the base class `GameLoop` first.
 
 ```java
 public enum GameStatus {
@@ -245,8 +240,36 @@ Stop variable-step game loop.
 
 ![alt text](./etc/game-loop.urm.png "Game Loop pattern class diagram")
 
+## Applicability
+
+The Game Loop pattern is applicable in real-time simulation and gaming where the state needs to be updated continuously and consistently in response to user inputs and other events.
+
+## Known Uses
+
+* Video games, both 2D and 3D, across various platforms.
+* Real-time simulations that require a steady frame rate for updating logic and rendering.
+
+## Consequences
+
+Benefits:
+
+* Ensures the game progresses smoothly and deterministically.
+* Facilitates synchronization between the game state, user input, and screen rendering.
+* Provides a clear structure for the game developers to manage game dynamics and timing.
+
+Trade-offs:
+
+* Can lead to performance issues if the loop is not well-managed, especially in resource-intensive updates or rendering.
+* Difficulty in managing varying frame rates across different hardware.
+
+## Related Patterns
+
+* [State](https://java-design-patterns.com/patterns/state/): Often used within a game loop to manage different states of the game (e.g., menu, playing, paused). The relationship lies in managing the state-specific behavior and transitions smoothly within the game loop.
+* [Observer](https://java-design-patterns.com/patterns/observer/): Useful in a game loop for event handling, where game entities can subscribe to and react to events (e.g., collision, scoring).
+
 ## Credits
   
 * [Game Programming Patterns - Game Loop](http://gameprogrammingpatterns.com/game-loop.html)
 * [Game Programming Patterns](https://www.amazon.com/gp/product/0990582906/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0990582906&linkId=1289749a703b3fe0e24cd8d604d7c40b)
 * [Game Engine Architecture, Third Edition](https://www.amazon.com/gp/product/1138035459/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1138035459&linkId=94502746617211bc40e0ef49d29333ac)
+* [Real-Time Collision Detection](https://amzn.to/3W9Jj8T)
