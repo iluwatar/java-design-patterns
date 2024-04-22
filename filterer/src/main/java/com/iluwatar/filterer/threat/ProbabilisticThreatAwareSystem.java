@@ -28,7 +28,7 @@ import com.iluwatar.filterer.domain.Filterer;
 import java.util.List;
 
 /**
- * Represents system that is aware of it's threats with given probability of their occurrence.
+ * Represents system that is aware of its threats with given probability of their occurrence.
  */
 public interface ProbabilisticThreatAwareSystem extends ThreatAwareSystem {
 

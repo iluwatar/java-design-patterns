@@ -191,7 +191,7 @@ public abstract class FluentIterableTest {
   }
 
   @Test
-  void testSpliterator() throws Exception {
+  void testSpliterator() {
     final var integers = List.of(1, 2, 3);
     final var split = createFluentIterable(integers).spliterator();
     assertNotNull(split);
