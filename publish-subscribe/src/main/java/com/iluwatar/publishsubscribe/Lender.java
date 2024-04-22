@@ -129,7 +129,7 @@ public class Lender {
         String line = reader.readLine();
         //Exit if user pressed enter or line is blank
         if (line == null || line.trim().length() == 0) {
-          System.out.println("Exiting...");
+          LOGGER.info("Exiting...");
           lender.close();
           System.exit(0);
         }

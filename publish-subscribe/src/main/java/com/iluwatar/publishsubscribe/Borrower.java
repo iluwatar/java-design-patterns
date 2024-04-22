@@ -1,6 +1,7 @@
 package com.iluwatar.publishsubscribe;
 
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.event.Level;
 import javax.jms.BytesMessage;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -50,7 +51,7 @@ public class Borrower implements MessageListener {
       subscriber.setMessageListener(this);
 
       tConnection.start();
-      System.out.println("Initial rate is " + currentRate + " \nWaiting for new rates...");
+      LOGGER.info("Initial rate is " + currentRate + " \nWaiting for new rates...");
     } catch(NamingException e) {
       LOGGER.error(ERROR, e);
     } catch(JMSException e) {
@@ -72,7 +73,7 @@ public class Borrower implements MessageListener {
     } catch(JMSException e) {
       LOGGER.error(ERROR, e);
     }
-    System.out.println("Waiting for new rates...");
+    LOGGER.info("Waiting for new rates...");
   }
 
   public boolean close() {
@@ -95,9 +96,9 @@ public class Borrower implements MessageListener {
       topicName = args[1];
       rate = Integer.parseInt(args[2]);
     } else {
-      System.out.println("Invalid arguments. Should be: ");
-      System.out.println("java TBorrower [factory] [topic] [rate]");
-      System.exit(0);
+      LOGGER.info("Invalid arguments. Should be: ");
+      LOGGER.info("java TBorrower [factory] [topic] [rate]");
+      System.exit(1);
     }
 
     Borrower borrower = new Borrower(topicCF, topicName, rate);
@@ -106,8 +107,8 @@ public class Borrower implements MessageListener {
       // Run until enter is pressed
       BufferedReader reader = new BufferedReader
           (new InputStreamReader(System.in));
-      System.out.println ("TBorrower application started");
-      System.out.println ("Press enter to quit application");
+      LOGGER.info("TBorrower application started");
+      LOGGER.info("Press enter to quit application");
       reader.readLine();
       borrower.close();
       System.exit(0);
