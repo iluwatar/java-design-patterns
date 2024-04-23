@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>Guarded-suspension is a concurrent design pattern for handling situation when to execute some
+ * Guarded-suspension is a concurrent design pattern for handling situation when to execute some
  * action we need condition to be satisfied.
  * The implementation utilizes a GuardedQueue, which features two primary methods: `get` and `put`.
  * The key condition governing these operations is that elements cannot be retrieved (`get`) from
