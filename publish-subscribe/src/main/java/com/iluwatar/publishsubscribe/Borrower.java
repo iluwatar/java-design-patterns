@@ -1,7 +1,6 @@
 package com.iluwatar.publishsubscribe;
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.event.Level;
 import javax.jms.BytesMessage;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -25,7 +24,7 @@ public class Borrower implements MessageListener {
   private TopicConnection tConnection;
   private TopicSession tSession;
   private Topic topic;
-  private double currentRate;
+  private final double currentRate;
   private static final String ERROR = "An error has occured!";
   private double newRate;
 

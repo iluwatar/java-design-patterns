@@ -1,25 +1,12 @@
 package com.iluwatar.publishsubscribe;
 
-import org.apache.activemq.Message;
-import org.apache.activemq.broker.Broker;
 import org.apache.activemq.broker.BrokerService;
-import org.apache.activemq.command.ActiveMQTextMessage;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import javax.jms.BytesMessage;
 import javax.jms.JMSException;
-import javax.jms.TextMessage;
-import java.io.BufferedOutputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-import java.sql.SQLOutput;
-
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class BorrowerTest {
 
