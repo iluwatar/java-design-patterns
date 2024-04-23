@@ -25,17 +25,17 @@
 package com.iluwatar.gateway;
 
 
-import org.junit.Before;
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.Before;
+import org.junit.Test;
 
 public class ServiceFactoryTest {
     private GatewayFactory gatewayFactory;
@@ -65,7 +65,7 @@ public class ServiceFactoryTest {
     @Test
     public void testGatewayFactoryRegistrationWithNonExistingKey() {
         Gateway nonExistingService = gatewayFactory.getGateway("NonExistingService");
-        assertEquals(null, nonExistingService);
+        assertNull(nonExistingService);
     }
 
     @Test
@@ -88,6 +88,6 @@ public class ServiceFactoryTest {
         }
 
         latch.await();
-        assertTrue("This should not fail", !failed.get());
+        assertFalse("This should not fail", failed.get());
     }
 }
