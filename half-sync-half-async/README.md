@@ -6,7 +6,7 @@ tag:
     - Asynchronous
     - Decoupling
     - Synchronization
-    - Thread Management
+    - Thread management
 ---
 
 ## Also known as
