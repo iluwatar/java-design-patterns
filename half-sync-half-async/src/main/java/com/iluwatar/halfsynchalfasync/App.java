@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  * AsyncTask} and {@link AsynchronousService}.
  *
  * <p><i>PROBLEM</i> <br>
- * A concurrent system have a mixture of short duration, mid duration and long duration tasks. Mid
+ * A concurrent system have a mixture of short duration, mid-duration and long duration tasks. Mid
  * or long duration tasks should be performed asynchronously to meet quality of service
  * requirements.
  *
@@ -47,7 +47,7 @@ import lombok.extern.slf4j.Slf4j;
  * associated with each socket that is connected to the client. Thread blocks waiting for CORBA
  * requests from the client. On receiving request it is inserted in the queuing layer which is then
  * picked up by synchronous layer which processes the request and sends response back to the
- * client.<br> Android AsyncTask framework - Framework provides a way to execute long running
+ * client.<br> Android AsyncTask framework - Framework provides a way to execute long-running
  * blocking calls, such as downloading a file, in background threads so that the UI thread remains
  * free to respond to user inputs.<br>
  *
@@ -101,18 +101,18 @@ public class App {
     }
 
     /*
-     * This is the long running task that is performed in background. In our example the long
-     * running task is calculating arithmetic sum with artificial delay.
+     * This is the long-running task that is performed in background. In our example the long-running
+     * task is calculating arithmetic sum with artificial delay.
      */
     @Override
-    public Long call() throws Exception {
+    public Long call() {
       return ap(numberOfElements);
     }
 
     /*
      * This will be called in context of the main thread where some validations can be done
      * regarding the inputs. Such as it must be greater than 0. It's a small computation which can
-     * be performed in main thread. If we did validated the input in background thread then we pay
+     * be performed in main thread. If we did validate the input in background thread then we pay
      * the cost of context switching which is much more than validating it in main thread.
      */
     @Override
