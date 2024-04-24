@@ -100,7 +100,7 @@ public class EventManager implements ThreadCompleteListener {
 
   private int createEvent(Duration eventTime, boolean isSynchronous)
       throws MaxNumOfEventsAllowedException, LongRunningEventException {
-    if(eventTime.isNegative()) {
+    if (eventTime.isNegative()) {
       throw new IllegalArgumentException("eventTime cannot be negative");
     }
 
