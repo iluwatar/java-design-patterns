@@ -28,6 +28,7 @@ import com.iluwatar.commander.Order.MessageSent;
 import com.iluwatar.commander.Order.PaymentStatus;
 import com.iluwatar.commander.employeehandle.EmployeeHandle;
 import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
+import com.iluwatar.commander.exceptions.IsEmptyException;
 import com.iluwatar.commander.exceptions.ItemUnavailableException;
 import com.iluwatar.commander.exceptions.PaymentDetailsErrorException;
 import com.iluwatar.commander.exceptions.ShippingNotPossibleException;
@@ -88,6 +89,7 @@ public class Commander {
   private final long messageTime;
   private final long employeeTime;
   private boolean finalSiteMsgShown;
+
   private static final Logger LOG = LoggerFactory.getLogger(Commander.class);
   //we could also have another db where it stores all orders
 
@@ -98,32 +100,32 @@ public class Commander {
   private static final String TRY_CONNECTING_MSG_SVC =
           ": Trying to connect to messaging service..";
 
+  private static final String DEFAULT_EXCEPTION_MESSAGE = "An exception occurred";
+
   Commander(EmployeeHandle empDb, PaymentService paymentService, ShippingService shippingService,
-            MessagingService messagingService, QueueDatabase qdb, int numOfRetries,
-            long retryDuration, long queueTime, long queueTaskTime, long paymentTime,
-            long messageTime, long employeeTime) {
+            MessagingService messagingService, QueueDatabase qdb, RetryParams retryParams, TimeLimits timeLimits) {
     this.paymentService = paymentService;
     this.shippingService = shippingService;
     this.messagingService = messagingService;
     this.employeeDb = empDb;
     this.queue = qdb;
-    this.numOfRetries = numOfRetries;
-    this.retryDuration = retryDuration;
-    this.queueTime = queueTime;
-    this.queueTaskTime = queueTaskTime;
-    this.paymentTime = paymentTime;
-    this.messageTime = messageTime;
-    this.employeeTime = employeeTime;
+    this.numOfRetries = retryParams.numOfRetries();
+    this.retryDuration = retryParams.retryDuration();
+    this.queueTime = timeLimits.queueTime();
+    this.queueTaskTime = timeLimits.queueTaskTime();
+    this.paymentTime = timeLimits.paymentTime();
+    this.messageTime = timeLimits.messageTime();
+    this.employeeTime = timeLimits.employeeTime();
     this.finalSiteMsgShown = false;
   }
 
-  void placeOrder(Order order) throws Exception {
+  void placeOrder(Order order) {
     sendShippingRequest(order);
   }
 
   private void sendShippingRequest(Order order) {
     var list = shippingService.exceptionsList;
-    Retry.Operation op = (l) -> {
+    Retry.Operation op = l -> {
       if (!l.isEmpty()) {
         if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
           LOG.debug(ORDER_ID + ": Error in connecting to shipping service, "
@@ -178,7 +180,7 @@ public class Commander {
     }
     var list = paymentService.exceptionsList;
     var t = new Thread(() -> {
-      Retry.Operation op = (l) -> {
+      Retry.Operation op = l -> {
         if (!l.isEmpty()) {
           if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
             LOG.debug(ORDER_ID + ": Error in connecting to payment service,"
@@ -233,7 +235,7 @@ public class Commander {
       try {
         r.perform(list, order);
       } catch (Exception e1) {
-        LOG.error("An exception occurred", e1);
+        LOG.error(DEFAULT_EXCEPTION_MESSAGE, e1);
       }
     });
     t.start();
@@ -256,7 +258,7 @@ public class Commander {
     }
     var list = queue.exceptionsList;
     Thread t = new Thread(() -> {
-      Retry.Operation op = (list1) -> {
+      Retry.Operation op = list1 -> {
         if (!list1.isEmpty()) {
           LOG.warn(ORDER_ID + ": Error in connecting to queue db, trying again..", qt.order.id);
           throw list1.remove(0);
@@ -282,7 +284,7 @@ public class Commander {
       try {
         r.perform(list, qt);
       } catch (Exception e1) {
-        LOG.error("An exception occurred", e1);
+        LOG.error(DEFAULT_EXCEPTION_MESSAGE, e1);
       }
     });
     t.start();
@@ -291,7 +293,7 @@ public class Commander {
   private void tryDoingTasksInQueue() { //commander controls operations done to queue
     var list = queue.exceptionsList;
     var t2 = new Thread(() -> {
-      Retry.Operation op = (list1) -> {
+      Retry.Operation op = list1 -> {
         if (!list1.isEmpty()) {
           LOG.warn("Error in accessing queue db to do tasks, trying again..");
           throw list1.remove(0);
@@ -305,7 +307,7 @@ public class Commander {
       try {
         r.perform(list, null);
       } catch (Exception e1) {
-        LOG.error("An exception occurred", e1);
+        LOG.error(DEFAULT_EXCEPTION_MESSAGE, e1);
       }
     });
     t2.start();
@@ -314,7 +316,7 @@ public class Commander {
   private void tryDequeue() {
     var list = queue.exceptionsList;
     var t3 = new Thread(() -> {
-      Retry.Operation op = (list1) -> {
+      Retry.Operation op = list1 -> {
         if (!list1.isEmpty()) {
           LOG.warn("Error in accessing queue db to dequeue task, trying again..");
           throw list1.remove(0);
@@ -329,7 +331,7 @@ public class Commander {
       try {
         r.perform(list, null);
       } catch (Exception e1) {
-        LOG.error("An exception occurred", e1);
+        LOG.error(DEFAULT_EXCEPTION_MESSAGE, e1);
       }
     });
     t3.start();
@@ -343,15 +345,13 @@ public class Commander {
     var list = messagingService.exceptionsList;
     Thread t = new Thread(() -> {
       Retry.Operation op = handleSuccessMessageRetryOperation(order);
-      Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
-        handleSuccessMessageErrorIssue(order, o);
-      };
+      Retry.HandleErrorIssue<Order> handleError = (o, err) -> handleSuccessMessageErrorIssue(order, o);
       var r = new Retry<>(op, handleError, numOfRetries, retryDuration,
           e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
       try {
         r.perform(list, order);
       } catch (Exception e1) {
-        LOG.error("An exception occurred", e1);
+        LOG.error(DEFAULT_EXCEPTION_MESSAGE, e1);
       }
     });
     t.start();
@@ -370,7 +370,7 @@ public class Commander {
   }
 
   private Retry.Operation handleSuccessMessageRetryOperation(Order order) {
-    return (l) -> {
+    return l -> {
       if (!l.isEmpty()) {
         if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
           LOG.debug(ORDER_ID + ERROR_CONNECTING_MSG_SVC
@@ -398,18 +398,14 @@ public class Commander {
     }
     var list = messagingService.exceptionsList;
     var t = new Thread(() -> {
-      Retry.Operation op = (l) -> {
-        handlePaymentFailureRetryOperation(order, l);
-      };
-      Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
-        handlePaymentErrorIssue(order, o);
-      };
+      Retry.Operation op = l -> handlePaymentFailureRetryOperation(order, l);
+      Retry.HandleErrorIssue<Order> handleError = (o, err) -> handlePaymentErrorIssue(order, o);
       var r = new Retry<>(op, handleError, numOfRetries, retryDuration,
           e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
       try {
         r.perform(list, order);
       } catch (Exception e1) {
-        LOG.error("An exception occurred", e1);
+        LOG.error(DEFAULT_EXCEPTION_MESSAGE, e1);
       }
     });
     t.start();
@@ -427,7 +423,8 @@ public class Commander {
     }
   }
 
-  private void handlePaymentFailureRetryOperation(Order order, List<Exception> l) throws Exception {
+  private void handlePaymentFailureRetryOperation(Order order, List<Exception> l) throws IndexOutOfBoundsException, DatabaseUnavailableException
+      {
     if (!l.isEmpty()) {
       if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
         LOG.debug(ORDER_ID + ERROR_CONNECTING_MSG_SVC
@@ -436,7 +433,7 @@ public class Commander {
         LOG.debug(ORDER_ID + ": Error in creating Payment Failure"
             + " message request..", order.id);
       }
-      throw l.remove(0);
+      throw new IndexOutOfBoundsException();
     }
     if (!order.messageSent.equals(MessageSent.PAYMENT_FAIL)
         && !order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL)) {
@@ -454,18 +451,14 @@ public class Commander {
     }
     var list = messagingService.exceptionsList;
     var t = new Thread(() -> {
-      Retry.Operation op = (l) -> {
-        handlePaymentPossibleErrorMsgRetryOperation(order, l);
-      };
-      Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
-        handlePaymentPossibleErrorMsgErrorIssue(order, o);
-      };
+      Retry.Operation op = l -> handlePaymentPossibleErrorMsgRetryOperation(order, l);
+      Retry.HandleErrorIssue<Order> handleError = (o, err) -> handlePaymentPossibleErrorMsgErrorIssue(order, o);
       var r = new Retry<>(op, handleError, numOfRetries, retryDuration,
           e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
       try {
         r.perform(list, order);
       } catch (Exception e1) {
-        LOG.error("An exception occurred", e1);
+        LOG.error(DEFAULT_EXCEPTION_MESSAGE, e1);
       }
     });
     t.start();
@@ -484,7 +477,7 @@ public class Commander {
   }
 
   private void handlePaymentPossibleErrorMsgRetryOperation(Order order, List<Exception> l)
-      throws Exception {
+      throws IndexOutOfBoundsException, DatabaseUnavailableException{
     if (!l.isEmpty()) {
       if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
         LOG.debug(ORDER_ID + ERROR_CONNECTING_MSG_SVC
@@ -493,7 +486,7 @@ public class Commander {
         LOG.debug(ORDER_ID + ": Error in creating Payment Error"
             + " messaging request..", order.id);
       }
-      throw l.remove(0);
+      throw new IndexOutOfBoundsException();
     }
     if (order.paid.equals(PaymentStatus.TRYING) && order.messageSent
         .equals(MessageSent.NONE_SENT)) {
@@ -511,7 +504,7 @@ public class Commander {
     }
     var list = employeeDb.exceptionsList;
     var t = new Thread(() -> {
-      Retry.Operation op = (l) -> {
+      Retry.Operation op = l -> {
         if (!l.isEmpty()) {
           LOG.warn(ORDER_ID + ": Error in connecting to employee handle,"
               + " trying again..", order.id);
@@ -537,13 +530,13 @@ public class Commander {
       try {
         r.perform(list, order);
       } catch (Exception e1) {
-        LOG.error("An exception occurred", e1);
+        LOG.error(DEFAULT_EXCEPTION_MESSAGE, e1);
       }
     });
     t.start();
   }
 
-  private void doTasksInQueue() throws Exception {
+  private void doTasksInQueue() throws IsEmptyException, InterruptedException {
     if (queueItems != 0) {
       var qt = queue.peek(); //this should probably be cloned here
       //this is why we have retry for doTasksInQueue
