@@ -82,7 +82,7 @@ class DatabaseTransactionHealthIndicatorTest {
    * returns a Health object with Status.UP.
    */
   @Test
-  void whenDatabaseTransactionSucceeds_thenHealthIsUp() {
+  void whenDatabaseTransactionSucceeds_thenHealthIsUp() throws Exception {
     CompletableFuture<Health> future = CompletableFuture.completedFuture(Health.up().build());
     when(asynchronousHealthChecker.performCheck(any(Supplier.class), eq(timeoutInSeconds)))
         .thenReturn(future);
@@ -104,7 +104,7 @@ class DatabaseTransactionHealthIndicatorTest {
    * returns a Health object with Status.DOWN.
    */
   @Test
-  void whenDatabaseTransactionFails_thenHealthIsDown() {
+  void whenDatabaseTransactionFails_thenHealthIsDown() throws Exception {
     CompletableFuture<Health> future = new CompletableFuture<>();
     when(asynchronousHealthChecker.performCheck(any(Supplier.class), eq(timeoutInSeconds)))
         .thenReturn(future);
