@@ -54,22 +54,24 @@ public class SpaceStationMir extends GameObject {
 
   @Override
   public void collisionResolve(Meteoroid meteoroid) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged!", meteoroid.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName());
+    logHits(meteoroid);
     setDamaged(true);
   }
 
   @Override
   public void collisionResolve(SpaceStationMir mir) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged!", mir.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName());
+    logHits(mir);
     setDamaged(true);
   }
 
   @Override
   public void collisionResolve(SpaceStationIss iss) {
-    LOGGER.info(AppConstants.HITS, " {} is damaged!", iss.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName());
+    logHits(iss);
     setDamaged(true);
+  }
+
+  private void logHits(GameObject gameObject) {
+    LOGGER.info(AppConstants.HITS, " {} is damaged!", gameObject.getClass().getSimpleName(),
+        this.getClass().getSimpleName(), this.getClass().getSimpleName());
   }
 }
