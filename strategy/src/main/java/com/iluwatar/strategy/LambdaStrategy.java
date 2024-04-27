@@ -36,11 +36,11 @@ public class LambdaStrategy {
    * Enum to demonstrate strategy pattern.
    */
   public enum Strategy implements DragonSlayingStrategy {
-    MeleeStrategy(() -> LOGGER.info(
+    MELEE_STRATEGY(() -> LOGGER.info(
         "With your Excalibur you severe the dragon's head!")),
-    ProjectileStrategy(() -> LOGGER.info(
+    PROJECTILE_STRATEGY(() -> LOGGER.info(
         "You shoot the dragon with the magical crossbow and it falls dead on the ground!")),
-    SpellStrategy(() -> LOGGER.info(
+    SPELL_STRATEGY(() -> LOGGER.info(
         "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
 
     private final DragonSlayingStrategy dragonSlayingStrategy;
