@@ -180,56 +180,10 @@ public class Commander {
     }
     var list = paymentService.exceptionsList;
     var t = new Thread(() -> {
-      Retry.Operation op = l -> {
-        if (!l.isEmpty()) {
-          if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-            LOG.debug(ORDER_ID + ": Error in connecting to payment service,"
-                + " trying again..", order.id);
-          } else {
-            LOG.debug(ORDER_ID + ": Error in creating payment request..", order.id);
-          }
-          throw l.remove(0);
-        }
-        if (order.paid.equals(PaymentStatus.TRYING)) {
-          var transactionId = paymentService.receiveRequest(order.price);
-          order.paid = PaymentStatus.DONE;
-          LOG.info(ORDER_ID + ": Payment successful, transaction Id: {}",
-                  order.id, transactionId);
-          if (!finalSiteMsgShown) {
-            LOG.info("Payment made successfully, thank you for shopping with us!!");
-            finalSiteMsgShown = true;
-          }
-          sendSuccessMessage(order);
-        }
-      };
-      Retry.HandleErrorIssue<Order> handleError = (o, err) -> {
-        if (PaymentDetailsErrorException.class.isAssignableFrom(err.getClass())) {
-          if (!finalSiteMsgShown) {
-            LOG.info("There was an error in payment. Your account/card details "
-                + "may have been incorrect. "
-                + "Meanwhile, your order has been converted to COD and will be shipped.");
-            finalSiteMsgShown = true;
-          }
-          LOG.error(ORDER_ID + ": Payment details incorrect, failed..", order.id);
-          o.paid = PaymentStatus.NOT_DONE;
-          sendPaymentFailureMessage(o);
-        } else {
-          if (o.messageSent.equals(MessageSent.NONE_SENT)) {
-            if (!finalSiteMsgShown) {
-              LOG.info("There was an error in payment. We are on it, and will get back to you "
-                  + "asap. Don't worry, your order has been placed and will be shipped.");
-              finalSiteMsgShown = true;
-            }
-            LOG.warn(ORDER_ID + ": Payment error, going to queue..", order.id);
-            sendPaymentPossibleErrorMsg(o);
-          }
-          if (o.paid.equals(PaymentStatus.TRYING) && System
-              .currentTimeMillis() - o.createdTime < paymentTime) {
-            var qt = new QueueTask(o, TaskType.PAYMENT, -1);
-            updateQueue(qt);
-          }
-        }
-      };
+      Retry.Operation op = getRetryOperation(order);
+
+      Retry.HandleErrorIssue<Order> handleError = getRetryHandleErrorIssue(order);
+
       var r = new Retry<>(op, handleError, numOfRetries, retryDuration,
           e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
       try {
@@ -238,7 +192,72 @@ public class Commander {
         LOG.error(DEFAULT_EXCEPTION_MESSAGE, e1);
       }
     });
+
     t.start();
+  }
+
+  private Retry.HandleErrorIssue<Order> getRetryHandleErrorIssue(Order order) {
+    return (o, err) -> {
+      if (PaymentDetailsErrorException.class.isAssignableFrom(err.getClass())) {
+        handlePaymentDetailsError(order.id, o);
+      } else {
+        if (o.messageSent.equals(MessageSent.NONE_SENT)) {
+          handlePaymentError(order.id, o);
+        }
+        if (o.paid.equals(PaymentStatus.TRYING) && System
+            .currentTimeMillis() - o.createdTime < paymentTime) {
+          var qt = new QueueTask(o, TaskType.PAYMENT, -1);
+          updateQueue(qt);
+        }
+      }
+    };
+  }
+
+  private void handlePaymentError(String orderId, Order o) {
+    if (!finalSiteMsgShown) {
+      LOG.info("There was an error in payment. We are on it, and will get back to you "
+          + "asap. Don't worry, your order has been placed and will be shipped.");
+      finalSiteMsgShown = true;
+    }
+    LOG.warn(ORDER_ID + ": Payment error, going to queue..", orderId);
+    sendPaymentPossibleErrorMsg(o);
+  }
+
+  private void handlePaymentDetailsError(String orderId, Order o) {
+    if (!finalSiteMsgShown) {
+      LOG.info("There was an error in payment. Your account/card details "
+          + "may have been incorrect. "
+          + "Meanwhile, your order has been converted to COD and will be shipped.");
+      finalSiteMsgShown = true;
+    }
+    LOG.error(ORDER_ID + ": Payment details incorrect, failed..", orderId);
+    o.paid = PaymentStatus.NOT_DONE;
+    sendPaymentFailureMessage(o);
+  }
+
+  private Retry.Operation getRetryOperation(Order order) {
+    return l -> {
+      if (!l.isEmpty()) {
+        if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
+          LOG.debug(ORDER_ID + ": Error in connecting to payment service,"
+              + " trying again..", order.id);
+        } else {
+          LOG.debug(ORDER_ID + ": Error in creating payment request..", order.id);
+        }
+        throw l.remove(0);
+      }
+      if (order.paid.equals(PaymentStatus.TRYING)) {
+        var transactionId = paymentService.receiveRequest(order.price);
+        order.paid = PaymentStatus.DONE;
+        LOG.info(ORDER_ID + ": Payment successful, transaction Id: {}",
+                order.id, transactionId);
+        if (!finalSiteMsgShown) {
+          LOG.info("Payment made successfully, thank you for shopping with us!!");
+          finalSiteMsgShown = true;
+        }
+        sendSuccessMessage(order);
+      }
+    };
   }
 
   private void updateQueue(QueueTask qt) {
@@ -549,7 +568,7 @@ public class Commander {
         switch (qt.taskType) {
           case PAYMENT -> doPaymentTask(qt);
           case MESSAGING -> doMessagingTask(qt);
-          case EMPLOYEE_DB -> doEmployeeDBTask(qt);
+          case EMPLOYEE_DB -> doEmployeeDbTask(qt);
           default -> throw new IllegalArgumentException("Unknown task type");
         }
       }
@@ -562,7 +581,7 @@ public class Commander {
     }
   }
 
-  private void doEmployeeDBTask(QueueTask qt) {
+  private void doEmployeeDbTask(QueueTask qt) {
     if (qt.order.addedToEmployeeHandle) {
       tryDequeue();
       LOG.trace(ORDER_ID + ": This employee handle task already done,"
