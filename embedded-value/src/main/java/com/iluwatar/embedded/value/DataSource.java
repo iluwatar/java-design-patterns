@@ -24,6 +24,8 @@
  */
 package com.iluwatar.embedded.value;
 
+import static java.sql.PreparedStatement.RETURN_GENERATED_KEYS;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -33,7 +35,7 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 
-import static java.sql.PreparedStatement.RETURN_GENERATED_KEYS;
+
 
 /**
  * Communicates with H2 database with the help of JDBC API.
