@@ -2,12 +2,12 @@ package com.iluwatar.commander;
 
 /**
  * Record to hold parameters related to time limit
- * for various tasks
- * @param queueTime
- * @param queueTaskTime
- * @param paymentTime
- * @param messageTime
- * @param employeeTime
+ * for various tasks.
+ * @param queueTime time limit for queue
+ * @param queueTaskTime time limit for queuing task
+ * @param paymentTime time limit for payment error message
+ * @param messageTime time limit for message time order
+ * @param employeeTime time limit for employee handle time
  */
 public record TimeLimits(long queueTime, long queueTaskTime, long paymentTime,
                          long messageTime, long employeeTime) {
