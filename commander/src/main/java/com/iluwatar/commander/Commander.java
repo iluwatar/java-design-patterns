@@ -423,15 +423,12 @@ public class Commander {
     }
   }
 
-  private void handlePaymentFailureRetryOperation(Order order, List<Exception> l) throws IndexOutOfBoundsException, DatabaseUnavailableException
-      {
+  private void handlePaymentFailureRetryOperation(Order order, List<Exception> l) throws IndexOutOfBoundsException, DatabaseUnavailableException {
     if (!l.isEmpty()) {
       if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
-        LOG.debug(ORDER_ID + ERROR_CONNECTING_MSG_SVC
-            + "(Payment Failure msg), trying again..", order.id);
+        LOG.debug(ORDER_ID + ERROR_CONNECTING_MSG_SVC + "(Payment Failure msg), trying again..", order.id);
       } else {
-        LOG.debug(ORDER_ID + ": Error in creating Payment Failure"
-            + " message request..", order.id);
+        LOG.debug(ORDER_ID + ": Error in creating Payment Failure" + " message request..", order.id);
       }
       throw new IndexOutOfBoundsException();
     }
@@ -477,7 +474,7 @@ public class Commander {
   }
 
   private void handlePaymentPossibleErrorMsgRetryOperation(Order order, List<Exception> l)
-      throws IndexOutOfBoundsException, DatabaseUnavailableException{
+      throws IndexOutOfBoundsException, DatabaseUnavailableException {
     if (!l.isEmpty()) {
       if (DatabaseUnavailableException.class.isAssignableFrom(l.get(0).getClass())) {
         LOG.debug(ORDER_ID + ERROR_CONNECTING_MSG_SVC
@@ -541,7 +538,7 @@ public class Commander {
       var qt = queue.peek(); //this should probably be cloned here
       //this is why we have retry for doTasksInQueue
       LOG.trace(ORDER_ID + ": Started doing task of type {}", qt.order.id, qt.getType());
-      if (qt.getFirstAttemptTime() == -1) {
+      if (qt.isFirstAttempt()) {
         qt.setFirstAttemptTime(System.currentTimeMillis());
       }
       if (System.currentTimeMillis() - qt.getFirstAttemptTime() >= queueTaskTime) {
