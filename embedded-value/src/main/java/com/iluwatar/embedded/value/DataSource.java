@@ -33,6 +33,8 @@ import java.util.ArrayList;
 import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
 
+import static java.sql.PreparedStatement.RETURN_GENERATED_KEYS;
+
 /**
  * Communicates with H2 database with the help of JDBC API.
  * Inherits the SQL queries and methods from @link AbstractDataSource class.
@@ -68,7 +70,7 @@ public class DataSource implements DataSourceInterface {
   public boolean createSchema() {
     try (Statement createschema = conn.createStatement()) {
       createschema.execute(CREATE_SCHEMA);
-      insertIntoOrders = conn.prepareStatement(INSERT_ORDER, PreparedStatement.RETURN_GENERATED_KEYS);
+      insertIntoOrders = conn.prepareStatement(INSERT_ORDER, RETURN_GENERATED_KEYS);
       getschema = conn.createStatement();
       queryOrders = conn.createStatement();
       removeorder = conn.prepareStatement(REMOVE_ORDER);
