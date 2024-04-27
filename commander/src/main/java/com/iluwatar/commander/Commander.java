@@ -546,43 +546,11 @@ public class Commander {
         LOG.trace(ORDER_ID + ": This queue task of type {}"
             + " does not need to be done anymore (timeout), dequeue..", qt.order.id, qt.getType());
       } else {
-        if (qt.taskType.equals(TaskType.PAYMENT)) {
-          if (!qt.order.paid.equals(PaymentStatus.TRYING)) {
-            tryDequeue();
-            LOG.trace(ORDER_ID + ": This payment task already done, dequeueing..", qt.order.id);
-          } else {
-            sendPaymentRequest(qt.order);
-            LOG.debug(ORDER_ID + ": Trying to connect to payment service..", qt.order.id);
-          }
-        } else if (qt.taskType.equals(TaskType.MESSAGING)) {
-          if (qt.order.messageSent.equals(MessageSent.PAYMENT_FAIL)
-              || qt.order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL)) {
-            tryDequeue();
-            LOG.trace(ORDER_ID + ": This messaging task already done, dequeue..", qt.order.id);
-          } else if (qt.messageType == 1 && (!qt.order.messageSent.equals(MessageSent.NONE_SENT)
-              || !qt.order.paid.equals(PaymentStatus.TRYING))) {
-            tryDequeue();
-            LOG.trace(ORDER_ID + ": This messaging task does not need to be done,"
-                + " dequeue..", qt.order.id);
-          } else if (qt.messageType == 0) {
-            sendPaymentFailureMessage(qt.order);
-            LOG.debug(ORDER_ID + TRY_CONNECTING_MSG_SVC, qt.order.id);
-          } else if (qt.messageType == 1) {
-            sendPaymentPossibleErrorMsg(qt.order);
-            LOG.debug(ORDER_ID + TRY_CONNECTING_MSG_SVC, qt.order.id);
-          } else if (qt.messageType == 2) {
-            sendSuccessMessage(qt.order);
-            LOG.debug(ORDER_ID + TRY_CONNECTING_MSG_SVC, qt.order.id);
-          }
-        } else if (qt.taskType.equals(TaskType.EMPLOYEE_DB)) {
-          if (qt.order.addedToEmployeeHandle) {
-            tryDequeue();
-            LOG.trace(ORDER_ID + ": This employee handle task already done,"
-                + " dequeue..", qt.order.id);
-          } else {
-            employeeHandleIssue(qt.order);
-            LOG.debug(ORDER_ID + ": Trying to connect to employee handle..", qt.order.id);
-          }
+        switch (qt.taskType) {
+          case PAYMENT -> doPaymentTask(qt);
+          case MESSAGING -> doMessagingTask(qt);
+          case EMPLOYEE_DB -> doEmployeeDBTask(qt);
+          default -> throw new IllegalArgumentException("Unknown task type");
         }
       }
     }
@@ -591,6 +559,49 @@ public class Commander {
     } else {
       Thread.sleep(queueTaskTime / 3);
       tryDoingTasksInQueue();
+    }
+  }
+
+  private void doEmployeeDBTask(QueueTask qt) {
+    if (qt.order.addedToEmployeeHandle) {
+      tryDequeue();
+      LOG.trace(ORDER_ID + ": This employee handle task already done,"
+          + " dequeue..", qt.order.id);
+    } else {
+      employeeHandleIssue(qt.order);
+      LOG.debug(ORDER_ID + ": Trying to connect to employee handle..", qt.order.id);
+    }
+  }
+
+  private void doMessagingTask(QueueTask qt) {
+    if (qt.order.messageSent.equals(MessageSent.PAYMENT_FAIL)
+        || qt.order.messageSent.equals(MessageSent.PAYMENT_SUCCESSFUL)) {
+      tryDequeue();
+      LOG.trace(ORDER_ID + ": This messaging task already done, dequeue..", qt.order.id);
+    } else if (qt.messageType == 1 && (!qt.order.messageSent.equals(MessageSent.NONE_SENT)
+        || !qt.order.paid.equals(PaymentStatus.TRYING))) {
+      tryDequeue();
+      LOG.trace(ORDER_ID + ": This messaging task does not need to be done,"
+          + " dequeue..", qt.order.id);
+    } else if (qt.messageType == 0) {
+      sendPaymentFailureMessage(qt.order);
+      LOG.debug(ORDER_ID + TRY_CONNECTING_MSG_SVC, qt.order.id);
+    } else if (qt.messageType == 1) {
+      sendPaymentPossibleErrorMsg(qt.order);
+      LOG.debug(ORDER_ID + TRY_CONNECTING_MSG_SVC, qt.order.id);
+    } else if (qt.messageType == 2) {
+      sendSuccessMessage(qt.order);
+      LOG.debug(ORDER_ID + TRY_CONNECTING_MSG_SVC, qt.order.id);
+    }
+  }
+
+  private void doPaymentTask(QueueTask qt) {
+    if (!qt.order.paid.equals(PaymentStatus.TRYING)) {
+      tryDequeue();
+      LOG.trace(ORDER_ID + ": This payment task already done, dequeueing..", qt.order.id);
+    } else {
+      sendPaymentRequest(qt.order);
+      LOG.debug(ORDER_ID + ": Trying to connect to payment service..", qt.order.id);
     }
   }
 
