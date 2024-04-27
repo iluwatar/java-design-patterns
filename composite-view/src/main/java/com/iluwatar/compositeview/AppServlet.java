@@ -29,6 +29,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -36,6 +37,7 @@ import lombok.extern.slf4j.Slf4j;
  * Runs on Tomcat 10 and handles Http requests
  */
 @Slf4j
+@NoArgsConstructor
 public final class AppServlet extends HttpServlet {
   private static final String CONTENT_TYPE = "text/html";
   private String msgPartOne = "<h1>This Server Doesn't Support";
@@ -49,10 +51,6 @@ public final class AppServlet extends HttpServlet {
           <h3>'world'</h3>""";
 
   private String destination = "newsDisplay.jsp";
-
-  public AppServlet() {
-
-  }
 
   @Override
   public void doGet(HttpServletRequest req, HttpServletResponse resp) {
