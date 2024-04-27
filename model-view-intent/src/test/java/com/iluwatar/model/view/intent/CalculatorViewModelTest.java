@@ -29,7 +29,9 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CalculatorViewModelTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class CalculatorViewModelTest {
 
   private CalculatorModel modelAfterExecutingActions(List<CalculatorAction> actions) {
     CalculatorViewModel viewModel = new CalculatorViewModel();
@@ -42,7 +44,8 @@ public class CalculatorViewModelTest {
   @Test
   void testSetup() {
     CalculatorModel model = modelAfterExecutingActions(new ArrayList<>());
-    assert model.getVariable() == 0 && model.getOutput() == 0;
+    assertEquals(0, model.getVariable());
+    assertEquals(0, model.getOutput());
   }
 
   @Test
@@ -51,7 +54,8 @@ public class CalculatorViewModelTest {
         new SetVariableCalculatorAction(10.0)
     );
     CalculatorModel model = modelAfterExecutingActions(actions);
-    assert model.getVariable() == 10.0 && model.getOutput() == 0;
+    assertEquals(10.0, model.getVariable());
+    assertEquals(0, model.getOutput());
   }
 
   @Test
@@ -64,7 +68,8 @@ public class CalculatorViewModelTest {
         new AdditionCalculatorAction()
     );
     CalculatorModel model = modelAfterExecutingActions(actions);
-    assert model.getVariable() == 7.0 && model.getOutput() == 11.0;
+    assertEquals(7.0, model.getVariable());
+    assertEquals(11.0, model.getOutput());
   }
 
   @Test
@@ -76,7 +81,8 @@ public class CalculatorViewModelTest {
         new SubtractionCalculatorAction()
     );
     CalculatorModel model = modelAfterExecutingActions(actions);
-    assert model.getVariable() == 2.0 && model.getOutput() == 2.0;
+    assertEquals(2.0, model.getVariable());
+    assertEquals(2.0, model.getOutput());
   }
 
   @Test
@@ -88,7 +94,8 @@ public class CalculatorViewModelTest {
         new MultiplicationCalculatorAction()
     );
     CalculatorModel model = modelAfterExecutingActions(actions);
-    assert model.getVariable() == 2.0 && model.getOutput() == 8.0;
+    assertEquals(2.0, model.getVariable());
+    assertEquals(8.0, model.getOutput());
   }
 
   @Test
@@ -101,6 +108,7 @@ public class CalculatorViewModelTest {
         new DivisionCalculatorAction()
     );
     CalculatorModel model = modelAfterExecutingActions(actions);
-    assert model.getVariable() == 2.0 && model.getOutput() == 2.0;
+    assertEquals(2.0, model.getVariable());
+    assertEquals(2.0, model.getOutput());
   }
 }
