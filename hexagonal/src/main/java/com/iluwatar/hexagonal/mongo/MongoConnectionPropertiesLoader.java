@@ -26,10 +26,12 @@ package com.iluwatar.hexagonal.mongo;
 
 import java.io.FileInputStream;
 import java.util.Properties;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Mongo connection properties loader.
  */
+@Slf4j
 public class MongoConnectionPropertiesLoader {
 
   private static final String DEFAULT_HOST = "localhost";
@@ -50,7 +52,7 @@ public class MongoConnectionPropertiesLoader {
         port = Integer.parseInt(properties.getProperty("mongo-port"));
       } catch (Exception e) {
         // error occurred, use default properties
-        e.printStackTrace();
+        LOGGER.error("Error occurred: ", e);
       }
     }
     System.setProperty("mongo-host", host);

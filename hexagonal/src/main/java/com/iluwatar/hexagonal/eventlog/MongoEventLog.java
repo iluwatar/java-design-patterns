@@ -28,6 +28,7 @@ import com.iluwatar.hexagonal.domain.PlayerDetails;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import lombok.Getter;
 import org.bson.Document;
 
 /**
@@ -41,8 +42,11 @@ public class MongoEventLog implements LotteryEventLog {
   private static final String PHONE = "phone";
   public static final String MESSAGE = "message";
 
+  @Getter
   private MongoClient mongoClient;
+  @Getter
   private MongoDatabase database;
+  @Getter
   private MongoCollection<Document> eventsCollection;
 
   private final StdOutEventLog stdOutEventLog = new StdOutEventLog();
@@ -81,39 +85,11 @@ public class MongoEventLog implements LotteryEventLog {
     eventsCollection = database.getCollection(eventsCollectionName);
   }
 
-  /**
-   * Get mongo client.
-   *
-   * @return mongo client
-   */
-  public MongoClient getMongoClient() {
-    return mongoClient;
-  }
-
-  /**
-   * Get mongo database.
-   *
-   * @return mongo database
-   */
-  public MongoDatabase getMongoDatabase() {
-    return database;
-  }
-
-  /**
-   * Get events collection.
-   *
-   * @return events collection
-   */
-  public MongoCollection<Document> getEventsCollection() {
-    return eventsCollection;
-  }
-
-
   @Override
   public void ticketSubmitted(PlayerDetails details) {
-    var document = new Document(EMAIL, details.getEmail());
-    document.put(PHONE, details.getPhoneNumber());
-    document.put("bank", details.getBankAccount());
+    var document = new Document(EMAIL, details.email());
+    document.put(PHONE, details.phoneNumber());
+    document.put("bank", details.bankAccount());
     document
         .put(MESSAGE, "Lottery ticket was submitted and bank account was charged for 3 credits.");
     eventsCollection.insertOne(document);
@@ -122,9 +98,9 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void ticketSubmitError(PlayerDetails details) {
-    var document = new Document(EMAIL, details.getEmail());
-    document.put(PHONE, details.getPhoneNumber());
-    document.put("bank", details.getBankAccount());
+    var document = new Document(EMAIL, details.email());
+    document.put(PHONE, details.phoneNumber());
+    document.put("bank", details.bankAccount());
     document.put(MESSAGE, "Lottery ticket could not be submitted because lack of funds.");
     eventsCollection.insertOne(document);
     stdOutEventLog.ticketSubmitError(details);
@@ -132,9 +108,9 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void ticketDidNotWin(PlayerDetails details) {
-    var document = new Document(EMAIL, details.getEmail());
-    document.put(PHONE, details.getPhoneNumber());
-    document.put("bank", details.getBankAccount());
+    var document = new Document(EMAIL, details.email());
+    document.put(PHONE, details.phoneNumber());
+    document.put("bank", details.bankAccount());
     document.put(MESSAGE, "Lottery ticket was checked and unfortunately did not win this time.");
     eventsCollection.insertOne(document);
     stdOutEventLog.ticketDidNotWin(details);
@@ -142,9 +118,9 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void ticketWon(PlayerDetails details, int prizeAmount) {
-    var document = new Document(EMAIL, details.getEmail());
-    document.put(PHONE, details.getPhoneNumber());
-    document.put("bank", details.getBankAccount());
+    var document = new Document(EMAIL, details.email());
+    document.put(PHONE, details.phoneNumber());
+    document.put("bank", details.bankAccount());
     document.put(MESSAGE, String
         .format("Lottery ticket won! The bank account was deposited with %d credits.",
             prizeAmount));
@@ -154,9 +130,9 @@ public class MongoEventLog implements LotteryEventLog {
 
   @Override
   public void prizeError(PlayerDetails details, int prizeAmount) {
-    var document = new Document(EMAIL, details.getEmail());
-    document.put(PHONE, details.getPhoneNumber());
-    document.put("bank", details.getBankAccount());
+    var document = new Document(EMAIL, details.email());
+    document.put(PHONE, details.phoneNumber());
+    document.put("bank", details.bankAccount());
     document.put(MESSAGE, String
         .format("Lottery ticket won! Unfortunately the bank credit transfer of %d failed.",
             prizeAmount));

@@ -25,7 +25,6 @@
 package com.iluwatar.hexagonal.administration;
 
 import com.iluwatar.hexagonal.domain.LotteryAdministration;
-import com.iluwatar.hexagonal.domain.LotteryNumbers;
 import org.slf4j.Logger;
 
 /**

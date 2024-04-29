@@ -45,7 +45,7 @@ public class LotteryUtils {
   ) {
     var optional = repository.findById(id);
     if (optional.isPresent()) {
-      if (optional.get().getLotteryNumbers().equals(winningNumbers)) {
+      if (optional.get().lotteryNumbers().equals(winningNumbers)) {
         return new LotteryTicketCheckResult(CheckResult.WIN_PRIZE, 1000);
       } else {
         return new LotteryTicketCheckResult(CheckResult.NO_PRIZE);

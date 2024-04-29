@@ -24,22 +24,7 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
-
 /**
  * Immutable value object containing lottery player details.
  */
-@EqualsAndHashCode
-@ToString
-@Getter
-@RequiredArgsConstructor
-public class PlayerDetails {
-
-  private final String email;
-  private final String bankAccount;
-  private final String phoneNumber;
-
-}
+public record PlayerDetails(String email, String bankAccount, String phoneNumber) {}
