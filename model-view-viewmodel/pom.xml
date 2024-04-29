@@ -35,7 +35,7 @@
   <artifactId>model-view-viewmodel</artifactId>
   <version>1.26.0-SNAPSHOT</version>
   <properties>
-    <zk.version>9.0.0</zk.version>
+    <zk.version>10.0.0-jakarta</zk.version>
     <jetty-maven-plugin.version>11.0.20</jetty-maven-plugin.version>
     <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
     <maven.build.timestamp.format>yyyy-MM-dd</maven.build.timestamp.format>
