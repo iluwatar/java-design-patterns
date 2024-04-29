@@ -29,6 +29,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
 import java.util.ArrayList;
+import lombok.Getter;
 import org.bson.Document;
 
 /**
@@ -39,8 +40,11 @@ public class MongoBank implements WireTransfers {
   private static final String DEFAULT_DB = "lotteryDB";
   private static final String DEFAULT_ACCOUNTS_COLLECTION = "accounts";
 
+  @Getter
   private MongoClient mongoClient;
+  @Getter
   private MongoDatabase database;
+  @Getter
   private MongoCollection<Document> accountsCollection;
 
   /**
@@ -76,34 +80,6 @@ public class MongoBank implements WireTransfers {
     database = mongoClient.getDatabase(dbName);
     accountsCollection = database.getCollection(accountsCollectionName);
   }
-
-  /**
-   * Get mongo client.
-   *
-   * @return mongo client
-   */
-  public MongoClient getMongoClient() {
-    return mongoClient;
-  }
-
-  /**
-   * Get mongo database.
-   *
-   * @return mongo database
-   */
-  public MongoDatabase getMongoDatabase() {
-    return database;
-  }
-
-  /**
-   * Get accounts collection.
-   *
-   * @return accounts collection
-   */
-  public MongoCollection<Document> getAccountsCollection() {
-    return accountsCollection;
-  }
-
 
   @Override
   public void setFunds(String bankAccount, int amount) {

@@ -86,10 +86,10 @@ class MongoTicketRepositoryTest {
     var found = repository.findById(saved.get());
     assertTrue(found.isPresent());
     var ticket = found.get();
-    assertEquals("foo@bar.com", ticket.getPlayerDetails().getEmail());
-    assertEquals("123-123", ticket.getPlayerDetails().getBankAccount());
-    assertEquals("07001234", ticket.getPlayerDetails().getPhoneNumber());
-    assertEquals(original.getLotteryNumbers(), ticket.getLotteryNumbers());
+    assertEquals("foo@bar.com", ticket.playerDetails().email());
+    assertEquals("123-123", ticket.playerDetails().bankAccount());
+    assertEquals("07001234", ticket.playerDetails().phoneNumber());
+    assertEquals(original.lotteryNumbers(), ticket.lotteryNumbers());
     // clear the collection
     repository.deleteAll();
     assertEquals(0, repository.getTicketsCollection().countDocuments());
