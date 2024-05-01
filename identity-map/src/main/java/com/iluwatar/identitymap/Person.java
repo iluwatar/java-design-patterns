@@ -24,6 +24,7 @@
  */
 package com.iluwatar.identitymap;
 
+import java.io.Serial;
 import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -39,6 +40,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public final class Person implements Serializable {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   @EqualsAndHashCode.Include
