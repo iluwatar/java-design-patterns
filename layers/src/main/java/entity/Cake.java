@@ -34,11 +34,15 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import java.util.HashSet;
 import java.util.Set;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Cake entity.
  */
 @Entity
+@Getter
+@Setter
 public class Cake {
 
   @Id
@@ -53,30 +57,6 @@ public class Cake {
 
   public Cake() {
     setLayers(new HashSet<>());
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public CakeTopping getTopping() {
-    return topping;
-  }
-
-  public void setTopping(CakeTopping topping) {
-    this.topping = topping;
-  }
-
-  public Set<CakeLayer> getLayers() {
-    return layers;
-  }
-
-  public void setLayers(Set<CakeLayer> layers) {
-    this.layers = layers;
   }
 
   public void addLayer(CakeLayer layer) {

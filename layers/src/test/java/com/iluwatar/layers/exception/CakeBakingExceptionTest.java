@@ -55,8 +55,6 @@ class CakeBakingExceptionTest {
    * Tests the constructor of {@link CakeBakingException} that accepts a message.
    * Ensures that an exception created with this constructor correctly stores the provided message
    * and has {@code null} as its cause.
-   *
-   * @param expectedMessage The message provided to the constructor.
    */
   @Test
   void testConstructorWithMessage() {

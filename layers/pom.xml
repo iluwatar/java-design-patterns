@@ -34,7 +34,6 @@
         <artifactId>java-design-patterns</artifactId>
         <version>1.26.0-SNAPSHOT</version>
     </parent>
-    <groupId>com.iluwatar</groupId>
     <artifactId>layers</artifactId>
     <name>layers</name>
     <description>layers</description>
