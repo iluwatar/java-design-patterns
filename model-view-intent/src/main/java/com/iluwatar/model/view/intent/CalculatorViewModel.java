@@ -50,17 +50,16 @@ public final class CalculatorViewModel {
    */
   void handleAction(final CalculatorAction action) {
     switch (action.tag()) {
-      case AdditionCalculatorAction.TAG -> add();
-      case SubtractionCalculatorAction.TAG -> subtract();
-      case MultiplicationCalculatorAction.TAG -> multiply();
-      case DivisionCalculatorAction.TAG -> divide();
-      case SetVariableCalculatorAction.TAG -> {
+      case AdditionCalculatorAction.ADDITION -> add();
+      case SubtractionCalculatorAction.SUBTRACTION -> subtract();
+      case MultiplicationCalculatorAction.MULTIPLICATION -> multiply();
+      case DivisionCalculatorAction.DIVISION -> divide();
+      case SetVariableCalculatorAction.SET_VARIABLE -> {
         SetVariableCalculatorAction setVariableAction =
                 (SetVariableCalculatorAction) action;
         setVariable(setVariableAction.getVariable());
       }
-      default -> {
-      }
+      default -> throw new IllegalArgumentException("Unknown tag");
     }
   }
 

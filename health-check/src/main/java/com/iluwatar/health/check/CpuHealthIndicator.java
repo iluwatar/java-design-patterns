@@ -79,13 +79,6 @@ public class CpuHealthIndicator implements HealthIndicator {
   @Value("${cpu.load.average.threshold:0.75}")
   private double loadAverageThreshold;
 
-  /**
-   * The warning message to include in the health indicator's response when the load average is high
-   * but not exceeding the threshold.
-   */
-  @Value("${cpu.warning.message:High load average}")
-  private String defaultWarningMessage;
-
   private static final String ERROR_MESSAGE = "error";
 
   private static final String HIGH_SYSTEM_CPU_LOAD_MESSAGE = "High system CPU load: {}";

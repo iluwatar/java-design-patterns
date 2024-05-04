@@ -41,15 +41,11 @@ import com.iluwatar.commander.shippingservice.ShippingService;
  * available/unavailable.
  */
 public class AppEmployeeDbFailCases {
-  private final int numOfRetries = 3;
-  private final long retryDuration = 30000;
-  private final long queueTime = 240000; //4 mins
-  private final long queueTaskTime = 60000; //1 min
-  private final long paymentTime = 120000; //2 mins
-  private final long messageTime = 150000; //2.5 mins
-  private final long employeeTime = 240000; //4 mins
+  private static final RetryParams retryParams = RetryParams.DEFAULT;
 
-  void employeeDatabaseUnavailableCase() throws Exception {
+  private static final TimeLimits timeLimits = TimeLimits.DEFAULT;
+
+  void employeeDatabaseUnavailableCase() {
     var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
         new DatabaseUnavailableException(), new DatabaseUnavailableException(),
         new DatabaseUnavailableException(), new DatabaseUnavailableException(),
@@ -64,22 +60,20 @@ public class AppEmployeeDbFailCases {
         new QueueDatabase(new DatabaseUnavailableException(), new DatabaseUnavailableException(),
             new DatabaseUnavailableException(), new DatabaseUnavailableException(),
             new DatabaseUnavailableException(), new DatabaseUnavailableException());
-    var c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
-        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
     c.placeOrder(order);
   }
 
-  void employeeDbSuccessCase() throws Exception {
+  void employeeDbSuccessCase() {
     var ps = new PaymentService(new PaymentDatabase());
     var ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
     var ms = new MessagingService(new MessagingDatabase());
     var eh = new EmployeeHandle(new EmployeeDatabase(), new DatabaseUnavailableException(),
         new DatabaseUnavailableException());
     var qdb = new QueueDatabase();
-    var c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
-        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
     c.placeOrder(order);
@@ -91,9 +85,8 @@ public class AppEmployeeDbFailCases {
    * @param args command line args
    */
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     var aefc = new AppEmployeeDbFailCases();
-    //aefc.employeeDatabaseUnavailableCase();
     aefc.employeeDbSuccessCase();
   }
 }

@@ -24,17 +24,28 @@
  */
 package com.iluwatar.page.controller;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * User model.
+ * User Controller.
  */
-@Getter
-@Setter
-public class UserModel {
-  private String name;
-  private String email;
-  
-  public UserModel() {}
+@Slf4j
+@Controller
+@NoArgsConstructor
+public class UserController {
+  private final UserView view = new UserView();
+
+  /**
+   * Handle http GET request and access view and model.
+   */
+  @GetMapping("/user")
+  public String getUserPath(SignupModel form, Model model) {
+    model.addAttribute("name", form.getName());
+    model.addAttribute("email", form.getEmail());
+    return view.display(form);
+  }
 }

@@ -24,26 +24,16 @@
  */
 package com.iluwatar.page.controller;
 
-import lombok.extern.slf4j.Slf4j;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * Signup View.
+ * User model.
  */
-@Slf4j
-public class SignupView {
-  public SignupView() {
-  }
+@Data
+@NoArgsConstructor
+public class UserModel {
+  private String name;
+  private String email;
 
-  public String display() {
-    LOGGER.info("display signup front page");
-    return "/signup";
-  }
-
-  /**
-   * redirect to user page.
-   */
-  public String redirect(SignupModel form) {
-    LOGGER.info("Redirect to user page with " + "name " + form.getName() + " email " + form.getEmail());
-    return "redirect:/user";
-  }
 }

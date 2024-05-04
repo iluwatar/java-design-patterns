@@ -32,10 +32,10 @@ import org.junit.jupiter.api.Test;
   * Check whether the execution of the main method in {@link App}
   * throws an exception.
 */
-public class AppTest {
+class AppTest {
 
     @Test
-    public void doesNotThrowException() {
+    void doesNotThrowException() {
         assertDoesNotThrow(() -> App.main(new String[] {}));
     }
 }

@@ -24,6 +24,8 @@
  */
 package com.iluwatar.embedded.value;
 
+import static java.sql.PreparedStatement.RETURN_GENERATED_KEYS;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -32,6 +34,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 import lombok.extern.slf4j.Slf4j;
+
+
 
 /**
  * Communicates with H2 database with the help of JDBC API.
@@ -68,7 +72,7 @@ public class DataSource implements DataSourceInterface {
   public boolean createSchema() {
     try (Statement createschema = conn.createStatement()) {
       createschema.execute(CREATE_SCHEMA);
-      insertIntoOrders = conn.prepareStatement(INSERT_ORDER, PreparedStatement.RETURN_GENERATED_KEYS);
+      insertIntoOrders = conn.prepareStatement(INSERT_ORDER, RETURN_GENERATED_KEYS);
       getschema = conn.createStatement();
       queryOrders = conn.createStatement();
       removeorder = conn.prepareStatement(REMOVE_ORDER);
