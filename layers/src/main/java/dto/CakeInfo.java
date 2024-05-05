@@ -26,14 +26,13 @@
 package dto;
 
 import java.util.List;
-import java.util.Optional;
 
 /**
  * DTO for cakes.
  */
 public class CakeInfo {
 
-  public final Optional<Long> id;
+  public final Long id;
   public final CakeToppingInfo cakeToppingInfo;
   public final List<CakeLayerInfo> cakeLayerInfos;
 
@@ -41,7 +40,7 @@ public class CakeInfo {
    * Constructor.
    */
   public CakeInfo(Long id, CakeToppingInfo cakeToppingInfo, List<CakeLayerInfo> cakeLayerInfos) {
-    this.id = Optional.of(id);
+    this.id = id;
     this.cakeToppingInfo = cakeToppingInfo;
     this.cakeLayerInfos = cakeLayerInfos;
   }
@@ -50,7 +49,7 @@ public class CakeInfo {
    * Constructor.
    */
   public CakeInfo(CakeToppingInfo cakeToppingInfo, List<CakeLayerInfo> cakeLayerInfos) {
-    this.id = Optional.empty();
+    this.id = null;
     this.cakeToppingInfo = cakeToppingInfo;
     this.cakeLayerInfos = cakeLayerInfos;
   }
@@ -66,7 +65,7 @@ public class CakeInfo {
 
   @Override
   public String toString() {
-    return String.format("CakeInfo id=%d topping=%s layers=%s totalCalories=%d", id.orElse(-1L),
+    return String.format("CakeInfo id=%d topping=%s layers=%s totalCalories=%d", id,
         cakeToppingInfo, cakeLayerInfos, calculateTotalCalories());
   }
 }
