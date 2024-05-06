@@ -165,9 +165,9 @@ Trade-offs:
 
 ## Related Patterns
 
-* Proxy: Can act as a placeholder for lazy-loaded objects, deferring their actual loading until necessary.
+* [Proxy](https://java-design-patterns.com/patterns/proxy/): Can act as a placeholder for lazy-loaded objects, deferring their actual loading until necessary.
 * Virtual Proxy: Specific type of Proxy that handles object creation on demand.
-* Singleton: Often combined with Lazy Loading to ensure only one instance of an object is created and loaded lazily.
+* [Singleton](https://java-design-patterns.com/patterns/singleton/): Often combined with Lazy Loading to ensure only one instance of an object is created and loaded lazily.
 
 ## Credits
 
