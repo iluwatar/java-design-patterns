@@ -24,7 +24,7 @@
  */
 package com.iluwatar.lockableobject.domain;
 
-/** A Orc implementation of a Creature. */
+/** An Orc implementation of a Creature. */
 public class Orc extends Creature {
   /**
    * A constructor that initializes the attributes of an orc.
