@@ -220,6 +220,7 @@
     <module>gateway</module>
     <module>slob</module>
     <module>server-session</module>
+      <module>service-oriented-architecture</module>
   </modules>
   <repositories>
     <repository>
