@@ -38,7 +38,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
     <spring-boot.version>2.7.5</spring-boot.version>
-    <jacoco.version>0.8.11</jacoco.version>
+    <jacoco.version>0.8.12</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <htmlunit.version>4.1.0</htmlunit.version>
     <gson.version>2.10.1</gson.version>
