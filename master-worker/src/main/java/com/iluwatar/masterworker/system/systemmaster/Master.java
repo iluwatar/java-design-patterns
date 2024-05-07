@@ -29,6 +29,7 @@ import com.iluwatar.masterworker.Result;
 import com.iluwatar.masterworker.system.systemworkers.Worker;
 import java.util.Hashtable;
 import java.util.List;
+import lombok.Getter;
 
 /**
  * The abstract Master class which contains private fields numOfWorkers (number of workers), workers
@@ -42,6 +43,7 @@ public abstract class Master {
   private final List<Worker> workers;
   private final Hashtable<Integer, Result<?>> allResultData;
   private int expectedNumResults;
+  @Getter
   private Result<?> finalResult;
 
   Master(int numOfWorkers) {
@@ -50,10 +52,6 @@ public abstract class Master {
     this.expectedNumResults = 0;
     this.allResultData = new Hashtable<>(numOfWorkers);
     this.finalResult = null;
-  }
-
-  public Result<?> getFinalResult() {
-    return this.finalResult;
   }
 
   Hashtable<Integer, Result<?>> getAllResultData() {
@@ -94,7 +92,7 @@ public abstract class Master {
   }
 
   public void receiveData(Result<?> data, Worker w) {
-    //check if can receive..if yes:
+    // check if we can receive... if yes:
     collectResult(data, w.getWorkerId());
   }
 

@@ -27,6 +27,7 @@ package com.iluwatar.masterworker.system.systemworkers;
 import com.iluwatar.masterworker.Input;
 import com.iluwatar.masterworker.Result;
 import com.iluwatar.masterworker.system.systemmaster.Master;
+import lombok.Getter;
 
 /**
  * The abstract Worker class which extends Thread class to enable parallel processing. Contains
@@ -35,6 +36,7 @@ import com.iluwatar.masterworker.system.systemmaster.Master;
 
 public abstract class Worker extends Thread {
   private final Master master;
+  @Getter
   private final int workerId;
   private Input<?> receivedData;
 
@@ -44,16 +46,12 @@ public abstract class Worker extends Thread {
     this.receivedData = null;
   }
 
-  public int getWorkerId() {
-    return this.workerId;
-  }
-
   Input<?> getReceivedData() {
     return this.receivedData;
   }
 
   public void setReceivedData(Master m, Input<?> i) {
-    //check if ready to receive..if yes:
+    // check if we are ready to receive... if yes:
     this.receivedData = i;
   }
 

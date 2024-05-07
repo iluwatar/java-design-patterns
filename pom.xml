@@ -162,7 +162,7 @@
     <module>ambassador</module>
     <module>acyclic-visitor</module>
     <module>collection-pipeline</module>
-    <module>master-worker-pattern</module>
+    <module>master-worker</module>
     <module>spatial-partition</module>
     <module>priority-queue</module>
     <module>commander</module>
