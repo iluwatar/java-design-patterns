@@ -24,6 +24,7 @@
  */
 package com.iluwatar.metamapping.utils;
 
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -34,6 +35,7 @@ import org.hibernate.cfg.Configuration;
 @Slf4j
 public class HibernateUtil {
 
+  @Getter
   private static final SessionFactory sessionFactory = buildSessionFactory();
 
   /**
@@ -48,14 +50,6 @@ public class HibernateUtil {
   private static SessionFactory buildSessionFactory() {
     // Create the SessionFactory from hibernate.cfg.xml
     return new Configuration().configure().buildSessionFactory();
-  }
-
-  /**
-   * Get session factory.
-   * @return session factory
-   */
-  public static SessionFactory getSessionFactory() {
-    return sessionFactory;
   }
 
   /**
