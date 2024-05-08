@@ -25,6 +25,8 @@
 package com.iluwatar.model.view.viewmodel;
 
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
@@ -36,13 +38,10 @@ public class BookViewModel {
   
   @WireVariable
   private List<Book> bookList;
+  @Getter
   private Book selectedBook;
   private BookService bookService = new BookServiceImpl();
   
-  public Book getSelectedBook() {
-    return selectedBook;
-  }
-
   @NotifyChange("selectedBook")
   public void setSelectedBook(Book selectedBook) {
     this.selectedBook = selectedBook;
