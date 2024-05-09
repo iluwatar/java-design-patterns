@@ -1,95 +1,122 @@
 ---
 title: Mute Idiom
-category: Idiom
+category: Behavioral
 language: en
 tag:
-- Decoupling
+    - Context
+    - Decoupling
+    - Idiom
+    - Error handling
+    - Synchronization
+    - Thread management
 ---
 
-
 ## Intent
-Provide a template to suppress any exceptions that either are declared but cannot occur or should only be logged;
-while executing some business logic. The template removes the need to write repeated `try-catch` blocks.
 
+The Mute Idiom is designed to simplify error handling by muting exceptions that are deemed non-critical or expected in specific contexts, especially within multithreaded or complex control flow environments.
 
 ## Explanation
+
 Real World Example
+
 > The vending machine contained in your office displays a warning when making a transaction. The issue occurs when the
-> customer decides to pay with physical money that is not recognized by the system. However, you and everyone in the office
-> only pays with the company credit card and will never encounter this issue.
 
 In plain words
+
 > The Mute Idiom design pattern is used to reduce the requirement of catching exceptions when they cannot be thrown or
-> should be ignored when thrown. This applies in cases such as API functions, where the underlying code cannot be changed
-> to include individual use cases.    
 
-Programmatic Example
+**Programmatic Example**
 
-Converting the real-world example into a programmatic representation, we represent an API function as the 
-office Vending machine
+Sure, here's a programmatic example of the Mute Idiom design pattern based on the code in the module:
+
+## Explanation
+
+The Mute Idiom is a design pattern that is used to simplify error handling by muting exceptions that are deemed non-critical or expected in specific contexts. This pattern is particularly useful in multithreaded or complex control flow environments.
+
+## Programmatic Example
+
+We have a `Resource` interface that has a `close` method which throws an `IOException`.
 
 ```java
-
-public class VendingMachine {
-   public void purchaseItem(int itemID, PaymentMethod paymentMethod) throws Exception {
-       if (paymentMethod == PaymentMethod.Cash) {
-           throw new Exception();
-       }
-       else {
-           System.out.println("Here is your item");
-       }
-   }
+public interface Resource extends AutoCloseable {
+  @Override
+  void close() throws IOException;
 }
 ```
 
+We also have an `App` class that uses this `Resource`. In the `App` class, we have a `useOfLoggedMute` method that demonstrates the use of the Mute Idiom. Here, we acquire a `Resource`, utilize it, and then attempt to close it. The closing of the resource is done in a `finally` block to ensure that it is executed regardless of whether an exception is thrown or not.
+
 ```java
-public enum PaymentMethod {
-   Card,Cash
-}
-```
+public class App {
+  // ...
 
-We then run our office's daily routine, which involves purchasing items 
-from the vending machine with the company card, using the mute pattern to ignore the exceptions that can't be thrown
-```java
-package com.iluwatar.mute;
-
-public class Office {
-    private PaymentMethod companyCard = PaymentMethod.Card;
-    private VendingMachine officeVendingMachine = new VendingMachine();
-
-    public static void main(String[] args) {
-        Office office = new Office();
-        office.dailyRoutine();
-
+  private static void useOfLoggedMute() {
+    Optional<Resource> resource = Optional.empty();
+    try {
+      resource = Optional.of(acquireResource());
+      utilizeResource(resource.get());
+    } finally {
+      resource.ifPresent(App::closeResource);
     }
-    public void dailyRoutine() {
-        Mute.mute(() -> {
-            officeVendingMachine.purchaseItem(1,companyCard);
-            officeVendingMachine.purchaseItem(1,companyCard);
-            officeVendingMachine.purchaseItem(1,companyCard);
-        });
-    }
-}
+  }
 
+  // ...
+}
 ```
 
+The `closeResource` method is where the Mute Idiom is applied. We use the `Mute.loggedMute` method to suppress any `IOException` that might be thrown when closing the resource. This is done because the failure to close a resource is considered a non-critical issue that does not affect the overall logic or outcome of the program.
+
+```java
+public class App {
+  // ...
+
+  private static void closeResource(Resource resource) {
+    Mute.loggedMute(resource::close);
+  }
+
+  // ...
+}
+```
+
+In this way, the Mute Idiom allows us to simplify error handling by reducing boilerplate code for expected exceptions, enhancing code readability and maintainability, and allowing uninterrupted execution for non-critical exceptions.
 
 ## Class diagram
-![alt text](./etc/mute-idiom.png "Mute Idiom")
 
+![Mute Idiom](./etc/mute-idiom.png "Mute Idiom")
 
 ## Applicability
-Use this idiom when
-* an API declares some exception but can never throw that exception eg. ByteArrayOutputStream bulk write method.
-* you need to suppress some exception just by logging it, such as closing a resource.
 
+* Useful in scenarios where certain exceptions are predictable and do not affect the overall logic or outcome.
+* Commonly used in logging, cleanup operations, or when working with APIs that signal non-critical issues via exceptions.
 
-
-
-## Credits
-
+## Tutorials
 
 * [JOOQ: Mute Design Pattern](http://blog.jooq.org/2016/02/18/the-mute-design-pattern/)
 
+## Known Uses
 
+* Muting exceptions in background tasks or threads where interruption is expected.
+* Handling known issues in third-party libraries where exceptions can be safely ignored.
 
+## Consequences
+
+Benefits:
+
+* Simplifies error handling by reducing boilerplate code for expected exceptions.
+* Enhances code readability and maintainability.
+* Allows uninterrupted execution for non-critical exceptions.
+
+Trade-offs:
+
+* Can lead to missed critical issues if overused or misapplied.
+* Makes debugging harder if exceptions are muted indiscriminately.
+
+## Related Patterns
+
+* [Null Object](https://java-design-patterns.com/patterns/null-object/): Both aim to simplify error handling; Null Object avoids null checks while Mute Idiom avoids exception handling complexities.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used to wrap functionality with additional error handling or muting behaviors.
+
+## Credits
+
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Java Concurrency in Practice](https://amzn.to/4aRMruW)
