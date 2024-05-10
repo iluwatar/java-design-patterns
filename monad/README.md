@@ -132,8 +132,8 @@ public static void main(String[] args) {
 
 ## Known Uses
 
-* Optional<T> in Java's standard library for handling potential absence of values.
-* Stream<T> for constructing functional pipelines to operate on collections.
+* Optional in Java's standard library for handling potential absence of values.
+* Stream for constructing functional pipelines to operate on collections.
 * Frameworks like Vavr, providing functional programming enhancements for Java.
 
 ## Consequences
