@@ -34,8 +34,8 @@ public class OutOfStock implements ReceiptViewModel {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(OutOfStock.class);
 
-  private String userName;
-  private String itemName;
+  private final String userName;
+  private final String itemName;
 
   public OutOfStock(String userName, String itemName) {
     this.userName = userName;
@@ -44,6 +44,6 @@ public class OutOfStock implements ReceiptViewModel {
 
   @Override
   public void show() {
-    LOGGER.info("Out of stock: " + itemName + " for user = " + userName + " to buy");
+    LOGGER.info(String.format("Out of stock: %s for user = %s to buy", itemName, userName));
   }
 }

@@ -30,6 +30,7 @@ import static javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serial;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -47,6 +48,7 @@ public class FileSelectorJframe extends JFrame implements FileSelectorView, Acti
   /**
    * Default serial version ID.
    */
+  @Serial
   private static final long serialVersionUID = 1L;
 
   /**

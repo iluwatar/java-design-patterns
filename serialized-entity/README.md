@@ -136,7 +136,7 @@ methods to read and deserialize data items to `Country` objects.
 ```java
 @Slf4j
 public class App {
-    private static final String DB_URL = "jdbc:h2:~/test";
+    private static final String DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
 
     private App() {
 

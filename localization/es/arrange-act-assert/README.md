@@ -10,7 +10,7 @@ tag:
 
 Dado/Cuando/Entonces
 
-## Intención
+## Propósito
 
 Arrange/Act/Assert (AAA) es un patrón para organizar UnitTests.
 Divide las UnitTests en tres pasos claros y diferenciados:
@@ -19,7 +19,7 @@ Divide las UnitTests en tres pasos claros y diferenciados:
 2. Act(Actuar): Toma las medidas necesarias para el test.
 3. Assert(Afirmar): Verifica los resultados del test.
 
-## Explicacación
+## Explicación
 
 Este patrón tiene varios beneficios significativos. Crea una clara separación entre la configuración, operaciones y resultados de un test. Esta estructura hace que el código sea más fácil de leer y comprender. Si
 colocas los pasos en orden y formateas su código para separarlos, puedes escanear un test y
@@ -126,9 +126,9 @@ class CashAAATest {
 
 ## Aplicabilidad
 
-Utilice el patrón Arrange/Act/Asert cuando
+Utilice el patrón Arrange/Act/Assert cuando
 
-* Necesites estructurar tus UnitTests para que sean más fáciles de leer, mantener y mejorar.
+* Necesitas estructurar tus UnitTests para que sean más fáciles de leer, mantener y mejorar.
 
 ## Créditos
 
@@ -136,5 +136,5 @@ Utilice el patrón Arrange/Act/Asert cuando
 * [Bill Wake: 3A – Arrange, Act, Assert](https://xp123.com/articles/3a-arrange-act-assert/)
 * [Martin Fowler: DadoCuandoEntonces](https://martinfowler.com/bliki/GivenWhenThen.html)
 * [Patrones de prueba xUnit: Refactorizando Código de prueba](https://www.amazon.com/gp/product/0131495054/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0131495054&linkId=99701e8f4af2f63d0bcf50)
-* [Principios, prácticas y patrones UnitTesting](https://www.amazon.com/gp/product/1617296279/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617296279&linkId=74c75cfae3a5a)accae3a5a)
+* [Principios, prácticas y patrones UnitTesting](https://www.amazon.com/gp/product/1617296279/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617296279&linkId=74c75cfae3a5aaccae3a5a)
 * [Desarrollo basado en pruebas: Ejemplo](https://www.amazon.com/gp/product/0321146530/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0321146530&linkId=5c63a93d8c1175b47caef50875)

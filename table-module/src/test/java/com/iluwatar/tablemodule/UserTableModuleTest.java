@@ -36,7 +36,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserTableModuleTest {
-  private static final String DB_URL = "jdbc:h2:~/test";
+  private static final String DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
 
   private static DataSource createDataSource() {
     var dataSource = new JdbcDataSource();

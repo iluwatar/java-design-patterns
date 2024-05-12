@@ -3,34 +3,35 @@ title: Iterator
 category: Behavioral
 language: en
 tag:
- - Gang of Four
+    - Data access
+    - Data transformation
+    - Decoupling
+    - Gang of Four
+    - Object composition
+    - Polymorphism
 ---
 
 ## Also known as
 
-Cursor
+* Cursor
 
 ## Intent
-Provide a way to access the elements of an aggregate object sequentially without exposing its 
-underlying representation.
+
+The Iterator pattern provides a way to access elements of an aggregate object sequentially without exposing its underlying representation.
 
 ## Explanation
 
 Real-world example
 
-> Treasure chest contains a set of magical items. There multiple types of items such as rings, 
-> potions, and weapons. The items can be browsed by type using an iterator the treasure chest 
-> provides. 
+> Imagine visiting a library with a vast collection of books organized in different sections such as fiction, non-fiction, science, etc. Instead of searching through every shelf yourself, the librarian provides you with a specific guidebook or a digital catalog for each section. This guidebook acts as an "iterator," allowing you to go through the books section by section, or even skip to specific types of books, without needing to know how the books are organized on the shelves. Each guidebook handles the traversal through its section, providing a consistent and efficient way to access the books, much like how the Iterator design pattern offers a uniform method to traverse different data structures in a software application.
 
 In plain words
 
-> Containers can provide a representation agnostic iterator interface to provide access to the 
-> elements. 
+> The Iterator design pattern provides a way to access the elements of a collection sequentially without exposing the underlying structure of the collection.
 
 Wikipedia says
 
-> In object-oriented programming, the iterator pattern is a design pattern in which an iterator is 
-> used to traverse a container and access the container's elements.
+> In object-oriented programming, the iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements.
 
 **Programmatic Example**
 
@@ -128,7 +129,7 @@ Ring of armor
 
 ## Class diagram
 
-![alt text](./etc/iterator_1.png "Iterator")
+![Iterator](./etc/iterator_1.png "Iterator")
 
 ## Applicability
 
@@ -144,10 +145,30 @@ Use the Iterator pattern
 
 ## Known uses
 
+* Java Collections Framework utilizes iterators extensively to allow different ways to traverse through collections.
+* Databases often use iterators to navigate through data records fetched through SQL queries.
 * [java.util.Iterator](http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)
 * [java.util.Enumeration](http://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html)
 
+## Consequences
+
+Benefits:
+
+* Reduces the coupling between data structures and algorithms used for iteration.
+* Provides a uniform interface for iterating over various types of data structures, enhancing code reusability and flexibility.
+
+Trade-offs:
+
+* Overhead of using an iterator object may slightly reduce performance compared to direct traversal methods.
+* Complex aggregate structures may require complex iterators that can be difficult to manage or extend.
+
+## Related Patterns
+
+* [Composite](https://java-design-patterns.com/patterns/composite/): Iterators are often used to traverse Composite trees.
+* [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Used to create appropriate iterators for different data structures.
+* [Visitor](https://java-design-patterns.com/patterns/visitor/): Can be used with Iterator to apply operations over elements of an object structure.
+
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

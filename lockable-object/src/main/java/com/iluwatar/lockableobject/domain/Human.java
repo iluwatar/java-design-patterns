@@ -28,7 +28,7 @@ package com.iluwatar.lockableobject.domain;
 public class Human extends Creature {
 
   /**
-   * A constructor that initializes the attributes of an human.
+   * A constructor that initializes the attributes of a human.
    *
    * @param name as the name of the creature.
    */

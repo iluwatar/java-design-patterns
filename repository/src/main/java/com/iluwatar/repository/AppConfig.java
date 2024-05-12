@@ -54,7 +54,7 @@ public class AppConfig {
   public DataSource dataSource() {
     var basicDataSource = new BasicDataSource();
     basicDataSource.setDriverClassName("org.h2.Driver");
-    basicDataSource.setUrl("jdbc:h2:~/databases/person");
+    basicDataSource.setUrl("jdbc:h2:mem:databases-person");
     basicDataSource.setUsername("sa");
     basicDataSource.setPassword("sa");
     return basicDataSource;

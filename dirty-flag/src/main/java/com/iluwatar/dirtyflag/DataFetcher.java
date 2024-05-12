@@ -40,7 +40,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DataFetcher {
 
-  private final String filename = "world.txt";
+  private static final String FILENAME = "world.txt";
   private long lastFetched;
 
   public DataFetcher() {
@@ -62,14 +62,14 @@ public class DataFetcher {
    */
   public List<String> fetch() {
     var classLoader = getClass().getClassLoader();
-    var file = new File(classLoader.getResource(filename).getFile());
+    var file = new File(classLoader.getResource(FILENAME).getFile());
 
     if (isDirty(file.lastModified())) {
-      LOGGER.info(filename + " is dirty! Re-fetching file content...");
+      LOGGER.info(FILENAME + " is dirty! Re-fetching file content...");
       try (var br = new BufferedReader(new FileReader(file))) {
         return br.lines().collect(Collectors.collectingAndThen(Collectors.toList(), List::copyOf));
       } catch (IOException e) {
-        e.printStackTrace();
+        LOGGER.error("An error occurred: ", e);
       }
     }
 

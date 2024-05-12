@@ -84,6 +84,6 @@ class SkyLaunchTest {
   }
 
   private String getLogContent(String log) {
-    return log.split("-")[1].trim();
+    return log.split("--")[1].trim();
   }
 }

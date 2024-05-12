@@ -49,7 +49,7 @@ import org.mockito.Mockito;
  */
 class HotelDaoImplTest {
 
-  private static final String DB_URL = "jdbc:h2:~/test";
+  private static final String DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
   private HotelDaoImpl dao;
   private Room existingRoom = new Room(1, "Single", 50, false);
 

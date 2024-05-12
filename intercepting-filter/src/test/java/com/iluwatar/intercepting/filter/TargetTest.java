@@ -25,7 +25,7 @@
 package com.iluwatar.intercepting.filter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -41,6 +41,6 @@ class TargetTest {
         final var target = new Target();
         assertEquals(target.getSize().getWidth(), Double.valueOf(640));
         assertEquals(target.getSize().getHeight(), Double.valueOf(480));
-        assertEquals(true,target.isVisible());
+        assertTrue(target.isVisible());
     }
 }

@@ -1,183 +1,132 @@
 ---
 title: Data Mapper
-category: Architectural
+category: Behavioral
 language: en
 tag:
-- Decoupling
+    - Data access
+    - Decoupling
+    - Object mapping
+    - Persistence
 ---
 
+## Also known as
+
+* Object-Relational Mapping (ORM)
+
 ## Intent
->Data Mapper is the software layer that separates the in-memory objects from the database.
->Its responsibility is to transfer data between the objects and database and isolate them from each other. 
->If we obtain a Data Mapper, it is not necessary for the in-memory object to know if the database exists or not.
->The user could directly manipulate the objects via Java command without having knowledge of SQL or database.
+
+The Data Mapper pattern aims to create an abstraction layer between the database and the business logic, allowing them to evolve independently. It maps data from the database objects to in-memory data structures and vice versa, minimizing direct dependencies between the application's core logic and the underlying database structure.
 
 ## Explanation
 
 Real world example
->When a user accesses a specific web page through a browser, he only needs to do several operations to the browser.
-> The browser and the server will take the responsibility of saving data separately.
-> You don't need to know the existence of the server or how to operate the server.
+
+> When a user accesses a specific web page through a browser, he only needs to do several operations to the browser. The browser and the server will take the responsibility of saving data separately. You don't need to know the existence of the server or how to operate the server.
 
 In plain words
->A layer of mappers that moves data between objects and a database while keeping them independent of each other.
+
+> A layer of mappers that moves data between objects and a database while keeping them independent of each other.
 
 Wikipedia says
->A Data Mapper is a Data Access Layer that performs bidirectional transfer of data between a persistent data store 
-> (often a relational database) and an in-memory data representation (the domain layer). The goal of the pattern is to 
-> keep the in-memory representation and the persistent data store independent of each other and the data mapper itself. 
-> This is useful when one needs to model and enforce strict business processes on the data in the domain layer that do 
-> not map neatly to the persistent data store. 
+
+> A Data Mapper is a Data Access Layer that performs bidirectional transfer of data between a persistent data store (often a relational database) and an in-memory data representation (the domain layer). The goal of the pattern is to keep the in-memory representation and the persistent data store independent of each other and the data mapper itself. This is useful when one needs to model and enforce strict business processes on the data in the domain layer that do not map neatly to the persistent data store.
 
 **Programmatic Example**
 
->We have the student class to defining Students' attributes includes studentId, name and grade.
->We have an interface of StudentDataMapper to lists out the possible behaviour for all possible student mappers.
->And StudentDataMapperImpl class for the implementation of actions on Students Data.
+The Data Mapper is a design pattern that separates the in-memory objects from the database. Its responsibility is to transfer data between the two and also to isolate them from each other. This pattern promotes the [Single Responsibility Principle](https://java-design-patterns.com/principles/#single-responsibility-principle) and [Separation of Concerns](https://java-design-patterns.com/principles/#separation-of-concerns).
+
+In the data-mapper module, the pattern is demonstrated using a Student class and a StudentDataMapper interface.
+
+The Student class is a simple POJO (Plain Old Java Object) that represents a student. It has properties like studentId, name, and grade.
 
 ```java
-
-public final class Student implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-
-    @EqualsAndHashCode.Include
+public class Student {
     private int studentId;
     private String name;
     private char grade;
-
-
-    public interface StudentDataMapper {
-
-        Optional<Student> find(int studentId);
-
-        void insert(Student student) throws DataMapperException;
-
-        void update(Student student) throws DataMapperException;
-
-        void delete(Student student) throws DataMapperException;
-    }
-
-    public final class StudentDataMapperImpl implements StudentDataMapper {
-        @Override
-        public Optional<Student> find(int studentId) {
-            return this.getStudents().stream().filter(x -> x.getStudentId() == studentId).findFirst();
-        }
-
-        @Override
-        public void update(Student studentToBeUpdated) throws DataMapperException {
-            String name = studentToBeUpdated.getName();
-            Integer index = Optional.of(studentToBeUpdated)
-                    .map(Student::getStudentId)
-                    .flatMap(this::find)
-                    .map(students::indexOf)
-                    .orElseThrow(() -> new DataMapperException("Student [" + name + "] is not found"));
-            students.set(index, studentToBeUpdated);
-        }
-
-        @Override
-        public void insert(Student studentToBeInserted) throws DataMapperException {
-            Optional<Student> student = find(studentToBeInserted.getStudentId());
-            if (student.isPresent()) {
-                String name = studentToBeInserted.getName();
-                throw new DataMapperException("Student already [" + name + "] exists");
-            }
-
-            students.add(studentToBeInserted);
-        }
-
-        @Override
-        public void delete(Student studentToBeDeleted) throws DataMapperException {
-            if (!students.remove(studentToBeDeleted)) {
-                String name = studentToBeDeleted.getName();
-                throw new DataMapperException("Student [" + name + "] is not found");
-            }
-        }
-
-        public List<Student> getStudents() {
-            return this.students;
-        }
-    }
+    // ...
 }
-
 ```
 
->The below example demonstrates basic CRUD operations: Create, Read, Update, and Delete between the in-memory objects
-> and the database.
+The StudentDataMapper interface defines the operations that can be performed on Student objects. These operations include insert, update, delete, and find.
 
 ```java
-@Slf4j
-public final class App {
+public interface StudentDataMapper {
+    void insert(final Student student);
 
-  private static final String STUDENT_STRING = "App.main(), student : ";
+    void update(final Student student);
 
-  public static void main(final String... args) {
+    void delete(final Student student);
 
-    final var mapper = new StudentDataMapperImpl();
+    Optional<Student> find(final int studentId);
+    // ...
+}
+```
 
-    var student = new Student(1, "Adam", 'A');
+The StudentDataMapperImpl class implements the StudentDataMapper interface. It contains the actual logic for interacting with the database.
 
-    mapper.insert(student);
+```java
+public class StudentDataMapperImpl implements StudentDataMapper {
+    // ...
+    @Override
+    public void insert(final Student student) {
+        // Insert student into the database
+    }
 
-    LOGGER.debug(STUDENT_STRING + student + ", is inserted");
+    @Override
+    public void update(final Student student) {
+        // Update student in the database
+    }
 
-    final var studentToBeFound = mapper.find(student.getStudentId());
+    @Override
+    public void delete(final Student student) {
+        // Delete student from the database
+    }
 
-    LOGGER.debug(STUDENT_STRING + studentToBeFound + ", is searched");
+    @Override
+    public Optional<Student> find(final int studentId) {
+        // Find student in the database
+    }
+    // ...
+}
+```
 
-    student = new Student(student.getStudentId(), "AdamUpdated", 'A');
+The App class contains the main method that demonstrates the use of the StudentDataMapper. It creates a Student object, inserts it into the database, finds it, updates it, and finally deletes it.
 
-    mapper.update(student);
-
-    LOGGER.debug(STUDENT_STRING + student + ", is updated");
-    LOGGER.debug(STUDENT_STRING + student + ", is going to be deleted");
-
-    mapper.delete(student);
-  }
-
-  private App() {
-  }
+```java
+public class App {
+    public static void main(final String... args) {
+        final var mapper = new StudentDataMapperImpl();
+        var student = new Student(1, "Adam", 'A');
+        mapper.insert(student);
+        final var studentToBeFound = mapper.find(student.getStudentId());
+        student = new Student(student.getStudentId(), "AdamUpdated", 'A');
+        mapper.update(student);
+        mapper.delete(student);
+    }
 }
 ```
 
 Program output:
 
-15:05:00.264 [main] DEBUG com.iluwatar.datamapper.App - App.main(), student : Student(studentId=1, name=Adam, grade=A), is inserted
-15:05:00.267 [main] DEBUG com.iluwatar.datamapper.App - App.main(), student : Optional[Student(studentId=1, name=Adam, grade=A)], is searched
-15:05:00.268 [main] DEBUG com.iluwatar.datamapper.App - App.main(), student : Student(studentId=1, name=AdamUpdated, grade=A), is updated
-15:05:00.268 [main] DEBUG com.iluwatar.datamapper.App - App.main(), student : Student(studentId=1, name=AdamUpdated, grade=A), is going to be deleted
-
-
-
-This layer consists of one or more mappers (or data access objects) that perform data transfer. The scope of mapper implementations varies.
-A generic mapper will handle many different domain entity types, a dedicated mapper will handle one or a few.
-
-## Explanation
-
-Real-world example
-
-> When accessing web resources through a browser, there is generally no need to interact with the server directly;
-> the browser and the proxy server will complete the data acquisition operation, and the three will remain independent.
-
-In plain words
-
-> The data mapper will help complete the bi-directional transfer of persistence layer and in-memory data.
-
-Wikipedia says
-
-> A Data Mapper is a Data Access Layer that performs bidirectional transfer of data between a
-> persistent data store (often a relational database) and an in-memory data representation (the domain layer).
-
-Programmatic example
+```
+13:54:29.234 [main] DEBUG com.iluwatar.datamapper.App -- App.main(), student : Student(studentId=1, name=Adam, grade=A), is inserted
+13:54:29.237 [main] DEBUG com.iluwatar.datamapper.App -- App.main(), student : Optional[Student(studentId=1, name=Adam, grade=A)], is searched
+13:54:29.237 [main] DEBUG com.iluwatar.datamapper.App -- App.main(), student : Student(studentId=1, name=AdamUpdated, grade=A), is updated
+13:54:29.238 [main] DEBUG com.iluwatar.datamapper.App -- App.main(), student : Student(studentId=1, name=AdamUpdated, grade=A), is going to be deleted
+```
 
 ## Class diagram
+
 ![alt text](./etc/data-mapper.png "Data Mapper")
 
 ## Applicability
+
 Use the Data Mapper in any of the following situations
 
-* when you want to decouple data objects from DB access layer
-* when you want to write multiple data retrieval/persistence implementations
+* When there's a need to decouple the in-memory objects from the database entities to promote the [Single Responsibility Principle](https://java-design-patterns.com/principles/#single-responsibility-principle) and [Separation of Concerns](https://java-design-patterns.com/principles/#separation-of-concerns).
+* In applications requiring an ORM tool to bridge the gap between object-oriented models and relational databases.
+* When working with complex database schemas where direct data manipulation and object creation lead to cumbersome and error-prone code.
 
 ## Tutorials
 
@@ -186,16 +135,36 @@ Use the Data Mapper in any of the following situations
 * [Data Transfer Object Pattern in Java - Implementation and Mapping (Tutorial for Model Mapper & MapStruct)](https://stackabuse.com/data-transfer-object-pattern-in-java-implementation-and-mapping/)
 
 ## Known uses
+
+* ORM frameworks such as Hibernate in Java.
+* Data access layers in enterprise applications where business logic and database management are kept separate.
+* Applications requiring database interactions without tying the code to a specific database implementation.
 * [SqlSession.getMapper()](https://mybatis.org/mybatis-3/java-api.html)
 
 ## Consequences
 
-> Neatly mapped persistence layer data
-> Data model follows the single function principle
+Benefits:
+
+* Promotes [Single Responsibility Principle](https://java-design-patterns.com/principles/#single-responsibility-principle) by separating persistence logic from business logic.
+* Enhances maintainability and readability by centralizing data interaction logic.
+* Improves application's ability to adapt to changes in the database schema with minimal changes to the business logic.
+
+Trade-offs:
+
+* Introduces complexity through the additional abstraction layer.
+* Might lead to performance overhead due to the abstraction layer, especially in large-scale applications or with complex queries.
+* Requires developers to learn and understand the abstraction layer in addition to the database and ORM framework being used.
 
 ## Related patterns
-* [Active Record Pattern](https://en.wikipedia.org/wiki/Active_record_pattern)
-* [Object–relational Mapping](https://en.wikipedia.org/wiki/Object%E2%80%93relational_mapping)
+
+* Active Record: Combines data access logic and business logic in the domain entities themselves, contrary to Data Mapper's separation of concerns.
+* Object–Relational Mapping (ORM): A technique to map object-oriented programming language data to a relational database.
+* [Repository](https://java-design-patterns.com/patterns/repository/): Provides an abstraction of the data layer, acting as a collection of domain objects in memory.
+* [Unit of Work](https://java-design-patterns.com/patterns/unit-of-work/): Manages transactions and keeps track of the objects affected by a business transaction to ensure changes are consistent and transactional.
 
 ## Credits
+
+* Patterns of Enterprise Application Architecture
+* [Java Persistence with Hibernate](https://amzn.to/3VNzlKe)
+* [Clean Architecture: A Craftsman's Guide to Software Structure and Design](https://amzn.to/3xyEFag)
 * [Data Mapper](http://richard.jp.leguen.ca/tutoring/soen343-f2010/tutorials/implementing-data-mapper/)

@@ -36,30 +36,30 @@ public class StdOutEventLog implements LotteryEventLog {
   @Override
   public void ticketSubmitted(PlayerDetails details) {
     LOGGER.info("Lottery ticket for {} was submitted. Bank account {} was charged for 3 credits.",
-        details.getEmail(), details.getBankAccount());
+        details.email(), details.bankAccount());
   }
 
   @Override
   public void ticketDidNotWin(PlayerDetails details) {
     LOGGER.info("Lottery ticket for {} was checked and unfortunately did not win this time.",
-        details.getEmail());
+        details.email());
   }
 
   @Override
   public void ticketWon(PlayerDetails details, int prizeAmount) {
     LOGGER.info("Lottery ticket for {} has won! The bank account {} was deposited with {} credits.",
-        details.getEmail(), details.getBankAccount(), prizeAmount);
+        details.email(), details.bankAccount(), prizeAmount);
   }
 
   @Override
   public void prizeError(PlayerDetails details, int prizeAmount) {
     LOGGER.error("Lottery ticket for {} has won! Unfortunately the bank credit transfer of"
-        + " {} failed.", details.getEmail(), prizeAmount);
+        + " {} failed.", details.email(), prizeAmount);
   }
 
   @Override
   public void ticketSubmitError(PlayerDetails details) {
     LOGGER.error("Lottery ticket for {} could not be submitted because the credit transfer"
-        + " of 3 credits failed.", details.getEmail());
+        + " of 3 credits failed.", details.email());
   }
 }

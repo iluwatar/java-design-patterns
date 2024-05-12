@@ -44,6 +44,20 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CombinatorApp {
 
+  private static final String TEXT = """
+            It was many and many a year ago,
+            In a kingdom by the sea,
+            That a maiden there lived whom you may know
+            By the name of ANNABEL LEE;
+            And this maiden she lived with no other thought
+            Than to love and be loved by me.
+            I was a child and she was a child,
+            In this kingdom by the sea;
+            But we loved with a love that was more than love-
+            I and my Annabel Lee;
+            With a love that the winged seraphs of heaven
+            Coveted her and me.""";
+
   /**
    * main.
    * @param args args
@@ -69,19 +83,8 @@ public class CombinatorApp {
   }
 
   private static String text() {
-    return
-        "It was many and many a year ago,\n"
-            + "In a kingdom by the sea,\n"
-            + "That a maiden there lived whom you may know\n"
-            + "By the name of ANNABEL LEE;\n"
-            + "And this maiden she lived with no other thought\n"
-            + "Than to love and be loved by me.\n"
-            + "I was a child and she was a child,\n"
-            + "In this kingdom by the sea;\n"
-            + "But we loved with a love that was more than love-\n"
-            + "I and my Annabel Lee;\n"
-            + "With a love that the winged seraphs of heaven\n"
-            + "Coveted her and me.";
+
+    return TEXT;
   }
 
 }

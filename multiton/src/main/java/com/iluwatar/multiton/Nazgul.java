@@ -26,6 +26,7 @@ package com.iluwatar.multiton;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import lombok.Getter;
 
 /**
  * Nazgul is a Multiton class. Nazgul instances can be queried using {@link #getInstance} method.
@@ -34,6 +35,7 @@ public final class Nazgul {
 
   private static final Map<NazgulName, Nazgul> nazguls;
 
+  @Getter
   private final NazgulName name;
 
   static {
@@ -55,9 +57,5 @@ public final class Nazgul {
 
   public static Nazgul getInstance(NazgulName name) {
     return nazguls.get(name);
-  }
-
-  public NazgulName getName() {
-    return name;
   }
 }

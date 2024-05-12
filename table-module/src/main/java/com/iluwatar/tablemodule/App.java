@@ -45,7 +45,7 @@ import org.h2.jdbcx.JdbcDataSource;
  */
 @Slf4j
 public final class App {
-  private static final String DB_URL = "jdbc:h2:~/test";
+  private static final String DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
 
   /**
    * Private constructor.

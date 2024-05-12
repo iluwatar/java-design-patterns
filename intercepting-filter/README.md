@@ -1,173 +1,154 @@
 ---
 title: Intercepting Filter
-category: Behavioral
+category: Architectural
 language: en
 tag:
- - Decoupling
+    - API design
+    - Decoupling
+    - Layered architecture
+    - Performance
+    - Security
+    - Web development
 ---
 
 ## Intent
-An intercepting filter is a useful Java Design Pattern used when you want to pre-process
-or post-process a request in an application. These filters are created and applied to the
-request before it is given to the target application. Such examples of uses include authentication,
-which is necessary to be processed before the request is given to the application.
+
+The Intercepting Filter pattern is intended to provide a pluggable framework for preprocessing and postprocessing web requests and responses. It allows different filters to process client requests and server responses in a configurable, decoupled manner.
 
 ## Explanation
+
 Real-world Example
-> An example of using the Intercepting Filter design pattern is relevant when making an ecommerce
-> platform. It is important to implement various filters for authentication of account, authentication
-> of payment, logging and caching. Important types of filters in this example are authentication, logging,
-> security, and caching filters.
+
+> Consider entering a secure office building where you pass through several checkpoints: a security desk checks your ID, a metal detector ensures safety, and a registration desk logs your visit. Each checkpoint acts like a filter in the Intercepting Filter pattern, processing and validating your entry step-by-step, similar to how filters handle different aspects of web requests and responses in a software system.
 
 In plain words
-> An intercepting filter in Java is like a series of security checkpoints for requests and responses in a 
-> software application. It checks and processes data as it comes in and goes out, helping with tasks like 
-> authentication, logging, and security, while keeping the core application safe and clean.
+
+> The Intercepting Filter design pattern allows you to define processing steps (filters) that execute sequentially to handle and modify web requests and responses before they reach the application or are sent to the client.
 
 Wikipedia says
-> Intercepting Filter is a Java pattern which creates pluggable filters to process common services in a 
-> standard manner without requiring changes to core request processing code.
+
+> Intercepting Filter is a Java pattern which creates pluggable filters to process common services in a standard manner without requiring changes to core request processing code.
 
 ## Programmatic Example
-As an example, we can create a basic Filter class and define an Authentication Filter. The filter has missing logic,
-but 
+
+The Intercepting Filter design pattern is a Java EE pattern that creates pluggable filters to process common services in a standard manner without requiring changes to core request processing code. These filters can perform tasks such as authentication, logging, data compression, and encryption.
+
+In the provided code, we can see an example of the Intercepting Filter pattern in the `App`, `FilterManager`, `Client`, and various `Filter` classes.
+
+The `App` class is the entry point of the application. It creates an instance of `FilterManager`, adds various filters to it, and sets it to a `Client`.
+
 ```java
-// 1. Define a Filter interface
-interface Filter {
-    void runFilter(String request);
-}
-// 2. Create a Authentication filter
-class AuthenticationFilter implements Filter {
-    public void runFilter(String request) {
-        // Authentication logic would be passed in here
-        if (request.contains("authenticated=true")) {
-            System.out.println("Authentication successful for request: " + request);
-        } else {
-            System.out.println("Authentication failed for request: " + request);
-        }
-    }
-}
-// 3. Create a Client to send requests and activate the filter
-class Client {
-    // create an instance of the filter in the Client class
-    private Filter filter;
+public class App {
 
-    // create constructor
-    public Client(Filter filter) {
-        this.filter = filter;
-    }
+  public static void main(String[] args) {
+    var filterManager = new FilterManager();
+    filterManager.addFilter(new NameFilter());
+    filterManager.addFilter(new ContactFilter());
+    filterManager.addFilter(new AddressFilter());
+    filterManager.addFilter(new DepositFilter());
+    filterManager.addFilter(new OrderFilter());
 
-    // send the String request to the filter, the request does not have to be a string
-    // it can be anything
-    public void sendRequest(String request) {
-        filter.runFilter(request);
-    }
-}
-// 4. Demonstrate the Authentication Filter
-public class AuthenticationFilterExample {
-    public static void main(String[] args) {
-        Filter authenticationFilter = new AuthenticationFilter();
-        Client client = new Client(authenticationFilter);
-
-        // Simulate requests for false
-        client.sendRequest("GET /public-page");
-        // this request would come back as true as the link includes an argument
-        // for successful authentication
-        client.sendRequest("GET /private-page?authenticated=true");
-    }
+    var client = new Client();
+    client.setFilterManager(filterManager);
+  }
 }
 ```
-This is a basic example of how to implement the skeleton of a filter. The authentication logic in AuthenticationFilterExample is missing, but can be filled into the gaps. 
 
-Additionally, the client can be setup to run multiple filters on its request using a For loop populated with filters as can be seen below:
+The `FilterManager` class manages the filters and applies them to the requests.
+
 ```java
-// 1. Define a Filter interface
-interface Filter {
-    void runFilter(String request);
-}
+public class FilterManager {
+  private final List<Filter> filters = new ArrayList<>();
 
-// 2. Create an Authentication filter
-class AuthenticationFilter implements Filter {
-    public void runFilter(String request) {
-        // Authentication logic would be placed here
-        if (request.contains("authenticated=true")) {
-            System.out.println("Authentication successful for request: " + request);
-        } else {
-            System.out.println("Authentication failed for request: " + request);
-        }
+  public void addFilter(Filter filter) {
+    filters.add(filter);
+  }
+
+  public void filterRequest(String request) {
+    for (Filter filter : filters) {
+      filter.execute(request);
     }
-}
-
-// 3. Create a Client to send requests and activate multiple filters
-class Client {
-    // create a list of filters in the Client class
-    private List<Filter> filters = new ArrayList<>();
-
-    // add filters to the list
-    public void addFilter(Filter filter) {
-        filters.add(filter);
-    }
-
-    // send the request through all the filters
-    public void sendRequest(String request) {
-        for (Filter filter : filters) {
-            filter.runFilter(request);
-        }
-    }
-}
-
-// 4. Demonstrate multiple filters
-public class MultipleFiltersExample {
-    public static void main(String[] args) {
-        // Create a client
-        Client client = new Client();
-
-        // Add filters to the client
-        Filter authenticationFilter = new AuthenticationFilter();
-        client.addFilter(authenticationFilter);
-
-        // Add more filters as needed
-        // Filter anotherFilter = new AnotherFilter();
-        // client.addFilter(anotherFilter);
-
-        // Simulate requests
-        client.sendRequest("GET /public-page");
-        client.sendRequest("GET /private-page?authenticated=true");
-    }
+  }
 }
 ```
-This method allows quick and easy manipulation and checking of data before authenticating a login or finishing some other sort of action.
+
+The `Client` class sends the request to the `FilterManager`.
+
+```java
+public class Client {
+  private FilterManager filterManager;
+
+  public void setFilterManager(FilterManager filterManager) {
+    this.filterManager = filterManager;
+  }
+
+  public void sendRequest(String request) {
+    filterManager.filterRequest(request);
+  }
+}
+```
+
+The `Filter` interface and its implementations (`NameFilter`, `ContactFilter`, `AddressFilter`, `DepositFilter`, `OrderFilter`) define the filters that can be applied to the requests.
+
+```java
+public interface Filter {
+  void execute(String request);
+}
+
+public class NameFilter implements Filter {
+  public void execute(String request) {
+    // Implementation details...
+  }
+}
+
+// Other Filter implementations...
+```
+
+In this example, the `App` class sets up a `FilterManager` with various filters and assigns it to a `Client`. When the `Client` sends a request, the `FilterManager` applies all the filters to the request. This is a basic example of the Intercepting Filter pattern, where common processing tasks are encapsulated in filters and applied to requests in a standard manner.
 
 ## Class diagram 
-![alt text](./etc/intercepting-filter.png "Intercepting Filter")
+
+![Intercepting Filter](./etc/intercepting-filter.png "Intercepting Filter")
 
 ## Applicability
+
 Use the Intercepting Filter pattern when
 
-* A program needs to pre-process or post-process data
-* A system needs authorisation/authentication services to access sensitive data
-* You want to log/audit requests or responses for debugging or storing purposes, such as timestamps and user actions
-* You want to transform data of a type to another type before it is given to the end process
-* You want to implement specific exception handling
-
-## Consequences
-Consequences that come with implementing Intercepting Filter
-
-* Increase in code complexity, diminishing ease of readability
-* Can have issues in the order that filters are applied if order is important
-* Applying multiple filters to a request can create a delay in response time
-* Testing the effects of multiple filters on a request can be hard
-* Compatibility and version management can be difficult if you have a lot of filters
+* Use the Intercepting Filter pattern when you need to apply pre-processing and post-processing steps to requests and responses, typically in web applications.
+* Suitable for handling cross-cutting concerns such as logging, authentication, data compression, and encryption transparently.
 
 ## Tutorials
 
 * [Introduction to Intercepting Filter Pattern in Java](https://www.baeldung.com/intercepting-filter-pattern-in-java)
+* [TutorialsPoint - Intercepting Filter](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
 
-## Real world examples
+## Known Uses
 
+* Web servers like Apache Tomcat and Java EE web containers often use this pattern to implement filters that manipulate byte streams from requests and responses.
+* Frameworks like Spring MVC utilize this pattern to manage interceptors that add behavior to web requests.
 * [javax.servlet.FilterChain](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/FilterChain.html) and [javax.servlet.Filter](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/Filter.html)
 * [Struts 2 - Interceptors](https://struts.apache.org/core-developers/interceptors.html)
 
+## Consequences
+
+Benefits:
+
+* Promotes separation of concerns by allowing filters to be independently developed, tested, and reused.
+* Enhances flexibility through configurable filter chains.
+* Simplifies application maintenance by centralizing control in filter management.
+
+Trade-offs:
+
+* Introducing many filters can lead to performance overhead due to the processing of each request and response through multiple filters.
+* Debugging and tracing the request flow through multiple filters can be complex.
+
+## Related Patterns
+
+[Decorator](https://java-design-patterns.com/patterns/decorator/): Filters in the Intercepting Filter pattern can be considered as decorators that add additional responsibilities to request handling. They modify the request/response without altering their fundamental behavior.
+[Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Filters are linked in a chain, where each filter processes the request or response and optionally passes it to the next filter in the chain, similar to how responsibilities are passed along in the Chain of Responsibility pattern.
+
 ## Credits
 
-* [TutorialsPoint - Intercepting Filter](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)

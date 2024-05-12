@@ -24,8 +24,6 @@
  */
 package com.iluwatar.async.method.invocation;
 
-import java.util.Optional;
-
 /**
  * AsyncCallback interface.
  *
@@ -34,10 +32,16 @@ import java.util.Optional;
 public interface AsyncCallback<T> {
 
   /**
-   * Complete handler which is executed when async task is completed or fails execution.
+   * Complete handler which is executed when async task is completed.
    *
-   * @param value the evaluated value from async task, undefined when execution fails
-   * @param ex    empty value if execution succeeds, some exception if executions fails
+   * @param value the evaluated value from async task
    */
-  void onComplete(T value, Optional<Exception> ex);
+  void onComplete(T value);
+
+  /**
+   * Error handler which is executed when async task fails execution.
+   *
+   * @param ex exception which was thrown during async task execution(non-null)
+   */
+  void onError(Exception ex);
 }

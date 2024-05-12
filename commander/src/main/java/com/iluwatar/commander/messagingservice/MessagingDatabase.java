@@ -38,7 +38,7 @@ public class MessagingDatabase extends Database<MessageRequest> {
 
   @Override
   public MessageRequest add(MessageRequest r) {
-    return data.put(r.reqId, r);
+    return data.put(r.reqId(), r);
   }
 
   @Override

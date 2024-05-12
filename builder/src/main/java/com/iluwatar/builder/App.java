@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * The intention of the Builder pattern is to find a solution to the telescoping constructor
- * anti-pattern. The telescoping constructor anti-pattern occurs when the increase of object
+ * antipattern. The telescoping constructor antipattern occurs when the increase of object
  * constructor parameter combination leads to an exponential list of constructors. Instead of using
  * numerous constructors, the builder pattern uses another object, a builder, that receives each
  * initialization parameter step by step and then returns the resulting constructed object at once.

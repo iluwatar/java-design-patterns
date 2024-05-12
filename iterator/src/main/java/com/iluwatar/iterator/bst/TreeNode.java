@@ -24,6 +24,9 @@
  */
 package com.iluwatar.iterator.bst;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * TreeNode Class, representing one node in a Binary Search Tree. Allows for a generically typed
  * value.
@@ -33,7 +36,13 @@ package com.iluwatar.iterator.bst;
 public class TreeNode<T extends Comparable<T>> {
 
   private final T val;
+
+  @Getter
+  @Setter
   private TreeNode<T> left;
+
+  @Getter
+  @Setter
   private TreeNode<T> right;
 
   /**
@@ -49,22 +58,6 @@ public class TreeNode<T extends Comparable<T>> {
 
   public T getVal() {
     return val;
-  }
-
-  public TreeNode<T> getLeft() {
-    return left;
-  }
-
-  private void setLeft(TreeNode<T> left) {
-    this.left = left;
-  }
-
-  public TreeNode<T> getRight() {
-    return right;
-  }
-
-  private void setRight(TreeNode<T> right) {
-    this.right = right;
   }
 
   /**

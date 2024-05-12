@@ -22,8 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package exception;
 
+import java.io.Serial;
 import org.springframework.stereotype.Component;
 
 /**
@@ -32,12 +34,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class CakeBakingException extends Exception {
 
-    private static final long serialVersionUID = 1L;
+  @Serial
+  private static final long serialVersionUID = 1L;
 
-    public CakeBakingException() {
-    }
+  public CakeBakingException() {
+  }
 
-    public CakeBakingException(String message) {
-        super(message);
-    }
+  public CakeBakingException(String message) {
+    super(message);
+  }
 }

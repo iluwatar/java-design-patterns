@@ -1,0 +1,96 @@
+@startuml
+package com.iluwatar.dynamicproxy.tinyrestclient.annotation {
+  interface Body {
+  }
+  interface Delete {
+    + value() : String {abstract}
+  }
+  interface Get {
+    + value() : String {abstract}
+  }
+  interface HttpMethod {
+  }
+  interface Path {
+    + value() : String {abstract}
+  }
+  interface Post {
+    + value() : String {abstract}
+  }
+  interface Put {
+    + value() : String {abstract}
+  }
+}
+package com.iluwatar.dynamicproxy.tinyrestclient {
+  class JsonUtil {
+    - objectMapper : ObjectMapper {static}
+    - JsonUtil()
+    + jsonToList(json : String, clazz : Class<T>) : List<T> {static}
+    + jsonToObject(json : String, clazz : Class<T>) : T {static}
+    + objectToJson(object : T) : String {static}
+  }
+  class TinyRestClient {
+    - baseUrl : String
+    + TinyRestClient(baseUrl : String)
+    - annotationValue(annotation : Annotation) : String
+    - buildBodyPublisher(method : Method, args : Object[]) : BodyPublisher
+    - buildUrl(method : Method, args : Object[], httpMethodAnnotation : Annotation) : String
+    - getAnnotationOf(annotations : Annotation[], clazz : Class<?>) : Annotation
+    - getHttpMethodAnnotation(annotations : Annotation[]) : Annotation
+    - getResponse(method : Method, httpResponse : HttpResponse<String>) : Object
+    + send(method : Method, args : Object[]) : Object
+  }
+}
+package com.iluwatar.dynamicproxy {
+  class Album {
+    - id : Integer
+    - title : String
+    - userId : Integer
+    + Album()
+    + Album(id : Integer, title : String, userId : Integer)
+    + builder() : AlbumBuilder {static}
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getId() : Integer
+    + getTitle() : String
+    + getUserId() : Integer
+    + hashCode() : int
+    + setId(id : Integer)
+    + setTitle(title : String)
+    + setUserId(userId : Integer)
+    + toString() : String
+  }
+  class AlbumBuilder {
+    - id : Integer
+    - title : String
+    - userId : Integer
+    ~ AlbumBuilder()
+    + build() : Album
+    + id(id : Integer) : AlbumBuilder
+    + title(title : String) : AlbumBuilder
+    + toString() : String
+    + userId(userId : Integer) : AlbumBuilder
+  }
+  class AlbumInvocationHandler {
+    - restClient : TinyRestClient
+    + AlbumInvocationHandler(baseUrl : String)
+    + invoke(proxy : Object, method : Method, args : Object[]) : Object
+  }
+  interface AlbumService {
+    + createAlbum(Album) : Album {abstract}
+    + deleteAlbum(Integer) : Album {abstract}
+    + readAlbum(Integer) : Album {abstract}
+    + readAlbums() : List<Album> {abstract}
+    + updateAlbum(Integer, Album) : Album {abstract}
+  }
+  class App {
+    ~ REST_API_URL : String {static}
+    - albumServiceProxy : AlbumService
+    + App()
+    + callMethods()
+    + createDynamicProxy()
+    + main(args : String[]) {static}
+  }
+}
+AlbumInvocationHandler -->  "-restClient" TinyRestClient
+App -->  "-albumServiceProxy" AlbumService
+@enduml

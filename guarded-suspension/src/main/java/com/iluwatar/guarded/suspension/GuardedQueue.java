@@ -44,7 +44,7 @@ public class GuardedQueue {
   }
 
   /**
-   * Get the last element of the queue is exists.
+   * Get the last element of the queue if exists.
    *
    * @return last element of a queue if queue is not empty
    */
@@ -54,7 +54,7 @@ public class GuardedQueue {
         LOGGER.info("waiting");
         wait();
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        LOGGER.error("Error occurred: ", e);
       }
     }
     LOGGER.info("getting");

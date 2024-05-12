@@ -46,13 +46,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class CommanderTest {
 
-    private final int numOfRetries = 1;
-    private final long retryDuration = 1_000;
-    private long queueTime = 1_00;
-    private long queueTaskTime = 1_000;
-    private long paymentTime = 6_000;
-    private long messageTime = 5_000;
-    private long employeeTime = 2_000;
+    private final RetryParams retryParams = new RetryParams(1, 1_000L);
+
+    private final TimeLimits timeLimits = new TimeLimits(1L, 1000L, 6000L, 5000L, 2000L);
 
     private static final List<Exception> exceptionList = new ArrayList<>();
 
@@ -96,8 +92,7 @@ class CommanderTest {
                         new DatabaseUnavailableException(), new DatabaseUnavailableException(),
                         new DatabaseUnavailableException(), new DatabaseUnavailableException());
         return new Commander(employeeHandle, paymentService, shippingService,
-                messagingService, qdb, numOfRetries, retryDuration,
-                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+                messagingService, qdb, retryParams, timeLimits);
     }
 
     private Commander buildCommanderObjectVanilla() {
@@ -118,8 +113,7 @@ class CommanderTest {
                         new DatabaseUnavailableException(), new DatabaseUnavailableException(),
                         new DatabaseUnavailableException(), new DatabaseUnavailableException());
         return new Commander(employeeHandle, paymentService, shippingService,
-                messagingService, qdb, numOfRetries, retryDuration,
-                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+          messagingService, qdb, retryParams, timeLimits);
     }
 
     private Commander buildCommanderObjectUnknownException() {
@@ -132,8 +126,7 @@ class CommanderTest {
         var qdb = new QueueDatabase
                 (new DatabaseUnavailableException(), new IllegalStateException());
         return new Commander(employeeHandle, paymentService, shippingService,
-                messagingService, qdb, numOfRetries, retryDuration,
-                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+            messagingService, qdb, retryParams, timeLimits);
     }
 
     private Commander buildCommanderObjectNoPaymentException1() {
@@ -146,8 +139,7 @@ class CommanderTest {
         var qdb = new QueueDatabase
                 (new DatabaseUnavailableException(), new IllegalStateException());
         return new Commander(employeeHandle, paymentService, shippingService,
-                messagingService, qdb, numOfRetries, retryDuration,
-                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+            messagingService, qdb, retryParams, timeLimits);
     }
 
     private Commander buildCommanderObjectNoPaymentException2() {
@@ -160,8 +152,7 @@ class CommanderTest {
         var qdb = new QueueDatabase
                 (new DatabaseUnavailableException(), new IllegalStateException());
         return new Commander(employeeHandle, paymentService, shippingService,
-                messagingService, qdb, numOfRetries, retryDuration,
-                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+            messagingService, qdb, retryParams, timeLimits);
     }
 
     private Commander buildCommanderObjectNoPaymentException3() {
@@ -174,8 +165,7 @@ class CommanderTest {
         var qdb = new QueueDatabase
                 (new DatabaseUnavailableException(), new IllegalStateException());
         return new Commander(employeeHandle, paymentService, shippingService,
-                messagingService, qdb, numOfRetries, retryDuration,
-                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+            messagingService, qdb, retryParams, timeLimits);
     }
 
     private Commander buildCommanderObjectWithDB() {
@@ -206,8 +196,7 @@ class CommanderTest {
 
 
         return new Commander(employeeHandle, paymentService, shippingService,
-                messagingService, null, numOfRetries, retryDuration,
-                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+                messagingService, null, retryParams, timeLimits);
     }
 
     private Commander buildCommanderObjectWithoutDB() {
@@ -238,12 +227,13 @@ class CommanderTest {
 
 
         return new Commander(employeeHandle, paymentService, shippingService,
-                messagingService, null, numOfRetries, retryDuration,
-                queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+                messagingService, null, retryParams, timeLimits);
     }
 
     @Test
-    void testPlaceOrderVanilla() throws Exception {
+    void testPlaceOrderVanilla() {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -258,6 +248,8 @@ class CommanderTest {
 
     @Test
     void testPlaceOrder() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -272,6 +264,8 @@ class CommanderTest {
 
     @Test
     void testPlaceOrder2() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -286,6 +280,8 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderNoException1() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -300,6 +296,8 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderNoException2() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -314,6 +312,8 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderNoException3() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -328,6 +328,8 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderNoException4() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -344,6 +346,11 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderUnknownException() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
+      long messageTime = timeLimits.messageTime();
+      long employeeTime = timeLimits.employeeTime();
+      long queueTime = timeLimits.queueTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -361,6 +368,11 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderShortDuration() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
+      long messageTime = timeLimits.messageTime();
+      long employeeTime = timeLimits.employeeTime();
+      long queueTime = timeLimits.queueTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -378,6 +390,11 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderShortDuration2() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
+      long messageTime = timeLimits.messageTime();
+      long employeeTime = timeLimits.employeeTime();
+      long queueTime = timeLimits.queueTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -395,6 +412,11 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderNoExceptionShortMsgDuration() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
+      long messageTime = timeLimits.messageTime();
+      long employeeTime = timeLimits.employeeTime();
+      long queueTime = timeLimits.queueTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -412,6 +434,11 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderNoExceptionShortQueueDuration() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
+      long messageTime = timeLimits.messageTime();
+      long employeeTime = timeLimits.employeeTime();
+      long queueTime = timeLimits.queueTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -429,6 +456,11 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderWithDatabase() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
+      long messageTime = timeLimits.messageTime();
+      long employeeTime = timeLimits.employeeTime();
+      long queueTime = timeLimits.queueTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -446,6 +478,11 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderWithDatabaseAndExceptions() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
+      long messageTime = timeLimits.messageTime();
+      long employeeTime = timeLimits.employeeTime();
+      long queueTime = timeLimits.queueTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -488,6 +525,11 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderWithoutDatabase() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
+      long messageTime = timeLimits.messageTime();
+      long employeeTime = timeLimits.employeeTime();
+      long queueTime = timeLimits.queueTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;
@@ -505,6 +547,11 @@ class CommanderTest {
 
     @Test
     void testPlaceOrderWithoutDatabaseAndExceptions() throws Exception {
+      long paymentTime = timeLimits.paymentTime();
+      long queueTaskTime = timeLimits.queueTaskTime();
+      long messageTime = timeLimits.messageTime();
+      long employeeTime = timeLimits.employeeTime();
+      long queueTime = timeLimits.queueTime();
         for (double d = 0.1; d < 2; d = d + 0.1) {
             paymentTime *= d;
             queueTaskTime *= d;

@@ -32,21 +32,19 @@ import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.store.Store;
 import java.util.LinkedList;
 import java.util.List;
+import lombok.Getter;
 
 /**
  * Dispatcher sends Actions to registered Stores.
  */
 public final class Dispatcher {
 
+  @Getter
   private static Dispatcher instance = new Dispatcher();
 
   private final List<Store> stores = new LinkedList<>();
 
   private Dispatcher() {
-  }
-
-  public static Dispatcher getInstance() {
-    return instance;
   }
 
   public void registerStore(Store store) {

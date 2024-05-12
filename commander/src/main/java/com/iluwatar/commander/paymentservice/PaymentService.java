@@ -51,7 +51,7 @@ public class PaymentService extends Service {
    */
 
   public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
-    //it could also be sending a userid, payment details here or something, not added here
+    //it could also be sending an userid, payment details here or something, not added here
     var id = generateId();
     var req = new PaymentRequest(id, (float) parameters[0]);
     return updateDb(req);

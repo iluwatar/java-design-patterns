@@ -9,7 +9,8 @@ package com.iluwatar.async.method.invocation {
     + main(args : String[]) {static}
   }
   interface AsyncCallback<T> {
-    + onComplete(T, Optional<Exception>) {abstract}
+    + onComplete(T) {abstract}
+    + onError(Exception) {abstract}
   }
   interface AsyncExecutor {
     + endProcess(AsyncResult<T>) : T {abstract}
@@ -32,7 +33,7 @@ package com.iluwatar.async.method.invocation {
     ~ COMPLETED : int {static}
     ~ FAILED : int {static}
     ~ RUNNING : int {static}
-    ~ callback : Optional<AsyncCallback<T>>
+    ~ callback : AsyncCallback<T>
     ~ exception : Exception
     ~ lock : Object
     ~ state : int
@@ -40,12 +41,15 @@ package com.iluwatar.async.method.invocation {
     ~ CompletableResult<T>(callback : AsyncCallback<T>)
     + await()
     + getValue() : T
+    ~ hasCallback() : boolean
     + isCompleted() : boolean
     ~ setException(exception : Exception)
     ~ setValue(value : T)
   }
 }
+ThreadAsyncExecutor ..|> AsyncCallback
+ThreadAsyncExecutor ..|> AsyncResult
+ThreadAsyncExecutor ..|> AsyncExecutor
 CompletableResult ..+ ThreadAsyncExecutor
-ThreadAsyncExecutor ..|> AsyncExecutor 
-CompletableResult ..|> AsyncResult 
+CompletableResult ..|> AsyncResult
 @enduml

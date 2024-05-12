@@ -66,7 +66,7 @@ public abstract class Creature {
     return false;
   }
 
-  /** Terminates the Creature and unlocks all of the Lockable that it posses. */
+  /** Terminates the Creature and unlocks all the Lockable that it possesses. */
   public synchronized void kill() {
     LOGGER.info("{} {} has been slayed!", type, name);
     for (Lockable lockable : instruments) {

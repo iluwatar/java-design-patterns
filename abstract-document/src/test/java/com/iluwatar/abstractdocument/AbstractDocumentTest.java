@@ -80,4 +80,46 @@ class AbstractDocumentTest {
     assertTrue(document.toString().contains(VALUE));
   }
 
+  @Test
+  void shouldHandleExceptionDuringConstruction() {
+    Map<String, Object> invalidProperties = null; // Invalid properties, causing NullPointerException
+
+    // Throw null pointer exception
+    assertThrows(NullPointerException.class, () -> {
+      // Attempt to construct a document with invalid properties
+      new DocumentImplementation(invalidProperties);
+    });
+  }
+
+  @Test
+  void shouldPutAndGetNestedDocument() {
+    // Creating a nested document
+    DocumentImplementation nestedDocument = new DocumentImplementation(new HashMap<>());
+    nestedDocument.put("nestedKey", "nestedValue");
+
+
+    document.put("nested", nestedDocument);
+
+    // Retrieving the nested document
+    DocumentImplementation retrievedNestedDocument = (DocumentImplementation) document.get("nested");
+
+    assertNotNull(retrievedNestedDocument);
+    assertEquals("nestedValue", retrievedNestedDocument.get("nestedKey"));
+  }
+
+  @Test
+  void shouldUpdateExistingValue() {
+    // Arrange
+    final String key = "key";
+    final String originalValue = "originalValue";
+    final String updatedValue = "updatedValue";
+
+    document.put(key, originalValue);
+
+    // Updating the value
+    document.put(key, updatedValue);
+
+    //Verifying that the updated value is retrieved correctly
+    assertEquals(updatedValue, document.get(key));
+  }
 }

@@ -2,24 +2,23 @@
 title: Abstract Document
 category: Structural
 language: en
-tag: 
- - Extensibility
+tag:
+    - Abstraction
+    - Extensibility
+    - Decoupling
 ---
 
 ## Intent
 
-The "Abstract Document" design pattern is a structural design pattern that aims to provide a consistent way to handle 
-hierarchical and tree-like data structures by defining a common interface for various document types.
+The Abstract Document design pattern is a structural design pattern that aims to provide a consistent way to handle hierarchical and tree-like data structures by defining a common interface for various document types. It separates the core document structure from specific data formats, enabling dynamic updates and simplified maintenance.
 
 ## Explanation
 
-The Abstract Document pattern enables handling additional, non-static properties. This pattern
-uses concept of traits to enable type safety and separate properties of different classes into
-set of interfaces.
+The Abstract Document pattern enables handling additional, non-static properties. This pattern uses concept of traits to enable type safety and separate properties of different classes into set of interfaces.
 
 Real world example
 
->  Consider a car that consists of multiple parts. However, we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
+> Consider a car that consists of multiple parts. However, we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
 
 In plain words
 
@@ -27,94 +26,90 @@ In plain words
 
 Wikipedia says
 
-> An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing 
-the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components 
-in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the 
-support of type-safety. The pattern makes use of traits to separate different properties of a class into different 
-interfaces.
+> An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the support of type-safety. The pattern makes use of traits to separate different properties of a class into different interfaces.
 
 **Programmatic Example**
 
-Let's first define the base classes `Document` and `AbstractDocument`. They basically make the object hold a property
-map and any amount of child objects.
+Let's first define the base classes `Document` and `AbstractDocument`. They basically make the object hold a property map and any amount of child objects.
 
 ```java
 public interface Document {
 
-  Void put(String key, Object value);
+    Void put(String key, Object value);
 
-  Object get(String key);
+    Object get(String key);
 
-  <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor);
+    <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor);
 }
 
 public abstract class AbstractDocument implements Document {
 
-  private final Map<String, Object> properties;
+    private final Map<String, Object> properties;
 
-  protected AbstractDocument(Map<String, Object> properties) {
-    Objects.requireNonNull(properties, "properties map is required");
-    this.properties = properties;
-  }
+    protected AbstractDocument(Map<String, Object> properties) {
+        Objects.requireNonNull(properties, "properties map is required");
+        this.properties = properties;
+    }
 
-  @Override
-  public Void put(String key, Object value) {
-    properties.put(key, value);
-    return null;
-  }
+    @Override
+    public Void put(String key, Object value) {
+        properties.put(key, value);
+        return null;
+    }
 
-  @Override
-  public Object get(String key) {
-    return properties.get(key);
-  }
+    @Override
+    public Object get(String key) {
+        return properties.get(key);
+    }
 
-  @Override
-  public <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor) {
-    return Stream.ofNullable(get(key))
-        .filter(Objects::nonNull)
-        .map(el -> (List<Map<String, Object>>) el)
-        .findAny()
-        .stream()
-        .flatMap(Collection::stream)
-        .map(constructor);
-  }
+    @Override
+    public <T> Stream<T> children(String key, Function<Map<String, Object>, T> constructor) {
+        return Stream.ofNullable(get(key))
+                .filter(Objects::nonNull)
+                .map(el -> (List<Map<String, Object>>) el)
+                .findAny()
+                .stream()
+                .flatMap(Collection::stream)
+                .map(constructor);
+    }
   ...
 }
 ```
-Next we define an enum `Property` and a set of interfaces for type, price, model and parts. This allows us to create
-static looking interface to our `Car` class.
+
+Next we define an enum `Property` and a set of interfaces for type, price, model and parts. This allows us to create static looking interface to our `Car` class.
 
 ```java
 public enum Property {
 
-  PARTS, TYPE, PRICE, MODEL
+    PARTS, TYPE, PRICE, MODEL
 }
 
 public interface HasType extends Document {
 
-  default Optional<String> getType() {
-    return Optional.ofNullable((String) get(Property.TYPE.toString()));
-  }
+    default Optional<String> getType() {
+        return Optional.ofNullable((String) get(Property.TYPE.toString()));
+    }
 }
 
 public interface HasPrice extends Document {
 
-  default Optional<Number> getPrice() {
-    return Optional.ofNullable((Number) get(Property.PRICE.toString()));
-  }
+    default Optional<Number> getPrice() {
+        return Optional.ofNullable((Number) get(Property.PRICE.toString()));
+    }
 }
+
 public interface HasModel extends Document {
 
-  default Optional<String> getModel() {
-    return Optional.ofNullable((String) get(Property.MODEL.toString()));
-  }
+    default Optional<String> getModel() {
+        return Optional.ofNullable((String) get(Property.MODEL.toString()));
+    }
 }
 
 public interface HasParts extends Document {
 
-  default Stream<Part> getParts() {
-    return children(Property.PARTS.toString(), Part::new);
-  }
+    default Stream<Part> getParts() {
+        return children(Property.PARTS.toString(), Part::new);
+    }
 }
 ```
 
@@ -123,9 +118,9 @@ Now we are ready to introduce the `Car`.
 ```java
 public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts {
 
-  public Car(Map<String, Object> properties) {
-    super(properties);
-  }
+    public Car(Map<String, Object> properties) {
+        super(properties);
+    }
 }
 ```
 
@@ -134,40 +129,40 @@ And finally here's how we construct and use the `Car` in a full example.
 ```java
     LOGGER.info("Constructing parts and car");
 
-    var wheelProperties = Map.of(
-        Property.TYPE.toString(), "wheel",
-        Property.MODEL.toString(), "15C",
-        Property.PRICE.toString(), 100L);
+        var wheelProperties=Map.of(
+        Property.TYPE.toString(),"wheel",
+        Property.MODEL.toString(),"15C",
+        Property.PRICE.toString(),100L);
 
-    var doorProperties = Map.of(
-        Property.TYPE.toString(), "door",
-        Property.MODEL.toString(), "Lambo",
-        Property.PRICE.toString(), 300L);
+        var doorProperties=Map.of(
+        Property.TYPE.toString(),"door",
+        Property.MODEL.toString(),"Lambo",
+        Property.PRICE.toString(),300L);
 
-    var carProperties = Map.of(
-        Property.MODEL.toString(), "300SL",
-        Property.PRICE.toString(), 10000L,
-        Property.PARTS.toString(), List.of(wheelProperties, doorProperties));
+        var carProperties=Map.of(
+        Property.MODEL.toString(),"300SL",
+        Property.PRICE.toString(),10000L,
+        Property.PARTS.toString(),List.of(wheelProperties,doorProperties));
 
-    var car = new Car(carProperties);
+        var car=new Car(carProperties);
 
-    LOGGER.info("Here is our car:");
-    LOGGER.info("-> model: {}", car.getModel().orElseThrow());
-    LOGGER.info("-> price: {}", car.getPrice().orElseThrow());
-    LOGGER.info("-> parts: ");
-    car.getParts().forEach(p -> LOGGER.info("\t{}/{}/{}",
+        LOGGER.info("Here is our car:");
+        LOGGER.info("-> model: {}",car.getModel().orElseThrow());
+        LOGGER.info("-> price: {}",car.getPrice().orElseThrow());
+        LOGGER.info("-> parts: ");
+        car.getParts().forEach(p->LOGGER.info("\t{}/{}/{}",
         p.getType().orElse(null),
         p.getModel().orElse(null),
         p.getPrice().orElse(null))
-    );
+        );
 
-    // Constructing parts and car
-    // Here is our car:
-    // model: 300SL
-    // price: 10000
-    // parts: 
-    // wheel/15C/100
-    // door/Lambo/300
+// Constructing parts and car
+// Here is our car:
+// model: 300SL
+// price: 10000
+// parts: 
+// wheel/15C/100
+// door/Lambo/300
 ```
 
 ## Class diagram
@@ -176,9 +171,7 @@ And finally here's how we construct and use the `Car` in a full example.
 
 ## Applicability
 
-This pattern is particularly useful in scenarios where you have different types of documents that share some common 
-attributes or behaviors, but also have unique attributes or behaviors specific to their individual types. Here are 
-some scenarios where the Abstract Document design pattern can be applicable:
+This pattern is particularly useful in scenarios where you have different types of documents that share some common attributes or behaviors, but also have unique attributes or behaviors specific to their individual types. Here are some scenarios where the Abstract Document design pattern can be applicable:
 
 * Content Management Systems (CMS): In a CMS, you might have various types of content such as articles, images, videos, etc. Each type of content could have shared attributes like creation date, author, and tags, while also having specific attributes like image dimensions for images or video duration for videos.
 
@@ -194,13 +187,36 @@ some scenarios where the Abstract Document design pattern can be applicable:
 
 * Project Management Tools: In project management applications, you could have different types of tasks like to-do items, milestones, and issues. The Abstract Document pattern could be used to handle general attributes like task name and assignee, while allowing for specific attributes like milestone date or issue priority.
 
-The key idea behind the Abstract Document design pattern is to provide a flexible and extensible way to manage different 
-types of documents or entities with shared and distinct attributes. By defining a common interface and implementing it 
-across various document types, you can achieve a more organized and consistent approach to handling complex data 
-structures.
+* Documents have diverse and evolving attribute structures.
+
+* Dynamically adding new properties is a common requirement.
+
+* Decoupling data access from specific formats is crucial.
+
+* Maintainability and flexibility are critical for the codebase.
+
+The key idea behind the Abstract Document design pattern is to provide a flexible and extensible way to manage different types of documents or entities with shared and distinct attributes. By defining a common interface and implementing it across various document types, you can achieve a more organized and consistent approach to handling complex data structures.
+
+## Consequences
+
+Benefits
+
+* Flexibility: Accommodates varied document structures and properties.
+
+* Extensibility: Dynamically add new attributes without breaking existing code.
+
+* Maintainability: Promotes clean and adaptable code due to separation of concerns.
+
+* Reusability: Typed views enable code reuse for accessing specific attribute types.
+
+Trade-offs
+
+* Complexity: Requires defining interfaces and views, adding implementation overhead.
+
+* Performance: Might introduce slight performance overhead compared to direct data access.
 
 ## Credits
 
 * [Wikipedia: Abstract Document Pattern](https://en.wikipedia.org/wiki/Abstract_Document_Pattern)
 * [Martin Fowler: Dealing with properties](http://martinfowler.com/apsupp/properties.pdf)
-* [Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing (v. 4)](https://www.amazon.com/gp/product/0470059028/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0470059028&linkId=e3aacaea7017258acf184f9f3283b492)
+* [Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing (v. 4)](https://amzn.to/49zRP4R)

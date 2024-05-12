@@ -40,9 +40,14 @@ and https://stackoverflow.com/questions/50211433/servlets-unit-testing
 
 class AppServletTest extends Mockito{
   private String msgPartOne = "<h1>This Server Doesn't Support";
-  private String msgPartTwo = "Requests</h1>\n"
-      + "<h2>Use a GET request with boolean values for the following parameters<h2>\n"
-      + "<h3>'name'</h3>\n<h3>'bus'</h3>\n<h3>'sports'</h3>\n<h3>'sci'</h3>\n<h3>'world'</h3>";
+  private String msgPartTwo = """
+          Requests</h1>
+          <h2>Use a GET request with boolean values for the following parameters<h2>
+          <h3>'name'</h3>
+          <h3>'bus'</h3>
+          <h3>'sports'</h3>
+          <h3>'sci'</h3>
+          <h3>'world'</h3>""";
   private String destination = "newsDisplay.jsp";
 
   @Test

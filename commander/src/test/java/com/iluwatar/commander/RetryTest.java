@@ -31,8 +31,12 @@ import com.iluwatar.commander.exceptions.ItemUnavailableException;
 import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 class RetryTest {
+
+  private static final Logger LOG = LoggerFactory.getLogger(RetryTest.class);
 
   @Test
   void performTest() {
@@ -53,16 +57,16 @@ class RetryTest {
     try {
       r1.perform(arr1, order);
     } catch (Exception e1) {
-      e1.printStackTrace();
+      LOG.error("An exception occurred", e1);
     }
     var arr2 = new ArrayList<>(List.of(new DatabaseUnavailableException(), new ItemUnavailableException()));
     try {
       r2.perform(arr2, order);
     } catch (Exception e1) {
-      e1.printStackTrace();
+      LOG.error("An exception occurred", e1);
     }
     //r1 stops at ItemUnavailableException, r2 retries because it encounters DatabaseUnavailableException
-    assertTrue(arr1.size() == 1 && arr2.size() == 0);
+    assertTrue(arr1.size() == 1 && arr2.isEmpty());
   }
 
 }

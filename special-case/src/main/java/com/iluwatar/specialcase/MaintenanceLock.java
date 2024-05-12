@@ -55,6 +55,6 @@ public class MaintenanceLock {
 
   public void setLock(boolean lock) {
     this.lock = lock;
-    LOGGER.info("Maintenance lock is set to: ", lock);
+    LOGGER.info("Maintenance lock is set to: {}", lock);
   }
 }

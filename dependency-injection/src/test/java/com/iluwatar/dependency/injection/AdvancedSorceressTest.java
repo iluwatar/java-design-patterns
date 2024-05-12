@@ -58,7 +58,7 @@ class AdvancedSorceressTest {
    * her through the setter's parameter
    */
   @Test
-  void testSmokeEveryThing() throws Exception {
+  void testSmokeEveryThing() {
 
     List<Tobacco> tobaccos = List.of(
         new OldTobyTobacco(),

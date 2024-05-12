@@ -43,7 +43,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AsynchronousService {
   /*
    * This represents the queuing layer as well as synchronous layer of the pattern. The thread pool
-   * contains worker threads which execute the tasks in blocking/synchronous manner. Long running
+   * contains worker threads which execute the tasks in blocking/synchronous manner. Long-running
    * tasks should be performed in the background which does not affect the performance of main
    * thread.
    */
@@ -79,7 +79,7 @@ public class AsynchronousService {
       return;
     }
 
-    service.submit(new FutureTask<T>(task) {
+    service.submit(new FutureTask<>(task) {
       @Override
       protected void done() {
         super.done();

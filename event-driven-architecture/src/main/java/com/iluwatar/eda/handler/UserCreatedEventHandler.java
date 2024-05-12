@@ -36,7 +36,7 @@ public class UserCreatedEventHandler implements Handler<UserCreatedEvent> {
 
   @Override
   public void onEvent(UserCreatedEvent event) {
-    LOGGER.info("User '{}' has been Created!", event.getUser().getUsername());
+    LOGGER.info("User '{}' has been Created!", event.getUser().username());
   }
 
 }

@@ -1,0 +1,122 @@
+@startuml
+package com.iluwatar.slob.lob {
+  class Animal {
+    - animalsEaten : Set<Animal>
+    - name : String
+    - plantsEaten : Set<Plant>
+    + Animal()
+    + Animal(name : String, plantsEaten : Set<Plant>, animalsEaten : Set<Animal>)
+    # canEqual(other : Object) : boolean
+    + createObjectFromXml(node : Node)
+    + equals(o : Object) : boolean
+    + getAnimalsEaten() : Set<Animal>
+    + getName() : String
+    + getPlantsEaten() : Set<Plant>
+    + hashCode() : int
+    # iterateXmlForAnimalAndPlants(childNodes : NodeList, animalsEaten : Set<Animal>, plantsEaten : Set<Plant>) {static}
+    + setAnimalsEaten(animalsEaten : Set<Animal>)
+    + setName(name : String)
+    + setPlantsEaten(plantsEaten : Set<Plant>)
+    + toString() : String
+    + toXmlElement(xmlDoc : Document) : Element
+  }
+  class Forest {
+    - animals : Set<Animal>
+    - name : String
+    - plants : Set<Plant>
+    + Forest()
+    + Forest(name : String, animals : Set<Animal>, plants : Set<Plant>)
+    # canEqual(other : Object) : boolean
+    + createObjectFromXml(document : Document)
+    + equals(o : Object) : boolean
+    + getAnimals() : Set<Animal>
+    + getName() : String
+    + getPlants() : Set<Plant>
+    - getXmlDoc() : Document
+    + hashCode() : int
+    + setAnimals(animals : Set<Animal>)
+    + setName(name : String)
+    + setPlants(plants : Set<Plant>)
+    + toString() : String
+    + toXmlElement() : Element
+  }
+  class Plant {
+    - name : String
+    - type : String
+    + Plant()
+    + Plant(name : String, type : String)
+    # canEqual(other : Object) : boolean
+    + createObjectFromXml(node : Node)
+    + equals(o : Object) : boolean
+    + getName() : String
+    + getType() : String
+    + hashCode() : int
+    + setName(name : String)
+    + setType(type : String)
+    + toString() : String
+    + toXmlElement(xmlDoc : Document) : Element
+  }
+}
+package com.iluwatar.slob.serializers {
+  class BlobSerializer {
+    + TYPE_OF_DATA_FOR_DB : String {static}
+    + BlobSerializer()
+    + deSerialize(toDeserialize : Object) : Forest
+    + serialize(toSerialize : Forest) : Object
+  }
+  class ClobSerializer {
+    + TYPE_OF_DATA_FOR_DB : String {static}
+    + ClobSerializer()
+    + deSerialize(toDeserialize : Object) : Forest
+    - elementToXmlString(node : Element) : String {static}
+    + serialize(forest : Forest) : Object
+  }
+  abstract class LobSerializer {
+    - databaseService : DatabaseService
+    # LobSerializer(dataTypeDb : String)
+    + close()
+    + deSerialize(Object) : Forest {abstract}
+    + loadFromDb(id : int, columnName : String) : Object
+    + persistToDb(id : int, name : String, object : Object) : int
+    + serialize(Forest) : Object {abstract}
+  }
+}
+package com.iluwatar.slob.dbservice {
+  class DatabaseService {
+    + BINARY_DATA : String {static}
+    + CREATE_BINARY_SCHEMA_DDL : String {static}
+    + CREATE_TEXT_SCHEMA_DDL : String {static}
+    - DB_URL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    - INSERT : String {static}
+    - LOGGER : Logger {static}
+    - SELECT : String {static}
+    - dataSource : DataSource {static}
+    + dataTypeDb : String
+    + DatabaseService(dataTypeDb : String)
+    - createDataSource() : DataSource {static}
+    + insert(id : int, name : String, data : Object)
+    + select(id : long, columnsName : String) : Object
+    + shutDownService()
+    + startupService()
+  }
+}
+package com.iluwatar.slob {
+  class App {
+    + CLOB : String {static}
+    - LOGGER : Logger {static}
+    + App()
+    - createForest() : Forest {static}
+    - createLobSerializer(args : String[]) : LobSerializer {static}
+    - executeSerializer(forest : Forest, lobSerializer : LobSerializer) {static}
+    + main(args : String[]) {static}
+  }
+}
+Animal -->  "-plantsEaten" Plant
+LobSerializer -->  "-databaseService" DatabaseService
+Forest -->  "-animals" Animal
+Forest -->  "-plants" Plant
+Animal -->  "-animalsEaten" Animal
+BlobSerializer --|> LobSerializer 
+ClobSerializer --|> LobSerializer 
+@enduml

@@ -24,8 +24,6 @@
  */
 package com.iluwatar.lazy.loading;
 
-import java.lang.reflect.Field;
-
 /**
  * Date: 12/19/15 - 12:05 PM
  *

@@ -1,15 +1,14 @@
+<!--
+Thank you for contributing to Java Design Patterns!
 
-Pull request title
+If you're unsure where to start, please refer to the contributing doc:
 
-- Clearly and concisely describes what it does
-- Refer to the issue that it solves, if available
+https://github.com/iluwatar/java-design-patterns/wiki/01.-How-to-contribute
 
+If you still have questions, please let us know via issues or [gitter](https://matrix.to/#/#iluwatar_java-design-patterns:gitter.im).
+-->
 
-Pull request description
+## What problem does this PR solve?
 
-- Describes the main changes that come with the pull request
-- Any relevant additional information is provided
-
-
-
-> For detailed contributing instructions see https://github.com/iluwatar/java-design-patterns/wiki/01.-How-to-contribute
+<!-- Please describe the problem you're trying to solve. Uncomment the following line if this PR closes some issues -->
+<!-- Close #<issue number> -->

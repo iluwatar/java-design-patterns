@@ -12,16 +12,16 @@ la inicialización de un objeto hasta el punto en que se necesita. Puede
 contribuir a la eficiencia en la operación del programa si se usa de manera adecuada.
 
 ## Diagrama de clases
-![alt text](../../../lazy-loading/etc/lazy-loading.png "Lazy Loading")
+![alt text](./etc/lazy-loading.png "Lazy Loading")
 
 ## Aplicabilidad
 Utilice el modelo de Carga Diferida cuando:
 
-* la carga anticipada es costosa o el objeto a cargar podría no ser necesario en absoluto
+* La carga anticipada es costosa o el objeto a cargar podría no ser necesario en absoluto
 
 ## Ejemplos del mundo real
 
-* Anotaciones JPA @OneToOne, @OneToMany, @ManyToOne, @ManyToMany y fetch = FetchType.LAZY
+* Anotaciones JPA `@OneToOne`, `@OneToMany`, `@ManyToOne`, `@ManyToMany` y `fetch = FetchType.LAZY`
 
 ## Créditos
 

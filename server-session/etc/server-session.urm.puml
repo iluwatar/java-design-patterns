@@ -1,0 +1,27 @@
+@startuml
+package com.iluwatar.sessionserver {
+  class App {
+    - LOGGER : Logger {static}
+    - SESSION_EXPIRATION_TIME : long {static}
+    - sessionCreationTimes : Map<String, Instant> {static}
+    - sessions : Map<String, Integer> {static}
+    + App()
+    + main(args : String[]) {static}
+    - sessionExpirationTask() {static}
+  }
+  class LoginHandler {
+    - LOGGER : Logger {static}
+    - sessionCreationTimes : Map<String, Instant>
+    - sessions : Map<String, Integer>
+    + LoginHandler(sessions : Map<String, Integer>, sessionCreationTimes : Map<String, Instant>)
+    + handle(exchange : HttpExchange)
+  }
+  class LogoutHandler {
+    - LOGGER : Logger {static}
+    - sessionCreationTimes : Map<String, Instant>
+    - sessions : Map<String, Integer>
+    + LogoutHandler(sessions : Map<String, Integer>, sessionCreationTimes : Map<String, Instant>)
+    + handle(exchange : HttpExchange)
+  }
+}
+@enduml

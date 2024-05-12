@@ -49,11 +49,11 @@ class KingsHandTest extends EventEmitterTest<KingsHand> {
 
   /**
    * The {@link KingsHand} is both an {@link EventEmitter} as an {@link EventObserver} so verify if
-   * every event received is passed up to it's superior, in most cases {@link KingJoffrey} but now
+   * every event received is passed up to its superior, in most cases {@link KingJoffrey} but now
    * just a mocked observer.
    */
   @Test
-  void testPassThrough() throws Exception {
+  void testPassThrough() {
     final var observer = mock(EventObserver.class);
     final var kingsHand = new KingsHand();
     kingsHand.registerObserver(observer, Event.STARK_SIGHTED);

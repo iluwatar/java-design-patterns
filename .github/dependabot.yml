@@ -9,17 +9,3 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
-    allow:
-      - dependency-name: "org.springframework.boot:spring-boot-dependencies"
-      - dependency-name: "commons-dbcp:commons-dbcp"
-      - dependency-name: "net.sourceforge.htmlunit:htmlunit"
-      - dependency-name: "com.google.code.gson:gson"
-      - dependency-name: "com.google.inject:guice"
-      - dependency-name: "com.github.stefanbirkner:system-lambda"
-      - dependency-name: "org.apache.maven.plugins:maven-surefire-plugin"
-      - dependency-name: "org.apache.maven.plugins:maven-assembly-plugin"
-      - dependency-name: "org.sonarsource.scanner.maven:sonar-maven-plugin"
-      - dependency-name: "org.apache.maven.plugins:maven-checkstyle-plugin"
-      - dependency-name: "com.mycila:license-maven-plugin"
-      - dependency-name: "org.jacoco:jacoco-maven-plugin"
-      - dependency-name: "com.iluwatar.urm:urm-maven-plugin"

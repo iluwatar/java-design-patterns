@@ -1,0 +1,29 @@
+@startuml
+package com.iluwatar {
+  abstract class AbstractThreadLocalExample {
+    - RANDOM_THREAD_PARK_END : Integer {static}
+    - RANDOM_THREAD_PARK_START : Integer {static}
+    - RND : SecureRandom {static}
+    + AbstractThreadLocalExample()
+    - getThreadName() : String
+    # getter() : Supplier<Integer> {abstract}
+    + run()
+    # setter() : Consumer<Integer> {abstract}
+  }
+  class WithThreadLocal {
+    - value : ThreadLocal<Integer>
+    + WithThreadLocal(value : ThreadLocal<Integer>)
+    # getter() : Supplier<Integer>
+    + remove()
+    # setter() : Consumer<Integer>
+  }
+  class WithoutThreadLocal {
+    - value : Integer
+    + WithoutThreadLocal(value : Integer)
+    # getter() : Supplier<Integer>
+    # setter() : Consumer<Integer>
+  }
+}
+WithThreadLocal --|> AbstractThreadLocalExample 
+WithoutThreadLocal --|> AbstractThreadLocalExample 
+@enduml

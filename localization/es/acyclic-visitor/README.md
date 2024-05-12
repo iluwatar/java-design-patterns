@@ -1,9 +1,6 @@
 ---
-layout: pattern
 title: Acyclic Visitor
-folder: acyclic-visitor
-permalink: /patterns/acyclic-visitor/
-categories: Behavioral
+category: Behavioral
 language: es
 tag:
  - Extensibility
@@ -25,7 +22,7 @@ En otras palabras
 
 [WikiWikiWeb](https://wiki.c2.com/?AcyclicVisitor) dice
 
-> El patrón Acyclic Visitor permite que nuevas funciones sean añadidas a jerarquías de clases existentes sin afectar a las mismas, y sin crear los círculos de dependencias que son inherentes al patrón Visitor Pattern de GangOfFour.
+> El patrón Acyclic Visitor permite que nuevas funciones sean añadidas a jerarquías de clases existentes sin afectar a las mismas, y sin crear los círculos de dependencias que son inherentes al patrón de visitante (Visitor Pattern) de GangOfFour.
 
 **Ejemplo Programático**
 
@@ -99,7 +96,7 @@ public class ConfigureForUnixVisitor implements ZoomVisitor {
 }
 ```
 
-Finalmente aquí están los "visitors" en acción.
+Finalmente, aquí están los "visitors" en acción.
 
 ```java
     var conUnix = new ConfigureForUnixVisitor();
@@ -123,14 +120,14 @@ Output del programa:
 
 ## Diagrama de clases
 
-![alt text](../../../acyclic-visitor/etc/acyclic-visitor.png "Acyclic Visitor")
+![alt text](./etc/acyclic-visitor.png "Acyclic Visitor")
 
 ## Aplicación
 
 Este patrón puede ser usado:
 
 * Cuando necesitas añadir una nueva función a una jerarquía de clases sin que esta se vea afectada o alterada.
-* Cuando hay funciones que operan sobre la jerarquía pero no pertenecen a la jerarquía como tal. Las clases ConfigureForDOS / ConfigureForUnix / ConfigureForX por ejemplo.
+* Cuando hay funciones que operan sobre la jerarquía, pero no pertenecen a la jerarquía como tal. Las clases ConfigureForDOS / ConfigureForUnix / ConfigureForX por ejemplo.
 * Cuando necesitas ejecutar operaciones muy diferentes en un objeto dependiendo de su tipo.
 * Cuando la jerarquía visitada va a ser frecuentemente extendida con derivados de la clase elemento.
 * Cuando el proceso de volver a compilar, enlazar, probar o distribuir los derivados de la clase elemento es muy pesado.

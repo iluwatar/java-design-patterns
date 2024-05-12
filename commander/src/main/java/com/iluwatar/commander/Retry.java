@@ -94,7 +94,7 @@ public class Retry<T> {
         this.errors.add(e);
         if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
           this.handleError.handleIssue(obj, e);
-          return; //return here...dont go further
+          return; //return here... don't go further
         }
         try {
           long testDelay =

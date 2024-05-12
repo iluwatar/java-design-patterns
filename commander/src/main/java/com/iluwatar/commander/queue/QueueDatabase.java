@@ -25,7 +25,6 @@
 package com.iluwatar.commander.queue;
 
 import com.iluwatar.commander.Database;
-import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
 import com.iluwatar.commander.exceptions.IsEmptyException;
 import java.util.ArrayList;
 import java.util.List;

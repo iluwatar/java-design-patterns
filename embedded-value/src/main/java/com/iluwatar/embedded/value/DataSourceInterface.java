@@ -36,22 +36,22 @@ import java.util.stream.Stream;
  */
 interface DataSourceInterface {
   
-  final String JDBC_URL = "jdbc:h2:mem:Embedded-Value";
+  String JDBC_URL = "jdbc:h2:mem:Embedded-Value";
   
-  final String CREATE_SCHEMA = "CREATE TABLE Orders (Id INT AUTO_INCREMENT, item VARCHAR(50) NOT NULL, orderedBy VARCHAR(50)"
+  String CREATE_SCHEMA = "CREATE TABLE Orders (Id INT AUTO_INCREMENT, item VARCHAR(50) NOT NULL, orderedBy VARCHAR(50)"
       + ", city VARCHAR(50), state VARCHAR(50), pincode CHAR(6) NOT NULL, PRIMARY KEY(Id))";
   
-  final String GET_SCHEMA = "SHOW COLUMNS FROM Orders";
+  String GET_SCHEMA = "SHOW COLUMNS FROM Orders";
   
-  final String INSERT_ORDER = "INSERT INTO Orders (item, orderedBy, city, state, pincode) VALUES(?, ?, ?, ?, ?)";
+  String INSERT_ORDER = "INSERT INTO Orders (item, orderedBy, city, state, pincode) VALUES(?, ?, ?, ?, ?)";
   
-  final String QUERY_ORDERS = "SELECT * FROM Orders";
+  String QUERY_ORDERS = "SELECT * FROM Orders";
   
-  final String QUERY_ORDER = QUERY_ORDERS + " WHERE Id = ?";
+  String QUERY_ORDER = QUERY_ORDERS + " WHERE Id = ?";
   
-  final String REMOVE_ORDER = "DELETE FROM Orders WHERE Id = ?";
+  String REMOVE_ORDER = "DELETE FROM Orders WHERE Id = ?";
   
-  final String DELETE_SCHEMA = "DROP TABLE Orders";
+  String DELETE_SCHEMA = "DROP TABLE Orders";
   
   boolean createSchema() throws SQLException;
   

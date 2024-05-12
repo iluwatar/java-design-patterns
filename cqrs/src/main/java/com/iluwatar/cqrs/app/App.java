@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * CQRS : Command Query Responsibility Segregation. A pattern used to separate query services from
- * commands or writes services. The pattern is very simple but it has many consequences. For
+ * commands or writes services. The pattern is very simple, but it has many consequences. For
  * example, it can be used to tackle down a complex domain, or to use other architectures that were
  * hard to implement with the classical way.
  *

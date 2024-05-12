@@ -30,7 +30,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * FanOutFanIn class processes long running requests, when any of the processes gets over, result is
+ * FanOutFanIn class processes long-running requests, when any of the processes gets over, result is
  * passed over to the consumer or the callback function. Consumer will aggregate the results as they
  * keep on completing.
  */
