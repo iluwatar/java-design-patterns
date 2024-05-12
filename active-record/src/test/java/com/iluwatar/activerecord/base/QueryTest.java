@@ -22,26 +22,62 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.activerecord.base;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.iluwatar.activerecord.Courier;
 import org.junit.jupiter.api.Test;
 
 class QueryTest {
 
   @Test
-  void shouldConstructFullInsertQuery() {
-    Courier courier = new Courier();
-    courier.setId(1L);
-    courier.setFirstName("John");
-    courier.setLastName("Smith");
+  void shouldConstructFullSelectQuery() {
+    final String expectedQuery = "SELECT * FROM Courier";
 
+    String actualQuery = Query
+        .selectFrom("Courier")
+        .toString();
+
+    assertEquals(expectedQuery, actualQuery);
+  }
+
+  @Test
+  void shouldConstructFullSelectByTheFieldQuery() {
+    final String expectedQuery = "SELECT * FROM Courier WHERE id = ?";
+
+    String actualQuery = Query
+        .selectFrom("Courier")
+        .withKey("id")
+        .toString();
+
+    assertEquals(expectedQuery, actualQuery);
+  }
+
+  @Test
+  void shouldConstructFullInsertQuery() {
     final String expected = "INSERT INTO Courier (id,firstName,lastName) VALUES (?,?,?)";
 
-    String insertQuery = courier.constructInsertionQuery(Courier.class);
+    String actualQuery = Query.insertInto("Courier")
+        .column("id")
+        .value("?") // FIXME: This API doesn't look smooth
+        .column("firstName")
+        .value("?")
+        .column("lastName")
+        .value("?")
+        .toString();
 
-    assertEquals(expected, insertQuery);
+    assertEquals(expected, actualQuery);
+  }
+
+  @Test
+  void constructDeleteQuery() {
+    final String expected = "DELETE FROM Courier WHERE id = ?";
+
+    String actualQuery = Query.deleteFrom("Courier")
+        .withKey("id")
+        .toString();
+
+    assertEquals(expected, actualQuery);
   }
 }

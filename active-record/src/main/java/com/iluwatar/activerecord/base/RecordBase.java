@@ -205,7 +205,7 @@ public abstract class RecordBase {
    * @param <T>   the record type.
    * @return a full insert query.
    */
-  protected static <T extends RecordBase> String constructInsertionQuery(Class<T> clazz) {
+  private static <T extends RecordBase> String constructInsertionQuery(Class<T> clazz) {
     List<Object> arguments = new ArrayList<>();
     try {
       T recordInstance = getDeclaredClassInstance(clazz);
