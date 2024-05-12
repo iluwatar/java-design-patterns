@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOA Services</title>
     <script>
-        function callService3() {
+        function callService2() {
             var name = prompt("Enter your name:");
             if (name != null && name.trim() != "") {
-                window.location.href = "/three/" + name.trim();
+                window.location.href = "/two/" + name.trim();
             }
         }
     </script>
@@ -17,9 +17,8 @@
 <h1>Welcome to your services!</h1>
 <p>Select a service:</p>
 <ul>
-    <li><a href="/one">Service 1</a></li>
-    <li><a href="/two">Service 2</a></li>
-    <li><a href="#" onclick="callService3()">Service 3</a></li>
+    <li><a href="/one">Service 1: simple greeting</a></li>
+    <li><a href="#" onclick="callService2()">Service 2: personalized greeting</a></li>
 </ul>
 </body>
 </html>

@@ -4,18 +4,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
 @SpringBootApplication
-@EnableEurekaServer
 public class SOAExampleApplication {
 
   private static final Logger log = LoggerFactory.getLogger(SOAExampleApplication.class);
 
   public static void main(String[] args) {
     SpringApplication.run(SOAExampleApplication.class, args);
-    log.info("Welcome to the SOA Example Application!");
-    log.info("To get to the services visit: http://localhost:8080/services on your browser");
+    log.info("SOA Example Application started successfully!");
+    log.info("You can access the application via: http://localhost:8080/home/greeting");
+    log.info("This endpoint will return a personalized greeting based on the weather conditions.");
+    log.info("You can explore other endpoints as well for different functionalities.");
   }
-
 }
