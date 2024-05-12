@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.activerecord.base;
 
 import java.util.ArrayList;
@@ -73,7 +74,6 @@ final class Query {
 
     private final String table;
     private final List<String> columns = new ArrayList<>();
-    private final List<String> values = new ArrayList<>();
 
     InsertionQuery(String table) {
       this.table = table;
@@ -81,22 +81,24 @@ final class Query {
 
     @Override
     public String toString() {
-      return "INSERT INTO "
-          + table
-          + " ("
-          + String.join(",", columns)
-          + ") VALUES ("
-          + String.join(",", values)
-          + ")";
+      StringBuilder queryBuilder = new StringBuilder();
+      queryBuilder.append("INSERT INTO ");
+      queryBuilder.append(table);
+      queryBuilder.append(" (");
+      queryBuilder.append(String.join(",", columns));
+      queryBuilder.append(") VALUES (");
+      for (int i = 0; i < columns.size(); i++) {
+        queryBuilder.append("?");
+        if (i < columns.size() - 1) {
+          queryBuilder.append(",");
+        }
+      }
+      queryBuilder.append(")");
+      return queryBuilder.toString();
     }
 
     InsertionQuery column(String column) {
       columns.add(column);
-      return this;
-    }
-
-    InsertionQuery value(String value) {
-      values.add(value);
       return this;
     }
   }

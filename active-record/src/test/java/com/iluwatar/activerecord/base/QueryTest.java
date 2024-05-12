@@ -60,11 +60,8 @@ class QueryTest {
 
     String actualQuery = Query.insertInto("Courier")
         .column("id")
-        .value("?") // FIXME: This API doesn't look smooth
         .column("firstName")
-        .value("?")
         .column("lastName")
-        .value("?")
         .toString();
 
     assertEquals(expected, actualQuery);

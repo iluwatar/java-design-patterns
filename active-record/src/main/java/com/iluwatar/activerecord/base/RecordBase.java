@@ -216,7 +216,7 @@ public abstract class RecordBase {
       for (Field field : standardFields) {
         field.setAccessible(true);
         arguments.add(field.get(recordInstance));
-        insert.column(field.getName()).value("?");
+        insert.column(field.getName());
       }
       return insert.toString();
     } catch (IllegalAccessException ignored) {
