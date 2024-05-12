@@ -26,22 +26,22 @@
 package com.iluwatar.virtual.proxy;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Getter
 public class RealVideoObject implements ExpensiveObject {
-  private String videoData;
 
   public RealVideoObject() {
-    this.videoData = heavyInitialConfiguration();
+    heavyInitialConfiguration();
   }
 
-  private String heavyInitialConfiguration() {
-    System.out.println("Loading video data from the database or heavy computation...");
-    return "Some loaded video data";
+  private void heavyInitialConfiguration() {
+    log.info("Loading initial video configurations...");
   }
 
   @Override
   public void process() {
-    System.out.println("Playing video content with data: " + videoData);
+    log.info("Processing and playing video content...");
   }
 }

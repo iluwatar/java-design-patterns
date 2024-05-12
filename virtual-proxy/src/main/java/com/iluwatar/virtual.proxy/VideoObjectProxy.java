@@ -26,7 +26,9 @@
 package com.iluwatar.virtual.proxy;
 
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Getter
 public class VideoObjectProxy implements ExpensiveObject {
   private RealVideoObject realVideoObject;
@@ -38,7 +40,7 @@ public class VideoObjectProxy implements ExpensiveObject {
   @Override
   public void process() {
     if (realVideoObject == null) {
-      System.out.println("RealVideoObject is created on demand.");
+      log.info("Creating RealExpensiveObject only when it is needed.");
       realVideoObject = new RealVideoObject();
     }
     realVideoObject.process();
