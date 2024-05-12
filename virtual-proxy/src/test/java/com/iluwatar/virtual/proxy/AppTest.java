@@ -27,32 +27,62 @@ package com.iluwatar.virtual.proxy;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.*;
 
+/**
+ * Unit tests for the App class to ensure its functionality and interactions
+ * within the virtual proxy pattern are correct.
+ */
 public class AppTest {
 
   private VideoObjectProxy proxy;
   private RealVideoObject realVideoObject;
 
+  /**
+   * Sets up the testing environment before each test. This method initializes the mock
+   * for RealVideoObject and injects it into VideoObjectProxy.
+   */
   @BeforeEach
   void setUp() {
     realVideoObject = Mockito.mock(RealVideoObject.class);
     proxy = new VideoObjectProxy();
-    proxy.setRealVideoObject(realVideoObject);
+    proxy.setRealVideoObject(realVideoObject); // Dependency injection of the mock
   }
 
+  /**
+   * Tests that the main method of the application executes without throwing any exceptions.
+   * This ensures basic runtime integrity and configuration correctness.
+   */
+  @Test
+  void mainShouldExecuteWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}), "App should run without throwing exceptions");
+  }
+
+  /**
+   * Verifies that the VideoObjectProxy#process() method creates the RealVideoObject
+   * on its first call and correctly delegates the processing to it. This test ensures
+   * that the lazy initialization aspect of the proxy is functioning as expected.
+   */
   @Test
   void testProcessCreatesRealVideoObjectOnFirstCall() {
     proxy.process();
     verify(realVideoObject, times(1)).process();
   }
 
+  /**
+   * Ensures that VideoObjectProxy#process() does not recreate the RealVideoObject
+   * if it already exists, thereby verifying that subsequent calls to process utilize the same
+   * instantiated object. This test checks the correct reuse of the lazy initialized object.
+   */
   @Test
   void testProcessUsesRealVideoObject() {
-    // Check that realVideoObject is not recreated if it already exists
-    proxy.process();  // First call, creates the object
-    proxy.process();  // Second call, should use the already created object
-    verify(realVideoObject, times(2)).process();  // Should call the method twice on the same object
+    // Initial process call to create and use the object
+    proxy.process();
+    // Second process call should use the existing object
+    proxy.process();
+    // Verify that process is called exactly twice on the same mock object
+    verify(realVideoObject, times(2)).process();
   }
 }
-
