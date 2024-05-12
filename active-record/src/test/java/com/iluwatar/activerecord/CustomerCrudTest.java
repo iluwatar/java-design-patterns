@@ -25,8 +25,10 @@
 package com.iluwatar.activerecord;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 class CustomerCrudTest extends BaseTest {
@@ -60,10 +62,39 @@ class CustomerCrudTest extends BaseTest {
     assertEquals("Smith", firstCustomer.getLastName());
 
     // find the second customer
-    Customer secondCustomer = Customer.findById(2L, Customer.class);
-    assertEquals(2L, secondCustomer.getId());
-    assertEquals("C798237", secondCustomer.getCustomerNumber());
-    assertEquals("SecondCustomerName", secondCustomer.getFirstName());
-    assertEquals("SecondCustomerLastName", secondCustomer.getLastName());
+    Customer.findById(2L, Customer.class).ifPresent(secondCustomer -> {
+      assertEquals(2L, secondCustomer.getId());
+      assertEquals("C798237", secondCustomer.getCustomerNumber());
+      assertEquals("SecondCustomerName", secondCustomer.getFirstName());
+      assertEquals("SecondCustomerLastName", secondCustomer.getLastName());
+    });
+  }
+
+  @Test
+  void shouldDeleteCustomer() {
+    // save the customer
+    Customer customer = new Customer();
+    customer.setId(1L);
+    customer.setCustomerNumber("C123");
+    customer.setFirstName("John");
+    customer.setLastName("Smith");
+
+    customer.save(Customer.class);
+
+    // find the customer
+    Customer.findById(1L, Customer.class)
+        .ifPresent(foundCustomer -> {
+          assertEquals(1L, foundCustomer.getId());
+          assertEquals("C123", foundCustomer.getCustomerNumber());
+          assertEquals("John", foundCustomer.getFirstName());
+          assertEquals("Smith", foundCustomer.getLastName());
+        });
+
+    // delete the customer
+    Customer.delete(1L, Customer.class);
+
+    // verify that the customer not found
+    Optional<Customer> nullableCustomer = Customer.findById(1L, Customer.class);
+    assertTrue(nullableCustomer.isEmpty());
   }
 }

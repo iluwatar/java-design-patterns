@@ -40,6 +40,10 @@ final class Query {
     return new InsertionQuery(tableName);
   }
 
+  static DeletionQuery deleteFrom(String tableName) {
+    return new DeletionQuery(tableName);
+  }
+
   static class SelectionQuery {
     private final String table;
     private final List<String> columns = new ArrayList<>();
@@ -63,23 +67,6 @@ final class Query {
       return this;
     }
 
-    private String constructWhere(List<String> whereKeys) {
-      if (whereKeys.isEmpty()) {
-        return "";
-      }
-
-      return constructWhereFromKeys(whereKeys);
-    }
-
-    private String constructWhereFromKeys(List<String> whereKeys) {
-      StringBuilder whereClause = new StringBuilder(" WHERE ");
-      for (String key : whereKeys) {
-        whereClause.append(key)
-            .append(" = ")
-            .append("?");
-      }
-      return whereClause.toString();
-    }
   }
 
   static class InsertionQuery {
@@ -114,4 +101,42 @@ final class Query {
     }
   }
 
+  static class DeletionQuery {
+    private final String table;
+    private final List<String> whereKeys = new ArrayList<>();
+
+    public DeletionQuery(String table) {
+      this.table = table;
+    }
+
+    DeletionQuery withKey(String column) {
+      whereKeys.add(column);
+      return this;
+    }
+
+    @Override
+    public String toString() {
+      return "DELETE FROM "
+          + table
+          + constructWhere(whereKeys);
+    }
+  }
+
+  private static String constructWhere(List<String> whereKeys) {
+    if (whereKeys.isEmpty()) {
+      return "";
+    }
+
+    return constructWhereFromKeys(whereKeys);
+  }
+
+  private static String constructWhereFromKeys(List<String> whereKeys) {
+    StringBuilder whereClause = new StringBuilder(" WHERE ");
+    for (String key : whereKeys) {
+      whereClause.append(key)
+          .append(" = ")
+          .append("?");
+    }
+    return whereClause.toString();
+  }
 }

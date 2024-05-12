@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.activerecord.base;
 
 import com.iluwatar.activerecord.base.Query.InsertionQuery;
@@ -35,6 +36,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
@@ -99,6 +101,8 @@ public abstract class RecordBase {
   /**
    * Find all the records for a corresponding domain model.
    *
+   * @param clazz the record class.
+   * @param <T>   the record type.
    * @return all the domain model related records.
    */
   public static <T extends RecordBase> List<T> findAll(Class<T> clazz) {
@@ -124,10 +128,12 @@ public abstract class RecordBase {
   /**
    * Find a domain model by its ID.
    *
-   * @param id domain model identifier.
+   * @param id    domain model identifier.
+   * @param clazz the record class.
+   * @param <T>   the record type.
    * @return the domain model.
    */
-  public static <T extends RecordBase> T findById(Long id, Class<T> clazz) {
+  public static <T extends RecordBase> Optional<T> findById(Long id, Class<T> clazz) {
     String selectStatement = Query
         .selectFrom(getDeclaredClassInstance(clazz).getTableName())
         .withKey("id")
@@ -139,9 +145,9 @@ public abstract class RecordBase {
         if (rs.next()) {
           T theRecord = getDeclaredClassInstance(clazz);
           theRecord.setFieldsFromResultSet(rs);
-          return theRecord;
+          return Optional.of(theRecord);
         }
-        return getDeclaredClassInstance(clazz);
+        return Optional.empty();
       }
     } catch (SQLException e) {
       throw new RecordDataAccessException(EXCEPTION_MESSAGE + clazz.getName() + " with id=" + id,
@@ -150,7 +156,32 @@ public abstract class RecordBase {
   }
 
   /**
+   * Delete the record by its unique identifier.
+   *
+   * @param id    the record identifier.
+   * @param clazz the record class.
+   * @param <T>   the record type.
+   */
+  public static <T extends RecordBase> void delete(Long id, Class<T> clazz) {
+    String deleteStatement = Query
+        .deleteFrom(getDeclaredClassInstance(clazz).getTableName())
+        .withKey("id")
+        .toString();
+    try (Connection conn = getConnection();
+         PreparedStatement pstmt = conn.prepareStatement(deleteStatement)) {
+      pstmt.setLong(1, id);
+      pstmt.executeUpdate();
+    } catch (SQLException e) {
+      throw new RecordDataAccessException(EXCEPTION_MESSAGE + clazz.getName() + " with id=" + id,
+          e);
+    }
+  }
+
+  /**
    * Save the record.
+   *
+   * @param clazz the record class.
+   * @param <T>   the record type.
    */
   public <T extends RecordBase> void save(Class<T> clazz) {
     try (Connection connection = getConnection();
@@ -167,6 +198,13 @@ public abstract class RecordBase {
 
   protected abstract void setPreparedStatementParams(PreparedStatement pstmt) throws SQLException;
 
+  /**
+   * Constructs an insertion query based on the descending type's fields.
+   *
+   * @param clazz the record class.
+   * @param <T>   the record type.
+   * @return a full insert query.
+   */
   protected static <T extends RecordBase> String constructInsertionQuery(Class<T> clazz) {
     List<Object> arguments = new ArrayList<>();
     try {
