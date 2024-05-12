@@ -40,11 +40,11 @@ public class RealVideoObject implements ExpensiveObject {
   }
 
   private void heavyInitialConfiguration() {
-    log.info("Loading initial video configurations...");
+    LOGGER.info("Loading initial video configurations...");
   }
 
   @Override
   public void process() {
-    log.info("Processing and playing video content...");
+    LOGGER.info("Processing and playing video content...");
   }
 }
