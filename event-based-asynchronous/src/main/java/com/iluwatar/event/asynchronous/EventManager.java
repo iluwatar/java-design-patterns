@@ -25,6 +25,7 @@
 package com.iluwatar.event.asynchronous;
 
 import java.security.SecureRandom;
+import java.time.Duration;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import lombok.Getter;
@@ -43,7 +44,7 @@ public class EventManager implements ThreadCompleteListener {
   // Just don't want to have too many running events. :)
   public static final int MIN_ID = 1;
   public static final int MAX_ID = MAX_RUNNING_EVENTS;
-  public static final int MAX_EVENT_TIME = 1800; // in seconds / 30 minutes.
+  public static final Duration MAX_EVENT_TIME = Duration.ofSeconds(1800); // 30 minutes.
   private int currentlyRunningSyncEvent = -1;
   private final SecureRandom rand;
 
@@ -71,7 +72,7 @@ public class EventManager implements ThreadCompleteListener {
    *                                        already running.
    * @throws LongRunningEventException      Long-running events are not allowed in the app.
    */
-  public int create(int eventTime)
+  public int create(Duration eventTime)
       throws MaxNumOfEventsAllowedException, InvalidOperationException, LongRunningEventException {
     if (currentlyRunningSyncEvent != -1) {
       throw new InvalidOperationException("Event [" + currentlyRunningSyncEvent + "] is still"
@@ -92,19 +93,23 @@ public class EventManager implements ThreadCompleteListener {
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
    * @throws LongRunningEventException      Long-running events are not allowed in the app.
    */
-  public int createAsync(int eventTime) throws MaxNumOfEventsAllowedException,
+  public int createAsync(Duration eventTime) throws MaxNumOfEventsAllowedException,
       LongRunningEventException {
     return createEvent(eventTime, false);
   }
 
-  private int createEvent(int eventTime, boolean isSynchronous)
+  private int createEvent(Duration eventTime, boolean isSynchronous)
       throws MaxNumOfEventsAllowedException, LongRunningEventException {
+    if (eventTime.isNegative()) {
+      throw new IllegalArgumentException("eventTime cannot be negative");
+    }
+
     if (eventPool.size() == MAX_RUNNING_EVENTS) {
       throw new MaxNumOfEventsAllowedException("Too many events are running at the moment."
           + " Please try again later.");
     }
 
-    if (eventTime >= MAX_EVENT_TIME) {
+    if (eventTime.getSeconds() > MAX_EVENT_TIME.getSeconds()) {
       throw new LongRunningEventException(
           "Maximum event time allowed is " + MAX_EVENT_TIME + " seconds. Please try again.");
     }

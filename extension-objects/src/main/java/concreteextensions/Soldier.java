@@ -33,12 +33,8 @@ import units.SoldierUnit;
 /**
  * Class defining Soldier.
  */
-@Getter
-@RequiredArgsConstructor
 @Slf4j
-public class Soldier implements SoldierExtension {
-
-  private final SoldierUnit unit;
+public record Soldier(SoldierUnit unit) implements SoldierExtension {
 
   @Override
   public void soldierReady() {

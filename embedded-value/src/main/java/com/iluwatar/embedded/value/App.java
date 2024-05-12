@@ -40,6 +40,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class App {
+
+  private static final String BANGLORE = "Banglore";
+  private static final String KARNATAKA = "Karnataka";
+
                                       
   /**
    * Program entry point.
@@ -53,11 +57,11 @@ public class App {
 
     // Orders to insert into database
     final var order1 = new Order("JBL headphone", "Ram", 
-        new ShippingAddress("Bangalore", "Karnataka", "560040"));
+        new ShippingAddress(BANGLORE, KARNATAKA, "560040"));
     final var order2 = new Order("MacBook Pro", "Manjunath",
-        new ShippingAddress("Bangalore", "Karnataka", "581204"));
+        new ShippingAddress(BANGLORE, KARNATAKA, "581204"));
     final var order3 = new Order("Carrie Soto is Back", "Shiva",
-        new ShippingAddress("Bangalore", "Karnataka", "560004"));
+        new ShippingAddress(BANGLORE, KARNATAKA, "560004"));
     
     // Create table for orders - Orders(id, name, orderedBy, city, state, pincode).
     // We can see that table is different from the Order object we have.

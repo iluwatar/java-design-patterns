@@ -37,6 +37,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import lombok.Getter;
 import org.bson.Document;
 
 /**
@@ -51,7 +52,9 @@ public class MongoTicketRepository implements LotteryTicketRepository {
 
   private MongoClient mongoClient;
   private MongoDatabase database;
+  @Getter
   private MongoCollection<Document> ticketsCollection;
+  @Getter
   private MongoCollection<Document> countersCollection;
 
   /**
@@ -112,24 +115,6 @@ public class MongoTicketRepository implements LotteryTicketRepository {
     return result.getInteger("seq");
   }
 
-  /**
-   * Get tickets collection.
-   *
-   * @return tickets collection
-   */
-  public MongoCollection<Document> getTicketsCollection() {
-    return ticketsCollection;
-  }
-
-  /**
-   * Get counters collection.
-   *
-   * @return counters collection
-   */
-  public MongoCollection<Document> getCountersCollection() {
-    return countersCollection;
-  }
-
   @Override
   public Optional<LotteryTicket> findById(LotteryTicketId id) {
     return ticketsCollection
@@ -145,10 +130,10 @@ public class MongoTicketRepository implements LotteryTicketRepository {
   public Optional<LotteryTicketId> save(LotteryTicket ticket) {
     var ticketId = getNextId();
     var doc = new Document(TICKET_ID, ticketId);
-    doc.put("email", ticket.getPlayerDetails().getEmail());
-    doc.put("bank", ticket.getPlayerDetails().getBankAccount());
-    doc.put("phone", ticket.getPlayerDetails().getPhoneNumber());
-    doc.put("numbers", ticket.getLotteryNumbers().getNumbersAsString());
+    doc.put("email", ticket.playerDetails().email());
+    doc.put("bank", ticket.playerDetails().bankAccount());
+    doc.put("phone", ticket.playerDetails().phoneNumber());
+    doc.put("numbers", ticket.lotteryNumbers().getNumbersAsString());
     ticketsCollection.insertOne(doc);
     return Optional.of(new LotteryTicketId(ticketId));
   }
@@ -160,7 +145,7 @@ public class MongoTicketRepository implements LotteryTicketRepository {
         .into(new ArrayList<>())
         .stream()
         .map(this::docToTicket)
-        .collect(Collectors.toMap(LotteryTicket::getId, Function.identity()));
+        .collect(Collectors.toMap(LotteryTicket::id, Function.identity()));
   }
 
   @Override

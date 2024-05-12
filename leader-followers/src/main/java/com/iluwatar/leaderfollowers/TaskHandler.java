@@ -39,7 +39,6 @@ public class TaskHandler {
     var time = task.getTime();
     Thread.sleep(time);
     LOGGER.info("It takes " + time + " milliseconds to finish the task");
-    task.setFinished();
+    task.setFinished(true);
   }
-
 }

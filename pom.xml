@@ -38,9 +38,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
     <spring-boot.version>2.7.5</spring-boot.version>
-    <jacoco.version>0.8.11</jacoco.version>
+    <jacoco.version>0.8.12</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <htmlunit.version>3.11.0</htmlunit.version>
+    <htmlunit.version>4.1.0</htmlunit.version>
     <gson.version>2.10.1</gson.version>
     <guice.version>5.1.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
@@ -48,8 +48,8 @@
     <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
     <license-maven-plugin.version>4.3</license-maven-plugin.version>
     <urm-maven-plugin.version>2.1.1</urm-maven-plugin.version>
-    <slf4j.version>2.0.12</slf4j.version>
-    <logback.version>1.5.3</logback.version>
+    <slf4j.version>2.0.13</slf4j.version>
+    <logback.version>1.5.6</logback.version>
     <!-- SonarCloud -->
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.organization>iluwatar</sonar.organization>
@@ -162,7 +162,7 @@
     <module>ambassador</module>
     <module>acyclic-visitor</module>
     <module>collection-pipeline</module>
-    <module>master-worker-pattern</module>
+    <module>master-worker</module>
     <module>spatial-partition</module>
     <module>priority-queue</module>
     <module>commander</module>

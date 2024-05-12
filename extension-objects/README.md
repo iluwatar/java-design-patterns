@@ -1,18 +1,24 @@
 ---
-title: Extension objects
-category: Behavioral
+title: Extension Objects
+category: Structural
 language: en
 tag:
- - Extensibility
+    - Encapsulation
+    - Extensibility
+    - Object composition
+    - Polymorphism
 ---
 
-# Extention Objects Pattern
+## Also known as
+
+* Interface Extensions
 
 ## Intent
-Anticipate that an object’s interface needs to be extended in the future. Additional
-interfaces are defined by extension objects.
+
+The Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure, by attaching additional objects that can dynamically add new functionality.
 
 ## Explanation
+
 Real-world example
 
 > Suppose you are developing a Java-based game for a client, and in the middle of the development process, new features are suggested. The Extension Objects pattern empowers your program to adapt to unforeseen changes with minimal refactoring, especially when integrating additional functionalities into your project.
@@ -27,10 +33,10 @@ Wikipedia says
 
 **Programmatic example**
 
-The aim of utilising the Extension Objects pattern is to implement new features/functionality without having to refactor every class.
-The following examples shows utilising this pattern for an Enemy class extending Entity within a game:
+The aim of utilising the Extension Objects pattern is to implement new features/functionality without having to refactor every class. The following examples shows utilising this pattern for an Enemy class extending Entity within a game:
 
 Primary App class to execute our program from.
+
 ```java
 public class App {
     public static void main(String[] args) {
@@ -50,7 +56,9 @@ public class App {
     }
 }
 ```
+
 Enemy class with initial actions and extensions.
+
 ```java
 class Enemy extends Entity {
     public Enemy(String name) {
@@ -72,7 +80,9 @@ class Enemy extends Entity {
     }
 }
 ```
+
 EnemyExtension class with overriding extendAction() method.
+
 ```java
 class EnemyExtension implements EntityExtension {
     @Override
@@ -81,7 +91,9 @@ class EnemyExtension implements EntityExtension {
     }
 }
 ```
+
 Entity class which will be extended by Enemy.
+
 ```java
 class Entity {
     private String name;
@@ -105,32 +117,62 @@ class Entity {
     }
 }
 ```
+
 EntityExtension interface to be used by EnemyExtension.
+
 ```java
 interface EntityExtension {
     void extendedAction();
 }
 ```
+
 Program output:
+
 ```markdown
 Enemy performs the initial action.
 Enemy wants to attack you.
 Enemy has advanced towards you!
 ```
+
 In this example, the Extension Objects pattern allows the enemy entity to perform unique initial actions and advanced actions when specific extensions are applied. This pattern provides flexibility and extensibility to the codebase while minimizing the need for major code changes.
 
-
 ## Class diagram
+
 ![Extension_objects](./etc/extension_obj.png "Extension objects")
 
 ## Applicability
-Use the Extension Objects pattern when:
 
-* you need to support the addition of new or unforeseen interfaces to existing classes and you don't want to impact clients that don't need this new interface. Extension Objects lets you keep related operations together by defining them in a separate class
-* a class representing a key abstraction plays different roles for different clients. The number of roles the class can play should be open-ended. There is a need to preserve the key abstraction itself. For example, a customer object is still a customer object even if different subsystems view it differently.
-* a class should be extensible with new behavior without subclassing from it.
+This pattern is applicable in scenarios where an object's functionality needs to be extended at runtime, avoiding the complications of subclassing. It's particularly useful in systems where object capabilities need to be augmented post-deployment, or where the capabilities might vary significantly across instances.
 
-## Real world examples
+## Known Uses
 
+* Extending services in an application server without altering existing code.
+* Plugins in IDEs like IntelliJ IDEA or Eclipse to add features to the base application.
+* Enabling additional features in enterprise software based on license levels.
 * [OpenDoc](https://en.wikipedia.org/wiki/OpenDoc)
 * [Object Linking and Embedding](https://en.wikipedia.org/wiki/Object_Linking_and_Embedding)
+
+## Consequences
+
+Benefits:
+
+* Enhances flexibility by allowing dynamic extension of an object's capabilities.
+* Promotes loose coupling between the base object and its extensions.
+* Supports the [Open/Closed Principle](https://java-design-patterns.com/principles/#open-closed-principle) by keeping the object open for extension but closed for modification.
+
+Trade-offs:
+
+* Can increase complexity due to the management of extension objects.
+* May introduce performance overhead if the interaction between objects and extensions is not efficiently designed.
+
+## Related Patterns
+
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar in intent to add responsibilities dynamically, but uses a different structure.
+* [Composite](https://java-design-patterns.com/patterns/composite/): Also manages a group of objects, which can be seen as a form of extension.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Offers an alternative way to change the behavior of an object dynamically.
+
+## Credits
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/4aBMuuL)
+* [Pattern-Oriented Software Architecture: A System of Patterns](https://amzn.to/3Q9YOtX)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3W6IZYQ)

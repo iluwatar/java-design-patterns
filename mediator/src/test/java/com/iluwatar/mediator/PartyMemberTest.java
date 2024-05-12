@@ -80,7 +80,7 @@ class PartyMemberTest {
 
     for (final var action : Action.values()) {
       member.partyAction(action);
-      assertEquals(member.toString() + " " + action.getDescription(), appender.getLastMessage());
+      assertEquals(member + " " + action.getDescription(), appender.getLastMessage());
     }
 
     assertEquals(Action.values().length, appender.getLogSize());
@@ -99,11 +99,11 @@ class PartyMemberTest {
 
     final var party = mock(Party.class);
     member.joinedParty(party);
-    assertEquals(member.toString() + " joins the party", appender.getLastMessage());
+    assertEquals(member + " joins the party", appender.getLastMessage());
 
     for (final var action : Action.values()) {
       member.act(action);
-      assertEquals(member.toString() + " " + action.toString(), appender.getLastMessage());
+      assertEquals(member + " " + action.toString(), appender.getLastMessage());
       verify(party).act(member, action);
     }
 

@@ -39,7 +39,7 @@ class ExternalServiceC implements Gateway {
     Thread.sleep(1000);
   }
 
-  public void error() throws Exception {
+  public void error() {
     // Simulate an exception
     throw new RuntimeException("Service C encountered an error");
   }

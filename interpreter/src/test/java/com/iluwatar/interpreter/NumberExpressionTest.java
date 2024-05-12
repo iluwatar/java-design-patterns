@@ -60,7 +60,7 @@ class NumberExpressionTest extends ExpressionTest<NumberExpression> {
    */
   @ParameterizedTest
   @MethodSource("expressionProvider")
-  void testFromString(NumberExpression first) throws Exception {
+  void testFromString(NumberExpression first) {
     final var expectedValue = first.interpret();
     final var testStringValue = String.valueOf(expectedValue);
     final var numberExpression = new NumberExpression(testStringValue);

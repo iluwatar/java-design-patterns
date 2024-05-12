@@ -67,7 +67,7 @@ public class App {
     states.add(star.getMemento());
     star.timePasses();
     LOGGER.info(star.toString());
-    while (states.size() > 0) {
+    while (!states.isEmpty()) {
       star.setMemento(states.pop());
       LOGGER.info(star.toString());
     }

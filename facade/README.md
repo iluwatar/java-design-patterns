@@ -3,23 +3,21 @@ title: Facade
 category: Structural
 language: en
 tag:
- - Gang Of Four
- - Decoupling
+    - Code simplification
+    - Encapsulation
+    - Gang Of Four
+    - Object composition
 ---
 
 ## Intent
 
-Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level 
-interface that makes the subsystem easier to use.
+Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
 
 ## Explanation
 
 Real-world example
 
-> How does a goldmine work? "Well, the miners go down there and dig gold!" you say. That is what you 
-> believe because you are using a simple interface that goldmine provides on the outside, internally 
-> it has to do a lot of stuff to make it happen. This simple interface to the complex subsystem is a 
-> facade.
+> How does a goldmine work? "Well, the miners go down there and dig gold!" you say. That is what you believe because you are using a simple interface that goldmine provides on the outside, internally it has to do a lot of stuff to make it happen. This simple interface to the complex subsystem is a facade.
 
 In plain words
 
@@ -27,13 +25,11 @@ In plain words
 
 Wikipedia says
 
-> A facade is an object that provides a simplified interface to a larger body of code, such as a 
-> class library.
+> A facade is an object that provides a simplified interface to a larger body of code, such as a class library.
 
 **Programmatic Example**
 
-Let's take our goldmine example from above. Here we have the dwarven mine worker hierarchy. First
-there's a base class `DwarvenMineWorker`:
+Let's take our goldmine example from above. Here we have the dwarven mine worker hierarchy. First, there's a base class `DwarvenMineWorker`:
 
 ```java
 
@@ -81,50 +77,50 @@ public abstract class DwarvenMineWorker {
 }
 ```
 
-Then we have the concrete dwarf classes `DwarvenTunnelDigger`, `DwarvenGoldDigger` and 
-`DwarvenCartOperator`:
+Then we have the concrete dwarf classes `DwarvenTunnelDigger`, `DwarvenGoldDigger` and `DwarvenCartOperator`:
 
 ```java
+
 @Slf4j
 public class DwarvenTunnelDigger extends DwarvenMineWorker {
 
-  @Override
-  public void work() {
-    LOGGER.info("{} creates another promising tunnel.", name());
-  }
+    @Override
+    public void work() {
+        LOGGER.info("{} creates another promising tunnel.", name());
+    }
 
-  @Override
-  public String name() {
-    return "Dwarven tunnel digger";
-  }
+    @Override
+    public String name() {
+        return "Dwarven tunnel digger";
+    }
 }
 
 @Slf4j
 public class DwarvenGoldDigger extends DwarvenMineWorker {
 
-  @Override
-  public void work() {
-    LOGGER.info("{} digs for gold.", name());
-  }
+    @Override
+    public void work() {
+        LOGGER.info("{} digs for gold.", name());
+    }
 
-  @Override
-  public String name() {
-    return "Dwarf gold digger";
-  }
+    @Override
+    public String name() {
+        return "Dwarf gold digger";
+    }
 }
 
 @Slf4j
 public class DwarvenCartOperator extends DwarvenMineWorker {
 
-  @Override
-  public void work() {
-    LOGGER.info("{} moves gold chunks out of the mine.", name());
-  }
+    @Override
+    public void work() {
+        LOGGER.info("{} moves gold chunks out of the mine.", name());
+    }
 
-  @Override
-  public String name() {
-    return "Dwarf cart operator";
-  }
+    @Override
+    public String name() {
+        return "Dwarf cart operator";
+    }
 }
 
 ```
@@ -134,31 +130,31 @@ To operate all these goldmine workers we have the `DwarvenGoldmineFacade`:
 ```java
 public class DwarvenGoldmineFacade {
 
-  private final List<DwarvenMineWorker> workers;
+    private final List<DwarvenMineWorker> workers;
 
-  public DwarvenGoldmineFacade() {
-      workers = List.of(
-            new DwarvenGoldDigger(),
-            new DwarvenCartOperator(),
-            new DwarvenTunnelDigger());
-  }
+    public DwarvenGoldmineFacade() {
+        workers = List.of(
+                new DwarvenGoldDigger(),
+                new DwarvenCartOperator(),
+                new DwarvenTunnelDigger());
+    }
 
-  public void startNewDay() {
-    makeActions(workers, DwarvenMineWorker.Action.WAKE_UP, DwarvenMineWorker.Action.GO_TO_MINE);
-  }
+    public void startNewDay() {
+        makeActions(workers, DwarvenMineWorker.Action.WAKE_UP, DwarvenMineWorker.Action.GO_TO_MINE);
+    }
 
-  public void digOutGold() {
-    makeActions(workers, DwarvenMineWorker.Action.WORK);
-  }
+    public void digOutGold() {
+        makeActions(workers, DwarvenMineWorker.Action.WORK);
+    }
 
-  public void endDay() {
-    makeActions(workers, DwarvenMineWorker.Action.GO_HOME, DwarvenMineWorker.Action.GO_TO_SLEEP);
-  }
+    public void endDay() {
+        makeActions(workers, DwarvenMineWorker.Action.GO_HOME, DwarvenMineWorker.Action.GO_TO_SLEEP);
+    }
 
-  private static void makeActions(Collection<DwarvenMineWorker> workers,
-      DwarvenMineWorker.Action... actions) {
-    workers.forEach(worker -> worker.action(actions));
-  }
+    private static void makeActions(Collection<DwarvenMineWorker> workers,
+                                    DwarvenMineWorker.Action... actions) {
+        workers.forEach(worker -> worker.action(actions));
+    }
 }
 ```
 
@@ -199,29 +195,40 @@ Program output:
 
 Use the Facade pattern when
 
-* You want to provide a simple interface to a complex subsystem. Subsystems often get more complex 
-as they evolve. Most patterns, when applied, result in more and smaller classes. This makes the 
-subsystem more reusable and easier to customize, but it also becomes harder to use for clients that 
-don't need to customize it. A facade can provide a simple default view of the subsystem that is good 
-enough for most clients. Only clients needing more customization will need to look beyond the 
-facade.
-* There are many dependencies between clients and the implementation classes of an abstraction. 
-Introduce a facade to decouple the subsystem from clients and other subsystems, thereby promoting 
-subsystem independence and portability.
-* You want to layer your subsystems. Use a facade to define an entry point to each subsystem level. 
-If subsystems are dependent, then you can simplify the dependencies between them by making them 
-communicate with each other solely through their facades.
+* You want to provide a simple interface to a complex subsystem.
+* Subsystems are getting more complex and depend on multiple classes, but most clients only need a part of the functionality.
+* There is a need to layer your subsystems. Use a facade to define an entry point to each subsystem level.
 
 ## Tutorials
 
-*[DigitalOcean](https://www.digitalocean.com/community/tutorials/facade-design-pattern-in-java)
+* [DigitalOcean](https://www.digitalocean.com/community/tutorials/facade-design-pattern-in-java)
 * [Refactoring Guru](https://refactoring.guru/design-patterns/facade)
 * [GeekforGeeks](https://www.geeksforgeeks.org/facade-design-pattern-introduction/)
 * [Tutorialspoint](https://www.tutorialspoint.com/design_pattern/facade_pattern.htm)
 
+## Known Uses
 
+* Java libraries such as java.net.URL and javax.faces.context.FacesContext use Facade to simplify complex underlying classes.
+* In many Java frameworks, facades are used to simplify the usage of APIs by providing a simpler interface to more complex underlying code structures.
+
+## Consequences
+
+Benefits:
+
+* Isolates clients from subsystem components, making it easier to use and reducing dependencies.
+* Promotes weak coupling between the subsystem and its clients.
+* Often simplifies the API of complex systems.
+
+Trade-offs:
+
+* A facade can become a god object coupled to all classes of an app if not implemented correctly.
+
+## Related Patterns
+
+* Often used with other design patterns like Singleton and Abstract Factory.
+* Command pattern can use Facade to define an interface that simplifies methods invocation.
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3QbO7qN)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/3UpTLrG)

@@ -24,21 +24,26 @@
  */
 package com.iluwatar.page.controller;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.stereotype.Component;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * ignup model.
+ * Signup View.
  */
-@Component
-@Getter
-@Setter
-public class SignupModel {
-  private String name;
-  private String email;
-  private String password;
+@Slf4j
+@NoArgsConstructor
+public class SignupView {
 
-  public SignupModel() {
+  public String display() {
+    LOGGER.info("display signup front page");
+    return "/signup";
+  }
+
+  /**
+   * redirect to user page.
+   */
+  public String redirect(SignupModel form) {
+    LOGGER.info("Redirect to user page with " + "name " + form.getName() + " email " + form.getEmail());
+    return "redirect:/user";
   }
 }

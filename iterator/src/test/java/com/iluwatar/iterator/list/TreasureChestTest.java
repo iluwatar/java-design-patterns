@@ -92,7 +92,7 @@ class TreasureChestTest {
    */
   @ParameterizedTest
   @MethodSource("dataProvider")
-  void testGetItems(Item expectedItem) throws Exception {
+  void testGetItems(Item expectedItem) {
     final var chest = new TreasureChest();
     final var items = chest.getItems();
     assertNotNull(items);

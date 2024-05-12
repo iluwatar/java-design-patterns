@@ -66,7 +66,7 @@ public class HealthCheckRepository {
    * @throws Exception if the test transaction fails
    */
   @Transactional
-  public void performTestTransaction() {
+  public void performTestTransaction() throws Exception {
     try {
       HealthCheck healthCheck = new HealthCheck();
       healthCheck.setStatus(HEALTH_CHECK_OK);

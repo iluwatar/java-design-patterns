@@ -1,14 +1,17 @@
 ---
 title: Metadata Mapping
-category: Architectural
+category: Data access
 language: en
 tag:
- - Data access
+    - Decoupling
+    - Enterprise patterns
+    - Object mapping
+    - Persistence
 ---
 
 ## Intent
 
-Holds details of object-relational mapping in the metadata.
+Metadata Mapping is designed to manage the mapping between database records and objects in a way that keeps the database schema and object model decoupled and manageable.
 
 ## Explanation
 
@@ -151,7 +154,7 @@ public class UserService {
   }
   
   // other CRUDs ->
-  ...
+  // ...
     
   public void close() {
     HibernateUtil.shutdown();
@@ -161,19 +164,39 @@ public class UserService {
 
 ## Class diagram
 
-![metamapping](./etc/metamapping.png)
+![Metadata Mapping](./etc/metamapping.png)
 
 ## Applicability
 
-Use the Metadata Mapping when:
+Use this pattern when you need to bridge the gap between an object-oriented domain model and a relational database, without hard-coding database queries into the domain logic.
 
-- you want reduce the amount of work needed to handle database mapping.
+## Known Uses
 
-## Known uses
+* Object-Relational Mapping (ORM) frameworks like Hibernate, JPA, EclipseLink and MyBatis.
+* Mapping database rows to domain objects in enterprise applications.
 
-[Hibernate](https://hibernate.org/), [EclipseLink](https://www.eclipse.org/eclipselink/), [MyBatis](https://blog.mybatis.org/)......
+## Consequences
+
+Benefits:
+
+* Decouples object model and database schema, allowing independent evolution.
+* Reduces boilerplate code associated with data access.
+* Centralizes mapping logic, making changes more manageable.
+
+Trade-offs:
+
+* Adds complexity due to an additional layer of abstraction.
+* Can impact performance if not properly optimized.
+
+## Related Patterns
+
+* [Data Mapper](https://java-design-patterns.com/patterns/data-mapper/): Metadata Mapping is often used within the broader Data Mapper pattern to facilitate the mapping process.
+* Active Record: Differently from Active Record, Metadata Mapping separates the data access logic from the domain entities.
+* [Repository](https://java-design-patterns.com/patterns/repository/): Works well with the Repository pattern by abstracting data access further, allowing more complex domain logic to be cleanly separated from data mapping.
 
 ## Credits
 
-- [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
-
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)
+* [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Pro JPA 2: Mastering the Java Persistence API](https://amzn.to/4b7UoMC)

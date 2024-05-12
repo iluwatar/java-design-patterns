@@ -3,34 +3,36 @@ title: Memento
 category: Behavioral
 language: en
 tag:
- - Gang of Four
+    - Encapsulation
+    - Gang of Four
+    - Memory management
+    - Object composition
+    - State tracking
+    - Undo
 ---
 
 ## Also known as
 
-Token
+* Snapshot
+* Token
 
 ## Intent
 
-Without violating encapsulation, capture and externalize an object's internal state so that the 
-object can be restored to this state later.
+Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 
 ## Explanation
 
 Real-world example
 
-> We are working on an astrology application where we need to analyze star properties over time. We 
-> are creating snapshots of star states using the Memento pattern.
+> We are working on an astrology application where we need to analyze star properties over time. We are creating snapshots of star states using the Memento pattern.
 
 In plain words
 
-> Memento pattern captures object internal state making it easy to store and restore objects in any 
-> point of time.
+> Memento pattern captures object internal state making it easy to store and restore objects in any point of time.
 
 Wikipedia says
 
-> The memento pattern is a software design pattern that provides the ability to restore an object to 
-> its previous state (undo via rollback).
+> The memento pattern is a software design pattern that provides the ability to restore an object to its previous state (undo via rollback).
 
 **Programmatic Example**
 
@@ -43,12 +45,11 @@ public enum StarType {
   WHITE_DWARF("white dwarf"),
   SUPERNOVA("supernova"),
   DEAD("dead star");
-  ...
+  // ...
 }
 ```
 
-Next, let's jump straight to the essentials. Here's the `Star` class along with the mementos that we 
-need to manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
+Next, let's jump straight to the essentials. Here's the `Star` class along with the mementos that we need to manipulate. Especially pay attention to `getMemento` and `setMemento` methods.
 
 ```java
 public interface StarMemento {
@@ -110,7 +111,7 @@ public class Star {
         private int massTons;
 
         // setters and getters ->
-    ...
+        // ...
     }
 }
 ```
@@ -162,12 +163,29 @@ sun age: 10000000 years mass: 500000 tons
 Use the Memento pattern when
 
 * A snapshot of an object's state must be saved so that it can be restored to that state later, and
-* A direct interface to obtaining the state would expose implementation details and break the 
-object's encapsulation
+* A direct interface to obtaining the state would expose implementation details and break the object's encapsulation
 
 ## Known uses
 
-* [java.util.Date](http://docs.oracle.com/javase/8/docs/api/java/util/Date.html)
+* Java Util Package: Various classes in the Java Util Package, such as java.util.Date and java.util.Calendar, can be reverted to previous states using similar principles, though not implemented directly as the Memento Pattern.
+* Undo mechanisms in software: Text editors and graphic editors often use this pattern to implement undo actions.
+
+## Consequences
+
+Benefits:
+
+* Preserves encapsulation boundaries.
+* Simplifies the originator by removing the need to manage version history or undo functionality directly.
+
+Trade-offs:
+
+* Can be expensive in terms of memory if a large number of states are saved.
+* Care must be taken to manage the lifecycle of mementos to avoid memory leaks.
+
+## Related Patterns
+
+* [Command](https://java-design-patterns.com/patterns/command/): Often used together; commands store state for undoing operations in mementos.
+* [Prototype](https://java-design-patterns.com/patterns/prototype/): Mementos may use prototyping to store the state.
 
 ## Credits
 

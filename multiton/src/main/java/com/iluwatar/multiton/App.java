@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  * the Multiton by passing an enumeration as a parameter.
  *
  * <p>There is more than one way to implement the multiton design pattern. In the first example
- * {@link Nazgul} is the Multiton and we can ask single {@link Nazgul} from it using {@link
+ * {@link Nazgul} is the Multiton, and we can ask single {@link Nazgul} from it using {@link
  * NazgulName}. The {@link Nazgul}s are statically initialized and stored in a concurrent hash map.
  *
  * <p>In the enum implementation {@link NazgulEnum} is the multiton. It is static and mutable

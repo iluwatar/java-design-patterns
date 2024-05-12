@@ -22,9 +22,13 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.when;
 
 import com.iluwatar.health.check.AsynchronousHealthChecker;
 import com.iluwatar.health.check.DatabaseTransactionHealthIndicator;
@@ -78,7 +82,7 @@ class DatabaseTransactionHealthIndicatorTest {
    * returns a Health object with Status.UP.
    */
   @Test
-  void whenDatabaseTransactionSucceeds_thenHealthIsUp() {
+  void whenDatabaseTransactionSucceeds_thenHealthIsUp() throws Exception {
     CompletableFuture<Health> future = CompletableFuture.completedFuture(Health.up().build());
     when(asynchronousHealthChecker.performCheck(any(Supplier.class), eq(timeoutInSeconds)))
         .thenReturn(future);
@@ -100,7 +104,7 @@ class DatabaseTransactionHealthIndicatorTest {
    * returns a Health object with Status.DOWN.
    */
   @Test
-  void whenDatabaseTransactionFails_thenHealthIsDown() {
+  void whenDatabaseTransactionFails_thenHealthIsDown() throws Exception {
     CompletableFuture<Health> future = new CompletableFuture<>();
     when(asynchronousHealthChecker.performCheck(any(Supplier.class), eq(timeoutInSeconds)))
         .thenReturn(future);

@@ -32,14 +32,6 @@ import java.util.List;
  */
 public record ProductResource(List<Product> products) {
   /**
-   * Initialise resource with existing products.
-   *
-   * @param products initialize resource with existing products. Act as database.
-   */
-  public ProductResource {
-  }
-
-  /**
    * Get all products.
    *
    * @return : all products in list but in the scheme of private dto.
@@ -79,15 +71,5 @@ public record ProductResource(List<Product> products) {
         .price(createProductDto.getPrice())
         .cost(createProductDto.getCost())
         .build());
-  }
-
-  /**
-   * List of all products in an entity representation.
-   *
-   * @return : all the products entity that stored in the products list
-   */
-  @Override
-  public List<Product> products() {
-    return products;
   }
 }

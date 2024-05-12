@@ -55,7 +55,7 @@ class SoldierTest {
     soldier.soldierReady();
 
     List<ILoggingEvent> logsList = listAppender.list;
-    assertEquals("[Soldier] " + soldier.getUnit().getName() + " is ready!", logsList.get(0)
+    assertEquals("[Soldier] " + soldier.unit().getName() + " is ready!", logsList.get(0)
         .getMessage());
     assertEquals(Level.INFO, logsList.get(0)
         .getLevel());

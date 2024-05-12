@@ -3,545 +3,168 @@ title: Model-View-Presenter
 category: Architectural
 language: en
 tag:
- - Decoupling
+    - Architecture
+    - Client-server
+    - Decoupling
+    - Enterprise patterns
+    - Interface
+    - Presentation
 ---
 
+## Also known as
+
+* MVP
+
 ## Intent
-Apply a "Separation of Concerns" principle in a way that allows
-developers to build and test user interfaces.
+
+MVP aims to separate the user interface (UI) logic from the business logic and model in a software application, enabling easier testing and maintenance.
 
 ## Explanation
 
 Real-world example
 
-> Consider File selection application that allows to select a file from storage.
-> File selection logic is completely separated from user interface implementation. 
+> Consider a real-world analogy of the Model-View-Presenter (MVP) pattern using a restaurant scenario:
+>
+> - **Model:** This is the kitchen in a restaurant, where all the cooking and preparation of dishes happens. It's responsible for managing the food ingredients, cooking processes, and ensuring that recipes are followed correctly.
+>
+> - **View:** This represents the dining area and the menu presented to the customers. It displays the available dishes, takes orders, and shows the final presentation of the food. However, it doesn't decide what's cooked or how it's prepared.
+>
+> - **Presenter:** Acting as the waiter, the presenter takes the customer's order (input) and communicates it to the kitchen (model). The waiter then brings the prepared food (output) back to the customer in the dining area (view). The waiter ensures that what the customer sees (the menu and food presentation) aligns with what the kitchen can provide, and also updates the view based on the kitchen's capabilities (e.g., out-of-stock items).
+>
+> In this analogy, the clear separation of roles allows the restaurant to operate efficiently: the kitchen focuses on food preparation, the dining area on customer interaction, and the waiter bridges the two, ensuring smooth operation and customer satisfaction.
 
 In plain words
 
-> It separates the UI completely from service/domain layer into Presenter. 
+> The Model-View-Presenter (MVP) pattern separates the user interface, business logic, and data interaction in an application, with the presenter mediating between the view and the model to facilitate clear communication and updates.
 
 Wikipedia says
 
-> Model–view–presenter (MVP) is a derivation of the model–view–controller (MVC) architectural pattern,
-> and is used mostly for building user interfaces.
+> Model–view–presenter (MVP) is a derivation of the model–view–controller (MVC) architectural pattern, and is used mostly for building user interfaces. In MVP, the presenter assumes the functionality of the "middle-man". In MVP, all presentation logic is pushed to the presenter.
 
 **Programmatic example**
 
-Let's understand a simple file selection application build in AWT/Swing.
-`FileLoader` reads & loads contain of given file. It represents the model component of MVP.
+The Model-View-Presenter (MVP) design pattern is a derivative of the well-known Model-View-Controller (MVC) pattern. It aims to separate the application's logic (Model), GUIs (View), and the way that the user's actions update the application's logic (Presenter). This separation of concerns makes the application easier to manage, extend, and test.
+
+Let's break down the MVP pattern using the provided code:
+
+1. **Model**: The Model represents the application's logic. In our case, the `FileLoader` class is the Model. It's responsible for handling the file loading process.
 
 ```java
+@Getter
 public class FileLoader implements Serializable {
-
-  /**
-   * Generated serial version UID.
-   */
-  private static final long serialVersionUID = -4745803872902019069L;
-
-  private static final Logger LOGGER = LoggerFactory.getLogger(FileLoader.class);
-
-  /**
-   * Indicates if the file is loaded or not.
-   */
-  private boolean loaded;
-
-  /**
-   * The name of the file that we want to load.
-   */
-  private String fileName;
-
-  /**
-   * Loads the data of the file specified.
-   */
-  public String loadData() {
-    var dataFileName = this.fileName;
-    try (var br = new BufferedReader(new FileReader(new File(dataFileName)))) {
-      var result = br.lines().collect(Collectors.joining("\n"));
-      this.loaded = true;
-      return result;
-    } catch (Exception e) {
-      LOGGER.error("File {} does not exist", dataFileName);
-    }
-
-    return null;
-  }
-
-  /**
-   * Sets the path of the file to be loaded, to the given value.
-   *
-   * @param fileName The path of the file to be loaded.
-   */
+  //...
   public void setFileName(String fileName) {
     this.fileName = fileName;
   }
-
-  /**
-   * Gets the path of the file to be loaded.
-   *
-   * @return fileName The path of the file to be loaded.
-   */
-  public String getFileName() {
-    return this.fileName;
-  }
-
-  /**
-   * Returns true if the given file exists.
-   *
-   * @return True, if the file given exists, false otherwise.
-   */
+  
   public boolean fileExists() {
-    return new File(this.fileName).exists();
+    //...
   }
 
-  /**
-   * Returns true if the given file is loaded.
-   *
-   * @return True, if the file is loaded, false otherwise.
-   */
-  public boolean isLoaded() {
-    return this.loaded;
+  public String loadData() {
+    //...
   }
 }
 ```
 
-`FileSelectorView` interface represents the View component in the MVP pattern. It can be
-implemented by either the GUI components, or by the Stub. This is how it eases the UI testing.
+2. **View**: The View is responsible for displaying the data provided by the Model. Here, the `FileSelectorView` interface and its implementation `FileSelectorJFrame` represent the View. They define how to display data and messages to the user.
 
 ```java
-public interface FileSelectorView extends Serializable {
-
-  /**
-   * Opens the view.
-   */
-  void open();
-
-  /**
-   * Closes the view.
-   */
-  void close();
-
-  /**
-   * Returns true if view is opened.
-   *
-   * @return True, if the view is opened, false otherwise.
-   */
-  boolean isOpened();
-
-  /**
-   * Sets the presenter component, to the one given as parameter.
-   *
-   * @param presenter The new presenter component.
-   */
+public interface FileSelectorView {
+  //...
   void setPresenter(FileSelectorPresenter presenter);
-
-  /**
-   * Gets presenter component.
-   *
-   * @return The presenter Component.
-   */
-  FileSelectorPresenter getPresenter();
-
-  /**
-   * Sets the file's name, to the value given as parameter.
-   *
-   * @param name The new name of the file.
-   */
-  void setFileName(String name);
-
-  /**
-   * Gets the name of file.
-   *
-   * @return The name of the file.
-   */
-  String getFileName();
-
-  /**
-   * Displays a message to the users.
-   *
-   * @param message The message to be displayed.
-   */
+  void open();
+  void close();
   void showMessage(String message);
-
-  /**
-   * Displays the data to the view.
-   *
-   * @param data The data to be written.
-   */
   void displayData(String data);
+  String getFileName();
 }
-```
 
-`FileSelectorJFrame` represents the GUI implementation of the View component in the MVP pattern.
-
-```java
-public class FileSelectorJFrame extends JFrame implements FileSelectorView, ActionListener {
-
-  /**
-   * Default serial version ID.
-   */
-  private static final long serialVersionUID = 1L;
-
-  /**
-   * The "OK" button for loading the file.
-   */
-  private final JButton ok;
-
-  /**
-   * The cancel button.
-   */
-  private final JButton cancel;
-
-  /**
-   * The text field for giving the name of the file that we want to open.
-   */
-  private final JTextField input;
-
-  /**
-   * A text area that will keep the contents of the file opened.
-   */
-  private final JTextArea area;
-
-  /**
-   * The Presenter component that the frame will interact with.
-   */
-  private FileSelectorPresenter presenter;
-
-  /**
-   * The name of the file that we want to read it's contents.
-   */
-  private String fileName;
-
-  /**
-   * Constructor.
-   */
-  public FileSelectorJFrame() {
-    super("File Loader");
-    this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-    this.setLayout(null);
-    this.setBounds(100, 100, 500, 200);
-
-    /*
-     * Add the panel.
-     */
-    var panel = new JPanel();
-    panel.setLayout(null);
-    this.add(panel);
-    panel.setBounds(0, 0, 500, 200);
-    panel.setBackground(Color.LIGHT_GRAY);
-
-    /*
-     * Add the info label.
-     */
-    var info = new JLabel("File Name :");
-    panel.add(info);
-    info.setBounds(30, 10, 100, 30);
-
-    /*
-     * Add the contents label.
-     */
-    var contents = new JLabel("File contents :");
-    panel.add(contents);
-    contents.setBounds(30, 100, 120, 30);
-
-    /*
-     * Add the text field.
-     */
-    this.input = new JTextField(100);
-    panel.add(input);
-    this.input.setBounds(150, 15, 200, 20);
-
-    /*
-     * Add the text area.
-     */
-    this.area = new JTextArea(100, 100);
-    var pane = new JScrollPane(area);
-    pane.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_AS_NEEDED);
-    pane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_AS_NEEDED);
-    panel.add(pane);
-    this.area.setEditable(false);
-    pane.setBounds(150, 100, 250, 80);
-
-    /*
-     * Add the OK button.
-     */
-    this.ok = new JButton("OK");
-    panel.add(ok);
-    this.ok.setBounds(250, 50, 100, 25);
-    this.ok.addActionListener(this);
-
-    /*
-     * Add the cancel button.
-     */
-    this.cancel = new JButton("Cancel");
-    panel.add(this.cancel);
-    this.cancel.setBounds(380, 50, 100, 25);
-    this.cancel.addActionListener(this);
-
-    this.presenter = null;
-    this.fileName = null;
-  }
-
-  @Override
-  public void actionPerformed(ActionEvent e) {
-    if (this.ok.equals(e.getSource())) {
-      this.fileName = this.input.getText();
-      presenter.fileNameChanged();
-      presenter.confirmed();
-    } else if (this.cancel.equals(e.getSource())) {
-      presenter.cancelled();
-    }
-  }
-
-  @Override
-  public void open() {
-    this.setVisible(true);
-  }
-
-  @Override
-  public void close() {
-    this.dispose();
-  }
-
-  @Override
-  public boolean isOpened() {
-    return this.isVisible();
-  }
-
-  @Override
-  public void setPresenter(FileSelectorPresenter presenter) {
-    this.presenter = presenter;
-  }
-
-  @Override
-  public FileSelectorPresenter getPresenter() {
-    return this.presenter;
-  }
-
-  @Override
-  public void setFileName(String name) {
-    this.fileName = name;
-  }
-
-  @Override
-  public String getFileName() {
-    return this.fileName;
-  }
-
-  @Override
-  public void showMessage(String message) {
-    JOptionPane.showMessageDialog(null, message);
-  }
-
+public class FileSelectorJFrame implements FileSelectorView {
+  //...
   @Override
   public void displayData(String data) {
-    this.area.setText(data);
+    this.dataDisplayed = true;
   }
 }
 ```
 
-`FileSelectorStub` is a stub that implements the View interface and it is useful when we want to test the reaction to
-user events, such as mouse clicks etc.
-
-```java
-public class FileSelectorStub implements FileSelectorView {
-
-    /**
-     * Indicates whether or not the view is opened.
-     */
-    private boolean opened;
-
-    /**
-     * The presenter Component.
-     */
-    private FileSelectorPresenter presenter;
-
-    /**
-     * The current name of the file.
-     */
-    private String name;
-
-    /**
-     * Indicates the number of messages that were "displayed" to the user.
-     */
-    private int numOfMessageSent;
-
-    /**
-     * Indicates if the data of the file where displayed or not.
-     */
-    private boolean dataDisplayed;
-
-    /**
-     * Constructor.
-     */
-    public FileSelectorStub() {
-        this.opened = false;
-        this.presenter = null;
-        this.name = "";
-        this.numOfMessageSent = 0;
-        this.dataDisplayed = false;
-    }
-
-    @Override
-    public void open() {
-        this.opened = true;
-    }
-
-    @Override
-    public void setPresenter(FileSelectorPresenter presenter) {
-        this.presenter = presenter;
-    }
-
-    @Override
-    public boolean isOpened() {
-        return this.opened;
-    }
-
-    @Override
-    public FileSelectorPresenter getPresenter() {
-        return this.presenter;
-    }
-
-    @Override
-    public String getFileName() {
-        return this.name;
-    }
-
-    @Override
-    public void setFileName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public void showMessage(String message) {
-        this.numOfMessageSent++;
-    }
-
-    @Override
-    public void close() {
-        this.opened = false;
-    }
-
-    @Override
-    public void displayData(String data) {
-        this.dataDisplayed = true;
-    }
-
-    /**
-     * Returns the number of messages that were displayed to the user.
-     */
-    public int getMessagesSent() {
-        return this.numOfMessageSent;
-    }
-
-    /**
-     * Returns true, if the data were displayed.
-     *
-     * @return True if the data where displayed, false otherwise.
-     */
-    public boolean dataDisplayed() {
-        return this.dataDisplayed;
-    }
-}
-```
-
-`FileSelectorPresenter` represents the Presenter component in the MVP pattern. 
-It is responsible for reacting to the user's actions and update the View component.
+3. **Presenter**: The Presenter acts as a bridge between the Model and the View. It reacts to the user's actions and updates the View accordingly. In our example, the `FileSelectorPresenter` class is the Presenter.
 
 ```java
 public class FileSelectorPresenter implements Serializable {
-
-  /**
-   * Generated serial version UID.
-   */
-  private static final long serialVersionUID = 1210314339075855074L;
-
-  /**
-   * The View component that the presenter interacts with.
-   */
-  private final FileSelectorView view;
-
-  /**
-   * The Model component that the presenter interacts with.
-   */
-  private FileLoader loader;
-
-  /**
-   * Constructor.
-   *
-   * @param view The view component that the presenter will interact with.
-   */
-  public FileSelectorPresenter(FileSelectorView view) {
-    this.view = view;
-  }
-
-  /**
-   * Sets the {@link FileLoader} object, to the value given as parameter.
-   *
-   * @param loader The new {@link FileLoader} object(the Model component).
-   */
+  //...
   public void setLoader(FileLoader loader) {
     this.loader = loader;
   }
 
-  /**
-   * Starts the presenter.
-   */
   public void start() {
     view.setPresenter(this);
     view.open();
   }
 
-  /**
-   * An "event" that fires when the name of the file to be loaded changes.
-   */
   public void fileNameChanged() {
     loader.setFileName(view.getFileName());
   }
 
-  /**
-   * Ok button handler.
-   */
   public void confirmed() {
-    if (loader.getFileName() == null || loader.getFileName().equals("")) {
-      view.showMessage("Please give the name of the file first!");
-      return;
-    }
-
-    if (loader.fileExists()) {
-      var data = loader.loadData();
-      view.displayData(data);
-    } else {
-      view.showMessage("The file specified does not exist.");
-    }
+    //...
   }
 
-  /**
-   * Cancels the file loading process.
-   */
   public void cancelled() {
     view.close();
   }
 }
 ```
 
-Below code reflects how we wire-up the Presenter & the View and the Presenter & the Model.
+Finally, we wire up the Presenter, the View, and the Model in the `App` class:
 
 ```java
+public class App {
+  public static void main(String[] args) {
     var loader = new FileLoader();
     var frame = new FileSelectorJFrame();
     var presenter = new FileSelectorPresenter(frame);
     presenter.setLoader(loader);
     presenter.start();
+  }
+}
 ```
 
+In this setup, the `App` class creates instances of the Model, View, and Presenter. It then connects these instances, forming the MVP triad. The Presenter is given a reference to the View, and the Model is set on the Presenter. Finally, the Presenter is started, which in turn opens the View.
+
 ## Class diagram
-![alt text](./etc/model-view-presenter_1.png "Model-View-Presenter")
+
+![Model-View-Presenter](./etc/model-view-presenter_1.png "Model-View-Presenter")
 
 ## Applicability
-Use the Model-View-Presenter in any of the following
-situations
 
-* When you want to improve the "Separation of Concerns" principle in presentation logic
-* When a user interface development and testing is necessary.
+Use MVP in applications where a clear [separation of concerns](https://java-design-patterns.com/principles/#separation-of-concerns) is needed between the presentation layer and the underlying business logic. It's particularly useful in client-server applications and enterprise-level applications.
 
+## Known Uses
+
+* Desktop applications like those built using Java Swing or JavaFX.
+* Web applications with complex user interfaces and business logic.
+
+## Consequences
+
+Benefits:
+
+* Enhances testability of UI logic by allowing the presenter to be tested separately from the view.
+* Promotes a clean separation of concerns, making the application easier to manage and extend.
+* Facilitates easier UI updates without affecting the business logic.
+
+Trade-offs:
+
+* Increases complexity with more classes and interfaces.
+* Requires careful design to avoid over-coupling between the presenter and the view.
+
+## Related Patterns
+
+* [Model-View-Controller (MVC)](https://java-design-patterns.com/patterns/model-view-controller/): MVP is often considered a variant of MVC where the presenter takes over the controller's role in managing user input and updating the model.
+* [Model-View-ViewModel (MVVM)](https://java-design-patterns.com/patterns/model-view-viewmodel/): Similar to MVP but adapted for frameworks like WPF or frameworks that support data binding, making the view update automatically when the model changes.
+
+## Credits
+
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Pro JavaFX 8: A Definitive Guide to Building Desktop, Mobile, and Embedded Java Clients](https://amzn.to/4a8qcQ1)

@@ -25,6 +25,7 @@
 package com.iluwatar.event.asynchronous;
 
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Properties;
 import java.util.Scanner;
 import lombok.extern.slf4j.Slf4j;
@@ -115,13 +116,13 @@ public class App {
 
     try {
       // Create an Asynchronous event.
-      var asyncEventId = eventManager.createAsync(60);
+      var asyncEventId = eventManager.createAsync(Duration.ofSeconds(60));
       LOGGER.info("Async Event [{}] has been created.", asyncEventId);
       eventManager.start(asyncEventId);
       LOGGER.info("Async Event [{}] has been started.", asyncEventId);
 
       // Create a Synchronous event.
-      var syncEventId = eventManager.create(60);
+      var syncEventId = eventManager.create(Duration.ofSeconds(60));
       LOGGER.info("Sync Event [{}] has been created.", syncEventId);
       eventManager.start(syncEventId);
       LOGGER.info("Sync Event [{}] has been started.", syncEventId);
@@ -207,7 +208,7 @@ public class App {
     LOGGER.info("Boil multiple eggs at once (A) or boil them one-by-one (S)?: ");
     var eventType = s.nextLine();
     LOGGER.info("How long should this egg be boiled for (in seconds)?: ");
-    var eventTime = s.nextInt();
+    var eventTime = Duration.ofSeconds(s.nextInt());
     if (eventType.equalsIgnoreCase("A")) {
       try {
         var eventId = eventManager.createAsync(eventTime);

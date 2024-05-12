@@ -35,6 +35,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
+@SuppressWarnings("java:S3776") //"Cognitive Complexity of methods should not be too high"
 public class CandyGame {
 
   Cell[][] cells;

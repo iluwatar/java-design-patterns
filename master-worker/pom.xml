@@ -32,7 +32,7 @@
     <artifactId>java-design-patterns</artifactId>
     <version>1.26.0-SNAPSHOT</version>
   </parent>
-  <artifactId>master-worker-pattern</artifactId>
+  <artifactId>master-worker</artifactId>
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>

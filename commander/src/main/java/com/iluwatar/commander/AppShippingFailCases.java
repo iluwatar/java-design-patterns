@@ -43,41 +43,35 @@ import com.iluwatar.commander.shippingservice.ShippingService;
  */
 
 public class AppShippingFailCases {
-  private final int numOfRetries = 3;
-  private final long retryDuration = 30000;
-  private final long queueTime = 240000; //4 mins
-  private final long queueTaskTime = 60000; //1 min
-  private final long paymentTime = 120000; //2 mins
-  private final long messageTime = 150000; //2.5 mins
-  private final long employeeTime = 240000; //4 mins
+  private static final RetryParams retryParams = RetryParams.DEFAULT;
 
-  void itemUnavailableCase() throws Exception {
+  private static final TimeLimits timeLimits = TimeLimits.DEFAULT;
+
+  void itemUnavailableCase() {
     var ps = new PaymentService(new PaymentDatabase());
     var ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
     var ms = new MessagingService(new MessagingDatabase());
     var eh = new EmployeeHandle(new EmployeeDatabase());
     var qdb = new QueueDatabase();
-    var c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
-        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
     c.placeOrder(order);
   }
 
-  void shippingNotPossibleCase() throws Exception {
+  void shippingNotPossibleCase() {
     var ps = new PaymentService(new PaymentDatabase());
     var ss = new ShippingService(new ShippingDatabase(), new ShippingNotPossibleException());
     var ms = new MessagingService(new MessagingDatabase());
     var eh = new EmployeeHandle(new EmployeeDatabase());
     var qdb = new QueueDatabase();
-    var c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
-        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
     c.placeOrder(order);
   }
 
-  void shippingDatabaseUnavailableCase() throws Exception {
+  void shippingDatabaseUnavailableCase() {
     //rest is successful
     var ps = new PaymentService(new PaymentDatabase());
     var ss = new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException(),
@@ -87,14 +81,13 @@ public class AppShippingFailCases {
     var ms = new MessagingService(new MessagingDatabase());
     var eh = new EmployeeHandle(new EmployeeDatabase());
     var qdb = new QueueDatabase();
-    var c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
-        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
     c.placeOrder(order);
   }
 
-  void shippingSuccessCase() throws Exception {
+  void shippingSuccessCase() {
     //goes to payment after 2 retries maybe - rest is successful for now
     var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException());
     var ss = new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException(),
@@ -102,8 +95,7 @@ public class AppShippingFailCases {
     var ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
     var eh = new EmployeeHandle(new EmployeeDatabase());
     var qdb = new QueueDatabase();
-    var c = new Commander(eh, ps, ss, ms, qdb, numOfRetries, retryDuration,
-        queueTime, queueTaskTime, paymentTime, messageTime, employeeTime);
+    var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
     c.placeOrder(order);
@@ -115,11 +107,8 @@ public class AppShippingFailCases {
    * @param args command line args
    */
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     var asfc = new AppShippingFailCases();
-    //asfc.itemUnavailableCase();
-    //asfc.shippingNotPossibleCase();
-    //asfc.shippingDatabaseUnavailableCase();
     asfc.shippingSuccessCase();
   }
 }

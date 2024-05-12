@@ -25,6 +25,7 @@
 package com.iluwatar.leaderelection.bully;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -68,7 +69,7 @@ class BullyMessageManagerTest {
       var expectedMessage = new Message(MessageType.ELECTION_INVOKE, "");
       assertEquals(message2, expectedMessage);
       assertEquals(instance4QueueSize, 0);
-      assertEquals(result, false);
+      assertFalse(result);
     } catch (IllegalAccessException | NoSuchFieldException e) {
       fail("Error to access private field.");
     }
@@ -84,7 +85,7 @@ class BullyMessageManagerTest {
     instance1.setAlive(false);
     var messageManager = new BullyMessageManager(instanceMap);
     var result = messageManager.sendElectionMessage(2, "2");
-    assertEquals(result, true);
+    assertTrue(result);
   }
 
   @Test

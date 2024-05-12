@@ -24,142 +24,109 @@
  */
 package com.iluwatar.event.asynchronous;
 
+import static org.awaitility.Awaitility.await;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.time.Duration;
 
 /**
  * Application test
  */
 class EventAsynchronousTest {
-  private static final Logger LOGGER = LoggerFactory.getLogger(EventAsynchronousTest.class);
 
   @Test
+  @SneakyThrows
   void testAsynchronousEvent() {
     var eventManager = new EventManager();
-    try {
-      var aEventId = eventManager.createAsync(60);
-      eventManager.start(aEventId);
-      assertEquals(1, eventManager.getEventPool().size());
-      assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
-      assertEquals(-1, eventManager.numOfCurrentlyRunningSyncEvent());
-      eventManager.cancel(aEventId);
-      assertTrue(eventManager.getEventPool().isEmpty());
-    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-      LOGGER.error(e.getMessage());
-    }
+    var aEventId = eventManager.createAsync(Duration.ofSeconds(60));
+
+    assertDoesNotThrow(() ->eventManager.start(aEventId));
+
+    assertEquals(1, eventManager.getEventPool().size());
+    assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
+    assertEquals(-1, eventManager.numOfCurrentlyRunningSyncEvent());
+
+    assertDoesNotThrow(() -> eventManager.cancel(aEventId));
+    assertTrue(eventManager.getEventPool().isEmpty());
+
   }
 
   @Test
+  @SneakyThrows
   void testSynchronousEvent() {
     var eventManager = new EventManager();
-    try {
-      var sEventId = eventManager.create(60);
-      eventManager.start(sEventId);
-      assertEquals(1, eventManager.getEventPool().size());
-      assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
-      assertNotEquals(-1, eventManager.numOfCurrentlyRunningSyncEvent());
-      eventManager.cancel(sEventId);
-      assertTrue(eventManager.getEventPool().isEmpty());
-    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
-        | InvalidOperationException e) {
-      LOGGER.error(e.getMessage());
-    }
+    var sEventId = eventManager.create(Duration.ofSeconds(60));
+
+    assertDoesNotThrow(() -> eventManager.start(sEventId));
+    assertEquals(1, eventManager.getEventPool().size());
+    assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
+    assertNotEquals(-1, eventManager.numOfCurrentlyRunningSyncEvent());
+
+    assertDoesNotThrow(() -> eventManager.cancel(sEventId));
+    assertTrue(eventManager.getEventPool().isEmpty());
+
   }
 
   @Test
+  @SneakyThrows
+  void testFullSynchronousEvent() {
+    var eventManager = new EventManager();
+
+    var eventTime = Duration.ofSeconds(1);
+
+    var sEventId = eventManager.create(eventTime);
+    assertEquals(1, eventManager.getEventPool().size());
+
+    eventManager.start(sEventId);
+
+    await().until(() -> eventManager.getEventPool().isEmpty());
+
+  }
+
+  @Test
+  @SneakyThrows
   void testUnsuccessfulSynchronousEvent() {
     assertThrows(InvalidOperationException.class, () -> {
       var eventManager = new EventManager();
-      try {
-        var sEventId = eventManager.create(60);
-        eventManager.start(sEventId);
-        sEventId = eventManager.create(60);
-        eventManager.start(sEventId);
-      } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-        LOGGER.error(e.getMessage());
-      }
+
+      var sEventId = assertDoesNotThrow(() -> eventManager.create(Duration.ofSeconds(60)));
+      eventManager.start(sEventId);
+      sEventId = eventManager.create(Duration.ofSeconds(60));
+      eventManager.start(sEventId);
+
     });
   }
 
   @Test
-  void testFullSynchronousEvent() {
-    var eventManager = new EventManager();
-    try {
-      var eventTime = 1;
-
-      var sEventId = eventManager.create(eventTime);
-      assertEquals(1, eventManager.getEventPool().size());
-      eventManager.start(sEventId);
-
-      var currentTime = System.currentTimeMillis();
-      // +2 to give a bit of buffer time for event to complete properly.
-      var endTime = currentTime + (eventTime + 2 * 1000);
-
-      long sleepTime = endTime - System.currentTimeMillis();
-      if (sleepTime > 0) {
-        try {
-          Thread.sleep(sleepTime);
-        } catch (InterruptedException e) {
-          LOGGER.error("Thread interrupted: ", e);
-          Thread.currentThread().interrupt();
-        }
-      }
-
-      assertTrue(eventManager.getEventPool().isEmpty());
-
-    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException
-        | InvalidOperationException e) {
-      LOGGER.error(e.getMessage());
-    }
-  }
-
-  @Test
+  @SneakyThrows
   void testFullAsynchronousEvent() {
     var eventManager = new EventManager();
-    try {
-      var eventTime = 1;
+    var eventTime = Duration.ofSeconds(1);
 
-      var aEventId1 = eventManager.createAsync(eventTime);
-      var aEventId2 = eventManager.createAsync(eventTime);
-      var aEventId3 = eventManager.createAsync(eventTime);
-      assertEquals(3, eventManager.getEventPool().size());
+    var aEventId1 = assertDoesNotThrow(() -> eventManager.createAsync(eventTime));
+    var aEventId2 = assertDoesNotThrow(() -> eventManager.createAsync(eventTime));
+    var aEventId3 = assertDoesNotThrow(() -> eventManager.createAsync(eventTime));
+    assertEquals(3, eventManager.getEventPool().size());
 
-      eventManager.start(aEventId1);
-      eventManager.start(aEventId2);
-      eventManager.start(aEventId3);
+    eventManager.start(aEventId1);
+    eventManager.start(aEventId2);
+    eventManager.start(aEventId3);
 
-      var currentTime = System.currentTimeMillis();
-      // +2 to give a bit of buffer time for event to complete properly.
-      var endTime = currentTime + (eventTime + 2 * 1000);
+    await().until(() -> eventManager.getEventPool().isEmpty());
 
-      long sleepTime = endTime - System.currentTimeMillis();
-      if (sleepTime > 0) {
-        try {
-          Thread.sleep(sleepTime);
-        } catch (InterruptedException e) {
-          LOGGER.error("Thread interrupted: ", e);
-          Thread.currentThread().interrupt();
-        }
-      }
-
-      assertTrue(eventManager.getEventPool().isEmpty());
-
-    } catch (MaxNumOfEventsAllowedException | LongRunningEventException | EventDoesNotExistException e) {
-      LOGGER.error(e.getMessage());
-    }
   }
 
   @Test
   void testLongRunningEventException(){
     assertThrows(LongRunningEventException.class, () -> {
       var eventManager = new EventManager();
-      eventManager.createAsync(2000);
+      eventManager.createAsync(Duration.ofMinutes(31));
     });
   }
 
@@ -169,7 +136,7 @@ class EventAsynchronousTest {
     assertThrows(MaxNumOfEventsAllowedException.class, () -> {
       final var eventManager = new EventManager();
       for(int i=0;i<1100;i++){
-        eventManager.createAsync(i);
+        eventManager.createAsync(Duration.ofSeconds(i));
       }
     });
   }

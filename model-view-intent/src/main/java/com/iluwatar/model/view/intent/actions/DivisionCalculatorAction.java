@@ -31,13 +31,13 @@ public class DivisionCalculatorAction implements CalculatorAction {
   /**
    * Subclass tag.
    * */
-  public static final String TAG = "DIVISION";
+  public static final String DIVISION = "DIVISION";
 
   /**
    * Makes checking subclass type trivial.
    * */
   @Override
   public String tag() {
-    return TAG;
+    return DIVISION;
   }
 }

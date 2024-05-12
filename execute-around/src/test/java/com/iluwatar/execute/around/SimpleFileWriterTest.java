@@ -31,6 +31,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import lombok.SneakyThrows;
 import org.junit.Rule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -74,15 +75,12 @@ class SimpleFileWriterTest {
     assertTrue(Files.lines(temporaryFile.toPath()).allMatch(testMessage::equals));
   }
 
+
   @Test
+  @SneakyThrows
   void testRipplesIoExceptionOccurredWhileWriting() {
     var message = "Some error";
-    assertThrows(IOException.class, () -> {
-      final var temporaryFile = this.testFolder.newFile();
-      new SimpleFileWriter(temporaryFile.getPath(), writer -> {
-        throw new IOException(message);
-      });
-    }, message);
+    final var temporaryFile = this.testFolder.newFile();
+    assertThrows(IOException.class, () -> new SimpleFileWriter(temporaryFile.getPath(),  writer -> {throw new IOException("error");}), message);
   }
-
 }

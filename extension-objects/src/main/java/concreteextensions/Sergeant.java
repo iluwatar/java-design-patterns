@@ -33,12 +33,8 @@ import units.SergeantUnit;
 /**
  * Class defining Sergeant.
  */
-@Getter
-@RequiredArgsConstructor
 @Slf4j
-public class Sergeant implements SergeantExtension {
-
-  private final SergeantUnit unit;
+public record Sergeant(SergeantUnit unit) implements SergeantExtension {
 
   @Override
   public void sergeantReady() {

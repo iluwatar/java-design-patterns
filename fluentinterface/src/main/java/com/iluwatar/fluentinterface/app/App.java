@@ -42,7 +42,7 @@ import lombok.extern.slf4j.Slf4j;
  * {@link SimpleFluentIterable} evaluates eagerly and would be too costly for real world
  * applications. The {@link LazyFluentIterable} is evaluated on termination. Their usage is
  * demonstrated with a simple number list that is filtered, transformed and collected. The result is
- * printed afterwards.
+ * printed afterward.
  */
 @Slf4j
 public class App {

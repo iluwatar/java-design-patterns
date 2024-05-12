@@ -26,7 +26,7 @@ package com.iluwatar.front.controller;
 
 /**
  * The Front Controller is a presentation tier pattern. Essentially it defines a controller that
- * handles all requests for a web site.
+ * handles all requests for a website.
  *
  * <p>The Front Controller pattern consolidates request handling through a single handler object (
  * {@link FrontController}). This object can carry out the common the behavior such as

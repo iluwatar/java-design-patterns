@@ -26,18 +26,20 @@ package com.iluwatar.guarded.suspension;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by robertt240 on 1/26/17.
- *
- * <p>Guarded-suspension is a concurrent design pattern for handling situation when to execute some
+ * Guarded-suspension is a concurrent design pattern for handling situation when to execute some
  * action we need condition to be satisfied.
- *
- * <p>Implementation is based on GuardedQueue, which has two methods: get and put, the condition is
- * that we cannot get from empty queue so when thread attempt to break the condition we invoke
- * Object's wait method on him and when other thread put an element to the queue he notify the
- * waiting one that now he can get from queue.
+ * The implementation utilizes a GuardedQueue, which features two primary methods: `get` and `put`.
+ * The key condition governing these operations is that elements cannot be retrieved (`get`) from
+ * an empty queue. When a thread attempts to retrieve an element under this condition, it triggers
+ * the invocation of the `wait` method from the Object class, causing the thread to pause.
+ * Conversely, when an element is added (`put`) to the queue by another thread, it invokes the
+ * `notify` method. This notifies the waiting thread that it can now successfully retrieve an
+ * element from the queue.
  */
+@Slf4j
 public class App {
   /**
    * Example pattern execution.
@@ -56,7 +58,7 @@ public class App {
     try {
       Thread.sleep(2000);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error("Error occurred: ", e);
     }
     // now we execute second thread which will put number to guardedQueue
     // and notify first thread that it could get
@@ -65,8 +67,7 @@ public class App {
     try {
       executorService.awaitTermination(30, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error("Error occurred: ", e);
     }
   }
-
 }

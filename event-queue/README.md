@@ -3,63 +3,53 @@ title: Event Queue
 category: Concurrency
 language: en
 tag:
- - Game programming
+    - Asynchronous
+    - Decoupling
+    - Messaging
+    - Event-driven
+    - Scalability
 ---
 
+## Also known as
+
+* Event Stream
+* Message Queue
+
 ## Intent
-The intent of the event queue design pattern, also known as message queues, is to decouple the relationship between the 
-sender and receiver of events within a system. By decoupling the two parties, they do not interact with the event queue 
-simultaneously. Essentially, the event queue handles and processes requests in an asynchronous manner, therefore, this 
-system can be described as a first in, first out design pattern model. Event Queue is a suitable pattern if there is a 
-resource with limited accessibility (i.e. Audio or Database), however, you need to provide access to all the requests 
-which seeks this resource. Upon accessing an event from the queue, the program also removes it from the queue.
 
-![alt text](./etc/event-queue-model.png "Event Queue Visualised")
+The Event Queue pattern is designed to manage tasks in an asynchronous manner, allowing applications to handle operations without blocking user interactions or other processes.
 
-## Explanation 
+![Event Queue](./etc/event-queue-model.png "Event Queue Visualised")
+
+## Explanation
 
 Real world example
 
-> The modern emailing system is an example of the fundamental process behind the event-queue design pattern. When an email
-> is sent, the sender continues their daily tasks without the necessity of an immediate response from the receiver. 
-> Additionally, the receiver has the freedom to access and process the email at their leisure. Therefore, this process 
-> decouples the sender and receiver so that they are not required to engage with the queue at the same time.
+> The modern emailing system is an example of the fundamental process behind the event-queue design pattern. When an email is sent, the sender continues their daily tasks without the necessity of an immediate response from the receiver. Additionally, the receiver has the freedom to access and process the email at their leisure. Therefore, this process decouples the sender and receiver so that they are not required to engage with the queue at the same time.
 
 
 In plain words
 
-> The buffer between sender and receiver improves maintainability and scalability of a system. Event queues are typically 
-> used to organise and carry out interprocess communication (IPC).
+> The buffer between sender and receiver improves maintainability and scalability of a system. Event queues are typically used to organise and carry out interprocess communication (IPC).
 
 Wikipedia says
 
-> Message queues (also known as event queues) implement an asynchronous communication pattern between two or more processes/
->threads whereby the sending and receiving party do not need to interact with the queue at the same time.
+> Message queues (also known as event queues) implement an asynchronous communication pattern between two or more processes/threads whereby the sending and receiving party do not need to interact with the queue at the same time.
 
 
 Key drawback
 
-> As the event queue model decouples the sender-receiver relationship - this means that the event-queue design pattern is
-> unsuitable for scenarios in which the sender requires a response. For example, this is a prominent feature within online 
-> multiplayer games, therefore, this approach require thorough consideration.
+> As the event queue model decouples the sender-receiver relationship - this means that the event-queue design pattern is unsuitable for scenarios in which the sender requires a response. For example, this is a prominent feature within online multiplayer games, therefore, this approach require thorough consideration.
 
 **Programmatic Example**
 
-Upon examining our event-queue example, here's the app which utilised an event queue system.
+This example demonstrates an application using an event queue system to handle audio playback asynchronously.
+
+The App class sets up an instance of Audio, plays two sounds, and waits for user input to exit. It demonstrates how an event queue could be used to manage asynchronous operations in a software application.
 
 ```java
-import javax.sound.sampled.UnsupportedAudioFileException;
-import java.io.IOException;
-
 public class App {
 
-    /**
-     * Program entry point.
-     *
-     * @param args command line args
-     * @throws IOException                   when there is a problem with the audio file loading
-     * @throws UnsupportedAudioFileException when the loaded audio file is unsupported
-     */
     public static void main(String[] args) throws UnsupportedAudioFileException, IOException,
             InterruptedException {
         var audio = Audio.getInstance();
@@ -75,8 +65,7 @@ public class App {
 }
 ```
 
-Much of the design pattern is developed within the Audio class. Here we set instances, declare global variables and establish 
-the key methods used in the above runnable class.
+The Audio class holds the singleton pattern implementation, manages a queue of audio play requests, and controls thread operations for asynchronous processing.
 
 ```java
 public class Audio {
@@ -92,10 +81,7 @@ public class Audio {
 
     private final PlayMessage[] pendingAudio = new PlayMessage[MAX_PENDING];
 
-    // Visible only for testing purposes
-    Audio() {
-
-    }
+    Audio() {}
 
     public static Audio getInstance() {
         return INSTANCE;
@@ -103,42 +89,32 @@ public class Audio {
 }
 ```
 
-The Audio class is also responsible for handling and setting the states of the thread, this is shown in the code segments
-below.
+These methods manage the lifecycle of the thread used to process the audio events. The init and startThread methods ensure the thread is properly initialized and running.
 
 ```java
-/**
- * This method stops the Update Method's thread and waits till service stops.
- */
 public synchronized void stopService() throws InterruptedException {
-    if (updateThread != null) {updateThread.interrupt();}
-    updateThread.join();
-    updateThread = null;
+    if(updateThread != null) {
+        updateThread.interrupt();
+        updateThread.join();
+        updateThread = null;
+    }
 }
 
-/**
- * This method check the Update Method's thread is started.
- * @return boolean
- */
 public synchronized boolean isServiceRunning() {
-    return updateThread != null && updateThread.isAlive();}
+    return updateThread != null && updateThread.isAlive();
+}
 
-/**
- * Starts the thread for the Update Method pattern if it was not started previously. Also when the
- * thread is ready it initializes the indexes of the queue
- */
 public void init() {
-    if (updateThread == null) {
+    if(updateThread == null) {
         updateThread = new Thread(() -> {
             while (!Thread.currentThread().isInterrupted()) {
                 update();
-            }});}
-    startThread();
+            }
+        });
+        startThread();
+    }
 }
 
-/**
- * This is a synchronized thread starter.
- */
 private synchronized void startThread() {
     if (!updateThread.isAlive()) {
         updateThread.start();
@@ -148,48 +124,68 @@ private synchronized void startThread() {
 }
 ```
 
-New audio is added into our event queue in the playSound method found in the Audio class. The update method is then utilised
-to retrieve an audio item from the queue and play it to the user.
+The playSound method checks if the audio is already in the queue and either updates the volume or enqueues a new request, demonstrating the management of asynchronous tasks within the event queue.
 
 ```java
 public void playSound(AudioInputStream stream, float volume) {
     init();
-    // Walk the pending requests.
-    for (var i = headIndex; i != tailIndex; i = (i + 1) % MAX_PENDING) {
-      var playMessage = getPendingAudio()[i];
-      if (playMessage.getStream() == stream) {
-        // Use the larger of the two volumes.
-        playMessage.setVolume(Math.max(volume, playMessage.getVolume()));
-        // Don't need to enqueue.
-        return;
-      }
+    for(var i = headIndex; i != tailIndex; i = (i + 1) % MAX_PENDING) {
+        var playMessage = getPendingAudio()[i];
+        if(playMessage.getStream() == stream) {
+            playMessage.setVolume(Math.max(volume, playMessage.getVolume()));
+            return;
+        }
     }
     getPendingAudio()[tailIndex] = new PlayMessage(stream, volume);
     tailIndex = (tailIndex + 1) % MAX_PENDING;
 }
 ```
 
-Within the Audio class are some more methods with assist the construction of the event-queue design patterns, they are 
-summarised below.
-
-- getAudioStream() = returns the input stream path of a file
-- getPendingAudio() = returns the current event queue item 
-
-
 ## Class diagram
+
 ![alt text](./etc/model.png "Event Queue")
 
 ## Applicability
 
-Use the Event Queue Pattern when
+This pattern is applicable in scenarios where tasks can be handled asynchronously outside the main application flow, such as in GUI applications, server-side event handling, or in systems that require task scheduling without immediate execution. In particular:
 
 * The sender does not require a response from the receiver.
 * You wish to decouple the sender & the receiver.
 * You want to process events asynchronously.
 * You have a limited accessibility resource and the asynchronous process is acceptable to reach that.
 
+## Known Uses
+
+* Event-driven architectures
+* GUI frameworks in Java (such as Swing and JavaFX)
+* Server applications handling requests asynchronously
+
+## Consequences
+
+Benefits:
+
+* Reduces system coupling.
+* Enhances responsiveness of applications.
+* Improves scalability by allowing event handling to be distributed across multiple threads or processors.
+
+Trade-offs:
+
+* Complexity in managing the event queue.
+* Potential for difficult-to-track bugs due to asynchronous behavior.
+* Overhead of maintaining event queue integrity and performance.
+
+## Related Patterns
+
+* [Command](https://java-design-patterns.com/patterns/command/) (for encapsulating request processing in a command object)
+* [Observer](https://java-design-patterns.com/patterns/observer/) (for subscribing and notifying changes to multiple observers)
+* [Reactor](https://java-design-patterns.com/patterns/reactor/) (handles requests in a non-blocking event-driven manner similar to Event Queue)
+
 ## Credits
 
+* [Pattern-Oriented Software Architecture, Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3U2hlcy)
+* [Java Concurrency in Practice](https://amzn.to/3Ji16mX)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3xtVtPJ)
+* [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3xzSlC2)
 * [Mihaly Kuprivecz - Event Queue] (http://gameprogrammingpatterns.com/event-queue.html)
 * [Wikipedia - Message Queue] (https://en.wikipedia.org/wiki/Message_queue)
 * [AWS - Message Queues] (https://aws.amazon.com/message-queue/)

@@ -25,6 +25,7 @@
 
 package exception;
 
+import java.io.Serial;
 import org.springframework.stereotype.Component;
 
 /**
@@ -33,6 +34,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class CakeBakingException extends Exception {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   public CakeBakingException() {

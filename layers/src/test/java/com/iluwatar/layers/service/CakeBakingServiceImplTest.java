@@ -47,7 +47,6 @@ import service.CakeBakingServiceImpl;
 /**
  * Constructs a new instance of CakeBakingServiceImplTest.
  *
- * @param cakeBakingService the service for cake baking operations
  */
 @SpringBootTest(classes = LayersApp.class)
 class CakeBakingServiceImplTest {

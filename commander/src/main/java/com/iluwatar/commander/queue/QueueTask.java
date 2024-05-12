@@ -72,4 +72,8 @@ public class QueueTask {
       }
     }
   }
+
+  public boolean isFirstAttempt() {
+    return this.firstAttemptTime == -1L;
+  }
 }

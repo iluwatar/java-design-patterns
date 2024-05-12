@@ -22,49 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.masterworker.system.systemworkers;
+package com.iluwatar.page.controller;
 
-import com.iluwatar.masterworker.Input;
-import com.iluwatar.masterworker.Result;
-import com.iluwatar.masterworker.system.systemmaster.Master;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
- * The abstract Worker class which extends Thread class to enable parallel processing. Contains
- * fields master(holding reference to master), workerId (unique id) and receivedData(from master).
+ * User Controller.
  */
+@Slf4j
+@Controller
+@NoArgsConstructor
+public class UserController {
+  private final UserView view = new UserView();
 
-public abstract class Worker extends Thread {
-  private final Master master;
-  private final int workerId;
-  private Input<?> receivedData;
-
-  Worker(Master master, int id) {
-    this.master = master;
-    this.workerId = id;
-    this.receivedData = null;
-  }
-
-  public int getWorkerId() {
-    return this.workerId;
-  }
-
-  Input<?> getReceivedData() {
-    return this.receivedData;
-  }
-
-  public void setReceivedData(Master m, Input<?> i) {
-    //check if ready to receive..if yes:
-    this.receivedData = i;
-  }
-
-  abstract Result<?> executeOperation();
-
-  private void sendToMaster(Result<?> data) {
-    this.master.receiveData(data, this);
-  }
-
-  public void run() { //from Thread class
-    var work = executeOperation();
-    sendToMaster(work);
+  /**
+   * Handle http GET request and access view and model.
+   */
+  @GetMapping("/user")
+  public String getUserPath(SignupModel form, Model model) {
+    model.addAttribute("name", form.getName());
+    model.addAttribute("email", form.getEmail());
+    return view.display(form);
   }
 }
