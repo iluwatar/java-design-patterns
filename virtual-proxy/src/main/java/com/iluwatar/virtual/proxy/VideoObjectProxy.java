@@ -34,10 +34,6 @@ import lombok.Getter;
 public class VideoObjectProxy implements ExpensiveObject {
   private RealVideoObject realVideoObject;
 
-  public void setRealVideoObject(RealVideoObject realVideoObject) {
-    this.realVideoObject = realVideoObject;
-  }
-
   @Override
   public void process() {
     if (realVideoObject == null) {
