@@ -42,7 +42,7 @@
       <dependency>
           <groupId>org.awaitility</groupId>
           <artifactId>awaitility</artifactId>
-          <version>4.2.0</version>
+          <version>4.2.1</version>
           <scope>test</scope>
       </dependency>
   </dependencies>
