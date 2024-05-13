@@ -24,6 +24,6 @@
  */
 package com.iluwatar.virtual.proxy;
 
-interface ExpensiveObject {
+public interface ExpensiveObject {
   void process();
 }
