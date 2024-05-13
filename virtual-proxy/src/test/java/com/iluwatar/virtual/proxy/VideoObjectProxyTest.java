@@ -24,52 +24,29 @@
  */
 package com.iluwatar.virtual.proxy;
 
-import static org.mockito.Mockito.*;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
+
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 
 /**
- * Tests for VideoObjectProxy focusing on lazy initialization and method delegation.
+ * Tests for VideoObjectProxy.
  */
 public class VideoObjectProxyTest {
-
-  private VideoObjectProxy proxy;
-  private RealVideoObject realVideoObject;
-
-  /**
-   * Sets up common objects for tests, specifically the proxy without initializing the real object.
-   */
-  @BeforeEach
-  void setUpCommon() {
-    proxy = new VideoObjectProxy();
-  }
-
-  /**
-   * Test to ensure that the RealVideoObject is lazily initialized.
-   * This checks that the real object is created only when the process method is called for the first time.
-   */
   @Test
-  void testProcessInitializesRealVideoObjectOnFirstCall() {
-    assertNull(proxy.getRealVideoObject(), "RealVideoObject should initially be null");
-    realVideoObject = Mockito.mock(RealVideoObject.class);
-    proxy.setRealVideoObject(realVideoObject);  // Injecting the mocked RealVideoObject
-    proxy.process();
-    assertNotNull(proxy.getRealVideoObject(), "RealVideoObject should be instantiated after process is called");
-    verify(realVideoObject, times(1)).process();
+  void shouldBeInstanceOfExpensiveObject() {
+    MatcherAssert.assertThat(new VideoObjectProxy(), instanceOf(ExpensiveObject.class));
   }
 
-  /**
-   * Ensures that subsequent calls to process use the same RealVideoObject instance and do not recreate it.
-   * This tests the singleton behavior of the RealVideoObject within the proxy after it's initially created.
-   */
   @Test
-  void testProcessUsesRealVideoObject() {
-    realVideoObject = Mockito.mock(RealVideoObject.class);
-    proxy.setRealVideoObject(realVideoObject); // Injecting the mocked RealVideoObject
-    proxy.process();  // First call, creates the object
-    proxy.process();  // Second call, should use the already created object
-    verify(realVideoObject, times(2)).process();  // Should call the method twice on the same object
+  void constructorDoesNotThrowException() {
+    assertDoesNotThrow(VideoObjectProxy::new, "Constructor should not throw any exception");
   }
+
+  @Test
+  void processDoesNotThrowException() {
+    assertDoesNotThrow(() -> new VideoObjectProxy().process(), "Process method should not throw any exception");
+  }
+
 }

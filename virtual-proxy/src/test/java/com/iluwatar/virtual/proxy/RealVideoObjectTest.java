@@ -23,7 +23,10 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.virtual.proxy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.instanceOf;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -31,12 +34,20 @@ import org.junit.jupiter.api.Test;
  */
 class RealVideoObjectTest {
 
-  /**
-   * Test the process method to ensure it does not throw any exceptions.
-   */
   @Test
-  void testProcess() {
+  void testVideoObject() {
+    var videoObject = new RealVideoObject();
+    assertThat(videoObject, instanceOf(ExpensiveObject.class));
+  }
+
+  @Test
+  public void constructorDoesNotThrowException() {
+    assertDoesNotThrow(RealVideoObject::new, "Constructor should not throw any exception");
+  }
+
+  @Test
+  public void processDoesNotThrowException() {
     RealVideoObject realVideoObject = new RealVideoObject();
-    assertDoesNotThrow(realVideoObject::process, "Process method should not throw any exceptions");
+    assertDoesNotThrow(realVideoObject::process, "Process method should not throw any exception");
   }
 }

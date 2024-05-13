@@ -56,17 +56,7 @@
         <version>1.18.20</version> <!-- Use the latest version -->
         <scope>provided</scope>
     </dependency>
-    <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>1.7.30</version> <!-- Use the latest version -->
-    </dependency>
-    <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>1.4.12</version>
-        <scope>test</scope>
-    </dependency>
+
 </dependencies>
 <build>
     <plugins>
@@ -78,7 +68,7 @@
                     <configuration>
                         <archive>
                             <manifest>
-                                <mainClass>com.iluwatar.versionnumber.App</mainClass>
+                                <mainClass>App</mainClass>
                             </manifest>
                         </archive>
                     </configuration>
