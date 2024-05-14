@@ -3,27 +3,27 @@ title: Object Pool
 category: Creational
 language: en
 tag:
- - Game programming
- - Performance
+    - Game programming
+    - Instantiation
+    - Memory management
+    - Performance
+    - Resource management
+    - Scalability
 ---
 
 ## Also known as
 
-Resource Pool
+* Resource Pool
 
 ## Intent
 
-When objects are expensive to create and they are needed only for short periods of time it is 
-advantageous to utilize the Object Pool pattern. The Object Pool provides a cache for instantiated 
-objects tracking which ones are in use and which are available.
+The Object Pool design pattern manages a pool of reusable objects, optimizing resource use by recycling objects rather than creating and destroying them repeatedly.
 
 ## Explanation
 
 Real world example
 
-> In our war game we need to use oliphaunts, massive and mythic beasts, but the problem is that they 
-> are extremely expensive to create. The solution is to create a pool of them, track which ones are 
-> in-use, and instead of disposing them re-use the instances.   
+> In our war game we need to use oliphaunts, massive and mythic beasts, but the problem is that they are extremely expensive to create. The solution is to create a pool of them, track which ones are in-use, and instead of disposing them re-use the instances.   
 
 In plain words
 
@@ -31,8 +31,7 @@ In plain words
 
 Wikipedia says
 
-> The object pool pattern is a software creational design pattern that uses a set of initialized 
-> objects kept ready to use – a "pool" – rather than allocating and destroying them on demand.
+> The object pool pattern is a software creational design pattern that uses a set of initialized objects kept ready to use – a "pool" – rather than allocating and destroying them on demand.
 
 **Programmatic Example**
 
@@ -65,7 +64,7 @@ public class Oliphaunt {
 }
 ```
 
-Next we present the `ObjectPool` and more specifically `OliphauntPool`.
+Next, we present the `ObjectPool` and more specifically `OliphauntPool`.
 
 ```java
 public abstract class ObjectPool<T> {
@@ -137,11 +136,46 @@ Pool available=0 inUse=3
 
 ## Class diagram
 
-![alt text](./etc/object-pool.png "Object Pool")
+![Object Pool](./etc/object-pool.png "Object Pool")
 
 ## Applicability
 
 Use the Object Pool pattern when
 
-* The objects are expensive to create (allocation cost).
-* You need a large number of short-lived objects (memory fragmentation).
+* You need to frequently create and destroy objects, leading to high resource allocation and deallocation costs.
+* The objects are expensive to create and maintain (e.g., database connections, thread pools).
+* A fixed number of objects need to be controlled, like in connection pooling.
+* Object reuse can significantly improve system performance and resource management.
+
+## Known Uses
+
+* Database connection pooling in Java applications.
+* Thread pooling in Java concurrent programming.
+* Pooling of socket connections in network applications.
+* Object pools in game development for frequently created and destroyed game objects.
+
+## Consequences
+
+Benefits:
+
+* Improved Performance: Reduces the overhead of object creation and garbage collection.
+* Resource Management: Controls the number of instances, reducing resource contention and limiting resource usage.
+* Scalability: Allows the application to handle more requests by reusing a fixed number of objects.
+
+Trade-offs:
+
+* Complexity: Adds complexity to the codebase, requiring careful management of the pool.
+* Thread Safety: Requires careful handling of concurrent access to the pool, introducing potential synchronization issues.
+* Initialization Cost: Initial creation of the pool can be resource-intensive.
+
+## Related Patterns
+
+[Singleton](https://java-design-patterns.com/patterns/singleton/): Ensures a single instance of the pool is used, providing a global point of access.
+[Flyweight](https://java-design-patterns.com/patterns/flyweight/): Shares fine-grained objects to reduce memory usage, complementing object pooling by managing object state efficiently.
+[Factory Method](https://java-design-patterns.com/patterns/factory-method/): Often used to create objects within the pool, abstracting the instantiation process.
+
+## Credits
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Java Concurrency in Practice](https://amzn.to/4aRMruW)

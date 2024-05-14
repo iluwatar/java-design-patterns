@@ -24,11 +24,12 @@
  */
 package com.iluwatar.object.pool;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicInteger;import lombok.extern.slf4j.Slf4j;
 
 /**
  * Oliphaunts are expensive to create.
  */
+@Slf4j
 public class Oliphaunt {
 
   private static final AtomicInteger counter = new AtomicInteger(0);
@@ -43,7 +44,7 @@ public class Oliphaunt {
     try {
       Thread.sleep(1000);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error("Error occurred: ", e);
     }
   }
 
