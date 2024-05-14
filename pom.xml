@@ -220,7 +220,6 @@
     <module>gateway</module>
     <module>slob</module>
     <module>server-session</module>
-    <module>virtual-proxy</module>
     <module>function-composition</module>
   </modules>
   <repositories>
