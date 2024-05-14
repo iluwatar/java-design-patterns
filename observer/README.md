@@ -3,26 +3,25 @@ title: Observer
 category: Behavioral
 language: en
 tag:
- - Gang Of Four
- - Reactive
+    - Decoupling
+    - Event-driven
+    - Gang Of Four
+    - Publish/subscribe
 ---
 
 ## Also known as
 
-Dependents, Publish-Subscribe
+* Dependents
 
 ## Intent
 
-Define a one-to-many dependency between objects so that when one object changes state, all its 
-dependents are notified and updated automatically.
+Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 
 ## Explanation
 
 Real-world example
 
-> In a land far away live the races of hobbits and orcs. Both of them are mostly outdoors so they 
-> closely follow the weather changes. One could say that they are constantly observing the 
-> weather.
+> In a land far away live the races of hobbits and orcs. Both of them are mostly outdoors so they closely follow the weather changes. One could say that they are constantly observing the weather.
 
 In plain words
 
@@ -30,9 +29,7 @@ In plain words
 
 Wikipedia says
 
-> The observer pattern is a software design pattern in which an object, called the subject, 
-> maintains a list of its dependents, called observers, and notifies them automatically of any state 
-> changes, usually by calling one of their methods.
+> The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
 
 **Programmatic Example**
 
@@ -136,18 +133,15 @@ The hobbits are facing sunny weather now
 
 ## Class diagram
 
-![alt text](./etc/observer.png "Observer")
+![Observer](./etc/observer.png "Observer")
 
 ## Applicability
 
 Use the Observer pattern in any of the following situations:
 
-* When an abstraction has two aspects, one dependent on the other. Encapsulating these aspects in 
-separate objects lets you vary and reuse them independently.
-* When a change to one object requires changing others, and you don't know how many objects need to 
-be changed.
-* When an object should be able to notify other objects without making assumptions about who these 
-objects are. In other words, you don't want these objects tightly coupled.
+* When an abstraction has two aspects, one dependent on the other. Encapsulating these aspects in separate objects lets you vary and reuse them independently.
+* When a change to one object requires changing others, and you don't know how many objects need to be changed.
+* When an object should be able to notify other objects without making assumptions about who these objects are. In other words, you don't want these objects tightly coupled.
 
 ## Known uses
 
@@ -155,6 +149,26 @@ objects are. In other words, you don't want these objects tightly coupled.
 * [java.util.EventListener](http://docs.oracle.com/javase/8/docs/api/java/util/EventListener.html)
 * [javax.servlet.http.HttpSessionBindingListener](http://docs.oracle.com/javaee/7/api/javax/servlet/http/HttpSessionBindingListener.html)
 * [RxJava](https://github.com/ReactiveX/RxJava)
+* Model-View-Controller (MVC) frameworks.
+* Event handling systems.
+
+## Consequences
+
+Benefits:
+
+* Promotes loose coupling between the subject and its observers.
+* Allows dynamic subscription and unsubscription of observers.
+
+Trade-offs:
+
+* Can lead to memory leaks if observers are not properly deregistered.
+* The order of notification is not specified, leading to potential unexpected behavior.
+* Potential for performance issues with a large number of observers.
+
+## Related Patterns
+
+* [Mediator](https://java-design-patterns.com/patterns/mediator/): Encapsulates how a set of objects interact, which can be used to reduce the direct dependencies among objects.
+* [Singleton](https://java-design-patterns.com/patterns/singleton/): Often used with the Observer pattern to ensure a single instance of the subject.
 
 ## Credits
 
