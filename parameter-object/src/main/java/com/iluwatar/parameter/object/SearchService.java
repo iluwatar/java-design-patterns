@@ -33,7 +33,7 @@ public class SearchService {
    * Below two methods of name `search` is overloaded so that we can send a default value for
    * one of the criteria and call the final api. A default SortOrder is sent in the first method
    * and a default SortBy is sent in the second method. So two separate method definitions are
-   * needed for having default values for one argument in each case. Hence multiple overloaded
+   * needed for having default values for one argument in each case. Hence, multiple overloaded
    * methods are needed as the number of argument increases.
    */
   public String search(String type, String sortBy) {
