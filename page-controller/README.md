@@ -1,62 +1,59 @@
 ---
 title: Page Controller
-categories: Structural
+categories: Architectural
 language: en
 tags:
-- Decoupling
+    - API design
+    - Business
+    - Client-server
+    - Decoupling
+    - Enterprise patterns
+    - Layered architecture
+    - Presentation
+    - Web development
 ---
 
-## Name / classification
+## Also known as
 
-Page Controller
+* Dispatcher
 
 ## Intent
 
-It is an approach of one page leading to one logical file that handles actions or requests on a website.
+The Page Controller pattern is intended to handle requests for a specific page or action within a web application, processing input, and determining the appropriate view for rendering the response.
 
 ## Explanation
 
 Real-world example
 
-> In a shopping website, there is a signup page to register a user profile.
-> After finishing to signup, the signup page will be redirected to a user page to show the user's registered information.
+> Imagine a large department store with multiple specialized counters: Customer Service, Returns, Electronics, and Clothing. Each counter has a dedicated staff member who handles specific tasks for that department.
+>
+> In this analogy, the department store is the web application, and each specialized counter represents a Page Controller. The Customer Service counter (Page Controller) handles customer inquiries, the Returns counter processes returns and exchanges, the Electronics counter assists with electronic goods, and the Clothing counter manages clothing-related requests. Each counter operates independently, addressing the specific needs of their respective department, just as each Page Controller handles requests for a specific page or action within the web application.
 
 In plain words
 
-> Page controller manages HTTP requests and data in a specific page using MVC idea. 
-> The idea is that one page contains one Controller that handles Model and View. 
+> The Page Controller pattern handles requests for specific pages or actions within a web application, processing input, executing business logic, and determining the appropriate view for rendering the response.
 
 **Programmatic Example**
 
-Here's Signup controller when a user signup their information for a website.
+The Page Controller design pattern is a pattern used in web development where each page of a website is associated with a class or function known as a controller. The controller handles the HTTP requests for that page and determines which model and view to use. This pattern is commonly used in MVC (Model-View-Controller) architectures.
+
+In the provided code, we have an example of the Page Controller pattern implemented using Spring Boot in Java. Let's break it down:
+
+1. **SignupController**: This is a Page Controller for the signup page. It handles HTTP GET and POST requests at the "/signup" path. The GET request returns the signup page, and the POST request processes the signup form and redirects to the user page.
 
 ```java
-@Slf4j
 @Controller
 @Component
 public class SignupController {
   SignupView view = new SignupView();
-  /**
-   * Signup Controller can handle http request and decide which model and view use.
-   */
-  SignupController() {
-  }
 
-  /**
-   * Handle http GET request.
-   */
   @GetMapping("/signup")
   public String getSignup() {
     return view.display();
   }
 
-  /**
-   * Handle http POST request and access model and view.
-   */
   @PostMapping("/signup")
   public String create(SignupModel form, RedirectAttributes redirectAttributes) {
-    LOGGER.info(form.getName());
-    LOGGER.info(form.getEmail());
     redirectAttributes.addAttribute("name", form.getName());
     redirectAttributes.addAttribute("email", form.getEmail());
     redirectAttributes.addFlashAttribute("userInfo", form);
@@ -64,44 +61,8 @@ public class SignupController {
   }
 }
 ```
-Here's Signup model and view that are handled by Signup controller.
 
-```java
-@Component
-@Getter
-@Setter
-public class SignupModel {
-  private String name;
-  private String email;
-  private String password;
-  
-  public SignupModel() {
-  }
-}
-```
-
-```java
-@Slf4j
-public class SignupView {
-  public SignupView() {
-  }
-
-  public String display() {
-    LOGGER.info("display signup front page");
-    return "/signup";
-  }
-
-  /**
-   * redirect to user page.
-   */
-  public String redirect(SignupModel form) {
-    LOGGER.info("Redirect to user page with " + "name " + form.getName() + " email " + form.getEmail());
-    return "redirect:/user";
-  }
-}
-```
-
-Here's User Controller to handle Get request in a user page.
+2. **UserController**: This is another Page Controller, this time for the user page. It handles HTTP GET requests at the "/user" path, returning the user page.
 
 ```java
 @Slf4j
@@ -109,11 +70,6 @@ Here's User Controller to handle Get request in a user page.
 public class UserController {
   UserView view = new UserView();
 
-  public UserController() {}
-
-  /**
-   * Handle http GET request and access view and model.
-   */
   @GetMapping("/user")
   public String getUserPath(SignupModel form, Model model) {
     model.addAttribute("name", form.getName());
@@ -123,40 +79,88 @@ public class UserController {
 }
 ```
 
-Here's User Model and View that are handled by User controller.
+3. **SignupModel and UserModel**: These are the data models used by the controllers. They hold the data to be displayed on the page.
+
 ```java
+@Component
+@Getter
+@Setter
+public class SignupModel {
+  private String name;
+  private String email;
+  private String password;
+}
+
 @Getter
 @Setter
 public class UserModel {
   private String name;
   private String email;
-
-  public UserModel() {}
 }
 ```
 
+4. **SignupView and UserView**: These are the views used by the controllers. They determine how the data is presented to the user.
+
 ```java
 @Slf4j
+public class SignupView {
+  public String display() {
+    return "/signup";
+  }
+
+  public String redirect(SignupModel form) {
+    return "redirect:/user";
+  }
+}
+
+@Slf4j
 public class UserView {
-  /**
-   * displaying command to generate html.
-   * @param user model content.
-   */
   public String display(SignupModel user) {
-    LOGGER.info("display user html" + " name " + user.getName() + " email " + user.getEmail());
     return "/user";
   }
 }
 ```
 
+In this example, the controllers (SignupController and UserController) are the Page Controllers. They handle the HTTP requests for their respective pages and determine which model and view to use. The models (SignupModel and UserModel) hold the data for the page, and the views (SignupView and UserView) determine how that data is presented. This separation of concerns makes the code easier to manage and maintain.
+
 ## Class diagram
-![alt text](./etc/page-controller.urm.png)
+
+![Page Controller](./etc/page-controller.urm.png)
 
 ## Applicability
-Use the Page Controller pattern when
-- you implement a site where most controller logic is simple
-- you implement a site where particular actions are handled with a particular server page
+
+* When developing a web application where each page or action needs specific processing.
+* When aiming to separate the request handling logic from the view rendering logic.
+* In scenarios where a clear separation of concerns between different layers (controller, view) is required.
+
+## Known Uses
+
+* Spring MVC (Java)
+* Apache Struts
+* JSF (JavaServer Faces)
+
+## Consequences
+
+Benefits:
+
+* [Separation of Concerns](https://java-design-patterns.com/principles/#separation-of-concerns): Clearly separates the controller logic from the view, making the application easier to manage and maintain.
+* Reusability: Common logic can be reused across multiple controllers, reducing code duplication.
+* Testability: Controllers can be tested independently of the view, improving unit test coverage.
+
+Trade-offs:
+
+* Complexity: Can add complexity to the application structure, requiring careful organization and documentation.
+* Overhead: May introduce performance overhead due to additional layers of abstraction and processing.
+
+## Related Patterns
+
+* [Front Controller](https://java-design-patterns.com/patterns/front-controller/): Often used in conjunction with Page Controller to handle common pre-processing logic such as authentication and logging.
+* View Helper: Works alongside Page Controller to assist in preparing the view, often handling formatting and other presentation logic.
+* [Model-View-Controller (MVC)](https://java-design-patterns.com/patterns/model-view-controller/): Page Controller is a fundamental part of the MVC architecture, acting as the Controller.
 
 ## Credits
-- [Page Controller](https://www.martinfowler.com/eaaCatalog/pageController.html)
-- [Pattern of Enterprise Application Architecture](https://www.martinfowler.com/books/eaa.html)
+
+* [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
+* [Page Controller - Martin Fowler](https://www.martinfowler.com/eaaCatalog/pageController.html)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
