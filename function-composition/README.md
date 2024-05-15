@@ -1,16 +1,12 @@
 ---
-title: Function Composer
+title: Function Composition
 category: Behavioral
 language: en
 tag:
   - Functional Programming
-  - Composition
+  - Functional decomposition
   - Java
 ---
-
-## Name / classification
-
-Function Composer
 
 ## Also known as
 
