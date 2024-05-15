@@ -10,7 +10,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-341-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-342-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -513,6 +513,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/k1w1dev"><img src="https://avatars.githubusercontent.com/u/121696782?v=4?s=100" width="100px;" alt="k1w1dev"/><br /><sub><b>k1w1dev</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=k1w1dev" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/dev-yugantar"><img src="https://avatars.githubusercontent.com/u/153066190?v=4?s=100" width="100px;" alt="dev-yugantar"/><br /><sub><b>dev-yugantar</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dev-yugantar" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/Adelechka"><img src="https://avatars.githubusercontent.com/u/65678470?v=4?s=100" width="100px;" alt="Adelya"/><br /><sub><b>Adelya</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Adelechka" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/gatlanagaprasanna"><img src="https://avatars.githubusercontent.com/u/154739216?v=4?s=100" width="100px;" alt="gatlanagaprasanna"/><br /><sub><b>gatlanagaprasanna</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=gatlanagaprasanna" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
