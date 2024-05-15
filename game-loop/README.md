@@ -151,6 +151,65 @@ public class FrameBasedGameLoop extends GameLoop {
   }
 }
 ```
+Here's the next game loop implementation, `FixedStepGameLoop`:
+
+```java
+public class FixedStepGameLoop extends GameLoop {
+
+  /**
+   * 20 ms per frame = 50 FPS.
+   */
+  private static final long MS_PER_FRAME = 20;
+
+  @Override
+  protected void processGameLoop() {
+    var previousTime = System.currentTimeMillis();
+    var lag = 0L;
+    while (isGameRunning()) {
+      var currentTime = System.currentTimeMillis();
+      var elapsedTime = currentTime - previousTime;
+      previousTime = currentTime;
+      lag += elapsedTime;
+
+      processInput();
+
+      while (lag >= MS_PER_FRAME) {
+        update();
+        lag -= MS_PER_FRAME;
+      }
+
+      render();
+    }
+  }
+
+  protected void update() {
+    controller.moveBullet(0.5f * MS_PER_FRAME / 1000);
+  }
+}
+```
+And the last game loop implementation, `VariableStepGameLoop`:
+```java
+public class VariableStepGameLoop extends GameLoop {
+
+  @Override
+  protected void processGameLoop() {
+    var lastFrameTime = System.currentTimeMillis();
+    while (isGameRunning()) {
+      processInput();
+      var currentFrameTime = System.currentTimeMillis();
+      var elapsedTime = currentFrameTime - lastFrameTime;
+      update(elapsedTime);
+      lastFrameTime = currentFrameTime;
+      render();
+    }
+  }
+
+  protected void update(Long elapsedTime) {
+    controller.moveBullet(0.5f * elapsedTime / 1000);
+  }
+
+}
+```
 
 Finally, we show all the game loops in action.
 
