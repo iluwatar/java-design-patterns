@@ -55,7 +55,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.com.App</mainClass>
+                  <mainClass>com.iluwatar.proxy.App</mainClass>
                 </manifest>
               </archive>
             </configuration>
