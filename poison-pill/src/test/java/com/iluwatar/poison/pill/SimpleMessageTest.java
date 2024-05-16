@@ -56,10 +56,6 @@ class SimpleMessageTest {
   void testUnModifiableHeaders() {
     final var message = new SimpleMessage();
     final var headers = message.getHeaders();
-    assertThrows(UnsupportedOperationException.class, () -> {
-      headers.put(Message.Headers.SENDER, "test");
-    });
+    assertThrows(UnsupportedOperationException.class, () -> headers.put(Message.Headers.SENDER, "test"));
   }
-
-
 }
