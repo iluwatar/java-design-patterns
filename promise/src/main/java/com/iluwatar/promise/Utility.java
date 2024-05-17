@@ -58,7 +58,7 @@ public class Utility {
           .mapToObj(x -> (char) x)
           .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     } catch (IOException ex) {
-      ex.printStackTrace();
+      LOGGER.error("An error occurred: ", ex);
     }
     return Collections.emptyMap();
   }
@@ -86,7 +86,7 @@ public class Utility {
     try (var bufferedReader = new BufferedReader(new FileReader(fileLocation))) {
       return (int) bufferedReader.lines().count();
     } catch (IOException ex) {
-      ex.printStackTrace();
+      LOGGER.error("An error occurred: ", ex);
     }
     return 0;
   }
