@@ -41,7 +41,7 @@ import org.junit.jupiter.api.Test;
 class CharacterTest {
 
   @Test
-  void testPrototypeStats() throws Exception {
+  void testPrototypeStats() {
     final var prototype = new Character();
 
     for (final var stat : Stats.values()) {
