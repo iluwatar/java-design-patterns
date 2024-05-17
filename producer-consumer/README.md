@@ -1,39 +1,42 @@
 ---
-title: Producer Consumer
+title: Producer-Consumer
 category: Concurrency
 language: en
 tag:
- - Reactive
+    - Asynchronous
+    - Buffering
+    - Decoupling
+    - Messaging
+    - Synchronization
+    - Thread management
 ---
 
-## Intent
-Producer Consumer Design pattern is a classic concurrency pattern which reduces
- coupling between Producer and Consumer by separating Identification of work with Execution of
- Work.
+## Also known as
 
-## Explanation 
+* Bounded Buffer
+* Consumer-Producer
+
+## Intent
+
+The Producer-Consumer design pattern is used to decouple the tasks of producing and consuming data, enabling a producer to generate data and a consumer to process that data concurrently without direct dependency on each other.
+
+## Explanation
 
 Real-world example
 
-> Consider a manufacturing process of item, the producer will need to pause the production when 
-> manufacturing pipeline is full and the consumer will need to pause the consumption of item 
-> when the manufacturing pipeline is empty. We can separate the process of production and consumption 
-> which work together and pause at separate times. 
+> Consider a manufacturing process of item, the producer will need to pause the production when manufacturing pipeline is full and the consumer will need to pause the consumption of item when the manufacturing pipeline is empty. We can separate the process of production and consumption which work together and pause at separate times.
 
 In plain words
 
-> It provides a way to share data between multiple loops running at different rates. 
+> It provides a way to share data between multiple loops running at different rates.
 
 Wikipedia says
-> Dijkstra wrote about the case: "We consider two processes, which are called the 'producer' 
-> and the 'consumer' respectively. The producer is a cyclic process that produces a certain 
-> portion of information, that has to be processed by the consumer. The consumer is also a cyclic 
-> process that needs to process the next portion of information, as has been produced by the producer 
-> We assume the two processes to be connected for this purpose via a buffer with unbounded capacity."
+
+> Dijkstra wrote about the case: "We consider two processes, which are called the 'producer' and the 'consumer' respectively. The producer is a cyclic process that produces a certain portion of information, that has to be processed by the consumer. The consumer is also a cyclic process that needs to process the next portion of information, as has been produced by the producer. We assume the two processes to be connected for this purpose via a buffer with unbounded capacity."
 
 **Programmatic Example**
 
-Take our Producer and Consumer example from above. Consider we have a `Item` class that is produced by `Producer` class and is added to the `ItemQueue`. 
+Take our Producer and Consumer example from above. Consider we have a `Item` class that is produced by `Producer` class and is added to the `ItemQueue`.
 
 ```java
 public class Producer {
@@ -64,7 +67,7 @@ public class Producer {
 
 ```
 
-Then, we have the `Consumer` class that takes the item from the item queue. 
+Then, we have the `Consumer` class that takes the item from the item queue.
 
 ```java
 
@@ -92,7 +95,7 @@ public class Consumer {
 }
 ``` 
 
-Now, during the manufacturing pipeline, we can instantiate objects from both the `Producer` and `Consumer` clasess as they produce and consumer items from the queue. 
+Now, during the manufacturing pipeline, we can instantiate objects from both the `Producer` and `Consumer` classes as they produce and consume items from the queue.
 
 ```java
 var queue = new ItemQueue();
@@ -115,15 +118,44 @@ for (var i = 0; i < 3; i++) {
         }
     });
 }
-
 ```
 
-
 ## Class diagram
-![alt text](./etc/producer-consumer.png "Producer Consumer")
+
+![Producer-Consumer](./etc/producer-consumer.png "Producer-Consumer")
 
 ## Applicability
-Use the Producer Consumer idiom when
 
-* Decouple system by separate work in two process produce and consume.
-* Addresses the issue of different timing require to produce work or consuming work
+* When you need to manage a buffer or queue where producers add data and consumers take data, often in a multithreaded environment.
+* When decoupling the production and consumption of data is beneficial for the application's design, performance, or maintainability.
+* Suitable for scenarios requiring synchronized access to a shared resource or data structure.
+
+## Known Uses
+
+* Thread pools where worker threads act as consumers processing tasks produced by another thread.
+* Logging frameworks where log messages are produced by various parts of an application and consumed by a logging service.
+* Message queues in distributed systems for asynchronous communication between services.
+
+## Consequences
+
+Benefits:
+
+* Decoupling: Producers and consumers can operate independently, simplifying the system design.
+* Improved Performance: Allows multiple producer and consumer threads to work concurrently, improving throughput.
+* Flexibility: Easily extendable to add more producers or consumers without significant changes to the existing system.
+
+Trade-offs:
+
+* Complexity: Requires careful handling of synchronization and potential deadlocks.
+* Resource Management: Properly managing the buffer size to avoid overflow or underflow conditions.
+
+## Related Patterns
+
+* [Observer](https://java-design-patterns.com/patterns/observer/): While both deal with notifying or handling events, the Observer pattern is more about event subscription and notification, whereas Producer-Consumer focuses on decoupled data production and consumption.
+* [Thread Pool](https://java-design-patterns.com/patterns/thread-pool/): Uses a similar decoupling approach where tasks are produced and consumed by a pool of worker threads.
+
+## Credits
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Java Concurrency in Practice](https://amzn.to/4aRMruW)
