@@ -1,168 +1,160 @@
 ---
-title: Priority Queue Pattern
-category: Behavioral
+title: Priority Queue
+category: Concurrency
 language: en
 tag:
- - Decoupling
- - Cloud distributed
+    - Performance
+    - Scalability
+    - Synchronization
+    - Thread management
 ---
+
+## Also known as
+
+* Priority Heap
+* Priority List
 
 ## Intent
 
-Prioritize requests sent to services so that requests with a higher priority are received and 
-processed more quickly than those of a lower priority. This pattern is useful in applications that 
-offer different service level guarantees to individual clients.
+The Priority Queue design pattern provides a way to manage a collection of elements where each element has a priority, and elements are accessed and removed based on their priority rather than their insertion order.
 
 ## Explanation
 
-Applications may delegate specific tasks to other services; for example, to perform background 
-processing or to integrate with other applications or services. In the cloud, a message queue is 
-typically used to delegate tasks to background processing. In many cases the order in which requests 
-are received by a service is not important. However, in some cases it may be necessary to prioritize 
-specific requests. These requests should be processed earlier than others of a lower priority that 
-may have been sent previously by the application.
-
 Real world example
 
-> Imagine a video processing service with free and premium customers. The requests coming from the
-> paying premium customers should be prioritized over the others. 
+> Imagine an emergency room in a hospital. Patients arrive with varying degrees of urgency: some have minor injuries, while others have life-threatening conditions. The hospital uses a priority queue system to manage these patients. Instead of treating patients on a first-come, first-served basis, the medical staff assigns a priority level to each patient based on the severity of their condition. Patients with more critical conditions (higher priority) are treated before those with less severe issues, ensuring that urgent cases receive immediate attention. This system efficiently manages resources and prioritizes care, similar to how a priority queue handles elements based on their priority.
 
 In plain words
 
-> Priority Queue enables processing of high priority messages first, regardless of queue size or
-> message age. 
+> Priority Queue enables processing of high priority messages first, regardless of queue size or message age.
 
 Wikipedia says
 
-> In computer science, a priority queue is an abstract data type similar to regular queue or stack 
-> data structure in which each element additionally has a "priority" associated with it. In a 
-> priority queue, an element with high priority is served before an element with low priority. 
+> In computer science, a priority queue is an abstract data type similar to regular queue or stack data structure in which each element additionally has a "priority" associated with it. In a priority queue, an element with high priority is served before an element with low priority.
 
 **Programmatic Example**
 
-Looking at the video processing example from above, let's first see the `Message` structure.
+Looking at a video processing example, let's first see the `Message` structure.
 
 ```java
 public class Message implements Comparable<Message> {
 
-  private final String message;
-  private final int priority; // define message priority in queue
+    private final String message;
+    private final int priority; // define message priority in queue
 
-  public Message(String message, int priority) {
-    this.message = message;
-    this.priority = priority;
-  }
+    public Message(String message, int priority) {
+        this.message = message;
+        this.priority = priority;
+    }
 
-  @Override
-  public int compareTo(Message o) {
-    return priority - o.priority;
-  }
-  ...
+    @Override
+    public int compareTo(Message o) {
+        return priority - o.priority;
+    }
+    // ...
 }
 ```
 
-Here's `PriorityMessageQueue` that handles storing the messages and serving them in priority
-order.
+Here's `PriorityMessageQueue` that handles storing the messages and serving them in priority order.
 
 ```java
 public class PriorityMessageQueue<T extends Comparable> {
 
-  ...
+    // ...
 
-  public T remove() {
-    if (isEmpty()) {
-      return null;
+    public T remove() {
+        if (isEmpty()) {
+            return null;
+        }
+
+        final var root = queue[0];
+        queue[0] = queue[size - 1];
+        size--;
+        maxHeapifyDown();
+        return root;
     }
 
-    final var root = queue[0];
-    queue[0] = queue[size - 1];
-    size--;
-    maxHeapifyDown();
-    return root;
-  }
+    public void add(T t) {
+        ensureCapacity();
+        queue[size] = t;
+        size++;
+        maxHeapifyUp();
+    }
 
-  public void add(T t) {
-    ensureCapacity();
-    queue[size] = t;
-    size++;
-    maxHeapifyUp();
-  }
-
-  ...
+    // ...
 }
 ```
 
-`QueueManager` has a `PriorityMessageQueue` and makes it easy to `publishMessage` and
-`receiveMessage`.
+`QueueManager` has a `PriorityMessageQueue` and makes it easy to `publishMessage` and `receiveMessage`.
 
 ```java
 public class QueueManager {
 
-  private final PriorityMessageQueue<Message> messagePriorityMessageQueue;
+    private final PriorityMessageQueue<Message> messagePriorityMessageQueue;
 
-  public QueueManager(int initialCapacity) {
-    messagePriorityMessageQueue = new PriorityMessageQueue<>(new Message[initialCapacity]);
-  }
-
-  public void publishMessage(Message message) {
-    messagePriorityMessageQueue.add(message);
-  }
-
-  public Message receiveMessage() {
-    if (messagePriorityMessageQueue.isEmpty()) {
-      return null;
+    public QueueManager(int initialCapacity) {
+        messagePriorityMessageQueue = new PriorityMessageQueue<>(new Message[initialCapacity]);
     }
-    return messagePriorityMessageQueue.remove();
-  }
+
+    public void publishMessage(Message message) {
+        messagePriorityMessageQueue.add(message);
+    }
+
+    public Message receiveMessage() {
+        if (messagePriorityMessageQueue.isEmpty()) {
+            return null;
+        }
+        return messagePriorityMessageQueue.remove();
+    }
 }
 ```
 
 `Worker` constantly polls `QueueManager` for highest priority message and processes it.
 
 ```java
+
 @Slf4j
 public class Worker {
 
-  private final QueueManager queueManager;
+    private final QueueManager queueManager;
 
-  public Worker(QueueManager queueManager) {
-    this.queueManager = queueManager;
-  }
-
-  public void run() throws Exception {
-    while (true) {
-      var message = queueManager.receiveMessage();
-      if (message == null) {
-        LOGGER.info("No Message ... waiting");
-        Thread.sleep(200);
-      } else {
-        processMessage(message);
-      }
+    public Worker(QueueManager queueManager) {
+        this.queueManager = queueManager;
     }
-  }
 
-  private void processMessage(Message message) {
-    LOGGER.info(message.toString());
-  }
+    public void run() throws Exception {
+        while (true) {
+            var message = queueManager.receiveMessage();
+            if (message == null) {
+                LOGGER.info("No Message ... waiting");
+                Thread.sleep(200);
+            } else {
+                processMessage(message);
+            }
+        }
+    }
+
+    private void processMessage(Message message) {
+        LOGGER.info(message.toString());
+    }
 }
 ```
 
-Here's the full example how we create an instance of `QueueManager` and process messages using
-`Worker`.
+Here's the full example how we create an instance of `QueueManager` and process messages using `Worker`.
 
 ```java
-    var queueManager = new QueueManager(100);
+var queueManager = new QueueManager(100);
 
-    for (var i = 0; i < 100; i++) {
-      queueManager.publishMessage(new Message("Low Message Priority", 0));
-    }
+for (var i = 0; i< 100; i++) {
+    queueManager.publishMessage(new Message("Low Message Priority", 0));
+}
 
-    for (var i = 0; i < 100; i++) {
-      queueManager.publishMessage(new Message("High Message Priority", 1));
-    }
+for(var i = 0; i< 100; i++) {
+    queueManager.publishMessage(new Message("High Message Priority", 1));
+}
 
-    var worker = new Worker(queueManager);
-    worker.run();
+var worker = new Worker(queueManager);
+worker.run();
 ```
 
 Program output:
@@ -193,7 +185,6 @@ No Message ... waiting
 No Message ... waiting
 ```
 
-
 ## Class diagram
 
 ![alt text](./etc/priority-queue.urm.png "Priority Queue pattern class diagram")
@@ -202,9 +193,35 @@ No Message ... waiting
 
 Use the Priority Queue pattern when:
 
-* The system must handle multiple tasks that might have different priorities.
-* Different users or tenants should be served with different priority.
+* You need to manage tasks or elements that have different priorities.
+* Applicable in scheduling systems where tasks need to be executed based on their priority.
+* Useful in scenarios where you need to handle a large number of elements with varying importance levels efficiently.
+
+## Known Uses
+
+* Task scheduling in operating systems.
+* Job scheduling in servers and batch processing systems.
+* Event simulation systems where events are processed based on their scheduled time.
+* Pathfinding algorithms (e.g., Dijkstra's or A* algorithms).
+
+## Consequences
+
+Benefits:
+
+* Efficient management of elements based on priority.
+* Enhanced performance for priority-based access and removal operations.
+* Improved scalability in systems requiring prioritized task execution.
+
+Trade-offs:
+
+* Increased complexity in implementation and maintenance compared to simple queues.
+* Potential for higher memory usage due to the underlying data structures.
+* Requires careful synchronization in a multi-threaded environment to avoid concurrency issues.
+
+## Related Patterns
+
+* Observer: Can be used alongside Priority Queue to notify when elements with high priority are processed.
 
 ## Credits
 
-* [Priority Queue pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/priority-queue)
+* [Priority Queue pattern - Microsoft](https://docs.microsoft.com/en-us/azure/architecture/patterns/priority-queue)
