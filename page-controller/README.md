@@ -13,10 +13,6 @@ tags:
     - Web development
 ---
 
-## Also known as
-
-* Dispatcher
-
 ## Intent
 
 The Page Controller pattern is intended to handle requests for a specific page or action within a web application, processing input, and determining the appropriate view for rendering the response.

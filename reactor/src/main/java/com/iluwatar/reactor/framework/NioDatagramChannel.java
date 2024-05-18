@@ -31,6 +31,8 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.DatagramChannel;
 import java.nio.channels.SelectionKey;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -131,9 +133,12 @@ public class NioDatagramChannel extends AbstractNioChannel {
   /**
    * Container of data used for {@link NioDatagramChannel} to communicate with remote peer.
    */
+  @Getter
   public static class DatagramPacket {
-    private SocketAddress sender;
     private final ByteBuffer data;
+    @Setter
+    private SocketAddress sender;
+    @Setter
     private SocketAddress receiver;
 
     /**
@@ -143,51 +148,6 @@ public class NioDatagramChannel extends AbstractNioChannel {
      */
     public DatagramPacket(ByteBuffer data) {
       this.data = data;
-    }
-
-    /**
-     * Get sender address.
-     *
-     * @return the sender address.
-     */
-    public SocketAddress getSender() {
-      return sender;
-    }
-
-    /**
-     * Sets the sender address of this packet.
-     *
-     * @param sender the sender address.
-     */
-    public void setSender(SocketAddress sender) {
-      this.sender = sender;
-    }
-
-    /**
-     * Get receiver address.
-     *
-     * @return the receiver address.
-     */
-    public SocketAddress getReceiver() {
-      return receiver;
-    }
-
-    /**
-     * Sets the intended receiver address. This must be set when writing to the channel.
-     *
-     * @param receiver the receiver address.
-     */
-    public void setReceiver(SocketAddress receiver) {
-      this.receiver = receiver;
-    }
-
-    /**
-     * Get data.
-     *
-     * @return the underlying message that will be written on channel.
-     */
-    public ByteBuffer getData() {
-      return data;
     }
   }
 }
