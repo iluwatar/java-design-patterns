@@ -32,6 +32,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import lombok.Getter;
 
 /**
  * This represents the <i>Handle</i> of Reactor pattern. These are resources managed by OS which can
@@ -46,6 +47,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public abstract class AbstractNioChannel {
 
   private final SelectableChannel channel;
+  @Getter
   private final ChannelHandler handler;
   private final Map<SelectableChannel, Queue<Object>> channelToPendingWrites;
   private NioReactor reactor;
@@ -103,15 +105,6 @@ public abstract class AbstractNioChannel {
    * @throws IOException if any I/O error occurs.
    */
   public abstract Object read(SelectionKey key) throws IOException;
-
-  /**
-   * Get handler.
-   *
-   * @return the handler associated with this channel.
-   */
-  public ChannelHandler getHandler() {
-    return handler;
-  }
 
   /*
    * Called from the context of reactor thread when the key becomes writable. The channel writes the

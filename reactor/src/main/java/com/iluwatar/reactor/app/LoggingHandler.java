@@ -52,8 +52,7 @@ public class LoggingHandler implements ChannelHandler {
     if (readObject instanceof ByteBuffer) {
       doLogging((ByteBuffer) readObject);
       sendReply(channel, key);
-    } else if (readObject instanceof DatagramPacket) {
-      var datagram = (DatagramPacket) readObject;
+    } else if (readObject instanceof DatagramPacket datagram) {
       doLogging(datagram.getData());
       sendReply(channel, datagram, key);
     } else {
