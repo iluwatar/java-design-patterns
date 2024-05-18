@@ -60,13 +60,15 @@ class AppConfigTest {
   @Test
   @Transactional
   void testQuery() throws SQLException {
-    var resultSet = dataSource.getConnection().createStatement().executeQuery("SELECT 1");
-    var expected = "1";
-    String result = null;
-    while (resultSet.next()) {
-      result = resultSet.getString(1);
+    String expected;
+    String result;
+    try (var resultSet = dataSource.getConnection().createStatement().executeQuery("SELECT 1")) {
+      expected = "1";
+      result = null;
+      while (resultSet.next()) {
+        result = resultSet.getString(1);
+      }
     }
     assertEquals(expected, result);
   }
-
 }
