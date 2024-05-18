@@ -1,17 +1,23 @@
-package com.iluwatar.soa.services;
+package com.iluwatar.soa.services.classes;
 
 import com.iluwatar.soa.model.WeatherCondition;
+import com.iluwatar.soa.services.interfaces.GreetingService;
+import com.iluwatar.soa.services.interfaces.PersonalizedGreetingService;
+import com.iluwatar.soa.services.interfaces.WeatherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PersonalizedGreetingService {
+public class PersonalizedGreetingServiceImpl implements PersonalizedGreetingService {
+
+  private final GreetingService greetingService;
+  private final WeatherService weatherService;
 
   @Autowired
-  private GreetingService greetingService;
-
-  @Autowired
-  private WeatherService weatherService;
+  public PersonalizedGreetingServiceImpl(GreetingService greetingService, WeatherService weatherService) {
+    this.greetingService = greetingService;
+    this.weatherService = weatherService;
+  }
 
   public String generateGreeting() {
     String weatherGreeting = getWeatherGreeting();
@@ -34,6 +40,5 @@ public class PersonalizedGreetingService {
         return "unexpected weather condition";
     }
   }
-
-
 }
+

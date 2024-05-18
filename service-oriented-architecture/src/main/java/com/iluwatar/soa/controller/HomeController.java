@@ -1,7 +1,7 @@
 package com.iluwatar.soa.controller;
 
-import com.iluwatar.soa.services.PersonalizedGreetingService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.iluwatar.soa.services.interfaces.PersonalizedGreetingService;
+import com.iluwatar.soa.services.registry.ServiceRegistry;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("home")
 public class HomeController {
 
-  @Autowired
-  PersonalizedGreetingService personalizedGreetingService;
-
   @GetMapping("/greeting")
   public String getGreeting() {
+    PersonalizedGreetingService personalizedGreetingService =
+        (PersonalizedGreetingService) ServiceRegistry.getService("personalizedGreetingService");
     return personalizedGreetingService.generateGreeting();
   }
 }

@@ -46,7 +46,7 @@
                 <version>3.2.4</version>
                 <scope>import</scope>
             </dependency>
-            <!--
+
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-parent</artifactId>
@@ -54,7 +54,7 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
--->
+
         </dependencies>
 
     </dependencyManagement>
@@ -83,7 +83,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
-
 
 
     </dependencies>
