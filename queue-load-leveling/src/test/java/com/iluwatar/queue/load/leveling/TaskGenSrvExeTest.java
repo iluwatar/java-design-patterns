@@ -24,10 +24,9 @@
  */
 package com.iluwatar.queue.load.leveling;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 /**
  * Test case for submitting Message to Blocking Queue by TaskGenerator and retrieve the message by

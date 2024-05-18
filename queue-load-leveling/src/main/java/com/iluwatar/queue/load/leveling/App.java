@@ -90,7 +90,7 @@ public class App {
       final var srvRunnable = new ServiceExecutor(msgQueue);
 
       // Create a ThreadPool of 2 threads and
-      // submit all Runnable task for execution to executor..
+      // submit all Runnable task for execution to executor
       executor = Executors.newFixedThreadPool(2);
       executor.submit(taskRunnable1);
       executor.submit(taskRunnable2);

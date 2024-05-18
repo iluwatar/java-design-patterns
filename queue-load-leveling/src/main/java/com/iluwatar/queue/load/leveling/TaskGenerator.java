@@ -27,7 +27,7 @@ package com.iluwatar.queue.load.leveling;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * TaskGenerator class. Each TaskGenerator thread will be a Worker which submit's messages to the
+ * TaskGenerator class. Each TaskGenerator thread will be a Worker which submits messages to the
  * queue. We need to mention the message count for each of the TaskGenerator threads.
  */
 @Slf4j

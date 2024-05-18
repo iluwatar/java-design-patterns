@@ -48,7 +48,7 @@ public class ServiceExecutor implements Runnable {
         var msg = msgQueue.retrieveMsg();
 
         if (null != msg) {
-          LOGGER.info(msg.toString() + " is served.");
+          LOGGER.info(msg + " is served.");
         } else {
           LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
         }
