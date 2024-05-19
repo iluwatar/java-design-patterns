@@ -23,12 +23,14 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.serializedentity;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 public class CountryTest {
 
   @Test
@@ -79,7 +81,7 @@ public class CountryTest {
           objectOutputStream.writeObject(country);
           objectOutputStream.close();
       } catch (IOException e) {
-          e.printStackTrace();
+          LOGGER.error("Error occurred: ", e);
       }
 
       // De-serialize Country
@@ -97,7 +99,7 @@ public class CountryTest {
 
           assertEquals(China, country);
       } catch (Exception e) {
-          e.printStackTrace();
+        LOGGER.error("Error occurred: ", e);
       }
   }
 }
