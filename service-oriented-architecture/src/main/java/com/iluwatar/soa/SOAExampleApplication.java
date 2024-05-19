@@ -21,7 +21,7 @@ public class SOAExampleApplication {
     configureAndRegisterServices();
     SpringApplication.run(SOAExampleApplication.class, args);
     log.info("SOA Example Application started successfully!");
-    log.info("You can access the application via: http://localhost:8080/home/greeting");
+    log.info("You can access the application via: http://localhost:8080/login");
     log.info("This endpoint will return a personalized greeting based on the weather conditions.");
     log.info("You can explore other endpoints as well for different functionalities.");
   }
@@ -43,9 +43,7 @@ public class SOAExampleApplication {
 
 
     log.info("Current service registry:");
-    ServiceRegistry.registry.forEach((serviceName, serviceInstance) -> {
-      log.info("- {} : {}", serviceName, serviceInstance.getClass().getName());
-    });
+    ServiceRegistry.registry.forEach((serviceName, serviceInstance) -> log.info("- {} : {}", serviceName, serviceInstance.getClass().getName()));
   }
 }
 

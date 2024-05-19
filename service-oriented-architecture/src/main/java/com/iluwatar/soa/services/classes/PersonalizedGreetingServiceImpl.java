@@ -21,7 +21,7 @@ public class PersonalizedGreetingServiceImpl implements PersonalizedGreetingServ
 
   public String generateGreeting() {
     String weatherGreeting = getWeatherGreeting();
-    return weatherGreeting + "! " + greetingService.getGenericGreeting() + ".";
+    return weatherGreeting + "! " + greetingService.getGenericGreeting();
   }
 
   private String getWeatherGreeting() {
