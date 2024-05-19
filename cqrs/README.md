@@ -1,5 +1,5 @@
 ---
-title: CQRS
+title: Command Query Responsibility Segregation
 category: Architectural
 language: en
 tag:
@@ -7,6 +7,10 @@ tag:
     - Performance
     - Scalability
 ---
+
+## Also known as
+
+* CQRS
 
 ## Intent
 
