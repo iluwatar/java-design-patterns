@@ -20,29 +20,6 @@ Transparently retry certain operations that involve communication with external 
 
 ## Explanation
 
-Retry pattern consists retrying operations on remote resources over the network a set number of 
-times. It closely depends on both business and technical requirements: How much time will the 
-business allow the end user to wait while the operation finishes? What are the performance 
-characteristics of the remote resource during peak loads as well as our application as more threads
-are waiting for the remote resource's availability? Among the errors returned by the remote service, 
-which can be safely ignored in order to retry? Is the operation 
-[idempotent](https://en.wikipedia.org/wiki/Idempotence)?
-
-Another concern is the impact on the calling code by implementing the retry mechanism. The retry 
-mechanics should ideally be completely transparent to the calling code (service interface remains 
-unaltered). There are two general approaches to this problem: From an enterprise architecture 
-standpoint (strategic), and a shared library standpoint (tactical).
-
-From a strategic point of view, this would be solved by having requests redirected to a separate 
-intermediary system, traditionally an [ESB](https://en.wikipedia.org/wiki/Enterprise_service_bus), 
-but more recently a [Service Mesh](https://medium.com/microservices-in-practice/service-mesh-for-microservices-2953109a3c9a).
-
-From a tactical point of view, this would be solved by reusing shared libraries like 
-[Hystrix](https://github.com/Netflix/Hystrix) (please note that Hystrix is a complete implementation 
-of the [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/) pattern, of 
-which the Retry pattern can be considered a subset of). This is the type of solution showcased in 
-the simple example that accompanies this `README.md`.
-
 Real world example
 
 > Imagine you're a delivery driver attempting to deliver a package to a customer's house. You ring the doorbell, but no one answers. Instead of leaving immediately, you wait for a few minutes and try again, repeating this process a few times. This is similar to the Retry pattern in software, where a system retries a failed operation (e.g., making a network request) a certain number of times before finally giving up, in hopes that the issue (e.g., transient network glitch) will be resolved and the operation will succeed. 
