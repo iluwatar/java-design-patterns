@@ -24,6 +24,8 @@
  */
 package com.iluwatar.retry;
 
+import java.io.Serial;
+
 /**
  * Indicates that the customer was not found.
  *
@@ -34,6 +36,8 @@ package com.iluwatar.retry;
  * @author George Aristy (george.aristy@gmail.com)
  */
 public final class CustomerNotFoundException extends BusinessException {
+
+  @Serial
   private static final long serialVersionUID = -6972888602621778664L;
 
   /**
