@@ -24,20 +24,17 @@
  */
 package com.iluwatar.roleobject;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Borrower role.
  */
+@Getter
+@Setter
 public class BorrowerRole extends CustomerRole {
 
   private String name;
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
 
   public String borrow() {
     return String.format("Borrower %s wants to get some money.", name);
