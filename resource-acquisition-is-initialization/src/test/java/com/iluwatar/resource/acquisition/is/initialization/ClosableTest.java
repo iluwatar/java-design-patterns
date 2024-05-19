@@ -68,7 +68,7 @@ class ClosableTest {
   /**
    * Logging Appender Implementation
    */
-  class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {
@@ -85,5 +85,4 @@ class ClosableTest {
       return log.stream().anyMatch(event -> event.getMessage().equals(message));
     }
   }
-
 }
