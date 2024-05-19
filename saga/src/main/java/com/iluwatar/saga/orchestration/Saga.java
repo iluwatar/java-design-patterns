@@ -26,6 +26,8 @@ package com.iluwatar.saga.orchestration;
 
 import java.util.ArrayList;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 /**
  * Saga representation. Saga consists of chapters. Every ChoreographyChapter is executed by a
@@ -70,15 +72,9 @@ public class Saga {
   /**
    * class represents chapter name.
    */
+  @AllArgsConstructor
+  @Getter
   public static class Chapter {
     String name;
-
-    public Chapter(String name) {
-      this.name = name;
-    }
-
-    public String getName() {
-      return name;
-    }
   }
 }

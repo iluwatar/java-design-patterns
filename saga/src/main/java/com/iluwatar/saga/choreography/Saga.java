@@ -27,6 +27,8 @@ package com.iluwatar.saga.choreography;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Saga representation. Saga consists of chapters. Every ChoreographyChapter is executed a certain
@@ -154,35 +156,17 @@ public class Saga {
    * outcoming parameter).
    */
   public static class Chapter {
+    @Getter
     private final String name;
+    @Setter
     private ChapterResult result;
+    @Getter
+    @Setter
     private Object inValue;
-
 
     public Chapter(String name) {
       this.name = name;
       this.result = ChapterResult.INIT;
-    }
-
-    public Object getInValue() {
-      return inValue;
-    }
-
-    public void setInValue(Object object) {
-      this.inValue = object;
-    }
-
-    public String getName() {
-      return name;
-    }
-
-    /**
-     * set result.
-     *
-     * @param result {@link ChapterResult}
-     */
-    public void setResult(ChapterResult result) {
-      this.result = result;
     }
 
     /**
