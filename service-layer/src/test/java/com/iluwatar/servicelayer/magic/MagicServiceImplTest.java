@@ -122,7 +122,7 @@ class MagicServiceImplTest {
   }
 
   @Test
-  void testFindWizardsWithSpell() throws Exception {
+  void testFindWizardsWithSpell() {
     final var wizards = Set.of(
         mock(Wizard.class),
         mock(Wizard.class),
