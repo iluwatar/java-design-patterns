@@ -218,7 +218,7 @@
     <module>single-table-inheritance</module>
     <module>dynamic-proxy</module>
     <module>gateway</module>
-    <module>slob</module>
+    <module>serialized-lob</module>
     <module>server-session</module>
     <module>virtual-proxy</module>
   </modules>
