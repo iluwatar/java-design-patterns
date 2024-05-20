@@ -45,10 +45,4 @@ public abstract class PassengerVehicle extends Vehicle {
     super(manufacturer, model);
     this.noOfPassengers = noOfPassengers;
   }
-
-  @Override
-  public String toString() {
-    return super.toString();
-  }
-
 }

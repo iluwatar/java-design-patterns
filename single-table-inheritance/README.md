@@ -1,157 +1,175 @@
 ---
-title: Single Table Inheritance Pattern
-category: Structural
+title: Single Table Inheritance
+category: Data access
 language: en
 tag:
-  - Data access
+    - Data access
+    - Encapsulation
+    - Persistence
+    - Polymorphism
 ---
 
-## Single Table Inheritance(STI)
+## Also known as
+
+* Class Table Inheritance
+* STI
 
 ## Intent
 
-Represents an inheritance hierarchy of classes as a single table that has columns for all the fields of the various classes.
+Simplify the storage of an inheritance hierarchy in a single database table, where rows represent objects of different classes and columns represent the union of all attributes.
 
 ## Explanation
 
 Real-world example
 
-> There can be many different types of vehicles in this world but all of them
-> come under the single umbrella of Vehicle
+> Imagine a library system where books, magazines, and DVDs are all stored in a single inventory table. This table includes columns for attributes common to all items, such as `Title`, `Author`, `PublicationDate`, and `ItemType`, as well as columns specific to certain types, like `ISBN` for books, `IssueNumber` for magazines, and `Duration` for DVDs. Each row represents an item in the library, with some columns left null depending on the item type. This setup simplifies the database schema by keeping all inventory items in one table, akin to Single Table Inheritance in a database context.
 
 In plain words
 
-> It maps each instance of class in an inheritance tree into a single table.
+> Single Table Inheritance stores an entire class hierarchy in a single database table, using a type discriminator column to distinguish between different subclasses.
 
 Wikipedia says
 
-> Single table inheritance is a way to emulate object-oriented inheritance in a relational database.
-> When mapping from a database table to an object in an object-oriented language,
-> a field in the database identifies what class in the hierarchy the object belongs to.
-> All fields of all the classes are stored in the same table, hence the name "Single Table Inheritance".
+> Single table inheritance is a way to emulate object-oriented inheritance in a relational database. When mapping from a database table to an object in an object-oriented language, a field in the database identifies what class in the hierarchy the object belongs to. All fields of all the classes are stored in the same table, hence the name "Single Table Inheritance".
 
 **Programmatic Example**
 
-Baeldung - Hibernate Inheritance
+Single Table Inheritance is a design pattern that maps an inheritance hierarchy of classes to a single database table. Each row in the table represents an instance of a class in the hierarchy. A special discriminator column is used to identify the class to which each row belongs.
 
-> We can define the strategy we want to use by adding the @Inheritance annotation to the superclass:
+This pattern is useful when classes in an inheritance hierarchy are not significantly different in terms of fields and behavior. It simplifies the database schema and can improve performance by avoiding joins.
+
+Let's see how this pattern is implemented in the provided code.
+
+The base class in our hierarchy is `Vehicle`. This class has common properties that all vehicles share, such as `manufacturer` and `model`.
+
+```java
+public abstract class Vehicle {
+  private String manufacturer;
+  private String model;
+  // other common properties...
+}
+```
+
+We have two subclasses, `PassengerVehicle` and `TransportVehicle`, which extend `Vehicle` and add additional properties.
+
+```java
+public abstract class PassengerVehicle extends Vehicle {
+  private int noOfPassengers;
+  // other properties specific to passenger vehicles...
+}
+
+public abstract class TransportVehicle extends Vehicle {
+  private int loadCapacity;
+  // other properties specific to transport vehicles...
+}
+```
+
+Finally, we have concrete classes like `Car` and `Truck` that extend `PassengerVehicle` and `TransportVehicle` respectively.
+
+```java
+public class Car extends PassengerVehicle {
+  private int trunkCapacity;
+  // other properties specific to cars...
+}
+
+public class Truck extends TransportVehicle {
+  private int towingCapacity;
+  // other properties specific to trucks...
+}
+```
+
+In this example, we're using Hibernate as our ORM. We map our class hierarchy to a single table using the `@Entity` and `@Inheritance` annotations.
 
 ```java
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class MyProduct {
-  @Id
-  private long productId;
-  private String name;
-
-  // constructor, getters, setters
+public abstract class Vehicle {
+  // properties...
 }
 ```
 
-The identifier of the entities is also defined in the superclass.
-
-Then we can add the subclass entities:
+The `@DiscriminatorColumn` annotation is used to specify the discriminator column in the table. This column will hold the class name for each row.
 
 ```java
-@Entity
-public class Book extends MyProduct {
-  private String author;
+@DiscriminatorColumn(name = "vehicle_type")
+public abstract class Vehicle {
+  // properties...
 }
 ```
+
+Each subclass specifies its discriminator value using the `@DiscriminatorValue` annotation.
 
 ```java
-@Entity
-public class Pen extends MyProduct {
-  private String color;
+@DiscriminatorValue("CAR")
+public class Car extends PassengerVehicle {
+  // properties...
+}
+
+@DiscriminatorValue("TRUCK")
+public class Truck extends TransportVehicle {
+  // properties...
 }
 ```
-Discriminator Values
 
-- Since the records for all entities will be in the same table, Hibernate needs a way to differentiate between them.
-
-- By default, this is done through a discriminator column called DTYPE that has the name of the entity as a value.
-
-- To customize the discriminator column, we can use the @DiscriminatorColumn annotation:
+The `VehicleService` class provides methods for saving and retrieving vehicles. When we save a `Car` or `Truck` object, Hibernate will automatically set the discriminator column to the appropriate value. When we retrieve a vehicle, Hibernate will use the discriminator column to instantiate the correct class.
 
 ```java
-@Entity(name="products")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name="product_type",
-        discriminatorType = DiscriminatorType.INTEGER)
-public class MyProduct {
-  // ...
-}
-```
-- Here we’ve chosen to differentiate MyProduct subclass entities by an integer column called product_type.
+public class VehicleService {
+  public Vehicle saveVehicle(Vehicle vehicle) {
+    // save vehicle to database...
+  }
 
-- Next, we need to tell Hibernate what value each subclass record will have for the product_type column:
+  public Vehicle getVehicle(Long id) {
+    // retrieve vehicle from database...
+  }
 
-```java
-@Entity
-@DiscriminatorValue("1")
-public class Book extends MyProduct {
-  // ...
-}
-```
-```java
-@Entity
-@DiscriminatorValue("2")
-public class Pen extends MyProduct {
-  // ...
+  public List<Vehicle> getAllVehicles() {
+    // retrieve all vehicles from database...
+  }
 }
 ```
 
-- Hibernate adds two other predefined values that the annotation can take — null and not null:
-
-  - @DiscriminatorValue(“null”) means that any row without a discriminator value will be mapped to the entity class with this annotation; this can be applied to the root class of the hierarchy.
-  - @DiscriminatorValue(“not null”) – Any row with a discriminator value not matching any of the ones associated with entity definitions will be mapped to the class with this annotation.
-
+The Single Table Inheritance pattern is a simple and efficient way to map an inheritance hierarchy to a relational database. However, it can lead to sparse tables if subclasses have many unique fields. In such cases, other patterns like Class Table Inheritance or Concrete Table Inheritance might be more appropriate.
 
 ## Class diagram
 
-![alt text](./etc/single-table-inheritance.urm.png "Singleton pattern class diagram")
+![Single Table Inheritance](./etc/single-table-inheritance.urm.png "Single Table Inheritance")
 
 ## Applicability
 
-Use the Singleton pattern when
-
-* Use STI When The Subclasses Have The Same Fields/Columns But Different Behavior
-  - A good indication that STI is right is when the different subclasses have the same fields/columns but different methods. In the accounts example above, we expect all the columns in the database to be used by each subclass. Otherwise, there will be a lot of null columns in the database.
-    <br><br>
-* Use STI When We Expect To Perform Queries Across All Subclasses
-  - Another good indication STI is right is if we expect to perform queries across all classes. For example, if we want to find the top 10 accounts with the highest balances across all types, STI allows lets us use just one query, whereas MTI will require in memory manipulation.
-
+* Use when you have a class hierarchy with subclasses that share a common base class and you want to store all instances of the hierarchy in a single table.
+* Ideal for small to medium-sized applications where the simplicity of a single table outweighs the performance cost of null fields for some subclasses.
 
 ### Tutorials
 
-- <a href ="https://www.youtube.com/watch?v=M5YrLtAHtOo" >Java Brains - Single Table Inheritance</a>
+* [Hibernate Tutorial 18 - Implementing Inheritance - Single Table Strategy - Java Brains](https://www.youtube.com/watch?v=M5YrLtAHtOo)
+
+## Known uses
+
+* Hibernate and JPA implementations in Java applications often use Single Table Inheritance for ORM mapping.
+* Rails ActiveRecord supports Single Table Inheritance out of the box.
 
 ## Consequences
 
-* Fields are sometimes relevant and sometimes not, which can be confusing
-  to people using the tables directly.
-* Columns used only by some subclasses lead to wasted space in the database.
-  How much this is actually a problem depends on the specific data
-  characteristics and how well the database compresses empty columns.
-  Oracle, for example, is very efficient in trimming wasted space, particularly
-  if you keep your optional columns to the right side of the database
-  table. Each database has its own tricks for this.
-* The single table may end up being too large, with many indexes and frequent
-  locking, which may hurt performance. You can avoid this by having
-  separate index tables that either list keys of rows that have a certain property
-  or that copy a subset of fields relevant to an index.
-* You only have a single namespace for fields, so you have to be sure that
-  you don’t use the same name for different fields. Compound names with
-  the name of the class as a prefix or suffix help here.
+Benefits:
+
+* Simplifies database schema by reducing the number of tables.
+* Easier to manage relationships and queries since all data is in one table.
+
+Trade-offs:
+
+* Can lead to sparsely populated tables with many null values.
+* May cause performance issues for large hierarchies due to table size and the need to filter by type.
+* Changes in the inheritance hierarchy require schema changes.
 
 ## Related patterns
 
-* MappedSuperclass
-* Single Table
-* Joined Table
-* Table per Class
+* Class Table Inheritance: Uses separate tables for each class in the hierarchy, reducing null values but increasing complexity in joins.
+* Concrete Table Inheritance: Each class in the hierarchy has its own table, reducing redundancy but increasing the number of tables.
 
 ## Credits
 
-* [Single Table Inheritance - martinFowler.com](https://www.martinfowler.com/eaaCatalog/singleTableInheritance.html)
-* [Patterns of Enterprise Application Architecture](https://books.google.co.in/books?id=vqTfNFDzzdIC&pg=PA278&redir_esc=y#v=onepage&q&f=false)
+* [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
+* [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Single Table Inheritance - Martin Fowler](https://www.martinfowler.com/eaaCatalog/singleTableInheritance.html)
