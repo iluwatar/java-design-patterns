@@ -62,7 +62,7 @@ public final class ThreadSafeDoubleCheckLocking {
     // Check if singleton instance is initialized.
     // If it is initialized then we can return the instance.
     if (result == null) {
-      // It is not initialized but we cannot be sure because some other thread might have
+      // It is not initialized, but we cannot be sure because some other thread might have
       // initialized it in the meanwhile.
       // So to make sure we need to lock on an object to get mutual exclusion.
       synchronized (ThreadSafeDoubleCheckLocking.class) {
@@ -72,7 +72,7 @@ public final class ThreadSafeDoubleCheckLocking {
         // just like the previous null check.
         result = instance;
         if (result == null) {
-          // The instance is still not initialized so we can safely
+          // The instance is still not initialized, so we can safely
           // (no other thread can enter this zone)
           // create an instance and make it our singleton instance.
           result = new ThreadSafeDoubleCheckLocking();

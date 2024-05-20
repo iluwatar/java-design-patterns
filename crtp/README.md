@@ -1,5 +1,5 @@
 ---
-title: CRTP
+title: Curiously Recurring Template Pattern
 language: en
 category: Structural
 tag:
@@ -10,10 +10,11 @@ tag:
 
 ## Also known as
 
+* CRTP
+* Mixin Inheritance
 * Recursive Type Bound
 * Recursive Generic
 * Static Polymorphism
-* Mixin Inheritance
 
 ## Intent
 
