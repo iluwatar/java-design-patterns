@@ -29,7 +29,6 @@ import static org.mockito.Mockito.when;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,7 +66,7 @@ public class LogoutHandlerTest {
   }
 
   @Test
-  public void testHandler_SessionNotExpired() throws IOException {
+  public void testHandler_SessionNotExpired() {
 
     //assemble
     sessions.put("1234", 1); //Fake login details since LoginHandler isn't called
@@ -83,12 +82,12 @@ public class LogoutHandlerTest {
     //assert
     String[] response = outputStream.toString().split("Session ID: ");
     Assertions.assertEquals("1234", response[1]);
-    Assertions.assertFalse(sessions.containsKey(response));
-    Assertions.assertFalse(sessionCreationTimes.containsKey(response));
+    Assertions.assertFalse(sessions.containsKey(response[1]));
+    Assertions.assertFalse(sessionCreationTimes.containsKey(response[1]));
   }
 
   @Test
-  public void testHandler_SessionExpired() throws IOException {
+  public void testHandler_SessionExpired() {
 
     //assemble
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -101,7 +100,5 @@ public class LogoutHandlerTest {
     //assert
     String[] response = outputStream.toString().split("Session ID: ");
     Assertions.assertEquals("Session has already expired!", response[0]);
-    Assertions.assertFalse(sessions.containsKey(response));
-    Assertions.assertFalse(sessionCreationTimes.containsKey(response));
   }
 }
