@@ -34,7 +34,7 @@ package com.iluwatar.servicelocator;
 public interface Service {
 
   /*
-   * The human readable name of the service
+   * The human-readable name of the service
    */
   String getName();
 

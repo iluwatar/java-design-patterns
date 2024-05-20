@@ -36,7 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 public class InitContext {
 
   /**
-   * Perform the lookup based on the service name. The returned object will need to be casted into a
+   * Perform the lookup based on the service name. The returned object will need to be cast into a
    * {@link Service}
    *
    * @param serviceName a string
