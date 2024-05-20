@@ -27,7 +27,6 @@ package com.iluwatar.sharding;
 import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -46,7 +45,7 @@ public class LookupShardManager extends ShardManager {
     lookupMap.put(data.getKey(), shardId);
     var shard = shardMap.get(shardId);
     shard.storeData(data);
-    LOGGER.info(data.toString() + " is stored in Shard " + shardId);
+    LOGGER.info(data + " is stored in Shard " + shardId);
     return shardId;
   }
 
