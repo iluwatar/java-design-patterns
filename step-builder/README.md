@@ -33,19 +33,9 @@ Wikipedia says
 
 > The Step Builder pattern is a variation of the Builder design pattern, designed to provide a flexible solution for constructing complex objects step-by-step. This pattern is particularly useful when an object requires multiple initialization steps, which can be done incrementally to ensure clarity and flexibility in the creation process.
 
-## Programmatic Example
-
-Sure, let's create a programmatic example of the Step Builder design pattern using the code from the `step-builder` module.
-
-## Step Builder Design Pattern
+**Programmatic Example**
 
 The Step Builder pattern is an extension of the Builder pattern that guides the user through the creation of an object in a step-by-step manner. This pattern improves the user experience by only showing the next step methods available, and not showing the build method until it's the right time to build the object.
-
-### Class Diagram
-
-![Step Builder](./etc/step-builder.png "Step Builder")
-
-### Code Example
 
 Let's consider a `Character` class that has many attributes such as `name`, `fighterClass`, `wizardClass`, `weapon`, `spell`, and `abilities`.
 
