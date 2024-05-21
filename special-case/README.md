@@ -9,7 +9,6 @@ tag:
     - Error handling
     - Polymorphism
     - Runtime
-    - Simplification
 ---
 
 ## Also known as
