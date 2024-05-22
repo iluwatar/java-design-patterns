@@ -29,13 +29,14 @@ import com.iluwatar.typeobject.Candy.Type;
 import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The CellPool class allows the reuse of crushed cells instead of creation of new cells each time.
  * The reused cell is given a new candy to hold using the randomCode field which holds all the
  * candies available.
  */
-
+@Slf4j
 public class CellPool {
   private static final SecureRandom RANDOM = new SecureRandom();
   public static final String FRUIT = "fruit";
@@ -49,7 +50,7 @@ public class CellPool {
     try {
       this.randomCode = assignRandomCandytypes();
     } catch (Exception e) {
-      e.printStackTrace();
+      LOGGER.error("Error occurred: ", e);
       //manually initialising this.randomCode
       this.randomCode = new Candy[5];
       randomCode[0] = new Candy("cherry", FRUIT, Type.REWARD_FRUIT, 20);
