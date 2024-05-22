@@ -1,28 +1,40 @@
 ---
 title: Transaction Script
-category: Behavioral
+category: Data access
 language: en
 tag:
- - Data access
+    - Business
+    - Data access
+    - Domain
+    - Persistence
+    - Transactions
 ---
+
+## Also known as
+
+* Scripted Transactions
 
 ## Intent
 
-Transaction Script organizes business logic by procedures where each procedure handles a single 
-request from the presentation.
+Organize business logic by procedures where each procedure handles a single request from the presentation.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> You need to create a hotel room booking system. Since the requirements are quite simple we intend 
-> to use the Transaction Script pattern here.
+> An analogous real-world example of the Transaction Script design pattern can be seen in a bank teller's daily operations. Imagine a bank where each transaction, such as depositing money, withdrawing cash, or transferring funds between accounts, is handled by a specific script-like procedure. Each procedure takes in the necessary details (e.g., account numbers, amounts) and performs the transaction in a straightforward, step-by-step manner. This ensures that each transaction is processed correctly and independently, without the need for a complex system of rules and interactions. This simple, organized approach allows bank tellers to efficiently manage a variety of transactions throughout the day. 
 
 In plain words
 
 > Transaction Script organizes business logic into transactions that the system needs to carry out.
 
-Programmatic example
+Wikipedia says
+
+> The Transaction Script design pattern is a straightforward way to organize business logic in applications, particularly suitable for scenarios where each request from the presentation layer can be handled by a single procedure. This pattern is often used in simple applications or in systems where rapid development and ease of understanding are crucial. Each transaction script is responsible for a particular task, such as processing an order or calculating a result, and typically interacts directly with the database.
+
+**Programmatic example**
+
+Our programmatic example is about booking hotel rooms.
 
 The `Hotel` class takes care of booking and cancelling room reservations.
 
@@ -76,42 +88,53 @@ public class Hotel {
 }
 ```
 
-The `Hotel` class has two methods, one for booking and cancelling a room respectively. Each one of 
-them handles a single transaction in the system, making `Hotel` implement the Transaction Script 
-pattern.
+The `Hotel` class has two methods, one for booking and cancelling a room respectively. Each one of them handles a single transaction in the system, making `Hotel` implement the Transaction Script pattern.
 
-The `bookRoom` method consolidates all the needed steps like checking if the room is already booked
-or not, if not booked then books the room and updates the database by using the DAO. 
+The `bookRoom` method consolidates all the needed steps like checking if the room is already booked or not, if not booked then books the room and updates the database by using the DAO. 
 
-The `cancelRoom` method consolidates steps like checking if the room is booked or not, 
-if booked then calculates the refund amount and updates the database using the DAO.
+The `cancelRoom` method consolidates steps like checking if the room is booked or not, if booked then calculates the refund amount and updates the database using the DAO.
 
 ## Class diagram
 
-![alt text](./etc/transaction-script.png "Transaction script model")
+![Transaction Script](./etc/transaction-script.png "Transaction Script")
 
 ## Applicability
 
-Use the Transaction Script pattern when the application has only a small amount of logic and that 
-logic won't be extended in the future.
+* Use when business logic is simple and can be easily organized into individual procedures.
+* Suitable for applications with simple transaction requirements or where the logic doesn't justify complex architectures like Domain Model.
+
+## Tutorials
+
+* [Transaction Script Pattern - DZone](https://dzone.com/articles/transaction-script-pattern#:~:text=Transaction%20Script%20(TS)%20is%20the,need%20big%20architecture%20behind%20them.)
+* [Transaction Script](https://www.informit.com/articles/article.aspx?p=1398617)
+
+### Known Uses
+
+* Early-stage startups and small-scale applications where rapid development is crucial.
+* Enterprise applications with well-defined procedures like banking transactions or e-commerce order processing.
+* Legacy systems where business logic is already written as scripts.
 
 ## Consequences
 
-* As the business logic gets more complicated, 
-it gets progressively harder to keep the transaction script 
-in a well-designed state.
-* Code duplication between transaction scripts can occur.
-* Normally not easy to refactor transactions script to other domain logic
-patterns.
+Benefits:
+
+* Simple and straightforward to implement.
+* Easy to understand and maintain for straightforward business logic.
+* Fast development cycle for small applications.
+
+Trade-offs:
+
+* Can lead to duplicated code if not carefully managed.
+* Not suitable for complex business logic; can become unmanageable as the application grows.
+* Harder to test in isolation compared to more structured approaches like Domain Model.
 
 ## Related patterns
 
-* Domain Model
-* Table Module
-* Service Layer
+* [Domain Model](https://java-design-patterns.com/patterns/domain-model/): Unlike Transaction Script, Domain Model organizes business logic around the data model and is better suited for complex business rules.
+* [Service Layer](https://java-design-patterns.com/patterns/service-layer/): Often used together with Transaction Script to define an application's boundary and encapsulate the business logic.
+* [Table Module](https://java-design-patterns.com/patterns/table-module/): Similar to Transaction Script but organizes logic using a single class per table rather than a procedure per request.
 
 ## Credits
 
-* [Transaction Script Pattern](https://dzone.com/articles/transaction-script-pattern#:~:text=Transaction%20Script%20(TS)%20is%20the,need%20big%20architecture%20behind%20them.)
-* [Transaction Script](https://www.informit.com/articles/article.aspx?p=1398617)
-* [Patterns of Enterprise Application Architecture](https://www.amazon.com/gp/product/0321127420/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0321127420&linkId=18acc13ba60d66690009505577c45c04)
+* [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3WcFVui)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
