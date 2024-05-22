@@ -30,11 +30,10 @@ import lombok.Getter;
 /**
  * BarCustomer is a tenant with a name and a number of allowed calls per second.
  */
+@Getter
 public class BarCustomer {
 
-  @Getter
   private final String name;
-  @Getter
   private final int allowedCallsPerSecond;
 
   /**

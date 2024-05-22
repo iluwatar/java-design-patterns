@@ -36,8 +36,6 @@ class BarCustomerTest {
 
   @Test
   void constructorTest() {
-    assertThrows(InvalidParameterException.class, () -> {
-      new BarCustomer("sirBrave", -1, new CallsCount());
-    });
+    assertThrows(InvalidParameterException.class, () -> new BarCustomer("sirBrave", -1, new CallsCount()));
   }
 }
