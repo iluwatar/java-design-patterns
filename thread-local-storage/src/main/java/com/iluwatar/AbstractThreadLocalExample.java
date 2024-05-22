@@ -28,10 +28,12 @@ import java.security.SecureRandom;
 import java.util.concurrent.locks.LockSupport;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class with main logic.
  */
+@Slf4j
 public abstract class AbstractThreadLocalExample implements Runnable {
 
   private static final SecureRandom RND = new SecureRandom();

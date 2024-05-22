@@ -1,105 +1,88 @@
 ---
-title: Thread-local storage
+title: Thread Local Storage
 category: Concurrency
 language: en
 tag:
-- Data access
+    - Isolation
+    - Memory management
+    - Thread management
 ---
+
+## Also known as
+
+* TLS
+* Thread-Specific Storage
 
 ## Intent
 
-Provide an ability to have a copy of a variable for each thread, making it thread-safe.
+To provide each thread with its own isolated instance of a variable, avoiding shared access and synchronization issues.
 
 ## Explanation
 
-During code assembling compiler add _.tdata_ directive, 
-which means that variables below will store in different places from thread to thread.
-This means changing variable in one thread won't affect the same variable in other thread.
+Real-world example
 
-**Real world example**
+> Imagine a busy restaurant where each waiter has their own personal notepad to take orders from customers. Each waiter's notepad is separate and used only by that specific waiter. This setup ensures that no waiter interferes with another's orders, avoiding confusion and mistakes. In this analogy, the restaurant represents the application, the waiters represent the threads, and the notepads represent thread-local storage, where each thread maintains its own isolated data.
 
-> On constructions each worker has its own shovel. When one of them broke his shovel,
-> other still can continue work due to they have own instrument.
+In plain words
 
-**In plain words**
+> Thread Local Storage provides each thread with its own isolated instance of a variable, eliminating the need for synchronization and avoiding shared access issues.
 
->Each thread will have its own copy of variable.
+Wikipedia says
 
-**Wikipedia says**
-
->Thread-local storage (TLS) is a computer programming method that uses static or global memory local to a thread.
+> In computer programming, thread-local storage (TLS) is a memory management method that uses static or global memory local to a thread. The concept allows storage of data that appears to be global in a system with separate threads.
 
 **Programmatic Example**
 
-To define variable in thread-local storage you just need to put it into Java's ThreadLocal, e.g:
+Consider a scenario where threads need to maintain their own state without interfering with each other. We'll demonstrate this with two implementations:
+
+1. With ThreadLocal: Each thread has its own isolated instance of a variable.
+2. Without ThreadLocal: Threads share a single instance of a variable, leading to potential conflicts.
+
+We start walking through the code from the base class.
+
+**AbstractThreadLocalExample**
+
+* Implements `Runnable` and includes `run` method which pauses the thread, prints the current value, and then changes it.
+* `getter` and `setter` methods are abstract and will be implemented by subclasses.
+
 
 ```java
-public class Main {
-    
-    private ThreadLocal<String> stringThreadLocal = new ThreadLocal<>();
-    
-    public void initialize(String value) {
-        this.stringThreadLocal.set(value);
-    }
-}
-```
-
-Below we will contact a variable from two threads at a time to see, why we need it.  
-Main logic that show's current variable value is imposed in class AbstractThreadLocalExample, two implementations 
-differs only in the **value store approach**.
-
-Main class:
-
-```java
-/**
- * Class with main per-thread logic.
- */
 public abstract class AbstractThreadLocalExample implements Runnable {
 
     private static final Random RND = new Random();
 
     @Override
     public void run() {
-        //Here we stop thread randomly
-        LockSupport.parkNanos(RND.nextInt(1_000_000_000, 2_000_000_000));
-
-        System.out.println(getCurrentThreadName() + ", before value changing: " + getter().get());
-        setter().accept(RND.nextInt());
+        try {
+            // Pause thread for a random duration
+            Thread.sleep(RND.nextInt(1000));
+            // Print the current value before changing it
+            System.out.println(getCurrentThreadName() + ", before value changing: " + getter().get());
+            // Change the value
+            setter().accept(RND.nextInt(1000));
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
-    /**
-     * Setter for our value.
-     *
-     * @return consumer
-     */
     protected abstract Consumer<Integer> setter();
-
-    /**
-     * Getter for our value.
-     *
-     * @return supplier
-     */
     protected abstract Supplier<Integer> getter();
 
     private String getCurrentThreadName() {
         return Thread.currentThread().getName();
     }
 }
-
 ```
 
-And two implementations. With ThreadLocal:
-```java
-/**
- * Example of runnable with use of {@link ThreadLocal}.
- */
-public class WithThreadLocal extends AbstractThreadLocalExample {
-    
-    private ThreadLocal<Integer> value;
+**WithThreadLocal**
 
-    public WithThreadLocal(ThreadLocal<Integer> value) {
-        this.value = value;
-    }
+* Uses `ThreadLocal` to ensure each thread has its own instance of `value`.
+
+
+```java
+public class WithThreadLocal extends AbstractThreadLocalExample {
+
+    private ThreadLocal<Integer> value = ThreadLocal.withInitial(() -> 0);
 
     @Override
     protected Consumer<Integer> setter() {
@@ -113,18 +96,15 @@ public class WithThreadLocal extends AbstractThreadLocalExample {
 }
 ```
 
-And the class that stores value in one shared for all threads place:
+**WithoutThreadLocal**
+
+* Uses a shared `value` among all threads, demonstrating potential interference between threads.
+
+
 ```java
-/**
- * Example of runnable without usage of {@link ThreadLocal}.
- */
 public class WithoutThreadLocal extends AbstractThreadLocalExample {
 
-    private Integer value;
-
-    public WithoutThreadLocal(Integer value) {
-        this.value = value;
-    }
+    private Integer value = 0;
 
     @Override
     protected Consumer<Integer> setter() {
@@ -138,110 +118,102 @@ public class WithoutThreadLocal extends AbstractThreadLocalExample {
 }
 ```
 
-Guess we want to run these classes. We will construct both implementations and invoke _run_ method.
-So, we want to see initial value in console (thanks to System.out.println()). Let's take a look at tests.
+**ThreadLocalTest**
+
+* Tests both implementations by creating two threads for each and verifying their behavior.
 
 ```java
 public class ThreadLocalTest {
 
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
-
-    @BeforeEach
-    public void setUpStreams() {
-        System.setOut(new PrintStream(outContent));
-    }
-
-    @AfterEach
-    public void restoreStreams() {
-        System.setOut(originalOut);
-    }
-
     @Test
     public void withoutThreadLocal() throws InterruptedException {
-        int initialValue = 1234567890;
-
-        int threadSize = 2;
-        ExecutorService executor = Executors.newFixedThreadPool(threadSize);
-
-        WithoutThreadLocal threadLocal = new WithoutThreadLocal(initialValue);
-        for (int i = 0; i < threadSize; i++) {
-            executor.submit(threadLocal);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        for (int i = 0; i < 2; i++) {
+            executor.submit(new WithoutThreadLocal());
         }
-        executor.awaitTermination(3, TimeUnit.SECONDS);
-
-        List<String> lines = outContent.toString().lines().toList();
-        //Matches only first finished thread output, the second has changed by first thread value
-        Assertions.assertFalse(lines.stream()
-                .allMatch(line -> line.endsWith(String.valueOf(initialValue))));
+        executor.shutdown();
+        executor.awaitTermination(1, TimeUnit.SECONDS);
     }
 
     @Test
     public void withThreadLocal() throws InterruptedException {
-        int initialValue = 1234567890;
-
-        int threadSize = 2;
-        ExecutorService executor = Executors.newFixedThreadPool(threadSize);
-
-        WithThreadLocal threadLocal = new WithThreadLocal(ThreadLocal.withInitial(() -> initialValue));
-        for (int i = 0; i < threadSize; i++) {
-            executor.submit(threadLocal);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        for (int i = 0; i < 2; i++) {
+            executor.submit(new WithThreadLocal());
         }
-
-        executor.awaitTermination(3, TimeUnit.SECONDS);
-
-        List<String> lines = outContent.toString().lines().toList();
-        Assertions.assertTrue(lines.stream()
-                .allMatch(line -> line.endsWith(String.valueOf(initialValue))));
+        executor.shutdown();
+        executor.awaitTermination(1, TimeUnit.SECONDS);
     }
 }
 ```
 
 The output of test named withThreadLocal:
+
 ```
 pool-2-thread-2, before value changing: 1234567890
 pool-2-thread-1, before value changing: 1234567890
-
 ```
 
 And the output of withoutThreadLocal:
+
 ```
 pool-1-thread-2, before value changing: 1234567890
 pool-1-thread-1, before value changing: 848843054
 ```
-Where 1234567890 - is our initial value. We see, that in test _withoutThreadLocal_ 
-thread 2 got out from LockSupport#parkNanos earlier than the first and 
-change value in shared variable.
+
+Where 1234567890 is our initial value. We see that in test withoutThreadLocal thread 2 got out from LockSupport#parkNanos earlier than the first and change value in shared variable.
+
+This example demonstrates how `ThreadLocal` variables provide isolated storage for each thread, preventing interference from other threads, whereas shared variables can lead to unexpected changes and thread interference.
 
 ## Class diagram
 
-```mermaid
-classDiagram
-    class ThreadLocal
-    ThreadLocal : get()
-    ThreadLocal : initialValue()
-    ThreadLocal : remove()
-    ThreadLocal : set(T value)
-```
+![Thread Local Storage](./etc/thread-local-storage.urm.png "Thread Local Storage")
 
 ## Applicability
 
-Use ThreadLocal when:
-
-- You need to run singleton with state in multiple threads
-- You need to use not thread-safe classes in concurrency program
+* Use when you need to avoid synchronization for performance reasons by providing each thread with its own instance of a variable.
+* Useful in scenarios where threads need to maintain state information independently of other threads.
+* Suitable for managing per-thread lifecycle states in web servers or handling thread-local configuration in multithreaded applications.
 
 ## Tutorials
-- [Baeldung](https://www.baeldung.com/java-threadlocal)
+
+* [An Introduction to ThreadLocal in Java - Baeldung](https://www.baeldung.com/java-threadlocal)
 
 ## Known uses
-- In java.lang.Thread during thread initialization
-- In java.net.URL to prevent recursive provider lookups
-- In org.junit.runners.BlockJUnit4ClassRunner to contain current rule
-- In org.springframework:spring-web to store request context
-- In org.apache.util.net.Nio2Endpoint to allow detecting if a completion handler completes inline
-- In io.micrometer to avoid problems with not thread-safe NumberFormat
+
+* Java ThreadLocal class, commonly used to manage user sessions in web applications.
+* Database connections, where each thread gets its own connection instance.
+* Locale settings in internationalized applications to ensure thread-specific locale information.
+* In java.lang.Thread during thread initialization
+* In java.net.URL to prevent recursive provider lookups
+* In org.junit.runners.BlockJUnit4ClassRunner to contain current rule
+* In org.springframework:spring-web to store request context
+* In org.apache.util.net.Nio2Endpoint to allow detecting if a completion handler completes inline
+* In io.micrometer to avoid problems with not thread-safe NumberFormat
+
+## Consequences
+
+Benefits:
+
+* Eliminates the need for synchronization, which can improve performance in multithreaded environments.
+* Simplifies design by avoiding complex synchronization mechanisms.
+* Each thread has its own dedicated storage, reducing contention.
+
+Trade-offs:
+
+* Increased memory usage due to multiple instances of the variable.
+* Potential for memory leaks if thread-local variables are not properly managed, especially in long-running applications or thread pools.
+* Debugging can be more complex due to thread-specific storage behavior.
+
+## Related Patterns
+
+* [Singleton](https://java-design-patterns.com/patterns/singleton/): Both patterns ensure a unique instance of a variable, but Thread Local Storage ensures one per thread rather than one per application.
+* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): While Flyweight shares instances to minimize memory usage, Thread Local Storage creates separate instances for each thread.
 
 ## Credits
-- [Usage cases](https://chao-tic.github.io/blog/2018/12/25/tls)
-- [Implementation in Linux](https://uclibc.org/docs/tls.pdf)
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Java Concurrency in Practice](https://amzn.to/4aRMruW)
+* [A Deep dive into (implicit) Thread Local Storage - Chao-tic](https://chao-tic.github.io/blog/2018/12/25/tls)
+* [ELF Handling for Thread-Local Storage - Red Hat Inc.](https://uclibc.org/docs/tls.pdf)
