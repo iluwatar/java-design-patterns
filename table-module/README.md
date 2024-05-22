@@ -141,11 +141,11 @@ Trade-offs:
 ## Related Patterns
 
 * Active Record: Unlike Table Module, Active Record combines data access and domain logic in the same class.
-* Data Mapper: Separates the in-memory objects from the database, unlike Table Module which directly maps database tables.
-* Repository: Abstracts the data layer, allowing more complex queries, whereas Table Module is usually simpler and table-centric.
-* Transaction Script: Organizes business logic by procedures where each procedure handles a single request from the presentation layer, contrasting with the Table Module's data-centric approach.
-* Data Access Object (DAO): Provides an abstract interface to some type of database or other persistence mechanism, often used alongside Table Module to separate low-level data access operations from high-level business logic.
-* Domain Model: Represents the domain logic and behavior, often used in conjunction with Table Module to handle complex business rules and data interactions.
+* [Data Access Object (DAO)](https://java-design-patterns.com/patterns/dao/): Provides an abstract interface to some type of database or other persistence mechanism, often used alongside Table Module to separate low-level data access operations from high-level business logic.
+* [Data Mapper](https://java-design-patterns.com/patterns/data-mapper/): Separates the in-memory objects from the database, unlike Table Module which directly maps database tables.
+* [Domain Model](https://java-design-patterns.com/patterns/domain-model/): Represents the domain logic and behavior, often used in conjunction with Table Module to handle complex business rules and data interactions.
+* [Repository](https://java-design-patterns.com/patterns/repository/): Abstracts the data layer, allowing more complex queries, whereas Table Module is usually simpler and table-centric.
+* [Transaction Script](https://java-design-patterns.com/patterns/transaction-script/): Organizes business logic by procedures where each procedure handles a single request from the presentation layer, contrasting with the Table Module's data-centric approach.
 
 ## Credits
 
