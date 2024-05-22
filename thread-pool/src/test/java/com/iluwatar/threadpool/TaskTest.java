@@ -84,7 +84,7 @@ public abstract class TaskTest<T extends Task> {
    * threads
    */
   @Test
-  void testIdGeneration() throws Exception {
+  void testIdGeneration() {
     assertTimeout(ofMillis(10000), () -> {
       final var service = Executors.newFixedThreadPool(THREAD_COUNT);
 

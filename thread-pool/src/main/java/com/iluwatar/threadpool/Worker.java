@@ -45,7 +45,7 @@ public class Worker implements Runnable {
     try {
       Thread.sleep(task.getTimeMs());
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error("Error occurred: ", e);
     }
   }
 }

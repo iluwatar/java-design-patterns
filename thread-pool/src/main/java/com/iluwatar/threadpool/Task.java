@@ -25,6 +25,7 @@
 package com.iluwatar.threadpool;
 
 import java.util.concurrent.atomic.AtomicInteger;
+import lombok.Getter;
 
 /**
  * Abstract base class for tasks.
@@ -33,20 +34,14 @@ public abstract class Task {
 
   private static final AtomicInteger ID_GENERATOR = new AtomicInteger();
 
+  @Getter
   private final int id;
+  @Getter
   private final int timeMs;
 
   public Task(final int timeMs) {
     this.id = ID_GENERATOR.incrementAndGet();
     this.timeMs = timeMs;
-  }
-
-  public int getId() {
-    return id;
-  }
-
-  public int getTimeMs() {
-    return timeMs;
   }
 
   @Override
