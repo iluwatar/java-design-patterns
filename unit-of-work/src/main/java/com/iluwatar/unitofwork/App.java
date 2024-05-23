@@ -44,7 +44,7 @@ public class App {
     var silverTrident = new Weapon(3, "silver trident");
 
     // create repository
-    var weaponRepository = new ArmsDealer(new HashMap<String, List<Weapon>>(),
+    var weaponRepository = new ArmsDealer(new HashMap<>(),
             new WeaponDatabase());
 
     // perform operations on the weapons
