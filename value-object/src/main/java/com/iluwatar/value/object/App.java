@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * A Value Object are objects which follow value semantics rather than reference semantics. This
  * means value objects' equality are not based on identity. Two value objects are equal when they
- * have the same value, not necessarily being the same object..
+ * have the same value, not necessarily being the same object.
  *
  * <p>Value Objects must override equals(), hashCode() to check the equality with values. Value
  * Objects should be immutable so declare members final. Obtain instances by static factory methods.
@@ -51,11 +51,11 @@ public class App {
     var statB = HeroStat.valueOf(10, 5, 0);
     var statC = HeroStat.valueOf(5, 1, 8);
 
-    LOGGER.info(statA.toString());
-    LOGGER.info(statB.toString());
-    LOGGER.info(statC.toString());
+    LOGGER.info("statA: {}", statA);
+    LOGGER.info("statB: {}", statB);
+    LOGGER.info("statC: {}", statC);
 
-    LOGGER.info("Is statA and statB equal : {}", statA.equals(statB));
-    LOGGER.info("Is statA and statC equal : {}", statA.equals(statC));
+    LOGGER.info("Are statA and statB equal? {}", statA.equals(statB));
+    LOGGER.info("Are statA and statC equal? {}", statA.equals(statC));
   }
 }
