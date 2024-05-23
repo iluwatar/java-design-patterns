@@ -22,19 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.commander;
+package com.iluwatar.dao;
+
+import java.io.Serial;
 
 /**
- * Record to hold parameters related to time limit
- * for various tasks.
- * @param queueTime time limit for queue
- * @param queueTaskTime time limit for queuing task
- * @param paymentTime time limit for payment error message
- * @param messageTime time limit for message time order
- * @param employeeTime time limit for employee handle time
+ * Custom exception.
  */
-public record TimeLimits(long queueTime, long queueTaskTime, long paymentTime,
-                         long messageTime, long employeeTime) {
+public class CustomException extends Exception {
 
-  public static final TimeLimits DEFAULT = new TimeLimits(240000L, 60000L, 120000L, 150000L, 240000L);
+  @Serial
+  private static final long serialVersionUID = 1L;
+
+  public CustomException(String message, Throwable cause) {
+    super(message, cause);
+  }
 }
