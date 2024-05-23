@@ -1,30 +1,29 @@
 ---
 title: Version Number
-category: Concurrency
+category: Data access
 language: en
 tag:
- - Data access
- - Microservices
+    - Compatibility
+    - Data access
+    - Persistence
+    - State tracking
+    - Versioning
 ---
-
-## Name / classification
-
-Version Number.
 
 ## Also known as
 
-Entity Versioning, Optimistic Locking.
+* Entity Versioning
+* Versioning
 
 ## Intent
 
-Resolve concurrency conflicts when multiple clients are trying to update same entity simultaneously.
+Ensure data consistency and integrity by tracking changes to data with version numbers.
 
 ## Explanation
 
 Real world example
 
-> Alice and Bob are working on the book, which stored in the database. Our heroes are making
-> changes simultaneously, and we need some mechanism to prevent them from overwriting each other.
+> Consider a library system where multiple librarians can update the details of books simultaneously. Each book entry in the library's database has a version number. When a librarian wants to update a book's details, the system checks the version number of the entry. If the version number matches the current version in the database, the update proceeds, and the version number is incremented. If the version number has changed, it means another librarian has already updated the book details, prompting the system to notify the librarian of the conflict and suggesting a review of the latest changes. This ensures that updates do not overwrite each other unintentionally, maintaining data integrity and consistency.
 
 In plain words
 
@@ -32,32 +31,30 @@ In plain words
 
 Wikipedia says
 
-> Optimistic concurrency control assumes that multiple transactions can frequently complete
-> without interfering with each other. While running, transactions use data resources without
-> acquiring locks on those resources. Before committing, each transaction verifies that no other
-> transaction has modified the data it has read. If the check reveals conflicting modifications,
-> the committing transaction rolls back and can be restarted.
+> The Version Number pattern is a technique used to manage concurrent access to data in databases and other data stores. It involves associating a version number with each record, which is incremented every time the record is updated. This pattern helps ensure that when multiple users or processes attempt to update the same data simultaneously, conflicts can be detected and resolved.
 
 **Programmatic Example**
+
+Alice and Bob are working on the book, which stored in the database. Our heroes are making changes simultaneously, and we need some mechanism to prevent them from overwriting each other.
 
 We have a `Book` entity, which is versioned, and has a copy-constructor:
 
 ```java
+@Getter
+@Setter
 public class Book {
-  private long id;
-  private String title = "";
-  private String author = "";
+    private long id;
+    private String title = "";
+    private String author = "";
 
-  private long version = 0; // version number
+    private long version = 0; // version number
 
-  public Book(Book book) {
-    this.id = book.id;
-    this.title = book.title;
-    this.author = book.author;
-    this.version = book.version;
-  }
-
-  // getters and setters are omitted here
+    public Book(Book book) {
+        this.id = book.id;
+        this.title = book.title;
+        this.author = book.author;
+        this.version = book.version;
+    }
 }
 ```
 
@@ -133,31 +130,50 @@ Exception: Tried to update stale version 0 while actual version is 1
 
 ## Class diagram
 
-![alt text](./etc/version-number.urm.png "Version Number pattern class diagram")
+![Version Number](./etc/version-number.urm.png "Version Number pattern class diagram")
 
 ## Applicability
 
-Use Version Number for:
-
-* resolving concurrent write-access to the data
-* strong data consistency
+* Use when you need to handle concurrent data modifications in a distributed system.
+* Suitable for systems where data consistency and integrity are crucial.
+* Ideal for applications using databases that support versioning or row versioning features.
 
 ## Tutorials
-* [Version Number Pattern Tutorial](http://www.java2s.com/Tutorial/Java/0355__JPA/VersioningEntity.htm)
 
-## Known uses
- * [Hibernate](https://vladmihalcea.com/jpa-entity-version-property-hibernate/)
- * [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html#index-versioning)
- * [Apache Solr](https://lucene.apache.org/solr/guide/6_6/updating-parts-of-documents.html)
+* [JPA entity versioning - byteslounge.com](https://www.byteslounge.com/tutorials/jpa-entity-versioning-version-and-optimistic-locking)
+* [Optimistic Locking in JPA - Baeldung](https://www.baeldung.com/jpa-optimistic-locking)
+* [Versioning Entity - java2s.com](http://www.java2s.com/Tutorial/Java/0355__JPA/VersioningEntity.htm)
+
+## Known Uses
+
+* Hibernate (Java Persistence API) uses version numbers to implement optimistic locking.
+* Microsoft SQL Server and Oracle databases support version-based concurrency control.
+* Apache CouchDB and other NoSQL databases implement versioning for conflict resolution.
+* [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html#index-versioning)
+* [Apache Solr](https://lucene.apache.org/solr/guide/6_6/updating-parts-of-documents.html)
 
 ## Consequences
-Version Number pattern allows to implement a concurrency control, which is usually done
-via Optimistic Offline Lock pattern.
 
-## Related patterns
-* [Optimistic Offline Lock](https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html)
+Benefits:
+
+* Improves data consistency and integrity.
+* Reduces the likelihood of lost updates in concurrent environments.
+* Provides a mechanism for conflict detection and resolution.
+
+Trade-offs:
+
+* Requires additional logic for version checking and handling conflicts.
+* Can lead to increased complexity in database schema and application logic.
+* Potential performance overhead due to version checks and conflict resolution.
+
+## Related Patterns
+
+* [Optimistic Offline Lock](https://java-design-patterns.com/patterns/optimistic-offline-lock/): Uses version numbers to detect conflicts rather than preventing them from occurring.
+* Pessimistic Offline Lock: An alternative approach to concurrency control where data is locked for updates to prevent conflicts.
 
 ## Credits
-* [Optimistic Locking in JPA](https://www.baeldung.com/jpa-optimistic-locking)
-* [JPA entity versioning](https://www.byteslounge.com/tutorials/jpa-entity-versioning-version-and-optimistic-locking)
-* [J2EE Design Patterns](http://ommolketab.ir/aaf-lib/axkwht7wxrhvgs2aqkxse8hihyu9zv.pdf)
+
+* [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)
+* [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
