@@ -36,10 +36,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /**
- * Date: 12/27/15 - 11:44 AM
  * Weather Observer Tests
  * @param <O> Type of WeatherObserver
- * @author Jeroen Meulemeester
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class WeatherObserverTest<O extends WeatherObserver> {

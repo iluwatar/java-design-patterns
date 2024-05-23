@@ -25,9 +25,8 @@
 package com.iluwatar.singleton;
 
 /**
- * Date: 06/18/23 - 16:29 PM.
+ * BillPughImplementationTest
  *
- * @author Owen Leung
  */
 public class BillPughImplementationTest
         extends SingletonTest<BillPughImplementation>{

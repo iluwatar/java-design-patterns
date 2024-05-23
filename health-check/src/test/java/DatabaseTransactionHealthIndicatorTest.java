@@ -46,7 +46,6 @@ import org.springframework.retry.support.RetryTemplate;
 /**
  * Unit tests for the {@link DatabaseTransactionHealthIndicator} class.
  *
- * @author ydoksanbir
  */
 class DatabaseTransactionHealthIndicatorTest {
 

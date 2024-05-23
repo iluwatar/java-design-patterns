@@ -25,9 +25,8 @@
 package com.iluwatar.templatemethod;
 
 /**
- * Date: 12/30/15 - 18:19 PM
+ * SubtleMethodTest
  *
- * @author Jeroen Meulemeester
  */
 class SubtleMethodTest extends StealingMethodTest<SubtleMethod> {
 

@@ -32,7 +32,6 @@ import java.io.Serial;
  * specificity of the error condition in question. Calling code is not expected to be able to handle
  * this error and should be reported to the maintainers immediately.
  *
- * @author George Aristy (george.aristy@gmail.com)
  */
 public class BusinessException extends Exception {
   @Serial

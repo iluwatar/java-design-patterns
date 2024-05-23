@@ -31,9 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/10/15 - 11:31 PM
+ * FlamingAsteroidTest
  *
- * @author Jeroen Meulemeester
  */
 class FlamingAsteroidTest extends CollisionTest<FlamingAsteroid> {
 

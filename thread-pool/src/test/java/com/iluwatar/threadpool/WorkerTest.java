@@ -31,9 +31,8 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/30/15 - 18:21 PM
+ * WorkerTest
  *
- * @author Jeroen Meulemeester
  */
 class WorkerTest {
 

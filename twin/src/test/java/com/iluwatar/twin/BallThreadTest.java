@@ -38,9 +38,8 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/30/15 - 18:55 PM
+ * BallThreadTest
  *
- * @author Jeroen Meulemeester
  */
 class BallThreadTest {
 

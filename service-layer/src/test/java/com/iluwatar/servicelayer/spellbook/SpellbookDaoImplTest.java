@@ -31,9 +31,8 @@ import com.iluwatar.servicelayer.common.BaseDaoTest;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/28/15 - 11:44 PM
+ * SpellbookDaoImplTest
  *
- * @author Jeroen Meulemeester
  */
 class SpellbookDaoImplTest extends BaseDaoTest<Spellbook, SpellbookDaoImpl> {
 

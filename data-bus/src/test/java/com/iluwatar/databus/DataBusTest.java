@@ -35,7 +35,6 @@ import org.mockito.MockitoAnnotations;
 /**
  * Tests for {@link DataBus}.
  *
- * @author Paul Campbell (pcampbell@kemitix.net)
  */
 class DataBusTest {
 

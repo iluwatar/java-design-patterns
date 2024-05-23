@@ -45,7 +45,6 @@ import org.springframework.stereotype.Component;
  * collection time, memory pool name, and garbage collector algorithm for each garbage collector and
  * presents the details in a structured manner.
  *
- * @author ydoksanbir
  */
 @Slf4j
 @Component

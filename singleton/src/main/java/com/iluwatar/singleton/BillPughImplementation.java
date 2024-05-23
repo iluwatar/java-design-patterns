@@ -33,7 +33,6 @@ package com.iluwatar.singleton;
  * yet, it won't be loaded into memory, and no memory will be allocated for
  * a static instance. This makes the singleton instance lazy-loaded and thread-safe.</p>
  *
- * @author owen.leung2@gmail.com
  */
 public final class BillPughImplementation {
 

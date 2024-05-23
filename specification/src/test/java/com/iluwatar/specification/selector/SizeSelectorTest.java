@@ -34,9 +34,8 @@ import com.iluwatar.specification.property.Size;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/29/15 - 7:43 PM
+ * SizeSelectorTest
  *
- * @author Jeroen Meulemeester
  */
 class SizeSelectorTest {
 

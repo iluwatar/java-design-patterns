@@ -45,7 +45,6 @@ package com.iluwatar.intercepting.filter;
  * <p>In this example we check whether the order request is valid through pre-processing done via
  * {@link Filter}. Each field has its own corresponding {@link Filter}.
  *
- * @author joshzambales
  */
 public class App {
 

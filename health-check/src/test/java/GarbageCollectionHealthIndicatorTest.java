@@ -42,7 +42,6 @@ import org.springframework.boot.actuate.health.Status;
 /**
  * Test class for {@link GarbageCollectionHealthIndicator}.
  *
- * @author ydoksanbir
  */
 class GarbageCollectionHealthIndicatorTest {
 

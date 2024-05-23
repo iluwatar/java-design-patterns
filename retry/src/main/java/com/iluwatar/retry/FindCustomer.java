@@ -35,7 +35,6 @@ import java.util.List;
  * However, this is a "flaky" operation that is supposed to fail intermittently, but for the
  * purposes of this example it fails in a programmed way depending on the constructor parameters.
  *
- * @author George Aristy (george.aristy@gmail.com)
  */
 
 public record FindCustomer(String customerId, Deque<BusinessException> errors) implements BusinessOperation<String> {

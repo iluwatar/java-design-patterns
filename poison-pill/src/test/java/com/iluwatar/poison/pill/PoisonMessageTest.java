@@ -31,9 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/27/15 - 10:30 PM
+ * PoisonMessageTest
  *
- * @author Jeroen Meulemeester
  */
 class PoisonMessageTest {
 

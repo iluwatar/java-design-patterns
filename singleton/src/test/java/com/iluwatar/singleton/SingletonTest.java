@@ -44,11 +44,7 @@ import org.junit.jupiter.api.Test;
  * called in the SAME thread. The second proves that multiple calls to the singleton getInstance
  * object are the same when called in the DIFFERENT thread.</p>
  *
- * <p>Date: 12/29/15 - 19:25 PM</p>
- *
  * @param <S> Supplier method generating singletons
- * @author Jeroen Meulemeester
- * @author Richard Jones
  */
 abstract class SingletonTest<S> {
 

@@ -35,9 +35,8 @@ import static org.mockito.Mockito.when;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/13/15 - 3:01 PM
+ * FilterManagerTest
  *
- * @author Jeroen Meulemeester
  */
 class FilterManagerTest {
 

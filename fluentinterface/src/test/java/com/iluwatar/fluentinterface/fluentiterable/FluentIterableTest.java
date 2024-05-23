@@ -39,9 +39,8 @@ import java.util.function.Consumer;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/12/15 - 7:00 PM
+ * FluentIterableTest
  *
- * @author Jeroen Meulemeester
  */
 public abstract class FluentIterableTest {
 

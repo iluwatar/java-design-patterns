@@ -44,9 +44,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 /**
- * Date: 12/12/15 - 8:22 PM
+ * DispatcherTest
  *
- * @author Jeroen Meulemeester
  */
 class DispatcherTest {
 

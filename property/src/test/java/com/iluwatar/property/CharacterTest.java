@@ -34,9 +34,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/28/15 - 7:46 PM
+ * CharacterTest
  *
- * @author Jeroen Meulemeester
  */
 class CharacterTest {
 

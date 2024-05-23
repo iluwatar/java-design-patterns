@@ -28,9 +28,8 @@ import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterableTest;
 
 /**
- * Date: 12/12/15 - 7:56 PM
+ * SimpleFluentIterableTest
  *
- * @author Jeroen Meulemeester
  */
 class SimpleFluentIterableTest extends FluentIterableTest {
 

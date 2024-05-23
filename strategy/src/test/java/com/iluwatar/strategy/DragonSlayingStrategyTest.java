@@ -39,9 +39,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/29/15 - 10:58 PM.
+ * DragonSlayingStrategyTest
  *
- * @author Jeroen Meulemeester
  */
 class DragonSlayingStrategyTest {
 

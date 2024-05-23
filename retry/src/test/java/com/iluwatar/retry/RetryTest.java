@@ -33,7 +33,6 @@ import org.junit.jupiter.api.Test;
 /**
  * Unit tests for {@link Retry}.
  *
- * @author George Aristy (george.aristy@gmail.com)
  */
 class RetryTest {
 

@@ -41,10 +41,9 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/30/15 - 18:22 PM Test for Tasks using a Thread Pool
+ * Test for Tasks using a Thread Pool
  *
  * @param <T> Type of Task
- * @author Jeroen Meulemeester
  */
 public abstract class TaskTest<T extends Task> {
 

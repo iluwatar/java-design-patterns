@@ -51,7 +51,6 @@ package com.iluwatar.databus;
 /**
  * Events are sent via the Data-Bus.
  *
- * @author Paul Campbell (pcampbell@kemitix.net)
  */
 
 public interface DataType {

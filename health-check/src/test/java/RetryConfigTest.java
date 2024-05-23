@@ -35,7 +35,6 @@ import org.springframework.retry.support.RetryTemplate;
 /**
  * Unit tests for the {@link RetryConfig} class.
  *
- * @author ydoksanbir
  */
 @SpringBootTest(classes = RetryConfig.class)
 class RetryConfigTest {

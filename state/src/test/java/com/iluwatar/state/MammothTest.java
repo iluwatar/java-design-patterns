@@ -38,9 +38,8 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/29/15 - 8:27 PM
+ * MammothTest
  *
- * @author Jeroen Meulemeester
  */
 class MammothTest {
 

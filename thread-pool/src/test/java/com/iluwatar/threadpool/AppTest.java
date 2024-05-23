@@ -31,7 +31,6 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 /**
  * Application test
  *
- * @author ilkka
  */
 class AppTest {
 

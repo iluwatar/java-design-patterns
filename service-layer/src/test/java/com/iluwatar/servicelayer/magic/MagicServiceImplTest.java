@@ -42,9 +42,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/29/15 - 12:06 AM
+ * MagicServiceImplTest
  *
- * @author Jeroen Meulemeester
  */
 class MagicServiceImplTest {
 

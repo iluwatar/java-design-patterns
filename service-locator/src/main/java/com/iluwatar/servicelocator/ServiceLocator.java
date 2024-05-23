@@ -28,7 +28,6 @@ package com.iluwatar.servicelocator;
  * The service locator module. Will fetch service from cache, otherwise creates a fresh service and
  * update cache
  *
- * @author saifasif
  */
 public final class ServiceLocator {
 

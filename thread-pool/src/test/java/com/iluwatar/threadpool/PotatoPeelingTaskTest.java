@@ -25,9 +25,8 @@
 package com.iluwatar.threadpool;
 
 /**
- * Date: 12/30/15 - 18:23 PM
+ * PotatoPeelingTaskTest
  *
- * @author Jeroen Meulemeester
  */
 class PotatoPeelingTaskTest extends TaskTest<PotatoPeelingTask> {
 
