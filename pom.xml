@@ -68,7 +68,7 @@
     <module>adapter</module>
     <module>bridge</module>
     <module>composite</module>
-    <module>dao</module>
+    <module>data-access-object</module>
     <module>data-mapper</module>
     <module>decorator</module>
     <module>facade</module>
@@ -99,7 +99,6 @@
     <module>producer-consumer</module>
     <module>pipeline</module>
     <module>poison-pill</module>
-    <module>reader-writer-lock</module>
     <module>lazy-loading</module>
     <module>service-layer</module>
     <module>specification</module>
@@ -131,7 +130,6 @@
     <module>factory-kit</module>
     <module>feature-toggle</module>
     <module>value-object</module>
-    <module>module</module>
     <module>monad</module>
     <module>mute-idiom</module>
     <module>hexagonal</module>
@@ -150,7 +148,7 @@
     <module>balking</module>
     <module>extension-objects</module>
     <module>marker</module>
-    <module>cqrs</module>
+    <module>command-query-responsibility-segregation</module>
     <module>event-sourcing</module>
     <module>data-transfer-object</module>
     <module>throttling</module>
@@ -164,7 +162,6 @@
     <module>collection-pipeline</module>
     <module>master-worker</module>
     <module>spatial-partition</module>
-    <module>priority-queue</module>
     <module>commander</module>
     <module>type-object</module>
     <module>bytecode</module>
@@ -210,7 +207,7 @@
     <module>context-object</module>
     <module>thread-local-storage</module>
     <module>optimistic-offline-lock</module>
-    <module>crtp</module>
+    <module>curiously-recurring-template-pattern</module>
     <module>log-aggregation</module>
     <module>anti-corruption-layer</module>
     <module>health-check</module>

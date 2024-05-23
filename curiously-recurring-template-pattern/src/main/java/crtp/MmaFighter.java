@@ -22,19 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.commander;
+package crtp;
+
+import lombok.Data;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Record to hold parameters related to time limit
- * for various tasks.
- * @param queueTime time limit for queue
- * @param queueTaskTime time limit for queuing task
- * @param paymentTime time limit for payment error message
- * @param messageTime time limit for message time order
- * @param employeeTime time limit for employee handle time
+ * MmaFighter class.
+ *
+ * @param <T> MmaFighter derived class that uses itself as type parameter.
  */
-public record TimeLimits(long queueTime, long queueTaskTime, long paymentTime,
-                         long messageTime, long employeeTime) {
+@Slf4j
+@Data
+public class MmaFighter<T extends MmaFighter<T>> implements Fighter<T> {
 
-  public static final TimeLimits DEFAULT = new TimeLimits(240000L, 60000L, 120000L, 150000L, 240000L);
+  private final String name;
+  private final String surname;
+  private final String nickName;
+  private final String speciality;
+
+  @Override
+  public void fight(T opponent) {
+    LOGGER.info("{} is going to fight against {}", this, opponent);
+  }
+
 }

@@ -23,6 +23,8 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.serializedentity;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
@@ -101,5 +103,10 @@ public class CountryTest {
       } catch (Exception e) {
         LOGGER.error("Error occurred: ", e);
       }
+    try {
+      Files.deleteIfExists(Paths.get("output.txt"));
+    } catch (IOException e) {
+      LOGGER.error("Error occurred: ", e);
+    }
   }
 }
