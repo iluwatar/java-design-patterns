@@ -6,6 +6,7 @@ tag:
     - Decoupling
     - Encapsulation
     - Gang Of Four
+    - Lazy initialization
     - Proxy
     - Security
     - Wrapping

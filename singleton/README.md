@@ -5,6 +5,7 @@ language: en
 tag:
     - Gang of Four
     - Instantiation
+    - Lazy initialization
     - Resource management
 ---
 
