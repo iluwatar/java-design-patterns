@@ -3,7 +3,10 @@ title: Balking
 category: Concurrency
 language: en
 tag:
+    - Concurrency
     - Decoupling
+    - Fault tolerance
+    - Synchronization
 ---
 
 ## Intent
@@ -14,7 +17,7 @@ Balking Pattern is used to prevent an object from executing a certain code if it
 
 Real world example
 
-> There's a start-button in a washing machine to initiate the laundry washing. When the washing machine is inactive the button works as expected, but if it's already washing the button does nothing.
+> A real-world analogy of the Balking design pattern can be seen in a laundry service. Imagine a washing machine at a laundromat that only starts washing clothes if the door is properly closed and locked. If a user tries to start the machine while the door is open, the machine balks and does nothing. This ensures that the washing process only begins when it is safe to do so, preventing water spillage and potential damage to the machine. Similarly, the Balking pattern in software design ensures that operations are only executed when the object is in an appropriate state, preventing erroneous actions and maintaining system stability.
 
 In plain words
 
@@ -25,6 +28,8 @@ Wikipedia says
 > The balking pattern is a software design pattern that only executes an action on an object when the object is in a particular state. For example, if an object reads ZIP files and a calling method invokes a get method on the object when the ZIP file is not open, the object would "balk" at the request.
 
 **Programmatic Example**
+
+There's a start-button in a washing machine to initiate the laundry washing. When the washing machine is inactive the button works as expected, but if it's already washing the button does nothing.
 
 In this example implementation, `WashingMachine` is an object that has two states in which it can be: ENABLED and WASHING. If the machine is ENABLED, the state changes to WASHING using a thread-safe method. On the other hand, if it already has been washing and any other thread executes `wash()`it won't do that and returns without doing anything.
 
@@ -76,23 +81,25 @@ public interface DelayProvider {
 }
 ```
 
-Now we introduce the application using the `WashingMachine`.
+Now, we introduce the application using the `WashingMachine`.
 
 ```java
-  public static void main(String...args){
-final var washingMachine=new WashingMachine();
-        var executorService=Executors.newFixedThreadPool(3);
-        for(int i=0;i< 3;i++){
+public static void main(String... args) {
+    final var washingMachine = new WashingMachine();
+    var executorService = Executors.newFixedThreadPool(3);
+    for (int i = 0; i < 3; i++) {
         executorService.execute(washingMachine::wash);
+    }
+    executorService.shutdown();
+    try {
+        if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
+            executorService.shutdownNow();
         }
-        executorService.shutdown();
-        try{
-        executorService.awaitTermination(10,TimeUnit.SECONDS);
-        }catch(InterruptedException ie){
+    } catch (InterruptedException ie) {
         LOGGER.error("ERROR: Waiting on executor service shutdown!");
         Thread.currentThread().interrupt();
-        }
-        }
+    }
+}
 ```
 
 Here is the console output of the program.
@@ -109,7 +116,7 @@ Here is the console output of the program.
 
 ## Class diagram
 
-![alt text](./etc/balking.png "Balking")
+![Balking](./etc/balking.png "Balking")
 
 ## Applicability
 
@@ -139,10 +146,12 @@ Trade-offs:
 
 ## Related patterns
 
-* [Double-Checked Locking Pattern](https://java-design-patterns.com/patterns/double-checked-locking/)
-* [Guarded Suspension Pattern](https://java-design-patterns.com/patterns/guarded-suspension/)
-* [State](https://java-design-patterns.com/patterns/state/)
+* [Double-Checked Locking](https://java-design-patterns.com/patterns/double-checked-locking/): Ensures that initialization occurs only when necessary and avoids unnecessary locking, which is related to Balking in terms of conditionally executing logic based on the object's state.
+* [Guarded Suspension](https://java-design-patterns.com/patterns/guarded-suspension/): Similar in ensuring actions are only performed when an object is in a certain state, but typically involves waiting until the state is valid.
+* [State](https://java-design-patterns.com/patterns/state/): The State pattern can be used in conjunction with Balking to manage the states and transitions of the object.
 
 ## Credits
 
-* [Patterns in Java: A Catalog of Reusable Design Patterns Illustrated with UML, 2nd Edition, Volume 1](https://www.amazon.com/gp/product/0471227293/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0471227293&linkId=0e39a59ffaab93fb476036fecb637b99)
+* [Concurrent Programming in Java : Design Principles and Patterns](https://amzn.to/4dIBqxL)
+* [Java Concurrency in Practice](https://amzn.to/4aRMruW)
+* [Patterns in Java: A Catalog of Reusable Design Patterns Illustrated with UML](https://amzn.to/4bOtzwF)
