@@ -4,13 +4,16 @@ category: Structural
 language: en
 tag:
     - Compatibility
+    - Decoupling
     - Gang of Four
-    - Integration
+    - Interface
+    - Object composition
+    - Wrapping
 ---
 
 ## Also known as
 
-Wrapper
+* Wrapper
 
 ## Intent
 
@@ -32,7 +35,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Consider a captain that can only use rowing boats and cannot sail at all.
+Consider a wannabe captain that can only use rowing boats but can't sail at all.
 
 First, we have interfaces `RowingBoat` and `FishingBoat`
 
@@ -49,7 +52,7 @@ public class FishingBoat {
 }
 ```
 
-And captain expects an implementation of `RowingBoat` interface to be able to move
+The captain expects an implementation of `RowingBoat` interface to be able to move.
 
 ```java
 public class Captain {
@@ -67,10 +70,9 @@ public class Captain {
 }
 ```
 
-Now let's say the pirates are coming and our captain needs to escape but there is only a fishing boat available. We need to create an adapter that allows the captain to operate the fishing boat with his rowing boat skills.
+Now, let's say the pirates are coming and our captain needs to escape but there is only a fishing boat available. We need to create an adapter that allows the captain to operate the fishing boat with his rowing boat skills.
 
 ```java
-
 @Slf4j
 public class FishingBoatAdapter implements RowingBoat {
 
@@ -87,16 +89,26 @@ public class FishingBoatAdapter implements RowingBoat {
 }
 ```
 
-And now the `Captain` can use the `FishingBoat` to escape the pirates.
+Now the `Captain` can use the `FishingBoat` to escape the pirates.
 
 ```java
-var captain=new Captain(new FishingBoatAdapter());
-        captain.row();
+  public static void main(final String[] args) {
+    // The captain can only operate rowing boats but with adapter he is able to
+    // use fishing boats as well
+    var captain = new Captain(new FishingBoatAdapter());
+    captain.row();
+}
+```
+
+The program outputs:
+
+```
+10:25:08.074 [main] INFO com.iluwatar.adapter.FishingBoat -- The fishing boat is sailing
 ```
 
 ## Class diagram
 
-![alt text](./etc/adapter.urm.png "Adapter class diagram")
+![Adapter](./etc/adapter.urm.png "Adapter class diagram")
 
 ## Applicability
 
@@ -109,26 +121,21 @@ Use the Adapter pattern when
 
 ## Tutorials
 
-* [Dzone](https://dzone.com/articles/adapter-design-pattern-in-java)
-* [Refactoring Guru](https://refactoring.guru/design-patterns/adapter/java/example)
-* [Baeldung](https://www.baeldung.com/java-adapter-pattern)
-* [GeeksforGeeks](https://www.geeksforgeeks.org/adapter-pattern/)
+* [Using the Adapter Design Pattern in Java (Dzone)](https://dzone.com/articles/adapter-design-pattern-in-java)
+* [Adapter in Java (Refactoring Guru)](https://refactoring.guru/design-patterns/adapter/java/example)
+* [The Adapter Pattern in Java (Baeldung)](https://www.baeldung.com/java-adapter-pattern)
+* [Adapter Design Pattern (GeeksForGeeks)](https://www.geeksforgeeks.org/adapter-pattern/)
 
 ## Consequences
 
-Class and object adapters have different trade-offs. A class adapter
+Class and object adapters offer different benefits and drawbacks. A class adapter adapts the Adaptee to the Target by binding to a specific Adaptee class, which means it cannot adapt a class and all its subclasses. This type of adapter allows the Adapter to override some of the Adaptee’s behavior because the Adapter is a subclass of the Adaptee. Additionally, it introduces only one object without needing extra pointer indirection to reach the Adaptee.
 
-* Adapts Adaptee to Target by committing to a concrete Adaptee class. As a consequence, a class adapter won’t work when we want to adapt a class and all its subclasses.
-* Lets Adapter override some of Adaptee’s behavior since Adapter is a subclass of Adaptee.
-* Introduces only one object, and no additional pointer indirection is needed to get to the adaptee.
-
-An object adapter
-
-* Lets a single Adapter work with many Adaptees, that is, the Adaptee itself and all of its subclasses (if any). The Adapter can also add functionality to all Adaptees at once.
-* Makes it harder to override Adaptee behavior. It will require subclassing Adaptee and making the Adapter refer to the subclass rather than the Adaptee itself.
+On the other hand, an object adapter allows a single Adapter to work with multiple Adaptees, including the Adaptee and all its subclasses. This type of adapter can add functionality to all Adaptees simultaneously. However, it makes overriding the Adaptee’s behavior more difficult, as it requires subclassing the Adaptee and having the Adapter refer to this subclass instead of the Adaptee itself.
 
 ## Real-world examples
 
+* `java.io.InputStreamReader` and `java.io.OutputStreamWriter` in the Java IO library.
+* GUI component libraries that allow for plug-ins or adapters to convert between different GUI component interfaces.
 * [java.util.Arrays#asList()](http://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#asList%28T...%29)
 * [java.util.Collections#list()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#list-java.util.Enumeration-)
 * [java.util.Collections#enumeration()](https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#enumeration-java.util.Collection-)
@@ -136,7 +143,8 @@ An object adapter
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)
+* [Refactoring to Patterns](https://amzn.to/3VOO4F5)
