@@ -3,13 +3,15 @@ title: Client Session
 category: Behavioral
 language: en
 tags:
+    - Client-server
     - Session management
+    - State tracking
     - Web development
 ---
 
 ## Also known as
 
-* User session
+* User Session
 
 ## Intent
 
@@ -19,60 +21,86 @@ The Client Session design pattern aims to maintain a user's state and data acros
 
 Real-World Example
 
-> You're looking to create a data management app allowing users to send requests to the server to modify and make changes to data stored on their devices. These requests are small and the data is individual to each user, negating the need for a large scale database implementation. Using the client session pattern, you are able to handle multiple concurrent requests, load balancing clients across different servers with ease due to servers remaining stateless. You also remove the need to store session IDs on the server side due to clients providing all the information that a server needs to perform their process.
+> A real-world example of the Client Session pattern is a library membership system. When a member logs in, the system starts a session to track their borrowing activities. This session holds data such as the member's ID, current borrowed books, due dates, and any fines. As the member browses the catalog, borrows books, or returns them, the session maintains this stateful information, ensuring the member's interactions are consistent and personalized until they log out or the session expires. This approach helps the library system manage user-specific data efficiently across multiple interactions, providing a seamless and personalized experience for the members.
 
 In Plain words
 
-> Instead of storing information about the current client and the information being accessed on the server, it is maintained client side only. Client has to send session data with each request to the server and has to send an updated state back to the client, which is stored on the clients machine. The server doesn't have to store the client information. ([ref](https://dzone.com/articles/practical-php-patterns/practical-php-patterns-client))
+> The Client Session pattern manages user-specific data across multiple requests within a web application to maintain continuity and personalization.
+
+Wikipedia says
+
+> The client-server model on Wikipedia describes a system where client devices request services and resources from centralized servers. This model is crucial in web applications where client sessions are used to manage user-specific data across multiple requests. For example, when a bank customer accesses online banking services, their login credentials and session state are managed by the web server to maintain continuity of their interactions.
 
 **Programmatic Example**
 
-Here is the sample code to describe the client-session pattern. In the below code we are first creating an instance of the Server. This server instance will then be used to get Session objects for two clients. As you can see from the code below the Session object can be used to store any relevant information that are required by the server to process the client request. These session objects will then be passed on with every Request to the server. The Request will have the Session object that stores the relevant client details along with the required data for processing the request. The session information in every request helps the server identify the client and process the request accordingly.
+The Client Session design pattern is a behavioral design pattern that maintains a user's state and data across multiple requests within a web application, ensuring a continuous and personalized user experience. This pattern is commonly used in web applications where user-specific data needs to be managed across multiple requests.
+
+In the given code, we have a `Server` class and a `Session` class. The `Server` class represents the server that processes incoming requests and assigns sessions to clients. The `Session` class represents a session that is assigned to a client.
+
+Here's a programmatic example of the Client Session design pattern using the given code:
 
 ```java
-public class App {
+// The Server class represents the server that processes incoming requests and assigns sessions to clients.
+public class Server {
+  private String host;
+  private int port;
 
-    public static void main(String[] args) {
-        var server = new Server("localhost", 8080);
-        var session1 = server.getSession("Session1");
-        var session2 = server.getSession("Session2");
-        var request1 = new Request("Data1", session1);
-        var request2 = new Request("Data2", session2);
-        server.process(request1);
-        server.process(request2);
-    }
+  public Server(String host, int port) {
+    this.host = host;
+    this.port = port;
+  }
+
+  // Other methods...
+
+  // This method returns a new session for a client.
+  public Session getSession(String name) {
+    return new Session(name, "ClientName");
+  }
+
+  // This method processes a request from a client.
+  public void process(Request request) {
+    // Process the request...
+  }
 }
 
-@Data
-@AllArgsConstructor
+// The Session class represents a session that is assigned to a client.
 public class Session {
+  private String id;
+  private String clientName;
 
-    /**
-     * Session id.
-     */
-    private String id;
+  public Session(String id, String clientName) {
+    this.id = id;
+    this.clientName = clientName;
+  }
 
-    /**
-     * Client name.
-     */
-    private String clientName;
-
-}
-
-@Data
-@AllArgsConstructor
-public class Request {
-
-    private String data;
-
-    private Session session;
-
+  // Other methods...
 }
 ```
 
-## Architecture Diagram
+In the `main` method, we create an instance of `Server`, create two sessions for two different clients, and then pass these sessions to the server in the request along with the data. The server is then able to interpret the client based on the session associated with it.
 
-![alt text](./etc/session_state_pattern.png "Session State Pattern")
+```java
+public class App {
+  public static void main(String[] args) {
+    var server = new Server("localhost", 8080);
+    var session1 = server.getSession("Session1");
+    var session2 = server.getSession("Session2");
+    var request1 = new Request("Data1", session1);
+    var request2 = new Request("Data2", session2);
+    server.process(request1);
+    server.process(request2);
+  }
+}
+```
+
+In this example, the `Server` class is responsible for creating and managing sessions for clients, and the `Session` class represents the client's session. The `Request` class represents a request from a client, which includes the client's session and data. The server processes the request based on the client's session.
+
+Running the program produces the following console output:
+
+```
+19:28:49.152 [main] INFO com.iluwatar.client.session.Server -- Processing Request with client: Session1 data: Data1
+19:28:49.154 [main] INFO com.iluwatar.client.session.Server -- Processing Request with client: Session2 data: Data2
+```
 
 ## Applicability
 
@@ -110,7 +138,6 @@ Trade-offs:
 
 ## Credits
 
-* [DZone - Practical PHP patterns](https://dzone.com/articles/practical-php-patterns/practical-php-patterns-client)
-* [Client Session State Design Pattern - Ram N Java](https://www.youtube.com/watch?v=ycOSj9g41pc)
 * [Professional Java for Web Applications](https://amzn.to/4aazY59)
 * [Securing Web Applications with Spring Security](https://amzn.to/3PCCEA1)
+* [Client Session State Design Pattern: Explained Simply (Ram N Java)](https://www.youtube.com/watch?v=ycOSj9g41pc)
