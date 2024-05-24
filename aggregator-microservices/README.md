@@ -4,20 +4,23 @@ category: Architectural
 language: en
 tag:
     - API design
-    - Cloud distributed
+    - Client-server
+    - Data processing
     - Decoupling
+    - Integration
     - Microservices
+    - Scalability
 ---
 
 ## Intent
 
-Streamline client's interactions with system's microservices by providing a single aggregation point that consolidates data and responses from multiple services. This simplifies the client's communication with the system, improving efficiency and reducing complexity.
+To aggregate responses from multiple microservices and return a consolidated response to the client.
 
 ## Explanation
 
 Real world example
 
-> Our web marketplace needs information about products and their current inventory. It makes a call to an aggregator service, which, in turn, calls the product information and product inventory microservices, returning the combined information.
+> Imagine an online travel booking platform. When a user searches for a vacation package, the platform needs to gather information from several different services: flights, hotels, car rentals, and local attractions. Instead of the user making separate requests to each service, the platform employs an Aggregator Microservice. This microservice calls each of these services, collects their responses, and then consolidates the information into a single, unified response that is sent back to the user. This simplifies the user experience by providing all necessary travel details in one place and reduces the number of direct interactions the user needs to have with the underlying services.
 
 In plain words
 
@@ -29,14 +32,15 @@ Stack Overflow says
 
 **Programmatic Example**
 
+Our web marketplace needs information about products and their current inventory. It makes a call to an aggregator service, which, in turn, calls the product information and product inventory microservices, returning the combined information.
+
 Let's start from the data model. Here's our `Product`.
 
 ```java
 public class Product {
     private String title;
     private int productInventories;
-    // Getters and setters omitted for brevity ->
-  ...
+    // Other properties and methods...
 }
 ```
 
@@ -87,7 +91,10 @@ public class InformationController {
 Now calling our `Aggregator` REST API returns the product information.
 
 ```bash
+# Example bash call
 curl http://localhost:50004/product
+
+# Example output
 {"title":"The Product Title.","productInventories":5}
 ```
 
@@ -121,11 +128,10 @@ Trade-offs:
 
 ## Credits
 
-* [Microservice Design Patterns](http://web.archive.org/web/20190705163602/http://blog.arungupta.me/microservice-design-patterns/)
-* [Microservices Patterns: With examples in Java](https://www.amazon.com/gp/product/1617294543/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617294543&linkId=8b4e570267bc5fb8b8189917b461dc60)
-* [Architectural Patterns: Uncover essential patterns in the most indispensable realm of enterprise architecture](https://www.amazon.com/gp/product/B077T7V8RC/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=B077T7V8RC&linkId=c34d204bfe1b277914b420189f09c1a4)
 * [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/43aGpSR)
-* [Microservices Patterns: With examples in Java](https://amzn.to/4a5LHkP)
-* [Microservice Architecture: Aligning Principles, Practices, and Culture](https://amzn.to/3T9jZNi)
-* [Production-Ready Microservices: Building Standardized Systems Across an Engineering Organization](https://amzn.to/4a0Vk4c)
+* [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
 * [Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services](https://amzn.to/3T9g9Uj)
+* [Microservice Architecture: Aligning Principles, Practices, and Culture](https://amzn.to/3T9jZNi)
+* [Microservices Patterns: With examples in Java](https://amzn.to/4a5LHkP)
+* [Production-Ready Microservices: Building Standardized Systems Across an Engineering Organization](https://amzn.to/4a0Vk4c)
+* [Microservice Design Patterns (Arun Gupta)](http://web.archive.org/web/20190705163602/http://blog.arungupta.me/microservice-design-patterns/)
