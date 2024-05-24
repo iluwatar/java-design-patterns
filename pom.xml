@@ -108,7 +108,6 @@
     <module>double-dispatch</module>
     <module>multiton</module>
     <module>resource-acquisition-is-initialization</module>
-    <module>thread-pool</module>
     <module>twin</module>
     <module>private-class-data</module>
     <module>object-pool</module>
@@ -205,7 +204,6 @@
     <module>identity-map</module>
     <module>component</module>
     <module>context-object</module>
-    <module>thread-local-storage</module>
     <module>optimistic-offline-lock</module>
     <module>curiously-recurring-template-pattern</module>
     <module>log-aggregation</module>
