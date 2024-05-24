@@ -5,7 +5,11 @@ language: en
 tag:
     - Client-server
     - Data access
+    - Decoupling
     - Enterprise patterns
+    - Object composition
+    - Persistence
+    - Resource management
 ---
 
 ## Also known as
@@ -20,13 +24,19 @@ The Composite Entity design pattern is aimed at managing a set of interrelated p
 
 Real world example
 
-> For a console, there may be many interfaces that need to be managed and controlled. Using the composite entity pattern, dependent objects such as messages and signals can be combined and controlled using a single object.
+> Consider a university registration system where a "Student" entity is a composite entity. Each "Student" object includes several dependent objects: personal details, course enrollments, grades, and payment information. Instead of managing each of these aspects separately, the Composite Entity pattern allows the university system to treat the "Student" as a single entity. This simplifies operations such as enrolling a student in a new course, updating grades, and processing payments, since all related actions can be managed through the composite "Student" object.
 
 In plain words
 
 > Composite entity pattern allows a set of related objects to be represented and managed by a unified object.
 
+Wikipedia says
+
+> Composite entity is a Java EE Software design pattern and it is used to model, represent, and manage a set of interrelated persistent objects rather than representing them as individual fine-grained entity beans, and also a composite entity bean represents a graph of objects.
+
 **Programmatic Example**
+
+For a console, there may be many interfaces that need to be managed and controlled. Using the composite entity pattern, dependent objects such as messages and signals can be combined and controlled using a single object.
 
 We need a generic solution for the problem. To achieve this, let's introduce a generic Composite Entity Pattern.
 
@@ -103,17 +113,19 @@ public class CompositeEntity {
 Now managing the assignment of message and signal objects with the composite entity `console`.
 
 ```java
-var console=new CompositeEntity();
-        console.init();
-        console.setData("No Danger","Green Light");
-        Arrays.stream(console.getData()).forEach(LOGGER::info);
-        console.setData("Danger","Red Light");
-        Arrays.stream(console.getData()).forEach(LOGGER::info);
+public App(String message, String signal) {
+    var console = new CompositeEntity();
+    console.init();
+    console.setData(message, signal);
+    Arrays.stream(console.getData()).forEach(LOGGER::info);
+    console.setData("Danger", "Red Light");
+    Arrays.stream(console.getData()).forEach(LOGGER::info);
+}
 ```
 
 ## Class diagram
 
-![alt text](./etc/composite_entity.urm.png "Composite Entity Pattern")
+![Composite Entity](./etc/composite_entity.urm.png "Composite Entity")
 
 ## Applicability
 
@@ -149,7 +161,7 @@ Trade-offs:
 
 ## Credits
 
-* [Composite Entity Pattern in wikipedia](https://en.wikipedia.org/wiki/Composite_entity_pattern)
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Enterprise Patterns and MDA: Building Better Software with Archetype Patterns and UML](https://amzn.to/49mslqS)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3xjKdpe)
+* [Composite Entity Pattern (Wikipedia)](https://en.wikipedia.org/wiki/Composite_entity_pattern)
