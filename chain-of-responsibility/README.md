@@ -40,8 +40,6 @@ The Orc King gives loud orders to his army. The closest one to react is the comm
 First, we have the `Request` class:
 
 ```java
-import lombok.Getter;
-
 @Getter
 public class Request {
 
