@@ -15,6 +15,7 @@ Callback is a piece of executable code that is passed as an argument to other co
 
 ## Also known as
 
+* Call-After
 * Event-Subscription
 * Listener
 
@@ -22,7 +23,9 @@ Callback is a piece of executable code that is passed as an argument to other co
 
 Real world example
 
-> We need to be notified after the executing task has finished. We pass a callback method for the executor and wait for it to call back on us.
+> A real-world analogy for the Callback design pattern can be found in the restaurant industry. Imagine a situation where you place an order at a busy restaurant. Instead of waiting at the counter for your food to be ready, you provide the cashier with your phone number. Once your order is prepared, the kitchen staff calls or sends a text message to notify you that your meal is ready for pickup.
+>
+> In this analogy, placing your order is analogous to initiating an asynchronous task. Providing your phone number is akin to passing a callback function. The kitchen preparing your order represents the asynchronous processing, and the notification you receive is the callback being executed, allowing you to retrieve your meal without having to wait idly. This separation of task initiation and task completion is the essence of the Callback design pattern.
 
 In plain words
 
@@ -33,6 +36,8 @@ Wikipedia says
 > In computer programming, a callback, also known as a "call-after" function, is any executable code that is passed as an argument to other code; that other code is expected to call back (execute) the argument at a given time.
 
 **Programmatic Example**
+
+We need to be notified after the executing task has finished. We pass a callback method for the executor and wait for it to call back on us.
 
 Callback is a simple interface with single method.
 
@@ -69,13 +74,18 @@ public final class SimpleTask extends Task {
 Finally, here's how we execute a task and receive a callback when it's finished.
 
 ```java
-    var task=new SimpleTask();
-        task.executeWith(()->LOGGER.info("I'm done now."));
+public static void main(final String[] args) {
+    var task = new SimpleTask();
+    task.executeWith(() -> LOGGER.info("I'm done now."));
+}
 ```
 
-## Class diagram
+Program output:
 
-![Callback pattern class diagram](./etc/callback.png "Callback")
+```
+17:12:11.680 [main] INFO com.iluwatar.callback.SimpleTask -- Perform some important activity and after call the callback method.
+17:12:11.682 [main] INFO com.iluwatar.callback.App -- I'm done now.
+```
 
 ## Applicability
 
@@ -90,6 +100,7 @@ Use the Callback pattern when
 * GUI frameworks often use callbacks for event handling, such as user interactions (clicks, key presses)
 * Node.js heavily relies on callbacks for non-blocking I/O operations
 * Frameworks that deal with asynchronous operations, like Promises in JavaScript, use callbacks to handle the resolution or rejection of asynchronous tasks
+* [CyclicBarrier](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept a callback that will be triggered every time a barrier is tripped.
 
 ## Consequences
 
@@ -107,12 +118,12 @@ Trade-offs:
 
 ## Related patterns
 
-* [Observer](https://java-design-patterns.com/patterns/observer/): Callbacks can be seen as a more dynamic and lightweight form of the Observer pattern, with the ability to subscribe and unsubscribe callback functions dynamically
 * [Command](https://java-design-patterns.com/patterns/command/): Callbacks can be implemented as Command objects in scenarios where more flexibility or statefulness is required in the callback operation
+* [Observer](https://java-design-patterns.com/patterns/observer/): Callbacks can be seen as a more dynamic and lightweight form of the Observer pattern, with the ability to subscribe and unsubscribe callback functions dynamically
 * [Promise](https://java-design-patterns.com/patterns/promise/): In some languages or frameworks, Promises or Futures can be used to handle asynchronous operations more cleanly, often using callbacks for success or failure cases
 
-## Real world examples
+## Credits
 
-* [CyclicBarrier](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/CyclicBarrier.html#CyclicBarrier%28int,%20java.lang.Runnable%29) constructor can accept a callback that will be triggered every time a barrier is tripped.
-* [JavaScript: The Good Parts](https://amzn.to/3TiQV61)
-* [Node.js Design Patterns - Third edition: Design and implement production-grade Node.js applications using proven patterns and techniques](https://amzn.to/3VssjKG)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Java Concurrency in Practice](https://amzn.to/4aRMruW)
