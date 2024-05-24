@@ -3,7 +3,10 @@ title: Command
 category: Behavioral
 language: en
 tag:
+    - Decoupling
+    - Extensibility
     - Gang of Four
+    - Undo
 ---
 
 ## Also known as
@@ -19,7 +22,7 @@ The Command design pattern encapsulates a request as an object, thereby allowing
 
 Real-world example
 
-> There is a wizard casting spells on a goblin. The spells are executed on the goblin one by one. The first spell shrinks the goblin and the second makes him invisible. Then the wizard reverses the spells one by one. Each spell here is a command object that can be undone.
+> Imagine a smart home system where you can control various devices such as lights, thermostat, and security cameras through a central application. Each command to turn a device on or off, adjust temperature, or start recording is encapsulated as an object. This way, the application can queue commands, execute them in sequence, and even undo them if needed (like turning the lights back on or stopping the recording). The system thus decouples the control logic from the actual implementation of device operations, allowing for easy addition of new devices or features without altering the core application.
 
 In plain words
 
@@ -31,7 +34,9 @@ Wikipedia says
 
 **Programmatic Example**
 
-Here's the sample code with wizard and goblin. Let's start from the `Wizard` class.
+There is a wizard casting spells on a goblin. The spells are executed on the goblin one by one. The first spell shrinks the goblin and the second makes him invisible. Then the wizard reverses the spells one by one. Each spell here is a command object that can be undone.
+
+Let's start from the `Wizard` class.
 
 ```java
 
@@ -75,35 +80,37 @@ public class Wizard {
 Next, we have the goblin who's the target of the spells.
 
 ```java
-
 @Slf4j
+@Getter
+@Setter
 public abstract class Target {
 
     private Size size;
 
     private Visibility visibility;
 
-    public Size getSize() {
-        return size;
-    }
-
-    public void setSize(Size size) {
-        this.size = size;
-    }
-
-    public Visibility getVisibility() {
-        return visibility;
-    }
-
-    public void setVisibility(Visibility visibility) {
-        this.visibility = visibility;
-    }
-
-    @Override
-    public abstract String toString();
-
+    /**
+     * Print status.
+     */
     public void printStatus() {
         LOGGER.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
+    }
+
+    /**
+     * Changes the size of the target.
+     */
+    public void changeSize() {
+        var oldSize = getSize() == Size.NORMAL ? Size.SMALL : Size.NORMAL;
+        setSize(oldSize);
+    }
+
+    /**
+     * Changes the visibility of the target.
+     */
+    public void changeVisibility() {
+        var visible = getVisibility() == Visibility.INVISIBLE
+                ? Visibility.VISIBLE : Visibility.INVISIBLE;
+        setVisibility(visible);
     }
 }
 
@@ -118,92 +125,66 @@ public class Goblin extends Target {
     public String toString() {
         return "Goblin";
     }
-
-    public void changeSize() {
-        var oldSize = getSize() == Size.NORMAL ? Size.SMALL : Size.NORMAL;
-        setSize(oldSize);
-    }
-
-    public void changeVisibility() {
-        var visible = getVisibility() == Visibility.INVISIBLE
-                ? Visibility.VISIBLE : Visibility.INVISIBLE;
-        setVisibility(visible);
-    }
 }
 ```
 
 Finally, we have the wizard in the main function casting spells.
 
 ```java
-public static void main(String[]args){
-        var wizard=new Wizard();
-        var goblin=new Goblin();
+public static void main(String[] args) {
+    var wizard = new Wizard();
+    var goblin = new Goblin();
 
-        // casts shrink/unshrink spell
-        wizard.castSpell(goblin::changeSize);
+    goblin.printStatus();
 
-        // casts visible/invisible spell
-        wizard.castSpell(goblin::changeVisibility);
+    wizard.castSpell(goblin::changeSize);
+    goblin.printStatus();
 
-        // undo and redo casts
-        wizard.undoLastSpell();
-        wizard.redoLastSpell();
-```
+    wizard.castSpell(goblin::changeVisibility);
+    goblin.printStatus();
 
-Here's the whole example in action.
+    wizard.undoLastSpell();
+    goblin.printStatus();
 
-```java
-var wizard=new Wizard();
-        var goblin=new Goblin();
+    wizard.undoLastSpell();
+    goblin.printStatus();
 
-        goblin.printStatus();
-        wizard.castSpell(goblin::changeSize);
-        goblin.printStatus();
+    wizard.redoLastSpell();
+    goblin.printStatus();
 
-        wizard.castSpell(goblin::changeVisibility);
-        goblin.printStatus();
-
-        wizard.undoLastSpell();
-        goblin.printStatus();
-
-        wizard.undoLastSpell();
-        goblin.printStatus();
-
-        wizard.redoLastSpell();
-        goblin.printStatus();
-
-        wizard.redoLastSpell();
-        goblin.printStatus();
+    wizard.redoLastSpell();
+    goblin.printStatus();
+}
 ```
 
 Here's the program output:
 
-```java
-Goblin,[size=normal][visibility=visible]
-        Goblin,[size=small][visibility=visible]
-        Goblin,[size=small][visibility=invisible]
-        Goblin,[size=small][visibility=visible]
-        Goblin,[size=normal][visibility=visible]
-        Goblin,[size=small][visibility=visible]
-        Goblin,[size=small][visibility=invisible]
+```
+20:13:38.406 [main] INFO com.iluwatar.command.Target -- Goblin, [size=normal] [visibility=visible]
+20:13:38.409 [main] INFO com.iluwatar.command.Target -- Goblin, [size=small] [visibility=visible]
+20:13:38.409 [main] INFO com.iluwatar.command.Target -- Goblin, [size=small] [visibility=invisible]
+20:13:38.409 [main] INFO com.iluwatar.command.Target -- Goblin, [size=small] [visibility=visible]
+20:13:38.409 [main] INFO com.iluwatar.command.Target -- Goblin, [size=normal] [visibility=visible]
+20:13:38.409 [main] INFO com.iluwatar.command.Target -- Goblin, [size=small] [visibility=visible]
+20:13:38.409 [main] INFO com.iluwatar.command.Target -- Goblin, [size=small] [visibility=invisible]
 ```
 
 ## Class diagram
 
-![alt text](./etc/command.png "Command")
+![Command](./etc/command.png "Command")
 
 ## Applicability
 
 Use the Command pattern when you want to:
 
-* Parameterize objects by an action to perform. You can express such parameterization in a procedural language with a callback function, that is, a function that's registered somewhere to be called at a later point. Commands are an object-oriented replacement for callbacks.
-* Specify, queue, and execute requests at different times. A Command object can have a life independent of the original request. If the receiver of a request can be represented in an address space-independent way, then you can transfer a command object for the request to a different process and fulfill the request there.
-* Support undo. The Command's execute operation can store state for reversing its effects in the command itself. The Command interface must have an added un-execute operation that reverses the effects of a previous call to execute. The executed commands are stored in a history list. Unlimited-level undo and redo functionality is achieved by traversing this list backward and forward calling un-execute and execute, respectively.
-* Support logging changes so that they can be reapplied in case of a system crash. By augmenting the Command interface with load and store operations, you can keep a persistent log of changes. Recovering from a crash involves reloading logged commands from the disk and re-executing them with the execute operation.
-* Structure a system around high-level operations build on primitive operations. Such a structure is common in information systems that support transactions. A transaction encapsulates a set of data changes. The Command pattern offers a way to model transactions. Commands have a common interface, letting you invoke all transactions the same way. The pattern also makes it easy to extend the system with new transactions.
+* Parameterize objects with actions to perform, offering an object-oriented alternative to callbacks found in procedural languages. Commands can be registered and executed later.
+* Specify, queue, and execute requests at different times, allowing commands to exist independently of the original request and even be transferred across processes.
+* Support undo functionality, where the Command’s execute operation stores state and includes an un-execute operation to reverse previous actions. This allows for unlimited undo and redo capabilities by maintaining a history list.
+* Log changes to reapply them after a system crash. By adding load and store operations to the Command interface, you can maintain a persistent log of changes and recover by reloading and re-executing commands from this log.
+* Structure a system around high-level operations built on primitive operations, which is common in transaction-based systems. The Command pattern models transactions by providing a common interface for invoking and extending operations.
 * Keep a history of requests.
 * Implement callback functionality.
-* Implement the undo functionality.
+* Implement undo functionality.
 
 ## Known uses
 
@@ -236,8 +217,8 @@ Trade-offs:
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=f27d2644fbe5026ea448791a8ad09c94)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Pattern-Oriented Software Architecture, Volume 1: A System of Patterns](https://amzn.to/3PFUqSY)
+* [Refactoring to Patterns](https://amzn.to/3VOO4F5)
