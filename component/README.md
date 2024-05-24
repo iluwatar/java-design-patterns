@@ -18,35 +18,26 @@ tag:
 
 The Component design pattern aims to organize code into reusable, interchangeable components, promoting flexibility and ease of maintenance in game development by allowing entities to be configured with varying behaviors.
 
-![Intent](./etc/component.duplication.png "Component Design Pattern")
-
 ## Explanation
 
-Real world example
-> Suppose your video game consists of a graphics component and a sound component. Including the methods and attributes of both of these features in a single java class can be problematic due to many reasons. Firstly, the graphics and sound code can create an extremely long java class which can be hard to maintain. Furthermore, graphics components may be written and implemented by a separate team as to the sound contents. If both parties work simultaneously on the same java class, this may cause conflicts and major delay. Using the component design pattern, the development team is able to create individual component classes for graphics and sound whilst providing the domain/object the reach to both of these attributes.
+Real-world example
 
+> Imagine your video game has a graphics component and a sound component. Combining the methods and attributes of both features into a single Java class can lead to several issues. Firstly, the resulting class could become very lengthy and difficult to maintain. Additionally, the graphics and sound components might be developed by separate teams. If both teams work on the same Java class simultaneously, it could cause conflicts and significant delays. By using the Component design pattern, the development team can create separate component classes for graphics and sound, while still allowing the main game object to access both sets of attributes.
 
 In plain words
-> The component design pattern provides a single attribute to be accessible by numerous objects without requiring the existence of a relationship between the objects themselves.
 
-Key drawback
-> With the implementation of the component design pattern, it can be very difficult to create a relationship between components. For example, suppose we require the sound component to be aware of the current animation in order create a certain sound based upon the animation; this can be quite tricky as the component design pattern makes components 'unaware' of other components' existence due to its decoupling nature.
+> The component design pattern provides a single attribute to be accessible by numerous objects without requiring the existence of a relationship between the objects themselves.
 
 **Programmatic Example**
 
-The App class creates a demonstration of the use of the component pattern by creating two different objects which inherit a small collection of individual components that are modifiable.
+The `App` class creates a demonstration of the use of the component pattern by creating two different objects which inherit a small collection of individual components that are modifiable.
 
 ```java
 public final class App {
-    /**
-     * Program entry point.
-     *
-     * @param args args command line args.
-     */
+
     public static void main(String[] args) {
         final var player = GameObject.createPlayer();
         final var npc = GameObject.createNpc();
-
 
         LOGGER.info("Player Update:");
         player.update(KeyEvent.KEY_LOCATION_LEFT);
@@ -56,7 +47,7 @@ public final class App {
 }
 ```
 
-Much of the program exists within the GameObject class, within this class, the player and NPC object create methods are set up. Additionally, this class also consists of the method calls used to update/alter information of the object's components.
+Much of the program exists within the `GameObject` class, within this class, the player and NPC object create methods are set up. Additionally, this class also consists of the method calls used to update/alter information of the object's components.
 
 ```java
 public class GameObject {
@@ -105,7 +96,7 @@ public class GameObject {
 }
 ```
 
-Upon opening the component package, the collection of components are revealed. These components provide the interface for objects to inherit these domains. The PlayerInputComponent class shown below updates the object's velocity characteristic based on user's key event input.
+Upon opening the component package, the collection of components are revealed. These components provide the interface for objects to inherit these domains. The `PlayerInputComponent` class shown below updates the object's velocity characteristic based on user's key event input.
 
 ```java
 public class PlayerInputComponent implements InputComponent {
@@ -139,7 +130,7 @@ public class PlayerInputComponent implements InputComponent {
 
 ## Class diagram
 
-![UML](./etc/component.uml.png "The UML for Component Design Pattern")
+![Component](./etc/component.uml.png "Component")
 
 ## Applicability
 
@@ -172,8 +163,8 @@ Trade-offs:
 
 ## Credits
 
-* [Component Design Pattern] (https://gameprogrammingpatterns.com/component.html)
-* [Component pattern - game programming series - Tutemic] (https://www.youtube.com/watch?v=n92GBp2WMkg&ab_channel=Tutemic)
 * [Game Programming Patterns](https://amzn.to/4cDRWhV)
-* [Unity in Action: Multiplatform Game Development in C#](https://amzn.to/3THO6vw)
 * [Procedural Content Generation for Unity Game Development](https://amzn.to/3vBKCTp)
+* [Unity in Action: Multiplatform Game Development in C#](https://amzn.to/3THO6vw)
+* [Component (Game Programming Patterns)](https://gameprogrammingpatterns.com/component.html)
+* [Component pattern - game programming series (Tutemic)](https://www.youtube.com/watch?v=n92GBp2WMkg&ab_channel=Tutemic)
