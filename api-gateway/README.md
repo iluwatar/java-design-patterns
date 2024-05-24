@@ -1,12 +1,16 @@
 ---
 title: API Gateway
-category: Architectural
+category: Integration
 language: en
 tag:
     - API design
     - Cloud distributed
     - Decoupling
+    - Enterprise patterns
+    - Integration
     - Microservices
+    - Scalability
+    - Security
 ---
 
 ## Intent
@@ -15,17 +19,14 @@ The API Gateway design pattern aims to provide a unified interface to a set of m
 
 ## Also known as
 
+* API Facade
 * Backend for Frontends (BFF)
 
 ## Explanation
 
-With the Microservices pattern, a client may need data from multiple different microservices. If the client called each microservice directly, that could contribute to longer load times, since the client would have to make a network request for each microservice called. Moreover, having the client call each microservice directly ties the client to that microservice - if the internal implementations of the microservices change (for example, if two microservices are combined sometime in the future) or if the location (host and port) of a microservice changes, then every client that makes use of those microservices must be updated.
-
-The intent of the API Gateway pattern is to alleviate some of these issues. In the API Gateway pattern, an additional entity (the API Gateway) is placed between the client and the microservices. The job of the API Gateway is to aggregate the calls to the microservices. Rather than the client calling each microservice individually, the client calls the API Gateway a single time. The API Gateway then calls each of the microservices that the client needs.
-
 Real world example
 
-> We are implementing microservices and API Gateway pattern for an e-commerce site. In this system the API Gateway makes calls to the Image and Price microservices.
+> In a large e-commerce platform, an API Gateway is used as the single entry point for all client requests. When a user visits the site or uses the mobile app, their requests for product information, user authentication, order processing, and payment are all routed through the API Gateway. The gateway handles tasks such as user authentication, rate limiting to prevent abuse, and logging for monitoring purposes. This setup simplifies the client interface and ensures that all backend microservices, like the product catalog service, user service, order service, and payment service, can evolve independently without affecting the client directly. This also enhances security by providing a centralized point to enforce policies and monitor traffic.
 
 In plain words
 
@@ -126,7 +127,7 @@ public class ApiGateway {
 
 ## Class diagram
 
-![alt text](./etc/api-gateway.png "API Gateway")
+![API Gateway](./etc/api-gateway.png "API Gateway")
 
 ## Applicability
 
@@ -134,6 +135,12 @@ public class ApiGateway {
 * When multiple microservices need to be consumed in a single request.
 * For authentication, authorization, and security enforcement at a single point.
 * To optimize communication between clients and services, especially in a cloud environment.
+
+## Tutorials
+
+* [Exploring the New Spring Cloud Gateway (Baeldung)](https://www.baeldung.com/spring-cloud-gateway)
+* [Spring Cloud - Gateway(tutorialspoint)](https://www.tutorialspoint.com/spring_cloud/spring_cloud_gateway.htm)
+* [Getting Started With Spring Cloud Gateway (DZone)](https://dzone.com/articles/getting-started-with-spring-cloud-gateway)
 
 ## Consequences
 
@@ -158,21 +165,15 @@ Trade-offs:
 
 ## Related patterns
 
-* [Aggregator Microservice](../aggregator-microservices/README.md) - The API Gateway pattern is often used in conjunction with the Aggregator Microservice pattern to provide a unified interface to a set of microservices.
-* [Proxy](../proxy/README.md) - The API Gateway pattern is a specialized form of the Proxy pattern, where the gateway acts as a single entry point for clients, routing requests to the appropriate microservices and aggregating results.
-* [Circuit Breaker](../circuit-breaker/README.md) - API Gateways can use the Circuit Breaker pattern to prevent cascading failures when calling multiple microservices.
-
-## Tutorials
-
-* [Exploring the New Spring Cloud Gateway](https://www.baeldung.com/spring-cloud-gateway)
-* [Spring Cloud - Gateway](https://www.tutorialspoint.com/spring_cloud/spring_cloud_gateway.htm)
-* [Getting Started With Spring Cloud Gateway](https://dzone.com/articles/getting-started-with-spring-cloud-gateway)
+* [Aggregator Microservice](https://java-design-patterns.com/patterns/aggregator-microservices/) - The API Gateway pattern is often used in conjunction with the Aggregator Microservice pattern to provide a unified interface to a set of microservices.
+* [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/) - API Gateways can use the Circuit Breaker pattern to prevent cascading failures when calling multiple microservices.
+* [Proxy](https://java-design-patterns.com/patterns/proxy/) - The API Gateway pattern is a specialized form of the Proxy pattern, where the gateway acts as a single entry point for clients, routing requests to the appropriate microservices and aggregating results.
 
 ## Credits
 
-* [microservices.io - API Gateway](http://microservices.io/patterns/apigateway.html)
-* [NGINX - Building Microservices: Using an API Gateway](https://www.nginx.com/blog/building-microservices-using-an-api-gateway/)
-* [Microservices Patterns: With examples in Java](https://www.amazon.com/gp/product/1617294543/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617294543&linkId=ac7b6a57f866ac006a309d9086e8cfbd)
-* [Building Microservices: Designing Fine-Grained Systems](https://www.amazon.com/gp/product/1491950358/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1491950358&linkId=4c95ca9831e05e3f0dadb08841d77bf1)
-* [Designing Data-Intensive Applications](https://amzn.to/3PfRk7Y)
+* [Building Microservices](https://amzn.to/3UACtrU)
 * [Cloud Native Patterns: Designing change-tolerant software](https://amzn.to/3uV12WN)
+* [Designing Data-Intensive Applications](https://amzn.to/3PfRk7Y)
+* [Microservices Patterns: With examples in Java](https://amzn.to/3UyWD5O)
+* [API Gateway (microservices.io)](http://microservices.io/patterns/apigateway.html)
+* [Building Microservices: Using an API Gateway (nginx)](https://www.nginx.com/blog/building-microservices-using-an-api-gateway/)
