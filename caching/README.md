@@ -4,8 +4,9 @@ category: Performance optimization
 language: en
 tag:
     - Caching
+    - Data access
     - Performance
-    - Cloud distributed
+    - Resource management
 ---
 
 ## Intent
@@ -19,9 +20,9 @@ The caching pattern avoids expensive re-acquisition of resources by not releasin
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> A team is working on a website that provides new homes for abandoned cats. People can post their cats on the website after registering, but all the new posts require approval from one of the site moderators. The user accounts of the site moderators contain a specific flag and the data is stored in a MongoDB database. Checking for the moderator flag each time a post is viewed becomes expensive, and it's a good idea to utilize caching here.
+> A real-world example of the Caching design pattern can be seen in a library's catalog system. When patrons frequently search for popular books, the system can cache the results of these searches. Instead of querying the database every time a user searches for a popular book, the system quickly retrieves the results from the cache. This reduces the load on the database and provides faster response times for users, enhancing their overall experience. However, the system must also ensure that the cache is updated when new books are added or existing ones are checked out, to maintain accurate information.
 
 In plain words
 
@@ -32,6 +33,8 @@ Wikipedia says:
 > In computing, a cache is a hardware or software component that stores data so that future requests for that data can be served faster; the data stored in a cache might be the result of an earlier computation or a copy of data stored elsewhere. A cache hit occurs when the requested data can be found in a cache, while a cache miss occurs when it cannot. Cache hits are served by reading data from the cache, which is faster than recomputing a result or reading from a slower data store; thus, the more requests that can be served from the cache, the faster the system performs.
 
 **Programmatic Example**
+
+A team is working on a website that provides new homes for abandoned cats. People can post their cats on the website after registering, but all the new posts require approval from one of the site moderators. The user accounts of the site moderators contain a specific flag and the data is stored in a MongoDB database. Checking for the moderator flag each time a post is viewed becomes expensive, and it's a good idea to utilize caching here.
 
 Let's first look at the data layer of our application. The interesting classes are `UserAccount` which is a simple Java object containing the user account details, and `DbManager` interface which handles reading and writing of these objects to/from database.
 
@@ -90,7 +93,7 @@ public class LruCache {
         }
     }
 
-    /* ... omitted details ... */
+    // Other properties and methods...
 
     public LruCache(int capacity) {
         this.capacity = capacity;
@@ -159,7 +162,7 @@ public class CacheStore {
     private static LruCache cache;
     private final DbManager dbManager;
 
-    /* ... details omitted ... */
+    // Other properties and methods...
 
     public UserAccount readThrough(final String userId) {
         if (cache.contains(userId)) {
@@ -206,7 +209,7 @@ public class CacheStore {
                 .forEach(DbManager::updateDb);
     }
 
-    /* ... omitted the implementation of other caching strategies ... */
+    // ... omitted the implementation of other caching strategies ...
 
 }
 ```
@@ -261,7 +264,7 @@ public final class AppManager {
         return CacheStore.print();
     }
 
-    /* ... details omitted ... */
+    // Other properties and methods...
 }
 ```
 
@@ -311,9 +314,114 @@ public class App {
 }
 ```
 
+The program output:
+
+```
+17:00:56.302 [main] INFO com.iluwatar.caching.App -- Using the 'in Memory' database to run the application.
+17:00:56.304 [main] INFO com.iluwatar.caching.App -- # CachingPolicy.THROUGH
+17:00:56.305 [main] INFO com.iluwatar.caching.AppManager -- Save record!
+17:00:56.308 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+UserAccount(userId=001, userName=John, additionalInfo=He is a boy.)
+----
+17:00:56.308 [main] INFO com.iluwatar.caching.AppManager -- Trying to find 001 in cache
+17:00:56.309 [main] INFO com.iluwatar.caching.CacheStore -- # Found in Cache!
+17:00:56.309 [main] INFO com.iluwatar.caching.AppManager -- Trying to find 001 in cache
+17:00:56.309 [main] INFO com.iluwatar.caching.CacheStore -- # Found in Cache!
+17:00:56.309 [main] INFO com.iluwatar.caching.App -- ==============================================
+17:00:56.309 [main] INFO com.iluwatar.caching.App -- # CachingPolicy.AROUND
+17:00:56.309 [main] INFO com.iluwatar.caching.AppManager -- Save record!
+17:00:56.309 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+----
+17:00:56.309 [main] INFO com.iluwatar.caching.AppManager -- Trying to find 002 in cache
+17:00:56.309 [main] INFO com.iluwatar.caching.CacheStore -- # Not found in cache! Go to DB!!
+17:00:56.309 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+UserAccount(userId=002, userName=Jane, additionalInfo=She is a girl.)
+----
+17:00:56.309 [main] INFO com.iluwatar.caching.AppManager -- Trying to find 002 in cache
+17:00:56.309 [main] INFO com.iluwatar.caching.CacheStore -- # Found in Cache!
+17:00:56.309 [main] INFO com.iluwatar.caching.AppManager -- Save record!
+17:00:56.309 [main] INFO com.iluwatar.caching.LruCache -- # 002 has been updated! Removing older version from cache...
+17:00:56.309 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+----
+17:00:56.309 [main] INFO com.iluwatar.caching.AppManager -- Trying to find 002 in cache
+17:00:56.309 [main] INFO com.iluwatar.caching.CacheStore -- # Not found in cache! Go to DB!!
+17:00:56.309 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+UserAccount(userId=002, userName=Jane G., additionalInfo=She is a girl.)
+----
+17:00:56.309 [main] INFO com.iluwatar.caching.AppManager -- Trying to find 002 in cache
+17:00:56.309 [main] INFO com.iluwatar.caching.CacheStore -- # Found in Cache!
+17:00:56.309 [main] INFO com.iluwatar.caching.App -- ==============================================
+17:00:56.309 [main] INFO com.iluwatar.caching.App -- # CachingPolicy.BEHIND
+17:00:56.309 [main] INFO com.iluwatar.caching.AppManager -- Save record!
+17:00:56.309 [main] INFO com.iluwatar.caching.AppManager -- Save record!
+17:00:56.310 [main] INFO com.iluwatar.caching.AppManager -- Save record!
+17:00:56.310 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+UserAccount(userId=005, userName=Isaac, additionalInfo=He is allergic to mustard.)
+UserAccount(userId=004, userName=Rita, additionalInfo=She hates cats.)
+UserAccount(userId=003, userName=Adam, additionalInfo=He likes food.)
+----
+17:00:56.310 [main] INFO com.iluwatar.caching.AppManager -- Trying to find 003 in cache
+17:00:56.310 [main] INFO com.iluwatar.caching.CacheStore -- # Found in cache!
+17:00:56.310 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+UserAccount(userId=003, userName=Adam, additionalInfo=He likes food.)
+UserAccount(userId=005, userName=Isaac, additionalInfo=He is allergic to mustard.)
+UserAccount(userId=004, userName=Rita, additionalInfo=She hates cats.)
+----
+17:00:56.310 [main] INFO com.iluwatar.caching.AppManager -- Save record!
+17:00:56.310 [main] INFO com.iluwatar.caching.CacheStore -- # Cache is FULL! Writing LRU data to DB...
+17:00:56.310 [main] INFO com.iluwatar.caching.LruCache -- # Cache is FULL! Removing 004 from cache...
+17:00:56.310 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+UserAccount(userId=006, userName=Yasha, additionalInfo=She is an only child.)
+UserAccount(userId=003, userName=Adam, additionalInfo=He likes food.)
+UserAccount(userId=005, userName=Isaac, additionalInfo=He is allergic to mustard.)
+----
+17:00:56.310 [main] INFO com.iluwatar.caching.AppManager -- Trying to find 004 in cache
+17:00:56.310 [main] INFO com.iluwatar.caching.CacheStore -- # Not found in Cache!
+17:00:56.310 [main] INFO com.iluwatar.caching.CacheStore -- # Cache is FULL! Writing LRU data to DB...
+17:00:56.310 [main] INFO com.iluwatar.caching.LruCache -- # Cache is FULL! Removing 005 from cache...
+17:00:56.310 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+UserAccount(userId=004, userName=Rita, additionalInfo=She hates cats.)
+UserAccount(userId=006, userName=Yasha, additionalInfo=She is an only child.)
+UserAccount(userId=003, userName=Adam, additionalInfo=He likes food.)
+----
+17:00:56.310 [main] INFO com.iluwatar.caching.App -- ==============================================
+17:00:56.310 [main] INFO com.iluwatar.caching.App -- # CachingPolicy.ASIDE
+17:00:56.310 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+----
+17:00:56.310 [main] INFO com.iluwatar.caching.AppManager -- Save record!
+17:00:56.310 [main] INFO com.iluwatar.caching.AppManager -- Save record!
+17:00:56.310 [main] INFO com.iluwatar.caching.AppManager -- Save record!
+17:00:56.310 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+----
+17:00:56.310 [main] INFO com.iluwatar.caching.AppManager -- Trying to find 003 in cache
+17:00:56.313 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+UserAccount(userId=003, userName=Adam, additionalInfo=He likes food.)
+----
+17:00:56.313 [main] INFO com.iluwatar.caching.AppManager -- Trying to find 004 in cache
+17:00:56.313 [main] INFO com.iluwatar.caching.App -- 
+--CACHE CONTENT--
+UserAccount(userId=004, userName=Rita, additionalInfo=She hates cats.)
+UserAccount(userId=003, userName=Adam, additionalInfo=He likes food.)
+----
+17:00:56.313 [main] INFO com.iluwatar.caching.App -- ==============================================
+17:00:56.314 [Thread-0] INFO com.iluwatar.caching.CacheStore -- # flushCache...
+```
+
 ## Class diagram
 
-![alt text](./etc/caching.png "Caching")
+![Caching](./etc/caching.png "Caching")
 
 ## Applicability
 
@@ -353,13 +461,12 @@ Trade-Offs:
 
 ## Credits
 
-* [Write-through, write-around, write-back: Cache explained](http://www.computerweekly.com/feature/Write-through-write-around-write-back-Cache-explained)
-* [Read-Through, Write-Through, Write-Behind, and Refresh-Ahead Caching](https://docs.oracle.com/cd/E15357_01/coh.360/e15723/cache_rtwtwbra.htm#COHDG5177)
-* [Cache-Aside pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/cache-aside)
-* [Java EE 8 High Performance: Master techniques such as memory optimization, caching, concurrency, and multithreading to achieve maximum performance from your enterprise applications](https://www.amazon.com/gp/product/178847306X/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=178847306X&linkId=e948720055599f248cdac47da9125ff4)
-* [Java Performance: In-Depth Advice for Tuning and Programming Java 8, 11, and Beyond](https://www.amazon.com/gp/product/1492056111/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1492056111&linkId=7e553581559b9ec04221259e52004b08)
-* [Effective Java](https://www.amazon.com/gp/product/B078H61SCH/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=B078H61SCH&linkId=f06607a0b48c76541ef19c5b8b9e7882)
-* [Java Performance: The Definitive Guide: Getting the Most Out of Your Code](https://www.amazon.com/gp/product/1449358454/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1449358454&linkId=475c18363e350630cc0b39ab681b2687)
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [High Performance Browser Networking](https://amzn.to/3TiNNY4)
+* [Java EE 8 High Performance](https://amzn.to/44T8vmH)
+* [Java Performance: In-Depth Advice for Tuning and Programming Java 8, 11, and Beyond](https://amzn.to/3yyD58W)
+* [Java Performance: The Definitive Guide: Getting the Most Out of Your Code](https://amzn.to/3Wu5neF)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3PMAHRZ)
 * [Scalable Internet Architectures](https://amzn.to/48V3ni9)
-* [High Performance Browser Networking](https://amzn.to/3TiNNY4)
+* [Write-through, write-around, write-back: Cache explained (ComputerWeekly)](http://www.computerweekly.com/feature/Write-through-write-around-write-back-Cache-explained)
+* [Cache-Aside Pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/cache-aside)
