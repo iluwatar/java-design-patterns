@@ -1,10 +1,14 @@
 ---
 title: Ambassador
-category: Structural
+category: Integration
 language: en
 tag:
+    - API design
     - Decoupling
-    - Cloud distributed
+    - Fault tolerance
+    - Proxy
+    - Resilience
+    - Scalability
 ---
 
 ## Intent
@@ -19,7 +23,9 @@ Provide a helper service instance on a client and offload common functionality a
 
 Real world example
 
-> A remote service has many clients accessing a function it provides. The service is a legacy application and is impossible to update. Large numbers of requests from users are causing connectivity issues. New rules for request frequency should be implemented along with latency checks and client-side logging.
+> Imagine a busy hotel where guests frequently request restaurant reservations, event tickets, or transportation arrangements. Instead of each guest individually contacting these services, the hotel provides a concierge. The concierge handles these tasks on behalf of the guests, ensuring that reservations are made smoothly, tickets are booked on time, and transportation is scheduled efficiently.
+>
+> In this analogy, the guests are the client services, the external providers (restaurants, ticket vendors, transportation) are the remote services, and the concierge represents the ambassador service. This setup allows the guests to focus on enjoying their stay while the concierge manages the complexities of external interactions, providing a seamless and enhanced experience.
 
 In plain words
 
@@ -31,7 +37,9 @@ Microsoft documentation states
 
 **Programmatic Example**
 
-With the above introduction in mind we will imitate the functionality in this example. We have an interface implemented by the remote service as well as the ambassador service:
+A remote service has many clients accessing a function it provides. The service is a legacy application and is impossible to update. Large numbers of requests from users are causing connectivity issues. New rules for request frequency should be implemented along with latency checks and client-side logging.
+
+With the above introduction in mind we will imitate the functionality in this example. We have an interface implemented by the remote service as well as the ambassador service.
 
 ```java
 interface RemoteServiceInterface {
@@ -72,7 +80,7 @@ public class RemoteService implements RemoteServiceInterface {
 }
 ```
 
-A service ambassador adding additional features such as logging, latency checks
+A service ambassador adds additional features such as logging and latency checks.
 
 ```java
 
@@ -124,7 +132,7 @@ public class ServiceAmbassador implements RemoteServiceInterface {
 }
 ```
 
-A client has a local service ambassador used to interact with the remote service:
+A client has a local service ambassador used to interact with the remote service.
 
 ```java
 
@@ -157,19 +165,19 @@ Here's the output for running the example:
 
 ```java
 Time taken(ms):111
-        Service result:120
-        Time taken(ms):931
-        Failed to reach remote:(1)
-        Time taken(ms):665
-        Failed to reach remote:(2)
-        Time taken(ms):538
-        Failed to reach remote:(3)
-        Service result:-1
+Service result:120
+Time taken(ms):931
+Failed to reach remote:(1)
+Time taken(ms):665
+Failed to reach remote:(2)
+Time taken(ms):538
+Failed to reach remote:(3)
+Service result:-1
 ```
 
 ## Class diagram
 
-![alt text](./etc/ambassador.urm.png "Ambassador class diagram")
+![Ambassador](./etc/ambassador.urm.png "Ambassador class diagram")
 
 ## Applicability
 
@@ -214,15 +222,15 @@ Trade-offs:
 
 ## Related patterns
 
+* [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Often used in conjunction to manage fault tolerance by stopping calls to an unresponsive service.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): The decorator pattern is used to add functionality to an object dynamically, while the ambassador pattern is used to offload functionality to a separate object.
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): Shares similarities with the proxy pattern, but the ambassador pattern specifically focuses on offloading ancillary functionalities.
 * Sidecar: A similar pattern used in the context of containerized applications, where a sidecar container provides additional functionality to the main application container.
-* [Decorator](https://java-design-patterns.com/patterns/decorator/): The decorator pattern is used to add functionality to an object dynamically, while the ambassador pattern is used to offload functionality to a separate object.
 
 ## Credits
 
-* [Ambassador pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/ambassador)
-* [Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services](https://www.amazon.com/s?k=designing+distributed+systems&sprefix=designing+distri%2Caps%2C156&linkCode=ll2&tag=javadesignpat-20&linkId=a12581e625462f9038557b01794e5341&language=en_US&ref_=as_li_ss_tl)
+* [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/43aGpSR)
 * [Cloud Native Patterns: Designing Change-tolerant Software](https://amzn.to/3wUAl4O)
 * [Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services](https://amzn.to/3T9g9Uj)
-* [Microservices Patterns: With examples in Java](https://www.amazon.com/gp/product/1617294543/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617294543&linkId=8b4e570267bc5fb8b8189917b461dc60)
-* [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/43aGpSR)
+* [Microservices Patterns: With examples in Java](https://amzn.to/3UyWD5O)
+* [Ambassador pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/ambassador)
