@@ -129,6 +129,10 @@ public class LegacyShop {
 }
 ```
 
+## Class diagram
+
+![Anti-Corruption Layer](./etc/anti-corruption-layer.urm.png "Anti-Corruption Layer class diagram")
+
 ## Applicability
 
 Use this pattern when:
