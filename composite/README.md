@@ -3,6 +3,7 @@ title: Composite
 category: Structural
 language: en
 tag:
+    - Decoupling
     - Gang of Four
     - Object composition
     - Recursion
@@ -21,7 +22,7 @@ Compose objects into tree structures to represent part-whole hierarchies. Compos
 
 Real-world example
 
-> Every sentence is composed of words which are in turn composed of characters. Each of these objects are printable and they can have something printed before or after them like sentence always ends with full stop and word always has space before it.
+> In a real-world example, consider a company with a complex organizational structure. The company consists of various departments, each of which can contain sub-departments, and ultimately individual employees. The Composite pattern can be used to represent this structure. Each department and employee are treated as a node in a tree structure, where departments can contain other departments or employees, but employees are leaf nodes with no children. This allows the company to perform operations uniformly, such as calculating total salaries or printing the organizational chart, by treating individual employees and entire departments in the same way.
 
 In plain words
 
@@ -33,7 +34,9 @@ Wikipedia says
 
 **Programmatic Example**
 
-Taking our sentence example from above. Here we have the base class `LetterComposite` and the different printable types `Letter`, `Word` and `Sentence`.
+Every sentence is composed of words which are in turn composed of characters. Each of these objects are printable, and they can have something printed before or after them like sentence always ends with full stop and word always has space before it.
+
+Here we have the base class `LetterComposite` and the different printable types `Letter`, `Word` and `Sentence`.
 
 ```java
 public abstract class LetterComposite {
@@ -150,27 +153,30 @@ public class Messenger {
 And then it can be used as:
 
 ```java
-var messenger=new Messenger();
+  public static void main(String[] args) {
 
-        LOGGER.info("Message from the orcs: ");
-        messenger.messageFromOrcs().print();
+    var messenger = new Messenger();
 
-        LOGGER.info("Message from the elves: ");
-        messenger.messageFromElves().print();
+    LOGGER.info("Message from the orcs: ");
+    messenger.messageFromOrcs().print();
+
+    LOGGER.info("Message from the elves: ");
+    messenger.messageFromElves().print();
+}
 ```
 
 The console output:
 
 ```
-Message from the orcs: 
+20:43:54.801 [main] INFO com.iluwatar.composite.App -- Message from the orcs: 
  Where there is a whip there is a way.
-Message from the elves: 
+20:43:54.803 [main] INFO com.iluwatar.composite.App -- Message from the elves: 
  Much wind pours from your mouth.
 ```
 
 ## Class diagram
 
-![alt text](./etc/composite.urm.png "Composite class diagram")
+![Composite](./etc/composite.urm.png "Composite class diagram")
 
 ## Applicability
 
@@ -207,8 +213,8 @@ Trade-offs:
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
+* [Refactoring to Patterns](https://amzn.to/3VOO4F5)
 * [Pattern-Oriented Software Architecture, Volume 1: A System of Patterns](https://amzn.to/3xoLAmi)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3vBKXWb)
