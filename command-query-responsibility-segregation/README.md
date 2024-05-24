@@ -14,7 +14,7 @@ tag:
 
 ## Intent
 
-Command Query Responsibility Segregation (CQRS) aims to segregate the operations that modify the state of an application (commands) from the operations that read the state (queries). This separation allows for more flexible and optimized designs, especially in complex systems.
+Command Query Responsibility Segregation aims to segregate the operations that modify the state of an application (commands) from the operations that read the state (queries).
 
 ## Explanation
 
@@ -26,6 +26,10 @@ In plain words
 
 > The CQRS design pattern separates the actions of modifying data (commands) from the actions of retrieving data (queries) to enhance performance, scalability, and maintainability in software systems.
 
+Microsoft's documentation says
+
+> CQRS separates reads and writes into different models, using commands to update data, and queries to read data.
+
 **Programmatic Example**
 
 One way to implement the Command Query Responsibility Segregation (CQRS) pattern is to separate the read and write operations into different services.
@@ -33,24 +37,24 @@ One way to implement the Command Query Responsibility Segregation (CQRS) pattern
 1. Command Service: The `CommandServiceImpl` class is used for write operations. It provides methods to create authors and books, and to add books to authors. Here's a snippet of how it's used:
 
 ```java
-var commands=new CommandServiceImpl();
-        commands.authorCreated(AppConstants.E_EVANS,"Eric Evans","evans@email.com");
-        commands.bookAddedToAuthor("Domain-Driven Design",60.08,AppConstants.E_EVANS);
+var commands = new CommandServiceImpl();
+commands.authorCreated(AppConstants.E_EVANS, "Eric Evans", "evans@email.com");
+commands.bookAddedToAuthor("Domain-Driven Design", 60.08, AppConstants.E_EVANS);
 ```
 
 2. Query Service: The `QueryServiceImpl` class is used for read operations. It provides methods to get author and book details. Here's a snippet of how it's used:
 
 ```java
-var queries=new QueryServiceImpl();
-        var evans=queries.getAuthorByUsername(AppConstants.E_EVANS);
-        var dddBook=queries.getBook("Domain-Driven Design");
+var queries = new QueryServiceImpl();
+var evans = queries.getAuthorByUsername(AppConstants.E_EVANS);
+var dddBook = queries.getBook("Domain-Driven Design");
 ```
 
 This separation of concerns allows for flexibility in how the application handles data access and manipulation, and is a key aspect of the CQRS pattern.
 
 ## Class diagram
 
-![alt text](./etc/cqrs.png "CQRS")
+![CQRS](./etc/cqrs.png "CQRS")
 
 ## Applicability
 
@@ -87,10 +91,10 @@ Trade-Offs:
 
 ## Credits
 
-* [Patterns, Principles, and Practices of Domain-Driven Design](https://amzn.to/3vNV4Hm)
 * [Implementing Domain-Driven Design](https://amzn.to/3TJN2HH)
 * [Microsoft .NET: Architecting Applications for the Enterprise](https://amzn.to/4aktRes)
-* [Greg Young - CQRS, Task Based UIs, Event Sourcing agh!](http://codebetter.com/gregyoung/2010/02/16/cqrs-task-based-uis-event-sourcing-agh/)
-* [Martin Fowler - CQRS](https://martinfowler.com/bliki/CQRS.html)
-* [Oliver Wolf - CQRS for Great Good](https://www.youtube.com/watch?v=Ge53swja9Dw)
-* [Command and Query Responsibility Segregation (CQRS) pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
+* [Patterns, Principles, and Practices of Domain-Driven Design](https://amzn.to/3vNV4Hm)
+* [CQRS, Task Based UIs, Event Sourcing agh! (Greg Young)](http://codebetter.com/gregyoung/2010/02/16/cqrs-task-based-uis-event-sourcing-agh/)
+* [CQRS (Martin Fowler)](https://martinfowler.com/bliki/CQRS.html)
+* [CQRS for Great Good (Oliver Wolf)](https://www.youtube.com/watch?v=Ge53swja9Dw)
+* [CQRS pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs)
