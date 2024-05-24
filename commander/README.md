@@ -87,10 +87,6 @@ public class ShippingNotPossibleException extends Exception {
 
 In the main method of each class (AppQueueFailCases, AppShippingFailCases), different scenarios are simulated by creating instances of the Commander class with different configurations and calling the placeOrder method.
 
-## Class diagram
-
-![alt text](./etc/commander.urm.png "Commander class diagram")
-
 ## Applicability
 
 Use the Commander pattern for distributed transactions when:
@@ -121,11 +117,11 @@ Trade-offs:
 
 ## Related Patterns
 
-[Saga Pattern](https://java-design-patterns.com/patterns/saga/): Often discussed in tandem with the Commander pattern for distributed transactions, focusing on long-lived transactions with compensating actions.
+* [Saga Pattern](https://java-design-patterns.com/patterns/saga/): Often discussed in tandem with the Commander pattern for distributed transactions, focusing on long-lived transactions with compensating actions.
 
 ## Credits
 
-* [Distributed Transactions: The Icebergs of Microservices](https://www.grahamlea.com/2016/08/distributed-transactions-microservices-icebergs/)
-* [Microservices Patterns: With examples in Java](https://amzn.to/4axjnYW)
-* [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/4axHwOV)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/4aATcRe)
+* [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/4axHwOV)
+* [Microservices Patterns: With examples in Java](https://amzn.to/4axjnYW)
+* [Distributed Transactions: The Icebergs of Microservices (Graham Lea)](https://www.grahamlea.com/2016/08/distributed-transactions-microservices-icebergs/)
