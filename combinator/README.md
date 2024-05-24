@@ -3,6 +3,9 @@ title: Combinator
 category: Functional
 language: en
 tag:
+    - Abstraction
+    - Code simplification
+    - Functional decomposition
     - Idiom
     - Reactive
 ---
@@ -14,17 +17,17 @@ tag:
 
 ## Intent
 
-The Combinator pattern is intended to enable complex functionalities by combining simple functions into more complex ones. It aims to achieve modularization and reusability by breaking down a task into simpler, interchangeable components that can be composed in various ways.
+Combine multiple smaller functions or operations into a single, more complex operation, allowing for flexible and reusable code.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> In computer science, combinatory logic is used as a simplified model of computation, used in computability theory and proof theory. Despite its simplicity, combinatory logic captures many essential features of computation.
+> In the real world, the combinator design pattern can be likened to a meal preparation process in a kitchen. Imagine a chef who has a set of simple operations: chopping vegetables, boiling water, cooking rice, grilling chicken, and mixing ingredients. Each of these operations is a standalone function. The chef can combine these operations in various sequences to create different dishes. For example, to prepare a chicken rice bowl, the chef can combine the operations of cooking rice, grilling chicken, and mixing them with vegetables. By reusing these basic operations and combining them in different ways, the chef can efficiently prepare a wide variety of meals. Similarly, in software, the combinator pattern allows developers to combine simple, reusable functions to create more complex behaviors.
 
 In plain words
 
-> The combinator allows you to create new "things" from previously defined "things"
+> The combinator design pattern combines simple, reusable functions to create more complex and flexible operations.
 
 Wikipedia says
 
@@ -32,7 +35,9 @@ Wikipedia says
 
 **Programmatic Example**
 
-Translating the combinator example above. First of all, we have an interface consist of several methods `contains`, `not`, `or`, `and` .
+In computer science, combinatory logic is used as a simplified model of computation, used in computability theory and proof theory. Despite its simplicity, combinatory logic captures many essential features of computation.
+
+First of all, we have an interface consist of several methods `contains`, `not`, `or`, `and` .
 
 ```java
 // Functional interface to find lines in text.
@@ -75,7 +80,7 @@ public interface Finder {
                         .flatMap(line -> andFinder.find(line).stream())
                         .collect(Collectors.toList());
     }
-	...
+    // Other properties and methods...
 }
 ```
 
@@ -125,61 +130,64 @@ public class Finders {
         }
         return finder;
     }
-	...
+    // Other properties and methods...
 }
 ```
 
-Now we have created the interface and methods for combinators. Now we have an application working on these combinators.
+Now that we have created the interface and methods for combinators, let's see how an application works with them.
 
 ```java
-var queriesOr=new String[]{"many","Annabel"};
-        var finder=Finders.expandedFinder(queriesOr);
-        var res=finder.find(text());
-        LOGGER.info("the result of expanded(or) query[{}] is {}",queriesOr,res);
+public class CombinatorApp {
 
-        var queriesAnd=new String[]{"Annabel","my"};
-        finder=Finders.specializedFinder(queriesAnd);
-        res=finder.find(text());
-        LOGGER.info("the result of specialized(and) query[{}] is {}",queriesAnd,res);
+    private static final String TEXT = """
+            It was many and many a year ago,
+            In a kingdom by the sea,
+            That a maiden there lived whom you may know
+            By the name of ANNABEL LEE;
+            And this maiden she lived with no other thought
+            Than to love and be loved by me.
+            I was a child and she was a child,
+            In this kingdom by the sea;
+            But we loved with a love that was more than love-
+            I and my Annabel Lee;
+            With a love that the winged seraphs of heaven
+            Coveted her and me.""";
 
-        finder=Finders.advancedFinder("it was","kingdom","sea");
-        res=finder.find(text());
-        LOGGER.info("the result of advanced query is {}",res);
+    public static void main(String[] args) {
+        var queriesOr = new String[]{"many", "Annabel"};
+        var finder = Finders.expandedFinder(queriesOr);
+        var res = finder.find(text());
+        LOGGER.info("the result of expanded(or) query[{}] is {}", queriesOr, res);
 
-        res=Finders.filteredFinder(" was ","many","child").find(text());
-        LOGGER.info("the result of filtered query is {}",res);
+        var queriesAnd = new String[]{"Annabel", "my"};
+        finder = Finders.specializedFinder(queriesAnd);
+        res = finder.find(text());
+        LOGGER.info("the result of specialized(and) query[{}] is {}", queriesAnd, res);
 
-private static String text(){
-        return
-        "It was many and many a year ago,\n"
-        +"In a kingdom by the sea,\n"
-        +"That a maiden there lived whom you may know\n"
-        +"By the name of ANNABEL LEE;\n"
-        +"And this maiden she lived with no other thought\n"
-        +"Than to love and be loved by me.\n"
-        +"I was a child and she was a child,\n"
-        +"In this kingdom by the sea;\n"
-        +"But we loved with a love that was more than love-\n"
-        +"I and my Annabel Lee;\n"
-        +"With a love that the winged seraphs of heaven\n"
-        +"Coveted her and me.";
-        }
+        finder = Finders.advancedFinder("it was", "kingdom", "sea");
+        res = finder.find(text());
+        LOGGER.info("the result of advanced query is {}", res);
+
+        res = Finders.filteredFinder(" was ", "many", "child").find(text());
+        LOGGER.info("the result of filtered query is {}", res);
+    }
+
+    private static String text() {
+        return TEXT;
+    }
+}
 ```
 
 **Program output:**
 
-```java
-the result of expanded(or)query[[many,Annabel]]is[It was many and many a year ago,,By the name of ANNABEL LEE;,I and my Annabel Lee;]
-        the result of specialized(and)query[[Annabel,my]]is[I and my Annabel Lee;]
-        the result of advanced query is[It was many and many a year ago,]
-        the result of filtered query is[But we loved with a love that was more than love-]
+```
+20:03:52.746 [main] INFO com.iluwatar.combinator.CombinatorApp -- the result of expanded(or) query[[many, Annabel]] is [It was many and many a year ago,, By the name of ANNABEL LEE;, I and my Annabel Lee;]
+20:03:52.749 [main] INFO com.iluwatar.combinator.CombinatorApp -- the result of specialized(and) query[[Annabel, my]] is [I and my Annabel Lee;]
+20:03:52.750 [main] INFO com.iluwatar.combinator.CombinatorApp -- the result of advanced query is [It was many and many a year ago,]
+20:03:52.750 [main] INFO com.iluwatar.combinator.CombinatorApp -- the result of filtered query is [But we loved with a love that was more than love-]
 ```
 
 Now we can design our app to with the queries finding feature `expandedFinder`, `specializedFinder`, `advancedFinder`, `filteredFinder` which are all derived from `contains`, `or`, `not`, `and`.
-
-## Class diagram
-
-![alt text](./etc/combinator.urm.png "Combinator class diagram")
 
 ## Applicability
 
@@ -213,15 +221,13 @@ Trade-offs:
 
 ## Related Patterns
 
-* [Strategy](https://java-design-patterns.com/patterns/strategy/): Both involve selecting an algorithm at runtime, but Combinator uses composition of functions.
-* [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar to Combinator in enhancing functionality, but Decorator focuses on object augmentation.
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Relies on chaining objects, whereas Combinator chains functions.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar to Combinator in enhancing functionality, but Decorator focuses on object augmentation.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Both involve selecting an algorithm at runtime, but Combinator uses composition of functions.
 
 ## Credits
 
-- [Example for Java](https://gtrefs.github.io/code/combinator-pattern/)
-- [Combinator pattern](https://wiki.haskell.org/Combinator_pattern)
-- [Combinatory logic](https://wiki.haskell.org/Combinatory_logic)
-- [Structure and Interpretation of Computer Programs](https://amzn.to/3PJwVsf)
-- [Functional Programming in Scala](https://amzn.to/4cEo6K2)
-- [Haskell: The Craft of Functional Programming](https://amzn.to/4axxtcF)
+* [Functional Programming in Scala](https://amzn.to/4cEo6K2)
+* [Haskell: The Craft of Functional Programming](https://amzn.to/4axxtcF)
+* [Structure and Interpretation of Computer Programs](https://amzn.to/3PJwVsf)
+* [Combinator Pattern with Java 8 (Gregor Trefs)](https://gtrefs.github.io/code/combinator-pattern/)
