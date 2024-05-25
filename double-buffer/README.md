@@ -9,6 +9,11 @@ tag:
     - Performance
 ---
 
+## Also known as
+
+* Buffer Switching
+* Ping-Pong Buffer
+
 ## Intent
 
 The Double Buffer pattern aims to reduce the time necessary for rendering and displaying graphical or computational data by utilizing two buffers. One buffer is used for rendering the next frame or computing the next set of data, while the other is used to display the current frame or data set to the user.
@@ -17,7 +22,7 @@ The Double Buffer pattern aims to reduce the time necessary for rendering and di
 
 Real world example
 
-> A typical example, and one that every game engine must address, is rendering. When the game draws the world the users see, it does so one piece at a time -- the mountains in the distance, the rolling hills, the trees, each in its turn. If the user watched the view draw incrementally like that, the illusion of a coherent world would be shattered. The scene must update smoothly and quickly, displaying a series of complete frames, each appearing instantly. Double buffering solves the problem.
+> Imagine a busy restaurant kitchen where chefs are constantly preparing dishes, and waitstaff are constantly picking up ready dishes to serve to customers. To avoid confusion and delays, the restaurant uses a double buffer system. They have two counters: one for chefs to place newly prepared dishes and another for waitstaff to pick up the dishes. While the chefs are filling one counter with prepared dishes, the waitstaff are simultaneously clearing the other counter by picking up dishes to serve. Once the waitstaff have cleared all dishes from their counter, they switch to the counter where the chefs have placed the newly prepared dishes, and the chefs start filling the now-empty counter. This system ensures a smooth and continuous workflow without either party waiting idly, maximizing efficiency and minimizing downtime.
 
 In plain words
 
@@ -29,7 +34,9 @@ Wikipedia says
 
 **Programmatic Example**
 
-Buffer interface that assures basic functionalities of a buffer.
+A typical example, and one that every game engine must address, is rendering. When the game draws the world the users see, it does so one piece at a time - the mountains in the distance, the rolling hills, the trees, each in its turn. If the user watched the view draw incrementally like that, the illusion of a coherent world would be shattered. The scene must update smoothly and quickly, displaying a series of complete frames, each appearing instantly. Double buffering solves the problem.
+
+`Buffer` interface that assures basic functionalities of a buffer.
 
 ```java
 /**
@@ -68,7 +75,7 @@ public interface Buffer {
 }
 ```
 
-One of the implementation of Buffer interface.
+One of the implementations of `Buffer` interface.
 
 ```java
 /**
@@ -111,6 +118,8 @@ public class FrameBuffer implements Buffer {
 }
 ```
 
+We support black and white pixels.
+
 ```java
 /**
  * Pixel enum. Each pixel can be white (not drawn) or black (drawn).
@@ -122,7 +131,7 @@ public enum Pixel {
 }
 ```
 
-Scene represents the game scene where current buffer has already been rendered.
+`Scene` represents the game scene where current buffer has already been rendered.
 
 ```java
 /**
@@ -182,63 +191,65 @@ public class Scene {
 }
 ```
 
+Now, we can show the `App` class that drives the double buffering example.
+
 ```java
-public static void main(String[]args){
-final var scene=new Scene();
-        var drawPixels1=List.of(
-        new MutablePair<>(1,1),
-        new MutablePair<>(5,6),
-        new MutablePair<>(3,2)
+@Slf4j
+public class App {
+
+    public static void main(String[] args) {
+        final var scene = new Scene();
+        var drawPixels1 = List.of(
+                new MutablePair<>(1, 1),
+                new MutablePair<>(5, 6),
+                new MutablePair<>(3, 2)
         );
         scene.draw(drawPixels1);
-        var buffer1=scene.getBuffer();
+        var buffer1 = scene.getBuffer();
         printBlackPixelCoordinate(buffer1);
 
-        var drawPixels2=List.of(
-        new MutablePair<>(3,7),
-        new MutablePair<>(6,1)
+        var drawPixels2 = List.of(
+                new MutablePair<>(3, 7),
+                new MutablePair<>(6, 1)
         );
         scene.draw(drawPixels2);
-        var buffer2=scene.getBuffer();
+        var buffer2 = scene.getBuffer();
         printBlackPixelCoordinate(buffer2);
-        }
+    }
 
-private static void printBlackPixelCoordinate(Buffer buffer){
-        StringBuilder log=new StringBuilder("Black Pixels: ");
-        var pixels=buffer.getPixels();
-        for(var i=0;i<pixels.length;++i){
-        if(pixels[i]==Pixel.BLACK){
-        var y=i/FrameBuffer.WIDTH;
-        var x=i%FrameBuffer.WIDTH;
-        log.append(" (").append(x).append(", ").append(y).append(")");
-        }
+    private static void printBlackPixelCoordinate(Buffer buffer) {
+        StringBuilder log = new StringBuilder("Black Pixels: ");
+        var pixels = buffer.getPixels();
+        for (var i = 0; i < pixels.length; ++i) {
+            if (pixels[i] == Pixel.BLACK) {
+                var y = i / FrameBuffer.WIDTH;
+                var x = i % FrameBuffer.WIDTH;
+                log.append(" (").append(x).append(", ").append(y).append(")");
+            }
         }
         LOGGER.info(log.toString());
-        }
+    }
+}
 ```
 
-The console output
+The console output:
 
 ```text
-[main] INFO com.iluwatar.doublebuffer.Scene - Start drawing next frame
-[main] INFO com.iluwatar.doublebuffer.Scene - Current buffer: 0 Next buffer: 1
-[main] INFO com.iluwatar.doublebuffer.Scene - Swap current and next buffer
-[main] INFO com.iluwatar.doublebuffer.Scene - Finish swapping
-[main] INFO com.iluwatar.doublebuffer.Scene - Current buffer: 1 Next buffer: 0
-[main] INFO com.iluwatar.doublebuffer.Scene - Get current buffer: 1
-[main] INFO com.iluwatar.doublebuffer.App - Black Pixels:  (1, 1) (3, 2) (5, 6)
-[main] INFO com.iluwatar.doublebuffer.Scene - Start drawing next frame
-[main] INFO com.iluwatar.doublebuffer.Scene - Current buffer: 1 Next buffer: 0
-[main] INFO com.iluwatar.doublebuffer.Scene - Swap current and next buffer
-[main] INFO com.iluwatar.doublebuffer.Scene - Finish swapping
-[main] INFO com.iluwatar.doublebuffer.Scene - Current buffer: 0 Next buffer: 1
-[main] INFO com.iluwatar.doublebuffer.Scene - Get current buffer: 0
-[main] INFO com.iluwatar.doublebuffer.App - Black Pixels:  (6, 1) (3, 7)
+12:33:02.525 [main] INFO com.iluwatar.doublebuffer.Scene -- Start drawing next frame
+12:33:02.529 [main] INFO com.iluwatar.doublebuffer.Scene -- Current buffer: 0 Next buffer: 1
+12:33:02.529 [main] INFO com.iluwatar.doublebuffer.Scene -- Swap current and next buffer
+12:33:02.529 [main] INFO com.iluwatar.doublebuffer.Scene -- Finish swapping
+12:33:02.529 [main] INFO com.iluwatar.doublebuffer.Scene -- Current buffer: 1 Next buffer: 0
+12:33:02.530 [main] INFO com.iluwatar.doublebuffer.Scene -- Get current buffer: 1
+12:33:02.530 [main] INFO com.iluwatar.doublebuffer.App -- Black Pixels:  (1, 1) (3, 2) (5, 6)
+12:33:02.530 [main] INFO com.iluwatar.doublebuffer.Scene -- Start drawing next frame
+12:33:02.530 [main] INFO com.iluwatar.doublebuffer.Scene -- Current buffer: 1 Next buffer: 0
+12:33:02.530 [main] INFO com.iluwatar.doublebuffer.Scene -- Swap current and next buffer
+12:33:02.530 [main] INFO com.iluwatar.doublebuffer.Scene -- Finish swapping
+12:33:02.530 [main] INFO com.iluwatar.doublebuffer.Scene -- Current buffer: 0 Next buffer: 1
+12:33:02.530 [main] INFO com.iluwatar.doublebuffer.Scene -- Get current buffer: 0
+12:33:02.530 [main] INFO com.iluwatar.doublebuffer.App -- Black Pixels:  (6, 1) (3, 7)
 ```
-
-## Class diagram
-
-![Double Buffer class diagram](./etc/double-buffer.urm.png "Double Buffer pattern class diagram")
 
 ## Applicability
 
@@ -275,5 +286,6 @@ Trade-offs:
 
 ## Credits
 
-* [Game Programming Patterns - Double Buffer](https://amzn.to/4ayDNkS)
+* [Game Programming Patterns](https://amzn.to/4ayDNkS)
 * [Real-Time Design Patterns: Robust Scalable Architecture for Real-Time Systems](https://amzn.to/3xFfNxA)
+* [Double Buffer (Game Programming Patterns)](https://gameprogrammingpatterns.com/double-buffer.html)
