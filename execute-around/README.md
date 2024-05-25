@@ -23,7 +23,7 @@ Execute Around idiom frees the user from certain actions that should always be e
 
 Real-world example
 
-> A class needs to be provided for writing text strings to files. To make it easy for the user, the service class opens and closes the file automatically. The user only has to specify what is written into which file.
+> A real-world analogy for the Execute Around pattern can be found in the use of rental cars. When you rent a car, the rental company handles all the setup (cleaning the car, filling it with gas, ensuring it's in good condition) and cleanup (checking the car back in, inspecting it for damage, refueling it if necessary) processes for you. As a customer, you simply use the car for your intended purpose without worrying about the setup and cleanup. This pattern of abstracting away the repetitive tasks around the main operation is similar to the Execute Around pattern in software, where the setup and cleanup of resources are handled by a reusable method, allowing the main logic to be executed seamlessly.
 
 In plain words
 
@@ -34,6 +34,8 @@ In plain words
 > Basically it's the pattern where you write a method to do things which are always required, e.g. resource allocation and clean-up, and make the caller pass in "what we want to do with the resource".
 
 **Programmatic Example**
+
+A class needs to be provided for writing text strings to files. To make it easy for the user, the service class opens and closes the file automatically. The user only has to specify what is written into which file.
 
 `SimpleFileWriter` class implements the Execute Around idiom. It takes `FileWriterAction` as a constructor argument allowing the user to specify what gets written into the file.
 
@@ -60,15 +62,18 @@ public class SimpleFileWriter {
 The following code demonstrates how `SimpleFileWriter` is used. `Scanner` is used to print the file contents after the writing finishes.
 
 ```java
-// create the file writer and execute the custom action
-FileWriterAction writeHello = writer -> writer.write("Gandalf was here");
-new SimpleFileWriter("testfile.txt", writeHello);
+  public static void main(String[] args) throws IOException {
 
-// print the file contents
-try (var scanner = new Scanner(new File("testfile.txt"))) {
-  while (scanner.hasNextLine()) {
-    LOGGER.info(scanner.nextLine());
-  }
+    // create the file writer and execute the custom action
+    FileWriterAction writeHello = writer -> writer.write("Gandalf was here");
+    new SimpleFileWriter("testfile.txt", writeHello);
+
+    // print the file contents
+    try (var scanner = new Scanner(new File("testfile.txt"))) {
+        while (scanner.hasNextLine()) {
+            LOGGER.info(scanner.nextLine());
+        }
+    }
 }
 ```
 
@@ -80,10 +85,6 @@ Here's the console output.
 21:18:07.189 [main] INFO com.iluwatar.execute.around.SimpleFileWriter - Closing the file
 21:18:07.199 [main] INFO com.iluwatar.execute.around.App - Gandalf was here
 ```
-
-## Class diagram
-
-![alt text](./etc/execute-around.png "Execute Around")
 
 ## Applicability
 
@@ -118,4 +119,4 @@ Trade-offs:
 
 * [Effective Java](https://amzn.to/4aDdWbs)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3vUGApm)
-* [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](https://www.amazon.com/gp/product/1937785467/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1937785467&linkCode=as2&tag=javadesignpat-20&linkId=7e4e2fb7a141631491534255252fd08b)
+* [Functional Programming in Java](https://amzn.to/3JUIc5Q)
