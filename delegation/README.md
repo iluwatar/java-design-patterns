@@ -3,7 +3,9 @@ title: Delegation
 category: Behavioral
 language: en
 tag:
+    - Decoupling
     - Delegation
+    - Object composition
 ---
 
 ## Also known as
@@ -13,7 +15,7 @@ tag:
 
 ## Intent
 
-The Delegation pattern in Java allows an object to delegate one or more tasks to a helper object. It is a technique where an object expresses certain behavior but actually delegates responsibility for implementing that behavior to an associated helper object.
+To allow an object to delegate responsibility for a task to another helper object.
 
 ## Explanation
 
@@ -26,6 +28,8 @@ Wikipedia says
 > In object-oriented programming, delegation refers to evaluating a member (property or method) of one object (the receiver) in the context of another original object (the sender). Delegation can be done explicitly, by passing the sending object to the receiving object, which can be done in any object-oriented language; or implicitly, by the member lookup rules of the language, which requires language support for the feature.
 
 **Programmatic Example**
+
+Let's consider a printing example.
 
 We have an interface `Printer` and three implementations `CanonPrinter`, `EpsonPrinter` and `HpPrinter`.
 
@@ -59,8 +63,7 @@ public class HpPrinter implements Printer {
 }
 ```
 
-The `PrinterController` can be used as a `Printer` by delegating any work handled by this
-interface to an object implementing it.
+The `PrinterController` can be used as a `Printer` by delegating any work handled by this interface to an object implementing it.
 
 ```java
 public class PrinterController implements Printer {
@@ -78,8 +81,7 @@ public class PrinterController implements Printer {
 }
 ```
 
-Now on the client code printer controllers can print messages differently depending on the
-object they're delegating that work to.
+Now on the client code printer controllers can print messages differently depending on the object they're delegating that work to.
 
 ```java
 public class App {
