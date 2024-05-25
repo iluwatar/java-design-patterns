@@ -3,7 +3,10 @@ title: Double Dispatch
 category: Behavioral
 language: en
 tag:
+    - Decoupling
+    - Dynamic typing
     - Polymorphism
+    - Runtime
 ---
 
 ## Also known as
@@ -30,7 +33,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-The Double Dispatch pattern is used to handle collisions between different types of game objects. Each game object is an instance of a class that extends the GameObject abstract class. The GameObject class has a collision(GameObject) method, which is overridden in each subclass to define the behavior when a collision occurs with another game object.  Here is a simplified version of the GameObject class and its subclasses:
+The Double Dispatch pattern is used to handle collisions between different types of game objects. Each game object is an instance of a class that extends the `GameObject` abstract class. The `GameObject` class has method `collision`, which is overridden in each subclass to define the behavior when a collision occurs with another game object.  Here is a simplified version of the `GameObject` class and its subclasses:
 
 ```java
 public abstract class GameObject {
@@ -58,17 +61,55 @@ public class SpaceStationMir extends GameObject {
 }
 ```
 
-In the App class, the Double Dispatch pattern is used to check for collisions between all pairs of game objects:
+In the `App` class's `main` method, the Double Dispatch pattern is used to check for collisions between all pairs of game objects:
 
 ```java
-objects.forEach(o1 -> objects.forEach(o2 -> {
-  if (o1 != o2 && o1.intersectsWith(o2)) {
-    o1.collision(o2);
-  }
-}));
+public static void main(String[] args) {
+    // initialize game objects and print their status
+    LOGGER.info("Init objects and print their status");
+    var objects = List.of(
+            new FlamingAsteroid(0, 0, 5, 5),
+            new SpaceStationMir(1, 1, 2, 2),
+            new Meteoroid(10, 10, 15, 15),
+            new SpaceStationIss(12, 12, 14, 14)
+    );
+    objects.forEach(o -> LOGGER.info(o.toString()));
+
+    // collision check
+    LOGGER.info("Collision check");
+    objects.forEach(o1 -> objects.forEach(o2 -> {
+        if (o1 != o2 && o1.intersectsWith(o2)) {
+            o1.collision(o2);
+        }
+    }));
+
+    // output eventual object statuses
+    LOGGER.info("Print object status after collision checks");
+    objects.forEach(o -> LOGGER.info(o.toString()));
+}
 ```
 
-When a collision is detected between two objects, the collision(GameObject) method is called on the first object (o1) with the second object (o2) as the argument. This method call is dispatched at runtime to the appropriate collision(GameObject) method in the class of o1. Inside this method, another method call gameObject.collisionWithX(this) is made on o2 (where X is the type of o1), which is dispatched at runtime to the appropriate collisionWithX(GameObject) method in the class of o2. This is the "double dispatch" - two method calls are dispatched at runtime based on the types of two objects.
+When a collision is detected between two objects, the `collision(GameObject)` method is called on the first object (o1) with the second object (o2) as the argument. This method call is dispatched at runtime to the appropriate `collision(GameObject)` method in the class of o1. Inside this method, another method call `gameObject.collisionWithX(this)` is made on o2 (where X is the type of o1), which is dispatched at runtime to the appropriate `collisionWithX(GameObject)` method in the class of o2. This is the "double dispatch" - two method calls are dispatched at runtime based on the types of two objects.
+
+Here is the program output:
+
+```
+15:47:23.763 [main] INFO com.iluwatar.doubledispatch.App -- Init objects and print their status
+15:47:23.772 [main] INFO com.iluwatar.doubledispatch.App -- FlamingAsteroid at [0,0,5,5] damaged=false onFire=true
+15:47:23.772 [main] INFO com.iluwatar.doubledispatch.App -- SpaceStationMir at [1,1,2,2] damaged=false onFire=false
+15:47:23.772 [main] INFO com.iluwatar.doubledispatch.App -- Meteoroid at [10,10,15,15] damaged=false onFire=false
+15:47:23.772 [main] INFO com.iluwatar.doubledispatch.App -- SpaceStationIss at [12,12,14,14] damaged=false onFire=false
+15:47:23.772 [main] INFO com.iluwatar.doubledispatch.App -- Collision check
+15:47:23.772 [main] INFO com.iluwatar.doubledispatch.SpaceStationMir -- FlamingAsteroid hits SpaceStationMir. SpaceStationMir is damaged! SpaceStationMir is set on fire!
+15:47:23.773 [main] INFO com.iluwatar.doubledispatch.Meteoroid -- SpaceStationMir hits FlamingAsteroid.
+15:47:23.773 [main] INFO com.iluwatar.doubledispatch.SpaceStationMir --  {} is damaged! hits Meteoroid.
+15:47:23.773 [main] INFO com.iluwatar.doubledispatch.Meteoroid -- SpaceStationIss hits Meteoroid.
+15:47:23.773 [main] INFO com.iluwatar.doubledispatch.App -- Print object status after collision checks
+15:47:23.773 [main] INFO com.iluwatar.doubledispatch.App -- FlamingAsteroid at [0,0,5,5] damaged=false onFire=true
+15:47:23.773 [main] INFO com.iluwatar.doubledispatch.App -- SpaceStationMir at [1,1,2,2] damaged=true onFire=true
+15:47:23.773 [main] INFO com.iluwatar.doubledispatch.App -- Meteoroid at [10,10,15,15] damaged=false onFire=false
+15:47:23.773 [main] INFO com.iluwatar.doubledispatch.App -- SpaceStationIss at [12,12,14,14] damaged=true onFire=false
+```
 
 ## Class diagram
 
@@ -107,4 +148,3 @@ Trade-offs:
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/4awj7cV)
 * [Java Design Pattern Essentials](https://amzn.to/3Jg8ZZV)
 * [Refactoring to Patterns](https://amzn.to/3vRBJ8k)
-* [ObjectOutputStream](https://docs.oracle.com/javase/8/docs/api/java/io/ObjectOutputStream.html)
