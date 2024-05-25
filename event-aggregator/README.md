@@ -5,11 +5,15 @@ language: en
 tag:
     - Decoupling
     - Event-driven
+    - Messaging
+    - Publish/subscribe
     - Reactive
 ---
 
 ## Also known as
 
+* Event Channel
+* Event Central
 * Message Hub
 
 ## Intent
@@ -20,13 +24,15 @@ The Event Aggregator design pattern aims to reduce the direct dependencies betwe
 
 Real-world example
 
-> King Joffrey sits on the iron throne and rules the seven kingdoms of Westeros. He receives most of his critical information from King's Hand, the second in command. King's hand has many close advisors himself, feeding him with relevant information about events occurring in the kingdom.
+> An analogous real-world example of the Event Aggregator pattern can be found in a newsroom. In a newsroom, multiple reporters and correspondents are constantly gathering news and reporting on various events from different locations. Instead of each reporter communicating directly with every news editor or producer, all their reports and updates are channeled through a central news desk. This news desk acts as the Event Aggregator, receiving all incoming reports, filtering and prioritizing them, and then dispatching the relevant information to the appropriate editors or producers. This centralization simplifies the process, reduces direct dependencies, and ensures that news updates are managed efficiently and effectively.
 
 In Plain Words
 
 > Event Aggregator is an event mediator that collects events from multiple sources and delivers them to registered observers.
 
 **Programmatic Example**
+
+King Joffrey sits on the iron throne and rules the seven kingdoms of Westeros. He receives most of his critical information from King's Hand, the second in command. King's hand has many close advisors himself, feeding him with relevant information about events occurring in the kingdom.
 
 In our programmatic example, we demonstrate the implementation of an event aggregator pattern. Some of the objects are event listeners, some are event emitters, and the event aggregator does both.
 
@@ -44,11 +50,11 @@ public abstract class EventEmitter {
     }
 
     public final void registerObserver(EventObserver obs, Event e) {
-      // ...
+      // implementation omitted
     }
 
     protected void notifyObservers(Event e) {
-      // ...
+        // implementation omitted
     }
 }
 ```
@@ -103,36 +109,46 @@ public class LordVarys extends EventEmitter implements EventObserver {
 The following snippet demonstrates how the objects are constructed and wired together.
 
 ```java
-    var kingJoffrey=new KingJoffrey();
+public static void main(String[] args) {
 
-    var kingsHand=new KingsHand();
-    kingsHand.registerObserver(kingJoffrey,Event.TRAITOR_DETECTED);
-    kingsHand.registerObserver(kingJoffrey,Event.STARK_SIGHTED);
-    kingsHand.registerObserver(kingJoffrey,Event.WARSHIPS_APPROACHING);
-    kingsHand.registerObserver(kingJoffrey,Event.WHITE_WALKERS_SIGHTED);
+    var kingJoffrey = new KingJoffrey();
 
-    var varys=new LordVarys();
-    varys.registerObserver(kingsHand,Event.TRAITOR_DETECTED);
-    varys.registerObserver(kingsHand,Event.WHITE_WALKERS_SIGHTED);
+    var kingsHand = new KingsHand();
+    kingsHand.registerObserver(kingJoffrey, Event.TRAITOR_DETECTED);
+    kingsHand.registerObserver(kingJoffrey, Event.STARK_SIGHTED);
+    kingsHand.registerObserver(kingJoffrey, Event.WARSHIPS_APPROACHING);
+    kingsHand.registerObserver(kingJoffrey, Event.WHITE_WALKERS_SIGHTED);
 
-    var scout=new Scout();
-    scout.registerObserver(kingsHand,Event.WARSHIPS_APPROACHING);
-    scout.registerObserver(varys,Event.WHITE_WALKERS_SIGHTED);
+    var varys = new LordVarys();
+    varys.registerObserver(kingsHand, Event.TRAITOR_DETECTED);
+    varys.registerObserver(kingsHand, Event.WHITE_WALKERS_SIGHTED);
 
-    var baelish=new LordBaelish(kingsHand,Event.STARK_SIGHTED);
+    var scout = new Scout();
+    scout.registerObserver(kingsHand, Event.WARSHIPS_APPROACHING);
+    scout.registerObserver(varys, Event.WHITE_WALKERS_SIGHTED);
 
-    var emitters=List.of(kingsHand, baelish, varys, scout);
+    var baelish = new LordBaelish(kingsHand, Event.STARK_SIGHTED);
 
-    Arrays.stream(Weekday.values()).<Consumer<? super EventEmitter>>map(day->emitter->emitter.timePasses(day)).forEachOrdered(emitters::forEach);
+    var emitters = List.of(
+            kingsHand,
+            baelish,
+            varys,
+            scout
+    );
+
+    Arrays.stream(Weekday.values())
+            .<Consumer<? super EventEmitter>>map(day -> emitter -> emitter.timePasses(day))
+            .forEachOrdered(emitters::forEach);
+}
 ```
 
 The console output after running the example.
 
 ```
-18:21:52.955 [main] INFO com.iluwatar.event.aggregator.KingJoffrey - Received event from the King's Hand: Warships approaching
-18:21:52.960 [main] INFO com.iluwatar.event.aggregator.KingJoffrey - Received event from the King's Hand: White walkers sighted
-18:21:52.960 [main] INFO com.iluwatar.event.aggregator.KingJoffrey - Received event from the King's Hand: Stark sighted
-18:21:52.960 [main] INFO com.iluwatar.event.aggregator.KingJoffrey - Received event from the King's Hand: Traitor detected
+21:37:38.737 [main] INFO com.iluwatar.event.aggregator.KingJoffrey -- Received event from the King's Hand: Warships approaching
+21:37:38.739 [main] INFO com.iluwatar.event.aggregator.KingJoffrey -- Received event from the King's Hand: White walkers sighted
+21:37:38.739 [main] INFO com.iluwatar.event.aggregator.KingJoffrey -- Received event from the King's Hand: Stark sighted
+21:37:38.739 [main] INFO com.iluwatar.event.aggregator.KingJoffrey -- Received event from the King's Hand: Traitor detected
 ```
 
 ## Class diagram
@@ -172,7 +188,7 @@ Trade-offs:
 
 ## Credits
 
-* [Martin Fowler - Event Aggregator](http://martinfowler.com/eaaDev/EventAggregator.html)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/44eWKXv)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/440b0CZ)
 * [Java Design Pattern Essentials](https://amzn.to/43XHCgM)
+* [Event Aggregator (Martin Fowler)](http://martinfowler.com/eaaDev/EventAggregator.html)
