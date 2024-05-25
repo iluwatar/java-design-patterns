@@ -32,23 +32,24 @@ In Plain Words
 
 **Programmatic Example**
 
-The Event-Based Asynchronous design pattern in this project is implemented using several key classes:
+The Event-Based Asynchronous design pattern allows tasks to be executed in the background, notifying the main program via events when completed. This enhances system efficiency and responsiveness without blocking ongoing operations.
 
-* App: This is the main class that runs the application. It interacts with the EventManager to create, start, stop, and check the status of events. It can run in either interactive mode or non-interactive mode.
-* EventManager: This class is the core of the Event-Based Asynchronous pattern implementation. It manages the lifecycle of events, including creating, starting, stopping, and checking the status of events. It maintains a map of event IDs to Event objects.
-* Event: This is an abstract class that represents an event. It has two concrete subclasses: AsyncEvent and SyncEvent. An Event has an ID, a runtime (how long it should run), and a status (whether it's running, completed, or ready to start). It also has methods to start and stop the event.
-* AsyncEvent: This is a subclass of Event that represents an asynchronous event. When an AsyncEvent is started, it runs in a separate thread without blocking the main thread.
-* SyncEvent: This is a subclass of Event that represents a synchronous event. When a SyncEvent is started, it runs on the main thread and blocks it until the event is completed.
-* MaxNumOfEventsAllowedException, LongRunningEventException, EventDoesNotExistException, InvalidOperationException: These are custom exceptions that are thrown by the EventManager when certain conditions are not met. For example, MaxNumOfEventsAllowedException is thrown when the maximum number of allowed events is exceeded.
+In the provided code, we have several key classes implementing this pattern:
+
+- `App`: The main class that runs the application. It interacts with the `EventManager` to create, start, stop, and check the status of events.
+- `EventManager`: Manages the lifecycle of events, including creating, starting, stopping, and checking the status of events. It maintains a map of event IDs to `Event` objects.
+- `Event`: An abstract class that represents an event. It has two concrete subclasses: `AsyncEvent` and `SyncEvent`.
+- `AsyncEvent` and `SyncEvent`: Represent asynchronous and synchronous events respectively.
+- Custom exceptions: Thrown by the `EventManager` when certain conditions are not met.
 
 Here's a simplified code example of how these classes interact:
 
 ```java
 // Create an EventManager
-EventManager eventManager=new EventManager();
+EventManager eventManager = new EventManager();
 
 // Create an asynchronous event that runs for 60 seconds
-int asyncEventId=eventManager.createAsync(60);
+int asyncEventId = eventManager.createAsync(Duration.ofSeconds(60));
 
 // Start the asynchronous event
 eventManager.start(asyncEventId);
@@ -60,11 +61,89 @@ eventManager.status(asyncEventId);
 eventManager.cancel(asyncEventId);
 ```
 
-In this example, the App class creates an EventManager, then uses it to create, start, check the status of, and stop an asynchronous event. The EventManager creates an AsyncEvent object, starts it in a separate thread, checks its status, and stops it when requested.
+In this example, the `App` class creates an `EventManager`, then uses it to create, start, check the status of, and stop an asynchronous event. The `EventManager` creates an `AsyncEvent` object, starts it in a separate thread, checks its status, and stops it when requested.
+
+The `EventManager` class is the core of the Event-Based Asynchronous pattern implementation. It manages the lifecycle of events, including creating, starting, stopping, and checking the status of events. It maintains a map of event IDs to `Event` objects. Here's a snippet of how it creates an asynchronous event:
+
+```java
+public int createAsync(Duration runtime) throws MaxNumOfEventsAllowedException, LongRunningEventException {
+  int id = counter.incrementAndGet();
+  events.put(id, new AsyncEvent(id, runtime));
+  return id;
+}
+```
+
+The `Event` class is an abstract class that represents an event. It has two concrete subclasses: `AsyncEvent` and `SyncEvent`. An `Event` has an ID, a runtime (how long it should run), and a status (whether it's running, completed, or ready to start). It also has methods to start and stop the event. Here's a snippet of how an `AsyncEvent` starts:
+
+```java
+@Override
+public void start() {
+  Thread thread = new Thread(() -> {
+    try {
+      handleRunStart();
+      Thread.sleep(getRuntime().toMillis());
+      handleRunComplete();
+    } catch (InterruptedException e) {
+      handleRunFailure(e.getMessage());
+    }
+  });
+  thread.start();
+}
+```
+
+In this snippet, when an `AsyncEvent` is started, it runs in a separate thread without blocking the main thread.
+
+A synchronous event is created and managed similarly to an asynchronous event. Here's a snippet of how it creates and manages a synchronous event:
+
+```java
+// Create an EventManager
+EventManager eventManager = new EventManager();
+
+// Create a synchronous event that runs for 60 seconds
+int syncEventId = eventManager.create(Duration.ofSeconds(60));
+
+// Start the synchronous event
+eventManager.start(syncEventId);
+
+// Check the status of the synchronous event
+eventManager.status(syncEventId);
+
+// Stop the synchronous event
+eventManager.cancel(syncEventId);
+```
+
+In the `EventManager` class, a synchronous event is created using the `create` method:
+
+```java
+public int create(Duration runtime) throws MaxNumOfEventsAllowedException, LongRunningEventException {
+  int id = counter.incrementAndGet();
+  events.put(id, new SyncEvent(id, runtime));
+  return id;
+}
+```
+
+The `SyncEvent` class is a subclass of `Event` that represents a synchronous event. When a `SyncEvent` is started, it runs on the main thread and blocks it until the event is completed. Here's a snippet of how a `SyncEvent` starts:
+
+```java
+@Override
+public void start() {
+  try {
+    handleRunStart();
+    Thread.sleep(getRuntime().toMillis());
+    handleRunComplete();
+  } catch (InterruptedException e) {
+    handleRunFailure(e.getMessage());
+  }
+}
+```
+
+In this snippet, when a `SyncEvent` is started, it runs on the main thread, blocking it until the event is completed. This is in contrast to an `AsyncEvent`, which runs in a separate thread without blocking the main thread.
+
+These are the key parts of the Event-Based Asynchronous design pattern as implemented in this code. The pattern allows tasks to be executed in the background, notifying the main program via events when completed, thereby enhancing system efficiency and responsiveness without blocking ongoing operations.
 
 ## Class diagram
 
-![alt text](./etc/event-asynchronous.png "Event-based Asynchronous")
+![Event-Based Asynchronous](./etc/event-asynchronous.png "Event-Based Asynchronous")
 
 ## Applicability
 
@@ -100,7 +179,7 @@ Related Patterns
 
 ## Credits
 
-* [Event-based Asynchronous Pattern Overview](https://msdn.microsoft.com/en-us/library/wewwczdw%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396)
 * [Java Concurrency in Practice](https://amzn.to/4cYY4kU)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3Uh7rW1)
 * [Pro JavaFX 8: A Definitive Guide to Building Desktop, Mobile, and Embedded Java Clients](https://amzn.to/3vHUqLL)
+* [Event-based Asynchronous Pattern Overview (Microsoft)](https://msdn.microsoft.com/en-us/library/wewwczdw%28v=vs.110%29.aspx?f=255&MSPPError=-2147217396)
