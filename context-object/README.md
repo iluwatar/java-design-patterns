@@ -6,6 +6,7 @@ tags:
     - Context
     - Decoupling
     - Encapsulation
+    - Session management 
 ---
 
 ## Also known as
@@ -13,6 +14,7 @@ tags:
 * Context
 * Context Encapsulation
 * Context Holder
+* Encapsulate Context
 
 ## Intent
 
@@ -22,7 +24,7 @@ Encapsulate the context (state and behaviors) relevant to the user or the reques
 
 Real-world example
 
-> This application has different layers labelled A, B and C with each extracting specific information from a similar context for further use in the software. Passing down each pieces of information individually would be inefficient, a method to efficiently store and pass information is needed.
+> Imagine a busy airport where multiple services need to access and share passenger information throughout their journey. Instead of each service requesting and passing passenger details separately, the airport uses a "Passenger Context Object." This context object holds all relevant passenger information, such as identity, flight details, and preferences. Various services like check-in, security, boarding, and customer service access this context object to get or update passenger data as needed. This approach ensures consistent and efficient information handling without tightly coupling the services, similar to how the Context Object design pattern works in software.
 
 In plain words
 
@@ -33,6 +35,8 @@ In plain words
 > Use a Context Object to encapsulate state in a protocol-independent way to be shared throughout your application.
 
 **Programmatic Example**
+
+This application has different layers labelled A, B and C with each extracting specific information from a similar context for further use in the software. Passing down each pieces of information individually would be inefficient, a method to efficiently store and pass information is needed.
 
 Define the data that the service context object contains.
 
@@ -107,28 +111,48 @@ public class LayerC {
 Here is the context object and layers in action.
 
 ```Java
-var layerA=new LayerA();
+@Slf4j
+public class App {
+
+    private static final String SERVICE = "SERVICE";
+
+    public static void main(String[] args) {
+        //Initiate first layer and add service information into context
+        var layerA = new LayerA();
         layerA.addAccountInfo(SERVICE);
-        LOGGER.info("Context = {}",layerA.getContext());
-        var layerB=new LayerB(layerA);
+
+        logContext(layerA.getContext());
+
+        //Initiate second layer and preserving information retrieved in first layer through passing context object
+        var layerB = new LayerB(layerA);
         layerB.addSessionInfo(SERVICE);
-        LOGGER.info("Context = {}",layerB.getContext());
-        var layerC=new LayerC(layerB);
+
+        logContext(layerB.getContext());
+
+        //Initiate third layer and preserving information retrieved in first and second layer through passing context object
+        var layerC = new LayerC(layerB);
         layerC.addSearchInfo(SERVICE);
-        LOGGER.info("Context = {}",layerC.getContext());
+
+        logContext(layerC.getContext());
+    }
+
+    private static void logContext(ServiceContext context) {
+        LOGGER.info("Context = {}", context);
+    }
+}
 ```
 
 Program output:
 
-```Java
-Context=SERVICE null null
-        Context=SERVICE SERVICE null
-        Context=SERVICE SERVICE SERVICE
+```
+08:15:32.134 [main] INFO com.iluwatar.context.object.App -- Context = com.iluwatar.context.object.ServiceContext@5577140b
+08:15:32.136 [main] INFO com.iluwatar.context.object.App -- Context = com.iluwatar.context.object.ServiceContext@5577140b
+08:15:32.137 [main] INFO com.iluwatar.context.object.App -- Context = com.iluwatar.context.object.ServiceContext@5577140b
 ```
 
 ## Class diagram
 
-![alt text](./etc/context-object.png "Context object")
+![Context Object](./etc/context-object.png "Context object")
 
 ## Applicability
 
@@ -166,6 +190,6 @@ Trade-offs:
 ## Credits
 
 * [Core J2EE Design Patterns](https://amzn.to/3IhcY9w)
-* [Core J2EE Design Patterns website - Context Object](http://corej2eepatterns.com/ContextObject.htm)
-* [Allan Kelly - The Encapsulate Context Pattern](https://accu.org/journals/overload/12/63/kelly_246/)
-* [Arvid S. Krishna et al. - Context Object](https://www.dre.vanderbilt.edu/~schmidt/PDF/Context-Object-Pattern.pdf)
+* [Context Object (Core J2EE Patterns)](http://corej2eepatterns.com/ContextObject.htm)
+* [The Encapsulate Context Pattern (Accu)](https://accu.org/journals/overload/12/63/kelly_246/)
+* [Context Object - A Design Pattern for Efficient Information Sharing across Multiple System Layers (Arvid S. Krishna et al.)](https://www.dre.vanderbilt.edu/~schmidt/PDF/Context-Object-Pattern.pdf)
