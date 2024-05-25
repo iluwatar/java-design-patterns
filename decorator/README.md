@@ -3,9 +3,10 @@ title: Decorator
 category: Structural
 language: en
 tag:
-    - Gang of Four
     - Enhancement
     - Extensibility
+    - Gang of Four
+    - Object composition 
     - Wrapping
 ---
 
@@ -22,7 +23,7 @@ The Decorator pattern allows for the dynamic addition of responsibilities to obj
 
 Real-world example
 
-> There is an angry troll living in the nearby hills. Usually, it goes bare-handed, but sometimes it has a weapon. To arm the troll it's not necessary to create a new troll but to decorate it dynamically with a suitable weapon.
+> Imagine a coffee shop where you can customize your coffee order. You start with a basic coffee, and you can add different ingredients like milk, sugar, whipped cream, and so on. Each addition is like a decorator in the Decorator design pattern. The base coffee object can be decorated with additional functionality (flavors, toppings) dynamically. For example, you can start with a plain coffee object, then wrap it with a milk decorator, followed by a sugar decorator, and finally a whipped cream decorator. Each decorator adds new features or modifies the behavior of the coffee object, similar to how the Decorator pattern works in software design.
 
 In plain words
 
@@ -34,7 +35,9 @@ Wikipedia says
 
 **Programmatic Example**
 
-Let's take the troll example. First of all we have a `SimpleTroll` implementing the `Troll` interface:
+There is an angry troll living in the nearby hills. Usually, it goes bare-handed, but sometimes it has a weapon. To arm the troll it's not necessary to create a new troll but to decorate it dynamically with a suitable weapon.
+
+First, we have a `SimpleTroll` implementing the `Troll` interface:
 
 ```java
 public interface Troll {
@@ -68,15 +71,11 @@ public class SimpleTroll implements Troll {
 Next, we want to add a club for the troll. We can do it dynamically by using a decorator:
 
 ```java
-
 @Slf4j
+@RequiredArgsConstructor
 public class ClubbedTroll implements Troll {
 
     private final Troll decorated;
-
-    public ClubbedTroll(Troll decorated) {
-        this.decorated = decorated;
-    }
 
     @Override
     public void attack() {
@@ -99,39 +98,42 @@ public class ClubbedTroll implements Troll {
 Here's the troll in action:
 
 ```java
-// simple troll
-LOGGER.info("A simple looking troll approaches.");
-var troll=new SimpleTroll();
-troll.attack();
-troll.fleeBattle();
-LOGGER.info("Simple troll power: {}.\n",troll.getAttackPower());
+  public static void main(String[] args) {
 
-// change the behavior of the simple troll by adding a decorator
-LOGGER.info("A troll with huge club surprises you.");
-var clubbedTroll=new ClubbedTroll(troll);
-clubbedTroll.attack();
-clubbedTroll.fleeBattle();
-LOGGER.info("Clubbed troll power: {}.\n",clubbedTroll.getAttackPower());
+    // simple troll
+    LOGGER.info("A simple looking troll approaches.");
+    var troll = new SimpleTroll();
+    troll.attack();
+    troll.fleeBattle();
+    LOGGER.info("Simple troll power: {}.\n", troll.getAttackPower());
+
+    // change the behavior of the simple troll by adding a decorator
+    LOGGER.info("A troll with huge club surprises you.");
+    var clubbedTroll = new ClubbedTroll(troll);
+    clubbedTroll.attack();
+    clubbedTroll.fleeBattle();
+    LOGGER.info("Clubbed troll power: {}.\n", clubbedTroll.getAttackPower());
+}
 ```
 
 Program output:
 
-```java
-A simple looking troll approaches.
-The troll tries to grab you!
-The troll shrieks in horror and runs away!
-Simple troll power:10.
+```
+11:34:18.098 [main] INFO com.iluwatar.decorator.App -- A simple looking troll approaches.
+11:34:18.100 [main] INFO com.iluwatar.decorator.SimpleTroll -- The troll tries to grab you!
+11:34:18.100 [main] INFO com.iluwatar.decorator.SimpleTroll -- The troll shrieks in horror and runs away!
+11:34:18.100 [main] INFO com.iluwatar.decorator.App -- Simple troll power: 10.
 
-A troll with huge club surprises you.
-The troll tries to grab you!
-The troll swings at you with a club!
-The troll shrieks in horror and runs away!
-Clubbed troll power:20.
+11:34:18.100 [main] INFO com.iluwatar.decorator.App -- A troll with huge club surprises you.
+11:34:18.101 [main] INFO com.iluwatar.decorator.SimpleTroll -- The troll tries to grab you!
+11:34:18.101 [main] INFO com.iluwatar.decorator.ClubbedTroll -- The troll swings at you with a club!
+11:34:18.101 [main] INFO com.iluwatar.decorator.SimpleTroll -- The troll shrieks in horror and runs away!
+11:34:18.101 [main] INFO com.iluwatar.decorator.App -- Clubbed troll power: 20.
 ```
 
 ## Class diagram
 
-![alt text](./etc/decorator.urm.png "Decorator pattern class diagram")
+![Decorator](./etc/decorator.urm.png "Decorator pattern class diagram")
 
 ## Applicability
 
@@ -144,7 +146,7 @@ Decorator is used to:
 
 ## Tutorials
 
-* [Decorator Pattern Tutorial](https://www.journaldev.com/1540/decorator-design-pattern-in-java-example)
+* [Decorator Design Pattern in Java Example (DigitalOcean)](https://www.digitalocean.com/community/tutorials/decorator-design-pattern-in-java-example)
 
 ## Known uses
 
@@ -177,10 +179,9 @@ Trade-offs:
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Functional Programming in Java: Harnessing the Power of Java 8 Lambda Expressions](https://www.amazon.com/gp/product/1937785467/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1937785467&linkCode=as2&tag=javadesignpat-20&linkId=7e4e2fb7a141631491534255252fd08b)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=f27d2644fbe5026ea448791a8ad09c94)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Functional Programming in Java](https://amzn.to/3JUIc5Q)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Pattern-Oriented Software Architecture, Volume 1: A System of Patterns](https://amzn.to/4aKFTgS)
+* [Refactoring to Patterns](https://amzn.to/3VOO4F5)
