@@ -1,21 +1,29 @@
 ---
 title: Value Object
-category: Creational
+category: Structural
 language: en
 tag:
+    - Data access
     - Data binding
     - Domain
     - Encapsulation
+    - Enterprise patterns
     - Immutable
+    - Optimization
+    - Performance
+    - Persistence
 ---
 
 ## Also known as
 
+* Embedded Value
 * Immutable Object
+* Inline Value
+* Integrated Value
 
 ## Intent
 
-To create immutable objects that represent a descriptive aspect of the domain with no conceptual identity.
+To create immutable objects that represent a descriptive aspect of the domain with no conceptual identity. It aims to enhance performance and reduce memory overhead by storing frequently accessed immutable data directly within the object that uses it, rather than separately.
 
 ## Explanation
 
@@ -86,6 +94,13 @@ Use the Value Object when
 * When representing a set of attributes that together describe an entity but without an identity.
 * When the equality of the objects is based on the value of the properties, not the identity.
 * When you need to ensure that objects cannot be altered once created.
+* An application requires high performance and the data involved is immutable.
+* Memory footprint reduction is critical, especially in environments with limited resources.
+* Objects frequently access a particular piece of immutable data.
+
+## Tutorials
+
+* [VALJOs - Value Java Objects (Stephen Colebourne)](http://blog.joda.org/2014/03/valjos-value-java-objects.html)
 
 ## Known uses
 
@@ -102,17 +117,23 @@ Benefits:
 * Simplifies code by making objects immutable.
 * Thread-safe as the object's state cannot change after creation.
 * Easier to reason about and maintain.
+* Reduces the memory overhead by avoiding separate allocations for immutable data.
+* Improves performance by minimizing memory accesses and reducing cache misses.
 
 Trade-offs:
 
 * Creating a new object for every change can be less efficient for complex objects.
 * Increased memory usage due to the creation of multiple objects representing different states.
+* Increases complexity in object design and can lead to tightly coupled systems.
+* Modifying the embedded value necessitates changes across all objects that embed this value, which can complicate maintenance.
 
 ## Related Patterns
 
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Often used to create instances of value objects.
+* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Shares objects to support large quantities using a minimal amount of memory, somewhat similar in intent but different in implementation.
 * [Builder](https://java-design-patterns.com/patterns/builder/): Can be used to construct complex value objects step by step.
 * [Prototype](https://java-design-patterns.com/patterns/prototype/): Can be used to clone existing value objects, though cloning is less common with immutable objects.
+* [Singleton](https://java-design-patterns.com/patterns/singleton/): Ensures a class has only one instance and provides a global point of access to it, can be used to manage a shared embedded value.
 
 ## Credits
 
@@ -121,5 +142,3 @@ Trade-offs:
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [ValueObject - Martin Fowler](https://martinfowler.com/bliki/ValueObject.html)
-* [VALJOs - Value Java Objects: Stephen Colebourne](http://blog.joda.org/2014/03/valjos-value-java-objects.html)
-* [Value Object : Wikipedia](https://en.wikipedia.org/wiki/Value_object)

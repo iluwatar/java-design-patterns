@@ -198,7 +198,6 @@
     <module>service-to-worker</module>
     <module>client-session</module>
     <module>model-view-intent</module>
-    <module>embedded-value</module>
     <module>currying</module>
     <module>serialized-entity</module>
     <module>identity-map</module>
