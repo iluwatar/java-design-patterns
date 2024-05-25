@@ -3,7 +3,10 @@ title: Data Access Object
 category: Structural
 language: en
 tag:
+    - Abstraction
     - Data access
+    - Data processing
+    - Decoupling
     - Layered architecture
     - Persistence
 ---
@@ -21,7 +24,7 @@ The Data Access Object (DAO) design pattern aims to separate the application's b
 
 Real world example
 
-> There's a set of customers that need to be persisted to database. Additionally, we need the whole set of CRUD (create/read/update/delete) operations, so we can operate on customers easily.
+> Imagine a library system where the main application manages book loans, user accounts, and inventory. The Data Access Object (DAO) pattern in this context would be used to separate the database operations (such as fetching book details, updating user records, and checking inventory) from the business logic of managing loans and accounts. For instance, there would be a `BookDAO` class responsible for all database interactions related to books, such as retrieving a book by its ISBN or updating its availability status. This abstraction allows the library system's main application code to focus on business rules and workflows, while the `BookDAO` handles the complex SQL queries and data management. This separation makes the system easier to maintain and test, as changes to the data source or business logic can be managed independently.
 
 In plain words
 
@@ -33,20 +36,22 @@ Wikipedia says
 
 **Programmatic Example**
 
+There's a set of customers that need to be persisted to database. Additionally, we need the whole set of CRUD (create/read/update/delete) operations, so we can operate on customers easily.
+
 Walking through our customers example, here's the basic `Customer` entity.
 
 ```java
+@Setter
+@Getter
+@ToString
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@AllArgsConstructor
 public class Customer {
 
+    @EqualsAndHashCode.Include
     private int id;
     private String firstName;
     private String lastName;
-
-    public Customer(int id, String firstName, String lastName) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
 }
 ```
 
@@ -74,16 +79,10 @@ public class InMemoryCustomerDao implements CustomerDao {
 }
 
 @Slf4j
+@RequiredArgsConstructor
 public class DbCustomerDao implements CustomerDao {
 
-  private final DataSource
-      dataSource;
-
-  public DbCustomerDao(
-      DataSource dataSource) {
-    this.dataSource =
-        dataSource;
-  }
+  private final DataSource dataSource;
 
   // implement the interface using the data source
 }
@@ -92,64 +91,111 @@ public class DbCustomerDao implements CustomerDao {
 Finally, here's how we use our DAO to manage customers.
 
 ```java
-    final var dataSource=createDataSource();
-        createSchema(dataSource);
-final var customerDao=new DbCustomerDao(dataSource);
 
-        addCustomers(customerDao);
-        log.info(ALL_CUSTOMERS);
-        try(var customerStream=customerDao.getAll()){
-        customerStream.forEach((customer)->log.info(customer.toString()));
+@Slf4j
+public class App {
+    private static final String DB_URL = "jdbc:h2:mem:dao;DB_CLOSE_DELAY=-1";
+    private static final String ALL_CUSTOMERS = "customerDao.getAllCustomers(): ";
+
+    public static void main(final String[] args) throws Exception {
+        final var inMemoryDao = new InMemoryCustomerDao();
+        performOperationsUsing(inMemoryDao);
+
+        final var dataSource = createDataSource();
+        createSchema(dataSource);
+        final var dbDao = new DbCustomerDao(dataSource);
+        performOperationsUsing(dbDao);
+        deleteSchema(dataSource);
+    }
+
+    private static void deleteSchema(DataSource dataSource) throws SQLException {
+        try (var connection = dataSource.getConnection();
+             var statement = connection.createStatement()) {
+            statement.execute(CustomerSchemaSql.DELETE_SCHEMA_SQL);
         }
-        log.info("customerDao.getCustomerById(2): "+customerDao.getById(2));
-final var customer=new Customer(4,"Dan","Danson");
+    }
+
+    private static void createSchema(DataSource dataSource) throws SQLException {
+        try (var connection = dataSource.getConnection();
+             var statement = connection.createStatement()) {
+            statement.execute(CustomerSchemaSql.CREATE_SCHEMA_SQL);
+        }
+    }
+
+    private static DataSource createDataSource() {
+        var dataSource = new JdbcDataSource();
+        dataSource.setURL(DB_URL);
+        return dataSource;
+    }
+
+    private static void performOperationsUsing(final CustomerDao customerDao) throws Exception {
+        addCustomers(customerDao);
+        LOGGER.info(ALL_CUSTOMERS);
+        try (var customerStream = customerDao.getAll()) {
+            customerStream.forEach(customer -> LOGGER.info(customer.toString()));
+        }
+        LOGGER.info("customerDao.getCustomerById(2): " + customerDao.getById(2));
+        final var customer = new Customer(4, "Dan", "Danson");
         customerDao.add(customer);
-        log.info(ALL_CUSTOMERS+customerDao.getAll());
+        LOGGER.info(ALL_CUSTOMERS + customerDao.getAll());
         customer.setFirstName("Daniel");
         customer.setLastName("Danielson");
         customerDao.update(customer);
-        log.info(ALL_CUSTOMERS);
-        try(var customerStream=customerDao.getAll()){
-        customerStream.forEach((cust)->log.info(cust.toString()));
+        LOGGER.info(ALL_CUSTOMERS);
+        try (var customerStream = customerDao.getAll()) {
+            customerStream.forEach(cust -> LOGGER.info(cust.toString()));
         }
         customerDao.delete(customer);
-        log.info(ALL_CUSTOMERS+customerDao.getAll());
+        LOGGER.info(ALL_CUSTOMERS + customerDao.getAll());
+    }
 
-        deleteSchema(dataSource);
+    private static void addCustomers(CustomerDao customerDao) throws Exception {
+        for (var customer : generateSampleCustomers()) {
+            customerDao.add(customer);
+        }
+    }
+
+    public static List<Customer> generateSampleCustomers() {
+        final var customer1 = new Customer(1, "Adam", "Adamson");
+        final var customer2 = new Customer(2, "Bob", "Bobson");
+        final var customer3 = new Customer(3, "Carl", "Carlson");
+        return List.of(customer1, customer2, customer3);
+    }
+}
 ```
 
 The program output:
 
-```java
-customerDao.getAllCustomers():
-        Customer{id=1,firstName='Adam',lastName='Adamson'}
-        Customer{id=2,firstName='Bob',lastName='Bobson'}
-        Customer{id=3,firstName='Carl',lastName='Carlson'}
-        customerDao.getCustomerById(2):Optional[Customer{id=2,firstName='Bob',lastName='Bobson'}]
-        customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@7cef4e59
-        customerDao.getAllCustomers():
-        Customer{id=1,firstName='Adam',lastName='Adamson'}
-        Customer{id=2,firstName='Bob',lastName='Bobson'}
-        Customer{id=3,firstName='Carl',lastName='Carlson'}
-        Customer{id=4,firstName='Daniel',lastName='Danielson'}
-        customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@2db0f6b2
-        customerDao.getAllCustomers():
-        Customer{id=1,firstName='Adam',lastName='Adamson'}
-        Customer{id=2,firstName='Bob',lastName='Bobson'}
-        Customer{id=3,firstName='Carl',lastName='Carlson'}
-        customerDao.getCustomerById(2):Optional[Customer{id=2,firstName='Bob',lastName='Bobson'}]
-        customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@12c8a2c0
-        customerDao.getAllCustomers():
-        Customer{id=1,firstName='Adam',lastName='Adamson'}
-        Customer{id=2,firstName='Bob',lastName='Bobson'}
-        Customer{id=3,firstName='Carl',lastName='Carlson'}
-        Customer{id=4,firstName='Daniel',lastName='Danielson'}
-        customerDao.getAllCustomers():java.util.stream.ReferencePipeline$Head@6ec8211c
+```
+10:02:09.788 [main] INFO com.iluwatar.dao.App -- customerDao.getAllCustomers(): 
+10:02:09.793 [main] INFO com.iluwatar.dao.App -- Customer(id=1, firstName=Adam, lastName=Adamson)
+10:02:09.793 [main] INFO com.iluwatar.dao.App -- Customer(id=2, firstName=Bob, lastName=Bobson)
+10:02:09.793 [main] INFO com.iluwatar.dao.App -- Customer(id=3, firstName=Carl, lastName=Carlson)
+10:02:09.794 [main] INFO com.iluwatar.dao.App -- customerDao.getCustomerById(2): Optional[Customer(id=2, firstName=Bob, lastName=Bobson)]
+10:02:09.794 [main] INFO com.iluwatar.dao.App -- customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@4c3e4790
+10:02:09.794 [main] INFO com.iluwatar.dao.App -- customerDao.getAllCustomers(): 
+10:02:09.795 [main] INFO com.iluwatar.dao.App -- Customer(id=1, firstName=Adam, lastName=Adamson)
+10:02:09.795 [main] INFO com.iluwatar.dao.App -- Customer(id=2, firstName=Bob, lastName=Bobson)
+10:02:09.795 [main] INFO com.iluwatar.dao.App -- Customer(id=3, firstName=Carl, lastName=Carlson)
+10:02:09.795 [main] INFO com.iluwatar.dao.App -- Customer(id=4, firstName=Daniel, lastName=Danielson)
+10:02:09.795 [main] INFO com.iluwatar.dao.App -- customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@5679c6c6
+10:02:09.894 [main] INFO com.iluwatar.dao.App -- customerDao.getAllCustomers(): 
+10:02:09.895 [main] INFO com.iluwatar.dao.App -- Customer(id=1, firstName=Adam, lastName=Adamson)
+10:02:09.895 [main] INFO com.iluwatar.dao.App -- Customer(id=2, firstName=Bob, lastName=Bobson)
+10:02:09.895 [main] INFO com.iluwatar.dao.App -- Customer(id=3, firstName=Carl, lastName=Carlson)
+10:02:09.895 [main] INFO com.iluwatar.dao.App -- customerDao.getCustomerById(2): Optional[Customer(id=2, firstName=Bob, lastName=Bobson)]
+10:02:09.896 [main] INFO com.iluwatar.dao.App -- customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@23282c25
+10:02:09.897 [main] INFO com.iluwatar.dao.App -- customerDao.getAllCustomers(): 
+10:02:09.897 [main] INFO com.iluwatar.dao.App -- Customer(id=1, firstName=Adam, lastName=Adamson)
+10:02:09.897 [main] INFO com.iluwatar.dao.App -- Customer(id=2, firstName=Bob, lastName=Bobson)
+10:02:09.898 [main] INFO com.iluwatar.dao.App -- Customer(id=3, firstName=Carl, lastName=Carlson)
+10:02:09.898 [main] INFO com.iluwatar.dao.App -- Customer(id=4, firstName=Daniel, lastName=Danielson)
+10:02:09.898 [main] INFO com.iluwatar.dao.App -- customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@f2f2cc1
 ```
 
 ## Class diagram
 
-![alt text](./etc/dao.png "Data Access Object")
+![Data Access Object](./etc/dao.png "Data Access Object")
 
 ## Applicability
 
@@ -161,8 +207,8 @@ Use the Data Access Object in any of the following situations:
 
 ## Tutorials
 
-* [The DAO Pattern in Java](https://www.baeldung.com/java-dao-pattern)
-* [Data Access Object Pattern](https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm)
+* [The DAO Pattern in Java(Baeldung)](https://www.baeldung.com/java-dao-pattern)
+* [Data Access Object Pattern (TutorialsPoint)](https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm)
 
 ## Known Uses
 
@@ -187,15 +233,15 @@ Trade-offs:
 
 ## Related Patterns
 
-* [Service Layer](https://java-design-patterns.com/patterns/service-layer/): Often used in conjunction with the DAO pattern to define application's boundaries and its set of available operations.
-* [Factory](https://java-design-patterns.com/patterns/factory/): Can be used to instantiate DAOs dynamically, providing flexibility in the choice of implementation.
 * [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Helps in abstracting the creation of DAOs, especially when supporting multiple databases or storage mechanisms.
+* [Factory](https://java-design-patterns.com/patterns/factory/): Can be used to instantiate DAOs dynamically, providing flexibility in the choice of implementation.
+* [Service Layer](https://java-design-patterns.com/patterns/service-layer/): Often used in conjunction with the DAO pattern to define application's boundaries and its set of available operations.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Might be employed to change the data access strategy at runtime, depending on the context.
 
 ## Credits
 
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/49u3r91)
-* [Patterns of Enterprise Application Architecture](https://amzn.to/3U5cxEI)
 * [Expert One-on-One J2EE Design and Development](https://amzn.to/3vK3pfq)
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3U5cxEI)
 * [Professional Java Development with the Spring Framework](https://amzn.to/49tANF0)
