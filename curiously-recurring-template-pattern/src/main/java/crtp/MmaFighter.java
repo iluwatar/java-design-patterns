@@ -45,5 +45,4 @@ public class MmaFighter<T extends MmaFighter<T>> implements Fighter<T> {
   public void fight(T opponent) {
     LOGGER.info("{} is going to fight against {}", this, opponent);
   }
-
 }
