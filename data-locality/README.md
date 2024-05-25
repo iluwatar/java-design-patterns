@@ -29,7 +29,7 @@ In plain words
 
 > The Data Locality pattern organizes data in memory to reduce access times and improve performance by ensuring that data frequently accessed together is stored close together.
 
-Programmatic Example
+**Programmatic Example**
 
 The Data Locality pattern is a design pattern that aims to improve performance by arranging data in memory to take advantage of spatial locality. This pattern is particularly useful in high-performance computing and game development where access speed is crucial.
 
@@ -42,7 +42,7 @@ public class GameEntity {
     private final AiComponent[] aiComponents;
     private final PhysicsComponent[] physicsComponents;
     private final RenderComponent[] renderComponents;
-// ...
+    // Other properties and methods...
 }
 ```
 
@@ -86,11 +86,41 @@ public class Application {
 }
 ```
 
+The console output:
+
+```
+10:19:52.155 [main] INFO com.iluwatar.data.locality.Application -- Start Game Application using Data-Locality pattern
+10:19:52.157 [main] INFO com.iluwatar.data.locality.game.GameEntity -- Init Game with #Entity : 5
+10:19:52.158 [main] INFO com.iluwatar.data.locality.game.GameEntity -- Start Game
+10:19:52.158 [main] INFO com.iluwatar.data.locality.game.component.manager.AiComponentManager -- Start AI Game Component
+10:19:52.158 [main] INFO com.iluwatar.data.locality.game.component.manager.PhysicsComponentManager -- Start Physics Game Component 
+10:19:52.159 [main] INFO com.iluwatar.data.locality.game.component.manager.RenderComponentManager -- Start Render Game Component 
+10:19:52.159 [main] INFO com.iluwatar.data.locality.game.GameEntity -- Update Game Component
+10:19:52.159 [main] INFO com.iluwatar.data.locality.game.component.manager.AiComponentManager -- Update AI Game Component
+10:19:52.159 [main] INFO com.iluwatar.data.locality.game.component.AiComponent -- update AI component
+10:19:52.159 [main] INFO com.iluwatar.data.locality.game.component.AiComponent -- update AI component
+10:19:52.159 [main] INFO com.iluwatar.data.locality.game.component.AiComponent -- update AI component
+10:19:52.159 [main] INFO com.iluwatar.data.locality.game.component.AiComponent -- update AI component
+10:19:52.159 [main] INFO com.iluwatar.data.locality.game.component.AiComponent -- update AI component
+10:19:52.159 [main] INFO com.iluwatar.data.locality.game.component.manager.PhysicsComponentManager -- Update Physics Game Component 
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.PhysicsComponent -- Update physics component of game
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.PhysicsComponent -- Update physics component of game
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.PhysicsComponent -- Update physics component of game
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.PhysicsComponent -- Update physics component of game
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.PhysicsComponent -- Update physics component of game
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.manager.RenderComponentManager -- Update Render Game Component 
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.RenderComponent -- Render Component
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.RenderComponent -- Render Component
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.RenderComponent -- Render Component
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.RenderComponent -- Render Component
+10:19:52.160 [main] INFO com.iluwatar.data.locality.game.component.RenderComponent -- Render Component
+```
+
 In this way, the data-locality module demonstrates the Data Locality pattern. By updating all components of the same type together, it increases the likelihood that the data needed for the update is already in the cache, thereby improving performance.
 
 ## Class diagram
 
-![alt text](./etc/data-locality.urm.png "Data Locality pattern class diagram")
+![Data Locality](./etc/data-locality.urm.png "Data Locality pattern class diagram")
 
 ## Applicability
 
@@ -128,8 +158,8 @@ Trade-offs:
 
 ## Credits
 
+* [Effective Java](https://amzn.to/4cGk2Jz)
 * [Game Programming Patterns](https://amzn.to/3vK8c0d)
 * [High-Performance Java Persistence](https://amzn.to/3TMc8Wd)
 * [Java Performance: The Definitive Guide](https://amzn.to/3Ua392J)
-* [Effective Java](https://amzn.to/4cGk2Jz)
 * [Game Programming Patterns Optimization Patterns: Data Locality](http://gameprogrammingpatterns.com/data-locality.html)
