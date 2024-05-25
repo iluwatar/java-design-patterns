@@ -83,10 +83,6 @@ Here's the console output.
 20:11:12.203 [main] INFO com.iluwatar.value.object.App - Is statA and statC equal : false
 ```
 
-## Class diagram
-
-![Value Object](./etc/value-object.png "Value Object")
-
 ## Applicability
 
 Use the Value Object when
