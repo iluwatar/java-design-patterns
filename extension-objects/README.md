@@ -21,7 +21,7 @@ The Extension Objects pattern allows for the flexible extension of an object's b
 
 Real-world example
 
-> Suppose you are developing a Java-based game for a client, and in the middle of the development process, new features are suggested. The Extension Objects pattern empowers your program to adapt to unforeseen changes with minimal refactoring, especially when integrating additional functionalities into your project.
+> An analogous real-world example of the Extension Objects design pattern can be found in modular kitchen appliances. Consider a base blender unit to which different attachments can be added, such as a food processor, juicer, or grinder. Each attachment adds new functionality to the blender without altering the base unit itself. Users can dynamically switch between different functionalities based on their current needs, making the blender highly versatile and adaptable to various tasks. This mirrors the Extension Objects pattern in software, where new functionalities are added to an object dynamically and contextually, enhancing flexibility and reuse.
 
 In plain words
 
@@ -33,108 +33,113 @@ Wikipedia says
 
 **Programmatic example**
 
-The aim of utilising the Extension Objects pattern is to implement new features/functionality without having to refactor every class. The following examples shows utilising this pattern for an Enemy class extending Entity within a game:
+The Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure, by attaching additional objects that can dynamically add new functionality.
 
-Primary App class to execute our program from.
+In this example, we have three types of units: `SoldierUnit`, `SergeantUnit`, and `CommanderUnit`. Each unit can have extensions that provide additional functionality. The extensions are `SoldierExtension`, `SergeantExtension`, and `CommanderExtension`.
+
+The `Unit` class is the base class for all units. It has a method `getUnitExtension` that returns an extension object based on the extension name.
+
+```java
+public abstract class Unit {
+  private String name;
+
+  protected Unit(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public abstract UnitExtension getUnitExtension(String extensionName);
+}
+```
+
+The `UnitExtension` interface is the base interface for all extensions. Each specific extension will implement this interface.
+
+```java
+public interface UnitExtension {
+  String getName();
+}
+```
+
+The `SoldierUnit` class is a specific type of unit. It overrides the `getUnitExtension` method to return a `SoldierExtension` object.
+
+```java
+public class SoldierUnit extends Unit {
+  public SoldierUnit(String name) {
+    super(name);
+  }
+
+  @Override
+  public UnitExtension getUnitExtension(String extensionName) {
+    if ("SoldierExtension".equals(extensionName)) {
+      return new SoldierExtension(this);
+    }
+    return null;
+  }
+}
+```
+
+The `SoldierExtension` class is a specific type of extension. It implements the `UnitExtension` interface and provides additional functionality for the `SoldierUnit`.
+
+```java
+public class SoldierExtension implements UnitExtension {
+  private SoldierUnit unit;
+
+  public SoldierExtension(SoldierUnit unit) {
+    this.unit = unit;
+  }
+
+  @Override
+  public String getName() {
+    return "SoldierExtension";
+  }
+
+  public void soldierReady() {
+    // additional functionality for SoldierUnit
+  }
+}
+```
+
+In the `main` application, we create different types of units and check for each unit to have an extension. If the extension exists, we call the specific method on the extension object.
 
 ```java
 public class App {
-    public static void main(String[] args) {
-        Entity enemy = new Enemy("Enemy");
-        checkExtensionsForEntity(enemy);
-    }
+  public static void main(String[] args) {
+    var soldierUnit = new SoldierUnit("SoldierUnit1");
+    var sergeantUnit = new SergeantUnit("SergeantUnit1");
+    var commanderUnit = new CommanderUnit("CommanderUnit1");
 
-    private static void checkExtensionsForEntity(Entity entity) {
-        Logger logger = Logger.getLogger(App.class.getName());
-        String name = entity.getName();
-        Function<String, Runnable> func = (e) -> () -> logger.info(name + " without " + e);
+    checkExtensionsForUnit(soldierUnit);
+    checkExtensionsForUnit(sergeantUnit);
+    checkExtensionsForUnit(commanderUnit);
+  }
 
-        String extension = "EnemyExtension";
-        Optional.ofNullable(entity.getEntityExtension(extension))
-                .map(e -> (EnemyExtension) e)
-                .ifPresentOrElse(EnemyExtension::extendedAction, func.apply(extension));
-    }
+  private static void checkExtensionsForUnit(Unit unit) {
+    var extension = "SoldierExtension";
+    Optional.ofNullable(unit.getUnitExtension(extension))
+        .map(e -> (SoldierExtension) e)
+        .ifPresentOrElse(SoldierExtension::soldierReady, () -> System.out.println(unit.getName() + " without " + extension));
+  }
 }
 ```
 
-Enemy class with initial actions and extensions.
+This produces the following console output.
 
-```java
-class Enemy extends Entity {
-    public Enemy(String name) {
-        super(name);
-    }
-
-    @Override
-    protected void performInitialAction() {
-        super.performInitialAction();
-        System.out.println("Enemy wants to attack you.");
-    }
-
-    @Override
-    public EntityExtension getEntityExtension(String extensionName) {
-        if (extensionName.equals("EnemyExtension")) {
-            return Optional.ofNullable(entityExtension).orElseGet(EnemyExtension::new);
-        }
-        return super.getEntityExtension(extensionName);
-    }
-}
+```
+22:58:03.779 [main] INFO concreteextensions.Soldier -- [Soldier] SoldierUnit1 is ready!
+22:58:03.781 [main] INFO App -- SoldierUnit1 without SergeantExtension
+22:58:03.782 [main] INFO App -- SoldierUnit1 without CommanderExtension
+22:58:03.782 [main] INFO App -- SergeantUnit1 without SoldierExtension
+22:58:03.783 [main] INFO concreteextensions.Sergeant -- [Sergeant] SergeantUnit1 is ready!
+22:58:03.783 [main] INFO App -- SergeantUnit1 without CommanderExtension
+22:58:03.783 [main] INFO App -- CommanderUnit1 without SoldierExtension
+22:58:03.783 [main] INFO App -- CommanderUnit1 without SergeantExtension
+22:58:03.783 [main] INFO concreteextensions.Commander -- [Commander] CommanderUnit1 is ready!
 ```
 
-EnemyExtension class with overriding extendAction() method.
-
-```java
-class EnemyExtension implements EntityExtension {
-    @Override
-    public void extendedAction() {
-        System.out.println("Enemy has advanced towards you!");
-    }
-}
-```
-
-Entity class which will be extended by Enemy.
-
-```java
-class Entity {
-    private String name;
-    protected EntityExtension entityExtension;
-
-    public Entity(String name) {
-        this.name = name;
-        performInitialAction();
-    }
-
-    protected void performInitialAction() {
-        System.out.println(name + " performs the initial action.");
-    }
-
-    public EntityExtension getEntityExtension(String extensionName) {
-        return null;
-    }
-
-    public String getName() {
-        return name;
-    }
-}
-```
-
-EntityExtension interface to be used by EnemyExtension.
-
-```java
-interface EntityExtension {
-    void extendedAction();
-}
-```
-
-Program output:
-
-```markdown
-Enemy performs the initial action.
-Enemy wants to attack you.
-Enemy has advanced towards you!
-```
-
-In this example, the Extension Objects pattern allows the enemy entity to perform unique initial actions and advanced actions when specific extensions are applied. This pattern provides flexibility and extensibility to the codebase while minimizing the need for major code changes.
+This example demonstrates how the Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure.
 
 ## Class diagram
 
