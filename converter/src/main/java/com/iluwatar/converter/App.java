@@ -59,6 +59,5 @@ public class App {
     LOGGER.info("DTO entities converted from domain:");
     List<UserDto> dtoEntities = userConverter.createFromEntities(users);
     dtoEntities.stream().map(UserDto::toString).forEach(LOGGER::info);
-
   }
 }
