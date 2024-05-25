@@ -3,8 +3,10 @@ title: Double-Checked Locking
 category: Concurrency
 language: en
 tag:
+    - Lazy initialization
     - Optimization
     - Performance
+    - Thread management
 ---
 
 ## Intent
@@ -27,9 +29,9 @@ Wikipedia says
 
 **Programmatic Example**
 
-The Double-Checked Locking pattern is used in the HolderThreadSafe class to ensure that the Heavy object is only created once, even when accessed from multiple threads.  Here's how it works:
+The Double-Checked Locking pattern is used in the `HolderThreadSafe` class to ensure that the `Heavy` object is only created once, even when accessed from multiple threads.  Here's how it works:
 
-Check if the object is initialized (first check): If it is, return it immediately.
+1. Check if the object is initialized (first check): If it is, return it immediately.
 
 ```java
 if (heavy == null) {
@@ -37,7 +39,7 @@ if (heavy == null) {
 }
 ```
 
-Synchronize the block of code where the object is created: This ensures that only one thread can create the object.
+2. Synchronize the block of code where the object is created: This ensures that only one thread can create the object.
 
 ```java
 synchronized (this) {
@@ -45,7 +47,7 @@ synchronized (this) {
 }
 ```
 
-Check again if the object is initialized (second check): If another thread has already created the object by the time the current thread enters the synchronized block, return the created object.
+3. Check again if the object is initialized. If another thread has already created the object by the time the current thread enters the synchronized block, return the created object.
 
 ```java
 if (heavy == null) {
@@ -53,13 +55,13 @@ if (heavy == null) {
 }
 ```
 
-Return the created object.
+4. Return the created object.
 
 ```java
 return heavy;
 ```
 
-Here's the complete code for the HolderThreadSafe class:
+Here's the complete code for the `HolderThreadSafe` class:
 
 ```java
 public class HolderThreadSafe {
@@ -83,11 +85,7 @@ public class HolderThreadSafe {
 }
 ```
 
-In this code, the Heavy object is only created when the getHeavy() method is called for the first time. This is known as lazy initialization. The double-checked locking pattern is used to ensure that the Heavy object is only created once, even when the getHeavy() method is called from multiple threads simultaneously.
-
-## Class diagram
-
-![Double-Check Locking](./etc/double_checked_locking_1.png "Double-Checked Locking")
+In this code, the `Heavy` object is only created when the `getHeavy` method is called for the first time. This is known as lazy initialization. The double-checked locking pattern is used to ensure that the `Heavy` object is only created once, even when the `getHeavy` method is called from multiple threads simultaneously.
 
 ## Applicability
 
