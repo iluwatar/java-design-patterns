@@ -1,6 +1,6 @@
 ---
 title: Dependency Injection
-category: Structural
+category: Creational
 language: en
 tag:
     - Decoupling
@@ -15,13 +15,15 @@ tag:
 
 ## Intent
 
-Dependency Injection is a software design pattern in which one or more dependencies (or services) are injected, or passed by reference, into a dependent object (or client) and are made part of the client's state. The pattern separates the creation of a client's dependencies from its own behavior, which allows program designs to be loosely coupled and to follow the [Inversion of Control](https://java-design-patterns.com/principles/#inversion-of-control) and [Single Responsibility](https://java-design-patterns.com/principles/#single-responsibility-principle) principles.
+To decouple the creation of object dependencies from their usage, allowing for more flexible and testable code.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> The old wizard likes to fill his pipe and smoke tobacco once in a while. However, he doesn't want to depend on a single tobacco brand only but likes to be able to enjoy them all interchangeably.
+> Imagine a high-end restaurant where the chef needs various ingredients to prepare dishes. Instead of the chef personally going to different suppliers for each ingredient, a trusted supplier delivers all the required fresh ingredients daily. This allows the chef to focus on cooking without worrying about sourcing the ingredients.
+>
+> In the Dependency Injection design pattern, the trusted supplier acts as the "injector," providing the necessary dependencies (ingredients) to the chef (object). The chef can then use these dependencies without knowing where they came from, ensuring a clean separation between the creation and use of dependencies. This setup enhances efficiency, flexibility, and maintainability in the kitchen, much like in a software system.
 
 In plain words
 
@@ -32,6 +34,8 @@ Wikipedia says
 > In software engineering, dependency injection is a technique in which an object receives other objects that it depends on. These other objects are called dependencies.
 
 **Programmatic Example**
+
+The old wizard likes to fill his pipe and smoke tobacco once in a while. However, he doesn't want to depend on a single tobacco brand only but likes to be able to enjoy them all interchangeably.
 
 Let's first introduce the `Tobacco` interface and the concrete brands.
 
@@ -79,11 +83,33 @@ public class AdvancedWizard implements Wizard {
 }
 ```
 
-And lastly we can show how easy it is to give the old wizard any brand of tobacco.
+Finally, we can show how easy it is to give the old wizard any brand of tobacco.
 
 ```java
-var advancedWizard=new AdvancedWizard(new SecondBreakfastTobacco());
-advancedWizard.smoke();
+public static void main(String[] args) {
+    var simpleWizard = new SimpleWizard();
+    simpleWizard.smoke();
+
+    var advancedWizard = new AdvancedWizard(new SecondBreakfastTobacco());
+    advancedWizard.smoke();
+
+    var advancedSorceress = new AdvancedSorceress();
+    advancedSorceress.setTobacco(new SecondBreakfastTobacco());
+    advancedSorceress.smoke();
+
+    var injector = Guice.createInjector(new TobaccoModule());
+    var guiceWizard = injector.getInstance(GuiceWizard.class);
+    guiceWizard.smoke();
+}
+```
+
+The program output:
+
+```
+11:54:05.205 [main] INFO com.iluwatar.dependency.injection.Tobacco -- SimpleWizard smoking OldTobyTobacco
+11:54:05.207 [main] INFO com.iluwatar.dependency.injection.Tobacco -- AdvancedWizard smoking SecondBreakfastTobacco
+11:54:05.207 [main] INFO com.iluwatar.dependency.injection.Tobacco -- AdvancedSorceress smoking SecondBreakfastTobacco
+11:54:05.308 [main] INFO com.iluwatar.dependency.injection.Tobacco -- GuiceWizard smoking RivendellTobacco
 ```
 
 ## Class diagram
@@ -124,11 +150,11 @@ Trade-offs:
 
 ## Credits
 
-* [Spring in Action](https://amzn.to/4asnpSG)
+* [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/3wRnjp5)
 * [Dependency Injection: Design patterns using Spring and Guice](https://amzn.to/4aMyHkI)
+* [Dependency Injection Principles, Practices, and Patterns](https://amzn.to/4aupmxe)
+* [Google Guice: Agile Lightweight Dependency Injection Framework](https://amzn.to/4bTDbX0)
+* [Java 9 Dependency Injection: Write loosely coupled code with Spring 5 and Guice](https://amzn.to/4ayCtxp)
 * [Java Design Pattern Essentials](https://amzn.to/3xtPPxa)
 * [Pro Java EE Spring Patterns: Best Practices and Design Strategies Implementing Java EE Patterns with the Spring Framework](https://amzn.to/3J6Teoh)
-* [Dependency Injection Principles, Practices, and Patterns](https://www.amazon.com/gp/product/161729473X/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=161729473X&linkId=57079257a5c7d33755493802f3b884bd)
-* [Clean Code: A Handbook of Agile Software Craftsmanship](https://www.amazon.com/gp/product/0132350882/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0132350882&linkCode=as2&tag=javadesignpat-20&linkId=2c390d89cc9e61c01b9e7005c7842871)
-* [Java 9 Dependency Injection: Write loosely coupled code with Spring 5 and Guice](https://www.amazon.com/gp/product/1788296257/ref=as_li_tl?ie=UTF8&tag=javadesignpat-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=1788296257&linkId=4e9137a3bf722a8b5b156cce1eec0fc1)
-* [Google Guice: Agile Lightweight Dependency Injection Framework](https://www.amazon.com/gp/product/1590599977/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1590599977&linkId=3b10c90b7ba480a1b7777ff38000f956)
+* [Spring in Action](https://amzn.to/4asnpSG)
