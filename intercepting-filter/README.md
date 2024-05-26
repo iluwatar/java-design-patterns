@@ -17,7 +17,7 @@ The Intercepting Filter pattern is intended to provide a pluggable framework for
 
 ## Explanation
 
-Real-world Example
+Real-world example
 
 > Consider entering a secure office building where you pass through several checkpoints: a security desk checks your ID, a metal detector ensures safety, and a registration desk logs your visit. Each checkpoint acts like a filter in the Intercepting Filter pattern, processing and validating your entry step-by-step, similar to how filters handle different aspects of web requests and responses in a software system.
 
@@ -31,7 +31,7 @@ Wikipedia says
 
 ## Programmatic Example
 
-The Intercepting Filter design pattern is a Java EE pattern that creates pluggable filters to process common services in a standard manner without requiring changes to core request processing code. These filters can perform tasks such as authentication, logging, data compression, and encryption.
+Intercepting Filter is a pattern that creates pluggable filters to process common services in a standard manner without requiring changes to core request processing code. These filters can perform tasks such as authentication, logging, data compression, and encryption.
 
 In the provided code, we can see an example of the Intercepting Filter pattern in the `App`, `FilterManager`, `Client`, and various `Filter` classes.
 
@@ -95,20 +95,24 @@ public interface Filter {
   void execute(String request);
 }
 
-public class NameFilter implements Filter {
-  public void execute(String request) {
-    // Implementation details...
-  }
+public class NameFilter extends AbstractFilter {
+
+    @Override
+    public String execute(Order order) {
+        var result = super.execute(order);
+        var name = order.getName();
+        if (name == null || name.isEmpty() || name.matches(".*[^\\w|\\s]+.*")) {
+            return result + "Invalid name! ";
+        } else {
+            return result;
+        }
+    }
 }
 
 // Other Filter implementations...
 ```
 
 In this example, the `App` class sets up a `FilterManager` with various filters and assigns it to a `Client`. When the `Client` sends a request, the `FilterManager` applies all the filters to the request. This is a basic example of the Intercepting Filter pattern, where common processing tasks are encapsulated in filters and applied to requests in a standard manner.
-
-## Class diagram 
-
-![Intercepting Filter](./etc/intercepting-filter.png "Intercepting Filter")
 
 ## Applicability
 
@@ -119,8 +123,8 @@ Use the Intercepting Filter pattern when
 
 ## Tutorials
 
-* [Introduction to Intercepting Filter Pattern in Java](https://www.baeldung.com/intercepting-filter-pattern-in-java)
-* [TutorialsPoint - Intercepting Filter](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
+* [Introduction to Intercepting Filter Pattern in Java (Baeldung)](https://www.baeldung.com/intercepting-filter-pattern-in-java)
+* [Design Pattern - Intercepting Filter Pattern (TutorialsPoint)](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
 
 ## Known Uses
 
@@ -144,11 +148,11 @@ Trade-offs:
 
 ## Related Patterns
 
-[Decorator](https://java-design-patterns.com/patterns/decorator/): Filters in the Intercepting Filter pattern can be considered as decorators that add additional responsibilities to request handling. They modify the request/response without altering their fundamental behavior.
-[Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Filters are linked in a chain, where each filter processes the request or response and optionally passes it to the next filter in the chain, similar to how responsibilities are passed along in the Chain of Responsibility pattern.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Filters in the Intercepting Filter pattern can be considered as decorators that add additional responsibilities to request handling. They modify the request/response without altering their fundamental behavior.
+* [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Filters are linked in a chain, where each filter processes the request or response and optionally passes it to the next filter in the chain, similar to how responsibilities are passed along in the Chain of Responsibility pattern.
 
 ## Credits
 
+* [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
-* [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
