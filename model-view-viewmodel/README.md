@@ -42,9 +42,8 @@ Wikipedia says
 
 **Programmatic Example**
 
-Zkoss implementation:
 
-> ViewModel will hold the business logic and expose the data from model to View
+ViewModel will hold the business logic and expose the data from model to View.
 
 ```java
 public class BookViewModel {
@@ -78,7 +77,7 @@ public class BookViewModel {
 }
 ```
 
-> View will have no logic, only UI elements
+View will have no logic, only UI elements.
 
 ```xml
 <zk>
@@ -123,22 +122,15 @@ To deploy the example, go to model-view-viewmodel folder and run:
 * `mvn jetty:run -Djetty.http.port=9911`
 * Open browser to address: http://localhost:9911/model-view-viewmodel/
 
-## Class diagram
-
-![MVVM](./etc/model-view-viewmodel.png "MVVM pattern class diagram")
-
 ## Applicability
 
 * MVVM is applicable in applications requiring a clear separation between the user interface and the underlying business logic, especially in large-scale, data-driven applications where UI and business logic change independently.
 
 ## Tutorials
 
-* [Zkoss Demo](https://www.zkoss.org/zkdemo/getting_started/mvvm)
-* [Data Binding in Android](https://developer.android.com/codelabs/android-databinding#0)
-* [ZK MVVM](https://www.zkoss.org/wiki/ZK%20Developer's%20Reference/MVVM)
-* [GeeksforGeeks  MVVM Intro](https://www.geeksforgeeks.org/introduction-to-model-view-view-model-mvvm/)
-* [ZK MVVM Book](http://books.zkoss.org/zk-mvvm-book/9.5/)
-* [Microsoft MVVM](https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern)
+* [Data Binding in Android (developer.android.com)](https://developer.android.com/codelabs/android-databinding#0)
+* [Introduction to Model View View Model (MVVM) (GeeksforGeeks)](https://www.geeksforgeeks.org/introduction-to-model-view-view-model-mvvm/)
+* [Patterns - WPF Apps With The Model-View-ViewModel Design Pattern (Microsoft)](https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern)
 
 ## Known uses
 
