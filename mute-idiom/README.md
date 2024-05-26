@@ -11,29 +11,30 @@ tag:
     - Thread management
 ---
 
+## Also known as
+
+* Exception Suppression
+* Quiet Exception
+
 ## Intent
 
 The Mute Idiom is designed to simplify error handling by muting exceptions that are deemed non-critical or expected in specific contexts, especially within multithreaded or complex control flow environments.
 
 ## Explanation
 
-Real World Example
+Real-world example
 
-> The vending machine contained in your office displays a warning when making a transaction. The issue occurs when the
+> An analogous real-world example of the Mute Idiom design pattern is found in car door locking mechanisms.
+>
+> Imagine a car equipped with an automatic locking system that attempts to lock all doors when the car reaches a certain speed. In this system, if one of the doors is already locked, the system doesn't need to alert the driver or perform any special handling; it simply skips locking that door and continues with the others. The locking system "mutes" the handling of already locked doors, focusing only on those that need to be locked. This approach simplifies the logic and avoids unnecessary checks, similar to how the Mute Idiom in software development suppresses handling trivial exceptions.
 
 In plain words
 
-> The Mute Idiom design pattern is used to reduce the requirement of catching exceptions when they cannot be thrown or
+> The Mute Idiom design pattern suppresses the handling of trivial or non-critical exceptions to simplify code.
 
 **Programmatic Example**
 
-Sure, here's a programmatic example of the Mute Idiom design pattern based on the code in the module:
-
-## Explanation
-
 The Mute Idiom is a design pattern that is used to simplify error handling by muting exceptions that are deemed non-critical or expected in specific contexts. This pattern is particularly useful in multithreaded or complex control flow environments.
-
-## Programmatic Example
 
 We have a `Resource` interface that has a `close` method which throws an `IOException`.
 
@@ -91,7 +92,7 @@ In this way, the Mute Idiom allows us to simplify error handling by reducing boi
 
 ## Tutorials
 
-* [JOOQ: Mute Design Pattern](http://blog.jooq.org/2016/02/18/the-mute-design-pattern/)
+* [The Mute Design Pattern (JOOQ)](http://blog.jooq.org/2016/02/18/the-mute-design-pattern/)
 
 ## Known Uses
 
