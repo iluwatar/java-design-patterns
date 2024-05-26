@@ -21,7 +21,7 @@ Enable a system to elect a leader from a group of nodes, ensuring that the leade
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > A real-world analogy to the leader election pattern is the election of a team captain in sports. In this analogy, all team members (nodes) participate in the election process, following a set of agreed-upon rules (protocol). Once a captain (leader) is chosen, they assume responsibility for coordinating strategies, giving directions, and representing the team in discussions. If the captain is injured or unavailable, the team holds a new election or appoints a vice-captain (failover mechanism) to ensure that leadership and direction are maintained consistently.
 
@@ -175,8 +175,7 @@ Trade-offs:
 
 ## Credits
 
-* [Leader Election pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/leader-election)
-* [Raft Leader Election](https://github.com/ronenhamias/raft-leader-election)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
-* [Site Reliability Engineering: How Google Runs Production Systems](https://amzn.to/4brjBRI)
 * [Distributed Systems: Principles and Paradigms](https://amzn.to/3UN2vbH)
+* [Site Reliability Engineering: How Google Runs Production Systems](https://amzn.to/4brjBRI)
+* [Leader Election pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/leader-election)
