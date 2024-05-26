@@ -1,3 +1,4 @@
+---
 title: Notification
 category: Behavioral
 language: en 
@@ -19,7 +20,7 @@ The Notification design pattern aims to facilitate communication between differe
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Consider a weather alert system as a real-world analogous example of the Notification design pattern. In this system, a weather station collects data on weather conditions like temperature, humidity, and storm alerts. Multiple subscribers, such as news agencies, smartphone weather apps, and emergency services, are interested in receiving updates about specific weather events, like severe storms or extreme temperatures.
 >
@@ -90,10 +91,6 @@ Example output:
 18:10:00.080 [main] INFO com.iluwatar.RegisterWorkerForm - Not registered, see errors
 ```
 
-## Class diagram
-
-![Notification](./etc/notification.urm.png "Notification")
-
 ## Applicability
 
 * When a change to one object requires changing others, and you don’t know how many objects need to be changed.
@@ -127,6 +124,6 @@ Trade-offs:
 
 ## Credits
 
-* [Martin Fowler - Notification Pattern](https://martinfowler.com/eaaDev/Notification.html)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3WcFVui)
+* [Notification Pattern (Martin Fowler)](https://martinfowler.com/eaaDev/Notification.html)
