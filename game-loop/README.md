@@ -1,13 +1,13 @@
 ---
-title: Game Loop 
+title: Game Loop
 category: Behavioral
 language: en
-tag:  
+tag:
     - Concurrency
     - Event-driven
     - Game programming
     - Performance
----  
+---
 
 ## Also known as
 
@@ -20,9 +20,9 @@ The Game Loop design pattern aims to facilitate the continuous execution of a ga
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> Game loop is the main process of all the game rendering threads. It's present in all modern games. It drives input process, internal status update, rendering, AI and all the other processes.
+> An analogous real-world example of the Game Loop pattern can be found in an amusement park ride, such as a roller coaster. The roller coaster operates in a continuous loop, where the state of the ride (the position and speed of the coaster) is continuously updated while the ride is running. The control system of the roller coaster ensures that the cars move smoothly along the track, adjusting speeds, and handling the ride's safety systems in real-time. Just like the game loop, this control system repeatedly processes inputs (such as the current speed and position), updates the state, and triggers outputs (like adjusting the brakes or accelerating the cars) to maintain the desired operation throughout the duration of the ride.
 
 In plain words
 
@@ -34,7 +34,9 @@ Wikipedia says
 
 **Programmatic Example**
 
-Let's start with something simple. Here's `Bullet` class. Bullets will move in our game. For demonstration purposes it's enough that it has 1-dimensional position.
+Game loop is the main process of all the game rendering threads. It's present in all modern games. It drives input process, internal status update, rendering, AI and all the other processes.
+
+In our game example, let's start with something simple. Here's `Bullet` class. Bullets will move in our game. For demonstration purposes it's enough that it has 1-dimensional position.
 
 ```java
 public class Bullet {
@@ -77,7 +79,7 @@ public class GameController {
 }
 ```
 
-Now we introduce the game loop. Or actually in this demo we have 3 different game loops. Let's see the base class `GameLoop` first.
+Now we introduce the game loop. Actually, in this demo we have 3 different game loops. Let's see the base class `GameLoop` first.
 
 ```java
 public enum GameStatus {
@@ -151,7 +153,8 @@ public class FrameBasedGameLoop extends GameLoop {
   }
 }
 ```
-Here's the next game loop implementation, `FixedStepGameLoop`:
+
+Here's the second game loop implementation, `FixedStepGameLoop`:
 
 ```java
 public class FixedStepGameLoop extends GameLoop {
@@ -187,7 +190,9 @@ public class FixedStepGameLoop extends GameLoop {
   }
 }
 ```
-And the last game loop implementation, `VariableStepGameLoop`:
+
+And the third game loop implementation, `VariableStepGameLoop`:
+
 ```java
 public class VariableStepGameLoop extends GameLoop {
 
@@ -214,31 +219,34 @@ public class VariableStepGameLoop extends GameLoop {
 Finally, we show all the game loops in action.
 
 ```java
+public static void main(String[] args) {
+
     try {
-      LOGGER.info("Start frame-based game loop:");
-      var frameBasedGameLoop = new FrameBasedGameLoop();
-      frameBasedGameLoop.run();
-      Thread.sleep(GAME_LOOP_DURATION_TIME);
-      frameBasedGameLoop.stop();
-      LOGGER.info("Stop frame-based game loop.");
+        LOGGER.info("Start frame-based game loop:");
+        var frameBasedGameLoop = new FrameBasedGameLoop();
+        frameBasedGameLoop.run();
+        Thread.sleep(GAME_LOOP_DURATION_TIME);
+        frameBasedGameLoop.stop();
+        LOGGER.info("Stop frame-based game loop.");
 
-      LOGGER.info("Start variable-step game loop:");
-      var variableStepGameLoop = new VariableStepGameLoop();
-      variableStepGameLoop.run();
-      Thread.sleep(GAME_LOOP_DURATION_TIME);
-      variableStepGameLoop.stop();
-      LOGGER.info("Stop variable-step game loop.");
+        LOGGER.info("Start variable-step game loop:");
+        var variableStepGameLoop = new VariableStepGameLoop();
+        variableStepGameLoop.run();
+        Thread.sleep(GAME_LOOP_DURATION_TIME);
+        variableStepGameLoop.stop();
+        LOGGER.info("Stop variable-step game loop.");
 
-      LOGGER.info("Start fixed-step game loop:");
-      var fixedStepGameLoop = new FixedStepGameLoop();
-      fixedStepGameLoop.run();
-      Thread.sleep(GAME_LOOP_DURATION_TIME);
-      fixedStepGameLoop.stop();
-      LOGGER.info("Stop variable-step game loop.");
-      
+        LOGGER.info("Start fixed-step game loop:");
+        var fixedStepGameLoop = new FixedStepGameLoop();
+        fixedStepGameLoop.run();
+        Thread.sleep(GAME_LOOP_DURATION_TIME);
+        fixedStepGameLoop.stop();
+        LOGGER.info("Stop variable-step game loop.");
+
     } catch (InterruptedException e) {
-      LOGGER.error(e.getMessage());
+        LOGGER.error(e.getMessage());
     }
+}
 ```
 
 Program output:
@@ -297,7 +305,7 @@ Stop variable-step game loop.
 
 ## Class diagram
 
-![alt text](./etc/game-loop.urm.png "Game Loop pattern class diagram")
+![Game Loop](./etc/game-loop.urm.png "Game Loop pattern class diagram")
 
 ## Applicability
 
@@ -327,8 +335,8 @@ Trade-offs:
 * [Observer](https://java-design-patterns.com/patterns/observer/): Useful in a game loop for event handling, where game entities can subscribe to and react to events (e.g., collision, scoring).
 
 ## Credits
-  
-* [Game Programming Patterns - Game Loop](http://gameprogrammingpatterns.com/game-loop.html)
-* [Game Programming Patterns](https://www.amazon.com/gp/product/0990582906/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0990582906&linkId=1289749a703b3fe0e24cd8d604d7c40b)
-* [Game Engine Architecture, Third Edition](https://www.amazon.com/gp/product/1138035459/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1138035459&linkId=94502746617211bc40e0ef49d29333ac)
+
+* [Game Programming Patterns](https://amzn.to/3K96fOn)
+* [Game Engine Architecture, Third Edition](https://amzn.to/3VgB4av)
 * [Real-Time Collision Detection](https://amzn.to/3W9Jj8T)
+* [Game Programming Patterns - Game Loop](http://gameprogrammingpatterns.com/game-loop.html)
