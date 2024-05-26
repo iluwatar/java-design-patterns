@@ -21,7 +21,7 @@ The Lazy Loading pattern defers object initialization until the object is actual
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > A real-world analogy for Lazy Loading is using lights in a smart home. Instead of switching all lights on at once when someone enters the house, motion sensors detect and turn on lights only in rooms being used. This approach conserves electricity by activating lights only when and where they're needed, similar to how Lazy Loading delays the initialization of objects until they're actually required.
 
@@ -133,10 +133,6 @@ public class Java8Holder {
 
 In this example, the `App` class retrieves a `Heavy` object from `HolderNaive`, `HolderThreadSafe`, and `Java8Holder`. These classes delay the creation of the `Heavy` object until it's actually needed, demonstrating the Lazy Loading pattern.
 
-## Class diagram
-
-![Lazy Loading](./etc/lazy-loading.png "Lazy Loading")
-
 ## Applicability
 
 Use Lazy Loading when:
@@ -172,5 +168,5 @@ Trade-offs:
 ## Credits
 
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
-* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Java Performance: The Definitive Guide: Getting the Most Out of Your Code](https://amzn.to/3Wu5neF)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
