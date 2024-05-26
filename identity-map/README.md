@@ -17,7 +17,7 @@ The Identity Map design pattern aims to ensure that each object gets loaded only
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine you are organizing a conference and have a registration desk where every attendee must check in. To avoid unnecessary delays and confusion, each attendee's details are entered into a computer system the first time they check in. If the same attendee comes to the desk again, the system quickly retrieves their details without requiring them to re-submit the same information. This ensures each attendee's information is handled efficiently and consistently, similar to how the Identity Map pattern ensures that an object is loaded only once and reused throughout the application.
 
@@ -35,7 +35,6 @@ Wikipedia says
 * Let's first look at the implementation of a person entity, and it's fields:
 
 ```java
-
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter
 @Setter
@@ -51,11 +50,8 @@ public final class Person implements Serializable {
 
     @Override
     public String toString() {
-
         return "Person ID is : " + personNationalId + " ; Person Name is : " + name + " ; Phone Number is :" + phoneNum;
-
     }
-
 }
 
 ```
@@ -65,7 +61,6 @@ public final class Person implements Serializable {
   to store the recently read records.
 
 ```java
-
 @Slf4j
 @Getter
 @Setter
@@ -75,11 +70,6 @@ public class PersonFinder {
     private IdentityMap identityMap = new IdentityMap();
     private PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
 
-    /**
-     * get person corresponding to input ID.
-     *
-     * @param key : personNationalId to look for.
-     */
     public Person getPerson(int key) {
         // Try to find person in the identity map
         Person person = this.identityMap.getPerson(key);
@@ -106,15 +96,11 @@ public class PersonFinder {
   as the keys and the corresponding person object as the value. Here is its implementation:
 
 ```java
-
 @Slf4j
 @Getter
 public class IdentityMap {
     private Map<Integer, Person> personMap = new HashMap<>();
 
-    /**
-     * Add person to the map.
-     */
     public void addPerson(Person person) {
         if (!personMap.containsKey(person.getPersonNationalId())) {
             personMap.put(person.getPersonNationalId(), person);
@@ -123,11 +109,6 @@ public class IdentityMap {
         }
     }
 
-    /**
-     * Get Person with given id.
-     *
-     * @param id : personNationalId as requested by user.
-     */
     public Person getPerson(int id) {
         Person person = personMap.get(id);
         if (person == null) {
@@ -136,68 +117,75 @@ public class IdentityMap {
         return person;
     }
 
-    /**
-     * Get the size of the map.
-     */
     public int size() {
         if (personMap == null) {
             return 0;
         }
         return personMap.size();
     }
-
-}
-
-```
-
-* Now we should construct a dummy person for demonstration purposes and put that person in our database.
-
-```java
-Person person1 = new Person(1,"John",27304159);
-db.insert(person1);
-```
-
-* Now let's create a person finder object and look for person with personNationalId = 1(assume that the personFinder
-  object already has the db and an IdentityMap attached to it.):
-
-```java
-PersonFinder finder = new PersonFinder();
-finder.getPerson(1);
-```
-
-* At this stage this record will be loaded from the database and the output would be:
-
-```java
-ID not in Map.
-Person ID is:1;Person Name is:John;Phone Number is:27304159
-Person found in DB.
-```
-
-* However, the next we search for this record again we will find it in the map hence we will not need to go
-  to the database.
-
-```java
-Person ID is:1;Person Name is:John;Phone Number is:27304159
-Person found in Map.
-```
-
-* If the corresponding record is not in the DB at all then an Exception is thrown. Here is its implementation.
-
-```java
-public class IdNotFoundException extends RuntimeException {
-    public IdNotFoundException(final String message) {
-        super(message);
-    }
 }
 ```
 
-## Class diagram
+Now, let's see how the identity map works in our App's main function.
 
-![alt text](./etc/IdentityMap.png "Identity Map Pattern")
+```java
+public static void main(String[] args) {
+
+    // Dummy Persons
+    Person person1 = new Person(1, "John", 27304159);
+    Person person2 = new Person(2, "Thomas", 42273631);
+    Person person3 = new Person(3, "Arthur", 27489171);
+    Person person4 = new Person(4, "Finn", 20499078);
+    Person person5 = new Person(5, "Michael", 40599078);
+
+    // Init database
+    PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
+    db.insert(person1);
+    db.insert(person2);
+    db.insert(person3);
+    db.insert(person4);
+    db.insert(person5);
+
+    // Init a personFinder
+    PersonFinder finder = new PersonFinder();
+    finder.setDb(db);
+
+    // Find persons in DataBase not the map.
+    LOGGER.info(finder.getPerson(2).toString());
+    LOGGER.info(finder.getPerson(4).toString());
+    LOGGER.info(finder.getPerson(5).toString());
+    // Find the person in the map.
+    LOGGER.info(finder.getPerson(2).toString());
+}
+```
+
+Running the example produces the following console output:
+
+```
+11:19:43.775 [main] INFO com.iluwatar.identitymap.IdentityMap -- ID not in Map.
+11:19:43.780 [main] INFO com.iluwatar.identitymap.PersonDbSimulatorImplementation -- Person ID is : 2 ; Person Name is : Thomas ; Phone Number is :42273631
+11:19:43.780 [main] INFO com.iluwatar.identitymap.PersonFinder -- Person found in DB.
+11:19:43.780 [main] INFO com.iluwatar.identitymap.App -- Person ID is : 2 ; Person Name is : Thomas ; Phone Number is :42273631
+11:19:43.780 [main] INFO com.iluwatar.identitymap.IdentityMap -- ID not in Map.
+11:19:43.780 [main] INFO com.iluwatar.identitymap.PersonDbSimulatorImplementation -- Person ID is : 4 ; Person Name is : Finn ; Phone Number is :20499078
+11:19:43.780 [main] INFO com.iluwatar.identitymap.PersonFinder -- Person found in DB.
+11:19:43.780 [main] INFO com.iluwatar.identitymap.App -- Person ID is : 4 ; Person Name is : Finn ; Phone Number is :20499078
+11:19:43.780 [main] INFO com.iluwatar.identitymap.IdentityMap -- ID not in Map.
+11:19:43.780 [main] INFO com.iluwatar.identitymap.PersonDbSimulatorImplementation -- Person ID is : 5 ; Person Name is : Michael ; Phone Number is :40599078
+11:19:43.780 [main] INFO com.iluwatar.identitymap.PersonFinder -- Person found in DB.
+11:19:43.780 [main] INFO com.iluwatar.identitymap.App -- Person ID is : 5 ; Person Name is : Michael ; Phone Number is :40599078
+11:19:43.780 [main] INFO com.iluwatar.identitymap.IdentityMap -- Person ID is : 2 ; Person Name is : Thomas ; Phone Number is :42273631
+11:19:43.780 [main] INFO com.iluwatar.identitymap.PersonFinder -- Person found in the Map
+11:19:43.780 [main] INFO com.iluwatar.identitymap.App -- Person ID is : 2 ; Person Name is : Thomas ; Phone Number is :42273631
+```
 
 ## Applicability
 
 This pattern is used in scenarios where multiple accesses to the same data occur within a single session or transaction, especially in complex systems where object identity needs to be preserved across transactions or requests in a Java application.
+
+## Tutorials
+
+* [Identity Map Pattern (Source Code Examples)](https://www.sourcecodeexamples.net/2018/04/identity-map-pattern.html)
 
 ## Known Uses
 
@@ -219,12 +207,11 @@ Trade-offs:
 
 ## Related Patterns
 
-* [Unit of Work](https://java-design-patterns.com/patterns/unit-of-work/): Coordinates the actions of multiple objects by keeping track of changes and handling transactional consistency. Identity Map is used within the Unit of Work to track the objects being affected by a transaction.
 * [Data Mapper](https://java-design-patterns.com/patterns/data-mapper/): Separates persistence logic from domain logic. Identity Map can be used by a Data Mapper to ensure that each object is loaded only once, enhancing performance and data consistency.
+* [Unit of Work](https://java-design-patterns.com/patterns/unit-of-work/): Coordinates the actions of multiple objects by keeping track of changes and handling transactional consistency. Identity Map is used within the Unit of Work to track the objects being affected by a transaction.
 
 ## Credits
 
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Java Persistence with Hibernate](https://amzn.to/4aUfyhd)
 * [Pro Java EE Spring Patterns: Best Practices and Design Strategies Implementing Java EE Patterns with the Spring Framework](https://amzn.to/49YQN24)
-* [Identity Map](https://www.sourcecodeexamples.net/2018/04/identity-map-pattern.html)

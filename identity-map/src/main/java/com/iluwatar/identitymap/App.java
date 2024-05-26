@@ -68,6 +68,5 @@ public class App {
     LOGGER.info(finder.getPerson(5).toString());
     // Find the person in the map.
     LOGGER.info(finder.getPerson(2).toString());
-
   }
 }
