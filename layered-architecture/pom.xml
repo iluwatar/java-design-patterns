@@ -34,7 +34,7 @@
         <artifactId>java-design-patterns</artifactId>
         <version>1.26.0-SNAPSHOT</version>
     </parent>
-    <artifactId>layers</artifactId>
+    <artifactId>layered-architecture</artifactId>
     <name>layers</name>
     <description>layers</description>
 

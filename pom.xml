@@ -119,7 +119,7 @@
     <module>step-builder</module>
     <module>business-delegate</module>
     <module>half-sync-half-async</module>
-    <module>layers</module>
+    <module>layered-architecture</module>
     <module>fluent-interface</module>
     <module>reactor</module>
     <module>caching</module>
