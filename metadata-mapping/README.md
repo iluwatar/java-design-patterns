@@ -15,9 +15,9 @@ Metadata Mapping is designed to manage the mapping between database records and 
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> Hibernate ORM Tool uses Metadata Mapping Pattern to specify the mapping between classes and tables either using XML or annotations in code. 
+> An analogous real-world example of the Metadata Mapping design pattern can be seen in online retail systems. In such systems, products often have varying attributes depending on their category. For instance, electronics might have attributes like battery life and screen size, while clothing might have attributes like size and fabric type. Using Metadata Mapping, the system can dynamically map these varying attributes to the product objects without modifying the underlying class structure. This flexibility allows for easy updates and management of product attributes as new categories and attributes are introduced, ensuring that the system can evolve with the changing product landscape.
 
 In plain words
 
@@ -28,6 +28,8 @@ Wikipedia says
 > Create a "virtual [object database](https://en.wikipedia.org/wiki/Object_database)" that can be used from within the programming language.
 
 **Programmatic Example**
+
+Hibernate ORM Tool uses Metadata Mapping Pattern to specify the mapping between classes and tables either using XML or annotations in code.
 
 We give an example about visiting the information of `user_account` table in `h2` database. Firstly, we create `user_account` table with `h2`:
 
@@ -43,9 +45,6 @@ public class DatabaseUtil {
       + "  PRIMARY KEY (`id`)\n"
       + ");";
     
-  /**
-   * Create database.
-   */
   static {
     LOGGER.info("create h2 database");
     var source = new JdbcDataSource();
@@ -70,11 +69,6 @@ public class User {
   private String username;
   private String password;
     
-  /**
-   * Get a user.
-   * @param username user name
-   * @param password user password
-   */
   public User(String username, String password) {
     this.username = username;
     this.password = password;
@@ -133,10 +127,6 @@ Then we can get access to the table just like an object with `Hibernate`, here's
 public class UserService {
   private static final SessionFactory factory = HibernateUtil.getSessionFactory();
 
-  /**
-   * List all users.
-   * @return list of users
-   */
   public List<User> listUser() {
     LOGGER.info("list all users.");
     List<User> users = new ArrayList<>();
@@ -162,9 +152,78 @@ public class UserService {
 }
 ```
 
-## Class diagram
+Here is our `App` class with `main` function for running the example.
 
-![Metadata Mapping](./etc/metamapping.png)
+```java
+@Slf4j
+public class App {
+
+  public static void main(String[] args) {
+    // get service
+    var userService = new UserService();
+    // use create service to add users
+    for (var user : generateSampleUsers()) {
+      var id = userService.createUser(user);
+      LOGGER.info("Add user" + user + "at" + id + ".");
+    }
+    // use list service to get users
+    var users = userService.listUser();
+    LOGGER.info(String.valueOf(users));
+    // use get service to get a user
+    var user = userService.getUser(1);
+    LOGGER.info(String.valueOf(user));
+    // change password of user 1
+    user.setPassword("new123");
+    // use update service to update user 1
+    userService.updateUser(1, user);
+    // use delete service to delete user 2
+    userService.deleteUser(2);
+    // close service
+    userService.close();
+  }
+
+  public static List<User> generateSampleUsers() {
+    final var user1 = new User("ZhangSan", "zhs123");
+    final var user2 = new User("LiSi", "ls123");
+    final var user3 = new User("WangWu", "ww123");
+    return List.of(user1, user2, user3);
+  }
+}
+```
+
+Console output:
+
+```
+14:44:17.792 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 5.6.12.Final
+14:44:17.977 [main] INFO  o.h.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+14:44:18.216 [main] WARN  o.hibernate.orm.connections.pooling - HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+14:44:18.217 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: using driver [org.h2.Driver] at URL [jdbc:h2:mem:metamapping]
+14:44:18.217 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001001: Connection properties: {}
+14:44:18.217 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001003: Autocommit mode: false
+14:44:18.219 [main] INFO  o.h.e.j.c.i.DriverManagerConnectionProviderImpl - HHH000115: Hibernate connection pool size: 1 (min=1)
+14:44:18.276 [main] INFO  org.hibernate.dialect.Dialect - HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+14:44:18.463 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@73a8e994] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+14:44:18.465 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7affc159] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+14:44:18.470 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+14:44:18.473 [main] INFO  c.i.metamapping.service.UserService - create user: ZhangSan
+14:44:18.508 [main] INFO  c.i.metamapping.service.UserService - create user ZhangSan at 1
+14:44:18.508 [main] INFO  com.iluwatar.metamapping.App - Add userUser(id=1, username=ZhangSan, password=zhs123)at1.
+14:44:18.508 [main] INFO  c.i.metamapping.service.UserService - create user: LiSi
+14:44:18.509 [main] INFO  c.i.metamapping.service.UserService - create user LiSi at 2
+14:44:18.509 [main] INFO  com.iluwatar.metamapping.App - Add userUser(id=2, username=LiSi, password=ls123)at2.
+14:44:18.509 [main] INFO  c.i.metamapping.service.UserService - create user: WangWu
+14:44:18.512 [main] INFO  c.i.metamapping.service.UserService - create user WangWu at 3
+14:44:18.512 [main] INFO  com.iluwatar.metamapping.App - Add userUser(id=3, username=WangWu, password=ww123)at3.
+14:44:18.512 [main] INFO  c.i.metamapping.service.UserService - list all users.
+14:44:18.542 [main] INFO  com.iluwatar.metamapping.App - [User(id=1, username=ZhangSan, password=zhs123), User(id=2, username=LiSi, password=ls123), User(id=3, username=WangWu, password=ww123)]
+14:44:18.542 [main] INFO  c.i.metamapping.service.UserService - get user at: 1
+14:44:18.545 [main] INFO  com.iluwatar.metamapping.App - User(id=1, username=ZhangSan, password=zhs123)
+14:44:18.545 [main] INFO  c.i.metamapping.service.UserService - update user at 1
+14:44:18.548 [main] INFO  c.i.metamapping.service.UserService - delete user at: 2
+14:44:18.550 [main] INFO  o.h.t.s.i.SchemaDropperImpl$DelayedDropActionImpl - HHH000477: Starting delayed evictData of schema as part of SessionFactory shut-down'
+14:44:18.550 [main] INFO  o.hibernate.orm.connections.access - HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@7b5cc918] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+14:44:18.551 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:h2:mem:metamapping]
+```
 
 ## Applicability
 
