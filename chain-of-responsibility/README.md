@@ -1,5 +1,5 @@
 ---
-title: Chain of responsibility
+title: Chain of Responsibility
 category: Behavioral
 language: en
 tag:

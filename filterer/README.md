@@ -6,6 +6,8 @@ tag:
     - Data processing
     - Data transformation
     - Decoupling
+    - Functional decomposition
+    - Object composition
     - Performance
     - Runtime
 ---
@@ -21,9 +23,9 @@ The Filterer pattern aims to apply a series of filters to data objects, where ea
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> We are designing a threat (malware) detection software which can analyze target systems for threats that are present in it. In the design we have to take into consideration that new Threat types can be added later. Additionally, there is a requirement that the threat detection system can filter the detected threats based on different criteria (the target system acts as container-like object for threats).
+> Imagine a library that needs to filter books based on different criteria such as genre, author, publication year, or availability. Instead of writing separate methods for each possible combination of criteria, the library system employs the Filterer design pattern. Each filter criterion is encapsulated as an object, and these filter objects can be combined dynamically at runtime to create complex filtering logic. For example, a user can search for books that are both available and published after 2010 by combining the availability filter and the publication year filter. This approach makes the system more flexible and easier to maintain, as new filtering criteria can be added without modifying existing code.
 
 In plain words
 
@@ -31,22 +33,20 @@ In plain words
 
 **Programmatic Example**
 
-To model the threat detection example presented above we introduce `Threat` and `ThreatAwareSystem` interfaces.
+We are designing a threat (malware) detection software which can analyze target systems for threats that are present in it. In the design we have to take into consideration that new Threat types can be added later. Additionally, there is a requirement that the threat detection system can filter the detected threats based on different criteria (the target system acts as container-like object for threats).
+
+To model the threat detection system, we introduce `Threat` and `ThreatAwareSystem` interfaces.
 
 ```java
 public interface Threat {
     String name();
-
     int id();
-
     ThreatType type();
 }
 
 public interface ThreatAwareSystem {
     String systemId();
-
     List<? extends Threat> threats();
-
     Filterer<? extends ThreatAwareSystem, ? extends Threat> filtered();
 }
 ```
@@ -54,16 +54,13 @@ public interface ThreatAwareSystem {
 Notice the `filtered` method that returns instance of `Filterer` interface which is defined as:
 
 ```java
-
 @FunctionalInterface
 public interface Filterer<G, E> {
     G by(Predicate<? super E> predicate);
 }
 ```
 
-It is used to fulfill the requirement for system to be able to filter itself based on threat properties. The container-like object (`ThreatAwareSystem` in our case) needs to have a method that returns an instance of `Filterer`. This helper interface gives ability to covariantly specify a lower bound of contravariant `Predicate` in the subinterfaces of interfaces representing the container-like objects.
-
-In our example we will be able to pass a predicate that takes `? extends Threat` object and return `? extends ThreatAwareSystem` from `Filtered::by` method. A simple implementation of `ThreatAwareSystem`:
+A simple implementation of `ThreatAwareSystem`:
 
 ```java
 public class SimpleThreatAwareSystem implements ThreatAwareSystem {
@@ -103,8 +100,6 @@ public class SimpleThreatAwareSystem implements ThreatAwareSystem {
 }
 ```
 
-The `filtered` method is overridden to filter the threats list by given predicate.
-
 Now if we introduce a new subtype of `Threat` interface that adds probability with which given threat can appear:
 
 ```java
@@ -115,17 +110,16 @@ public interface ProbableThreat extends Threat {
 
 We can also introduce a new interface that represents a system that is aware of threats with their probabilities:
 
-````java
+```java
 public interface ProbabilisticThreatAwareSystem extends ThreatAwareSystem {
     @Override
     List<? extends ProbableThreat> threats();
-
     @Override
     Filterer<? extends ProbabilisticThreatAwareSystem, ? extends ProbableThreat> filtered();
 }
-````
+```
 
-Notice how we override the `filtered` method in `ProbabilisticThreatAwareSystem` and specify different return covariant type by specifying different generic types. Our interfaces are clean and not cluttered by default implementations. We will be able to filter `ProbabilisticThreatAwareSystem` by `ProbableThreat` properties:
+We will be able to filter `ProbabilisticThreatAwareSystem` by `ProbableThreat` properties:
 
 ```java
 public class SimpleProbabilisticThreatAwareSystem implements ProbabilisticThreatAwareSystem {
@@ -165,28 +159,67 @@ public class SimpleProbabilisticThreatAwareSystem implements ProbabilisticThreat
 }
 ```
 
-Now if we want filter `ThreatAwareSystem` by threat type we can do:
+Now let's see the full example in action showing how the filterer pattern works in practice.
 
 ```java
-Threat rootkit=new SimpleThreat(ThreatType.ROOTKIT, 1, "Simple-Rootkit");
-Threat trojan=new SimpleThreat(ThreatType.TROJAN, 2, "Simple-Trojan");
-List<Threat> threats=List.of(rootkit, trojan);
+@Slf4j
+public class App {
 
-ThreatAwareSystem threatAwareSystem=new SimpleThreatAwareSystem("System-1", threats);
+  public static void main(String[] args) {
+    filteringSimpleThreats();
+    filteringSimpleProbableThreats();
+  }
 
-ThreatAwareSystem rootkitThreatAwareSystem=threatAwareSystem.filtered().by(threat -> threat.type() == ThreatType.ROOTKIT);
+  private static void filteringSimpleProbableThreats() {
+    LOGGER.info("### Filtering ProbabilisticThreatAwareSystem by probability ###");
+
+    var trojanArcBomb = new SimpleProbableThreat("Trojan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
+    var rootkit = new SimpleProbableThreat("Rootkit-Kernel", 2, ThreatType.ROOTKIT, 0.8);
+
+    List<ProbableThreat> probableThreats = List.of(trojanArcBomb, rootkit);
+
+    var probabilisticThreatAwareSystem =
+        new SimpleProbabilisticThreatAwareSystem("Sys-1", probableThreats);
+
+    LOGGER.info("Filtering ProbabilisticThreatAwareSystem. Initial : "
+        + probabilisticThreatAwareSystem);
+
+    //Filtering using filterer
+    var filteredThreatAwareSystem = probabilisticThreatAwareSystem.filtered()
+        .by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
+
+    LOGGER.info("Filtered by probability = 0.99 : " + filteredThreatAwareSystem);
+  }
+
+  private static void filteringSimpleThreats() {
+    LOGGER.info("### Filtering ThreatAwareSystem by ThreatType ###");
+
+    var rootkit = new SimpleThreat(ThreatType.ROOTKIT, 1, "Simple-Rootkit");
+    var trojan = new SimpleThreat(ThreatType.TROJAN, 2, "Simple-Trojan");
+    List<Threat> threats = List.of(rootkit, trojan);
+
+    var threatAwareSystem = new SimpleThreatAwareSystem("Sys-1", threats);
+
+    LOGGER.info("Filtering ThreatAwareSystem. Initial : " + threatAwareSystem);
+
+    //Filtering using Filterer
+    var rootkitThreatAwareSystem = threatAwareSystem.filtered()
+        .by(threat -> threat.type() == ThreatType.ROOTKIT);
+
+    LOGGER.info("Filtered by threatType = ROOTKIT : " + rootkitThreatAwareSystem);
+  }
+}
 ```
 
-Or if we want to filter `ProbabilisticThreatAwareSystem`:
+Running the example produces the following console output.
 
-```java
-ProbableThreat malwareTroyan=new SimpleProbableThreat("Troyan-ArcBomb", 1, ThreatType.TROJAN, 0.99);
-ProbableThreat rootkit = new SimpleProbableThreat("Rootkit-System", 2, ThreatType.ROOTKIT, 0.8);
-List<ProbableThreat> probableThreats = List.of(malwareTroyan, rootkit);
-
-ProbabilisticThreatAwareSystem simpleProbabilisticThreatAwareSystem = new SimpleProbabilisticThreatAwareSystem("System-1", probableThreats);
-
-ProbabilisticThreatAwareSystem filtered = simpleProbabilisticThreatAwareSystem.filtered().by(probableThreat -> Double.compare(probableThreat.probability(), 0.99) == 0);
+```
+08:33:23.568 [main] INFO com.iluwatar.filterer.App -- ### Filtering ThreatAwareSystem by ThreatType ###
+08:33:23.574 [main] INFO com.iluwatar.filterer.App -- Filtering ThreatAwareSystem. Initial : SimpleThreatAwareSystem(systemId=Sys-1, issues=[SimpleThreat(threatType=ROOTKIT, id=1, name=Simple-Rootkit), SimpleThreat(threatType=TROJAN, id=2, name=Simple-Trojan)])
+08:33:23.576 [main] INFO com.iluwatar.filterer.App -- Filtered by threatType = ROOTKIT : SimpleThreatAwareSystem(systemId=Sys-1, issues=[SimpleThreat(threatType=ROOTKIT, id=1, name=Simple-Rootkit)])
+08:33:23.576 [main] INFO com.iluwatar.filterer.App -- ### Filtering ProbabilisticThreatAwareSystem by probability ###
+08:33:23.581 [main] INFO com.iluwatar.filterer.App -- Filtering ProbabilisticThreatAwareSystem. Initial : SimpleProbabilisticThreatAwareSystem(systemId=Sys-1, threats=[SimpleProbableThreat{probability=0.99} SimpleThreat(threatType=TROJAN, id=1, name=Trojan-ArcBomb), SimpleProbableThreat{probability=0.8} SimpleThreat(threatType=ROOTKIT, id=2, name=Rootkit-Kernel)])
+08:33:23.581 [main] INFO com.iluwatar.filterer.App -- Filtered by probability = 0.99 : SimpleProbabilisticThreatAwareSystem(systemId=Sys-1, threats=[SimpleProbableThreat{probability=0.99} SimpleThreat(threatType=TROJAN, id=1, name=Trojan-ArcBomb)])
 ```
 
 ## Class diagram
@@ -195,12 +228,14 @@ ProbabilisticThreatAwareSystem filtered = simpleProbabilisticThreatAwareSystem.f
 
 ## Applicability
 
-This pattern is useful in scenarios where data needs to be processed in discrete steps, and each step's output is the input for the next step. Common in stream processing, audio/video processing pipelines, or any data processing applications requiring staged transformations.
+* Use when you need to filter a collection of objects dynamically based on different criteria.
+* Suitable for applications where filtering logic changes frequently or needs to be combined in various ways.
+* Ideal for scenarios requiring separation of filtering logic from the core business logic.
 
 ## Tutorials
 
-* [Article about Filterer pattern posted on its author's blog](https://blog.tlinkowski.pl/2018/filterer-pattern/)
-* [Application of Filterer pattern in domain of text analysis](https://www.javacodegeeks.com/2019/02/filterer-pattern-10-steps.html)
+* [Filterer Pattern (Tomasz Linkowski)](https://blog.tlinkowski.pl/2018/filterer-pattern/)
+* [Filterer Pattern in 10 Steps (Java Code Geeks)](https://www.javacodegeeks.com/2019/02/filterer-pattern-10-steps.html)
 
 ## Known Uses
 
@@ -215,15 +250,15 @@ Benefits:
 * Enhances testability, as filters can be tested independently.
 * Promotes loose coupling between the stages of data processing.
 
-## Trade-offs:
+Trade-offs:
 
 * Potential performance overhead from continuous data passing between filters.
 * Complexity can increase with the number of filters, potentially affecting maintainability.
 
 ## Related Patterns
 
-* Chain of Responsibility: Filters can be seen as a specialized form of the Chain of Responsibility, where each filter decides if and how to process the input data and whether to pass it along the chain.
-* Decorator: Similar to Decorator in that both modify behavior dynamically; however, filters focus more on data transformation than on adding responsibilities.
+* [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Filters can be seen as a specialized form of the Chain of Responsibility, where each filter decides if and how to process the input data and whether to pass it along the chain.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar to Decorator in that both modify behavior dynamically; however, filters focus more on data transformation than on adding responsibilities.
 
 ## Credits
 
