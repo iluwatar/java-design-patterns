@@ -3,6 +3,7 @@ title: Factory Kit
 category: Creational
 language: en
 tag:
+    - Abstraction
     - Decoupling
     - Encapsulation
     - Generic
@@ -23,13 +24,15 @@ Define a factory of immutable content with separated builder and factory interfa
 
 Real-world example
 
-> Imagine a magical weapon factory that can create any type of weapon wished for. When the factory is unboxed, the master recites the weapon types needed to prepare it. After that, any of those weapon types can be summoned in an instant.
+> An analogous real-world example of the Factory Kit pattern is a restaurant kitchen where different types of dishes are prepared. Imagine the kitchen has a central station with various ingredients and recipes registered for different dishes. When an order comes in, the chef consults this central station to gather the necessary ingredients and follow the registered recipe to prepare the dish. This setup allows the kitchen to efficiently manage and switch between different dish preparations without the need for each chef to know the specifics of every recipe, promoting flexibility and consistency in the cooking process.
 
 In plain words
 
 > Factory kit is a configurable object builder, a factory to create factories.
 
 **Programmatic Example**
+
+Imagine a magical weapon factory capable of creating any desired weapon. Upon activation, the master recites the names of the weapon types needed to configure it. Once set up, any of these weapon types can be summoned instantly.
 
 Let's first define the simple `Weapon` hierarchy.
 
@@ -80,32 +83,30 @@ public interface WeaponFactory {
 Now, we can show how `WeaponFactory` can be used.
 
 ```java
-var factory = WeaponFactory.factory( builder-> {
-    builder.add(WeaponType.SWORD,Sword::new);
-    builder.add(WeaponType.AXE,Axe::new);
-    builder.add(WeaponType.SPEAR,Spear::new);
-    builder.add(WeaponType.BOW,Bow::new);
-});
-var list = new ArrayList<Weapon>();
-list.add(factory.create(WeaponType.AXE));
-list.add(factory.create(WeaponType.SPEAR));
-list.add(factory.create(WeaponType.SWORD));
-list.add(factory.create(WeaponType.BOW));
-list.stream().forEach(weapon->LOGGER.info("{}",weapon.toString()));
+  public static void main(String[] args) {
+    var factory = WeaponFactory.factory(builder -> {
+        builder.add(WeaponType.SWORD, Sword::new);
+        builder.add(WeaponType.AXE, Axe::new);
+        builder.add(WeaponType.SPEAR, Spear::new);
+        builder.add(WeaponType.BOW, Bow::new);
+    });
+    var list = new ArrayList<Weapon>();
+    list.add(factory.create(WeaponType.AXE));
+    list.add(factory.create(WeaponType.SPEAR));
+    list.add(factory.create(WeaponType.SWORD));
+    list.add(factory.create(WeaponType.BOW));
+    list.forEach(weapon -> LOGGER.info("{}", weapon.toString()));
+}
 ```
 
 Here is the console output when the example is run.
 
 ```
-21:15:49.709 [main] INFO com.iluwatar.factorykit.App - Axe
-21:15:49.713 [main] INFO com.iluwatar.factorykit.App - Spear
-21:15:49.713 [main] INFO com.iluwatar.factorykit.App - Sword
-21:15:49.713 [main] INFO com.iluwatar.factorykit.App - Bow
+06:32:23.026 [main] INFO com.iluwatar.factorykit.App -- Axe
+06:32:23.029 [main] INFO com.iluwatar.factorykit.App -- Spear
+06:32:23.029 [main] INFO com.iluwatar.factorykit.App -- Sword
+06:32:23.029 [main] INFO com.iluwatar.factorykit.App -- Bow
 ```
-
-## Class diagram
-
-![alt text](./etc/factory-kit.png "Factory Kit")
 
 ## Applicability
 
@@ -116,6 +117,10 @@ Use the Factory Kit pattern when
 * The types of objects that the factory can build need to be defined outside the class
 * The builder and creator interfaces need to be separated
 * Game developments and other applications that have user customisation
+
+## Tutorials
+
+* [Factory Kit Pattern (Diego Pacheco)](https://diego-pacheco.medium.com/factory-kit-pattern-66d5ccb0c405)
 
 ## Known Uses
 
@@ -140,10 +145,6 @@ Trade-offs:
 * [Builder](https://java-design-patterns.com/patterns/builder/): Can be used to construct complex objects step-by-step using a similar approach.
 * [Prototype](https://java-design-patterns.com/patterns/prototype/): Objects that are created by cloning a prototypical instance often use a factory to manage it.
 
-## Tutorials
-
-* [Factory kit implementation tutorial](https://diego-pacheco.medium.com/factory-kit-pattern-66d5ccb0c405)
-
 ## Credits
 
-* [Design Pattern Reloaded by Remi Forax](https://www.youtube.com/watch?v=-k2X7guaArU)
+* [Design Pattern Reloaded (Remi Forax)](https://www.youtube.com/watch?v=-k2X7guaArU)
