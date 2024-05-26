@@ -18,13 +18,9 @@ tag:
 
 The Half-Sync/Half-Async pattern aims to decouple asynchronous and synchronous processing in concurrent systems, allowing efficient interaction and data exchange between asynchronous and synchronous components.
 
-## Class diagram
-
-![Half-Sync/Half-Async class diagram](./etc/half-sync-half-async.png)
-
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a busy restaurant kitchen where the process of taking orders is asynchronous, allowing waiters to continue taking orders from customers without waiting for the chefs to cook the previous ones. Meanwhile, the cooking (synchronous part) follows a specific sequence and requires waiting for each dish to be prepared before starting the next. This setup enables the restaurant to handle multiple customer orders efficiently, while ensuring each dish is cooked with the required attention and timing, much like the Half-Sync/Half-Async pattern manages asynchronous tasks and synchronous processing in software systems.
 
@@ -100,7 +96,35 @@ static class ArithmeticSumTask implements AsyncTask<Long> {
 }
 ```
 
-In this example, the `App` class enqueues tasks to the `AsynchronousService`, which processes them asynchronously. The `ArithmeticSumTask` class defines the task to be processed, including pre-processing, the actual processing, and post-processing steps. This is a basic example of the Half-Sync/Half-Async pattern, where tasks are enqueued and processed asynchronously, while the main thread continues to handle other tasks.
+This is the `main` function in the `App` class.
+
+```java
+public static void main(String[] args) {
+    
+    var service = new AsynchronousService(new LinkedBlockingQueue<>());
+
+    service.execute(new ArithmeticSumTask(1000));
+
+    service.execute(new ArithmeticSumTask(500));
+    service.execute(new ArithmeticSumTask(2000));
+    service.execute(new ArithmeticSumTask(1));
+
+    service.close();
+}
+```
+
+In this example, the `App` class enqueues tasks to the `AsynchronousService`, which processes them asynchronously. The `ArithmeticSumTask` class defines the task to be processed, including pre-processing, the actual processing, and post-processing steps. 
+
+Running the code produces:
+
+```
+10:56:33.922 [pool-1-thread-4] INFO com.iluwatar.halfsynchalfasync.App -- 1
+10:56:34.425 [pool-1-thread-2] INFO com.iluwatar.halfsynchalfasync.App -- 125250
+10:56:34.925 [pool-1-thread-1] INFO com.iluwatar.halfsynchalfasync.App -- 500500
+10:56:35.925 [pool-1-thread-3] INFO com.iluwatar.halfsynchalfasync.App -- 2001000
+```
+
+This is a basic example of the Half-Sync/Half-Async pattern, where tasks are enqueued and processed asynchronously, while the main thread continues to handle other tasks.
 
 ## Applicability
 
@@ -109,7 +133,6 @@ Use the Half-Sync/Half-Async pattern in scenarios where:
 * High-performance is required and the system must handle asynchronous operations along with synchronous processing.
 * The system needs to effectively utilize multicore architectures to balance tasks between asynchronous and synchronous processing.
 * Decoupling of asynchronous tasks from synchronous processing is necessary to simplify the design and implementation.
-
 
 ## Known uses
 
@@ -139,6 +162,6 @@ Trade-offs:
 
 ## Credits
 
-* [Douglas C. Schmidt and Charles D. Cranor - Half Sync/Half Async](https://www.dre.vanderbilt.edu/~schmidt/PDF/PLoP-95.pdf)
-* [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
+* [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)
+* [Half-Sync/Half-Async (Douglas C. Schmidt and Charles D. Cranor)](https://www.dre.vanderbilt.edu/~schmidt/PDF/PLoP-95.pdf)
