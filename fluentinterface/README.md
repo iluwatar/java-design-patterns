@@ -17,22 +17,13 @@ tag:
 
 ## Intent
 
-A fluent interface provides an easy-readable, flowing interface, that often mimics a domain specific language. Using this pattern results in code that can be read nearly as human language.
+To provide an easily readable, flowing API by chaining method calls.
 
 ## Explanation
 
-The Fluent Interface pattern is useful when you want to provide an easy readable, flowing API. Those 
-interfaces tend to mimic domain specific languages, so they can nearly be read as human languages.
- 
-A fluent interface can be implemented using any of
- 
- * Method chaining - calling a method returns some object on which further methods can be called.
- * Static factory methods and imports.
- * Named parameters - can be simulated in Java using static factory methods.
+Real-world example
 
-Real world example
-
-> We need to select numbers based on different criteria from the list. It's a great chance to  utilize fluent interface pattern to provide readable easy-to-use developer experience. 
+> Imagine you are at a coffee shop and you want to customize your coffee order. Instead of telling the barista everything at once, you specify each customization step-by-step in a way that flows naturally. For instance, you might say, "I'd like a large coffee, add two shots of espresso, no sugar, and top it with almond milk." This approach is similar to the Fluent Interface design pattern, where you chain together method calls to configure an object in a readable and intuitive manner. Just as you specify each part of your coffee order sequentially, a Fluent Interface allows you to chain method calls to build and configure objects step-by-step in code.
 
 In plain words
 
@@ -43,6 +34,8 @@ Wikipedia says
 > In software engineering, a fluent interface is an object-oriented API whose design relies extensively on method chaining. Its goal is to increase code legibility by creating a  domain-specific language (DSL).
 
 **Programmatic Example**
+
+We need to select numbers based on different criteria from the list. It's a great chance to  utilize fluent interface pattern to provide readable easy-to-use developer experience.
 
 In this example two implementations of a `FluentIterable` interface are given.
 
@@ -87,72 +80,74 @@ public class LazyFluentIterable<E> implements FluentIterable<E> {
 }
 ```
 
-Their usage is demonstrated with a simple number list that is filtered, transformed and collected. The 
-result is printed afterward.
+Their usage is demonstrated with a simple number list that is filtered, transformed and collected. The result is printed afterward.
 
 ```java
-var integerList = List.of(1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68);
+public static void main(String[] args) {
 
-prettyPrint("The initial list contains: ", integerList);
+    var integerList = List.of(1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68);
 
-var firstFiveNegatives = SimpleFluentIterable
-    .fromCopyOf(integerList)
-    .filter(negatives())
-    .first(3)
-    .asList();
-prettyPrint("The first three negative values are: ", firstFiveNegatives);
+    prettyPrint("The initial list contains: ", integerList);
 
-
-var lastTwoPositives = SimpleFluentIterable
-    .fromCopyOf(integerList)
-    .filter(positives())
-    .last(2)
-    .asList();
-prettyPrint("The last two positive values are: ", lastTwoPositives);
-
-SimpleFluentIterable
-    .fromCopyOf(integerList)
-    .filter(number -> number % 2 == 0)
-    .first()
-    .ifPresent(evenNumber -> LOGGER.info("The first even number is: {}", evenNumber));
+    var firstFiveNegatives = SimpleFluentIterable
+            .fromCopyOf(integerList)
+            .filter(negatives())
+            .first(3)
+            .asList();
+    prettyPrint("The first three negative values are: ", firstFiveNegatives);
 
 
-var transformedList = SimpleFluentIterable
-    .fromCopyOf(integerList)
-    .filter(negatives())
-    .map(transformToString())
-    .asList();
-prettyPrint("A string-mapped list of negative numbers contains: ", transformedList);
+    var lastTwoPositives = SimpleFluentIterable
+            .fromCopyOf(integerList)
+            .filter(positives())
+            .last(2)
+            .asList();
+    prettyPrint("The last two positive values are: ", lastTwoPositives);
+
+    SimpleFluentIterable
+            .fromCopyOf(integerList)
+            .filter(number -> number % 2 == 0)
+            .first()
+            .ifPresent(evenNumber -> LOGGER.info("The first even number is: {}", evenNumber));
 
 
-var lastTwoOfFirstFourStringMapped = LazyFluentIterable
-    .from(integerList)
-    .filter(positives())
-    .first(4)
-    .last(2)
-    .map(number -> "String[" + valueOf(number) + "]")
-    .asList();
-prettyPrint("The lazy list contains the last two of the first four positive numbers "
-    + "mapped to Strings: ", lastTwoOfFirstFourStringMapped);
+    var transformedList = SimpleFluentIterable
+            .fromCopyOf(integerList)
+            .filter(negatives())
+            .map(transformToString())
+            .asList();
+    prettyPrint("A string-mapped list of negative numbers contains: ", transformedList);
 
-LazyFluentIterable
-    .from(integerList)
-    .filter(negatives())
-    .first(2)
-    .last()
-    .ifPresent(number -> LOGGER.info("Last amongst first two negatives: {}", number));
+
+    var lastTwoOfFirstFourStringMapped = LazyFluentIterable
+            .from(integerList)
+            .filter(positives())
+            .first(4)
+            .last(2)
+            .map(number -> "String[" + number + "]")
+            .asList();
+    prettyPrint("The lazy list contains the last two of the first four positive numbers "
+            + "mapped to Strings: ", lastTwoOfFirstFourStringMapped);
+
+    LazyFluentIterable
+            .from(integerList)
+            .filter(negatives())
+            .first(2)
+            .last()
+            .ifPresent(number -> LOGGER.info("Last amongst first two negatives: {}", number));
+}
 ```
 
 Program output:
 
-```java
-The initial list contains: 1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68.
-The first three negative values are: -61, -22, -87.
-The last two positive values are: 23, 2.
-The first even number is: 14
-A string-mapped list of negative numbers contains: String[-61], String[-22], String[-87], String[-82], String[-98], String[-68].
-The lazy list contains the last two of the first four positive numbers mapped to Strings: String[18], String[6].
-Last amongst first two negatives: -22    
+```
+08:50:08.260 [main] INFO com.iluwatar.fluentinterface.app.App -- The initial list contains: 1, -61, 14, -22, 18, -87, 6, 64, -82, 26, -98, 97, 45, 23, 2, -68.
+08:50:08.265 [main] INFO com.iluwatar.fluentinterface.app.App -- The first three negative values are: -61, -22, -87.
+08:50:08.265 [main] INFO com.iluwatar.fluentinterface.app.App -- The last two positive values are: 23, 2.
+08:50:08.266 [main] INFO com.iluwatar.fluentinterface.app.App -- The first even number is: 14
+08:50:08.267 [main] INFO com.iluwatar.fluentinterface.app.App -- A string-mapped list of negative numbers contains: String[-61], String[-22], String[-87], String[-82], String[-98], String[-68].
+08:50:08.270 [main] INFO com.iluwatar.fluentinterface.app.App -- The lazy list contains the last two of the first four positive numbers mapped to Strings: String[18], String[6].
+08:50:08.270 [main] INFO com.iluwatar.fluentinterface.app.App -- Last amongst first two negatives: -22
 ```
 
 ## Class diagram
@@ -166,6 +161,10 @@ Use the Fluent Interface pattern when
 * Designing APIs that are heavily used and where readability of client code is of high importance.
 * Building complex objects step-by-step, and there is a need to make the code more intuitive and less error-prone.
 * Enhancing code clarity and reducing the boilerplate code, especially in configurations and object-building scenarios.
+
+## Tutorials
+
+* [An Approach to Internal Domain-Specific Languages in Java (InfoQ)](http://www.infoq.com/articles/internal-dsls-java)
 
 ## Known uses
 
@@ -197,10 +196,8 @@ Trade-offs:
 
 ## Credits
 
-* [Fluent Interface - Martin Fowler](http://www.martinfowler.com/bliki/FluentInterface.html)
-* [Evolutionary architecture and emergent design: Fluent interfaces - Neal Ford](http://www.ibm.com/developerworks/library/j-eaed14/)
-* [Internal DSL](http://www.infoq.com/articles/internal-dsls-java)
-* [Domain Specific Languages](https://www.amazon.com/gp/product/0321712943/ref=as_li_tl?ie=UTF8&tag=javadesignpat-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=0321712943&linkId=ad8351d6f5be7d8b7ecdb650731f85df)
+* [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3UrXkh2)
+* [Domain Specific Languages](https://amzn.to/3R1UYDA)
 * [Effective Java](https://amzn.to/4d4azvL)
 * [Java Design Pattern Essentials](https://amzn.to/44bs6hG)
-* [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3UrXkh2)
+* [Fluent Interface (Martin Fowler)](http://www.martinfowler.com/bliki/FluentInterface.html)
