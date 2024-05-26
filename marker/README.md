@@ -99,10 +99,6 @@ public class App {
 
 In this way, the Marker Interface pattern allows us to associate metadata (in this case, special permissions) with a class in a type-safe manner.
 
-## Class diagram
-
-![Marker Interface](./etc/MarkerDiagram.png "Marker Interface")
-
 ## Applicability
 
 Marker interfaces are applicable in scenarios where you want to impose a special behavior or capability on a class, but don't want to force the class to define specific methods. This pattern is commonly used to indicate that a class conforms to a particular contract without needing to implement methods.
