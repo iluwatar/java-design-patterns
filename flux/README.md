@@ -16,7 +16,7 @@ The Flux design pattern is intended to manage the flow of data in applications, 
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Consider a busy restaurant kitchen as an analogy for the Flux design pattern. In this scenario, the kitchen operates based on customer orders (actions) received and processed through a single point of control (the dispatcher), which could be represented by the head chef. When an order arrives, the head chef assigns specific tasks to various sections of the kitchen (stores), such as the grill, the salad station, or the dessert team. Each section updates the progress of their tasks (state changes) back to the head chef, who ensures that all parts of the order are coordinated and completed in a synchronized manner before the dishes are sent out to the customer (the view).
 
@@ -30,7 +30,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-The Flux design pattern is a pattern that Facebook uses for building client-side web applications. It advocates for a unidirectional data flow. When a user interacts with a view, the view propagates an action through a central dispatcher, to the various stores that hold the application's data and business logic, which updates all the views that are affected.
+The Flux design pattern is used for building client-side web applications. It advocates for a unidirectional data flow. When a user interacts with a view, the view propagates an action through a central dispatcher, to the various stores that hold the application's data and business logic, which updates all the views that are affected.
 
 In the provided code, we can see an example of the Flux pattern in the `App` and `MenuStore` classes.
 
@@ -111,10 +111,9 @@ Trade-offs:
 
 * [Observer](https://java-design-patterns.com/patterns/observer/): Flux's dispatcher component acts similarly to an observer, managing notifications about data changes to various stores.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Typically, the dispatcher in Flux is implemented as a singleton.
-* https://java-design-patterns.com/patterns/mediator/: Flux can be considered a variation of the mediator pattern where the dispatcher mediates the flow of data and ensures components do not update the state directly.
+* [Mediator](https://java-design-patterns.com/patterns/mediator/): Flux can be considered a variation of the mediator pattern where the dispatcher mediates the flow of data and ensures components do not update the state directly.
 
 ## Credits
 
-* [Flux - Application architecture for building user interfaces](http://facebook.github.io/flux/)
 * [Learning React: Modern Patterns for Developing React Apps](https://amzn.to/3Qdn9Pg)
 * [Pro React](https://amzn.to/3xNRttK)
