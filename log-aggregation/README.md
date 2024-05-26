@@ -1,6 +1,6 @@
 ---
 title: Log Aggregation
-category: Architectural
+category: Integration
 language: en
 tag:
     - Data processing
@@ -26,7 +26,7 @@ Log Aggregation is a pattern that centralizes the collection, storage, and analy
 
 Real-world example
 
-> AWS CloudWatch aggregates logs from various AWS services for monitoring and alerting.
+> Consider an e-commerce platform that operates using a microservices architecture. Each service, such as user authentication, product catalog, order processing, and payment, generates its own logs. To effectively monitor and analyze the entire platform's activity, a log aggregation system is implemented. This system collects logs from each microservice and centralizes them into a single location using tools like the ELK Stack (Elasticsearch, Logstash, Kibana). This allows the platform administrators to have a unified view of all logs, enabling real-time monitoring, quick troubleshooting, and comprehensive analysis of user behavior and system performance.
 
 In plain words
 
@@ -38,13 +38,11 @@ Wikipedia says
 
 **Programmatic example**
 
-# Log Aggregation Design Pattern
-
 Log Aggregation is a pattern that centralizes the collection, storage, and analysis of logs from multiple sources to facilitate monitoring, debugging, and operational intelligence. It is particularly useful in distributed systems where logs from various components need to be centralized for better management and analysis.
 
 In this example, we will demonstrate the Log Aggregation pattern using a simple Java application. The application consists of multiple services that generate logs. These logs are collected by a log aggregator and stored in a central log store.
 
-The Central Log Store is responsible for storing the logs collected from various services. In this example, we are using an in-memory store for simplicity.
+The `CentralLogStore` is responsible for storing the logs collected from various services. In this example, we are using an in-memory store for simplicity.
 
 ```java
 public class CentralLogStore {
@@ -61,7 +59,7 @@ public class CentralLogStore {
 }
 ```
 
-The Log Aggregator collects logs from various services and stores them in the Central Log Store. It filters logs based on their log level.
+The `LogAggregator` collects logs from various services and stores them in the `CentralLogStore`. It filters logs based on their log level.
 
 ```java
 public class LogAggregator {
@@ -82,7 +80,7 @@ public class LogAggregator {
 }
 ```
 
-The Log Producer represents a service that generates logs. It sends the logs to the Log Aggregator.
+The `LogProducer` represents a service that generates logs. It sends the logs to the `LogAggregator`.
 
 ```java
 public class LogProducer {
@@ -102,7 +100,7 @@ public class LogProducer {
 }
 ```
 
-The main application creates services, generates logs, aggregates, and finally displays the logs.
+The `main` application creates services, generates logs, aggregates, and finally displays the logs.
 
 ```java
 public class App {
@@ -164,4 +162,4 @@ Trade-offs:
 * [Cloud Native Java: Designing Resilient Systems with Spring Boot, Spring Cloud, and Cloud Foundry](https://amzn.to/44vDTat)
 * [Logging in Action: With Fluentd, Kubernetes and more](https://amzn.to/3JQLzdT)
 * [Release It! Design and Deploy Production-Ready Software](https://amzn.to/3Uul4kF)
-* [Pattern: Log aggregation](https://microservices.io/patterns/observability/application-logging.html)
+* [Pattern: Log aggregation (microservices.io)](https://microservices.io/patterns/observability/application-logging.html)
