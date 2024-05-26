@@ -48,7 +48,6 @@ public class GiantModel {
   private Fatigue fatigue;
   private Nourishment nourishment;
 
-
   @Override
   public String toString() {
     return String.format("The giant looks %s, %s and %s.", health, fatigue, nourishment);
@@ -67,7 +66,7 @@ public class GiantView {
 }
 ```
 
-And `GiantController` class that takes updates from `GiantModel` & sends to `GiantView` for display.
+`GiantController` class takes updates from `GiantModel` and sends to `GiantView` for display.
 
 ```java
 public class GiantController {
@@ -113,10 +112,6 @@ public class GiantController {
 }
 ```
 
-## Class diagram
-
-![Model-View-Controller](./etc/model-view-controller.png "Model-View-Controller")
-
 ## Applicability
 
 * Used in web applications to separate data model, user interface, and user input processing.
@@ -124,8 +119,8 @@ public class GiantController {
 
 ## Tutorials
 
-* [Spring Boot MVC](https://zetcode.com/springboot/model/)
-* [Spring MVC Tutorial](https://www.baeldung.com/spring-mvc-tutorial)
+* [Spring Boot Model (ZetCode)](https://zetcode.com/springboot/model/)
+* [Spring MVC Tutorial (Baeldung)](https://www.baeldung.com/spring-mvc-tutorial)
 
 ## Known Uses
 
@@ -154,10 +149,9 @@ Trade-offs:
 
 ## Credits
 
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
-* [Patterns of Enterprise Application Architecture](https://www.amazon.com/gp/product/0321127420/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321127420&linkCode=as2&tag=javadesignpat-20&linkId=d9f7d37b032ca6e96253562d075fcc4a)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=f27d2644fbe5026ea448791a8ad09c94)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Pro Spring 5: An In-Depth Guide to the Spring Framework and Its Tools](https://amzn.to/3y9Rrwp)
-* [Trygve Reenskaug - Model-view-controller](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
+* [Model-view-controller (Wikipedia)](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
