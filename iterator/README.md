@@ -111,20 +111,100 @@ public interface Iterator<T> {
 }
 ```
 
-In the following example, we iterate through the ring-type items found in the chest. 
+In the following example, we demonstrate different kinds of iterators.
 
 ```java
-var itemIterator = TREASURE_CHEST.iterator(ItemType.RING);
-while (itemIterator.hasNext()) {
-  LOGGER.info(itemIterator.next().toString());
+@Slf4j
+public class App {
+
+    private static final TreasureChest TREASURE_CHEST = new TreasureChest();
+
+    private static void demonstrateTreasureChestIteratorForType(ItemType itemType) {
+        LOGGER.info("------------------------");
+        LOGGER.info("Item Iterator for ItemType " + itemType + ": ");
+        var itemIterator = TREASURE_CHEST.iterator(itemType);
+        while (itemIterator.hasNext()) {
+            LOGGER.info(itemIterator.next().toString());
+        }
+    }
+
+    private static void demonstrateBstIterator() {
+        LOGGER.info("------------------------");
+        LOGGER.info("BST Iterator: ");
+        var root = buildIntegerBst();
+        var bstIterator = new BstIterator<>(root);
+        while (bstIterator.hasNext()) {
+            LOGGER.info("Next node: " + bstIterator.next().getVal());
+        }
+    }
+
+    private static TreeNode<Integer> buildIntegerBst() {
+        var root = new TreeNode<>(8);
+
+        root.insert(3);
+        root.insert(10);
+        root.insert(1);
+        root.insert(6);
+        root.insert(14);
+        root.insert(4);
+        root.insert(7);
+        root.insert(13);
+
+        return root;
+    }
+
+    public static void main(String[] args) {
+        demonstrateTreasureChestIteratorForType(RING);
+        demonstrateTreasureChestIteratorForType(POTION);
+        demonstrateTreasureChestIteratorForType(WEAPON);
+        demonstrateTreasureChestIteratorForType(ANY);
+        demonstrateBstIterator();
+    }
 }
 ```
 
 Program output:
 
-```java
-Ring of shadows
-Ring of armor
+```
+13:36:37.087 [main] INFO com.iluwatar.iterator.App -- ------------------------
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Item Iterator for ItemType RING: 
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Ring of shadows
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Ring of armor
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- ------------------------
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Item Iterator for ItemType POTION: 
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of courage
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of wisdom
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of blood
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of rust
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of healing
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- ------------------------
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Item Iterator for ItemType WEAPON: 
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Sword of silver +1
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Steel halberd
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Dagger of poison
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- ------------------------
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Item Iterator for ItemType ANY: 
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of courage
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Ring of shadows
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of wisdom
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of blood
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Sword of silver +1
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of rust
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of healing
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Ring of armor
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Steel halberd
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Dagger of poison
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- ------------------------
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- BST Iterator: 
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 1
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 3
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 4
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 6
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 7
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 8
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 10
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 13
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 14
 ```
 
 ## Class diagram
@@ -141,7 +221,7 @@ Use the Iterator pattern
 
 ## Tutorials
 
-* [How to Use Iterator?](http://www.tutorialspoint.com/java/java_using_iterator.htm)
+* [Java - How to Use Iterator? (TutorialsPoint)](http://www.tutorialspoint.com/java/java_using_iterator.htm)
 
 ## Known uses
 
