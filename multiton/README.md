@@ -20,7 +20,7 @@ The Multiton pattern is a variation of the Singleton design pattern that manages
 
 Real-world example
 
-> The Nazgûl, also called ringwraiths or the Nine Riders, are Sauron's most terrible servants. By definition, there's always nine of them.           
+> A real-world example of the Multiton pattern is a printer management system in a large office. In this scenario, the office has several printers, each serving a different department. Instead of creating a new printer object every time a printing request is made, the system uses the Multiton pattern to ensure that each department has exactly one printer instance. When a printing request comes from a specific department, the system checks the registry of printer instances and retrieves the existing printer for that department. If no printer exists for that department, it creates one, registers it, and then returns it. This ensures efficient management of printer resources and prevents unnecessary creation of multiple printer instances for the same department.       
 
 In plain words
 
@@ -31,6 +31,8 @@ Wikipedia says
 > In software engineering, the multiton pattern is a design pattern which generalizes the singleton pattern. Whereas the singleton allows only one instance of a class to be created, the multiton pattern allows for the controlled creation of multiple instances, which it manages through the use of a map.
 
 **Programmatic Example**
+
+The Nazgûl, also called ringwraiths or the Nine Riders, are Sauron's most terrible servants. By definition, there's always nine of them.
 
 `Nazgul` is the multiton class.
 
@@ -73,36 +75,57 @@ public final class Nazgul {
 And here's how we access the `Nazgul` instances.
 
 ```java
-LOGGER.info("Printing out eagerly initialized multiton contents");
-LOGGER.info("KHAMUL={}", Nazgul.getInstance(NazgulName.KHAMUL));
-LOGGER.info("MURAZOR={}", Nazgul.getInstance(NazgulName.MURAZOR));
-LOGGER.info("DWAR={}", Nazgul.getInstance(NazgulName.DWAR));
-LOGGER.info("JI_INDUR={}", Nazgul.getInstance(NazgulName.JI_INDUR));
-LOGGER.info("AKHORAHIL={}", Nazgul.getInstance(NazgulName.AKHORAHIL));
-LOGGER.info("HOARMURATH={}", Nazgul.getInstance(NazgulName.HOARMURATH));
-LOGGER.info("ADUNAPHEL={}", Nazgul.getInstance(NazgulName.ADUNAPHEL));
-LOGGER.info("REN={}", Nazgul.getInstance(NazgulName.REN));
-LOGGER.info("UVATHA={}", Nazgul.getInstance(NazgulName.UVATHA));
+  public static void main(String[] args) {
+    // eagerly initialized multiton
+    LOGGER.info("Printing out eagerly initialized multiton contents");
+    LOGGER.info("KHAMUL={}", Nazgul.getInstance(NazgulName.KHAMUL));
+    LOGGER.info("MURAZOR={}", Nazgul.getInstance(NazgulName.MURAZOR));
+    LOGGER.info("DWAR={}", Nazgul.getInstance(NazgulName.DWAR));
+    LOGGER.info("JI_INDUR={}", Nazgul.getInstance(NazgulName.JI_INDUR));
+    LOGGER.info("AKHORAHIL={}", Nazgul.getInstance(NazgulName.AKHORAHIL));
+    LOGGER.info("HOARMURATH={}", Nazgul.getInstance(NazgulName.HOARMURATH));
+    LOGGER.info("ADUNAPHEL={}", Nazgul.getInstance(NazgulName.ADUNAPHEL));
+    LOGGER.info("REN={}", Nazgul.getInstance(NazgulName.REN));
+    LOGGER.info("UVATHA={}", Nazgul.getInstance(NazgulName.UVATHA));
+
+    // enum multiton
+    LOGGER.info("Printing out enum-based multiton contents");
+    LOGGER.info("KHAMUL={}", NazgulEnum.KHAMUL);
+    LOGGER.info("MURAZOR={}", NazgulEnum.MURAZOR);
+    LOGGER.info("DWAR={}", NazgulEnum.DWAR);
+    LOGGER.info("JI_INDUR={}", NazgulEnum.JI_INDUR);
+    LOGGER.info("AKHORAHIL={}", NazgulEnum.AKHORAHIL);
+    LOGGER.info("HOARMURATH={}", NazgulEnum.HOARMURATH);
+    LOGGER.info("ADUNAPHEL={}", NazgulEnum.ADUNAPHEL);
+    LOGGER.info("REN={}", NazgulEnum.REN);
+    LOGGER.info("UVATHA={}", NazgulEnum.UVATHA);
+}
 ```
 
 Program output:
 
 ```
-20:35:07.413 [main] INFO com.iluwatar.multiton.App - Printing out eagerly initialized multiton contents
-20:35:07.417 [main] INFO com.iluwatar.multiton.App - KHAMUL=com.iluwatar.multiton.Nazgul@48cf768c
-20:35:07.419 [main] INFO com.iluwatar.multiton.App - MURAZOR=com.iluwatar.multiton.Nazgul@7960847b
-20:35:07.419 [main] INFO com.iluwatar.multiton.App - DWAR=com.iluwatar.multiton.Nazgul@6a6824be
-20:35:07.419 [main] INFO com.iluwatar.multiton.App - JI_INDUR=com.iluwatar.multiton.Nazgul@5c8da962
-20:35:07.419 [main] INFO com.iluwatar.multiton.App - AKHORAHIL=com.iluwatar.multiton.Nazgul@512ddf17
-20:35:07.419 [main] INFO com.iluwatar.multiton.App - HOARMURATH=com.iluwatar.multiton.Nazgul@2c13da15
-20:35:07.419 [main] INFO com.iluwatar.multiton.App - ADUNAPHEL=com.iluwatar.multiton.Nazgul@77556fd
-20:35:07.419 [main] INFO com.iluwatar.multiton.App - REN=com.iluwatar.multiton.Nazgul@368239c8
-20:35:07.420 [main] INFO com.iluwatar.multiton.App - UVATHA=com.iluwatar.multiton.Nazgul@9e89d68
+15:16:10.597 [main] INFO com.iluwatar.multiton.App -- Printing out eagerly initialized multiton contents
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- KHAMUL=com.iluwatar.multiton.Nazgul@4141d797
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- MURAZOR=com.iluwatar.multiton.Nazgul@38cccef
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- DWAR=com.iluwatar.multiton.Nazgul@5679c6c6
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- JI_INDUR=com.iluwatar.multiton.Nazgul@27ddd392
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- AKHORAHIL=com.iluwatar.multiton.Nazgul@19e1023e
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- HOARMURATH=com.iluwatar.multiton.Nazgul@7cef4e59
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- ADUNAPHEL=com.iluwatar.multiton.Nazgul@64b8f8f4
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- REN=com.iluwatar.multiton.Nazgul@2db0f6b2
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- UVATHA=com.iluwatar.multiton.Nazgul@3cd1f1c8
+15:16:10.600 [main] INFO com.iluwatar.multiton.App -- Printing out enum-based multiton contents
+15:16:10.601 [main] INFO com.iluwatar.multiton.App -- KHAMUL=KHAMUL
+15:16:10.601 [main] INFO com.iluwatar.multiton.App -- MURAZOR=MURAZOR
+15:16:10.601 [main] INFO com.iluwatar.multiton.App -- DWAR=DWAR
+15:16:10.601 [main] INFO com.iluwatar.multiton.App -- JI_INDUR=JI_INDUR
+15:16:10.601 [main] INFO com.iluwatar.multiton.App -- AKHORAHIL=AKHORAHIL
+15:16:10.601 [main] INFO com.iluwatar.multiton.App -- HOARMURATH=HOARMURATH
+15:16:10.601 [main] INFO com.iluwatar.multiton.App -- ADUNAPHEL=ADUNAPHEL
+15:16:10.601 [main] INFO com.iluwatar.multiton.App -- REN=REN
+15:16:10.601 [main] INFO com.iluwatar.multiton.App -- UVATHA=UVATHA
 ```
-
-## Class diagram
-
-![Multiton](./etc/multiton.png "Multiton")
 
 ## Applicability
 
@@ -131,8 +154,8 @@ Trade-offs:
 
 ## Related Patterns
 
-[Singleton](https://java-design-patterns.com/patterns/singleton/): Multiton can be seen as an extension of the Singleton pattern where Singleton allows only one instance of a class, Multiton allows one instance per key.
-[Factory Method](https://java-design-patterns.com/patterns/factory-method/): Multiton uses a method to create or retrieve instances, similar to how a Factory Method controls object creation.
+* [Singleton](https://java-design-patterns.com/patterns/singleton/): Multiton can be seen as an extension of the Singleton pattern where Singleton allows only one instance of a class, Multiton allows one instance per key.
+* [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Multiton uses a method to create or retrieve instances, similar to how a Factory Method controls object creation.
 
 ## Credits
 
