@@ -19,17 +19,25 @@ The Fan-Out/Fan-In pattern aims to improve concurrency and optimize processing t
 
 ## Explanation
 
-The Fan-Out/Fan-In service will take in a list of requests and a consumer. Each request might complete at a different time. Fan-Out/Fan-In service will accept the input params and returns the initial system an ID to acknowledge that the pattern service has received the requests. Now the caller will not wait or expect the result in the same connection.
+Real-world example
 
-Meanwhile, the pattern service will invoke the requests that have come. The requests might complete at different time. These requests will be processed in different instances of the same function in different machines or services. As the
-requests get completed, a callback service every time is called that transforms the result into a common single object format that gets pushed to a consumer. The caller will be at the other end of the consumer receiving the result.
+> A real-world example of the Fan-Out/Fan-In design pattern is a food delivery service like UberEats or DoorDash. When a customer places an order, the service (fan-out) sends out individual tasks to different restaurants to prepare the various items. Each restaurant works independently to prepare its part of the order. Once all restaurants have completed their tasks, the delivery service (fan-in) aggregates the items from different restaurants into a single order, ensuring that everything is delivered together to the customer. This parallel processing improves efficiency and ensures timely delivery.
+
+In plain words
+
+> The Fan-Out/Fan-In pattern distributes tasks across multiple concurrent processes or threads and then aggregates the results.
+
+Wikipedia says
+
+> In message-oriented middleware, the fan-out pattern models information exchange by delivering messages to one or multiple destinations in parallel, without waiting for responses. This allows a process to distribute tasks to various receivers simultaneously.
+>
+> The fan-in concept, on the other hand, typically refers to the aggregation of multiple inputs. In digital electronics, it describes the number of inputs a logic gate can handle. Combining these concepts, the Fan-Out/Fan-In pattern in software engineering involves distributing tasks (fan-out) and then aggregating the results (fan-in).
 
 **Programmatic Example**
 
-The implementation provided has a list of numbers and end goal is to square the numbers and add them to a single result. `FanOutFanIn` class receives the list of numbers in the form of list of `SquareNumberRequest` and a `Consumer` instance
-that collects the results as the requests get over. `SquareNumberRequest` will square the number with a random delay to give the impression of a long-running process that can complete at any time. `Consumer` instance will add the results from different `SquareNumberRequest` that will come random time instances.
+The provided implementation involves a list of numbers with the objective to square them and aggregate the results. The `FanOutFanIn` class receives the list of numbers as `SquareNumberRequest` objects and a `Consumer` instance that collects the squared results as the requests complete. Each `SquareNumberRequest` squares its number with a random delay, simulating a long-running process that finishes at unpredictable times. The `Consumer` instance gathers the results from the various `SquareNumberRequest` objects as they become available at different times.
 
-Let's look at `FanOutFanIn` class that fans out the requests in async processes.
+Here's the `FanOutFanIn` class that asynchronously distributes the requests:
 
 ```java
 public class FanOutFanIn {
@@ -94,6 +102,34 @@ public class SquareNumberRequest {
 }
 ```
 
+Here is the App class with main method to drive the example.
+
+```java
+public static void main(String[] args) {
+    final List<Long> numbers = Arrays.asList(1L, 3L, 4L, 7L, 8L);
+
+    LOGGER.info("Numbers to be squared and get sum --> {}", numbers);
+
+    final List<SquareNumberRequest> requests =
+        numbers.stream().map(SquareNumberRequest::new).toList();
+
+    var consumer = new Consumer(0L);
+
+    // Pass the request and the consumer to fanOutFanIn or sometimes referred as Orchestrator
+    // function
+    final Long sumOfSquaredNumbers = FanOutFanIn.fanOutFanIn(requests, consumer);
+
+    LOGGER.info("Sum of all squared numbers --> {}", sumOfSquaredNumbers);
+}
+```
+
+Running the example produces the following console output.
+
+```
+06:52:04.622 [main] INFO com.iluwatar.fanout.fanin.App -- Numbers to be squared and get sum --> [1, 3, 4, 7, 8]
+06:52:11.465 [main] INFO com.iluwatar.fanout.fanin.App -- Sum of all squared numbers --> 139
+```
+
 ## Class diagram
 
 ![Fan-Out/Fan-In](./etc/fanout-fanin.png)
@@ -101,6 +137,12 @@ public class SquareNumberRequest {
 ## Applicability
 
 Appropriate in scenarios where tasks can be broken down and executed in parallel, especially suitable for data processing, batch processing, and situations requiring aggregation of results from various sources.
+
+## Tutorials
+
+* [Fan-out/fan-in scenario in Durable Functions - Cloud backup example (Microsoft)](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-cloud-backup)
+* [Understanding Azure Durable Functions - Part 8: The Fan Out/Fan In Pattern (Don't Code Tired)](http://dontcodetired.com/blog/post/Understanding-Azure-Durable-Functions-Part-8-The-Fan-OutFan-In-Pattern)
+* [Understanding the Fan-Out/Fan-In API Integration Pattern (DZone)](https://dzone.com/articles/understanding-the-fan-out-fan-in-api-integration-p)
 
 ## Known Uses
 
@@ -127,15 +169,7 @@ Trade-offs:
 * [Command](https://java-design-patterns.com/patterns/command/): Command Pattern facilitates the decoupling of the sender and the receiver, akin to how Fan-Out/Fan-In decouples task submission from task processing.
 * [Producer-Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Works synergistically with Fan-Out/Fan-In by organizing task execution where producers distribute tasks that are processed by multiple consumers, and results are then combined, enhancing throughput and efficiency in data processing.
 
-## Related patterns
-
-* [Aggregator Microservices](https://java-design-patterns.com/patterns/aggregator-microservices/)
-* [API Gateway](https://java-design-patterns.com/patterns/api-gateway/)
-
 ## Credits
 
-* [Understanding Azure Durable Functions - Part 8: The Fan Out/Fan In Pattern](http://dontcodetired.com/blog/post/Understanding-Azure-Durable-Functions-Part-8-The-Fan-OutFan-In-Pattern)
-* [Fan-out/fan-in scenario in Durable Functions - Cloud backup example](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-cloud-backup)
-* [Understanding the Fan-Out/Fan-In API Integration Pattern](https://dzone.com/articles/understanding-the-fan-out-fan-in-api-integration-p)
 * [Java Concurrency in Practice](https://amzn.to/3vXytsb)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/49QQcPD)
