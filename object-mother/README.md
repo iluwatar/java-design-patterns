@@ -121,10 +121,6 @@ class RoyaltyObjectMotherTest {
 
 In this way, the Object Mother pattern simplifies the creation of objects for testing, making the tests easier to read and maintain.
 
-## Class diagram
-
-![Object Mother](./etc/object-mother.png "Object Mother")
-
 ## Applicability
 
 Use the Object Mother pattern when
@@ -135,9 +131,9 @@ Use the Object Mother pattern when
 
 ## Tutorials
 
-* [Answer by David Brown](http://stackoverflow.com/questions/923319/what-is-an-objectmother) to the stackoverflow question: [What is an ObjectMother?](http://stackoverflow.com/questions/923319/what-is-an-objectmother)
-* [c2wiki - Object Mother](http://c2.com/cgi/wiki?ObjectMother)
-* [Nat Pryce - Test Data Builders: an alternative to the Object Mother pattern](http://www.natpryce.com/articles/000714.html)
+* [What is an ObjectMother? (Stack Overflow)](http://stackoverflow.com/questions/923319/what-is-an-objectmother)
+* [Object Mother (c2wiki)](http://c2.com/cgi/wiki?ObjectMother)
+* [Test Data Builders: an alternative to the Object Mother pattern (Nat Pryce)](http://www.natpryce.com/articles/000714.html)
 
 ## Known Uses
 
@@ -160,10 +156,10 @@ Trade-offs:
 
 ## Related Patterns
 
-[Builder](https://java-design-patterns.com/patterns/builder/): Both patterns deal with object creation. The Object Mother is often simpler and used specifically in a testing context, whereas the Builder Pattern is more general-purpose.
-[Factory Method](https://java-design-patterns.com/patterns/factory-method/): Similar in the sense of centralizing object creation logic. The Object Mother is specifically aimed at tests, while Factory Method is used more broadly in application code.
+* [Builder](https://java-design-patterns.com/patterns/builder/): Both patterns deal with object creation. The Object Mother is often simpler and used specifically in a testing context, whereas the Builder Pattern is more general-purpose.
+* [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Similar in the sense of centralizing object creation logic. The Object Mother is specifically aimed at tests, while Factory Method is used more broadly in application code.
 
 ## Credits
 
-* [xUnit Test Patterns: Refactoring Test Code](https://amzn.to/4dHGDpm)
 * [Growing Object-Oriented Software, Guided by Tests](https://amzn.to/4dGfIuk)
+* [xUnit Test Patterns: Refactoring Test Code](https://amzn.to/4dHGDpm)
