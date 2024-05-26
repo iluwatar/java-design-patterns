@@ -20,7 +20,7 @@ The Layered Architecture pattern helps organize applications into groups of subt
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine constructing a modern high-rise building, which is analogous to using the Layered Architecture pattern in software development. Just as a building is divided into layers such as the foundation, structural floors, residential floors, and the rooftop, each with specific functions and built using different materials and techniques, a software application can be similarly structured.
 > 
@@ -124,6 +124,6 @@ Trade-offs
 
 ## Credits
 
-* [Pattern-Oriented Software Architecture Volume 1: A System of Patterns](https://amzn.to/3xZ1ELU)
 * [Clean Architecture: A Craftsman's Guide to Software Structure and Design](https://amzn.to/3UoKkaR)
 * [Java Design Pattern Essentials](https://amzn.to/4drLhHU)
+* [Pattern-Oriented Software Architecture Volume 1: A System of Patterns](https://amzn.to/3xZ1ELU)
