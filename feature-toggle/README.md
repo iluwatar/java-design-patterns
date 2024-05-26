@@ -16,13 +16,13 @@ tag:
 
 ## Intent
 
-A technique used in software development to control and manage the rollout of specific features or functionality in a program without changing the code. It can act as an on/off switch for features depending on the status or properties of other values in the program. This is similar to A/B testing, where features are rolled out based on properties such as location or device. Implementing this design pattern can increase code complexity, and it is important to remember to remove redundant code if this design pattern is being used to phase out a system or feature.
+To enable or disable features in a software application dynamically without deploying new code.
 
 ## Explanation
 
 Real-world Example
 
-> This design pattern works really well in any sort of development, in particular mobile development. Say you want to introduce a feature such as dark mode, but you want to ensure that the feature works correctly and don't want to roll out the feature to everyone immediately. You write in the code, and have it switched off as default. From here, it is easy to turn on the code for specific users based on selection criteria, or randomly. This will also allow the feature to be turned off easily without any drastic changes to the code, or any need for redeployment or updates.
+> A real-world example of the Feature Toggle pattern is Netflix's rollout of new user interface features. When Netflix decides to introduce a new feature, such as a redesigned homepage layout or a new recommendation algorithm, they use feature toggles to control the release. Initially, the new feature is toggled off for most users, allowing only a small group of users (e.g., beta testers) to experience and provide feedback on the feature. Based on the feedback and performance metrics, Netflix can quickly toggle the feature on for a broader audience or turn it off if issues are detected, all without redeploying the application. This approach allows Netflix to continuously innovate and improve their platform while minimizing risk and ensuring a stable user experience.
 
 In plain words
 
@@ -32,36 +32,74 @@ Wikipedia says
 
 > A feature toggle in software development provides an alternative to maintaining multiple feature branches in source code. A condition within the code enables or disables a feature during runtime. In agile settings the toggle is used in production, to switch on the feature on demand, for some or all the users.
 
-## Programmatic Example
+**Programmatic Example**
 
-This example shows Java code that allows a feature to show when it is enabled by the developer, and when a user is a Premium member of the application. This is useful for subscription locked features.
+This Java code example demonstrates how to display a feature when it is enabled by the developer and the user is a Premium member of the application. This approach is useful for managing subscription-locked features.
+
+The Feature Toggle pattern enables the seamless activation or deactivation of entire code executions. This allows features to be managed dynamically based on user information or configuration properties.
+
+Key Components:
+
+1. `PropertiesFeatureToggleVersion`: This class uses properties to control the feature toggle. The properties determine whether the enhanced version of the welcome message, which is personalized, is turned on or off.
+
+2. `TieredFeatureToggleVersion`: This class uses user information to control the feature toggle. The feature of the personalized welcome message is dependent on the user group the user is in.
+
+3. `User`: This class represents the user of the application.
+
+4. `UserGroup`: This class represents the group the user belongs to.
 
 ```java
-public class FeatureToggleExample {
-    // Bool for feature enabled or disabled
-    private static boolean isNewFeatureEnabled = false;
+public static void main(String[] args) {
 
-    public static void main(String[] args) {
-        boolean userIsPremium = true; // Example: Check if the user is a premium user
+    // Demonstrates the PropertiesFeatureToggleVersion running with properties
+    // that set the feature toggle to enabled.
 
-        // Check if the new feature should be enabled for the user
-        if (userIsPremium && isNewFeatureEnabled) {
-            // User is premium and the new feature is enabled
-            showNewFeature();
-        }
-    }
+    final var properties = new Properties();
+    properties.put("enhancedWelcome", true);
+    var service = new PropertiesFeatureToggleVersion(properties);
+    final var welcomeMessage = service.getWelcomeMessage(new User("Jamie No Code"));
+    LOGGER.info(welcomeMessage);
 
-    private static void showNewFeature() {
-        // If user is allowed to see locked feature, this is where the code would go
-    }
+    // Demonstrates the PropertiesFeatureToggleVersion running with properties
+    // that set the feature toggle to disabled. Note the difference in the printed welcome message
+    // where the username is not included.
+
+    final var turnedOff = new Properties();
+    turnedOff.put("enhancedWelcome", false);
+    var turnedOffService = new PropertiesFeatureToggleVersion(turnedOff);
+    final var welcomeMessageturnedOff =
+            turnedOffService.getWelcomeMessage(new User("Jamie No Code"));
+    LOGGER.info(welcomeMessageturnedOff);
+
+    // Demonstrates the TieredFeatureToggleVersion setup with
+    // two users: one on the free tier and the other on the paid tier. When the
+    // Service#getWelcomeMessage(User) method is called with the paid user, the welcome
+    // message includes their username. In contrast, calling the same service with the free tier user results
+    // in a more generic welcome message without the username.
+
+    var service2 = new TieredFeatureToggleVersion();
+
+    final var paidUser = new User("Jamie Coder");
+    final var freeUser = new User("Alan Defect");
+
+    UserGroup.addUserToPaidGroup(paidUser);
+    UserGroup.addUserToFreeGroup(freeUser);
+
+    final var welcomeMessagePaidUser = service2.getWelcomeMessage(paidUser);
+    final var welcomeMessageFreeUser = service2.getWelcomeMessage(freeUser);
+    LOGGER.info(welcomeMessageFreeUser);
+    LOGGER.info(welcomeMessagePaidUser);
 }
 ```
 
-The code shows how simple it is to implement this design pattern, and the criteria can be further refined or broadened should the developers choose to do so.
+Running the example produces the following output.
 
-## Class diagram
-
-![Feature Toggle](./etc/feature-toggle.png "Feature Toggle")
+```
+07:31:50.802 [main] INFO com.iluwatar.featuretoggle.App -- Welcome Jamie No Code. You're using the enhanced welcome message.
+07:31:50.804 [main] INFO com.iluwatar.featuretoggle.App -- Welcome to the application.
+07:31:50.804 [main] INFO com.iluwatar.featuretoggle.App -- I suppose you can use this software.
+07:31:50.804 [main] INFO com.iluwatar.featuretoggle.App -- You're amazing Jamie Coder. Thanks for paying for this awesome software.
+```
 
 ## Applicability
 
@@ -102,6 +140,6 @@ Trade-offs:
 
 ## Credits
 
-* [Feature Toggle - Martin Fowler](http://martinfowler.com/bliki/FeatureToggle.html)
 * [Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation](https://amzn.to/4488ESM)
 * [Release It! Design and Deploy Production-Ready Software](https://amzn.to/3UoeJY4)
+* [Feature Toggle (Martin Fowler)](http://martinfowler.com/bliki/FeatureToggle.html)
