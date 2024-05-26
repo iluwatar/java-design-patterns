@@ -117,7 +117,7 @@ public class UserView {
 }
 ```
 
-In this example, the controllers (SignupController and UserController) are the Page Controllers. They handle the HTTP requests for their respective pages and determine which model and view to use. The models (SignupModel and UserModel) hold the data for the page, and the views (SignupView and UserView) determine how that data is presented. This separation of concerns makes the code easier to manage and maintain.
+In this example, the controllers (`SignupController` and `UserController`) are the Page Controllers. They handle the HTTP requests for their respective pages and determine which model and view to use. The models (`SignupModel` and `UserModel`) hold the data for the page, and the views (`SignupView` and `UserView`) determine how that data is presented. This separation of concerns makes the code easier to manage and maintain.
 
 ## Class diagram
 
@@ -157,6 +157,6 @@ Trade-offs:
 ## Credits
 
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
-* [Page Controller - Martin Fowler](https://www.martinfowler.com/eaaCatalog/pageController.html)
-* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Page Controller (Martin Fowler)](https://www.martinfowler.com/eaaCatalog/pageController.html)
