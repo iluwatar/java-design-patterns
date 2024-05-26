@@ -3,8 +3,11 @@ title: Factory
 category: Creational
 language: en
 tag:
+    - Abstraction
+    - Encapsulation
     - Gang of Four
     - Instantiation
+    - Polymorphism
 ---
 
 ## Intent
@@ -15,13 +18,15 @@ The Factory design pattern is intended to define an interface for creating an ob
 
 Real-world example
 
-> Imagine an alchemist who is about to manufacture coins. The alchemist must be able to create both gold and copper coins and switching between them must be possible without modifying the existing source code. The factory pattern makes it possible by providing a static construction method which can be called with relevant parameters.
+> Imagine a scenario in a bakery where different types of cakes are made. The bakery has a "CakeFactory" where customers can order cakes. The CakeFactory can produce various types of cakes such as chocolate cake, vanilla cake, and strawberry cake. Instead of the bakery staff manually selecting ingredients and following specific recipes for each type of cake, they use the CakeFactory to handle the process. The customer simply requests a cake type, and the CakeFactory determines the appropriate ingredients and recipe to use, then creates the specific type of cake. This setup allows the bakery to easily add new cake types without modifying the core cake-making process, promoting flexibility and scalability.
 
 Wikipedia says
 
 > Factory is an object for creating other objects – formally a factory is a function or method that returns objects of a varying prototype or class.
 
 **Programmatic Example**
+
+Imagine an alchemist who is about to manufacture coins. The alchemist must be able to create both gold and copper coins and switching between them must be possible without modifying the existing source code. The factory pattern makes it possible by providing a static construction method which can be called with relevant parameters.
 
 We have an interface `Coin` and two implementations `GoldCoin` and `CopperCoin`.
 
@@ -76,27 +81,25 @@ public class CoinFactory {
 }
 ```
 
-Now on the client code we can create different types of coins using the factory class.
+Now, in the client code, we can generate various types of coins using the factory class.
 
 ```java
-LOGGER.info("The alchemist begins his work.");
-var coin1 = CoinFactory.getCoin(CoinType.COPPER);
-var coin2 = CoinFactory.getCoin(CoinType.GOLD);
-LOGGER.info(coin1.getDescription());
-LOGGER.info(coin2.getDescription());
+public static void main(String[] args) {
+    LOGGER.info("The alchemist begins his work.");
+    var coin1 = CoinFactory.getCoin(CoinType.COPPER);
+    var coin2 = CoinFactory.getCoin(CoinType.GOLD);
+    LOGGER.info(coin1.getDescription());
+    LOGGER.info(coin2.getDescription());
+}
 ```
 
 Program output:
 
-```java
-The alchemist begins his work.
-This is a copper coin.
-This is a gold coin.
 ```
-
-## Class Diagram
-
-![alt text](./etc/factory.urm.png "Factory pattern class diagram")
+06:19:53.530 [main] INFO com.iluwatar.factory.App -- The alchemist begins his work.
+06:19:53.533 [main] INFO com.iluwatar.factory.App -- This is a copper coin.
+06:19:53.533 [main] INFO com.iluwatar.factory.App -- This is a gold coin.
+```
 
 ## Applicability
 
@@ -137,4 +140,5 @@ Trade-offs:
 ## Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0Rk5y)
+* [Effective Java](https://amzn.to/4cGk2Jz)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/3UpTLrG)
