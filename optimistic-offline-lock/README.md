@@ -21,7 +21,7 @@ To manage concurrent data modifications without using long-duration database loc
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a library with multiple users checking out and returning books. Instead of locking each book while a user is browsing or deciding whether to borrow it, the library uses an optimistic approach. Each book has a timestamp or version number. When a user decides to borrow a book, they check the book's version number. If it matches the current version, the transaction proceeds. If another user has borrowed the book in the meantime, causing a version mismatch, the first user is informed to retry. This approach allows multiple users to browse and attempt to borrow books concurrently, improving the library's efficiency and user satisfaction without locking the entire catalog.
 
@@ -37,7 +37,7 @@ Wikipedia says
 
 The Optimistic Offline Lock pattern is a concurrency control method that allows multiple transactions to proceed without locks, resolving conflicts only when they occur. This pattern is useful in scenarios where the likelihood of conflicting transactions is low and long-duration locks could hamper performance and scalability.
 
-First, we have a Card entity that represents a bank card with a sum of money and a version number.
+First, we have a `Card` entity that represents a bank card with a sum of money and a version number.
 
 ```java
 
@@ -46,29 +46,17 @@ First, we have a Card entity that represents a bank card with a sum of money and
 @AllArgsConstructor
 public class Card {
 
-    /**
-     * Primary key.
-     */
     private long id;
 
-    /**
-     * Foreign key points to card's owner.
-     */
     private long personId;
 
-    /**
-     * Sum of money. 
-     */
     private float sum;
 
-    /**
-     * Current version of object;
-     */
     private int version;
 }
 ```
 
-The CardUpdateService class implements the UpdateService interface and provides a method doUpdate to update the Card entity. The doUpdate method first retrieves the current version of the Card entity. It then performs some business logic to update the sum of money in the Card. Before updating the Card in the database, it checks if the version of the Card in the database is the same as the initial version it retrieved. If the versions match, it proceeds with the update. If the versions do not match, it means that another transaction has updated the Card in the meantime, and it throws an ApplicationException.
+The `CardUpdateService` class implements the `UpdateService` interface and provides a method `doUpdate` to update the Card entity. The `doUpdate` method first retrieves the current version of the `Card` entity. It then performs some business logic to update the sum of money in the `Card`. Before updating the `Card` in the database, it checks if the version of the `Card` in the database is the same as the initial version it retrieved. If the versions match, it proceeds with the update. If the versions do not match, it means that another transaction has updated the `Card` in the meantime, and it throws an `ApplicationException`.
 
 ```java
 
@@ -108,14 +96,8 @@ In this code snippet, the doUpdate method in the CardUpdateService class is a pr
 
 ## Tutorials
 
-* [Offline Concurrency Control](https://www.baeldung.com/cs/offline-concurrency-control)
-* [Optimistic lock in JPA](https://www.baeldung.com/jpa-optimistic-locking)
-
-## Known Uses
-
-* Web-based applications with high-read, low-write access patterns.
-* Distributed systems where locking resources for long durations is not feasible.
-* Java enterprise applications using JPA or Hibernate for data persistence.
+* [Offline Concurrency Control (Baeldung)](https://www.baeldung.com/cs/offline-concurrency-control)
+* [Optimistic Locking in JPA (Baeldung)](https://www.baeldung.com/jpa-optimistic-locking)
 
 ## Known uses
 
@@ -145,9 +127,7 @@ Trade-offs:
 
 ## Credits
 
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
-* [Optimistic Offline Lock - Martin Fowler](https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html)
-* [Advantages and disadvantages of Optimistic Offline Locking](https://www.linkedin.com/advice/0/what-benefits-drawbacks-using-optimistic)
-* [Comparison of optimistic and pessimistic locks](https://www.linkedin.com/advice/0/what-advantages-disadvantages-using-optimistic)
+* [Optimistic Offline Lock (Martin Fowler)](https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html)
