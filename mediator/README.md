@@ -124,6 +124,8 @@ public class PartyImpl implements Party {
 Here's a demo showing the mediator pattern in action.
 
 ```java
+public static void main(String[] args) {
+
     // create party and members
     Party party = new PartyImpl();
     var hobbit = new Hobbit();
@@ -143,36 +145,37 @@ Here's a demo showing the mediator pattern in action.
     wizard.act(Action.TALE);
     rogue.act(Action.GOLD);
     hunter.act(Action.HUNT);
+}
 ```
 
 Here's the console output from running the example.
 
 ```
-Hobbit joins the party
-Wizard joins the party
-Rogue joins the party
-Hunter joins the party
-Hobbit spotted enemies
-Wizard runs for cover
-Rogue runs for cover
-Hunter runs for cover
-Wizard tells a tale
-Hobbit comes to listen
-Rogue comes to listen
-Hunter comes to listen
-Rogue found gold
-Hobbit takes his share of the gold
-Wizard takes his share of the gold
-Hunter takes his share of the gold
-Hunter hunted a rabbit
-Hobbit arrives for dinner
-Wizard arrives for dinner
-Rogue arrives for dinner
+14:05:15.081 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Hobbit joins the party
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Wizard joins the party
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Rogue joins the party
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Hunter joins the party
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Hobbit spotted enemies
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Wizard runs for cover
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Rogue runs for cover
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Hunter runs for cover
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Wizard tells a tale
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Hobbit comes to listen
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Rogue comes to listen
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Hunter comes to listen
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Rogue found gold
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Hobbit takes his share of the gold
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Wizard takes his share of the gold
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Hunter takes his share of the gold
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Hunter hunted a rabbit
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Hobbit arrives for dinner
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Wizard arrives for dinner
+14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Rogue arrives for dinner
 ```
 
 ## Class diagram
 
-![alt text](./etc/mediator_1.png "Mediator")
+![Mediator](./etc/mediator_1.png "Mediator")
 
 ## Applicability
 
