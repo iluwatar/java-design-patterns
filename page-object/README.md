@@ -44,10 +44,6 @@ The Page Object design pattern is a popular design pattern in test automation. I
 Let's consider a simple programmatic example of the Page Object pattern for a login page using Selenium in Java:
 
 ```java
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 public class LoginPage {
     private final WebDriver driver;
 
@@ -84,10 +80,6 @@ public class LoginPage {
 In this example, the `LoginPage` class represents the login page of a web application. It encapsulates the web elements on the page and provides methods to interact with those elements. The actual Selenium WebDriver instance is passed to the constructor, allowing the methods to perform actions on the web page.
 
 This Page Object can be used in test scripts to interact with the login page without exposing the details of the page structure in the test code, promoting maintainability and reusability.
-
-## Class diagram
-
-![Page Object](./etc/page-object.png "Page Object")
 
 ## Applicability
 
@@ -129,5 +121,5 @@ Trade-offs:
 * [Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation](https://amzn.to/4bjhTSK)
 * [Selenium Design Patterns and Best Practices](https://amzn.to/4aofYv8)
 * [Selenium Testing Tools Cookbook](https://amzn.to/3K1QxEN)
-* [Page Object - Martin Fowler](http://martinfowler.com/bliki/PageObject.html)
-* [Page Objects - Selenium](https://github.com/SeleniumHQ/selenium/wiki/PageObjects)
+* [Page Object (Martin Fowler)](http://martinfowler.com/bliki/PageObject.html)
+* [Page Objects (Selenium)](https://github.com/SeleniumHQ/selenium/wiki/PageObjects)
