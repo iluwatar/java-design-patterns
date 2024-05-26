@@ -12,7 +12,7 @@ tag:
 
 ## Also known as
 
-Virtual Constructor
+* Virtual Constructor
 
 ## Intent
 
@@ -22,7 +22,9 @@ Define an interface for creating an object, but let subclasses decide which clas
 
 Real-world example
 
-> Blacksmith manufactures weapons. Elves require Elvish weapons and orcs require Orcish weapons. Depending on the customer at hand the right type of blacksmith is summoned.
+> Imagine a logistics company that needs to deliver different types of packages: standard, express, and oversized. The company has a central system that processes delivery requests but does not know the specifics of how each package type is handled. To manage this, the company uses a Factory Method pattern.
+>
+> In this setup, there is a central `DeliveryRequest` class with a method `createPackage()`. This method is overridden in subclasses like `StandardDelivery`, `ExpressDelivery`, and `OversizedDelivery`, each of which knows how to create and manage the respective package type. This way, the central system can handle delivery requests without needing to know the details of how each package type is created and processed, allowing for flexibility and easier maintenance.
 
 In plain words
 
@@ -34,7 +36,9 @@ Wikipedia says
 
 **Programmatic Example**
 
-Taking our blacksmith example above. First of all, we have a `Blacksmith` interface and some implementations for it:
+Blacksmith manufactures weapons. Elves require Elvish weapons and orcs require Orcish weapons. Depending on the customer at hand the right type of blacksmith is summoned.
+
+First of all, we have a `Blacksmith` interface and some implementations for it:
 
 ```java
 public interface Blacksmith {
@@ -57,30 +61,33 @@ public class OrcBlacksmith implements Blacksmith {
 When the customers come, the correct type of blacksmith is summoned and requested weapons are manufactured:
 
 ```java
-Blacksmith blacksmith = new OrcBlacksmith();
-Weapon weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
-LOGGER.info("{} manufactured {}", blacksmith, weapon);
-weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
-LOGGER.info("{} manufactured {}", blacksmith, weapon);
+public static void main(String[] args) {
 
-blacksmith = new ElfBlacksmith();
-weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
-LOGGER.info("{} manufactured {}", blacksmith, weapon);
-weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
-LOGGER.info("{} manufactured {}", blacksmith, weapon);
+    Blacksmith blacksmith = new OrcBlacksmith();
+    Weapon weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
+    LOGGER.info(MANUFACTURED, blacksmith, weapon);
+    weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
+    LOGGER.info(MANUFACTURED, blacksmith, weapon);
+
+    blacksmith = new ElfBlacksmith();
+    weapon = blacksmith.manufactureWeapon(WeaponType.SPEAR);
+    LOGGER.info(MANUFACTURED, blacksmith, weapon);
+    weapon = blacksmith.manufactureWeapon(WeaponType.AXE);
+    LOGGER.info(MANUFACTURED, blacksmith, weapon);
+}
 ```
 
 Program output:
 ```
-The orc blacksmith manufactured an orcish spear
-The orc blacksmith manufactured an orcish axe
-The elf blacksmith manufactured an elven spear
-The elf blacksmith manufactured an elven axe
+06:40:07.269 [main] INFO com.iluwatar.factory.method.App -- The orc blacksmith manufactured an orcish spear
+06:40:07.271 [main] INFO com.iluwatar.factory.method.App -- The orc blacksmith manufactured an orcish axe
+06:40:07.272 [main] INFO com.iluwatar.factory.method.App -- The elf blacksmith manufactured an elven spear
+06:40:07.272 [main] INFO com.iluwatar.factory.method.App -- The elf blacksmith manufactured an elven axe
 ```
 
 ## Class diagram
 
-![alt text](./etc/factory-method.urm.png "Factory Method pattern class diagram")
+![Factory Method](./etc/factory-method.urm.png "Factory Method pattern class diagram")
 
 ## Applicability
 
