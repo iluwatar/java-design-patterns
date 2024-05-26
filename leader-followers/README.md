@@ -169,5 +169,5 @@ Trade-offs:
 
 ## Credits
 
-* [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
+* [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)

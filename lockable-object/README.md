@@ -21,7 +21,7 @@ The Lockable Object pattern aims to control access to a shared resource in a mul
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a shared printer in a busy office as an analogous real-world example of the Lockable Object design pattern. Multiple employees need to print documents throughout the day, but the printer can only handle one print job at a time. To manage this, there's a locking system in place—much like a lockable object in programming—that ensures when one person is printing, others must wait their turn. This prevents print jobs from overlapping or interfering with each other, ensuring that each document is printed correctly and in the order it was sent, mirroring the concept of thread synchronization and resource locking in software development.
 
@@ -38,8 +38,6 @@ Wikipedia says
 The Lockable Object pattern is a concurrency pattern that allows only one thread to access a shared resource at a time. Instead of using the `synchronized` keyword on the methods to be synchronized, the object which implements the Lockable interface handles the request.
 
 In this example, we have a `SwordOfAragorn` object that implements the `Lockable` interface. Multiple `Creature` objects, represented by `Elf`, `Orc`, and `Human` classes, are trying to acquire the sword. Each `Creature` is wrapped in a `Feind` object that implements `Runnable`, allowing each creature to attempt to acquire the sword in a separate thread.
-
-## Code Snippets
 
 Here's the `Lockable` interface:
 
@@ -154,8 +152,8 @@ Trade-offs:
 
 ## Related Patterns
 
-[Monitor Object](https://java-design-patterns.com/patterns/monitor/): Both patterns manage access to shared resources; Monitor Object combines synchronization and encapsulation of the condition variable.
-[Read/Write Lock](https://java-design-patterns.com/patterns/reader-writer-lock/): Specialization of Lockable Object for scenarios where read operations outnumber write operations.
+* [Monitor Object](https://java-design-patterns.com/patterns/monitor/): Both patterns manage access to shared resources; Monitor Object combines synchronization and encapsulation of the condition variable.
+* [Read/Write Lock](https://java-design-patterns.com/patterns/reader-writer-lock/): Specialization of Lockable Object for scenarios where read operations outnumber write operations.
 
 ## Credits
 
