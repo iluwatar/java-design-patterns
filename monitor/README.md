@@ -115,10 +115,6 @@ public class Main {
 
 In this example, the `Bank` class is the monitor, and the `transfer` method is the critical section that needs to be executed in a mutually exclusive manner. The `synchronized` keyword in Java is used to implement the Monitor pattern, ensuring that only one thread can execute the `transfer` method at a time.
 
-## Class diagram
-
-![Monitor](./etc/monitor.urm.png "Monitor class diagram")
-
 ## Applicability
 
 The Monitor design pattern should be used in situations where you have shared resources that need to be accessed and manipulated by multiple threads or processes concurrently. This pattern is particularly useful in scenarios where synchronization is necessary to prevent race conditions, data corruption, and inconsistent states. Here are some situations where you should consider using the Monitor pattern:

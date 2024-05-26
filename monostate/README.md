@@ -77,10 +77,6 @@ public class App {
 
 In this example, we create two instances of `LoadBalancer`: `loadBalancer1` and `loadBalancer2`. They share the same state. When we make a request via `loadBalancer1`, the request is served by the first server. When we make a request via `loadBalancer2`, the request is served by the second server, not the first one, because the `nextServerIndex` has been updated by `loadBalancer1`. This demonstrates the Monostate pattern in action.
 
-## Class diagram
-
-![Monostate](./etc/monostate.png "MonoState")
-
 ## Applicability
 
 Use the Monostate pattern when
