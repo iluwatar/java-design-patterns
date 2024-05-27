@@ -67,12 +67,12 @@ public class ApplicationRoleObject {
   public static void main(String[] args) {
     var customer = Customer.newCustomer(BORROWER, INVESTOR);
 
-    LOGGER.info(" the new customer created : {}", customer);
+    LOGGER.info("New customer created : {}", customer);
 
     var hasBorrowerRole = customer.hasRole(BORROWER);
-    LOGGER.info(" customer has a borrowed role - {}", hasBorrowerRole);
+    LOGGER.info("Customer has a borrower role - {}", hasBorrowerRole);
     var hasInvestorRole = customer.hasRole(INVESTOR);
-    LOGGER.info(" customer has an investor role - {}", hasInvestorRole);
+    LOGGER.info("Customer has an investor role - {}", hasInvestorRole);
 
     customer.getRole(INVESTOR, InvestorRole.class)
         .ifPresent(inv -> {

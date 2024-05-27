@@ -18,7 +18,7 @@ To dynamically assign roles to objects, enabling them to change behavior and res
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a restaurant where staff members can take on different roles based on the needs of the moment. For example, an employee could be a server, a cashier, or a kitchen helper depending on the situation. When the restaurant is busy, a server might also take on the role of a cashier to help process payments quickly. Later, the same employee might assist in the kitchen during a rush. This flexibility allows the restaurant to dynamically allocate responsibilities to meet real-time demands, enhancing efficiency and customer satisfaction. The Role Object pattern in software mimics this by allowing objects to assume different roles and behaviors at runtime, providing similar flexibility and adaptability.
 
@@ -36,7 +36,32 @@ The Role Object design pattern is a pattern that suggests modeling context-speci
 
 In the provided code, we have a `Customer` object that can play different roles such as `Borrower` and `Investor`. These roles are represented by `BorrowerRole` and `InvestorRole` classes respectively, which extend the `CustomerRole` class.
 
-Here is a simplified version of the `BorrowerRole` class:
+Here is the `Customer` class:
+
+```java
+public abstract class Customer {
+
+  public abstract boolean addRole(Role role);
+
+  public abstract boolean hasRole(Role role);
+
+  public abstract boolean remRole(Role role);
+
+  public abstract <T extends Customer> Optional<T> getRole(Role role, Class<T> expectedRole);
+
+  public static Customer newCustomer() {
+    return new CustomerCore();
+  }
+
+  public static Customer newCustomer(Role... role) {
+    var customer = newCustomer();
+    Arrays.stream(role).forEach(customer::addRole);
+    return customer;
+  }
+}
+```
+
+Here is the `BorrowerRole` class:
 
 ```java
 @Getter
@@ -72,42 +97,48 @@ public class InvestorRole extends CustomerRole {
 
 In the `InvestorRole` class, the `invest` method represents an operation specific to the `Investor` role.
 
-The `Customer` object can play either of these roles or both. This is demonstrated in the `ApplicationRoleObject` class:
+The `Customer` object can play either of these roles or both. This is demonstrated in the `main` function:
 
 ```java
-@Slf4j
-public class ApplicationRoleObject {
-
-  public static void main(String[] args) {
+public static void main(String[] args) {
     var customer = Customer.newCustomer(BORROWER, INVESTOR);
 
-    LOGGER.info(" the new customer created : {}", customer);
+    LOGGER.info("New customer created : {}", customer);
 
     var hasBorrowerRole = customer.hasRole(BORROWER);
-    LOGGER.info(" customer has a borrowed role - {}", hasBorrowerRole);
+    LOGGER.info("Customer has a borrower role - {}", hasBorrowerRole);
     var hasInvestorRole = customer.hasRole(INVESTOR);
-    LOGGER.info(" customer has an investor role - {}", hasInvestorRole);
+    LOGGER.info("Customer has an investor role - {}", hasInvestorRole);
 
     customer.getRole(INVESTOR, InvestorRole.class)
-        .ifPresent(inv -> {
-          inv.setAmountToInvest(1000);
-          inv.setName("Billy");
-        });
+            .ifPresent(inv -> {
+                inv.setAmountToInvest(1000);
+                inv.setName("Billy");
+            });
     customer.getRole(BORROWER, BorrowerRole.class)
-        .ifPresent(inv -> inv.setName("Johny"));
+            .ifPresent(inv -> inv.setName("Johny"));
 
     customer.getRole(INVESTOR, InvestorRole.class)
-        .map(InvestorRole::invest)
-        .ifPresent(LOGGER::info);
+            .map(InvestorRole::invest)
+            .ifPresent(LOGGER::info);
 
     customer.getRole(BORROWER, BorrowerRole.class)
-        .map(BorrowerRole::borrow)
-        .ifPresent(LOGGER::info);
-  }
+            .map(BorrowerRole::borrow)
+            .ifPresent(LOGGER::info);
 }
 ```
 
 In this class, a `Customer` object is created with both `Borrower` and `Investor` roles. The `hasRole` method is used to check if the `Customer` object has a specific role. The `getRole` method is used to get a reference to the role object, which is then used to perform role-specific operations.
+
+Running the example outputs:
+
+```
+10:22:02.561 [main] INFO com.iluwatar.roleobject.ApplicationRoleObject -- New customer created : Customer{roles=[INVESTOR, BORROWER]}
+10:22:02.564 [main] INFO com.iluwatar.roleobject.ApplicationRoleObject -- Customer has a borrower role - true
+10:22:02.564 [main] INFO com.iluwatar.roleobject.ApplicationRoleObject -- Customer has an investor role - true
+10:22:02.574 [main] INFO com.iluwatar.roleobject.ApplicationRoleObject -- Investor Billy has invested 1000 dollars
+10:22:02.575 [main] INFO com.iluwatar.roleobject.ApplicationRoleObject -- Borrower Johny wants to get some money.
+```
 
 ## Class diagram
 
@@ -149,6 +180,6 @@ Trade-offs:
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Pattern-Oriented Software Architecture Volume 1: A System of Patterns](https://amzn.to/3xZ1ELU)
 * [Role-Based Access Control](https://amzn.to/3UJzL2l)
-* [Role object pattern - Hillside](https://hillside.net/plop/plop97/Proceedings/riehle.pdf)
-* [Role object - wiki.c2.com](http://wiki.c2.com/?RoleObject)
-* [Dealing with roles - Martin Fowler](https://martinfowler.com/apsupp/roles.pdf)
+* [Dealing with Roles (Martin Fowler)](https://martinfowler.com/apsupp/roles.pdf)
+* [Role Object (wiki.c2.com)](http://wiki.c2.com/?RoleObject)
+* [The Role Object Pattern (Dirk Bäumer, Dirk Riehle, Wolf Siberski, and Martina Wulf)](https://hillside.net/plop/plop97/Proceedings/riehle.pdf)
