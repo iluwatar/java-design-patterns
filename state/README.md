@@ -49,7 +49,9 @@ public interface State {
 
   void observe();
 }
+```
 
+```java
 @Slf4j
 public class PeacefulState implements State {
 
@@ -69,7 +71,9 @@ public class PeacefulState implements State {
     LOGGER.info("{} calms down.", mammoth);
   }
 }
+```
 
+```java
 @Slf4j
 public class AngryState implements State {
 
@@ -129,12 +133,15 @@ public class Mammoth {
 Here is the full example of how the mammoth behaves over time.
 
 ```java
+public static void main(String[] args) {
+
     var mammoth = new Mammoth();
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();
+}
 ```
 
 Program output:
@@ -145,10 +152,6 @@ Program output:
     The mammoth calms down.
     The mammoth is calm and peaceful.
 ```
-
-## Class diagram
-
-![State](./etc/state_urm.png "State")
 
 ## Applicability
 
