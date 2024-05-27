@@ -21,7 +21,7 @@ To handle exceptional cases or specific conditions without cluttering the main c
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Consider a toll booth system on a highway. Normally, vehicles pass through the booth, and the system charges a toll based on the vehicle type. However, there are special cases: emergency vehicles like ambulances and fire trucks, which should not be charged.
 >
@@ -88,7 +88,9 @@ Next, here are the presentation layer, the receipt view model interface and its 
 public interface ReceiptViewModel {
     void show();
 }
+```
 
+```java
 @RequiredArgsConstructor
 @Getter
 public class ReceiptDto implements ReceiptViewModel {
@@ -114,7 +116,9 @@ public class DownForMaintenance implements ReceiptViewModel {
         LOGGER.info("Down for maintenance");
     }
 }
+```
 
+```java
 public class InvalidUser implements ReceiptViewModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(InvalidUser.class);
 
@@ -129,7 +133,9 @@ public class InvalidUser implements ReceiptViewModel {
         LOGGER.info("Invalid user: " + userName);
     }
 }
+```
 
+```java
 public class OutOfStock implements ReceiptViewModel {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(OutOfStock.class);
@@ -147,7 +153,9 @@ public class OutOfStock implements ReceiptViewModel {
         LOGGER.info("Out of stock: " + itemName + " for user = " + userName + " to buy");
     }
 }
+```
 
+```java
 public class InsufficientFunds implements ReceiptViewModel {
     private static final Logger LOGGER = LoggerFactory.getLogger(InsufficientFunds.class);
 
@@ -169,33 +177,49 @@ public class InsufficientFunds implements ReceiptViewModel {
 }
 ```
 
-Here is the main function of the application that executes the different scenarios.
+Here is the `App` and its `main` function that executes the different scenarios.
 
-```
-LOGGER.info("Db seeding: " + "1 user: {\"ignite1771\", amount = 1000.0}, " + "2 products: {\"computer\": price = 800.0, \"car\": price = 20000.0}");
-Db.getInstance().seedUser(TEST_USER_1, 1000.0);
-Db.getInstance().seedItem(ITEM_COMPUTER, 800.0);
-Db.getInstance().seedItem(ITEM_CAR, 20000.0);
+```java
+public class App {
 
-final var applicationServices = new ApplicationServicesImpl();
-ReceiptViewModel receipt;
+    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
-LOGGER.info(LOGGER_STRING, TEST_USER_2, ITEM_TV);
-receipt = applicationServices.loggedInUserPurchase(TEST_USER_2, ITEM_TV);
-receipt.show();
-MaintenanceLock.getInstance().setLock(false);
-LOGGER.info(LOGGER_STRING, TEST_USER_2, ITEM_TV);
-receipt = applicationServices.loggedInUserPurchase(TEST_USER_2, ITEM_TV);
-receipt.show();
-LOGGER.info(LOGGER_STRING, TEST_USER_1, ITEM_TV);
-receipt = applicationServices.loggedInUserPurchase(TEST_USER_1, ITEM_TV);
-receipt.show();
-LOGGER.info(LOGGER_STRING, TEST_USER_1, ITEM_CAR);
-receipt = applicationServices.loggedInUserPurchase(TEST_USER_1, ITEM_CAR);
-receipt.show();
-LOGGER.info(LOGGER_STRING, TEST_USER_1, ITEM_COMPUTER);
-receipt = applicationServices.loggedInUserPurchase(TEST_USER_1, ITEM_COMPUTER);
-receipt.show();
+    private static final String LOGGER_STRING = "[REQUEST] User: {} buy product: {}";
+    private static final String TEST_USER_1 = "ignite1771";
+    private static final String TEST_USER_2 = "abc123";
+    private static final String ITEM_TV = "tv";
+    private static final String ITEM_CAR = "car";
+    private static final String ITEM_COMPUTER = "computer";
+
+    public static void main(String[] args) {
+        // DB seeding
+        LOGGER.info("Db seeding: " + "1 user: {\"ignite1771\", amount = 1000.0}, "
+                + "2 products: {\"computer\": price = 800.0, \"car\": price = 20000.0}");
+        Db.getInstance().seedUser(TEST_USER_1, 1000.0);
+        Db.getInstance().seedItem(ITEM_COMPUTER, 800.0);
+        Db.getInstance().seedItem(ITEM_CAR, 20000.0);
+
+        final var applicationServices = new ApplicationServicesImpl();
+        ReceiptViewModel receipt;
+
+        LOGGER.info(LOGGER_STRING, TEST_USER_2, ITEM_TV);
+        receipt = applicationServices.loggedInUserPurchase(TEST_USER_2, ITEM_TV);
+        receipt.show();
+        MaintenanceLock.getInstance().setLock(false);
+        LOGGER.info(LOGGER_STRING, TEST_USER_2, ITEM_TV);
+        receipt = applicationServices.loggedInUserPurchase(TEST_USER_2, ITEM_TV);
+        receipt.show();
+        LOGGER.info(LOGGER_STRING, TEST_USER_1, ITEM_TV);
+        receipt = applicationServices.loggedInUserPurchase(TEST_USER_1, ITEM_TV);
+        receipt.show();
+        LOGGER.info(LOGGER_STRING, TEST_USER_1, ITEM_CAR);
+        receipt = applicationServices.loggedInUserPurchase(TEST_USER_1, ITEM_CAR);
+        receipt.show();
+        LOGGER.info(LOGGER_STRING, TEST_USER_1, ITEM_COMPUTER);
+        receipt = applicationServices.loggedInUserPurchase(TEST_USER_1, ITEM_COMPUTER);
+        receipt.show();
+    }
+}
 ```
 
 Here is the output from running the example.
@@ -216,10 +240,6 @@ Here is the output from running the example.
 ```
 
 In conclusion, the Special Case Pattern helps to keep the code clean and easy to understand by separating the special case from the general case. It also promotes code reuse and makes the code easier to maintain.
-
-## Class diagram
-
-![Special Case](./etc/special_case_urm.png "Special Case")
 
 ## Applicability
 
@@ -246,13 +266,13 @@ Trade-offs:
 
 ## Related Patterns
 
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used to add special case behavior to objects dynamically without modifying their code.
 * [Null Object](https://java-design-patterns.com/patterns/null-object/): Used to provide a default behavior for null references, which is a specific type of special case.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Allows dynamic switching of special case behaviors by encapsulating them in different strategy classes.
-* [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used to add special case behavior to objects dynamically without modifying their code.
 
 ## Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
-* [Special Case - Martin Fowler](https://www.martinfowler.com/eaaCatalog/specialCase.html)
+* [Special Case (Martin Fowler)](https://www.martinfowler.com/eaaCatalog/specialCase.html)
