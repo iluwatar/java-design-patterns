@@ -132,9 +132,11 @@ public class Data {
 }
 ```
 
-This is the main function of the example demonstrating three different sharding strategies: lookup, range, and hash. Each strategy determines which shard to store the data in a different way. The lookup strategy uses a lookup table, the range strategy uses the data type, and the hash strategy uses a hash of the data key.
+This is the `main` function of the example demonstrating three different sharding strategies: lookup, range, and hash. Each strategy determines which shard to store the data in a different way. The lookup strategy uses a lookup table, the range strategy uses the data type, and the hash strategy uses a hash of the data key.
 
 ```java
+public static void main(String[] args) {
+
     var data1 = new Data(1, "data1", Data.DataType.TYPE_1);
     var data2 = new Data(2, "data2", Data.DataType.TYPE_2);
     var data3 = new Data(3, "data3", Data.DataType.TYPE_3);
@@ -182,6 +184,7 @@ This is the main function of the example demonstrating three different sharding 
     shard1.clearData();
     shard2.clearData();
     shard3.clearData();
+}
 ```
 
 Finally, here is the program output:
@@ -200,10 +203,6 @@ Finally, here is the program output:
 18:32:26.506 [main] INFO com.iluwatar.sharding.HashShardManager -- Data {key=3, value='data3', type=TYPE_3} is stored in Shard 3
 18:32:26.506 [main] INFO com.iluwatar.sharding.HashShardManager -- Data {key=4, value='data4', type=TYPE_1} is stored in Shard 1
 ```
-
-## Class diagram
-
-![Sharding](./etc/sharding.urm.png "Sharding pattern class diagram")
 
 ## Applicability
 
@@ -242,4 +241,4 @@ Trade-offs:
 * [Building Scalable Web Sites: Building, Scaling, and Optimizing the Next Generation of Web Applications](https://amzn.to/4bqpejJ)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
 * [NoSQL Distilled: A Brief Guide to the Emerging World of Polyglot Persistence](https://amzn.to/3UWvdpw)
-* [Sharding pattern - Microsoft](https://docs.microsoft.com/en-us/azure/architecture/patterns/sharding)
+* [Sharding pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/sharding)
