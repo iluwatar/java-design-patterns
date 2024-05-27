@@ -96,9 +96,16 @@ public class App {
 
 In the `main` method of the `App` class, we see the RAII pattern in action. The `try-with-resources` statement is used to ensure that each resource is closed at the end of the statement. This is where the `AutoCloseable` or `Closeable` interfaces come into play. When the `try` block is exited (either normally or via an exception), the `close` method of the resource is automatically called, thus ensuring the resource is properly released.
 
-## Class diagram
+The console output:
 
-![Resource Acquisition Is Initialization](./etc/resource-acquisition-is-initialization.png "Resource Acquisition Is Initialization")
+```
+10:07:14.833 [main] INFO com.iluwatar.resource.acquisition.is.initialization.SlidingDoor -- Sliding door opens.
+10:07:14.835 [main] INFO com.iluwatar.resource.acquisition.is.initialization.App -- Walking in.
+10:07:14.835 [main] INFO com.iluwatar.resource.acquisition.is.initialization.SlidingDoor -- Sliding door closes.
+10:07:14.835 [main] INFO com.iluwatar.resource.acquisition.is.initialization.TreasureChest -- Treasure chest opens.
+10:07:14.835 [main] INFO com.iluwatar.resource.acquisition.is.initialization.App -- Looting contents.
+10:07:14.835 [main] INFO com.iluwatar.resource.acquisition.is.initialization.TreasureChest -- Treasure chest closes.
+```
 
 ## Applicability
 
@@ -126,7 +133,7 @@ Trade-offs:
 
 ## Related Patterns
 
-* Object Pool: Manages a pool of reusable objects to optimize resource allocation and performance, often used for resources that are expensive to create and manage.
+* [Object Pool](https://java-design-patterns.com/patterns/object-pool/): Manages a pool of reusable objects to optimize resource allocation and performance, often used for resources that are expensive to create and manage.
 
 ## Credits
 
