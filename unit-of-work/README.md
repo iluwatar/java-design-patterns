@@ -59,7 +59,9 @@ public interface IUnitOfWork<T> {
 
   void commit();
 }
+```
 
+```java
 @Slf4j
 @RequiredArgsConstructor
 public class ArmsDealer implements IUnitOfWork<Weapon> {
@@ -95,9 +97,6 @@ public class ArmsDealer implements IUnitOfWork<Weapon> {
         context.put(operation, weaponsToOperate);
     }
 
-    /**
-     * All UnitOfWork operations are batched and executed together on commit only.
-     */
     @Override
     public void commit() {
         if (context == null || context.isEmpty()) {
@@ -146,19 +145,22 @@ public class ArmsDealer implements IUnitOfWork<Weapon> {
 Here is how the whole app is put together.
 
 ```java
-// create some weapons
-var enchantedHammer = new Weapon(1, "enchanted hammer");
-var brokenGreatSword = new Weapon(2, "broken great sword");
-var silverTrident = new Weapon(3, "silver trident");
+public static void main(String[] args) {
+    // create some weapons
+    var enchantedHammer = new Weapon(1, "enchanted hammer");
+    var brokenGreatSword = new Weapon(2, "broken great sword");
+    var silverTrident = new Weapon(3, "silver trident");
 
-// create repository
-var weaponRepository = new ArmsDealer(new HashMap<String, List<Weapon>>(), new WeaponDatabase());
+    // create repository
+    var weaponRepository = new ArmsDealer(new HashMap<>(),
+            new WeaponDatabase());
 
-// perform operations on the weapons
-weaponRepository.registerNew(enchantedHammer);
-weaponRepository.registerModified(silverTrident);
-weaponRepository.registerDeleted(brokenGreatSword);
-weaponRepository.commit();
+    // perform operations on the weapons
+    weaponRepository.registerNew(enchantedHammer);
+    weaponRepository.registerModified(silverTrident);
+    weaponRepository.registerDeleted(brokenGreatSword);
+    weaponRepository.commit();
+}
 ```
 
 Here is the console output.
@@ -174,10 +176,6 @@ Here is the console output.
 21:39:21.989 [main] INFO com.iluwatar.unitofwork.ArmsDealer - Commit finished.
 ```
 
-## Class diagram
-
-![Unit of Work](./etc/unit-of-work.urm.png "Unit of Work")
-
 ## Applicability
 
 * Use when you need to manage multiple operations that need to be treated as a single transaction.
@@ -186,8 +184,9 @@ Here is the console output.
 
 ## Tutorials
 
-* [Repository and Unit of Work Pattern - Wolfgang Ofner](https://www.programmingwithwolfgang.com/repository-and-unit-of-work-pattern/)
-* [Unit of Work - a Design Pattern - Mono](https://mono.software/2017/01/13/unit-of-work-a-design-pattern/)
+* [Repository and Unit of Work Pattern (Wolfgang Ofner)](https://www.programmingwithwolfgang.com/repository-and-unit-of-work-pattern/)
+* [Unit Of Work Design Pattern (Code Project)](https://www.codeproject.com/Articles/581487/Unit-of-Work-Design-Pattern)
+* [Unit of Work - a Design Pattern (Mono)](https://mono.software/2017/01/13/unit-of-work-a-design-pattern/)
 
 ## Known Uses
 
@@ -219,5 +218,4 @@ Trade-offs:
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
-* [Unit Of Work Design Pattern - Code Project](https://www.codeproject.com/Articles/581487/Unit-of-Work-Design-Pattern)
-* [Unit Of Work - Martin Fowler](https://martinfowler.com/eaaCatalog/unitOfWork.html)
+* [Unit Of Work (Martin Fowler)](https://martinfowler.com/eaaCatalog/unitOfWork.html)
