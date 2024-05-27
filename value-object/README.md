@@ -51,7 +51,6 @@ Here is the `HeroStat` class that is the value object. Notice the use of [Lombok
 @Value(staticConstructor = "valueOf")
 @ToString
 class HeroStat {
-
     int strength;
     int intelligence;
     int luck;
@@ -61,16 +60,18 @@ class HeroStat {
 The example creates three different `HeroStat`s and compares their equality.
 
 ```java
-var statA = HeroStat.valueOf(10, 5, 0);
-var statB = HeroStat.valueOf(10, 5, 0);
-var statC = HeroStat.valueOf(5, 1, 8);
+public static void main(String[] args) {
+    var statA = HeroStat.valueOf(10, 5, 0);
+    var statB = HeroStat.valueOf(10, 5, 0);
+    var statC = HeroStat.valueOf(5, 1, 8);
 
-LOGGER.info("statA: {}", statA);
-LOGGER.info("statB: {}", statB);
-LOGGER.info("statC: {}", statC);
+    LOGGER.info("statA: {}", statA);
+    LOGGER.info("statB: {}", statB);
+    LOGGER.info("statC: {}", statC);
 
-LOGGER.info("Are statA and statB equal? {}", statA.equals(statB));
-LOGGER.info("Are statA and statC equal? {}", statA.equals(statC));
+    LOGGER.info("Are statA and statB equal? {}", statA.equals(statB));
+    LOGGER.info("Are statA and statC equal? {}", statA.equals(statC));
+}
 ```
 
 Here's the console output.
@@ -137,4 +138,4 @@ Trade-offs:
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
-* [ValueObject - Martin Fowler](https://martinfowler.com/bliki/ValueObject.html)
+* [ValueObject (Martin Fowler)](https://martinfowler.com/bliki/ValueObject.html)
