@@ -19,7 +19,7 @@ To define a client interface in a separate package from its implementation to al
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Consider a restaurant where the menu (interface) is separate from the kitchen operations (implementation).
 >
@@ -28,13 +28,6 @@ Real world example
 In plain words
 
 > Defines a client interface separate from its implementation to allow for flexible and interchangeable components.
-
-A client code may abstract some specific functionality to an interface, and define the definition of 
-the interface as an SPI ([Service Programming Interface](https://en.wikipedia.org/wiki/Service_provider_interface) 
-is an API intended and open to be implemented or extended by a third party). Another package may 
-implement this interface definition with a concrete logic, which will be injected into the client 
-code at runtime (with a third class, injecting the implementation in the client) or at compile time 
-(using Plugin pattern with some configurable file).
 
 **Programmatic Example**
 
@@ -108,11 +101,14 @@ public class App {
 }
 ```
 
+Console output:
+
+```
+11:38:53.208 [main] INFO com.iluwatar.separatedinterface.App -- Foreign Tax applied: 80.0
+11:38:53.210 [main] INFO com.iluwatar.separatedinterface.App -- Domestic Tax applied: 60.0
+```
+
 In this way, the Separated Interface pattern allows us to decouple the interface of a component from its implementation, enhancing flexibility and maintainability.
-
-## Class diagram
-
-![Separated Interface](./etc/class_diagram.png "Separated Interface")
 
 ## Applicability
 
@@ -122,7 +118,7 @@ In this way, the Separated Interface pattern allows us to decouple the interface
 
 ## Tutorial
 
-* [Separated Interface Tutorial - YouTube](https://www.youtube.com/watch?v=d3k-hOA7k2Y)
+* [Separated Interface Design Pattern Explained (Ram N Java)](https://www.youtube.com/watch?v=d3k-hOA7k2Y)
 
 ## Known Uses
 
@@ -144,9 +140,9 @@ Trade-offs:
 
 ## Related Patterns
 
-* Adapter: Adapts one interface to another, which can be used alongside Separated Interface to integrate different implementations.
-* Dependency Injection: Often used to inject the implementation of a separated interface, promoting loose coupling.
-* Bridge: Separates an object’s interface from its implementation, similar to Separated Interface but usually applied to larger-scale architectural issues.
+* [Adapter](https://java-design-patterns.com/patterns/adapter/): Adapts one interface to another, which can be used alongside Separated Interface to integrate different implementations.
+* [Bridge](https://java-design-patterns.com/patterns/bridge/): Separates an object’s interface from its implementation, similar to Separated Interface but usually applied to larger-scale architectural issues.
+* [Dependency Injection](https://java-design-patterns.com/patterns/dependency-injection/): Often used to inject the implementation of a separated interface, promoting loose coupling.
 
 ## Credits
 
@@ -154,4 +150,4 @@ Trade-offs:
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Pattern-Oriented Software Architecture Volume 1: A System of Patterns](https://amzn.to/3xZ1ELU)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
-* [Separated Interface - Martin Fowler](https://www.martinfowler.com/eaaCatalog/separatedInterface.html)
+* [Separated Interface (Martin Fowler)](https://www.martinfowler.com/eaaCatalog/separatedInterface.html)
