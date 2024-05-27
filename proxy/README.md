@@ -14,7 +14,7 @@ tag:
 
 ## Also known as
 
-Surrogate
+* Surrogate
 
 ## Intent
 
@@ -24,7 +24,7 @@ Provide a surrogate or placeholder for another object to control access to it.
 
 Real-world example
 
-> Imagine a tower where the local wizards go to study their spells. The ivory tower can only be accessed through a proxy which ensures that only the first three wizards can enter. Here the proxy represents the functionality of the tower and adds access control to it.
+> In a real-world scenario, consider a security guard at a gated community. The security guard acts as a proxy for the residents. When a visitor arrives, the guard checks the visitor's credentials and permissions before allowing them access to the community. If the visitor is authorized, the guard grants entry; if not, entry is denied. This ensures that only authorized individuals can access the community, much like a Proxy design pattern controls access to a specific object.
 
 In plain words
 
@@ -36,13 +36,17 @@ Wikipedia says
 
 **Programmatic Example**
 
-Taking our wizard tower example from above. Firstly we have the `WizardTower` interface and the `IvoryTower` class.
+Imagine a tower where the local wizards go to study their spells. The ivory tower can only be accessed through a proxy which ensures that only the first three wizards can enter. Here the proxy represents the functionality of the tower and adds access control to it.
+
+First, we have the `WizardTower` interface and the `IvoryTower` class.
 
 ```java
 public interface WizardTower {
   void enter(Wizard wizard);
 }
+```
 
+```java
 @Slf4j
 public class IvoryTower implements WizardTower {
   public void enter(Wizard wizard) {
@@ -76,9 +80,7 @@ Then we have the `WizardTowerProxy` to add access control to `WizardTower`.
 public class WizardTowerProxy implements WizardTower {
 
   private static final int NUM_WIZARDS_ALLOWED = 3;
-
   private int numWizards;
-
   private final WizardTower tower;
 
   public WizardTowerProxy(WizardTower tower) {
@@ -100,27 +102,26 @@ public class WizardTowerProxy implements WizardTower {
 And here is the tower entering scenario.
 
 ```java
-var proxy = new WizardTowerProxy(new IvoryTower());
-proxy.enter(new Wizard("Red wizard"));
-proxy.enter(new Wizard("White wizard"));
-proxy.enter(new Wizard("Black wizard"));
-proxy.enter(new Wizard("Green wizard"));
-proxy.enter(new Wizard("Brown wizard"));
+  public static void main(String[] args) {
+
+    var proxy = new WizardTowerProxy(new IvoryTower());
+    proxy.enter(new Wizard("Red wizard"));
+    proxy.enter(new Wizard("White wizard"));
+    proxy.enter(new Wizard("Black wizard"));
+    proxy.enter(new Wizard("Green wizard"));
+    proxy.enter(new Wizard("Brown wizard"));
+}
 ```
 
 Program output:
 
 ```
-Red wizard enters the tower.
-White wizard enters the tower.
-Black wizard enters the tower.
-Green wizard is not allowed to enter!
-Brown wizard is not allowed to enter!
+08:42:06.183 [main] INFO com.iluwatar.proxy.IvoryTower -- Red wizard enters the tower.
+08:42:06.186 [main] INFO com.iluwatar.proxy.IvoryTower -- White wizard enters the tower.
+08:42:06.186 [main] INFO com.iluwatar.proxy.IvoryTower -- Black wizard enters the tower.
+08:42:06.186 [main] INFO com.iluwatar.proxy.WizardTowerProxy -- Green wizard is not allowed to enter!
+08:42:06.186 [main] INFO com.iluwatar.proxy.WizardTowerProxy -- Brown wizard is not allowed to enter!
 ```
-
-## Class diagram
-
-![Proxy](./etc/proxy.urm.png "Proxy pattern class diagram")
 
 ## Applicability
 
@@ -165,6 +166,6 @@ Trade-offs:
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
