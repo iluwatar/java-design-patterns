@@ -71,33 +71,55 @@ public class UserTableModule {
 In the class `App`, we use an instance of the `UserTableModule` to handle user login and registration.
 
 ```java
-// Create data source and create the user table.
-final var dataSource = createDataSource();
-createSchema(dataSource);
-userTableModule = new UserTableModule(dataSource);
+@Slf4j
+public final class App {
+    
+    private static final String DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
 
-//Initialize two users.
-var user1 = new User(1, "123456", "123456");
-var user2 = new User(2, "test", "password");
+    private App() {}
 
-//Login and register using the instance of userTableModule.
-userTableModule.registerUser(user1);
-userTableModule.login(user1.getUsername(), user1.getPassword());
-userTableModule.login(user2.getUsername(), user2.getPassword());
-userTableModule.registerUser(user2);
-userTableModule.login(user2.getUsername(), user2.getPassword());
+    public static void main(final String[] args) throws SQLException {
+        // Create data source and create the user table.
+        final var dataSource = createDataSource();
+        createSchema(dataSource);
+        var userTableModule = new UserTableModule(dataSource);
 
-deleteSchema(dataSource);
-```
+        // Initialize two users.
+        var user1 = new User(1, "123456", "123456");
+        var user2 = new User(2, "test", "password");
 
-The program output:
+        // Login and register using the instance of userTableModule.
+        userTableModule.registerUser(user1);
+        userTableModule.login(user1.getUsername(), user1.getPassword());
+        userTableModule.login(user2.getUsername(), user2.getPassword());
+        userTableModule.registerUser(user2);
+        userTableModule.login(user2.getUsername(), user2.getPassword());
 
-```java
-12:22:13.095 [main] INFO com.iluwatar.tablemodule.UserTableModule - Register successfully!
-12:22:13.117 [main] INFO com.iluwatar.tablemodule.UserTableModule - Login successfully!
-12:22:13.128 [main] INFO com.iluwatar.tablemodule.UserTableModule - Fail to login!
-12:22:13.136 [main] INFO com.iluwatar.tablemodule.UserTableModule - Register successfully!
-12:22:13.144 [main] INFO com.iluwatar.tablemodule.UserTableModule - Login successfully!
+        deleteSchema(dataSource);
+    }
+
+    private static void deleteSchema(final DataSource dataSource)
+            throws SQLException {
+        try (var connection = dataSource.getConnection();
+             var statement = connection.createStatement()) {
+            statement.execute(UserTableModule.DELETE_SCHEMA_SQL);
+        }
+    }
+
+    private static void createSchema(final DataSource dataSource)
+            throws SQLException {
+        try (var connection = dataSource.getConnection();
+             var statement = connection.createStatement()) {
+            statement.execute(UserTableModule.CREATE_SCHEMA_SQL);
+        }
+    }
+
+    private static DataSource createDataSource() {
+        var dataSource = new JdbcDataSource();
+        dataSource.setURL(DB_URL);
+        return dataSource;
+    }
+}
 ```
 
 In this example, the `UserTableModule` class is responsible for encapsulating all interactions with the users table in the database. This includes the logic for logging in and registering users. The User class represents the user entity with attributes such as `id`, `username`, and `password`.
@@ -107,17 +129,27 @@ In this example, the `UserTableModule` class is responsible for encapsulating al
 3. **User Login**: The `login` method manages the logic for authenticating a user based on their username and password.
 4. **Application Flow**: The `App` class demonstrates how to use the `UserTableModule` to register and log in users. The data source is created, the schema is set up, and users are registered and logged in with appropriate feedback.
 
+The program output:
+
+```
+13:59:36.417 [main] INFO com.iluwatar.tablemodule.UserTableModule -- Register successfully!
+13:59:36.426 [main] INFO com.iluwatar.tablemodule.UserTableModule -- Login successfully!
+13:59:36.426 [main] INFO com.iluwatar.tablemodule.UserTableModule -- Fail to login!
+13:59:36.426 [main] INFO com.iluwatar.tablemodule.UserTableModule -- Register successfully!
+13:59:36.427 [main] INFO com.iluwatar.tablemodule.UserTableModule -- Login successfully!
+```
+
 This example shows how the Table Module pattern centralizes database operations for the `users` table, making the application more modular and easier to maintain.
-
-## Class diagram
-
-![Table Module](./etc/table-module.urm.png "Table Module")
 
 ## Applicability
 
 * Use when you need to manage data access logic for a database table in a centralized module.
 * Ideal for applications that interact heavily with database tables and require encapsulation of database queries.
 * Suitable for systems where the database schema may evolve over time, as the changes can be managed within the table module.
+
+## Tutorials
+
+* [Architecture patterns: Domain model and friends (Inviqa)](https://inviqa.com/blog/architecture-patterns-domain-model-and-friends)
 
 ## Known Uses
 
@@ -152,5 +184,3 @@ Trade-offs:
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
-* [Architecture patterns: Domain model and friends - Inviqa](https://inviqa.com/blog/architecture-patterns-domain-model-and-friends)
-* [Table Module Pattern](http://wiki3.cosc.canterbury.ac.nz/index.php/Table_module_pattern)
