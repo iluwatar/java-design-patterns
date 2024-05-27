@@ -55,7 +55,7 @@ public class Character {
     this.name = name;
   }
 
-  // toString method...
+  // toString method omitted
 }
 ```
 
@@ -82,7 +82,9 @@ The `CharacterStepBuilder` class defines a series of nested interfaces, each rep
 public interface NameStep {
   ClassStep name(String name);
 }
+```
 
+```java
 public interface ClassStep {
   WeaponStep fighterClass(String fighterClass);
   SpellStep wizardClass(String wizardClass);
@@ -115,13 +117,47 @@ private static class Steps implements NameStep, ClassStep, WeaponStep, SpellStep
 Now, creating a `Character` object becomes a guided process:
 
 ```java
-var warrior = CharacterStepBuilder
-    .newBuilder()
-    .name("Amberjill")
-    .fighterClass("Paladin")
-    .withWeapon("Sword")
-    .noAbilities()
-    .build();
+public static void main(String[] args) {
+
+    var warrior = CharacterStepBuilder
+            .newBuilder()
+            .name("Amberjill")
+            .fighterClass("Paladin")
+            .withWeapon("Sword")
+            .noAbilities()
+            .build();
+
+    LOGGER.info(warrior.toString());
+
+    var mage = CharacterStepBuilder
+            .newBuilder()
+            .name("Riobard")
+            .wizardClass("Sorcerer")
+            .withSpell("Fireball")
+            .withAbility("Fire Aura")
+            .withAbility("Teleport")
+            .noMoreAbilities()
+            .build();
+
+    LOGGER.info(mage.toString());
+
+    var thief = CharacterStepBuilder
+            .newBuilder()
+            .name("Desmond")
+            .fighterClass("Rogue")
+            .noWeapon()
+            .build();
+
+    LOGGER.info(thief.toString());
+}
+```
+
+Console output:
+
+```
+12:58:13.887 [main] INFO com.iluwatar.stepbuilder.App -- This is a Paladin named Amberjill armed with a Sword.
+12:58:13.889 [main] INFO com.iluwatar.stepbuilder.App -- This is a Sorcerer named Riobard armed with a Fireball and wielding [Fire Aura, Teleport] abilities.
+12:58:13.889 [main] INFO com.iluwatar.stepbuilder.App -- This is a Rogue named Desmond armed with a with nothing.
 ```
 
 ## Class diagram
@@ -133,6 +169,10 @@ var warrior = CharacterStepBuilder
 * When constructing an object that requires multiple initialization steps.
 * When object construction is complex and involves many parameters.
 * When you want to provide a clear, readable, and maintainable way to construct an object in a step-by-step manner.
+
+## Tutorials
+
+* [Step Builder (Marco Castigliego)](http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html)
 
 ## Known Uses
 
@@ -164,4 +204,3 @@ Trade-offs:
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/3wRnjp5)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
-* [Step Builder - Marco Castigliego](http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html)
