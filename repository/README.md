@@ -48,22 +48,17 @@ public class Person {
     private String surname;
     private int age;
 
-    /**
-     * Constructor.
-     */
     public Person(String name, String surname, int age) {
         this.name = name;
         this.surname = surname;
         this.age = age;
     }
-
 }
 ```
 
-We are using Spring Data to create the `PersonRepository` so it becomes really simple.
+We are using Spring Data to create the `PersonRepository`, so it becomes really simple.
 
 ```java
-
 @Repository
 public interface PersonRepository extends CrudRepository<Person, Long>, JpaSpecificationExecutor<Person> {
     Person findByName(String name);
@@ -78,7 +73,6 @@ public class PersonSpecifications {
     public static class AgeBetweenSpec implements Specification<Person> {
 
         private final int from;
-
         private final int to;
 
         public AgeBetweenSpec(int from, int to) {
@@ -110,64 +104,87 @@ public class PersonSpecifications {
 And here's the repository example in action.
 
 ```java
-var peter = new Person("Peter", "Sagan", 17);
-var nasta = new Person("Nasta", "Kuzminova", 25);
-var john = new Person("John", "lawrence", 35);
-var terry = new Person("Terry", "Law", 36);
+  public static void main(String[] args) {
 
-repository.save(peter);
-repository.save(nasta);
-repository.save(john);
-repository.save(terry);
+    var context = new ClassPathXmlApplicationContext("applicationContext.xml");
+    var repository = context.getBean(PersonRepository.class);
 
-LOGGER.info("Count Person records: {}",repository.count());
+    var peter = new Person("Peter", "Sagan", 17);
+    var nasta = new Person("Nasta", "Kuzminova", 25);
+    var john = new Person("John", "lawrence", 35);
+    var terry = new Person("Terry", "Law", 36);
 
-var persons = (List<Person>) repository.findAll();
-persons.stream().map(Person::toString).forEach(LOGGER::info);
+    // Add new Person records
+    repository.save(peter);
+    repository.save(nasta);
+    repository.save(john);
+    repository.save(terry);
 
-nasta.setName("Barbora");
-nasta.setSurname("Spotakova");
-repository.save(nasta);
-repository.findById(2L).ifPresent(p ->LOGGER.info("Find by id 2: {}",p));
+    // Count Person records
+    LOGGER.info("Count Person records: {}", repository.count());
 
-repository.deleteById(2L);
-LOGGER.info("Count Person records: {}",repository.count());
+    // Print all records
+    var persons = (List<Person>) repository.findAll();
+    persons.stream().map(Person::toString).forEach(LOGGER::info);
 
-repository.findOne(new PersonSpecifications.NameEqualSpec("John")).ifPresent(p ->LOGGER.info("Find by John is {}",p));
+    // Update Person
+    nasta.setName("Barbora");
+    nasta.setSurname("Spotakova");
+    repository.save(nasta);
 
-persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));
-LOGGER.info("Find Person with age between 20,40: ");
+    repository.findById(2L).ifPresent(p -> LOGGER.info("Find by id 2: {}", p));
 
-persons.stream().map(Person::toString).forEach(LOGGER::info);
+    // Remove record from Person
+    repository.deleteById(2L);
 
-repository.deleteAll();
+    // count records
+    LOGGER.info("Count Person records: {}", repository.count());
+
+    // find by name
+    repository
+            .findOne(new PersonSpecifications.NameEqualSpec("John"))
+            .ifPresent(p -> LOGGER.info("Find by John is {}", p));
+
+    // find by age
+    persons = repository.findAll(new PersonSpecifications.AgeBetweenSpec(20, 40));
+
+    LOGGER.info("Find Person with age between 20,40: ");
+    persons.stream().map(Person::toString).forEach(LOGGER::info);
+
+    repository.deleteAll();
+
+    context.close();
+}
 ```
 
 Program output:
 
 ```
-Count Person records: 4
-Person [id=1, name=Peter, surname=Sagan, age=17]
-Person [id=2, name=Nasta, surname=Kuzminova, age=25]
-Person [id=3, name=John, surname=lawrence, age=35]
-Person [id=4, name=Terry, surname=Law, age=36]
-Find by id 2: Person [id=2, name=Barbora, surname=Spotakova, age=25]
-Count Person records: 3
-Find by John is Person [id=3, name=John, surname=lawrence, age=35]
-Find Person with age between 20,40: 
-Person [id=3, name=John, surname=lawrence, age=35]
-Person [id=4, name=Terry, surname=Law, age=36]
+INFO  [2024-05-27 07:00:32,847] com.iluwatar.repository.App: Count Person records: 4
+INFO  [2024-05-27 07:00:32,859] com.iluwatar.repository.App: Person(id=1, name=Peter, surname=Sagan, age=17)
+INFO  [2024-05-27 07:00:32,859] com.iluwatar.repository.App: Person(id=2, name=Nasta, surname=Kuzminova, age=25)
+INFO  [2024-05-27 07:00:32,859] com.iluwatar.repository.App: Person(id=3, name=John, surname=lawrence, age=35)
+INFO  [2024-05-27 07:00:32,859] com.iluwatar.repository.App: Person(id=4, name=Terry, surname=Law, age=36)
+INFO  [2024-05-27 07:00:32,869] com.iluwatar.repository.App: Find by id 2: Person(id=2, name=Barbora, surname=Spotakova, age=25)
+INFO  [2024-05-27 07:00:32,873] com.iluwatar.repository.App: Count Person records: 3
+INFO  [2024-05-27 07:00:32,878] com.iluwatar.repository.App: Find by John is Person(id=3, name=John, surname=lawrence, age=35)
+INFO  [2024-05-27 07:00:32,881] com.iluwatar.repository.App: Find Person with age between 20,40: 
+INFO  [2024-05-27 07:00:32,881] com.iluwatar.repository.App: Person(id=3, name=John, surname=lawrence, age=35)
+INFO  [2024-05-27 07:00:32,881] com.iluwatar.repository.App: Person(id=4, name=Terry, surname=Law, age=36)
 ```
-
-## Class diagram
-
-![Repository](./etc/repository.png "Repository")
 
 ## Applicability
 
 * Use when you want to decouple the business logic and data access layers of your application.
 * Suitable for scenarios where multiple data sources might be used and the business logic should remain unaware of the data source specifics.
 * Ideal for testing purposes as it allows the use of mock repositories.
+
+## Tutorials
+
+* [Don’t use DAO, use Repository (Thinking in Objects)](http://thinkinginobjects.com/2012/08/26/dont-use-dao-use-repository/)
+* [Advanced Spring Data JPA - Specifications and Querydsl (Spring)](https://spring.io/blog/2011/04/26/advanced-spring-data-jpa-specifications-and-querydsl/)
+* [Repository Pattern Benefits and Spring Implementation (Stack Overflow)](https://stackoverflow.com/questions/40068965/repository-pattern-benefits-and-spring-implementation)
+* [Design patterns that I often avoid: Repository pattern (InfoWorld)](https://www.infoworld.com/article/3117713/design-patterns-that-i-often-avoid-repository-pattern.html)
 
 ## Known Uses
 
@@ -196,8 +213,4 @@ Trade-offs:
 ## Credits
 
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
-* [Patterns of Enterprise Application Architecture](https://www.amazon.com/gp/product/0321127420/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321127420&linkCode=as2&tag=javadesignpat-20&linkId=d9f7d37b032ca6e96253562d075fcc4a)
-* [Don’t use DAO, use Repository](http://thinkinginobjects.com/2012/08/26/dont-use-dao-use-repository/)
-* [Advanced Spring Data JPA - Specifications and Querydsl](https://spring.io/blog/2011/04/26/advanced-spring-data-jpa-specifications-and-querydsl/)
-* [Repository Pattern Benefits and Spring Implementation](https://stackoverflow.com/questions/40068965/repository-pattern-benefits-and-spring-implementation)
-* [Design patterns that I often avoid: Repository pattern](https://www.infoworld.com/article/3117713/design-patterns-that-i-often-avoid-repository-pattern.html)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
