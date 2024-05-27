@@ -128,10 +128,6 @@ Running the application produces:
 
 In this example, the `Servant` class provides services to the `Royalty` objects. The `Servant` class doesn't know about the specific implementation of the `Royalty` objects, it only knows that it can provide certain services to them. This is a good example of the Servant design pattern.
 
-## Class diagram
-
-![Servant](./etc/servant-pattern.png "Servant")
-
 ## Applicability
 
 * Use the Servant pattern when you need to provide a common functionality to a group of classes without polluting their class definitions.
@@ -167,4 +163,3 @@ Trade-offs:
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
 * [Pattern-Oriented Software Architecture Volume 1: A System of Patterns](https://amzn.to/3xZ1ELU)
-* [Let's Modify the Objects-First Approach into Design-Patterns-First](http://edu.pecinovsky.cz/papers/2006_ITiCSE_Design_Patterns_First.pdf)
