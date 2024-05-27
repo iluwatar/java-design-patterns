@@ -31,71 +31,132 @@ Wikipedia says
 
 **Programmatic Example**
 
-The Saga design pattern is a sequence of local transactions where each transaction updates data within a single service. The Saga pattern is a way to manage transactions and it's particularly useful in microservices architecture where each service has its own database.
+The Saga design pattern is a sequence of local transactions where each transaction updates data within a single service. It's particularly useful in a microservices architecture where each service has its own database. The Saga pattern ensures data consistency and fault tolerance across services. Here are the key components of the Saga pattern:
 
-The Saga pattern is implemented in the `Saga` class. A Saga is a sequence of chapters, each representing a local transaction. The `Saga` class provides methods to add chapters and to check if a chapter is present.
+1. **Saga**: A Saga is a sequence of local transactions, each of which is called a chapter. The Saga manages the sequence of these transactions, ensuring that each transaction is performed in the correct order and that the Saga is rolled back if a transaction fails.
+
+2. **Chapter**: Each chapter in a Saga represents a local transaction. A chapter has a name, a result (which can be `INIT`, `SUCCESS`, or `ROLLBACK`), and an input value. The `Chapter` class provides methods to get and set these properties.
+
+3. **Service**: A service performs a local transaction. It processes the input value of a chapter and returns a `ChapterResult`. If the transaction fails, it sets the status of the chapter to `ROLLBACK`.
+
+4. **Service Discovery**: This component is responsible for discovering available services and executing the Saga. It processes each chapter in the Saga in order. If a chapter fails, the Saga will be rolled back.
+
+5. **Saga Result**: The result of a Saga can be `PROGRESS`, `FINISHED`, or `ROLLBACKED`. This is determined by the `getResult` method of the `Saga` class.
+
+In a real-world application, the `Service` class would contain the logic to perform the local transaction and handle failures. The `Saga` class would manage the sequence of local transactions, ensuring that each transaction is performed in the correct order and that the Saga is rolled back if a transaction fails.
+
+**Snippet 1: Creating a Saga**
+
+The first step in using the Saga pattern is to create a Saga. A Saga is a sequence of chapters, each representing a local transaction. The `Saga` class provides methods to add chapters and to check if a chapter is present.
 
 ```java
-public class Saga {
+// Create a new Saga
+Saga saga = Saga.create();
+```
 
-    private final List<Chapter> chapters;
+**Snippet 2: Adding Chapters to the Saga**
 
-    private Saga() {
-        this.chapters = new ArrayList<>();
-    }
+Each chapter in a Saga represents a local transaction. We can add chapters to the Saga using the `chapter` method.
 
-    public Saga chapter(String name) {
-        this.chapters.add(new Chapter(name));
-        return this;
-    }
+```java
+// Add chapters to the Saga
+saga.chapter("init an order");
+saga.chapter("booking a Fly");
+saga.chapter("booking a Hotel");
+saga.chapter("withdrawing Money");
+```
 
-    public Chapter get(int idx) {
-        return chapters.get(idx);
-    }
+**Snippet 3: Setting Input Values for Chapters**
 
-    public boolean isPresent(int idx) {
-        return idx >= 0 && idx < chapters.size();
-    }
+Each chapter in a Saga can have an input value. We can set the input value for the last added chapter using the `setInValue` method.
 
-    public static Saga create() {
-        return new Saga();
-    }
+```java
+// Set input values for the chapters
+saga.chapter("init an order").setInValue("good_order");
+```
 
-    public static class Chapter {
-        String name;
+**Snippet 4: Executing the Saga**
 
-        public Chapter(String name) {
-            this.name = name;
-        }
-    }
+We can execute the Saga using a service. The service will process each chapter in the Saga in order. If a chapter fails, the Saga will be rolled back.
+
+```java
+// Execute the Saga
+var service = sd.findAny();
+var goodOrderSaga = service.execute(saga);
+```
+
+**Snippet 5: Checking the Result of the Saga**
+
+We can check the result of the Saga using the `getResult` method. This method returns the result of the Saga, which can be `PROGRESS`, `FINISHED`, or `ROLLBACKED`.
+
+```java
+// Check the result of the Saga
+SagaResult result = goodOrderSaga.getResult();
+```
+
+The `SagaApplication` class has a `main` method for running the example.
+
+```java
+@Slf4j
+public class SagaApplication {
+
+  public static void main(String[] args) {
+    var sd = serviceDiscovery();
+    var service = sd.findAny();
+    var goodOrderSaga = service.execute(newSaga("good_order"));
+    var badOrderSaga = service.execute(newSaga("bad_order"));
+    LOGGER.info("orders: goodOrder is {}, badOrder is {}",
+        goodOrderSaga.getResult(), badOrderSaga.getResult());
+  }
+
+  private static Saga newSaga(Object value) {
+    return Saga
+        .create()
+        .chapter("init an order").setInValue(value)
+        .chapter("booking a Fly")
+        .chapter("booking a Hotel")
+        .chapter("withdrawing Money");
+  }
+
+  private static ServiceDiscoveryService serviceDiscovery() {
+    var sd = new ServiceDiscoveryService();
+    return sd
+        .discover(new OrderService(sd))
+        .discover(new FlyBookingService(sd))
+        .discover(new HotelBookingService(sd))
+        .discover(new WithdrawMoneyService(sd));
+  }
 }
 ```
 
-**Explanation:**
+1. **Saga**: The `SagaApplication` creates a new Saga using the `Saga.create()` method. It then adds chapters to the Saga using the `chapter` method and sets the input value for each chapter using the `setInValue` method.
+2. **Service**: The `SagaApplication` uses services to execute the chapters in the Saga. Each service represents a local transaction. The `SagaApplication` uses the `ServiceDiscoveryService` to discover available services and execute the Saga.
+3. **Service Discovery**: The `ServiceDiscoveryService` is used to discover available services. The `SagaApplication` uses this to find a service and execute the Saga.
+4. **Saga Execution**: The `SagaApplication` executes the Saga using the `execute` method of a service. It creates two Sagas, one for a good order and one for a bad order, and executes them.
+5. **Saga Result**: The `SagaApplication` checks the result of the Saga using the `getResult` method. It logs the result of the good order Saga and the bad order Saga.
 
-The `WithdrawMoneyService` class represents a service that performs a local transaction. It extends the `Service` class and overrides the `process` method to perform the transaction. If the transaction fails, it sets the status of the saga to `ROLLBACK`.
+In summary, the `SagaApplication` creates a Saga, adds chapters to it, sets the input value for each chapter, discovers services, executes the Saga using a service, and checks the result of the Saga.
 
-```java
-public class WithdrawMoneyService extends Service<String> {
-    @Override
-    public String getName() {
-        return "withdrawing Money";
-    }
+Running the example produces the following console output:
 
-    @Override
-    public ChapterResult<String> process(String value) {
-        if (value.equals("bad_order") || value.equals("crashed_order")) {
-            LOGGER.info("The chapter '{}' has been started. But the exception has been raised."
-                            + "The rollback is about to start",
-                    getName());
-            return ChapterResult.failure(value);
-        }
-        return super.process(value);
-    }
-}
+```
+11:32:17.779 [main] INFO com.iluwatar.saga.choreography.Service -- The chapter 'init an order' has been started. The data good_order has been stored or calculated successfully
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service -- The chapter 'booking a Fly' has been started. The data good_order has been stored or calculated successfully
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service -- The chapter 'booking a Hotel' has been started. The data good_order has been stored or calculated successfully
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service -- The chapter 'withdrawing Money' has been started. The data good_order has been stored or calculated successfully
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service --  the saga has been finished with FINISHED status
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service -- The chapter 'init an order' has been started. The data bad_order has been stored or calculated successfully
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service -- The chapter 'booking a Fly' has been started. The data bad_order has been stored or calculated successfully
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service -- The chapter 'booking a Hotel' has been started. The data bad_order has been stored or calculated successfully
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service -- The chapter 'withdrawing Money' has been started. But the exception has been raised.The rollback is about to start
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service -- The Rollback for a chapter 'booking a Hotel' has been started. The data bad_order has been rollbacked successfully
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service -- The Rollback for a chapter 'booking a Fly' has been started. The data bad_order has been rollbacked successfully
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service -- The Rollback for a chapter 'init an order' has been started. The data bad_order has been rollbacked successfully
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.Service --  the saga has been finished with ROLLBACKED status
+11:32:17.782 [main] INFO com.iluwatar.saga.choreography.SagaApplication -- orders: goodOrder is FINISHED, badOrder is ROLLBACKED
 ```
 
-In a real-world application, the `Service` class would contain the logic to perform the local transaction and handle failures. The `Saga` class would manage the sequence of local transactions, ensuring that each transaction is performed in the correct order and that the saga is rolled back if a transaction fails.
+This is a basic example of how to use the Saga design pattern. In a real-world application, the `Saga` class would manage the sequence of local transactions, ensuring that each transaction is performed in the correct order and that the Saga is rolled back if a transaction fails.
 
 ## Class diagram
 
@@ -137,5 +198,5 @@ Trade-offs:
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3WcFVui)
 * [Microservices Patterns: With examples in Java](https://amzn.to/3UyWD5O)
-* [Saga pattern - microservices.io](https://microservices.io/patterns/data/saga.html)
-* [Saga distributed transactions pattern - Microsoft](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/saga/saga)
+* [Pattern: Saga (microservices.io)](https://microservices.io/patterns/data/saga.html)
+* [Saga distributed transactions pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/reference-architectures/saga/saga)
