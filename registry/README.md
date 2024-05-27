@@ -28,7 +28,7 @@ Real-world example
 >
 > In this analogy, the IT Asset Management System acts as a Registry, managing the lifecycle and providing global access to information about IT assets within the organization.
 
-In Plain Words
+In plain words
 
 > Registry is a well-known object that other objects can use to find common objects and services.
 
@@ -40,33 +40,18 @@ wiki.c2.com says
 
 The Registry design pattern is a well-known pattern used in software design where objects are stored and provide a global point of access to them. This pattern is particularly useful when you need to manage a global collection of objects, decouple the creation of objects from their usage, ensure a controlled lifecycle for objects, and avoid redundant creation of objects.
 
-First, we have the `Customer` class. This class represents the objects that will be stored in the registry. Each `Customer` has an `id` and a `name`.
+First, we have the `Customer` record. It represents the objects that will be stored in the registry. Each `Customer` has an `id` and a `name`.
 
 ```java
-public class Customer {
-  private final String id;
-  private final String name;
+public record Customer(String id, String name) {
 
-  public Customer(String id, String name) {
-    this.id = id;
-    this.name = name;
-  }
-
-  public String id() {
-    return id;
-  }
-
-  public String name() {
-    return name;
-  }
-
-  @Override
-  public String toString() {
-    return "Customer{" +
-        "id='" + id + '\'' +
-        ", name='" + name + '\'' +
-        '}';
-  }
+    @Override
+    public String toString() {
+        return "Customer{"
+                + "id='" + id + '\''
+                + ", name='" + name + '\''
+                + '}';
+    }
 }
 ```
 
@@ -75,25 +60,22 @@ Next, we have the `CustomerRegistry` class. This class is the actual registry wh
 ```java
 public final class CustomerRegistry {
 
-  private static final CustomerRegistry instance = new CustomerRegistry();
+    @Getter
+    private static final CustomerRegistry instance = new CustomerRegistry();
 
-  private final Map<String, Customer> customerMap;
+    private final Map<String, Customer> customerMap;
 
-  private CustomerRegistry() {
-    customerMap = new ConcurrentHashMap<>();
-  }
+    private CustomerRegistry() {
+        customerMap = new ConcurrentHashMap<>();
+    }
 
-  public static CustomerRegistry getInstance() {
-    return instance;
-  }
+    public Customer addCustomer(Customer customer) {
+        return customerMap.put(customer.id(), customer);
+    }
 
-  public Customer addCustomer(Customer customer) {
-    return customerMap.put(customer.id(), customer);
-  }
-
-  public Customer getCustomer(String id) {
-    return customerMap.get(id);
-  }
+    public Customer getCustomer(String id) {
+        return customerMap.get(id);
+    }
 
 }
 ```
@@ -121,9 +103,12 @@ public class App {
 
 In this example, the `CustomerRegistry` provides a global point of access to `Customer` objects. This allows us to manage these objects in a centralized way, promoting reuse and sharing, and facilitating decoupling between components.
 
-## Class diagram
+Running the example produces the following output:
 
-![Registry](./etc/registry.png)
+```
+09:55:31.109 [main] INFO com.iluwatar.registry.App -- John Customer{id='1', name='John'}
+09:55:31.113 [main] INFO com.iluwatar.registry.App -- Julia Customer{id='2', name='Julia'}
+```
 
 ## Applicability
 
@@ -165,5 +150,5 @@ Trade-offs:
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
-* [Registry - Martin Fowler](https://www.martinfowler.com/eaaCatalog/registry.html)
-* [Registry pattern - wiki.c2.com](https://wiki.c2.com/?RegistryPattern)
+* [Registry (Martin Fowler)](https://www.martinfowler.com/eaaCatalog/registry.html)
+* [Registry pattern (wiki.c2.com)](https://wiki.c2.com/?RegistryPattern)
