@@ -32,7 +32,7 @@ In plain words
 
 > The Type Object pattern allows for the creation and management of flexible and extensible sets of related types dynamically, without modifying existing code.
 
-Gameprogrammingpatterns.com says
+gameprogrammingpatterns.com says
 
 > Define a type object class and a typed object class. Each type object instance represents a different logical type. Each typed object stores a reference to the type object that describes its type.
 
@@ -44,7 +44,7 @@ In the provided code, the Type Object pattern is implemented in a mini candy-cru
 
 Let's break down the key components of this implementation:
 
-1. **Candy Class**: This class represents the 'type' object in this pattern. Each candy has a name, parent, points, and type. The type is an enum that can be either `CRUSHABLE_CANDY` or `REWARD_FRUIT`.
+1. **Candy Class**: This class represents the 'type' object in this pattern. Each `Candy` has a `name`, `parent`, `points`, and `type`. The `type` is an enum that can be either `CRUSHABLE_CANDY` or `REWARD_FRUIT`.
 
 ```java
 class Candy {
@@ -168,16 +168,129 @@ class CellPool {
 @Slf4j
 public class App {
   public static void main(String[] args) {
-    // implementation
+      var givenTime = 50; //50ms
+      var toWin = 500; //points
+      var pointsWon = 0;
+      var numOfRows = 3;
+      var start = System.currentTimeMillis();
+      var end = System.currentTimeMillis();
+      var round = 0;
+      while (pointsWon < toWin && end - start < givenTime) {
+          round++;
+          var pool = new CellPool(numOfRows * numOfRows + 5);
+          var cg = new CandyGame(numOfRows, pool);
+          if (round > 1) {
+              LOGGER.info("Refreshing..");
+          } else {
+              LOGGER.info("Starting game..");
+          }
+          cg.printGameStatus();
+          end = System.currentTimeMillis();
+          cg.round((int) (end - start), givenTime);
+          pointsWon += cg.totalPoints;
+          end = System.currentTimeMillis();
+      }
+      LOGGER.info("Game Over");
+      if (pointsWon >= toWin) {
+          LOGGER.info("" + pointsWon);
+          LOGGER.info("You win!!");
+      } else {
+          LOGGER.info("" + pointsWon);
+          LOGGER.info("Sorry, you lose!");
+      }
   }
 }
 ```
 
+Let's break down what happens in `App` class.
+
+1. The `main` method is the entry point of the application. It starts by initializing several variables:
+    - `givenTime` is set to 50 milliseconds. This is the time limit for the game.
+    - `toWin` is set to 500 points. This is the target score to win the game.
+    - `pointsWon` is initialized to 0. This variable keeps track of the total points won so far.
+    - `numOfRows` is set to 3. This is the number of rows in the game grid.
+    - `start` and `end` are both set to the current system time in milliseconds. These variables are used to track the elapsed time.
+    - `round` is initialized to 0. This variable keeps track of the current round number.
+
+2. The game enters a loop that continues until either the player has won enough points (`pointsWon >= toWin`) or the time limit has been reached (`end - start < givenTime`).
+
+3. At the start of each round, a new `CellPool` and `CandyGame` are created. The `CellPool` is initialized with a size based on the number of cells in the game grid (`numOfRows * numOfRows + 5`). The `CandyGame` is initialized with the number of rows and the `CellPool`.
+
+4. If it's not the first round, a message "Refreshing.." is logged. If it is the first round, a message "Starting game.." is logged.
+
+5. The current game status is printed by calling `cg.printGameStatus()`.
+
+6. The `end` time is updated to the current system time.
+
+7. The game round is played by calling `cg.round((int) (end - start), givenTime)`. The elapsed time and the time limit are passed as arguments.
+
+8. The points won in the round are added to the total points.
+
+9. The `end` time is updated again to the current system time.
+
+10. After the loop, a "Game Over" message is logged.
+
+11. If the total points won is greater than or equal to the target score, a winning message is logged. Otherwise, a losing message is logged.
+
+This is a simplified version of a game similar to Candy Crush, where the player tries to score as many points as possible within a given time limit. The game is played in rounds, and the player's score and the elapsed time are tracked throughout the game.
+
+Console output:
+
+```
+14:36:14.453 [main] INFO com.iluwatar.typeobject.App -- Starting game..
+14:36:14.455 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame --        cherry       |
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame --        mango        |
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame --      orange gum     |
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame --      orange gum     |
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame --   purple popsicle   |
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame --   purple popsicle   |
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame --   green jellybean   |
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame --   green jellybean   |
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame --        mango        |
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.458 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.459 [main] INFO com.iluwatar.typeobject.CandyGame -- +20 points!
+...
+...
+...
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --   green jellybean   |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --        cherry       |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --   green jellybean   |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --   green jellybean   |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --   green jellybean   |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --        mango        |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --      orange gum     |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --   purple popsicle   |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --      orange gum     |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- +20 points!
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --      orange gum     |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --        cherry       |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --   green jellybean   |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --   purple popsicle   |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --   green jellybean   |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --        mango        |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --      orange gum     |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --   purple popsicle   |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame --      orange gum     |
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.465 [main] INFO com.iluwatar.typeobject.CandyGame -- 
+14:36:14.465 [main] INFO com.iluwatar.typeobject.App -- Game Over
+14:36:14.465 [main] INFO com.iluwatar.typeobject.App -- 660
+14:36:14.465 [main] INFO com.iluwatar.typeobject.App -- You win!!
+```
+
 In this implementation, the Type Object pattern allows for the flexible creation of `Candy` objects. The type of each candy is determined at runtime by parsing a JSON file, which makes it easy to add, modify, or remove candy types without having to recompile the code.
-
-## Class diagram
-
-![Type Object](./etc/typeobjectpattern.urm.png "Type Object")
 
 ## Applicability
 
@@ -187,6 +300,10 @@ This pattern can be used when:
 * Ideal for scenarios where types and their behaviors need to be defined at runtime or in a flexible manner.
 * Suitable for situations where the number of types is large and may change over time.
 * The difference between the different 'types' of objects is the data, not the behaviour.
+
+## Tutorials
+
+* [Types as Objects Pattern (Jon Pearce)](http://www.cs.sjsu.edu/~pearce/modules/patterns/analysis/top.htm)
 
 ## Known uses
 
@@ -218,5 +335,4 @@ Trade-offs:
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
-* [Game Programming Patterns - Type Object](http://gameprogrammingpatterns.com/type-object.html)
-* [Types as Objects Pattern - Jon Pearce](http://www.cs.sjsu.edu/~pearce/modules/patterns/analysis/top.htm)
+* [Type Object (Game Programming Patterns)](http://gameprogrammingpatterns.com/type-object.html)
