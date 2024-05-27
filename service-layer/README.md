@@ -85,7 +85,9 @@ public interface WizardDao extends Dao<Wizard> {
 
     Wizard findByName(String name);
 }
+```
 
+```java
 public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 
     @Override
@@ -167,62 +169,182 @@ public class MagicServiceImpl implements MagicService {
 }
 ```
 
-And finally we can show how the client `App` interacts with `MagicService` in the Service Layer.
+And finally, we can show how the client `App` interacts with `MagicService` in the Service Layer.
 
 ```java
-    var service = new MagicServiceImpl(wizardDao, spellbookDao, spellDao);
-    LOGGER.info("Enumerating all wizards");
-    service.findAllWizards().stream().map(Wizard::getName).forEach(LOGGER::info);
-    LOGGER.info("Enumerating all spellbooks");
-    service.findAllSpellbooks().stream().map(Spellbook::getName).forEach(LOGGER::info);
-    LOGGER.info("Enumerating all spells");
-    service.findAllSpells().stream().map(Spell::getName).forEach(LOGGER::info);
-    LOGGER.info("Find wizards with spellbook 'Book of Idores'");
-    var wizardsWithSpellbook = service.findWizardsWithSpellbook("Book of Idores");
-    wizardsWithSpellbook.forEach(w -> LOGGER.info("{} has 'Book of Idores'", w.getName()));
-    LOGGER.info("Find wizards with spell 'Fireball'");
-    var wizardsWithSpell = service.findWizardsWithSpell("Fireball");
-    wizardsWithSpell.forEach(w -> LOGGER.info("{} has 'Fireball'", w.getName()));
+@Slf4j
+public class App {
+    
+    public static final String BOOK_OF_IDORES = "Book of Idores";
+
+    public static void main(String[] args) {
+        // populate the in-memory database
+        initData();
+        // query the data using the service
+        queryData();
+    }
+
+    public static void initData() {
+        // spells
+        var spell1 = new Spell("Ice dart");
+        var spell2 = new Spell("Invisibility");
+        var spell3 = new Spell("Stun bolt");
+        var spell4 = new Spell("Confusion");
+        var spell5 = new Spell("Darkness");
+        var spell6 = new Spell("Fireball");
+        var spell7 = new Spell("Enchant weapon");
+        var spell8 = new Spell("Rock armour");
+        var spell9 = new Spell("Light");
+        var spell10 = new Spell("Bee swarm");
+        var spell11 = new Spell("Haste");
+        var spell12 = new Spell("Levitation");
+        var spell13 = new Spell("Magic lock");
+        var spell14 = new Spell("Summon hell bat");
+        var spell15 = new Spell("Water walking");
+        var spell16 = new Spell("Magic storm");
+        var spell17 = new Spell("Entangle");
+        var spellDao = new SpellDaoImpl();
+        spellDao.persist(spell1);
+        spellDao.persist(spell2);
+        spellDao.persist(spell3);
+        spellDao.persist(spell4);
+        spellDao.persist(spell5);
+        spellDao.persist(spell6);
+        spellDao.persist(spell7);
+        spellDao.persist(spell8);
+        spellDao.persist(spell9);
+        spellDao.persist(spell10);
+        spellDao.persist(spell11);
+        spellDao.persist(spell12);
+        spellDao.persist(spell13);
+        spellDao.persist(spell14);
+        spellDao.persist(spell15);
+        spellDao.persist(spell16);
+        spellDao.persist(spell17);
+
+        // spellbooks
+        var spellbookDao = new SpellbookDaoImpl();
+        var spellbook1 = new Spellbook("Book of Orgymon");
+        spellbookDao.persist(spellbook1);
+        spellbook1.addSpell(spell1);
+        spellbook1.addSpell(spell2);
+        spellbook1.addSpell(spell3);
+        spellbook1.addSpell(spell4);
+        spellbookDao.merge(spellbook1);
+        var spellbook2 = new Spellbook("Book of Aras");
+        spellbookDao.persist(spellbook2);
+        spellbook2.addSpell(spell5);
+        spellbook2.addSpell(spell6);
+        spellbookDao.merge(spellbook2);
+        var spellbook3 = new Spellbook("Book of Kritior");
+        spellbookDao.persist(spellbook3);
+        spellbook3.addSpell(spell7);
+        spellbook3.addSpell(spell8);
+        spellbook3.addSpell(spell9);
+        spellbookDao.merge(spellbook3);
+        var spellbook4 = new Spellbook("Book of Tamaex");
+        spellbookDao.persist(spellbook4);
+        spellbook4.addSpell(spell10);
+        spellbook4.addSpell(spell11);
+        spellbook4.addSpell(spell12);
+        spellbookDao.merge(spellbook4);
+        var spellbook5 = new Spellbook(BOOK_OF_IDORES);
+        spellbookDao.persist(spellbook5);
+        spellbook5.addSpell(spell13);
+        spellbookDao.merge(spellbook5);
+        var spellbook6 = new Spellbook("Book of Opaen");
+        spellbookDao.persist(spellbook6);
+        spellbook6.addSpell(spell14);
+        spellbook6.addSpell(spell15);
+        spellbookDao.merge(spellbook6);
+        var spellbook7 = new Spellbook("Book of Kihione");
+        spellbookDao.persist(spellbook7);
+        spellbook7.addSpell(spell16);
+        spellbook7.addSpell(spell17);
+        spellbookDao.merge(spellbook7);
+
+        // wizards
+        var wizardDao = new WizardDaoImpl();
+        var wizard1 = new Wizard("Aderlard Boud");
+        wizardDao.persist(wizard1);
+        wizard1.addSpellbook(spellbookDao.findByName("Book of Orgymon"));
+        wizard1.addSpellbook(spellbookDao.findByName("Book of Aras"));
+        wizardDao.merge(wizard1);
+        var wizard2 = new Wizard("Anaxis Bajraktari");
+        wizardDao.persist(wizard2);
+        wizard2.addSpellbook(spellbookDao.findByName("Book of Kritior"));
+        wizard2.addSpellbook(spellbookDao.findByName("Book of Tamaex"));
+        wizardDao.merge(wizard2);
+        var wizard3 = new Wizard("Xuban Munoa");
+        wizardDao.persist(wizard3);
+        wizard3.addSpellbook(spellbookDao.findByName(BOOK_OF_IDORES));
+        wizard3.addSpellbook(spellbookDao.findByName("Book of Opaen"));
+        wizardDao.merge(wizard3);
+        var wizard4 = new Wizard("Blasius Dehooge");
+        wizardDao.persist(wizard4);
+        wizard4.addSpellbook(spellbookDao.findByName("Book of Kihione"));
+        wizardDao.merge(wizard4);
+    }
+
+    public static void queryData() {
+        var wizardDao = new WizardDaoImpl();
+        var spellbookDao = new SpellbookDaoImpl();
+        var spellDao = new SpellDaoImpl();
+        var service = new MagicServiceImpl(wizardDao, spellbookDao, spellDao);
+        LOGGER.info("Enumerating all wizards");
+        service.findAllWizards().stream().map(Wizard::getName).forEach(LOGGER::info);
+        LOGGER.info("Enumerating all spellbooks");
+        service.findAllSpellbooks().stream().map(Spellbook::getName).forEach(LOGGER::info);
+        LOGGER.info("Enumerating all spells");
+        service.findAllSpells().stream().map(Spell::getName).forEach(LOGGER::info);
+        LOGGER.info("Find wizards with spellbook 'Book of Idores'");
+        var wizardsWithSpellbook = service.findWizardsWithSpellbook(BOOK_OF_IDORES);
+        wizardsWithSpellbook.forEach(w -> LOGGER.info("{} has 'Book of Idores'", w.getName()));
+        LOGGER.info("Find wizards with spell 'Fireball'");
+        var wizardsWithSpell = service.findWizardsWithSpell("Fireball");
+        wizardsWithSpell.forEach(w -> LOGGER.info("{} has 'Fireball'", w.getName()));
+    }
+}
 ```
 
 The program output:
 
 ```
-INFO  [2024-05-20 10:00:24,548] com.iluwatar.servicelayer.app.App: Enumerating all wizards
-INFO  [2024-05-20 10:00:24,550] com.iluwatar.servicelayer.app.App: Aderlard Boud
-INFO  [2024-05-20 10:00:24,550] com.iluwatar.servicelayer.app.App: Anaxis Bajraktari
-INFO  [2024-05-20 10:00:24,551] com.iluwatar.servicelayer.app.App: Xuban Munoa
-INFO  [2024-05-20 10:00:24,551] com.iluwatar.servicelayer.app.App: Blasius Dehooge
-INFO  [2024-05-20 10:00:24,551] com.iluwatar.servicelayer.app.App: Enumerating all spellbooks
-INFO  [2024-05-20 10:00:24,554] com.iluwatar.servicelayer.app.App: Book of Orgymon
-INFO  [2024-05-20 10:00:24,554] com.iluwatar.servicelayer.app.App: Book of Aras
-INFO  [2024-05-20 10:00:24,554] com.iluwatar.servicelayer.app.App: Book of Kritior
-INFO  [2024-05-20 10:00:24,554] com.iluwatar.servicelayer.app.App: Book of Tamaex
-INFO  [2024-05-20 10:00:24,554] com.iluwatar.servicelayer.app.App: Book of Idores
-INFO  [2024-05-20 10:00:24,554] com.iluwatar.servicelayer.app.App: Book of Opaen
-INFO  [2024-05-20 10:00:24,554] com.iluwatar.servicelayer.app.App: Book of Kihione
-INFO  [2024-05-20 10:00:24,554] com.iluwatar.servicelayer.app.App: Enumerating all spells
-INFO  [2024-05-20 10:00:24,558] com.iluwatar.servicelayer.app.App: Ice dart
-INFO  [2024-05-20 10:00:24,558] com.iluwatar.servicelayer.app.App: Invisibility
-INFO  [2024-05-20 10:00:24,558] com.iluwatar.servicelayer.app.App: Stun bolt
-INFO  [2024-05-20 10:00:24,558] com.iluwatar.servicelayer.app.App: Confusion
-INFO  [2024-05-20 10:00:24,558] com.iluwatar.servicelayer.app.App: Darkness
-INFO  [2024-05-20 10:00:24,558] com.iluwatar.servicelayer.app.App: Fireball
-INFO  [2024-05-20 10:00:24,558] com.iluwatar.servicelayer.app.App: Enchant weapon
-INFO  [2024-05-20 10:00:24,558] com.iluwatar.servicelayer.app.App: Rock armour
-INFO  [2024-05-20 10:00:24,558] com.iluwatar.servicelayer.app.App: Light
-INFO  [2024-05-20 10:00:24,558] com.iluwatar.servicelayer.app.App: Bee swarm
-INFO  [2024-05-20 10:00:24,559] com.iluwatar.servicelayer.app.App: Haste
-INFO  [2024-05-20 10:00:24,559] com.iluwatar.servicelayer.app.App: Levitation
-INFO  [2024-05-20 10:00:24,559] com.iluwatar.servicelayer.app.App: Magic lock
-INFO  [2024-05-20 10:00:24,559] com.iluwatar.servicelayer.app.App: Summon hell bat
-INFO  [2024-05-20 10:00:24,559] com.iluwatar.servicelayer.app.App: Water walking
-INFO  [2024-05-20 10:00:24,559] com.iluwatar.servicelayer.app.App: Magic storm
-INFO  [2024-05-20 10:00:24,559] com.iluwatar.servicelayer.app.App: Entangle
-INFO  [2024-05-20 10:00:24,559] com.iluwatar.servicelayer.app.App: Find wizards with spellbook 'Book of Idores'
-INFO  [2024-05-20 10:00:24,560] com.iluwatar.servicelayer.app.App: Xuban Munoa has 'Book of Idores'
-INFO  [2024-05-20 10:00:24,560] com.iluwatar.servicelayer.app.App: Find wizards with spell 'Fireball'
-INFO  [2024-05-20 10:00:24,562] com.iluwatar.servicelayer.app.App: Aderlard Boud has 'Fireball'
+INFO  [2024-05-27 09:16:40,668] com.iluwatar.servicelayer.app.App: Enumerating all wizards
+INFO  [2024-05-27 09:16:40,671] com.iluwatar.servicelayer.app.App: Aderlard Boud
+INFO  [2024-05-27 09:16:40,671] com.iluwatar.servicelayer.app.App: Anaxis Bajraktari
+INFO  [2024-05-27 09:16:40,671] com.iluwatar.servicelayer.app.App: Xuban Munoa
+INFO  [2024-05-27 09:16:40,671] com.iluwatar.servicelayer.app.App: Blasius Dehooge
+INFO  [2024-05-27 09:16:40,671] com.iluwatar.servicelayer.app.App: Enumerating all spellbooks
+INFO  [2024-05-27 09:16:40,675] com.iluwatar.servicelayer.app.App: Book of Orgymon
+INFO  [2024-05-27 09:16:40,675] com.iluwatar.servicelayer.app.App: Book of Aras
+INFO  [2024-05-27 09:16:40,675] com.iluwatar.servicelayer.app.App: Book of Kritior
+INFO  [2024-05-27 09:16:40,675] com.iluwatar.servicelayer.app.App: Book of Tamaex
+INFO  [2024-05-27 09:16:40,675] com.iluwatar.servicelayer.app.App: Book of Idores
+INFO  [2024-05-27 09:16:40,675] com.iluwatar.servicelayer.app.App: Book of Opaen
+INFO  [2024-05-27 09:16:40,675] com.iluwatar.servicelayer.app.App: Book of Kihione
+INFO  [2024-05-27 09:16:40,675] com.iluwatar.servicelayer.app.App: Enumerating all spells
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Ice dart
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Invisibility
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Stun bolt
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Confusion
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Darkness
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Fireball
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Enchant weapon
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Rock armour
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Light
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Bee swarm
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Haste
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Levitation
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Magic lock
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Summon hell bat
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Water walking
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Magic storm
+INFO  [2024-05-27 09:16:40,679] com.iluwatar.servicelayer.app.App: Entangle
+INFO  [2024-05-27 09:16:40,680] com.iluwatar.servicelayer.app.App: Find wizards with spellbook 'Book of Idores'
+INFO  [2024-05-27 09:16:40,680] com.iluwatar.servicelayer.app.App: Xuban Munoa has 'Book of Idores'
+INFO  [2024-05-27 09:16:40,681] com.iluwatar.servicelayer.app.App: Find wizards with spell 'Fireball'
+INFO  [2024-05-27 09:16:40,683] com.iluwatar.servicelayer.app.App: Aderlard Boud has 'Fireball'
 ```
 
 ## Class diagram
@@ -265,4 +387,4 @@ Trade-offs:
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Spring in Action](https://amzn.to/4asnpSG)
-* [Martin Fowler - Service Layer](http://martinfowler.com/eaaCatalog/serviceLayer.html)
+* [Service Layer (Martin Fowler)](http://martinfowler.com/eaaCatalog/serviceLayer.html)
