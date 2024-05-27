@@ -83,6 +83,15 @@ public class App {
 
 In the `main` method, we create two `GiantModel` instances, `giant1` and `giant2`, and two `Action` instances, `action1` and `action2`. We then create a `GiantView` instance and a `Dispatcher` instance. We add `action1` and `action2` to the `Dispatcher` and create a `GiantController` with the `Dispatcher`. We then update the view with `giant1` and `giant2`, set some commands, and update the view again.
 
+Console output:
+
+```
+12:23:10.895 [main] INFO com.iluwatar.servicetoworker.GiantView -- Giant giant1, The giant looks healthy, alert and saturated.
+12:23:10.897 [main] INFO com.iluwatar.servicetoworker.GiantView -- Giant giant2, The giant looks dead, sleeping and starving.
+12:23:10.897 [main] INFO com.iluwatar.servicetoworker.GiantView -- Giant giant1, The giant looks healthy, sleeping and starving.
+12:23:10.897 [main] INFO com.iluwatar.servicetoworker.GiantView -- Giant giant2, The giant looks healthy, alert and hungry.
+```
+
 This is a simple example of how the Service to Worker pattern can be implemented in a Java application.
 
 ## Class diagram
