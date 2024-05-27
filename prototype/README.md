@@ -21,7 +21,9 @@ The Prototype pattern is used to specify the kinds of objects to create using a 
 
 Real-world example
 
-> Remember Dolly? The sheep that was cloned! Let's not get into the details but the key point here is that it is all about cloning.
+> Imagine a company that manufactures custom-designed furniture. Instead of creating each piece from scratch every time an order is placed, they keep prototypes of their most popular designs. When a customer places an order for a specific design, the company simply clones the prototype of that design and makes the necessary customizations. This approach saves time and resources as the basic structure and design details are already in place, allowing the company to quickly fulfill orders with consistent quality.
+>
+> In this scenario, the furniture prototypes act like object prototypes in software, enabling efficient creation of new, customized pieces based on existing models.
 
 In plain words
 
@@ -52,7 +54,9 @@ Our example contains a hierarchy of different creatures. For example, let's look
 public abstract class Beast extends Prototype<Beast> {
   public Beast(Beast source) {}
 }
+```
 
+```java
 @EqualsAndHashCode(callSuper = false)
 @RequiredArgsConstructor
 public class OrcBeast extends Beast {
@@ -71,7 +75,7 @@ public class OrcBeast extends Beast {
 }
 ```
 
-We don't want to go into too many details, but the full example contains also base classes `Mage` and `Warlord` and there are specialized implementations for those for elves in addition to orcs.
+We don't want to go into too many details, but the full example contains also base classes `Mage` and `Warlord` and there are specialized implementations of those for elves and orcs.
 
 To take full advantage of the prototype pattern, we create `HeroFactory` and `HeroFactoryImpl` classes to produce different kinds of creatures from prototypes.
 
@@ -81,7 +85,9 @@ public interface HeroFactory {
   Warlord createWarlord();
   Beast createBeast();
 }
+```
 
+```java
 @RequiredArgsConstructor
 public class HeroFactoryImpl implements HeroFactory {
 
@@ -106,10 +112,11 @@ public class HeroFactoryImpl implements HeroFactory {
 Now, we are able to show the full prototype pattern in action producing new creatures by cloning existing instances.
 
 ```java
+public static void main(String[] args) {
     var factory = new HeroFactoryImpl(
-        new ElfMage("cooking"),
-        new ElfWarlord("cleaning"),
-        new ElfBeast("protecting")
+            new ElfMage("cooking"),
+            new ElfWarlord("cleaning"),
+            new ElfBeast("protecting")
     );
     var mage = factory.createMage();
     var warlord = factory.createWarlord();
@@ -119,9 +126,9 @@ Now, we are able to show the full prototype pattern in action producing new crea
     LOGGER.info(beast.toString());
 
     factory = new HeroFactoryImpl(
-        new OrcMage("axe"),
-        new OrcWarlord("sword"),
-        new OrcBeast("laser")
+            new OrcMage("axe"),
+            new OrcWarlord("sword"),
+            new OrcBeast("laser")
     );
     mage = factory.createMage();
     warlord = factory.createWarlord();
@@ -129,17 +136,18 @@ Now, we are able to show the full prototype pattern in action producing new crea
     LOGGER.info(mage.toString());
     LOGGER.info(warlord.toString());
     LOGGER.info(beast.toString());
+}
 ```
 
 Here's the console output from running the example.
 
 ```
-Elven mage helps in cooking
-Elven warlord helps in cleaning
-Elven eagle helps in protecting
-Orcish mage attacks with axe
-Orcish warlord attacks with sword
-Orcish wolf attacks with laser
+08:36:19.012 [main] INFO com.iluwatar.prototype.App -- Elven mage helps in cooking
+08:36:19.013 [main] INFO com.iluwatar.prototype.App -- Elven warlord helps in cleaning
+08:36:19.014 [main] INFO com.iluwatar.prototype.App -- Elven eagle helps in protecting
+08:36:19.014 [main] INFO com.iluwatar.prototype.App -- Orcish mage attacks with axe
+08:36:19.014 [main] INFO com.iluwatar.prototype.App -- Orcish warlord attacks with sword
+08:36:19.014 [main] INFO com.iluwatar.prototype.App -- Orcish wolf attacks with laser
 ```
 
 ## Class diagram
@@ -175,13 +183,13 @@ Trade-offs:
 
 ## Related patterns
 
-- [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Both involve creating objects, but Prototype uses cloning of a prototype instance whereas Abstract Factory creates objects using factory methods.
-- [Singleton](https://java-design-patterns.com/patterns/singleton/): Singleton can use a prototype for creating instances if it allows cloning of its single instance.
-- [Composite](https://java-design-patterns.com/patterns/composite/): Prototypes are often used within composites to allow for dynamic creation of component trees.
+* [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Both involve creating objects, but Prototype uses cloning of a prototype instance whereas Abstract Factory creates objects using factory methods.
+* [Singleton](https://java-design-patterns.com/patterns/singleton/): Singleton can use a prototype for creating instances if it allows cloning of its single instance.
+* [Composite](https://java-design-patterns.com/patterns/composite/): Prototypes are often used within composites to allow for dynamic creation of component trees.
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
