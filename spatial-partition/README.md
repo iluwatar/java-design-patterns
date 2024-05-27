@@ -102,7 +102,7 @@ This way, we can reduce the time complexity of finding the units within a certai
 
 ## Tutorials
 
-* [Coding Challenge #98.1: Quadtree - Part 1 - The Coding Train](https://www.youtube.com/watch?v=OJxEcs0w_kE)
+* [Coding Challenge #98.1: Quadtree - Part 1 (The Coding Train)](https://www.youtube.com/watch?v=OJxEcs0w_kE)
 
 ## Known Uses
 
@@ -133,4 +133,4 @@ Trade-offs:
 * [Game Programming Patterns](https://amzn.to/3K96fOn)
 * [Introduction to Algorithms](https://amzn.to/4aC5hW0)
 * [Real-Time Collision Detection](https://amzn.to/4as9gnW)
-* [Spatial Partition - Game Programming Patterns](http://gameprogrammingpatterns.com/spatial-partition.html)
+* [Spatial Partition (Game Programming Patterns)](http://gameprogrammingpatterns.com/spatial-partition.html)
