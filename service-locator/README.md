@@ -91,10 +91,6 @@ Here is the output from running the example:
 15:39:51.420 [main] INFO com.iluwatar.servicelocator.ServiceImpl -- Service jndi/serviceA is now executing with id 56
 ```
 
-## Class diagram
-
-![Service Locator](./etc/service-locator.png "Service Locator")
-
 ## Applicability
 
 * Use when you want to decouple service creation from client classes to reduce dependencies and improve code maintainability.
