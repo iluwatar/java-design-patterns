@@ -19,9 +19,9 @@ The Private Class Data design pattern aims to restrict access to the internal st
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> Imagine you are cooking a stew for your family dinner. You want to stop your family members from tasting the stew while you're still preparing it. If they do, there might not be enough stew left for dinner.
+> A real-world analogy for the Private Class Data pattern is the way a bank protects customer account information. Just like a class with private fields, a bank keeps sensitive data such as account balances, transaction history, and personal information private and only accessible through specific methods. Customers interact with their accounts through well-defined interfaces such as ATMs or online banking portals, which enforce security and validation rules, ensuring that unauthorized access or modifications are prevented. This controlled access mechanism ensures the integrity and security of the data, similar to how Private Class Data protects and manages access to class attributes in software design.
 
 In plain words
 
@@ -33,25 +33,31 @@ Wikipedia says
 
 **Programmatic Example**
 
-Taking our stew cooking example from above. First, we have a `Stew` class where its data is not protected by private class data, making the stew's ingredient mutable to class methods. 
+Imagine you are cooking a stew for your family dinner. You want to stop your family members from tasting the stew while you're still preparing it. If they do, there might not be enough stew left for dinner.
+
+First, we have a `Stew` class where its data is not protected by private class data, making the stew's ingredient mutable to class methods. 
 
 ```java
 @Slf4j
 public class Stew {
+    
   private int numPotatoes;
   private int numCarrots;
   private int numMeat;
   private int numPeppers;
+  
   public Stew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     this.numPotatoes = numPotatoes;
     this.numCarrots = numCarrots;
     this.numMeat = numMeat;
     this.numPeppers = numPeppers;
   }
+  
   public void mix() {
     LOGGER.info("Mixing the stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
         numPotatoes, numCarrots, numMeat, numPeppers);
   }
+  
   public void taste() {
     LOGGER.info("Tasting the stew");
     if (numPotatoes > 0) {
@@ -70,39 +76,20 @@ public class Stew {
 }
 ```
 
-Now, we have `ImmutableStew` class, where its data is protected by `StewData` class. The methods in `ImmutableStew` are unable to manipulate the data of the `StewData` class.
+Now, we have `ImmutableStew` class, where its data is protected by `StewData` record. The methods in `ImmutableStew` are unable to manipulate the data of the `StewData` class.
 
 ```java
-public class StewData {
-  private final int numPotatoes;
-  private final int numCarrots;
-  private final int numMeat;
-  private final int numPeppers;
-  public StewData(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
-    this.numPotatoes = numPotatoes;
-    this.numCarrots = numCarrots;
-    this.numMeat = numMeat;
-    this.numPeppers = numPeppers;
-  }
-  public int getNumPotatoes() {
-    return numPotatoes;
-  }
-  public int getNumCarrots() {
-    return numCarrots;
-  }
-  public int getNumMeat() {
-    return numMeat;
-  }
-  public int getNumPeppers() {
-    return numPeppers;
-  }
-}
+public record StewData(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {}
+
 @Slf4j
 public class ImmutableStew {
+    
   private final StewData data;
+  
   public ImmutableStew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     data = new StewData(numPotatoes, numCarrots, numMeat, numPeppers);
   }
+  
   public void mix() {
     LOGGER
         .info("Mixing the immutable stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
@@ -114,17 +101,27 @@ public class ImmutableStew {
 Let's try creating an instance of each class and call their methods:
 
 ```java
-var stew = new Stew(1, 2, 3, 4);
-stew.mix();   // Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers
-stew.taste(); // Tasting the stew
-stew.mix();   // Mixing the stew we find: 0 potatoes, 1 carrots, 2 meat and 3 peppers
-var immutableStew = new ImmutableStew(2, 4, 3, 6);
-immutableStew.mix();  // Mixing the immutable stew we find: 2 potatoes, 4 carrots, 3 meat and 6 peppers
+public static void main(String[] args) {
+    // stew is mutable
+    var stew = new Stew(1, 2, 3, 4);
+    stew.mix();
+    stew.taste();
+    stew.mix();
+
+    // immutable stew protected with Private Class Data pattern
+    var immutableStew = new ImmutableStew(2, 4, 3, 6);
+    immutableStew.mix();
+}
 ```
 
-## Class diagram
+Program output:
 
-![Private Class Data](./etc/private-class-data.png "Private Class Data")
+```
+08:00:08.210 [main] INFO com.iluwatar.privateclassdata.Stew -- Mixing the stew we find: 1 potatoes, 2 carrots, 3 meat and 4 peppers
+08:00:08.212 [main] INFO com.iluwatar.privateclassdata.Stew -- Tasting the stew
+08:00:08.212 [main] INFO com.iluwatar.privateclassdata.Stew -- Mixing the stew we find: 0 potatoes, 1 carrots, 2 meat and 3 peppers
+08:00:08.213 [main] INFO com.iluwatar.privateclassdata.ImmutableStew -- Mixing the immutable stew we find: 2 potatoes, 4 carrots, 3 meat and 6 peppers
+```
 
 ## Applicability
 
