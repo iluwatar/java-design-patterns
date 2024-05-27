@@ -74,6 +74,7 @@ The `VideoObjectProxy` serves as a stand-in for `RealExpensiveObject`.
 ```java
 @Getter
 public class VideoObjectProxy implements ExpensiveObject {
+    
     private RealVideoObject realVideoObject;
 
     public void setRealVideoObject(RealVideoObject realVideoObject) {
@@ -93,22 +94,20 @@ public class VideoObjectProxy implements ExpensiveObject {
 And here’s how the proxy is used in the system.
 
 ```java
-ExpensiveObject object = new VirtualProxy();
-object.process();  // The real object is created at this point
-object.process();  // Uses the already created object
+public static void main(String[] args) {
+    ExpensiveObject videoObject = new VideoObjectProxy();
+    videoObject.process();  // The first call creates and plays the video
+    videoObject.process();  // Subsequent call uses the already created object
+}
 ```
 
 Program output:
 
 ```
-13:11:13.583 [main] INFO com.iluwatar.virtual.proxy.RealVideoObject -- Loading initial video configurations...
-13:11:13.585 [main] INFO com.iluwatar.virtual.proxy.RealVideoObject -- Processing and playing video content...
-13:11:13.585 [main] INFO com.iluwatar.virtual.proxy.RealVideoObject -- Processing and playing video content...
+14:54:30.602 [main] INFO com.iluwatar.virtual.proxy.RealVideoObject -- Loading initial video configurations...
+14:54:30.604 [main] INFO com.iluwatar.virtual.proxy.RealVideoObject -- Processing and playing video content...
+14:54:30.604 [main] INFO com.iluwatar.virtual.proxy.RealVideoObject -- Processing and playing video content...
 ```
-
-## Class diagram
-
-![Virtual Proxy](./etc/virtual.proxy.urm.png "Virtual Proxy pattern class diagram")
 
 ## Applicability
 
@@ -120,7 +119,7 @@ Use the Virtual Proxy pattern when:
 
 ## Tutorials
 
-* [The Proxy Pattern in Java - Baeldung](https://www.baeldung.com/java-proxy-pattern)
+* [The Proxy Pattern in Java (Baeldung)](https://www.baeldung.com/java-proxy-pattern)
 
 ## Known Uses
 
