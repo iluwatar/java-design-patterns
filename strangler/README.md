@@ -113,17 +113,60 @@ public class NewArithmetic {
 
 The `NewArithmetic` class represents the system after the migration process. It only depends on the `NewSource` class. All methods now use the new source.
 
+Here is the `main` method executing our example.
+
+```java
+public static void main(final String[] args) {
+    final var nums = new int[]{1, 2, 3, 4, 5};
+    //Before migration
+    final var oldSystem = new OldArithmetic(new OldSource());
+    oldSystem.sum(nums);
+    oldSystem.mul(nums);
+    //In process of migration
+    final var halfSystem = new HalfArithmetic(new HalfSource(), new OldSource());
+    halfSystem.sum(nums);
+    halfSystem.mul(nums);
+    halfSystem.ifHasZero(nums);
+    //After migration
+    final var newSystem = new NewArithmetic(new NewSource());
+    newSystem.sum(nums);
+    newSystem.mul(nums);
+    newSystem.ifHasZero(nums);
+  }
+```
+
+Console output:
+
+```
+13:02:25.030 [main] INFO com.iluwatar.strangler.OldArithmetic -- Arithmetic sum 1.0
+13:02:25.032 [main] INFO com.iluwatar.strangler.OldSource -- Source module 1.0
+13:02:25.032 [main] INFO com.iluwatar.strangler.OldArithmetic -- Arithmetic mul 1.0
+13:02:25.032 [main] INFO com.iluwatar.strangler.OldSource -- Source module 1.0
+13:02:25.032 [main] INFO com.iluwatar.strangler.HalfArithmetic -- Arithmetic sum 1.5
+13:02:25.032 [main] INFO com.iluwatar.strangler.HalfSource -- Source module 1.5
+13:02:25.033 [main] INFO com.iluwatar.strangler.HalfArithmetic -- Arithmetic mul 1.5
+13:02:25.033 [main] INFO com.iluwatar.strangler.OldSource -- Source module 1.0
+13:02:25.033 [main] INFO com.iluwatar.strangler.HalfArithmetic -- Arithmetic check zero 1.5
+13:02:25.033 [main] INFO com.iluwatar.strangler.HalfSource -- Source module 1.5
+13:02:25.034 [main] INFO com.iluwatar.strangler.NewArithmetic -- Arithmetic sum 2.0
+13:02:25.034 [main] INFO com.iluwatar.strangler.NewSource -- Source module 2.0
+13:02:25.034 [main] INFO com.iluwatar.strangler.NewArithmetic -- Arithmetic mul 2.0
+13:02:25.034 [main] INFO com.iluwatar.strangler.NewSource -- Source module 2.0
+13:02:25.034 [main] INFO com.iluwatar.strangler.NewArithmetic -- Arithmetic check zero 2.0
+13:02:25.035 [main] INFO com.iluwatar.strangler.NewSource -- Source module 2.0
+```
+
 This is a typical example of the Strangler pattern. The legacy system (`OldArithmetic`) is gradually replaced by the new system (`HalfArithmetic` and `NewArithmetic`). The new system is developed incrementally, and at each stage, it strangles a part of the legacy system until the legacy system is completely replaced.
-
-## Class diagram
-
-![Strangler](./etc/strangler.png "Strangler")
 
 ## Applicability
 
 * Use when you need to replace a monolithic or legacy system incrementally.
 * Ideal for scenarios where the system cannot be replaced in one go due to risk or complexity.
 * Suitable when you need to modernize parts of an application while ensuring continuous operation.
+
+## Tutorials
+
+* [Legacy Application Strangulation: Case Studies (Paul Hammant)](https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/)
 
 ## Known Uses
 
@@ -156,5 +199,4 @@ Trade-offs:
 * [Building Microservices](https://amzn.to/3UACtrU)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Refactoring: Improving the Design of Existing Code](https://amzn.to/3TVEgaB)
-* [Strangler pattern - Microsoft](https://docs.microsoft.com/en-us/azure/architecture/patterns/strangler)
-* [Legacy Application Strangulation: Case Studies - Paul Hammant](https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/)
+* [Strangler pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/strangler)
