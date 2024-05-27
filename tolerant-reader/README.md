@@ -19,7 +19,7 @@ Allows a system to be more resilient to changes in the data structures it consum
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a postal system that delivers letters and packages to recipients. In this system, postal workers deliver mail regardless of additional information or stickers that might be present on the envelopes or packages. If a package has extra labels or instructions that the postal system does not recognize, the postal worker ignores these and focuses only on the essential information like the address. This approach ensures that the delivery process remains functional even when senders use different formats or include unnecessary details, similar to how the Tolerant Reader pattern works in software by ignoring unrecognized data elements to maintain functionality and compatibility.
 
@@ -49,7 +49,9 @@ public class RainbowFish implements Serializable {
     private final int lengthMeters;
     private final int weightTons;
 }
+```
 
+```java
 @Getter
 public class RainbowFishV2 extends RainbowFish {
 
@@ -77,7 +79,6 @@ public class RainbowFishV2 extends RainbowFish {
 Next we introduce the `RainbowFishSerializer`. This is the class that implements the Tolerant Reader pattern.
 
 ```java
-
 @NoArgsConstructor
 public final class RainbowFishSerializer {
 
@@ -133,23 +134,30 @@ public final class RainbowFishSerializer {
 And finally, here's the full example in action.
 
 ```java
-// Write V1
-var fishV1 = new RainbowFish("Zed", 10, 11, 12);
-LOGGER.info("fishV1 name={} age={} length={} weight={}", fishV1.getName(), fishV1.getAge(), fishV1.getLengthMeters(), fishV1.getWeightTons());
-RainbowFishSerializer.writeV1(fishV1, "fish1.out");
-
-// Read V1
-var deserializedRainbowFishV1 = RainbowFishSerializer.readV1("fish1.out");
-LOGGER.info("deserializedFishV1 name={} age={} length={} weight={}", deserializedRainbowFishV1.getName(), deserializedRainbowFishV1.getAge(), deserializedRainbowFishV1.getLengthMeters(), deserializedRainbowFishV1.getWeightTons());
-
-// Write V2
-var fishV2 = new RainbowFishV2("Scar", 5, 12, 15, true, true, true);
-LOGGER.info("fishV2 name={} age={} length={} weight={} sleeping={} hungry={} angry={}", fishV2.getName(), fishV2.getAge(), fishV2.getLengthMeters(), fishV2.getWeightTons(), fishV2.isHungry(), fishV2.isAngry(), fishV2.isSleeping());
-RainbowFishSerializer.writeV2(fishV2, "fish2.out");
-
-// Read V2 with V1 method
-var deserializedFishV2 = RainbowFishSerializer.readV1("fish2.out");
-LOGGER.info("deserializedFishV2 name={} age={} length={} weight={}", deserializedFishV2.getName(), deserializedFishV2.getAge(), deserializedFishV2.getLengthMeters(), deserializedFishV2.getWeightTons());
+public static void main(String[] args) throws IOException, ClassNotFoundException {
+    // Write V1
+    var fishV1 = new RainbowFish("Zed", 10, 11, 12);
+    LOGGER.info("fishV1 name={} age={} length={} weight={}", fishV1.getName(),
+            fishV1.getAge(), fishV1.getLengthMeters(), fishV1.getWeightTons());
+    RainbowFishSerializer.writeV1(fishV1, "fish1.out");
+    // Read V1
+    var deserializedRainbowFishV1 = RainbowFishSerializer.readV1("fish1.out");
+    LOGGER.info("deserializedFishV1 name={} age={} length={} weight={}",
+            deserializedRainbowFishV1.getName(), deserializedRainbowFishV1.getAge(),
+            deserializedRainbowFishV1.getLengthMeters(), deserializedRainbowFishV1.getWeightTons());
+    // Write V2
+    var fishV2 = new RainbowFishV2("Scar", 5, 12, 15, true, true, true);
+    LOGGER.info(
+            "fishV2 name={} age={} length={} weight={} sleeping={} hungry={} angry={}",
+            fishV2.getName(), fishV2.getAge(), fishV2.getLengthMeters(), fishV2.getWeightTons(),
+            fishV2.isHungry(), fishV2.isAngry(), fishV2.isSleeping());
+    RainbowFishSerializer.writeV2(fishV2, "fish2.out");
+    // Read V2 with V1 method
+    var deserializedFishV2 = RainbowFishSerializer.readV1("fish2.out");
+    LOGGER.info("deserializedFishV2 name={} age={} length={} weight={}",
+            deserializedFishV2.getName(), deserializedFishV2.getAge(),
+            deserializedFishV2.getLengthMeters(), deserializedFishV2.getWeightTons());
+}
 ```
 
 Program output:
@@ -160,10 +168,6 @@ Program output:
 15:38:00.618 [main] INFO com.iluwatar.tolerantreader.App -- fishV2 name=Scar age=5 length=12 weight=15 sleeping=true hungry=true angry=true
 15:38:00.619 [main] INFO com.iluwatar.tolerantreader.App -- deserializedFishV2 name=Scar age=5 length=12 weight=15
 ```
-
-## Class diagram
-
-![Tolerant Reader](./etc/tolerant_reader_urm.png "Tolerant Reader")
 
 ## Applicability
 
@@ -200,4 +204,4 @@ Trade-offs:
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Service Design Patterns: Fundamental Design Solutions for SOAP/WSDL and RESTful Web Services](https://amzn.to/4dNIfOx)
-* [Tolerant Reader - Martin Fowler](http://martinfowler.com/bliki/TolerantReader.html)
+* [Tolerant Reader (Martin Fowler)](http://martinfowler.com/bliki/TolerantReader.html)
