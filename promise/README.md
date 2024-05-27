@@ -113,9 +113,16 @@ public class App {
 
 In this code, the `Promise` class is used to create promises for various operations. The `thenApply` method is used to chain promises, meaning that the result of one promise is used as the input for the next promise. The `thenAccept` method is used to handle the result of a promise. The `fulfillInAsync` method is used to fulfill a promise asynchronously, and the `onError` method is used to handle any errors that occur while fulfilling the promise.
 
-## Class diagram
+Program output:
 
-![Promise](./etc/promise.png "Promise")
+```
+08:19:33.036 [pool-1-thread-2] INFO com.iluwatar.promise.Utility -- Downloading contents from url: https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/promise/README.md
+08:19:33.036 [pool-1-thread-1] INFO com.iluwatar.promise.Utility -- Downloading contents from url: https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/promise/README.md
+08:19:33.419 [pool-1-thread-2] INFO com.iluwatar.promise.Utility -- File downloaded at: /var/folders/sg/9_st37nn5hq_bfhp8hw2dcrw0000gp/T/promise_pattern12403918065536844551.tmp
+08:19:33.419 [pool-1-thread-1] INFO com.iluwatar.promise.Utility -- File downloaded at: /var/folders/sg/9_st37nn5hq_bfhp8hw2dcrw0000gp/T/promise_pattern11215446820862558571.tmp
+08:19:33.419 [pool-1-thread-1] INFO com.iluwatar.promise.App -- Line count is: 164
+08:19:33.426 [pool-1-thread-2] INFO com.iluwatar.promise.App -- Char with lowest frequency is: ’
+```
 
 ## Applicability
 
@@ -125,7 +132,9 @@ In this code, the `Promise` class is used to create promises for various operati
 
 ## Tutorials
 
-* [Guide To CompletableFuture](https://www.baeldung.com/java-completablefuture)
+* [Functional-Style Callbacks Using Java 8's CompletableFuture (InfoQ)](https://www.infoq.com/articles/Functional-Style-Callbacks-Using-CompletableFuture)
+* [Guide To CompletableFuture (Baeldung)](https://www.baeldung.com/java-completablefuture)
+* [You are missing the point to Promises (Domenic Denicola)](https://gist.github.com/domenic/3889970)
 
 ## Known Uses
 
@@ -155,10 +164,7 @@ Trade-offs:
 
 ## Credits
 
-* [You are missing the point to Promises](https://gist.github.com/domenic/3889970)
-* [Functional style callbacks using CompletableFuture](https://www.infoq.com/articles/Functional-Style-Callbacks-Using-CompletableFuture)
-* [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://www.amazon.com/gp/product/1617291994/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617291994&linkId=995af46887bb7b65e6c788a23eaf7146)
-* [Modern Java in Action: Lambdas, streams, functional and reactive programming](https://www.amazon.com/gp/product/1617293563/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617293563&linkId=f70fe0d3e1efaff89554a6479c53759c)
-* [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://amzn.to/3QCmGXs)
+* [Java Concurrency in Practice](https://amzn.to/4aRMruW)
+* [Modern Java in Action: Lambdas, streams, functional and reactive programming](https://amzn.to/3VhwetF)
