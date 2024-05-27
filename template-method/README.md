@@ -38,7 +38,6 @@ Our programmatic example is about thieves and stealing. The general steps in ste
 
 Let's first introduce the template method class `StealingMethod` along with its concrete implementations `SubtleMethod` and `HitAndRunMethod`. To make sure that subclasses don’t override the template method, the template method (in our case method `steal`) should be declared `final`, otherwise the skeleton defined in the base class could be overridden in subclasses.
 
-
 ```java
 @Slf4j
 public abstract class StealingMethod {
@@ -56,7 +55,9 @@ public abstract class StealingMethod {
     stealTheItem(target);
   }
 }
+```
 
+```java
 @Slf4j
 public class SubtleMethod extends StealingMethod {
 
@@ -75,7 +76,9 @@ public class SubtleMethod extends StealingMethod {
     LOGGER.info("While in close contact grab the {}'s wallet.", target);
   }
 }
+```
 
+```java
 @Slf4j
 public class HitAndRunMethod extends StealingMethod {
 
@@ -120,10 +123,12 @@ public class HalflingThief {
 And finally, we show how the halfling thief utilizes the different stealing methods.
 
 ```java
+public static void main(String[] args) {
     var thief = new HalflingThief(new HitAndRunMethod());
     thief.steal();
     thief.changeMethod(new SubtleMethod());
     thief.steal();
+}
 ```
 
 The program output:
@@ -137,10 +142,6 @@ The program output:
 11:06:01.723 [main] INFO com.iluwatar.templatemethod.SubtleMethod -- While in close contact grab the shop keeper's wallet.
 ```
 
-## Class diagram
-
-![Template Method](./etc/template_method_urm.png "Template Method")
-
 ## Applicability
 
 The Template Method pattern should be used
@@ -151,7 +152,7 @@ The Template Method pattern should be used
 
 ## Tutorials
 
-* [Template Method Design Pattern In Java - Digital Ocean](https://www.digitalocean.com/community/tutorials/template-method-design-pattern-in-java)
+* [Template Method Design Pattern In Java (DigitalOcean)](https://www.digitalocean.com/community/tutorials/template-method-design-pattern-in-java)
 
 ## Known uses
 
