@@ -50,6 +50,9 @@ public abstract class Unit {
   }
 }
 
+```
+
+```java
 public interface UnitVisitor {
 
   void visit(Soldier soldier);
@@ -80,7 +83,9 @@ public class Commander extends Unit {
     return "commander";
   }
 }
+```
 
+```java
 public class Sergeant extends Unit {
 
   public Sergeant(Unit... children) {
@@ -98,7 +103,9 @@ public class Sergeant extends Unit {
     return "sergeant";
   }
 }
+```
 
+```java
 public class Soldier extends Unit {
 
   public Soldier(Unit... children) {
@@ -139,7 +146,9 @@ public class CommanderVisitor implements UnitVisitor {
     LOGGER.info("Good to see you {}", commander);
   }
 }
+```
 
+```java
 @Slf4j
 public class SergeantVisitor implements UnitVisitor {
 
@@ -158,7 +167,9 @@ public class SergeantVisitor implements UnitVisitor {
     // Do nothing
   }
 }
+```
 
+```java
 @Slf4j
 public class SoldierVisitor implements UnitVisitor {
 
@@ -182,23 +193,30 @@ public class SoldierVisitor implements UnitVisitor {
 Finally, we can show the power of visitors in action.
 
 ```java
-commander.accept(new SoldierVisitor());
-commander.accept(new SergeantVisitor());
-commander.accept(new CommanderVisitor());
+public static void main(String[] args) {
+
+    var commander = new Commander(
+            new Sergeant(new Soldier(), new Soldier(), new Soldier()),
+            new Sergeant(new Soldier(), new Soldier(), new Soldier())
+    );
+    commander.accept(new SoldierVisitor());
+    commander.accept(new SergeantVisitor());
+    commander.accept(new CommanderVisitor());
+}
 ```
 
 Program output:
 
 ```
-Greetings soldier
-Greetings soldier
-Greetings soldier
-Greetings soldier
-Greetings soldier
-Greetings soldier
-Hello sergeant
-Hello sergeant
-Good to see you commander
+14:58:06.115 [main] INFO com.iluwatar.visitor.SoldierVisitor -- Greetings soldier
+14:58:06.118 [main] INFO com.iluwatar.visitor.SoldierVisitor -- Greetings soldier
+14:58:06.118 [main] INFO com.iluwatar.visitor.SoldierVisitor -- Greetings soldier
+14:58:06.118 [main] INFO com.iluwatar.visitor.SoldierVisitor -- Greetings soldier
+14:58:06.118 [main] INFO com.iluwatar.visitor.SoldierVisitor -- Greetings soldier
+14:58:06.118 [main] INFO com.iluwatar.visitor.SoldierVisitor -- Greetings soldier
+14:58:06.118 [main] INFO com.iluwatar.visitor.SergeantVisitor -- Hello sergeant
+14:58:06.118 [main] INFO com.iluwatar.visitor.SergeantVisitor -- Hello sergeant
+14:58:06.118 [main] INFO com.iluwatar.visitor.CommanderVisitor -- Good to see you commander
 ```
 
 ## Class diagram
@@ -215,9 +233,9 @@ Use the Visitor pattern when
 
 ## Tutorials
 
-* [Visitor - Refactoring Guru](https://refactoring.guru/design-patterns/visitor)
-* [Visitor Pattern Tutorial with Java Examples - DZone](https://dzone.com/articles/design-patterns-visitor)
-* [Visitor Design Pattern - Sourcemaking](https://sourcemaking.com/design_patterns/visitor)
+* [Visitor (Refactoring Guru)](https://refactoring.guru/design-patterns/visitor)
+* [Visitor Pattern Tutorial with Java Examples (DZone)](https://dzone.com/articles/design-patterns-visitor)
+* [Visitor Design Pattern (Sourcemaking)](https://sourcemaking.com/design_patterns/visitor)
 
 ## Known uses
 
