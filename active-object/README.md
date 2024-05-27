@@ -163,10 +163,6 @@ Program output:
 09:00:02.504 [Thread-2] INFO com.iluwatar.activeobject.ActiveCreature -- Orc2 has started to roam in the wastelands.
 ```
 
-## Class diagram
-
-![Active Object](./etc/active-object.urm.png "Active Object class diagram")
-
 ## Applicability
 
 * When you need to perform long-running operations without blocking the main thread.
