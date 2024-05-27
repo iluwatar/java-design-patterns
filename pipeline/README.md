@@ -22,9 +22,7 @@ The Pipeline design pattern is intended to allow data processing in discrete sta
 
 ## Explanation
 
-The Pipeline pattern uses ordered stages to process a sequence of input values. Each implemented task is represented by a stage of the pipeline. You can think of pipelines as similar to assembly lines in a factory, where each item in the assembly line is constructed in stages. The partially assembled item is passed from one assembly stage to another. The outputs of the assembly line occur in the same order as that of the inputs.
-
-Real world example
+Real-world example
 
 > A real-world analogous example of the Pipeline design pattern is an **assembly line in a car manufacturing plant**.
 >
@@ -96,13 +94,28 @@ class Pipeline<I, O> {
 And here's the `Pipeline` in action processing the string.
 
 ```java
-var filters = new Pipeline<>(new RemoveAlphabetsHandler()).addHandler(new RemoveDigitsHandler()).addHandler(new ConvertToCharArrayHandler());
-filters.execute("GoYankees123!");
+public static void main(String[] args) {
+    LOGGER.info("Creating pipeline");
+    var filters = new Pipeline<>(new RemoveAlphabetsHandler())
+            .addHandler(new RemoveDigitsHandler())
+            .addHandler(new ConvertToCharArrayHandler());
+    var input = "GoYankees123!";
+    LOGGER.info("Executing pipeline with input: {}", input);
+    var output = filters.execute(input);
+    LOGGER.info("Pipeline output: {}", output);
+}
 ```
 
-## Class diagram
+Console output:
 
-![Pipeline](./etc/pipeline.urm.png "Pipeline pattern class diagram")
+```
+07:34:27.069 [main] INFO com.iluwatar.pipeline.App -- Creating pipeline
+07:34:27.072 [main] INFO com.iluwatar.pipeline.App -- Executing pipeline with input: GoYankees123!
+07:34:27.074 [main] INFO com.iluwatar.pipeline.RemoveAlphabetsHandler -- Current handler: class com.iluwatar.pipeline.RemoveAlphabetsHandler, input is GoYankees123! of type class java.lang.String, output is 123!, of type class java.lang.String
+07:34:27.075 [main] INFO com.iluwatar.pipeline.RemoveDigitsHandler -- Current handler: class com.iluwatar.pipeline.RemoveDigitsHandler, input is 123! of type class java.lang.String, output is !, of type class java.lang.String
+07:34:27.075 [main] INFO com.iluwatar.pipeline.ConvertToCharArrayHandler -- Current handler: class com.iluwatar.pipeline.ConvertToCharArrayHandler, input is ! of type class java.lang.String, output is [!], of type class [Ljava.lang.Character;
+07:34:27.075 [main] INFO com.iluwatar.pipeline.App -- Pipeline output: [!]
+```
 
 ## Applicability
 
@@ -114,8 +127,9 @@ Use the Pipeline pattern when you want to
 
 ## Tutorials
 
-* [The Pipeline Pattern — for fun and profit](https://medium.com/@aaronweatherall/the-pipeline-pattern-for-fun-and-profit-9b5f43a98130)
-* [The Pipeline design pattern (in Java)](https://medium.com/@deepakbapat/the-pipeline-design-pattern-in-java-831d9ce2fe21)
+* [The Pipeline design pattern (in Java) (Medium)](https://medium.com/@deepakbapat/the-pipeline-design-pattern-in-java-831d9ce2fe21)
+* [The Pipeline Pattern — for fun and profit (Aaron Weatherall)](https://medium.com/@aaronweatherall/the-pipeline-pattern-for-fun-and-profit-9b5f43a98130)
+* [Pipelines (Microsoft)](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ff963548(v=pandp.10))
 
 ## Known Uses
 
@@ -150,4 +164,3 @@ Trade-offs:
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
-* [Pipelines | Microsoft Docs](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ff963548(v=pandp.10))

@@ -24,6 +24,8 @@
  */
 package com.iluwatar.pipeline;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * The Pipeline pattern uses ordered stages to process a sequence of input values. Each implemented
  * task is represented by a stage of the pipeline. You can think of pipelines as similar to assembly
@@ -34,6 +36,7 @@ package com.iluwatar.pipeline;
  * <p>Classes used in this example are suffixed with "Handlers", and synonymously refers to the
  * "stage".
  */
+@Slf4j
 public class App {
   /**
    * Specify the initial input type for the first stage handler and the expected output type of the
@@ -60,9 +63,13 @@ public class App {
       then is expected to receive an input of char[] array since that is the type being returned
       by the previous handler, ConvertToCharArrayHandler.
      */
+    LOGGER.info("Creating pipeline");
     var filters = new Pipeline<>(new RemoveAlphabetsHandler())
         .addHandler(new RemoveDigitsHandler())
         .addHandler(new ConvertToCharArrayHandler());
-    filters.execute("GoYankees123!");
+    var input = "GoYankees123!";
+    LOGGER.info("Executing pipeline with input: {}", input);
+    var output = filters.execute(input);
+    LOGGER.info("Pipeline output: {}", output);
   }
 }
