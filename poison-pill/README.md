@@ -19,7 +19,7 @@ The Poison Pill design pattern is used to gracefully shut down a service or a pr
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > A real-world analogy for the Poison Pill design pattern is the use of a "closed" sign in a retail store. When the store is ready to close for the day, the manager places a "closed" sign on the door. This sign acts as a signal to any new customers that no more customers will be admitted, but it doesn't immediately force out the customers already inside. The store staff will then attend to the remaining customers, allowing them to complete their purchases before finally locking up and turning off the lights. Similarly, in the Poison Pill pattern, a special "poison pill" message signals consumers to stop accepting new tasks while allowing them to finish processing the current tasks before shutting down gracefully. 
 
@@ -33,8 +33,8 @@ Let's define the message structure first. There's interface `Message` and implem
 
 ```java
 public interface Message {
-
-  // ...
+    
+  // Other properties and methods...
 
   enum Headers {
     DATE, SENDER
@@ -120,8 +120,8 @@ Next, we need message `Producer` and `Consumer`. Internally they use the message
 
 ```java
 public class Producer {
-  
-  // ... 
+
+  // Other properties and methods...
 
   public void send(String body) {
     if (isStopped) {
@@ -154,7 +154,7 @@ public class Producer {
 
 public class Consumer {
 
-  // ...
+  // Other properties and methods...
 
   public void consume() {
     while (true) {
@@ -180,28 +180,30 @@ public class Consumer {
 Finally, we are ready to present the whole example in action.
 
 ```java
-var queue = new SimpleMessageQueue(10000);
+  public static void main(String[] args) {
+    var queue = new SimpleMessageQueue(10000);
 
-final var producer = new Producer("PRODUCER_1", queue);
-final var consumer = new Consumer("CONSUMER_1", queue);
+    final var producer = new Producer("PRODUCER_1", queue);
+    final var consumer = new Consumer("CONSUMER_1", queue);
 
-new Thread(consumer::consume).start();
+    new Thread(consumer::consume).start();
 
-new Thread(() -> {
-    producer.send("hand shake");
-    producer.send("some very important information");
-    producer.send("bye!");
-    producer.stop();
+    new Thread(() -> {
+        producer.send("hand shake");
+        producer.send("some very important information");
+        producer.send("bye!");
+        producer.stop();
     }).start();
+}
 ```
 
 Program output:
 
 ```
-Message [hand shake] from [PRODUCER_1] received by [CONSUMER_1]
-Message [some very important information] from [PRODUCER_1] received by [CONSUMER_1]
-Message [bye!] from [PRODUCER_1] received by [CONSUMER_1]
-Consumer CONSUMER_1 receive request to terminate.
+07:43:01.518 [Thread-0] INFO com.iluwatar.poison.pill.Consumer -- Message [hand shake] from [PRODUCER_1] received by [CONSUMER_1]
+07:43:01.520 [Thread-0] INFO com.iluwatar.poison.pill.Consumer -- Message [some very important information] from [PRODUCER_1] received by [CONSUMER_1]
+07:43:01.520 [Thread-0] INFO com.iluwatar.poison.pill.Consumer -- Message [bye!] from [PRODUCER_1] received by [CONSUMER_1]
+07:43:01.520 [Thread-0] INFO com.iluwatar.poison.pill.Consumer -- Consumer CONSUMER_1 receive request to terminate.
 ```
 
 ## Class diagram
