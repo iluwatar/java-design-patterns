@@ -36,7 +36,7 @@ Wikipedia says
 
 Slaying dragons is a dangerous job. With experience, it becomes easier. Veteran dragonslayers have developed different fighting strategies against different types of dragons.
 
-Let's first introduce the dragon-slaying strategy interface and its implementations.
+Let's first introduce the `DragonSlayingStrategy` interface and its implementations.
 
 ```java
 @FunctionalInterface
@@ -44,7 +44,9 @@ public interface DragonSlayingStrategy {
 
   void execute();
 }
+```
 
+```java
 @Slf4j
 public class MeleeStrategy implements DragonSlayingStrategy {
 
@@ -53,7 +55,9 @@ public class MeleeStrategy implements DragonSlayingStrategy {
     LOGGER.info("With your Excalibur you sever the dragon's head!");
   }
 }
+```
 
+```java
 @Slf4j
 public class ProjectileStrategy implements DragonSlayingStrategy {
 
@@ -62,7 +66,9 @@ public class ProjectileStrategy implements DragonSlayingStrategy {
     LOGGER.info("You shoot the dragon with the magical crossbow and it falls dead on the ground!");
   }
 }
+```
 
+```java
 @Slf4j
 public class SpellStrategy implements DragonSlayingStrategy {
 
@@ -73,7 +79,7 @@ public class SpellStrategy implements DragonSlayingStrategy {
 }
 ```
 
-And here is the mighty dragonslayer, who can pick his fighting strategy based on the opponent.
+And here is the mighty `DragonSlayer`, who can pick his fighting strategy based on the opponent.
 
 ```java
 public class DragonSlayer {
@@ -94,34 +100,78 @@ public class DragonSlayer {
 }
 ```
 
-Finally, here's the dragonslayer in action.
+Finally, here's the `DragonSlayer` in action.
 
 ```java
-    LOGGER.info("Green dragon spotted ahead!");
+@Slf4j
+public class App {
+
+  private static final String RED_DRAGON_EMERGES = "Red dragon emerges.";
+  private static final String GREEN_DRAGON_SPOTTED = "Green dragon spotted ahead!";
+  private static final String BLACK_DRAGON_LANDS = "Black dragon lands before you.";
+
+  public static void main(String[] args) {
+    // GoF Strategy pattern
+    LOGGER.info(GREEN_DRAGON_SPOTTED);
     var dragonSlayer = new DragonSlayer(new MeleeStrategy());
     dragonSlayer.goToBattle();
-    LOGGER.info("Red dragon emerges.");
+    LOGGER.info(RED_DRAGON_EMERGES);
     dragonSlayer.changeStrategy(new ProjectileStrategy());
     dragonSlayer.goToBattle();
-    LOGGER.info("Black dragon lands before you.");
+    LOGGER.info(BLACK_DRAGON_LANDS);
     dragonSlayer.changeStrategy(new SpellStrategy());
     dragonSlayer.goToBattle();
+
+    // Java 8 functional implementation Strategy pattern
+    LOGGER.info(GREEN_DRAGON_SPOTTED);
+    dragonSlayer = new DragonSlayer(
+        () -> LOGGER.info("With your Excalibur you severe the dragon's head!"));
+    dragonSlayer.goToBattle();
+    LOGGER.info(RED_DRAGON_EMERGES);
+    dragonSlayer.changeStrategy(() -> LOGGER.info(
+        "You shoot the dragon with the magical crossbow and it falls dead on the ground!"));
+    dragonSlayer.goToBattle();
+    LOGGER.info(BLACK_DRAGON_LANDS);
+    dragonSlayer.changeStrategy(() -> LOGGER.info(
+        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+    dragonSlayer.goToBattle();
+
+    // Java 8 lambda implementation with enum Strategy pattern
+    LOGGER.info(GREEN_DRAGON_SPOTTED);
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.MELEE_STRATEGY);
+    dragonSlayer.goToBattle();
+    LOGGER.info(RED_DRAGON_EMERGES);
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.PROJECTILE_STRATEGY);
+    dragonSlayer.goToBattle();
+    LOGGER.info(BLACK_DRAGON_LANDS);
+    dragonSlayer.changeStrategy(LambdaStrategy.Strategy.SPELL_STRATEGY);
+    dragonSlayer.goToBattle();
+  }
+}
 ```
 
 Program output:
 
 ```
-    Green dragon spotted ahead!
-    With your Excalibur you sever the dragon's head!
-    Red dragon emerges.
-    You shoot the dragon with the magical crossbow and it falls dead on the ground!
-    Black dragon lands before you.
-    You cast the spell of disintegration and the dragon vaporizes in a pile of dust!    
+13:06:36.631 [main] INFO com.iluwatar.strategy.App -- Green dragon spotted ahead!
+13:06:36.634 [main] INFO com.iluwatar.strategy.MeleeStrategy -- With your Excalibur you sever the dragon's head!
+13:06:36.634 [main] INFO com.iluwatar.strategy.App -- Red dragon emerges.
+13:06:36.634 [main] INFO com.iluwatar.strategy.ProjectileStrategy -- You shoot the dragon with the magical crossbow and it falls dead on the ground!
+13:06:36.634 [main] INFO com.iluwatar.strategy.App -- Black dragon lands before you.
+13:06:36.634 [main] INFO com.iluwatar.strategy.SpellStrategy -- You cast the spell of disintegration and the dragon vaporizes in a pile of dust!
+13:06:36.634 [main] INFO com.iluwatar.strategy.App -- Green dragon spotted ahead!
+13:06:36.634 [main] INFO com.iluwatar.strategy.App -- With your Excalibur you severe the dragon's head!
+13:06:36.634 [main] INFO com.iluwatar.strategy.App -- Red dragon emerges.
+13:06:36.635 [main] INFO com.iluwatar.strategy.App -- You shoot the dragon with the magical crossbow and it falls dead on the ground!
+13:06:36.635 [main] INFO com.iluwatar.strategy.App -- Black dragon lands before you.
+13:06:36.635 [main] INFO com.iluwatar.strategy.App -- You cast the spell of disintegration and the dragon vaporizes in a pile of dust!
+13:06:36.635 [main] INFO com.iluwatar.strategy.App -- Green dragon spotted ahead!
+13:06:36.637 [main] INFO com.iluwatar.strategy.LambdaStrategy -- With your Excalibur you severe the dragon's head!
+13:06:36.637 [main] INFO com.iluwatar.strategy.App -- Red dragon emerges.
+13:06:36.637 [main] INFO com.iluwatar.strategy.LambdaStrategy -- You shoot the dragon with the magical crossbow and it falls dead on the ground!
+13:06:36.637 [main] INFO com.iluwatar.strategy.App -- Black dragon lands before you.
+13:06:36.637 [main] INFO com.iluwatar.strategy.LambdaStrategy -- You cast the spell of disintegration and the dragon vaporizes in a pile of dust!
 ```
-
-## Class diagram
-
-![Strategy](./etc/strategy_urm.png "Strategy")
 
 ## Applicability
 
@@ -134,7 +184,7 @@ Use the Strategy pattern when:
 
 ## Tutorial
 
-* [Strategy Pattern Tutorial - Digital Ocean](https://www.digitalocean.com/community/tutorials/strategy-design-pattern-in-java-example-tutorial)
+* [Strategy Pattern Tutorial (DigitalOcean)](https://www.digitalocean.com/community/tutorials/strategy-design-pattern-in-java-example-tutorial)
 
 ## Known Uses
 
@@ -157,8 +207,8 @@ Trade-offs:
 
 ## Related patterns
 
-* [State](https://java-design-patterns.com/patterns/state/): Similar in structure but used to represent state-dependent behavior rather than interchangeable algorithms.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Enhances an object without changing its interface but is more concerned with responsibilities than algorithms.
+* [State](https://java-design-patterns.com/patterns/state/): Similar in structure but used to represent state-dependent behavior rather than interchangeable algorithms.
 
 ## Credits
 
