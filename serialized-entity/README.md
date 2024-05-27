@@ -32,12 +32,11 @@ Wikipedia says
 
 **Programmatic Example**
 
-The Serialized Entity design pattern is a way to easily persist Java objects to the database. It uses the Serializable interface and the DAO (Data Access Object) pattern. The pattern first uses Serializable to convert a Java object into a set of bytes, then it uses the DAO pattern to store this set of bytes as a BLOB (Binary Large OBject) in the database.
+The Serialized Entity design pattern is a way to easily persist Java objects to the database. It uses the `Serializable` interface and the DAO (Data Access Object) pattern. The pattern first uses `Serializable` to convert a Java object into a set of bytes, then it uses the DAO pattern to store this set of bytes as a BLOB (Binary Large OBject) in the database.
 
 First, we have the `Country` class, which is a simple POJO (Plain Old Java Object) that represents the data that will be serialized and stored in the database. It implements the `Serializable` interface, which means it can be converted to a byte stream and restored from it.
 
 ```java
-
 @Getter
 @Setter
 @EqualsAndHashCode
@@ -51,7 +50,6 @@ public class Country implements Serializable {
     private String language;
     @Serial
     private static final long serialVersionUID = 7149851;
-
 }
 ```
 
@@ -60,7 +58,6 @@ Next, we have the `CountryDao` interface, which defines the methods for persisti
 ```java
 public interface CountryDao {
     int insertCountry() throws IOException;
-
     int selectCountry() throws IOException, ClassNotFoundException;
 }
 ```
@@ -68,9 +65,9 @@ public interface CountryDao {
 The `CountrySchemaSql` class implements the `CountryDao` interface. It uses a `DataSource` to connect to the database and a `Country` object that it will serialize and store in the database.
 
 ```java
-
 @Slf4j
 public class CountrySchemaSql implements CountryDao {
+    
     public static final String CREATE_SCHEMA_SQL = "CREATE TABLE IF NOT EXISTS WORLD (ID INT PRIMARY KEY, COUNTRY BLOB)";
     public static final String DELETE_SCHEMA_SQL = "DROP TABLE WORLD IF EXISTS";
 
@@ -157,11 +154,14 @@ public static void main(String[] args) throws IOException, ClassNotFoundExceptio
 }
 ```
 
+Console output:
+
+```
+11:55:32.842 [main] INFO com.iluwatar.serializedentity.CountrySchemaSql -- Country: Country(code=86, name=China, continents=Asia, language=Chinese)
+11:55:32.870 [main] INFO com.iluwatar.serializedentity.CountrySchemaSql -- Country: Country(code=971, name=United Arab Emirates, continents=Asia, language=Arabic)
+```
+
 This is a basic example of the Serialized Entity design pattern. It shows how to serialize Java objects, store them in a database, and then retrieve and deserialize them.
-
-## Class diagram
-
-![Serialized Entity](./etc/class_diagram.urm.png "Serialized Entity")
 
 ## Applicability
 
@@ -192,8 +192,8 @@ Trade-offs:
 ## Related Patterns
 
 * [Data Transfer Object (DTO)](https://java-design-patterns.com/patterns/data-transfer-object/): Used to encapsulate data and send it over the network. Often serialized for transmission.
-* [Proxy](https://java-design-patterns.com/patterns/proxy/): Proxies can serialize requests to interact with remote objects.
 * [Memento](https://java-design-patterns.com/patterns/memento/): Provides a way to capture and restore an object's state, often using serialization.
+* [Proxy](https://java-design-patterns.com/patterns/proxy/): Proxies can serialize requests to interact with remote objects.
 
 ## Credits
 
