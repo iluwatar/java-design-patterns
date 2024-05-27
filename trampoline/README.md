@@ -93,17 +93,22 @@ public interface Trampoline<T> {
 Using the `Trampoline` to get Fibonacci values.
 
 ```java
-public static void main(String[] args) {
-    LOGGER.info("Start calculating war casualties");
-    var result = loop(10, 1).result();
-    LOGGER.info("The number of orcs perished in the war: {}", result);
-}
+@Slf4j
+public class TrampolineApp {
 
-public static Trampoline<Integer> loop(int times, int prod) {
-    if (times == 0) {
-        return Trampoline.done(prod);
-    } else {
-        return Trampoline.more(() -> loop(times - 1, prod * times));
+    public static void main(String[] args) {
+        LOGGER.info("Start calculating war casualties");
+        var result = loop(10, 1).result();
+        LOGGER.info("The number of orcs perished in the war: {}", result);
+
+    }
+
+    public static Trampoline<Integer> loop(int times, int prod) {
+        if (times == 0) {
+            return Trampoline.done(prod);
+        } else {
+            return Trampoline.more(() -> loop(times - 1, prod * times));
+        }
     }
 }
 ```
@@ -115,16 +120,20 @@ Program output:
 19:22:24.472 [main] INFO com.iluwatar.trampoline.TrampolineApp - The number of orcs perished in the war: 3628800
 ```
 
-## Class diagram
-
-![Trampoline](./etc/trampoline.urm.png "Trampoline pattern class diagram")
-
 ## Applicability
 
 Use the Trampoline pattern when
 
 * When dealing with algorithms that use recursion heavily and risk running into stack overflow errors.
 * When tail-call optimization is not supported by the Java language natively.
+
+## Tutorials
+
+* [Laziness, trampolines, monoids and other functional amenities: This is not your father's Java(Mario Fusco)](https://www.slideshare.net/mariofusco/lazine)
+* [Trampoline.java (totallylazy)](https://github.com/bodar/totallylazy/blob/master/src/com/googlecode/totallylazy/Trampoline.java)
+* [Trampoline: Java Glossary (mindprod.com)](http://mindprod.com/jgloss/trampoline.html)
+* [Trampolining: A practical guide for awesome Java Developers (John McClean)](https://medium.com/@johnmcclean/trampolining-a-practical-guide-for-awesome-java-developers-4b657d9c3076)
+* [What is a trampoline function? (Stack Overflow)](https://stackoverflow.com/questions/189725/what-is-a-trampoline-function)
 
 ## Known Uses
 
@@ -153,12 +162,7 @@ Trade-offs:
 
 ## Credits
 
-* [Trampolining: A practical guide for awesome Java Developers](https://medium.com/@johnmcclean/trampolining-a-practical-guide-for-awesome-java-developers-4b657d9c3076)
-* [Trampoline: Java Glossary](http://mindprod.com/jgloss/trampoline.html)
-* [Laziness, trampolines, monoids and other functional amenities: This is not your father's Java](https://www.slideshare.net/mariofusco/lazine)
-* [Trampoline implementation](https://github.com/bodar/totallylazy/blob/master/src/com/googlecode/totallylazy/Trampoline.java)
-* [What is a trampoline function? - Stack Overflow](https://stackoverflow.com/questions/189725/what-is-a-trampoline-function)
-* [Functional Programming for Java Developers: Tools for Better Concurrency, Abstraction, and Agility](https://amzn.to/4dRu4rJ)
 * [Functional Programming in Java](https://amzn.to/3JUIc5Q)
+* [Functional Programming for Java Developers: Tools for Better Concurrency, Abstraction, and Agility](https://amzn.to/4dRu4rJ)
 * [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://amzn.to/3QCmGXs)
 * [Modern Java in Action: Lambdas, streams, functional and reactive programming](https://amzn.to/3yxdu0g)
