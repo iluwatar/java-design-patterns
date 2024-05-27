@@ -80,24 +80,110 @@ public class BlobSerializer extends LobSerializer {
 
 The `BlobSerializer` class provides an implementation for serializing and deserializing objects into binary data. The `serialize` method converts a `Forest` object into binary data, and the `deSerialize` method converts binary data back into a `Forest` object.
 
+Finally, here is the `App` class with `main` method that can be used to execute the serialization example.
+
 ```java
-// The App class uses the LobSerializer to serialize and deserialize a Forest object.
 public class App {
-  // ... omitted for brevity
+
+  public static final String CLOB = "CLOB";
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
   public static void main(String[] args) throws SQLException {
     Forest forest = createForest();
     LobSerializer serializer = createLobSerializer(args);
     executeSerializer(forest, serializer);
   }
-  // ... omitted for brevity
+
+  private static LobSerializer createLobSerializer(String[] args) throws SQLException {
+    LobSerializer serializer;
+    if (args.length > 0 && Objects.equals(args[0], CLOB)) {
+      serializer = new ClobSerializer();
+    } else {
+      serializer = new BlobSerializer();
+    }
+    return serializer;
+  }
+
+  private static Forest createForest() {
+    Plant grass = new Plant("Grass", "Herb");
+    Plant oak = new Plant("Oak", "Tree");
+
+    Animal zebra = new Animal("Zebra", Set.of(grass), Collections.emptySet());
+    Animal buffalo = new Animal("Buffalo", Set.of(grass), Collections.emptySet());
+    Animal lion = new Animal("Lion", Collections.emptySet(), Set.of(zebra, buffalo));
+
+    return new Forest("Amazon", Set.of(lion, buffalo, zebra), Set.of(grass, oak));
+  }
+
+  private static void executeSerializer(Forest forest, LobSerializer lobSerializer) {
+    try (LobSerializer serializer = lobSerializer) {
+
+      Object serialized = serializer.serialize(forest);
+      int id = serializer.persistToDb(1, forest.getName(), serialized);
+
+      Object fromDb = serializer.loadFromDb(id, Forest.class.getSimpleName());
+      Forest forestFromDb = serializer.deSerialize(fromDb);
+
+      LOGGER.info(forestFromDb.toString());
+    } catch (SQLException | IOException | TransformerException | ParserConfigurationException
+             | SAXException
+             | ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+  }
 }
 ```
 
-The `App` class uses the `LobSerializer` to serialize and deserialize a `Forest` object. The `main` method creates a `Forest` object, creates a `LobSerializer` (either a `ClobSerializer` or a `BlobSerializer`), and then uses the `LobSerializer` to serialize and deserialize the `Forest` object.
+Console output:
 
-## Class diagram
+```
+12:01:21.061 [main] INFO com.iluwatar.slob.App -- 
+Forest Name = Amazon
+Animals found in the Amazon Forest: 
 
-![Serialized LOB](./etc/slob.urm.png "Serialized LOB")
+--------------------------
+
+Animal Name = Lion
+	Animals Eaten by Lion: 
+		
+Animal Name = Buffalo
+
+	Plants Eaten by Buffalo: 
+		Name = Grass,Type = Herb
+		
+Animal Name = Zebra
+
+	Plants Eaten by Zebra: 
+		Name = Grass,Type = Herb
+
+--------------------------
+
+--------------------------
+
+Animal Name = Buffalo
+
+	Plants Eaten by Buffalo: 
+		Name = Grass,Type = Herb
+--------------------------
+
+--------------------------
+
+Animal Name = Zebra
+
+	Plants Eaten by Zebra: 
+		Name = Grass,Type = Herb
+--------------------------
+
+Plants in the Amazon Forest: 
+
+--------------------------
+Name = Oak,Type = Tree
+--------------------------
+
+--------------------------
+Name = Grass,Type = Herb
+--------------------------
+```
 
 ## Applicability
 
@@ -135,4 +221,4 @@ Trade-offs:
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
-* [Serialized LOB - Martin Fowler](https://martinfowler.com/eaaCatalog/serializedLOB.html) by Martin Fowler
+* [Serialized LOB (Martin Fowler)](https://martinfowler.com/eaaCatalog/serializedLOB.html)
