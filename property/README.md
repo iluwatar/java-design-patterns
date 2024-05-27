@@ -79,7 +79,7 @@ public enum Type {
 }
 ```
 
-In the main method, we create a prototype character and then create different types of characters based on the prototype:
+In the `main` method, we create a prototype character and then create different types of characters based on the prototype:
 
 ```java
 public static void main(String[] args) {
@@ -112,11 +112,48 @@ public static void main(String[] args) {
 }
 ```
 
+Program output:
+
+```
+08:27:52.567 [main] INFO com.iluwatar.property.App -- Player: Player_1
+Character type: MAGE
+Stats:
+ - AGILITY:10
+ - STRENGTH:10
+ - ATTACK_POWER:10
+ - ARMOR:8
+ - INTELLECT:15
+ - SPIRIT:10
+
+08:27:52.569 [main] INFO com.iluwatar.property.App -- Player: Player_2
+Character type: WARRIOR
+Stats:
+ - AGILITY:10
+ - STRENGTH:10
+ - ATTACK_POWER:10
+ - ARMOR:15
+ - RAGE:15
+
+08:27:52.569 [main] INFO com.iluwatar.property.App -- Player: Player_3
+Character type: ROGUE
+Stats:
+ - AGILITY:15
+ - STRENGTH:10
+ - ATTACK_POWER:10
+ - ARMOR:10
+ - ENERGY:15
+
+08:27:52.569 [main] INFO com.iluwatar.property.App -- Player: Player_4
+Character type: ROGUE
+Stats:
+ - AGILITY:15
+ - STRENGTH:10
+ - ATTACK_POWER:12
+ - ARMOR:10
+ - ENERGY:15
+```
+
 This way, we can easily create new characters with different properties without having to create a new class for each type of character.
-
-## Class diagram
-
-![Property](./etc/property.png "Property")
 
 ## Applicability
 
