@@ -40,7 +40,7 @@ In this pattern, when a user logs in, a session identifier is created and stored
 
 Let's take a look at a programmatic example of the Server Session design pattern.
 
-The main application starts a server and assigns handlers to manage login and logout requests. It also starts a background task to check for expired sessions.
+The `main` application starts a server and assigns handlers to manage login and logout requests. It also starts a background task to check for expired sessions.
 
 ```java
 public class App {
@@ -126,22 +126,20 @@ public class LogoutHandler {
 }
 ```
 
+Console output for starting the `App` class's `main` method:
+
+```
+12:09:50.998 [Thread-1] INFO com.iluwatar.sessionserver.App -- Session expiration checker started...
+12:09:50.998 [main] INFO com.iluwatar.sessionserver.App -- Server started. Listening on port 8080...
+```
+
 This is a basic example of the Server Session design pattern. The actual implementation of the `handle` methods in the `LoginHandler` and `LogoutHandler` classes would depend on the specific requirements of your application.
-
-## Class diagram
-
-![Server Session class diagram](./etc/server-session.urm.png "Server Session class diagram")
 
 ## Applicability
 
 * Use when building web applications that require maintaining user state information across multiple requests.
 * Suitable for applications needing to track user interactions, preferences, or authentication state.
 * Ideal for scenarios where client-side storage is insecure or insufficient.
-
-## Tutorials
-
-* [JavaScript Cookies vs Local Storage vs Session Storage -  Web Dev Simplified](https://www.youtube.com/watch?v=GihQAC1I39Q&pp=ygUMaHR0cCBzZXNzaW9u)
-* [Web App Pentesting - HTTP Cookies & Sessions - Hackersploit](https://www.youtube.com/watch?v=zHBpJA5XfDk)
 
 ## Known Uses
 
