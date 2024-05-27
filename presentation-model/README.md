@@ -19,7 +19,7 @@ To separate the logic of the user interface (UI) from the business logic by crea
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > An analogous real-world example of the Presentation Model design pattern is the relationship between a scriptwriter, an actor, and a director in a theater production. The scriptwriter creates the script (analogous to the business logic), which the actor then interprets and performs on stage (analogous to the user interface). The director acts as the intermediary, ensuring that the actor's performance aligns with the script and the vision of the play (similar to the Presentation Model coordinating the UI and the business logic). This separation allows the script to be rewritten without changing the actor's techniques or the director's interpretation, ensuring flexibility and maintainability.
 
@@ -36,42 +36,38 @@ Let's take a look at the code provided and see how it implements the Presentatio
 First, we have the `Album` class. This class represents the data model in our application. It contains properties like `title`, `artist`, `isClassical`, and `composer`.
 
 ```java
+@Setter
+@Getter
+@AllArgsConstructor
 public class Album {
     private String title;
     private String artist;
     private boolean isClassical;
     private String composer;
-
-    public Album(String title, String artist, boolean isClassical, String composer) {
-        this.title = title;
-        this.artist = artist;
-        this.isClassical = isClassical;
-        this.composer = composer;
-    }
-
-    // getters and setters...
 }
 ```
 
 Next, we have the `DisplayedAlbums` class. This class is responsible for managing a collection of `Album` objects.
 
 ```java
+@Slf4j
+@Getter
 public class DisplayedAlbums {
-    private List<Album> albums;
+    private final List<Album> albums;
 
     public DisplayedAlbums() {
         this.albums = new ArrayList<>();
     }
 
-    public void addAlbum(String title, String artist, boolean isClassical, String composer) {
+    public void addAlbums(final String title,
+                          final String artist, final boolean isClassical,
+                          final String composer) {
         if (isClassical) {
             this.albums.add(new Album(title, artist, true, composer));
         } else {
             this.albums.add(new Album(title, artist, false, ""));
         }
     }
-
-    // other methods...
 }
 ```
 
@@ -79,8 +75,8 @@ The `PresentationModel` class is where the Presentation Model pattern is impleme
 
 ```java
 public class PresentationModel {
+    
     private final DisplayedAlbums data;
-
     private int selectedAlbumNumber;
     private Album selectedAlbum;
 
@@ -106,10 +102,6 @@ public final class App {
 ```
 
 In this example, the `PresentationModel` class is the Presentation Model. It separates the GUI's state and behavior from the `View` class, allowing the GUI to be tested independently from the actual GUI components.
-
-## Class diagram
-
-![Presentation Model](./etc/presentation-model.urm.png "Presentation Model")
 
 ## Applicability
 
@@ -148,4 +140,4 @@ Trade-offs:
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
-* [Presentation Model - Martin Fowler](https://martinfowler.com/eaaDev/PresentationModel.html)
+* [Presentation Model (Martin Fowler)](https://martinfowler.com/eaaDev/PresentationModel.html)
