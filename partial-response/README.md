@@ -84,7 +84,6 @@ public class FieldJsonMapper {
 - It splits the `fields` parameter into a set of field names, uses `FieldJsonMapper` to include only those fields in the response, and returns the partial JSON response.
 
 ```java
-
 @Path("/videos")
 public class VideoResource {
     @GET
@@ -119,14 +118,10 @@ public class VideoResource {
 - The server listens on `http://localhost:8080/`.
 
 ```java
-import org.glassfish.jersey.server.ResourceConfig;
-import org.glassfish.jersey.simple.SimpleContainerFactory;
-
 public class App {
     public static void main(String[] args) {
         ResourceConfig config = new ResourceConfig();
         config.register(VideoResource.class);
-
         SimpleContainerFactory.create("http://localhost:8080/", config);
     }
 }
@@ -140,10 +135,6 @@ To summarize, in this example:
 - The `App` class configures and starts the web server.
 
 By implementing the Partial Response design pattern, clients can request only the necessary data, enhancing performance and reducing bandwidth usage.
-
-## Class diagram
-
-![Partial Response](./etc/partial-response.urm.png "Partial Response")
 
 ## Applicability
 
@@ -184,4 +175,3 @@ Trade-offs:
 * [Building Microservices](https://amzn.to/3UACtrU)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/4dKEwBa)
 * [RESTful Web APIs: Services for a Changing World](https://amzn.to/3wG4fu3)
-* [Google Cloud Common Design Patterns](https://cloud.google.com/apis/design/design_patterns)
