@@ -48,7 +48,9 @@ First, let's look at the `MessageQueue` and `Message` classes. The `MessageQueue
 public class Message {
   // Message details
 }
+```
 
+```java
 public class MessageQueue {
   private Queue<Message> queue;
 
@@ -72,6 +74,7 @@ Next, we have the `TaskGenerator` class. This class represents the task producer
 
 ```java
 public class TaskGenerator implements Runnable {
+    
   private MessageQueue msgQueue;
   private int taskCount;
 
@@ -94,6 +97,7 @@ The `ServiceExecutor` class represents the task consumer. It retrieves tasks fro
 
 ```java
 public class ServiceExecutor implements Runnable {
+    
   private MessageQueue msgQueue;
 
   public ServiceExecutor(MessageQueue msgQueue) {

@@ -139,7 +139,7 @@
     <module>page-object</module>
     <module>event-based-asynchronous</module>
     <module>event-queue</module>
-    <module>queue-load-leveling</module>
+    <module>queue-based-load-leveling</module>
     <module>object-mother</module>
     <module>data-bus</module>
     <module>converter</module>
