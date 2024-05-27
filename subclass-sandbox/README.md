@@ -37,9 +37,9 @@ In plain words
 
 Suppose you want to create various superpowers in a game, where each superpower needs to move with a sound effect and spawn particles. Should you create many classes with similar methods or derive them from a base class? The Subclass Sandbox pattern enables you to handle this efficiently by deriving these classes from a common base class.
 
-We start with the base class `Superpower`. It contains an abstract sandbox method `active()` and some provided operations.
+We start with the base class `Superpower`. It contains an abstract sandbox method `active` and some provided operations.
 
-```
+```java
 public abstract class Superpower {
 
   protected Logger logger;
@@ -62,7 +62,7 @@ public abstract class Superpower {
 
 Next, we are able to create derived sandboxed subclass that implements the sandbox method using the provided operations. Here is the first power:
 
-```
+```java
 public class SkyLaunch extends Superpower {
 
   public SkyLaunch() {
@@ -81,7 +81,7 @@ public class SkyLaunch extends Superpower {
 
 Here is the second power.
 
-```
+```java
 public class GroundDive extends Superpower {
 
   public GroundDive() {
@@ -100,32 +100,30 @@ public class GroundDive extends Superpower {
 
 Finally, here are the superpowers in active.
 
-```
+```java
+public static void main(String[] args) {
     LOGGER.info("Use superpower: sky launch");
     var skyLaunch = new SkyLaunch();
     skyLaunch.activate();
     LOGGER.info("Use superpower: ground dive");
     var groundDive = new GroundDive();
     groundDive.activate();
+}
 ```
 
 Program output:
 
 ```
-// Use superpower: sky launch
-// Move to ( 0.0, 0.0, 20.0 )
-// Play SKYLAUNCH_SOUND with volume 1
-// Spawn 100 particle with type SKYLAUNCH_PARTICLE
-// Use superpower: ground dive
-// Move to ( 0.0, 0.0, -20.0 )
-// Play GROUNDDIVE_SOUND with volume 5
-// Spawn 20 particle with type GROUNDDIVE_PARTICLE
+13:10:23.177 [main] INFO com.iluwatar.subclasssandbox.App -- Use superpower: sky launch
+13:10:23.179 [main] INFO com.iluwatar.subclasssandbox.SkyLaunch -- Move to ( 0.0, 0.0, 20.0 )
+13:10:23.180 [main] INFO com.iluwatar.subclasssandbox.SkyLaunch -- Play SKYLAUNCH_SOUND with volume 1
+13:10:23.180 [main] INFO com.iluwatar.subclasssandbox.SkyLaunch -- Spawn 100 particle with type SKYLAUNCH_PARTICLE
+13:10:23.180 [main] INFO com.iluwatar.subclasssandbox.App -- Use superpower: ground dive
+13:10:23.180 [main] INFO com.iluwatar.subclasssandbox.GroundDive -- Move to ( 0.0, 0.0, -20.0 )
+13:10:23.180 [main] INFO com.iluwatar.subclasssandbox.GroundDive -- Play GROUNDDIVE_SOUND with volume 5
+13:10:23.180 [main] INFO com.iluwatar.subclasssandbox.GroundDive -- Spawn 20 particle with type GROUNDDIVE_PARTICLE
 ```
 
-## Class diagram
-
-![Subclass Sandbox](./etc/subclass-sandbox.urm.png "Subclass Sandbox pattern class diagram")
-  
 ## Applicability  
 
 * Use when you want to create a framework that allows users to define their own behaviors by extending classes.
@@ -153,12 +151,12 @@ Trade-offs:
 
 ## Related Patterns
 
-* [Template Method](https://java-design-patterns.com/patterns/template-method/): Similar in enforcing a structure where certain steps can be overridden by subclasses.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Both involve interchangeable behaviors, but Strategy pattern uses composition over inheritance.
+* [Template Method](https://java-design-patterns.com/patterns/template-method/): Similar in enforcing a structure where certain steps can be overridden by subclasses.
 
 ## Credits  
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Game Programming Patterns](https://amzn.to/3K96fOn)
-* [Subclass Sandbox - Game Programming Patterns](https://gameprogrammingpatterns.com/subclass-sandbox.html)
+* [Subclass Sandbox (Game Programming Patterns)](https://gameprogrammingpatterns.com/subclass-sandbox.html)
