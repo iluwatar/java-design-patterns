@@ -127,16 +127,17 @@ public class App {
 
 This example demonstrates how the Parameter Object pattern can simplify method signatures and make the code more maintainable. It also shows how the pattern can be combined with the Builder pattern to make object creation more flexible and readable.
 
-## Class diagram
-
-![Parameter Object](./etc/parameter-object.png "Parameter Object")
-
 ## Applicability
 
 * Methods require multiple parameters that logically belong together.
 * There is a need to reduce the complexity of method signatures.
 * The parameters may need to evolve over time, adding more properties without breaking existing method signatures.
 * It’s beneficial to pass data through a method chain.
+
+## Tutorials
+
+* [Does Java have default parameters? (Daniel Olszewski)](http://dolszewski.com/java/java-default-parameters)
+
 
 ## Known Uses
 
@@ -165,7 +166,6 @@ Trade-offs:
 
 ## Credits
 
-* [Does Java have default parameters? - Daniel Olszewski](http://dolszewski.com/java/java-default-parameters)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Refactoring: Improving the Design of Existing Code](https://amzn.to/3TVEgaB)
