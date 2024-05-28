@@ -1548,7 +1548,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/17254162?v=4",
       "profile": "https://www.linkedin.com/in/souzasamuel/",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -3104,9 +3105,27 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Adelechka",
+      "name": "Adelya",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65678470?v=4",
+      "profile": "https://github.com/Adelechka",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gatlanagaprasanna",
+      "name": "gatlanagaprasanna",
+      "avatar_url": "https://avatars.githubusercontent.com/u/154739216?v=4",
+      "profile": "https://github.com/gatlanagaprasanna",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
-  "contributorsPerLine": 7,
+  "contributorsPerLine": 6,
   "projectName": "java-design-patterns",
   "projectOwner": "iluwatar",
   "repoType": "github",

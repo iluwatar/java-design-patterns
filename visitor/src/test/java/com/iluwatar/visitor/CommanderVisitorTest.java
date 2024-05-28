@@ -27,9 +27,8 @@ package com.iluwatar.visitor;
 import java.util.Optional;
 
 /**
- * Date: 12/30/15 - 18:43 PM.
+ * CommanderVisitorTest
  *
- * @author Jeroen Meulemeester
  */
 class CommanderVisitorTest extends VisitorTest<CommanderVisitor> {
 

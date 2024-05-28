@@ -54,7 +54,6 @@ import lombok.Setter;
 /**
  * Base for data to send via the Data-Bus.
  *
- * @author Paul Campbell (pcampbell@kemitix.net)
  */
 @Getter
 @Setter

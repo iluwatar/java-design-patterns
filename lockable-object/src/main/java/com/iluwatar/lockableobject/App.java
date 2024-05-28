@@ -48,7 +48,6 @@ import lombok.extern.slf4j.Slf4j;
  * is locked, any other alive Fiends will try to lock, which will result in a race to lock the
  * sword.
  *
- * @author Noam Greenshtain
  */
 @Slf4j
 public class App implements Runnable {

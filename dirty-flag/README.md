@@ -20,7 +20,7 @@ The Dirty Flag design pattern is employed to avoid unnecessary computations or r
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a library with an electronic catalog system that tracks which books are checked out and returned. Each book record has a "dirty flag" that gets marked whenever a book is checked out or returned. At the end of each day, the library staff reviews only those records marked as "dirty" to update the physical inventory, instead of checking every single book in the library. This system significantly reduces the effort and time required for daily inventory checks by focusing only on the items that have changed status, analogous to how the Dirty Flag design pattern minimizes resource-intensive operations by performing them only when necessary.
 
@@ -34,45 +34,47 @@ Wikipedia says
 
 **Programmatic Example**
 
-The DataFetcher class is responsible for fetching data from a file. It has a dirty flag that indicates whether the data in the file has changed since the last fetch.
+The `DataFetcher` class is responsible for fetching data from a file. It has a dirty flag that indicates whether the data in the file has changed since the last fetch.
 
 ```java
 public class DataFetcher {
-private long lastFetched;
-private boolean isDirty = true;
-// ...
+    private long lastFetched;
+    private boolean isDirty = true;
+    // Other properties and methods...
 }
 ```
 
-The DataFetcher class has a fetch method that checks the dirty flag before fetching data. If the flag is true, it fetches the data from the file and sets the flag to false. If the flag is false, it returns the previously fetched data.
+The `DataFetcher` class has a fetch method that checks the dirty flag before fetching data. If the flag is true, it fetches the data from the file and sets the flag to false. If the flag is false, it returns the previously fetched data.
 
 ```java
 public List<String> fetch() {
-  if (!isDirty) {
+    if (!isDirty) {
+        return data;
+    }
+    data = fetchFromDatabase();
+    isDirty = false;
     return data;
-  }
-  data = fetchFromDatabase();
-  isDirty = false;
-  return data;
 }
 ```
 
-The World class uses the DataFetcher to fetch data. It has a fetch method that calls the fetch method of the DataFetcher.
+The `World` class uses the `DataFetcher` to fetch data. It has a `fetch` method that calls the `fetch` method of the `DataFetcher`.
 
 ```java
 public class World {
-  private final DataFetcher fetcher = new DataFetcher();
+    private final DataFetcher fetcher = new DataFetcher();
   
-  public List<String> fetch() {
-    return fetcher.fetch();
-  }
+    public List<String> fetch() {
+        return fetcher.fetch();
+    }
 }
 ```
 
-The App class contains the main method that demonstrates the use of the Dirty Flag pattern. It creates a World object and fetches data from it in a loop. The World object uses the DataFetcher to fetch data, and the DataFetcher only fetches data from the file if the dirty flag is true.
+The `App` class contains the `main` method that demonstrates the use of the Dirty Flag pattern. It creates a `World` object and fetches data from it in a loop. The `World` object uses the `DataFetcher` to fetch data, and the `DataFetcher` only fetches data from the file if the dirty flag is true.
 
 ```java
+@Slf4j
 public class App {
+
   public void run() {
     final var executorService = Executors.newSingleThreadScheduledExecutor();
     executorService.scheduleAtFixedRate(new Runnable() {
@@ -81,9 +83,15 @@ public class App {
       @Override
       public void run() {
         var countries = world.fetch();
-        // ...
+        LOGGER.info("Our world currently has the following countries:-");
+        countries.stream().map(country -> "\t" + country).forEach(LOGGER::info);
       }
     }, 0, 15, TimeUnit.SECONDS); // Run at every 15 seconds.
+  }
+
+  public static void main(String[] args) {
+    var app = new App();
+    app.run();
   }
 }
 ```
@@ -91,22 +99,22 @@ public class App {
 The program output is as follows:
 
 ```
-20:51:42.490 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.DataFetcher -- world.txt is dirty! Re-fetching file content...
-20:51:42.494 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.App -- Our world currently has the following countries:-
-20:51:42.494 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.App -- 	UNITED_KINGDOM
-20:51:42.494 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.App -- 	MALAYSIA
-20:51:42.494 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.App -- 	UNITED_STATES
+12:06:02.612 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.DataFetcher -- world.txt is dirty! Re-fetching file content...
+12:06:02.615 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.App -- Our world currently has the following countries:-
+12:06:02.616 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.App -- 	UNITED_KINGDOM
+12:06:02.616 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.App -- 	MALAYSIA
+12:06:02.616 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.App -- 	UNITED_STATES
 ```
-
-## Class diagram
-
-![Dirty Flag](./etc/dirty-flag.png "Dirty Flag")
 
 ## Applicability
 
 * When an operation is resource-intensive and only necessary after certain changes have occurred.
 * In scenarios where checking for changes is significantly cheaper than performing the operation itself.
 * Within systems where objects maintain state that is expensive to update and the updates are infrequent.
+
+## Tutorials
+
+* [89: Design Patterns: Dirty Flag (TakeUpCode)](https://www.takeupcode.com/podcast/89-design-patterns-dirty-flag/)
 
 ## Known Uses
 
@@ -137,5 +145,4 @@ Trade-offs:
 ## Credits
 
 * [Game Programming Patterns](https://amzn.to/3PUzbgu)
-* [Design Patterns: Dirty Flag](https://www.takeupcode.com/podcast/89-design-patterns-dirty-flag/)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)

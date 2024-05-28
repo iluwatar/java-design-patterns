@@ -32,7 +32,7 @@ package com.iluwatar.repository;
 public interface JpaRepository<T> {
 
   /**
-   * Get object by it's PK.
+   * Get object by its PK.
    *
    * @param id primary key
    * @return {@link T}

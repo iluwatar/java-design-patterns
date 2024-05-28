@@ -31,9 +31,8 @@ import java.awt.event.ActionEvent;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 01/29/23 - 6:00 PM
+ * FileSelectorJframeTest
  *
- * @author Rahul Raj
  */
 class FileSelectorJframeTest {
     

@@ -17,7 +17,7 @@ Hexagonal Architecture, often applied within the Java ecosystem, is designed to 
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > A real-world analogous example of Hexagonal Architecture can be seen in online banking systems. In such systems, the core banking logic (like processing transactions, managing accounts, and calculating interest) represents the application's core. This core is then surrounded by various adapters that allow the system to interact with different external interfaces without affecting the business logic. For instance, customers might access their accounts through a web interface, a mobile app, or even through ATM services. Meanwhile, the banking system also needs to interface with external services for credit checks, fraud detection, and interbank transactions. Each of these interfaces interacts with the core banking logic through specific adapters designed to translate the external calls to and from the application's internal APIs. This setup allows the bank to modify or extend its external interfaces without having to alter the core business logic, enhancing flexibility and maintainability.
 
@@ -119,6 +119,49 @@ public class LotteryService {
 }
 ```
 
+Running the main function of App class produces the following output:
+
+```
+11:06:58.357 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for calvin@google.com was submitted. Bank account 334-746 was charged for 3 credits.
+11:06:58.359 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for arnold@google.com was submitted. Bank account 114-988 was charged for 3 credits.
+11:06:58.359 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for ollie@google.com was submitted. Bank account 190-045 was charged for 3 credits.
+11:06:58.359 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for peter@google.com was submitted. Bank account 335-886 was charged for 3 credits.
+11:06:58.359 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for ray@google.com was submitted. Bank account 843-073 was charged for 3 credits.
+11:06:58.360 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for calvin@google.com was submitted. Bank account 334-746 was charged for 3 credits.
+11:06:58.360 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for lisa@google.com was submitted. Bank account 024-653 was charged for 3 credits.
+11:06:58.360 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for harriet@google.com was submitted. Bank account 842-404 was charged for 3 credits.
+11:06:58.360 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for larry@google.com was submitted. Bank account 734-853 was charged for 3 credits.
+11:06:58.360 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for lars@google.com was submitted. Bank account 746-936 was charged for 3 credits.
+11:06:58.360 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for tyron@google.com was submitted. Bank account 310-992 was charged for 3 credits.
+11:06:58.360 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for xavier@google.com was submitted. Bank account 143-947 was charged for 3 credits.
+11:06:58.360 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for kevin@google.com was submitted. Bank account 453-936 was charged for 3 credits.
+11:06:58.360 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for yngwie@google.com was submitted. Bank account 241-465 was charged for 3 credits.
+11:06:58.361 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for calvin@google.com was submitted. Bank account 334-746 was charged for 3 credits.
+11:06:58.361 [main] ERROR com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for larry@google.com could not be submitted because the credit transfer of 3 credits failed.
+11:06:58.362 [main] ERROR com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for larry@google.com could not be submitted because the credit transfer of 3 credits failed.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for mary@google.com was submitted. Bank account 234-987 was charged for 3 credits.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for edwin@google.com was submitted. Bank account 895-345 was charged for 3 credits.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for jacob@google.com was submitted. Bank account 444-766 was charged for 3 credits.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for ollie@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for jacob@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for peter@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for ray@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for calvin@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for lisa@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for harriet@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for larry@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for lars@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for tyron@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for xavier@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for kevin@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for yngwie@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for calvin@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for calvin@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for mary@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for arnold@google.com was checked and unfortunately did not win this time.
+11:06:58.362 [main] INFO com.iluwatar.hexagonal.eventlog.StdOutEventLog -- Lottery ticket for edwin@google.com was checked and unfortunately did not win this time.
+```
+
 In this example, the `LotteryAdministration` and `LotteryService` classes are the core of the application. They interact with external interfaces like `LotteryTicketRepository`, `LotteryEventLog`, and `WireTransfers` through dependency injection, keeping the core business logic decoupled from external concerns. This is a basic example of the Hexagonal Architecture pattern, where the core application is at the center of input/output systems.
 
 ## Class diagram
@@ -154,11 +197,10 @@ Trade-offs:
 
 ## Related Patterns
 
-* Layered Architecture: Shares the concept of organizing code into responsibilities; however, Hexagonal emphasizes port-based interaction with external elements.
+* [Layered Architecture](https://java-design-patterns.com/patterns/layers/): Shares the concept of organizing code into responsibilities; however, Hexagonal emphasizes port-based interaction with external elements.
 * Microservices: Often used in conjunction with Hexagonal Architecture to define clear boundaries and protocols between services.
 
 ## Credits
 
-* [Alistair Cockburn - Hexagonal Architecture](http://alistair.cockburn.us/Hexagonal+architecture)
 * [Implementing Domain-Driven Design](https://amzn.to/4dmBjrB)
 * [Building Microservices](https://amzn.to/3UACtrU)

@@ -35,7 +35,6 @@ import org.springframework.stereotype.Component;
 /**
  * Configuration class for retry policies used in health check operations.
  *
- * @author ydoksanbir
  */
 @Configuration
 @Component

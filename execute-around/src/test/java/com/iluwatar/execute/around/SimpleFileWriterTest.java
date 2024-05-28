@@ -39,9 +39,8 @@ import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
 import org.junit.rules.TemporaryFolder;
 
 /**
- * Date: 12/12/15 - 3:21 PM
+ * SimpleFileWriterTest
  *
- * @author Jeroen Meulemeester
  */
 @EnableRuleMigrationSupport
 class SimpleFileWriterTest {

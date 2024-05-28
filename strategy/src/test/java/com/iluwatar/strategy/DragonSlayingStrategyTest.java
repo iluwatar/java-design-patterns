@@ -39,9 +39,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/29/15 - 10:58 PM.
+ * DragonSlayingStrategyTest
  *
- * @author Jeroen Meulemeester
  */
 class DragonSlayingStrategyTest {
 
@@ -91,7 +90,7 @@ class DragonSlayingStrategyTest {
     assertEquals(1, appender.getLogSize());
   }
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {

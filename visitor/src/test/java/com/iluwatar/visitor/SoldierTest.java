@@ -28,9 +28,8 @@ import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
 /**
- * Date: 12/30/15 - 19:45 PM.
+ * SoldierTest
  *
- * @author Jeroen Meulemeester
  */
 class SoldierTest extends UnitTest<Soldier> {
 

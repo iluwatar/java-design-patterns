@@ -24,18 +24,17 @@
  */
 package com.iluwatar.saga.orchestration;
 
+import lombok.Getter;
+
 /**
  * Executing result for chapter.
  *
  * @param <K> incoming value
  */
 public class ChapterResult<K> {
+  @Getter
   private final K value;
   private final State state;
-
-  public K getValue() {
-    return value;
-  }
 
   ChapterResult(K value, State state) {
     this.value = value;

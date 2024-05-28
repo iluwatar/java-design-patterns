@@ -34,9 +34,8 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Date: 28/04/17 - 7:40 AM
+ * AdvancedSorceressTest
  *
- * @author Stanislav Kapinus
  */
 
 class AdvancedSorceressTest {

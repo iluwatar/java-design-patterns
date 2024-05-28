@@ -43,8 +43,8 @@ import com.iluwatar.commander.shippingservice.ShippingService;
  */
 
 public class AppShippingFailCases {
-  private static final RetryParams retryParams = RetryParams.DEFAULT;
 
+  private static final RetryParams retryParams = RetryParams.DEFAULT;
   private static final TimeLimits timeLimits = TimeLimits.DEFAULT;
 
   void itemUnavailableCase() {

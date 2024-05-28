@@ -33,9 +33,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /**
- * Date: 12/14/15 - 2:58 PM
+ * TreasureChestTest
  *
- * @author Jeroen Meulemeester
  */
 class TreasureChestTest {
 

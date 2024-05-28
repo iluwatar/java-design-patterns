@@ -50,7 +50,6 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Tests class< for {@link CustomHealthIndicator}. *
  *
- * @author ydoksanbir
  */
 class CustomHealthIndicatorTest {
 

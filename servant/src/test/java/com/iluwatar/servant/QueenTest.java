@@ -31,9 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/28/15 - 9:52 PM
+ * QueenTest
  *
- * @author Jeroen Meulemeester
  */
 class QueenTest {
 

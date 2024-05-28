@@ -32,9 +32,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/29/15 - 9:21 PM
+ * CharacterStepBuilderTest
  *
- * @author Jeroen Meulemeester
  */
 class CharacterStepBuilderTest {
 

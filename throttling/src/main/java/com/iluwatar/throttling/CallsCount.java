@@ -32,7 +32,6 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * A class to keep track of the counter of different Tenants.
  *
- * @author drastogi
  */
 @Slf4j
 public final class CallsCount {

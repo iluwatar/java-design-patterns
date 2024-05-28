@@ -78,7 +78,6 @@ public class App {
    *
    * @param args arguments
    * @throws InterruptedException if main thread is interrupted.
-   * @throws ExecutionException   if an execution error occurs.
    */
   public static void main(String[] args) throws InterruptedException {
     var app = new App();
@@ -123,7 +122,7 @@ public class App {
 
   /*
    * Calculate the character frequency of a file and when that promise is fulfilled,
-   * then promise to apply function to calculate lowest character frequency.
+   * then promise to apply function to calculate the lowest character frequency.
    */
   private Promise<Character> lowestFrequencyChar() {
     return characterFrequency().thenApply(Utility::lowestFrequencyChar);
@@ -155,7 +154,7 @@ public class App {
             () -> Utility.downloadFile(urlString), executor)
         .onError(
             throwable -> {
-              throwable.printStackTrace();
+              LOGGER.error("An error occurred: ", throwable);
               taskCompleted();
             }
         );

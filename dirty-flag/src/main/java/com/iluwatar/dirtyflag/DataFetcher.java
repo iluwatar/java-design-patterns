@@ -35,7 +35,6 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * A mock database manager -- Fetches data from a raw file.
  *
- * @author swaisuan
  */
 @Slf4j
 public class DataFetcher {

@@ -1,173 +1,89 @@
 ---
 title: Servant
-category: Behavioral
+category: Structural
 language: en
 tag:
-- Decoupling
+    - Decoupling
+    - Interface
+    - Messaging
+    - Object composition
+    - Resource management
 ---
 
+## Also known as
+
+* Helper
+
 ## Intent
-Servant is used for providing some behavior to a group of classes.
-Instead of defining that behavior in each class - or when we cannot factor out
-this behavior in the common parent class - it is defined once in the Servant.
+
+The Servant pattern is used to perform specific operations for a group of objects without changing the classes of the elements on which it operates.
 
 ## Explanation
 
 Real-world example
 
-> King, Queen, and other royal member of palace need servant to service them for feeding,
-> organizing drinks, and so on.
+> In a restaurant, a waiter (Servant) serves multiple tables (objects) by taking orders, delivering food, and handling payments. The waiter provides these common services without altering the fundamental nature of the tables or customers, allowing the restaurant to efficiently manage customer service while keeping the roles of the tables and customers unchanged.
 
 In plain words
 
-> Ensures one servant object to give some specific services for a group of serviced classes.
+> The Servant pattern centralizes common functionality for a group of classes, enabling decoupled and reusable operations without altering the classes themselves.
 
 Wikipedia says
 
-> In software engineering, the servant pattern defines an object used to offer some functionality
-> to a group of classes without defining that functionality in each of them. A Servant is a class
-> whose instance (or even just class) provides methods that take care of a desired service, while
-> objects for which (or with whom) the servant does something, are taken as parameters.
+> In software engineering, the servant pattern defines an object used to offer some functionality to a group of classes without defining that functionality in each of them. A Servant is a class whose instance (or even just class) provides methods that take care of a desired service, while objects for which (or with whom) the servant does something, are taken as parameters.
 
 **Programmatic Example**
 
-Servant class which can give services to other royal members of palace.
+The Servant design pattern is a behavioral design pattern that defines a class that provides some sort of service to a group of classes. This pattern is particularly useful when these classes lack some common functionality that can't be added to the superclass. The Servant class brings this common functionality to a group of classes.
+
+In the provided code, we have a `Servant` class that provides services to the `Royalty` class. The `Servant` class has methods like `feed()`, `giveWine()`, and `giveCompliments()` which are services provided to the `Royalty` class.
+
+Here is the `Servant` class:
 
 ```java
-/**
- * Servant.
- */
 public class Servant {
 
-  public String name;
+    public String name;
 
-  /**
-   * Constructor.
-   */
-  public Servant(String name) {
-    this.name = name;
-  }
+    public Servant(String name) {
+        this.name = name;
+    }
 
-  public void feed(Royalty r) {
-    r.getFed();
-  }
+    public void feed(Royalty r) {
+        r.getFed();
+    }
 
-  public void giveWine(Royalty r) {
-    r.getDrink();
-  }
+    public void giveWine(Royalty r) {
+        r.getDrink();
+    }
 
-  public void giveCompliments(Royalty r) {
-    r.receiveCompliments();
-  }
+    public void giveCompliments(Royalty r) {
+        r.receiveCompliments();
+    }
 
-  /**
-   * Check if we will be hanged.
-   */
-  public boolean checkIfYouWillBeHanged(List<Royalty> tableGuests) {
-    return tableGuests.stream().allMatch(Royalty::getMood);
-  }
+    public boolean checkIfYouWillBeHanged(List<Royalty> tableGuests) {
+        return tableGuests.stream().allMatch(Royalty::getMood);
+    }
 }
 ```
 
-Royalty is an interface. It is implemented by King, and Queen classes to get services from servant.
+The `Royalty` class is an interface that is implemented by the classes that use the services of the `Servant`. Here is a simplified version of the `Royalty` interface:
 
 ```java
-interface Royalty {
-
+public interface Royalty {
     void getFed();
 
     void getDrink();
 
-    void changeMood();
-
     void receiveCompliments();
+
+    void changeMood();
 
     boolean getMood();
 }
 ```
-King, class is implementing Royalty interface.
-```java
-public class King implements Royalty {
 
-    private boolean isDrunk;
-    private boolean isHungry = true;
-    private boolean isHappy;
-    private boolean complimentReceived;
-
-    @Override
-    public void getFed() {
-        isHungry = false;
-    }
-
-    @Override
-    public void getDrink() {
-        isDrunk = true;
-    }
-
-    public void receiveCompliments() {
-        complimentReceived = true;
-    }
-
-    @Override
-    public void changeMood() {
-        if (!isHungry && isDrunk) {
-            isHappy = true;
-        }
-        if (complimentReceived) {
-            isHappy = false;
-        }
-    }
-
-    @Override
-    public boolean getMood() {
-        return isHappy;
-    }
-}
-```
-Queen, class is implementing Royalty interface.
-```java
-public class Queen implements Royalty {
-
-    private boolean isDrunk = true;
-    private boolean isHungry;
-    private boolean isHappy;
-    private boolean isFlirty = true;
-    private boolean complimentReceived;
-
-    @Override
-    public void getFed() {
-        isHungry = false;
-    }
-
-    @Override
-    public void getDrink() {
-        isDrunk = true;
-    }
-
-    public void receiveCompliments() {
-        complimentReceived = true;
-    }
-
-    @Override
-    public void changeMood() {
-        if (complimentReceived && isFlirty && isDrunk && !isHungry) {
-            isHappy = true;
-        }
-    }
-
-    @Override
-    public boolean getMood() {
-        return isHappy;
-    }
-
-    public void setFlirtiness(boolean f) {
-        this.isFlirty = f;
-    }
-
-}
-```
-
-Then in order to use:
+The `App` class uses the `Servant` to provide services to the `Royalty` objects. Here is a simplified version of the `App` class:
 
 ```java
 public class App {
@@ -175,36 +91,25 @@ public class App {
     private static final Servant jenkins = new Servant("Jenkins");
     private static final Servant travis = new Servant("Travis");
 
-    /**
-     * Program entry point.
-     */
     public static void main(String[] args) {
         scenario(jenkins, 1);
         scenario(travis, 0);
     }
 
-    /**
-     * Can add a List with enum Actions for variable scenarios.
-     */
     public static void scenario(Servant servant, int compliment) {
         var k = new King();
         var q = new Queen();
 
         var guests = List.of(k, q);
 
-        // feed
         servant.feed(k);
         servant.feed(q);
-        // serve drinks
         servant.giveWine(k);
         servant.giveWine(q);
-        // compliment
         servant.giveCompliments(guests.get(compliment));
 
-        // outcome of the night
         guests.forEach(Royalty::changeMood);
 
-        // check your luck
         if (servant.checkIfYouWillBeHanged(guests)) {
             LOGGER.info("{} will live another day", servant.name);
         } else {
@@ -214,22 +119,47 @@ public class App {
 }
 ```
 
-The console output
+Running the application produces:
 
 ```
-Jenkins will live another day
-Poor Travis. His days are numbered
+09:10:38.795 [main] INFO com.iluwatar.servant.App -- Jenkins will live another day
+09:10:38.797 [main] INFO com.iluwatar.servant.App -- Poor Travis. His days are numbered
 ```
 
-
-## Class diagram
-![alt text](./etc/servant-pattern.png "Servant")
+In this example, the `Servant` class provides services to the `Royalty` objects. The `Servant` class doesn't know about the specific implementation of the `Royalty` objects, it only knows that it can provide certain services to them. This is a good example of the Servant design pattern.
 
 ## Applicability
-Use the Servant pattern when
 
-* When we want some objects to perform a common action and don't want to define this action as a method in every class.
+* Use the Servant pattern when you need to provide a common functionality to a group of classes without polluting their class definitions.
+* Suitable when the operations performed on the objects are not the primary responsibility of the objects themselves.
+
+## Known Uses
+
+* In GUI applications to handle operations like rendering or hit-testing which are common across different UI components.
+* In games where various entities (like players, enemies, or items) need common behavior such as movement or collision detection.
+* Logging or auditing functionalities that are required across multiple business objects.
+
+## Consequences
+
+Benefits:
+
+* Promotes code reuse and separation of concerns by decoupling the operations from the objects they operate on.
+* Reduces code duplication by centralizing the shared functionality.
+
+Trade-offs:
+
+* Can lead to an increase in the number of classes, potentially making the system harder to understand.
+* May introduce tight coupling between the Servant and the classes it serves if not designed carefully.
+
+## Related Patterns
+
+* [Adapter](https://java-design-patterns.com/patterns/adapter/): The Servant pattern is similar to the Adapter pattern in that both provide a way to work with classes without modifying them, but the Servant pattern focuses on providing additional behavior to multiple classes rather than adapting one interface to another.
+* [Facade](https://java-design-patterns.com/patterns/facade/): Both patterns provide a simplified interface to a set of functionalities, but the Servant pattern is typically used for adding functionalities to a group of classes, while the Facade pattern hides the complexities of a subsystem.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): The Strategy pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable. The Servant pattern can be used in conjunction with the Strategy pattern to define operations that apply to multiple classes.
+* View Helper: The View Helper pattern is related as it also centralizes common functionality, but it focuses on separating presentation logic from business logic in web applications.
 
 ## Credits
 
-* [Let's Modify the Objects-First Approach into Design-Patterns-First](http://edu.pecinovsky.cz/papers/2006_ITiCSE_Design_Patterns_First.pdf)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
+* [Pattern-Oriented Software Architecture Volume 1: A System of Patterns](https://amzn.to/3xZ1ELU)

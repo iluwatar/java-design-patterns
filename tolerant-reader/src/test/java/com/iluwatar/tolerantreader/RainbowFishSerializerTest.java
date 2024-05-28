@@ -35,9 +35,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 /**
- * Date: 12/30/15 - 18:39 PM
+ * RainbowFishSerializerTest
  *
- * @author Jeroen Meulemeester
  */
 
 class RainbowFishSerializerTest {

@@ -42,7 +42,6 @@ import org.springframework.stereotype.Component;
  * status accordingly. It uses an asynchronous health checker to perform the health check and a
  * configurable memory usage threshold to determine the health status.
  *
- * @author ydoksanbir
  */
 @Slf4j
 @Component

@@ -80,7 +80,7 @@ public class Author {
 }
 ````
 
-In this example, we define two domain objects: Book and Author. The Book class has properties for the title and author, as well as an action to borrow the book. The Author class has a property for the author's name, a collection of books they have written, and an action to create a new book.
+In this example, we define two domain objects: `Book` and `Author`. The `Book` class has properties for the `title` and `author`, as well as an action to `borrow` the book. The `Author` class has a property for the author's `name`, a collection of books they have written (`getBooks`), and an action to create a new book (`createBook`).
 
 With the Naked Objects framework or tool, the user interface for managing books and authors can be automatically generated based on these domain object definitions. Users can interact with the generated UI to create, retrieve, update, and delete books and authors directly through a user-friendly interface.
 
@@ -92,7 +92,6 @@ author.setName("J.K. Rowling");
 var book = author.createBook("Harry Potter and the Philosopher's Stone");
 book.setAuthor(author);
 book.borrow();
-
 var booksByAuthor = author.getBooks();
 ```
 
@@ -130,7 +129,7 @@ Domain-Driven Design: Shares the focus on domain modeling but without the automa
 
 ## Credits
 
-* [Richard Pawson - Naked Objects](http://downloads.nakedobjects.net/resources/Pawson%20thesis.pdf)
-* [Apache Isis - Introducing Apache Isis](https://isis.apache.org/versions/1.16.0/pages/downloadable-presentations/resources/downloadable-presentations/IntroducingApacheIsis-notes.pdf)
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
 * [Naked Objects](https://amzn.to/3yhrfQr)
+* [Naked Objects (Richard Pawson)](http://downloads.nakedobjects.net/resources/Pawson%20thesis.pdf)
+* [Introducing Apache Isis (Apache Isis)](https://isis.apache.org/versions/1.16.0/pages/downloadable-presentations/resources/downloadable-presentations/IntroducingApacheIsis-notes.pdf)

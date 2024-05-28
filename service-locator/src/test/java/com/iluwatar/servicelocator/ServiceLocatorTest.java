@@ -34,9 +34,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/29/15 - 19:07 PM
+ * ServiceLocatorTest
  *
- * @author Jeroen Meulemeester
  */
 class ServiceLocatorTest {
 

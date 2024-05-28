@@ -39,9 +39,8 @@ import com.iluwatar.flux.store.Store;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/12/15 - 10:31 PM
+ * MenuViewTest
  *
- * @author Jeroen Meulemeester
  */
 class MenuViewTest {
 

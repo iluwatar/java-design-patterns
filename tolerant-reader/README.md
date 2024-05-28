@@ -1,28 +1,31 @@
 ---
 title: Tolerant Reader
-category: Integration
+category: Resilience
 language: en
 tag:
- - Decoupling
+    - API design
+    - Decoupling
+    - Fault tolerance
+    - Integration
 ---
+
+## Also known as
+
+* Lenient Consumer
 
 ## Intent
 
-Tolerant Reader is an integration pattern that helps creating robust communication systems. The idea 
-is to be as tolerant as possible when reading data from another service. This way, when the 
-communication schema changes, the readers must not break.
+Allows a system to be more resilient to changes in the data structures it consumes by ignoring elements that it does not recognize.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> We are persisting rainbowfish objects to file and later on they need to be restored. What makes it 
-> problematic is that rainbowfish data structure is versioned and evolves over time. New version of 
-> rainbowfish needs to be able to restore old versions as well.     
+> Imagine a postal system that delivers letters and packages to recipients. In this system, postal workers deliver mail regardless of additional information or stickers that might be present on the envelopes or packages. If a package has extra labels or instructions that the postal system does not recognize, the postal worker ignores these and focuses only on the essential information like the address. This approach ensures that the delivery process remains functional even when senders use different formats or include unnecessary details, similar to how the Tolerant Reader pattern works in software by ignoring unrecognized data elements to maintain functionality and compatibility.
 
 In plain words
 
-> Tolerant Reader pattern is used to create robust communication mechanisms between services. 
+> Tolerant Reader pattern is used to create robust communication mechanisms between services.
 
 [Robustness Principle](https://java-design-patterns.com/principles/#robustness-principle) says
 
@@ -30,186 +33,175 @@ In plain words
 
 **Programmatic Example**
 
+We are persisting `RainbowFish` objects to file. Later on they need to be restored. What makes it problematic is that `RainbowFish` data structure is versioned and evolves over time. New version of `RainbowFish` needs to be able to restore old versions as well.
+
 Here's the versioned `RainbowFish`. Notice how the second version introduces additional properties.
 
 ```java
+@Getter
+@RequiredArgsConstructor
 public class RainbowFish implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  private final String name;
-  private final int age;
-  private final int lengthMeters;
-  private final int weightTons;
-
-  /**
-   * Constructor.
-   */
-  public RainbowFish(String name, int age, int lengthMeters, int weightTons) {
-    this.name = name;
-    this.age = age;
-    this.lengthMeters = lengthMeters;
-    this.weightTons = weightTons;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public int getAge() {
-    return age;
-  }
-
-  public int getLengthMeters() {
-    return lengthMeters;
-  }
-
-  public int getWeightTons() {
-    return weightTons;
-  }
+    private final String name;
+    private final int age;
+    private final int lengthMeters;
+    private final int weightTons;
 }
+```
 
+```java
+@Getter
 public class RainbowFishV2 extends RainbowFish {
 
-  private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-  private boolean sleeping;
-  private boolean hungry;
-  private boolean angry;
+    private boolean sleeping;
+    private boolean hungry;
+    private boolean angry;
 
-  public RainbowFishV2(String name, int age, int lengthMeters, int weightTons) {
-    super(name, age, lengthMeters, weightTons);
-  }
+    public RainbowFishV2(String name, int age, int lengthMeters, int weightTons) {
+        super(name, age, lengthMeters, weightTons);
+    }
 
-  /**
-   * Constructor.
-   */
-  public RainbowFishV2(String name, int age, int lengthMeters, int weightTons, boolean sleeping,
-                       boolean hungry, boolean angry) {
-    this(name, age, lengthMeters, weightTons);
-    this.sleeping = sleeping;
-    this.hungry = hungry;
-    this.angry = angry;
-  }
-
-  public boolean getSleeping() {
-    return sleeping;
-  }
-
-  public boolean getHungry() {
-    return hungry;
-  }
-
-  public boolean getAngry() {
-    return angry;
-  }
+    public RainbowFishV2(String name, int age, int lengthMeters, int weightTons, boolean sleeping,
+                         boolean hungry, boolean angry) {
+        this(name, age, lengthMeters, weightTons);
+        this.sleeping = sleeping;
+        this.hungry = hungry;
+        this.angry = angry;
+    }
 }
 ```
 
-Next we introduce the `RainbowFishSerializer`. This is the class that implements the Tolerant Reader 
-pattern.
+Next we introduce the `RainbowFishSerializer`. This is the class that implements the Tolerant Reader pattern.
 
 ```java
+@NoArgsConstructor
 public final class RainbowFishSerializer {
 
-  private RainbowFishSerializer() {
-  }
+    public static void writeV1(RainbowFish rainbowFish, String filename) throws IOException {
+        var map = Map.of(
+                "name", rainbowFish.getName(),
+                "age", String.format("%d", rainbowFish.getAge()),
+                "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
+                "weightTons", String.format("%d", rainbowFish.getWeightTons())
+        );
 
-  public static void writeV1(RainbowFish rainbowFish, String filename) throws IOException {
-    var map = Map.of(
-        "name", rainbowFish.getName(),
-        "age", String.format("%d", rainbowFish.getAge()),
-        "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
-        "weightTons", String.format("%d", rainbowFish.getWeightTons())
-    );
-
-    try (var fileOut = new FileOutputStream(filename);
-         var objOut = new ObjectOutputStream(fileOut)) {
-      objOut.writeObject(map);
-    }
-  }
-
-  public static void writeV2(RainbowFishV2 rainbowFish, String filename) throws IOException {
-    var map = Map.of(
-        "name", rainbowFish.getName(),
-        "age", String.format("%d", rainbowFish.getAge()),
-        "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
-        "weightTons", String.format("%d", rainbowFish.getWeightTons()),
-        "angry", Boolean.toString(rainbowFish.getAngry()),
-        "hungry", Boolean.toString(rainbowFish.getHungry()),
-        "sleeping", Boolean.toString(rainbowFish.getSleeping())
-    );
-
-    try (var fileOut = new FileOutputStream(filename);
-         var objOut = new ObjectOutputStream(fileOut)) {
-      objOut.writeObject(map);
-    }
-  }
-
-  public static RainbowFish readV1(String filename) throws IOException, ClassNotFoundException {
-    Map<String, String> map;
-
-    try (var fileIn = new FileInputStream(filename);
-         var objIn = new ObjectInputStream(fileIn)) {
-      map = (Map<String, String>) objIn.readObject();
+        try (var fileOut = new FileOutputStream(filename);
+             var objOut = new ObjectOutputStream(fileOut)) {
+            objOut.writeObject(map);
+        }
     }
 
-    return new RainbowFish(
-        map.get("name"),
-        Integer.parseInt(map.get("age")),
-        Integer.parseInt(map.get("lengthMeters")),
-        Integer.parseInt(map.get("weightTons"))
-    );
-  }
+    public static void writeV2(RainbowFishV2 rainbowFish, String filename) throws IOException {
+        var map = Map.of(
+                "name", rainbowFish.getName(),
+                "age", String.format("%d", rainbowFish.getAge()),
+                "lengthMeters", String.format("%d", rainbowFish.getLengthMeters()),
+                "weightTons", String.format("%d", rainbowFish.getWeightTons()),
+                "angry", Boolean.toString(rainbowFish.getAngry()),
+                "hungry", Boolean.toString(rainbowFish.getHungry()),
+                "sleeping", Boolean.toString(rainbowFish.getSleeping())
+        );
+
+        try (var fileOut = new FileOutputStream(filename);
+             var objOut = new ObjectOutputStream(fileOut)) {
+            objOut.writeObject(map);
+        }
+    }
+
+    public static RainbowFish readV1(String filename) throws IOException, ClassNotFoundException {
+        Map<String, String> map;
+
+        try (var fileIn = new FileInputStream(filename);
+             var objIn = new ObjectInputStream(fileIn)) {
+            map = (Map<String, String>) objIn.readObject();
+        }
+
+        return new RainbowFish(
+                map.get("name"),
+                Integer.parseInt(map.get("age")),
+                Integer.parseInt(map.get("lengthMeters")),
+                Integer.parseInt(map.get("weightTons"))
+        );
+    }
 }
 ```
 
-And finally here's the full example in action.
+And finally, here's the full example in action.
 
 ```java
+public static void main(String[] args) throws IOException, ClassNotFoundException {
+    // Write V1
     var fishV1 = new RainbowFish("Zed", 10, 11, 12);
     LOGGER.info("fishV1 name={} age={} length={} weight={}", fishV1.getName(),
-        fishV1.getAge(), fishV1.getLengthMeters(), fishV1.getWeightTons());
+            fishV1.getAge(), fishV1.getLengthMeters(), fishV1.getWeightTons());
     RainbowFishSerializer.writeV1(fishV1, "fish1.out");
-
+    // Read V1
     var deserializedRainbowFishV1 = RainbowFishSerializer.readV1("fish1.out");
     LOGGER.info("deserializedFishV1 name={} age={} length={} weight={}",
-        deserializedRainbowFishV1.getName(), deserializedRainbowFishV1.getAge(),
-        deserializedRainbowFishV1.getLengthMeters(), deserializedRainbowFishV1.getWeightTons());
-
+            deserializedRainbowFishV1.getName(), deserializedRainbowFishV1.getAge(),
+            deserializedRainbowFishV1.getLengthMeters(), deserializedRainbowFishV1.getWeightTons());
+    // Write V2
     var fishV2 = new RainbowFishV2("Scar", 5, 12, 15, true, true, true);
     LOGGER.info(
-        "fishV2 name={} age={} length={} weight={} sleeping={} hungry={} angry={}",
-        fishV2.getName(), fishV2.getAge(), fishV2.getLengthMeters(), fishV2.getWeightTons(),
-        fishV2.getHungry(), fishV2.getAngry(), fishV2.getSleeping());
+            "fishV2 name={} age={} length={} weight={} sleeping={} hungry={} angry={}",
+            fishV2.getName(), fishV2.getAge(), fishV2.getLengthMeters(), fishV2.getWeightTons(),
+            fishV2.isHungry(), fishV2.isAngry(), fishV2.isSleeping());
     RainbowFishSerializer.writeV2(fishV2, "fish2.out");
-
+    // Read V2 with V1 method
     var deserializedFishV2 = RainbowFishSerializer.readV1("fish2.out");
     LOGGER.info("deserializedFishV2 name={} age={} length={} weight={}",
-        deserializedFishV2.getName(), deserializedFishV2.getAge(),
-        deserializedFishV2.getLengthMeters(), deserializedFishV2.getWeightTons());
+            deserializedFishV2.getName(), deserializedFishV2.getAge(),
+            deserializedFishV2.getLengthMeters(), deserializedFishV2.getWeightTons());
+}
 ```
 
 Program output:
 
 ```
-fishV1 name=Zed age=10 length=11 weight=12
-deserializedFishV1 name=Zed age=10 length=11 weight=12
-fishV2 name=Scar age=5 length=12 weight=15 sleeping=true hungry=true angry=true
-deserializedFishV2 name=Scar age=5 length=12 weight=15
+15:38:00.602 [main] INFO com.iluwatar.tolerantreader.App -- fishV1 name=Zed age=10 length=11 weight=12
+15:38:00.618 [main] INFO com.iluwatar.tolerantreader.App -- deserializedFishV1 name=Zed age=10 length=11 weight=12
+15:38:00.618 [main] INFO com.iluwatar.tolerantreader.App -- fishV2 name=Scar age=5 length=12 weight=15 sleeping=true hungry=true angry=true
+15:38:00.619 [main] INFO com.iluwatar.tolerantreader.App -- deserializedFishV2 name=Scar age=5 length=12 weight=15
 ```
-
-## Class diagram
-
-![alt text](./etc/tolerant_reader_urm.png "Tolerant Reader")
 
 ## Applicability
 
-Use the Tolerant Reader pattern when
+* Use when a system needs to consume data from external sources that may change over time.
+* Applicable when backward compatibility is required in API design.
+* Suitable for integration scenarios where different systems exchange data and evolve independently.
 
-* The communication schema can evolve and change and yet the receiving side should not break
+## Known Uses
+
+* JSON or XML parsers that skip unknown elements.
+* API clients in microservices architectures that interact with multiple versions of a service.
+
+## Consequences
+
+Benefits:
+
+* Increases the robustness and flexibility of the system.
+* Allows independent evolution of producers and consumers in a distributed system.
+* Simplifies versioning by enabling backward compatibility.
+
+Trade-offs:
+
+* May result in silent failures if important data is ignored.
+* Can complicate debugging and tracing of issues due to missing or unrecognized data.
+
+## Related Patterns
+
+* [Adapter](https://java-design-patterns.com/patterns/adapter/): Both patterns deal with data transformation and integration, but the Adapter Pattern focuses on converting interfaces, while Tolerant Reader focuses on ignoring unrecognized data.
+* [Facade](https://java-design-patterns.com/patterns/facade/): Simplifies interactions with complex systems, similar to how Tolerant Reader simplifies data consumption by ignoring irrelevant data.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Can be used in conjunction with Tolerant Reader to dynamically switch between different data handling strategies.
 
 ## Credits
 
-* [Martin Fowler - Tolerant Reader](http://martinfowler.com/bliki/TolerantReader.html)
-* [Service Design Patterns: Fundamental Design Solutions for SOAP/WSDL and RESTful Web Services](https://www.amazon.com/gp/product/032154420X/ref=as_li_tl?ie=UTF8&tag=javadesignpat-20&camp=1789&creative=9325&linkCode=as2&creativeASIN=032154420X&linkId=94f9516e747ac2b449a959d5b096c73c)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Service Design Patterns: Fundamental Design Solutions for SOAP/WSDL and RESTful Web Services](https://amzn.to/4dNIfOx)
+* [Tolerant Reader (Martin Fowler)](http://martinfowler.com/bliki/TolerantReader.html)

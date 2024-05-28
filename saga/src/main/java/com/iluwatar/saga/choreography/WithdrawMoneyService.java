@@ -45,7 +45,7 @@ public class WithdrawMoneyService extends Service {
     if (inValue.equals("bad_order")) {
       LOGGER.info("The chapter '{}' has been started. But the exception has been raised."
               + "The rollback is about to start",
-          getName(), inValue);
+          getName());
       saga.setCurrentStatus(Saga.ChapterResult.ROLLBACK);
       return saga;
     }

@@ -177,14 +177,10 @@ public class SetVariableEvent implements UserEvent {
   }
 }
 
-// Similar classes would be created for AddEvent, SubtractEvent, DivideEvent, and MultiplyEvent
+// Similar classes would be created for AddEvent, SubtractEvent, DivideEvent, and MultiplyEvent ...
 ```
 
 This example demonstrates the key aspects of the MVI pattern: unidirectional data flow, clear separation of concerns, and the use of events to drive changes in the Model's state.
-
-## Class diagram
-
-![Model-View-Intent](./etc/model-view-intent.png "Model-View-Intent")
 
 ## Applicability
 
@@ -193,8 +189,8 @@ This example demonstrates the key aspects of the MVI pattern: unidirectional dat
 
 ## Tutorials
 
-* [Model View Intent: a new Android Architecture Pattern](https://apiumacademy.com/blog/model-view-intent-pattern/)
-* [MVI Architecture for Android Tutorial](https://www.kodeco.com/817602-mvi-architecture-for-android-tutorial-getting-started)
+* [Model View Intent: a new Android Architecture Pattern (Apium Academy)](https://apiumacademy.com/blog/model-view-intent-pattern/)
+* [MVI Architecture for Android Tutorial: Getting Started (Kodeco)](https://www.kodeco.com/817602-mvi-architecture-for-android-tutorial-getting-started)
 
 ## Known uses
 

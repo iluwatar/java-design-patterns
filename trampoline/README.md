@@ -1,34 +1,30 @@
 ---
 title: Trampoline
-category: Behavioral
+category: Functional
 language: en
 tag:
- - Performance
+    - Code simplification
+    - Functional decomposition
+    - Performance
+    - Recursion
 ---
+
+## Also known as
+
+* Bounce
+* Tail-Call Optimization
 
 ## Intent
 
-Trampoline pattern is used for implementing algorithms recursively in Java without blowing the stack 
-and to interleave the execution of functions without hard coding them together.
+To optimize recursive function calls by converting them into iterative loops, avoiding stack overflow errors.
 
 ## Explanation
 
-Recursion is a frequently adopted technique for solving algorithmic problems in a divide and conquer
-style. For example, calculating Fibonacci accumulating sum and factorials. In these kinds of 
-problems, recursion is more straightforward than its loop counterpart. Furthermore, recursion may 
-need less code and looks more concise. There is a saying that every recursion problem can be solved 
-using a loop with the cost of writing code that is more difficult to understand.
-
-However, recursion-type solutions have one big caveat. For each recursive call, it typically needs 
-an intermediate value stored and there is a limited amount of stack memory available. Running out of 
-stack memory creates a stack overflow error and halts the program execution.
-
-Trampoline pattern is a trick that allows defining recursive algorithms in Java without blowing the 
-stack. 
-
 Real-world example
 
-> A recursive Fibonacci calculation without the stack overflow problem using the Trampoline pattern.       
+> Imagine you are organizing a relay race. Each runner passes the baton to the next runner until the race is complete. However, if each runner had to physically run back to the starting line to pass the baton to the next runner, the race would be inefficient and error-prone. Instead, runners pass the baton directly to the next runner in line, who continues the race seamlessly.
+>
+> The Trampoline pattern in programming works similarly by ensuring that each recursive step is handed off efficiently without having to return to the start, preventing a stack overflow (similar to our runners never having to backtrack).
 
 In plain words
 
@@ -36,18 +32,13 @@ In plain words
 
 Wikipedia says
 
-> In Java, trampoline refers to using reflection to avoid using inner classes, for example in event 
-> listeners. The time overhead of a reflection call is traded for the space overhead of an inner 
-> class. Trampolines in Java usually involve the creation of a GenericListener to pass events to 
-> an outer class.
+> In Java, trampoline refers to using reflection to avoid using inner classes, for example in event listeners. The time overhead of a reflection call is traded for the space overhead of an inner class. Trampolines in Java usually involve the creation of a GenericListener to pass events to an outer class.
 
 **Programmatic Example**
 
 Here's the `Trampoline` implementation in Java.
 
-When `get` is called on the returned Trampoline, internally it will iterate calling `jump` on the 
-returned `Trampoline` as long as the concrete instance returned is `Trampoline`, stopping once the 
-returned instance is `done`.
+When `get` is called on the returned Trampoline, internally it will iterate calling `jump` on the returned `Trampoline` as long as the concrete instance returned is `Trampoline`, stopping once the returned instance is `done`.
 
 ```java
 public interface Trampoline<T> {
@@ -102,17 +93,22 @@ public interface Trampoline<T> {
 Using the `Trampoline` to get Fibonacci values.
 
 ```java
-public static void main(String[] args) {
-    LOGGER.info("Start calculating war casualties");
-    var result = loop(10, 1).result();
-    LOGGER.info("The number of orcs perished in the war: {}", result);
-}
+@Slf4j
+public class TrampolineApp {
 
-public static Trampoline<Integer> loop(int times, int prod) {
-    if (times == 0) {
-        return Trampoline.done(prod);
-    } else {
-        return Trampoline.more(() -> loop(times - 1, prod * times));
+    public static void main(String[] args) {
+        LOGGER.info("Start calculating war casualties");
+        var result = loop(10, 1).result();
+        LOGGER.info("The number of orcs perished in the war: {}", result);
+
+    }
+
+    public static Trampoline<Integer> loop(int times, int prod) {
+        if (times == 0) {
+            return Trampoline.done(prod);
+        } else {
+            return Trampoline.more(() -> loop(times - 1, prod * times));
+        }
     }
 }
 ```
@@ -124,27 +120,49 @@ Program output:
 19:22:24.472 [main] INFO com.iluwatar.trampoline.TrampolineApp - The number of orcs perished in the war: 3628800
 ```
 
-## Class diagram
-
-![alt text](./etc/trampoline.urm.png "Trampoline pattern class diagram")
-
 ## Applicability
 
 Use the Trampoline pattern when
 
-* For implementing tail-recursive functions. This pattern allows to switch on a stackless operation.
-* For interleaving execution of two or more functions on the same thread.
+* When dealing with algorithms that use recursion heavily and risk running into stack overflow errors.
+* When tail-call optimization is not supported by the Java language natively.
 
-## Known uses
+## Tutorials
 
+* [Laziness, trampolines, monoids and other functional amenities: This is not your father's Java(Mario Fusco)](https://www.slideshare.net/mariofusco/lazine)
+* [Trampoline.java (totallylazy)](https://github.com/bodar/totallylazy/blob/master/src/com/googlecode/totallylazy/Trampoline.java)
+* [Trampoline: Java Glossary (mindprod.com)](http://mindprod.com/jgloss/trampoline.html)
+* [Trampolining: A practical guide for awesome Java Developers (John McClean)](https://medium.com/@johnmcclean/trampolining-a-practical-guide-for-awesome-java-developers-4b657d9c3076)
+* [What is a trampoline function? (Stack Overflow)](https://stackoverflow.com/questions/189725/what-is-a-trampoline-function)
+
+## Known Uses
+
+* Implementing algorithms that require deep recursion, such as certain tree traversals, combinatorial algorithms, and mathematical computations.
+* Functional programming libraries and frameworks where tail-call optimization is necessary for performance and stack safety.
 * [cyclops-react](https://github.com/aol/cyclops-react)
+
+## Consequences
+
+Benefits:
+
+* Prevents stack overflow by converting deep recursion into iteration.
+* Enhances performance by avoiding the overhead of deep recursive calls.
+* Simplifies the code by making recursive calls look like a sequence of steps.
+
+Trade-offs:
+
+* May introduce additional complexity in terms of understanding and implementing the trampoline mechanism.
+* Requires converting naturally recursive algorithms into a continuation-passing style.
+
+## Related Patterns
+
+* [Iterator](https://java-design-patterns.com/patterns/iterator/): Both patterns aim to transform potentially recursive operations into iterative processes, though the iterator pattern is more general-purpose.
+* [State](https://java-design-patterns.com/patterns/state/): Like the Trampoline, the State pattern can also handle complex state transitions, which can sometimes involve recursive-like state changes.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): This pattern can be related in terms of defining a family of algorithms (or continuations in the case of the Trampoline) and making them interchangeable.
 
 ## Credits
 
-* [Trampolining: a practical guide for awesome Java Developers](https://medium.com/@johnmcclean/trampolining-a-practical-guide-for-awesome-java-developers-4b657d9c3076)
-* [Trampoline in java ](http://mindprod.com/jgloss/trampoline.html)
-* [Laziness, trampolines, monoids and other functional amenities: this is not your father's Java](https://www.slideshare.net/mariofusco/lazine)
-* [Trampoline implementation](https://github.com/bodar/totallylazy/blob/master/src/com/googlecode/totallylazy/Trampoline.java)
-* [What is a trampoline function?](https://stackoverflow.com/questions/189725/what-is-a-trampoline-function)
-* [Modern Java in Action: Lambdas, streams, functional and reactive programming](https://www.amazon.com/gp/product/1617293563/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617293563&linkId=ad53ae6f9f7c0982e759c3527bd2595c)
-* [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://www.amazon.com/gp/product/1617291994/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617291994&linkId=e3e5665b0732c59c9d884896ffe54f4f)
+* [Functional Programming in Java](https://amzn.to/3JUIc5Q)
+* [Functional Programming for Java Developers: Tools for Better Concurrency, Abstraction, and Agility](https://amzn.to/4dRu4rJ)
+* [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://amzn.to/3QCmGXs)
+* [Modern Java in Action: Lambdas, streams, functional and reactive programming](https://amzn.to/3yxdu0g)

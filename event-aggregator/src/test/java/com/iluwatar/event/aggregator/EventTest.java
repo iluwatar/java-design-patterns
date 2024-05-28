@@ -31,9 +31,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/12/15 - 2:52 PM
+ * EventTest
  *
- * @author Jeroen Meulemeester
  */
 class EventTest {
 

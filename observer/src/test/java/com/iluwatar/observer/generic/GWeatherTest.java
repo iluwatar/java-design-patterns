@@ -38,9 +38,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/27/15 - 11:08 AM
+ * GWeatherTest
  *
- * @author Jeroen Meulemeester
  */
 class GWeatherTest {
 

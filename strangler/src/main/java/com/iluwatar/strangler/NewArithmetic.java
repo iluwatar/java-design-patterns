@@ -60,9 +60,9 @@ public class NewArithmetic {
   }
 
   /**
-   * Chech if has any zero.
+   * Check if it has any zero.
    * @param nums numbers need to check
-   * @return if has any zero, return true, else, return false
+   * @return if it has any zero, return true, else, return false
    */
   public boolean ifHasZero(int... nums) {
     LOGGER.info("Arithmetic check zero {}", VERSION);

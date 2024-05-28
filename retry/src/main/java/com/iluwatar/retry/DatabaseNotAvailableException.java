@@ -29,7 +29,6 @@ import java.io.Serial;
 /**
  * Catastrophic error indicating that we have lost connection to our database.
  *
- * @author George Aristy (george.aristy@gmail.com)
  */
 public final class DatabaseNotAvailableException extends BusinessException {
   @Serial

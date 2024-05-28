@@ -36,9 +36,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
 /**
- * Date: 12/27/15 - 10:32 PM
+ * ProducerTest
  *
- * @author Jeroen Meulemeester
  */
 class ProducerTest {
 

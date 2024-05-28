@@ -43,9 +43,8 @@ import org.junit.jupiter.params.provider.MethodSource;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/19/15 - 10:13 PM
+ * PartyMemberTest
  *
- * @author Jeroen Meulemeester
  */
 class PartyMemberTest {
 

@@ -1,132 +1,142 @@
 ---
 title: Resource Acquisition Is Initialization
-category: Idiom
+category: Resource management
 language: en
 tag:
- - Data access
+    - Encapsulation
+    - Memory management
+    - Resource management
 ---
 
+## Also known as
+
+* RAII
+* Scope-based Resource Management
+
 ## Intent
-Resource Acquisition Is Initialization pattern can be used to implement exception safe resource management.
+
+Ensure that resources are properly released when they are no longer needed by tying the resource management to object lifetime.
 
 ## Explanation
+
 Real-world example
-> If you're renting a car, picking it up for use is initialising the object and once done, you would return the rental.
-> If you forgot to return it or something happens, the rental service will ensure that the car is retrieved or 
-> equivalent property loss is compensated for.
+
+> In a car rental service, each car represents a resource. Using the RAII pattern, when a customer rents a car (acquires the resource), the car is marked as rented. When the customer returns the car (the object goes out of scope), the car is automatically made available for the next customer. This ensures that cars are properly managed and available without manual intervention for checking availability or returns.
 
 In plain words
-> Resource Acquisition is Initialization allows for exception-safe resource handling and means that objects are able to
-> manage themselves without other code to inform them that a clean-up is required after use.
+
+> Resource Acquisition is Initialization allows for exception-safe resource handling and means that objects are able to manage themselves without other code to inform them that a clean-up is required after use.
 
 Wikipedia says
-> Resource acquisition is initialization (RAII) is a programming idiom used in several object-oriented, statically 
-> typed programming languages to describe a particular language behavior. Resource allocation (or acquisition) is done 
-> during object creation (specifically initialization), by the constructor, while resource deallocation (release) is 
-> done during object destruction (specifically finalization), by the destructor.
+
+> Resource acquisition is initialization (RAII) is a programming idiom used in several object-oriented, statically typed programming languages to describe a particular language behavior. Resource allocation (or acquisition) is done during object creation (specifically initialization), by the constructor, while resource deallocation (release) is done during object destruction (specifically finalization), by the destructor.
 
 **Programmatic Example**
-Let us implement the car rental example with the RAII pattern. Here's our object class Car:
+
+The RAII pattern is a common idiom used in software design where the acquisition of a resource is done during object creation (initialization), and the release of the resource is done during object destruction. This pattern is particularly useful in dealing with resource leaks and is critical in writing exception-safe code in C++. In Java, RAII is achieved with try-with-resources statement and interfaces `java.io.Closeable` and `AutoCloseable`.
 
 ```java
-import java.util.Date;
+// This is an example of a resource class that implements the AutoCloseable interface.
+// The resource is acquired in the constructor and released in the close method.
 
-class Car {
-    private String registrationNumber;
-    private boolean isRented;
+@Slf4j
+public class SlidingDoor implements AutoCloseable {
 
-    public Car(String registrationNumber) {
-        this.registrationNumber = registrationNumber;
-        this.isRented = false;
-    }
+  public SlidingDoor() {
+    LOGGER.info("Sliding door opens."); // Resource acquisition is done here
+  }
 
-    public void rent() {
-        if (!isRented) {
-            isRented = true;
-            System.out.println("Car " + registrationNumber + " has been rented.");
-        } else {
-            System.out.println("Car " + registrationNumber + " is already rented.");
-        }
-    }
-
-    public void returnCar() {
-        if (isRented) {
-            isRented = false;
-            System.out.println("Car " + registrationNumber + " has been returned.");
-        } else {
-            System.out.println("Car " + registrationNumber + " is not rented.");
-        }
-    }
+  @Override
+  public void close() {
+    LOGGER.info("Sliding door closes."); // Resource release is done here
+  }
 }
 ```
 
-We then implement the CarRental class that handles the Object's initialisation and return.
+In the above code, `SlidingDoor` is a resource that implements the `AutoCloseable` interface. The resource (in this case, a door) is "acquired" in the constructor (the door is opened), and "released" in the `close` method (the door is closed).
 
 ```java
-class CarRental {
-    private Car car;
-    private Date rentalDate;
+// This is another example of a resource class that implements the Closeable interface.
+// The resource is acquired in the constructor and released in the close method.
 
-    public CarRental(Car car) {
-        this.car = car;
-        car.rent();
-        rentalDate = new Date();
-    }
+@Slf4j
+public class TreasureChest implements Closeable {
 
-    public void returnCar() {
-        car.returnCar();
-        rentalDate = null;
-    }
+  public TreasureChest() {
+    LOGGER.info("Treasure chest opens."); // Resource acquisition is done here
+  }
 
-    public void drive() {
-        if (rentalDate != null) {
-            System.out.println("Driving the rented car with registration number: " + car.registrationNumber);
-        } else {
-            System.out.println("Cannot drive. Car is not rented.");
-        }
-    }
+  @Override
+  public void close() {
+    LOGGER.info("Treasure chest closes."); // Resource release is done here
+  }
 }
 ```
 
-If we run the following examples:
-```
-public static void main(String[] args) {
-        Car car1 = new Car("XYZ-123");
-        Car car2 = new Car("ABC-789");
+Similarly, `TreasureChest` is another resource that implements the `Closeable` interface. The resource (a treasure chest) is "acquired" in the constructor (the chest is opened), and "released" in the `close` method (the chest is closed).
 
-        CarRental rental1 = new CarRental(car1);
-        CarRental rental2 = new CarRental(car2);
+```java
+// This is an example of how to use the RAII pattern in Java using the try-with-resources statement.
 
-        rental1.drive();
-        rental2.drive();
+@Slf4j
+public class App {
 
-        rental1.returnCar();
-        rental2.returnCar();
+  public static void main(String[] args) {
 
-        rental1.drive();
-        rental2.drive();
+    try (var ignored = new SlidingDoor()) {
+      LOGGER.info("Walking in.");
     }
+
+    try (var ignored = new TreasureChest()) {
+      LOGGER.info("Looting contents.");
+    }
+  }
+}
 ```
 
-We can expect the following program outputs:
-```
-Car XYZ-123 has been rented.
-Car ABC-789 has been rented.
-Driving the rented car with registration number: XYZ-123
-Driving the rented car with registration number: ABC-789
-Car XYZ-123 has been returned.
-Car ABC-789 has been returned.
-Cannot drive. Car is not rented.
-Cannot drive. Car is not rented.
-```
+In the `main` method of the `App` class, we see the RAII pattern in action. The `try-with-resources` statement is used to ensure that each resource is closed at the end of the statement. This is where the `AutoCloseable` or `Closeable` interfaces come into play. When the `try` block is exited (either normally or via an exception), the `close` method of the resource is automatically called, thus ensuring the resource is properly released.
 
-## Class diagram
-![alt text](./etc/resource-acquisition-is-initialization.png "Resource Acquisition Is Initialization")
+The console output:
+
+```
+10:07:14.833 [main] INFO com.iluwatar.resource.acquisition.is.initialization.SlidingDoor -- Sliding door opens.
+10:07:14.835 [main] INFO com.iluwatar.resource.acquisition.is.initialization.App -- Walking in.
+10:07:14.835 [main] INFO com.iluwatar.resource.acquisition.is.initialization.SlidingDoor -- Sliding door closes.
+10:07:14.835 [main] INFO com.iluwatar.resource.acquisition.is.initialization.TreasureChest -- Treasure chest opens.
+10:07:14.835 [main] INFO com.iluwatar.resource.acquisition.is.initialization.App -- Looting contents.
+10:07:14.835 [main] INFO com.iluwatar.resource.acquisition.is.initialization.TreasureChest -- Treasure chest closes.
+```
 
 ## Applicability
-Use the Resource Acquisition Is Initialization pattern when
 
-* You have resources that must be closed in every condition
+* Use RAII when resources such as file handles, network connections, or memory need to be managed and automatically released.
+* Suitable in environments where deterministic resource management is crucial, such as real-time systems or applications with strict resource constraints.
+
+## Known Uses
+
+* Java `try-with-resources` statement: Ensures that resources are closed automatically at the end of the statement.
+* Database connections: Using connection pools where the connection is obtained at the beginning of a scope and released at the end.
+* File I/O: Automatically closing files using `try-with-resources`.
+
+## Consequences
+
+Benefits:
+
+* Automatic and deterministic resource management.
+* Reduces the likelihood of resource leaks.
+* Enhances code readability and maintainability by clearly defining the scope of resource usage.
+
+Trade-offs:
+
+* May introduce complexity in understanding object lifetimes.
+* Requires careful design to ensure all resources are correctly encapsulated.
+
+## Related Patterns
+
+* [Object Pool](https://java-design-patterns.com/patterns/object-pool/): Manages a pool of reusable objects to optimize resource allocation and performance, often used for resources that are expensive to create and manage.
 
 ## Credits
-* [Resource acquisition is initialization] (https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization)
+
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Resource acquisition is initialization](https://en.wikipedia.org/wiki/Resource_acquisition_is_initialization)

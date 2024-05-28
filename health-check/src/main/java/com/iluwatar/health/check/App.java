@@ -37,7 +37,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * microservice architectures, please refer to: [Microservices Health Checks
  * API]('https://microservices.io/patterns/observability/health-check-api.html').
  *
- * @author ydoksanbir
  */
 @EnableCaching
 @EnableScheduling

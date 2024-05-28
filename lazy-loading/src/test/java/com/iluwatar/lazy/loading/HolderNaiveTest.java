@@ -25,9 +25,8 @@
 package com.iluwatar.lazy.loading;
 
 /**
- * Date: 12/19/15 - 12:05 PM
+ * HolderNaiveTest
  *
- * @author Jeroen Meulemeester
  */
 class HolderNaiveTest extends AbstractHolderTest {
 

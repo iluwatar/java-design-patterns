@@ -25,9 +25,8 @@
 package com.iluwatar.lazy.loading;
 
 /**
- * Date: 12/19/15 - 12:19 PM
+ * HolderThreadSafeTest
  *
- * @author Jeroen Meulemeester
  */
 class HolderThreadSafeTest extends AbstractHolderTest {
 

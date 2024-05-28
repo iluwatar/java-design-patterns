@@ -24,16 +24,14 @@
  */
 package com.iluwatar.specialcase;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * Represents the money transaction taking place at a given moment.
  */
+@RequiredArgsConstructor
 public class MoneyTransaction {
 
-  private Double amount;
-  private Double price;
-
-  public MoneyTransaction(Double amount, Double price) {
-    this.amount = amount;
-    this.price = price;
-  }
+  private final Double amount;
+  private final Double price;
 }

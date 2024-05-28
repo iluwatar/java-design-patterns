@@ -1,147 +1,133 @@
 ---
 title: Optimistic Offline Lock
-category: Concurrency
+category: Data access
 language: en
 tag:
-- Data access
+    - Concurrency
+    - Data access
+    - Fault tolerance
+    - Isolation
+    - Persistence
+    - Transactions
 ---
+
+## Also known as
+
+* Optimistic Concurrency Control
 
 ## Intent
 
-Provide an ability to avoid concurrent changes of one record in relational databases.
+To manage concurrent data modifications without using long-duration database locks, thus improving system performance and scalability.
 
 ## Explanation
 
-Each transaction during object modifying checks equation of object's version before start of transaction
-and before commit itself.
+Real-world example
 
-**Real world example**
-> Since people love money, the best (and most common) example is banking system:
-> imagine you have 100$ on your e-wallet and two people are trying to send you 50$ both at a time.
-> Without locking, your system will start **two different thread**, each of whose will read your current balance
-> and just add 50$. The last thread won't re-read balance and will just rewrite it.
-> So, instead 200$ you will have only 150$.
+> Imagine a library with multiple users checking out and returning books. Instead of locking each book while a user is browsing or deciding whether to borrow it, the library uses an optimistic approach. Each book has a timestamp or version number. When a user decides to borrow a book, they check the book's version number. If it matches the current version, the transaction proceeds. If another user has borrowed the book in the meantime, causing a version mismatch, the first user is informed to retry. This approach allows multiple users to browse and attempt to borrow books concurrently, improving the library's efficiency and user satisfaction without locking the entire catalog.
 
-**In plain words**
-> Each transaction during object modifying will save object's last version and check it before saving.
-> If it differs, the transaction will be rolled back.
+In plain words
 
-**Wikipedia says**
-> Optimistic concurrency control (OCC), also known as optimistic locking,
-> is a concurrency control method applied to transactional systems such as
-> relational database management systems and software transactional memory.
+> The Optimistic Offline Lock pattern manages concurrent data modifications by allowing transactions to proceed without locks, resolving conflicts only when they occur to enhance performance and scalability.
 
-**Programmatic Example**  
-Let's simulate the case from *real world example*. Imagine we have next entity:
+Wikipedia says
+
+> Optimistic concurrency control (OCC), also known as optimistic locking, is a concurrency control method applied to transactional systems such as relational database management systems and software transactional memory.
+
+**Programmatic Example**
+
+The Optimistic Offline Lock pattern is a concurrency control method that allows multiple transactions to proceed without locks, resolving conflicts only when they occur. This pattern is useful in scenarios where the likelihood of conflicting transactions is low and long-duration locks could hamper performance and scalability.
+
+First, we have a `Card` entity that represents a bank card with a sum of money and a version number.
 
 ```java
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-/**
- * Bank card entity.
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Card {
 
-  /**
-   * Primary key.
-   */
-  private long id;
+    private long id;
 
-  /**
-   * Foreign key points to card's owner.
-   */
-  private long personId;
+    private long personId;
 
-  /**
-   * Sum of money. 
-   */
-  private float sum;
+    private float sum;
 
-  /**
-   * Current version of object;
-   */
-  private int version;
+    private int version;
 }
 ```
 
-Then the correct modifying will be like this:
+The `CardUpdateService` class implements the `UpdateService` interface and provides a method `doUpdate` to update the Card entity. The `doUpdate` method first retrieves the current version of the `Card` entity. It then performs some business logic to update the sum of money in the `Card`. Before updating the `Card` in the database, it checks if the version of the `Card` in the database is the same as the initial version it retrieved. If the versions match, it proceeds with the update. If the versions do not match, it means that another transaction has updated the `Card` in the meantime, and it throws an `ApplicationException`.
 
 ```java
 
-import lombok.RequiredArgsConstructor;
-
-/**
- * Service to update {@link Card} entity.
- */
 @RequiredArgsConstructor
 public class CardUpdateService implements UpdateService<Card> {
 
-  private final JpaRepository<Card> cardJpaRepository;
+    private final JpaRepository<Card> cardJpaRepository;
 
-  @Override
-  @Transactional(rollbackFor = ApplicationException.class) //will roll back transaction in case ApplicationException
-  public Card doUpdate(Card card, long cardId) {
-    float additionalSum = card.getSum();
-    Card cardToUpdate = cardJpaRepository.findById(cardId);
-    int initialVersion = cardToUpdate.getVersion();
-    float resultSum = cardToUpdate.getSum() + additionalSum;
-    cardToUpdate.setSum(resultSum);
-    //Maybe more complex business-logic e.g. HTTP-requests and so on
+    @Override
+    @Transactional(rollbackFor = ApplicationException.class) //will roll back transaction in case ApplicationException
+    public Card doUpdate(Card card, long cardId) {
+        float additionalSum = card.getSum();
+        Card cardToUpdate = cardJpaRepository.findById(cardId);
+        int initialVersion = cardToUpdate.getVersion();
+        float resultSum = cardToUpdate.getSum() + additionalSum;
+        cardToUpdate.setSum(resultSum);
+        //Maybe more complex business-logic e.g. HTTP-requests and so on
 
-    if (initialVersion != cardJpaRepository.getEntityVersionById(cardId)) {
-      String exMessage = String.format("Entity with id %s were updated in another transaction", cardId);
-      throw new ApplicationException(exMessage);
+        if (initialVersion != cardJpaRepository.getEntityVersionById(cardId)) {
+            String exMessage = String.format("Entity with id %s were updated in another transaction", cardId);
+            throw new ApplicationException(exMessage);
+        }
+
+        cardJpaRepository.update(cardToUpdate);
+        return cardToUpdate;
     }
-
-    cardJpaRepository.update(cardToUpdate);
-    return cardToUpdate;
-  }
 }
 ```
 
+In this code snippet, the doUpdate method in the CardUpdateService class is a programmatic example of the Optimistic Offline Lock pattern. It allows the Card entity to be updated without locks and resolves conflicts by checking the version of the Card before the update.
+
 ## Applicability
 
-Since optimistic locking can cause degradation of system's efficiency and reliability due to
-many retries/rollbacks, it's important to use it safely. They are useful in case when transactions are not so long
-and does not distributed among many microservices, when you need to reduce network/database overhead.
-
-Important to note that you should not choose this approach in case when modifying one object
-in different threads is common situation.
+* When multiple transactions need to access and modify the same data simultaneously without causing data inconsistencies.
+* In systems where the likelihood of conflicting transactions is low.
+* When you want to avoid long-duration locks that could hamper performance and scalability.
 
 ## Tutorials
 
-- [Offline Concurrency Control](https://www.baeldung.com/cs/offline-concurrency-control)
-- [Optimistic lock in JPA](https://www.baeldung.com/jpa-optimistic-locking)
+* [Offline Concurrency Control (Baeldung)](https://www.baeldung.com/cs/offline-concurrency-control)
+* [Optimistic Locking in JPA (Baeldung)](https://www.baeldung.com/jpa-optimistic-locking)
 
 ## Known uses
 
-- [Hibernate ORM](https://docs.jboss.org/hibernate/orm/4.3/devguide/en-US/html/ch05.html)
+* Web-based applications with high-read, low-write access patterns.
+* Distributed systems where locking resources for long durations is not feasible.
+* Java enterprise applications using JPA or Hibernate for data persistence.
 
 ## Consequences
 
-**Advantages**:
+Benefits:
 
-- Reduces network/database overhead
-- Let to avoid database deadlock
-- Improve the performance and scalability of the application
+* Reduces the need for locking resources, which improves performance.
+* Increases system scalability by allowing more transactions to proceed concurrently.
+* Simplifies transaction management by handling conflicts only when they occur.
 
-**Disadvantages**:
+Trade-offs:
 
-- Increases complexity of the application
-- Requires mechanism of versioning
-- Requires rollback/retry mechanisms
+* Requires additional logic (versioning, rollback/retry) to handle conflicts, which can complicate the application code.
+* Can lead to more frequent retries of transactions if conflicts are common.
+* Not suitable for high-conflict scenarios where frequent data modification collisions occur.
 
-## Related patterns
+## Related Patterns
 
-- [Pessimistic Offline Lock](https://martinfowler.com/eaaCatalog/pessimisticOfflineLock.html)
+* Pessimistic Offline Lock: Unlike the Optimistic Offline Lock, this pattern uses locks to prevent conflicts by locking the data during the entire transaction. It is useful in high-conflict scenarios.
+* [Unit of Work](https://java-design-patterns.com/patterns/unit-of-work/): Helps in managing a set of changes as a single transaction, ensuring data integrity. It can be used in conjunction with Optimistic Offline Lock to handle complex transactions.
+* [Version Number](https://java-design-patterns.com/patterns/version-number/): A common technique used in Optimistic Offline Lock to detect conflicts by maintaining a version number for each data entity.
 
 ## Credits
 
-- [Source (Martin Fowler)](https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html)
-- [Advantages and disadvantages](https://www.linkedin.com/advice/0/what-benefits-drawbacks-using-optimistic)
-- [Comparison of optimistic and pessimistic locks](https://www.linkedin.com/advice/0/what-advantages-disadvantages-using-optimistic)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Optimistic Offline Lock (Martin Fowler)](https://martinfowler.com/eaaCatalog/optimisticOfflineLock.html)

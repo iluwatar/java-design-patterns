@@ -32,9 +32,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/27/15 - 10:46 PM
+ * ImmutableStewTest
  *
- * @author Jeroen Meulemeester
  */
 class ImmutableStewTest {
 

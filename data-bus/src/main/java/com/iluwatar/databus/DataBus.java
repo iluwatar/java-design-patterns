@@ -32,7 +32,6 @@ import java.util.Set;
  *
  * <p>This implementation uses a Singleton.</p>
  *
- * @author Paul Campbell (pcampbell@kemitix.net)
  */
 public class DataBus {
 

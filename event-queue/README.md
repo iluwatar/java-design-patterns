@@ -19,14 +19,11 @@ tag:
 
 The Event Queue pattern is designed to manage tasks in an asynchronous manner, allowing applications to handle operations without blocking user interactions or other processes.
 
-![Event Queue](./etc/event-queue-model.png "Event Queue Visualised")
-
 ## Explanation
 
-Real world example
+Real-world example
 
 > The modern emailing system is an example of the fundamental process behind the event-queue design pattern. When an email is sent, the sender continues their daily tasks without the necessity of an immediate response from the receiver. Additionally, the receiver has the freedom to access and process the email at their leisure. Therefore, this process decouples the sender and receiver so that they are not required to engage with the queue at the same time.
-
 
 In plain words
 
@@ -36,16 +33,11 @@ Wikipedia says
 
 > Message queues (also known as event queues) implement an asynchronous communication pattern between two or more processes/threads whereby the sending and receiving party do not need to interact with the queue at the same time.
 
-
-Key drawback
-
-> As the event queue model decouples the sender-receiver relationship - this means that the event-queue design pattern is unsuitable for scenarios in which the sender requires a response. For example, this is a prominent feature within online multiplayer games, therefore, this approach require thorough consideration.
-
 **Programmatic Example**
 
 This example demonstrates an application using an event queue system to handle audio playback asynchronously.
 
-The App class sets up an instance of Audio, plays two sounds, and waits for user input to exit. It demonstrates how an event queue could be used to manage asynchronous operations in a software application.
+The `App` class sets up an instance of `Audio`, plays two sounds, and waits for user input to exit. It demonstrates how an event queue could be used to manage asynchronous operations in a software application.
 
 ```java
 public class App {
@@ -65,7 +57,7 @@ public class App {
 }
 ```
 
-The Audio class holds the singleton pattern implementation, manages a queue of audio play requests, and controls thread operations for asynchronous processing.
+The `Audio` class holds the singleton pattern implementation, manages a queue of audio play requests, and controls thread operations for asynchronous processing.
 
 ```java
 public class Audio {
@@ -89,7 +81,7 @@ public class Audio {
 }
 ```
 
-These methods manage the lifecycle of the thread used to process the audio events. The init and startThread methods ensure the thread is properly initialized and running.
+These methods manage the lifecycle of the thread used to process the audio events. The `init` and `startThread` methods ensure the thread is properly initialized and running.
 
 ```java
 public synchronized void stopService() throws InterruptedException {
@@ -124,7 +116,7 @@ private synchronized void startThread() {
 }
 ```
 
-The playSound method checks if the audio is already in the queue and either updates the volume or enqueues a new request, demonstrating the management of asynchronous tasks within the event queue.
+The `playSound` method checks if the audio is already in the queue and either updates the volume or enqueues a new request, demonstrating the management of asynchronous tasks within the event queue.
 
 ```java
 public void playSound(AudioInputStream stream, float volume) {
@@ -140,10 +132,6 @@ public void playSound(AudioInputStream stream, float volume) {
     tailIndex = (tailIndex + 1) % MAX_PENDING;
 }
 ```
-
-## Class diagram
-
-![alt text](./etc/model.png "Event Queue")
 
 ## Applicability
 
@@ -182,10 +170,9 @@ Trade-offs:
 
 ## Credits
 
-* [Pattern-Oriented Software Architecture, Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3U2hlcy)
-* [Java Concurrency in Practice](https://amzn.to/3Ji16mX)
-* [Patterns of Enterprise Application Architecture](https://amzn.to/3xtVtPJ)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3xzSlC2)
-* [Mihaly Kuprivecz - Event Queue] (http://gameprogrammingpatterns.com/event-queue.html)
-* [Wikipedia - Message Queue] (https://en.wikipedia.org/wiki/Message_queue)
-* [AWS - Message Queues] (https://aws.amazon.com/message-queue/)
+* [Game Programming Patterns](https://amzn.to/3K96fOn)
+* [Java Concurrency in Practice](https://amzn.to/3Ji16mX)
+* [Pattern-Oriented Software Architecture, Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3U2hlcy)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3xtVtPJ)
+* [Event Queue (Game Programming Patterns)](http://gameprogrammingpatterns.com/event-queue.html)

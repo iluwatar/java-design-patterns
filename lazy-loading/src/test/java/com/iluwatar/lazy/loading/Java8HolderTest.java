@@ -27,9 +27,8 @@ package com.iluwatar.lazy.loading;
 import java.util.function.Supplier;
 
 /**
- * Date: 12/19/15 - 12:27 PM
+ * Java8HolderTest
  *
- * @author Jeroen Meulemeester
  */
 class Java8HolderTest extends AbstractHolderTest {
 

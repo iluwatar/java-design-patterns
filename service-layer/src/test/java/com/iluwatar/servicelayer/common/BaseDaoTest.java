@@ -36,11 +36,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/28/15 - 10:53 PM Test for Base Data Access Objects
+ * Test for Base Data Access Objects
  *
  * @param <E> Type of Base Entity
  * @param <D> Type of Dao Base Implementation
- * @author Jeroen Meulemeester
  */
 public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>> {
 

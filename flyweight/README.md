@@ -18,7 +18,7 @@ The Flyweight pattern's primary intent is to reduce the number of objects create
 
 Real-world example
 
-> Alchemist's shop has shelves full of magic potions. Many of the potions are the same so there is no need to create a new object for each of them. Instead, one object instance can represent  multiple shelf items so the memory footprint remains small.
+> A real-world example of the Flyweight design pattern is in a document editor like Microsoft Word or Google Docs. In such applications, each character in a document could potentially be a separate object, which would be highly inefficient in terms of memory usage. Instead, the Flyweight pattern can be used to share character objects. For instance, all instances of the letter 'A' can share a single 'A' object with its intrinsic state (e.g., the shape of the character). The extrinsic state, such as the position, font, and color, can be stored separately and applied as needed. This way, the application efficiently manages memory by reusing existing objects for characters that appear multiple times.
 
 In plain words
 
@@ -30,13 +30,17 @@ Wikipedia says
 
 **Programmatic example**
 
-Translating our alchemist shop example from above. First of all, we have different potion types:
+Alchemist's shop has shelves full of magic potions. Many of the potions are the same so there is no need to create a new object for each of them. Instead, one object instance can represent  multiple shelf items so the memory footprint remains small.
+
+First of all, we have different `Potion` types:
 
 ```java
 public interface Potion {
   void drink();
 }
+```
 
+```java
 @Slf4j
 public class HealingPotion implements Potion {
   @Override
@@ -44,7 +48,9 @@ public class HealingPotion implements Potion {
     LOGGER.info("You feel healed. (Potion={})", System.identityHashCode(this));
   }
 }
+```
 
+```java
 @Slf4j
 public class HolyWaterPotion implements Potion {
   @Override
@@ -52,7 +58,9 @@ public class HolyWaterPotion implements Potion {
     LOGGER.info("You feel blessed. (Potion={})", System.identityHashCode(this));
   }
 }
+```
 
+```java
 @Slf4j
 public class InvisibilityPotion implements Potion {
   @Override
@@ -77,21 +85,13 @@ public class PotionFactory {
     var potion = potions.get(type);
     if (potion == null) {
       switch (type) {
-        case HEALING -> {
-          potion = new HealingPotion();
-          potions.put(type, potion);
-        }
-        case HOLY_WATER -> {
-          potion = new HolyWaterPotion();
-          potions.put(type, potion);
-        }
-        case INVISIBILITY -> {
-          potion = new InvisibilityPotion();
-          potions.put(type, potion);
-        }
+        case HEALING -> potion = new HealingPotion();
+        case HOLY_WATER -> potion = new HolyWaterPotion();
+        case INVISIBILITY -> potion = new InvisibilityPotion();
         default -> {
         }
       }
+      potions.put(type, potion);
     }
     return potion;
   }
@@ -148,35 +148,33 @@ public class AlchemistShop {
 In our scenario, a brave visitor enters the alchemist shop and drinks all the potions.
 
 ```java
-// create the alchemist shop with the potions
-var alchemistShop = new AlchemistShop();
-// a brave visitor enters the alchemist shop and drinks all the potions
-alchemistShop.drinkPotions();
+public static void main(String[] args) {
+    // create the alchemist shop with the potions
+    var alchemistShop = new AlchemistShop();
+    // a brave visitor enters the alchemist shop and drinks all the potions
+    alchemistShop.drinkPotions();
+}
 ```
 
 Program output:
 
-```java
-Drinking top shelf potions 
-You become invisible. (Potion=1509514333)
-You become invisible. (Potion=1509514333)
-You feel strong. (Potion=739498517)
-You feel healed. (Potion=125130493)
-You become invisible. (Potion=1509514333)
-You feel strong. (Potion=739498517)
-You feel healed. (Potion=125130493)
-You feel healed. (Potion=125130493)
-Drinking bottom shelf potions
-Urgh! This is poisonous. (Potion=166239592)
-Urgh! This is poisonous. (Potion=166239592)
-Urgh! This is poisonous. (Potion=166239592)
-You feel blessed. (Potion=991505714)
-You feel blessed. (Potion=991505714)
 ```
-
-## Class diagram
-
-![alt text](./etc/flyweight.urm.png "Flyweight pattern class diagram")
+09:02:52.731 [main] INFO com.iluwatar.flyweight.AlchemistShop -- Drinking top shelf potions
+09:02:52.733 [main] INFO com.iluwatar.flyweight.InvisibilityPotion -- You become invisible. (Potion=1395089624)
+09:02:52.733 [main] INFO com.iluwatar.flyweight.InvisibilityPotion -- You become invisible. (Potion=1395089624)
+09:02:52.733 [main] INFO com.iluwatar.flyweight.StrengthPotion -- You feel strong. (Potion=1450821318)
+09:02:52.733 [main] INFO com.iluwatar.flyweight.HealingPotion -- You feel healed. (Potion=668849042)
+09:02:52.733 [main] INFO com.iluwatar.flyweight.InvisibilityPotion -- You become invisible. (Potion=1395089624)
+09:02:52.733 [main] INFO com.iluwatar.flyweight.StrengthPotion -- You feel strong. (Potion=1450821318)
+09:02:52.733 [main] INFO com.iluwatar.flyweight.HealingPotion -- You feel healed. (Potion=668849042)
+09:02:52.733 [main] INFO com.iluwatar.flyweight.HealingPotion -- You feel healed. (Potion=668849042)
+09:02:52.733 [main] INFO com.iluwatar.flyweight.AlchemistShop -- Drinking bottom shelf potions
+09:02:52.734 [main] INFO com.iluwatar.flyweight.PoisonPotion -- Urgh! This is poisonous. (Potion=2096057945)
+09:02:52.734 [main] INFO com.iluwatar.flyweight.PoisonPotion -- Urgh! This is poisonous. (Potion=2096057945)
+09:02:52.734 [main] INFO com.iluwatar.flyweight.PoisonPotion -- Urgh! This is poisonous. (Potion=2096057945)
+09:02:52.734 [main] INFO com.iluwatar.flyweight.HolyWaterPotion -- You feel blessed. (Potion=1689843956)
+09:02:52.734 [main] INFO com.iluwatar.flyweight.HolyWaterPotion -- You feel blessed. (Potion=1689843956)
+```
 
 ## Applicability
 
@@ -208,8 +206,8 @@ Trade-offs:
 
 ## Related Patterns
 
-[Composite](https://java-design-patterns.com/patterns/composite/): Often combined with Flyweight when the composites are shareable. Both are used to manage hierarchies and structures of objects.
-[State](https://java-design-patterns.com/patterns/state/): Can be used to manage state in a shared Flyweight object, distinguishing internal state (invariant) from external state (context-specific).
+* [Composite](https://java-design-patterns.com/patterns/composite/): Often combined with Flyweight when the composites are shareable. Both are used to manage hierarchies and structures of objects.
+* [State](https://java-design-patterns.com/patterns/state/): Can be used to manage state in a shared Flyweight object, distinguishing internal state (invariant) from external state (context-specific).
 
 ## Credits
 

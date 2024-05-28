@@ -1,131 +1,196 @@
 ---
 title: Property
-category: Creational
+category: Behavioral
 language: en
 tag:
- - Instantiation
+    - Abstraction
+    - Encapsulation
+    - Interface
+    - Object composition
+    - Polymorphism
 ---
 
+## Also known as
+
+* Dynamic Properties
+* Property Bag
+
 ## Intent
-Create hierarchy of objects and new objects using already existing
-objects as parents.
+
+The Property design pattern allows dynamic addition, removal, or modification of properties of an object at runtime.
 
 ## Explanation
 
 Real-world example
 
-> In the mystical land of "Elandria", adventurers can harness the power of ancient relics to customize their abilities. Each relic represents a unique property or skill. As adventurers explore, they discover and integrate new relics, dynamically enhancing their skills based on the relics they possess.
-
-> Consider a modern software used in designing and customizing smartphones. Designers can choose from a variety of components such as processor type, camera specs, battery capacity, and more. Each component represents a property of the smartphone. As technology evolves and new components become available, designers can seamlessly add or replace properties to create a unique smartphone configuration without redefining the core design structure.
+> Imagine a custom burger ordering system at a restaurant. Each burger starts with a basic configuration (bun, patty), but customers can add or remove various ingredients (cheese, lettuce, tomato, sauces) as they wish. The restaurant's ordering system uses the Property design pattern to handle this flexibility. Each burger object dynamically updates its list of properties (ingredients) based on customer choices, allowing for a wide variety of custom burgers without needing a fixed class structure for every possible combination. This ensures the system can adapt to any new ingredient without altering the core burger class.
 
 In plain words
 
 > Define and manage a dynamic set of properties for an object, allowing customization without altering its structure.
 
 **Programmatic Example**
+
+The Property design pattern, also known as Prototype inheritance, is a pattern that allows objects to be created from other objects, forming object hierarchies. This pattern is particularly useful when you want to create a new object that is a slight variation of an existing object.
+
+In the given code, the Property pattern is used to create different types of characters, each with their own unique properties.
+
 ```java
-import java.util.HashMap;
-import java.util.Map;
+// The Character class represents a character in a game. It has a type and a set of properties.
+public class Character {
+  private Type type;
+  private Map<Stats, Integer> properties;
 
-// Enumeration for possible properties or statistics a character can have
-enum Stats {
-    AGILITY, ATTACK_POWER, ARMOR, INTELLECT, SPIRIT, FURY, RAGE;
+  // The Character can be created with a type and a prototype. The new character will have the same properties as the prototype.
+  public Character(Type type, Character prototype) {
+    this.type = type;
+    this.properties = new HashMap<>(prototype.properties);
+  }
+
+  // Properties can be added or modified using the set method.
+  public void set(Stats stat, int value) {
+    properties.put(stat, value);
+  }
+
+  // Properties can be removed using the remove method.
+  public void remove(Stats stat) {
+    properties.remove(stat);
+  }
+
+  // The has method checks if a property is present.
+  public boolean has(Stats stat) {
+    return properties.containsKey(stat);
+  }
+
+  // The get method retrieves the value of a property.
+  public Integer get(Stats stat) {
+    return properties.get(stat);
+  }
 }
 
-// Enumeration for different types or classes of characters
-enum Type {
-    WARRIOR, MAGE, ROGUE;
+// The Stats enum represents the different properties a character can have.
+public enum Stats {
+  STRENGTH, AGILITY, ARMOR, ATTACK_POWER, INTELLECT, SPIRIT, RAGE, ENERGY
 }
 
-// Interface defining prototype operations on a character
-interface Prototype {
-    Integer get(Stats stat);
-    boolean has(Stats stat);
-    void set(Stats stat, Integer value);
-    void remove(Stats stat);
+// The Type enum represents the different types of characters.
+public enum Type {
+  MAGE, WARRIOR, ROGUE
 }
+```
 
-// Implementation of the Character class
-class Character implements Prototype {
-    private String name;
-    private Type type;
-    private Map<Stats, Integer> properties = new HashMap<>();
+In the `main` method, we create a prototype character and then create different types of characters based on the prototype:
 
-    public Character() {}
+```java
+public static void main(String[] args) {
+  // Create a prototype character with default properties
+  var charProto = new Character();
+  charProto.set(Stats.STRENGTH, 10);
+  charProto.set(Stats.AGILITY, 10);
+  charProto.set(Stats.ARMOR, 10);
+  charProto.set(Stats.ATTACK_POWER, 10);
 
-    public Character(Type type, Prototype prototype) {
-        this.type = type;
-        for (Stats stat : Stats.values()) {
-            if (prototype.has(stat)) {
-                this.set(stat, prototype.get(stat));
-            }
-        }
-    }
+  // Create a mage character based on the prototype and add mage-specific properties
+  var mageProto = new Character(Type.MAGE, charProto);
+  mageProto.set(Stats.INTELLECT, 15);
+  mageProto.set(Stats.SPIRIT, 10);
 
-    public Character(String name, Type type) {
-        this.name = name;
-        this.type = type;
-    }
+  // Create a warrior character based on the prototype and add warrior-specific properties
+  var warProto = new Character(Type.WARRIOR, charProto);
+  warProto.set(Stats.RAGE, 15);
+  warProto.set(Stats.ARMOR, 15); // boost default armor for warrior
 
-    @Override
-    public Integer get(Stats stat) {
-        return properties.get(stat);
-    }
+  // Create a rogue character based on the prototype and add rogue-specific properties
+  var rogueProto = new Character(Type.ROGUE, charProto);
+  rogueProto.set(Stats.ENERGY, 15);
+  rogueProto.set(Stats.AGILITY, 15); // boost default agility for rogue
 
-    @Override
-    public boolean has(Stats stat) {
-        return properties.containsKey(stat);
-    }
-
-    @Override
-    public void set(Stats stat, Integer value) {
-        properties.put(stat, value);
-    }
-
-    @Override
-    public void remove(Stats stat) {
-        properties.remove(stat);
-    }
-
-    @Override
-    public String toString() {
-        return "Character{name='" + name + "', type=" + type + ", properties=" + properties + '}';
-    }
-}
-
-// Main class to demonstrate the pattern
-public class PropertyPatternDemo {
-    public static void main(String[] args) {
-        // Create a prototype character
-        Character prototypeWarrior = new Character("Proto Warrior", Type.WARRIOR);
-        prototypeWarrior.set(Stats.ATTACK_POWER, 10);
-        prototypeWarrior.set(Stats.ARMOR, 15);
-
-        // Create a new character using the prototype
-        Character newWarrior = new Character(Type.WARRIOR, prototypeWarrior);
-        newWarrior.set(Stats.AGILITY, 5);
-
-        System.out.println(prototypeWarrior);
-        System.out.println(newWarrior);
-    }
+  // Create specific characters based on the prototypes
+  var mag = new Character("Player_1", mageProto);
+  var warrior = new Character("Player_2", warProto);
+  var rogue = new Character("Player_3", rogueProto);
 }
 ```
 
 Program output:
 
 ```
-Character{name='Proto Warrior', type=WARRIOR, properties={ARMOR=15, ATTACK_POWER=10}}
-Character{name='null', type=WARRIOR, properties={ARMOR=15, AGILITY=5, ATTACK_POWER=10}}
+08:27:52.567 [main] INFO com.iluwatar.property.App -- Player: Player_1
+Character type: MAGE
+Stats:
+ - AGILITY:10
+ - STRENGTH:10
+ - ATTACK_POWER:10
+ - ARMOR:8
+ - INTELLECT:15
+ - SPIRIT:10
+
+08:27:52.569 [main] INFO com.iluwatar.property.App -- Player: Player_2
+Character type: WARRIOR
+Stats:
+ - AGILITY:10
+ - STRENGTH:10
+ - ATTACK_POWER:10
+ - ARMOR:15
+ - RAGE:15
+
+08:27:52.569 [main] INFO com.iluwatar.property.App -- Player: Player_3
+Character type: ROGUE
+Stats:
+ - AGILITY:15
+ - STRENGTH:10
+ - ATTACK_POWER:10
+ - ARMOR:10
+ - ENERGY:15
+
+08:27:52.569 [main] INFO com.iluwatar.property.App -- Player: Player_4
+Character type: ROGUE
+Stats:
+ - AGILITY:15
+ - STRENGTH:10
+ - ATTACK_POWER:12
+ - ARMOR:10
+ - ENERGY:15
 ```
 
-## Class diagram
-![alt text](./etc/property.png "Property")
+This way, we can easily create new characters with different properties without having to create a new class for each type of character.
 
 ## Applicability
+
 Use the Property pattern when
 
-* When you like to have objects with dynamic set of fields and prototype inheritance
+* When you need to manage a flexible set of properties without altering the class structure.
+* When properties need to be added or removed dynamically at runtime.
+* When different instances of a class need different properties.
 
-## Real world examples
+## Known Uses
 
-* [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Inheritance_and_the_prototype_chain) prototype inheritance
+* Configurations in applications where different entities require different sets of configurable parameters.
+* Game development where game entities (like characters or objects) need various attributes that can change during gameplay.
+* User profile management systems where user profiles can have dynamic attributes.
+
+## Consequences
+
+Benefits:
+
+* Flexibility: Allows for the dynamic addition, removal, and modification of properties.
+* Decoupling: Reduces dependencies between classes and their properties.
+* Ease of Use: Simplifies the management of properties in large systems.
+
+Trade-offs:
+
+* Performance Overhead: Dynamic property management can introduce runtime overhead.
+* Complexity: May increase the complexity of the code, making it harder to maintain and understand.
+* Type Safety: Reduces type safety since properties are often managed as generic key-value pairs.
+
+## Related Patterns
+
+* [Composite](https://java-design-patterns.com/patterns/composite/): Composite allows a tree structure of objects where each node can be a complex or simple object. Property pattern can be seen as a flattened version, managing properties without hierarchy.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Both patterns enhance an object's behavior, but the Property pattern focuses on adding properties dynamically, while the Decorator adds responsibilities.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Like the Property pattern, the Strategy pattern allows dynamic behavior changes, but Strategy is about changing the algorithm used by an object.
+
+## Credits
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)

@@ -36,7 +36,6 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * This class implements the Event Queue pattern.
  *
- * @author mkuprivecz
  */
 @Slf4j
 public class Audio {

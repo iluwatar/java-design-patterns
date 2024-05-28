@@ -45,7 +45,7 @@ public class Promise<T> extends PromiseSupport<T> {
   private Consumer<? super Throwable> exceptionHandler;
 
   /**
-   * Creates a promise that will be fulfilled in future.
+   * Creates a promise that will be fulfilled in the future.
    */
   public Promise() {
     // Empty constructor

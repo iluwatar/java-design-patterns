@@ -113,9 +113,11 @@ public static void main(String[] args) {
 }
 ```
 
-## Class diagram
+Console output:
 
-![Monad](./etc/monad.png "Monad")
+```
+15:06:17.679 [main] INFO com.iluwatar.monad.App -- User[name=user, age=24, sex=FEMALE, email=foobar.com]
+```
 
 ## Applicability
 
@@ -126,9 +128,7 @@ public static void main(String[] args) {
 
 ## Tutorials
 
-* [Design Pattern Reloaded by Remi Forax](https://youtu.be/-k2X7guaArU)
-* [Brian Beckman: Don't fear the Monad](https://channel9.msdn.com/Shows/Going+Deep/Brian-Beckman-Dont-fear-the-Monads)
-* [Monad on Wikipedia](https://en.wikipedia.org/wiki/Monad_(functional_programming))
+* [Design Pattern Reloaded (Remi Forax)](https://youtu.be/-k2X7guaArU)
 
 ## Known Uses
 
@@ -145,7 +145,7 @@ Benefits:
 * Promotes immutability and thread safety.
 * Simplifies complex error handling and state management.
 
-## Trade-offs
+Trade-offs:
 
 * Can be challenging for developers new to functional programming.
 * May introduce performance overhead due to additional abstraction layers.
@@ -162,3 +162,4 @@ Benefits:
 * [Functional Programming in Java](https://amzn.to/3JUIc5Q)
 * [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://amzn.to/3QCmGXs)
 * [Real-World Software Development: A Project-Driven Guide to Fundamentals in Java](https://amzn.to/4btoN7U)
+* [Monad (functional programming) (Wikipedia)](https://en.wikipedia.org/wiki/Monad_(functional_programming))

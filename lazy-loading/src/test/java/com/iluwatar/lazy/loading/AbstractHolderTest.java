@@ -33,9 +33,8 @@ import static org.junit.jupiter.api.Assertions.assertTimeout;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/19/15 - 11:58 AM
+ * AbstractHolderTest
  *
- * @author Jeroen Meulemeester
  */
 public abstract class AbstractHolderTest {
 

@@ -44,11 +44,7 @@ import org.junit.jupiter.api.Test;
  * called in the SAME thread. The second proves that multiple calls to the singleton getInstance
  * object are the same when called in the DIFFERENT thread.</p>
  *
- * <p>Date: 12/29/15 - 19:25 PM</p>
- *
  * @param <S> Supplier method generating singletons
- * @author Jeroen Meulemeester
- * @author Richard Jones
  */
 abstract class SingletonTest<S> {
 
@@ -85,7 +81,7 @@ abstract class SingletonTest<S> {
    * Test singleton instance in a concurrent setting.
    */
   @Test
-  void testMultipleCallsReturnTheSameObjectInDifferentThreads() throws Exception {
+  void testMultipleCallsReturnTheSameObjectInDifferentThreads() {
     assertTimeout(ofMillis(10000), () -> {
       // Create 10000 tasks and inside each callable instantiate the singleton class
       final var tasks = IntStream.range(0, 10000)
@@ -96,7 +92,7 @@ abstract class SingletonTest<S> {
       final var executorService = Executors.newFixedThreadPool(8);
       final var results = executorService.invokeAll(tasks);
 
-      // wait for all of the threads to complete
+      // wait for all the threads to complete
       final var expectedInstance = this.singletonInstanceMethod.get();
       for (var res : results) {
         final var instance = res.get();
