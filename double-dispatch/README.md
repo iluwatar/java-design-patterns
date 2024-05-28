@@ -19,7 +19,7 @@ The Double Dispatch pattern is used to achieve dynamic polymorphism based on the
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > In a logistics company, different types of delivery vehicles like trucks, drones, and bikes interact with various types of packages (fragile, oversized, standard). The Double Dispatch design pattern is used to determine the optimal delivery method: trucks might handle oversized items, drones for quick deliveries of light packages, and bikes for urban areas. Each vehicle-package combination results in a different handling and delivery strategy, dynamically determined at runtime based on the types of both the vehicle and the package.
 
@@ -143,7 +143,7 @@ Trade-offs:
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Similar in intent where it's used to choose an algorithm at runtime, though Strategy focuses on single object context rather than interactions between multiple objects.
 * [Visitor](https://java-design-patterns.com/patterns/visitor/): Often used together with Double Dispatch to encapsulate operations performed on a set of element objects.
 
-## Real world examples
+## Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/4awj7cV)
 * [Java Design Pattern Essentials](https://amzn.to/3Jg8ZZV)

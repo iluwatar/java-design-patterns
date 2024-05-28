@@ -40,7 +40,9 @@ In our programmatic example, we demonstrate the implementation of an event aggre
 public interface EventObserver {
     void onEvent(Event e);
 }
+```
 
+```java
 public abstract class EventEmitter {
 
     private final Map<Event, List<EventObserver>> observerLists;

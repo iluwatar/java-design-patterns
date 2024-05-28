@@ -81,10 +81,6 @@ public class App {
 
 In this way, the Mute Idiom allows us to simplify error handling by reducing boilerplate code for expected exceptions, enhancing code readability and maintainability, and allowing uninterrupted execution for non-critical exceptions.
 
-## Class diagram
-
-![Mute Idiom](./etc/mute-idiom.png "Mute Idiom")
-
 ## Applicability
 
 * Useful in scenarios where certain exceptions are predictable and do not affect the overall logic or outcome.

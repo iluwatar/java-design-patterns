@@ -106,10 +106,6 @@ The program outputs:
 10:25:08.074 [main] INFO com.iluwatar.adapter.FishingBoat -- The fishing boat is sailing
 ```
 
-## Class diagram
-
-![Adapter](./etc/adapter.urm.png "Adapter class diagram")
-
 ## Applicability
 
 Use the Adapter pattern when

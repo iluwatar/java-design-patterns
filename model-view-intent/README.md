@@ -182,10 +182,6 @@ public class SetVariableEvent implements UserEvent {
 
 This example demonstrates the key aspects of the MVI pattern: unidirectional data flow, clear separation of concerns, and the use of events to drive changes in the Model's state.
 
-## Class diagram
-
-![Model-View-Intent](./etc/model-view-intent.png "Model-View-Intent")
-
 ## Applicability
 
 * Useful in applications with complex user interfaces that require a clear separation of concerns and predictable state management.

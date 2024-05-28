@@ -194,10 +194,6 @@ Running the example produces the following console output.
 
 In this example, the state of the system can be recreated at any point by replaying the events in the queue. This is a key feature of the Event Sourcing pattern.
 
-## Class diagram
-
-![Event Sourcing](./etc/event-sourcing.png "Event Sourcing")
-
 ## Applicability
 
 * In systems where complete audit trails and historical changes are crucial.

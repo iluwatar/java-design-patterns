@@ -24,7 +24,7 @@ The API Gateway design pattern aims to provide a unified interface to a set of m
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > In a large e-commerce platform, an API Gateway is used as the single entry point for all client requests. When a user visits the site or uses the mobile app, their requests for product information, user authentication, order processing, and payment are all routed through the API Gateway. The gateway handles tasks such as user authentication, rate limiting to prevent abuse, and logging for monitoring purposes. This setup simplifies the client interface and ensures that all backend microservices, like the product catalog service, user service, order service, and payment service, can evolve independently without affecting the client directly. This also enhances security by providing a centralized point to enforce policies and monitor traffic.
 
@@ -124,10 +124,6 @@ public class ApiGateway {
     }
 }
 ```
-
-## Class diagram
-
-![API Gateway](./etc/api-gateway.png "API Gateway")
 
 ## Applicability
 

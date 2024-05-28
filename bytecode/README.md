@@ -17,7 +17,7 @@ Allows encoding behavior as instructions for a virtual machine.
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > An analogous real-world example of the Bytecode design pattern can be seen in the process of translating a book into multiple languages. Instead of directly translating the book from the original language into every other language, the book is first translated into a common intermediate language, like Esperanto. This intermediate version is easier to translate because it is simpler and more structured. Translators for each target language then translate from Esperanto into their specific languages. This approach ensures consistency, reduces errors, and simplifies the translation process, similar to how bytecode serves as an intermediate representation to optimize and facilitate the execution of high-level programming languages across different platforms.
 

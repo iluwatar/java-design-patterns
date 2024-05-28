@@ -195,10 +195,6 @@ Program output:
 06:07:20.678 [main] INFO com.iluwatar.facade.DwarvenMineWorker -- Dwarven tunnel digger goes to sleep.
 ```
 
-## Class diagram
-
-![Facade](./etc/facade.urm.png "Facade pattern class diagram")
-
 ## Applicability
 
 Use the Facade pattern when

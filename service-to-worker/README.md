@@ -94,10 +94,6 @@ Console output:
 
 This is a simple example of how the Service to Worker pattern can be implemented in a Java application.
 
-## Class diagram
-
-![Service to Worker](./etc/service-to-worker.png "Service to Worker")
-
 ## Applicability
 
 * Use when you need to separate the controller logic from the view to improve code maintainability and enable team members to work on different parts of the application independently.

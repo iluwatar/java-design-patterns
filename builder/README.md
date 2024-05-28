@@ -26,7 +26,7 @@ Wikipedia says
 
 > The builder pattern is an object creation software design pattern with the intentions of finding a solution to the telescoping constructor antipattern.
 
-That said, let's clarify what telescoping constructor antipattern is. At one point or the other, we have all seen a constructor like below:
+With that in mind, let's explain what the telescoping constructor antipattern is. At some point, we have all encountered a constructor like the one below:
 
 ```java
 public Hero(Profession profession,String name,HairType hairType,HairColor hairColor,Armor armor,Weapon weapon){
@@ -34,13 +34,13 @@ public Hero(Profession profession,String name,HairType hairType,HairColor hairCo
 }
 ```
 
-As you can see the number of constructor parameters can quickly get out of hand, and it may become difficult to understand the arrangement of parameters. Plus this parameter list could keep on growing if you would want to add more options in the future. This is called telescoping constructor antipattern.
+As you can see, the number of constructor parameters can quickly become overwhelming, making it difficult to understand their arrangement. Additionally, this list of parameters might continue to grow if you decide to add more options in the future. This is known as the telescoping constructor antipattern.
 
 **Programmatic Example**
 
-Imagine a character generator for a role-playing game. The easiest option is to let the computer create the character for you. If you want to manually select the character details like profession, gender, hair color, etc. the character generation becomes a step-by-step process that completes when all the selections are ready.
+Imagine a character generator for a role-playing game. The simplest option is to let the computer generate the character for you. However, if you prefer to manually select character details such as profession, gender, hair color, etc., the character creation becomes a step-by-step process that concludes once all selections are made.
 
-The sane alternative is to use the Builder pattern. First of all, we have our hero that we want to create:
+A more sensible approach is to use the Builder pattern. First, let's consider the `Hero` that we want to create:
 
 ```java
 public final class Hero {
@@ -62,7 +62,7 @@ public final class Hero {
 }
 ```
 
-Then we have the builder:
+Then we have the `Builder`:
 
 ```java
   public static class Builder {

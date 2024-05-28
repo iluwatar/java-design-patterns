@@ -85,10 +85,6 @@ Program output:
 06:40:07.272 [main] INFO com.iluwatar.factory.method.App -- The elf blacksmith manufactured an elven axe
 ```
 
-## Class diagram
-
-![Factory Method](./etc/factory-method.urm.png "Factory Method pattern class diagram")
-
 ## Applicability
 
 Use the Factory Method pattern when:

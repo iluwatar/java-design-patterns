@@ -32,13 +32,15 @@ Wikipedia says
 
 Alchemist's shop has shelves full of magic potions. Many of the potions are the same so there is no need to create a new object for each of them. Instead, one object instance can represent  multiple shelf items so the memory footprint remains small.
 
-First of all, we have different potion types:
+First of all, we have different `Potion` types:
 
 ```java
 public interface Potion {
   void drink();
 }
+```
 
+```java
 @Slf4j
 public class HealingPotion implements Potion {
   @Override
@@ -46,7 +48,9 @@ public class HealingPotion implements Potion {
     LOGGER.info("You feel healed. (Potion={})", System.identityHashCode(this));
   }
 }
+```
 
+```java
 @Slf4j
 public class HolyWaterPotion implements Potion {
   @Override
@@ -54,7 +58,9 @@ public class HolyWaterPotion implements Potion {
     LOGGER.info("You feel blessed. (Potion={})", System.identityHashCode(this));
   }
 }
+```
 
+```java
 @Slf4j
 public class InvisibilityPotion implements Potion {
   @Override
@@ -169,10 +175,6 @@ Program output:
 09:02:52.734 [main] INFO com.iluwatar.flyweight.HolyWaterPotion -- You feel blessed. (Potion=1689843956)
 09:02:52.734 [main] INFO com.iluwatar.flyweight.HolyWaterPotion -- You feel blessed. (Potion=1689843956)
 ```
-
-## Class diagram
-
-![Flyweight](./etc/flyweight.urm.png "Flyweight pattern class diagram")
 
 ## Applicability
 

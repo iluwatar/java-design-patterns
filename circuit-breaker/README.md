@@ -95,6 +95,57 @@ LOGGER.info(monitoringService.delayedServiceResponse());
 LOGGER.info(delayedServiceCircuitBreaker.getState());
 ```
 
+6. **Full example**
+
+```java
+public static void main(String[] args) {
+
+    var serverStartTime = System.nanoTime();
+
+    var delayedService = new DelayedRemoteService(serverStartTime, 5);
+    var delayedServiceCircuitBreaker = new DefaultCircuitBreaker(delayedService, 3000, 2,
+        2000 * 1000 * 1000);
+
+    var quickService = new QuickRemoteService();
+    var quickServiceCircuitBreaker = new DefaultCircuitBreaker(quickService, 3000, 2,
+        2000 * 1000 * 1000);
+
+    //Create an object of monitoring service which makes both local and remote calls
+    var monitoringService = new MonitoringService(delayedServiceCircuitBreaker,
+        quickServiceCircuitBreaker);
+
+    //Fetch response from local resource
+    LOGGER.info(monitoringService.localResourceResponse());
+
+    //Fetch response from delayed service 2 times, to meet the failure threshold
+    LOGGER.info(monitoringService.delayedServiceResponse());
+    LOGGER.info(monitoringService.delayedServiceResponse());
+
+    //Fetch current state of delayed service circuit breaker after crossing failure threshold limit
+    //which is OPEN now
+    LOGGER.info(delayedServiceCircuitBreaker.getState());
+
+    //Meanwhile, the delayed service is down, fetch response from the healthy quick service
+    LOGGER.info(monitoringService.quickServiceResponse());
+    LOGGER.info(quickServiceCircuitBreaker.getState());
+
+    //Wait for the delayed service to become responsive
+    try {
+      LOGGER.info("Waiting for delayed service to become responsive");
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      LOGGER.error("An error occurred: ", e);
+    }
+    //Check the state of delayed circuit breaker, should be HALF_OPEN
+    LOGGER.info(delayedServiceCircuitBreaker.getState());
+
+    //Fetch response from delayed service, which should be healthy by now
+    LOGGER.info(monitoringService.delayedServiceResponse());
+    //As successful response is fetched, it should be CLOSED again.
+    LOGGER.info(delayedServiceCircuitBreaker.getState());
+}
+```
+
 Summary of the example
 
 - Initialize the Circuit Breaker with parameters: `timeout`, `failureThreshold`, and `retryTimePeriod`.
@@ -104,11 +155,22 @@ Summary of the example
 - After the retry timeout, transition to the `half-open` state to test the service.
 - On success in `half-open` state, transition back to `closed`. On failure, return to `open`.
 
+Program output:
+
+```
+16:59:19.767 [main] INFO com.iluwatar.circuitbreaker.App -- Local Service is working
+16:59:19.769 [main] INFO com.iluwatar.circuitbreaker.App -- Delayed service is down
+16:59:19.769 [main] INFO com.iluwatar.circuitbreaker.App -- Delayed service is down
+16:59:19.769 [main] INFO com.iluwatar.circuitbreaker.App -- OPEN
+16:59:19.769 [main] INFO com.iluwatar.circuitbreaker.App -- Quick Service is working
+16:59:19.769 [main] INFO com.iluwatar.circuitbreaker.App -- CLOSED
+16:59:19.769 [main] INFO com.iluwatar.circuitbreaker.App -- Waiting for delayed service to become responsive
+16:59:24.779 [main] INFO com.iluwatar.circuitbreaker.App -- HALF_OPEN
+16:59:24.780 [main] INFO com.iluwatar.circuitbreaker.App -- Delayed service is working
+16:59:24.780 [main] INFO com.iluwatar.circuitbreaker.App -- CLOSED
+```
+
 This example demonstrates how the Circuit Breaker pattern can help maintain application stability and resilience by managing remote service failures.
-
-## Class diagram
-
-![Circuit Breaker](./etc/circuit-breaker.urm.png "Circuit Breaker class diagram")
 
 ## Applicability
 

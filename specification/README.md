@@ -204,10 +204,6 @@ Console output:
 12:49:24.818 [main] INFO com.iluwatar.specification.app.App -- Troll [size=large, movement=walking, color=dark, mass=4000.0kg]
 ```
 
-## Class diagram
-
-![Specification](./etc/specification.png "Specification")
-
 ## Applicability
 
 * Use when you need to filter objects based on different criteria.

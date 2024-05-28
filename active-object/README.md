@@ -99,9 +99,9 @@ public abstract class ActiveCreature {
 }
 ```
 
-We can see that any class that will extend the ActiveCreature class will have its own thread of control to invoke and execute methods.
+We can see that any class that will extend the `ActiveCreature` class will have its own thread of control to invoke and execute methods.
 
-For example, the Orc class:
+For example, the `Orc` class:
 
 ```java
 public class Orc extends ActiveCreature {
@@ -109,11 +109,10 @@ public class Orc extends ActiveCreature {
     public Orc(String name) {
         super(name);
     }
-
 }
 ```
 
-Now, we can create multiple creatures such as Orcs, tell them to eat and roam, and they will execute it on their own thread of control:
+Now, we can create multiple creatures such as orcs, tell them to eat and roam, and they will execute it on their own thread of control:
 
 ```java
 public class App implements Runnable {

@@ -21,7 +21,7 @@ Provide a helper service instance on a client and offload common functionality a
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a busy hotel where guests frequently request restaurant reservations, event tickets, or transportation arrangements. Instead of each guest individually contacting these services, the hotel provides a concierge. The concierge handles these tasks on behalf of the guests, ensuring that reservations are made smoothly, tickets are booked on time, and transportation is scheduled efficiently.
 >
@@ -174,10 +174,6 @@ Time taken(ms):538
 Failed to reach remote:(3)
 Service result:-1
 ```
-
-## Class diagram
-
-![Ambassador](./etc/ambassador.urm.png "Ambassador class diagram")
 
 ## Applicability
 

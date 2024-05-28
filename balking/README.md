@@ -15,7 +15,7 @@ Balking Pattern is used to prevent an object from executing a certain code if it
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > A real-world analogy of the Balking design pattern can be seen in a laundry service. Imagine a washing machine at a laundromat that only starts washing clothes if the door is properly closed and locked. If a user tries to start the machine while the door is open, the machine balks and does nothing. This ensures that the washing process only begins when it is safe to do so, preventing water spillage and potential damage to the machine. Similarly, the Balking pattern in software design ensures that operations are only executed when the object is in an appropriate state, preventing erroneous actions and maintaining system stability.
 
@@ -31,7 +31,7 @@ Wikipedia says
 
 There's a start-button in a washing machine to initiate the laundry washing. When the washing machine is inactive the button works as expected, but if it's already washing the button does nothing.
 
-In this example implementation, `WashingMachine` is an object that has two states in which it can be: ENABLED and WASHING. If the machine is ENABLED, the state changes to WASHING using a thread-safe method. On the other hand, if it already has been washing and any other thread executes `wash()`it won't do that and returns without doing anything.
+In this example implementation, `WashingMachine` is an object that has two states in which it can be: ENABLED and WASHING. If the machine is ENABLED, the state changes to WASHING using a thread-safe method. On the other hand, if it already has been washing and any other thread executes `wash`it won't do that and returns without doing anything.
 
 Here are the relevant parts of the `WashingMachine` class.
 
@@ -113,10 +113,6 @@ Here is the console output of the program.
 14:02:52.273 [pool-1-thread-1] ERROR com.iluwatar.balking.WashingMachine - Cannot wash if the machine has been already washing!
 14:02:52.324 [pool-1-thread-2] INFO com.iluwatar.balking.WashingMachine - 14: Washing completed.
 ```
-
-## Class diagram
-
-![Balking](./etc/balking.png "Balking")
 
 ## Applicability
 

@@ -36,9 +36,9 @@ Wikipedia says
 
 The Data Mapper is a design pattern that separates the in-memory objects from the database. Its responsibility is to transfer data between the two and also to isolate them from each other. This pattern promotes the [Single Responsibility Principle](https://java-design-patterns.com/principles/#single-responsibility-principle) and [Separation of Concerns](https://java-design-patterns.com/principles/#separation-of-concerns).
 
-In the data-mapper module, the pattern is demonstrated using a Student class and a StudentDataMapper interface.
+In the data-mapper module, the pattern is demonstrated using a `Student` class and a `StudentDataMapper` interface.
 
-The Student class is a simple POJO (Plain Old Java Object) that represents a student. It has properties like studentId, name, and grade.
+The `Student` class is a simple POJO (Plain Old Java Object) that represents a student. It has properties like studentId, name, and grade.
 
 ```java
 public class Student {
@@ -49,7 +49,7 @@ public class Student {
 }
 ```
 
-The StudentDataMapper interface defines the operations that can be performed on Student objects. These operations include insert, update, delete, and find.
+The `StudentDataMapper` interface defines the operations that can be performed on `Student` objects. These operations include `insert`, `update`, `delete`, and `find`.
 
 ```java
 public interface StudentDataMapper {
@@ -64,7 +64,7 @@ public interface StudentDataMapper {
 }
 ```
 
-The StudentDataMapperImpl class implements the StudentDataMapper interface. It contains the actual logic for interacting with the database.
+The `StudentDataMapperImpl` class implements the `StudentDataMapper` interface. It contains the actual logic for interacting with the database.
 
 ```java
 public class StudentDataMapperImpl implements StudentDataMapper {
@@ -92,7 +92,7 @@ public class StudentDataMapperImpl implements StudentDataMapper {
 }
 ```
 
-The App class contains the main method that demonstrates the use of the StudentDataMapper. It creates a Student object, inserts it into the database, finds it, updates it, and finally deletes it.
+The `App` class contains the main method that demonstrates the use of the `StudentDataMapper`. It creates a `Student` object, inserts it into the database, finds it, updates it, and finally deletes it.
 
 ```java
 public class App {
@@ -116,10 +116,6 @@ Program output:
 13:54:29.237 [main] DEBUG com.iluwatar.datamapper.App -- App.main(), student : Student(studentId=1, name=AdamUpdated, grade=A), is updated
 13:54:29.238 [main] DEBUG com.iluwatar.datamapper.App -- App.main(), student : Student(studentId=1, name=AdamUpdated, grade=A), is going to be deleted
 ```
-
-## Class diagram
-
-![Data Mapper](./etc/data-mapper.png "Data Mapper")
 
 ## Applicability
 

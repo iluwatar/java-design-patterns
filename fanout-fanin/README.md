@@ -130,10 +130,6 @@ Running the example produces the following console output.
 06:52:11.465 [main] INFO com.iluwatar.fanout.fanin.App -- Sum of all squared numbers --> 139
 ```
 
-## Class diagram
-
-![Fan-Out/Fan-In](./etc/fanout-fanin.png)
-
 ## Applicability
 
 Appropriate in scenarios where tasks can be broken down and executed in parallel, especially suitable for data processing, batch processing, and situations requiring aggregation of results from various sources.

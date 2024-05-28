@@ -36,125 +36,75 @@ Wikipedia says
 
 Within a large corporate building, there exists a global printer queue that is a collection of all the printing jobs that are currently pending. Various floors contain different models of printers, each having a different printing policy. We must construct a program that can continually add appropriate printing jobs to a collection, which is called the collecting parameter.
 
-Coding our example from above, we may use the collection `result` as a collecting parameter. The following restrictions are implemented:
+The following business rules are implemented:
 
 * If an A4 paper is coloured, it must also be single-sided. All other non-coloured papers are accepted
 * A3 papers must be non-coloured and single-sided
 * A2 papers must be single-page, single-sided, and non-coloured
 
-```java
-public class App {
-    
-    static PrinterQueue printerQueue = PrinterQueue.getInstance();
-
-    public static void main(String[] args) {
-        //  Initialising the printer queue with jobs
-        printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A4, 5, false, false));
-        printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A3, 2, false, false));
-        printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A2, 5, false, false));
-
-        // This variable is the collecting parameter.
-        var result = new LinkedList<PrinterItem>();
-
-         // Using numerous sub-methods to collaboratively add information to the result collecting parameter
-        addA4Papers(result);
-        addA3Papers(result);
-        addA2Papers(result);
-    }
-}
-```
-
-We use the `addA4Paper`, `addA3Paper`, and `addA2Paper` methods to populate the `result` collecting parameter with the appropriate print jobs as per the policy described previously. The three policies are encoded below,
+Let's see the implementation first and explain afterward.
 
 ```java
 public class App {
-    
-    static PrinterQueue printerQueue = PrinterQueue.getInstance();
+  static PrinterQueue printerQueue = PrinterQueue.getInstance();
 
-    /**
-     * Adds A4 document jobs to the collecting parameter according to some policy that can be whatever the client
-     * (the print center) wants.
-     *
-     * @param printerItemsCollection the collecting parameter
-     */
-    public static void addA4Papers(Queue<PrinterItem> printerItemsCollection) {
-    /*
-      Iterate through the printer queue, and add A4 papers according to the correct policy to the collecting parameter,
-      which is 'printerItemsCollection' in this case.
-     */
-        for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
-            if (nextItem.paperSize.equals(PaperSizes.A4)) {
-                var isColouredAndSingleSided =
-                        nextItem.isColour && !nextItem.isDoubleSided;
-                if (isColouredAndSingleSided) {
-                    printerItemsCollection.add(nextItem);
-                } else if (!nextItem.isColour) {
-                    printerItemsCollection.add(nextItem);
-                }
-            }
+  public static void main(String[] args) {
+    printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A4, 5, false, false));
+    printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A3, 2, false, false));
+    printerQueue.addPrinterItem(new PrinterItem(PaperSizes.A2, 5, false, false));
+
+    var result = new LinkedList<PrinterItem>();
+
+    addValidA4Papers(result);
+    addValidA3Papers(result);
+    addValidA2Papers(result);
+  }
+
+  public static void addValidA4Papers(Queue<PrinterItem> printerItemsCollection) {
+    for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
+      if (nextItem.paperSize.equals(PaperSizes.A4)) {
+        var isColouredAndSingleSided = nextItem.isColour && !nextItem.isDoubleSided;
+        if (isColouredAndSingleSided || !nextItem.isColour) {
+          printerItemsCollection.add(nextItem);
         }
+      }
     }
+  }
 
-    /**
-     * Adds A3 document jobs to the collecting parameter according to some policy that can be whatever the client
-     * (the print center) wants. The code is similar to the 'addA4Papers' method. The code can be changed to accommodate
-     * the wants of the client.
-     *
-     * @param printerItemsCollection the collecting parameter
-     */
-    public static void addA3Papers(Queue<PrinterItem> printerItemsCollection) {
-        for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
-            if (nextItem.paperSize.equals(PaperSizes.A3)) {
-
-                // Encoding the policy into a Boolean: the A3 paper cannot be coloured and double-sided at the same time
-                var isNotColouredAndSingleSided =
-                        !nextItem.isColour && !nextItem.isDoubleSided;
-                if (isNotColouredAndSingleSided) {
-                    printerItemsCollection.add(nextItem);
-                }
-            }
+  public static void addValidA3Papers(Queue<PrinterItem> printerItemsCollection) {
+    for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
+      if (nextItem.paperSize.equals(PaperSizes.A3)) {
+        var isNotColouredAndSingleSided = !nextItem.isColour && !nextItem.isDoubleSided;
+        if (isNotColouredAndSingleSided) {
+          printerItemsCollection.add(nextItem);
         }
+      }
     }
+  }
 
-    /**
-     * Adds A2 document jobs to the collecting parameter according to some policy that can be whatever the client
-     * (the print center) wants. The code is similar to the 'addA4Papers' method. The code can be changed to accommodate
-     * the wants of the client.
-     *
-     * @param printerItemsCollection the collecting parameter
-     */
-    public static void addA2Papers(Queue<PrinterItem> printerItemsCollection) {
-        for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
-            if (nextItem.paperSize.equals(PaperSizes.A2)) {
-
-                // Encoding the policy into a Boolean: the A2 paper must be single page, single-sided, and non-coloured.
-                var isNotColouredSingleSidedAndOnePage =
-                        nextItem.pageCount == 1 &&
-                                !nextItem.isDoubleSided
-                                && !nextItem.isColour;
-                if (isNotColouredSingleSidedAndOnePage) {
-                    printerItemsCollection.add(nextItem);
-                }
-            }
+  public static void addValidA2Papers(Queue<PrinterItem> printerItemsCollection) {
+    for (PrinterItem nextItem : printerQueue.getPrinterQueue()) {
+      if (nextItem.paperSize.equals(PaperSizes.A2)) {
+        var isNotColouredSingleSidedAndOnePage = nextItem.pageCount == 1 && !nextItem.isDoubleSided
+                && !nextItem.isColour;
+        if (isNotColouredSingleSidedAndOnePage) {
+          printerItemsCollection.add(nextItem);
         }
+      }
     }
+  }
 }
 ```
 
-Each method takes a collecting parameter as an argument. It then adds elements, taken from a global variable, to this collecting parameter if each element satisfies a given criteria. These methods can have whatever policy the client desires.
+This `App` class is the main entry point of the application. It uses the Collecting Parameter design pattern to filter print jobs based on certain policies.
 
-In this programmatic example, three print jobs are added to the queue. Only the first two print jobs should be added to the collecting parameter as per the policy. The elements of the `result` variable after execution are,
+1. **Initialization**: The `printerQueue` is initialized with three print jobs of different paper sizes (A4, A3, A2).
 
-| paperSize | pageCount | isDoubleSided | isColour |
-|-----------|-----------|---------------|----------|
-| A4        | 5         | false         | false    |
-| A3        | 2         | false         | false    |
+2. **Creating the Collecting Parameter**: A `LinkedList` named `result` is created to store the print jobs that meet the policy requirements.
 
-which is what we expected.
+3. **Adding Valid Jobs to the Collecting Parameter**: The `addValidA4Papers`, `addValidA3Papers`, and `addValidA2Papers` methods are called. These methods iterate over the `printerQueue` and add the print jobs that meet the policy requirements to the `result` list.
 
-## Class diagram
-
-![Collecting Parameter](./etc/collecting-parameter.urm.png "Collecting Parameter")
+The `result` list, which is the collecting parameter, accumulates the valid print jobs as it is passed from method to method. This is the essence of the Collecting Parameter design pattern.
 
 ## Applicability
 

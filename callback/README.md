@@ -21,7 +21,7 @@ Callback is a piece of executable code that is passed as an argument to other co
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > A real-world analogy for the Callback design pattern can be found in the restaurant industry. Imagine a situation where you place an order at a busy restaurant. Instead of waiting at the counter for your food to be ready, you provide the cashier with your phone number. Once your order is prepared, the kitchen staff calls or sends a text message to notify you that your meal is ready for pickup.
 >
@@ -39,7 +39,7 @@ Wikipedia says
 
 We need to be notified after the executing task has finished. We pass a callback method for the executor and wait for it to call back on us.
 
-Callback is a simple interface with single method.
+`Callback` is a simple interface with single method.
 
 ```java
 public interface Callback {
@@ -48,7 +48,7 @@ public interface Callback {
 }
 ```
 
-Next we define a task that will execute the callback after the task execution has finished.
+Next we define `Task` that will execute the callback after the task execution has finished.
 
 ```java
 public abstract class Task {

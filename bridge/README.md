@@ -36,7 +36,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-Consider you have a weapon with different enchantments, and you are supposed to allow mixing different weapons with different enchantments. What would you do? Create multiple copies of each of the weapons for each of the enchantments or would you just create separate enchantment and set it for the weapon as needed? Bridge pattern allows you to do the second.
+Imagine you have a weapon that can have various enchantments, and you need to combine different weapons with different enchantments. How would you handle this? Would you create multiple copies of each weapon, each with a different enchantment, or would you create separate enchantments and apply them to the weapon as needed? The Bridge pattern enables you to do the latter.
 
 Here we have the `Weapon` hierarchy:
 
@@ -116,7 +116,7 @@ public class Hammer implements Weapon {
 }
 ```
 
-Here's the separate enchantment hierarchy:
+Here's the separate `Enchantment` hierarchy:
 
 ```java
 public interface Enchantment {

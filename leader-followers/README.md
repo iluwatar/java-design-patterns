@@ -136,10 +136,6 @@ public class App {
 
 This is a basic example of the Leader/Followers pattern. The leader worker processes tasks and promotes a new leader once it finishes a task. The new leader then starts processing the next task, and the cycle continues.
 
-## Class diagram
-
-![Leader/Followers class diagram](./etc/leader-followers.png)
-
 ## Applicability
 
 * Useful in scenarios where programs need to handle multiple services on a single thread to avoid resource thrashing and to improve scalability.

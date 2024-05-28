@@ -140,10 +140,6 @@ Running the example outputs:
 10:22:02.575 [main] INFO com.iluwatar.roleobject.ApplicationRoleObject -- Borrower Johny wants to get some money.
 ```
 
-## Class diagram
-
-![Role Object](./etc/role-object.urm.png "Role Object pattern class diagram")
-
 ## Applicability
 
 * When an object needs to change its behavior dynamically based on its role.

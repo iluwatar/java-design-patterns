@@ -50,14 +50,18 @@ public class ExternalServiceA implements Gateway {
     // Implementation for ExternalServiceA
   }
 }
+```
 
+```java
 public class ExternalServiceB implements Gateway {
   @Override
   public void execute() {
     // Implementation for ExternalServiceB
   }
 }
+```
 
+```java
 public class ExternalServiceC implements Gateway {
   @Override
   public void execute() {
@@ -121,10 +125,6 @@ Running the example produces the following output.
 ```
 
 This example demonstrates how the Gateway design pattern can be used to simplify the interaction with multiple external services. Each service is encapsulated behind a common interface, and the application interacts with this interface rather than directly with the services. This reduces coupling and makes the application easier to maintain and extend.
-
-## Class diagram
-
-![Gateway](./etc/gateway.urm.png "Gateway")
 
 ## Applicability
 

@@ -34,7 +34,9 @@ We have an interface `Coin` and two implementations `GoldCoin` and `CopperCoin`.
 public interface Coin {
   String getDescription();
 }
+```
 
+```java
 public class GoldCoin implements Coin {
 
   static final String DESCRIPTION = "This is a gold coin.";
@@ -44,7 +46,9 @@ public class GoldCoin implements Coin {
     return DESCRIPTION;
   }
 }
+```
 
+```java
 public class CopperCoin implements Coin {
    
   static final String DESCRIPTION = "This is a copper coin.";

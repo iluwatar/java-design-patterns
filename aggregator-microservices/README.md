@@ -18,7 +18,7 @@ To aggregate responses from multiple microservices and return a consolidated res
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine an online travel booking platform. When a user searches for a vacation package, the platform needs to gather information from several different services: flights, hotels, car rentals, and local attractions. Instead of the user making separate requests to each service, the platform employs an Aggregator Microservice. This microservice calls each of these services, collects their responses, and then consolidates the information into a single, unified response that is sent back to the user. This simplifies the user experience by providing all necessary travel details in one place and reduces the number of direct interactions the user needs to have with the underlying services.
 
@@ -97,10 +97,6 @@ curl http://localhost:50004/product
 # Example output
 {"title":"The Product Title.","productInventories":5}
 ```
-
-## Class diagram
-
-![Class diagram of the Aggregator Microservices Pattern](./aggregator-service/etc/aggregator-service.png "Aggregator Microservice")
 
 ## Applicability
 

@@ -51,7 +51,9 @@ First, we'll define the `Event` abstract class and the concrete event classes `U
 public abstract class Event {
   // Event related properties and methods
 }
+```
 
+```java
 public class UserCreatedEvent extends Event {
   private User user;
 
@@ -63,7 +65,9 @@ public class UserCreatedEvent extends Event {
     return user;
   }
 }
+```
 
+```java
 public class UserUpdatedEvent extends Event {
   private User user;
 
@@ -85,7 +89,9 @@ public class UserCreatedEventHandler {
     // Logic to execute when a UserCreatedEvent occurs
   }
 }
+```
 
+```java
 public class UserUpdatedEventHandler {
   public void onUserUpdated(UserUpdatedEvent event) {
     // Logic to execute when a UserUpdatedEvent occurs

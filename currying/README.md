@@ -51,7 +51,9 @@ public class Book {
         this.publicationDate = publicationDate;
     }
 }
+```
 
+```java
 public enum Genre {
     FANTASY,
     HORROR,
@@ -70,9 +72,6 @@ Book createBook(Genre genre, String author, String title, LocalDate publicationD
 However, what if we only wanted to create books from the `FANTASY` genre? Passing the `FANTASY` parameter with each method call would be repetitive. Alternatively, we could define a new method specifically for creating `FANTASY` books, but it would be impractical to create a separate method for each genre. The solution is to use a curried function.
 
 ```java
-/**
- * Curried book builder/creator function.
- */
 static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> book_creator
         = bookGenre
         -> bookAuthor
@@ -90,11 +89,6 @@ Function<String, Function<String, Function<LocalDate, Book>>> fantasyBookFunc = 
 Unfortunately, the type signature of `BOOK_CREATOR` and `fantasyBookFunc` are difficult to read and understand. We can improve this by using the [builder pattern](https://java-design-patterns.com/patterns/builder/) and functional interfaces.
 
 ```java
-
-/**
- * Implements the builder pattern using functional interfaces to create a more readable book
- * creator function. This function is equivalent to the BOOK_CREATOR function.
- */
 public static AddGenre builder() {
     return genre
             -> author
@@ -103,30 +97,18 @@ public static AddGenre builder() {
             -> new Book(genre, author, title, publicationDate);
 }
 
-/**
- * Functional interface which adds the genre to a book.
- */
 public interface AddGenre {
     Book.AddAuthor withGenre(Genre genre);
 }
 
-/**
- * Functional interface which adds the author to a book.
- */
 public interface AddAuthor {
     Book.AddTitle withAuthor(String author);
 }
 
-/**
- * Functional interface which adds the title to a book.
- */
 public interface AddTitle {
     Book.AddPublicationDate withTitle(String title);
 }
 
-/**
- * Functional interface which adds the publication date to a book.
- */
 public interface AddPublicationDate {
     Book withPublicationDate(LocalDate publicationDate);
 }
@@ -201,10 +183,6 @@ Program output:
 09:04:52.506 [main] INFO com.iluwatar.currying.App -- Book{genre=SCIFI, author='Frank Herbert', title='Dune', publicationDate=1965-08-01}
 09:04:52.506 [main] INFO com.iluwatar.currying.App -- Book{genre=SCIFI, author='Isaac Asimov', title='Foundation', publicationDate=1942-05-01}
 ```
-
-## Class diagram
-
-![Currying](./etc/currying.urm.png)
 
 ## Applicability
 

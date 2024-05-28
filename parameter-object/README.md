@@ -65,7 +65,7 @@ public class ParameterObject {
 }
 ```
 
-The `Builder` class inside `ParameterObject` provides a way to construct a `ParameterObject` instance. It has methods for setting each of the parameters, and a `build()` method to create the `ParameterObject`.
+The `Builder` class inside `ParameterObject` provides a way to construct a `ParameterObject` instance. It has methods for setting each of the parameters, and a `build` method to create the `ParameterObject`.
 
 ```java
 public static class Builder {

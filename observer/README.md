@@ -161,10 +161,6 @@ Program output:
 21:28:08.313 [main] INFO com.iluwatar.observer.generic.GenHobbits -- The hobbits are facing Sunny weather now
 ```
 
-## Class diagram
-
-![Observer](./etc/observer.png "Observer")
-
 ## Applicability
 
 Use the Observer pattern in any of the following situations:

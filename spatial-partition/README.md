@@ -91,10 +91,6 @@ In this code, `SpatialPartition` is a class that represents the spatial partitio
 
 This way, we can reduce the time complexity of finding the units within a certain range from O(n^2) to O(nlogn), decreasing the computations required significantly in case of a large number of units.
 
-## Class diagram
-
-![Spatial Partition](./etc/spatial-partition.urm.png "Spatial Partition pattern class diagram")
-
 ## Applicability
 
 * Use when managing a large number of objects in a spatial environment, such as in games or simulations.

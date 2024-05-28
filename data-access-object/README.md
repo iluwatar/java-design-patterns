@@ -22,7 +22,7 @@ The Data Access Object (DAO) design pattern aims to separate the application's b
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a library system where the main application manages book loans, user accounts, and inventory. The Data Access Object (DAO) pattern in this context would be used to separate the database operations (such as fetching book details, updating user records, and checking inventory) from the business logic of managing loans and accounts. For instance, there would be a `BookDAO` class responsible for all database interactions related to books, such as retrieving a book by its ISBN or updating its availability status. This abstraction allows the library system's main application code to focus on business rules and workflows, while the `BookDAO` handles the complex SQL queries and data management. This separation makes the system easier to maintain and test, as changes to the data source or business logic can be managed independently.
 

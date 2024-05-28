@@ -174,10 +174,6 @@ Running the application produces the following console output:
 [pool-1-thread-2] ERROR ServiceExecutor - sleep interrupted
 ```
 
-## Class diagram
-
-![Queue-Based Load Leveling](./etc/queue-load-leveling.gif "Queue-Based Load Leveling")
-
 ## Applicability
 
 * When there are variable workloads, and you need to ensure that peak loads do not overwhelm the system

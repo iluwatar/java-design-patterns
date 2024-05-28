@@ -22,7 +22,7 @@ The Composite Entity design pattern is aimed at managing a set of interrelated p
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Consider a university registration system where a "Student" entity is a composite entity. Each "Student" object includes several dependent objects: personal details, course enrollments, grades, and payment information. Instead of managing each of these aspects separately, the Composite Entity pattern allows the university system to treat the "Student" as a single entity. This simplifies operations such as enrolling a student in a new course, updating grades, and processing payments, since all related actions can be managed through the composite "Student" object.
 
@@ -122,10 +122,6 @@ public App(String message, String signal) {
     Arrays.stream(console.getData()).forEach(LOGGER::info);
 }
 ```
-
-## Class diagram
-
-![Composite Entity](./etc/composite_entity.urm.png "Composite Entity")
 
 ## Applicability
 

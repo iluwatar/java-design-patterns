@@ -19,11 +19,11 @@ The Client Session design pattern aims to maintain a user's state and data acros
 
 ## Explanation
 
-Real-World Example
+Real-world example
 
 > A real-world example of the Client Session pattern is a library membership system. When a member logs in, the system starts a session to track their borrowing activities. This session holds data such as the member's ID, current borrowed books, due dates, and any fines. As the member browses the catalog, borrows books, or returns them, the session maintains this stateful information, ensuring the member's interactions are consistent and personalized until they log out or the session expires. This approach helps the library system manage user-specific data efficiently across multiple interactions, providing a seamless and personalized experience for the members.
 
-In Plain words
+In plain words
 
 > The Client Session pattern manages user-specific data across multiple requests within a web application to maintain continuity and personalization.
 
@@ -36,8 +36,6 @@ Wikipedia says
 The Client Session design pattern is a behavioral design pattern that maintains a user's state and data across multiple requests within a web application, ensuring a continuous and personalized user experience. This pattern is commonly used in web applications where user-specific data needs to be managed across multiple requests.
 
 In the given code, we have a `Server` class and a `Session` class. The `Server` class represents the server that processes incoming requests and assigns sessions to clients. The `Session` class represents a session that is assigned to a client.
-
-Here's a programmatic example of the Client Session design pattern using the given code:
 
 ```java
 // The Server class represents the server that processes incoming requests and assigns sessions to clients.

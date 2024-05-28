@@ -49,7 +49,7 @@ public static List<String> getModelsAfter2000(List<Car> cars){
 
 **Step 2: Grouping**
 
-Next, we want to group the cars by their category. This is done using the `groupingBy()` collector.
+Next, we want to group the cars by their category. This is done using the `groupingBy` collector.
 
 ```java
 public static Map<Category, List<Car>> getGroupingOfCarsByCategory(List<Car> cars){

@@ -22,7 +22,7 @@ The purpose of the Converter pattern is to provide a generic, common way of bidi
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > In a real-world scenario, consider a scenario where a library system needs to interact with a third-party book database. The library system uses its own internal book format, while the third-party database provides book information in a different format. To facilitate communication between the two systems, a Converter design pattern can be employed. This pattern will define a converter class that transforms the third-party book data format into the library's internal book format and vice versa. This ensures that the library system can seamlessly integrate with the third-party database without altering its own internal structure or the third-party system's format.
 
@@ -34,7 +34,7 @@ In plain words
 
 In real world applications it is often the case that database layer consists of entities that need to be mapped into DTOs for use on the business logic layer. Similar mapping is done for potentially huge amount of classes, and we need a generic way to achieve this.
 
-We need a generic solution for the mapping problem. To achieve this, let's introduce a generic converter.
+We need a generic solution for the mapping problem. To achieve this, let's introduce a generic `Converter`.
 
 ```java
 public class Converter<T, U> {

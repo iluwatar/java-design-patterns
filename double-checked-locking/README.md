@@ -15,7 +15,7 @@ The Double-Checked Locking pattern aims to reduce the overhead of acquiring a lo
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > In a company with a high-value equipment room, employees first check a visible sign to see if the room is locked. If the sign shows it's unlocked, they enter directly; if locked, they use a security keycard for access. This two-step verification process efficiently manages security without unnecessary use of the electronic lock system, mirroring the Double-Checked Locking pattern used in software to minimize resource-intensive operations.
 

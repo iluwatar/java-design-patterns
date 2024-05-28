@@ -158,10 +158,6 @@ Running the example produces the following console output:
 
 This is a basic example of how to use the Saga design pattern. In a real-world application, the `Saga` class would manage the sequence of local transactions, ensuring that each transaction is performed in the correct order and that the Saga is rolled back if a transaction fails.
 
-## Class diagram
-
-![Saga](./etc/saga.urm.png "Saga pattern class diagram")
-
 ## Applicability
 
 * When you have a complex transaction that spans multiple microservices.

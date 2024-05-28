@@ -67,7 +67,7 @@ public enum RequestType {
 }
 ```
 
-Next, we show the request handler hierarchy.
+Next, we show the `RequestHandler` hierarchy.
 
 ```java
 public interface RequestHandler {
@@ -109,7 +109,7 @@ public class OrcCommander implements RequestHandler {
 
 ```
 
-The Orc King gives the orders and forms the chain.
+The `OrcKing` gives the orders and forms the chain.
 
 ```java
 public class OrcKing {

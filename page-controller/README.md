@@ -119,10 +119,6 @@ public class UserView {
 
 In this example, the controllers (`SignupController` and `UserController`) are the Page Controllers. They handle the HTTP requests for their respective pages and determine which model and view to use. The models (`SignupModel` and `UserModel`) hold the data for the page, and the views (`SignupView` and `UserView`) determine how that data is presented. This separation of concerns makes the code easier to manage and maintain.
 
-## Class diagram
-
-![Page Controller](./etc/page-controller.urm.png)
-
 ## Applicability
 
 * When developing a web application where each page or action needs specific processing.

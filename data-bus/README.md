@@ -55,29 +55,14 @@ public class DataBus {
         return INSTANCE;
     }
 
-    /**
-     * Register a member with the data-bus to start receiving events.
-     *
-     * @param member The member to register
-     */
     public void subscribe(final Member member) {
         this.listeners.add(member);
     }
 
-    /**
-     * Deregister a member to stop receiving events.
-     *
-     * @param member The member to deregister
-     */
     public void unsubscribe(final Member member) {
         this.listeners.remove(member);
     }
 
-    /**
-     * Publish an event to all members.
-     *
-     * @param event The event
-     */
     public void publish(final DataType event) {
         event.setDataBus(this);
 
@@ -162,10 +147,6 @@ When the data bus publishes a message, the output is as follows:
 ```
 
 As shown, `MessageCollectorMembers` only accept messages of type `MessageData`, so they do not see the `StartingData` or `StoppingData` messages, which are only visible to `StatusMember` (the event administrators or organizers). This selective message handling prevents ordinary community members from receiving administrative notifications.
-
-## Class diagram
-
-![Data Bus](./etc/data-bus.urm.png "Data Bus pattern")
 
 ## Applicability
 

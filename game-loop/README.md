@@ -303,10 +303,6 @@ Current bullet position: 0.98999935
 Stop variable-step game loop.
 ```
 
-## Class diagram
-
-![Game Loop](./etc/game-loop.urm.png "Game Loop pattern class diagram")
-
 ## Applicability
 
 The Game Loop pattern is applicable in real-time simulation and gaming where the state needs to be updated continuously and consistently in response to user inputs and other events.

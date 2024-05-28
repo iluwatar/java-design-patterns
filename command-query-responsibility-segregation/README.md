@@ -18,7 +18,7 @@ Command Query Responsibility Segregation aims to segregate the operations that m
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a modern library where the tasks of borrowing and returning books (commands) are handled at the front desk, while the task of searching for books and reading them (queries) happens in the reading area. The front desk optimizes for transaction efficiency and record-keeping, ensuring books are properly checked in and out. Meanwhile, the reading area is optimized for comfort and accessibility, making it easy for readers to find and engage with the books. This separation improves the library's overall efficiency and user experience, much like the CQRS pattern enhances a software system's performance and maintainability.
 
@@ -34,27 +34,64 @@ Microsoft's documentation says
 
 One way to implement the Command Query Responsibility Segregation (CQRS) pattern is to separate the read and write operations into different services.
 
-1. Command Service: The `CommandServiceImpl` class is used for write operations. It provides methods to create authors and books, and to add books to authors. Here's a snippet of how it's used:
+Let's see the code implementation first and explain how it works afterward.
 
 ```java
-var commands = new CommandServiceImpl();
-commands.authorCreated(AppConstants.E_EVANS, "Eric Evans", "evans@email.com");
-commands.bookAddedToAuthor("Domain-Driven Design", 60.08, AppConstants.E_EVANS);
+public static void main(String[] args) {
+
+    // Create Authors and Books using CommandService
+    var commands = new CommandServiceImpl();
+
+    commands.authorCreated(AppConstants.E_EVANS, "Eric Evans", "evans@email.com");
+    commands.authorCreated(AppConstants.J_BLOCH, "Joshua Bloch", "jBloch@email.com");
+    commands.authorCreated(AppConstants.M_FOWLER, "Martin Fowler", "mFowler@email.com");
+
+    commands.bookAddedToAuthor("Domain-Driven Design", 60.08, AppConstants.E_EVANS);
+    commands.bookAddedToAuthor("Effective Java", 40.54, AppConstants.J_BLOCH);
+    commands.bookAddedToAuthor("Java Puzzlers", 39.99, AppConstants.J_BLOCH);
+    commands.bookAddedToAuthor("Java Concurrency in Practice", 29.40, AppConstants.J_BLOCH);
+    commands.bookAddedToAuthor("Patterns of Enterprise"
+            + " Application Architecture", 54.01, AppConstants.M_FOWLER);
+    commands.bookAddedToAuthor("Domain Specific Languages", 48.89, AppConstants.M_FOWLER);
+    commands.authorNameUpdated(AppConstants.E_EVANS, "Eric J. Evans");
+
+    // Query the database using QueryService
+    var queries = new QueryServiceImpl();
+
+    var nullAuthor = queries.getAuthorByUsername("username");
+    var evans = queries.getAuthorByUsername(AppConstants.E_EVANS);
+    var blochBooksCount = queries.getAuthorBooksCount(AppConstants.J_BLOCH);
+    var authorsCount = queries.getAuthorsCount();
+    var dddBook = queries.getBook("Domain-Driven Design");
+    var blochBooks = queries.getAuthorBooks(AppConstants.J_BLOCH);
+
+    LOGGER.info("Author username : {}", nullAuthor);
+    LOGGER.info("Author evans : {}", evans);
+    LOGGER.info("jBloch number of books : {}", blochBooksCount);
+    LOGGER.info("Number of authors : {}", authorsCount);
+    LOGGER.info("DDD book : {}", dddBook);
+    LOGGER.info("jBloch books : {}", blochBooks);
+
+    HibernateUtil.getSessionFactory().close();
+}
 ```
 
-2. Query Service: The `QueryServiceImpl` class is used for read operations. It provides methods to get author and book details. Here's a snippet of how it's used:
+1. Command Service: The `CommandServiceImpl` class is used for write operations. It provides methods to create authors and books, and to add books to authors.
 
-```java
-var queries = new QueryServiceImpl();
-var evans = queries.getAuthorByUsername(AppConstants.E_EVANS);
-var dddBook = queries.getBook("Domain-Driven Design");
-```
+2. Query Service: The `QueryServiceImpl` class is used for read operations. It provides methods to get author and book details.
 
 This separation of concerns allows for flexibility in how the application handles data access and manipulation, and is a key aspect of the CQRS pattern.
 
-## Class diagram
+Program output:
 
-![CQRS](./etc/cqrs.png "CQRS")
+```
+17:37:56.040 [main] INFO  com.iluwatar.cqrs.app.App - Author username : null
+17:37:56.040 [main] INFO  com.iluwatar.cqrs.app.App - Author evans : Author(name=Eric J. Evans, email=evans@email.com, username=eEvans)
+17:37:56.041 [main] INFO  com.iluwatar.cqrs.app.App - jBloch number of books : 3
+17:37:56.041 [main] INFO  com.iluwatar.cqrs.app.App - Number of authors : 3
+17:37:56.041 [main] INFO  com.iluwatar.cqrs.app.App - DDD book : Book(title=Domain-Driven Design, price=60.08)
+17:37:56.042 [main] INFO  com.iluwatar.cqrs.app.App - jBloch books : [Book(title=Effective Java, price=40.54), Book(title=Java Puzzlers, price=39.99), Book(title=Java Concurrency in Practice, price=29.4)]
+```
 
 ## Applicability
 

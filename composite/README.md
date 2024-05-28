@@ -174,10 +174,6 @@ The console output:
  Much wind pours from your mouth.
 ```
 
-## Class diagram
-
-![Composite](./etc/composite.urm.png "Composite class diagram")
-
 ## Applicability
 
 Use the Composite pattern when

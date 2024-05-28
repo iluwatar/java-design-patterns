@@ -31,8 +31,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-* For the purpose of this demonstration assume we have already created a database instance **db**.
-* Let's first look at the implementation of a person entity, and it's fields:
+For the purpose of this demonstration assume we have already created a database instance **db**. Let's first look at the implementation of a person entity, and it's fields:
 
 ```java
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -56,9 +55,7 @@ public final class Person implements Serializable {
 
 ```
 
-* The following is the implementation of the personFinder which is the entity that the user will utilize in order
-  to search for a record in our database. It has the relevant DB attached to it. It also maintains an IdentityMap
-  to store the recently read records.
+The following is the implementation of the `PersonFinder` which is the entity that the user will utilize in order to search for a record in our database. It has the relevant DB attached to it. It also maintains an `IdentityMap` to store the recently read records.
 
 ```java
 @Slf4j
@@ -92,8 +89,7 @@ public class PersonFinder {
 
 ```
 
-* The identity map field in the above class is simply an abstraction of a hashMap with **personNationalId**
-  as the keys and the corresponding person object as the value. Here is its implementation:
+The identity map field in the above class is simply an abstraction of a hashMap with **personNationalId** as the keys and the corresponding person object as the value. Here is its implementation:
 
 ```java
 @Slf4j
@@ -126,7 +122,7 @@ public class IdentityMap {
 }
 ```
 
-Now, let's see how the identity map works in our App's main function.
+Now, let's see how the identity map works in our `App`'s `main` function.
 
 ```java
 public static void main(String[] args) {

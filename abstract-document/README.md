@@ -19,7 +19,7 @@ The Abstract Document design pattern is a structural design pattern that aims to
 
 The Abstract Document pattern enables handling additional, non-static properties. This pattern uses concept of traits to enable type safety and separate properties of different classes into set of interfaces.
 
-Real world example
+Real-world example
 
 > Imagine a library system where books can have different formats and attributes: physical books, eBooks, and audiobooks. Each format has unique properties, such as page count for physical books, file size for eBooks, and duration for audiobooks. The Abstract Document design pattern allows the library system to manage these diverse formats flexibly. By using this pattern, the system can store and retrieve properties dynamically, without needing a rigid structure for each book type, making it easier to add new formats or attributes in the future without significant changes to the codebase.
 

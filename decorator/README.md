@@ -131,10 +131,6 @@ Program output:
 11:34:18.101 [main] INFO com.iluwatar.decorator.App -- Clubbed troll power: 20.
 ```
 
-## Class diagram
-
-![Decorator](./etc/decorator.urm.png "Decorator pattern class diagram")
-
 ## Applicability
 
 Decorator is used to:

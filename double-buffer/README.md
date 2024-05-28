@@ -20,7 +20,7 @@ The Double Buffer pattern aims to reduce the time necessary for rendering and di
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > Imagine a busy restaurant kitchen where chefs are constantly preparing dishes, and waitstaff are constantly picking up ready dishes to serve to customers. To avoid confusion and delays, the restaurant uses a double buffer system. They have two counters: one for chefs to place newly prepared dishes and another for waitstaff to pick up the dishes. While the chefs are filling one counter with prepared dishes, the waitstaff are simultaneously clearing the other counter by picking up dishes to serve. Once the waitstaff have cleared all dishes from their counter, they switch to the counter where the chefs have placed the newly prepared dishes, and the chefs start filling the now-empty counter. This system ensures a smooth and continuous workflow without either party waiting idly, maximizing efficiency and minimizing downtime.
 
@@ -39,48 +39,21 @@ A typical example, and one that every game engine must address, is rendering. Wh
 `Buffer` interface that assures basic functionalities of a buffer.
 
 ```java
-/**
- * Buffer interface.
- */
 public interface Buffer {
 
-    /**
-     * Clear the pixel in (x, y).
-     *
-     * @param x X coordinate
-     * @param y Y coordinate
-     */
     void clear(int x, int y);
 
-    /**
-     * Draw the pixel in (x, y).
-     *
-     * @param x X coordinate
-     * @param y Y coordinate
-     */
     void draw(int x, int y);
 
-    /**
-     * Clear all the pixels.
-     */
     void clearAll();
 
-    /**
-     * Get all the pixels.
-     *
-     * @return pixel list
-     */
     Pixel[] getPixels();
-
 }
 ```
 
 One of the implementations of `Buffer` interface.
 
 ```java
-/**
- * FrameBuffer implementation class.
- */
 public class FrameBuffer implements Buffer {
 
     public static final int WIDTH = 10;
@@ -121,22 +94,16 @@ public class FrameBuffer implements Buffer {
 We support black and white pixels.
 
 ```java
-/**
- * Pixel enum. Each pixel can be white (not drawn) or black (drawn).
- */
 public enum Pixel {
 
     WHITE,
-    BLACK;
+    BLACK
 }
 ```
 
 `Scene` represents the game scene where current buffer has already been rendered.
 
 ```java
-/**
- * Scene class. Render the output frame.
- */
 @Slf4j
 public class Scene {
 
@@ -146,9 +113,6 @@ public class Scene {
 
     private int next;
 
-    /**
-     * Constructor of Scene.
-     */
     public Scene() {
         frameBuffers = new FrameBuffer[2];
         frameBuffers[0] = new FrameBuffer();
@@ -157,11 +121,6 @@ public class Scene {
         next = 1;
     }
 
-    /**
-     * Draw the next frame.
-     *
-     * @param coordinateList list of pixels of which the color should be black
-     */
     public void draw(List<? extends Pair<Integer, Integer>> coordinateList) {
         LOGGER.info("Start drawing next frame");
         LOGGER.info("Current buffer: " + current + " Next buffer: " + next);

@@ -43,7 +43,9 @@ public interface Threat {
     int id();
     ThreatType type();
 }
+```
 
+```java
 public interface ThreatAwareSystem {
     String systemId();
     List<? extends Threat> threats();
@@ -221,10 +223,6 @@ Running the example produces the following console output.
 08:33:23.581 [main] INFO com.iluwatar.filterer.App -- Filtering ProbabilisticThreatAwareSystem. Initial : SimpleProbabilisticThreatAwareSystem(systemId=Sys-1, threats=[SimpleProbableThreat{probability=0.99} SimpleThreat(threatType=TROJAN, id=1, name=Trojan-ArcBomb), SimpleProbableThreat{probability=0.8} SimpleThreat(threatType=ROOTKIT, id=2, name=Rootkit-Kernel)])
 08:33:23.581 [main] INFO com.iluwatar.filterer.App -- Filtered by probability = 0.99 : SimpleProbabilisticThreatAwareSystem(systemId=Sys-1, threats=[SimpleProbableThreat{probability=0.99} SimpleThreat(threatType=TROJAN, id=1, name=Trojan-ArcBomb)])
 ```
-
-## Class diagram
-
-![Filterer](./etc/filterer.png "Filterer")
 
 ## Applicability
 

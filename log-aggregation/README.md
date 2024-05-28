@@ -123,10 +123,6 @@ public class App {
 
 In this example, the `LogProducer` services generate logs of different levels. The `LogAggregator` collects these logs and stores them in the `CentralLogStore` if they meet the minimum log level requirement. Finally, the logs are displayed by the `CentralLogStore`.
 
-## Class diagram
-
-![Log Aggregation](./etc/log-aggregation.png)
-
 ## Applicability
 
 * Useful in distributed systems where logs from various components need to be centralized for better management and analysis.

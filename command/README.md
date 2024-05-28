@@ -77,7 +77,7 @@ public class Wizard {
 }
 ```
 
-Next, we have the goblin who's the target of the spells.
+Next, we have the `Goblin` who's the `Target` of the spells.
 
 ```java
 @Slf4j
@@ -89,31 +89,24 @@ public abstract class Target {
 
     private Visibility visibility;
 
-    /**
-     * Print status.
-     */
     public void printStatus() {
         LOGGER.info("{}, [size={}] [visibility={}]", this, getSize(), getVisibility());
     }
 
-    /**
-     * Changes the size of the target.
-     */
     public void changeSize() {
         var oldSize = getSize() == Size.NORMAL ? Size.SMALL : Size.NORMAL;
         setSize(oldSize);
     }
 
-    /**
-     * Changes the visibility of the target.
-     */
     public void changeVisibility() {
         var visible = getVisibility() == Visibility.INVISIBLE
                 ? Visibility.VISIBLE : Visibility.INVISIBLE;
         setVisibility(visible);
     }
 }
+```
 
+```java
 public class Goblin extends Target {
 
     public Goblin() {
@@ -128,7 +121,7 @@ public class Goblin extends Target {
 }
 ```
 
-Finally, we have the wizard in the main function casting spells.
+Finally, we can show the full example of `Wizard` casting spells.
 
 ```java
 public static void main(String[] args) {
@@ -168,10 +161,6 @@ Here's the program output:
 20:13:38.409 [main] INFO com.iluwatar.command.Target -- Goblin, [size=small] [visibility=visible]
 20:13:38.409 [main] INFO com.iluwatar.command.Target -- Goblin, [size=small] [visibility=invisible]
 ```
-
-## Class diagram
-
-![Command](./etc/command.png "Command")
 
 ## Applicability
 

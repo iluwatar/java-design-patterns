@@ -38,7 +38,7 @@ In plain words
 
 This application has different layers labelled A, B and C with each extracting specific information from a similar context for further use in the software. Passing down each pieces of information individually would be inefficient, a method to efficiently store and pass information is needed.
 
-Define the data that the service context object contains.
+Define the data that the `ServiceContext` object contains.
 
 ```Java
 @Getter
@@ -51,7 +51,7 @@ public class ServiceContext {
 }
 ```
 
-Create an interface used in parts of the application for context objects to be created.
+Create interface `ServiceContextFactory` to be used in parts of the application for context objects to be created.
 
 ```Java
 public class ServiceContextFactory {
@@ -78,7 +78,9 @@ public class LayerA {
         context.setACCOUNT_SERVICE(accountService);
     }
 }
+```
 
+```Java
 @Getter
 public class LayerB {
 
@@ -92,7 +94,9 @@ public class LayerB {
         context.setSESSION_SERVICE(sessionService);
     }
 }
+```
 
+```Java
 @Getter
 public class LayerC {
 
@@ -149,10 +153,6 @@ Program output:
 08:15:32.136 [main] INFO com.iluwatar.context.object.App -- Context = com.iluwatar.context.object.ServiceContext@5577140b
 08:15:32.137 [main] INFO com.iluwatar.context.object.App -- Context = com.iluwatar.context.object.ServiceContext@5577140b
 ```
-
-## Class diagram
-
-![Context Object](./etc/context-object.png "Context object")
 
 ## Applicability
 

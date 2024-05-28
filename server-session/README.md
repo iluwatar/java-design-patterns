@@ -88,7 +88,7 @@ public class App {
 }
 ```
 
-The LoginHandler is responsible for handling login requests. When a user logs in, a session identifier is created and stored for future requests in a list.
+The `LoginHandler` is responsible for handling login requests. When a user logs in, a session identifier is created and stored for future requests in a list.
 
 ```java
 public class LoginHandler {
@@ -107,7 +107,7 @@ public class LoginHandler {
 }
 ```
 
-The LogoutHandler is responsible for handling logout requests. When a user logs out, the session identifier is deleted from the list along with the appropriate user session data.
+The `LogoutHandler` is responsible for handling logout requests. When a user logs out, the session identifier is deleted from the list along with the appropriate user session data.
 
 ```java
 public class LogoutHandler {

@@ -35,7 +35,7 @@ The Data Locality pattern is a design pattern that aims to improve performance b
 
 In the data-locality module, the pattern is demonstrated using a game loop that processes a bunch of game entities. These entities are decomposed into different domains: AI, physics, and rendering.
 
-The GameEntity class is the main class that represents a game entity. It contains an array of AiComponent, PhysicsComponent, and RenderComponent objects. These components represent different aspects of a game entity.
+The `GameEntity` class is the main class that represents a game entity. It contains an array of `AiComponent`, `PhysicsComponent`, and `RenderComponent` objects. These components represent different aspects of a game entity.
 
 ```java
 public class GameEntity {
@@ -46,7 +46,7 @@ public class GameEntity {
 }
 ```
 
-The GameEntity class has a start method that initializes all the components.
+The `GameEntity` class has a start method that initializes all the components.
 
 ```java
 public void start() {
@@ -58,7 +58,7 @@ public void start() {
 }
 ```
 
-The GameEntity class also has an update method that updates all the components. This method demonstrates the data locality pattern. Instead of updating all aspects of a single entity at a time (AI, physics, and rendering), it updates the same aspect (e.g., AI) for all entities first, then moves on to the next aspect (e.g., physics). This approach improves cache utilization because it's more likely that the data needed for the update is already in the cache.
+The `GameEntity` class also has an update method that updates all the components. This method demonstrates the data locality pattern. Instead of updating all aspects of a single entity at a time (AI, physics, and rendering), it updates the same aspect (e.g., AI) for all entities first, then moves on to the next aspect (e.g., physics). This approach improves cache utilization because it's more likely that the data needed for the update is already in the cache.
 
 ```java
 public void update() {
@@ -74,7 +74,7 @@ public void update() {
 }
 ```
 
-The Application class contains the main method that creates a GameEntity object and starts the game loop.
+The `Application` class contains the main method that creates a `GameEntity` object and starts the game loop.
 
 ```java
 public class Application {

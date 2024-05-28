@@ -153,10 +153,6 @@ Here's the program console output.
 21:47:08.618[main]INFO com.iluwatar.async.method.invocation.App-Space rocket<50>launch complete
 ```
 
-# Class diagram
-
-![Async Method Invocation](./etc/async-method-invocation.urm.png "Async Method Invocation")
-
 ## Applicability
 
 Use the async method invocation pattern when

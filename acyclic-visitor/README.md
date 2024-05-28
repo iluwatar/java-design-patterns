@@ -15,7 +15,7 @@ The Acyclic Visitor pattern decouples operations from an object hierarchy, allow
 
 ## Explanation
 
-Real world example
+Real-world example
 
 > An analogous real-world example of the Acyclic Visitor pattern is a museum guide system. Imagine a museum with various exhibits like paintings, sculptures, and historical artifacts. The museum has different types of guides (audio guide, human guide, virtual reality guide) that provide information about each exhibit. Instead of modifying the exhibits every time a new guide type is introduced, each guide implements an interface to visit different exhibit types. This way, the museum can add new types of guides without altering the existing exhibits, ensuring that the system remains extensible and maintainable without forming any dependency cycles.
 

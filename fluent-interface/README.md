@@ -150,10 +150,6 @@ Program output:
 08:50:08.270 [main] INFO com.iluwatar.fluentinterface.app.App -- Last amongst first two negatives: -22
 ```
 
-## Class diagram
-
-![Fluent Interface](./etc/fluentinterface.png "Fluent Interface")
-
 ## Applicability
 
 Use the Fluent Interface pattern when

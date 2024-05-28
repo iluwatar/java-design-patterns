@@ -207,10 +207,6 @@ Program output:
 13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 14
 ```
 
-## Class diagram
-
-![Iterator](./etc/iterator_1.png "Iterator")
-
 ## Applicability
 
 Use the Iterator pattern

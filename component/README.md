@@ -102,12 +102,6 @@ Upon opening the component package, the collection of components are revealed. T
 public class PlayerInputComponent implements InputComponent {
     private static final int walkAcceleration = 1;
 
-    /**
-     * The update method to change the velocity based on the input key event.
-     *
-     * @param gameObject the gameObject instance
-     * @param e          key event instance
-     */
     @Override
     public void update(GameObject gameObject, int e) {
         switch (e) {
@@ -127,10 +121,6 @@ public class PlayerInputComponent implements InputComponent {
     }
 }
 ```
-
-## Class diagram
-
-![Component](./etc/component.uml.png "Component")
 
 ## Applicability
 

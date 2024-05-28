@@ -141,10 +141,6 @@ In this snippet, when a `SyncEvent` is started, it runs on the main thread, bloc
 
 These are the key parts of the Event-Based Asynchronous design pattern as implemented in this code. The pattern allows tasks to be executed in the background, notifying the main program via events when completed, thereby enhancing system efficiency and responsiveness without blocking ongoing operations.
 
-## Class diagram
-
-![Event-Based Asynchronous](./etc/event-asynchronous.png "Event-Based Asynchronous")
-
 ## Applicability
 
 * When multiple tasks can be processed in parallel and independently.

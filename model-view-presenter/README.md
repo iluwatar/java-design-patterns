@@ -133,10 +133,6 @@ public class App {
 
 In this setup, the `App` class creates instances of the Model, View, and Presenter. It then connects these instances, forming the MVP triad. The Presenter is given a reference to the View, and the Model is set on the Presenter. Finally, the Presenter is started, which in turn opens the View.
 
-## Class diagram
-
-![Model-View-Presenter](./etc/model-view-presenter_1.png "Model-View-Presenter")
-
 ## Applicability
 
 Use MVP in applications where a clear [separation of concerns](https://java-design-patterns.com/principles/#separation-of-concerns) is needed between the presentation layer and the underlying business logic. It's particularly useful in client-server applications and enterprise-level applications.
