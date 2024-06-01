@@ -125,7 +125,7 @@
     <module>caching</module>
     <module>delegation</module>
     <module>event-driven-architecture</module>
-    <module>api-gateway</module>
+    <module>microservices-api-gateway</module>
     <module>factory-kit</module>
     <module>feature-toggle</module>
     <module>value-object</module>
@@ -133,7 +133,7 @@
     <module>mute-idiom</module>
     <module>hexagonal</module>
     <module>abstract-document</module>
-    <module>aggregator-microservices</module>
+    <module>microservices-aggregrator</module>
     <module>promise</module>
     <module>page-controller</module>
     <module>page-object</module>
@@ -205,7 +205,7 @@
     <module>context-object</module>
     <module>optimistic-offline-lock</module>
     <module>curiously-recurring-template-pattern</module>
-    <module>log-aggregation</module>
+    <module>microservices-log-aggregation</module>
     <module>anti-corruption-layer</module>
     <module>health-check</module>
     <module>notification</module>
