@@ -12,6 +12,10 @@ tag:
     - Scalability
 ---
 
+## Also known as
+
+* API Composition
+
 ## Intent
 
 To aggregate responses from multiple microservices and return a consolidated response to the client.
@@ -129,5 +133,6 @@ Trade-offs:
 * [Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services](https://amzn.to/3T9g9Uj)
 * [Microservice Architecture: Aligning Principles, Practices, and Culture](https://amzn.to/3T9jZNi)
 * [Microservices Patterns: With examples in Java](https://amzn.to/4a5LHkP)
+* [Pattern: API Composition](https://microservices.io/patterns/data/api-composition.html)
 * [Production-Ready Microservices: Building Standardized Systems Across an Engineering Organization](https://amzn.to/4a0Vk4c)
 * [Microservice Design Patterns (Arun Gupta)](http://web.archive.org/web/20190705163602/http://blog.arungupta.me/microservice-design-patterns/)
