@@ -58,7 +58,7 @@ public class BookRepository {
     }
 
     // used synchronized block to ensure only one thread compares and update the version
-    synchronized (lock){
+    synchronized (lock) {
       var latestBook = collection.get(book.getId());
       if (book.getVersion() != latestBook.getVersion()) {
         throw new VersionMismatchException(
