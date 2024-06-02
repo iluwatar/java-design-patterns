@@ -1,5 +1,5 @@
 ---
-title: Aggregator Microservices
+title: Microservices Aggregator
 category: Architectural
 language: en
 tag:
@@ -28,11 +28,11 @@ Real-world example
 
 In plain words
 
-> Aggregator Microservice collects pieces of data from various microservices and returns an aggregate for processing.
+> Microservices Aggregator collects pieces of data from various microservices and returns an aggregate for processing.
 
 Stack Overflow says
 
-> Aggregator Microservice invokes multiple services to achieve the functionality required by the application.
+> Microservices Aggregator invokes multiple services to achieve the functionality required by the application.
 
 **Programmatic Example**
 
@@ -104,7 +104,7 @@ curl http://localhost:50004/product
 
 ## Applicability
 
-The Aggregator Microservices Design Pattern is particularly useful in scenarios where a client requires a composite response that is assembled from data provided by multiple microservices. Common use cases include e-commerce applications where product details, inventory, and reviews might be provided by separate services, or in dashboard applications where aggregated data from various services is displayed in a unified view.
+The Microservices Aggregator Design Pattern is particularly useful in scenarios where a client requires a composite response that is assembled from data provided by multiple microservices. Common use cases include e-commerce applications where product details, inventory, and reviews might be provided by separate services, or in dashboard applications where aggregated data from various services is displayed in a unified view.
 
 ## Consequences
 
@@ -122,9 +122,9 @@ Trade-offs:
 
 ## Related Patterns
 
-* [API Gateway](https://java-design-patterns.com/patterns/api-gateway/): The Aggregator Microservices pattern is often used in conjunction with an API Gateway, which provides a single entry point for clients to access multiple microservices.
-* [Composite](https://java-design-patterns.com/patterns/composite/): The Aggregator Microservices pattern can be seen as a form of the Composite pattern, where the composite is the aggregated response from multiple microservices.
-* [Facade](https://java-design-patterns.com/patterns/facade/): The Aggregator Microservices pattern can be seen as a form of the Facade pattern, where the facade is the aggregator service that provides a simplified interface to the client.
+* [API Gateway](https://java-design-patterns.com/patterns/microservices-api-gateway/): The Microservices Aggregator pattern is often used in conjunction with an API Gateway, which provides a single entry point for clients to access multiple microservices.
+* [Composite](https://java-design-patterns.com/patterns/composite/): The Microservices Aggregator pattern can be seen as a form of the Composite pattern, where the composite is the aggregated response from multiple microservices.
+* [Facade](https://java-design-patterns.com/patterns/facade/): The Microservices Aggregator pattern can be seen as a form of the Facade pattern, where the facade is the aggregator service that provides a simplified interface to the client.
 
 ## Credits
 

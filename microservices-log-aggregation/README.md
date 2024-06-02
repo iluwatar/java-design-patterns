@@ -1,5 +1,5 @@
 ---
-title: Log Aggregation
+title: Microservices Log Aggregation
 category: Integration
 language: en
 tag:

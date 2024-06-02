@@ -1,5 +1,5 @@
 ---
-title: API Gateway
+title: Microservices API Gateway
 category: Integration
 language: en
 tag:
@@ -161,7 +161,7 @@ Trade-offs:
 
 ## Related patterns
 
-* [Aggregator Microservice](https://java-design-patterns.com/patterns/aggregator-microservices/) - The API Gateway pattern is often used in conjunction with the Aggregator Microservice pattern to provide a unified interface to a set of microservices.
+* [Aggregator Microservice](https://java-design-patterns.com/patterns/microservices-aggregator/) - The API Gateway pattern is often used in conjunction with the Aggregator Microservice pattern to provide a unified interface to a set of microservices.
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/) - API Gateways can use the Circuit Breaker pattern to prevent cascading failures when calling multiple microservices.
 * [Proxy](https://java-design-patterns.com/patterns/proxy/) - The API Gateway pattern is a specialized form of the Proxy pattern, where the gateway acts as a single entry point for clients, routing requests to the appropriate microservices and aggregating results.
 

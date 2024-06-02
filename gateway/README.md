@@ -153,7 +153,7 @@ Trade-offs:
 * [Facade](https://java-design-patterns.com/patterns/facade/): Similar to Gateway in abstracting complex subsystems, but Gateway specifically targets external or remote interfaces.
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): While both patterns provide a different interface to a subsystem, Gateway focuses more on networked data sources and services.
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): Often used together, as both can control and manage access to another object, but Gateway specifically deals with external services.
-* [API Gateway](https://java-design-patterns.com/patterns/api-gateway/): Often considered a specialization of the Gateway pattern, it specifically manages API requests and routes them to the appropriate services within a backend system.
+* [API Gateway](https://java-design-patterns.com/patterns/microservices-api-gateway/): Often considered a specialization of the Gateway pattern, it specifically manages API requests and routes them to the appropriate services within a backend system.
 
 ## Credits
 
