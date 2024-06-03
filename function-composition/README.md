@@ -31,7 +31,7 @@ Real-world example
 
 In plain words
 
-> The Function Composer pattern allows building complex functions by combining simpler ones, making it easier to manage, test, and reuse individual pieces of functionality.
+> The Function Composition pattern allows building complex functions by combining simpler ones, making it easier to manage, test, and reuse individual pieces of functionality.
 
 Wikipedia says
 
