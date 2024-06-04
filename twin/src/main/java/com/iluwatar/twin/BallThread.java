@@ -33,46 +33,51 @@ import lombok.extern.slf4j.Slf4j;
  */
 
 @Slf4j
+import java.util.concurrent.CountDownLatch;
+import java.util.logging.Logger;
+
+@Slf4j
 public class BallThread extends Thread {
 
-  @Setter
-  private BallItem twin;
+    @Setter
+    private BallItem twin;
 
-  private volatile boolean isSuspended;
+    private volatile boolean isRunning = true;
 
-  private volatile boolean isRunning = true;
+    private final CountDownLatch suspendLatch = new CountDownLatch(1);
 
-  /**
-   * Run the thread.
-   */
-  public void run() {
-
-    while (isRunning) {
-      if (!isSuspended) {
-        twin.draw();
-        twin.move();
-      }
-      try {
-        Thread.sleep(250);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
+    public void run() {
+        while (isRunning) {
+            try {
+                suspendLatch.await(); // Wait until released
+            } catch (InterruptedException e) {
+                LOGGER.warning("Thread interrupted.");
+                Thread.currentThread().interrupt();
+            }
+            twin.draw();
+            twin.move();
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                LOGGER.warning("Thread interrupted.");
+                Thread.currentThread().interrupt();
+            }
+        }
     }
-  }
 
-  public void suspendMe() {
-    isSuspended = true;
-    LOGGER.info("Begin to suspend BallThread");
-  }
+    public void suspendMe() {
+        suspendLatch.countDown(); // Release the latch
+        LOGGER.info("Thread suspended.");
+    }
 
-  public void resumeMe() {
-    isSuspended = false;
-    LOGGER.info("Begin to resume BallThread");
-  }
+    public void resumeMe() {
+        suspendLatch.countDown(); // In case latch was already released
+        suspendLatch = new CountDownLatch(1); // Reset the latch
+        LOGGER.info("Thread resumed.");
+    }
 
-  public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
-  }
+    public void stopMe() {
+        isRunning = false;
+        suspendMe(); // Release latch to ensure the thread can terminate
+    }
 }
-

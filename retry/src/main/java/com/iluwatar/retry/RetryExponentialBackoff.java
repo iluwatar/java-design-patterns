@@ -29,11 +29,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 /**
- * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
+ * Decorates {@link BusinessOperation business operation} with "retry"
+ * capabilities using exponential backoff strategy.
  *
  * @param <T> the remote op's return type
  */
@@ -42,25 +44,23 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   private final BusinessOperation<T> op;
   private final int maxAttempts;
   private final long maxDelay;
-  private final AtomicInteger attempts;
   private final Predicate<Exception> test;
   private final List<Exception> errors;
+  private final AtomicInteger attempts;
 
   /**
-   * Ctor.
+   * Constructor.
    *
    * @param op          the {@link BusinessOperation} to retry
    * @param maxAttempts number of times to retry
-   * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
+   * @param maxDelay    the maximum delay between retries (in milliseconds)
+   * @param ignoreTests tests to check whether the remote exception can be
+   *                    ignored. No exceptions
    *                    will be ignored if no tests are given
    */
   @SafeVarargs
-  public RetryExponentialBackoff(
-      BusinessOperation<T> op,
-      int maxAttempts,
-      long maxDelay,
-      Predicate<Exception>... ignoreTests
-  ) {
+  public RetryExponentialBackoff(BusinessOperation<T> op, int maxAttempts, long maxDelay,
+      Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.maxAttempts = maxAttempts;
     this.maxDelay = maxDelay;
@@ -70,7 +70,7 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   }
 
   /**
-   * The errors encountered while retrying, in the encounter order.
+   * The errors encountered while retrying, in the order of occurrence.
    *
    * @return the errors encountered while retrying
    */
@@ -89,24 +89,59 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
 
   @Override
   public T perform() throws BusinessException {
-    do {
+    CompletableFuture<T> future = new CompletableFuture<>();
+    retryAttempt(future, 1);
+    try {
+      return future.get();
+    } catch (Exception e) {
+      throw new BusinessException("Max retry attempts exceeded.", e);
+    }
+  }
+
+  /**
+   * Recursive method to perform retry attempts asynchronously using
+   * CompletableFuture.
+   *
+   * @param future  CompletableFuture to handle the result of the retry attempts
+   * @param attempt current attempt number
+   */
+  private void retryAttempt(CompletableFuture<T> future, int attempt) {
+    if (attempt > maxAttempts) {
+      future.completeExceptionally(new BusinessException("Max retry attempts exceeded."));
+      return;
+    }
+
+    CompletableFuture.runAsync(() -> {
       try {
-        return this.op.perform();
+        T result = op.perform();
+        future.complete(result);
       } catch (BusinessException e) {
-        this.errors.add(e);
-
-        if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
-          throw e;
-        }
-
-        try {
-          var testDelay = (long) Math.pow(2, this.attempts()) * 1000 + RANDOM.nextInt(1000);
-          var delay = Math.min(testDelay, this.maxDelay);
-          Thread.sleep(delay);
-        } catch (InterruptedException f) {
-          //ignore
+        errors.add(e);
+        attempts.incrementAndGet();
+        if (attempts.get() >= maxAttempts || !test.test(e)) {
+          future.completeExceptionally(e);
+        } else {
+          long delay = calculateDelay(attempts.get());
+          try {
+            Thread.sleep(delay);
+          } catch (InterruptedException ignored) {
+            Thread.currentThread().interrupt();
+          }
+          retryAttempt(future, attempt + 1);
         }
       }
-    } while (true);
+    });
+  }
+
+  /**
+   * Calculates the delay for exponential backoff based on the current attempt
+   * number.
+   *
+   * @param attempt the current attempt number
+   * @return the calculated delay (in milliseconds)
+   */
+  private long calculateDelay(int attempt) {
+    long testDelay = (long) Math.pow(2, attempt) * 1000 + RANDOM.nextInt(1000);
+    return Math.min(testDelay, maxDelay);
   }
 }

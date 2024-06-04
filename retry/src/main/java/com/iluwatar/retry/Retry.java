@@ -28,11 +28,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 /**
- * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
+ * Decorates {@link BusinessOperation business operation} with "retry"
+ * capabilities.
  *
  * @param <T> the remote op's return type
  */
@@ -43,6 +45,7 @@ public final class Retry<T> implements BusinessOperation<T> {
   private final AtomicInteger attempts;
   private final Predicate<Exception> test;
   private final List<Exception> errors;
+  private int attemptsCount;
 
   /**
    * Ctor.
@@ -50,7 +53,8 @@ public final class Retry<T> implements BusinessOperation<T> {
    * @param op          the {@link BusinessOperation} to retry
    * @param maxAttempts number of times to retry
    * @param delay       delay (in milliseconds) between attempts
-   * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
+   * @param ignoreTests tests to check whether the remote exception can be
+   *                    ignored. No exceptions
    *                    will be ignored if no tests are given
    */
   @SafeVarargs
@@ -58,8 +62,7 @@ public final class Retry<T> implements BusinessOperation<T> {
       BusinessOperation<T> op,
       int maxAttempts,
       long delay,
-      Predicate<Exception>... ignoreTests
-  ) {
+      Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.maxAttempts = maxAttempts;
     this.delay = delay;
@@ -88,22 +91,42 @@ public final class Retry<T> implements BusinessOperation<T> {
 
   @Override
   public T perform() throws BusinessException {
-    do {
+    CompletableFuture<T> future = new CompletableFuture<>();
+    retryAttempt(future, 1);
+    try {
+      return future.get();
+    } catch (Exception e) {
+      throw new BusinessException("Max retry attempts exceeded.", e);
+    }
+  }
+
+  private void retryAttempt(CompletableFuture<T> future, int attempt) {
+    if (attempt > maxAttempts) {
+      future.completeExceptionally(new BusinessException("Max retry attempts exceeded."));
+      return;
+    }
+
+    CompletableFuture.runAsync(() -> {
       try {
-        return this.op.perform();
+        T result = op.perform();
+        future.complete(result);
       } catch (BusinessException e) {
-        this.errors.add(e);
-
-        if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
-          throw e;
-        }
-
-        try {
-          Thread.sleep(this.delay);
-        } catch (InterruptedException f) {
-          //ignore
+        errors.add(e);
+        attemptsCount++;
+        if (test.test(e)) {
+          retryAttempt(future, attempt + 1);
+        } else {
+          future.completeExceptionally(e);
         }
       }
-    } while (true);
+    });
+
+    if (attempt < maxAttempts) {
+      try {
+        Thread.sleep(delay);
+      } catch (InterruptedException ignored) {
+        Thread.currentThread().interrupt();
+      }
+    }
   }
 }

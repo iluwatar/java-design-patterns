@@ -26,16 +26,20 @@ package com.iluwatar.queue.load.leveling;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.concurrent.BlockingQueue;
+
 /**
- * ServiceExecuotr class. This class will pick up Messages one by one from the Blocking Queue and
+ * ServiceExecuotr class. This class will pick up Messages one by one from the
+ * Blocking Queue and
  * process them.
  */
 @Slf4j
+
 public class ServiceExecutor implements Runnable {
 
-  private final MessageQueue msgQueue;
+  private final BlockingQueue<Message> msgQueue;
 
-  public ServiceExecutor(MessageQueue msgQueue) {
+  public ServiceExecutor(BlockingQueue<Message> msgQueue) {
     this.msgQueue = msgQueue;
   }
 
@@ -44,19 +48,14 @@ public class ServiceExecutor implements Runnable {
    */
   public void run() {
     try {
-      while (!Thread.currentThread().isInterrupted()) {
-        var msg = msgQueue.retrieveMsg();
+      while (true) {
+        Message msg = msgQueue.take(); // This will block until a message is available
 
-        if (null != msg) {
-          LOGGER.info(msg + " is served.");
-        } else {
-          LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
-        }
-
-        Thread.sleep(1000);
+        LOGGER.info(msg + " is served.");
       }
-    } catch (Exception e) {
-      LOGGER.error(e.getMessage());
+    } catch (InterruptedException e) {
+      LOGGER.error("ServiceExecutor interrupted", e);
+      Thread.currentThread().interrupt();
     }
   }
 }
