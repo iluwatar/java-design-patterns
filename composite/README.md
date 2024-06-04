@@ -1,12 +1,17 @@
 ---
 title: Composite
+description:
 category: Structural
 language: en
 tag:
-    - Decoupling
-    - Gang of Four
-    - Object composition
-    - Recursion
+  - Decoupling
+  - Gang of Four
+  - Object composition
+  - Recursion
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

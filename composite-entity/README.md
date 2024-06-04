@@ -1,15 +1,20 @@
 ---
 title: Composite Entity
+description:
 category: Structural
 language: en
 tag:
-    - Client-server
-    - Data access
-    - Decoupling
-    - Enterprise patterns
-    - Object composition
-    - Persistence
-    - Resource management
+  - Client-server
+  - Data access
+  - Decoupling
+  - Enterprise patterns
+  - Object composition
+  - Persistence
+  - Resource management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

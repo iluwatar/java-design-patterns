@@ -1,13 +1,18 @@
 ---
 title: Server Session
+description:
 category: Resource management
 language: en
 tag:
-    - Client-server
-    - Cookies
-    - Session management 
-    - State tracking
-    - Web development
+  - Client-server
+  - Cookies
+  - Session management 
+  - State tracking
+  - Web development
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

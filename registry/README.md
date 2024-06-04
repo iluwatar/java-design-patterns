@@ -1,14 +1,19 @@
 ---
 title: Registry
+description:
 category: Creational
 language: en
 tag:
-    - API design
-    - Data access
-    - Decoupling
-    - Dependency management
-    - Enterprise patterns
-    - Instantiation
+  - API design
+  - Data access
+  - Decoupling
+  - Dependency management
+  - Enterprise patterns
+  - Instantiation
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

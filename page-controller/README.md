@@ -1,16 +1,21 @@
 ---
 title: Page Controller
+description:
 categories: Architectural
 language: en
 tags:
-    - API design
-    - Business
-    - Client-server
-    - Decoupling
-    - Enterprise patterns
-    - Layered architecture
-    - Presentation
-    - Web development
+  - API design
+  - Business
+  - Client-server
+  - Decoupling
+  - Enterprise patterns
+  - Layered architecture
+  - Presentation
+  - Web development
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

@@ -1,13 +1,18 @@
 ---
 title: Factory
+description:
 category: Creational
 language: en
 tag:
-    - Abstraction
-    - Encapsulation
-    - Gang of Four
-    - Instantiation
-    - Polymorphism
+  - Abstraction
+  - Encapsulation
+  - Gang of Four
+  - Instantiation
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

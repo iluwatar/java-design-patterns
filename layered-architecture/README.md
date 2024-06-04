@@ -1,13 +1,18 @@
 ---
 title: Layered Architecture
+description:
 category: Architectural
 language: en
 tag:
-    - Abstraction
-    - Decoupling
-    - Enterprise patterns
-    - Layered architecture
-    - Scalability
+  - Abstraction
+  - Decoupling
+  - Enterprise patterns
+  - Layered architecture
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

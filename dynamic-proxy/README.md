@@ -1,5 +1,6 @@
 ---
 title: Dynamic Proxy
+description:
 category: Structural
 language: en
 tag:
@@ -9,6 +10,10 @@ tag:
   - Extensibility
   - Proxy
   - Runtime
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,15 +1,20 @@
 ---
 title: Filterer
+description:
 language: en
 category: Behavioral
 tag:
-    - Data processing
-    - Data transformation
-    - Decoupling
-    - Functional decomposition
-    - Object composition
-    - Performance
-    - Runtime
+  - Data processing
+  - Data transformation
+  - Decoupling
+  - Functional decomposition
+  - Object composition
+  - Performance
+  - Runtime
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

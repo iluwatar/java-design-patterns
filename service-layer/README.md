@@ -1,13 +1,18 @@
 ---
 title: Service Layer
+description:
 category: Architectural
 language: en
 tag:
-    - API design
-    - Business
-    - Decoupling
-    - Enterprise patterns
-    - Layered architecture
+  - API design
+  - Business
+  - Decoupling
+  - Enterprise patterns
+  - Layered architecture
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

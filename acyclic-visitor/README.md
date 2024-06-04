@@ -1,12 +1,17 @@
 ---
 title: Acyclic Visitor
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Extensibility
-    - Interface
-    - Object composition
+  - Decoupling
+  - Extensibility
+  - Interface
+  - Object composition
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

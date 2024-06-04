@@ -1,14 +1,19 @@
 ---
 title: Factory Kit
+description:
 category: Creational
 language: en
 tag:
-    - Abstraction
-    - Decoupling
-    - Encapsulation
-    - Generic
-    - Instantiation
-    - Object composition
+  - Abstraction
+  - Decoupling
+  - Encapsulation
+  - Generic
+  - Instantiation
+  - Object composition
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

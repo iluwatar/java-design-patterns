@@ -1,13 +1,14 @@
 ---
 title: Data Mapper
+description:
 category: Behavioral
 language: en
 tag:
-    - Data access
-    - Decoupling
-    - Domain
-    - Object mapping
-    - Persistence
+  - Data access
+  - Decoupling
+  - Domain
+  - Object mapping
+  - Persistence
 ---
 
 ## Also known as

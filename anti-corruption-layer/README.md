@@ -1,17 +1,22 @@
 ---
 title: Anti-Corruption Layer
+description:
 category: Integration
 language: en
 tag:
-    - Architecture
-    - Decoupling
-    - Integration
-    - Isolation
-    - Layered architecture
-    - Migration
-    - Modernization
-    - Refactoring
-    - Wrapping
+  - Architecture
+  - Decoupling
+  - Integration
+  - Isolation
+  - Layered architecture
+  - Migration
+  - Modernization
+  - Refactoring
+  - Wrapping
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,13 +1,18 @@
 ---
 title: Event Aggregator
+description:
 category: Messaging
 language: en
 tag:
-    - Decoupling
-    - Event-driven
-    - Messaging
-    - Publish/subscribe
-    - Reactive
+  - Decoupling
+  - Event-driven
+  - Messaging
+  - Publish/subscribe
+  - Reactive
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

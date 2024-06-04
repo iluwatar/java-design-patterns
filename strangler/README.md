@@ -1,11 +1,16 @@
 ---
 title: Strangler
+description:
 category: Structural
 language: en
 tag:
-    - Migration
-    - Modernization
-    - Refactoring
+  - Migration
+  - Modernization
+  - Refactoring
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

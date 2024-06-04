@@ -1,13 +1,18 @@
 ---
 title: Monostate
+description:
 category: Creational
 language: en
 tag:
-    - Encapsulation
-    - Instantiation
-    - Object composition
-    - Persistence
-    - Polymorphism
+  - Encapsulation
+  - Instantiation
+  - Object composition
+  - Persistence
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,11 +1,16 @@
 ---
 title: Delegation
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Delegation
-    - Object composition
+  - Decoupling
+  - Delegation
+  - Object composition
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

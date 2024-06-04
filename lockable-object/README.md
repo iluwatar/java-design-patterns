@@ -1,13 +1,18 @@
 ---
 title: Lockable Object
+description:
 category: Concurrency
 language: en
 tag:
-    - Decoupling
-    - Encapsulation
-    - Security
-    - Synchronization
-    - Thread management
+  - Decoupling
+  - Encapsulation
+  - Security
+  - Synchronization
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

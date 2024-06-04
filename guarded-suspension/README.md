@@ -1,13 +1,18 @@
 ---
 title: Guarded Suspension
+description:
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Resource management
-    - Synchronization
-    - Thread management
+  - Asynchronous
+  - Decoupling
+  - Resource management
+  - Synchronization
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

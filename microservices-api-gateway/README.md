@@ -1,16 +1,21 @@
 ---
 title: Microservices API Gateway
+description:
 category: Integration
 language: en
 tag:
-    - API design
-    - Cloud distributed
-    - Decoupling
-    - Enterprise patterns
-    - Integration
-    - Microservices
-    - Scalability
-    - Security
+  - API design
+  - Cloud distributed
+  - Decoupling
+  - Enterprise patterns
+  - Integration
+  - Microservices
+  - Scalability
+  - Security
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

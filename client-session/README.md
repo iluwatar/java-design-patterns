@@ -1,12 +1,17 @@
 ---
 title: Client Session
+description:
 category: Behavioral
 language: en
 tags:
-    - Client-server
-    - Session management
-    - State tracking
-    - Web development
+  - Client-server
+  - Session management
+  - State tracking
+  - Web development
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

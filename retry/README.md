@@ -1,12 +1,17 @@
 ---
 title: Retry
+description:
 category: Resilience
 language: en
 tag:
-    - Fault tolerance
-    - Performance
-    - Retry
-    - Resilience
+  - Fault tolerance
+  - Performance
+  - Retry
+  - Resilience
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

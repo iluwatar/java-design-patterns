@@ -1,16 +1,21 @@
 ---
 title: Naked Objects
+description:
 category: Architectural
 language: en
 tag:
-    - Architecture
-    - Business
-    - Decoupling
-    - Domain
-    - Enterprise patterns
-    - Instantiation
-    - Object composition
-    - Persistence
+  - Architecture
+  - Business
+  - Decoupling
+  - Domain
+  - Enterprise patterns
+  - Instantiation
+  - Object composition
+  - Persistence
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

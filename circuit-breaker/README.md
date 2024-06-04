@@ -1,12 +1,17 @@
 ---
 title: Circuit Breaker
+description:
 category: Resilience
 language: en
 tag:
-    - Cloud distributed
-    - Fault tolerance
-    - Microservices
-    - Retry
+  - Cloud distributed
+  - Fault tolerance
+  - Microservices
+  - Retry
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

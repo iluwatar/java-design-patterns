@@ -1,11 +1,16 @@
 ---
 title: Command Query Responsibility Segregation
+description:
 category: Architectural
 language: en
 tag:
-    - Event-driven
-    - Performance
-    - Scalability
+  - Event-driven
+  - Performance
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

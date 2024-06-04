@@ -1,14 +1,19 @@
 ---
 title: Abstract Document
+description:
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Decoupling
-    - Dynamic typing
-    - Encapsulation
-    - Extensibility
-    - Polymorphism
+  - Abstraction
+  - Decoupling
+  - Dynamic typing
+  - Encapsulation
+  - Extensibility
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

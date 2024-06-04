@@ -1,15 +1,20 @@
 ---
 title: Interpreter
+description:
 category: Behavioral
 language: en
 tag:
-    - Abstraction
-    - Data transformation
-    - Decoupling
-    - Domain
-    - Gang of Four
-    - Polymorphism
-    - Runtime
+  - Abstraction
+  - Data transformation
+  - Decoupling
+  - Domain
+  - Gang of Four
+  - Polymorphism
+  - Runtime
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

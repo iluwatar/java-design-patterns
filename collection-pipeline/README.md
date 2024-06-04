@@ -1,12 +1,17 @@
 ---
 title: Collection Pipeline
+description:
 category: Functional
 language: en
 tag:
-    - Functional decomposition
-    - Data processing
-    - Data transformation
-    - Reactive
+  - Functional decomposition
+  - Data processing
+  - Data transformation
+  - Reactive
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

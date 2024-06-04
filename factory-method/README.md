@@ -1,13 +1,18 @@
 ---
 title: Factory Method
+description:
 category: Creational
 language: en
 tag:
-    - Encapsulation
-    - Gang of Four
-    - Instantiation
-    - Object composition
-    - Polymorphism
+  - Encapsulation
+  - Gang of Four
+  - Instantiation
+  - Object composition
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

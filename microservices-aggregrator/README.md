@@ -1,15 +1,20 @@
 ---
 title: Microservices Aggregator
+description:
 category: Architectural
 language: en
 tag:
-    - API design
-    - Client-server
-    - Data processing
-    - Decoupling
-    - Integration
-    - Microservices
-    - Scalability
+  - API design
+  - Client-server
+  - Data processing
+  - Decoupling
+  - Integration
+  - Microservices
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,11 +1,16 @@
 ---
 title: Marker Interface
+description:
 category: Structural
 language: en
 tag:
-    - Encapsulation
-    - Interface
-    - Polymorphism
+  - Encapsulation
+  - Interface
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

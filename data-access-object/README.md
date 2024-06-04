@@ -1,14 +1,19 @@
 ---
 title: Data Access Object
+description:
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Data access
-    - Data processing
-    - Decoupling
-    - Layered architecture
-    - Persistence
+  - Abstraction
+  - Data access
+  - Data processing
+  - Decoupling
+  - Layered architecture
+  - Persistence
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

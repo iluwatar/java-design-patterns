@@ -1,14 +1,19 @@
 ---
 title: Lazy Loading
+description:
 category: Performance optimization
 language: en
 tag:
-    - Instantiation
-    - Memory management
-    - Optimization
-    - Performance
-    - Persistence
-    - Resource management
+  - Instantiation
+  - Memory management
+  - Optimization
+  - Performance
+  - Persistence
+  - Resource management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

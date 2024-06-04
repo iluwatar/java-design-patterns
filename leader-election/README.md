@@ -1,13 +1,18 @@
 ---
 title: Leader Election
+description:
 category: Concurrency
 language: en
 tag:
-    - API design
-    - Cloud distributed
-    - Fault tolerance
-    - Scalability
-    - Synchronization
+  - API design
+  - Cloud distributed
+  - Fault tolerance
+  - Scalability
+  - Synchronization
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

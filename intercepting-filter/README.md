@@ -1,14 +1,19 @@
 ---
 title: Intercepting Filter
+description:
 category: Architectural
 language: en
 tag:
-    - API design
-    - Decoupling
-    - Layered architecture
-    - Performance
-    - Security
-    - Web development
+  - API design
+  - Decoupling
+  - Layered architecture
+  - Performance
+  - Security
+  - Web development
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

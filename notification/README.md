@@ -1,13 +1,18 @@
 ---
 title: Notification
+description:
 category: Behavioral
 language: en 
 tags:
-    - Asynchronous
-    - Decoupling
-    - Event-driven
-    - Messaging
-    - Publish/subscribe
+  - Asynchronous
+  - Decoupling
+  - Event-driven
+  - Messaging
+  - Publish/subscribe
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,15 +1,20 @@
 ---
 title: Event Sourcing
+description:
 category: Architectural
 language: en
 tag:
-    - Decoupling
-    - Event-driven
-    - Fault tolerance
-    - Messaging
-    - Persistence
-    - Scalability
-    - Transactions
+  - Decoupling
+  - Event-driven
+  - Fault tolerance
+  - Messaging
+  - Persistence
+  - Scalability
+  - Transactions
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,14 +1,19 @@
 ---
 title: Saga
+description:
 category: Resilience
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Fault tolerance
-    - Integration
-    - Microservices
-    - Transactions
+  - Asynchronous
+  - Decoupling
+  - Fault tolerance
+  - Integration
+  - Microservices
+  - Transactions
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

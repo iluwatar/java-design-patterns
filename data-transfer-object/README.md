@@ -1,13 +1,18 @@
 ---
 title: Data Transfer Object
+description:
 category: Structural
 language: en
 tag:
-    - Client-server
-    - Data transfer
-    - Decoupling
-    - Layered architecture
-    - Optimization
+  - Client-server
+  - Data transfer
+  - Decoupling
+  - Layered architecture
+  - Optimization
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

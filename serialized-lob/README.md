@@ -1,11 +1,16 @@
 ---
 title: Serialized LOB
+description:
 category: Data access
 language: en
 tag:
-    - Data access
-    - Data processing
-    - Persistence
+  - Data access
+  - Data processing
+  - Persistence
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,12 +1,17 @@
 ---
 title: Command
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Extensibility
-    - Gang of Four
-    - Undo
+  - Decoupling
+  - Extensibility
+  - Gang of Four
+  - Undo
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

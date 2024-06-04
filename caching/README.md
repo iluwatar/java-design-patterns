@@ -1,12 +1,17 @@
 ---
 title: Caching
+description:
 category: Performance optimization
 language: en
 tag:
-    - Caching
-    - Data access
-    - Performance
-    - Resource management
+  - Caching
+  - Data access
+  - Performance
+  - Resource management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

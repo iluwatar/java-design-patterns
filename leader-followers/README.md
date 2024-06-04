@@ -1,12 +1,17 @@
 ---
 title: Leader/Followers
+description:
 category: Concurrency
 language: en
 tag:
-    - Decoupling
-    - Performance
-    - Synchronization
-    - Thread management
+  - Decoupling
+  - Performance
+  - Synchronization
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

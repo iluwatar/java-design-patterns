@@ -1,14 +1,19 @@
 ---
 title: Step Builder
+description:
 category: Creational
 language: en
 tag:
-    - Code simplification
-    - Domain
-    - Encapsulation
-    - Extensibility
-    - Instantiation
-    - Interface
+  - Code simplification
+  - Domain
+  - Encapsulation
+  - Extensibility
+  - Instantiation
+  - Interface
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

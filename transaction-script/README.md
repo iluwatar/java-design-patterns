@@ -1,13 +1,18 @@
 ---
 title: Transaction Script
+description:
 category: Data access
 language: en
 tag:
-    - Business
-    - Data access
-    - Domain
-    - Persistence
-    - Transactions
+  - Business
+  - Data access
+  - Domain
+  - Persistence
+  - Transactions
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

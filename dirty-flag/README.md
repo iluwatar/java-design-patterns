@@ -1,12 +1,17 @@
 ---
 title: Dirty Flag
+description:
 category: Behavioral
 language: en
 tag:
-    - Game programming
-    - Performance
-    - Resource management
-    - State tracking
+  - Game programming
+  - Performance
+  - Resource management
+  - State tracking
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

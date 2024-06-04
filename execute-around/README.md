@@ -1,13 +1,18 @@
 ---
 title: Execute Around
+description:
 category: Behavioral
 language: en
 tag:
-    - Closure
-    - Code simplification
-    - Encapsulation
-    - Functional decomposition
-    - Resource management
+  - Closure
+  - Code simplification
+  - Encapsulation
+  - Functional decomposition
+  - Resource management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

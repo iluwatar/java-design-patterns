@@ -1,16 +1,21 @@
 ---
 title: Microservices Log Aggregation
+description:
 category: Integration
 language: en
 tag:
-    - Data processing
-    - Decoupling
-    - Enterprise patterns
-    - Fault tolerance
-    - Messaging
-    - Microservices
-    - Performance
-    - Scalability
+  - Data processing
+  - Decoupling
+  - Enterprise patterns
+  - Fault tolerance
+  - Messaging
+  - Microservices
+  - Performance
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

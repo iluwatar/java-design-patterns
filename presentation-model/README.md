@@ -1,12 +1,17 @@
 ---
 title: Presentation Model
+description:
 category: Architectural
 language: en
 tag:
-    - Decoupling
-    - Encapsulation
-    - Presentation
-    - Testing
+  - Decoupling
+  - Encapsulation
+  - Presentation
+  - Testing
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

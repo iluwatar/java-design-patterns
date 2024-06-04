@@ -1,15 +1,20 @@
 ---
 title: Partial Response
+description:
 category: Behavioral
 language: en
 tag:
-    - API design
-    - Asynchronous
-    - Client-server
-    - Decoupling
-    - Performance
-    - Scalability
-    - Web development
+  - API design
+  - Asynchronous
+  - Client-server
+  - Decoupling
+  - Performance
+  - Scalability
+  - Web development
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

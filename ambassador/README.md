@@ -1,14 +1,19 @@
 ---
 title: Ambassador
+description:
 category: Integration
 language: en
 tag:
-    - API design
-    - Decoupling
-    - Fault tolerance
-    - Proxy
-    - Resilience
-    - Scalability
+  - API design
+  - Decoupling
+  - Fault tolerance
+  - Proxy
+  - Resilience
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

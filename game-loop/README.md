@@ -1,12 +1,17 @@
 ---
 title: Game Loop
+description:
 category: Behavioral
 language: en
 tag:
-    - Concurrency
-    - Event-driven
-    - Game programming
-    - Performance
+  - Concurrency
+  - Event-driven
+  - Game programming
+  - Performance
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

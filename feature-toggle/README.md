@@ -1,12 +1,17 @@
 ---
 title: Feature Toggle
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Extensibility
-    - Feature management
-    - Scalability
+  - Decoupling
+  - Extensibility
+  - Feature management
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

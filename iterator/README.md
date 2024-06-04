@@ -1,14 +1,19 @@
 ---
 title: Iterator
+description:
 category: Behavioral
 language: en
 tag:
-    - Data access
-    - Data transformation
-    - Decoupling
-    - Gang of Four
-    - Object composition
-    - Polymorphism
+  - Data access
+  - Data transformation
+  - Decoupling
+  - Gang of Four
+  - Object composition
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,12 +1,17 @@
 ---
 title: Composite View
+description:
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Enterprise patterns
-    - Object composition
-    - Presentation
+  - Abstraction
+  - Enterprise patterns
+  - Object composition
+  - Presentation
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

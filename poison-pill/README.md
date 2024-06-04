@@ -1,12 +1,17 @@
 ---
 title: Poison Pill
+description:
 category: Concurrency
 language: en
 tag:
-    - Decoupling
-    - Fault tolerance
-    - Messaging
-    - Thread management
+  - Decoupling
+  - Fault tolerance
+  - Messaging
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

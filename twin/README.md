@@ -1,12 +1,17 @@
 ---
 title: Twin
+description:
 category: Structural
 language: en
 tag:
-    - Decoupling
-    - Object composition
-    - Performance
-    - Resilience
+  - Decoupling
+  - Object composition
+  - Performance
+  - Resilience
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

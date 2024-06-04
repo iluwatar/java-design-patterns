@@ -1,12 +1,17 @@
 ---
 title: Prototype
+description:
 category: Creational
 language: en
 tag: 
-    - Gang Of Four
-    - Instantiation
-    - Object composition
-    - Polymorphism
+  - Gang Of Four
+  - Instantiation
+  - Object composition
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as 

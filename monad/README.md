@@ -1,19 +1,24 @@
 ---
 title: Monad
+description:
 category: Functional
 language: en
 tag:
-    - Abstraction
-    - Accumulation
-    - Decoupling
-    - Encapsulation
-    - Functional decomposition
-    - Generic
-    - Idiom
-    - Instantiation
-    - Interface
-    - Layered architecture
-    - Object composition
+  - Abstraction
+  - Accumulation
+  - Decoupling
+  - Encapsulation
+  - Functional decomposition
+  - Generic
+  - Idiom
+  - Instantiation
+  - Interface
+  - Layered architecture
+  - Object composition
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

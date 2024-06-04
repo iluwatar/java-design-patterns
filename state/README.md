@@ -1,11 +1,16 @@
 ---
 title: State
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Gang of Four
-    - State tracking
+  - Decoupling
+  - Gang of Four
+  - State tracking
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

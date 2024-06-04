@@ -1,13 +1,18 @@
 ---
 title: Bridge
+description:
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Decoupling
-    - Extensibility
-    - Gang of Four
-    - Object composition
+  - Abstraction
+  - Decoupling
+  - Extensibility
+  - Gang of Four
+  - Object composition
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

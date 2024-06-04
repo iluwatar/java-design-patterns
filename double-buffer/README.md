@@ -1,12 +1,17 @@
 ---
 title: Double Buffer
+description:
 category: Behavioral
 language: en
 tag:
-    - Buffering
-    - Game programming
-    - Optimization
-    - Performance
+  - Buffering
+  - Game programming
+  - Optimization
+  - Performance
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

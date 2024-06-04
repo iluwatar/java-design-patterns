@@ -1,13 +1,18 @@
 ---
 title: Event Queue
+description:
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Messaging
-    - Event-driven
-    - Scalability
+  - Asynchronous
+  - Decoupling
+  - Messaging
+  - Event-driven
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,15 +1,20 @@
 ---
 title: Proxy
+description:
 category: Structural
 language: en
 tag:
-    - Decoupling
-    - Encapsulation
-    - Gang Of Four
-    - Lazy initialization
-    - Proxy
-    - Security
-    - Wrapping
+  - Decoupling
+  - Encapsulation
+  - Gang Of Four
+  - Lazy initialization
+  - Proxy
+  - Security
+  - Wrapping
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

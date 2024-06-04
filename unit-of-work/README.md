@@ -1,12 +1,17 @@
 ---
 title: Unit Of Work
+description:
 category: Data access
 language: en
 tag:
-    - Data access
-    - Decoupling
-    - Persistence
-    - Transactions
+  - Data access
+  - Decoupling
+  - Persistence
+  - Transactions
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

@@ -1,14 +1,19 @@
 ---
 title: Function Composition
+description:
 category: Functional
 language: en
 tag:
-    - Code simplification
-    - Composition
-    - Decoupling
-    - Functional decomposition
-    - Lambda
-    - Reusability
+  - Code simplification
+  - Composition
+  - Decoupling
+  - Functional decomposition
+  - Lambda
+  - Reusability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,12 +1,17 @@
 ---
 title: Context Object
+description:
 category: Behavioral
 language: en
 tags:
-    - Context
-    - Decoupling
-    - Encapsulation
-    - Session management 
+  - Context
+  - Decoupling
+  - Encapsulation
+  - Session management 
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

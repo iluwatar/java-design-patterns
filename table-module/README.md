@@ -1,11 +1,16 @@
 ---
 title: Table Module
+description:
 category: Data access
 language: en
 tag:
-    - Data access
-    - Encapsulation
-    - Persistence
+  - Data access
+  - Encapsulation
+  - Persistence
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

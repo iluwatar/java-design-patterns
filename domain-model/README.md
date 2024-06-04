@@ -1,16 +1,21 @@
 ---
 title: Domain Model
+description:
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Business
-    - Data processing
-    - Domain
-    - Encapsulation
-    - Layered architecture
-    - Persistence
-    - Polymorphism
+  - Abstraction
+  - Business
+  - Data processing
+  - Domain
+  - Encapsulation
+  - Layered architecture
+  - Persistence
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

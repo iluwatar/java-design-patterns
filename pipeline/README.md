@@ -1,14 +1,19 @@
 ---
 title: Pipeline
+description:
 category: Behavioral
 language: en
 tag:
-    - API design
-    - Data processing
-    - Decoupling
-    - Extensibility
-    - Functional decomposition
-    - Scalability
+  - API design
+  - Data processing
+  - Decoupling
+  - Extensibility
+  - Functional decomposition
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,11 +1,16 @@
 ---
 title: Component
+description:
 categories: Structural
 language: en
 tag:
-    - Game programming
-    - Decoupling
-    - Modularity
+  - Game programming
+  - Decoupling
+  - Modularity
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

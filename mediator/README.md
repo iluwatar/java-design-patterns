@@ -1,12 +1,17 @@
 ---
 title: Mediator
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Gang Of Four
-    - Messaging
-    - Object composition
+  - Decoupling
+  - Gang Of Four
+  - Messaging
+  - Object composition
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

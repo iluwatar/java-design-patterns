@@ -1,13 +1,18 @@
 ---
 title: Model-View-ViewModel
+description:
 category: Architectural
 language: en
 tag:
-    - Architecture
-    - Data binding
-    - Decoupling
-    - Presentation
-    - Scalability
+  - Architecture
+  - Data binding
+  - Decoupling
+  - Presentation
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

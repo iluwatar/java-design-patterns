@@ -1,13 +1,18 @@
 ---
 title: Spatial Partition
+description:
 category: Structural
 language: en
 tag:
-    - Game programming
-    - Optimization
-    - Performance
-    - Resource management
-    - Scalability
+  - Game programming
+  - Optimization
+  - Performance
+  - Resource management
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,12 +1,17 @@
 ---
 title: Single Table Inheritance
+description:
 category: Data access
 language: en
 tag:
-    - Data access
-    - Encapsulation
-    - Persistence
-    - Polymorphism
+  - Data access
+  - Encapsulation
+  - Persistence
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

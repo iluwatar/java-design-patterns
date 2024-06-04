@@ -1,16 +1,21 @@
 ---
 title: Event-Driven Architecture
+description:
 category: Architectural
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Enterprise patterns
-    - Event-driven
-    - Messaging
-    - Publish/subscribe
-    - Reactive
-    - Scalability
+  - Asynchronous
+  - Decoupling
+  - Enterprise patterns
+  - Event-driven
+  - Messaging
+  - Publish/subscribe
+  - Reactive
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

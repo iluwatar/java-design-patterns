@@ -1,12 +1,17 @@
 ---
 title: Gateway
+description:
 category: Integration
 language: en
 tag:
-    - API design
-    - Data access
-    - Decoupling
-    - Enterprise patterns
+  - API design
+  - Data access
+  - Decoupling
+  - Enterprise patterns
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

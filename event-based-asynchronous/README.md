@@ -1,15 +1,20 @@
 ---
 title: Event-Based Asynchronous
+description:
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Event-driven
-    - Fault tolerance
-    - Messaging
-    - Reactive
-    - Scalability
+  - Asynchronous
+  - Decoupling
+  - Event-driven
+  - Fault tolerance
+  - Messaging
+  - Reactive
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,13 +1,18 @@
 ---
 title: Service to Worker
+description:
 category: Architectural
 language: en
 tag:
-    - Business
-    - Decoupling
-    - Layered architecture
-    - Presentation
-    - Web development
+  - Business
+  - Decoupling
+  - Layered architecture
+  - Presentation
+  - Web development
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

@@ -1,12 +1,17 @@
 ---
 title: Balking
+description:
 category: Concurrency
 language: en
 tag:
-    - Concurrency
-    - Decoupling
-    - Fault tolerance
-    - Synchronization
+  - Concurrency
+  - Decoupling
+  - Fault tolerance
+  - Synchronization
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

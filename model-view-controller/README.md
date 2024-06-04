@@ -1,13 +1,18 @@
 ---
 title: Model-View-Controller
+description:
 category: Architectural
 language: en
 tag:
-    - Architecture
-    - Client-server
-    - Decoupling
-    - Layered architecture
-    - Presentation
+  - Architecture
+  - Client-server
+  - Decoupling
+  - Layered architecture
+  - Presentation
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

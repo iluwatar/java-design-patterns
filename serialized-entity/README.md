@@ -1,11 +1,16 @@
 ---
 title: Serialized Entity
+description:
 categories: Data access
 language: en
 tag:
-    - Data access
-    - Data transfer
-    - Persistence
+  - Data access
+  - Data transfer
+  - Persistence
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

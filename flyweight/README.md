@@ -1,13 +1,18 @@
 ---
 title: Flyweight
+description:
 category: Structural
 language: en
 tag:
-    - Gang of Four
-    - Memory management
-    - Object composition
-    - Optimization
-    - Performance
+  - Gang of Four
+  - Memory management
+  - Object composition
+  - Optimization
+  - Performance
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

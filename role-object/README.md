@@ -1,15 +1,20 @@
 ---
 title: Role Object
+description:
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Decoupling
-    - Extensibility
-    - Interface
-    - Object composition
-    - Polymorphism
-    - Runtime
+  - Abstraction
+  - Decoupling
+  - Extensibility
+  - Interface
+  - Object composition
+  - Polymorphism
+  - Runtime
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

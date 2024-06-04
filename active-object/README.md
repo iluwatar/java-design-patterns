@@ -1,13 +1,18 @@
 ---
 title: Active Object
+description:
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Messaging
-    - Synchronization
-    - Thread management
+  - Asynchronous
+  - Decoupling
+  - Messaging
+  - Synchronization
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

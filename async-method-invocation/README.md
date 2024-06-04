@@ -1,13 +1,18 @@
 ---
 title: Async Method Invocation
+description:
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Reactive
-    - Scalability
-    - Thread management
+  - Asynchronous
+  - Decoupling
+  - Reactive
+  - Scalability
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

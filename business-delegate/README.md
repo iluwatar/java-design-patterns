@@ -1,13 +1,18 @@
 ---
 title: Business Delegate
+description:
 category: Structural
 language: en
 tag:
-    - Business
-    - Decoupling
-    - Delegation
-    - Enterprise patterns
-    - Layered architecture
+  - Business
+  - Decoupling
+  - Delegation
+  - Enterprise patterns
+  - Layered architecture
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

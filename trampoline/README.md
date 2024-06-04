@@ -1,12 +1,17 @@
 ---
 title: Trampoline
+description:
 category: Functional
 language: en
 tag:
-    - Code simplification
-    - Functional decomposition
-    - Performance
-    - Recursion
+  - Code simplification
+  - Functional decomposition
+  - Performance
+  - Recursion
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,14 +1,19 @@
 ---
 title: Identity Map
+description:
 category: Behavioral
 language: en
 tag:
-    - Data access
-    - Decoupling
-    - Enterprise patterns
-    - Object mapping
-    - Persistence
-    - Performance
+  - Data access
+  - Decoupling
+  - Enterprise patterns
+  - Object mapping
+  - Persistence
+  - Performance
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

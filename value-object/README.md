@@ -1,17 +1,22 @@
 ---
 title: Value Object
+description:
 category: Structural
 language: en
 tag:
-    - Data access
-    - Data binding
-    - Domain
-    - Encapsulation
-    - Enterprise patterns
-    - Immutable
-    - Optimization
-    - Performance
-    - Persistence
+  - Data access
+  - Data binding
+  - Domain
+  - Encapsulation
+  - Enterprise patterns
+  - Immutable
+  - Optimization
+  - Performance
+  - Persistence
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

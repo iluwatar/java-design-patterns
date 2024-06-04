@@ -1,11 +1,16 @@
 ---
 title: Resource Acquisition Is Initialization
+description:
 category: Resource management
 language: en
 tag:
-    - Encapsulation
-    - Memory management
-    - Resource management
+  - Encapsulation
+  - Memory management
+  - Resource management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

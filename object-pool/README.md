@@ -1,14 +1,19 @@
 ---
 title: Object Pool
+description:
 category: Creational
 language: en
 tag:
-    - Game programming
-    - Instantiation
-    - Memory management
-    - Performance
-    - Resource management
-    - Scalability
+  - Game programming
+  - Instantiation
+  - Memory management
+  - Performance
+  - Resource management
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

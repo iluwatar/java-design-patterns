@@ -1,16 +1,21 @@
 ---
 title: Queue-Based Load Leveling
+description:
 category: Resilience
 language: en
 tag:
-    - Asynchronous
-    - Buffering
-    - Decoupling
-    - Fault tolerance
-    - Messaging
-    - Scalability
-    - Synchronization
-    - Thread management
+  - Asynchronous
+  - Buffering
+  - Decoupling
+  - Fault tolerance
+  - Messaging
+  - Scalability
+  - Synchronization
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

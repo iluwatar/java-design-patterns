@@ -1,12 +1,17 @@
 ---
 title: Extension Objects
+description:
 category: Structural
 language: en
 tag:
-    - Encapsulation
-    - Extensibility
-    - Object composition
-    - Polymorphism
+  - Encapsulation
+  - Extensibility
+  - Object composition
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

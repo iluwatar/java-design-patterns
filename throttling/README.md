@@ -1,13 +1,18 @@
 ---
 title: Throttling
+description:
 category: Resource management
 language: en
 tag:
-    - API design
-    - Fault tolerance
-    - Performance
-    - Resilience
-    - Scalability
+  - API design
+  - Fault tolerance
+  - Performance
+  - Resilience
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,11 +1,16 @@
 ---
 title: Multiton
+description:
 category: Creational
 language: en
 tag:
-    - Decoupling
-    - Instantiation
-    - Object composition
+  - Decoupling
+  - Instantiation
+  - Object composition
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

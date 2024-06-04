@@ -1,11 +1,16 @@
 ---
 title: Separated Interface
+description:
 category: Structural
 language: en
 tag:
-    - API design
-    - Decoupling
-    - Interface
+  - API design
+  - Decoupling
+  - Interface
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

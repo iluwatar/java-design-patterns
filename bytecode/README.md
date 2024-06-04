@@ -1,14 +1,19 @@
 ---
 title: Bytecode
+description:
 category: Behavioral
 language: en
 tag:
-    - Abstraction
-    - Code simplification
-    - Encapsulation
-    - Game programming
-    - Performance
-    - Runtime
+  - Abstraction
+  - Code simplification
+  - Encapsulation
+  - Game programming
+  - Performance
+  - Runtime
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

@@ -1,16 +1,21 @@
 ---
 title: Facade
+description:
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - API design
-    - Code simplification
-    - Decoupling
-    - Encapsulation
-    - Gang Of Four
-    - Interface
-    - Object composition
+  - Abstraction
+  - API design
+  - Code simplification
+  - Decoupling
+  - Encapsulation
+  - Gang Of Four
+  - Interface
+  - Object composition
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

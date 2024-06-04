@@ -1,13 +1,18 @@
 ---
 title: Front Controller
+description:
 category: Architectural
 language: en
 tag:
-    - Architecture
-    - Decoupling
-    - Enterprise patterns
-    - Layered architecture
-    - Web development
+  - Architecture
+  - Decoupling
+  - Enterprise patterns
+  - Layered architecture
+  - Web development
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

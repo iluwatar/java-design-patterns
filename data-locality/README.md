@@ -1,13 +1,18 @@
 ---
 title: Data Locality
+description:
 category: Performance optimization
 language: en
 tag:
-    - Caching
-    - Data access
-    - Game programming
-    - Memory management
-    - Performance
+  - Caching
+  - Data access
+  - Game programming
+  - Memory management
+  - Performance
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

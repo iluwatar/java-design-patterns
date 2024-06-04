@@ -1,11 +1,16 @@
 ---
 title: Sharding
+description:
 category: Data access
 language: en
 tag:
-    - Data access
-    - Optimization
-    - Scalability
+  - Data access
+  - Optimization
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

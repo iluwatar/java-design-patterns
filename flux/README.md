@@ -1,13 +1,18 @@
 ---
 title: Flux
+description:
 category: Architectural
 language: en
 tag:
-    - Client-server
-    - Decoupling
-    - Event-driven
-    - Publish/subscribe
-    - Reactive
+  - Client-server
+  - Decoupling
+  - Event-driven
+  - Publish/subscribe
+  - Reactive
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

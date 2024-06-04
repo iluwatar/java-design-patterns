@@ -1,5 +1,6 @@
 ---
 title: Health Check
+description:
 category: Behavioral
 language: en
 tag:
@@ -7,6 +8,10 @@ tag:
   - Microservices
   - Monitoring
   - System health
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,13 +1,18 @@
 ---
 title: Version Number
+description:
 category: Data access
 language: en
 tag:
-    - Compatibility
-    - Data access
-    - Persistence
-    - State tracking
-    - Versioning
+  - Compatibility
+  - Data access
+  - Persistence
+  - State tracking
+  - Versioning
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

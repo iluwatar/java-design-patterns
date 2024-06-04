@@ -1,11 +1,16 @@
 ---
 title: Private Class Data
+description:
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Encapsulation
-    - Security
+  - Abstraction
+  - Encapsulation
+  - Security
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

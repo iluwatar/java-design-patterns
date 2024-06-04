@@ -1,17 +1,22 @@
 ---
 title: Template method
+description:
 category: Behavioral
 language: en
 tag:
-    - Abstraction
-    - Code simplification
-    - Decoupling
-    - Extensibility
-    - Gang of Four
-    - Inheritance
-    - Object composition
-    - Polymorphism
-    - Reusability
+  - Abstraction
+  - Code simplification
+  - Decoupling
+  - Extensibility
+  - Gang of Four
+  - Inheritance
+  - Object composition
+  - Polymorphism
+  - Reusability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

@@ -1,12 +1,17 @@
 ---
 title: Object Mother
+description:
 category: Testing
 language: en
 tag:
-    - Code simplification
-    - Instantiation
-    - Isolation
-    - Testing
+  - Code simplification
+  - Instantiation
+  - Isolation
+  - Testing
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

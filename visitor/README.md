@@ -1,13 +1,18 @@
 ---
 title: Visitor
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Extensibility
-    - Gang of Four
-    - Object composition
-    - Polymorphism
+  - Decoupling
+  - Extensibility
+  - Gang of Four
+  - Object composition
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

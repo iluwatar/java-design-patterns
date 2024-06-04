@@ -1,15 +1,20 @@
 ---
 title: Curiously Recurring Template Pattern
+description:
 language: en
 category: Structural
 tag:
-    - Code simplification
-    - Extensibility
-    - Generic
-    - Idiom
-    - Instantiation
-    - Polymorphism
-    - Recursion
+  - Code simplification
+  - Extensibility
+  - Generic
+  - Idiom
+  - Instantiation
+  - Polymorphism
+  - Recursion
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

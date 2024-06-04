@@ -1,16 +1,21 @@
 ---
 title: Reactor
+description:
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Event-driven
-    - Fault tolerance
-    - Messaging
-    - Reactive
-    - Scalability
-    - Synchronization
-    - Thread management
+  - Asynchronous
+  - Event-driven
+  - Fault tolerance
+  - Messaging
+  - Reactive
+  - Scalability
+  - Synchronization
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

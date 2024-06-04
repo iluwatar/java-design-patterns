@@ -1,12 +1,17 @@
 ---
 title: Tolerant Reader
+description:
 category: Resilience
 language: en
 tag:
-    - API design
-    - Decoupling
-    - Fault tolerance
-    - Integration
+  - API design
+  - Decoupling
+  - Fault tolerance
+  - Integration
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

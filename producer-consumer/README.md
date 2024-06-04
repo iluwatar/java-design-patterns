@@ -1,14 +1,19 @@
 ---
 title: Producer-Consumer
+description:
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Buffering
-    - Decoupling
-    - Messaging
-    - Synchronization
-    - Thread management
+  - Asynchronous
+  - Buffering
+  - Decoupling
+  - Messaging
+  - Synchronization
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,14 +1,19 @@
 ---
 title: Special Case
+description:
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Code simplification
-    - Decoupling
-    - Error handling
-    - Polymorphism
-    - Runtime
+  - Abstraction
+  - Code simplification
+  - Decoupling
+  - Error handling
+  - Polymorphism
+  - Runtime
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

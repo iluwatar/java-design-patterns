@@ -1,14 +1,19 @@
 ---
 title: Subclass Sandbox 
+description:
 category: Behavioral
 language: en
 tag:
-    - Abstraction
-    - Code simplification
-    - Decoupling
-    - Extensibility
-    - Game programming
-    - Polymorphism
+  - Abstraction
+  - Code simplification
+  - Decoupling
+  - Extensibility
+  - Game programming
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

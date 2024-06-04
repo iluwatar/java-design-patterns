@@ -1,11 +1,16 @@
 ---
 title: Arrange/Act/Assert
+description:
 category: Testing
 language: en
 tag:
-    - Code simplification
-    - Isolation
-    - Testing
+  - Code simplification
+  - Isolation
+  - Testing
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

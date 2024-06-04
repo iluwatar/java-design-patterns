@@ -1,12 +1,17 @@
 ---
 title: Chain of Responsibility
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Event-driven
-    - Gang of Four
-    - Messaging
+  - Decoupling
+  - Event-driven
+  - Gang of Four
+  - Messaging
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

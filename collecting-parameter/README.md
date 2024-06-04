@@ -1,12 +1,17 @@
 ---
 title: Collecting Parameter
+description:
 category: Behavioral
 language: en
 tag:
-    - Accumulation
-    - Data processing
-    - Data transfer
-    - Generic
+  - Accumulation
+  - Data processing
+  - Data transfer
+  - Generic
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

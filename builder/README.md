@@ -1,11 +1,16 @@
 ---
 title: Builder
+description:
 category: Creational
 language: en
 tag:
-    - Gang of Four
-    - Instantiation
-    - Object composition
+  - Gang of Four
+  - Instantiation
+  - Object composition
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

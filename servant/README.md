@@ -1,13 +1,18 @@
 ---
 title: Servant
+description:
 category: Structural
 language: en
 tag:
-    - Decoupling
-    - Interface
-    - Messaging
-    - Object composition
-    - Resource management
+  - Decoupling
+  - Interface
+  - Messaging
+  - Object composition
+  - Resource management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

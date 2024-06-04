@@ -1,13 +1,18 @@
 ---
 title: Specification
+description:
 category: Behavioral
 language: en
 tag:
-    - Business
-    - Domain
-    - Encapsulation
-    - Enterprise patterns
-    - Extensibility
+  - Business
+  - Domain
+  - Encapsulation
+  - Enterprise patterns
+  - Extensibility
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

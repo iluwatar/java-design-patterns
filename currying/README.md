@@ -1,12 +1,17 @@
 ---
 title: Currying
+description:
 category: Functional
 language: en
 tag:
-    - Code simplification
-    - Functional decomposition
-    - Generic
-    - Immutable
+  - Code simplification
+  - Functional decomposition
+  - Generic
+  - Immutable
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

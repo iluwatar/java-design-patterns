@@ -1,10 +1,15 @@
 ---
 title: Hexagonal Architecture
+description:
 category: Architectural
 language: en
 tag:
-    - Decoupling
-    - Layered architecture
+  - Decoupling
+  - Layered architecture
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

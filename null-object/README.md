@@ -1,11 +1,16 @@
 ---
 title: Null Object
+description:
 category: Behavioral
 language: en
 tag:
-    - Code simplification
-    - Decoupling
-    - Polymorphism
+  - Code simplification
+  - Decoupling
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

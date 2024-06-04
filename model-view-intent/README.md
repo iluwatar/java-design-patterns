@@ -1,13 +1,18 @@
 ---
 title: Model-View-Intent
+description:
 category: Architectural
 language: en
 tags:
-    - Abstraction
-    - Decoupling
-    - Presentation
-    - Reactive
-    - State tracking
+  - Abstraction
+  - Decoupling
+  - Presentation
+  - Reactive
+  - State tracking
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,14 +1,19 @@
 ---
 title: Optimistic Offline Lock
+description:
 category: Data access
 language: en
 tag:
-    - Concurrency
-    - Data access
-    - Fault tolerance
-    - Isolation
-    - Persistence
-    - Transactions
+  - Concurrency
+  - Data access
+  - Fault tolerance
+  - Isolation
+  - Persistence
+  - Transactions
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

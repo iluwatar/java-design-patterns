@@ -1,12 +1,17 @@
 ---
 title: Fan-Out/Fan-In
+description:
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Data processing
-    - Decoupling
-    - Scalability
+  - Asynchronous
+  - Data processing
+  - Decoupling
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

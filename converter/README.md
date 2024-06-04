@@ -1,14 +1,19 @@
 ---
 title: Converter
+description:
 category: Structural
 language: en
 tag:
-    - Compatibility
-    - Data transformation
-    - Decoupling
-    - Interface
-    - Object mapping
-    - Wrapping
+  - Compatibility
+  - Data transformation
+  - Decoupling
+  - Interface
+  - Object mapping
+  - Wrapping
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

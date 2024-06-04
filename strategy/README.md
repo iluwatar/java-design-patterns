@@ -1,13 +1,18 @@
 ---
 title: Strategy
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Extensibility
-    - Gang of Four
-    - Interface
-    - Polymorphism
+  - Decoupling
+  - Extensibility
+  - Gang of Four
+  - Interface
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

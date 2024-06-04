@@ -1,13 +1,18 @@
 ---
 title: Monitor
+description:
 category: Concurrency
 language: en
 tag:
-    - Encapsulation
-    - Fault tolerance
-    - Isolation
-    - Synchronization
-    - Thread management
+  - Encapsulation
+  - Fault tolerance
+  - Isolation
+  - Synchronization
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

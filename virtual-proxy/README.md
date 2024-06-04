@@ -1,11 +1,16 @@
 ---
 title: Virtual Proxy
+description:
 category: Structural
 language: en
 tag:
-    - Caching
-    - Decoupling
-    - Lazy initialization
+  - Caching
+  - Decoupling
+  - Lazy initialization
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

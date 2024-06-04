@@ -1,13 +1,18 @@
 ---
 title: Abstract Factory
+description:
 category: Creational
 language: en
 tag:
-    - Abstraction
-    - Decoupling
-    - Gang of Four
-    - Instantiation
-    - Polymorphism
+  - Abstraction
+  - Decoupling
+  - Gang of Four
+  - Instantiation
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

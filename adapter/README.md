@@ -1,14 +1,19 @@
 ---
 title: Adapter
+description:
 category: Structural
 language: en
 tag:
-    - Compatibility
-    - Decoupling
-    - Gang of Four
-    - Interface
-    - Object composition
-    - Wrapping
+  - Compatibility
+  - Decoupling
+  - Gang of Four
+  - Interface
+  - Object composition
+  - Wrapping
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

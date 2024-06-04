@@ -1,12 +1,17 @@
 ---
 title: Service Locator
+description:
 category: Structural
 language: en
 tag:
-    - Decoupling
-    - Dependency management
-    - Enterprise patterns
-    - Instantiation
+  - Decoupling
+  - Dependency management
+  - Enterprise patterns
+  - Instantiation
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

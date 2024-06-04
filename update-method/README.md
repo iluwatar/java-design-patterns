@@ -1,14 +1,19 @@
 ---
 title: Update Method
+description:
 category: Behavioral
 language: en
 tag:
-    - Abstraction
-    - Data processing
-    - Decoupling
-    - Event-driven
-    - Game programming
-    - Polymorphism
+  - Abstraction
+  - Data processing
+  - Decoupling
+  - Event-driven
+  - Game programming
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

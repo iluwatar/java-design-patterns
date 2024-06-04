@@ -1,12 +1,17 @@
 ---
 title: Metadata Mapping
+description:
 category: Data access
 language: en
 tag:
-    - Decoupling
-    - Enterprise patterns
-    - Object mapping
-    - Persistence
+  - Decoupling
+  - Enterprise patterns
+  - Object mapping
+  - Persistence
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

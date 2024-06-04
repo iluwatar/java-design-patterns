@@ -1,11 +1,16 @@
 ---
 title: Dependency Injection
+description:
 category: Creational
 language: en
 tag:
-    - Decoupling
-    - Dependency management
-    - Inversion of control
+  - Decoupling
+  - Dependency management
+  - Inversion of control
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

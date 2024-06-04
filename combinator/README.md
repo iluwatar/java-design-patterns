@@ -1,13 +1,18 @@
 ---
 title: Combinator
+description:
 category: Functional
 language: en
 tag:
-    - Abstraction
-    - Code simplification
-    - Functional decomposition
-    - Idiom
-    - Reactive
+  - Abstraction
+  - Code simplification
+  - Functional decomposition
+  - Idiom
+  - Reactive
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

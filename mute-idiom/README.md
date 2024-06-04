@@ -1,14 +1,19 @@
 ---
 title: Mute Idiom
+description:
 category: Behavioral
 language: en
 tag:
-    - Context
-    - Decoupling
-    - Idiom
-    - Error handling
-    - Synchronization
-    - Thread management
+  - Context
+  - Decoupling
+  - Idiom
+  - Error handling
+  - Synchronization
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

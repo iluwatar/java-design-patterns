@@ -1,12 +1,17 @@
 ---
 title: Double Dispatch
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Dynamic typing
-    - Polymorphism
-    - Runtime
+  - Decoupling
+  - Dynamic typing
+  - Polymorphism
+  - Runtime
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

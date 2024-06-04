@@ -1,13 +1,18 @@
 ---
 title: Fluent Interface
+description:
 category: Behavioral
 language: en
 tag: 
-    - API design
-    - Code simplification
-    - Decoupling
-    - Object composition
-    - Reactive
+  - API design
+  - Code simplification
+  - Decoupling
+  - Object composition
+  - Reactive
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

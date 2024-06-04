@@ -1,12 +1,17 @@
 ---
 title: Singleton
+description:
 category: Creational
 language: en
 tag:
-    - Gang of Four
-    - Instantiation
-    - Lazy initialization
-    - Resource management
+  - Gang of Four
+  - Instantiation
+  - Lazy initialization
+  - Resource management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

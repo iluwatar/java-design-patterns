@@ -1,13 +1,18 @@
 ---
 title: Data Bus
+description:
 category: Messaging
 language: en
 tag:
-    - Decoupling
-    - Event-driven
-    - Messaging
-    - Publish/subscribe
-    - Scalability
+  - Decoupling
+  - Event-driven
+  - Messaging
+  - Publish/subscribe
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,14 +1,19 @@
 ---
 title: Memento
+description:
 category: Behavioral
 language: en
 tag:
-    - Encapsulation
-    - Gang of Four
-    - Memory management
-    - Object composition
-    - State tracking
-    - Undo
+  - Encapsulation
+  - Gang of Four
+  - Memory management
+  - Object composition
+  - State tracking
+  - Undo
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

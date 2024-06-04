@@ -1,12 +1,17 @@
 ---
 title: Half-Sync/Half-Async
+description:
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Synchronization
-    - Thread management
+  - Asynchronous
+  - Decoupling
+  - Synchronization
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

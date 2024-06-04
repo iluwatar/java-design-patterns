@@ -1,16 +1,21 @@
 ---
 title: Type Object
+description:
 category: Creational
 language: en
 tag:
-    - Abstraction
-    - Code simplification
-    - Data processing
-    - Game programming
-    - Extensibility
-    - Instantiation
-    - Object composition
-    - Polymorphism
+  - Abstraction
+  - Code simplification
+  - Data processing
+  - Game programming
+  - Extensibility
+  - Instantiation
+  - Object composition
+  - Polymorphism
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as
@@ -205,12 +210,12 @@ public class App {
 Let's break down what happens in `App` class.
 
 1. The `main` method is the entry point of the application. It starts by initializing several variables:
-    - `givenTime` is set to 50 milliseconds. This is the time limit for the game.
-    - `toWin` is set to 500 points. This is the target score to win the game.
-    - `pointsWon` is initialized to 0. This variable keeps track of the total points won so far.
-    - `numOfRows` is set to 3. This is the number of rows in the game grid.
-    - `start` and `end` are both set to the current system time in milliseconds. These variables are used to track the elapsed time.
-    - `round` is initialized to 0. This variable keeps track of the current round number.
+  - `givenTime` is set to 50 milliseconds. This is the time limit for the game.
+  - `toWin` is set to 500 points. This is the target score to win the game.
+  - `pointsWon` is initialized to 0. This variable keeps track of the total points won so far.
+  - `numOfRows` is set to 3. This is the number of rows in the game grid.
+  - `start` and `end` are both set to the current system time in milliseconds. These variables are used to track the elapsed time.
+  - `round` is initialized to 0. This variable keeps track of the current round number.
 
 2. The game enters a loop that continues until either the player has won enough points (`pointsWon >= toWin`) or the time limit has been reached (`end - start < givenTime`).
 

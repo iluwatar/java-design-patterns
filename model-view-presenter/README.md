@@ -1,14 +1,19 @@
 ---
 title: Model-View-Presenter
+description:
 category: Architectural
 language: en
 tag:
-    - Architecture
-    - Client-server
-    - Decoupling
-    - Enterprise patterns
-    - Interface
-    - Presentation
+  - Architecture
+  - Client-server
+  - Decoupling
+  - Enterprise patterns
+  - Interface
+  - Presentation
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

@@ -1,11 +1,16 @@
 ---
 title: Master-Worker
+description:
 category: Concurrency
 language: en
 tag:
-    - Multithreading
-    - Performance
-    - Scalability
+  - Multithreading
+  - Performance
+  - Scalability
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

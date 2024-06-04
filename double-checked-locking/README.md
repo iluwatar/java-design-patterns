@@ -1,12 +1,17 @@
 ---
 title: Double-Checked Locking
+description:
 category: Concurrency
 language: en
 tag:
-    - Lazy initialization
-    - Optimization
-    - Performance
-    - Thread management
+  - Lazy initialization
+  - Optimization
+  - Performance
+  - Thread management
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

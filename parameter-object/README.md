@@ -1,13 +1,18 @@
 ---
 title: Parameter Object
+description:
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Code simplification
-    - Decoupling
-    - Encapsulation
-    - Object composition
+  - Abstraction
+  - Code simplification
+  - Decoupling
+  - Encapsulation
+  - Object composition
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

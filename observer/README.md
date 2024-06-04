@@ -1,12 +1,17 @@
 ---
 title: Observer
+description:
 category: Behavioral
 language: en
 tag:
-    - Decoupling
-    - Event-driven
-    - Gang Of Four
-    - Publish/subscribe
+  - Decoupling
+  - Event-driven
+  - Gang Of Four
+  - Publish/subscribe
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

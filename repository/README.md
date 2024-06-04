@@ -1,12 +1,17 @@
 ---
 title: Repository
+description:
 category: Data access
 language: en
 tag:
-    - Abstraction
-    - Data access
-    - Decoupling
-    - Persistence
+  - Abstraction
+  - Data access
+  - Decoupling
+  - Persistence
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent

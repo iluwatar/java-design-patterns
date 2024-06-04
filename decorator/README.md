@@ -1,13 +1,18 @@
 ---
 title: Decorator
+description:
 category: Structural
 language: en
 tag:
-    - Enhancement
-    - Extensibility
-    - Gang of Four
-    - Object composition 
-    - Wrapping
+  - Enhancement
+  - Extensibility
+  - Gang of Four
+  - Object composition 
+  - Wrapping
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Also known as

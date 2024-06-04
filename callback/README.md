@@ -1,12 +1,17 @@
 ---
 title: Callback
+description:
 category: Functional
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Idiom
-    - Reactive
+  - Asynchronous
+  - Decoupling
+  - Idiom
+  - Reactive
+head:
+  - - meta
+    - name: keywords
+      content:
 ---
 
 ## Intent
