@@ -32,52 +32,52 @@ import lombok.extern.slf4j.Slf4j;
  * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
  */
 
-@Slf4j
 import java.util.concurrent.CountDownLatch;
-import java.util.logging.Logger;
 
 @Slf4j
 public class BallThread extends Thread {
 
-    @Setter
-    private BallItem twin;
+  @Setter
+  private BallItem twin;
 
-    private volatile boolean isRunning = true;
+  private volatile boolean isRunning = true;
 
-    private final CountDownLatch suspendLatch = new CountDownLatch(1);
+  private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(BallThread.class);
 
-    public void run() {
-        while (isRunning) {
-            try {
-                suspendLatch.await(); // Wait until released
-            } catch (InterruptedException e) {
-                LOGGER.warning("Thread interrupted.");
-                Thread.currentThread().interrupt();
-            }
-            twin.draw();
-            twin.move();
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException e) {
-                LOGGER.warning("Thread interrupted.");
-                Thread.currentThread().interrupt();
-            }
-        }
+  private CountDownLatch suspendLatch = new CountDownLatch(1);
+
+  public void run() {
+    while (isRunning) {
+      try {
+        suspendLatch.await(); // Wait until released
+      } catch (InterruptedException e) {
+        LOGGER.warning("Thread interrupted.");
+        Thread.currentThread().interrupt();
+      }
+      twin.draw();
+      twin.move();
+      try {
+        Thread.sleep(250);
+      } catch (InterruptedException e) {
+        LOGGER.warning("Thread interrupted.");
+        Thread.currentThread().interrupt();
+      }
     }
+  }
 
-    public void suspendMe() {
-        suspendLatch.countDown(); // Release the latch
-        LOGGER.info("Thread suspended.");
-    }
+  public void suspendMe() {
+    suspendLatch.countDown(); // Release the latch
+    LOGGER.info("Thread suspended.");
+  }
 
-    public void resumeMe() {
-        suspendLatch.countDown(); // In case latch was already released
-        suspendLatch = new CountDownLatch(1); // Reset the latch
-        LOGGER.info("Thread resumed.");
-    }
+  public void resumeMe() {
+    suspendLatch.countDown(); // In case latch was already released
+    suspendLatch = new CountDownLatch(1); // Reset the latch
+    LOGGER.info("Thread resumed.");
+  }
 
-    public void stopMe() {
-        isRunning = false;
-        suspendMe(); // Release latch to ensure the thread can terminate
-    }
+  public void stopMe() {
+    isRunning = false;
+    suspendMe(); // Release latch to ensure the thread can terminate
+  }
 }
