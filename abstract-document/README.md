@@ -16,7 +16,7 @@ tag:
 
 The Abstract Document design pattern in Java is a crucial structural design pattern that provides a consistent way to handle hierarchical and tree-like data structures by defining a common interface for various document types. It separates the core document structure from specific data formats, enabling dynamic updates and simplified maintenance.
 
-## Detailed Explanation of Abstract Document Pattern
+## Detailed Explanation of Abstract Document Pattern with Real-World Examples
 
 The Abstract Document design pattern in Java allows dynamic handling of non-static properties. This pattern uses concept of traits to enable type safety and separate properties of different classes into set of interfaces.
 
@@ -182,7 +182,7 @@ The program output:
 
 ![Abstract Document](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
-## Applicability of Abstract Document Pattern in Java
+## When to Use the Abstract Document Pattern in Java
 
 The Abstract Document design pattern is especially beneficial in scenarios requiring management of different document types in Java that share some common attributes or behaviors, but also have unique attributes or behaviors specific to their individual types. Here are some scenarios where the Abstract Document design pattern can be applicable:
 

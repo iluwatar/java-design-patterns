@@ -1,5 +1,5 @@
 ---
-title: "Comprehensive Guide to Abstract Factory Pattern in Java | Java Design Patterns Examples & Usage"
+title: "Comprehensive Guide to Abstract Factory Pattern in Java: Java Design Patterns Examples & Usage"
 description: "Learn the Abstract Factory pattern in Java with real-world examples, class diagrams, and tutorials. Understand its intent, applicability, benefits, and known uses to enhance your design pattern knowledge."
 category: Creational
 language: en
@@ -15,7 +15,7 @@ tag:
 
 * Kit
 
-## Intent of Abstract Factory Pattern in Java
+## Intent of Abstract Factory Design Pattern
 
 The Abstract Factory pattern in Java provides an interface for creating families of related or dependent objects without specifying their concrete classes, enhancing modularity and flexibility in software design.
 
@@ -181,12 +181,12 @@ Use the Abstract Factory pattern in Java when:
 * You need to choose which product to use from a family at runtime.
 * Adding new products or families should not require changes to existing code.
 
-## Tutorials
+## Abstract Factory Pattern Java Tutorials
 
 * [Abstract Factory Design Pattern in Java (DigitalOcean)](https://www.digitalocean.com/community/tutorials/abstract-factory-design-pattern-in-java)
 * [Abstract Factory(Refactoring Guru)](https://refactoring.guru/design-patterns/abstract-factory)
 
-## Benefits and Trade-offs of Using Abstract Factory Pattern
+## Benefits and Trade-offs of Abstract Factory Pattern
 
 Benefits:
 
@@ -212,7 +212,7 @@ Trade-offs:
 * [javax.xml.transform.TransformerFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/transform/TransformerFactory.html#newInstance--)
 * [javax.xml.xpath.XPathFactory](http://docs.oracle.com/javase/8/docs/api/javax/xml/xpath/XPathFactory.html#newInstance--)
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Abstract Factory uses Factory Methods to create products.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Abstract Factory classes are often implemented as Singletons.
