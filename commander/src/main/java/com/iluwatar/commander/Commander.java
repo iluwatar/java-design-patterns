@@ -67,10 +67,9 @@ import org.slf4j.LoggerFactory;
  * {@link ShippingService}, {@link PaymentService}, {@link MessagingService}, {@link EmployeeHandle}
  * and a {@link QueueDatabase}. We use retries to execute any instruction using {@link Retry} class,
  * and idempotence is ensured by going through some checks before making requests to services and
- * making change in {@link Order} class fields if request succeeds or definitively fails. There are
- * 5 classes - {@link AppShippingFailCases}, {@link AppPaymentFailCases}, {@link
- * AppMessagingFailCases}, {@link AppQueueFailCases} and {@link AppEmployeeDbFailCases}, which look
- * at the different scenarios that may be encountered during the placing of an order.</p>
+ * making change in {@link Order} class fields if request succeeds or definitively fails. There is
+ * a single class {@link AppAllCases} that looks at the different scenarios that may be encountered
+ * during the placing of an order, including both success and failure cases for each service.</p>
  */
 
 public class Commander {
