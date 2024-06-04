@@ -8,10 +8,6 @@ tag:
   - Extensibility
   - Interface
   - Object composition
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Acyclic Visitor Design Pattern
