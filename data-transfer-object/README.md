@@ -1,6 +1,6 @@
 ---
-title: Data Transfer Object
-description:
+title: "Comprehensive Guide to Data Transfer Object (DTO) Pattern in Java"
+description: "Learn about the Data Transfer Object (DTO) pattern, its implementation, and practical uses in Java applications. Optimize data transfer between layers with this structural design pattern."
 category: Structural
 language: en
 tag:
@@ -9,10 +9,6 @@ tag:
   - Decoupling
   - Layered architecture
   - Optimization
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -32,7 +28,7 @@ Real-world example
 
 In plain words
 
-> Using DTO relevant information can be fetched with a single backend query. 
+> Using DTO, relevant information can be fetched with a single backend query.
 
 Wikipedia says
 
