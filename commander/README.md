@@ -31,108 +31,46 @@ In plain words
 
 Managing transactions across different services in a distributed system, such as an e-commerce platform with separate `Payment` and `Shipping` microservices, requires careful coordination to avoid issues. When a user places an order but one service (e.g., `Payment`) is unavailable while the other (e.g., `Shipping`) is ready, we need a robust solution to handle this discrepancy.
 
-A strategy to address this involves using a `Commander` component that orchestrates the process. Initially, the order is processed by the available service (`Shipping` in this case). The commander then attempts to synchronize the order with the currently unavailable service (`Payment`) by storing the order details in a database or queueing it for future processing. This queueing system must also account for possible failures in adding requests to the queue.
+A strategy to address this involves using a `Commander` component that orchestrates the process. Initially, the order is processed by the available service (`Shipping` in this case). The `Commander` then attempts to synchronize the order with the currently unavailable service (`Payment`) by storing the order details in a database or queueing it for future processing. This queueing system must also account for possible failures in adding requests to the queue.
 
 The `Commander` repeatedly tries to process the queued orders to ensure both services eventually reflect the same transaction data. This process involves ensuring idempotence, meaning that even if the same order synchronization request is made multiple times, it will only be executed once, preventing duplicate transactions. The goal is to achieve eventual consistency across services, where all systems are synchronized over time despite initial failures or delays.
 
-To get a grasp of how this works in practice, let's see `AppShippingFailCases` class and explain afterward how it works.
+Here's a simplified example of how the `Commander` class is used in the `AppAllCases` class:
 
 ```java
-public class AppShippingFailCases {
+public class AppAllCases {
+  // ... other methods ...
 
-    private static final RetryParams retryParams = RetryParams.DEFAULT;
-    private static final TimeLimits timeLimits = TimeLimits.DEFAULT;
+  // Shipping Database Fail Cases
+  void itemUnavailableCase() {
+    var ps = new PaymentService(new PaymentDatabase());
+    var ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
+    var ms = new MessagingService(new MessagingDatabase());
+    var eh = new EmployeeHandle(new EmployeeDatabase());
+    var qdb = new QueueDatabase();
+    // Create a Commander instance
+    var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
+    var user = new User("Jim", "ABCD");
+    var order = new Order(user, "book", 10f);
+    // Use the Commander instance to place an order
+    c.placeOrder(order);
+  }
 
-    void itemUnavailableCase() {
-        var ps = new PaymentService(new PaymentDatabase());
-        var ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
-        var ms = new MessagingService(new MessagingDatabase());
-        var eh = new EmployeeHandle(new EmployeeDatabase());
-        var qdb = new QueueDatabase();
-        var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
-        var user = new User("Jim", "ABCD");
-        var order = new Order(user, "book", 10f);
-        c.placeOrder(order);
-    }
-
-    void shippingNotPossibleCase() {
-        var ps = new PaymentService(new PaymentDatabase());
-        var ss = new ShippingService(new ShippingDatabase(), new ShippingNotPossibleException());
-        var ms = new MessagingService(new MessagingDatabase());
-        var eh = new EmployeeHandle(new EmployeeDatabase());
-        var qdb = new QueueDatabase();
-        var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
-        var user = new User("Jim", "ABCD");
-        var order = new Order(user, "book", 10f);
-        c.placeOrder(order);
-    }
-
-    void shippingDatabaseUnavailableCase() {
-        //rest is successful
-        var ps = new PaymentService(new PaymentDatabase());
-        var ss = new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException(),
-                new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-                new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-                new DatabaseUnavailableException());
-        var ms = new MessagingService(new MessagingDatabase());
-        var eh = new EmployeeHandle(new EmployeeDatabase());
-        var qdb = new QueueDatabase();
-        var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
-        var user = new User("Jim", "ABCD");
-        var order = new Order(user, "book", 10f);
-        c.placeOrder(order);
-    }
-
-    void shippingSuccessCase() {
-        //goes to payment after 2 retries maybe - rest is successful for now
-        var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException());
-        var ss = new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException(),
-                new DatabaseUnavailableException());
-        var ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
-        var eh = new EmployeeHandle(new EmployeeDatabase());
-        var qdb = new QueueDatabase();
-        var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
-        var user = new User("Jim", "ABCD");
-        var order = new Order(user, "book", 10f);
-        c.placeOrder(order);
-    }
-
-    public static void main(String[] args) {
-        var asfc = new AppShippingFailCases();
-        asfc.shippingSuccessCase();
-    }
+  // ... other methods ...
 }
 ```
 
-The `AppShippingFailCases` class is designed to simulate different scenarios where the Shipping service is available or unavailable. It uses the Commander pattern to handle distributed transactions across multiple services.
+In the `itemUnavailableCase` method, a `Commander` instance is created with the respective services and their databases. Then, a `User` and an `Order` are created, and the `placeOrder` method of the `Commander` instance is called with the order. This triggers the process of placing the order and handling any failures according to the Commander pattern.
 
-Here's a breakdown of the methods in the `AppShippingFailCases` class:
+The `Commander` class encapsulates the logic for handling the order placement and any potential failures. This separation of concerns makes the code easier to understand and maintain, and it allows for the reuse of the `Commander` class in different parts of the application.  In a real-world application, the `Commander` class would be more complex and would include additional logic for handling different types of failures, retrying failed operations, and coordinating transactions across multiple services.
 
-1. `itemUnavailableCase`: This method simulates a scenario where the item to be shipped is unavailable. It creates instances of the `Commander` class with the `ShippingService` throwing an `ItemUnavailableException`. An order is placed and the system tries to handle this failure.
-
-2. `shippingNotPossibleCase`: This method simulates a scenario where shipping is not possible. It creates instances of the `Commander` class with the `ShippingService` throwing a `ShippingNotPossibleException`. An order is placed and the system tries to handle this failure.
-
-3. `shippingDatabaseUnavailableCase`: This method simulates a scenario where the `ShippingService` and `ShippingDatabase` are unavailable. It creates instances of the `Commander` class with the `ShippingService` throwing multiple `DatabaseUnavailableException`. An order is placed and the system tries to handle this failure.
-
-4. `shippingSuccessCase`: This method simulates a successful scenario where all services are available except for some temporary unavailability of the `PaymentService`, `ShippingService`, and `MessagingService`. An order is placed and the system handles this situation.
-
-In each of these methods, a `Commander` instance is created with the respective services and their databases. Then, a `User` and an `Order` are created, and the `placeOrder` method of the `Commander` instance is called with the order. This triggers the process of placing the order and handling any failures according to the Commander pattern.
-
-In the `main` method, the `shippingSuccessCase` method is called to simulate a successful scenario.
-
-Finally, let's execute the `main` method see the program output.
+Here is the output from executing the `itemUnavailableCase`:
 
 ```
-18:01:07.738 [main] DEBUG com.iluwatar.commander.Commander -- Order I07V78ZOB8RZ: Error in connecting to shipping service, trying again..
-18:01:10.536 [main] DEBUG com.iluwatar.commander.Commander -- Order I07V78ZOB8RZ: Error in connecting to shipping service, trying again..
-18:01:15.401 [main] INFO com.iluwatar.commander.Commander -- Order I07V78ZOB8RZ: Shipping placed successfully, transaction id: RCM0PO9N9B6J
-18:01:15.401 [main] INFO com.iluwatar.commander.Commander -- Order has been placed and will be shipped to you. Please wait while we make your payment... 
-18:01:15.407 [Thread-0] DEBUG com.iluwatar.commander.Commander -- Order I07V78ZOB8RZ: Error in connecting to payment service, trying again..
-18:01:18.327 [Thread-0] INFO com.iluwatar.commander.Commander -- Order I07V78ZOB8RZ: Payment successful, transaction Id: UWS72C00JN9Q
-18:01:18.328 [Thread-0] INFO com.iluwatar.commander.Commander -- Payment made successfully, thank you for shopping with us!!
-18:01:18.332 [Thread-1] DEBUG com.iluwatar.commander.Commander -- Order I07V78ZOB8RZ: Error in connecting to messaging service (Payment Success msg), trying again..
-18:01:20.693 [Thread-1] INFO com.iluwatar.commander.messagingservice.MessagingService -- Msg: Your order has been placed and paid for successfully! Thank you for shopping with us!
-18:01:20.694 [Thread-1] INFO com.iluwatar.commander.Commander -- Order I07V78ZOB8RZ: Payment Success message sent, request Id: 72DOWH1D0WYS
+09:10:13.894 [main] DEBUG com.iluwatar.commander.Commander -- Order YN3V8B7IL2PI: Error in creating shipping request..
+09:10:13.896 [main] INFO com.iluwatar.commander.Commander -- This item is currently unavailable. We will inform you as soon as the item becomes available again.
+09:10:13.896 [main] INFO com.iluwatar.commander.Commander -- Order YN3V8B7IL2PI: Item book unavailable, trying to add problem to employee handle..
+09:10:13.897 [Thread-0] INFO com.iluwatar.commander.Commander -- Order YN3V8B7IL2PI: Added order to employee database
 ```
 
 ## Applicability
