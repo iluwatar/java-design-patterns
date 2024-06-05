@@ -53,25 +53,13 @@ public interface CakeBakingService {
    */
   void saveNewTopping(CakeToppingInfo toppingInfo);
 
-  /**
-   * Get available cake toppings.
-   */
-  List<CakeToppingInfo> getAvailableToppings();
 
   /**
    * Add new cake layer.
    */
   void saveNewLayer(CakeLayerInfo layerInfo);
 
-  /**
-   * Get available cake layers.
-   */
-  List<CakeLayerInfo> getAvailableLayers();
 
-  void deleteAllCakes();
 
-  void deleteAllLayers();
-
-  void deleteAllToppings();
 
 }

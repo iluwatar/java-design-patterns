@@ -30,12 +30,15 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
 import entity.Cake;
 import entity.CakeLayer;
 import entity.CakeTopping;
-import java.util.HashSet;
-import java.util.Set;
-import org.junit.jupiter.api.Test;
 
 /**
  * This class contains unit tests for the Cake class.
@@ -44,78 +47,79 @@ import org.junit.jupiter.api.Test;
  */
 class CakeTest {
 
-  @Test
-  void testSetId() {
-    final var cake = new Cake();
-    assertNull(cake.getId());
+	@Test
+	void testSetId() {
+		final var cake = new Cake();
+		assertNull(cake.getId());
 
-    final var expectedId = 1234L;
-    cake.setId(expectedId);
-    assertEquals(expectedId, cake.getId());
-  }
+		final var expectedId = 1234L;
+		cake.setId(expectedId);
+		assertEquals(expectedId, cake.getId());
+	}
 
-  @Test
-  void testSetTopping() {
-    final var cake = new Cake();
-    assertNull(cake.getTopping());
+	@Test
+	void testSetTopping() {
+		final var cake = new Cake();
+		assertNull(cake.getTopping());
 
-    final var expectedTopping = new CakeTopping("DummyTopping", 1000);
-    cake.setTopping(expectedTopping);
-    assertEquals(expectedTopping, cake.getTopping());
-  }
+		final var expectedTopping = new CakeTopping("DummyTopping", 1000);
+		cake.setTopping(expectedTopping);
+		assertEquals(expectedTopping, cake.getTopping());
+	}
 
-  @Test
-  void testSetLayers() {
-    final var cake = new Cake();
-    assertNotNull(cake.getLayers());
-    assertTrue(cake.getLayers().isEmpty());
+	@Test
+	void testSetLayers() {
+		final var cake = new Cake();
+		assertNotNull(cake.getLayers());
+		assertTrue(cake.getLayers().isEmpty());
 
-    final var expectedLayers = Set.of(new CakeLayer("layer1", 1000), new CakeLayer("layer2", 2000),
-        new CakeLayer("layer3", 3000));
-    cake.setLayers(expectedLayers);
-    assertEquals(expectedLayers, cake.getLayers());
-  }
+		//fixing this to evade the false positive
+		final var expectedLayers = new HashSet<>(Arrays.asList(new CakeLayer("layer1", 1000),
+				new CakeLayer("layer2", 2000), new CakeLayer("layer3", 3000)));
+		cake.setLayers(expectedLayers);
+		assertEquals(expectedLayers, cake.getLayers());
+	}
 
-  @Test
-  void testAddLayer() {
-    final var cake = new Cake();
-    assertNotNull(cake.getLayers());
-    assertTrue(cake.getLayers().isEmpty());
+	@Test
+	void testAddLayer() {
+		final var cake = new Cake();
+		assertNotNull(cake.getLayers());
+		assertTrue(cake.getLayers().isEmpty());
 
-    final Set<CakeLayer> initialLayers = new HashSet<>();
-    initialLayers.add(new CakeLayer("layer1", 1000));
-    initialLayers.add(new CakeLayer("layer2", 2000));
+		final Set<CakeLayer> initialLayers = new HashSet<>();
+		initialLayers.add(new CakeLayer("layer1", 1000));
+		initialLayers.add(new CakeLayer("layer2", 2000));
 
-    cake.setLayers(initialLayers);
-    assertEquals(initialLayers, cake.getLayers());
+		cake.setLayers(initialLayers);
+		assertEquals(initialLayers, cake.getLayers());
 
-    final var newLayer = new CakeLayer("layer3", 3000);
-    cake.addLayer(newLayer);
+		final var newLayer = new CakeLayer("layer3", 3000);
+		cake.addLayer(newLayer);
 
-    final Set<CakeLayer> expectedLayers = new HashSet<>();
-    expectedLayers.addAll(initialLayers);
-    expectedLayers.addAll(initialLayers);
-    expectedLayers.add(newLayer);
-    assertEquals(expectedLayers, cake.getLayers());
-  }
+		final Set<CakeLayer> expectedLayers = new HashSet<>();
+		expectedLayers.addAll(initialLayers);
+		expectedLayers.addAll(initialLayers);
+		expectedLayers.add(newLayer);
+		assertEquals(expectedLayers, cake.getLayers());
+	}
 
-  @Test
-  void testToString() {
-    final var topping = new CakeTopping("topping", 20);
-    topping.setId(2345L);
+	@Test
+	void testToString() {
+		final var topping = new CakeTopping("topping", 20);
+		topping.setId(2345L);
 
-    final var layer = new CakeLayer("layer", 100);
-    layer.setId(3456L);
+		final var layer = new CakeLayer("layer", 100);
+		layer.setId(3456L);
 
-    final var cake = new Cake();
-    cake.setId(1234L);
-    cake.setTopping(topping);
-    cake.addLayer(layer);
+		final var cake = new Cake();
+		cake.setId(1234L);
+		cake.setTopping(topping);
+		cake.addLayer(layer);
 
-    final var expected = "id=1234 topping=id=2345 name=topping calories=20 "
-        + "layers=[id=3456 name=layer calories=100]";
-    assertEquals(expected, cake.toString());
+		final var expected = "id=1234 topping=id=2345 name=topping calories=20 "
+				+ "layers=[id=3456 name=layer calories=100]";
+		assertEquals(expected, cake.toString());
 
-  }
+	}
 
 }

@@ -62,8 +62,7 @@ public class CakeBakingServiceImpl implements CakeBakingService {
    * @param cakeToppingDao the DAO for cake topping-related operations
    */
   @Autowired
-  public CakeBakingServiceImpl(CakeDao cakeDao, CakeLayerDao cakeLayerDao,
-                               CakeToppingDao cakeToppingDao) {
+  public CakeBakingServiceImpl(CakeDao cakeDao, CakeLayerDao cakeLayerDao, CakeToppingDao cakeToppingDao) {
     this.cakeDao = cakeDao;
     this.cakeLayerDao = cakeLayerDao;
     this.cakeToppingDao = cakeToppingDao;
@@ -72,18 +71,20 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   @Override
   public void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException {
     var allToppings = getAvailableToppingEntities();
-    var matchingToppings =
-        allToppings.stream().filter(t -> t.getName().equals(cakeInfo.cakeToppingInfo.name))
-            .toList();
+    var matchingToppings = allToppings.stream()
+        .filter(t -> t.getName().equals(cakeInfo.cakeToppingInfo.name))
+        .toList();
     if (matchingToppings.isEmpty()) {
-      throw new CakeBakingException(
-          String.format("Topping %s is not available", cakeInfo.cakeToppingInfo.name));
+      throw new CakeBakingException(String.format("Topping %s is not available", cakeInfo.cakeToppingInfo.name));
     }
     var allLayers = getAvailableLayerEntities();
     Set<CakeLayer> foundLayers = new HashSet<>();
     for (var info : cakeInfo.cakeLayerInfos) {
-      var found = allLayers.stream().filter(layer -> layer.getName().equals(info.name)).findFirst();
-      if (found.isEmpty()) {
+      var found = allLayers.stream()
+          .filter(layer -> layer.getName().equals(info.name))
+          .findFirst();
+      boolean isFound = found.isPresent();
+      if (!isFound) {
         throw new CakeBakingException(String.format("Layer %s is not available", info.name));
       } else {
         foundLayers.add(found.get());
@@ -132,7 +133,11 @@ public class CakeBakingServiceImpl implements CakeBakingService {
     return result;
   }
 
-  @Override
+  /**
+   * Gets available toppings.
+   *
+   * @return a list of available CakeToppingInfo objects.
+   */
   public List<CakeToppingInfo> getAvailableToppings() {
     List<CakeToppingInfo> result = new ArrayList<>();
     for (CakeTopping next : cakeToppingDao.findAll()) {
@@ -153,7 +158,11 @@ public class CakeBakingServiceImpl implements CakeBakingService {
     return result;
   }
 
-  @Override
+  /**
+   * Gets available layers.
+   *
+   * @return a list of available CakeLayerInfo objects.
+   */
   public List<CakeLayerInfo> getAvailableLayers() {
     List<CakeLayerInfo> result = new ArrayList<>();
     for (CakeLayer next : cakeLayerDao.findAll()) {
@@ -164,17 +173,14 @@ public class CakeBakingServiceImpl implements CakeBakingService {
     return result;
   }
 
-  @Override
   public void deleteAllCakes() {
     cakeDao.deleteAll();
   }
 
-  @Override
   public void deleteAllLayers() {
     cakeLayerDao.deleteAll();
   }
 
-  @Override
   public void deleteAllToppings() {
     cakeToppingDao.deleteAll();
   }
@@ -183,9 +189,11 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   public List<CakeInfo> getAllCakes() {
     List<CakeInfo> result = new ArrayList<>();
     for (Cake cake : cakeDao.findAll()) {
-      var cakeToppingInfo =
-          new CakeToppingInfo(cake.getTopping().getId(), cake.getTopping().getName(),
-              cake.getTopping().getCalories());
+      var cakeToppingInfo = new CakeToppingInfo(
+          cake.getTopping().getId(),
+          cake.getTopping().getName(),
+          cake.getTopping().getCalories()
+      );
       List<CakeLayerInfo> cakeLayerInfos = new ArrayList<>();
       for (var layer : cake.getLayers()) {
         cakeLayerInfos.add(new CakeLayerInfo(layer.getId(), layer.getName(), layer.getCalories()));

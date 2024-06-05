@@ -29,18 +29,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
+
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.AppenderBase;
 import dto.CakeInfo;
 import dto.CakeLayerInfo;
 import dto.CakeToppingInfo;
-import java.util.LinkedList;
-import java.util.List;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.slf4j.LoggerFactory;
 import service.CakeBakingService;
 import view.CakeViewImpl;
 
@@ -51,63 +54,68 @@ import view.CakeViewImpl;
  */
 class CakeViewImplTest {
 
-  private InMemoryAppender appender;
+	private InMemoryAppender appender;
 
-  @BeforeEach
-  void setUp() {
-    appender = new InMemoryAppender(CakeViewImpl.class);
-  }
+	@BeforeEach
+	void setUp() {
+		appender = new InMemoryAppender(CakeViewImpl.class);
+	}
 
-  @AfterEach
-  void tearDown() {
-    appender.stop();
-  }
+	@AfterEach
+	void tearDown() {
+		appender.stop();
+	}
 
-  /**
-   * Verify if the cake view renders the expected result.
-   */
-  @Test
-  void testRender() {
+	/**
+	 * Verify if the cake view renders the expected result.
+	 */
+	@Test
+	void testRender() {
+		// refactoring the way to create list to evade the false positives.
+		final List<CakeLayerInfo> layers = new ArrayList<>();
+		layers.add(new CakeLayerInfo("layer1", 1000));
+		layers.add(new CakeLayerInfo("layer2", 2000));
+		layers.add(new CakeLayerInfo("layer3", 3000));
 
-    final var layers = List.of(new CakeLayerInfo("layer1", 1000), new CakeLayerInfo("layer2", 2000),
-        new CakeLayerInfo("layer3", 3000));
+		final var cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
 
-    final var cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
-    final var cakes = List.of(cake);
+		// refactoring the way to create list to evade the false positives.
+		final List<CakeInfo> cakes = new ArrayList<>();
+		cakes.add(cake);
 
-    final var bakingService = mock(CakeBakingService.class);
-    when(bakingService.getAllCakes()).thenReturn(cakes);
+		final var bakingService = mock(CakeBakingService.class);
+		when(bakingService.getAllCakes()).thenReturn(cakes);
 
-    final var cakeView = new CakeViewImpl(bakingService);
+		final var cakeView = new CakeViewImpl(bakingService);
 
-    assertEquals(0, appender.getLogSize());
+		assertEquals(0, appender.getLogSize());
 
-    cakeView.render();
-    assertEquals(cake.toString(), appender.getLastMessage());
+		cakeView.render();
+		assertEquals(cake.toString(), appender.getLastMessage());
 
-  }
+	}
 
   private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
-    private final List<ILoggingEvent> log = new LinkedList<>();
+		private final List<ILoggingEvent> log = new LinkedList<>();
 
-    public InMemoryAppender(Class clazz) {
-      ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
-      start();
-    }
+		public InMemoryAppender(Class<?> clazz) {
+		    ((Logger) LoggerFactory.getLogger(clazz)).addAppender(this);
+		    start();
+		}
 
-    @Override
-    protected void append(ILoggingEvent eventObject) {
-      log.add(eventObject);
-    }
+		@Override
+		protected void append(ILoggingEvent eventObject) {
+			log.add(eventObject);
+		}
 
-    public String getLastMessage() {
-      return log.get(log.size() - 1).getFormattedMessage();
-    }
+		public String getLastMessage() {
+			return log.get(log.size() - 1).getFormattedMessage();
+		}
 
-    public int getLogSize() {
-      return log.size();
-    }
-  }
+		public int getLogSize() {
+			return log.size();
+		}
+	}
 
 }
