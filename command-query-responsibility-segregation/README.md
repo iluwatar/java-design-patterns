@@ -1,16 +1,12 @@
 ---
-title: Command Query Responsibility Segregation
-description:
+title: "Command Query Responsibility Segregation (CQRS) Pattern: Improve Scalability and Performance"
+description: "Learn about the Command Query Responsibility Segregation (CQRS) pattern in Java. Discover how segregating commands and queries can enhance the scalability, performance, and maintainability of your software systems."
 category: Architectural
 language: en
 tag:
   - Event-driven
   - Performance
   - Scalability
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -19,7 +15,7 @@ head:
 
 ## Intent of Command Query Responsibility Segregation Design Pattern
 
-Command Query Responsibility Segregation aims to segregate the operations that modify the state of an application (commands) from the operations that read the state (queries).
+Command Query Responsibility Segregation (CQRS) aims to segregate the operations that modify the state of an application (commands) from the operations that read the state (queries). This separation enhances scalability, performance, and maintainability in complex software systems.
 
 ## Detailed Explanation of Command Query Responsibility Segregation Pattern with Real-World Examples
 
@@ -29,7 +25,7 @@ Real-world example
 
 In plain words
 
-> The CQRS design pattern separates the actions of modifying data (commands) from the actions of retrieving data (queries) to enhance performance, scalability, and maintainability in software systems.
+> The CQRS design pattern separates the actions of modifying data (commands) from the actions of retrieving data (queries) to enhance performance, scalability, and maintainability in software systems. By implementing CQRS, you can optimize your system's read and write operations independently, allowing for more efficient data handling and improved overall system performance.
 
 Microsoft's documentation says
 
@@ -100,9 +96,9 @@ Program output:
 
 ## When to Use the Command Query Responsibility Segregation Pattern in Java
 
-* Systems requiring distinct models for read and write operations for scalability and maintainability.
-* Complex domain models where the task of updating objects differs significantly from the task of reading object data.
-* Scenarios where performance optimization for read operations is crucial, and the system can benefit from different data models or databases for reads and writes.
+* Systems requiring distinct models for read and write operations for scalability and maintainability, such as e-commerce platforms and high-traffic websites.
+* Complex domain models, like financial services or healthcare applications, where the task of updating objects differs significantly from the task of reading object data.
+* Scenarios where performance optimization for read operations is crucial, and the system can benefit from different data models or databases for reads and writes, enhancing data retrieval speed and accuracy.
 
 ## Known Uses
 
