@@ -20,11 +20,11 @@ head:
 
 * Lazy Initialization
 
-## Intent
+## Intent of Lazy Loading Design Pattern
 
 The Lazy Loading pattern defers object initialization until the object is actually needed, minimizing memory usage and reducing startup times.
 
-## Explanation
+## Detailed Explanation of Lazy Loading Pattern with Real-World Examples
 
 Real-world example
 
@@ -138,7 +138,7 @@ public class Java8Holder {
 
 In this example, the `App` class retrieves a `Heavy` object from `HolderNaive`, `HolderThreadSafe`, and `Java8Holder`. These classes delay the creation of the `Heavy` object until it's actually needed, demonstrating the Lazy Loading pattern.
 
-## Applicability
+## When to Use the Lazy Loading Pattern in Java
 
 Use Lazy Loading when:
 
@@ -152,7 +152,7 @@ Use Lazy Loading when:
 * JPA annotations @OneToOne, @OneToMany, @ManyToOne, @ManyToMany and fetch = FetchType.LAZY
 * Spring Framework (Dependency Injection): Loads beans only when required, reducing application startup time.
 
-## Consequences
+## Benefits and Trade-offs of Lazy Loading Pattern
 
 Benefits:
 
@@ -170,7 +170,7 @@ Trade-offs:
 * Virtual Proxy: Specific type of Proxy that handles object creation on demand.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Often combined with Lazy Loading to ensure only one instance of an object is created and loaded lazily.
 
-## Credits
+## References and Credits
 
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Java Performance: The Definitive Guide: Getting the Most Out of Your Code](https://amzn.to/3Wu5neF)

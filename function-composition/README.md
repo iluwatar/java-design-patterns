@@ -22,11 +22,11 @@ head:
 * Function Pipelining
 * Functional Composition
 
-## Intent
+## Intent of Function Composition Design Pattern
 
 To enable creating complex functions by composing simpler ones, enhancing modularity and reusability of function-based logic.
 
-## Explanation
+## Detailed Explanation of Function Composition Pattern with Real-World Examples
 
 Real-world example
 
@@ -84,7 +84,7 @@ This example demonstrates how the Function Composition pattern can be used to cr
 
 ![Functional Composition Diagram](./etc/function.composition.urm.png "Functional Composition")
 
-## Applicability
+## When to Use the Function Composition Pattern in Java
 
 Use the Function Composer pattern when:
 
@@ -94,18 +94,18 @@ Use the Function Composer pattern when:
 * When you want to avoid deep nesting of function calls and instead build a pipeline of operations.
 * When aiming to promote immutability and side-effect-free functions in your design.
 
-## Tutorials
+## Function Composition Pattern Java Tutorials
 
 * [Function Composition in Java (Medium)](https://functionalprogramming.medium.com/function-composition-in-java-beaf39426f52)
 * [Functional Programming in Java (Baeldung)](https://www.baeldung.com/java-functional-programming)
 
-## Known uses
+## Real-World Applications of Function Composition Pattern in Java
 
 * Stream processing in Java 8 and above
 * Query builders in ORM libraries
 * Middleware composition in web frameworks
 
-## Consequences
+## Benefits and Trade-offs of Function Composition Pattern
 
 Benefits:
 
@@ -121,13 +121,13 @@ Trade-offs:
 * Overhead from creating and managing multiple function objects in memory-intensive scenarios.
 * May require a paradigm shift for developers unfamiliar with functional programming concepts.
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/) - Both patterns allow processing to be broken down into a series of steps, but Functional Composition focuses on function composition rather than responsibility delegation.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/) - Similar in combining behaviors, but Decorator applies additional behavior to objects, while Functional Composition builds new functions.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/) - Provides interchangeable functions (strategies), which can be composed in Functional Composition.
 
-## Credits
+## References and Credits
 
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Functional Programming in Java](https://amzn.to/3JUIc5Q)

@@ -21,11 +21,11 @@ head:
 * Snapshot
 * Token
 
-## Intent
+## Intent of Memento Design Pattern
 
 Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
 
-## Explanation
+## Detailed Explanation of Memento Pattern with Real-World Examples
 
 Real-world example
 
@@ -164,19 +164,19 @@ Program output:
 14:09:15.881 [main] INFO com.iluwatar.memento.App -- sun age: 10000000 years mass: 500000 tons
 ```
 
-## Applicability
+## When to Use the Memento Pattern in Java
 
 Use the Memento pattern when
 
 * A snapshot of an object's state must be saved so that it can be restored to that state later, and
 * A direct interface to obtaining the state would expose implementation details and break the object's encapsulation
 
-## Known uses
+## Real-World Applications of Memento Pattern in Java
 
 * Java Util Package: Various classes in the Java Util Package, such as java.util.Date and java.util.Calendar, can be reverted to previous states using similar principles, though not implemented directly as the Memento Pattern.
 * Undo mechanisms in software: Text editors and graphic editors often use this pattern to implement undo actions.
 
-## Consequences
+## Benefits and Trade-offs of Memento Pattern
 
 Benefits:
 
@@ -193,7 +193,7 @@ Trade-offs:
 * [Command](https://java-design-patterns.com/patterns/command/): Often used together; commands store state for undoing operations in mementos.
 * [Prototype](https://java-design-patterns.com/patterns/prototype/): Mementos may use prototyping to store the state.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

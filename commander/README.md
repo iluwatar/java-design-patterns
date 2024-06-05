@@ -18,11 +18,11 @@ head:
 * Distributed Transaction Commander
 * Transaction Coordinator
 
-## Intent
+## Intent of Commander Design Pattern
 
 The intent of the Commander pattern in the context of distributed transactions is to manage and coordinate complex transactions across multiple distributed components or services, ensuring consistency and integrity of the overall transaction. It encapsulates transaction commands and coordination logic, facilitating the implementation of distributed transaction protocols like two-phase commit or Saga.
 
-## Explanation
+## Detailed Explanation of Commander Pattern with Real-World Examples
 
 Real-world example
 
@@ -78,7 +78,7 @@ Here is the output from executing the `itemUnavailableCase`:
 09:10:13.897 [Thread-0] INFO com.iluwatar.commander.Commander -- Order YN3V8B7IL2PI: Added order to employee database
 ```
 
-## Applicability
+## When to Use the Commander Pattern in Java
 
 Use the Commander pattern for distributed transactions when:
 
@@ -92,7 +92,7 @@ Use the Commander pattern for distributed transactions when:
 * Saga Pattern Implementations: Managing long-lived business processes that span multiple microservices, with each step having a compensating action for rollback.
 * Distributed Transactions in Microservices Architecture: Coordinating complex operations across microservices while maintaining data integrity and consistency.
 
-## Consequences
+## Benefits and Trade-offs of Commander Pattern
 
 Benefits:
 
@@ -110,7 +110,7 @@ Trade-offs:
 
 * [Saga Pattern](https://java-design-patterns.com/patterns/saga/): Often discussed in tandem with the Commander pattern for distributed transactions, focusing on long-lived transactions with compensating actions.
 
-## Credits
+## References and Credits
 
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/4aATcRe)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/4axHwOV)

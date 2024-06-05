@@ -20,11 +20,11 @@ head:
 
 * Fluent Builder
 
-## Intent
+## Intent of Step Builder Design Pattern
 
 Separate the construction of a complex object step-by-step, allowing an object to be built incrementally.
 
-## Explanation
+## Detailed Explanation of Step Builder Pattern with Real-World Examples
 
 Real-world example
 
@@ -165,17 +165,17 @@ Console output:
 12:58:13.889 [main] INFO com.iluwatar.stepbuilder.App -- This is a Rogue named Desmond armed with a with nothing.
 ```
 
-## Class diagram
+## Detailed Explanation of Step Builder Pattern with Real-World Examples
 
 ![Step Builder](./etc/step-builder.png "Step Builder")
 
-## Applicability
+## When to Use the Step Builder Pattern in Java
 
 * When constructing an object that requires multiple initialization steps.
 * When object construction is complex and involves many parameters.
 * When you want to provide a clear, readable, and maintainable way to construct an object in a step-by-step manner.
 
-## Tutorials
+## Step Builder Pattern Java Tutorials
 
 * [Step Builder (Marco Castigliego)](http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html)
 
@@ -185,7 +185,7 @@ Console output:
 * Constructing objects for database records with multiple fields.
 * Building UI elements where each step configures a different part of the interface.
 
-## Consequences
+## Benefits and Trade-offs of Step Builder Pattern
 
 Benefits:
 
@@ -204,7 +204,7 @@ Trade-offs:
 * [Fluent Interface](https://java-design-patterns.com/patterns/fluentinterface/): Often used in conjunction with the Step Builder pattern to provide a fluent API for constructing objects.
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Sometimes used with the Step Builder pattern to encapsulate the creation logic of the builder itself.
 
-## Credits
+## References and Credits
 
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/3wRnjp5)
 * [Effective Java](https://amzn.to/4cGk2Jz)

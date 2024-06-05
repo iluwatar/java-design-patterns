@@ -19,11 +19,11 @@ head:
 
 * Borg
 
-## Intent
+## Intent of Monostate Design Pattern
 
 Monostate is an alternative approach to achieving a singleton-like behavior in object-oriented design. It enforces a unique behavior where all instances of a class share the same state. Unlike the Singleton pattern, which restricts a class to a single instance, Monostate allows for multiple instances but ensures they all have a shared state.
 
-## Explanation
+## Detailed Explanation of Monostate Pattern with Real-World Examples
 
 Real-word example
 
@@ -82,7 +82,7 @@ public class App {
 
 In this example, we create two instances of `LoadBalancer`: `loadBalancer1` and `loadBalancer2`. They share the same state. When we make a request via `loadBalancer1`, the request is served by the first server. When we make a request via `loadBalancer2`, the request is served by the second server, not the first one, because the `nextServerIndex` has been updated by `loadBalancer1`. This demonstrates the Monostate pattern in action.
 
-## Applicability
+## When to Use the Monostate Pattern in Java
 
 Use the Monostate pattern when
 
@@ -98,12 +98,12 @@ Use the Monostate pattern when
 
 6. **Consistent Configuration or State Management:** In scenarios where you need consistent configuration management or state management across different parts of an application, Monostate provides a pattern to ensure all parts of the system are in sync.
 
-## Known uses
+## Real-World Applications of Monostate Pattern in Java
 
 * Configuration settings that need to be shared and accessible by various parts of an application.
 * Resource pools where the state needs to be consistent across different consumers.
 
-## Consequences
+## Benefits and Trade-offs of Monostate Pattern
 
 Benefits:
 
@@ -120,7 +120,7 @@ Trade-offs:
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Both Singleton and Monostate ensure a single shared state, but Singleton does so by restricting instance creation.
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Flyweight shares state to reduce memory usage, similar to how Monostate shares state among instances.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

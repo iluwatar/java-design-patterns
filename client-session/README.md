@@ -18,11 +18,11 @@ head:
 
 * User Session
 
-## Intent
+## Intent of Client Session Design Pattern
 
 The Client Session design pattern aims to maintain a user's state and data across multiple requests within a web application, ensuring a continuous and personalized user experience.
 
-## Explanation
+## Detailed Explanation of Client Session Pattern with Real-World Examples
 
 Real-world example
 
@@ -105,7 +105,7 @@ Running the program produces the following console output:
 19:28:49.154 [main] INFO com.iluwatar.client.session.Server -- Processing Request with client: Session2 data: Data2
 ```
 
-## Applicability
+## When to Use the Client Session Pattern in Java
 
 Use the client state pattern when:
 
@@ -119,7 +119,7 @@ Use the client state pattern when:
 * Online platforms that offer personalized content based on user preferences and history.
 * Web applications requiring user login to access personalized or secured content.
 
-## Consequences
+## Benefits and Trade-offs of Client Session Pattern
 
 Benefits:
 
@@ -139,7 +139,7 @@ Trade-offs:
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Ensuring a single instance of a user's session throughout the application.
 * [State](https://java-design-patterns.com/patterns/state/): Managing state transitions in a session, such as authenticated, guest, or expired states.
 
-## Credits
+## References and Credits
 
 * [Professional Java for Web Applications](https://amzn.to/4aazY59)
 * [Securing Web Applications with Spring Security](https://amzn.to/3PCCEA1)

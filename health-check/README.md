@@ -19,11 +19,11 @@ head:
 * Health Monitoring
 * Service Health Check
 
-## Intent
+## Intent of Health Check Design Pattern
 
 The Health Check pattern is designed to proactively monitor the health of individual software components or services, allowing for quick identification and remediation of issues that may affect overall system functionality.
 
-## Explanation
+## Detailed Explanation of Health Check Pattern with Real-World Examples
 
 Real-world example
 
@@ -80,7 +80,7 @@ In this example, the `check` method contains the logic for the health check. If 
 
 This is a basic example of the Health Check pattern, where health checks are built into the system and can be easily accessed and monitored.
 
-## Applicability
+## When to Use the Health Check Pattern in Java
 
 * Use when building microservices or distributed systems where it is crucial to monitor the health of each service.
 * Suitable for scenarios where automated systems need to determine the operational status of services to perform load balancing, failover, or recovery operations.
@@ -91,7 +91,7 @@ This is a basic example of the Health Check pattern, where health checks are bui
 * AWS elastic load balancing health checks
 * Spring Boot Actuator
 
-## Consequences
+## Benefits and Trade-offs of Health Check Pattern
 
 Benefits:
 
@@ -109,7 +109,7 @@ Trade-offs:
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Both patterns enhance system resilience; while Health Check monitors health status, Circuit Breaker protects a system from repeated failures.
 * [Observer](https://java-design-patterns.com/patterns/observer/): Health Check can be seen as a specific use case of the Observer pattern, where the subject being observed is the system’s health.
 
-## Credits
+## References and Credits
 
 * [Microservices Patterns: With examples in Java](https://amzn.to/3UyWD5O)
 * [Release It! Design and Deploy Production-Ready Software](https://amzn.to/3Uul4kF)

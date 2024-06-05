@@ -18,11 +18,11 @@ head:
 * API Segregation
 * Client-Server Interface
 
-## Intent
+## Intent of Separated Interface Design Pattern
 
 To define a client interface in a separate package from its implementation to allow for easier swapping of implementations and better separation of concerns.
 
-## Explanation
+## Detailed Explanation of Separated Interface Pattern with Real-World Examples
 
 Real-world example
 
@@ -115,7 +115,7 @@ Console output:
 
 In this way, the Separated Interface pattern allows us to decouple the interface of a component from its implementation, enhancing flexibility and maintainability.
 
-## Applicability
+## When to Use the Separated Interface Pattern in Java
 
 * Use when you want to decouple the interface of a component from its implementation.
 * Useful in large systems where different teams work on different parts of the system.
@@ -130,7 +130,7 @@ In this way, the Separated Interface pattern allows us to decouple the interface
 * Java's JDBC (Java Database Connectivity) API separates the client interface from the database driver implementations.
 * Remote Method Invocation (RMI) in Java, where the client and server interfaces are defined separately from the implementations.
 
-## Consequences
+## Benefits and Trade-offs of Separated Interface Pattern
 
 Benefits:
 
@@ -149,7 +149,7 @@ Trade-offs:
 * [Bridge](https://java-design-patterns.com/patterns/bridge/): Separates an object’s interface from its implementation, similar to Separated Interface but usually applied to larger-scale architectural issues.
 * [Dependency Injection](https://java-design-patterns.com/patterns/dependency-injection/): Often used to inject the implementation of a separated interface, promoting loose coupling.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

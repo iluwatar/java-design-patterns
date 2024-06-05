@@ -16,11 +16,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Registry Design Pattern
 
 To centralize the creation and management of a global set of objects, providing a single point of access and ensuring controlled instantiation.
 
-## Explanation
+## Detailed Explanation of Registry Pattern with Real-World Examples
 
 Real-world example
 
@@ -115,7 +115,7 @@ Running the example produces the following output:
 09:55:31.113 [main] INFO com.iluwatar.registry.App -- Julia Customer{id='2', name='Julia'}
 ```
 
-## Applicability
+## When to Use the Registry Pattern in Java
 
 * When you need to manage a global collection of objects.
 * When you need to decouple the creation of objects from their usage.
@@ -128,7 +128,7 @@ Running the example produces the following output:
 * Providing a central place to register and retrieve services or components in a modular application.
 * Creating a central configuration registry that various parts of an application can access.
 
-## Consequences
+## Benefits and Trade-offs of Registry Pattern
 
 Benefits:
 
@@ -150,7 +150,7 @@ Trade-offs:
 * [Dependency Injection](https://java-design-patterns.com/patterns/dependency-injection/): Provides an alternative method for managing dependencies, which can sometimes replace the need for a Registry.
 * [Multiton](https://java-design-patterns.com/patterns/multiton/): Similar to the Registry in that it manages multiple instances, but does so based on keys, ensuring only one instance per key.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

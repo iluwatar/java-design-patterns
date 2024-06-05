@@ -23,11 +23,11 @@ head:
 * Dispatcher
 * Notifier
 
-## Intent
+## Intent of Reactor Design Pattern
 
 Handle service requests that are delivered concurrently to a service handler by one or more inputs.
 
-## Explanation
+## Detailed Explanation of Reactor Pattern with Real-World Examples
 
 Real-world example
 
@@ -160,11 +160,11 @@ Running the code produces the following output:
 
 This concludes our detailed explanation of the Reactor design pattern. The Reactor pattern allows us to handle multiple simultaneous I/O operations efficiently using a single or a limited number of threads.
 
-## Class diagram
+## Detailed Explanation of Reactor Pattern with Real-World Examples
 
 ![Reactor](./etc/reactor.png "Reactor")
 
-## Applicability
+## When to Use the Reactor Pattern in Java
 
 * Use the Reactor pattern when you need to handle multiple simultaneous I/O operations efficiently.
 * Ideal for applications requiring high scalability and low-latency, such as web servers and networking frameworks.
@@ -175,7 +175,7 @@ This concludes our detailed explanation of the Reactor design pattern. The React
 * Akka: A toolkit and runtime for building concurrent, distributed, and fault-tolerant applications on the JVM.
 * Java NIO (New I/O): Provides non-blocking I/O operations, allowing a single thread to manage multiple channels.
 
-## Consequences
+## Benefits and Trade-offs of Reactor Pattern
 
 Benefits:
 
@@ -195,7 +195,7 @@ Trade-offs:
 * Proactor: Similar to Reactor but handles asynchronous I/O completion rather than readiness.
 * [Command](https://java-design-patterns.com/patterns/command/): Encapsulates a request as an object, allowing parameterization and queuing of requests.
   
-## Credits
+## References and Credits
 
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 * [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)

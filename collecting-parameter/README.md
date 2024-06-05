@@ -19,11 +19,11 @@ head:
 * Collector
 * Accumulator
 
-## Intent
+## Intent of Collecting Parameter Design Pattern
 
 Aims to simplify methods that collect information by passing a single collection object through various method calls, allowing them to add results to this collection rather than each method creating its own collection.
 
-## Explanation
+## Detailed Explanation of Collecting Parameter Pattern with Real-World Examples
 
 Real-world example
 
@@ -111,24 +111,24 @@ This `App` class is the main entry point of the application. It uses the Collect
 
 The `result` list, which is the collecting parameter, accumulates the valid print jobs as it is passed from method to method. This is the essence of the Collecting Parameter design pattern.
 
-## Applicability
+## When to Use the Collecting Parameter Pattern in Java
 
 * Use when a method needs to accept a large number of parameters, making the method signature unwieldy.
 * Use when the same group of parameters is passed to multiple methods, reducing redundancy and potential errors.
 * Use to improve the readability and maintainability of the code.
 
-## Tutorials
+## Collecting Parameter Pattern Java Tutorials
 
 * [Refactoring To Patterns (Joshua Kerivsky)](http://www.tarrani.net/RefactoringToPatterns.pdf)
 * [Smalltalk Best Practice Patterns (Kent Beck)](https://ptgmedia.pearsoncmg.com/images/9780134769042/samplepages/013476904X.pdf)
 
-## Known uses
+## Real-World Applications of Collecting Parameter Pattern in Java
 
 * Use when a method needs to accept a large number of parameters, making the method signature unwieldy.
 * Use when the same group of parameters is passed to multiple methods, reducing redundancy and potential errors.
 * Use to improve the readability and maintainability of the code.
 
-## Consequences
+## Benefits and Trade-offs of Collecting Parameter Pattern
 
 Benefits:
 
@@ -141,13 +141,13 @@ Trade-offs:
 * Introduces an additional class, which may increase complexity if not managed properly.
 * Can lead to over-generalization if the parameter object becomes too large or unwieldy.
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Command](https://java-design-patterns.com/patterns/command/): Commands may utilize Collecting Parameter to aggregate results from multiple operations executed by the command objects.
 * [Composite](https://java-design-patterns.com/patterns/composite/): Can be used in tandem with Collecting Parameter when dealing with hierarchical structures, allowing results to be collected across a composite structure.
 * [Visitor](https://java-design-patterns.com/patterns/visitor/): Often used together, where Visitor handles traversal and operations on a structure, and Collecting Parameter accumulates the results.
 
-## Credits
+## References and Credits
 
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/4aApLP0)
 * [Refactoring: Improving the Design of Existing Code](https://amzn.to/3TVEgaB)

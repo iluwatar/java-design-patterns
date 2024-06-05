@@ -20,11 +20,11 @@ head:
 * Event Bus
 * Message Bus
 
-## Intent
+## Intent of Data Bus Design Pattern
 
 The Data Bus design pattern aims to provide a centralized communication channel through which various components of a system can exchange data without being directly connected, thus promoting loose coupling and enhancing scalability and maintainability.
 
-## Explanation
+## Detailed Explanation of Data Bus Pattern with Real-World Examples
 
 Real-world example
 
@@ -153,7 +153,7 @@ When the data bus publishes a message, the output is as follows:
 
 As shown, `MessageCollectorMembers` only accept messages of type `MessageData`, so they do not see the `StartingData` or `StoppingData` messages, which are only visible to `StatusMember` (the event administrators or organizers). This selective message handling prevents ordinary community members from receiving administrative notifications.
 
-## Applicability
+## When to Use the Data Bus Pattern in Java
 
 * When multiple components need to share data or events but direct coupling is undesirable.
 * In complex systems where the flow of information varies dynamically.
@@ -166,7 +166,7 @@ As shown, `MessageCollectorMembers` only accept messages of type `MessageData`, 
 * Real-time data processing systems, such as stock trading platforms.
 * In frameworks like Spring, particularly with its application event mechanism.
 
-## Consequences
+## Benefits and Trade-offs of Data Bus Pattern
 
 Benefits:
 
@@ -187,7 +187,7 @@ Trade-offs:
 * [Observer](https://java-design-patterns.com/patterns/observer/): Similar in nature to the publish-subscribe mechanism used in Data Bus for notifying changes to multiple objects.
 * Publish/Subscribe: The Data Bus pattern is often implemented using the publish-subscribe mechanism, where publishers post messages to the bus without knowledge of the subscribers.
 
-## Credits
+## References and Credits
 
 * [Enterprise Integration Patterns](https://amzn.to/3J6WoYS)
 * [Pattern-Oriented Software Architecture, Volume 4: A Pattern Language for Distributed Computing](https://amzn.to/3PTRGBM)

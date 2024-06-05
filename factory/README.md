@@ -15,11 +15,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Factory Design Pattern
 
 The Factory design pattern is intended to define an interface for creating an object, but allows subclasses to alter the type of objects that will be created. This pattern is particularly useful when the creation process involves complexity.
 
-## Explanation
+## Detailed Explanation of Factory Pattern with Real-World Examples
 
 Real-world example
 
@@ -110,13 +110,13 @@ Program output:
 06:19:53.533 [main] INFO com.iluwatar.factory.App -- This is a gold coin.
 ```
 
-## Applicability
+## When to Use the Factory Pattern in Java
 
 * Use the Factory pattern in Java when the class doesn't know beforehand the exact types and dependencies of the objects it needs to create.
 * When a method returns one of several possible classes that share a common super class and wants to encapsulate the logic of which object to create.
 * The pattern is commonly used when designing frameworks or libraries to give the best flexibility and isolation from concrete class types.
 
-## Known uses
+## Real-World Applications of Factory Pattern in Java
 
 * [java.util.Calendar#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
 * [java.util.ResourceBundle#getBundle()](https://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
@@ -127,7 +127,7 @@ Program output:
 * [javax.xml.bind.JAXBContext#createMarshaller()](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/JAXBContext.html#createMarshaller--) and other similar methods.
 * JavaFX uses Factory patterns for creating various UI controls tailored to the specifics of the user's environment.
 
-## Consequences
+## Benefits and Trade-offs of Factory Pattern
 
 Benefits:
 
@@ -146,7 +146,7 @@ Trade-offs:
 * [Builder](https://java-design-patterns.com/patterns/builder/): Separates the construction of a complex object from its representation, similar to how factories manage instantiation.
 * [Factory Kit](https://java-design-patterns.com/patterns/factory-kit/): Is a factory of immutable content with separated builder and factory interfaces.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0Rk5y)
 * [Effective Java](https://amzn.to/4cGk2Jz)

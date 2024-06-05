@@ -20,11 +20,11 @@ head:
 * Function Composition
 * Functional Combinator
 
-## Intent
+## Intent of Combinator Design Pattern
 
 Combine multiple smaller functions or operations into a single, more complex operation, allowing for flexible and reusable code.
 
-## Explanation
+## Detailed Explanation of Combinator Pattern with Real-World Examples
 
 Real-world example
 
@@ -194,7 +194,7 @@ public class CombinatorApp {
 
 Now we can design our app to with the queries finding feature `expandedFinder`, `specializedFinder`, `advancedFinder`, `filteredFinder` which are all derived from `contains`, `or`, `not`, `and`.
 
-## Applicability
+## When to Use the Combinator Pattern in Java
 
 This pattern is applicable in scenarios where:
 
@@ -210,7 +210,7 @@ This pattern is applicable in scenarios where:
 * java.util.function.Function#compose
 * java.util.function.Function#andThen
 
-## Consequences
+## Benefits and Trade-offs of Combinator Pattern
 
 Benefits:
 
@@ -230,7 +230,7 @@ Trade-offs:
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar to Combinator in enhancing functionality, but Decorator focuses on object augmentation.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Both involve selecting an algorithm at runtime, but Combinator uses composition of functions.
 
-## Credits
+## References and Credits
 
 * [Functional Programming in Scala](https://amzn.to/4cEo6K2)
 * [Haskell: The Craft of Functional Programming](https://amzn.to/4axxtcF)

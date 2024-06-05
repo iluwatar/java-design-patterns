@@ -18,11 +18,11 @@ head:
 
 * Fault Tolerance Switch
 
-## Intent
+## Intent of Circuit Breaker Design Pattern
 
 To prevent a system from repeatedly trying to execute an operation likely to fail, allowing it to recover from faults and prevent cascading failures.
 
-## Explanation
+## Detailed Explanation of Circuit Breaker Pattern with Real-World Examples
 
 Real-world example
 
@@ -177,7 +177,7 @@ Program output:
 
 This example demonstrates how the Circuit Breaker pattern can help maintain application stability and resilience by managing remote service failures.
 
-## Applicability
+## When to Use the Circuit Breaker Pattern in Java
 
 * In distributed systems where individual service failures can lead to cascading system-wide failures
 * For applications that interact with third-party services or databases that might become unresponsive or slow
@@ -191,7 +191,7 @@ This example demonstrates how the Circuit Breaker pattern can help maintain appl
 * [Spring Circuit Breaker module](https://spring.io/guides/gs/circuit-breaker)
 * [Netflix Hystrix API](https://github.com/Netflix/Hystrix)
 
-## Consequences
+## Benefits and Trade-offs of Circuit Breaker Pattern
 
 Benefits:
 
@@ -210,7 +210,7 @@ Trade-Offs:
 - Bulkhead: Can be used to isolate different parts of the system to prevent failures from spreading across the system
 - [Retry Pattern](https://github.com/iluwatar/java-design-patterns/tree/master/retry): Can be used in conjunction with the Circuit Breaker pattern to retry failed operations before opening the circuit
 
-## Credits
+## References and Credits
 
 * [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/43Dx86g)
 * [Microservices Patterns: With examples in Java](https://amzn.to/3xaZwk0)

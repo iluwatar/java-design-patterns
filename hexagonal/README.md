@@ -16,11 +16,11 @@ head:
 
 * Ports and Adapters
 
-## Intent
+## Intent of Hexagonal Architecture Design Pattern
 
 Hexagonal Architecture, often applied within the Java ecosystem, is designed to promote the decoupling of application's core logic from external interfaces, such as databases, user interfaces, or third-party services, thus allowing an application to be at the center of input/output systems.
 
-## Explanation
+## Detailed Explanation of Hexagonal Architecture Pattern with Real-World Examples
 
 Real-world example
 
@@ -169,11 +169,11 @@ Running the main function of App class produces the following output:
 
 In this example, the `LotteryAdministration` and `LotteryService` classes are the core of the application. They interact with external interfaces like `LotteryTicketRepository`, `LotteryEventLog`, and `WireTransfers` through dependency injection, keeping the core business logic decoupled from external concerns. This is a basic example of the Hexagonal Architecture pattern, where the core application is at the center of input/output systems.
 
-## Class diagram
+## Detailed Explanation of Hexagonal Architecture Pattern with Real-World Examples
 
 ![Hexagonal Architecture class diagram](./etc/hexagonal.png)
 
-## Applicability
+## When to Use the Hexagonal Architecture Pattern in Java
 
 This pattern is particularly effective in environments where:
 
@@ -187,7 +187,7 @@ This pattern is particularly effective in environments where:
 * Used in microservices architectures to maintain clear boundaries and protocols between services.
 * Adopted in systems that require integration with various databases or external APIs without impacting the business logic.
 
-## Consequences
+## Benefits and Trade-offs of Hexagonal Architecture Pattern
 
 Benefits:
 
@@ -205,7 +205,7 @@ Trade-offs:
 * [Layered Architecture](https://java-design-patterns.com/patterns/layers/): Shares the concept of organizing code into responsibilities; however, Hexagonal emphasizes port-based interaction with external elements.
 * Microservices: Often used in conjunction with Hexagonal Architecture to define clear boundaries and protocols between services.
 
-## Credits
+## References and Credits
 
 * [Implementing Domain-Driven Design](https://amzn.to/4dmBjrB)
 * [Building Microservices](https://amzn.to/3UACtrU)

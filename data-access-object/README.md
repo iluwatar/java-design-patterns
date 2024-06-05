@@ -21,11 +21,11 @@ head:
 * Data Access Layer
 * DAO
 
-## Intent
+## Intent of Data Access Object Design Pattern
 
 The Data Access Object (DAO) design pattern aims to separate the application's business logic from the persistence layer, typically a database or any other storage mechanism. By using DAOs, the application can access and manipulate data without being dependent on the specific database implementation details.
 
-## Explanation
+## Detailed Explanation of Data Access Object Pattern with Real-World Examples
 
 Real-world example
 
@@ -198,11 +198,11 @@ The program output:
 10:02:09.898 [main] INFO com.iluwatar.dao.App -- customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@f2f2cc1
 ```
 
-## Class diagram
+## Detailed Explanation of Data Access Object Pattern with Real-World Examples
 
 ![Data Access Object](./etc/dao.png "Data Access Object")
 
-## Applicability
+## When to Use the Data Access Object Pattern in Java
 
 Use the Data Access Object in any of the following situations:
 
@@ -210,7 +210,7 @@ Use the Data Access Object in any of the following situations:
 * The application needs to support multiple types of databases or storage mechanisms without significant code changes.
 * You want to keep the database access clean and simple, and separate from business logic.
 
-## Tutorials
+## Data Access Object Pattern Java Tutorials
 
 * [The DAO Pattern in Java(Baeldung)](https://www.baeldung.com/java-dao-pattern)
 * [Data Access Object Pattern (TutorialsPoint)](https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm)
@@ -221,7 +221,7 @@ Use the Data Access Object in any of the following situations:
 * Applications requiring data access to be adaptable to multiple storage types (relational databases, XML files, flat files, etc.).
 * Frameworks providing generic data access functionalities.
 
-## Consequences
+## Benefits and Trade-offs of Data Access Object Pattern
 
 Benefits:
 
@@ -243,7 +243,7 @@ Trade-offs:
 * [Service Layer](https://java-design-patterns.com/patterns/service-layer/): Often used in conjunction with the DAO pattern to define application's boundaries and its set of available operations.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Might be employed to change the data access strategy at runtime, depending on the context.
 
-## Credits
+## References and Credits
 
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/49u3r91)
 * [Expert One-on-One J2EE Design and Development](https://amzn.to/3vK3pfq)

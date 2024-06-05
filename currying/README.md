@@ -18,11 +18,11 @@ head:
 
 * Partial Function Application
 
-## Intent
+## Intent of Currying Design Pattern
 
 Currying decomposes a function that takes multiple arguments into a sequence of functions that each take a single argument. It helps in creating a higher-order function by partial application of its arguments.
 
-## Explanation
+## Detailed Explanation of Currying Pattern with Real-World Examples
 
 Real-world example
 
@@ -189,25 +189,25 @@ Program output:
 09:04:52.506 [main] INFO com.iluwatar.currying.App -- Book{genre=SCIFI, author='Isaac Asimov', title='Foundation', publicationDate=1942-05-01}
 ```
 
-## Applicability
+## When to Use the Currying Pattern in Java
 
 * When functions need to be called with some arguments preset.
 * In functional programming languages or paradigms to simplify functions that take multiple arguments.
 * To improve code reusability and composability by breaking down functions into simpler, unary functions.
 
-## Tutorials
+## Currying Pattern Java Tutorials
 
 * [Currying in Java (Baeldung)](https://www.baeldung.com/java-currying)
 * [What Is Currying in Programming (Towards Data Science)](https://towardsdatascience.com/what-is-currying-in-programming-56fd57103431#:~:text=Currying%20is%20helpful%20when%20you,concise%2C%20and%20more%20readable%20solution.)
 * [Why the fudge should I use currying? (DailyJS)](https://medium.com/dailyjs/why-the-fudge-should-i-use-currying-84e4000c8743)
 
-## Known uses
+## Real-World Applications of Currying Pattern in Java
 
 * Functional programming languages like Haskell, Scala, and JavaScript.
 * Event handling in UIs where a function with specific parameters needs to be triggered upon an event.
 * APIs that require configuration with multiple parameters.
 
-## Consequences
+## Benefits and Trade-offs of Currying Pattern
 
 Benefits:
 
@@ -222,13 +222,13 @@ Trade-offs:
 * Can be less intuitive for developers unfamiliar with functional programming concepts.
 * As shown in the programmatic example above, curried functions with several parameters have a cumbersome type signature in Java.
 
-## Related patterns
+## Related Java Design Patterns
 
 * Function Composition: Currying is often used in conjunction with function composition to enable more readable and concise code.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): While not the same, currying shares the decorator pattern's concept of wrapping functionality.
 * [Factory](https://java-design-patterns.com/patterns/factory/): Currying can be used to create factory functions that produce variations of a function with certain arguments preset.
 
-## Credits
+## References and Credits
 
 * [Functional Programming in Java: Harnessing the Power Of Java 8 Lambda Expressions](https://amzn.to/3TKeZPD)
 * [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://amzn.to/3J6vEaW)

@@ -20,11 +20,11 @@ head:
 
 * Page Object Model (POM)
 
-## Intent
+## Intent of Page Object Design Pattern
 
 The Page Object pattern aims to create a model of the UI elements of a web page to improve the maintainability and readability of test automation code.
 
-## Explanation
+## Detailed Explanation of Page Object Pattern with Real-World Examples
 
 Real-world example
 
@@ -86,7 +86,7 @@ In this example, the `LoginPage` class represents the login page of a web applic
 
 This Page Object can be used in test scripts to interact with the login page without exposing the details of the page structure in the test code, promoting maintainability and reusability.
 
-## Applicability
+## When to Use the Page Object Pattern in Java
 
 Use the Page Object pattern when
 
@@ -101,7 +101,7 @@ Use the Page Object pattern when
 * Automated UI testing frameworks in Java.
 * Popular test automation frameworks like TestNG and JUnit.
 
-## Consequences
+## Benefits and Trade-offs of Page Object Pattern
 
 Benefits:
 
@@ -121,7 +121,7 @@ Trade-offs:
 * [Facade](https://java-design-patterns.com/patterns/facade/): Both provide a simplified interface to a complex subsystem. Page Object abstracts the complexities of the UI.
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): Acts as a surrogate or placeholder, which can also be used for lazy initialization of page objects.
 
-## Credits
+## References and Credits
 
 * [Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation](https://amzn.to/4bjhTSK)
 * [Selenium Design Patterns and Best Practices](https://amzn.to/4aofYv8)

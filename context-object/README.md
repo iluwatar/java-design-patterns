@@ -21,11 +21,11 @@ head:
 * Context Holder
 * Encapsulate Context
 
-## Intent
+## Intent of Context Object Design Pattern
 
 Encapsulate the context (state and behaviors) relevant to the user or the request being processed in order to decouple application components from the complexities of the environment.
 
-## Explanation
+## Detailed Explanation of Context Object Pattern with Real-World Examples
 
 Real-world example
 
@@ -159,13 +159,13 @@ Program output:
 08:15:32.137 [main] INFO com.iluwatar.context.object.App -- Context = com.iluwatar.context.object.ServiceContext@5577140b
 ```
 
-## Applicability
+## When to Use the Context Object Pattern in Java
 
 * When there is a need to abstract and encapsulate context information from different parts of an application to avoid cluttering the business logic with environment-specific code.
 * In web applications, to encapsulate request-specific information and make it easily accessible throughout the application without passing it explicitly between functions or components.
 * In distributed systems, to encapsulate contextual information about the task being performed, user preferences, or security credentials, facilitating their propagation across different components and services.
 
-## Known uses
+## Real-World Applications of Context Object Pattern in Java
 
 * Web application frameworks often implement a Context Object to encapsulate HTTP request and response objects, session information, and other request-specific data.
 * Enterprise applications use Context Objects to manage and propagate transactional information, security credentials, and user-specific settings across different layers and services.
@@ -173,7 +173,7 @@ Program output:
 * [Oracle: SecurityContext](https://docs.oracle.com/javaee/7/api/javax/ws/rs/core/SecurityContext.html)
 * [Oracle: ServletContext](https://docs.oracle.com/javaee/6/api/javax/servlet/ServletContext.html)
 
-## Consequences
+## Benefits and Trade-offs of Context Object Pattern
 
 Benefits:
 
@@ -192,7 +192,7 @@ Trade-offs:
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Context Objects can use Strategies to adapt their behavior based on the context they encapsulate.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used to dynamically add responsibilities to the Context Object.
 
-## Credits
+## References and Credits
 
 * [Core J2EE Design Patterns](https://amzn.to/3IhcY9w)
 * [Context Object (Core J2EE Patterns)](http://corej2eepatterns.com/ContextObject.htm)

@@ -20,11 +20,11 @@ head:
 * Resource Lock
 * Mutual Exclusion Object
 
-## Intent
+## Intent of Lockable Object Design Pattern
 
 The Lockable Object pattern aims to control access to a shared resource in a multithreaded environment by providing a mechanism for resource locking, ensuring that only one thread can access the resource at a time.
 
-## Explanation
+## Detailed Explanation of Lockable Object Pattern with Real-World Examples
 
 Real-world example
 
@@ -130,11 +130,11 @@ public class App implements Runnable {
 
 This example demonstrates the Lockable Object pattern by showing how multiple threads can attempt to acquire a lock on a shared resource, with only one thread being able to acquire the lock at a time.
 
-## Class diagram
+## Detailed Explanation of Lockable Object Pattern with Real-World Examples
 
 ![Lockable Object](./etc/lockable-object.urm.png "Lockable Object class diagram")
 
-## Applicability
+## When to Use the Lockable Object Pattern in Java
 
 * Use the Lockable Object pattern when you need to prevent data corruption by multiple threads accessing a shared resource concurrently.
 * Suitable for systems where thread safety is critical and data integrity must be maintained across various operations.
@@ -143,7 +143,7 @@ This example demonstrates the Lockable Object pattern by showing how multiple th
 
 * Java’s synchronized keyword and the Lock interfaces in the java.util.concurrent.locks package implement lockable objects to manage synchronization.
 
-## Consequences
+## Benefits and Trade-offs of Lockable Object Pattern
 
 Benefits:
 
@@ -160,7 +160,7 @@ Trade-offs:
 * [Monitor Object](https://java-design-patterns.com/patterns/monitor/): Both patterns manage access to shared resources; Monitor Object combines synchronization and encapsulation of the condition variable.
 * [Read/Write Lock](https://java-design-patterns.com/patterns/reader-writer-lock/): Specialization of Lockable Object for scenarios where read operations outnumber write operations.
 
-## Credits
+## References and Credits
 
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 * [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)

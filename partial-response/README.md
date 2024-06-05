@@ -22,11 +22,11 @@ head:
 * Incremental Response
 * Partial Result
 
-## Intent
+## Intent of Partial Response Design Pattern
 
 To enable an application to return a partial response to a client, improving perceived performance and enabling the client to start processing parts of the data before the entire response is available.
 
-## Explanation
+## Detailed Explanation of Partial Response Pattern with Real-World Examples
 
 Real-world example
 
@@ -141,7 +141,7 @@ To summarize, in this example:
 
 By implementing the Partial Response design pattern, clients can request only the necessary data, enhancing performance and reducing bandwidth usage.
 
-## Applicability
+## When to Use the Partial Response Pattern in Java
 
 Use the Partial Response pattern when
 
@@ -155,7 +155,7 @@ Use the Partial Response pattern when
 * Streaming large datasets where initial parts of the data can be sent immediately (e.g., video streaming).
 * GraphQL queries where clients can request only specific fields to be returned.
 
-## Consequences
+## Benefits and Trade-offs of Partial Response Pattern
 
 Benefits:
 
@@ -175,7 +175,7 @@ Trade-offs:
 * [Caching](https://java-design-patterns.com/patterns/caching/): Can be combined with caching patterns to store partial responses and avoid redundant data transfers.
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): The proxy can intercept requests and manage partial responses, providing a buffer between the client and server.
 
-## Credits
+## References and Credits
 
 * [Building Microservices](https://amzn.to/3UACtrU)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/4dKEwBa)

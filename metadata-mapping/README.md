@@ -14,11 +14,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Metadata Mapping Design Pattern
 
 Metadata Mapping is designed to manage the mapping between database records and objects in a way that keeps the database schema and object model decoupled and manageable.
 
-## Explanation
+## Detailed Explanation of Metadata Mapping Pattern with Real-World Examples
 
 Real-world example
 
@@ -230,7 +230,7 @@ Console output:
 14:44:18.551 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001008: Cleaning up connection pool [jdbc:h2:mem:metamapping]
 ```
 
-## Applicability
+## When to Use the Metadata Mapping Pattern in Java
 
 Use this pattern when you need to bridge the gap between an object-oriented domain model and a relational database, without hard-coding database queries into the domain logic.
 
@@ -239,7 +239,7 @@ Use this pattern when you need to bridge the gap between an object-oriented doma
 * Object-Relational Mapping (ORM) frameworks like Hibernate, JPA, EclipseLink and MyBatis.
 * Mapping database rows to domain objects in enterprise applications.
 
-## Consequences
+## Benefits and Trade-offs of Metadata Mapping Pattern
 
 Benefits:
 
@@ -258,7 +258,7 @@ Trade-offs:
 * Active Record: Differently from Active Record, Metadata Mapping separates the data access logic from the domain entities.
 * [Repository](https://java-design-patterns.com/patterns/repository/): Works well with the Repository pattern by abstracting data access further, allowing more complex domain logic to be cleanly separated from data mapping.
 
-## Credits
+## References and Credits
 
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)

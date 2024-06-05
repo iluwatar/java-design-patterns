@@ -20,11 +20,11 @@ head:
 
 * Hook Method
 
-## Intent
+## Intent of Subclass Sandbox  Design Pattern
 
 To allow subclasses to alter the core behavior of a class by providing specific implementations of certain methods while keeping the overall structure unchanged.
   
-## Explanation
+## Detailed Explanation of Subclass Sandbox  Pattern with Real-World Examples
 
 Real-world example
 
@@ -140,7 +140,7 @@ Program output:
 * Game development where the core game loop is defined, but specific behaviors are provided by subclassing.
 * Java libraries like the `AbstractList` where core methods are defined and certain behaviors can be customized by extending classes.
 
-## Consequences
+## Benefits and Trade-offs of Subclass Sandbox  Pattern
 
 Benefits:
 

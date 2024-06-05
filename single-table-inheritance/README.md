@@ -19,11 +19,11 @@ head:
 * Class Table Inheritance
 * STI
 
-## Intent
+## Intent of Single Table Inheritance Design Pattern
 
 Simplify the storage of an inheritance hierarchy in a single database table, where rows represent objects of different classes and columns represent the union of all attributes.
 
-## Explanation
+## Detailed Explanation of Single Table Inheritance Pattern with Real-World Examples
 
 Real-world example
 
@@ -220,7 +220,7 @@ Console output:
 
 The Single Table Inheritance pattern is a simple and efficient way to map an inheritance hierarchy to a relational database. However, it can lead to sparse tables if subclasses have many unique fields. In such cases, other patterns like Class Table Inheritance or Concrete Table Inheritance might be more appropriate.
 
-## Applicability
+## When to Use the Single Table Inheritance Pattern in Java
 
 * Use when you have a class hierarchy with subclasses that share a common base class and you want to store all instances of the hierarchy in a single table.
 * Ideal for small to medium-sized applications where the simplicity of a single table outweighs the performance cost of null fields for some subclasses.
@@ -229,12 +229,12 @@ The Single Table Inheritance pattern is a simple and efficient way to map an inh
 
 * [Hibernate Tutorial 18 - Implementing Inheritance - Single Table Strategy (Java Brains)](https://www.youtube.com/watch?v=M5YrLtAHtOo)
 
-## Known uses
+## Real-World Applications of Single Table Inheritance Pattern in Java
 
 * Hibernate and JPA implementations in Java applications often use Single Table Inheritance for ORM mapping.
 * Rails ActiveRecord supports Single Table Inheritance out of the box.
 
-## Consequences
+## Benefits and Trade-offs of Single Table Inheritance Pattern
 
 Benefits:
 
@@ -247,12 +247,12 @@ Trade-offs:
 * May cause performance issues for large hierarchies due to table size and the need to filter by type.
 * Changes in the inheritance hierarchy require schema changes.
 
-## Related patterns
+## Related Java Design Patterns
 
 * Class Table Inheritance: Uses separate tables for each class in the hierarchy, reducing null values but increasing complexity in joins.
 * Concrete Table Inheritance: Each class in the hierarchy has its own table, reducing redundancy but increasing the number of tables.
 
-## Credits
+## References and Credits
 
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)

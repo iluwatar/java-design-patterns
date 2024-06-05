@@ -20,11 +20,11 @@ head:
 * Filter
 * Criteria
 
-## Intent
+## Intent of Specification Design Pattern
 
 Encapsulate business rules and criteria that an object must satisfy to enable checking these rules in various parts of the application.
 
-## Explanation
+## Detailed Explanation of Specification Pattern with Real-World Examples
 
 Real-world example
 
@@ -209,7 +209,7 @@ Console output:
 12:49:24.818 [main] INFO com.iluwatar.specification.app.App -- Troll [size=large, movement=walking, color=dark, mass=4000.0kg]
 ```
 
-## Applicability
+## When to Use the Specification Pattern in Java
 
 * Use when you need to filter objects based on different criteria.
 * Use when the filtering criteria can change dynamically.
@@ -221,7 +221,7 @@ Console output:
 * Filtering search results in e-commerce applications.
 * Business rule validation in domain-driven design (DDD).
 
-## Consequences
+## Benefits and Trade-offs of Specification Pattern
 
 Benefits:
 
@@ -240,7 +240,7 @@ Trade-offs:
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used to add additional criteria to a specification dynamically.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Both patterns involve encapsulating a family of algorithms. Strategy encapsulates different strategies or algorithms, while Specification encapsulates business rules.
 
-## Credits
+## References and Credits
 
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
 * [Implementing Domain-Driven Design](https://amzn.to/4dmBjrB)

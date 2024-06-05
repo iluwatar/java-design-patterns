@@ -21,11 +21,11 @@ head:
 * Bounded Buffer
 * Consumer-Producer
 
-## Intent
+## Intent of Producer-Consumer Design Pattern
 
 The Producer-Consumer design pattern is used to decouple the tasks of producing and consuming data, enabling a producer to generate data and a consumer to process that data concurrently without direct dependency on each other.
 
-## Explanation
+## Detailed Explanation of Producer-Consumer Pattern with Real-World Examples
 
 Real-world example
 
@@ -178,11 +178,11 @@ Program output:
 08:10:17.483 [pool-1-thread-5] INFO com.iluwatar.producer.consumer.Consumer -- Consumer [Consumer_2] consume item [10] produced by [Producer_1]
 ```
 
-## Class diagram
+## Detailed Explanation of Producer-Consumer Pattern with Real-World Examples
 
 ![Producer-Consumer](./etc/producer-consumer.png "Producer-Consumer")
 
-## Applicability
+## When to Use the Producer-Consumer Pattern in Java
 
 * When you need to manage a buffer or queue where producers add data and consumers take data, often in a multithreaded environment.
 * When decoupling the production and consumption of data is beneficial for the application's design, performance, or maintainability.
@@ -194,7 +194,7 @@ Program output:
 * Logging frameworks where log messages are produced by various parts of an application and consumed by a logging service.
 * Message queues in distributed systems for asynchronous communication between services.
 
-## Consequences
+## Benefits and Trade-offs of Producer-Consumer Pattern
 
 Benefits:
 
@@ -212,7 +212,7 @@ Trade-offs:
 * [Observer](https://java-design-patterns.com/patterns/observer/): While both deal with notifying or handling events, the Observer pattern is more about event subscription and notification, whereas Producer-Consumer focuses on decoupled data production and consumption.
 * [Thread Pool](https://java-design-patterns.com/patterns/thread-pool/): Uses a similar decoupling approach where tasks are produced and consumed by a pool of worker threads.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

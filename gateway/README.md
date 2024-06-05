@@ -18,11 +18,11 @@ head:
 
 * Service Gateway
 
-## Intent
+## Intent of Gateway Design Pattern
 
 The Gateway design pattern aims to encapsulate the interaction with a remote service or external system, providing a simpler and more unified API to the rest of the application.
 
-## Explanation
+## Detailed Explanation of Gateway Pattern with Real-World Examples
 
 Real-world example
 
@@ -131,16 +131,16 @@ Running the example produces the following output.
 
 This example demonstrates how the Gateway design pattern can be used to simplify the interaction with multiple external services. Each service is encapsulated behind a common interface, and the application interacts with this interface rather than directly with the services. This reduces coupling and makes the application easier to maintain and extend.
 
-## Applicability
+## When to Use the Gateway Pattern in Java
 
 Use the Gateway pattern when you need to integrate with remote services or APIs, and you want to minimize the coupling between your application and external systems. It is particularly useful in microservices architectures where different services need to communicate through well-defined APIs.
 
-## Known uses
+## Real-World Applications of Gateway Pattern in Java
 
 * API Gateways in Microservices: Acts as an intermediary that processes incoming requests from clients, directing them to appropriate services within a microservices architecture.
 * Database Gateways: Provides a unified interface to access data from various database systems, hiding the specifics of database querying and data retrieval.
 
-## Consequences
+## Benefits and Trade-offs of Gateway Pattern
 
 Benefits:
 
@@ -160,7 +160,7 @@ Trade-offs:
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): Often used together, as both can control and manage access to another object, but Gateway specifically deals with external services.
 * [API Gateway](https://java-design-patterns.com/patterns/microservices-api-gateway/): Often considered a specialization of the Gateway pattern, it specifically manages API requests and routes them to the appropriate services within a backend system.
 
-## Credits
+## References and Credits
 
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3WcFVui)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

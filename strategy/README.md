@@ -19,11 +19,11 @@ head:
 
 * Policy
 
-## Intent
+## Intent of Strategy Design Pattern
 
 Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently of the clients that use it.
 
-## Explanation
+## Detailed Explanation of Strategy Pattern with Real-World Examples
 
 Real-world example
 
@@ -178,7 +178,7 @@ Program output:
 13:06:36.637 [main] INFO com.iluwatar.strategy.LambdaStrategy -- You cast the spell of disintegration and the dragon vaporizes in a pile of dust!
 ```
 
-## Applicability
+## When to Use the Strategy Pattern in Java
 
 Use the Strategy pattern when:
 
@@ -196,7 +196,7 @@ Use the Strategy pattern when:
 * Java's `java.util.Comparator` interface is a common example of the Strategy pattern.
 * In GUI frameworks, layout managers (such as those in Java's AWT and Swing) are strategies.
 
-## Consequences
+## Benefits and Trade-offs of Strategy Pattern
 
 Benefits:
 
@@ -210,12 +210,12 @@ Trade-offs:
 * Clients must be aware of different Strategies.
 * Increase in the number of objects.
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Enhances an object without changing its interface but is more concerned with responsibilities than algorithms.
 * [State](https://java-design-patterns.com/patterns/state/): Similar in structure but used to represent state-dependent behavior rather than interchangeable algorithms.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Functional Programming in Java](https://amzn.to/3JUIc5Q)

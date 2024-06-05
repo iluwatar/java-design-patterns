@@ -19,11 +19,11 @@ head:
 
 * Scripted Transactions
 
-## Intent
+## Intent of Transaction Script Design Pattern
 
 Organize business logic by procedures where each procedure handles a single request from the presentation.
 
-## Explanation
+## Detailed Explanation of Transaction Script Pattern with Real-World Examples
 
 Real-world example
 
@@ -235,12 +235,12 @@ Console output:
 
 This pattern is suitable for simple business logic and can be easily understood and maintained.
 
-## Applicability
+## When to Use the Transaction Script Pattern in Java
 
 * Use when business logic is simple and can be easily organized into individual procedures.
 * Suitable for applications with simple transaction requirements or where the logic doesn't justify complex architectures like Domain Model.
 
-## Tutorials
+## Transaction Script Pattern Java Tutorials
 
 * [Transaction Script Pattern (DZone)](https://dzone.com/articles/transaction-script-pattern#:~:text=Transaction%20Script%20(TS)%20is%20the,need%20big%20architecture%20behind%20them.)
 * [Transaction Script (InformIT)](https://www.informit.com/articles/article.aspx?p=1398617)
@@ -251,7 +251,7 @@ This pattern is suitable for simple business logic and can be easily understood 
 * Enterprise applications with well-defined procedures like banking transactions or e-commerce order processing.
 * Legacy systems where business logic is already written as scripts.
 
-## Consequences
+## Benefits and Trade-offs of Transaction Script Pattern
 
 Benefits:
 
@@ -265,13 +265,13 @@ Trade-offs:
 * Not suitable for complex business logic; can become unmanageable as the application grows.
 * Harder to test in isolation compared to more structured approaches like Domain Model.
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Domain Model](https://java-design-patterns.com/patterns/domain-model/): Unlike Transaction Script, Domain Model organizes business logic around the data model and is better suited for complex business rules.
 * [Service Layer](https://java-design-patterns.com/patterns/service-layer/): Often used together with Transaction Script to define an application's boundary and encapsulate the business logic.
 * [Table Module](https://java-design-patterns.com/patterns/table-module/): Similar to Transaction Script but organizes logic using a single class per table rather than a procedure per request.
 
-## Credits
+## References and Credits
 
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3WcFVui)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

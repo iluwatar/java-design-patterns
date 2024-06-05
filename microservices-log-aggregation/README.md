@@ -23,11 +23,11 @@ head:
 * Centralized Logging
 * Log Management
 
-## Intent
+## Intent of Microservices Log Aggregation Design Pattern
 
 Log Aggregation is a pattern that centralizes the collection, storage, and analysis of logs from multiple sources to facilitate monitoring, debugging, and operational intelligence.
 
-## Explanation
+## Detailed Explanation of Microservices Log Aggregation Pattern with Real-World Examples
 
 Real-world example
 
@@ -128,7 +128,7 @@ public class App {
 
 In this example, the `LogProducer` services generate logs of different levels. The `LogAggregator` collects these logs and stores them in the `CentralLogStore` if they meet the minimum log level requirement. Finally, the logs are displayed by the `CentralLogStore`.
 
-## Applicability
+## When to Use the Microservices Log Aggregation Pattern in Java
 
 * Useful in distributed systems where logs from various components need to be centralized for better management and analysis.
 * Applicable in environments where compliance and auditing require consolidated log data.
@@ -139,7 +139,7 @@ In this example, the `LogProducer` services generate logs of different levels. T
 * Java applications using frameworks like Log4j2 or SLF4J paired with centralized log management tools like Elasticsearch, Logstash, and Kibana (ELK stack) or Splunk.
 * Microservices architectures where each service outputs logs that are aggregated into a single system to provide a unified view of the system’s health and behavior.
 
-## Consequences
+## Benefits and Trade-offs of Microservices Log Aggregation Pattern
 
 Benefits:
 
@@ -158,7 +158,7 @@ Trade-offs:
 * Microservices: Often employed in microservice architectures to handle logs from various services efficiently.
 * Publish/Subscribe: Utilizes a pub/sub model for log data collection where components publish logs and the aggregation system subscribes to them.
 
-## Credits
+## References and Credits
 
 * [Cloud Native Java: Designing Resilient Systems with Spring Boot, Spring Cloud, and Cloud Foundry](https://amzn.to/44vDTat)
 * [Logging in Action: With Fluentd, Kubernetes and more](https://amzn.to/3JQLzdT)

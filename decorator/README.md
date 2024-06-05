@@ -20,11 +20,11 @@ head:
 * Smart Proxy
 * Wrapper
 
-## Intent
+## Intent of Decorator Design Pattern
 
 The Decorator pattern allows for the dynamic addition of responsibilities to objects without modifying their existing code. It achieves this by providing a way to "wrap" objects within objects of similar interface.
 
-## Explanation
+## Detailed Explanation of Decorator Pattern with Real-World Examples
 
 Real-world example
 
@@ -136,7 +136,7 @@ Program output:
 11:34:18.101 [main] INFO com.iluwatar.decorator.App -- Clubbed troll power: 20.
 ```
 
-## Applicability
+## When to Use the Decorator Pattern in Java
 
 Decorator is used to:
 
@@ -145,11 +145,11 @@ Decorator is used to:
 * When extending a class is impractical due to the proliferation of subclasses that could result.
 * For when a class definition might be hidden or otherwise unavailable for subclassing.
 
-## Tutorials
+## Decorator Pattern Java Tutorials
 
 * [Decorator Design Pattern in Java Example (DigitalOcean)](https://www.digitalocean.com/community/tutorials/decorator-design-pattern-in-java-example)
 
-## Known uses
+## Real-World Applications of Decorator Pattern in Java
 
 * GUI toolkits often use decorators to dynamically add behaviors like scrolling, borders, or layout management to components.
 * [java.io.InputStream](http://docs.oracle.com/javase/8/docs/api/java/io/InputStream.html), [java.io.OutputStream](http://docs.oracle.com/javase/8/docs/api/java/io/OutputStream.html), [java.io.Reader](http://docs.oracle.com/javase/8/docs/api/java/io/Reader.html) and [java.io.Writer](http://docs.oracle.com/javase/8/docs/api/java/io/Writer.html)
@@ -157,7 +157,7 @@ Decorator is used to:
 * [java.util.Collections#unmodifiableXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#unmodifiableCollection-java.util.Collection-)
 * [java.util.Collections#checkedXXX()](http://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#checkedCollection-java.util.Collection-java.lang.Class-)
 
-## Consequences
+## Benefits and Trade-offs of Decorator Pattern
 
 Benefits:
 
@@ -178,7 +178,7 @@ Trade-offs:
 * [Composite](https://java-design-patterns.com/patterns/composite/): Decorators can be viewed as a degenerate composite with only one component. However, a decorator adds additional responsibilities—it isn't intended for object aggregation.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Decorator lets you change the skin of an object, while Strategy lets you change the guts.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Functional Programming in Java](https://amzn.to/3JUIc5Q)

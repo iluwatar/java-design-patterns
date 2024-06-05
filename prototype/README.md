@@ -18,11 +18,11 @@ head:
 
 * Clone
 
-## Intent
+## Intent of Prototype Design Pattern
 
 The Prototype pattern is used to specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.
 
-## Explanation
+## Detailed Explanation of Prototype Pattern with Real-World Examples
 
 Real-world example
 
@@ -155,11 +155,11 @@ Here's the console output from running the example.
 08:36:19.014 [main] INFO com.iluwatar.prototype.App -- Orcish wolf attacks with laser
 ```
 
-## Class diagram
+## Detailed Explanation of Prototype Pattern with Real-World Examples
 
 ![alt text](./etc/prototype.urm.png "Prototype pattern class diagram")
 
-## Applicability
+## When to Use the Prototype Pattern in Java
 
 * When the classes to instantiate are specified at run-time, for example, by dynamic loading.
 * To avoid building a class hierarchy of factories that parallels the class hierarchy of products.
@@ -167,13 +167,13 @@ Here's the console output from running the example.
 * When object creation is expensive compared to cloning.
 * When the concrete classes to instantiate are unknown until runtime.
 
-## Known uses
+## Real-World Applications of Prototype Pattern in Java
 
 * In Java, the `Object.clone()` method is a classic implementation of the Prototype pattern.
 * GUI libraries often use prototypes for creating buttons, windows, and other widgets.
 * In game development, creating multiple objects (like enemy characters) with similar attributes.
 
-## Consequences
+## Benefits and Trade-offs of Prototype Pattern
 
 Benefits:
 
@@ -186,13 +186,13 @@ Trade-offs:
 * Requires implementing a cloning mechanism which might be complex.
 * Deep cloning can be difficult to implement correctly, especially if the classes have complex object graphs with circular references.
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Both involve creating objects, but Prototype uses cloning of a prototype instance whereas Abstract Factory creates objects using factory methods.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Singleton can use a prototype for creating instances if it allows cloning of its single instance.
 * [Composite](https://java-design-patterns.com/patterns/composite/): Prototypes are often used within composites to allow for dynamic creation of component trees.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

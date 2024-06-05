@@ -17,11 +17,11 @@ head:
 
 * Objects for States
 
-## Intent
+## Intent of State Design Pattern
 
 Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
 
-## Explanation
+## Detailed Explanation of State Pattern with Real-World Examples
 
 Real-world example
 
@@ -158,7 +158,7 @@ Program output:
     The mammoth is calm and peaceful.
 ```
 
-## Applicability
+## When to Use the State Pattern in Java
 
 * An object's behavior depends on its state, and it must change its behavior at runtime depending on that state.
 * Operations have large, multipart conditional statements that depend on the object's state.
@@ -168,7 +168,7 @@ Program output:
 * `java.util.Iterator` in Java's Collections Framework uses different states for iteration.
 * TCP connection classes in network programming often implement states like `Established`, `Listen`, and `Closed`.
 
-## Consequences
+## Benefits and Trade-offs of State Pattern
 
 Benefits:
 
@@ -187,7 +187,7 @@ Trade-offs:
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): State objects are often singletons.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Both patterns have similar structures, but the State pattern's implementations depend on the context’s state.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

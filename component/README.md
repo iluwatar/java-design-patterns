@@ -19,11 +19,11 @@ head:
 * Component-Entity-System (CES)
 * Component-Based Architecture (CBA)
 
-## Intent
+## Intent of Component Design Pattern
 
 The Component design pattern aims to organize code into reusable, interchangeable components, promoting flexibility and ease of maintenance in game development by allowing entities to be configured with varying behaviors.
 
-## Explanation
+## Detailed Explanation of Component Pattern with Real-World Examples
 
 Real-world example
 
@@ -127,7 +127,7 @@ public class PlayerInputComponent implements InputComponent {
 }
 ```
 
-## Applicability
+## When to Use the Component Pattern in Java
 
 * Used in game development and simulations where game entities (e.g., characters, items) can have a dynamic set of abilities or states.
 * Suitable for systems requiring high modularity and systems where entities might need to change behavior at runtime without inheritance hierarchies.
@@ -137,7 +137,7 @@ public class PlayerInputComponent implements InputComponent {
 * Game engines like Unity, Unreal Engine, and various custom engines in AAA and indie games.
 * Simulation systems that require flexible, dynamic object composition.
 
-## Consequences
+## Benefits and Trade-offs of Component Pattern
 
 Benefits:
 
@@ -156,7 +156,7 @@ Trade-offs:
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Can be used in conjunction with the Component pattern to share component instances among many entities to save memory.
 * [Observer](https://java-design-patterns.com/patterns/observer/): Often used in Component systems to communicate state changes between components.
 
-## Credits
+## References and Credits
 
 * [Game Programming Patterns](https://amzn.to/4cDRWhV)
 * [Procedural Content Generation for Unity Game Development](https://amzn.to/3vBKCTp)

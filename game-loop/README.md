@@ -19,11 +19,11 @@ head:
 * Game Cycle
 * Main Game Loop
 
-## Intent
+## Intent of Game Loop Design Pattern
 
 The Game Loop design pattern aims to facilitate the continuous execution of a game, where each loop cycle processes input, updates game state, and renders the game state to the screen, maintaining a smooth and interactive gaming experience.
 
-## Explanation
+## Detailed Explanation of Game Loop Pattern with Real-World Examples
 
 Real-world example
 
@@ -308,7 +308,7 @@ Current bullet position: 0.98999935
 Stop variable-step game loop.
 ```
 
-## Applicability
+## When to Use the Game Loop Pattern in Java
 
 The Game Loop pattern is applicable in real-time simulation and gaming where the state needs to be updated continuously and consistently in response to user inputs and other events.
 
@@ -317,7 +317,7 @@ The Game Loop pattern is applicable in real-time simulation and gaming where the
 * Video games, both 2D and 3D, across various platforms.
 * Real-time simulations that require a steady frame rate for updating logic and rendering.
 
-## Consequences
+## Benefits and Trade-offs of Game Loop Pattern
 
 Benefits:
 
@@ -335,7 +335,7 @@ Trade-offs:
 * [State](https://java-design-patterns.com/patterns/state/): Often used within a game loop to manage different states of the game (e.g., menu, playing, paused). The relationship lies in managing the state-specific behavior and transitions smoothly within the game loop.
 * [Observer](https://java-design-patterns.com/patterns/observer/): Useful in a game loop for event handling, where game entities can subscribe to and react to events (e.g., collision, scoring).
 
-## Credits
+## References and Credits
 
 * [Game Programming Patterns](https://amzn.to/3K96fOn)
 * [Game Engine Architecture, Third Edition](https://amzn.to/3VgB4av)

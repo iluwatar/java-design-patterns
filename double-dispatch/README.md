@@ -18,11 +18,11 @@ head:
 
 * Multi-methods
 
-## Intent
+## Intent of Double Dispatch Design Pattern
 
 The Double Dispatch pattern is used to achieve dynamic polymorphism based on the types of two objects involved in a method call. It allows method behavior to be different based on the combination of the runtime types of both the object on which the method is called and the object being passed as a parameter.
 
-## Explanation
+## Detailed Explanation of Double Dispatch Pattern with Real-World Examples
 
 Real-world example
 
@@ -116,11 +116,11 @@ Here is the program output:
 15:47:23.773 [main] INFO com.iluwatar.doubledispatch.App -- SpaceStationIss at [12,12,14,14] damaged=true onFire=false
 ```
 
-## Class diagram
+## Detailed Explanation of Double Dispatch Pattern with Real-World Examples
 
 ![Double Dispatch](./etc/double-dispatch.png "Double Dispatch")
 
-## Applicability
+## When to Use the Double Dispatch Pattern in Java
 
 * When the behavior of a method needs to vary not just based on the object it is called on, but also based on the type of the argument.
 * In scenarios where if-else or switch-case type checks against the type of objects are cumbersome and not scalable.
@@ -131,7 +131,7 @@ Here is the program output:
 * Graphical user interfaces where different actions are taken based on different types of mouse events interacting with different types of elements.
 * Simulation systems where interactions between different types of objects need to trigger distinct behaviors.
 
-## Consequences
+## Benefits and Trade-offs of Double Dispatch Pattern
 
 Benefits:
 
@@ -148,7 +148,7 @@ Trade-offs:
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Similar in intent where it's used to choose an algorithm at runtime, though Strategy focuses on single object context rather than interactions between multiple objects.
 * [Visitor](https://java-design-patterns.com/patterns/visitor/): Often used together with Double Dispatch to encapsulate operations performed on a set of element objects.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/4awj7cV)
 * [Java Design Pattern Essentials](https://amzn.to/3Jg8ZZV)

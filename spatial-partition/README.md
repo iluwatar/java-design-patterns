@@ -20,11 +20,11 @@ head:
 * Space Partitioning
 * Spatial Indexing
 
-## Intent
+## Intent of Spatial Partition Design Pattern
 
 Efficiently organize a large number of objects in space to optimize queries and operations.
 
-## Explanation
+## Detailed Explanation of Spatial Partition Pattern with Real-World Examples
 
 Real-world example
 
@@ -96,12 +96,12 @@ In this code, `SpatialPartition` is a class that represents the spatial partitio
 
 This way, we can reduce the time complexity of finding the units within a certain range from O(n^2) to O(nlogn), decreasing the computations required significantly in case of a large number of units.
 
-## Applicability
+## When to Use the Spatial Partition Pattern in Java
 
 * Use when managing a large number of objects in a spatial environment, such as in games or simulations.
 * Useful for optimizing spatial queries like finding nearby objects or detecting collisions.
 
-## Tutorials
+## Spatial Partition Pattern Java Tutorials
 
 * [Coding Challenge #98.1: Quadtree - Part 1 (The Coding Train)](https://www.youtube.com/watch?v=OJxEcs0w_kE)
 
@@ -111,7 +111,7 @@ This way, we can reduce the time complexity of finding the units within a certai
 * Octree in 3D environments for rendering and physics calculations.
 * KD-tree in spatial databases for efficient range searches.
 
-## Consequences
+## Benefits and Trade-offs of Spatial Partition Pattern
 
 Benefits:
 
@@ -129,7 +129,7 @@ Trade-offs:
 * [Composite](https://java-design-patterns.com/patterns/composite/): Helps manage hierarchical data structures like trees used in spatial partitioning.
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Can be used to manage memory efficiently for objects stored in spatial partitions.
 
-## Credits
+## References and Credits
 
 * [Game Programming Patterns](https://amzn.to/3K96fOn)
 * [Introduction to Algorithms](https://amzn.to/4aC5hW0)

@@ -15,11 +15,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Flyweight Design Pattern
 
 The Flyweight pattern's primary intent is to reduce the number of objects created, decrease memory footprint and increase performance by sharing as much data as possible with similar objects.
 
-## Explanation
+## Detailed Explanation of Flyweight Pattern with Real-World Examples
 
 Real-world example
 
@@ -181,7 +181,7 @@ Program output:
 09:02:52.734 [main] INFO com.iluwatar.flyweight.HolyWaterPotion -- You feel blessed. (Potion=1689843956)
 ```
 
-## Applicability
+## When to Use the Flyweight Pattern in Java
 
 The Flyweight pattern's effectiveness depends heavily on how and where it's used. Apply the Flyweight pattern when all the following are true:
 
@@ -191,13 +191,13 @@ The Flyweight pattern's effectiveness depends heavily on how and where it's used
 * Many groups of objects may be replaced by relatively few shared objects once the extrinsic state is removed.
 * The application doesn't depend on object identity. Since flyweight objects may be shared, identity tests will return true for conceptually distinct objects.
 
-## Known uses
+## Real-World Applications of Flyweight Pattern in Java
 
 * [java.lang.Integer#valueOf(int)](http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html#valueOf%28int%29) and similarly for Byte, Character and other wrapped types.
 * Java’s String class, which uses the Flyweight pattern internally to manage string literals.
 * GUI applications, where objects like fonts or graphical components are shared rather than duplicated.
 
-## Consequences
+## Benefits and Trade-offs of Flyweight Pattern
 
 Benefits:
 
@@ -214,7 +214,7 @@ Trade-offs:
 * [Composite](https://java-design-patterns.com/patterns/composite/): Often combined with Flyweight when the composites are shareable. Both are used to manage hierarchies and structures of objects.
 * [State](https://java-design-patterns.com/patterns/state/): Can be used to manage state in a shared Flyweight object, distinguishing internal state (invariant) from external state (context-specific).
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

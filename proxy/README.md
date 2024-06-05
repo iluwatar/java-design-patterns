@@ -21,11 +21,11 @@ head:
 
 * Surrogate
 
-## Intent
+## Intent of Proxy Design Pattern
 
 Provide a surrogate or placeholder for another object to control access to it.
 
-## Explanation
+## Detailed Explanation of Proxy Pattern with Real-World Examples
 
 Real-world example
 
@@ -128,7 +128,7 @@ Program output:
 08:42:06.186 [main] INFO com.iluwatar.proxy.WizardTowerProxy -- Brown wizard is not allowed to enter!
 ```
 
-## Applicability
+## When to Use the Proxy Pattern in Java
 
 Proxy is applicable whenever there is a need for a more versatile or sophisticated reference to an object than a simple pointer. Here are several common situations in which the Proxy pattern is applicable. Typically, the proxy pattern is used to
 
@@ -149,7 +149,7 @@ Proxy is applicable whenever there is a need for a more versatile or sophisticat
 * Mocking frameworks [Mockito](https://site.mockito.org/),[Powermock](https://powermock.github.io/), [EasyMock](https://easymock.org/)
 * [UIAppearance](https://developer.apple.com/documentation/uikit/uiappearance)
 
-## Consequences
+## Benefits and Trade-offs of Proxy Pattern
 
 Benefits:
 
@@ -169,7 +169,7 @@ Trade-offs:
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Both Decorator and Proxy patterns provide a level of indirection, but the Decorator pattern adds responsibilities to objects dynamically, while Proxy controls access.
 * [Facade](https://java-design-patterns.com/patterns/facade/): Facade provides a simplified interface to a complex subsystem, while Proxy controls access to a particular object.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

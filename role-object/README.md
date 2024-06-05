@@ -17,11 +17,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Role Object Design Pattern
 
 To dynamically assign roles to objects, enabling them to change behavior and responsibilities at runtime.
 
-## Explanation
+## Detailed Explanation of Role Object Pattern with Real-World Examples
 
 Real-world example
 
@@ -145,7 +145,7 @@ Running the example outputs:
 10:22:02.575 [main] INFO com.iluwatar.roleobject.ApplicationRoleObject -- Borrower Johny wants to get some money.
 ```
 
-## Applicability
+## When to Use the Role Object Pattern in Java
 
 * When an object needs to change its behavior dynamically based on its role.
 * When multiple objects share common behaviors but should exhibit those behaviors differently based on their roles.
@@ -157,7 +157,7 @@ Running the example outputs:
 * Game character roles where characters can take on different roles (e.g., healer, warrior, mage) dynamically.
 * Workflow systems where tasks can be assigned different roles depending on the context.
 
-## Consequences
+## Benefits and Trade-offs of Role Object Pattern
 
 Benefits:
 
@@ -176,7 +176,7 @@ Trade-offs:
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Both can add behaviors to objects, but Role Object allows for dynamic role switching rather than static enhancement.
 * [State](https://java-design-patterns.com/patterns/state/): Manages state transitions similar to role changes, but Role Object deals more with behavioral roles rather than states.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Pattern-Oriented Software Architecture Volume 1: A System of Patterns](https://amzn.to/3xZ1ELU)

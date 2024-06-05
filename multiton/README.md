@@ -17,11 +17,11 @@ head:
 
 * Registry of Singletons
 
-## Intent
+## Intent of Multiton Design Pattern
 
 The Multiton pattern is a variation of the Singleton design pattern that manages a map of named instances as key-value pairs.
 
-## Explanation
+## Detailed Explanation of Multiton Pattern with Real-World Examples
 
 Real-world example
 
@@ -132,7 +132,7 @@ Program output:
 15:16:10.601 [main] INFO com.iluwatar.multiton.App -- UVATHA=UVATHA
 ```
 
-## Applicability
+## When to Use the Multiton Pattern in Java
 
 Use the Multiton pattern when
 
@@ -145,7 +145,7 @@ Use the Multiton pattern when
 * Managing database connections in different contexts.
 * Configuration settings for different environments in an application.
 
-## Consequences
+## Benefits and Trade-offs of Multiton Pattern
 
 Benefits:
 
@@ -162,6 +162,6 @@ Trade-offs:
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Multiton can be seen as an extension of the Singleton pattern where Singleton allows only one instance of a class, Multiton allows one instance per key.
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Multiton uses a method to create or retrieve instances, similar to how a Factory Method controls object creation.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)

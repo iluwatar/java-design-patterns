@@ -18,11 +18,11 @@ head:
 
 * Scatter-Gather
 
-## Intent
+## Intent of Fan-Out/Fan-In Design Pattern
 
 The Fan-Out/Fan-In pattern aims to improve concurrency and optimize processing time by dividing a task into multiple sub-tasks that can be processed in parallel (fan-out) and then combining the results of these sub-tasks into a single outcome (fan-in).
 
-## Explanation
+## Detailed Explanation of Fan-Out/Fan-In Pattern with Real-World Examples
 
 Real-world example
 
@@ -135,11 +135,11 @@ Running the example produces the following console output.
 06:52:11.465 [main] INFO com.iluwatar.fanout.fanin.App -- Sum of all squared numbers --> 139
 ```
 
-## Applicability
+## When to Use the Fan-Out/Fan-In Pattern in Java
 
 Appropriate in scenarios where tasks can be broken down and executed in parallel, especially suitable for data processing, batch processing, and situations requiring aggregation of results from various sources.
 
-## Tutorials
+## Fan-Out/Fan-In Pattern Java Tutorials
 
 * [Fan-out/fan-in scenario in Durable Functions - Cloud backup example (Microsoft)](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-cloud-backup)
 * [Understanding Azure Durable Functions - Part 8: The Fan Out/Fan In Pattern (Don't Code Tired)](http://dontcodetired.com/blog/post/Understanding-Azure-Durable-Functions-Part-8-The-Fan-OutFan-In-Pattern)
@@ -150,7 +150,7 @@ Appropriate in scenarios where tasks can be broken down and executed in parallel
 * Large-scale data processing applications.
 * Services requiring aggregation from multiple sources before delivering a response, such as in distributed caching or load balancing systems.
 
-## Consequences
+## Benefits and Trade-offs of Fan-Out/Fan-In Pattern
 
 Benefits:
 
@@ -170,7 +170,7 @@ Trade-offs:
 * [Command](https://java-design-patterns.com/patterns/command/): Command Pattern facilitates the decoupling of the sender and the receiver, akin to how Fan-Out/Fan-In decouples task submission from task processing.
 * [Producer-Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Works synergistically with Fan-Out/Fan-In by organizing task execution where producers distribute tasks that are processed by multiple consumers, and results are then combined, enhancing throughput and efficiency in data processing.
 
-## Credits
+## References and Credits
 
 * [Java Concurrency in Practice](https://amzn.to/3vXytsb)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/49QQcPD)

@@ -21,11 +21,11 @@ head:
 * Object Kit
 * Toolkit
 
-## Intent
+## Intent of Factory Kit Design Pattern
 
 Define a factory of immutable content with separated builder and factory interfaces.
 
-## Explanation
+## Detailed Explanation of Factory Kit Pattern with Real-World Examples
 
 Real-world example
 
@@ -113,7 +113,7 @@ Here is the console output when the example is run.
 06:32:23.029 [main] INFO com.iluwatar.factorykit.App -- Bow
 ```
 
-## Applicability
+## When to Use the Factory Kit Pattern in Java
 
 Use the Factory Kit pattern when
 
@@ -123,7 +123,7 @@ Use the Factory Kit pattern when
 * The builder and creator interfaces need to be separated
 * Game developments and other applications that have user customisation
 
-## Tutorials
+## Factory Kit Pattern Java Tutorials
 
 * [Factory Kit Pattern (Diego Pacheco)](https://diego-pacheco.medium.com/factory-kit-pattern-66d5ccb0c405)
 
@@ -132,7 +132,7 @@ Use the Factory Kit pattern when
 * In Java libraries such as the Java Development Kit (JDK) where different rendering engines might be instantiated based on the runtime environment.
 * Frameworks like Spring or applications where dependency injection is heavily used, often implement this pattern to manage object creation more flexibly.
 
-## Consequences
+## Benefits and Trade-offs of Factory Kit Pattern
 
 Benefits:
 
@@ -144,12 +144,12 @@ Trade-offs:
 * Can introduce complexity into the code by requiring additional classes and interfaces.
 * Sometimes can lead to dependency issues if not properly managed.
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Often used together with the Factory Kit to create families of related objects.
 * [Builder](https://java-design-patterns.com/patterns/builder/): Can be used to construct complex objects step-by-step using a similar approach.
 * [Prototype](https://java-design-patterns.com/patterns/prototype/): Objects that are created by cloning a prototypical instance often use a factory to manage it.
 
-## Credits
+## References and Credits
 
 * [Design Pattern Reloaded (Remi Forax)](https://www.youtube.com/watch?v=-k2X7guaArU)

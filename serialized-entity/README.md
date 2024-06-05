@@ -17,11 +17,11 @@ head:
 
 * Object Serialization
 
-## Intent
+## Intent of Serialized Entity Design Pattern
 
 Enable easy conversion of Java objects to and from a serialized format, allowing them to be easily stored and transferred.
 
-## Explanation
+## Detailed Explanation of Serialized Entity Pattern with Real-World Examples
 
 Real-world example
 
@@ -168,7 +168,7 @@ Console output:
 
 This is a basic example of the Serialized Entity design pattern. It shows how to serialize Java objects, store them in a database, and then retrieve and deserialize them.
 
-## Applicability
+## When to Use the Serialized Entity Pattern in Java
 
 * Use when you need to persist the state of an object or transfer objects between different tiers of an application.
 * Useful in scenarios where objects need to be shared over a network or saved to a file.
@@ -180,7 +180,7 @@ This is a basic example of the Serialized Entity design pattern. It shows how to
 * Caching objects to improve performance.
 * Transferring objects in distributed systems using RMI or other RPC mechanisms.
 
-## Consequences
+## Benefits and Trade-offs of Serialized Entity Pattern
 
 Benefits:
 
@@ -200,7 +200,7 @@ Trade-offs:
 * [Memento](https://java-design-patterns.com/patterns/memento/): Provides a way to capture and restore an object's state, often using serialization.
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): Proxies can serialize requests to interact with remote objects.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

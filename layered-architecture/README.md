@@ -19,11 +19,11 @@ head:
 
 * N-Tier Architecture
 
-## Intent
+## Intent of Layered Architecture Design Pattern
 
 The Layered Architecture pattern helps organize applications into groups of subtasks at different levels of abstraction, facilitating independent development and maintenance of each layer.
 
-## Explanation
+## Detailed Explanation of Layered Architecture Pattern with Real-World Examples
 
 Real-world example
 
@@ -89,11 +89,11 @@ public class CakeViewImpl implements View {
 }
 ```
 
-## Class diagram
+## Detailed Explanation of Layered Architecture Pattern with Real-World Examples
 
 ![Layered Architecture](./etc/layers.png "Layered Architecture")
 
-## Applicability
+## When to Use the Layered Architecture Pattern in Java
 
 This pattern is suitable for structuring applications that can be divided into groups where each group has a specific role or responsibility. Common in enterprise applications, it simplifies dependencies, enhances maintainability, and supports scaling and technology stack segregation.
 
@@ -108,7 +108,7 @@ Use the Layers architecture when
 * Web applications where the presentation, business logic, and data access layers are distinctly separated.
 * Enterprise systems where core functionalities are isolated from interface applications and databases.
 
-## Consequences
+## Benefits and Trade-offs of Layered Architecture Pattern
 
 Benefits
 
@@ -127,7 +127,7 @@ Trade-offs
 * [Model-View-Controller](https://java-design-patterns.com/patterns/model-view-controller/): Shares separation of concerns by dividing application into input, processing, and output. Layered Architecture often implements an MVC within its presentation layer.
 * Service-Oriented Architecture (SOA): Both patterns emphasize modularization but SOA focuses more on distributed services that can be reused across different systems.
 
-## Credits
+## References and Credits
 
 * [Clean Architecture: A Craftsman's Guide to Software Structure and Design](https://amzn.to/3UoKkaR)
 * [Java Design Pattern Essentials](https://amzn.to/4drLhHU)

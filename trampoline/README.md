@@ -19,11 +19,11 @@ head:
 * Bounce
 * Tail-Call Optimization
 
-## Intent
+## Intent of Trampoline Design Pattern
 
 To optimize recursive function calls by converting them into iterative loops, avoiding stack overflow errors.
 
-## Explanation
+## Detailed Explanation of Trampoline Pattern with Real-World Examples
 
 Real-world example
 
@@ -125,14 +125,14 @@ Program output:
 19:22:24.472 [main] INFO com.iluwatar.trampoline.TrampolineApp - The number of orcs perished in the war: 3628800
 ```
 
-## Applicability
+## When to Use the Trampoline Pattern in Java
 
 Use the Trampoline pattern when
 
 * When dealing with algorithms that use recursion heavily and risk running into stack overflow errors.
 * When tail-call optimization is not supported by the Java language natively.
 
-## Tutorials
+## Trampoline Pattern Java Tutorials
 
 * [Laziness, trampolines, monoids and other functional amenities: This is not your father's Java(Mario Fusco)](https://www.slideshare.net/mariofusco/lazine)
 * [Trampoline.java (totallylazy)](https://github.com/bodar/totallylazy/blob/master/src/com/googlecode/totallylazy/Trampoline.java)
@@ -146,7 +146,7 @@ Use the Trampoline pattern when
 * Functional programming libraries and frameworks where tail-call optimization is necessary for performance and stack safety.
 * [cyclops-react](https://github.com/aol/cyclops-react)
 
-## Consequences
+## Benefits and Trade-offs of Trampoline Pattern
 
 Benefits:
 
@@ -165,7 +165,7 @@ Trade-offs:
 * [State](https://java-design-patterns.com/patterns/state/): Like the Trampoline, the State pattern can also handle complex state transitions, which can sometimes involve recursive-like state changes.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): This pattern can be related in terms of defining a family of algorithms (or continuations in the case of the Trampoline) and making them interchangeable.
 
-## Credits
+## References and Credits
 
 * [Functional Programming in Java](https://amzn.to/3JUIc5Q)
 * [Functional Programming for Java Developers: Tools for Better Concurrency, Abstraction, and Agility](https://amzn.to/4dRu4rJ)

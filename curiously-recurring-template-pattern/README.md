@@ -25,11 +25,11 @@ head:
 * Recursive Generic
 * Static Polymorphism
 
-## Intent
+## Intent of Curiously Recurring Template Pattern Design Pattern
 
 Curiously Recurring Template Pattern (CRTP) is used to achieve a form of static polymorphism by having a class template derive from a template instantiation of its own class, allowing method overriding and polymorphic behavior at compile time rather than at runtime.
 
-## Explanation
+## Detailed Explanation of Curiously Recurring Template Pattern Pattern with Real-World Examples
 
 Real-world example
 
@@ -120,7 +120,7 @@ Program output:
 08:42:34.054 [main] INFO crtp.MmaFighter -- MmaFighter(name=Dave, surname=Davidson, nickName=The Bug Smasher, speciality=Kickboxing) is going to fight against MmaFighter(name=Jack, surname=Jackson, nickName=The Pragmatic, speciality=Brazilian Jiu-Jitsu)
 ```
 
-## Applicability
+## When to Use the Curiously Recurring Template Pattern Pattern in Java
 
 * When you need to extend the functionality of a class through inheritance but prefer compile-time polymorphism to runtime polymorphism for efficiency reasons.
 * When you want to avoid the overhead of virtual functions but still achieve polymorphic behavior.
@@ -129,17 +129,17 @@ Program output:
 * You want to use a parameterized class method that can accept subclasses of the class as arguments, allowing it to be applied to objects that inherit from the class.
 * You want certain methods to work only with instances of the same type, such as for achieving mutual comparability.
 
-## Tutorials
+## Curiously Recurring Template Pattern Pattern Java Tutorials
 
 * [Curiously Recurring Template Pattern in Java (The NuaH Blog)](https://nuah.livejournal.com/328187.html)
 
-## Known uses
+## Real-World Applications of Curiously Recurring Template Pattern Pattern in Java
 
 * Implementing compile-time polymorphic interfaces in template libraries.
 * Enhancing code reuse in libraries where performance is critical, like in mathematical computations, embedded systems, and real-time processing applications.
 * Implementation of the `Cloneable` interface in various Java libraries.
 
-## Consequences
+## Benefits and Trade-offs of Curiously Recurring Template Pattern Pattern
 
 Benefits:
 
@@ -159,7 +159,7 @@ Trade-offs:
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): CRTP can implement compile-time strategy selection.
 * [Template Method](https://java-design-patterns.com/patterns/template-method/): Similar in structure but differs in that CRTP achieves behavior variation through compile-time polymorphism.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

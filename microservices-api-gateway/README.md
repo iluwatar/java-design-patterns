@@ -18,7 +18,7 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Microservices API Gateway Design Pattern
 
 The API Gateway design pattern aims to provide a unified interface to a set of microservices. It acts as a single entry point for clients, routing requests to the appropriate microservices and aggregating results, thereby simplifying the client-side code.
 
@@ -27,7 +27,7 @@ The API Gateway design pattern aims to provide a unified interface to a set of m
 * API Facade
 * Backend for Frontends (BFF)
 
-## Explanation
+## Detailed Explanation of Microservices API Gateway Pattern with Real-World Examples
 
 Real-world example
 
@@ -130,20 +130,20 @@ public class ApiGateway {
 }
 ```
 
-## Applicability
+## When to Use the Microservices API Gateway Pattern in Java
 
 * When building a microservices architecture, and there's a need to abstract the complexity of microservices from the client.
 * When multiple microservices need to be consumed in a single request.
 * For authentication, authorization, and security enforcement at a single point.
 * To optimize communication between clients and services, especially in a cloud environment.
 
-## Tutorials
+## Microservices API Gateway Pattern Java Tutorials
 
 * [Exploring the New Spring Cloud Gateway (Baeldung)](https://www.baeldung.com/spring-cloud-gateway)
 * [Spring Cloud - Gateway(tutorialspoint)](https://www.tutorialspoint.com/spring_cloud/spring_cloud_gateway.htm)
 * [Getting Started With Spring Cloud Gateway (DZone)](https://dzone.com/articles/getting-started-with-spring-cloud-gateway)
 
-## Consequences
+## Benefits and Trade-offs of Microservices API Gateway Pattern
 
 Benefits:
 
@@ -158,19 +158,19 @@ Trade-offs:
 * Can become a bottleneck if not properly scaled.
 * Adds complexity in terms of deployment and management.
 
-## Known uses
+## Real-World Applications of Microservices API Gateway Pattern in Java
 
 * E-commerce platforms where multiple services (product info, pricing, inventory) are aggregated for a single view.
 * Mobile applications that consume various backend services but require a simplified interface for ease of use.
 * Cloud-native applications that leverage multiple microservices architectures.
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Aggregator Microservice](https://java-design-patterns.com/patterns/microservices-aggregator/) - The API Gateway pattern is often used in conjunction with the Aggregator Microservice pattern to provide a unified interface to a set of microservices.
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/) - API Gateways can use the Circuit Breaker pattern to prevent cascading failures when calling multiple microservices.
 * [Proxy](https://java-design-patterns.com/patterns/proxy/) - The API Gateway pattern is a specialized form of the Proxy pattern, where the gateway acts as a single entry point for clients, routing requests to the appropriate microservices and aggregating results.
 
-## Credits
+## References and Credits
 
 * [Building Microservices](https://amzn.to/3UACtrU)
 * [Cloud Native Patterns: Designing change-tolerant software](https://amzn.to/3uV12WN)

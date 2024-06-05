@@ -18,11 +18,11 @@ head:
 
 * Dependents
 
-## Intent
+## Intent of Observer Design Pattern
 
 Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
 
-## Explanation
+## Detailed Explanation of Observer Pattern with Real-World Examples
 
 Real-world example
 
@@ -166,7 +166,7 @@ Program output:
 21:28:08.313 [main] INFO com.iluwatar.observer.generic.GenHobbits -- The hobbits are facing Sunny weather now
 ```
 
-## Applicability
+## When to Use the Observer Pattern in Java
 
 Use the Observer pattern in any of the following situations:
 
@@ -174,7 +174,7 @@ Use the Observer pattern in any of the following situations:
 * When a change to one object requires changing others, and you don't know how many objects need to be changed.
 * When an object should be able to notify other objects without making assumptions about who these objects are. In other words, you don't want these objects tightly coupled.
 
-## Known uses
+## Real-World Applications of Observer Pattern in Java
 
 * [java.util.Observer](http://docs.oracle.com/javase/8/docs/api/java/util/Observer.html)
 * [java.util.EventListener](http://docs.oracle.com/javase/8/docs/api/java/util/EventListener.html)
@@ -183,7 +183,7 @@ Use the Observer pattern in any of the following situations:
 * Model-View-Controller (MVC) frameworks.
 * Event handling systems.
 
-## Consequences
+## Benefits and Trade-offs of Observer Pattern
 
 Benefits:
 
@@ -201,7 +201,7 @@ Trade-offs:
 * [Mediator](https://java-design-patterns.com/patterns/mediator/): Encapsulates how a set of objects interact, which can be used to reduce the direct dependencies among objects.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Often used with the Observer pattern to ensure a single instance of the subject.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Generics and Collections](https://amzn.to/3VhOBxp)

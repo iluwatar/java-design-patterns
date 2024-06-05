@@ -21,11 +21,11 @@ head:
 * Exception Suppression
 * Quiet Exception
 
-## Intent
+## Intent of Mute Idiom Design Pattern
 
 The Mute Idiom is designed to simplify error handling by muting exceptions that are deemed non-critical or expected in specific contexts, especially within multithreaded or complex control flow environments.
 
-## Explanation
+## Detailed Explanation of Mute Idiom Pattern with Real-World Examples
 
 Real-world example
 
@@ -86,12 +86,12 @@ public class App {
 
 In this way, the Mute Idiom allows us to simplify error handling by reducing boilerplate code for expected exceptions, enhancing code readability and maintainability, and allowing uninterrupted execution for non-critical exceptions.
 
-## Applicability
+## When to Use the Mute Idiom Pattern in Java
 
 * Useful in scenarios where certain exceptions are predictable and do not affect the overall logic or outcome.
 * Commonly used in logging, cleanup operations, or when working with APIs that signal non-critical issues via exceptions.
 
-## Tutorials
+## Mute Idiom Pattern Java Tutorials
 
 * [The Mute Design Pattern (JOOQ)](http://blog.jooq.org/2016/02/18/the-mute-design-pattern/)
 
@@ -100,7 +100,7 @@ In this way, the Mute Idiom allows us to simplify error handling by reducing boi
 * Muting exceptions in background tasks or threads where interruption is expected.
 * Handling known issues in third-party libraries where exceptions can be safely ignored.
 
-## Consequences
+## Benefits and Trade-offs of Mute Idiom Pattern
 
 Benefits:
 
@@ -118,7 +118,7 @@ Trade-offs:
 * [Null Object](https://java-design-patterns.com/patterns/null-object/): Both aim to simplify error handling; Null Object avoids null checks while Mute Idiom avoids exception handling complexities.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used to wrap functionality with additional error handling or muting behaviors.
 
-## Credits
+## References and Credits
 
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)

@@ -18,11 +18,11 @@ head:
 
 * Single Instance
 
-## Intent
+## Intent of Singleton Design Pattern
 
 Ensure a class only has one instance, and provide a global point of access to it.
 
-## Explanation
+## Detailed Explanation of Singleton Pattern with Real-World Examples
 
 Real-world example
 
@@ -64,14 +64,14 @@ enumIvoryTower1=com.iluwatar.singleton.EnumIvoryTower@1221555852
 enumIvoryTower2=com.iluwatar.singleton.EnumIvoryTower@1221555852
 ```
 
-## Applicability
+## When to Use the Singleton Pattern in Java
 
 Use the Singleton pattern when
 
 * There must be exactly one instance of a class, and it must be accessible to clients from a well-known access point
 * When the sole instance should be extensible by subclassing, and clients should be able to use an extended instance without modifying their code
 
-## Known uses
+## Real-World Applications of Singleton Pattern in Java
 
 * The logging class
 * Configuration classes in many applications
@@ -81,7 +81,7 @@ Use the Singleton pattern when
 * [java.awt.Desktop#getDesktop()](http://docs.oracle.com/javase/8/docs/api/java/awt/Desktop.html#getDesktop--)
 * [java.lang.System#getSecurityManager()](http://docs.oracle.com/javase/8/docs/api/java/lang/System.html#getSecurityManager--)
 
-## Consequences
+## Benefits and Trade-offs of Singleton Pattern
 
 Benefits:
 
@@ -103,7 +103,7 @@ Trade-offs:
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Singleton pattern can be implemented using a Factory Method to encapsulate the creation logic.
 * [Prototype](https://java-design-patterns.com/patterns/prototype/): Avoids the need to create instances, can work alongside Singleton to manage unique instances.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

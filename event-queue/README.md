@@ -20,11 +20,11 @@ head:
 * Event Stream
 * Message Queue
 
-## Intent
+## Intent of Event Queue Design Pattern
 
 The Event Queue pattern is designed to manage tasks in an asynchronous manner, allowing applications to handle operations without blocking user interactions or other processes.
 
-## Explanation
+## Detailed Explanation of Event Queue Pattern with Real-World Examples
 
 Real-world example
 
@@ -138,7 +138,7 @@ public void playSound(AudioInputStream stream, float volume) {
 }
 ```
 
-## Applicability
+## When to Use the Event Queue Pattern in Java
 
 This pattern is applicable in scenarios where tasks can be handled asynchronously outside the main application flow, such as in GUI applications, server-side event handling, or in systems that require task scheduling without immediate execution. In particular:
 
@@ -153,7 +153,7 @@ This pattern is applicable in scenarios where tasks can be handled asynchronousl
 * GUI frameworks in Java (such as Swing and JavaFX)
 * Server applications handling requests asynchronously
 
-## Consequences
+## Benefits and Trade-offs of Event Queue Pattern
 
 Benefits:
 
@@ -173,7 +173,7 @@ Trade-offs:
 * [Observer](https://java-design-patterns.com/patterns/observer/) (for subscribing and notifying changes to multiple observers)
 * [Reactor](https://java-design-patterns.com/patterns/reactor/) (handles requests in a non-blocking event-driven manner similar to Event Queue)
 
-## Credits
+## References and Credits
 
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3xzSlC2)
 * [Game Programming Patterns](https://amzn.to/3K96fOn)

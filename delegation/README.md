@@ -18,11 +18,11 @@ head:
 * Helper
 * Surrogate
 
-## Intent
+## Intent of Delegation Design Pattern
 
 To allow an object to delegate responsibility for a task to another helper object.
 
-## Explanation
+## Detailed Explanation of Delegation Pattern with Real-World Examples
 
 Real-world example
 
@@ -117,11 +117,11 @@ Canon Printer:hello world
 Epson Printer:hello world
 ```
 
-## Class diagram
+## Detailed Explanation of Delegation Pattern with Real-World Examples
 
 ![Delegate class diagram](./etc/delegation.png "Delegate")
 
-## Applicability
+## When to Use the Delegation Pattern in Java
 
 * When you want to pass responsibility from one class to another without inheritance.
 * To achieve composition-based reuse instead of inheritance-based.
@@ -133,7 +133,7 @@ Epson Printer:hello world
 * Wrapper classes in Java's Collections Framework (java.util.Collections), which delegate to other collection objects.
 * In Spring Framework, delegation is used extensively in the IoC container where beans delegate tasks to other beans.
 
-## Consequences
+## Benefits and Trade-offs of Delegation Pattern
 
 Benefits:
 
@@ -152,7 +152,7 @@ Trade-offs:
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Delegation is often used in the strategy pattern where a context object delegates tasks to a strategy object.
 * https://java-design-patterns.com/patterns/proxy/: The proxy pattern is a form of delegation where a proxy object controls access to another object, which it delegates work to.
 
-## Credits
+## References and Credits
 
 * [Effective Java](https://amzn.to/4aGE7gX)
 * [Head First Design Patterns](https://amzn.to/3J9tuaB)

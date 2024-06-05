@@ -19,11 +19,11 @@ head:
 
 * MVI
 
-## Intent
+## Intent of Model-View-Intent Design Pattern
 
 To create a unidirectional and cyclical data flow between the Model, View, and Intent components, enhancing predictability and maintainability in user interface logic.
 
-## Explanation
+## Detailed Explanation of Model-View-Intent Pattern with Real-World Examples
 
 Real-world example
 
@@ -187,22 +187,22 @@ public class SetVariableEvent implements UserEvent {
 
 This example demonstrates the key aspects of the MVI pattern: unidirectional data flow, clear separation of concerns, and the use of events to drive changes in the Model's state.
 
-## Applicability
+## When to Use the Model-View-Intent Pattern in Java
 
 * Useful in applications with complex user interfaces that require a clear separation of concerns and predictable state management.
 * Often applied in reactive programming environments to ensure a smooth data flow and state consistency.
 
-## Tutorials
+## Model-View-Intent Pattern Java Tutorials
 
 * [Model View Intent: a new Android Architecture Pattern (Apium Academy)](https://apiumacademy.com/blog/model-view-intent-pattern/)
 * [MVI Architecture for Android Tutorial: Getting Started (Kodeco)](https://www.kodeco.com/817602-mvi-architecture-for-android-tutorial-getting-started)
 
-## Known uses
+## Real-World Applications of Model-View-Intent Pattern in Java
 
 * Widely adopted in reactive and event-driven Java applications, particularly those using frameworks like RxJava or Project Reactor.
 * Used in Android development, especially with libraries that support reactive programming such as RxJava and LiveData.
 
-## Consequences
+## Benefits and Trade-offs of Model-View-Intent Pattern
 
 Benefits:
 
@@ -216,13 +216,13 @@ Trade-offs:
 * Requires familiarity with reactive programming paradigms.
 * Can lead to boilerplate code if not managed properly.
 
-## Related patterns
+## Related Java Design Patterns
 
 [Model-View-ViewModel (MVVM)](https://java-design-patterns.com/patterns/model-view-viewmodel/): Shares a similar goal of separating the view from the model but differs as MVI introduces a cyclical data flow.
 [Model-View-Controller (MVC)](https://java-design-patterns.com/patterns/model-view-controller/): MVI can be seen as an evolution of MVC, focusing more on reactive programming and unidirectional data flow.
 [Observer](https://java-design-patterns.com/patterns/observer/): Essential in MVI to observe changes in the Model and update the View accordingly.
 
-## Credits
+## References and Credits
 
 * [Functional and Reactive Domain Modeling](https://amzn.to/4adghJ8)
 * [Reactive Programming with RxJava: Creating Asynchronous, Event-Based Applications](https://amzn.to/4dxwawC)

@@ -19,11 +19,11 @@ head:
 * Retry Logic
 * Retry Mechanism
 
-## Intent
+## Intent of Retry Design Pattern
 
 Transparently retry certain operations that involve communication with external resources, particularly over the network, isolating calling code from the retry implementation details.
 
-## Explanation
+## Detailed Explanation of Retry Pattern with Real-World Examples
 
 Real-world example
 
@@ -194,7 +194,7 @@ Running the code produces the following console output.
 
 This way, the Retry pattern allows the application to handle temporary failures gracefully, improving its resilience and reliability.
 
-## Applicability
+## When to Use the Retry Pattern in Java
 
 * Use when operations can fail transiently, such as network calls, database connections, or external service integrations.
 * Ideal for scenarios where the likelihood of transient failure is high but the cost of retries is low.
@@ -205,7 +205,7 @@ This way, the Retry pattern allows the application to handle temporary failures 
 * Database connection libraries to manage temporary outages or timeouts.
 * APIs interacting with third-party services that may be temporarily unavailable.
 
-## Consequences
+## Benefits and Trade-offs of Retry Pattern
 
 Benefits:
 
@@ -222,7 +222,7 @@ Trade-offs:
 
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Used to stop the flow of requests to an external service after a failure threshold is reached, preventing system overload.
 
-## Credits
+## References and Credits
 
 * [Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications](https://amzn.to/4dLvowg)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)

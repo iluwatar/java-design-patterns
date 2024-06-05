@@ -21,11 +21,11 @@ head:
 
 * API Composition
 
-## Intent
+## Intent of Microservices Aggregator Design Pattern
 
 To aggregate responses from multiple microservices and return a consolidated response to the client.
 
-## Explanation
+## Detailed Explanation of Microservices Aggregator Pattern with Real-World Examples
 
 Real-world example
 
@@ -107,11 +107,11 @@ curl http://localhost:50004/product
 {"title":"The Product Title.","productInventories":5}
 ```
 
-## Applicability
+## When to Use the Microservices Aggregator Pattern in Java
 
 The Microservices Aggregator Design Pattern is particularly useful in scenarios where a client requires a composite response that is assembled from data provided by multiple microservices. Common use cases include e-commerce applications where product details, inventory, and reviews might be provided by separate services, or in dashboard applications where aggregated data from various services is displayed in a unified view.
 
-## Consequences
+## Benefits and Trade-offs of Microservices Aggregator Pattern
 
 Benefits:
 
@@ -131,7 +131,7 @@ Trade-offs:
 * [Composite](https://java-design-patterns.com/patterns/composite/): The Microservices Aggregator pattern can be seen as a form of the Composite pattern, where the composite is the aggregated response from multiple microservices.
 * [Facade](https://java-design-patterns.com/patterns/facade/): The Microservices Aggregator pattern can be seen as a form of the Facade pattern, where the facade is the aggregator service that provides a simplified interface to the client.
 
-## Credits
+## References and Credits
 
 * [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/43aGpSR)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)

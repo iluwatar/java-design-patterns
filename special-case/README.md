@@ -20,11 +20,11 @@ head:
 
 * Exceptional Case
 
-## Intent
+## Intent of Special Case Design Pattern
 
 To handle exceptional cases or specific conditions without cluttering the main code logic.
 
-## Explanation
+## Detailed Explanation of Special Case Pattern with Real-World Examples
 
 Real-world example
 
@@ -246,7 +246,7 @@ Here is the output from running the example.
 
 In conclusion, the Special Case Pattern helps to keep the code clean and easy to understand by separating the special case from the general case. It also promotes code reuse and makes the code easier to maintain.
 
-## Applicability
+## When to Use the Special Case Pattern in Java
 
 * Use when you want to encapsulate and handle special cases or error conditions in a manner that avoids conditional logic scattered throughout the main codebase.
 * Useful in scenarios where certain operations have known exceptional cases that require different handling.
@@ -257,7 +257,7 @@ In conclusion, the Special Case Pattern helps to keep the code clean and easy to
 * Handling specific business rules or validation logic in e-commerce applications.
 * Managing different file formats or protocols in data processing applications.
 
-## Consequences
+## Benefits and Trade-offs of Special Case Pattern
 
 Benefits:
 
@@ -275,7 +275,7 @@ Trade-offs:
 * [Null Object](https://java-design-patterns.com/patterns/null-object/): Used to provide a default behavior for null references, which is a specific type of special case.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Allows dynamic switching of special case behaviors by encapsulating them in different strategy classes.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

@@ -18,11 +18,11 @@ head:
 
 * Interface Extensions
 
-## Intent
+## Intent of Extension Objects Design Pattern
 
 The Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure, by attaching additional objects that can dynamically add new functionality.
 
-## Explanation
+## Detailed Explanation of Extension Objects Pattern with Real-World Examples
 
 Real-world example
 
@@ -146,11 +146,11 @@ This produces the following console output.
 
 This example demonstrates how the Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure.
 
-## Class diagram
+## Detailed Explanation of Extension Objects Pattern with Real-World Examples
 
 ![Extension_objects](./etc/extension_obj.png "Extension objects")
 
-## Applicability
+## When to Use the Extension Objects Pattern in Java
 
 This pattern is applicable in scenarios where an object's functionality needs to be extended at runtime, avoiding the complications of subclassing. It's particularly useful in systems where object capabilities need to be augmented post-deployment, or where the capabilities might vary significantly across instances.
 
@@ -162,7 +162,7 @@ This pattern is applicable in scenarios where an object's functionality needs to
 * [OpenDoc](https://en.wikipedia.org/wiki/OpenDoc)
 * [Object Linking and Embedding](https://en.wikipedia.org/wiki/Object_Linking_and_Embedding)
 
-## Consequences
+## Benefits and Trade-offs of Extension Objects Pattern
 
 Benefits:
 
@@ -181,7 +181,7 @@ Trade-offs:
 * [Composite](https://java-design-patterns.com/patterns/composite/): Also manages a group of objects, which can be seen as a form of extension.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Offers an alternative way to change the behavior of an object dynamically.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/4aBMuuL)
 * [Pattern-Oriented Software Architecture: A System of Patterns](https://amzn.to/3Q9YOtX)

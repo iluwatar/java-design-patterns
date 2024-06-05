@@ -14,11 +14,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Composite View Design Pattern
 
 The primary goal of the Composite View design pattern is to compose objects into tree structures to represent part-whole hierarchies. This allows clients to treat individual objects and compositions of objects uniformly, simplifying the management of complex structures.
 
-## Explanation
+## Detailed Explanation of Composite View Pattern with Real-World Examples
 
 Real-world example
 
@@ -314,7 +314,7 @@ Use the Composite View design pattern when:
 * You expect that the composite structures might include any new components in the future.
 * You want clients to be able to ignore the difference between compositions of objects and individual objects. Clients will treat all objects in the composite structure uniformly.
 
-## Tutorials
+## Composite View Pattern Java Tutorials
 
 * [Composite View Design Pattern – Core J2EE Patterns (Dinesh on Java)](https://www.dineshonjava.com/composite-view-design-pattern/)
 
@@ -323,7 +323,7 @@ Use the Composite View design pattern when:
 * Graphical User Interfaces (GUIs) where widgets can contain other widgets (e.g., a window containing panels, buttons, and text fields).
 * Document structures, such as the representation of tables containing rows, which in turn contain cells, all of which can be treated as elements in a unified hierarchy.
 
-## Consequences
+## Benefits and Trade-offs of Composite View Pattern
 
 Benefits:
 
@@ -342,7 +342,7 @@ Trade-offs:
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Can be used to manage memory consumption of large numbers of similar view objects.
 * View Helper: Separates the view logic from business logic, aiding in the clean organization and management of view components.
 
-## Credits
+## References and Credits
 
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/3xfntGJ)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/49jpQG3)

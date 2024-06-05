@@ -19,11 +19,11 @@ head:
 * Async-Sync Bridge
 * Half-Synchronous/Half-Asynchronous
 
-## Intent
+## Intent of Half-Sync/Half-Async Design Pattern
 
 The Half-Sync/Half-Async pattern aims to decouple asynchronous and synchronous processing in concurrent systems, allowing efficient interaction and data exchange between asynchronous and synchronous components.
 
-## Explanation
+## Detailed Explanation of Half-Sync/Half-Async Pattern with Real-World Examples
 
 Real-world example
 
@@ -131,7 +131,7 @@ Running the code produces:
 
 This is a basic example of the Half-Sync/Half-Async pattern, where tasks are enqueued and processed asynchronously, while the main thread continues to handle other tasks.
 
-## Applicability
+## When to Use the Half-Sync/Half-Async Pattern in Java
 
 Use the Half-Sync/Half-Async pattern in scenarios where:
 
@@ -139,7 +139,7 @@ Use the Half-Sync/Half-Async pattern in scenarios where:
 * The system needs to effectively utilize multicore architectures to balance tasks between asynchronous and synchronous processing.
 * Decoupling of asynchronous tasks from synchronous processing is necessary to simplify the design and implementation.
 
-## Known uses
+## Real-World Applications of Half-Sync/Half-Async Pattern in Java
 
 * [BSD Unix networking subsystem](https://www.dre.vanderbilt.edu/~schmidt/PDF/PLoP-95.pdf)
 * [Real Time CORBA](http://www.omg.org/news/meetings/workshops/presentations/realtime2001/4-3_Pyarali_thread-pool.pdf)
@@ -147,7 +147,7 @@ Use the Half-Sync/Half-Async pattern in scenarios where:
 * Java's standard libraries utilize this pattern with thread pools and execution queues in the concurrency utilities (e.g., java.util.concurrent).
 * Network servers handling concurrent connections where IO operations are handled asynchronously and processing of requests is done synchronously.
 
-## Consequences
+## Benefits and Trade-offs of Half-Sync/Half-Async Pattern
 
 Benefits:
 
@@ -165,7 +165,7 @@ Trade-offs:
 * [Producer/Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Can be integrated with Half-Sync/Half-Async to manage work queues between the async and sync parts.
 * [Reactor](https://java-design-patterns.com/patterns/reactor/): Often used with Half-Sync/Half-Async to handle multiple service requests delivered to a service handler without blocking the handler.
 
-## Credits
+## References and Credits
 
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 * [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)

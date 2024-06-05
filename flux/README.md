@@ -15,11 +15,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Flux Design Pattern
 
 The Flux design pattern is intended to manage the flow of data in applications, particularly client-side web applications, by enforcing a unidirectional data flow. It aims to simplify the management of complex data interactions and promote a more predictable state behavior across components.
 
-## Explanation
+## Detailed Explanation of Flux Pattern with Real-World Examples
 
 Real-world example
 
@@ -86,11 +86,11 @@ In this example, when a menu item is clicked, the `MenuView` triggers a `MENU_IT
 
 This is a basic example of the Flux pattern, where actions are dispatched from the views, handled by the stores, and cause the views to update.
 
-## Class diagram
+## Detailed Explanation of Flux Pattern with Real-World Examples
 
 ![Flux](./etc/flux.png "Flux")
 
-## Applicability
+## When to Use the Flux Pattern in Java
 
 Flux is applicable in developing client-side applications, where maintaining consistent data across various components and managing complex state interactions are critical. It is especially suited for applications with dynamic user interfaces that react to frequent data updates.
 
@@ -99,7 +99,7 @@ Flux is applicable in developing client-side applications, where maintaining con
 * Facebook extensively uses Flux in conjunction with React to build robust, scalable user interfaces that can handle complex data updates efficiently.
 * Many modern web applications adopt Flux or its variations (like Redux) to manage state in environments that demand high responsiveness and predictability.
 
-## Consequences
+## Benefits and Trade-offs of Flux Pattern
 
 Benefits:
 
@@ -118,7 +118,7 @@ Trade-offs:
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Typically, the dispatcher in Flux is implemented as a singleton.
 * [Mediator](https://java-design-patterns.com/patterns/mediator/): Flux can be considered a variation of the mediator pattern where the dispatcher mediates the flow of data and ensures components do not update the state directly.
 
-## Credits
+## References and Credits
 
 * [Learning React: Modern Patterns for Developing React Apps](https://amzn.to/3Qdn9Pg)
 * [Pro React](https://amzn.to/3xNRttK)

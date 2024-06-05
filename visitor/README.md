@@ -15,11 +15,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Visitor Design Pattern
 
 To represent an operation to be performed on the elements of an object structure. Visitor lets you define a new operation without changing the classes of the elements on which it operates.
 
-## Explanation
+## Detailed Explanation of Visitor Pattern with Real-World Examples
 
 Real-world example
 
@@ -224,11 +224,11 @@ Program output:
 14:58:06.118 [main] INFO com.iluwatar.visitor.CommanderVisitor -- Good to see you commander
 ```
 
-## Class diagram
+## Detailed Explanation of Visitor Pattern with Real-World Examples
 
 ![Visitor](./etc/visitor_1.png "Visitor")
 
-## Applicability
+## When to Use the Visitor Pattern in Java
 
 Use the Visitor pattern when
 
@@ -236,13 +236,13 @@ Use the Visitor pattern when
 * Use it when a class structure is stable, but you need to perform new operations on the structure without changing it.
 * It's beneficial when the set of classes are fixed and only the operations need to be extended.
 
-## Tutorials
+## Visitor Pattern Java Tutorials
 
 * [Visitor (Refactoring Guru)](https://refactoring.guru/design-patterns/visitor)
 * [Visitor Pattern Tutorial with Java Examples (DZone)](https://dzone.com/articles/design-patterns-visitor)
 * [Visitor Design Pattern (Sourcemaking)](https://sourcemaking.com/design_patterns/visitor)
 
-## Known uses
+## Real-World Applications of Visitor Pattern in Java
 
 * Compiler design, where the Visitor pattern can be used for operations like pretty printing, semantic checks, etc.
 * Abstract Syntax Tree (AST) processing.
@@ -252,7 +252,7 @@ Use the Visitor pattern when
 * [javax.lang.model.element.Element](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/Element.html) and [Element Visitor](http://docs.oracle.com/javase/8/docs/api/javax/lang/model/element/ElementVisitor.html)
 * [java.nio.file.FileVisitor](http://docs.oracle.com/javase/8/docs/api/java/nio/file/FileVisitor.html)
 
-## Consequences
+## Benefits and Trade-offs of Visitor Pattern
 
 Benefits:
 
@@ -272,7 +272,7 @@ Trade-offs:
 * [Interpreter](https://java-design-patterns.com/patterns/interpreter/): Visitors can be used to implement the non-terminal expressions in the Interpreter pattern.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Visitor can be considered a way of making strategies work on objects that they were not designed to operate on.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

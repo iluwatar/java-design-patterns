@@ -17,11 +17,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Interpreter Design Pattern
 
 The Interpreter pattern is used to define a grammatical representation for a language and provides an interpreter to deal with this grammar.
 
-## Explanation
+## Detailed Explanation of Interpreter Pattern with Real-World Examples
 
 Real-world example
 
@@ -177,18 +177,18 @@ Executing the program produces the following console output.
 13:33:15.440 [main] INFO com.iluwatar.interpreter.App -- result: 8
 ```
 
-## Class diagram
+## Detailed Explanation of Interpreter Pattern with Real-World Examples
 
 ![Interpreter](./etc/interpreter_1.png "Interpreter")
 
-## Applicability
+## When to Use the Interpreter Pattern in Java
 
 Use the Interpreter pattern when there is a language to interpret, and you can represent statements in the language as abstract syntax trees. The Interpreter pattern works best when
 
 * The grammar is simple. For complex grammars, the class hierarchy for the grammar becomes large and unmanageable. Tools such as parser generators are a better alternative in such cases. They can interpret expressions without building abstract syntax trees, which can save space and possibly time.
 * Efficiency is not a critical concern. The most efficient interpreters are usually not implemented by interpreting parse trees directly but by first translating them into another form. For example, regular expressions are often transformed into state machines. But even then, the translator can be implemented by the Interpreter pattern, so the pattern is still applicable.
 
-## Known uses
+## Real-World Applications of Interpreter Pattern in Java
 
 * [java.util.Pattern](http://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html)
 * [java.text.Normalizer](http://docs.oracle.com/javase/8/docs/api/java/text/Normalizer.html)
@@ -196,7 +196,7 @@ Use the Interpreter pattern when there is a language to interpret, and you can r
 * [javax.el.ELResolver](http://docs.oracle.com/javaee/7/api/javax/el/ELResolver.html)
 * SQL parsers in various database management systems.
 
-## Consequences
+## Benefits and Trade-offs of Interpreter Pattern
 
 Benefits:
 
@@ -213,7 +213,7 @@ Trade-offs:
 * [Composite](https://java-design-patterns.com/patterns/composite/): Often used together, where the Interpreter pattern leverages the Composite pattern to represent the grammar as a tree structure.
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Useful for sharing state to reduce memory usage in the Interpreter pattern, particularly for interpreters that deal with repetitive elements in a language.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

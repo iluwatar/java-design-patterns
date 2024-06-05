@@ -14,11 +14,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Repository Design Pattern
 
 To provide a central location for data access logic, abstracting the details of data storage and retrieval from the rest of the application.
 
-## Explanation
+## Detailed Explanation of Repository Pattern with Real-World Examples
 
 Real-world example
 
@@ -178,13 +178,13 @@ INFO  [2024-05-27 07:00:32,881] com.iluwatar.repository.App: Person(id=3, name=J
 INFO  [2024-05-27 07:00:32,881] com.iluwatar.repository.App: Person(id=4, name=Terry, surname=Law, age=36)
 ```
 
-## Applicability
+## When to Use the Repository Pattern in Java
 
 * Use when you want to decouple the business logic and data access layers of your application.
 * Suitable for scenarios where multiple data sources might be used and the business logic should remain unaware of the data source specifics.
 * Ideal for testing purposes as it allows the use of mock repositories.
 
-## Tutorials
+## Repository Pattern Java Tutorials
 
 * [Don’t use DAO, use Repository (Thinking in Objects)](http://thinkinginobjects.com/2012/08/26/dont-use-dao-use-repository/)
 * [Advanced Spring Data JPA - Specifications and Querydsl (Spring)](https://spring.io/blog/2011/04/26/advanced-spring-data-jpa-specifications-and-querydsl/)
@@ -197,7 +197,7 @@ INFO  [2024-05-27 07:00:32,881] com.iluwatar.repository.App: Person(id=4, name=T
 * Hibernate: Often used with DAOs that act as repositories for accessing and managing data entities.
 * Java EE applications frequently utilize repository patterns to separate business logic from data access code.
 
-## Consequences
+## Benefits and Trade-offs of Repository Pattern
 
 Benefits:
 
@@ -215,7 +215,7 @@ Trade-offs:
 * [Data Mapper](https://java-design-patterns.com/patterns/data-mapper/): While Repository handles data access, Data Mapper is responsible for transferring data between objects and a database, maintaining the data integrity.
 * [Unit of Work](https://java-design-patterns.com/patterns/unit-of-work/): Often used alongside Repository to manage transactions and track changes to the data.
 
-## Credits
+## References and Credits
 
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

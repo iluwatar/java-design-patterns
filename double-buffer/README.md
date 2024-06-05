@@ -19,11 +19,11 @@ head:
 * Buffer Switching
 * Ping-Pong Buffer
 
-## Intent
+## Intent of Double Buffer Design Pattern
 
 The Double Buffer pattern aims to reduce the time necessary for rendering and displaying graphical or computational data by utilizing two buffers. One buffer is used for rendering the next frame or computing the next set of data, while the other is used to display the current frame or data set to the user.
 
-## Explanation
+## Detailed Explanation of Double Buffer Pattern with Real-World Examples
 
 Real-world example
 
@@ -215,7 +215,7 @@ The console output:
 12:33:02.530 [main] INFO com.iluwatar.doublebuffer.App -- Black Pixels:  (6, 1) (3, 7)
 ```
 
-## Applicability
+## When to Use the Double Buffer Pattern in Java
 
 * Real-time applications where the display needs to be updated frequently and smoothly, such as video games, simulations, and graphical user interfaces.
 * Applications requiring high computational resources to prepare data, where the preparation can be done in parallel with data consumption.
@@ -228,7 +228,7 @@ The console output:
 * Simulation and Modeling: Utilized in simulations to display real-time updates without interrupting the simulation process.
 * Video Playback Software: Applied in video players to provide seamless playback by preloading the next frame while the current one is displayed.
 
-## Consequences
+## Benefits and Trade-offs of Double Buffer Pattern
 
 Benefits:
 
@@ -248,7 +248,7 @@ Trade-offs:
 * [Producer-Consumer](https://java-design-patterns.com/patterns/producer-consumer/): The Double Buffer pattern can be seen as a variant of the Producer-Consumer pattern, with one buffer being "produced" while the other is "consumed".
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Often used in conjunction with the Strategy pattern to dynamically choose the buffering strategy based on runtime conditions.
 
-## Credits
+## References and Credits
 
 * [Game Programming Patterns](https://amzn.to/4ayDNkS)
 * [Real-Time Design Patterns: Robust Scalable Architecture for Real-Time Systems](https://amzn.to/3xFfNxA)

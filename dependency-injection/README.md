@@ -18,11 +18,11 @@ head:
 * Inversion of Control (IoC)
 * Dependency Inversion
 
-## Intent
+## Intent of Dependency Injection Design Pattern
 
 To decouple the creation of object dependencies from their usage, allowing for more flexible and testable code.
 
-## Explanation
+## Detailed Explanation of Dependency Injection Pattern with Real-World Examples
 
 Real-world example
 
@@ -117,11 +117,11 @@ The program output:
 11:54:05.308 [main] INFO com.iluwatar.dependency.injection.Tobacco -- GuiceWizard smoking RivendellTobacco
 ```
 
-## Class diagram
+## Detailed Explanation of Dependency Injection Pattern with Real-World Examples
 
 ![Dependency Injection](./etc/dependency-injection.png "Dependency Injection")
 
-## Applicability
+## When to Use the Dependency Injection Pattern in Java
 
 * When aiming to reduce the coupling between classes and increase the modularity of the application.
 * In scenarios where the object creation process is complex or should be separated from the class usage.
@@ -133,7 +133,7 @@ The program output:
 * Frameworks like Spring, Jakarta EE, and Google Guice use DI extensively to manage component lifecycles and dependencies.
 * Desktop and web applications that require flexible architecture with easily interchangeable components.
 
-## Consequences
+## Benefits and Trade-offs of Dependency Injection Pattern
 
 Benefits:
 
@@ -153,7 +153,7 @@ Trade-offs:
 * [Service Locator](https://java-design-patterns.com/patterns/service-locator/): An alternative to DI for locating services or components, though it does not decouple the lookup process as effectively as DI.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Often used in conjunction with DI to provide a single instance of a service across the application.
 
-## Credits
+## References and Credits
 
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/3wRnjp5)
 * [Dependency Injection: Design patterns using Spring and Guice](https://amzn.to/4aMyHkI)

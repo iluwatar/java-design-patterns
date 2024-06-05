@@ -19,11 +19,11 @@ head:
 * Serialized BLOB
 * Serialized CLOB
 
-## Intent
+## Intent of Serialized LOB Design Pattern
 
 To manage and store large objects (LOBs) like files, images, or large strings in a database efficiently using serialization.
 
-## Explanation
+## Detailed Explanation of Serialized LOB Pattern with Real-World Examples
 
 Real-world example
 
@@ -190,7 +190,7 @@ Name = Grass,Type = Herb
 --------------------------
 ```
 
-## Applicability
+## When to Use the Serialized LOB Pattern in Java
 
 * Use when you need to store large objects in a database and want to optimize data access and storage.
 * Ideal for applications that deal with large binary or character data such as multimedia files, logs, or documents.
@@ -201,7 +201,7 @@ Name = Grass,Type = Herb
 * Managing large text documents or logs in enterprise applications.
 * Handling binary data in applications that require efficient data retrieval and storage.
 
-## Consequences
+## Benefits and Trade-offs of Serialized LOB Pattern
 
 Benefits:
 
@@ -221,7 +221,7 @@ Trade-offs:
 * Active Record: Can use Serialized LOB for managing large data within the same record.
 * [Repository](https://java-design-patterns.com/patterns/repository/): Uses Serialized LOB to handle complex queries and data manipulation involving large objects.
 
-## Credits
+## References and Credits
 
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)

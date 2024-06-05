@@ -19,11 +19,11 @@ head:
 * Change Tracking
 * Is-Modified Flag
 
-## Intent
+## Intent of Dirty Flag Design Pattern
 
 The Dirty Flag design pattern is employed to avoid unnecessary computations or resource-heavy operations by maintaining a boolean flag that tracks whether the state of an object has changed ('dirty') or remains unchanged ('clean'). This flag, when set, indicates that a particular operation, such as recalculating or refreshing data, needs to be performed again to reflect the updated state.
 
-## Explanation
+## Detailed Explanation of Dirty Flag Pattern with Real-World Examples
 
 Real-world example
 
@@ -111,13 +111,13 @@ The program output is as follows:
 12:06:02.616 [pool-1-thread-1] INFO com.iluwatar.dirtyflag.App -- 	UNITED_STATES
 ```
 
-## Applicability
+## When to Use the Dirty Flag Pattern in Java
 
 * When an operation is resource-intensive and only necessary after certain changes have occurred.
 * In scenarios where checking for changes is significantly cheaper than performing the operation itself.
 * Within systems where objects maintain state that is expensive to update and the updates are infrequent.
 
-## Tutorials
+## Dirty Flag Pattern Java Tutorials
 
 * [89: Design Patterns: Dirty Flag (TakeUpCode)](https://www.takeupcode.com/podcast/89-design-patterns-dirty-flag/)
 
@@ -127,7 +127,7 @@ The program output is as follows:
 * Web applications for partial page rendering or caching strategies.
 * Database applications for tracking changes in datasets to minimize write operations.
 
-## Consequences
+## Benefits and Trade-offs of Dirty Flag Pattern
 
 Benefits:
 
@@ -147,7 +147,7 @@ Trade-offs:
 * [Memento](https://java-design-patterns.com/patterns/memento/): Useful for storing the previous state of an object, which can work hand in hand with dirty flag logic to revert to clean states.
 * [Command](https://java-design-patterns.com/patterns/command/): Commands can set the dirty flag when executed, indicating a change in state that requires attention.
 
-## Credits
+## References and Credits
 
 * [Game Programming Patterns](https://amzn.to/3PUzbgu)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)

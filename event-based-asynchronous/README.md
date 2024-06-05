@@ -21,11 +21,11 @@ head:
 
 * Asynchronous Event Handling
 
-## Intent
+## Intent of Event-Based Asynchronous Design Pattern
 
 The Event-Based Asynchronous pattern allows a system to handle tasks that might take some time to complete without blocking the execution of the program. It enables better resource utilization by freeing up a thread that would otherwise be blocked waiting for the task to complete.
 
-## Explanation
+## Detailed Explanation of Event-Based Asynchronous Pattern with Real-World Examples
 
 Real-world example
 
@@ -146,7 +146,7 @@ In this snippet, when a `SyncEvent` is started, it runs on the main thread, bloc
 
 These are the key parts of the Event-Based Asynchronous design pattern as implemented in this code. The pattern allows tasks to be executed in the background, notifying the main program via events when completed, thereby enhancing system efficiency and responsiveness without blocking ongoing operations.
 
-## Applicability
+## When to Use the Event-Based Asynchronous Pattern in Java
 
 * When multiple tasks can be processed in parallel and independently.
 * Systems that require responsiveness and cannot afford to have threads blocked waiting for an operation to complete.
@@ -159,7 +159,7 @@ These are the key parts of the Event-Based Asynchronous design pattern as implem
 * Java Message Service (JMS) for handling asynchronous messaging.
 * Java’s CompletableFuture and various Event-Driven Frameworks.
 
-## Consequences
+## Benefits and Trade-offs of Event-Based Asynchronous Pattern
 
 Benefits:
 
@@ -178,7 +178,7 @@ Related Patterns
 * Publish/Subscribe: Related in terms of event handling mechanisms, particularly for messaging and event distribution across components.
 * [Command](https://java-design-patterns.com/patterns/command/): Useful for encapsulating all information needed to perform an action or trigger an event.
 
-## Credits
+## References and Credits
 
 * [Java Concurrency in Practice](https://amzn.to/4cYY4kU)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3Uh7rW1)

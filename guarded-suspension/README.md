@@ -20,11 +20,11 @@ head:
 * Conditional Block
 * Suspended Execution
 
-## Intent
+## Intent of Guarded Suspension Design Pattern
 
 The Guarded Suspension pattern manages operations that require both a lock and a condition to proceed, allowing a thread to wait for an appropriate condition while being efficient with resource use.
 
-## Explanation
+## Detailed Explanation of Guarded Suspension Pattern with Real-World Examples
 
 Real-world example
 
@@ -124,7 +124,7 @@ Execution yields:
 
 * The log output shows the sequence of events: the first thread waits, the second thread puts an item, and the first thread then retrieves the item. This demonstrates the Guarded Suspension pattern in action.
 
-## Applicability
+## When to Use the Guarded Suspension Pattern in Java
 
 This pattern is used in scenarios where a thread needs to wait for certain conditions to be met before it can proceed, ensuring that resources are utilized only when necessary and reducing the overhead of busy waiting.
 
@@ -134,7 +134,7 @@ This pattern is used in scenarios where a thread needs to wait for certain condi
 * Producer-consumer scenarios where the consumer must wait for the producer to provide data.
 * Event-driven applications where actions are triggered only after specific events have occurred.
 
-## Consequences
+## Benefits and Trade-offs of Guarded Suspension Pattern
 
 Benefits:
 
@@ -152,7 +152,7 @@ Trade-offs:
 * [Producer-Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Often implemented using Guarded Suspension to handle waiting consumers and producers efficiently.
 * [Balking](https://java-design-patterns.com/patterns/balking/): Similar to Guarded Suspension, Balking is used when a thread checks a condition and only proceeds if the condition is favorable; if not, it immediately returns or bails out. This pattern complements Guarded Suspension by managing actions based on immediate condition checks without waiting.
 
-## Credits
+## References and Credits
 
 * [Concurrent Programming in Java : Design Principles and Patterns](https://amzn.to/4dIBqxL)
 * [Java Concurrency in Practice](https://amzn.to/3JxnXek)

@@ -20,11 +20,11 @@ head:
 
 * Cursor
 
-## Intent
+## Intent of Iterator Design Pattern
 
 The Iterator pattern provides a way to access elements of an aggregate object sequentially without exposing its underlying representation.
 
-## Explanation
+## Detailed Explanation of Iterator Pattern with Real-World Examples
 
 Real-world example
 
@@ -212,7 +212,7 @@ Program output:
 13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 14
 ```
 
-## Applicability
+## When to Use the Iterator Pattern in Java
 
 Use the Iterator pattern
 
@@ -220,18 +220,18 @@ Use the Iterator pattern
 * To support multiple traversals of aggregate objects.
 * To provide a uniform interface for traversing different aggregate structures.
 
-## Tutorials
+## Iterator Pattern Java Tutorials
 
 * [Java - How to Use Iterator? (TutorialsPoint)](http://www.tutorialspoint.com/java/java_using_iterator.htm)
 
-## Known uses
+## Real-World Applications of Iterator Pattern in Java
 
 * Java Collections Framework utilizes iterators extensively to allow different ways to traverse through collections.
 * Databases often use iterators to navigate through data records fetched through SQL queries.
 * [java.util.Iterator](http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)
 * [java.util.Enumeration](http://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html)
 
-## Consequences
+## Benefits and Trade-offs of Iterator Pattern
 
 Benefits:
 
@@ -249,7 +249,7 @@ Trade-offs:
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Used to create appropriate iterators for different data structures.
 * [Visitor](https://java-design-patterns.com/patterns/visitor/): Can be used with Iterator to apply operations over elements of an object structure.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

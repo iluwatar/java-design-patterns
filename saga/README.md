@@ -16,11 +16,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Saga Design Pattern
 
 To manage and coordinate distributed transactions across multiple services in a fault-tolerant and reliable manner.
 
-## Explanation
+## Detailed Explanation of Saga Pattern with Real-World Examples
 
 Real-world example
 
@@ -163,7 +163,7 @@ Running the example produces the following console output:
 
 This is a basic example of how to use the Saga design pattern. In a real-world application, the `Saga` class would manage the sequence of local transactions, ensuring that each transaction is performed in the correct order and that the Saga is rolled back if a transaction fails.
 
-## Applicability
+## When to Use the Saga Pattern in Java
 
 * When you have a complex transaction that spans multiple microservices.
 * When you need to ensure data consistency across services without using a traditional two-phase commit.
@@ -175,7 +175,7 @@ This is a basic example of how to use the Saga design pattern. In a real-world a
 * Banking systems coordinating between account debits and credits across multiple services.
 * Travel booking systems coordinating flights, hotels, and car rentals.
 
-## Consequences
+## Benefits and Trade-offs of Saga Pattern
 
 Benefits:
 
@@ -194,7 +194,7 @@ Trade-offs:
 * [Event Sourcing](https://java-design-patterns.com/patterns/event-sourcing/): Used to capture state changes as a sequence of events, which can complement the Saga pattern by providing a history of state changes.
 * [Command Query Responsibility Segregation (CQRS)](https://java-design-patterns.com/patterns/cqrs/): Can be used in conjunction with the Saga pattern to separate command and query responsibilities, improving scalability and fault tolerance.
 
-## Credits
+## References and Credits
 
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3WcFVui)

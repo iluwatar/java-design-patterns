@@ -16,11 +16,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Intercepting Filter Design Pattern
 
 The Intercepting Filter pattern is intended to provide a pluggable framework for preprocessing and postprocessing web requests and responses. It allows different filters to process client requests and server responses in a configurable, decoupled manner.
 
-## Explanation
+## Detailed Explanation of Intercepting Filter Pattern with Real-World Examples
 
 Real-world example
 
@@ -119,14 +119,14 @@ public class NameFilter extends AbstractFilter {
 
 In this example, the `App` class sets up a `FilterManager` with various filters and assigns it to a `Client`. When the `Client` sends a request, the `FilterManager` applies all the filters to the request. This is a basic example of the Intercepting Filter pattern, where common processing tasks are encapsulated in filters and applied to requests in a standard manner.
 
-## Applicability
+## When to Use the Intercepting Filter Pattern in Java
 
 Use the Intercepting Filter pattern when
 
 * Use the Intercepting Filter pattern when you need to apply pre-processing and post-processing steps to requests and responses, typically in web applications.
 * Suitable for handling cross-cutting concerns such as logging, authentication, data compression, and encryption transparently.
 
-## Tutorials
+## Intercepting Filter Pattern Java Tutorials
 
 * [Introduction to Intercepting Filter Pattern in Java (Baeldung)](https://www.baeldung.com/intercepting-filter-pattern-in-java)
 * [Design Pattern - Intercepting Filter Pattern (TutorialsPoint)](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
@@ -138,7 +138,7 @@ Use the Intercepting Filter pattern when
 * [javax.servlet.FilterChain](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/FilterChain.html) and [javax.servlet.Filter](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/Filter.html)
 * [Struts 2 - Interceptors](https://struts.apache.org/core-developers/interceptors.html)
 
-## Consequences
+## Benefits and Trade-offs of Intercepting Filter Pattern
 
 Benefits:
 
@@ -156,7 +156,7 @@ Trade-offs:
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Filters in the Intercepting Filter pattern can be considered as decorators that add additional responsibilities to request handling. They modify the request/response without altering their fundamental behavior.
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Filters are linked in a chain, where each filter processes the request or response and optionally passes it to the next filter in the chain, similar to how responsibilities are passed along in the Chain of Responsibility pattern.
 
-## Credits
+## References and Credits
 
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)

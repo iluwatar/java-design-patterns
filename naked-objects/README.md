@@ -22,11 +22,11 @@ head:
 
 * Transparent Objects
 
-## Intent
+## Intent of Naked Objects Design Pattern
 
 To enable the rapid development of maintainable systems by representing all business objects directly and automatically creating the user interface from these definitions.
 
-## Explanation
+## Detailed Explanation of Naked Objects Pattern with Real-World Examples
 
 Real-world example
 
@@ -102,17 +102,17 @@ var booksByAuthor = author.getBooks();
 
 This example demonstrates how the Naked Objects pattern can be implemented in a Java-based application with domain objects for books and authors. Users can directly manipulate these domain objects through the generated user interface.
 
-## Applicability
+## When to Use the Naked Objects Pattern in Java
 
 * When aiming to create a system where the domain objects can be easily understood and manipulated without an explicit user interface design.
 * For applications requiring a dynamic, adaptable UI that reflects the underlying domain model with minimal developer intervention.
 
-## Known uses
+## Real-World Applications of Naked Objects Pattern in Java
 
 * Enterprise applications where business rules and domain logic are primary.
 * Systems that benefit from a dynamic and adaptive user interface.
 
-## Consequences
+## Benefits and Trade-offs of Naked Objects Pattern
 
 Benefits: 
 
@@ -132,7 +132,7 @@ Trade-offs:
 Active Record: Similar in exposing domain models directly, but Active Record typically involves persistence aspects as well.
 Domain-Driven Design: Shares the focus on domain modeling but without the automatic UI generation of Naked Objects.
 
-## Credits
+## References and Credits
 
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
 * [Naked Objects](https://amzn.to/3yhrfQr)

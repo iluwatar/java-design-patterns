@@ -22,11 +22,11 @@ head:
 * Event Logging
 * Event Streaming
 
-## Intent
+## Intent of Event Sourcing Design Pattern
 
 Event Sourcing is a design pattern that advocates for the storage of state changes as a sequence of events. Instead of updating a record in a database, all changes are stored as individual events which, when replayed, can recreate the state of an application at any point in time.
 
-## Explanation
+## Detailed Explanation of Event Sourcing Pattern with Real-World Examples
 
 Real-world example
 
@@ -199,7 +199,7 @@ Running the example produces the following console output.
 
 In this example, the state of the system can be recreated at any point by replaying the events in the queue. This is a key feature of the Event Sourcing pattern.
 
-## Applicability
+## When to Use the Event Sourcing Pattern in Java
 
 * In systems where complete audit trails and historical changes are crucial.
 * In complex domains where the state of an application is derived from a series of changes.
@@ -212,7 +212,7 @@ In this example, the state of the system can be recreated at any point by replay
 * Real-time data processing systems where event consistency and replayability are critical.
 * [The LMAX Architecture](https://martinfowler.com/articles/lmax.html)
 
-## Consequences
+## Benefits and Trade-offs of Event Sourcing Pattern
 
 Benefits:
 
@@ -231,7 +231,7 @@ Benefits:
 * [Command Query Responsibility Segregation (CQRS)](https://java-design-patterns.com/patterns/cqrs/): Often used together with Event Sourcing to separate read and write responsibilities, enhancing performance and scalability.
 * Snapshot: Used to optimize Event Sourcing systems by periodically saving the current state to avoid replaying a long sequence of events.
 
-## Credits
+## References and Credits
 
 * [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/443WfiS)
 * [Implementing Domain-Driven Design](https://amzn.to/3JgvA8V)

@@ -19,11 +19,11 @@ head:
 
 * Helper
 
-## Intent
+## Intent of Servant Design Pattern
 
 The Servant pattern is used to perform specific operations for a group of objects without changing the classes of the elements on which it operates.
 
-## Explanation
+## Detailed Explanation of Servant Pattern with Real-World Examples
 
 Real-world example
 
@@ -133,7 +133,7 @@ Running the application produces:
 
 In this example, the `Servant` class provides services to the `Royalty` objects. The `Servant` class doesn't know about the specific implementation of the `Royalty` objects, it only knows that it can provide certain services to them. This is a good example of the Servant design pattern.
 
-## Applicability
+## When to Use the Servant Pattern in Java
 
 * Use the Servant pattern when you need to provide a common functionality to a group of classes without polluting their class definitions.
 * Suitable when the operations performed on the objects are not the primary responsibility of the objects themselves.
@@ -144,7 +144,7 @@ In this example, the `Servant` class provides services to the `Royalty` objects.
 * In games where various entities (like players, enemies, or items) need common behavior such as movement or collision detection.
 * Logging or auditing functionalities that are required across multiple business objects.
 
-## Consequences
+## Benefits and Trade-offs of Servant Pattern
 
 Benefits:
 
@@ -163,7 +163,7 @@ Trade-offs:
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): The Strategy pattern defines a family of algorithms, encapsulates each one, and makes them interchangeable. The Servant pattern can be used in conjunction with the Strategy pattern to define operations that apply to multiple classes.
 * View Helper: The View Helper pattern is related as it also centralizes common functionality, but it focuses on separating presentation logic from business logic in web applications.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)

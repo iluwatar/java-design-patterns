@@ -18,11 +18,11 @@ head:
 
 * Controller
 
-## Intent
+## Intent of Mediator Design Pattern
 
 The Mediator design pattern is intended to reduce the complexity of communication between multiple objects or classes in a system. It achieves this by providing a centralized mediator class that handles the interactions between different classes, thus reducing their direct dependencies on each other.
 
-## Explanation
+## Detailed Explanation of Mediator Pattern with Real-World Examples
 
 Real-world example
 
@@ -178,11 +178,11 @@ Here's the console output from running the example.
 14:05:15.083 [main] INFO com.iluwatar.mediator.PartyMemberBase -- Rogue arrives for dinner
 ```
 
-## Class diagram
+## Detailed Explanation of Mediator Pattern with Real-World Examples
 
 ![Mediator](./etc/mediator_1.png "Mediator")
 
-## Applicability
+## When to Use the Mediator Pattern in Java
 
 Use the Mediator pattern when
 
@@ -190,7 +190,7 @@ Use the Mediator pattern when
 * Reusing an object is difficult because it refers to and communicates with many other objects
 * A behavior that's distributed between several classes should be customizable without a lot of subclassing
 
-## Known uses
+## Real-World Applications of Mediator Pattern in Java
 
 * All scheduleXXX() methods of [java.util.Timer](http://docs.oracle.com/javase/8/docs/api/java/util/Timer.html)
 * [java.util.concurrent.Executor#execute()](http://docs.oracle.com/javase/8/docs/api/java/util/concurrent/Executor.html#execute-java.lang.Runnable-)
@@ -200,7 +200,7 @@ Use the Mediator pattern when
 * Java Message Service (JMS) uses mediators to handle message exchanges between clients and servers.
 * JavaBeans property change support class (java.beans.PropertyChangeSupport) acts as a mediator by handling communication between beans regarding property changes.
 
-## Consequences
+## Benefits and Trade-offs of Mediator Pattern
 
 Benefits:
 
@@ -217,7 +217,7 @@ Trade-offs:
 * [Facade](https://java-design-patterns.com/patterns/facade/): Mediator simplifies communication between components, similar to how a facade simplifies a subsystem interface, but a mediator’s colleagues can communicate back to the mediator.
 * [Command](https://java-design-patterns.com/patterns/command/): Commands can be mediated as they are dispatched to their receivers, encapsulating a request as an object.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

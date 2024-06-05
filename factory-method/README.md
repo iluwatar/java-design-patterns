@@ -19,11 +19,11 @@ head:
 
 * Virtual Constructor
 
-## Intent
+## Intent of Factory Method Design Pattern
 
 Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
 
-## Explanation
+## Detailed Explanation of Factory Method Pattern with Real-World Examples
 
 Real-world example
 
@@ -90,7 +90,7 @@ Program output:
 06:40:07.272 [main] INFO com.iluwatar.factory.method.App -- The elf blacksmith manufactured an elven axe
 ```
 
-## Applicability
+## When to Use the Factory Method Pattern in Java
 
 Use the Factory Method pattern when:
 
@@ -98,7 +98,7 @@ Use the Factory Method pattern when:
 * Class wants its subclasses to specify the objects it creates.
 * Classes delegate responsibility to one of several helper subclasses, and you want to localize the knowledge of which helper subclass is the delegate.
 
-## Known uses
+## Real-World Applications of Factory Method Pattern in Java
 
 * [java.util.Calendar](http://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
 * [java.util.ResourceBundle](http://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
@@ -109,7 +109,7 @@ Use the Factory Method pattern when:
 * [javax.xml.bind.JAXBContext](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/JAXBContext.html#createMarshaller--)
 * Frameworks that run application components, configured dynamically at runtime.
 
-## Consequences
+## Benefits and Trade-offs of Factory Method Pattern
 
 Benefits:
 
@@ -126,7 +126,7 @@ Trade-offs:
 * [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Factory methods are often called within Abstract Factory patterns.
 * [Prototype](https://java-design-patterns.com/patterns/prototype/): A factory method that returns a new instance of a class that is a clone of a prototype class.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0Rk5y)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/3UpTLrG)

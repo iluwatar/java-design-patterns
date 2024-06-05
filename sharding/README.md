@@ -18,11 +18,11 @@ head:
 * Data Partitioning
 * Horizontal Partitioning
 
-## Intent
+## Intent of Sharding Design Pattern
 
 Sharding is used to distribute data across multiple databases or servers to improve performance and scalability.
 
-## Explanation
+## Detailed Explanation of Sharding Pattern with Real-World Examples
 
 Real-world example
 
@@ -209,7 +209,7 @@ Finally, here is the program output:
 18:32:26.506 [main] INFO com.iluwatar.sharding.HashShardManager -- Data {key=4, value='data4', type=TYPE_1} is stored in Shard 1
 ```
 
-## Applicability
+## When to Use the Sharding Pattern in Java
 
 * Use when dealing with large datasets that exceed the capacity of a single database.
 * Useful for applications requiring high availability and fault tolerance.
@@ -220,7 +220,7 @@ Finally, here is the program output:
 * Distributed databases such as Apache Cassandra, MongoDB, and Amazon DynamoDB.
 * Large-scale web applications like social networks, e-commerce platforms, and SaaS products.
 
-## Consequences
+## Benefits and Trade-offs of Sharding Pattern
 
 Benefits:
 
@@ -241,7 +241,7 @@ Trade-offs:
 * [Repository](https://java-design-patterns.com/patterns/repository/): Provides a way to manage data access logic centrally, which is useful when dealing with multiple shards.
 * [Service Locator](https://java-design-patterns.com/patterns/service-locator/): Can be used to find and interact with different shards in a distributed system.
 
-## Credits
+## References and Credits
 
 * [Building Scalable Web Sites: Building, Scaling, and Optimizing the Next Generation of Web Applications](https://amzn.to/4bqpejJ)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)

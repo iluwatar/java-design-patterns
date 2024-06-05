@@ -19,11 +19,11 @@ head:
 
 * Centralized Request Handling
 
-## Intent
+## Intent of Front Controller Design Pattern
 
 The Front Controller design pattern aims to provide a centralized entry point for handling all incoming web requests, ensuring that request handling is managed consistently and efficiently across an application.
 
-## Explanation
+## Detailed Explanation of Front Controller Pattern with Real-World Examples
 
 Real-world example
 
@@ -85,21 +85,21 @@ In this example, when a request is received, the `FrontController` creates a com
 
 This is a basic example of the Front Controller pattern, where all requests are handled by a single controller, ensuring consistent and efficient request handling.
 
-## Class diagram
+## Detailed Explanation of Front Controller Pattern with Real-World Examples
 
 ![Front Controller](./etc/front-controller.png "Front Controller")
 
-## Applicability
+## When to Use the Front Controller Pattern in Java
 
 * Web applications requiring a centralized mechanism for request handling.
 * Systems that need a common processing point for all requests to perform tasks such as authentication, logging, and routing.
 
-## Known uses
+## Real-World Applications of Front Controller Pattern in Java
 
 * [Apache Struts](https://struts.apache.org/)
 * Java web frameworks like Spring MVC and JavaServer Faces (JSF) implement the Front Controller pattern through their central dispatcher servlet, which manages web requests and delegates responsibilities.
 
-## Consequences
+## Benefits and Trade-offs of Front Controller Pattern
 
 Benefits:
 
@@ -118,7 +118,7 @@ Trade-offs:
 * [Model-View-Controller (MVC)](https://java-design-patterns.com/patterns/model-view-controller/): Front Controller acts as the controller, managing the flow between model and view.
 * [Command](https://java-design-patterns.com/patterns/command/): Can be used to encapsulate a request as an object, which the Front Controller can manipulate and delegate.
 
-## Credits
+## References and Credits
 
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

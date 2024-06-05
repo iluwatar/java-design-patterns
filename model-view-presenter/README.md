@@ -20,11 +20,11 @@ head:
 
 * MVP
 
-## Intent
+## Intent of Model-View-Presenter Design Pattern
 
 MVP aims to separate the user interface (UI) logic from the business logic and model in a software application, enabling easier testing and maintenance.
 
-## Explanation
+## Detailed Explanation of Model-View-Presenter Pattern with Real-World Examples
 
 Real-world example
 
@@ -138,7 +138,7 @@ public class App {
 
 In this setup, the `App` class creates instances of the Model, View, and Presenter. It then connects these instances, forming the MVP triad. The Presenter is given a reference to the View, and the Model is set on the Presenter. Finally, the Presenter is started, which in turn opens the View.
 
-## Applicability
+## When to Use the Model-View-Presenter Pattern in Java
 
 Use MVP in applications where a clear [separation of concerns](https://java-design-patterns.com/principles/#separation-of-concerns) is needed between the presentation layer and the underlying business logic. It's particularly useful in client-server applications and enterprise-level applications.
 
@@ -147,7 +147,7 @@ Use MVP in applications where a clear [separation of concerns](https://java-desi
 * Desktop applications like those built using Java Swing or JavaFX.
 * Web applications with complex user interfaces and business logic.
 
-## Consequences
+## Benefits and Trade-offs of Model-View-Presenter Pattern
 
 Benefits:
 
@@ -165,7 +165,7 @@ Trade-offs:
 * [Model-View-Controller (MVC)](https://java-design-patterns.com/patterns/model-view-controller/): MVP is often considered a variant of MVC where the presenter takes over the controller's role in managing user input and updating the model.
 * [Model-View-ViewModel (MVVM)](https://java-design-patterns.com/patterns/model-view-viewmodel/): Similar to MVP but adapted for frameworks like WPF or frameworks that support data binding, making the view update automatically when the model changes.
 
-## Credits
+## References and Credits
 
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Pro JavaFX 8: A Definitive Guide to Building Desktop, Mobile, and Embedded Java Clients](https://amzn.to/4a8qcQ1)

@@ -20,11 +20,11 @@ head:
 
 * Update Mechanism
 
-## Intent
+## Intent of Update Method Design Pattern
 
 Update method pattern simulates a collection of independent objects by telling each to process one frame of behavior at a time.
 
-## Explanation
+## Detailed Explanation of Update Method Pattern with Real-World Examples
 
 Real-world example
 
@@ -188,7 +188,7 @@ Console output:
 
 This is a basic implementation of the Update Method pattern. In a real-world application, the `Entity` class would likely have additional methods and properties, and the `update` method would contain more complex logic to simulate the entity's behavior.
 
-## Applicability
+## When to Use the Update Method Pattern in Java
 
 Update Method works well when:
 
@@ -200,7 +200,7 @@ Update Method works well when:
 
 * Real-time games and data processing applications where world objects need to be updated once per frame.
 
-## Consequences
+## Benefits and Trade-offs of Update Method Pattern
 
 Benefits:
 
@@ -219,7 +219,7 @@ Trade-offs:
 * [Component](https://java-design-patterns.com/patterns/component/): Often used in game development to allow entities to be composed of various components, each potentially having its own update method.
 * [Game Loop](https://java-design-patterns.com/patterns/game-loop/): Continuously updates game state and renders the game, which may include the Update Method for various game objects.
 
-## Credits
+## References and Credits
 
 * [Game Programming Patterns](https://amzn.to/3wLTbvr)
 * [Game Programming Patterns - Update Method](http://gameprogrammingpatterns.com/update-method.html)

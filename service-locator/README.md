@@ -18,11 +18,11 @@ head:
 
 * Service Registry
 
-## Intent
+## Intent of Service Locator Design Pattern
 
 The Service Locator design pattern provides a way to decouple the creation of clients and services by using a central registry to locate service instances.
 
-## Explanation
+## Detailed Explanation of Service Locator Pattern with Real-World Examples
 
 Real-world example
 
@@ -96,7 +96,7 @@ Here is the output from running the example:
 15:39:51.420 [main] INFO com.iluwatar.servicelocator.ServiceImpl -- Service jndi/serviceA is now executing with id 56
 ```
 
-## Applicability
+## When to Use the Service Locator Pattern in Java
 
 * Use when you want to decouple service creation from client classes to reduce dependencies and improve code maintainability.
 * Applicable in large-scale enterprise applications where multiple services are used and dependencies need to be managed centrally.
@@ -108,7 +108,7 @@ Here is the output from running the example:
 * Spring Framework uses a similar concept with its BeanFactory and ApplicationContext for dependency injection.
 * EJB (Enterprise JavaBeans) uses the Service Locator pattern to find and access EJB components.
 
-## Consequences
+## Benefits and Trade-offs of Service Locator Pattern
 
 Benefits:
 
@@ -128,7 +128,7 @@ Trade-offs:
 * [Dependency Injection](https://java-design-patterns.com/patterns/dependency-injection/): An alternative to Service Locator that injects dependencies directly into clients rather than having clients request them from a locator.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Service Locator often uses Singleton pattern to ensure a single instance of the locator.
 
-## Credits
+## References and Credits
 
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)

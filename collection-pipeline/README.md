@@ -14,11 +14,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Collection Pipeline Design Pattern
 
 The Collection Pipeline design pattern is intended to process collections of data by chaining together operations in a sequence where the output of one operation is the input for the next. It promotes a declarative approach to handling collections, focusing on what should be done rather than how.
 
-## Explanation
+## Detailed Explanation of Collection Pipeline Pattern with Real-World Examples
 
 Real-world example
 
@@ -79,7 +79,7 @@ public static List<Car> getSedanCarsOwnedSortedByDate(List<Person> persons){
 
 In each of these methods, the Collection Pipeline pattern is used to perform a series of operations on the collection of cars in a declarative manner, which improves readability and maintainability.
 
-## Applicability
+## When to Use the Collection Pipeline Pattern in Java
 
 * When you need to perform a series of transformations on a collection of data.
 * When you want to improve readability and maintainability of complex data processing code.
@@ -92,7 +92,7 @@ In each of these methods, the Collection Pipeline pattern is used to perform a s
 * Collections in modern functional languages (e.g., Haskell, Scala)
 * Database query builders and ORM frameworks
 
-## Consequences
+## Benefits and Trade-offs of Collection Pipeline Pattern
 
 Benefits:
 
@@ -113,7 +113,7 @@ Trade-offs:
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Conceptually similar in chaining handlers, but applied to object requests rather than data collection processing.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Can be used within a pipeline stage to encapsulate different algorithms that can be selected at runtime.
 
-## Credits
+## References and Credits
 
 * [Functional Programming in Scala](https://amzn.to/4cEo6K2)
 * [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://amzn.to/3THp4wy)

@@ -17,11 +17,11 @@ head:
 
 * Strangler Fig
 
-## Intent
+## Intent of Strangler Design Pattern
 
 Incrementally replace the legacy system by building a new system alongside the old one, eventually strangling the old system.
 
-## Explanation
+## Detailed Explanation of Strangler Pattern with Real-World Examples
 
 Real-world example
 
@@ -163,13 +163,13 @@ Console output:
 
 This is a typical example of the Strangler pattern. The legacy system (`OldArithmetic`) is gradually replaced by the new system (`HalfArithmetic` and `NewArithmetic`). The new system is developed incrementally, and at each stage, it strangles a part of the legacy system until the legacy system is completely replaced.
 
-## Applicability
+## When to Use the Strangler Pattern in Java
 
 * Use when you need to replace a monolithic or legacy system incrementally.
 * Ideal for scenarios where the system cannot be replaced in one go due to risk or complexity.
 * Suitable when you need to modernize parts of an application while ensuring continuous operation.
 
-## Tutorials
+## Strangler Pattern Java Tutorials
 
 * [Legacy Application Strangulation: Case Studies (Paul Hammant)](https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/)
 
@@ -179,7 +179,7 @@ This is a typical example of the Strangler pattern. The legacy system (`OldArith
 * Transitioning from an on-premise system to a cloud-based system.
 * Incrementally migrating from an old database schema to a new one without downtime.
 
-## Consequences
+## Benefits and Trade-offs of Strangler Pattern
 
 Benefits:
 
@@ -199,7 +199,7 @@ Trade-offs:
 * [Facade](https://java-design-patterns.com/patterns/facade/): Can provide a unified interface to the old and new systems, simplifying client interactions.
 * Microservices: The target architecture in many cases where the Strangler Pattern is applied.
 
-## Credits
+## References and Credits
 
 * [Building Microservices](https://amzn.to/3UACtrU)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

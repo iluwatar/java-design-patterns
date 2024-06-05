@@ -19,11 +19,11 @@ head:
 
 * MVC
 
-## Intent
+## Intent of Model-View-Controller Design Pattern
 
 To separate an application into three interconnected components (Model, View, Controller), enabling modular development of each part independently, which enhances maintainability and scalability.
 
-## Explanation
+## Detailed Explanation of Model-View-Controller Pattern with Real-World Examples
 
 Real-world example
 
@@ -117,12 +117,12 @@ public class GiantController {
 }
 ```
 
-## Applicability
+## When to Use the Model-View-Controller Pattern in Java
 
 * Used in web applications to separate data model, user interface, and user input processing.
 * Suitable for applications where a clear separation of concerns is required, ensuring that the business logic, user interface, and user input are loosely coupled and independently managed.
 
-## Tutorials
+## Model-View-Controller Pattern Java Tutorials
 
 * [Spring Boot Model (ZetCode)](https://zetcode.com/springboot/model/)
 * [Spring MVC Tutorial (Baeldung)](https://www.baeldung.com/spring-mvc-tutorial)
@@ -132,7 +132,7 @@ public class GiantController {
 * Frameworks like Spring MVC in Java for web applications.
 * Desktop applications in Java, such as those using Swing or JavaFX.
 
-## Consequences
+## Benefits and Trade-offs of Model-View-Controller Pattern
 
 Benefits:
 
@@ -152,7 +152,7 @@ Trade-offs:
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Controllers may use different strategies for handling user input, related through the ability to switch strategies for user input processing.
 * [Composite](https://java-design-patterns.com/patterns/composite/): Views can be structured using the Composite Pattern to manage hierarchies of user interface components.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

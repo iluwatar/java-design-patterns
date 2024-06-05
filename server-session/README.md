@@ -19,11 +19,11 @@ head:
 
 * Server-Side Session Management
 
-## Intent
+## Intent of Server Session Design Pattern
 
 Manage user session data on the server-side to maintain state across multiple client requests.
 
-## Explanation
+## Detailed Explanation of Server Session Pattern with Real-World Examples
 
 Real-world example
 
@@ -140,7 +140,7 @@ Console output for starting the `App` class's `main` method:
 
 This is a basic example of the Server Session design pattern. The actual implementation of the `handle` methods in the `LoginHandler` and `LogoutHandler` classes would depend on the specific requirements of your application.
 
-## Applicability
+## When to Use the Server Session Pattern in Java
 
 * Use when building web applications that require maintaining user state information across multiple requests.
 * Suitable for applications needing to track user interactions, preferences, or authentication state.
@@ -152,7 +152,7 @@ This is a basic example of the Server Session design pattern. The actual impleme
 * Spring Framework's `@SessionAttributes` for handling user session data.
 * Apache Tomcat's session management mechanism.
 
-## Consequences
+## Benefits and Trade-offs of Server Session Pattern
 
 Benefits:
 
@@ -172,7 +172,7 @@ Trade-offs:
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): Can be used to add a layer of control over session data access.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Often used to create a single instance of a session manager.
 
-## Credits
+## References and Credits
 
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)

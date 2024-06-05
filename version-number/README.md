@@ -20,11 +20,11 @@ head:
 * Entity Versioning
 * Versioning
 
-## Intent
+## Intent of Version Number Design Pattern
 
 Ensure data consistency and integrity by tracking changes to data with version numbers.
 
-## Explanation
+## Detailed Explanation of Version Number Pattern with Real-World Examples
 
 Real-world example
 
@@ -152,13 +152,13 @@ Program output:
 14:51:04.123 [main] INFO com.iluwatar.versionnumber.App -- Exception: Tried to update stale version 0 while actual version is 1
 ```
 
-## Applicability
+## When to Use the Version Number Pattern in Java
 
 * Use when you need to handle concurrent data modifications in a distributed system.
 * Suitable for systems where data consistency and integrity are crucial.
 * Ideal for applications using databases that support versioning or row versioning features.
 
-## Tutorials
+## Version Number Pattern Java Tutorials
 
 * [JPA entity versioning (byteslounge.com)](https://www.byteslounge.com/tutorials/jpa-entity-versioning-version-and-optimistic-locking)
 * [Optimistic Locking in JPA (Baeldung)](https://www.baeldung.com/jpa-optimistic-locking)
@@ -172,7 +172,7 @@ Program output:
 * [Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-index_.html#index-versioning)
 * [Apache Solr](https://lucene.apache.org/solr/guide/6_6/updating-parts-of-documents.html)
 
-## Consequences
+## Benefits and Trade-offs of Version Number Pattern
 
 Benefits:
 
@@ -191,7 +191,7 @@ Trade-offs:
 * [Optimistic Offline Lock](https://java-design-patterns.com/patterns/optimistic-offline-lock/): Uses version numbers to detect conflicts rather than preventing them from occurring.
 * Pessimistic Offline Lock: An alternative approach to concurrency control where data is locked for updates to prevent conflicts.
 
-## Credits
+## References and Credits
 
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)

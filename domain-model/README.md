@@ -23,11 +23,11 @@ head:
 * Conceptual Model
 * Domain Object Model
 
-## Intent
+## Intent of Domain Model Design Pattern
 
 The Domain Model pattern aims to create a conceptual model in your software that matches the real-world system it's designed to represent. It involves using rich domain objects that encapsulate both data and behavior relevant to the application domain.
 
-## Explanation
+## Detailed Explanation of Domain Model Pattern with Real-World Examples
 
 Real-world example
 
@@ -228,17 +228,17 @@ The program output:
 12:17:23.846 [main] INFO com.iluwatar.domainmodel.Customer -- Tom bought: Eggs - $10.00, Cheese - $20.00
 ```
 
-## Class diagram
+## Detailed Explanation of Domain Model Pattern with Real-World Examples
 
 ![Domain Model class diagram](./etc/domain-model.urm.png "Domain Model")
 
-## Applicability
+## When to Use the Domain Model Pattern in Java
 
 * Appropriate in complex applications with rich business logic.
 * When the business logic or domain complexity is high and requires a model that closely represents real-world entities and their relationships.
 * Suitable for applications where domain experts are involved in the development process to ensure the model accurately reflects domain concepts.
 
-## Tutorials
+## Domain Model Pattern Java Tutorials
 
 * [Architecture patterns: domain model and friends (Inviqa)](https://inviqa.com/blog/architecture-patterns-domain-model-and-friends)
 
@@ -249,7 +249,7 @@ The program output:
 * Healthcare applications (patient records management)
 * E-commerce platforms (product catalogs, shopping carts)
 
-## Consequences
+## Benefits and Trade-offs of Domain Model Pattern
 
 Benefits:
 
@@ -271,7 +271,7 @@ Trade-offs:
 * [Service Layer](https://java-design-patterns.com/patterns/service-layer/): Defines an application's boundary with a layer of services that establishes a set of available operations and coordinates the application's response in each operation.
 * [Unit of Work](https://java-design-patterns.com/patterns/unit-of-work/): Maintains a list of objects affected by a business transaction and coordinates the writing out of changes.
 
-## Credits
+## References and Credits
 
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3vMCjnP)
 * [Implementing Domain-Driven Design](https://amzn.to/4cUX4OL)

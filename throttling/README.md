@@ -19,11 +19,11 @@ head:
 
 * Rate Limiting
 
-## Intent
+## Intent of Throttling Design Pattern
 
 Throttling limits the number of requests a system can process within a given time frame to prevent overload and ensure stability.
 
-## Explanation
+## Detailed Explanation of Throttling Pattern with Real-World Examples
 
 Real-world example
 
@@ -216,7 +216,7 @@ An excerpt from the example's console output:
 18:46:37.148 [pool-1-thread-2] ERROR com.iluwatar.throttling.Bartender - I'm sorry dwarf soldier, you've had enough for today!
 ```
 
-## Applicability
+## When to Use the Throttling Pattern in Java
 
 * You need to protect resources from being overwhelmed by too many requests.
 * You want to ensure fair usage of a service among multiple users.
@@ -228,7 +228,7 @@ An excerpt from the example's console output:
 * Web services to prevent denial-of-service (DoS) attacks by limiting the number of requests from a single IP address.
 * Online platforms like social media sites and e-commerce websites to ensure even distribution of server load.
 
-## Consequences
+## Benefits and Trade-offs of Throttling Pattern
 
 Benefits:
 
@@ -247,7 +247,7 @@ Trade-offs:
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Works in tandem with throttling to prevent repeated attempts to access an overloaded service.
 * Bulkhead: Isolates different parts of the system to limit the impact of throttling on other components.
 
-## Credits
+## References and Credits
 
 * [Throttling pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling)
 * [Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications](https://amzn.to/4dLvowg)

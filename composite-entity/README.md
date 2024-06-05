@@ -21,11 +21,11 @@ head:
 
 * Coarse-Grained Entity
 
-## Intent
+## Intent of Composite Entity Design Pattern
 
 The Composite Entity design pattern is aimed at managing a set of interrelated persistent objects as if they were a single entity. It is commonly used in the context of Enterprise JavaBeans (EJB) and similar enterprise frameworks to represent graph-based data structures within business models, enabling clients to treat them as a single unit.
 
-## Explanation
+## Detailed Explanation of Composite Entity Pattern with Real-World Examples
 
 Real-world example
 
@@ -128,7 +128,7 @@ public App(String message, String signal) {
 }
 ```
 
-## Applicability
+## When to Use the Composite Entity Pattern in Java
 
 * Useful in enterprise applications where business objects are complex and involve various interdependent objects.
 * Ideal for scenarios where clients need to work with a unified interface to a set of objects rather than individual entities.
@@ -140,7 +140,7 @@ public App(String message, String signal) {
 * Systems requiring abstraction over complex database schemas to simplify client interactions.
 * Applications that need to enforce consistency or transactions across multiple objects in a business entity.
 
-## Consequences
+## Benefits and Trade-offs of Composite Entity Pattern
 
 Benefits:
 
@@ -160,7 +160,7 @@ Trade-offs:
 * [Facade](https://java-design-patterns.com/patterns/facade/): Provides a simplified interface to a complex subsystem, similar to how a composite entity simplifies access to a set of objects.
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Useful for managing shared objects within a composite entity to reduce memory footprint.
 
-## Credits
+## References and Credits
 
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Enterprise Patterns and MDA: Building Better Software with Archetype Patterns and UML](https://amzn.to/49mslqS)

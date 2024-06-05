@@ -20,11 +20,11 @@ head:
 * Fluent API
 * Method Chaining
 
-## Intent
+## Intent of Fluent Interface Design Pattern
 
 To provide an easily readable, flowing API by chaining method calls.
 
-## Explanation
+## Detailed Explanation of Fluent Interface Pattern with Real-World Examples
 
 Real-world example
 
@@ -155,7 +155,7 @@ Program output:
 08:50:08.270 [main] INFO com.iluwatar.fluentinterface.app.App -- Last amongst first two negatives: -22
 ```
 
-## Applicability
+## When to Use the Fluent Interface Pattern in Java
 
 Use the Fluent Interface pattern when
 
@@ -163,11 +163,11 @@ Use the Fluent Interface pattern when
 * Building complex objects step-by-step, and there is a need to make the code more intuitive and less error-prone.
 * Enhancing code clarity and reducing the boilerplate code, especially in configurations and object-building scenarios.
 
-## Tutorials
+## Fluent Interface Pattern Java Tutorials
 
 * [An Approach to Internal Domain-Specific Languages in Java (InfoQ)](http://www.infoq.com/articles/internal-dsls-java)
 
-## Known uses
+## Real-World Applications of Fluent Interface Pattern in Java
 
 * [Java 8 Stream API](http://www.oracle.com/technetwork/articles/java/ma14-java-se-8-streams-2177646.html)
 * [Google Guava FluentIterable](https://github.com/google/guava/wiki/FunctionalExplained)
@@ -176,7 +176,7 @@ Use the Fluent Interface pattern when
 * [Java Hamcrest](http://code.google.com/p/hamcrest/wiki/Tutorial)
 * Builders in libraries like Apache Camel for integration workflows.
 
-## Consequences
+## Benefits and Trade-offs of Fluent Interface Pattern
 
 Benefits:
 
@@ -195,7 +195,7 @@ Trade-offs:
 * [Builder](https://java-design-patterns.com/patterns/builder/): Often implemented using a Fluent Interface to construct objects step-by-step. The Builder Pattern focuses on constructing complex objects, while Fluent Interface emphasizes the method chaining mechanism.
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Fluent Interfaces can be seen as a specific utilization of the Chain of Responsibility, where each method in the chain handles a part of the task and then delegates to the next method.
 
-## Credits
+## References and Credits
 
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3UrXkh2)
 * [Domain Specific Languages](https://amzn.to/3R1UYDA)

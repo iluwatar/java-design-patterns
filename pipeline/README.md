@@ -21,11 +21,11 @@ head:
 * Chain of Operations
 * Processing Pipeline
 
-## Intent
+## Intent of Pipeline Design Pattern
 
 The Pipeline design pattern is intended to allow data processing in discrete stages, where each stage is represented by a different component and the output of one stage serves as the input for the next.
 
-## Explanation
+## Detailed Explanation of Pipeline Pattern with Real-World Examples
 
 Real-world example
 
@@ -122,7 +122,7 @@ Console output:
 07:34:27.075 [main] INFO com.iluwatar.pipeline.App -- Pipeline output: [!]
 ```
 
-## Applicability
+## When to Use the Pipeline Pattern in Java
 
 Use the Pipeline pattern when you want to
 
@@ -130,7 +130,7 @@ Use the Pipeline pattern when you want to
 * When each stage of processing is independent and can be easily replaced or reordered.
 * When you want to improve the scalability and maintainability of data processing code.
 
-## Tutorials
+## Pipeline Pattern Java Tutorials
 
 * [The Pipeline design pattern (in Java) (Medium)](https://medium.com/@deepakbapat/the-pipeline-design-pattern-in-java-831d9ce2fe21)
 * [The Pipeline Pattern — for fun and profit (Aaron Weatherall)](https://medium.com/@aaronweatherall/the-pipeline-pattern-for-fun-and-profit-9b5f43a98130)
@@ -143,7 +143,7 @@ Use the Pipeline pattern when you want to
 * Image processing applications where multiple filters are applied sequentially.
 * Logging frameworks where messages pass through multiple handlers for formatting, filtering, and output.
 
-## Consequences
+## Benefits and Trade-offs of Pipeline Pattern
 
 Benefits:
 
@@ -164,7 +164,7 @@ Trade-offs:
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Both patterns involve adding behavior dynamically, but Decorator wraps additional behavior around objects, whereas Pipeline processes data in discrete steps.
 * [Composite](https://java-design-patterns.com/patterns/composite/): Like Pipeline, Composite also involves hierarchical processing, but Composite is more about part-whole hierarchies.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)

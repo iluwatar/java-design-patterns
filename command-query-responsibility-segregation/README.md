@@ -17,11 +17,11 @@ head:
 
 * CQRS
 
-## Intent
+## Intent of Command Query Responsibility Segregation Design Pattern
 
 Command Query Responsibility Segregation aims to segregate the operations that modify the state of an application (commands) from the operations that read the state (queries).
 
-## Explanation
+## Detailed Explanation of Command Query Responsibility Segregation Pattern with Real-World Examples
 
 Real-world example
 
@@ -98,7 +98,7 @@ Program output:
 17:37:56.042 [main] INFO  com.iluwatar.cqrs.app.App - jBloch books : [Book(title=Effective Java, price=40.54), Book(title=Java Puzzlers, price=39.99), Book(title=Java Concurrency in Practice, price=29.4)]
 ```
 
-## Applicability
+## When to Use the Command Query Responsibility Segregation Pattern in Java
 
 * Systems requiring distinct models for read and write operations for scalability and maintainability.
 * Complex domain models where the task of updating objects differs significantly from the task of reading object data.
@@ -110,7 +110,7 @@ Program output:
 * Event-Sourced Systems, where changes to the application state are stored as a sequence of events.
 * High-Performance Web Applications, segregating read and write databases to optimize load handling.
 
-## Consequences
+## Benefits and Trade-offs of Command Query Responsibility Segregation Pattern
 
 Benefits:
 
@@ -131,7 +131,7 @@ Trade-Offs:
 * Domain-Driven Design (DDD): CQRS fits well within the DDD context, providing clear boundaries and separation of concerns.
 * [Repository](https://java-design-patterns.com/patterns/repository/): Can be used to abstract the data layer, providing a more seamless integration between the command and query sides.
 
-## Credits
+## References and Credits
 
 * [Implementing Domain-Driven Design](https://amzn.to/3TJN2HH)
 * [Microsoft .NET: Architecting Applications for the Enterprise](https://amzn.to/4aktRes)

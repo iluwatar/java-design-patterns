@@ -19,11 +19,11 @@ head:
 
 * Application Facade
 
-## Intent
+## Intent of Service Layer Design Pattern
 
 Encapsulate business logic in a distinct layer to promote separation of concerns and to provide a well-defined API for the presentation layer.
 
-## Explanation
+## Detailed Explanation of Service Layer Pattern with Real-World Examples
 
 Real-world example
 
@@ -352,11 +352,11 @@ INFO  [2024-05-27 09:16:40,681] com.iluwatar.servicelayer.app.App: Find wizards 
 INFO  [2024-05-27 09:16:40,683] com.iluwatar.servicelayer.app.App: Aderlard Boud has 'Fireball'
 ```
 
-## Class diagram
+## Detailed Explanation of Service Layer Pattern with Real-World Examples
 
 ![Service Layer](./etc/service-layer.png "Service Layer")
 
-## Applicability
+## When to Use the Service Layer Pattern in Java
 
 * Use when you need to separate business logic from presentation logic.
 * Ideal for applications with complex business rules and workflows.
@@ -368,7 +368,7 @@ INFO  [2024-05-27 09:16:40,683] com.iluwatar.servicelayer.app.App: Aderlard Boud
 * Spring Framework applications using the @Service annotation to denote service layer classes.
 * Web applications that need to separate business logic from controller logic.
 
-## Consequences
+## Benefits and Trade-offs of Service Layer Pattern
 
 Benefits:
 
@@ -387,7 +387,7 @@ Trade-offs:
 * [DAO (Data Access Object)](https://java-design-patterns.com/patterns/dao/): Often used together with the Service Layer to handle data persistence.
 * [MVC (Model-View-Controller)](https://java-design-patterns.com/patterns/model-view-controller/): The Service Layer can be used to encapsulate business logic in the model component.
 
-## Credits
+## References and Credits
 
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

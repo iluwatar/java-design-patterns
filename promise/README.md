@@ -20,11 +20,11 @@ head:
 * Deferred
 * Future
 
-## Intent
+## Intent of Promise Design Pattern
 
 The Promise design pattern is used to handle asynchronous operations by providing a placeholder for a result that is initially unknown but will be resolved in the future.
 
-## Explanation
+## Detailed Explanation of Promise Pattern with Real-World Examples
 
 Real-world example
 
@@ -129,13 +129,13 @@ Program output:
 08:19:33.426 [pool-1-thread-2] INFO com.iluwatar.promise.App -- Char with lowest frequency is: ’
 ```
 
-## Applicability
+## When to Use the Promise Pattern in Java
 
 * When you need to perform asynchronous tasks and handle their results or errors at a later point.
 * In scenarios where tasks can be executed in parallel and their outcomes need to be handled once they are completed.
 * Suitable for improving the readability and maintainability of asynchronous code.
 
-## Tutorials
+## Promise Pattern Java Tutorials
 
 * [Functional-Style Callbacks Using Java 8's CompletableFuture (InfoQ)](https://www.infoq.com/articles/Functional-Style-Callbacks-Using-CompletableFuture)
 * [Guide To CompletableFuture (Baeldung)](https://www.baeldung.com/java-completablefuture)
@@ -148,7 +148,7 @@ Program output:
 * Many asynchronous frameworks and libraries such as RxJava and Vert.x.
 * [Guava ListenableFuture](https://github.com/google/guava/wiki/ListenableFutureExplained)
 
-## Consequences
+## Benefits and Trade-offs of Promise Pattern
 
 Benefits:
 
@@ -167,7 +167,7 @@ Trade-offs:
 * [Callback](https://java-design-patterns.com/patterns/callback/): Promises often replace callback mechanisms by providing a more structured and readable way to handle asynchronous results.
 * [Async Method Invocation](https://java-design-patterns.com/patterns/async-method-invocation/): Promises are often used to handle the results of asynchronous method invocations, allowing for non-blocking execution and result handling.
 
-## Credits
+## References and Credits
 
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://amzn.to/3QCmGXs)

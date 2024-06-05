@@ -20,11 +20,11 @@ head:
 * Cache-Friendly Design
 * Data-Oriented Design
 
-## Intent
+## Intent of Data Locality Design Pattern
 
 The Data Locality design pattern aims to minimize data access times and improve cache utilization by arranging data in memory to take advantage of spatial locality. This pattern is particularly useful in high-performance computing and game development where access speed is crucial.
 
-## Explanation
+## Detailed Explanation of Data Locality Pattern with Real-World Examples
 
 Real-world example
 
@@ -123,11 +123,11 @@ The console output:
 
 In this way, the data-locality module demonstrates the Data Locality pattern. By updating all components of the same type together, it increases the likelihood that the data needed for the update is already in the cache, thereby improving performance.
 
-## Class diagram
+## Detailed Explanation of Data Locality Pattern with Real-World Examples
 
 ![Data Locality](./etc/data-locality.urm.png "Data Locality pattern class diagram")
 
-## Applicability
+## When to Use the Data Locality Pattern in Java
 
 This pattern is applicable in scenarios where large datasets are processed and performance is critical. It's particularly useful in:
 
@@ -141,7 +141,7 @@ This pattern is applicable in scenarios where large datasets are processed and p
 * High-performance matrix libraries in scientific computing to optimize matrix operations.
 * Real-time streaming data processing systems for efficient data manipulation and access.
 
-## Consequences
+## Benefits and Trade-offs of Data Locality Pattern
 
 Benefits:
 
@@ -161,7 +161,7 @@ Trade-offs:
 * [Object Pool](https://java-design-patterns.com/patterns/object-pool/): Often used together to manage a group of initialized objects that can be reused, further optimizing memory usage and access.
 * [Iterator](https://java-design-patterns.com/patterns/iterator/): Facilitates navigation through a collection of data laid out with data locality in mind.
 
-## Credits
+## References and Credits
 
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Game Programming Patterns](https://amzn.to/3vK8c0d)

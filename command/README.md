@@ -19,11 +19,11 @@ head:
 * Action
 * Transaction
 
-## Intent
+## Intent of Command Design Pattern
 
 The Command design pattern encapsulates a request as an object, thereby allowing for parameterization of clients with queues, requests, and operations. It also allows for the support of undoable operations.
 
-## Explanation
+## Detailed Explanation of Command Pattern with Real-World Examples
 
 Real-world example
 
@@ -167,7 +167,7 @@ Here's the program output:
 20:13:38.409 [main] INFO com.iluwatar.command.Target -- Goblin, [size=small] [visibility=invisible]
 ```
 
-## Applicability
+## When to Use the Command Pattern in Java
 
 Use the Command pattern when you want to:
 
@@ -180,7 +180,7 @@ Use the Command pattern when you want to:
 * Implement callback functionality.
 * Implement undo functionality.
 
-## Known uses
+## Real-World Applications of Command Pattern in Java
 
 * GUI Buttons and menu items in desktop applications.
 * Operations in database systems and transactional systems that support rollback.
@@ -190,7 +190,7 @@ Use the Command pattern when you want to:
 * [Netflix Hystrix](https://github.com/Netflix/Hystrix/wiki)
 * [javax.swing.Action](http://docs.oracle.com/javase/8/docs/api/javax/swing/Action.html)
 
-## Consequences
+## Benefits and Trade-offs of Command Pattern
 
 Benefits:
 
@@ -209,7 +209,7 @@ Trade-offs:
 * [Memento](https://java-design-patterns.com/patterns/memento/): Can be used for implementing undo mechanisms.
 * [Observer](https://java-design-patterns.com/patterns/observer/): The pattern can be observed for changes that trigger commands.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

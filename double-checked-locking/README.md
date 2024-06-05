@@ -14,11 +14,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Double-Checked Locking Design Pattern
 
 The Double-Checked Locking pattern aims to reduce the overhead of acquiring a lock by first testing the locking criterion (the 'lock hint') without actually acquiring the lock. Only if the locking criterion check indicates that locking is necessary does the actual locking logic proceed.
 
-## Explanation
+## Detailed Explanation of Double-Checked Locking Pattern with Real-World Examples
 
 Real-world example
 
@@ -92,7 +92,7 @@ public class HolderThreadSafe {
 
 In this code, the `Heavy` object is only created when the `getHeavy` method is called for the first time. This is known as lazy initialization. The double-checked locking pattern is used to ensure that the `Heavy` object is only created once, even when the `getHeavy` method is called from multiple threads simultaneously.
 
-## Applicability
+## When to Use the Double-Checked Locking Pattern in Java
 
 This pattern is used in scenarios where:
 
@@ -104,7 +104,7 @@ This pattern is used in scenarios where:
 * Singleton pattern implementation in multithreading environments.
 * Lazy initialization of resource-intensive objects in Java applications.
 
-## Consequences
+## Benefits and Trade-offs of Double-Checked Locking Pattern
 
 Benefits:
 
@@ -121,7 +121,7 @@ Trade-offs:
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Double-Checked Locking is often used in implementing thread-safe Singletons.
 * [Lazy Loading](https://java-design-patterns.com/patterns/lazy-loading/): Shares the concept of delaying object creation until necessary.
 
-## Credits
+## References and Credits
 
 * [Java Concurrency in Practice](https://amzn.to/4aIAPKa)
 * [Effective Java](https://amzn.to/3xx7KDh)

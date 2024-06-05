@@ -19,11 +19,11 @@ head:
 
 * Synchronized Block
 
-## Intent
+## Intent of Monitor Design Pattern
 
 The Monitor design pattern is used to synchronize concurrent operations by encapsulating shared resources in such a way that only one thread can access them at a time, ensuring thread safety.
 
-## Explanation
+## Detailed Explanation of Monitor Pattern with Real-World Examples
 
 Real-world example
 
@@ -120,7 +120,7 @@ public class Main {
 
 In this example, the `Bank` class is the monitor, and the `transfer` method is the critical section that needs to be executed in a mutually exclusive manner. The `synchronized` keyword in Java is used to implement the Monitor pattern, ensuring that only one thread can execute the `transfer` method at a time.
 
-## Applicability
+## When to Use the Monitor Pattern in Java
 
 The Monitor design pattern should be used in situations where you have shared resources that need to be accessed and manipulated by multiple threads or processes concurrently. This pattern is particularly useful in scenarios where synchronization is necessary to prevent race conditions, data corruption, and inconsistent states. Here are some situations where you should consider using the Monitor pattern:
 
@@ -149,7 +149,7 @@ Before applying the Monitor pattern, it's recommended to thoroughly analyze your
 * Java's synchronized methods and blocks.
 * Implementations of concurrent data structures like Vector and Hashtable in the Java Collections Framework.
 
-## Consequences
+## Benefits and Trade-offs of Monitor Pattern
 
 Benefits:
 
@@ -166,7 +166,7 @@ Trade-offs:
 Semaphore: Used to control access to a common resource by multiple threads; Monitor uses a binary semaphore concept at its core.
 Mutex: Another mechanism for ensuring mutual exclusion; Monitor is a higher-level construct often implemented using mutexes.
 
-## Credits
+## References and Credits
 
 * [Concurrency: State Models & Java Programs](https://amzn.to/4dxxjUX)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)

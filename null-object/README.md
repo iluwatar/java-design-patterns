@@ -18,11 +18,11 @@ head:
 * Active Nothing
 * Stub
 
-## Intent
+## Intent of Null Object Design Pattern
 
 To provide a default behavior for an object, avoiding the need for null checks and enhancing code readability.
 
-## Explanation
+## Detailed Explanation of Null Object Pattern with Real-World Examples
 
 Real-world example
 
@@ -163,7 +163,7 @@ Program output:
 122
 ```
 
-## Applicability
+## When to Use the Null Object Pattern in Java
 
 * When you need to provide a default behavior in place of a null object.
 * To simplify the client code by eliminating null checks.
@@ -175,7 +175,7 @@ Program output:
 * Collections that use a NullIterator to handle empty collections gracefully.
 * GUI systems where a NullComponent can be used to represent a component that does nothing.
 
-## Consequences
+## Benefits and Trade-offs of Null Object Pattern
 
 Benefits:
 
@@ -194,7 +194,7 @@ Trade-offs:
 * [State](https://java-design-patterns.com/patterns/state/): Similar in that both patterns can handle different states or behaviors; Null Object is like a state that does nothing.
 * [Factory](https://java-design-patterns.com/patterns/factory/): Often used to provide Null Objects in place of actual objects.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

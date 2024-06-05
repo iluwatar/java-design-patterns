@@ -20,11 +20,11 @@ head:
 
 * Resource Pool
 
-## Intent
+## Intent of Object Pool Design Pattern
 
 The Object Pool design pattern manages a pool of reusable objects, optimizing resource use by recycling objects rather than creating and destroying them repeatedly.
 
-## Explanation
+## Detailed Explanation of Object Pool Pattern with Real-World Examples
 
 Real-world example
 
@@ -154,7 +154,7 @@ Program output:
 21:21:58.147 [main] INFO com.iluwatar.object.pool.App -- Pool available=0 inUse=3
 ```
 
-## Applicability
+## When to Use the Object Pool Pattern in Java
 
 Use the Object Pool pattern when
 
@@ -170,7 +170,7 @@ Use the Object Pool pattern when
 * Pooling of socket connections in network applications.
 * Object pools in game development for frequently created and destroyed game objects.
 
-## Consequences
+## Benefits and Trade-offs of Object Pool Pattern
 
 Benefits:
 
@@ -190,7 +190,7 @@ Trade-offs:
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Shares fine-grained objects to reduce memory usage, complementing object pooling by managing object state efficiently.
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Often used to create objects within the pool, abstracting the instantiation process.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

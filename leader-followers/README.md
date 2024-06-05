@@ -14,11 +14,11 @@ head:
       content:
 ---
 
-## Intent
+## Intent of Leader/Followers Design Pattern
 
 To manage a set of worker threads efficiently, where multiple threads take turns sharing a set of event sources in order to utilize fewer resources than one-thread-per-source.
 
-## Explanation
+## Detailed Explanation of Leader/Followers Pattern with Real-World Examples
 
 Real-world Example
 
@@ -141,7 +141,7 @@ public class App {
 
 This is a basic example of the Leader/Followers pattern. The leader worker processes tasks and promotes a new leader once it finishes a task. The new leader then starts processing the next task, and the cycle continues.
 
-## Applicability
+## When to Use the Leader/Followers Pattern in Java
 
 * Useful in scenarios where programs need to handle multiple services on a single thread to avoid resource thrashing and to improve scalability.
 * Applicable in server environments where multiple client requests must be handled concurrently with minimal resource consumption.
@@ -151,7 +151,7 @@ This is a basic example of the Leader/Followers pattern. The leader worker proce
 * Network servers handling multiple incoming connections.
 * Event-driven applications that manage a large number of input/output sources.
 
-## Consequences
+## Benefits and Trade-offs of Leader/Followers Pattern
 
 Benefits:
 
@@ -168,7 +168,7 @@ Trade-offs:
 * [Half-Sync/Half-Async](https://java-design-patterns.com/patterns/half-sync-half-async/): Leader and Followers can be seen as a variation where the synchronization aspect is divided between the leader (synchronous handling) and followers (waiting asynchronously).
 * [Thread Pool](https://java-design-patterns.com/patterns/thread-pool/): Both patterns manage a pool of worker threads, but Thread Pool assigns tasks to any available thread rather than using a leader to distribute work.
 
-## Credits
+## References and Credits
 
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 * [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)

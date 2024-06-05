@@ -20,11 +20,11 @@ head:
 * Coordinator Election
 * Master Election
 
-## Intent
+## Intent of Leader Election Design Pattern
 
 Enable a system to elect a leader from a group of nodes, ensuring that the leader is consistently recognized and able to coordinate tasks while the other nodes remain followers.
 
-## Explanation
+## Detailed Explanation of Leader Election Pattern with Real-World Examples
 
 Real-world example
 
@@ -140,11 +140,11 @@ The `RingApp` class implements the Ring algorithm for leader election. In this a
 
 These examples demonstrate how the Leader Election pattern can be implemented in different ways to suit the specific requirements of a distributed system.
 
-## Class diagram
+## Detailed Explanation of Leader Election Pattern with Real-World Examples
 
 ![Leader Election](./etc/leader-election.urm.png "Leader Election pattern class diagram")
 
-## Applicability
+## When to Use the Leader Election Pattern in Java
 
 Use this pattern in Java applications where:
 
@@ -158,7 +158,7 @@ Use this pattern in Java applications where:
 * Kubernetes: Elects a leader pod to manage stateful workloads.
 * Hazelcast: Distributed data grid uses leader election for cluster management.
 
-## Consequences
+## Benefits and Trade-offs of Leader Election Pattern
 
 Benefits:
 
@@ -178,7 +178,7 @@ Trade-offs:
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): The leader functions as a single instance, acting as a unique decision-maker.
 * [State](https://java-design-patterns.com/patterns/state/): Helps in managing state transitions, particularly in switching leadership roles.
 
-## Credits
+## References and Credits
 
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
 * [Distributed Systems: Principles and Paradigms](https://amzn.to/3UN2vbH)

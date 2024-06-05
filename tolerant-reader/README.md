@@ -18,11 +18,11 @@ head:
 
 * Lenient Consumer
 
-## Intent
+## Intent of Tolerant Reader Design Pattern
 
 Allows a system to be more resilient to changes in the data structures it consumes by ignoring elements that it does not recognize.
 
-## Explanation
+## Detailed Explanation of Tolerant Reader Pattern with Real-World Examples
 
 Real-world example
 
@@ -174,7 +174,7 @@ Program output:
 15:38:00.619 [main] INFO com.iluwatar.tolerantreader.App -- deserializedFishV2 name=Scar age=5 length=12 weight=15
 ```
 
-## Applicability
+## When to Use the Tolerant Reader Pattern in Java
 
 * Use when a system needs to consume data from external sources that may change over time.
 * Applicable when backward compatibility is required in API design.
@@ -185,7 +185,7 @@ Program output:
 * JSON or XML parsers that skip unknown elements.
 * API clients in microservices architectures that interact with multiple versions of a service.
 
-## Consequences
+## Benefits and Trade-offs of Tolerant Reader Pattern
 
 Benefits:
 
@@ -204,7 +204,7 @@ Trade-offs:
 * [Facade](https://java-design-patterns.com/patterns/facade/): Simplifies interactions with complex systems, similar to how Tolerant Reader simplifies data consumption by ignoring irrelevant data.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Can be used in conjunction with Tolerant Reader to dynamically switch between different data handling strategies.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

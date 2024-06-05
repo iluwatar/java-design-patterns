@@ -18,11 +18,11 @@ head:
 * Marker
 * Tagging Interface
 
-## Intent
+## Intent of Marker Interface Design Pattern
 
 The Marker Interface pattern is used to convey metadata about a class in a type-safe manner. Interfaces in Java that have no method declarations are known as marker interfaces. They are used to indicate that a class implementing such an interface possesses some special behavior or capability.
 
-## Explanation
+## Detailed Explanation of Marker Interface Pattern with Real-World Examples
 
 Real-world example
 
@@ -104,16 +104,16 @@ public class App {
 
 In this way, the Marker Interface pattern allows us to associate metadata (in this case, special permissions) with a class in a type-safe manner.
 
-## Applicability
+## When to Use the Marker Interface Pattern in Java
 
 Marker interfaces are applicable in scenarios where you want to impose a special behavior or capability on a class, but don't want to force the class to define specific methods. This pattern is commonly used to indicate that a class conforms to a particular contract without needing to implement methods.
 
-## Known uses
+## Real-World Applications of Marker Interface Pattern in Java
 
 * java.io.Serializable: Classes that implement this interface are capable of being serialized by the Java runtime.
 * java.lang.Cloneable: Classes that implement this interface can be cloned using the clone method in Java.
 
-## Consequences
+## Benefits and Trade-offs of Marker Interface Pattern
 
 Benefits:
 
@@ -125,7 +125,7 @@ Trade-offs:
 * Can lead to empty interfaces in the codebase, which some may consider as not clean or clear in purpose.
 * Does not enforce any method implementations, which can lead to runtime errors if not properly handled.
 
-## Credits
+## References and Credits
 
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)

@@ -20,11 +20,11 @@ head:
 * Dynamic Properties
 * Property Bag
 
-## Intent
+## Intent of Property Design Pattern
 
 The Property design pattern allows dynamic addition, removal, or modification of properties of an object at runtime.
 
-## Explanation
+## Detailed Explanation of Property Pattern with Real-World Examples
 
 Real-world example
 
@@ -160,7 +160,7 @@ Stats:
 
 This way, we can easily create new characters with different properties without having to create a new class for each type of character.
 
-## Applicability
+## When to Use the Property Pattern in Java
 
 Use the Property pattern when
 
@@ -174,7 +174,7 @@ Use the Property pattern when
 * Game development where game entities (like characters or objects) need various attributes that can change during gameplay.
 * User profile management systems where user profiles can have dynamic attributes.
 
-## Consequences
+## Benefits and Trade-offs of Property Pattern
 
 Benefits:
 
@@ -194,7 +194,7 @@ Trade-offs:
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Both patterns enhance an object's behavior, but the Property pattern focuses on adding properties dynamically, while the Decorator adds responsibilities.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Like the Property pattern, the Strategy pattern allows dynamic behavior changes, but Strategy is about changing the algorithm used by an object.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

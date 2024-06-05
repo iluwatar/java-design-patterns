@@ -18,11 +18,11 @@ head:
 * Master-Slave
 * Controller-Worker
 
-## Intent
+## Intent of Master-Worker Design Pattern
 
 The Master-Worker pattern is designed to perform parallel computations through the division of labor between coordinating 'master' processes and multiple 'worker' processes.
 
-## Explanation
+## Detailed Explanation of Master-Worker Pattern with Real-World Examples
 
 Real-world example
 
@@ -110,13 +110,13 @@ public abstract class Result<T> {
 
 The `Input` class has a `divideData` method that is used to divide the input data into subtasks. The `Result` class simply encapsulates the result data.
 
-## Applicability
+## When to Use the Master-Worker Pattern in Java
 
 * Suitable for scenarios where a task can be decomposed into smaller, independent tasks.
 * Useful in applications requiring concurrent execution to enhance performance.
 * Applicable in distributed computing where tasks need to be processed by multiple processors or machines.
 
-## Tutorials
+## Master-Worker Pattern Java Tutorials
 
 * [Master-Worker Pattern (Gigaspaces)](https://docs.gigaspaces.com/sbp/master-worker-pattern.html)
 
@@ -126,7 +126,7 @@ The `Input` class has a `divideData` method that is used to divide the input dat
 * Used in server architectures to process multiple client requests simultaneously.
 * Utilized in scientific computation frameworks where large datasets require parallel processing.
 
-## Consequences
+## Benefits and Trade-offs of Master-Worker Pattern
 
 Benefits:
 
@@ -145,7 +145,7 @@ Trade-offs:
 * [Producer-Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Similar in structure but focuses on balancing production and consumption rates; Master-Worker is more about task distribution and aggregation.
 * [Pipeline](https://java-design-patterns.com/patterns/pipeline/): Both organize processing steps but Pipeline arranges them linearly whereas Master-Worker may not impose such a sequence.
 
-## Credits
+## References and Credits
 
 * [Distributed Systems: Principles and Paradigms](https://amzn.to/3UN2vbH)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)

@@ -20,11 +20,11 @@ head:
 * Around Method Pattern
 * Resource Block Management
 
-## Intent
+## Intent of Execute Around Design Pattern
 
 Execute Around idiom frees the user from certain actions that should always be executed before and after the business method. A good example of this is resource allocation and deallocation leaving the user to specify only what to do with the resource.
 
-## Explanation
+## Detailed Explanation of Execute Around Pattern with Real-World Examples
 
 Real-world example
 
@@ -91,7 +91,7 @@ Here's the console output.
 21:18:07.199 [main] INFO com.iluwatar.execute.around.App - Gandalf was here
 ```
 
-## Applicability
+## When to Use the Execute Around Pattern in Java
 
 * Useful in scenarios requiring repetitive setup and cleanup activities, particularly in resource management (e.g., files, network connections, database sessions).
 * Ideal for ensuring proper resource handling and cleanup in the face of exceptions, ensuring resources do not leak.
@@ -102,7 +102,7 @@ Here's the console output.
 * Java's try-with-resources statement, which ensures that resources are closed after execution regardless of whether an exception was thrown.
 * Frameworks like Spring for managing database transactions, where predefined cleanup or rollback operations are performed depending on the execution outcome.
 
-## Consequences
+## Benefits and Trade-offs of Execute Around Pattern
 
 Benefits:
 
@@ -120,7 +120,7 @@ Trade-offs:
 * [Template Method](https://java-design-patterns.com/patterns/template-method/): Similar in concept but differs in that it uses inheritance and abstract classes, while Execute Around typically uses interfaces and lambdas.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Shares the concept of adding functionality around a core component; can be extended to wrap additional behaviors dynamically.
 
-## Credits
+## References and Credits
 
 * [Effective Java](https://amzn.to/4aDdWbs)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3vUGApm)

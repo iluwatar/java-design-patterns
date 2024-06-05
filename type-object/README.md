@@ -23,11 +23,11 @@ head:
 * Type Descriptor
 * Type Safe Enumeration
 
-## Intent
+## Intent of Type Object Design Pattern
 
 Allow creation of flexible and extensible sets of related types.
 
-## Explanation
+## Detailed Explanation of Type Object Pattern with Real-World Examples
 
 Real-world example
 
@@ -297,7 +297,7 @@ Console output:
 
 In this implementation, the Type Object pattern allows for the flexible creation of `Candy` objects. The type of each candy is determined at runtime by parsing a JSON file, which makes it easy to add, modify, or remove candy types without having to recompile the code.
 
-## Applicability
+## When to Use the Type Object Pattern in Java
 
 This pattern can be used when:
 
@@ -306,17 +306,17 @@ This pattern can be used when:
 * Suitable for situations where the number of types is large and may change over time.
 * The difference between the different 'types' of objects is the data, not the behaviour.
 
-## Tutorials
+## Type Object Pattern Java Tutorials
 
 * [Types as Objects Pattern (Jon Pearce)](http://www.cs.sjsu.edu/~pearce/modules/patterns/analysis/top.htm)
 
-## Known uses
+## Real-World Applications of Type Object Pattern in Java
 
 * Java Collections Framework: Utilizing various collection types like List, Set, and Map.
 * Graphics Libraries: Defining different shapes with specific properties and behaviors.
 * Game Development: Creating different types of characters or items with unique attributes and behaviors.
 
-## Consequences
+## Benefits and Trade-offs of Type Object Pattern
 
 Benefits:
 
@@ -329,13 +329,13 @@ Trade-offs:
 * Can increase complexity if not managed properly.
 * May lead to performance overhead due to dynamic type checking and handling.
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Often used in conjunction with Type Object to create instances of the types.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Similar in that it defines a family of algorithms or behaviors, but focuses more on interchangeable behaviors.
 * [Prototype](https://java-design-patterns.com/patterns/prototype/): Can be used to create new instances by copying existing ones, supporting dynamic and flexible type creation.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
