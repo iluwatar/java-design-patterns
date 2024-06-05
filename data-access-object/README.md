@@ -1,6 +1,6 @@
 ---
-title: Data Access Object
-description:
+title: "Java Data Access Object (DAO) Pattern: Design and Implementation"
+description: "Explore the Java Data Access Object (DAO) pattern to effectively separate business logic from database operations. Learn implementation strategies, real-world examples, and best practices."
 category: Structural
 language: en
 tag:
@@ -10,10 +10,6 @@ tag:
   - Decoupling
   - Layered architecture
   - Persistence
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
