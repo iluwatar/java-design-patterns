@@ -1,6 +1,6 @@
 ---
-title: Event Queue
-description:
+title: "Event Queue Design Pattern in Java: Best Practices and Examples"
+description: "Learn about the Event Queue design pattern in Java. Discover its best practices, examples, and how to implement it effectively in your Java projects."
 category: Concurrency
 language: en
 tag:
@@ -9,10 +9,6 @@ tag:
   - Messaging
   - Event-driven
   - Scalability
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -22,7 +18,7 @@ head:
 
 ## Intent of Event Queue Design Pattern
 
-The Event Queue pattern is designed to manage tasks in an asynchronous manner, allowing applications to handle operations without blocking user interactions or other processes.
+The Event Queue pattern is designed to manage tasks in an asynchronous manner, allowing applications to handle operations without blocking user interactions or other processes. This improves scalability and system performance.
 
 ## Detailed Explanation of Event Queue Pattern with Real-World Examples
 
@@ -32,7 +28,7 @@ Real-world example
 
 In plain words
 
-> The buffer between sender and receiver improves maintainability and scalability of a system. Event queues are typically used to organise and carry out interprocess communication (IPC).
+> The buffer between sender and receiver improves maintainability and scalability of a system. Event queues are typically used to organize and carry out interprocess communication (IPC).
 
 Wikipedia says
 
@@ -166,6 +162,7 @@ Trade-offs:
 * Complexity in managing the event queue.
 * Potential for difficult-to-track bugs due to asynchronous behavior.
 * Overhead of maintaining event queue integrity and performance.
+* As the event queue model decouples the sender-receiver relationship - this means that the event-queue design pattern is unsuitable for scenarios in which the sender requires a response. For example, this is a prominent feature within online multiplayer games, therefore, this approach requires thorough consideration.
 
 ## Related Patterns
 
