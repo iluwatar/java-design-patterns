@@ -1,16 +1,12 @@
 ---
-title: Delegation
-description:
+title: "Delegation Design Pattern in Java: A Comprehensive Guide"
+description: "Explore the Delegation Design Pattern in Java with real-world examples, class diagrams, and its benefits. Learn how to enhance your code flexibility and reuse."
 category: Behavioral
 language: en
 tag:
   - Decoupling
   - Delegation
   - Object composition
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -90,7 +86,7 @@ public class PrinterController implements Printer {
 }
 ```
 
-Now on the client code printer controllers can print messages differently depending on the object they're delegating that work to.
+In the client code, printer controllers can print messages differently depending on the object they're delegating that work to.
 
 ```java
 public class App {
