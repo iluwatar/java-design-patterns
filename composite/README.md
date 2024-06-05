@@ -1,6 +1,6 @@
 ---
-title: Composite
-description:
+title: "Composite Design Pattern in Java: Structural Patterns"
+description: "Explore the Composite Design Pattern in Java. Learn how to compose objects into tree structures to represent part-whole hierarchies, making it easier to treat individual objects and compositions uniformly. Ideal for graphical user interfaces, file systems, and organizational structures."
 category: Structural
 language: en
 tag:
@@ -8,10 +8,6 @@ tag:
   - Gang of Four
   - Object composition
   - Recursion
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -21,17 +17,17 @@ head:
 
 ## Intent of Composite Design Pattern
 
-Compose objects into tree structures to represent part-whole hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
+Compose objects into tree structures to represent part-whole hierarchies. The Composite Design Pattern lets clients treat individual objects and compositions of objects uniformly.
 
 ## Detailed Explanation of Composite Pattern with Real-World Examples
 
 Real-world example
 
-> In a real-world example, consider a company with a complex organizational structure. The company consists of various departments, each of which can contain sub-departments, and ultimately individual employees. The Composite pattern can be used to represent this structure. Each department and employee are treated as a node in a tree structure, where departments can contain other departments or employees, but employees are leaf nodes with no children. This allows the company to perform operations uniformly, such as calculating total salaries or printing the organizational chart, by treating individual employees and entire departments in the same way.
+> In a real-world example, consider a company with a complex organizational structure. The company consists of various departments, each of which can contain sub-departments, and ultimately individual employees. The Composite Design Pattern can be used to represent this structure. Each department and employee are treated as a node in a tree structure, where departments can contain other departments or employees, but employees are leaf nodes with no children. This allows the company to perform operations uniformly, such as calculating total salaries or printing the organizational chart, by treating individual employees and entire departments in the same way.
 
 In plain words
 
-> Composite pattern lets clients uniformly treat the individual objects.
+> The Composite Design Pattern lets clients uniformly treat individual objects and compositions of objects.
 
 Wikipedia says
 
