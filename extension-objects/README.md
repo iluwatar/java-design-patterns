@@ -1,6 +1,6 @@
 ---
-title: Extension Objects
-description:
+title: "Extension Objects Design Pattern"
+description: "Learn about the Extension Objects Design Pattern in Java. Understand its purpose, benefits, and implementation with examples to enhance your software design."
 category: Structural
 language: en
 tag:
@@ -8,10 +8,6 @@ tag:
   - Extensibility
   - Object composition
   - Polymorphism
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -40,7 +36,7 @@ Wikipedia says
 
 The Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure, by attaching additional objects that can dynamically add new functionality.
 
-In this example, we have three types of units: `SoldierUnit`, `SergeantUnit`, and `CommanderUnit`. Each unit can have extensions that provide additional functionality. The extensions are `SoldierExtension`, `SergeantExtension`, and `CommanderExtension`.
+In this Java implementation, we have three types of units: `SoldierUnit`, `SergeantUnit`, and `CommanderUnit`. Each unit can have extensions that provide additional functionality. The extensions are `SoldierExtension`, `SergeantExtension`, and `CommanderExtension`.
 
 The `Unit` class is the base class for all units. It has a method `getUnitExtension` that returns an extension object based on the extension name.
 
