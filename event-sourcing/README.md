@@ -1,6 +1,6 @@
 ---
-title: Event Sourcing
-description:
+title: "Event Sourcing Design Pattern: Java Design Patterns Explained"
+description: "Discover the Event Sourcing design pattern in Java. Learn how it stores state changes as events and benefits complex applications. See examples and explanations on Java Design Patterns."
 category: Architectural
 language: en
 tag:
