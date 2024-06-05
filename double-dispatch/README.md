@@ -1,6 +1,6 @@
 ---
-title: Double Dispatch
-description:
+title: "Double Dispatch Pattern in Java: Implementation, Examples & Guide"
+description: "Learn the Double Dispatch Pattern in Java with detailed implementation examples. Understand how to use this design pattern to enhance your Java applications. Read our comprehensive guide."
 category: Behavioral
 language: en
 tag:
@@ -8,10 +8,6 @@ tag:
   - Dynamic typing
   - Polymorphism
   - Runtime
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -30,7 +26,7 @@ Real-world example
 
 In plain words
 
-> The Double Dispatch design pattern allows a program to select a different function to execute based on the types of two objects involved in a call, enhancing flexibility in handling interactions between them.
+> The Double Dispatch design pattern in Java allows a program to select a different function to execute based on the types of two objects involved in a call, enhancing flexibility in handling interactions between them.
 
 Wikipedia says
 
@@ -38,7 +34,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-The Double Dispatch pattern is used to handle collisions between different types of game objects. Each game object is an instance of a class that extends the `GameObject` abstract class. The `GameObject` class has method `collision`, which is overridden in each subclass to define the behavior when a collision occurs with another game object.  Here is a simplified version of the `GameObject` class and its subclasses:
+The Double Dispatch pattern in Java is used to handle collisions between different types of game objects. Each game object is an instance of a class that extends the `GameObject` abstract class. The `GameObject` class has a `collision(GameObject)` method, which is overridden in each subclass to define the behavior when a collision occurs with another game object. Here is a simplified version of the `GameObject` class and its subclasses:
 
 ```java
 public abstract class GameObject {
@@ -66,7 +62,7 @@ public class SpaceStationMir extends GameObject {
 }
 ```
 
-In the `App` class's `main` method, the Double Dispatch pattern is used to check for collisions between all pairs of game objects:
+In the App class, the Double Dispatch pattern is used to check for collisions between all pairs of game objects:
 
 ```java
 public static void main(String[] args) {
@@ -94,7 +90,7 @@ public static void main(String[] args) {
 }
 ```
 
-When a collision is detected between two objects, the `collision(GameObject)` method is called on the first object (o1) with the second object (o2) as the argument. This method call is dispatched at runtime to the appropriate `collision(GameObject)` method in the class of o1. Inside this method, another method call `gameObject.collisionWithX(this)` is made on o2 (where X is the type of o1), which is dispatched at runtime to the appropriate `collisionWithX(GameObject)` method in the class of o2. This is the "double dispatch" - two method calls are dispatched at runtime based on the types of two objects.
+When a collision is detected between two objects, the `collision(GameObject)` method is called on the first object (o1) with the second object (o2) as the argument. This method call is dispatched at runtime to the appropriate `collision(GameObject)` method in the class of o1. Inside this method, another method call `gameObject.collisionWithX(this)` is made on o2 (where X is the type of o1), which is dispatched at runtime to the appropriate `collisionWithX(GameObject)` method in the class of o2. This is the "double dispatch" in Java - two method calls are dispatched at runtime based on the types of two objects.
 
 Here is the program output:
 
