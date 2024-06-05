@@ -1,6 +1,6 @@
 ---
-title: Composite View
-description:
+title: "Composite View Pattern in Java"
+description: "Learn about the Composite View design pattern in Java, which helps in managing complex hierarchical views. This guide includes examples, applications, and benefits of using the Composite View pattern."
 category: Structural
 language: en
 tag:
@@ -8,15 +8,11 @@ tag:
   - Enterprise patterns
   - Object composition
   - Presentation
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Composite View Design Pattern
 
-The primary goal of the Composite View design pattern is to compose objects into tree structures to represent part-whole hierarchies. This allows clients to treat individual objects and compositions of objects uniformly, simplifying the management of complex structures.
+The primary goal of the Composite View design pattern is to compose objects into tree structures to represent part-whole hierarchies. This allows clients to treat individual objects and compositions of objects uniformly, simplifying the management of complex hierarchical views.
 
 ## Detailed Explanation of Composite View Pattern with Real-World Examples
 
