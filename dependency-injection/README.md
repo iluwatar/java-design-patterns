@@ -1,16 +1,12 @@
 ---
-title: Dependency Injection
-description:
+title: "Dependency Injection Design Pattern: Benefits, Examples, and Best Practices"
+description: "Learn about the Dependency Injection design pattern. Explore its benefits, real-world examples, class diagrams, and best practices for implementation in Java."
 category: Creational
 language: en
 tag:
   - Decoupling
   - Dependency management
   - Inversion of control
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -32,7 +28,7 @@ Real-world example
 
 In plain words
 
-> Dependency Injection separates creation of client's dependencies from its own behavior.
+> Dependency Injection separates the creation of the client's dependencies from its own behavior.
 
 Wikipedia says
 
@@ -130,7 +126,7 @@ The program output:
 
 ## Known Uses
 
-* Frameworks like Spring, Jakarta EE, and Google Guice use DI extensively to manage component lifecycles and dependencies.
+* Frameworks like Spring, Jakarta EE, and Google Guice use Dependency Injection (DI) extensively to manage component lifecycles and dependencies.
 * Desktop and web applications that require flexible architecture with easily interchangeable components.
 
 ## Benefits and Trade-offs of Dependency Injection Pattern
@@ -144,7 +140,7 @@ Benefits:
 Trade-offs:
 
 * Can introduce complexity in the configuration, especially in large projects.
-* Might increase the learning curve for developers unfamiliar with DI patterns or frameworks.
+* Might increase the learning curve for developers unfamiliar with Dependency Injection patterns or frameworks.
 * Requires careful management of object lifecycles and scopes.
 
 ## Related Patterns
