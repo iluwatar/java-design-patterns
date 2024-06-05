@@ -1,6 +1,6 @@
 ---
-title: Event-Driven Architecture
-description:
+title: "Event-Driven Architecture Patterns | Java Design Patterns & Examples"
+description: "Discover comprehensive guides on Event-Driven Architecture patterns with practical Java examples. Learn to implement effective event-driven systems in your projects."
 category: Architectural
 language: en
 tag:
@@ -12,10 +12,6 @@ tag:
   - Publish/subscribe
   - Reactive
   - Scalability
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
