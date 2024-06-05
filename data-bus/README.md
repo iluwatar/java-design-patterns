@@ -1,6 +1,6 @@
 ---
-title: Data Bus
-description:
+title: "Data Bus Pattern in Java: Centralized Communication and Event Handling"
+description: "Explore the Data Bus pattern in Java for centralized communication and event handling. Learn how to decouple components, enhance scalability, and maintainability with practical examples and real-world applications."
 category: Messaging
 language: en
 tag:
@@ -9,10 +9,6 @@ tag:
   - Messaging
   - Publish/subscribe
   - Scalability
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -28,11 +24,11 @@ The Data Bus design pattern aims to provide a centralized communication channel 
 
 Real-world example
 
-> Consider a large airport as an analogous real-world example of the Data Bus design pattern. In an airport, various airlines, passengers, baggage handlers, and security personnel all need to communicate and share information. Instead of each entity communicating directly with every other entity, the airport uses a centralized announcement system (the Data Bus). Flight information, security alerts, and other critical updates are broadcast over this system, and each entity listens for the messages relevant to them. This setup allows the airport to decouple the communication process, ensuring that each entity only receives the information they need, while allowing the system to scale and integrate new entities without disrupting the existing ones.
+> Consider a large airport as an analogous real-world example of the Data Bus pattern. In an airport, various airlines, passengers, baggage handlers, and security personnel all need to communicate and share information. Instead of each entity communicating directly with every other entity, the airport uses a centralized announcement system (the Data Bus). Flight information, security alerts, and other critical updates are broadcast over this system, and each entity listens for the messages relevant to them. This setup allows the airport to decouple the communication process, ensuring that each entity only receives the information they need, while allowing the system to scale and integrate new entities without disrupting the existing ones. This is similar to how the Data Bus pattern in Java promotes centralized communication and event handling, enhancing system scalability and maintainability.
 
 In plain words
 
-> Data Bus is a design pattern that is able to connect components of an application for communication simply and solely by the type of message or event that may be transferred.
+> Data Bus is a design pattern that connects components of an application for communication based on the type of message or event being transferred. This pattern promotes decoupling, making it easier to scale and maintain the system by allowing components to communicate without direct dependencies.
 
 **Programmatic Example**
 
@@ -156,8 +152,9 @@ As shown, `MessageCollectorMembers` only accept messages of type `MessageData`, 
 ## When to Use the Data Bus Pattern in Java
 
 * When multiple components need to share data or events but direct coupling is undesirable.
-* In complex systems where the flow of information varies dynamically.
+* In complex, event-driven systems where the flow of information varies dynamically.
 * In distributed systems where components might be deployed across different environments.
+* In microservices architectures for inter-service communication.
 
 ## Known Uses
 
