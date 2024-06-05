@@ -34,5 +34,5 @@ public interface BookService {
   /* List all books
    * @return all books
    */
-  public List<Book> load();
+  List<Book> load();
 }

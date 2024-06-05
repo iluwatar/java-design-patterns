@@ -36,7 +36,7 @@ public final class SetVariableCalculatorAction implements CalculatorAction {
   /**
    * Subclass tag.
    */
-  public static final String TAG = "SET_VARIABLE";
+  public static final String SET_VARIABLE = "SET_VARIABLE";
 
   /**
    * Used by {@link com.iluwatar.model.view.intent.CalculatorViewModel}.
@@ -49,6 +49,6 @@ public final class SetVariableCalculatorAction implements CalculatorAction {
    */
   @Override
   public String tag() {
-    return TAG;
+    return SET_VARIABLE;
   }
 }

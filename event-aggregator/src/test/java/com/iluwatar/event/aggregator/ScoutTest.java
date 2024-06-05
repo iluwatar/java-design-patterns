@@ -25,9 +25,8 @@
 package com.iluwatar.event.aggregator;
 
 /**
- * Date: 12/12/15 - 10:57 AM
+ * ScoutTest
  *
- * @author Jeroen Meulemeester
  */
 class ScoutTest extends EventEmitterTest<Scout> {
 

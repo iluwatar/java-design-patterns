@@ -30,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import javax.sql.DataSource;
+import lombok.SneakyThrows;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -58,49 +59,48 @@ class HotelTest {
   @Test
   void bookingRoomShouldChangeBookedStatusToTrue() throws Exception {
     hotel.bookRoom(1);
+    assertTrue(dao.getById(1).isPresent());
     assertTrue(dao.getById(1).get().isBooked());
   }
 
-  @Test()
+  @Test
   void bookingRoomWithInvalidIdShouldRaiseException() {
-    assertThrows(Exception.class, () -> {
-      hotel.bookRoom(getNonExistingRoomId());
-    });
+    assertThrows(Exception.class, () -> hotel.bookRoom(getNonExistingRoomId()));
   }
 
-  @Test()
+
+  @Test
+  @SneakyThrows
   void bookingRoomAgainShouldRaiseException() {
-    assertThrows(Exception.class, () -> {
-      hotel.bookRoom(1);
-      hotel.bookRoom(1);
-    });
+    hotel.bookRoom(1);
+    assertThrows(Exception.class, () -> hotel.bookRoom(1), "Room already booked!");
   }
 
   @Test
   void NotBookingRoomShouldNotChangeBookedStatus() throws Exception {
+    assertTrue(dao.getById(1).isPresent());
     assertFalse(dao.getById(1).get().isBooked());
   }
 
   @Test
   void cancelRoomBookingShouldChangeBookedStatus() throws Exception {
     hotel.bookRoom(1);
+    assertTrue(dao.getById(1).isPresent());
     assertTrue(dao.getById(1).get().isBooked());
+
     hotel.cancelRoomBooking(1);
+    assertTrue(dao.getById(1).isPresent());
     assertFalse(dao.getById(1).get().isBooked());
   }
 
   @Test
   void cancelRoomBookingWithInvalidIdShouldRaiseException() {
-    assertThrows(Exception.class, () -> {
-      hotel.cancelRoomBooking(getNonExistingRoomId());
-    });
+    assertThrows(Exception.class, () -> hotel.cancelRoomBooking(getNonExistingRoomId()));
   }
 
   @Test
   void cancelRoomBookingForUnbookedRoomShouldRaiseException() {
-    assertThrows(Exception.class, () -> {
-      hotel.cancelRoomBooking(1);
-    });
+    assertThrows(Exception.class, () -> hotel.cancelRoomBooking(1));
   }
 
 

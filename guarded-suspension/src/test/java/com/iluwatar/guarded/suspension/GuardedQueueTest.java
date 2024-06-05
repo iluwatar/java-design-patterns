@@ -28,11 +28,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test for Guarded Queue
+ * Test for Guarded Queue.
  */
+@Slf4j
 class GuardedQueueTest {
   private volatile Integer value;
 
@@ -46,7 +48,7 @@ class GuardedQueueTest {
     try {
       executorService.awaitTermination(30, TimeUnit.SECONDS);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      LOGGER.error("Error occurred: ", e);
     }
     assertEquals(Integer.valueOf(10), value);
   }

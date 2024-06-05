@@ -36,7 +36,6 @@ import java.util.function.Predicate;
  * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
  *
  * @param <T> the remote op's return type
- * @author George Aristy (george.aristy@gmail.com)
  */
 public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   private static final Random RANDOM = new Random();
@@ -111,4 +110,3 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
     } while (true);
   }
 }
-

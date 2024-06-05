@@ -38,9 +38,8 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/9/15 - 9:40 PM
+ * DwarvenGoldmineFacadeTest
  *
- * @author Jeroen Meulemeester
  */
 class DwarvenGoldmineFacadeTest {
 
@@ -84,7 +83,7 @@ class DwarvenGoldmineFacadeTest {
     // Now do some actual work, start digging gold!
     goldMine.digOutGold();
 
-    // Since we gave the dig command, every worker should be doing it's job ...
+    // Since we gave the dig command, every worker should be doing its job ...
     assertTrue(appender.logContains("Dwarf gold digger digs for gold."));
     assertTrue(appender.logContains("Dwarf cart operator moves gold chunks out of the mine."));
     assertTrue(appender.logContains("Dwarven tunnel digger creates another promising tunnel."));

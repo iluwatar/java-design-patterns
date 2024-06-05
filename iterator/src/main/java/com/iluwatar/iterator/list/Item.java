@@ -24,29 +24,23 @@
  */
 package com.iluwatar.iterator.list;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Item.
  */
+@AllArgsConstructor
 public class Item {
 
+  @Getter
+  @Setter
   private ItemType type;
   private final String name;
-
-  public Item(ItemType type, String name) {
-    this.setType(type);
-    this.name = name;
-  }
 
   @Override
   public String toString() {
     return name;
-  }
-
-  public ItemType getType() {
-    return type;
-  }
-
-  public final void setType(ItemType type) {
-    this.type = type;
   }
 }

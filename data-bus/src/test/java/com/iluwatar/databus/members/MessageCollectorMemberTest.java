@@ -35,7 +35,6 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for {@link MessageCollectorMember}.
  *
- * @author Paul Campbell (pcampbell@kemitix.net)
  */
 class MessageCollectorMemberTest {
 

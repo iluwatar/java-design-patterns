@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  * of detailed mechanics. You will need the pattern when you have several similar
  * subclasses. If you have to make a tiny change, then change the base class,
  * while all subclasses shouldn't have to be touched. So the base class has to be
- * able to provide all of the operations a derived class needs to perform.
+ * able to provide all the operations a derived class needs to perform.
  */
 @Slf4j
 public class App {

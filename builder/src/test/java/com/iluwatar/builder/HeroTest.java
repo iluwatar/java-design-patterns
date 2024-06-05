@@ -31,9 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/6/15 - 11:01 PM
+ * HeroTest
  *
- * @author Jeroen Meulemeester
  */
 class HeroTest {
 

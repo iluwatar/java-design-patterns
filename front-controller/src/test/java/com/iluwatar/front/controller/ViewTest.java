@@ -34,9 +34,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /**
- * Date: 12/13/15 - 1:39 PM
+ * ViewTest
  *
- * @author Jeroen Meulemeester
  */
 class ViewTest {
 

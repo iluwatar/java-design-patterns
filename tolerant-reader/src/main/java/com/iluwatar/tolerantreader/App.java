@@ -28,7 +28,7 @@ import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Tolerant Reader is an integration pattern that helps creating robust communication systems. The
+ * Tolerant Reader is an integration pattern that helps to create robust communication systems. The
  * idea is to be as tolerant as possible when reading data from another service. This way, when the
  * communication schema changes, the readers must not break.
  *

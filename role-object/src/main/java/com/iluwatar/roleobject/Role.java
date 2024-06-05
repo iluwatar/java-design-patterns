@@ -34,7 +34,7 @@ import org.slf4j.LoggerFactory;
  */
 public enum Role {
 
-  Borrower(BorrowerRole.class), Investor(InvestorRole.class);
+  BORROWER(BorrowerRole.class), INVESTOR(InvestorRole.class);
 
   private final Class<? extends CustomerRole> typeCst;
 

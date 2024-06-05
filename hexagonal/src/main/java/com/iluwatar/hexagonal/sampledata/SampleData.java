@@ -88,7 +88,7 @@ public class SampleData {
     );
     var wireTransfers = new InMemoryBank();
     PLAYERS.stream()
-        .map(PlayerDetails::getBankAccount)
+        .map(PlayerDetails::bankAccount)
         .map(e -> new SimpleEntry<>(e, RANDOM.nextInt(LotteryConstants.PLAYER_MAX_BALANCE)))
         .collect(Collectors.toMap(SimpleEntry::getKey, SimpleEntry::getValue))
         .forEach(wireTransfers::setFunds);

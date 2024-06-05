@@ -1,192 +1,143 @@
 ---
 title: Presentation Model
-category: Behavioral
+category: Architectural
 language: en
 tag:
- - Decoupling
+    - Decoupling
+    - Encapsulation
+    - Presentation
+    - Testing
 ---
 
 ## Also known as
-Application Model
+
+* Application Model
 
 ## Intent
-Presentation Model pulls the state and behavior of the view out into a model class that is part of the presentation.  
+
+To separate the logic of the user interface (UI) from the business logic by creating a model that represents the data and behavior of the UI independently.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> When we need to write a program with GUI, there is no need for us to put all presentation behavior in the view class. Because it will test become harder. So we can use Presentation Model Pattern to separate the behavior and view. The view only need to load the data and states from other class and show these data on the screen according to the states.  
+> An analogous real-world example of the Presentation Model design pattern is the relationship between a scriptwriter, an actor, and a director in a theater production. The scriptwriter creates the script (analogous to the business logic), which the actor then interprets and performs on stage (analogous to the user interface). The director acts as the intermediary, ensuring that the actor's performance aligns with the script and the vision of the play (similar to the Presentation Model coordinating the UI and the business logic). This separation allows the script to be rewritten without changing the actor's techniques or the director's interpretation, ensuring flexibility and maintainability.
 
 In plain words
 
-> a pattern that used to divide the presentation and controlling.
+> The Presentation Model design pattern separates the UI logic from the business logic by creating an intermediate model that represents the data and behavior of the UI independently, enhancing testability, maintainability, and flexibility.
 
-Code Example
+**Programmatic example**
 
-Class `view` is the GUI of albums. Methods `saveToPMod` and `loadFromPMod` are used to achieve synchronization.
+The Presentation Model design pattern is a pattern that separates the responsibility of managing the state and behavior of the GUI in a separate model class. This model class is not tied to the view and can be used to test the GUI behavior independently from the GUI itself.
 
-```java
-public class View {
-  /**
-   * the model that controls this view.
-   */
-  private final PresentationModel model;
+Let's take a look at the code provided and see how it implements the Presentation Model pattern.
 
-  private TextField txtTitle;
-  private TextField txtArtist;
-  private JCheckBox chkClassical;
-  private TextField txtComposer;
-  private JList<String> albumList;
-  private JButton apply;
-  private JButton cancel;
-
-  public View() {
-    model = new PresentationModel(PresentationModel.albumDataSet());
-  }
-
-  /**
-   * save the data to PresentationModel.
-   */
-  public void saveToPMod() {
-    LOGGER.info("Save data to PresentationModel");
-    model.setArtist(txtArtist.getText());
-    model.setTitle(txtTitle.getText());
-    model.setIsClassical(chkClassical.isSelected());
-    model.setComposer(txtComposer.getText());
-  }
-
-  /**
-   * load the data from PresentationModel.
-   */
-  public void loadFromPMod() {
-    LOGGER.info("Load data from PresentationModel");
-    txtArtist.setText(model.getArtist());
-    txtTitle.setText(model.getTitle());
-    chkClassical.setSelected(model.getIsClassical());
-    txtComposer.setEditable(model.getIsClassical());
-    txtComposer.setText(model.getComposer());
-  }
-
-  public void createView() {
-    // the detail of GUI information like size, listenser and so on.
-  }
-}
-```
-
-Class `Album` is to store information of a album.
+First, we have the `Album` class. This class represents the data model in our application. It contains properties like `title`, `artist`, `isClassical`, and `composer`.
 
 ```java
+@Setter
+@Getter
+@AllArgsConstructor
 public class Album {
-    
-  private String title;
-  private String artist;
-  private boolean isClassical;
-  /**
-   * only when the album is classical,
-   * composer can have content.
-   */
-  private String composer;
+    private String title;
+    private String artist;
+    private boolean isClassical;
+    private String composer;
 }
-
 ```
 
-Class `DisplatedAlbums` is store the information of all the albums that will be displayed on GUI.
+Next, we have the `DisplayedAlbums` class. This class is responsible for managing a collection of `Album` objects.
 
 ```java
+@Slf4j
+@Getter
 public class DisplayedAlbums {
-  private final List<Album> albums;
+    private final List<Album> albums;
 
-  public DisplayedAlbums() {
-    this.albums = new ArrayList<>();
-  }
-
-  public void addAlbums(final String title,
-                        final String artist, final boolean isClassical,
-                        final String composer) {
-    if (isClassical) {
-      this.albums.add(new Album(title, artist, true, composer));
-    } else {
-      this.albums.add(new Album(title, artist, false, ""));
+    public DisplayedAlbums() {
+        this.albums = new ArrayList<>();
     }
-  }
+
+    public void addAlbums(final String title,
+                          final String artist, final boolean isClassical,
+                          final String composer) {
+        if (isClassical) {
+            this.albums.add(new Album(title, artist, true, composer));
+        } else {
+            this.albums.add(new Album(title, artist, false, ""));
+        }
+    }
 }
 ```
 
- Class `PresentationMod` is used to control all the action of GUI.
+The `PresentationModel` class is where the Presentation Model pattern is implemented. This class is responsible for managing the state and behavior of the GUI. It contains a reference to the `DisplayedAlbums` object and provides methods for interacting with the selected album.
 
 ```java
 public class PresentationModel {
-  private final DisplayedAlbums data;
-  
-  private int selectedAlbumNumber;
-  private Album selectedAlbum;
+    
+    private final DisplayedAlbums data;
+    private int selectedAlbumNumber;
+    private Album selectedAlbum;
 
-  public PresentationModel(final DisplayedAlbums dataOfAlbums) {
-    this.data = dataOfAlbums;
-    this.selectedAlbumNumber = 1;
-    this.selectedAlbum = this.data.getAlbums().get(0);
-  }
-
-  /**
-   * Changes the value of selectedAlbumNumber.
-   *
-   * @param albumNumber the number of album which is shown on the view.
-   */
-  public void setSelectedAlbumNumber(final int albumNumber) {
-    LOGGER.info("Change select number from {} to {}",
-            this.selectedAlbumNumber, albumNumber);
-    this.selectedAlbumNumber = albumNumber;
-    this.selectedAlbum = data.getAlbums().get(this.selectedAlbumNumber - 1);
-  }
-
-  public String getTitle() {
-    return selectedAlbum.getTitle();
-  }
-  // other get methods are like this, which are used to get information of selected album.
-
-  public void setTitle(final String value) {
-    LOGGER.info("Change album title from {} to {}",
-            selectedAlbum.getTitle(), value);
-    selectedAlbum.setTitle(value);
-  }
-  // other set methods are like this, which are used to get information of selected album.
-
-  /**
-   * Gets a list of albums.
-   *
-   * @return the names of all the albums.
-   */
-  public String[] getAlbumList() {
-    var result = new String[data.getAlbums().size()];
-    for (var i = 0; i < result.length; i++) {
-      result[i] = data.getAlbums().get(i).getTitle();
+    public PresentationModel(final DisplayedAlbums dataOfAlbums) {
+        this.data = dataOfAlbums;
+        this.selectedAlbumNumber = 1;
+        this.selectedAlbum = this.data.getAlbums().get(0);
     }
-    return result;
-  }
+
+    // other methods...
 }
 ```
 
-We can run class `App` to start this demo. the checkbox is the album classical; the first text field is the name of album artist; the second is the name of album title; the last one is the name of the composer:
+The `App` class is the entry point of the application. It creates a `View` object and calls its `createView` method to start the GUI.
 
-![](./etc/result.png)
+```java
+public final class App {
+    public static void main(final String[] args) {
+        var view = new View();
+        view.createView();
+    }
+}
+```
 
-
-## Class diagram
-![](./etc/presentation-model.urm.png "presentation model")
+In this example, the `PresentationModel` class is the Presentation Model. It separates the GUI's state and behavior from the `View` class, allowing the GUI to be tested independently from the actual GUI components.
 
 ## Applicability
+
 Use the Presentation Model Pattern when
 
-* Testing a presentation through a GUI window is often awkward, and in some cases impossible.
-* Do not determine which GUI will be used.
+* Use when you want to decouple the UI from the underlying business logic to allow for easier testing, maintenance, and the ability to support multiple views or platforms.
+* Ideal for applications where the UI changes frequently or needs to be different across various platforms while keeping the core logic intact.
 
-## Related patterns
+## Known Uses
 
-- [Supervising Controller](https://martinfowler.com/eaaDev/SupervisingPresenter.html) 
-- [Passive View](https://martinfowler.com/eaaDev/PassiveScreen.html)
+* JavaFX applications: Utilizing JavaFX properties and bindings to create a clear separation between the UI and business logic.
+* Swing applications: Employing a Presentation Model to decouple Swing components from the application logic, enhancing testability and flexibility.
+* Android apps: Implementing MVVM architecture using ViewModel classes to manage UI-related data and lifecycle-aware components.
+
+## Consequences
+
+Benefits:
+
+* Decoupling: Enhances [separation of concerns](https://java-design-patterns.com/principles/#separation-of-concerns), making the system more modular and testable.
+* Testability: Facilitates unit testing of UI logic without the need for actual UI components.
+* Maintainability: Simplifies maintenance by isolating changes to the UI or business logic.
+* Flexibility: Supports multiple views for the same model, making it easier to adapt the UI for different platforms.
+
+Trade-offs:
+
+* Complexity: Can introduce additional layers and complexity in the application architecture.
+* Learning Curve: May require a deeper understanding of binding mechanisms and state management.
+
+## Related Patterns
+
+* [Model-View-Controller (MVC)](https://java-design-patterns.com/patterns/model-view-controller/): Similar in that it separates concerns, but Presentation Model encapsulates more of the view logic.
+* [Model-View-Presenter (MVP)](https://java-design-patterns.com/patterns/model-view-presenter/): Another UI pattern focusing on separation of concerns, but with a different interaction model.
+* [Observer](https://java-design-patterns.com/patterns/observer/): Often used within the Presentation Model to update the UI when the model changes.
 
 ## Credits
 
-* [Presentation Model Patterns](https://martinfowler.com/eaaDev/PresentationModel.html)
-
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Presentation Model (Martin Fowler)](https://martinfowler.com/eaaDev/PresentationModel.html)

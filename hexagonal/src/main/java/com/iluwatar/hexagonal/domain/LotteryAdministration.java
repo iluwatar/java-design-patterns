@@ -68,8 +68,8 @@ public class LotteryAdministration {
     var tickets = getAllSubmittedTickets();
     for (var id : tickets.keySet()) {
       var lotteryTicket = tickets.get(id);
-      var playerDetails = lotteryTicket.getPlayerDetails();
-      var playerAccount = playerDetails.getBankAccount();
+      var playerDetails = lotteryTicket.playerDetails();
+      var playerAccount = playerDetails.bankAccount();
       var result = LotteryUtils.checkTicketForPrize(repository, id, numbers).getResult();
       if (result == LotteryTicketCheckResult.CheckResult.WIN_PRIZE) {
         if (wireTransfers.transferFunds(PRIZE_AMOUNT, SERVICE_BANK_ACCOUNT, playerAccount)) {

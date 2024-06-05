@@ -26,7 +26,6 @@ package com.iluwatar.gateway;
 
 
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
 
 /**
 * ExternalServiceA is one of external services.
@@ -40,4 +39,3 @@ class ExternalServiceA implements Gateway {
     Thread.sleep(1000);
   }
 }
-

@@ -54,7 +54,6 @@ import org.slf4j.LoggerFactory;
  * <p>To keep the calling code as decoupled as possible from this workaround, we have implemented
  * the retry mechanism as a {@link BusinessOperation} named {@link Retry}.
  *
- * @author George Aristy (george.aristy@gmail.com)
  * @see <a href="https://docs.microsoft.com/en-us/azure/architecture/patterns/retry">Retry pattern
  *     (Microsoft Azure Docs)</a>
  */

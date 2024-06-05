@@ -33,12 +33,8 @@ import units.CommanderUnit;
 /**
  * Class defining Commander.
  */
-@Getter
-@RequiredArgsConstructor
 @Slf4j
-public class Commander implements CommanderExtension {
-
-  private final CommanderUnit unit;
+public record Commander(CommanderUnit unit) implements CommanderExtension {
 
   @Override
   public void commanderReady() {

@@ -24,9 +24,14 @@
  */
 package com.iluwatar.parameter.object;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * ParameterObject.
  */
+@Getter
+@Setter
 public class ParameterObject {
 
   /**
@@ -54,30 +59,6 @@ public class ParameterObject {
 
   public static Builder newBuilder() {
     return new Builder();
-  }
-
-  public String getType() {
-    return type;
-  }
-
-  public void setType(String type) {
-    this.type = type;
-  }
-
-  public String getSortBy() {
-    return sortBy;
-  }
-
-  public void setSortBy(String sortBy) {
-    this.sortBy = sortBy;
-  }
-
-  public SortOrder getSortOrder() {
-    return sortOrder;
-  }
-
-  public void setSortOrder(SortOrder sortOrder) {
-    this.sortOrder = sortOrder;
   }
 
   @Override

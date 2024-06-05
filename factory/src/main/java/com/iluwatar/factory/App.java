@@ -31,7 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  * create and return objects of varying classes, in order to hide the implementation logic 
  * and makes client code focus on usage rather than objects initialization and management.
  *
- * <p>In this example an alchemist manufactures coins. CoinFactory is the factory class and it
+ * <p>In this example an alchemist manufactures coins. CoinFactory is the factory class, and it
  * provides a static method to create different types of coins.
  */
 

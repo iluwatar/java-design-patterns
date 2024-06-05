@@ -1,38 +1,49 @@
 ---
 title: Page Object
-category: Structural
+category: Testing
 language: en
 tag:
-- Decoupling
+    - Abstraction
+    - Code simplification
+    - Decoupling
+    - Encapsulation
+    - Testing
+    - Web development
 ---
 
-# Page Object Pattern in Java
+## Also known as
 
-## Real World Example
-
-Consider a web automation scenario where you need to interact with a web page using a test framework like Selenium. The Page Object pattern can be applied to model each web page as a Java class. Each class encapsulates the structure and behavior of the corresponding web page, making it easier to manage and update the automation code.
+* Page Object Model (POM)
 
 ## Intent
 
-Page Object encapsulates the UI, hiding the underlying UI widgetry of an application (commonly a web application) and providing an application-specific API to allow the manipulation of UI components required for tests. In doing so, it allows the test class itself to focus on the test logic instead.
+The Page Object pattern aims to create a model of the UI elements of a web page to improve the maintainability and readability of test automation code.
 
-## In Plain Words
+## Explanation
 
-The Page Object pattern in Java is a design pattern used in test automation to represent web pages as Java classes. Each class corresponds to a specific web page and contains methods to interact with the elements on that page. This pattern enhances code maintainability and readability in automated testing.
+Real-world example
 
-## Wikipedia Says
+> Imagine a large corporate office where a receptionist directs visitors to the appropriate department. The receptionist serves as a single point of contact for all incoming visitors, simplifying the process of navigation within the building. Each department provides the receptionist with specific instructions on how to direct visitors to their office.
+>
+> In this analogy, the receptionist is like a Page Object in a testing framework. The receptionist abstracts the complexities of the office layout from the visitors, just as the Page Object abstracts the details of interacting with web elements from the test scripts. When the layout of the office changes, only the receptionist's instructions need to be updated, not the way visitors are directed, similar to how only the Page Object needs to be updated when the web UI changes, not the test scripts.
 
-While there isn't a specific Wikipedia entry for the Page Object pattern, it is widely used in software testing, particularly in the context of UI automation. The Page Object pattern helps abstract the details of a web page, providing a cleaner and more maintainable way to interact with web elements in automated tests.
+In plain words
 
-## Programmatic Example
+> The Page Object design pattern creates an abstraction layer for web pages, encapsulating their elements and interactions to simplify and maintain automated testing scripts.
 
-Let's create a simple programmatic example of the Page Object pattern for a login page using Selenium in Java:
+selenium.dev says
+
+> Within your web app’s UI, there are areas where your tests interact with. A Page Object only models these as objects within the test code. This reduces the amount of duplicated code and means that if the UI changes, the fix needs only to be applied in one place.
+>
+> Page Object is a Design Pattern that has become popular in test automation for enhancing test maintenance and reducing code duplication. A page object is an object-oriented class that serves as an interface to a page of your AUT. The tests then use the methods of this page object class whenever they need to interact with the UI of that page. The benefit is that if the UI changes for the page, the tests themselves don’t need to change, only the code within the page object needs to change. Subsequently, all changes to support that new UI are located in one place.
+
+**Programmatic example**
+
+The Page Object design pattern is a popular design pattern in test automation. It helps in enhancing test maintenance and reducing code duplication. A page object is an object-oriented class that serves as an interface to a page of your Application Under Test (AUT). The tests then use the methods of this page object class whenever they need to interact with the UI of that page. The benefit is that if the UI changes for the page, the tests themselves don’t need to change, only the code within the page object needs to change. Subsequently, all changes to support that new UI are located in one place.
+
+Let's consider a simple programmatic example of the Page Object pattern for a login page using Selenium in Java:
 
 ```java
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 public class LoginPage {
     private final WebDriver driver;
 
@@ -74,13 +85,41 @@ This Page Object can be used in test scripts to interact with the login page wit
 
 Use the Page Object pattern when
 
-* You are writing automated tests for your web application and you want to separate the UI manipulation required for the tests from the actual test logic.
-* Make your tests less brittle, and more readable and robust
+* Automating tests for web applications.
+* You want to separate the UI actions from the test logic.
+* Enhancing test code readability and reducing duplication.
+* Simplifying maintenance when the web UI changes.
 
-## Another example with Class diagram
-![alt text](./etc/page-object.png "Page Object")
+## Known Uses
+
+* Selenium WebDriver tests for web applications.
+* Automated UI testing frameworks in Java.
+* Popular test automation frameworks like TestNG and JUnit.
+
+## Consequences
+
+Benefits:
+
+* Encapsulation: Isolates the page elements and actions from test scripts.
+* Code simplification: Reduces code duplication and improves readability.
+* Maintainability: Easy to update when the UI changes, as changes are confined to page objects.
+* Abstraction: Test scripts focus on what the user does rather than how the actions are performed on the UI.
+
+Trade-offs:
+
+* Initial Setup: Requires extra effort to design and implement page objects.
+* Complexity: Overuse may lead to a complex structure with many page objects and methods.
+
+## Related Patterns
+
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used alongside Page Objects to add additional responsibilities to objects dynamically.
+* [Facade](https://java-design-patterns.com/patterns/facade/): Both provide a simplified interface to a complex subsystem. Page Object abstracts the complexities of the UI.
+* [Proxy](https://java-design-patterns.com/patterns/proxy/): Acts as a surrogate or placeholder, which can also be used for lazy initialization of page objects.
 
 ## Credits
 
-* [Martin Fowler - PageObject](http://martinfowler.com/bliki/PageObject.html)
-* [Selenium - Page Objects](https://github.com/SeleniumHQ/selenium/wiki/PageObjects)
+* [Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation](https://amzn.to/4bjhTSK)
+* [Selenium Design Patterns and Best Practices](https://amzn.to/4aofYv8)
+* [Selenium Testing Tools Cookbook](https://amzn.to/3K1QxEN)
+* [Page Object (Martin Fowler)](http://martinfowler.com/bliki/PageObject.html)
+* [Page Objects (Selenium)](https://github.com/SeleniumHQ/selenium/wiki/PageObjects)

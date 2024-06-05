@@ -24,14 +24,16 @@
  */
 package com.iluwatar.datamapper;
 
+import java.io.Serial;
+
 /**
  * Using Runtime Exception for avoiding dependency on implementation exceptions. This helps in
  * decoupling.
  *
- * @author amit.dixit
  */
 public final class DataMapperException extends RuntimeException {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   /**

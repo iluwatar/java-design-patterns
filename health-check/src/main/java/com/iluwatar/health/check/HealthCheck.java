@@ -35,7 +35,6 @@ import lombok.Data;
  * An entity class that represents a health check record in the database. This class is used to
  * persist the results of health checks performed by the `DatabaseTransactionHealthIndicator`.
  *
- * @author ydoksanbir
  */
 @Entity
 @Data

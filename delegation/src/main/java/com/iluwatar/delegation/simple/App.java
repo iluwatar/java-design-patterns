@@ -38,9 +38,9 @@ import com.iluwatar.delegation.simple.printers.HpPrinter;
  *
  * <p>In this example the delegates are {@link EpsonPrinter}, {@link HpPrinter} and {@link
  * CanonPrinter} they all implement {@link Printer}. The {@link PrinterController} class also
- * implements {@link Printer}. However neither provide the functionality of {@link Printer} by
+ * implements {@link Printer}. However, neither provide the functionality of {@link Printer} by
  * printing to the screen, they actually call upon the instance of {@link Printer} that they were
- * instantiated with. Therefore delegating the behaviour to another class.
+ * instantiated with. Therefore, delegating the behaviour to another class.
  */
 public class App {
 

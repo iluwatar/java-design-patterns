@@ -29,67 +29,49 @@ In plain words
 
 **Programmatic Example**
 
-Managing transactions across different services in a distributed system, such as an e-commerce platform with separate Payment and Shipping microservices, requires careful coordination to avoid issues. When a user places an order but one service (e.g., Payment) is unavailable while the other (e.g., Shipping) is ready, we need a robust solution to handle this discrepancy.
+Managing transactions across different services in a distributed system, such as an e-commerce platform with separate `Payment` and `Shipping` microservices, requires careful coordination to avoid issues. When a user places an order but one service (e.g., `Payment`) is unavailable while the other (e.g., `Shipping`) is ready, we need a robust solution to handle this discrepancy.
 
-A strategy to address this involves using a Commander component that orchestrates the process. Initially, the order is processed by the available service (Shipping in this case). The commander then attempts to synchronize the order with the currently unavailable service (Payment) by storing the order details in a database or queueing it for future processing. This queueing system must also account for possible failures in adding requests to the queue.
+A strategy to address this involves using a `Commander` component that orchestrates the process. Initially, the order is processed by the available service (`Shipping` in this case). The `Commander` then attempts to synchronize the order with the currently unavailable service (`Payment`) by storing the order details in a database or queueing it for future processing. This queueing system must also account for possible failures in adding requests to the queue.
 
-The commander repeatedly tries to process the queued orders to ensure both services eventually reflect the same transaction data. This process involves ensuring idempotence, meaning that even if the same order synchronization request is made multiple times, it will only be executed once, preventing duplicate transactions. The goal is to achieve eventual consistency across services, where all systems are synchronized over time despite initial failures or delays.
+The `Commander` repeatedly tries to process the queued orders to ensure both services eventually reflect the same transaction data. This process involves ensuring idempotence, meaning that even if the same order synchronization request is made multiple times, it will only be executed once, preventing duplicate transactions. The goal is to achieve eventual consistency across services, where all systems are synchronized over time despite initial failures or delays.
 
-In the provided code, the Commander pattern is used to handle distributed transactions across multiple services (PaymentService, ShippingService, MessagingService, EmployeeHandle). Each service has its own database and can throw exceptions to simulate failures.
-
-The Commander class is the central part of this pattern. It takes instances of all services and their databases, along with some configuration parameters. The placeOrder method in the Commander class is used to place an order, which involves interacting with all the services.
+Here's a simplified example of how the `Commander` class is used in the `AppAllCases` class:
 
 ```java
-public class Commander {
-    // ... constructor and other methods ...
+public class AppAllCases {
+  // ... other methods ...
 
-    public void placeOrder(Order order) {
-        // ... implementation ...
-    }
+  // Shipping Database Fail Cases
+  void itemUnavailableCase() {
+    var ps = new PaymentService(new PaymentDatabase());
+    var ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
+    var ms = new MessagingService(new MessagingDatabase());
+    var eh = new EmployeeHandle(new EmployeeDatabase());
+    var qdb = new QueueDatabase();
+    // Create a Commander instance
+    var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
+    var user = new User("Jim", "ABCD");
+    var order = new Order(user, "book", 10f);
+    // Use the Commander instance to place an order
+    c.placeOrder(order);
+  }
+
+  // ... other methods ...
 }
 ```
 
-The User and Order classes represent a user and an order respectively. An order is placed by a user.
+In the `itemUnavailableCase` method, a `Commander` instance is created with the respective services and their databases. Then, a `User` and an `Order` are created, and the `placeOrder` method of the `Commander` instance is called with the order. This triggers the process of placing the order and handling any failures according to the Commander pattern.
 
-```java
-public class User {
-    // ... constructor and other methods ...
-}
+The `Commander` class encapsulates the logic for handling the order placement and any potential failures. This separation of concerns makes the code easier to understand and maintain, and it allows for the reuse of the `Commander` class in different parts of the application.  In a real-world application, the `Commander` class would be more complex and would include additional logic for handling different types of failures, retrying failed operations, and coordinating transactions across multiple services.
 
-public class Order {
-    // ... constructor and other methods ...
-}
+Here is the output from executing the `itemUnavailableCase`:
+
 ```
-
-Each service (e.g., PaymentService, ShippingService, MessagingService, EmployeeHandle) has its own database and can throw exceptions to simulate failures. For example, the PaymentService might throw a DatabaseUnavailableException if its database is unavailable.
-
-```java
-public class PaymentService {
-    // ... constructor and other methods ...
-}
+09:10:13.894 [main] DEBUG com.iluwatar.commander.Commander -- Order YN3V8B7IL2PI: Error in creating shipping request..
+09:10:13.896 [main] INFO com.iluwatar.commander.Commander -- This item is currently unavailable. We will inform you as soon as the item becomes available again.
+09:10:13.896 [main] INFO com.iluwatar.commander.Commander -- Order YN3V8B7IL2PI: Item book unavailable, trying to add problem to employee handle..
+09:10:13.897 [Thread-0] INFO com.iluwatar.commander.Commander -- Order YN3V8B7IL2PI: Added order to employee database
 ```
-
-The DatabaseUnavailableException, ItemUnavailableException, and ShippingNotPossibleException classes represent different types of exceptions that can occur.
-
-```java
-public class DatabaseUnavailableException extends Exception {
-    // ... constructor and other methods ...
-}
-
-public class ItemUnavailableException extends Exception {
-    // ... constructor and other methods ...
-}
-
-public class ShippingNotPossibleException extends Exception {
-    // ... constructor and other methods ...
-}
-```
-
-In the main method of each class (AppQueueFailCases, AppShippingFailCases), different scenarios are simulated by creating instances of the Commander class with different configurations and calling the placeOrder method.
-
-## Class diagram
-
-![alt text](./etc/commander.urm.png "Commander class diagram")
 
 ## Applicability
 
@@ -121,11 +103,11 @@ Trade-offs:
 
 ## Related Patterns
 
-[Saga Pattern](https://java-design-patterns.com/patterns/saga/): Often discussed in tandem with the Commander pattern for distributed transactions, focusing on long-lived transactions with compensating actions.
+* [Saga Pattern](https://java-design-patterns.com/patterns/saga/): Often discussed in tandem with the Commander pattern for distributed transactions, focusing on long-lived transactions with compensating actions.
 
 ## Credits
 
-* [Distributed Transactions: The Icebergs of Microservices](https://www.grahamlea.com/2016/08/distributed-transactions-microservices-icebergs/)
-* [Microservices Patterns: With examples in Java](https://amzn.to/4axjnYW)
-* [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/4axHwOV)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/4aATcRe)
+* [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/4axHwOV)
+* [Microservices Patterns: With examples in Java](https://amzn.to/4axjnYW)
+* [Distributed Transactions: The Icebergs of Microservices (Graham Lea)](https://www.grahamlea.com/2016/08/distributed-transactions-microservices-icebergs/)

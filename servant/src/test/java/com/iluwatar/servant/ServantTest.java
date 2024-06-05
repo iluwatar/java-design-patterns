@@ -34,9 +34,8 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/28/15 - 10:02 PM
+ * ServantTest
  *
- * @author Jeroen Meulemeester
  */
 class ServantTest {
 

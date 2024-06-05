@@ -24,8 +24,7 @@
  */
 package com.iluwatar.versionnumber;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * This repository represents simplified database.
@@ -34,7 +33,8 @@ import java.util.Map;
  * as much as in real databases.
  */
 public class BookRepository {
-  private final Map<Long, Book> collection = new HashMap<>();
+  private final ConcurrentHashMap<Long, Book> collection = new ConcurrentHashMap<>();
+  private final Object lock = new Object();
 
   /**
    * Adds book to collection.
@@ -57,19 +57,22 @@ public class BookRepository {
       throw new BookNotFoundException("Not found book with id: " + book.getId());
     }
 
-    var latestBook = collection.get(book.getId());
-    if (book.getVersion() != latestBook.getVersion()) {
-      throw new VersionMismatchException(
-        "Tried to update stale version " + book.getVersion()
-          + " while actual version is " + latestBook.getVersion()
-      );
+    // used synchronized block to ensure only one thread compares and update the version
+    synchronized (lock) {
+      var latestBook = collection.get(book.getId());
+      if (book.getVersion() != latestBook.getVersion()) {
+        throw new VersionMismatchException(
+            "Tried to update stale version " + book.getVersion()
+                + " while actual version is " + latestBook.getVersion()
+        );
+      }
+
+      // update version, including client representation - modify by reference here
+      book.setVersion(book.getVersion() + 1);
+
+      // save book copy to repository
+      collection.put(book.getId(), new Book(book));
     }
-
-    // update version, including client representation - modify by reference here
-    book.setVersion(book.getVersion() + 1);
-
-    // save book copy to repository
-    collection.put(book.getId(), new Book(book));
   }
 
   /**

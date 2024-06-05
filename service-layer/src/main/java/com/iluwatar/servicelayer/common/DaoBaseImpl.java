@@ -93,7 +93,7 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
   @Override
   public E merge(E entity) {
     Transaction tx = null;
-    E result = null;
+    E result;
     try (var session = getSessionFactory().openSession()) {
       tx = session.beginTransaction();
       result = (E) session.merge(entity);

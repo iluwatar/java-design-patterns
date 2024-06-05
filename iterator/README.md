@@ -3,34 +3,35 @@ title: Iterator
 category: Behavioral
 language: en
 tag:
- - Gang of Four
+    - Data access
+    - Data transformation
+    - Decoupling
+    - Gang of Four
+    - Object composition
+    - Polymorphism
 ---
 
 ## Also known as
 
-Cursor
+* Cursor
 
 ## Intent
-Provide a way to access the elements of an aggregate object sequentially without exposing its 
-underlying representation.
+
+The Iterator pattern provides a way to access elements of an aggregate object sequentially without exposing its underlying representation.
 
 ## Explanation
 
 Real-world example
 
-> Treasure chest contains a set of magical items. There multiple types of items such as rings, 
-> potions, and weapons. The items can be browsed by type using an iterator the treasure chest 
-> provides. 
+> Imagine visiting a library with a vast collection of books organized in different sections such as fiction, non-fiction, science, etc. Instead of searching through every shelf yourself, the librarian provides you with a specific guidebook or a digital catalog for each section. This guidebook acts as an "iterator," allowing you to go through the books section by section, or even skip to specific types of books, without needing to know how the books are organized on the shelves. Each guidebook handles the traversal through its section, providing a consistent and efficient way to access the books, much like how the Iterator design pattern offers a uniform method to traverse different data structures in a software application.
 
 In plain words
 
-> Containers can provide a representation agnostic iterator interface to provide access to the 
-> elements. 
+> The Iterator design pattern provides a way to access the elements of a collection sequentially without exposing the underlying structure of the collection.
 
 Wikipedia says
 
-> In object-oriented programming, the iterator pattern is a design pattern in which an iterator is 
-> used to traverse a container and access the container's elements.
+> In object-oriented programming, the iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements.
 
 **Programmatic Example**
 
@@ -110,25 +111,101 @@ public interface Iterator<T> {
 }
 ```
 
-In the following example, we iterate through the ring-type items found in the chest. 
+In the following example, we demonstrate different kinds of iterators.
 
 ```java
-var itemIterator = TREASURE_CHEST.iterator(ItemType.RING);
-while (itemIterator.hasNext()) {
-  LOGGER.info(itemIterator.next().toString());
+@Slf4j
+public class App {
+
+    private static final TreasureChest TREASURE_CHEST = new TreasureChest();
+
+    private static void demonstrateTreasureChestIteratorForType(ItemType itemType) {
+        LOGGER.info("------------------------");
+        LOGGER.info("Item Iterator for ItemType " + itemType + ": ");
+        var itemIterator = TREASURE_CHEST.iterator(itemType);
+        while (itemIterator.hasNext()) {
+            LOGGER.info(itemIterator.next().toString());
+        }
+    }
+
+    private static void demonstrateBstIterator() {
+        LOGGER.info("------------------------");
+        LOGGER.info("BST Iterator: ");
+        var root = buildIntegerBst();
+        var bstIterator = new BstIterator<>(root);
+        while (bstIterator.hasNext()) {
+            LOGGER.info("Next node: " + bstIterator.next().getVal());
+        }
+    }
+
+    private static TreeNode<Integer> buildIntegerBst() {
+        var root = new TreeNode<>(8);
+
+        root.insert(3);
+        root.insert(10);
+        root.insert(1);
+        root.insert(6);
+        root.insert(14);
+        root.insert(4);
+        root.insert(7);
+        root.insert(13);
+
+        return root;
+    }
+
+    public static void main(String[] args) {
+        demonstrateTreasureChestIteratorForType(RING);
+        demonstrateTreasureChestIteratorForType(POTION);
+        demonstrateTreasureChestIteratorForType(WEAPON);
+        demonstrateTreasureChestIteratorForType(ANY);
+        demonstrateBstIterator();
+    }
 }
 ```
 
 Program output:
 
-```java
-Ring of shadows
-Ring of armor
 ```
-
-## Class diagram
-
-![alt text](./etc/iterator_1.png "Iterator")
+13:36:37.087 [main] INFO com.iluwatar.iterator.App -- ------------------------
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Item Iterator for ItemType RING: 
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Ring of shadows
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Ring of armor
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- ------------------------
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Item Iterator for ItemType POTION: 
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of courage
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of wisdom
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of blood
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of rust
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of healing
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- ------------------------
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Item Iterator for ItemType WEAPON: 
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Sword of silver +1
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Steel halberd
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Dagger of poison
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- ------------------------
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Item Iterator for ItemType ANY: 
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of courage
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Ring of shadows
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of wisdom
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of blood
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Sword of silver +1
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of rust
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Potion of healing
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Ring of armor
+13:36:37.089 [main] INFO com.iluwatar.iterator.App -- Steel halberd
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Dagger of poison
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- ------------------------
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- BST Iterator: 
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 1
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 3
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 4
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 6
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 7
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 8
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 10
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 13
+13:36:37.090 [main] INFO com.iluwatar.iterator.App -- Next node: 14
+```
 
 ## Applicability
 
@@ -140,14 +217,34 @@ Use the Iterator pattern
 
 ## Tutorials
 
-* [How to Use Iterator?](http://www.tutorialspoint.com/java/java_using_iterator.htm)
+* [Java - How to Use Iterator? (TutorialsPoint)](http://www.tutorialspoint.com/java/java_using_iterator.htm)
 
 ## Known uses
 
+* Java Collections Framework utilizes iterators extensively to allow different ways to traverse through collections.
+* Databases often use iterators to navigate through data records fetched through SQL queries.
 * [java.util.Iterator](http://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html)
 * [java.util.Enumeration](http://docs.oracle.com/javase/8/docs/api/java/util/Enumeration.html)
 
+## Consequences
+
+Benefits:
+
+* Reduces the coupling between data structures and algorithms used for iteration.
+* Provides a uniform interface for iterating over various types of data structures, enhancing code reusability and flexibility.
+
+Trade-offs:
+
+* Overhead of using an iterator object may slightly reduce performance compared to direct traversal methods.
+* Complex aggregate structures may require complex iterators that can be difficult to manage or extend.
+
+## Related Patterns
+
+* [Composite](https://java-design-patterns.com/patterns/composite/): Iterators are often used to traverse Composite trees.
+* [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Used to create appropriate iterators for different data structures.
+* [Visitor](https://java-design-patterns.com/patterns/visitor/): Can be used with Iterator to apply operations over elements of an object structure.
+
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

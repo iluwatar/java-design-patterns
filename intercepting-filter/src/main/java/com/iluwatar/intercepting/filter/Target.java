@@ -28,6 +28,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Serial;
 import java.util.stream.IntStream;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -41,10 +42,10 @@ import javax.swing.table.DefaultTableModel;
 /**
  * This is where the requests are displayed after being validated by filters.
  *
- * @author mjoshzambales
  */
 public class Target extends JFrame { //NOSONAR
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   private final JTable jt;

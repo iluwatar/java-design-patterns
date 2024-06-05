@@ -34,9 +34,8 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Date: 28/04/17 - 7:40 AM
+ * AdvancedSorceressTest
  *
- * @author Stanislav Kapinus
  */
 
 class AdvancedSorceressTest {
@@ -58,7 +57,7 @@ class AdvancedSorceressTest {
    * her through the setter's parameter
    */
   @Test
-  void testSmokeEveryThing() throws Exception {
+  void testSmokeEveryThing() {
 
     List<Tobacco> tobaccos = List.of(
         new OldTobyTobacco(),

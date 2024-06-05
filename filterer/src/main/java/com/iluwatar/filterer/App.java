@@ -42,7 +42,7 @@ import lombok.extern.slf4j.Slf4j;
  * objects are systems that are aware of threats that they can be vulnerable to. We would like
  * to have a way to create copy of different system objects but with filtered threats.
  * The thing is to keep it simple if we add new subtype of {@link Threat}
- * (for example {@link ProbableThreat}) - we still need to be able to filter by it's properties.
+ * (for example {@link ProbableThreat}) - we still need to be able to filter by its properties.
  */
 @Slf4j
 public class App {

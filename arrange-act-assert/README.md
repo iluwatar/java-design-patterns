@@ -3,31 +3,30 @@ title: Arrange/Act/Assert
 category: Testing
 language: en
 tag:
-    - Idiom
+    - Code simplification
+    - Isolation
     - Testing
 ---
 
 ## Also known as
 
-Given/When/Then
+* Given/When/Then
 
 ## Intent
 
-Arrange/Act/Assert (AAA) is a pattern for organizing unit tests. It breaks tests down into three clear and distinct steps:
-
-1. Arrange: Perform the setup and initialization required for the test.
-2. Act: Take action(s) required for the test.
-3. Assert: Verify the outcome(s) of the test.
+To structure unit tests clearly by dividing them into three distinct sections: setup (Arrange), execution (Act), and verification (Assert).
 
 ## Explanation
 
-This pattern has several significant benefits. It creates a clear separation between a test's setup, operations, and results. This structure makes the code easier to read and understand. If you place the steps in order and format your code to separate them, you can scan a test and quickly comprehend what it does.
-
-It also enforces a certain degree of discipline when you write your tests. You have to think clearly about the three steps your test will perform. It makes tests more natural to write at the same time since you already have an outline.
-
 Real world example
 
-> We need to write comprehensive and clear unit test suite for a class.
+> Imagine you are organizing a small event. To ensure everything runs smoothly, you follow a pattern similar to Arrange/Act/Assert:
+>
+> 1. **Arrange**: You set up the venue, prepare the guest list, arrange seating, and organize the catering.
+> 2. **Act**: You conduct the event according to the plan, welcoming guests, serving food, and following the schedule.
+> 3. **Assert**: After the event, you evaluate its success by checking guest feedback, ensuring all tasks were completed, and reviewing if everything went as planned.
+>
+> This clear separation of preparation, execution, and evaluation helps ensure the event is well-organized and successful, mirroring the structured approach of the Arrange/Act/Assert pattern in software testing.
 
 In plain words
 
@@ -38,6 +37,8 @@ WikiWikiWeb says
 > Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods.
 
 **Programmatic Example**
+
+We need to write comprehensive and clear unit test suite for a class.
 
 Let's first introduce our `Cash` class to be unit tested.
 
@@ -151,10 +152,10 @@ Trade-offs:
 
 ## Credits
 
-* [Arrange, Act, Assert: What is AAA Testing?](https://blog.ncrunch.net/post/arrange-act-assert-aaa-testing.aspx)
-* [Bill Wake: 3A – Arrange, Act, Assert](https://xp123.com/articles/3a-arrange-act-assert/)
-* [Martin Fowler: GivenWhenThen](https://martinfowler.com/bliki/GivenWhenThen.html)
-* [xUnit Test Patterns: Refactoring Test Code](https://www.amazon.com/gp/product/0131495054/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0131495054&linkId=99701e8f4af2f7e8dd50d720c9b63dbf)
-* [Unit Testing Principles, Practices, and Patterns](https://www.amazon.com/gp/product/1617296279/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=1617296279&linkId=74c75cf22a63c3e4758ae08aa0a0cc35)
-* [Test Driven Development: By Example](https://www.amazon.com/gp/product/0321146530/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0321146530&linkId=5c63a93d8c1175b84ca5087472ef0e05)
 * [The Art of Unit Testing: with examples in C#](https://amzn.to/49IbdwO)
+* [Test Driven Development: By Example](https://amzn.to/3wEwKbF)
+* [Unit Testing Principles, Practices, and Patterns: Effective testing styles, patterns, and reliable automation for unit testing, mocking, and integration testing with examples in C#](https://amzn.to/4ayjpiM)
+* [xUnit Test Patterns: Refactoring Test Code](https://amzn.to/4dHGDpm)
+* [Arrange, Act, Assert: What is AAA Testing?](https://blog.ncrunch.net/post/arrange-act-assert-aaa-testing.aspx)
+* [Bill Wake: 3A – Arrange, Act, Assert (NCrunch)](https://xp123.com/articles/3a-arrange-act-assert/)
+* [GivenWhenThen (Martin Fowler)](https://martinfowler.com/bliki/GivenWhenThen.html)

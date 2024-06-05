@@ -73,7 +73,7 @@ public class ArmsDealer implements UnitOfWork<Weapon> {
    */
   @Override
   public void commit() {
-    if (context == null || context.size() == 0) {
+    if (context == null || context.isEmpty()) {
       return;
     }
     LOGGER.info("Commit started");

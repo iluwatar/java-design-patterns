@@ -31,7 +31,6 @@ import lombok.extern.slf4j.Slf4j;
  * process the request. The reference for this service is to be looked upon in the JNDI server that
  * can be set in the web.xml deployment descriptor
  *
- * @author saifasif
  */
 @Slf4j
 public class ServiceImpl implements Service {

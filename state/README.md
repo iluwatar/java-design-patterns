@@ -3,25 +3,30 @@ title: State
 category: Behavioral
 language: en
 tag:
- - Gang of Four
+    - Decoupling
+    - Gang of Four
+    - State tracking
 ---
 
 ## Also known as
 
-Objects for States
+* Objects for States
 
 ## Intent
 
-Allow an object to alter its behavior when its internal state changes. The object will appear to 
-change its class.
+Allow an object to alter its behavior when its internal state changes. The object will appear to change its class.
 
 ## Explanation
 
 Real-world example
 
-> When observing a mammoth in its natural habitat it seems to change its behavior based on the 
-> situation. It may first appear calm, but over time when it detects a threat, it gets angry and 
-> dangerous to its surroundings.  
+> Imagine a traffic light system at an intersection. The traffic light can be in one of three states: Green, Yellow, or Red. Depending on the current state, the traffic light's behavior changes:
+>
+> 1. **Green State**: Cars are allowed to pass through the intersection.
+> 2. **Yellow State**: Cars are warned that the light will soon turn red, so they should prepare to stop.
+> 3. **Red State**: Cars must stop and wait for the light to turn green.
+>
+> In this scenario, the traffic light uses the State design pattern. Each state (Green, Yellow, Red) is represented by a different object that defines what happens in that particular state. The traffic light (context) delegates the behavior to the current state object. When the state changes (e.g., from Green to Yellow), the traffic light updates its state object and changes its behavior accordingly. 
 
 In plain words
 
@@ -29,14 +34,13 @@ In plain words
 
 Wikipedia says
 
-> The state pattern is a behavioral software design pattern that allows an object to alter its 
-> behavior when its internal state changes. This pattern is close to the concept of finite-state 
-> machines. The state pattern can be interpreted as a strategy pattern, which is able to switch a 
-> strategy through invocations of methods defined in the pattern's interface.
+> The state pattern is a behavioral software design pattern that allows an object to alter its behavior when its internal state changes. This pattern is close to the concept of finite-state machines. The state pattern can be interpreted as a strategy pattern, which is able to switch a strategy through invocations of methods defined in the pattern's interface.
 
 **Programmatic Example**
 
-Here is the state interface and its concrete implementations.
+In our programmatic example there is a mammoth with alternating moods.
+
+First, here is the state interface and its concrete implementations.
 
 ```java
 public interface State {
@@ -45,7 +49,9 @@ public interface State {
 
   void observe();
 }
+```
 
+```java
 @Slf4j
 public class PeacefulState implements State {
 
@@ -65,7 +71,9 @@ public class PeacefulState implements State {
     LOGGER.info("{} calms down.", mammoth);
   }
 }
+```
 
+```java
 @Slf4j
 public class AngryState implements State {
 
@@ -87,7 +95,7 @@ public class AngryState implements State {
 }
 ```
 
-And here is the mammoth containing the state.
+And here is the mammoth containing the state. The state changes via calls to `timePasses` method.
 
 ```java
 public class Mammoth {
@@ -125,12 +133,15 @@ public class Mammoth {
 Here is the full example of how the mammoth behaves over time.
 
 ```java
+public static void main(String[] args) {
+
     var mammoth = new Mammoth();
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();
     mammoth.timePasses();
     mammoth.observe();
+}
 ```
 
 Program output:
@@ -142,24 +153,37 @@ Program output:
     The mammoth is calm and peaceful.
 ```
 
-## Class diagram
-
-![alt text](./etc/state_urm.png "State")
-
 ## Applicability
 
-Use the State pattern in either of the following cases
+* An object's behavior depends on its state, and it must change its behavior at runtime depending on that state.
+* Operations have large, multipart conditional statements that depend on the object's state.
 
-* An object's behavior depends on its state, and it must change its behavior at run-time depending on that state
-* Operations have large, multipart conditional statements that depend on the object's state. This state is usually represented by one or more enumerated constants. Often, several operations will contain this same conditional structure. The State pattern puts each branch of the conditional in a separate class. This lets you treat the object's state as an object in its own right that can vary independently from other objects.
+## Known Uses
 
-## Known uses
+* `java.util.Iterator` in Java's Collections Framework uses different states for iteration.
+* TCP connection classes in network programming often implement states like `Established`, `Listen`, and `Closed`.
 
-* [javax.faces.lifecycle.Lifecycle#execute()](http://docs.oracle.com/javaee/7/api/javax/faces/lifecycle/Lifecycle.html#execute-javax.faces.context.FacesContext-) controlled by [FacesServlet](http://docs.oracle.com/javaee/7/api/javax/faces/webapp/FacesServlet.html), the behavior is dependent on current phase of lifecycle.
-* [JDiameter - Diameter State Machine](https://github.com/npathai/jdiameter/blob/master/core/jdiameter/api/src/main/java/org/jdiameter/api/app/State.java)
+## Consequences
+
+Benefits:
+
+* Localizes state-specific behavior and partitions behavior for different states.
+* Makes state transitions explicit.
+* State objects can be shared among different contexts.
+
+Trade-offs:
+
+* Can result in a large number of classes for states.
+* Context class can become complicated with the state transition logic.
+
+## Related Patterns
+
+* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): State objects may be shared between different contexts.
+* [Singleton](https://java-design-patterns.com/patterns/singleton/): State objects are often singletons.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Both patterns have similar structures, but the State pattern's implementations depend on the context’s state.
 
 ## Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://www.amazon.com/gp/product/0201633612/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0201633612&linkCode=as2&tag=javadesignpat-20&linkId=675d49790ce11db99d90bde47f1aeb59)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [Refactoring to Patterns](https://www.amazon.com/gp/product/0321213351/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321213351&linkCode=as2&tag=javadesignpat-20&linkId=2a76fcb387234bc71b1c61150b3cc3a7)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
+* [Refactoring to Patterns](https://amzn.to/3VOO4F5)

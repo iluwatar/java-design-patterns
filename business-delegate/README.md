@@ -3,7 +3,11 @@ title: Business Delegate
 category: Structural
 language: en
 tag:
+    - Business
     - Decoupling
+    - Delegation
+    - Enterprise patterns
+    - Layered architecture
 ---
 
 ## Intent
@@ -12,13 +16,13 @@ The Business Delegate pattern adds an abstraction layer between presentation and
 
 ## Also known as
 
-Service Representative
+* Service Representative
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> A mobile phone application promises to stream any movie in existence to your device. It captures the user's search string and passes this on to the Business Delegate. The Business Delegate selects the most suitable video streaming service and plays the video from there.
+> Imagine a restaurant where the waitstaff serves as intermediaries between the customers and the kitchen. When a customer places an order, the waiter takes the order to the kitchen, relays any specific requests, and later brings the prepared food back to the customer. The waitstaff abstracts the complexity of the kitchen operations from the customers, allowing the chefs to focus solely on cooking without needing to interact directly with customers. This setup allows both the customer service (presentation tier) and the kitchen (business service) to operate independently and efficiently. The waitstaff acts as the Business Delegate, managing communication and ensuring smooth interactions between the two distinct areas.
 
 In Plain Words
 
@@ -29,6 +33,8 @@ Wikipedia says
 > Business Delegate is a Java EE design pattern. This pattern is directing to reduce the coupling in between business services and the connected presentation tier, and to hide the implementation details of services (including lookup and accessibility of EJB architecture). Business Delegates acts as an adaptor to invoke business objects from the presentation tier.
 
 **Programmatic Example**
+
+A mobile phone application promises to stream any movie in existence to your device. It captures the user's search string and passes this on to the Business Delegate. The Business Delegate selects the most suitable video streaming service and plays the video from there.
 
 First, we have an abstraction for video streaming services and a couple of implementations.
 
@@ -110,20 +116,20 @@ public class MobileClient {
 Finally, we can demonstrate the complete example in action.
 
 ```java
-  public static void main(String[]args){
+public static void main(String[] args) {
 
-        // prepare the objects
-        var businessDelegate=new BusinessDelegate();
-        var businessLookup=new BusinessLookup();
-        businessLookup.setNetflixService(new NetflixService());
-        businessLookup.setYouTubeService(new YouTubeService());
-        businessDelegate.setLookupService(businessLookup);
+    // prepare the objects
+    var businessDelegate = new BusinessDelegate();
+    var businessLookup = new BusinessLookup();
+    businessLookup.setNetflixService(new NetflixService());
+    businessLookup.setYouTubeService(new YouTubeService());
+    businessDelegate.setLookupService(businessLookup);
 
-        // create the client and use the Business Delegate
-        var client=new MobileClient(businessDelegate);
-        client.playbackMovie("Die Hard 2");
-        client.playbackMovie("Maradona: The Greatest Ever");
-        }
+    // create the client and use the business delegate
+    var client = new MobileClient(businessDelegate);
+    client.playbackMovie("Die Hard 2");
+    client.playbackMovie("Maradona: The Greatest Ever");
+}
 ```
 
 Here is the console output.
@@ -135,11 +141,7 @@ Here is the console output.
 
 ## Class diagram
 
-![alt text](./etc/business-delegate.urm.png "Business Delegate")
-
-## Related patterns
-
-* [Service locator pattern](https://java-design-patterns.com/patterns/service-locator/)
+![Business Delegate](./etc/business-delegate.urm.png "Business Delegate")
 
 ## Applicability
 
@@ -152,7 +154,7 @@ Use the Business Delegate pattern when
 
 ## Tutorials
 
-* [Business Delegate Pattern at TutorialsPoint](https://www.tutorialspoint.com/design_pattern/business_delegate_pattern.htm)
+* [Design Patterns - Business Delegate Pattern (TutorialsPoint)](https://www.tutorialspoint.com/design_pattern/business_delegate_pattern.htm)
 
 ## Known Uses
 
@@ -180,5 +182,6 @@ Trade-offs:
 
 ## Credits
 
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
-* [Core J2EE Patterns: Best Practices and Design Strategies](https://www.amazon.com/gp/product/0130648841/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=0130648841&linkId=a0100de2b28c71ede8db1757fb2b5947)
+* [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

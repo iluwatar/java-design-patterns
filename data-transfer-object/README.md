@@ -1,22 +1,29 @@
 ---
 title: Data Transfer Object
-category: Architectural
+category: Structural
 language: en
 tag:
- - Performance
+    - Client-server
+    - Data transfer
+    - Decoupling
+    - Layered architecture
+    - Optimization
 ---
+
+## Also known as
+
+* Transfer Object
+* Value Object
 
 ## Intent
 
-Pass data with multiple attributes in one shot from client to server, to avoid multiple calls to 
-remote server. 
+The Data Transfer Object (DTO) pattern is used to transfer data between software application subsystems or layers, particularly in the context of network calls or database retrieval in Java applications. It reduces the number of method calls by aggregating the data in a single transfer.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> We need to fetch information about customers from remote database. Instead of querying the 
-> attributes one at a time, we use DTOs to transfer all the relevant attributes in a single shot.     
+> Imagine a large company with several departments (e.g., Sales, HR, and IT) needing to share employee information efficiently. Instead of each department querying and retrieving data like name, address, and role individually, they use a courier service to bundle this data into a single package. This package, representing a Data Transfer Object (DTO), allows the departments to easily receive and process comprehensive employee data without making multiple requests. This simplifies data handling, reduces communication overhead, and ensures a standardized format across the company.
 
 In plain words
 
@@ -24,97 +31,182 @@ In plain words
 
 Wikipedia says
 
-> In the field of programming a data transfer object (DTO) is an object that carries data between 
-> processes. The motivation for its use is that communication between processes is usually done 
-> resorting to remote interfaces (e.g. web services), where each call is an expensive operation. 
-> Because the majority of the cost of each call is related to the round-trip time between the client 
-> and the server, one way of reducing the number of calls is to use an object (the DTO) that 
-> aggregates the data that would have been transferred by the several calls, but that is served by 
-> one call only.
+> In the field of programming a data transfer object (DTO) is an object that carries data between processes. The motivation for its use is that communication between processes is usually done resorting to remote interfaces (e.g. web services), where each call is an expensive operation. Because the majority of the cost of each call is related to the round-trip time between the client and the server, one way of reducing the number of calls is to use an object (the DTO) that aggregates the data that would have been transferred by the several calls, but that is served by one call only.
 
 **Programmatic Example**
 
-Let's first introduce our simple `CustomerDTO` class.
+Let's first introduce our simple `CustomerDTO` record.
 
 ```java
-public class CustomerDto {
-  private final String id;
-  private final String firstName;
-  private final String lastName;
+public record CustomerDto(String id, String firstName, String lastName) {}
+```
 
-  public CustomerDto(String id, String firstName, String lastName) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
+`CustomerResource` record acts as the server for customer information.
+
+```java
+public record CustomerResource(List<CustomerDto> customers) {
+
+    public void save(CustomerDto customer) {
+        customers.add(customer);
+    }
+    
+    public void delete(String customerId) {
+        customers.removeIf(customer -> customer.id().equals(customerId));
+    }
+}
+```
+
+Now fetching customer information is easy since we have the DTOs. The 2nd example uses `ProductDTO` similarly.
+
+```java
+public class App {
+
+  public static void main(String[] args) {
+
+    // Example 1: Customer DTO
+    var customerOne = new CustomerDto("1", "Kelly", "Brown");
+    var customerTwo = new CustomerDto("2", "Alfonso", "Bass");
+    var customers = new ArrayList<>(List.of(customerOne, customerTwo));
+
+    var customerResource = new CustomerResource(customers);
+
+    LOGGER.info("All customers:");
+    var allCustomers = customerResource.customers();
+    printCustomerDetails(allCustomers);
+
+    LOGGER.info("----------------------------------------------------------");
+
+    LOGGER.info("Deleting customer with id {1}");
+    customerResource.delete(customerOne.id());
+    allCustomers = customerResource.customers();
+    printCustomerDetails(allCustomers);
+
+    LOGGER.info("----------------------------------------------------------");
+
+    LOGGER.info("Adding customer three}");
+    var customerThree = new CustomerDto("3", "Lynda", "Blair");
+    customerResource.save(customerThree);
+    allCustomers = customerResource.customers();
+    printCustomerDetails(allCustomers);
+
+    // Example 2: Product DTO
+
+    Product tv = Product.builder().id(1L).name("TV").supplier("Sony").price(1000D).cost(1090D).build();
+    Product microwave =
+        Product.builder()
+            .id(2L)
+            .name("microwave")
+            .supplier("Delonghi")
+            .price(1000D)
+            .cost(1090D).build();
+    Product refrigerator =
+        Product.builder()
+            .id(3L)
+            .name("refrigerator")
+            .supplier("Botsch")
+            .price(1000D)
+            .cost(1090D).build();
+    Product airConditioner =
+        Product.builder()
+            .id(4L)
+            .name("airConditioner")
+            .supplier("LG")
+            .price(1000D)
+            .cost(1090D).build();
+    List<Product> products =
+        new ArrayList<>(Arrays.asList(tv, microwave, refrigerator, airConditioner));
+    ProductResource productResource = new ProductResource(products);
+
+    LOGGER.info(
+        "####### List of products including sensitive data just for admins: \n {}",
+        Arrays.toString(productResource.getAllProductsForAdmin().toArray()));
+    LOGGER.info(
+        "####### List of products for customers: \n {}",
+        Arrays.toString(productResource.getAllProductsForCustomer().toArray()));
+
+    LOGGER.info("####### Going to save Sony PS5 ...");
+    ProductDto.Request.Create createProductRequestDto =
+        new ProductDto.Request.Create()
+            .setName("PS5")
+            .setCost(1000D)
+            .setPrice(1220D)
+            .setSupplier("Sony");
+    productResource.save(createProductRequestDto);
+    LOGGER.info(
+        "####### List of products after adding PS5: {}",
+        Arrays.toString(productResource.products().toArray()));
   }
 
-  public String getId() {
-    return id;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
+  private static void printCustomerDetails(List<CustomerDto> allCustomers) {
+    allCustomers.forEach(customer -> LOGGER.info(customer.firstName()));
   }
 }
 ```
 
-`CustomerResource` class acts as the server for customer information.
+The console output:
 
-```java
-public class CustomerResource {
-  private final List<CustomerDto> customers;
-
-  public CustomerResource(List<CustomerDto> customers) {
-    this.customers = customers;
-  }
-
-  public List<CustomerDto> getAllCustomers() {
-    return customers;
-  }
-
-  public void save(CustomerDto customer) {
-    customers.add(customer);
-  }
-
-  public void delete(String customerId) {
-    customers.removeIf(customer -> customer.getId().equals(customerId));
-  }
-}
 ```
-
-Now fetching customer information is easy since we have the DTOs.
-
-```java
-    var allCustomers = customerResource.getAllCustomers();
-    allCustomers.forEach(customer -> LOGGER.info(customer.getFirstName()));
-    // Kelly
-    // Alfonso
+11:10:51.838 [main] INFO com.iluwatar.datatransfer.App -- All customers:
+11:10:51.840 [main] INFO com.iluwatar.datatransfer.App -- Kelly
+11:10:51.840 [main] INFO com.iluwatar.datatransfer.App -- Alfonso
+11:10:51.840 [main] INFO com.iluwatar.datatransfer.App -- ----------------------------------------------------------
+11:10:51.840 [main] INFO com.iluwatar.datatransfer.App -- Deleting customer with id {1}
+11:10:51.840 [main] INFO com.iluwatar.datatransfer.App -- Alfonso
+11:10:51.840 [main] INFO com.iluwatar.datatransfer.App -- ----------------------------------------------------------
+11:10:51.840 [main] INFO com.iluwatar.datatransfer.App -- Adding customer three}
+11:10:51.840 [main] INFO com.iluwatar.datatransfer.App -- Alfonso
+11:10:51.840 [main] INFO com.iluwatar.datatransfer.App -- Lynda
+11:10:51.848 [main] INFO com.iluwatar.datatransfer.App -- ####### List of products including sensitive data just for admins: 
+ [Private{id=1, name='TV', price=1000.0, cost=1090.0}, Private{id=2, name='microwave', price=1000.0, cost=1090.0}, Private{id=3, name='refrigerator', price=1000.0, cost=1090.0}, Private{id=4, name='airConditioner', price=1000.0, cost=1090.0}]
+11:10:51.852 [main] INFO com.iluwatar.datatransfer.App -- ####### List of products for customers: 
+ [Public{id=1, name='TV', price=1000.0}, Public{id=2, name='microwave', price=1000.0}, Public{id=3, name='refrigerator', price=1000.0}, Public{id=4, name='airConditioner', price=1000.0}]
+11:10:51.852 [main] INFO com.iluwatar.datatransfer.App -- ####### Going to save Sony PS5 ...
+11:10:51.856 [main] INFO com.iluwatar.datatransfer.App -- ####### List of products after adding PS5: [Product{id=1, name='TV', price=1000.0, cost=1090.0, supplier='Sony'}, Product{id=2, name='microwave', price=1000.0, cost=1090.0, supplier='Delonghi'}, Product{id=3, name='refrigerator', price=1000.0, cost=1090.0, supplier='Botsch'}, Product{id=4, name='airConditioner', price=1000.0, cost=1090.0, supplier='LG'}, Product{id=5, name='PS5', price=1220.0, cost=1000.0, supplier='Sony'}]
 ```
-
-## Class diagram
-
-![alt text](./etc/data-transfer-object.urm.png "data-transfer-object")
 
 ## Applicability
 
 Use the Data Transfer Object pattern when:
 
-* The client is asking for multiple information. And the information is related.
-* When you want to boost the performance to get resources.
-* You want reduced number of remote calls.
+* When you need to optimize network traffic by reducing the number of calls, especially in a client-server architecture.
+* In scenarios where batch processing of data is preferred over individual processing.
+* When working with remote interfaces, to encapsulate the data transfer in a serializable object that can be easily transmitted.
 
 ## Tutorials
 
-* [Data Transfer Object Pattern in Java - Implementation and Mapping](https://stackabuse.com/data-transfer-object-pattern-in-java-implementation-and-mapping/)
-* [The DTO Pattern (Data Transfer Object)](https://www.baeldung.com/java-dto-pattern)
+* [Data Transfer Object Pattern in Java - Implementation and Mapping (StackAbuse)](https://stackabuse.com/data-transfer-object-pattern-in-java-implementation-and-mapping/)
+* [Design Pattern - Transfer Object Pattern (TutorialsPoint)](https://www.tutorialspoint.com/design_pattern/transfer_object_pattern.htm)
+* [The DTO Pattern (Baeldung)](https://www.baeldung.com/java-dto-pattern)
+
+## Known Uses
+
+* Remote Method Invocation (RMI) in Java, where DTOs are used to pass data across network.
+* Enterprise JavaBeans (EJB), particularly when data needs to be transferred from EJBs to clients.
+* Various web service frameworks where DTOs encapsulate request and response data.
+
+## Consequences
+
+Benefits:
+
+* Reduces network calls, thereby improving application performance.
+* Decouples the client from the server, leading to more modular and maintainable code.
+* Simplifies data transmission over the network by aggregating data into single objects.
+
+Trade-offs:
+
+* Introduces additional classes into the application, which may increase complexity.
+* Can lead to redundant data structures that mirror domain models, potentially causing synchronization issues.
+* May encourage design that leads to an anemic domain model, where business logic is separated from data.
+
+## Related Patterns
+
+* [Composite Entity](https://java-design-patterns.com/patterns/composite-entity/): DTOs may be used to represent composite entities, particularly in persistence mechanisms.
+* [Facade](https://java-design-patterns.com/patterns/facade/): Similar to DTO, a Facade may aggregate multiple calls into one, improving efficiency.
+* [Service Layer](https://java-design-patterns.com/patterns/service-layer/): Often involves using DTOs to transfer data across the boundary between the service layer and its clients.
 
 ## Credits
 
-* [Design Pattern - Transfer Object Pattern](https://www.tutorialspoint.com/design_pattern/transfer_object_pattern.htm)
-* [Data Transfer Object](https://msdn.microsoft.com/en-us/library/ff649585.aspx)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=f27d2644fbe5026ea448791a8ad09c94)
-* [Patterns of Enterprise Application Architecture](https://www.amazon.com/gp/product/0321127420/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321127420&linkCode=as2&tag=javadesignpat-20&linkId=014237a67c9d46f384b35e10151956bd)
+* [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cKndQp)
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Data Transfer Object (Microsoft)](https://msdn.microsoft.com/en-us/library/ff649585.aspx)

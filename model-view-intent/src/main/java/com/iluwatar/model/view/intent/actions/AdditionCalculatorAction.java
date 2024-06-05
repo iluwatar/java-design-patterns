@@ -31,13 +31,13 @@ public class AdditionCalculatorAction implements CalculatorAction {
   /**
    * Subclass tag.
    * */
-  public static final String TAG = "ADDITION";
+  public static final String ADDITION = "ADDITION";
 
   /**
    * Makes checking subclass type trivial.
    * */
   @Override
   public String tag() {
-    return TAG;
+    return ADDITION;
   }
 }

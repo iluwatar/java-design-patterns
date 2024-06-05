@@ -27,6 +27,7 @@ package com.iluwatar.intercepting.filter;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
+import java.io.Serial;
 import java.util.Arrays;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -45,10 +46,10 @@ import javax.swing.WindowConstants;
  * <p>This is where {@link Filter}s come to play as the client pre-processes the request before
  * being displayed in the {@link Target}.
  *
- * @author joshzambales
  */
 public class Client extends JFrame { // NOSONAR
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   private transient FilterManager filterManager;

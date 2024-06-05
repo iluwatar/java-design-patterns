@@ -1,91 +1,84 @@
 ---
-title: MonoState
+title: Monostate
 category: Creational
 language: en
 tag:
- - Instantiation
+    - Encapsulation
+    - Instantiation
+    - Object composition
+    - Persistence
+    - Polymorphism
 ---
 
 ## Also known as
-Borg
+
+* Borg
 
 ## Intent
+
 Monostate is an alternative approach to achieving a singleton-like behavior in object-oriented design. It enforces a unique behavior where all instances of a class share the same state. Unlike the Singleton pattern, which restricts a class to a single instance, Monostate allows for multiple instances but ensures they all have a shared state.
 
 ## Explanation
 
 Real-word example
 
-> In a cloud-based document editing service, multiple users can collaborate on the same document simultaneously. To ensure consistency across different user sessions, the system maintains a shared state that includes the document’s content, the cursor position of each user, and any comments made on the document. Instead of coupling each user’s session directly to each other, the system utilizes the Monostate pattern to share the state among all active sessions. Each user interacts with their own instance of a DocumentSession class, unaware that they are all sharing the same underlying state. This approach decouples the individual sessions from each other, while ensuring real-time consistency and collaboration across all users working on the document.
-
+> Imagine a library with multiple desks where patrons can access the library's catalog. While each desk appears to be independent, any changes made to the catalog (like adding or removing a book) are immediately reflected at all desks. This setup ensures that no matter which desk a patron uses, they see the exact same, up-to-date catalog. This is analogous to the Monostate pattern, where multiple instances of a class share the same state, ensuring consistent data across all instances.
 
 In plain words
 
 > Monostate allows multiple instances of a class to share the same state by channeling their state management through a common shared structure. This ensures consistent state across all instances while maintaining the facade of independent objects.
 
+wiki.c2.com says
+
+> A monostate is a "conceptual singleton" - all data members of a monostate are static, so all instances of the monostate use the same (static) data. Applications using a monostate can create any number of instances that they desire, as each instance uses the same data.
 
 **Programmatic Examples**
 
-Suppose you are developing an online multi-person collaborative drawing application that allows multiple users to draw simultaneously on the same canvas. In order to synchronize the views of all users, you need to ensure that all users see the same canvas state, including the current background color and brush size. Therefore, you decide to use Monostate mode to synchronize these settings across all user interfaces.
+The Monostate pattern is a way to ensure that all instances of a class share the same state. This is achieved by using static fields in the class. Any changes to these fields will be reflected across all instances of the class. This pattern is useful when you want to avoid global variables but still need a shared state across multiple instances.
 
-```
-public class CanvasSettings {
-    private static String backgroundColor = "White";
-    private static int brushSize = 5;
+Let's take a look at the `LoadBalancer` class from the `monostate` module:
 
-    public void setBackgroundColor(String color) {
-        backgroundColor = color;
+```java
+public class LoadBalancer {
+    private static List<Server> servers = new ArrayList<>();
+    private static int nextServerIndex = 0;
+
+    public LoadBalancer() {
+        // Initialize servers
+        servers.add(new Server("192.168.0.1", 8080, 1));
+        servers.add(new Server("192.168.0.2", 8080, 2));
+        servers.add(new Server("192.168.0.3", 8080, 3));
     }
 
-    public String getBackgroundColor() {
-        return backgroundColor;
-    }
-
-    public void setBrushSize(int size) {
-        if (size > 0) {
-            brushSize = size;
-        }
-    }
-
-    public int getBrushSize() {
-        return brushSize;
+    public void serverRequest(Request request) {
+        Server server = servers.get(nextServerIndex);
+        server.serve(request);
+        nextServerIndex = (nextServerIndex + 1) % servers.size();
     }
 }
 ```
-* CanvasSettings class manages settings for drawing applications, such as background color and brush size.
-* It uses static fields to store state, ensuring that all instances of the CanvasSettings class share the same state.
-* setBackgroundColor, getBackgroundColor, setBrushSize, and getBrushSize methods are used to modify and retrieve settings.
 
-```
-public class MonostateExample {
+In this class, `servers` and `nextServerIndex` are static fields. This means that they are shared across all instances of `LoadBalancer`. The method `serverRequest` is used to serve a request and then update the `nextServerIndex` to the next server in the list.
+
+Now, let's see how this works in practice:
+
+```java
+public class App {
     public static void main(String[] args) {
-        CanvasSettings user1Settings = new CanvasSettings();
-        CanvasSettings user2Settings = new CanvasSettings();
+        LoadBalancer loadBalancer1 = new LoadBalancer();
+        LoadBalancer loadBalancer2 = new LoadBalancer();
 
-        // Initially, both instances share the same state
-        System.out.println("User 1 Background Color: " + user1Settings.getBackgroundColor());  // output: White
-        System.out.println("User 2 Brush Size: " + user2Settings.getBrushSize());  // output: 5
-
-        // User 1 changes the background color
-        user1Settings.setBackgroundColor("Blue");
-
-        /// The change is reflected in the settings of User 2
-        System.out.println("User 2 Background Color (after change): " + user2Settings.getBackgroundColor());  // output: Blue
-
-       // User 2 changes the brush size
-        user2Settings.setBrushSize(10);
-
-        // The change is reflected in the settings of User 1
-        System.out.println("User 1 Brush Size (after change): " + user1Settings.getBrushSize());  // output: 10
+        // Both instances share the same state
+        loadBalancer1.serverRequest(new Request("Hello"));  // Server 1 serves the request
+        loadBalancer2.serverRequest(new Request("Hello World"));  // Server 2 serves the request
     }
 }
 ```
-In this MonostateExample class, we demonstrate how to create instances for two users and show that changes to settings in one instance are reflected in the other instance.
 
-## Class diagram
-![alt text](./etc/monostate.png "MonoState")
+In this example, we create two instances of `LoadBalancer`: `loadBalancer1` and `loadBalancer2`. They share the same state. When we make a request via `loadBalancer1`, the request is served by the first server. When we make a request via `loadBalancer2`, the request is served by the second server, not the first one, because the `nextServerIndex` has been updated by `loadBalancer1`. This demonstrates the Monostate pattern in action.
 
 ## Applicability
+
 Use the Monostate pattern when
 
 1. **Shared State Across Instances:** All instances of a class must share the same state. Changes in one instance should be reflected across all instances.
@@ -100,9 +93,29 @@ Use the Monostate pattern when
 
 6. **Consistent Configuration or State Management:** In scenarios where you need consistent configuration management or state management across different parts of an application, Monostate provides a pattern to ensure all parts of the system are in sync.
 
-## Typical Use Case
+## Known uses
 
-* The logging class
-* Managing a connection to a database
-* File manager
+* Configuration settings that need to be shared and accessible by various parts of an application.
+* Resource pools where the state needs to be consistent across different consumers.
 
+## Consequences
+
+Benefits:
+
+* Provides a shared state without restricting the creation of multiple instances.
+* Ensures consistency of data across instances.
+
+Trade-offs:
+
+* Can lead to hidden dependencies due to shared state, making the system harder to understand and debug.
+* Reduces the flexibility to have instances with independent states.
+
+## Related Patterns
+
+* [Singleton](https://java-design-patterns.com/patterns/singleton/): Both Singleton and Monostate ensure a single shared state, but Singleton does so by restricting instance creation.
+* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Flyweight shares state to reduce memory usage, similar to how Monostate shares state among instances.
+
+## Credits
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

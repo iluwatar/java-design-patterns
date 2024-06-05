@@ -34,9 +34,8 @@ import com.iluwatar.specification.property.Color;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/29/15 - 7:35 PM
+ * ColorSelectorTest
  *
- * @author Jeroen Meulemeester
  */
 class ColorSelectorTest {
 

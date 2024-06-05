@@ -41,7 +41,6 @@ import org.springframework.stereotype.Component;
 /**
  * A health indicator that checks the health of the system's CPU.
  *
- * @author ydoksanbir
  */
 @Getter
 @Setter
@@ -78,13 +77,6 @@ public class CpuHealthIndicator implements HealthIndicator {
    */
   @Value("${cpu.load.average.threshold:0.75}")
   private double loadAverageThreshold;
-
-  /**
-   * The warning message to include in the health indicator's response when the load average is high
-   * but not exceeding the threshold.
-   */
-  @Value("${cpu.warning.message:High load average}")
-  private String defaultWarningMessage;
 
   private static final String ERROR_MESSAGE = "error";
 

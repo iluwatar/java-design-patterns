@@ -29,9 +29,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/30/15 - 18:34 PM
+ * RainbowFishTest
  *
- * @author Jeroen Meulemeester
  */
 class RainbowFishTest {
 

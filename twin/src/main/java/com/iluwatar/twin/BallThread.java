@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
- * and resume. It hold the reference of {@link BallItem} to delegate the draw task.
+ * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
  */
 
 @Slf4j

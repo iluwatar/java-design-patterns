@@ -31,9 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/22/15 - 22:28 AM
+ * NazgulTest
  *
- * @author Jeroen Meulemeester
  */
 class NazgulTest {
 

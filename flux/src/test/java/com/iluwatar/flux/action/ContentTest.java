@@ -30,9 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/12/15 - 10:11 PM
+ * ContentTest
  *
- * @author Jeroen Meulemeester
  */
 class ContentTest {
 

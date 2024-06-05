@@ -57,8 +57,8 @@ public class LotteryService {
    * Submit lottery ticket to participate in the lottery.
    */
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
-    var playerDetails = ticket.getPlayerDetails();
-    var playerAccount = playerDetails.getBankAccount();
+    var playerDetails = ticket.playerDetails();
+    var playerAccount = playerDetails.bankAccount();
     var result = wireTransfers.transferFunds(TICKET_PRIZE, playerAccount, SERVICE_BANK_ACCOUNT);
     if (!result) {
       notifications.ticketSubmitError(playerDetails);

@@ -1,46 +1,48 @@
 ---
 title: Throttling
-category: Behavioral
+category: Resource management
 language: en
 tag:
- - Performance
- - Cloud distributed
+    - API design
+    - Fault tolerance
+    - Performance
+    - Resilience
+    - Scalability
 ---
+
+## Also known as
+
+* Rate Limiting
 
 ## Intent
 
-Ensure that a given client is not able to access service resources more than the assigned limit.
+Throttling limits the number of requests a system can process within a given time frame to prevent overload and ensure stability.
 
 ## Explanation
 
 Real-world example
 
-> A young human and an old dwarf walk into a bar. They start ordering beers from the bartender.
-> The bartender immediately sees that the young human shouldn't consume too many drinks too fast
-> and refuses to serve if enough time has not passed. For the old dwarf, the serving rate can
-> be higher.
+> Imagine a popular amusement park that limits the number of visitors who can enter per hour to prevent overcrowding. This ensures that all visitors can enjoy the park without long wait times and maintain a pleasant experience. Similarly, the Throttling design pattern in software controls the rate of requests to a system, preventing it from being overwhelmed and ensuring consistent performance for all users.
 
 In plain words
 
-> Throttling pattern is used to rate-limit access to a resource. 
+> Throttling pattern is used to rate-limit access to a resource.
 
 [Microsoft documentation](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling) says
 
-> Control the consumption of resources used by an instance of an application, an individual tenant, 
-> or an entire service. This can allow the system to continue to function and meet service level 
-> agreements, even when an increase in demand places an extreme load on resources.
+> Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. This can allow the system to continue to function and meet service level agreements, even when an increase in demand places an extreme load on resources.
 
 **Programmatic Example**
 
-`BarCustomer` class presents the clients of the `Bartender` API. `CallsCount` tracks the number of 
-calls per `BarCustomer`.
+In this example a young human and an old dwarf walk into a bar. They start ordering beers from the bartender. The bartender immediately sees that the young human shouldn't consume too many drinks too fast and refuses to serve if enough time has not passed. For the old dwarf, the serving rate can be higher.
+
+`BarCustomer` class presents the clients of the `Bartender` API. `CallsCount` tracks the number of calls per `BarCustomer`.
 
 ```java
+@Getter
 public class BarCustomer {
 
-    @Getter
     private final String name;
-    @Getter
     private final int allowedCallsPerSecond;
 
     public BarCustomer(String name, int allowedCallsPerSecond, CallsCount callsCount) {
@@ -52,63 +54,64 @@ public class BarCustomer {
         callsCount.addTenant(name);
     }
 }
+```
 
+```java
 @Slf4j
 public final class CallsCount {
-  private final Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
+    private final Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
 
-  public void addTenant(String tenantName) {
-    tenantCallsCount.putIfAbsent(tenantName, new AtomicLong(0));
-  }
+    public void addTenant(String tenantName) {
+        tenantCallsCount.putIfAbsent(tenantName, new AtomicLong(0));
+    }
 
-  public void incrementCount(String tenantName) {
-    tenantCallsCount.get(tenantName).incrementAndGet();
-  }
+    public void incrementCount(String tenantName) {
+        tenantCallsCount.get(tenantName).incrementAndGet();
+    }
 
-  public long getCount(String tenantName) {
-    return tenantCallsCount.get(tenantName).get();
-  }
+    public long getCount(String tenantName) {
+        return tenantCallsCount.get(tenantName).get();
+    }
 
-  public void reset() {
-    tenantCallsCount.replaceAll((k, v) -> new AtomicLong(0));
-    LOGGER.info("reset counters");
-  }
+    public void reset() {
+        tenantCallsCount.replaceAll((k, v) -> new AtomicLong(0));
+        LOGGER.info("reset counters");
+    }
 }
 ```
 
-Next, the service that the tenants are calling is introduced. To track the call count, a throttler 
-timer is used.
+Next, the service that the tenants are calling is introduced. To track the call count, a throttler timer is used.
 
 ```java
 public interface Throttler {
-
-  void start();
-}
-
-public class ThrottleTimerImpl implements Throttler {
-
-  private final int throttlePeriod;
-  private final CallsCount callsCount;
-
-  public ThrottleTimerImpl(int throttlePeriod, CallsCount callsCount) {
-    this.throttlePeriod = throttlePeriod;
-    this.callsCount = callsCount;
-  }
-
-  @Override
-  public void start() {
-    new Timer(true).schedule(new TimerTask() {
-      @Override
-      public void run() {
-        callsCount.reset();
-      }
-    }, 0, throttlePeriod);
-  }
+    void start();
 }
 ```
 
-`Bartender` offers the `orderDrink` service to the `BarCustomer`s. The customers probably don't
-know that the beer serving rate is limited by their appearances.
+```java
+public class ThrottleTimerImpl implements Throttler {
+
+    private final int throttlePeriod;
+    private final CallsCount callsCount;
+
+    public ThrottleTimerImpl(int throttlePeriod, CallsCount callsCount) {
+        this.throttlePeriod = throttlePeriod;
+        this.callsCount = callsCount;
+    }
+
+    @Override
+    public void start() {
+        new Timer(true).schedule(new TimerTask() {
+            @Override
+            public void run() {
+                callsCount.reset();
+            }
+        }, 0, throttlePeriod);
+    }
+}
+```
+
+`Bartender` offers the `orderDrink` service to the `BarCustomer`s. The customers probably don't know that the beer serving rate is limited by their appearances.
 
 ```java
 class Bartender {
@@ -129,7 +132,7 @@ class Bartender {
             return -1;
         }
         callsCount.incrementCount(tenantName);
-        LOGGER.debug("Serving beer to {} : [{} consumed] ", barCustomer.getName(), count+1);
+        LOGGER.debug("Serving beer to {} : [{} consumed] ", barCustomer.getName(), count + 1);
         return getRandomCustomerId();
     }
 
@@ -139,40 +142,45 @@ class Bartender {
 }
 ```
 
-Now it is possible to see the full example in action. `BarCustomer` young human is rate-limited to 2 
-calls per second and the old dwarf to 4.
+Now it is possible to see the full example in action. `BarCustomer` young human is rate-limited to 2 calls per second and the old dwarf to 4.
 
 ```java
-public static void main(String[] args) {
-    var callsCount = new CallsCount();
-    var human = new BarCustomer("young human", 2, callsCount);
-    var dwarf = new BarCustomer("dwarf soldier", 4, callsCount);
+@Slf4j
+public class App {
 
-    var executorService = Executors.newFixedThreadPool(2);
+    public static void main(String[] args) {
+        var callsCount = new CallsCount();
+        var human = new BarCustomer("young human", 2, callsCount);
+        var dwarf = new BarCustomer("dwarf soldier", 4, callsCount);
 
-    executorService.execute(() -> makeServiceCalls(human, callsCount));
-    executorService.execute(() -> makeServiceCalls(dwarf, callsCount));
+        var executorService = Executors.newFixedThreadPool(2);
 
-    executorService.shutdown();
-    try {
-        executorService.awaitTermination(10, TimeUnit.SECONDS);
-    } catch (InterruptedException e) {
-        LOGGER.error("Executor service terminated: {}", e.getMessage());
-    }
-}
+        executorService.execute(() -> makeServiceCalls(human, callsCount));
+        executorService.execute(() -> makeServiceCalls(dwarf, callsCount));
 
-private static void makeServiceCalls(BarCustomer barCustomer, CallsCount callsCount) {
-    var timer = new ThrottleTimerImpl(1000, callsCount);
-    var service = new Bartender(timer, callsCount);
-    // Sleep is introduced to keep the output in check and easy to view and analyze the results.
-    IntStream.range(0, 50).forEach(i -> {
-        service.orderDrink(barCustomer);
+        executorService.shutdown();
         try {
-            Thread.sleep(100);
+            if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
+                executorService.shutdownNow();
+            }
         } catch (InterruptedException e) {
-            LOGGER.error("Thread interrupted: {}", e.getMessage());
+            executorService.shutdownNow();
         }
-    });
+    }
+
+    private static void makeServiceCalls(BarCustomer barCustomer, CallsCount callsCount) {
+        var timer = new ThrottleTimerImpl(1000, callsCount);
+        var service = new Bartender(timer, callsCount);
+        // Sleep is introduced to keep the output in check and easy to view and analyze the results.
+        IntStream.range(0, 50).forEach(i -> {
+            service.orderDrink(barCustomer);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                LOGGER.error("Thread interrupted: {}", e.getMessage());
+            }
+        });
+    }
 }
 ```
 
@@ -203,18 +211,38 @@ An excerpt from the example's console output:
 18:46:37.148 [pool-1-thread-2] ERROR com.iluwatar.throttling.Bartender - I'm sorry dwarf soldier, you've had enough for today!
 ```
 
-## Class diagram
-
-![alt text](./etc/throttling_urm.png "Throttling pattern class diagram")
-
 ## Applicability
 
-The Throttling pattern should be used:
+* You need to protect resources from being overwhelmed by too many requests.
+* You want to ensure fair usage of a service among multiple users.
+* You need to maintain the quality of service under high load conditions.
 
-* When service access needs to be restricted not to have high impact on the performance of the service.
-* When multiple clients are consuming the same service resources and restriction has to be made according to the usage per client.
+## Known Uses
+
+* APIs of major cloud providers like AWS, Google Cloud, and Azure use throttling to manage resource usage.
+* Web services to prevent denial-of-service (DoS) attacks by limiting the number of requests from a single IP address.
+* Online platforms like social media sites and e-commerce websites to ensure even distribution of server load.
+
+## Consequences
+
+Benefits:
+
+* Prevents resource exhaustion, ensuring system stability.
+* Helps in maintaining consistent performance and quality of service.
+* Improves fault tolerance by avoiding system crashes under high load.
+
+Trade-offs:
+
+* May cause increased latency or delay in request processing.
+* Requires careful tuning to balance between resource protection and user experience.
+* Could lead to denial of service to legitimate users if not configured correctly.
+
+## Related Patterns
+
+* [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Works in tandem with throttling to prevent repeated attempts to access an overloaded service.
+* Bulkhead: Isolates different parts of the system to limit the impact of throttling on other components.
 
 ## Credits
 
-* [Throttling pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling)
-* [Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications (Microsoft patterns & practices)](https://www.amazon.com/gp/product/B00ITGHBBS/ref=as_li_qf_asin_il_tl?ie=UTF8&tag=javadesignpat-20&creative=9325&linkCode=as2&creativeASIN=B00ITGHBBS&linkId=12aacdd0cec04f372e7152689525631a)
+* [Throttling pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling)
+* [Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications](https://amzn.to/4dLvowg)

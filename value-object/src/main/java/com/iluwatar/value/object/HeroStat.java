@@ -24,6 +24,7 @@
  */
 package com.iluwatar.value.object;
 
+import lombok.ToString;
 import lombok.Value;
 
 /**
@@ -34,6 +35,7 @@ import lombok.Value;
  *     </a>
  */
 @Value(staticConstructor = "valueOf")
+@ToString
 class HeroStat {
 
   int strength;

@@ -1,191 +1,107 @@
 ---
 title: Special Case
-category: Behavioral
+category: Structural
 language: en
 tag:
- - Extensibility
+    - Abstraction
+    - Code simplification
+    - Decoupling
+    - Error handling
+    - Polymorphism
+    - Runtime
 ---
+
+## Also known as
+
+* Exceptional Case
 
 ## Intent
 
-Define some special cases, and encapsulates them into subclasses that provide different special behaviors.
+To handle exceptional cases or specific conditions without cluttering the main code logic.
 
 ## Explanation
 
-Real world example
+Real-world example
 
-> In an e-commerce system, presentation layer expects application layer to produce certain view model.
-> We have a successful scenario, in which receipt view model contains actual data from the purchase,
-> and a couple of failure scenarios.
+> Consider a toll booth system on a highway. Normally, vehicles pass through the booth, and the system charges a toll based on the vehicle type. However, there are special cases: emergency vehicles like ambulances and fire trucks, which should not be charged.
+>
+> In this scenario, the "Special Case" design pattern can be applied by creating a class for the toll booth system that handles regular vehicles and another for emergency vehicles. The emergency vehicle class would override the toll calculation method to ensure no charge is applied, encapsulating this special behavior without cluttering the main toll calculation logic with conditional checks. This keeps the codebase clean and ensures the special case is handled consistently.
 
 In plain words
 
-> Special Case pattern allows returning non-null real objects that perform special behaviors.
+> The Special Case design pattern encapsulates and isolates exceptional conditions and specific scenarios to simplify the main code logic and enhance maintainability.
 
-In [Patterns of Enterprise Application Architecture](https://martinfowler.com/books/eaa.html) says 
-the difference from Null Object Pattern
+In [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR) Martin Fowler says:
 
-> If you’ll pardon the unresistable pun, I see Null Object as special case of Special Case.
+> If you’ll pardon the unresistable pun, I see [Null Object](https://java-design-patterns.com/patterns/null-object/) as special case of Special Case.
 
 **Programmatic Example**
 
-To focus on the pattern itself, we implement DB and maintenance lock of the e-commerce system by the singleton instance.
+The Special Case Pattern is a software design pattern that is used to handle a specific, often uncommon, case separately from the general case in the code. This pattern is useful when a class has behavior that requires conditional logic based on its state. Instead of cluttering the class with conditional logic, we can encapsulate the special behavior in a subclass.
+
+In an e-commerce system, the presentation layer relies on the application layer to generate a specific view model. There is a successful scenario where the receipt view model includes actual purchase data, along with a few failure scenarios.
+
+The `Db` class is a singleton that holds data for users, accounts, and products. It provides methods to seed data into the database and find data in the database.
 
 ```java
+
+@RequiredArgsConstructor
+@Getter
 public class Db {
-  private static Db instance;
-  private Map<String, User> userName2User;
-  private Map<User, Account> user2Account;
-  private Map<String, Product> itemName2Product;
+    // Singleton instance of Db
+    private static Db instance;
 
-  public static Db getInstance() {
-    if (instance == null) {
-      synchronized (Db.class) {
+    // Maps to hold data
+    private Map<String, User> userName2User;
+    private Map<User, Account> user2Account;
+    private Map<String, Product> itemName2Product;
+
+    // Singleton method to get instance of Db
+    public static synchronized Db getInstance() {
         if (instance == null) {
-          instance = new Db();
-          instance.userName2User = new HashMap<>();
-          instance.user2Account = new HashMap<>();
-          instance.itemName2Product = new HashMap<>();
+            Db newInstance = new Db();
+            newInstance.userName2User = new HashMap<>();
+            newInstance.user2Account = new HashMap<>();
+            newInstance.itemName2Product = new HashMap<>();
+            instance = newInstance;
         }
-      }
-    }
-    return instance;
-  }
-
-  public void seedUser(String userName, Double amount) {
-    User user = new User(userName);
-    instance.userName2User.put(userName, user);
-    Account account = new Account(amount);
-    instance.user2Account.put(user, account);
-  }
-
-  public void seedItem(String itemName, Double price) {
-    Product item = new Product(price);
-    itemName2Product.put(itemName, item);
-  }
-
-  public User findUserByUserName(String userName) {
-    if (!userName2User.containsKey(userName)) {
-      return null;
-    }
-    return userName2User.get(userName);
-  }
-
-  public Account findAccountByUser(User user) {
-    if (!user2Account.containsKey(user)) {
-      return null;
-    }
-    return user2Account.get(user);
-  }
-
-  public Product findProductByItemName(String itemName) {
-    if (!itemName2Product.containsKey(itemName)) {
-      return null;
-    }
-    return itemName2Product.get(itemName);
-  }
-
-  public class User {
-    private String userName;
-
-    public User(String userName) {
-      this.userName = userName;
+        return instance;
     }
 
-    public String getUserName() {
-      return userName;
-    }
+    // Methods to seed data into Db
+    public void seedUser(String userName, Double amount) { /*...*/ }
 
-    public ReceiptDto purchase(Product item) {
-      return new ReceiptDto(item.getPrice());
-    }
-  }
+    public void seedItem(String itemName, Double price) { /*...*/ }
 
-  public class Account {
-    private Double amount;
+    // Methods to find data in Db
+    public User findUserByUserName(String userName) { /*...*/ }
 
-    public Account(Double amount) {
-      this.amount = amount;
-    }
+    public Account findAccountByUser(User user) { /*...*/ }
 
-    public MoneyTransaction withdraw(Double price) {
-      if (price > amount) {
-        return null;
-      }
-      return new MoneyTransaction(amount, price);
-    }
-
-    public Double getAmount() {
-      return amount;
-    }
-  }
-
-  public class Product {
-    private Double price;
-
-    public Product(Double price) {
-      this.price = price;
-    }
-
-    public Double getPrice() {
-      return price;
-    }
-  }
-}
-
-public class MaintenanceLock {
-  private static final Logger LOGGER = LoggerFactory.getLogger(MaintenanceLock.class);
-
-  private static MaintenanceLock instance;
-  private boolean lock = true;
-
-  public static MaintenanceLock getInstance() {
-    if (instance == null) {
-      synchronized (MaintenanceLock.class) {
-        if (instance == null) {
-          instance = new MaintenanceLock();
-        }
-      }
-    }
-    return instance;
-  }
-
-  public boolean isLock() {
-    return lock;
-  }
-
-  public void setLock(boolean lock) {
-    this.lock = lock;
-    LOGGER.info("Maintenance lock is set to: " + lock);
-  }
+    public Product findProductByItemName(String itemName) { /*...*/ }
 }
 ```
 
-Let's first introduce presentation layer, the receipt view model interface and its implementation of successful scenario.
+Next, here are the presentation layer, the receipt view model interface and its implementation of successful scenario.
 
 ```java
 public interface ReceiptViewModel {
-  void show();
+    void show();
 }
+```
 
+```java
+@RequiredArgsConstructor
+@Getter
 public class ReceiptDto implements ReceiptViewModel {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptDto.class);
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(ReceiptDto.class);
+    private final Double price;
 
-  private Double price;
-
-  public ReceiptDto(Double price) {
-    this.price = price;
-  }
-
-  public Double getPrice() {
-    return price;
-  }
-
-  @Override
-  public void show() {
-    LOGGER.info("Receipt: " + price + " paid");
-  }
+    @Override
+    public void show() {
+        LOGGER.info(String.format("Receipt: %s paid", price));
+    }
 }
 ```
 
@@ -193,174 +109,170 @@ And here are the implementations of failure scenarios, which are the special cas
 
 ```java
 public class DownForMaintenance implements ReceiptViewModel {
-  private static final Logger LOGGER = LoggerFactory.getLogger(DownForMaintenance.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DownForMaintenance.class);
 
-  @Override
-  public void show() {
-    LOGGER.info("Down for maintenance");
-  }
+    @Override
+    public void show() {
+        LOGGER.info("Down for maintenance");
+    }
 }
+```
 
+```java
 public class InvalidUser implements ReceiptViewModel {
-  private static final Logger LOGGER = LoggerFactory.getLogger(InvalidUser.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(InvalidUser.class);
 
-  private final String userName;
+    private final String userName;
 
-  public InvalidUser(String userName) {
-    this.userName = userName;
-  }
+    public InvalidUser(String userName) {
+        this.userName = userName;
+    }
 
-  @Override
-  public void show() {
-    LOGGER.info("Invalid user: " + userName);
-  }
+    @Override
+    public void show() {
+        LOGGER.info("Invalid user: " + userName);
+    }
 }
+```
 
+```java
 public class OutOfStock implements ReceiptViewModel {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(OutOfStock.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OutOfStock.class);
 
-  private String userName;
-  private String itemName;
+    private String userName;
+    private String itemName;
 
-  public OutOfStock(String userName, String itemName) {
-    this.userName = userName;
-    this.itemName = itemName;
-  }
+    public OutOfStock(String userName, String itemName) {
+        this.userName = userName;
+        this.itemName = itemName;
+    }
 
-  @Override
-  public void show() {
-    LOGGER.info("Out of stock: " + itemName + " for user = " + userName + " to buy");
-  }
+    @Override
+    public void show() {
+        LOGGER.info("Out of stock: " + itemName + " for user = " + userName + " to buy");
+    }
 }
+```
 
+```java
 public class InsufficientFunds implements ReceiptViewModel {
-  private static final Logger LOGGER = LoggerFactory.getLogger(InsufficientFunds.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(InsufficientFunds.class);
 
-  private String userName;
-  private Double amount;
-  private String itemName;
+    private String userName;
+    private Double amount;
+    private String itemName;
 
-  public InsufficientFunds(String userName, Double amount, String itemName) {
-    this.userName = userName;
-    this.amount = amount;
-    this.itemName = itemName;
-  }
+    public InsufficientFunds(String userName, Double amount, String itemName) {
+        this.userName = userName;
+        this.amount = amount;
+        this.itemName = itemName;
+    }
 
-  @Override
-  public void show() {
-    LOGGER.info("Insufficient funds: " + amount + " of user: " + userName
-        + " for buying item: " + itemName);
-  }
+    @Override
+    public void show() {
+        LOGGER.info("Insufficient funds: " + amount + " of user: " + userName
+                + " for buying item: " + itemName);
+    }
 }
 ```
 
-Second, here's the application layer, the application services implementation and the domain services implementation.
+Here is the `App` and its `main` function that executes the different scenarios.
 
 ```java
-public class ApplicationServicesImpl implements ApplicationServices {
-  private DomainServicesImpl domain = new DomainServicesImpl();
+public class App {
 
-  @Override
-  public ReceiptViewModel loggedInUserPurchase(String userName, String itemName) {
-    if (isDownForMaintenance()) {
-      return new DownForMaintenance();
+    private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+
+    private static final String LOGGER_STRING = "[REQUEST] User: {} buy product: {}";
+    private static final String TEST_USER_1 = "ignite1771";
+    private static final String TEST_USER_2 = "abc123";
+    private static final String ITEM_TV = "tv";
+    private static final String ITEM_CAR = "car";
+    private static final String ITEM_COMPUTER = "computer";
+
+    public static void main(String[] args) {
+        // DB seeding
+        LOGGER.info("Db seeding: " + "1 user: {\"ignite1771\", amount = 1000.0}, "
+                + "2 products: {\"computer\": price = 800.0, \"car\": price = 20000.0}");
+        Db.getInstance().seedUser(TEST_USER_1, 1000.0);
+        Db.getInstance().seedItem(ITEM_COMPUTER, 800.0);
+        Db.getInstance().seedItem(ITEM_CAR, 20000.0);
+
+        final var applicationServices = new ApplicationServicesImpl();
+        ReceiptViewModel receipt;
+
+        LOGGER.info(LOGGER_STRING, TEST_USER_2, ITEM_TV);
+        receipt = applicationServices.loggedInUserPurchase(TEST_USER_2, ITEM_TV);
+        receipt.show();
+        MaintenanceLock.getInstance().setLock(false);
+        LOGGER.info(LOGGER_STRING, TEST_USER_2, ITEM_TV);
+        receipt = applicationServices.loggedInUserPurchase(TEST_USER_2, ITEM_TV);
+        receipt.show();
+        LOGGER.info(LOGGER_STRING, TEST_USER_1, ITEM_TV);
+        receipt = applicationServices.loggedInUserPurchase(TEST_USER_1, ITEM_TV);
+        receipt.show();
+        LOGGER.info(LOGGER_STRING, TEST_USER_1, ITEM_CAR);
+        receipt = applicationServices.loggedInUserPurchase(TEST_USER_1, ITEM_CAR);
+        receipt.show();
+        LOGGER.info(LOGGER_STRING, TEST_USER_1, ITEM_COMPUTER);
+        receipt = applicationServices.loggedInUserPurchase(TEST_USER_1, ITEM_COMPUTER);
+        receipt.show();
     }
-    return this.domain.purchase(userName, itemName);
-  }
-
-  private boolean isDownForMaintenance() {
-    return MaintenanceLock.getInstance().isLock();
-  }
-}
-
-public class DomainServicesImpl implements DomainServices {
-  public ReceiptViewModel purchase(String userName, String itemName) {
-    Db.User user = Db.getInstance().findUserByUserName(userName);
-    if (user == null) {
-      return new InvalidUser(userName);
-    }
-
-    Db.Account account = Db.getInstance().findAccountByUser(user);
-    return purchase(user, account, itemName);
-  }
-
-  private ReceiptViewModel purchase(Db.User user, Db.Account account, String itemName) {
-    Db.Product item = Db.getInstance().findProductByItemName(itemName);
-    if (item == null) {
-      return new OutOfStock(user.getUserName(), itemName);
-    }
-
-    ReceiptDto receipt = user.purchase(item);
-    MoneyTransaction transaction = account.withdraw(receipt.getPrice());
-    if (transaction == null) {
-      return new InsufficientFunds(user.getUserName(), account.getAmount(), itemName);
-    }
-
-    return receipt;
-  }
 }
 ```
 
-Finally, the client send requests the application services to get the presentation view.
-
-```java
-    // DB seeding
-    LOGGER.info("Db seeding: " + "1 user: {\"ignite1771\", amount = 1000.0}, "
-        + "2 products: {\"computer\": price = 800.0, \"car\": price = 20000.0}");
-    Db.getInstance().seedUser("ignite1771", 1000.0);
-    Db.getInstance().seedItem("computer", 800.0);
-    Db.getInstance().seedItem("car", 20000.0);
-
-    var applicationServices = new ApplicationServicesImpl();
-    ReceiptViewModel receipt;
-
-    LOGGER.info("[REQUEST] User: " + "abc123" + " buy product: " + "tv");
-    receipt = applicationServices.loggedInUserPurchase("abc123", "tv");
-    receipt.show();
-    MaintenanceLock.getInstance().setLock(false);
-    LOGGER.info("[REQUEST] User: " + "abc123" + " buy product: " + "tv");
-    receipt = applicationServices.loggedInUserPurchase("abc123", "tv");
-    receipt.show();
-    LOGGER.info("[REQUEST] User: " + "ignite1771" + " buy product: " + "tv");
-    receipt = applicationServices.loggedInUserPurchase("ignite1771", "tv");
-    receipt.show();
-    LOGGER.info("[REQUEST] User: " + "ignite1771" + " buy product: " + "car");
-    receipt = applicationServices.loggedInUserPurchase("ignite1771", "car");
-    receipt.show();
-    LOGGER.info("[REQUEST] User: " + "ignite1771" + " buy product: " + "computer");
-    receipt = applicationServices.loggedInUserPurchase("ignite1771", "computer");
-    receipt.show();
-```
-
-Program output of every request:
+Here is the output from running the example.
 
 ```
-    Down for maintenance
-    Invalid user: abc123
-    Out of stock: tv for user = ignite1771 to buy
-    Insufficient funds: 1000.0 of user: ignite1771 for buying item: car
-    Receipt: 800.0 paid    
+11:23:48.669 [main] INFO com.iluwatar.specialcase.App -- Db seeding: 1 user: {"ignite1771", amount = 1000.0}, 2 products: {"computer": price = 800.0, "car": price = 20000.0}
+11:23:48.672 [main] INFO com.iluwatar.specialcase.App -- [REQUEST] User: abc123 buy product: tv
+11:23:48.672 [main] INFO com.iluwatar.specialcase.DownForMaintenance -- Down for maintenance
+11:23:48.672 [main] INFO com.iluwatar.specialcase.MaintenanceLock -- Maintenance lock is set to: false
+11:23:48.672 [main] INFO com.iluwatar.specialcase.App -- [REQUEST] User: abc123 buy product: tv
+11:23:48.673 [main] INFO com.iluwatar.specialcase.InvalidUser -- Invalid user: abc123
+11:23:48.674 [main] INFO com.iluwatar.specialcase.App -- [REQUEST] User: ignite1771 buy product: tv
+11:23:48.674 [main] INFO com.iluwatar.specialcase.OutOfStock -- Out of stock: tv for user = ignite1771 to buy
+11:23:48.674 [main] INFO com.iluwatar.specialcase.App -- [REQUEST] User: ignite1771 buy product: car
+11:23:48.676 [main] INFO com.iluwatar.specialcase.InsufficientFunds -- Insufficient funds: 1000.0 of user: ignite1771 for buying item: car
+11:23:48.676 [main] INFO com.iluwatar.specialcase.App -- [REQUEST] User: ignite1771 buy product: computer
+11:23:48.676 [main] INFO com.iluwatar.specialcase.ReceiptDto -- Receipt: 800.0 paid
 ```
 
-## Class diagram
-
-![alt text](./etc/special_case_urm.png "Special Case")
+In conclusion, the Special Case Pattern helps to keep the code clean and easy to understand by separating the special case from the general case. It also promotes code reuse and makes the code easier to maintain.
 
 ## Applicability
 
-Use the Special Case pattern when
+* Use when you want to encapsulate and handle special cases or error conditions in a manner that avoids conditional logic scattered throughout the main codebase.
+* Useful in scenarios where certain operations have known exceptional cases that require different handling.
 
-* You have multiple places in the system that have the same behavior after a conditional check 
-for a particular class instance, or the same behavior after a null check.
-* Return a real object that performs the real behavior, instead of a null object that performs nothing.
+## Known Uses
 
-## Tutorial 
+* Implementing null object patterns to avoid null checks.
+* Handling specific business rules or validation logic in e-commerce applications.
+* Managing different file formats or protocols in data processing applications.
 
-* [Special Case Tutorial](https://www.codinghelmet.com/articles/reduce-cyclomatic-complexity-special-case)
+## Consequences
+
+Benefits:
+
+* Simplifies the main logic by removing special case handling from the core algorithms.
+* Enhances code readability and maintainability by isolating special cases.
+
+Trade-offs:
+
+* May introduce additional classes or interfaces, increasing the number of components in the system.
+* Requires careful design to ensure that special cases are correctly encapsulated and do not introduce unexpected behaviors.
+
+## Related Patterns
+
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used to add special case behavior to objects dynamically without modifying their code.
+* [Null Object](https://java-design-patterns.com/patterns/null-object/): Used to provide a default behavior for null references, which is a specific type of special case.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Allows dynamic switching of special case behaviors by encapsulating them in different strategy classes.
 
 ## Credits
 
-* [How to Reduce Cyclomatic Complexity Part 2: Special Case Pattern](https://www.codinghelmet.com/articles/reduce-cyclomatic-complexity-special-case)
-* [Patterns of Enterprise Application Architecture](https://martinfowler.com/books/eaa.html)
-* [Special Case](https://www.martinfowler.com/eaaCatalog/specialCase.html)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Special Case (Martin Fowler)](https://www.martinfowler.com/eaaCatalog/specialCase.html)

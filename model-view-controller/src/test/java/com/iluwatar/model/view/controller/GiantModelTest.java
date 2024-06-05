@@ -29,9 +29,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/20/15 - 2:10 PM
+ * GiantModelTest
  *
- * @author Jeroen Meulemeester
  */
 class GiantModelTest {
 

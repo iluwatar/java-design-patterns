@@ -30,7 +30,7 @@ import lombok.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/** A Feind is a creature that all it wants is to posses a Lockable object. */
+/** A Feind is a creature that wants to possess a Lockable object. */
 public class Feind implements Runnable {
 
   private final Creature creature;
@@ -53,12 +53,7 @@ public class Feind implements Runnable {
   @Override
   public void run() {
     if (!creature.acquire(target)) {
-      try {
-        fightForTheSword(creature, target.getLocker(), target);
-      } catch (InterruptedException e) {
-        LOGGER.error(e.getMessage());
-        Thread.currentThread().interrupt();
-      }
+      fightForTheSword(creature, target.getLocker(), target);
     } else {
       LOGGER.info("{} has acquired the sword!", target.getLocker().getName());
     }
@@ -69,11 +64,9 @@ public class Feind implements Runnable {
    *
    * @param reacher as the source creature.
    * @param holder as the foe.
-   * @param sword as the Lockable to posses.
-   * @throws InterruptedException in case of interruption.
+   * @param sword as the Lockable to possess.
    */
-  private void fightForTheSword(Creature reacher, @NonNull Creature holder, Lockable sword)
-      throws InterruptedException {
+  private void fightForTheSword(Creature reacher, @NonNull Creature holder, Lockable sword) {
     LOGGER.info("A duel between {} and {} has been started!", reacher.getName(), holder.getName());
     boolean randBool;
     while (this.target.isLocked() && reacher.isAlive() && holder.isAlive()) {
