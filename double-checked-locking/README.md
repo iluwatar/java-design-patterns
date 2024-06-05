@@ -1,6 +1,6 @@
 ---
-title: Double-Checked Locking
-description:
+title: "Double Checked Locking in Java: Comprehensive Guide with Examples"
+description: "Master double-checked locking in Java with our detailed guide and practical examples. Enhance your Java design patterns knowledge today."
 category: Concurrency
 language: en
 tag:
@@ -8,15 +8,11 @@ tag:
   - Optimization
   - Performance
   - Thread management
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Double-Checked Locking Design Pattern
 
-The Double-Checked Locking pattern aims to reduce the overhead of acquiring a lock by first testing the locking criterion (the 'lock hint') without actually acquiring the lock. Only if the locking criterion check indicates that locking is necessary does the actual locking logic proceed.
+Reduce the overhead of acquiring a lock by first testing the locking criterion (the "lock hint") without actually acquiring the lock. Only if the locking criterion appears to be true does the actual locking logic proceed. Double-checked locking in Java helps in optimizing performance and ensuring thread safety.
 
 ## Detailed Explanation of Double-Checked Locking Pattern with Real-World Examples
 
@@ -94,10 +90,10 @@ In this code, the `Heavy` object is only created when the `getHeavy` method is c
 
 ## When to Use the Double-Checked Locking Pattern in Java
 
-This pattern is used in scenarios where:
+Use the Double Checked Locking pattern in Java when all of the following conditions are met:
 
-* There is a significant performance cost associated with acquiring a lock, and
-* The lock is not frequently needed.
+* There is a singleton resource that is expensive to create.
+* There is a need to reduce the overhead of acquiring a lock every time the resource is accessed.
 
 ## Known Uses
 
