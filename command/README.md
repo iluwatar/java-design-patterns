@@ -1,6 +1,6 @@
 ---
-title: Command
-description:
+title: "Command Design Pattern in Java: Examples, Explanation, and Use Cases"
+description: "Learn about the Command design pattern in Java with real-world examples, detailed explanations, and practical use cases. Understand how this pattern encapsulates requests as objects to support undo operations and more."
 category: Behavioral
 language: en
 tag:
@@ -8,10 +8,6 @@ tag:
   - Extensibility
   - Gang of Four
   - Undo
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -21,13 +17,13 @@ head:
 
 ## Intent of Command Design Pattern
 
-The Command design pattern encapsulates a request as an object, thereby allowing for parameterization of clients with queues, requests, and operations. It also allows for the support of undoable operations.
+The Command design pattern is a behavioral pattern used in Java programming. It encapsulates a request as an object, allowing for parameterization of clients with queues, requests, and operations. This pattern also supports undoable operations, enhancing flexibility in managing and executing commands.
 
 ## Detailed Explanation of Command Pattern with Real-World Examples
 
 Real-world example
 
-> Imagine a smart home system where you can control various devices such as lights, thermostat, and security cameras through a central application. Each command to turn a device on or off, adjust temperature, or start recording is encapsulated as an object. This way, the application can queue commands, execute them in sequence, and even undo them if needed (like turning the lights back on or stopping the recording). The system thus decouples the control logic from the actual implementation of device operations, allowing for easy addition of new devices or features without altering the core application.
+> Imagine a smart home system where you can control devices such as lights, thermostats, and security cameras through a central application. Each command to operate these devices is encapsulated as an object, enabling the system to queue, execute sequentially, and undo commands if necessary. This approach decouples control logic from device implementation, allowing easy addition of new devices or features without altering the core application. This flexibility and functionality illustrate the practical application of the Command design pattern in Java programming.
 
 In plain words
 
@@ -39,7 +35,9 @@ Wikipedia says
 
 **Programmatic Example**
 
-There is a wizard casting spells on a goblin. The spells are executed on the goblin one by one. The first spell shrinks the goblin and the second makes him invisible. Then the wizard reverses the spells one by one. Each spell here is a command object that can be undone.
+In the Command pattern, objects are used to encapsulate all information needed to perform an action or trigger an event at a later time. This pattern is particularly useful for implementing undo functionality in applications.
+
+In our example, a `Wizard` casts spells on a `Goblin`. Each spell is a command object that can be executed and undone, demonstrating the core principles of the Command pattern in Java. The spells are executed on the goblin one by one. The first spell shrinks the goblin and the second makes him invisible. Then the wizard reverses the spells one by one. Each spell here is a command object that can be undone.
 
 Let's start from the `Wizard` class.
 
@@ -168,6 +166,8 @@ Here's the program output:
 ```
 
 ## When to Use the Command Pattern in Java
+
+The Command design pattern is applicable when you need to parameterize objects with actions, support undo operations, or structure a system around high-level operations built on primitive ones. It is commonly used in GUI buttons, database transactions, and macro recording.
 
 Use the Command pattern when you want to:
 
