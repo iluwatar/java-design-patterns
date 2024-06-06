@@ -1,16 +1,12 @@
 ---
-title: Marker Interface
-description:
+title: "Marker Interface Design Pattern in Java: Benefits, Examples, and Uses"
+description: "Explore the Marker Interface pattern in Java, its benefits, real-world examples, and common uses. Learn how to use marker interfaces for metadata and special class behaviors."
 category: Structural
 language: en
 tag:
   - Encapsulation
   - Interface
   - Polymorphism
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -20,19 +16,19 @@ head:
 
 ## Intent of Marker Interface Design Pattern
 
-The Marker Interface pattern is used to convey metadata about a class in a type-safe manner. Interfaces in Java that have no method declarations are known as marker interfaces. They are used to indicate that a class implementing such an interface possesses some special behavior or capability.
+The Marker Interface pattern in Java is used to convey metadata about a class in a type-safe manner. Interfaces in Java that have no method declarations are known as marker interfaces. They are used to indicate that a class implementing such an interface possesses some special behavior or capability.
 
 ## Detailed Explanation of Marker Interface Pattern with Real-World Examples
 
 Real-world example
 
-> Consider a scenario in a library system where certain books are rare and need special handling procedures, such as restricted check-outs or specific storage conditions. Analogous to the Marker Interface pattern, we could have a marker interface called `RareBook`. Books in the library catalog that implement this interface are flagged as requiring special treatment but don't necessarily have different methods from other books.
+> Consider a scenario in a Java library system where certain books are rare and need special handling procedures, such as restricted check-outs or specific storage conditions. Analogous to the Marker Interface pattern, we could have a marker interface called `RareBook`. Books in the library catalog that implement this interface are flagged as requiring special treatment but don't necessarily have different methods from other books.
 > 
 > When a library staff member processes transactions or handles storage, the system checks if a book implements the `RareBook` interface. If it does, the system automatically enforces rules like "Do not allow check-outs for more than three days" or "Store in a temperature-controlled environment." This use of the marker interface effectively communicates special requirements without altering how books are generally managed, serving simply as a marker for special conditions.
 
 In plain words
 
-> The Marker Interface design pattern uses empty interfaces to signal or define certain properties and behaviors of objects in a type-safe way, without requiring specific method implementations.
+> The Marker Interface design pattern in Java uses empty interfaces to signal or define certain properties and behaviors of objects in a type-safe way, without requiring specific method implementations.
 
 Wikipedia says
 
@@ -44,7 +40,7 @@ Wikipedia says
 
 The Marker Interface design pattern is a design pattern in computer science that is used with languages that provide run-time type information about objects. It provides a means to associate metadata with a class where the language does not have explicit support for such metadata.
 
-In the given code, the `Permission` interface acts as a marker interface. Classes that implement this interface are marked as having special permissions. Let's break down the code to understand how this pattern is implemented.
+In the given Java code example, the Permission interface acts as a marker interface. Classes that implement this interface are marked as having special permissions. Let's break down the code to understand how this pattern is implemented.
 
 First, we define the `Permission` interface. This interface doesn't have any methods, making it a marker interface.
 
