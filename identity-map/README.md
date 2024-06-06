@@ -1,6 +1,6 @@
 ---
-title: Identity Map
-description:
+title: "Identity Map Pattern in Java | Prevent Duplicate Objects with Best Practices"
+description: "Learn about the Identity Map pattern in Java. This design pattern prevents duplicate objects in memory, improving performance and consistency in your applications. Explore implementation examples, benefits, and best practices."
 category: Behavioral
 language: en
 tag:
@@ -10,21 +10,17 @@ tag:
   - Object mapping
   - Persistence
   - Performance
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Identity Map Design Pattern
 
-The Identity Map design pattern aims to ensure that each object gets loaded only once by keeping every loaded object in a map. It looks up objects using the map when referring to them, thus avoiding duplicate objects in memory.
+The Identity Map design pattern in Java aims to ensure that each object gets loaded only once by keeping every loaded object in a map, enhancing database performance and memory management.
 
 ## Detailed Explanation of Identity Map Pattern with Real-World Examples
 
 Real-world example
 
-> Imagine you are organizing a conference and have a registration desk where every attendee must check in. To avoid unnecessary delays and confusion, each attendee's details are entered into a computer system the first time they check in. If the same attendee comes to the desk again, the system quickly retrieves their details without requiring them to re-submit the same information. This ensures each attendee's information is handled efficiently and consistently, similar to how the Identity Map pattern ensures that an object is loaded only once and reused throughout the application.
+> Imagine you are organizing a conference and have a registration desk where every attendee must check in. This scenario illustrates the Identity Map pattern in Java which prevents duplicate objects. To avoid unnecessary delays and confusion, each attendee's details are entered into a computer system the first time they check in. If the same attendee comes to the desk again, the system quickly retrieves their details without requiring them to re-submit the same information. This ensures each attendee's information is handled efficiently and consistently, similar to how the Identity Map pattern ensures that an object is loaded only once and reused throughout the application.
 
 In plain words
 
@@ -36,7 +32,9 @@ Wikipedia says
 
 **Programmatic Example**
 
-For the purpose of this demonstration assume we have already created a database instance **db**. Let's first look at the implementation of a person entity, and it's fields:
+For the purpose of this demonstration in Java programming, assume we have already created a database instance, showcasing the Identity Map pattern to avoid duplicate objects in memory.
+
+Let's first look at the implementation of `Person` entity, and it's fields:
 
 ```java
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -182,7 +180,7 @@ Running the example produces the following console output:
 
 ## When to Use the Identity Map Pattern in Java
 
-This pattern is used in scenarios where multiple accesses to the same data occur within a single session or transaction, especially in complex systems where object identity needs to be preserved across transactions or requests in a Java application.
+The Identity Map design pattern is used in Java applications where multiple accesses to the same data occur within a single session or transaction, ensuring efficient object mapping and consistency.
 
 ## Identity Map Pattern Java Tutorials
 
@@ -190,7 +188,7 @@ This pattern is used in scenarios where multiple accesses to the same data occur
 
 ## Known Uses
 
-* ORM (Object-Relational Mapping) frameworks often implement Identity Maps to handle database interactions more efficiently.
+* ORM (Object-Relational Mapping) frameworks in Java often implement Identity Maps to handle database interactions more efficiently, demonstrating the pattern’s importance in Java design patterns.
 * Enterprise applications to maintain consistent data states across different business processes.
 
 ## Benefits and Trade-offs of Identity Map Pattern
