@@ -1,6 +1,6 @@
 ---
-title: Mediator
-description:
+title: "Mediator Design Pattern: Simplifying Object Communication in Java"
+description: "Learn how the Mediator Design Pattern reduces complexity in object communication and improves system maintainability with a centralized mediator in Java. Explore examples and implementation."
 category: Behavioral
 language: en
 tag:
@@ -8,10 +8,6 @@ tag:
   - Gang Of Four
   - Messaging
   - Object composition
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -38,7 +34,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-In this example, the mediator encapsulates how a set of objects interact. Instead of referring to each other directly they use the mediator interface.
+In this example, the mediator encapsulates how a set of objects interact. Instead of referring to each other directly, they use the mediator interface.
 
 The party members `Rogue`, `Wizard`, `Hobbit`, and `Hunter` all inherit from the `PartyMemberBase`implementing the `PartyMember` interface.
 
