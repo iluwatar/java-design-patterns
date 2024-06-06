@@ -1,6 +1,6 @@
 ---
-title: Model-View-Presenter
-description:
+title: "Model-View-Presenter (MVP) Design Pattern in Java"
+description: "Discover the Model-View-Presenter (MVP) pattern in Java. Learn how it separates user interface, business logic, and data interaction to enhance testability and maintainability."
 category: Architectural
 language: en
 tag:
@@ -10,10 +10,6 @@ tag:
   - Enterprise patterns
   - Interface
   - Presentation
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -40,7 +36,7 @@ Real-world example
 
 In plain words
 
-> The Model-View-Presenter (MVP) pattern separates the user interface, business logic, and data interaction in an application, with the presenter mediating between the view and the model to facilitate clear communication and updates.
+> The Model-View-Presenter (MVP) pattern separates the user interface, business logic, and data interaction in an application, with the presenter mediating between the view and the model to facilitate clear communication and updates. Java developers use MVP to improve application structure.
 
 Wikipedia says
 
