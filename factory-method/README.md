@@ -1,6 +1,6 @@
 ---
-title: Factory Method
-description:
+title: "Factory Method Pattern in Java: Examples, Uses, and Benefits"
+description: "Learn about the Factory Method pattern in Java. Explore examples, uses, benefits, and how it enhances code flexibility and maintenance."
 category: Creational
 language: en
 tag:
@@ -9,10 +9,6 @@ tag:
   - Instantiation
   - Object composition
   - Polymorphism
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -21,7 +17,7 @@ head:
 
 ## Intent of Factory Method Design Pattern
 
-Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
+Define an interface for creating an object using the Factory Method Pattern, but let subclasses decide which class to instantiate. This creational design pattern lets a class defer instantiation to subclasses, enhancing code flexibility and maintenance.
 
 ## Detailed Explanation of Factory Method Pattern with Real-World Examples
 
@@ -40,6 +36,8 @@ Wikipedia says
 > In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory method — either specified in an interface and implemented by child classes, or implemented in a base class and optionally overridden by derived classes—rather than by calling a constructor.
 
 **Programmatic Example**
+
+The Factory Method approach is pivotal in Java Design Patterns for achieving flexible and maintainable code as we see in the following example.
 
 Blacksmith manufactures weapons. Elves require Elvish weapons and orcs require Orcish weapons. Depending on the customer at hand the right type of blacksmith is summoned.
 
@@ -92,7 +90,7 @@ Program output:
 
 ## When to Use the Factory Method Pattern in Java
 
-Use the Factory Method pattern when:
+Use the Factory Method Pattern in Java when:
 
 * Class cannot anticipate the class of objects it must create.
 * Class wants its subclasses to specify the objects it creates.
@@ -113,7 +111,7 @@ Use the Factory Method pattern when:
 
 Benefits:
 
-* Provides hooks for subclasses, creating flexibility in code.
+* The Factory Method Pattern provides hooks for subclasses, enhancing code flexibility and maintainability.
 * Connects parallel class hierarchies.
 * Eliminates the need to bind application-specific classes into the code. The code only deals with the product interface; hence it can work with any user-defined concrete product classes.
 
