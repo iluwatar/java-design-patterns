@@ -1,6 +1,6 @@
 ---
-title: Memento
-description:
+title: "Memento Pattern in Java: Capturing and Restoring Object State"
+description: "Learn how to implement the Memento design pattern in Java to capture and restore object state without violating encapsulation. Ideal for undo functionality in applications."
 category: Behavioral
 language: en
 tag:
@@ -10,10 +10,6 @@ tag:
   - Object composition
   - State tracking
   - Undo
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -23,13 +19,13 @@ head:
 
 ## Intent of Memento Design Pattern
 
-Without violating encapsulation, capture and externalize an object's internal state so that the object can be restored to this state later.
+The Memento design pattern in Java allows developers to capture and restore an object's internal state without violating encapsulation.
 
 ## Detailed Explanation of Memento Pattern with Real-World Examples
 
 Real-world example
 
-> Imagine a text editor application that allows users to write and edit documents. The text editor uses the Memento design pattern to implement its undo and redo functionality. Each time a user makes a change to the document, the editor creates a snapshot (memento) of the current state of the document. These snapshots are stored in a history list. When the user clicks the undo button, the editor restores the document to the state saved in the most recent memento. This process allows users to revert to previous versions of their document without exposing or altering the internal data structures of the editor.
+> A text editor application can utilize the Memento design pattern in Java to enable undo and redo functionalities. By capturing the current state of a document as a memento each time a change is made, the application can easily restore the document to any previous state. The snapshots are stored in a history list. When the user clicks the undo button, the editor restores the document to the state saved in the most recent memento. This process allows users to revert to previous versions of their document without exposing or altering the internal data structures of the editor.
 
 In plain words
 
@@ -41,7 +37,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-We are working on an astrology application where we need to analyze star properties over time. We are creating snapshots of star states using the Memento pattern.
+In our astrology application, we use the Memento pattern to capture and restore the state of star objects. Each state is saved as a memento, allowing us to revert to previous states as needed.
 
 Let's first define the types of stars we are capable to handle.
 
@@ -168,13 +164,12 @@ Program output:
 
 Use the Memento pattern when
 
-* A snapshot of an object's state must be saved so that it can be restored to that state later, and
-* A direct interface to obtaining the state would expose implementation details and break the object's encapsulation
+* You need to capture an object's state in Java and restore it later without exposing its internal structure. This is crucial for maintaining encapsulation and simplifying the management of object states.
+* A direct interface to obtaining the state would expose implementation details and break the object's encapsulation.
 
 ## Real-World Applications of Memento Pattern in Java
 
-* Java Util Package: Various classes in the Java Util Package, such as java.util.Date and java.util.Calendar, can be reverted to previous states using similar principles, though not implemented directly as the Memento Pattern.
-* Undo mechanisms in software: Text editors and graphic editors often use this pattern to implement undo actions.
+The Memento pattern is used in various Java applications, including the java.util.Date and java.util.Calendar classes, which can revert to previous states. It's also common in text editors and graphic editors for undo mechanisms.
 
 ## Benefits and Trade-offs of Memento Pattern
 
