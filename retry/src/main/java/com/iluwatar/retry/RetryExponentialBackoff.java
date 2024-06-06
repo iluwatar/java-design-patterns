@@ -49,7 +49,7 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   private final AtomicInteger attempts;
 
   /**
-   * Constructor.
+   * Constructor
    *
    * @param op          the {@link BusinessOperation} to retry
    * @param maxAttempts number of times to retry
@@ -70,7 +70,7 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   }
 
   /**
-   * The errors encountered while retrying, in the order of occurrence.
+   * The errors encountered while retrying, in the order of occurence.
    *
    * @return the errors encountered while retrying
    */

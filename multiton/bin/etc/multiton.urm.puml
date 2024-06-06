@@ -1,0 +1,43 @@
+@startuml
+package com.iluwatar.multiton {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Nazgul {
+    - name : NazgulName
+    - nazguls : Map<NazgulName, Nazgul> {static}
+    - Nazgul(name : NazgulName)
+    + getInstance(name : NazgulName) : Nazgul {static}
+    + getName() : NazgulName
+  }
+  enum NazgulEnum {
+    + ADUNAPHEL {static}
+    + AKHORAHIL {static}
+    + DWAR {static}
+    + HOARMURATH {static}
+    + JI_INDUR {static}
+    + KHAMUL {static}
+    + MURAZOR {static}
+    + REN {static}
+    + UVATHA {static}
+    + valueOf(name : String) : NazgulEnum {static}
+    + values() : NazgulEnum[] {static}
+  }
+  enum NazgulName {
+    + ADUNAPHEL {static}
+    + AKHORAHIL {static}
+    + DWAR {static}
+    + HOARMURATH {static}
+    + JI_INDUR {static}
+    + KHAMUL {static}
+    + MURAZOR {static}
+    + REN {static}
+    + UVATHA {static}
+    + valueOf(name : String) : NazgulName {static}
+    + values() : NazgulName[] {static}
+  }
+}
+Nazgul -->  "-name" NazgulName
+@enduml

@@ -120,7 +120,6 @@ public final class Retry<T> implements BusinessOperation<T> {
         }
       }
     });
-
     if (attempt < maxAttempts) {
       try {
         Thread.sleep(delay);

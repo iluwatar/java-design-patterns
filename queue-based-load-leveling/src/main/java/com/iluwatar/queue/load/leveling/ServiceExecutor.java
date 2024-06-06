@@ -25,7 +25,6 @@
 package com.iluwatar.queue.load.leveling;
 
 import lombok.extern.slf4j.Slf4j;
-
 import java.util.concurrent.BlockingQueue;
 
 /**
@@ -34,7 +33,6 @@ import java.util.concurrent.BlockingQueue;
  * process them.
  */
 @Slf4j
-
 public class ServiceExecutor implements Runnable {
 
   private final BlockingQueue<Message> msgQueue;
@@ -50,7 +48,6 @@ public class ServiceExecutor implements Runnable {
     try {
       while (true) {
         Message msg = msgQueue.take(); // This will block until a message is available
-
         LOGGER.info(msg + " is served.");
       }
     } catch (InterruptedException e) {
