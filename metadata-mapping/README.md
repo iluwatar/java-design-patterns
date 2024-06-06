@@ -1,6 +1,6 @@
 ---
-title: Metadata Mapping
-description:
+title: "Metadata Mapping Design Pattern"
+description: "Explore the Metadata Mapping Design Pattern for managing the mapping between database records and objects in Java applications. Learn implementation with Hibernate, use cases, benefits, and best practices."
 category: Data access
 language: en
 tag:
@@ -8,15 +8,11 @@ tag:
   - Enterprise patterns
   - Object mapping
   - Persistence
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Metadata Mapping Design Pattern
 
-Metadata Mapping is designed to manage the mapping between database records and objects in a way that keeps the database schema and object model decoupled and manageable.
+Metadata Mapping Design Pattern is designed to manage the mapping between database records and Java objects in a way that keeps the database schema and object model decoupled and manageable.
 
 ## Detailed Explanation of Metadata Mapping Pattern with Real-World Examples
 
@@ -232,11 +228,11 @@ Console output:
 
 ## When to Use the Metadata Mapping Pattern in Java
 
-Use this pattern when you need to bridge the gap between an object-oriented domain model and a relational database, without hard-coding database queries into the domain logic.
+Use the Metadata Mapping Design Pattern when you need to bridge the gap between an object-oriented domain model and a relational database in Java applications, without hard-coding database queries into the domain logic.
 
 ## Known Uses
 
-* Object-Relational Mapping (ORM) frameworks like Hibernate, JPA, EclipseLink and MyBatis.
+* Object-Relational Mapping (ORM) frameworks like Hibernate, JPA, EclipseLink, and MyBatis frequently utilize the Metadata Mapping Design Pattern to map Java objects to database tables.
 * Mapping database rows to domain objects in enterprise applications.
 
 ## Benefits and Trade-offs of Metadata Mapping Pattern
