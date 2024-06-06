@@ -1,6 +1,6 @@
 ---
-title: Function Composition
-description:
+title: "Function Composition Design Pattern in Java: Enhance Code Modularity and Reusability"
+description: "Learn about the Function Composition design pattern in Java. Discover how to create complex functions by combining simpler ones, enhancing code modularity and reusability. Explore real-world examples, benefits, and applications."
 category: Functional
 language: en
 tag:
@@ -10,10 +10,6 @@ tag:
   - Functional decomposition
   - Lambda
   - Reusability
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -24,7 +20,7 @@ head:
 
 ## Intent of Function Composition Design Pattern
 
-To enable creating complex functions by composing simpler ones, enhancing modularity and reusability of function-based logic.
+The Function Composition design pattern in Java enables the creation of complex functions by combining simpler ones. This enhances modular code and reusability, crucial for maintainable software development.
 
 ## Detailed Explanation of Function Composition Pattern with Real-World Examples
 
@@ -43,6 +39,10 @@ Wikipedia says
 > Function composition is an act or mechanism to combine simple functions to build more complicated ones. Like the usual composition of functions in mathematics, the result of each function is passed as the argument of the next, and the result of the last one is the result of the whole.
 
 **Programmatic Example**
+
+In the functional programming paradigm, function composition is a powerful technique. For instance, in Java, you can use higher-order functions to compose operations like multiplying and squaring numbers.
+
+Using Java's functional interfaces, we can define simple functions and compose them. Here's how function composition works in Java.
 
 Let's start with defining two simple functions. In this case, we have a function `timesTwo` that multiplies its input by 2, and a function `square` that squares its input.
 
@@ -86,10 +86,9 @@ This example demonstrates how the Function Composition pattern can be used to cr
 
 ## When to Use the Function Composition Pattern in Java
 
-Use the Function Composer pattern when:
+Use the Function Composition pattern when:
 
-* You want to create a pipeline of operations where the output of one function is the input to another.
-* You need to enhance the clarity and quality of your code by structuring complex function logic into simpler, reusable components.
+* You want to create a pipeline of operations in Java. This enhances code clarity and quality by structuring complex logic into simpler, reusable components.
 * You are working in a functional programming environment or a language that supports higher-order functions.
 * When you want to avoid deep nesting of function calls and instead build a pipeline of operations.
 * When aiming to promote immutability and side-effect-free functions in your design.
