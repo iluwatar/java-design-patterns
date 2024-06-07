@@ -1,5 +1,6 @@
 ---
-title: "Comprehensive Guide to Abstract Factory Pattern in Java: Java Design Patterns Examples & Usage"
+title: "Abstract Factory Pattern in Java: Mastering Object Creation Elegantly"
+shortTitle: Abstract Factory
 description: "Learn the Abstract Factory pattern in Java with real-world examples, class diagrams, and tutorials. Understand its intent, applicability, benefits, and known uses to enhance your design pattern knowledge."
 category: Creational
 language: en
@@ -35,7 +36,7 @@ Wikipedia says
 
 > The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
 
-**Programmatic Example**
+### Programmatic Example of Abstract Factory in Java
 
 To create a kingdom using the Abstract Factory pattern in Java, we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency between the objects in the kingdom.
 

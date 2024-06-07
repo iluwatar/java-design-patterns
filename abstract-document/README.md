@@ -1,5 +1,6 @@
 ---
-title: "Abstract Document Design Pattern in Java: Comprehensive Guide and Examples"
+title: "Abstract Document Pattern in Java: Simplifying Data Handling with Flexibility"
+shortTitle: Abstract Document
 description: "Explore the Abstract Document design pattern in Java. Learn its intent, explanation, applicability, benefits, and see real-world examples to implement flexible and dynamic data structures."
 category: Structural
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the support of type-safety. The pattern makes use of traits to separate different properties of a class into different interfaces.
 
-**Programmatic Example**
+### Programmatic Example of Abstract Document Pattern in Java
 
 Consider a car that consists of multiple parts. However, we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
 

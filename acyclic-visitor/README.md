@@ -1,5 +1,6 @@
 ---
-title: "Acyclic Visitor Pattern in Java: Design Patterns Explained"
+title: "Acyclic Visitor Pattern in Java: Streamlining Object Interactions"
+shortTitle: Acyclic Visitor
 description: "Learn about the Acyclic Visitor pattern in Java. This guide explains how it decouples operations from object hierarchies, providing examples and real-world applications."
 category: Behavioral
 language: en
@@ -28,7 +29,7 @@ In plain words
 
 > The Acyclic Visitor pattern allows new functions to be added to existing class hierarchies without affecting those hierarchies, and without creating the dependency cycles that are inherent to the GangOfFour VisitorPattern.
 
-**Programmatic Example**
+### Programmatic Example of Acyclic Visitor in Java
 
 In this Java example, we have a hierarchy of modem classes illustrating the Acyclic Visitor pattern. The modems in this hierarchy need to be visited by an external algorithm based on filtering criteria (is it Unix or DOS compatible modem).
 

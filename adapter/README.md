@@ -1,5 +1,6 @@
 ---
-title: "Adapter Design Pattern in Java: Examples and Use Cases"
+title: "Adapter Pattern in Java: Seamless Integration of Incompatible Systems"
+shortTitle: Adapter
 description: "Learn how the Adapter Design Pattern works in Java with detailed examples and use cases. Understand how it enables compatibility between incompatible interfaces."
 category: Structural
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > In software engineering, the adapter pattern is a software design pattern that allows the interface of an existing class to be used as another interface. It is often used to make existing classes work with others without modifying their source code.
 
-**Programmatic Example**
+### Programmatic Example of Adapter Pattern in Java
 
 The Adapter Pattern example in Java shows how a class with an incompatible interface can be adapted to work with another class.
 

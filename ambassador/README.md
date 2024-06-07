@@ -1,5 +1,6 @@
 ---
-title: "Ambassador Pattern in Java: Benefits, Examples, and Use Cases"
+title: "Ambassador Pattern in Java: Simplifying Remote Resource Management"
+shortTitle: Ambassador
 description: "Explore the Ambassador Pattern in Java, its benefits, use cases, and practical examples. Learn how to decouple and offload common functionalities to improve system performance and maintainability."
 category: Integration
 language: en
@@ -32,7 +33,7 @@ Microsoft documentation states
 
 > An ambassador service can be thought of as an out-of-process proxy which is co-located with the client. This pattern can be useful for offloading common client connectivity tasks such as monitoring, logging, routing, security (such as TLS), and resiliency patterns in a language agnostic way. It is often used with legacy applications, or other applications that are difficult to modify, in order to extend their networking capabilities. It can also enable a specialized team to implement those features.
 
-**Programmatic Example**
+### Programmatic Example of Ambassador Pattern in Java
 
 In this example of the Ambassador Pattern in Java, we demonstrate how to implement latency checks, logging, and retry mechanisms to improve system reliability.
 

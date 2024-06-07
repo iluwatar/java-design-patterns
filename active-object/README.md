@@ -1,5 +1,6 @@
 ---
-title: "Active Object Design Pattern: Asynchronous Java Concurrency Explained"
+title: "Active Object Pattern in Java: Achieving Efficient Asynchronous Processing"
+shortTitle: Active Object
 description: "Learn about the Active Object design pattern in Java. This guide covers asynchronous behavior, concurrency, and practical examples to enhance your Java applications' performance."
 category: Concurrency
 language: en
@@ -40,7 +41,7 @@ Wikipedia says
 > * The implementation of the active object method.
 > * A callback or variable for the client to receive the result.
 
-**Programmatic Example**
+### Programmatic Example of Active Object in Java
 
 This section explains how the Active Object design pattern works in Java, highlighting its use in asynchronous task management and concurrency control.
 

@@ -1,5 +1,6 @@
 ---
-title: "Anti-Corruption Layer Design Pattern: Java Design Patterns for System Integration"
+title: "Anti-Corruption Layer Pattern in Java: Ensuring System Integrity Amidst Legacy Systems"
+shortTitle: Anti-Corruption Layer
 description: "Learn how the Anti-Corruption Layer design pattern helps in decoupling subsystems, preventing data corruption, and facilitating seamless integration in Java applications."
 category: Integration
 language: en
@@ -43,7 +44,7 @@ In plain words
 
 > Implement a façade or adapter layer between different subsystems that don't share the same semantics. This layer translates requests that one subsystem makes to the other subsystem. Use this pattern to ensure that an application's design is not limited by dependencies on outside subsystems. This pattern was first described by Eric Evans in Domain-Driven Design.
 
-**Programmatic Example**
+### Programmatic Example of Anti-Corruption Layer Pattern in Java
 
 The ACL design pattern in Java provides an intermediary layer that translates data formats, ensuring that integration between different systems does not lead to data corruption.
 
