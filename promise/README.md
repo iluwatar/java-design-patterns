@@ -1,6 +1,6 @@
 ---
-title: Promise
-description:
+title: "Understanding the Promise Design Pattern in Java: A Comprehensive Guide"
+description: "Explore the Promise design pattern in Java, ideal for managing asynchronous operations efficiently. Learn how it enhances code readability and maintainability with practical examples and detailed explanations."
 category: Concurrency
 language: en
 tag:
@@ -9,10 +9,6 @@ tag:
   - Messaging
   - Synchronization
   - Thread management
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -44,7 +40,7 @@ Wikipedia says
 
 The Promise design pattern is a software design pattern that's often used in concurrent programming to handle asynchronous operations. It represents a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason.
 
-In the provided code, the Promise design pattern is used to handle various asynchronous operations such as downloading a file, counting lines in a file, and calculating the character frequency in a file.
+In the provided example, a Promise is used to download files and perform operations like line counting and character frequency analysis asynchronously, showcasing the pattern's utility in practical applications.
 
 ```java
 @Slf4j
