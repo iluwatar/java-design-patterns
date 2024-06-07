@@ -1,5 +1,6 @@
 ---
-title: "Bridge Design Pattern in Java: Decoupling Abstraction from Implementation"
+title: "Bridge Pattern in Java: Decouple Abstraction from Implementation"
+shortTitle: Bridge
 description: "Learn about the Bridge design pattern in Java. Decouple abstraction from implementation to enhance flexibility and extensibility. Explore real-world examples, class diagrams, and use cases."
 category: Structural
 language: en
@@ -35,7 +36,7 @@ Wikipedia says
 
 > The bridge pattern is a design pattern used in software engineering that is meant to "decouple an abstraction from its implementation so that the two can vary independently"
 
-**Programmatic Example**
+### Programmatic Example of Bridge Pattern in Java
 
 Imagine you have a weapon that can have various enchantments, and you need to combine different weapons with different enchantments. How would you handle this? Would you create multiple copies of each weapon, each with a different enchantment, or would you create separate enchantments and apply them to the weapon as needed? The Bridge pattern enables you to do the latter.
 

@@ -1,5 +1,6 @@
 ---
-title: "Bytecode Pattern in Java: Implementation and Examples"
+title: "Bytecode Pattern in Java: Interpreting Instructions with Custom Virtual Machines"
+shortTitle: Bytecode
 description: "Explore the Bytecode design pattern in Java, including its implementation, real-world examples, and use cases for efficient virtual machine instruction handling."
 category: Behavioral
 language: en
@@ -10,10 +11,6 @@ tag:
   - Game programming
   - Performance
   - Runtime
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Bytecode Design Pattern
@@ -34,7 +31,7 @@ In plain words
 
 > An instruction set defines the low-level operations that can be performed. A series of instructions is encoded as a sequence of bytes. A virtual machine executes these instructions one at a time, using a stack for intermediate values. By combining instructions, complex high-level behavior can be defined.
 
-**Programmatic Example**
+### Programmatic Example of Bytecode Pattern in Java
 
 In this programmatic example, we show how the Bytecode pattern in Java can simplify the execution of complex virtual machine instructions through a well-defined set of operations. This real-world example demonstrates how the Bytecode design pattern in Java can streamline game programming by allowing wizards' behavior to be easily adjusted through bytecode instructions.
 

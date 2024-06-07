@@ -1,5 +1,6 @@
 ---
-title: "Builder Design Pattern in Java: Simplify Object Creation with Examples"
+title: "Builder Pattern in Java: Crafting Custom Objects with Clarity"
+shortTitle: Builder
 description: "Discover the Builder design pattern in Java, a powerful creational pattern that simplifies object construction. Learn how to separate the construction of a complex object from its representation with practical examples and use cases."
 category: Creational
 language: en
@@ -39,7 +40,7 @@ public Hero(Profession profession,String name,HairType hairType,HairColor hairCo
 
 As you can see, the number of constructor parameters can quickly become overwhelming, making it difficult to understand their arrangement. Additionally, this list of parameters might continue to grow if you decide to add more options in the future. This is known as the telescoping constructor antipattern.
 
-**Programmatic Example**
+### Programmatic Example of Builder Pattern in Java
 
 In this Java Builder pattern example, we construct different types of `Hero` objects with varying attributes.
 

@@ -1,5 +1,6 @@
 ---
-title: "Balking Design Pattern in Java: Concurrency and State Management"
+title: "Balking Pattern in Java: Smart Control Over Java Execution"
+shortTitle: Balking
 description: "Learn the Balking design pattern in Java, a concurrency pattern that prevents code execution in inappropriate states. Discover examples, use cases, and benefits."
 category: Concurrency
 language: en
@@ -28,7 +29,7 @@ Wikipedia says
 
 > The balking pattern is a software design pattern that only executes an action on an object when the object is in a particular state. For example, if an object reads ZIP files and a calling method invokes a get method on the object when the ZIP file is not open, the object would "balk" at the request.
 
-**Programmatic Example**
+### Programmatic Example of Balking Pattern in Java
 
 This example demonstrates the Balking Pattern in a multithreaded Java application, highlighting state management and concurrency control. The Balking Pattern is exemplified by a washing machine's start button that initiates washing only if the machine is idle. This ensures state management and prevents concurrent issues.
 
