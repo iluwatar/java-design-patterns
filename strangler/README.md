@@ -1,6 +1,6 @@
 ---
-title: Strangler
-description:
+title: "Understanding the Strangler Design Pattern in Java: A Guide to Modernizing Legacy Systems"
+description: "Explore the Strangler design pattern for Java, a strategic approach to incrementally modernize legacy systems without disruption. Learn how it facilitates smooth transitions to new architectures, with real-world applications and code examples."
 category: Structural
 language: en
 tag:
@@ -19,7 +19,7 @@ head:
 
 ## Intent of Strangler Design Pattern
 
-Incrementally replace the legacy system by building a new system alongside the old one, eventually strangling the old system.
+The Strangler Pattern incrementally replaces the legacy system by building a new system alongside the old one, eventually strangling the old system. Using the pattern offer a seamless transition from old to new systems.
 
 ## Detailed Explanation of Strangler Pattern with Real-World Examples
 
@@ -37,7 +37,7 @@ Wikipedia says
 
 **Programmatic Example**
 
-The Strangler design pattern is a software design pattern that incrementally migrates a legacy system by gradually replacing specific pieces of functionality with new applications and services. As features from the legacy system are replaced, the new system eventually replaces all of the old system's features, strangling the old system and allowing you to decommission it.
+The Strangler design pattern in Java is a software design pattern that incrementally migrates a legacy system by gradually replacing specific pieces of functionality with new applications and services. As features from the legacy system are replaced, the new system eventually replaces all the old system's features, strangling the old system and allowing you to decommission it.
 
 In the provided code, we have an example of the Strangler pattern in action. The `OldArithmetic` class represents the legacy system, while the `HalfArithmetic` and `NewArithmetic` classes represent the new system at different stages of development.
 
@@ -168,6 +168,7 @@ This is a typical example of the Strangler pattern. The legacy system (`OldArith
 * Use when you need to replace a monolithic or legacy system incrementally.
 * Ideal for scenarios where the system cannot be replaced in one go due to risk or complexity.
 * Suitable when you need to modernize parts of an application while ensuring continuous operation.
+* Perfect for applications requiring updates with zero downtime, the Strangler pattern supports incremental updates in complex Java systems.
 
 ## Strangler Pattern Java Tutorials
 
