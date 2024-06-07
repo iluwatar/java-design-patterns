@@ -1,5 +1,6 @@
 ---
-title: "Java Data Access Object (DAO) Pattern: Design and Implementation"
+title: "Data Access Object Pattern in Java: Streamlining Database Interaction"
+shortTitle: Data Access Object (DAO)
 description: "Explore the Java Data Access Object (DAO) pattern to effectively separate business logic from database operations. Learn implementation strategies, real-world examples, and best practices."
 category: Structural
 language: en
@@ -35,7 +36,7 @@ Wikipedia says
 
 > In computer software, a data access object (DAO) is a pattern that provides an abstract interface to some type of database or other persistence mechanism.
 
-**Programmatic Example**
+### Programmatic Example of DAO Pattern in Java
 
 There's a set of customers that need to be persisted to database. Additionally, we need the whole set of CRUD (create/read/update/delete) operations, so we can operate on customers easily.
 
@@ -211,7 +212,7 @@ Use the Data Access Object in any of the following situations:
 * [The DAO Pattern in Java(Baeldung)](https://www.baeldung.com/java-dao-pattern)
 * [Data Access Object Pattern (TutorialsPoint)](https://www.tutorialspoint.com/design_pattern/data_access_object_pattern.htm)
 
-## Known Uses
+## Real-World Applications of DAO Pattern in Java
 
 * Enterprise applications that require database interaction.
 * Applications requiring data access to be adaptable to multiple storage types (relational databases, XML files, flat files, etc.).
@@ -232,7 +233,7 @@ Trade-offs:
 * Overhead: For simple applications, the DAO pattern might introduce more overhead than necessary.
 * Learning Curve: Developers might need time to understand and implement the pattern effectively, especially in complex projects.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Helps in abstracting the creation of DAOs, especially when supporting multiple databases or storage mechanisms.
 * [Factory](https://java-design-patterns.com/patterns/factory/): Can be used to instantiate DAOs dynamically, providing flexibility in the choice of implementation.

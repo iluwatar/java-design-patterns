@@ -1,5 +1,6 @@
 ---
-title: "Comprehensive Guide to Data Transfer Object (DTO) Pattern in Java"
+title: "Data Transfer Object Pattern in Java: Simplifying Data Exchange Between Subsystems"
+shortTitle: Data Transfer Object (DTO)
 description: "Learn about the Data Transfer Object (DTO) pattern, its implementation, and practical uses in Java applications. Optimize data transfer between layers with this structural design pattern."
 category: Structural
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > In the field of programming a data transfer object (DTO) is an object that carries data between processes. The motivation for its use is that communication between processes is usually done resorting to remote interfaces (e.g. web services), where each call is an expensive operation. Because the majority of the cost of each call is related to the round-trip time between the client and the server, one way of reducing the number of calls is to use an object (the DTO) that aggregates the data that would have been transferred by the several calls, but that is served by one call only.
 
-**Programmatic Example**
+### Programmatic Example of DTO Pattern in Java
 
 Let's first introduce our simple `CustomerDTO` record.
 
@@ -179,7 +180,7 @@ Use the Data Transfer Object pattern when:
 * [Design Pattern - Transfer Object Pattern (TutorialsPoint)](https://www.tutorialspoint.com/design_pattern/transfer_object_pattern.htm)
 * [The DTO Pattern (Baeldung)](https://www.baeldung.com/java-dto-pattern)
 
-## Known Uses
+## Real-World Applications of DTO Pattern in Java
 
 * Remote Method Invocation (RMI) in Java, where DTOs are used to pass data across network.
 * Enterprise JavaBeans (EJB), particularly when data needs to be transferred from EJBs to clients.

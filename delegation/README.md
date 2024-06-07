@@ -1,5 +1,6 @@
 ---
-title: "Delegation Design Pattern in Java: A Comprehensive Guide"
+title: "Delegation Pattern in Java: Mastering Efficient Task Assignment"
+shortTitle: Delegation
 description: "Explore the Delegation Design Pattern in Java with real-world examples, class diagrams, and its benefits. Learn how to enhance your code flexibility and reuse."
 category: Behavioral
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > In object-oriented programming, delegation refers to evaluating a member (property or method) of one object (the receiver) in the context of another original object (the sender). Delegation can be done explicitly, by passing the sending object to the receiving object, which can be done in any object-oriented language; or implicitly, by the member lookup rules of the language, which requires language support for the feature.
 
-**Programmatic Example**
+### Programmatic Example of Delegation Pattern in Java
 
 Let's consider a printing example.
 
@@ -123,7 +124,7 @@ Epson Printer:hello world
 * To achieve composition-based reuse instead of inheritance-based.
 * When you need to use several interchangeable helper classes at runtime.
 
-## Known Uses
+## Real-World Applications of Delegation Pattern in Java
 
 * Java's java.awt.event package, where listeners are often used to handle events.
 * Wrapper classes in Java's Collections Framework (java.util.Collections), which delegate to other collection objects.
@@ -142,7 +143,7 @@ Trade-offs:
 * Runtime Overhead: Delegation can introduce additional layers of indirection, which may result in slight performance costs.
 * Complexity: The design can become more complicated since it involves additional classes and interfaces to manage delegation.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Composite](https://java-design-patterns.com/patterns/composite/): Delegation can be used within a composite pattern to delegate component-specific behavior to child components.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Delegation is often used in the strategy pattern where a context object delegates tasks to a strategy object.

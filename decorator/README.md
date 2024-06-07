@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Decorator Design Pattern in Java"
+title: "Decorator Pattern in Java: Extending Classes Dynamically"
+shortTitle: Decorator
 description: "Learn how the Decorator Design Pattern enhances flexibility in Java programming by allowing dynamic addition of responsibilities to objects without modifying their existing code. Explore real-world examples and implementation."
 category: Structural
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > In object-oriented programming, the decorator pattern is a design pattern that allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class. The decorator pattern is often useful for adhering to the Single Responsibility Principle, as it allows functionality to be divided between classes with unique areas of concern as well as to the Open-Closed Principle, by allowing the functionality of a class to be extended without being modified.
 
-**Programmatic Example**
+### Programmatic Example of Decorator Pattern in Java
 
 There is an angry troll living in the nearby hills. Usually, it goes bare-handed, but sometimes it has a weapon. To arm the troll it's not necessary to create a new troll but to decorate it dynamically with a suitable weapon.
 
@@ -168,7 +169,7 @@ Trade-offs:
 * Decorators can lead to a system with lots of small objects that look alike to the programmer, making the desired configuration hard to achieve.
 * Overuse can complicate the code structure due to the introduction of numerous small classes.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): A decorator changes an object's responsibilities, while an adapter changes an object's interface.
 * [Composite](https://java-design-patterns.com/patterns/composite/): Decorators can be viewed as a degenerate composite with only one component. However, a decorator adds additional responsibilities—it isn't intended for object aggregation.

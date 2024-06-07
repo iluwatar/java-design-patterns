@@ -1,5 +1,6 @@
 ---
-title: "Comprehensive Guide to Domain Model Pattern in Java Design"
+title: "Domain Model Pattern in Java: Building Robust Business Logic"
+shortTitle: Domain Model
 description: "Learn about the Domain Model pattern in Java design with detailed explanations, examples, and applications. Improve your software's modularity, maintainability, and scalability."
 category: Structural
 language: en
@@ -33,7 +34,7 @@ In plain words
 
 > The Domain Model is an object model of the domain that incorporates both behavior and data.
 
-**Programmatic Example**
+### Programmatic Example of Domain Model Pattern in Java
 
 Let's assume that we need to build an e-commerce web application. While analyzing requirements you will notice that there are few nouns you talk about repeatedly. It’s your Customer, and a Product the customer looks for. These two are your domain-specific classes and each of that classes will include some business logic specific to its domain.
 
@@ -260,7 +261,7 @@ Trade-offs:
 * Performance Concerns: Rich domain objects with complex behaviors might lead to performance bottlenecks, requiring careful optimization.
 * Learning Curve: Requires a good understanding of the domain and may involve a steep learning curve for developers unfamiliar with the domain concepts.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Data Access Object (DAO)](https://java-design-patterns.com/patterns/dao/): For abstracting and encapsulating all access to the data source.
 * [Repository](https://java-design-patterns.com/patterns/repository/): Mediates between the domain and data mapping layers, acting like an in-memory domain object collection.

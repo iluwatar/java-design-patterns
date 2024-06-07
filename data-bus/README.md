@@ -1,5 +1,6 @@
 ---
-title: "Data Bus Pattern in Java: Centralized Communication and Event Handling"
+title: "Data Bus Pattern in Java: Unifying Component Communication Efficiently"
+shortTitle: Data Bus
 description: "Explore the Data Bus pattern in Java for centralized communication and event handling. Learn how to decouple components, enhance scalability, and maintainability with practical examples and real-world applications."
 category: Messaging
 language: en
@@ -30,7 +31,7 @@ In plain words
 
 > Data Bus is a design pattern that connects components of an application for communication based on the type of message or event being transferred. This pattern promotes decoupling, making it easier to scale and maintain the system by allowing components to communicate without direct dependencies.
 
-**Programmatic Example**
+### Programmatic Example of Data Bus Pattern in Java
 
 Say you have an app that enables online bookings and participation in events. You want the app to send notifications, such as event advertisements, to all ordinary members of the community or organization holding the events. However, you do not want to send such advertisements to event administrators or organizers. Instead, you want to send them notifications about the timing of new advertisements sent to all members. The Data Bus enables you to selectively notify community members by type (ordinary members or event administrators) by making their classes or components only accept messages of a certain type. Thus, ordinary members and administrators do not need to know about each other or the specific classes or components used to notify the entire community, except for knowing the type of messages being sent.
 
@@ -156,7 +157,7 @@ As shown, `MessageCollectorMembers` only accept messages of type `MessageData`, 
 * In distributed systems where components might be deployed across different environments.
 * In microservices architectures for inter-service communication.
 
-## Known Uses
+## Real-World Applications of Data Bus Pattern in Java
 
 * Event handling systems in large-scale applications.
 * Microservices architectures for inter-service communication.
@@ -178,7 +179,7 @@ Trade-offs:
 * Performance Overhead: The additional layer of communication may introduce latency.
 * Debugging Difficulty: Tracing data flow through the bus can be challenging, especially in systems with many events.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Mediator](https://java-design-patterns.com/patterns/mediator/): Facilitates communication between components, but unlike Data Bus, it centralizes control.
 * [Observer](https://java-design-patterns.com/patterns/observer/): Similar in nature to the publish-subscribe mechanism used in Data Bus for notifying changes to multiple objects.

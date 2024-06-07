@@ -1,5 +1,6 @@
 ---
-title: "Double Checked Locking in Java: Comprehensive Guide with Examples"
+title: "Double-Checked Locking Pattern in Java: Ensuring Thread Safety with Minimal Overhead"
+shortTitle: Double-Checked Locking
 description: "Master double-checked locking in Java with our detailed guide and practical examples. Enhance your Java design patterns knowledge today."
 category: Concurrency
 language: en
@@ -28,7 +29,7 @@ Wikipedia says
 
 > In software engineering, double-checked locking (also known as "double-checked locking optimization") is a software design pattern used to reduce the overhead of acquiring a lock by testing the locking criterion (the "lock hint") before acquiring the lock. Locking occurs only if the locking criterion check indicates that locking is required.
 
-**Programmatic Example**
+### Programmatic Example of Double-Checked Locking Pattern in Java
 
 The Double-Checked Locking pattern is used in the `HolderThreadSafe` class to ensure that the `Heavy` object is only created once, even when accessed from multiple threads.  Here's how it works:
 
@@ -90,12 +91,12 @@ In this code, the `Heavy` object is only created when the `getHeavy` method is c
 
 ## When to Use the Double-Checked Locking Pattern in Java
 
-Use the Double Checked Locking pattern in Java when all of the following conditions are met:
+Use the Double-Checked Locking pattern in Java when all the following conditions are met:
 
 * There is a singleton resource that is expensive to create.
 * There is a need to reduce the overhead of acquiring a lock every time the resource is accessed.
 
-## Known Uses
+## Real-World Applications of Double-Checked Locking Pattern in Java
 
 * Singleton pattern implementation in multithreading environments.
 * Lazy initialization of resource-intensive objects in Java applications.
@@ -112,7 +113,7 @@ Trade-offs:
 * Complex implementation can lead to mistakes, such as incorrect publishing of objects due to memory visibility issues.
 * In Java, it can be redundant or broken in some versions unless volatile variables are used with care.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Double-Checked Locking is often used in implementing thread-safe Singletons.
 * [Lazy Loading](https://java-design-patterns.com/patterns/lazy-loading/): Shares the concept of delaying object creation until necessary.

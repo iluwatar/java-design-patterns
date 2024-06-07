@@ -1,5 +1,6 @@
 ---
-title: "Dirty Flag Design Pattern: Efficient State Tracking in Java"
+title: "Dirty Flag Pattern in Java: Optimizing Performance with Change Tracking"
+shortTitle: Dirty Flag
 description: "Learn about the Dirty Flag design pattern in Java for efficient state tracking and resource management. Avoid unnecessary computations with practical examples and use cases."
 category: Behavioral
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > A dirty bit or modified bit is a bit that is associated with a block of computer memory and indicates whether the corresponding block of memory has been modified. The dirty bit is set when the processor writes to (modifies) this memory. The bit indicates that its associated block of memory has been modified and has not been saved to storage yet. When a block of memory is to be replaced, its corresponding dirty bit is checked to see if the block needs to be written back to secondary memory before being replaced or if it can simply be removed. Dirty bits are used by the CPU cache and in the page replacement algorithms of an operating system.
 
-**Programmatic Example**
+### Programmatic Example of Dirty Flag Pattern in Java
 
 The `DataFetcher` class is responsible for fetching data from a file. It has a dirty flag that indicates whether the data in the file has changed since the last fetch.
 
@@ -137,7 +138,7 @@ Trade-offs:
 * Requires diligent management of the flag to ensure it accurately reflects the state changes, avoiding stale or incorrect data.
 * Potentially increases the risk of bugs related to improper flag resetting, impacting system reliability.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Observer](https://java-design-patterns.com/patterns/observer/): Can be used in conjunction to notify interested parties when the dirty flag is set or cleared.
 * [Memento](https://java-design-patterns.com/patterns/memento/): Useful for storing the previous state of an object, which can work hand in hand with dirty flag logic to revert to clean states.

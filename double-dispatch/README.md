@@ -1,5 +1,6 @@
 ---
-title: "Double Dispatch Pattern in Java: Implementation, Examples & Guide"
+title: "Double Dispatch Pattern in Java: Enhancing Polymorphic Behavior"
+shortTitle: Double Dispatch
 description: "Learn the Double Dispatch Pattern in Java with detailed implementation examples. Understand how to use this design pattern to enhance your Java applications. Read our comprehensive guide."
 category: Behavioral
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > In software engineering, double dispatch is a special form of multiple dispatch, and a mechanism that dispatches a function call to different concrete functions depending on the runtime types of two objects involved in the call. In most object-oriented systems, the concrete function that is called from a function call in the code depends on the dynamic type of a single object and therefore they are known as single dispatch calls, or simply virtual function calls.
 
-**Programmatic Example**
+### Programmatic Example of Double Dispatch Pattern in Java
 
 The Double Dispatch pattern in Java is used to handle collisions between different types of game objects. Each game object is an instance of a class that extends the `GameObject` abstract class. The `GameObject` class has a `collision(GameObject)` method, which is overridden in each subclass to define the behavior when a collision occurs with another game object. Here is a simplified version of the `GameObject` class and its subclasses:
 
@@ -122,7 +123,7 @@ Here is the program output:
 * In scenarios where if-else or switch-case type checks against the type of objects are cumbersome and not scalable.
 * When implementing operations in domain classes without contaminating their code with complex decision-making logic about other domain classes.
 
-## Known Uses
+## Real-World Applications of Double Dispatch Pattern in Java
 
 * Graphical user interfaces where different actions are taken based on different types of mouse events interacting with different types of elements.
 * Simulation systems where interactions between different types of objects need to trigger distinct behaviors.
@@ -139,7 +140,7 @@ Trade-offs:
 * Can lead to more complex code structures, especially in languages like Java that do not support this pattern natively.
 * May require additional effort in maintaining and extending as new classes are added.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Similar in intent where it's used to choose an algorithm at runtime, though Strategy focuses on single object context rather than interactions between multiple objects.
 * [Visitor](https://java-design-patterns.com/patterns/visitor/): Often used together with Double Dispatch to encapsulate operations performed on a set of element objects.
