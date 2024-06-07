@@ -1,5 +1,6 @@
 ---
-title: "Composite Design Pattern in Java: Structural Patterns"
+title: "Composite Pattern in Java: Building Flexible Tree Structures"
+shortTitle: Composite
 description: "Explore the Composite Design Pattern in Java. Learn how to compose objects into tree structures to represent part-whole hierarchies, making it easier to treat individual objects and compositions uniformly. Ideal for graphical user interfaces, file systems, and organizational structures."
 category: Structural
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > In software engineering, the composite pattern is a partitioning design pattern. The composite pattern describes that a group of objects is to be treated in the same way as a single instance of an object. The intent of a composite is to "compose" objects into tree structures to represent part-whole hierarchies. Implementing the composite pattern lets clients treat individual objects and compositions uniformly.
 
-**Programmatic Example**
+### Programmatic Example of Composite Pattern in Java
 
 Every sentence is composed of words which are in turn composed of characters. Each of these objects are printable, and they can have something printed before or after them like sentence always ends with full stop and word always has space before it.
 
@@ -202,7 +203,7 @@ Trade-offs:
 * Can make the design overly general. It might be difficult to restrict the components of a composite.
 * Can make it harder to restrict the types of components in a composite.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Composite can use Flyweight to share component instances among several composites.
 * [Iterator](https://java-design-patterns.com/patterns/iterator/): Can be used to traverse Composite structures.

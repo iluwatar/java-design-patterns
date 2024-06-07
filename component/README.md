@@ -1,5 +1,6 @@
 ---
-title: "Component Design Pattern in Java: ECS Architecture Example & Tutorial"
+title: "Component Pattern in Java: Simplifying Complex Systems with Reusable Components"
+shortTitle: Component
 description: "Learn about the Component Design Pattern in Java, including ECS architecture, modularity, and decoupling. Explore examples, class diagrams, and real-world applications in game development for flexible and maintainable code."
 categories: Structural
 language: en
@@ -29,7 +30,7 @@ In plain words
 
 > The component design pattern provides a single attribute to be accessible by numerous objects without requiring the existence of a relationship between the objects themselves.
 
-**Programmatic Example**
+### Programmatic Example of Component Pattern in Java
 
 The `App` class creates a demonstration of the use of the component pattern by creating two different objects which inherit a small collection of individual components that are modifiable.
 
@@ -128,7 +129,7 @@ public class PlayerInputComponent implements InputComponent {
 * Used in game development and simulations where game entities (e.g., characters, items) can have a dynamic set of abilities or states.
 * Suitable for systems requiring high modularity and systems where entities might need to change behavior at runtime without inheritance hierarchies.
 
-## Known Uses
+## Real-World Applications of Component Pattern in Java
 
 The Component pattern is ideal for game development and simulations where entities like characters and items have dynamic abilities or states. It suits systems requiring high modularity and scenarios where entities need to change behavior at runtime without relying on inheritance hierarchies, enhancing flexibility and maintainability.
 
@@ -145,7 +146,7 @@ Trade-offs:
 * Complexity: Can introduce additional complexity in system architecture, particularly in managing dependencies and communications between components.
 * Performance Considerations: Depending on implementation, may incur a performance overhead due to indirection and dynamic behavior, especially critical in high-performance game loops.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar concept of adding responsibilities dynamically, but without the focus on game entities.
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Can be used in conjunction with the Component pattern to share component instances among many entities to save memory.

@@ -1,5 +1,6 @@
 ---
-title: "Command Query Responsibility Segregation (CQRS) Pattern: Improve Scalability and Performance"
+title: "Command Query Responsibility Segregation in Java: Optimizing Data Interaction for Scalability"
+shortTitle: Command Query Responsibility Segregation (CQRS)
 description: "Learn about the Command Query Responsibility Segregation (CQRS) pattern in Java. Discover how segregating commands and queries can enhance the scalability, performance, and maintainability of your software systems."
 category: Architectural
 language: en
@@ -31,7 +32,7 @@ Microsoft's documentation says
 
 > CQRS separates reads and writes into different models, using commands to update data, and queries to read data.
 
-**Programmatic Example**
+### Programmatic Example of CQRS Pattern in Java
 
 One way to implement the Command Query Responsibility Segregation (CQRS) pattern is to separate the read and write operations into different services.
 
@@ -100,7 +101,7 @@ Program output:
 * Complex domain models, like financial services or healthcare applications, where the task of updating objects differs significantly from the task of reading object data.
 * Scenarios where performance optimization for read operations is crucial, and the system can benefit from different data models or databases for reads and writes, enhancing data retrieval speed and accuracy.
 
-## Known Uses
+## Real-World Applications of CQRS Pattern in Java
 
 * Distributed Systems and Microservices Architecture, where different services manage read and write responsibilities.
 * Event-Sourced Systems, where changes to the application state are stored as a sequence of events.
@@ -121,7 +122,7 @@ Trade-Offs:
 * Overhead: Might be an overkill for simple systems where the benefits do not outweigh the additional complexity.
 * Learning Curve: Requires a deeper understanding and careful design to implement effectively, increasing the initial learning curve.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Event Sourcing](https://java-design-patterns.com/patterns/event-sourcing/): Often used in conjunction with CQRS, where changes to the application state are stored as a sequence of events.
 * Domain-Driven Design (DDD): CQRS fits well within the DDD context, providing clear boundaries and separation of concerns.

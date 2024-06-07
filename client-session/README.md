@@ -1,5 +1,6 @@
 ---
-title: "Client Session Design Pattern in Java: Manage User State Across Requests"
+title: "Client-Session Pattern in Java: Streamlining Client Data Across Sessions"
+shortTitle: Client Session
 description: "Explore the Client Session design pattern in Java. Learn how to manage user state and data across multiple requests for seamless, personalized web application experiences."
 category: Behavioral
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > The client-server model on Wikipedia describes a system where client devices request services and resources from centralized servers. This model is crucial in web applications where client sessions are used to manage user-specific data across multiple requests. For example, when a bank customer accesses online banking services, their login credentials and session state are managed by the web server to maintain continuity of their interactions.
 
-**Programmatic Example**
+### Programmatic Example of Client Session Pattern in Java
 
 The Client Session design pattern is a behavioral design pattern that maintains a user's state and data across multiple requests within a web application, ensuring a continuous and personalized user experience. This pattern is commonly used in web applications where user-specific data needs to be managed across multiple requests.
 
@@ -109,7 +110,7 @@ Use the client state pattern when:
 * Applications needing to track user activities and preferences over multiple requests or visits.
 * Systems where server resources need to be optimized by offloading state management to the client side.
 
-## Known Uses
+## Real-World Applications of Client Session Pattern in Java
 
 * E-commerce websites to track shopping cart contents across sessions.
 * Online platforms that offer personalized content based on user preferences and history.

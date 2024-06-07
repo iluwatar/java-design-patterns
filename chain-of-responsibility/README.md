@@ -1,5 +1,6 @@
 ---
-title: "Chain of Responsibility Pattern in Java: Design Patterns Explained"
+title: "Chain of Responsibility Pattern in Java: Building Robust Request Handling Mechanisms"
+shortTitle: Chain of Responsibility
 description: "Learn the Chain of Responsibility design pattern in Java with real-world examples, code snippets, and class diagrams. Enhance your coding skills with our detailed explanations."
 category: Behavioral
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > In object-oriented design, the chain-of-responsibility pattern is a design pattern consisting of a source of command objects and a series of processing objects. Each processing object contains logic that defines the types of command objects that it can handle; the rest are passed to the next processing object in the chain.
 
-**Programmatic Example**
+### Programmatic Example of Chain of Responsibility Pattern
 
 In this Java example, the Orc King gives orders which are processed by a chain of command representing the Chain of Responsibility pattern. Learn how to implement this design pattern in Java with the following code snippet.
 

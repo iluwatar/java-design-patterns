@@ -1,5 +1,6 @@
 ---
-title: "Circuit Breaker Pattern: Java Design Patterns for Fault Tolerance"
+title: "Circuit Breaker Pattern in Java: Enhancing System Resilience"
+shortTitle: Circuit Breaker
 description: "Learn about the Circuit Breaker pattern in Java design, which ensures fault tolerance and prevents cascading failures in distributed systems and microservices architectures."
 category: Resilience
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > Circuit breaker is a design pattern used in modern software development. It is used to detect failures and encapsulates the logic of preventing a failure from constantly recurring, during maintenance, temporary external system failure or unexpected system difficulties.
 
-## Programmatic Example
+### Programmatic Example of Circuit Breaker Pattern in Java
 
 This Java example demonstrates how the Circuit Breaker pattern can manage remote service failures and maintain system stability.
 
@@ -183,7 +184,7 @@ The Circuit Breaker pattern is applicable:
 * For applications that interact with third-party services or databases that might become unresponsive or slow
 * In microservices architectures where the failure of one service can affect the availability of others
 
-## Known Uses
+## Real-World Applications of Circuit Breaker Pattern in Java
 
 * Cloud-based services to gracefully handle the failure of external services
 * E-commerce platforms to manage high volumes of transactions and dependency on external APIs

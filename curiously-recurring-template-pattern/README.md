@@ -1,5 +1,6 @@
 ---
-title: "Curiously Recurring Template Pattern (CRTP) in Java: A Comprehensive Guide"
+title: "Curiously Recurring Template Pattern in Java: Leveraging Polymorphism Uniquely"
+shortTitle: Curiously Recurring Template Pattern (CRTP)
 description: "Discover the Curiously Recurring Template Pattern (CRTP) in Java. Learn how to achieve static polymorphism for efficient method overriding and compile-time polymorphic behavior. Perfect for performance-critical applications."
 language: en
 category: Structural
@@ -21,11 +22,11 @@ tag:
 * Recursive Generic
 * Static Polymorphism
 
-## Intent of Curiously Recurring Template Pattern Design Pattern
+## Intent of Curiously Recurring Template Pattern
 
 The Curiously Recurring Template Pattern (CRTP) is a powerful design pattern in Java used to achieve static polymorphism. By having a class template derive from a template instantiation of its own class, CRTP enables method overriding and compile-time polymorphic behavior, enhancing efficiency and performance in your Java applications.
 
-## Detailed Explanation of Curiously Recurring Template Pattern Pattern with Real-World Examples
+## Detailed Explanation of Curiously Recurring Template Pattern with Real-World Examples
 
 Real-world example
 
@@ -39,7 +40,7 @@ Wikipedia says
 
 > The curiously recurring template pattern (CRTP) is an idiom, originally in C++, in which a class X derives from a class template instantiation using X itself as a template argument.
 
-**Programmatic example**
+### Programmatic example of CRTP in Java
 
 For a mixed martial arts promotion that is planning an event, ensuring that the fights are organized between athletes of the same weight class is crucial. This prevents mismatches between fighters of significantly different sizes, such as a heavyweight facing off against a bantamweight.
 
@@ -112,7 +113,7 @@ Program output:
 08:42:34.054 [main] INFO crtp.MmaFighter -- MmaFighter(name=Dave, surname=Davidson, nickName=The Bug Smasher, speciality=Kickboxing) is going to fight against MmaFighter(name=Jack, surname=Jackson, nickName=The Pragmatic, speciality=Brazilian Jiu-Jitsu)
 ```
 
-## When to Use the Curiously Recurring Template Pattern Pattern in Java
+## When to Use the Curiously Recurring Template Pattern in Java
 
 * When you need to extend the functionality of a class through inheritance but prefer compile-time polymorphism to runtime polymorphism for efficiency reasons.
 * When you want to avoid the overhead of virtual functions but still achieve polymorphic behavior.
@@ -121,17 +122,17 @@ Program output:
 * You want to use a parameterized class method that can accept subclasses of the class as arguments, allowing it to be applied to objects that inherit from the class.
 * You want certain methods to work only with instances of the same type, such as for achieving mutual comparability.
 
-## Curiously Recurring Template Pattern Pattern Java Tutorials
+## Curiously Recurring Template Pattern Java Tutorials
 
 * [Curiously Recurring Template Pattern in Java (The NuaH Blog)](https://nuah.livejournal.com/328187.html)
 
-## Real-World Applications of Curiously Recurring Template Pattern Pattern in Java
+## Real-World Applications of Curiously Recurring Template Pattern in Java
 
 * Implementing compile-time polymorphic interfaces in template libraries.
 * Enhancing code reuse in libraries where performance is critical, like in mathematical computations, embedded systems, and real-time processing applications.
 * Implementation of the `Cloneable` interface in various Java libraries.
 
-## Benefits and Trade-offs of Curiously Recurring Template Pattern Pattern
+## Benefits and Trade-offs of Curiously Recurring Template Pattern
 
 Benefits:
 
@@ -145,7 +146,7 @@ Trade-offs:
 * Can lead to code bloat because each instantiation of a template results in a new class.
 * Less flexibility compared to runtime polymorphism as the behavior must be determined entirely at compile time.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Can be used in conjunction with CRTP to instantiate derived classes without knowing their specific types.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): CRTP can implement compile-time strategy selection.

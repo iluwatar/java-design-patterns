@@ -1,5 +1,6 @@
 ---
-title: "Converter Pattern in Java: Enhancing Data Transformation"
+title: "Converter Pattern in Java: Streamlining Data Conversion Across Layers"
+shortTitle: Converter
 description: "Discover the benefits and implementation of the Converter Pattern in Java. Learn how to achieve seamless bidirectional conversion between different data formats, promoting clean code and flexibility in your applications."
 category: Structural
 language: en
@@ -31,7 +32,7 @@ In plain words
 
 > The Converter Pattern simplifies mapping instances of one class to instances of another class, ensuring consistent and clean data transformation.
 
-**Programmatic Example**
+### Programmatic Example of Converter Pattern in Java
 
 In applications, it's common for the database layer to have entities that need mapping to DTOs (Data Transfer Objects) for business logic. This mapping often involves many classes, necessitating a generic solution.
 
@@ -136,7 +137,7 @@ Use the Converter Pattern in the following situations:
 
 * [Converter Pattern in Java 8 (Boldare)](http://www.xsolve.pl/blog/converter-pattern-in-java-8/)
 
-## Known Uses
+## Real-World Applications of Converter Pattern in Java
 
 * Data Transfer Objects (DTOs) conversions in multi-layered applications.
 * Adapting third-party data structures or API responses to internal models.
@@ -157,7 +158,7 @@ Trade-offs:
 * Overhead: Introducing converters can add complexity and potential performance overhead, especially in systems with numerous data formats.
 * Duplication: There's a risk of duplicating model definitions if not carefully managed, leading to increased maintenance.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): Similar in intent to adapting interfaces, but Converter focuses on data models.
 * [Facade](https://java-design-patterns.com/patterns/facade/): Provides a simplified interface to a complex system, which might involve data conversion.

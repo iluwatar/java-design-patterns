@@ -1,5 +1,6 @@
 ---
-title: "Commander Pattern in Java: Distributed Transaction Coordination"
+title: "Commander Pattern in Java: Orchestrating Complex Commands with Ease"
+shortTitle: Commander
 description: "Learn about the Commander design pattern in Java, a powerful approach for managing distributed transactions across multiple services. Ensure data consistency and reliability in your microservices architecture with practical examples and use cases."
 category: Behavioral
 language: en
@@ -32,7 +33,7 @@ In plain words
 
 > The Commander pattern turns a request into a stand-alone object, allowing for the parameterization of commands, queueing of actions, and the implementation of undo operations.
 
-**Programmatic Example**
+### Programmatic Example of Commander Pattern in Java
 
 Managing transactions across different services in a distributed system, such as an e-commerce platform with separate `Payment` and `Shipping` microservices, requires careful coordination. Using the Commander pattern in Java for transaction coordination helps ensure data consistency and reliability, even when services experience partial failures.
 
@@ -86,7 +87,7 @@ Use the Commander pattern in Java for distributed transactions when:
 * Transactions span multiple microservices or distributed components requiring coordinated commit or rollback.
 * You are implementing long-lived transactions requiring compensating actions for rollback.
 
-## Known Uses
+## Real-World Applications of Commander Pattern in Java
 
 * Two-Phase Commit (2PC) Protocols: Coordinating commit or rollback across distributed databases or services.
 * Saga Pattern Implementations: Managing long-lived business processes that span multiple microservices, with each step having a compensating action for rollback.
@@ -106,7 +107,7 @@ Trade-offs:
 * Potentially impacts performance due to the overhead of coordination and consistency checks.
 * Saga-based implementations can lead to increased complexity in understanding the overall business process flow.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Saga Pattern](https://java-design-patterns.com/patterns/saga/): Often discussed in tandem with the Commander pattern for distributed transactions, focusing on long-lived transactions with compensating actions.
 

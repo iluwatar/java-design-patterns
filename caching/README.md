@@ -1,5 +1,6 @@
 ---
-title: "Java Caching Design Pattern: Improve Performance with Effective Caching Strategies"
+title: "Caching Pattern in Java: Accelerating Data Access Speeds"
+shortTitle: Caching
 description: "Learn how to optimize performance with the Java Caching Design Pattern. Explore various caching strategies, real-world examples, and implementation techniques for efficient resource management."
 category: Performance optimization
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > In computing, a cache is a hardware or software component that stores data so that future requests for that data can be served faster; the data stored in a cache might be the result of an earlier computation or a copy of data stored elsewhere. A cache hit occurs when the requested data can be found in a cache, while a cache miss occurs when it cannot. Cache hits are served by reading data from the cache, which is faster than recomputing a result or reading from a slower data store; thus, the more requests that can be served from the cache, the faster the system performs.
 
-**Programmatic Example**
+### Programmatic Example of Caching Pattern in Java
 
 In this programmatic example, we demonstrate different Java caching strategies, including write-through, write-around, and write-behind, using a user account management system.
 

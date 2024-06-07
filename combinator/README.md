@@ -1,5 +1,6 @@
 ---
-title: "Combinator Pattern in Java: Comprehensive Guide & Examples"
+title: "Combinator Pattern in Java: Crafting Flexible Code Compositions"
+shortTitle: Combinator
 description: "Learn how to use the Combinator pattern in Java with real-world examples and comprehensive explanations. Enhance your Java design skills with this detailed guide."
 category: Functional
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > A combinator is a higher-order function that uses only function application and earlier defined combinators to define a result from its arguments.
 
-**Programmatic Example**
+### Programmatic Example of Combinator Pattern in Java
 
 In software design, combinatory logic is pivotal for creating reusable and modular code components. By leveraging higher-order functions, the Combinator pattern promotes code reuse and maintainability in Java applications.
 
@@ -179,7 +180,7 @@ public class CombinatorApp {
 }
 ```
 
-**Program output:**
+Program output:
 
 ```
 20:03:52.746 [main] INFO com.iluwatar.combinator.CombinatorApp -- the result of expanded(or) query[[many, Annabel]] is [It was many and many a year ago,, By the name of ANNABEL LEE;, I and my Annabel Lee;]
@@ -200,7 +201,7 @@ The applicable scenarios include:
 * There is a need for high modularity and reusability of functions.
 * The programming environment supports first-class functions and higher-order functions.
 
-## Known Uses
+## Real-World Applications of Combinator Pattern in Java
 
 * Functional programming languages like Haskell and Scala extensively use combinators for tasks ranging from parsing to UI construction.
 * In domain-specific languages, particularly those involved in parsing, such as parsing expression grammars.
@@ -223,7 +224,7 @@ Trade-offs:
 * May result in performance overhead due to the creation of intermediate functions.
 * Debugging can be challenging due to the abstract nature of function compositions.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Relies on chaining objects, whereas Combinator chains functions.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar to Combinator in enhancing functionality, but Decorator focuses on object augmentation.

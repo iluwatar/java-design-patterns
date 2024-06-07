@@ -1,5 +1,6 @@
 ---
-title: "Context Object Pattern: Encapsulating Context for Decoupled Systems"
+title: "Context Object Pattern in Java: Simplifying Access to Contextual Data"
+shortTitle: Context Object
 description: "Learn about the Context Object pattern in Java Design Patterns. Encapsulate state and behaviors relevant to users or requests to decouple application components from environmental complexities. Explore real-world examples, benefits, and implementation tips."
 category: Behavioral
 language: en
@@ -35,7 +36,7 @@ In plain words
 
 > Use a Context Object to encapsulate state in a protocol-independent way to be shared throughout your application.
 
-**Programmatic Example**
+### Programmatic Example of Context Object in Java
 
 In a multi-layered Java application, different layers such as A, B, and C extract specific information from a shared context. Passing each piece of information individually is inefficient. The Context Object pattern efficiently stores and passes this information, improving the overall performance and maintainability of the Java application.
 

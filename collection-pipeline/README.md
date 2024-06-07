@@ -1,5 +1,6 @@
 ---
-title: "Enhance Java Data Processing with the Collection Pipeline Pattern"
+title: "Collection Pipeline Pattern in Java: Streamlining Data Manipulation"
+shortTitle: Collection Pipeline
 description: "Learn how the Collection Pipeline design pattern in Java enhances data processing by chaining operations in a sequence. This pattern promotes a declarative approach, improving code readability, maintainability, and performance."
 category: Functional
 language: en
@@ -28,7 +29,7 @@ Wikipedia says
 
 > In software engineering, a pipeline consists of a chain of processing elements (processes, threads, coroutines, functions, etc.), arranged so that the output of each element is the input of the next; the name is by analogy to a physical pipeline. Usually some amount of buffering is provided between consecutive elements. The information that flows in these pipelines is often a stream of records, bytes, or bits, and the elements of a pipeline may be called filters; this is also called the pipe(s) and filters design pattern. Connecting elements into a pipeline is analogous to function composition.
 
-**Programmatic Example**
+### Programmatic Example of Collection Pipeline Pattern in Java
 
 The Collection Pipeline is a programming pattern where you organize some computation as a sequence of operations which compose by taking a collection as output of one operation and feeding it into the next.
 
@@ -85,7 +86,7 @@ Use the Collection Pipeline pattern:
 * When you want to improve readability and maintainability of complex data processing code.
 * When working with large datasets where intermediate results should not be stored in memory.
 
-## Known Uses
+## Real-World Applications of Collection Pipeline Pattern in Java
 
 * LINQ in .NET
 * Stream API in Java 8+
@@ -107,7 +108,7 @@ Trade-offs:
 * Debugging Difficulty: Debugging a chain of operations might be more challenging due to the lack of intermediate variables.
 * Limited to Collections: Primarily focused on collections, and its utility might be limited outside of collection processing.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Builder](https://java-design-patterns.com/patterns/builder/): Similar fluent interface style but used for object construction.
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Conceptually similar in chaining handlers, but applied to object requests rather than data collection processing.

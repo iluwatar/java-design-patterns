@@ -1,5 +1,6 @@
 ---
-title: "Understanding Currying in Java: Functional Programming Simplified"
+title: "Currying Pattern in Java: Enhancing Function Flexibility and Reusability"
+shortTitle: Currying
 description: "Learn about currying in Java, a technique to simplify functions by breaking them into a sequence of single-argument functions. Discover its applications, benefits, and examples in this comprehensive guide."
 category: Functional
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > In mathematics and computer science, currying is the technique of translating a function that takes multiple arguments into a sequence of families of functions, each taking a single argument.
 
-**Programmatic example**
+### Programmatic example of Currying Pattern in Java
 
 Consider a librarian who wants to populate their library with books. The librarian wants functions which can create books corresponding to specific genres and authors. Currying makes this possible by writing a curried book builder function and utilising partial application.
 

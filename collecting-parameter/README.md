@@ -1,5 +1,6 @@
 ---
-title: "Improving Method Calls with the Collecting Parameter Pattern"
+title: "Collecting Parameter Pattern in Java: Mastering Efficient Parameter Handling"
+shortTitle: Collecting Parameter
 description: "Discover how the Collecting Parameter design pattern simplifies Java method calls by aggregating multiple parameters into a single collection object. Enhance code readability and maintainability with practical examples and real-world applications."
 category: Behavioral
 language: en
@@ -35,7 +36,7 @@ Wikipedia says
 
 > In the Collecting Parameter idiom a collection (list, map, etc.) is passed repeatedly as a parameter to a method which adds items to the collection.
 
-**Programmatic Example**
+### Programmatic Example of Collecting Parameter Pattern in Java
 
 Within a large corporate building, there exists a global printer queue that is a collection of all the printing jobs that are currently pending. Various floors contain different models of printers, each having a different printing policy. We must construct a program that can continually add appropriate printing jobs to a collection, which is called the collecting parameter.
 

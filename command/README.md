@@ -1,5 +1,6 @@
 ---
-title: "Command Design Pattern in Java: Examples, Explanation, and Use Cases"
+title: "Command Pattern in Java: Empowering Flexible Command Execution"
+shortTitle: Command
 description: "Learn about the Command design pattern in Java with real-world examples, detailed explanations, and practical use cases. Understand how this pattern encapsulates requests as objects to support undo operations and more."
 category: Behavioral
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > In object-oriented programming, the command pattern is a behavioral design pattern in which an object is used to encapsulate all information needed to perform an action or trigger an event at a later time.
 
-**Programmatic Example**
+### Programmatic Example of Command Pattern in Java
 
 In the Command pattern, objects are used to encapsulate all information needed to perform an action or trigger an event at a later time. This pattern is particularly useful for implementing undo functionality in applications.
 
@@ -203,7 +204,7 @@ Trade-offs:
 * Increases the number of classes for each individual command.
 * Can complicate the design by adding multiple layers between senders and receivers.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Composite](https://java-design-patterns.com/patterns/composite/): Commands can be composed using the Composite pattern to create macro commands.
 * [Memento](https://java-design-patterns.com/patterns/memento/): Can be used for implementing undo mechanisms.
