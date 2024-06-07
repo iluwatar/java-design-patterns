@@ -1,6 +1,6 @@
 ---
-title: Page Controller
-description:
+title: "Understanding the Page Controller Pattern in Java - Java Design Patterns"
+description: "Explore the Page Controller design pattern in Java with detailed examples. Learn how it handles web application requests and improves architectural organization."
 categories: Architectural
 language: en
 tags:
@@ -12,10 +12,6 @@ tags:
   - Layered architecture
   - Presentation
   - Web development
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Page Controller Design Pattern
@@ -32,11 +28,11 @@ Real-world example
 
 In plain words
 
-> The Page Controller pattern handles requests for specific pages or actions within a web application, processing input, executing business logic, and determining the appropriate view for rendering the response.
+> The Page Controller pattern handles requests for specific pages or actions within a Java web application, processing input, executing business logic, and determining the appropriate view for rendering the response, enhancing response handling and system architecture.
 
 **Programmatic Example**
 
-The Page Controller design pattern is a pattern used in web development where each page of a website is associated with a class or function known as a controller. The controller handles the HTTP requests for that page and determines which model and view to use. This pattern is commonly used in MVC (Model-View-Controller) architectures.
+The Page Controller design pattern is a pattern used in web development where each page of a website is associated with a class or function known as a controller. The controller handles the HTTP requests for that page and determines which model and view to use. Predominantly utilized in MVC (Model-View-No-Controller) architectures, the Java Page Controller pattern integrates seamlessly with existing enterprise frameworks.
 
 In the provided code, we have an example of the Page Controller pattern implemented using Spring Boot in Java. Let's break it down:
 
