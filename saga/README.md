@@ -1,6 +1,6 @@
 ---
-title: Saga
-description:
+title: "Understanding the Saga Pattern in Microservices"
+description: "Explore the Saga pattern in Java for managing distributed transactions across microservices with resilience and fault tolerance. Learn how the Saga pattern ensures data consistency without locking resources."
 category: Resilience
 language: en
 tag:
@@ -10,10 +10,6 @@ tag:
   - Integration
   - Microservices
   - Transactions
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Saga Design Pattern
@@ -28,7 +24,7 @@ Real-world example
 
 In plain words
 
-> The Saga pattern coordinates distributed transactions across microservices using a sequence of events and compensating actions to ensure data consistency and fault tolerance.
+> The Saga pattern in Java coordinates distributed transactions across microservices using a sequence of events and compensating actions to ensure data consistency and fault tolerance.
 
 Wikipedia says
 
