@@ -1,6 +1,6 @@
 ---
-title: Object Pool
-description:
+title: "Object Pool Design Pattern: Enhance Performance and Resource Management"
+description: "Learn how the Object Pool design pattern improves performance by reusing expensive objects efficiently. Explore examples, benefits, and best practices in Java."
 category: Creational
 language: en
 tag:
@@ -10,10 +10,6 @@ tag:
   - Performance
   - Resource management
   - Scalability
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -22,7 +18,7 @@ head:
 
 ## Intent of Object Pool Design Pattern
 
-The Object Pool design pattern manages a pool of reusable objects, optimizing resource use by recycling objects rather than creating and destroying them repeatedly.
+The Object Pool design pattern in Java manages a pool of reusable objects, optimizing memory management and application performance by recycling objects rather than creating and destroying them repeatedly.
 
 ## Detailed Explanation of Object Pool Pattern with Real-World Examples
 
