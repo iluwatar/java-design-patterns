@@ -25,30 +25,19 @@
 package com.iluwatar.front.controller;
 
 /**
- * FrontController is the handler class that takes in all the requests and renders the correct
- * response.
+ * The FrontController is responsible for handling all incoming requests. It delegates
+ * the processing of requests to the Dispatcher, which then determines the appropriate
+ * command and view to render the correct response.
  */
 public class FrontController {
 
+  private final Dispatcher dispatcher;
+
+  public FrontController() {
+    this.dispatcher = new Dispatcher();
+  }
+
   public void handleRequest(String request) {
-    var command = getCommand(request);
-    command.process();
-  }
-
-  private Command getCommand(String request) {
-    var commandClass = getCommandClass(request);
-    try {
-      return (Command) commandClass.getDeclaredConstructor().newInstance();
-    } catch (Exception e) {
-      throw new ApplicationException(e);
-    }
-  }
-
-  private static Class<?> getCommandClass(String request) {
-    try {
-      return Class.forName("com.iluwatar.front.controller." + request + "Command");
-    } catch (ClassNotFoundException e) {
-      return UnknownCommand.class;
-    }
+    dispatcher.dispatch(request);
   }
 }

@@ -36,7 +36,7 @@ Wikipedia says
 
 The Front Controller design pattern is a pattern that provides a centralized entry point for handling all requests in a web application. It ensures that request handling is managed consistently and efficiently across an application.
 
-In the provided code, we can see an example of the Front Controller pattern in the `App` and `FrontController` classes.
+In the provided code, we can see an example of the Front Controller pattern in the `App`, `FrontController` and `Dispatcher` classes.
 
 The `App` class is the entry point of the application. It creates an instance of `FrontController` and uses it to handle various requests.
 
@@ -52,33 +52,55 @@ public class App {
 }
 ```
 
-The `FrontController` class is the front controller in this example. It handles all requests and routes them to the appropriate handlers.
+The `FrontController` class is the front controller in this example. It handles all requests and delegates them to the `Dispatcher`.
 
 ```java
 public class FrontController {
 
-  public void handleRequest(String request) {
-    Command command;
+    private final Dispatcher dispatcher;
 
-    switch (request) {
-      case "Archer":
-        command = new ArcherCommand();
-        break;
-      case "Catapult":
-        command = new CatapultCommand();
-        break;
-      default:
-        command = new UnknownCommand();
+    public FrontController() {
+        this.dispatcher = new Dispatcher();
     }
 
+    public void handleRequest(String request) {
+        dispatcher.dispatch(request);
+    }
+}
+```
+
+The `Dispatcher` class is responsible for handling the dispatching of requests to the appropriate command. It retrieves the corresponding command based on the request and invokes the command's process method to handle the business logic.
+
+```java
+public class Dispatcher {
+    
+  public void dispatch(String request) {
+    var command = getCommand(request);
     command.process();
+  }
+
+  Command getCommand(String request) {
+    var commandClass = getCommandClass(request);
+    try {
+      return (Command) commandClass.getDeclaredConstructor().newInstance();
+    } catch (Exception e) {
+      throw new ApplicationException(e);
+    }
+  }
+
+  static Class<?> getCommandClass(String request) {
+    try {
+      return Class.forName("com.iluwatar.front.controller." + request + "Command");
+    } catch (ClassNotFoundException e) {
+      return UnknownCommand.class;
+    }
   }
 }
 ```
 
-In this example, when a request is received, the `FrontController` creates a command object based on the request and calls its `process` method. The command object is responsible for handling the request and rendering the appropriate view.
+In this example, when a request is received, the `FrontController` delegates the request to the `Dispatcher`, which creates a command object based on the request and calls its `process` method. The command object is responsible for handling the request and rendering the appropriate view.
 
-This is a basic example of the Front Controller pattern, where all requests are handled by a single controller, ensuring consistent and efficient request handling.
+This is a basic example of the Front Controller pattern, where all requests are handled by a single controller and dispatcher, ensuring consistent and efficient request handling.
 
 ## Class diagram
 
