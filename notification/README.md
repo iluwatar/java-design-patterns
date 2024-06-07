@@ -1,6 +1,6 @@
 ---
-title: Notification
-description:
+title: "Java Notification Design Pattern: Overview & Examples"
+description: "Learn how to implement the Notification design pattern in Java with detailed explanations, code examples, and use cases. Improve your design patterns knowledge and code quality."
 category: Behavioral
 language: en 
 tags:
@@ -9,10 +9,6 @@ tags:
   - Event-driven
   - Messaging
   - Publish/subscribe
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -21,7 +17,7 @@ head:
 
 ## Intent of Notification Design Pattern
 
-The Notification design pattern aims to facilitate communication between different parts of a system by allowing objects to subscribe to specific events and receive updates asynchronously when those events occur.
+The Notification design pattern in Java aims to facilitate asynchronous communication between different parts of a system by allowing objects to subscribe to specific events and receive updates asynchronously when those events occur.
 
 ## Detailed Explanation of Notification Pattern with Real-World Examples
 
@@ -37,7 +33,7 @@ In plain words
 
 **Programatic example**
 
-The Notification pattern is used to capture information passed between layers, validate the information, and return any errors to the presentation layer if needed. It reduces coupling between the producer and consumer of events, enhances flexibility and reusability of components, and allows for dynamic subscription and unsubscription to events.
+The Java Notification pattern is used to capture information passed between layers, validate the information, and return any errors to the presentation layer if needed. It reduces coupling between the producer and consumer of events, enhances flexibility and reusability of components, and allows for dynamic event subscription and unsubscription.
 
 In this example, we'll use a form submission scenario to demonstrate the Notification pattern. The form is used to register a worker with their name, occupation, and date of birth. The form data is passed to the domain layer for validation, and any errors are returned to the presentation layer.
 
