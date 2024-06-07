@@ -1,6 +1,6 @@
 ---
-title: Registry
-description:
+title: "Understanding the Registry Pattern in Java Design"
+description: "Explore the Registry design pattern in Java: Learn how it centralizes object management for improved access and control. Perfect for software developers and architects looking to optimize Java application architecture."
 category: Creational
 language: en
 tag:
@@ -10,15 +10,11 @@ tag:
   - Dependency management
   - Enterprise patterns
   - Instantiation
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Registry Design Pattern
 
-To centralize the creation and management of a global set of objects, providing a single point of access and ensuring controlled instantiation.
+Registry Design Pattern centralizes the creation and management of a global set of objects, providing a single point of access and ensuring controlled instantiation.
 
 ## Detailed Explanation of Registry Pattern with Real-World Examples
 
@@ -131,6 +127,8 @@ Running the example produces the following output:
 ## Benefits and Trade-offs of Registry Pattern
 
 Benefits:
+
+Key advantages of adopting the Registry pattern in Java
 
 * Centralizes object management, making the application easier to maintain.
 * Promotes reuse and sharing of objects, which can reduce memory footprint and initialization time.
