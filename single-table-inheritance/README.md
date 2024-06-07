@@ -1,6 +1,6 @@
 ---
-title: Single Table Inheritance
-description:
+title: "Single Table Inheritance Pattern in Java: A Comprehensive Guide"
+description: "Discover how the Single Table Inheritance pattern simplifies database schema in Java applications. Learn its use, benefits, and implementation in our comprehensive guide."
 category: Data access
 language: en
 tag:
@@ -8,10 +8,6 @@ tag:
   - Encapsulation
   - Persistence
   - Polymorphism
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -21,7 +17,9 @@ head:
 
 ## Intent of Single Table Inheritance Design Pattern
 
-Simplify the storage of an inheritance hierarchy in a single database table, where rows represent objects of different classes and columns represent the union of all attributes.
+Single Table Inheritance pattern simplifies database schema in Java applications.
+
+Streamline the storage of an inheritance hierarchy in a single database table, where rows represent objects of different classes and columns represent the union of all attributes.
 
 ## Detailed Explanation of Single Table Inheritance Pattern with Real-World Examples
 
@@ -237,6 +235,8 @@ The Single Table Inheritance pattern is a simple and efficient way to map an inh
 ## Benefits and Trade-offs of Single Table Inheritance Pattern
 
 Benefits:
+
+Using the Single Table Inheritance pattern in Java ORM
 
 * Simplifies database schema by reducing the number of tables.
 * Easier to manage relationships and queries since all data is in one table.
