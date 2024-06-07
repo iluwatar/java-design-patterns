@@ -1,6 +1,6 @@
 ---
-title: Visitor
-description:
+title: "Understanding the Visitor Design Pattern in Java"
+description: "Explore the Visitor design pattern in Java with detailed examples and class diagrams. Learn how to implement operations without altering object structures for clean and maintainable code."
 category: Behavioral
 language: en
 tag:
@@ -9,10 +9,6 @@ tag:
   - Gang of Four
   - Object composition
   - Polymorphism
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Visitor Design Pattern
@@ -29,7 +25,7 @@ Real-world example
 
 In plain words
 
-> Visitor pattern defines operations that can be performed on the nodes of the data structure. 
+> The Java Visitor pattern defines operations that can be performed on nodes of various data structures, enhancing Java application extensibility. 
 
 Wikipedia says
 
@@ -232,7 +228,7 @@ Program output:
 
 Use the Visitor pattern when
 
-* Use the Visitor pattern when you need to perform an operation on a group of similar kinds of objects, and you want to avoid polluting their classes with this operation.
+* Implement the Visitor design pattern in Java when you need to efficiently perform operations across groups of similar objects without modifying their classes, and you want to avoid polluting their classes with this operation.
 * Use it when a class structure is stable, but you need to perform new operations on the structure without changing it.
 * It's beneficial when the set of classes are fixed and only the operations need to be extended.
 
