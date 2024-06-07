@@ -1,6 +1,6 @@
 ---
-title: Throttling
-description:
+title: "Mastering Throttling: Rate Limiting in Java Design Patterns"
+description: "Explore the Throttling design pattern in Java to manage application stability and prevent system overload. Learn how rate limiting ensures consistent performance and system resilience. Ideal for developers and software architects."
 category: Resource management
 language: en
 tag:
@@ -9,10 +9,6 @@ tag:
   - Performance
   - Resilience
   - Scalability
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -21,7 +17,7 @@ head:
 
 ## Intent of Throttling Design Pattern
 
-Throttling limits the number of requests a system can process within a given time frame to prevent overload and ensure stability.
+The Throttling Pattern, also known as Rate Limiting, limits the number of requests a system can process within a given time frame to prevent overload and ensure stability. It is crucial for resource management in Java applications.
 
 ## Detailed Explanation of Throttling Pattern with Real-World Examples
 
@@ -39,7 +35,7 @@ In plain words
 
 **Programmatic Example**
 
-In this example a young human and an old dwarf walk into a bar. They start ordering beers from the bartender. The bartender immediately sees that the young human shouldn't consume too many drinks too fast and refuses to serve if enough time has not passed. For the old dwarf, the serving rate can be higher.
+In this Java example, we demonstrate throttling. A young human and an old dwarf walk into a bar. They start ordering beers from the bartender. The bartender immediately sees that the young human shouldn't consume too many drinks too fast and refuses to serve if enough time has not passed. For the old dwarf, the serving rate can be higher.
 
 `BarCustomer` class presents the clients of the `Bartender` API. `CallsCount` tracks the number of calls per `BarCustomer`.
 
