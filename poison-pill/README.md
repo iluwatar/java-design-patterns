@@ -1,6 +1,6 @@
 ---
-title: Poison Pill
-description:
+title: "Poison Pill Pattern in Java Design Patterns: Concurrency & Messaging"
+description: "Explore the Poison As an alternative to "Poison Pill" design pattern in Java, used for gracefully shutting down multi-threaded applications. Understand its intent, applicability, and see a real-world example. Perfect for developers looking to enhance concurrency and messaging systems."
 category: Concurrency
 language: en
 tag:
@@ -8,10 +8,6 @@ tag:
   - Fault tolerance
   - Messaging
   - Thread management
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -20,7 +16,7 @@ head:
 
 ## Intent of Poison Pill Design Pattern
 
-The Poison Pill design pattern is used to gracefully shut down a service or a producer-consumer system by sending a special message (the "poison pill") which indicates that no more messages will be sent, allowing the consumers to terminate.
+The Poison Pill design pattern is used to gracefully shut down a service or a producer-consumer system by sending a special message (the "poison pill") to message queue which indicates that no more messages will be sent, allowing the consumers to terminate.
 
 ## Detailed Explanation of Poison Pill Pattern with Real-World Examples
 
@@ -33,6 +29,8 @@ In plain words
 > Poison Pill is a known message structure that ends the message exchange.   
 
 **Programmatic Example**
+
+In this Java example, the Poison Pill serves as a shutdown signal within message queues, demonstrating effective thread management and consumer communication.
 
 Let's define the message structure first. There's interface `Message` and implementation `SimpleMessage`.
 
@@ -219,7 +217,7 @@ Program output:
 
 Use the Poison Pill idiom when:
 
-* When there is a need to gracefully shut down a multithreaded application.
+* Systems require robust fault tolerance and seamless consumer shutdown in multithreaded environments.
 * In producer-consumer scenarios where consumers need to be informed about the end of message processing.
 * To ensure that consumers can finish processing remaining messages before shutting down.
 
