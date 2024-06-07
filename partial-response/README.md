@@ -1,6 +1,6 @@
 ---
-title: Partial Response
-description:
+title: "Partial Response Design Pattern: Enhancing API Performance & Scalability"
+description: "Explore the Partial Response design pattern for APIs, a strategy to boost performance by allowing clients to process data as soon as it becomes available. Learn how it improves scalability and reduces server load."
 category: Behavioral
 language: en
 tag:
@@ -11,10 +11,6 @@ tag:
   - Performance
   - Scalability
   - Web development
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -145,11 +141,13 @@ By implementing the Partial Response design pattern, clients can request only th
 
 Use the Partial Response pattern when
 
-* When the response data is large or takes a long time to process and transfer.
+* Utilize the Partial Response pattern when dealing with large data sets or APIs that require improved load time and performance.
 * When it’s beneficial for the client to begin processing the data as it arrives rather than waiting for the complete response.
 * In APIs where different clients might need different subsets of data, allowing them to specify what they need.
 
-## Known Uses
+## Real-World Applications of Partial Response Pattern in Java
+
+This pattern is widely adopted in
 
 * RESTful APIs allowing clients to specify fields they want using query parameters.
 * Streaming large datasets where initial parts of the data can be sent immediately (e.g., video streaming).
