@@ -1,23 +1,25 @@
 ---
-title: Extension Objects
+title: "Extension Objects Pattern in Java: Enhancing Object Functionality Flexibly"
+shortTitle: Extension Objects
+description: "Learn about the Extension Objects Design Pattern in Java. Understand its purpose, benefits, and implementation with examples to enhance your software design."
 category: Structural
 language: en
 tag:
-    - Encapsulation
-    - Extensibility
-    - Object composition
-    - Polymorphism
+  - Encapsulation
+  - Extensibility
+  - Object composition
+  - Polymorphism
 ---
 
 ## Also known as
 
 * Interface Extensions
 
-## Intent
+## Intent of Extension Objects Design Pattern
 
 The Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure, by attaching additional objects that can dynamically add new functionality.
 
-## Explanation
+## Detailed Explanation of Extension Objects Pattern with Real-World Examples
 
 Real-world example
 
@@ -31,11 +33,11 @@ Wikipedia says
 
 > In object-oriented computer programming, an extension objects pattern is a design pattern added to an object after the original object was compiled. The modified object is often a class, a prototype or a type. Extension object patterns are features of some object-oriented programming languages. There is no syntactic difference between calling an extension method and calling a method declared in the type definition.
 
-**Programmatic example**
+## Programmatic Example of Extension Objects Pattern in Java
 
 The Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure, by attaching additional objects that can dynamically add new functionality.
 
-In this example, we have three types of units: `SoldierUnit`, `SergeantUnit`, and `CommanderUnit`. Each unit can have extensions that provide additional functionality. The extensions are `SoldierExtension`, `SergeantExtension`, and `CommanderExtension`.
+In this Java implementation, we have three types of units: `SoldierUnit`, `SergeantUnit`, and `CommanderUnit`. Each unit can have extensions that provide additional functionality. The extensions are `SoldierExtension`, `SergeantExtension`, and `CommanderExtension`.
 
 The `Unit` class is the base class for all units. It has a method `getUnitExtension` that returns an extension object based on the extension name.
 
@@ -141,15 +143,15 @@ This produces the following console output.
 
 This example demonstrates how the Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure.
 
-## Class diagram
+## Detailed Explanation of Extension Objects Pattern with Real-World Examples
 
 ![Extension_objects](./etc/extension_obj.png "Extension objects")
 
-## Applicability
+## When to Use the Extension Objects Pattern in Java
 
 This pattern is applicable in scenarios where an object's functionality needs to be extended at runtime, avoiding the complications of subclassing. It's particularly useful in systems where object capabilities need to be augmented post-deployment, or where the capabilities might vary significantly across instances.
 
-## Known Uses
+## Real-World Applications of Extension Objects Pattern in Java
 
 * Extending services in an application server without altering existing code.
 * Plugins in IDEs like IntelliJ IDEA or Eclipse to add features to the base application.
@@ -157,7 +159,7 @@ This pattern is applicable in scenarios where an object's functionality needs to
 * [OpenDoc](https://en.wikipedia.org/wiki/OpenDoc)
 * [Object Linking and Embedding](https://en.wikipedia.org/wiki/Object_Linking_and_Embedding)
 
-## Consequences
+## Benefits and Trade-offs of Extension Objects Pattern
 
 Benefits:
 
@@ -170,13 +172,13 @@ Trade-offs:
 * Can increase complexity due to the management of extension objects.
 * May introduce performance overhead if the interaction between objects and extensions is not efficiently designed.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar in intent to add responsibilities dynamically, but uses a different structure.
 * [Composite](https://java-design-patterns.com/patterns/composite/): Also manages a group of objects, which can be seen as a form of extension.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Offers an alternative way to change the behavior of an object dynamically.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/4aBMuuL)
 * [Pattern-Oriented Software Architecture: A System of Patterns](https://amzn.to/3Q9YOtX)

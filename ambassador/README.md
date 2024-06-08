@@ -1,25 +1,23 @@
 ---
-title: Ambassador
+title: "Ambassador Pattern in Java: Simplifying Remote Resource Management"
+shortTitle: Ambassador
+description: "Explore the Ambassador Pattern in Java, its benefits, use cases, and practical examples. Learn how to decouple and offload common functionalities to improve system performance and maintainability."
 category: Integration
 language: en
 tag:
-    - API design
-    - Decoupling
-    - Fault tolerance
-    - Proxy
-    - Resilience
-    - Scalability
+  - API design
+  - Decoupling
+  - Fault tolerance
+  - Proxy
+  - Resilience
+  - Scalability
 ---
 
-## Intent
+## Intent of Ambassador Design Pattern
 
-Provide a helper service instance on a client and offload common functionality away from a shared resource.
+The Ambassador Pattern in Java helps offload common functionalities such as monitoring, logging, and routing from a shared resource to a helper service instance, enhancing performance and maintainability in distributed systems.
 
-## Also known as
-
-* Sidecar
-
-## Explanation
+## Detailed Explanation of Ambassador Pattern with Real-World Examples
 
 Real-world example
 
@@ -35,7 +33,9 @@ Microsoft documentation states
 
 > An ambassador service can be thought of as an out-of-process proxy which is co-located with the client. This pattern can be useful for offloading common client connectivity tasks such as monitoring, logging, routing, security (such as TLS), and resiliency patterns in a language agnostic way. It is often used with legacy applications, or other applications that are difficult to modify, in order to extend their networking capabilities. It can also enable a specialized team to implement those features.
 
-**Programmatic Example**
+## Programmatic Example of Ambassador Pattern in Java
+
+In this example of the Ambassador Pattern in Java, we demonstrate how to implement latency checks, logging, and retry mechanisms to improve system reliability.
 
 A remote service has many clients accessing a function it provides. The service is a legacy application and is impossible to update. Large numbers of requests from users are causing connectivity issues. New rules for request frequency should be implemented along with latency checks and client-side logging.
 
@@ -175,9 +175,9 @@ Failed to reach remote:(3)
 Service result:-1
 ```
 
-## Applicability
+## When to Use the Ambassador Pattern in Java
 
-* Cloud Native and Microservices Architectures: Especially useful in distributed systems where it's crucial to monitor, log, and secure inter-service communication.
+* The Ambassador Pattern is particularly beneficial for Cloud Native and Microservices Architectures in Java. It helps in monitoring, logging, and securing inter-service communication, making it ideal for distributed systems.
 * Legacy System Integration: Facilitates communication with newer services by handling necessary but non-core functionalities.
 * Performance Enhancement: Can be used to cache results or compress data to improve communication efficiency.
 
@@ -189,7 +189,7 @@ Typical use cases include:
 * Offload remote service tasks
 * Facilitate network connection
 
-## Consequences
+## Benefits and Trade-offs of Ambassador Pattern
 
 Benefits:
 
@@ -204,7 +204,7 @@ Trade-offs:
 * Potential Performance Overhead: The additional network hop can introduce latency and overhead, particularly if not optimized.
 * Deployment Overhead: Requires additional resources and management for deploying and scaling ambassador services.
 
-## Known uses
+## Real-World Applications of Ambassador Pattern in Java
 
 * Service Mesh Implementations: In a service mesh architecture, like Istio or Linkerd, the Ambassador pattern is often employed as a sidecar proxy that handles inter-service communications. This includes tasks such as service discovery, routing, load balancing, telemetry (metrics and tracing), and security (authentication and authorization).
 * API Gateways: API gateways can use the Ambassador pattern to encapsulate common functionalities like rate limiting, caching, request shaping, and authentication. This allows backend services to focus on their core business logic without being burdened by these cross-cutting concerns.
@@ -216,14 +216,14 @@ Trade-offs:
 * Network Optimization: For services deployed across different geographical locations or cloud regions, Ambassadors can optimize communication by compressing data, batching requests, or even implementing smart routing to reduce latency and costs.
 * [Kubernetes-native API gateway for microservices](https://github.com/datawire/ambassador)
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Often used in conjunction to manage fault tolerance by stopping calls to an unresponsive service.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): The decorator pattern is used to add functionality to an object dynamically, while the ambassador pattern is used to offload functionality to a separate object.
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): Shares similarities with the proxy pattern, but the ambassador pattern specifically focuses on offloading ancillary functionalities.
 * Sidecar: A similar pattern used in the context of containerized applications, where a sidecar container provides additional functionality to the main application container.
 
-## Credits
+## References and Credits
 
 * [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/43aGpSR)
 * [Cloud Native Patterns: Designing Change-tolerant Software](https://amzn.to/3wUAl4O)

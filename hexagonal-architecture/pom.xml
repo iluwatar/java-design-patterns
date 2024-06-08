@@ -26,13 +26,13 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>java-design-patterns</artifactId>
     <groupId>com.iluwatar</groupId>
+    <artifactId>java-design-patterns</artifactId>
     <version>1.26.0-SNAPSHOT</version>
   </parent>
-  <modelVersion>4.0.0</modelVersion>
-  <artifactId>marker</artifactId>
+  <artifactId>hexagonal-architecture</artifactId>
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -40,9 +40,22 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-core</artifactId>
+      <groupId>com.google.inject</groupId>
+      <artifactId>guice</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>de.flapdoodle.embed</groupId>
+      <artifactId>de.flapdoodle.embed.mongo</artifactId>
+      <version>4.13.1</version>
       <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>bson</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mongodb</groupId>
+      <artifactId>mongodb-driver-legacy</artifactId>
     </dependency>
   </dependencies>
   <build>
@@ -55,7 +68,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>App</mainClass>
+                  <mainClass>com.iluwatar.hexagonal.App</mainClass>
                 </manifest>
               </archive>
             </configuration>

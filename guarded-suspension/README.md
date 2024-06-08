@@ -1,13 +1,15 @@
 ---
-title: Guarded Suspension
+title: "Guarded Suspension Pattern in Java: Ensuring Safe Concurrency in Critical Sections"
+shortTitle: Guarded Suspension
+description: "Learn about the Guarded Suspension design pattern in Java. Understand its implementation for efficient concurrency control, with real-world examples and code snippets."
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Resource management
-    - Synchronization
-    - Thread management
+  - Asynchronous
+  - Decoupling
+  - Resource management
+  - Synchronization
+  - Thread management
 ---
 
 ## Also known as
@@ -15,15 +17,15 @@ tag:
 * Conditional Block
 * Suspended Execution
 
-## Intent
+## Intent of Guarded Suspension Design Pattern
 
-The Guarded Suspension pattern manages operations that require both a lock and a condition to proceed, allowing a thread to wait for an appropriate condition while being efficient with resource use.
+The Guarded Suspension pattern is crucial in Java design patterns for managing operations that require both a lock and a condition to proceed. It optimizes concurrency control by allowing a thread to wait for the right condition efficiently.
 
-## Explanation
+## Detailed Explanation of Guarded Suspension Pattern with Real-World Examples
 
 Real-world example
 
-> A real-world example of the Guarded Suspension pattern is a ride-sharing service where passengers wait for a car to be available. When a passenger requests a ride, the request is suspended until a driver becomes available. The system monitors the availability of drivers, and once a driver is ready to take a new passenger, the system notifies the waiting passenger and resumes the ride request process. This ensures that passengers are not continuously checking for available drivers and that drivers are efficiently matched with passengers based on their availability.
+> A practical example of the Guarded Suspension pattern can be seen in a ride-sharing service. In this system, passengers wait for a car to become available, ensuring efficient resource use without continuous checking. When a passenger requests a ride, the request is suspended until a driver becomes available. The system monitors the availability of drivers, and once a driver is ready to take a new passenger, the system notifies the waiting passenger and resumes the ride request process. This ensures that passengers are not continuously checking for available drivers and that drivers are efficiently matched with passengers based on their availability.
 
 In plain words
 
@@ -33,7 +35,9 @@ Wikipedia says
 
 > In concurrent programming, Guarded Suspension manages operations requiring a lock and a precondition, delaying execution until the precondition is met.
 
-**Programmatic Example**
+## Programmatic Example of Guarded Suspension Pattern in Java
+
+The `GuardedQueue` class in Java showcases concurrent programming using the Guarded Suspension pattern. It includes synchronized methods that manage thread management and synchronization, demonstrating how threads wait for the right conditions to execute.
 
 The `GuardedQueue` class demonstrates the Guarded Suspension pattern by encapsulating a queue and providing two synchronized methods, `get` and `put`. The `get` method waits if the queue is empty, while the `put` method adds an item to the queue and notifies any waiting threads.
 
@@ -119,17 +123,17 @@ Execution yields:
 
 * The log output shows the sequence of events: the first thread waits, the second thread puts an item, and the first thread then retrieves the item. This demonstrates the Guarded Suspension pattern in action.
 
-## Applicability
+## When to Use the Guarded Suspension Pattern in Java
 
-This pattern is used in scenarios where a thread needs to wait for certain conditions to be met before it can proceed, ensuring that resources are utilized only when necessary and reducing the overhead of busy waiting.
+This pattern is ideal for scenarios requiring a thread to wait for specific conditions, promoting efficient concurrency control and reducing busy waiting overhead.
 
-## Known Uses
+## Real-World Applications of Guarded Suspension Pattern in Java
 
 * Network servers waiting for client requests.
 * Producer-consumer scenarios where the consumer must wait for the producer to provide data.
 * Event-driven applications where actions are triggered only after specific events have occurred.
 
-## Consequences
+## Benefits and Trade-offs of Guarded Suspension Pattern
 
 Benefits:
 
@@ -141,13 +145,13 @@ Trade-offs:
 * Complexity in implementation, especially when multiple conditions need to be managed.
 * Potential for deadlocks if not carefully managed.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Monitor](https://java-design-patterns.com/patterns/monitor/): Both patterns manage the synchronization of threads based on conditions. Guarded Suspension specifically deals with suspending threads until conditions are met, while Monitor Object encapsulates condition and mutual exclusion handling.
 * [Producer-Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Often implemented using Guarded Suspension to handle waiting consumers and producers efficiently.
 * [Balking](https://java-design-patterns.com/patterns/balking/): Similar to Guarded Suspension, Balking is used when a thread checks a condition and only proceeds if the condition is favorable; if not, it immediately returns or bails out. This pattern complements Guarded Suspension by managing actions based on immediate condition checks without waiting.
 
-## Credits
+## References and Credits
 
 * [Concurrent Programming in Java : Design Principles and Patterns](https://amzn.to/4dIBqxL)
 * [Java Concurrency in Practice](https://amzn.to/3JxnXek)

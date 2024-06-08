@@ -131,7 +131,7 @@
     <module>value-object</module>
     <module>monad</module>
     <module>mute-idiom</module>
-    <module>hexagonal</module>
+    <module>hexagonal-architecture</module>
     <module>abstract-document</module>
     <module>microservices-aggregrator</module>
     <module>promise</module>
@@ -146,7 +146,7 @@
     <module>guarded-suspension</module>
     <module>balking</module>
     <module>extension-objects</module>
-    <module>marker</module>
+    <module>marker-interface</module>
     <module>command-query-responsibility-segregation</module>
     <module>event-sourcing</module>
     <module>data-transfer-object</module>
