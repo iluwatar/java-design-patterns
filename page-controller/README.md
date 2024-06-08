@@ -2,7 +2,7 @@
 title: "Page Controller Pattern in Java: Centralizing Web Page Logic for Cleaner Design"
 shortTitle: Page Controller
 description: "Explore the Page Controller design pattern in Java with detailed examples. Learn how it handles web application requests and improves architectural organization."
-categories: Architectural
+category: Architectural
 language: en
 tags:
   - API design
