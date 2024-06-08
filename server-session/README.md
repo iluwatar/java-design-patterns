@@ -1,5 +1,6 @@
 ---
-title: "Server Session Pattern in Java: Managing User States Securely"
+title: "Server Session Pattern in Java: Managing User Sessions with Enhanced Security"
+shortTitle: Server Session
 description: "Explore the Server Session Pattern for Java applications. Learn how this design pattern helps manage user sessions securely and maintain state across multiple client requests with detailed examples and uses."
 category: Resource management
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > A session token is a unique identifier that is generated and sent from a server to a client to identify the current interaction session. The client usually stores and sends the token as an HTTP cookie and/or sends it as a parameter in GET or POST queries. The reason to use session tokens is that the client only has to handle the identifier—all session data is stored on the server (usually in a database, to which the client does not have direct access) linked to that identifier.
 
-**Programmatic Example**
+### Programmatic Example of Server Session Pattern in Java
 
 The Server Session design pattern is a behavioral design pattern that assigns the responsibility of storing session data on the server side. This pattern is particularly useful in the context of stateless protocols like HTTP where all requests are isolated events independent of previous requests.
 
@@ -142,7 +143,7 @@ This is a basic example of the Server Session design pattern. The actual impleme
 * Suitable for applications needing to track user interactions, preferences, or authentication state.
 * Ideal for scenarios where client-side storage is insecure or insufficient.
 
-## Known Uses
+## Real-World Applications of Server Session Pattern in Java
 
 * Java EE applications using HttpSession for session management.
 * Spring Framework's `@SessionAttributes` for handling user session data.
@@ -162,7 +163,7 @@ Trade-offs:
 * Requires session management logic to handle session timeouts and data persistence.
 * Potential scalability issues with high user concurrency.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [State](https://java-design-patterns.com/patterns/state/): Manages state-specific behavior, which can be utilized within session management to handle different user states.
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): Can be used to add a layer of control over session data access.

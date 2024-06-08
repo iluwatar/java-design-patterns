@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Special Case Design Pattern in Java"
+title: "Special Case Pattern in Java: Simplifying Exception Handling with Predefined Cases"
+shortTitle: Special Case
 description: "Explore the Special Case design pattern in Java for handling exceptional cases without cluttering the main code logic. Learn its applicability, real-world examples, and benefits for clean, maintainable code."
 category: Structural
 language: en
@@ -36,7 +37,7 @@ In [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR) Ma
 
 > If you’ll pardon the unresistable pun, I see [Null Object](https://java-design-patterns.com/patterns/null-object/) as special case of Special Case.
 
-**Programmatic Example**
+### Programmatic Example of Special Case Pattern in Java
 
 The Special Case Pattern is a software design pattern that is used to handle a specific, often uncommon, case separately from the general case in the code. This pattern is useful when a class has behavior that requires conditional logic based on its state. Instead of cluttering the class with conditional logic, we can encapsulate the special behavior in a subclass.
 
@@ -45,7 +46,6 @@ In an e-commerce system, the presentation layer relies on the application layer 
 The `Db` class is a singleton that holds data for users, accounts, and products. It provides methods to seed data into the database and find data in the database.
 
 ```java
-
 @RequiredArgsConstructor
 @Getter
 public class Db {
@@ -247,7 +247,7 @@ In conclusion, the Special Case Pattern helps to keep the code clean and easy to
 * Use when you want to encapsulate and handle special cases or error conditions in a manner that avoids conditional logic scattered throughout the main codebase.
 * Useful in scenarios where certain operations have known exceptional cases that require different handling.
 
-## Known Uses
+## Real-World Applications of Special Case Pattern in Java
 
 * Implementing null object patterns to avoid null checks.
 * Handling specific business rules or validation logic in e-commerce applications.
@@ -267,7 +267,7 @@ Trade-offs:
 * May introduce additional classes or interfaces, increasing the number of components in the system.
 * Requires careful design to ensure that special cases are correctly encapsulated and do not introduce unexpected behaviors.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used to add special case behavior to objects dynamically without modifying their code.
 * [Null Object](https://java-design-patterns.com/patterns/null-object/): Used to provide a default behavior for null references, which is a specific type of special case.

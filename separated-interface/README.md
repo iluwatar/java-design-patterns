@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Separated Interface Design Pattern in Java"
+title: "Separated Interface Pattern in Java: Streamlining Java Development with Interface Isolation"
+shortTitle: Separated Interface
 description: "Explore the Separated Interface design pattern in Java: Enhance software flexibility and maintainability by decoupling interfaces from implementations. Ideal for developers looking to improve code scalability and adaptability."
 category: Structural
 language: en
@@ -7,10 +8,6 @@ tag:
   - API design
   - Decoupling
   - Interface
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -34,7 +31,7 @@ In plain words
 
 > Defines a client interface separate from its implementation to allow for flexible and interchangeable components.
 
-**Programmatic Example**
+### Programmatic Example of Separated Interface Pattern in Java
 
 The Java Separated Interface design pattern is a crucial software architecture strategy that promotes separating the interface definition from its implementation, crucial for enhancing system flexibility and scalability. This allows the client to be completely unaware of the implementation, promoting loose coupling and enhancing flexibility.
 
@@ -121,11 +118,11 @@ In this way, the Separated Interface pattern allows us to decouple the interface
 * Particularly effective in large-scale Java systems, where separate teams handle different components, the Separated Interface pattern ensures seamless integration and easier maintenance.
 * Ideal when the implementation might change over time or vary between deployments.
 
-## Tutorial
+## Separated Interface Pattern Tutorials
 
 * [Separated Interface Design Pattern Explained (Ram N Java)](https://www.youtube.com/watch?v=d3k-hOA7k2Y)
 
-## Known Uses
+## Real-World Applications of Separated Interface Pattern in Java
 
 * Java's JDBC (Java Database Connectivity) API separates the client interface from the database driver implementations.
 * Remote Method Invocation (RMI) in Java, where the client and server interfaces are defined separately from the implementations.
@@ -143,7 +140,7 @@ Trade-offs:
 * Initial setup might be more complex.
 * May lead to increased number of classes and interfaces in the codebase.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): Adapts one interface to another, which can be used alongside Separated Interface to integrate different implementations.
 * [Bridge](https://java-design-patterns.com/patterns/bridge/): Separates an object’s interface from its implementation, similar to Separated Interface but usually applied to larger-scale architectural issues.

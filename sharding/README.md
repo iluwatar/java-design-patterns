@@ -1,5 +1,6 @@
 ---
-title: "Understanding Sharding: Essential Java Design Patterns for Scalable Databases"
+title: "Sharding Pattern in Java: Mastering Horizontal Partitioning to Boost Application Throughput"
+shortTitle: Sharding
 description: "Explore how Sharding, or horizontal partitioning, enhances database scalability and performance. This guide covers the Sharding pattern's intent, implementation, and benefits for Java developers."
 category: Data access
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 >
 > There are numerous advantages to the horizontal partitioning approach. Since the tables are divided and distributed into multiple servers, the total number of rows in each table in each database is reduced. This reduces index size, which generally improves search performance. A database shard can be placed on separate hardware, and multiple shards can be placed on multiple machines. This enables a distribution of the database over a large number of machines, greatly improving performance. In addition, if the database shard is based on some real-world segmentation of the data (e.g., European customers v. American customers) then it may be possible to infer the appropriate shard membership easily and automatically, and query only the relevant shard.
 
-**Programmatic Example**
+### Programmatic Example of Sharding Pattern in Java
 
 Sharding is a type of database partitioning that separates very large databases into smaller, faster, more easily managed parts called data shards. The word shard means a small part of a whole. In software architecture, it refers to a horizontal partition in a database or search engine. Each individual partition is referred to as a shard or database shard.
 
@@ -212,7 +213,7 @@ Finally, here is the program output:
 * Useful for applications requiring high availability and fault tolerance.
 * Effective in environments where read and write operations can be parallelized across shards.
 
-## Known Uses
+## Real-World Applications of Sharding Pattern in Java
 
 * Distributed databases such as Apache Cassandra, MongoDB, and Amazon DynamoDB.
 * Large-scale web applications like social networks, e-commerce platforms, and SaaS products.
@@ -231,7 +232,7 @@ Trade-offs:
 * Potential challenges in rebalancing shards as data grows.
 * Increased latency for cross-shard queries.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Caching](https://java-design-patterns.com/patterns/caching/): Can be used in conjunction with sharding to further improve performance.
 * [Data Mapper](https://java-design-patterns.com/patterns/data-mapper/): Helps in abstracting and encapsulating the details of database interactions, which can be complex in a sharded environment.

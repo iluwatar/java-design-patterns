@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Strangler Design Pattern in Java: A Guide to Modernizing Legacy Systems"
+title: "Strangler Pattern in Java: Modernizing Legacy Systems with Incremental Updates"
+shortTitle: Strangler
 description: "Explore the Strangler design pattern for Java, a strategic approach to incrementally modernize legacy systems without disruption. Learn how it facilitates smooth transitions to new architectures, with real-world applications and code examples."
 category: Structural
 language: en
@@ -7,10 +8,6 @@ tag:
   - Migration
   - Modernization
   - Refactoring
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -35,7 +32,7 @@ Wikipedia says
 
 > The Strangler Design Pattern involves incrementally migrating a legacy system by gradually replacing it with a new system. It wraps old code with new code, redirecting or logging uses of the old code to ensure a seamless transition. This pattern is named after the strangler fig plant, which grows around a host tree and eventually replaces it entirely. It's particularly useful for modernizing monolithic applications and transitioning them to microservices architecture with minimal risk and disruption.
 
-**Programmatic Example**
+### Programmatic Example of Strangler Pattern in Java
 
 The Strangler design pattern in Java is a software design pattern that incrementally migrates a legacy system by gradually replacing specific pieces of functionality with new applications and services. As features from the legacy system are replaced, the new system eventually replaces all the old system's features, strangling the old system and allowing you to decommission it.
 
@@ -174,7 +171,7 @@ This is a typical example of the Strangler pattern. The legacy system (`OldArith
 
 * [Legacy Application Strangulation: Case Studies (Paul Hammant)](https://paulhammant.com/2013/07/14/legacy-application-strangulation-case-studies/)
 
-## Known Uses
+## Real-World Applications of Strangler Pattern in Java
 
 * Replacing a legacy monolithic application with a microservices architecture.
 * Transitioning from an on-premise system to a cloud-based system.
@@ -194,7 +191,7 @@ Trade-offs:
 * May introduce temporary performance overhead due to coexistence of old and new systems.
 * Potentially increases the initial development time due to the need for integration.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): Used to make new systems interact with the old system during the transition period.
 * [Facade](https://java-design-patterns.com/patterns/facade/): Can provide a unified interface to the old and new systems, simplifying client interactions.

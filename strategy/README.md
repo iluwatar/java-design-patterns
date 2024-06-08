@@ -1,5 +1,6 @@
 ---
-title: "Strategy Design Pattern in Java: Comprehensive Guide and Examples"
+title: "Strategy Pattern in Java: Streamlining Object Behaviors with Interchangeable Algorithms"
+shortTitle: Strategy
 description: "Explore the Strategy design pattern in Java with a detailed guide and practical examples. Learn how to implement flexible and interchangeable algorithms effectively in your Java applications for enhanced design and maintenance."
 category: Behavioral
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > In computer programming, the strategy pattern (also known as the policy pattern) is a behavioral software design pattern that enables selecting an algorithm at runtime.
 
-**Programmatic Example**
+### Programmatic Example of Strategy Pattern in Java
 
 Slaying dragons is a dangerous job. With experience, it becomes easier. Veteran dragonslayers have developed different fighting strategies against different types of dragons.
 
@@ -183,11 +184,11 @@ Use the Strategy pattern when:
 * An algorithm uses data that clients shouldn't know about.
 * A class defines many behaviors and these appear as multiple conditional statements in its operations.
 
-## Tutorial
+## Strategy Pattern Java Tutorials
 
 * [Strategy Pattern Tutorial (DigitalOcean)](https://www.digitalocean.com/community/tutorials/strategy-design-pattern-in-java-example-tutorial)
 
-## Known Uses
+## Real-World Applications of Strategy Pattern in Java
 
 * Java's `java.util.Comparator` interface is a common example of the Strategy pattern.
 * In GUI frameworks, layout managers (such as those in Java's AWT and Swing) are strategies.

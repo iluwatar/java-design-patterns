@@ -1,5 +1,6 @@
 ---
-title: "Singleton Pattern in Java: Implementing Efficient Object Management"
+title: "Singleton Pattern in Java: Implementing Global Access Points in Java Applications"
+shortTitle: Singleton
 description: "Explore the Singleton Pattern in Java with our comprehensive guide. Learn how to implement efficient object management for your Java applications, ensuring optimal use of resources and easy access with examples and detailed explanations."
 category: Creational
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system.
 
-**Programmatic Example**
+### Programmatic Example of Singleton Pattern in Java
 
 Joshua Bloch, Effective Java 2nd Edition p.18
 
@@ -93,7 +94,7 @@ Trade-offs:
 * Potentially more complex lifecycle management.
 * Can introduce bottlenecks if used in a concurrent context without careful synchronization.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Often used to ensure a class only has one instance.
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Singleton pattern can be implemented using a Factory Method to encapsulate the creation logic.

@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Service Locator Pattern in Java"
+title: "Service Locator Pattern in Java: Simplifying Service Access in Complex Systems"
+shortTitle: Service Locator
 description: "Master the Service Locator pattern in Java with our comprehensive guide. Learn how it simplifies dependency management in large-scale applications, promoting cleaner code and reusability."
 category: Structural
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > The service locator pattern is a design pattern used in software development to encapsulate the processes involved in obtaining a service with a strong abstraction layer. This pattern uses a central registry known as the "service locator", which on request returns the information necessary to perform a certain task. Proponents of the pattern say the approach simplifies component-based applications where all dependencies are cleanly listed at the beginning of the whole application design, consequently making traditional dependency injection a more complex way of connecting objects. Critics of the pattern argue that it is an antipattern which obscures dependencies and makes software harder to test.
 
-**Programmatic Example**
+### Programmatic Example of Service Locator Pattern in Java
 
 The Service Locator design pattern is used to abstract the processes involved in obtaining a service. It uses a central registry, the "service locator", which returns the necessary information to perform a task upon request. This Java design pattern is particularly useful in enterprise Java applications where services need centralized management.
 
@@ -98,7 +99,7 @@ Here is the output from running the example:
 * Applicable in large-scale enterprise applications where multiple services are used and dependencies need to be managed centrally.
 * Suitable when service instances need to be reused or shared among multiple clients.
 
-## Known Uses
+## Real-World Applications of Service Locator Pattern in Java
 
 * Enterprise Java applications often use Service Locator to manage business services.
 * Spring Framework uses a similar concept with its BeanFactory and ApplicationContext for dependency injection.
@@ -118,7 +119,7 @@ Trade-offs:
 * May add complexity to the codebase, especially in terms of configuration and maintenance.
 * Potential performance overhead due to the lookup mechanism.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Factory](https://java-design-patterns.com/patterns/factory/): Both patterns deal with object creation but Service Locator focuses on locating services while Factory focuses on creating them.
 * [Dependency Injection](https://java-design-patterns.com/patterns/dependency-injection/): An alternative to Service Locator that injects dependencies directly into clients rather than having clients request them from a locator.

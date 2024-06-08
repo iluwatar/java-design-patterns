@@ -1,5 +1,6 @@
 ---
-title: "Understanding Serialized LOB Pattern in Java: Efficient Large Object Management"
+title: "Serialized LOB Pattern in Java: Managing Large Data Objects with Ease"
+shortTitle: Serialized LOB
 description: "Explore the Serialized LOB pattern for managing large objects in Java applications. Learn how it simplifies data access and storage of files, multimedia, and large strings efficiently."
 category: Data access
 language: en
@@ -29,7 +30,7 @@ In plain words
 
 > The Serialized LOB design pattern manages the storage of large objects, such as files or multimedia, by serializing and storing them directly within a database.
 
-**Programmatic Example**
+### Programmatic Example of Serialized LOB Pattern in Java
 
 The Serialized Large Object (LOB) design pattern is a way to handle large objects in a database. It involves serializing an object graph into a single large object (a BLOB or CLOB, for Binary Large Object or Character Large Object, respectively) and storing it in the database. When the object graph needs to be retrieved, it is read from the database and deserialized back into the original object graph.
 
@@ -191,7 +192,7 @@ Name = Grass,Type = Herb
 * Use when you need to store large objects in a database and want to optimize data access and storage.
 * Ideal for applications that deal with large binary or character data such as multimedia files, logs, or documents.
 
-## Known Uses
+## Real-World Applications of Serialized LOB Pattern in Java
 
 * Storing and retrieving images or multimedia files in a database.
 * Managing large text documents or logs in enterprise applications.
@@ -211,7 +212,7 @@ Trade-offs:
 * Potential performance overhead during serialization and deserialization.
 * Requires careful management of serialization format to maintain backward compatibility.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [DAO (Data Access Object)](https://java-design-patterns.com/patterns/dao/): Often used in conjunction with Serialized LOB to encapsulate data access logic.
 * Active Record: Can use Serialized LOB for managing large data within the same record.

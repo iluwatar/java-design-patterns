@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Servant Pattern in Java: Comprehensive Guide"
+title: "Servant Pattern in Java: Facilitating Rich Interactions with Servant Helpers"
+shortTitle: Servant
 description: "Explore the Servant design pattern in Java, an essential technique for decoupling operations from object classes. Learn how this pattern facilitates reusable and efficient code management through our detailed examples and explanations."
 category: Structural
 language: en
@@ -9,10 +10,6 @@ tag:
   - Messaging
   - Object composition
   - Resource management
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -37,7 +34,7 @@ Wikipedia says
 
 > In software engineering, the servant pattern defines an object used to offer some functionality to a group of classes without defining that functionality in each of them. A Servant is a class whose instance (or even just class) provides methods that take care of a desired service, while objects for which (or with whom) the servant does something, are taken as parameters.
 
-**Programmatic Example**
+### Programmatic Example of Servant Pattern in Java
 
 The Servant design pattern is a behavioral design pattern that defines a class that provides some sort of service to a group of classes. This pattern is particularly useful when these classes lack some common functionality that can't be added to the superclass. The Servant class brings this common functionality to a group of classes.
 
@@ -138,7 +135,7 @@ In this example, the `Servant` class provides services to the `Royalty` objects.
 * Use the Servant pattern when you need to provide a common functionality to a group of classes without polluding their class definitions, perfect for enhancing Java application architecture.
 * Suitable when the operations performed on the objects are not the primary responsibility of the objects themselves.
 
-## Known Uses
+## Real-World Applications of Servant Pattern in Java
 
 * In GUI applications to handle operations like rendering or hit-testing which are common across different UI components.
 * In games where various entities (like players, enemies, or items) need common behavior such as movement or collision detection.
@@ -156,7 +153,7 @@ Trade-offs:
 * Can lead to an increase in the number of classes, potentially making the system harder to understand.
 * May introduce tight coupling between the Servant and the classes it serves if not designed carefully.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): The Servant pattern is similar to the Adapter pattern in that both provide a way to work with classes without modifying them, but the Servant pattern focuses on providing additional behavior to multiple classes rather than adapting one interface to another.
 * [Facade](https://java-design-patterns.com/patterns/facade/): Both patterns provide a simplified interface to a set of functionalities, but the Servant pattern is typically used for adding functionalities to a group of classes, while the Facade pattern hides the complexities of a subsystem.

@@ -1,5 +1,6 @@
 ---
-title: "Service Layer Pattern in Java: Enhancing Architecture and API Design"
+title: "Service Layer Pattern in Java: Enhancing Application Architecture with Robust Service Layers"
+shortTitle: Service Layer
 description: "Explore the Service Layer pattern for Java applications, a key design solution for separating business logic from presentation logic. Learn its uses, benefits, and implementation with real-world examples and class diagrams to optimize your architectural strategies."
 category: Architectural
 language: en
@@ -35,7 +36,7 @@ Wikipedia says
 
 > Service layer is an architectural pattern, applied within the service-orientation design paradigm, which aims to organize the services, within a service inventory, into a set of logical layers. Services that are categorized into a particular layer share functionality. This helps to reduce the conceptual overhead related to managing the service inventory, as the services belonging to the same layer address a smaller set of activities.
 
-**Programmatic Example**
+### Programmatic Example of Service Layer Pattern in Java
 
 Our Java implementation uses the Service Layer pattern to streamline interactions between data access objects (DAOs) and the business logic, ensuring a clean separation of concerns.
 
@@ -362,7 +363,7 @@ INFO  [2024-05-27 09:16:40,683] com.iluwatar.servicelayer.app.App: Aderlard Boud
 * Ideal for applications with complex business rules and workflows.
 * Suitable for projects requiring a clear API for the presentation layer.
 
-## Known Uses
+## Real-World Applications of Service Layer Pattern in Java
 
 * Java EE applications where Enterprise JavaBeans (EJB) are used to implement the service layer.
 * Spring Framework applications using the @Service annotation to denote service layer classes.
@@ -383,7 +384,7 @@ Trade-offs:
 * May introduce additional complexity by adding another layer to the application.
 * Can result in performance overhead due to the extra layer of abstraction.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Facade](https://java-design-patterns.com/patterns/facade/): Simplifies interactions with complex subsystems by providing a unified interface.
 * [DAO (Data Access Object)](https://java-design-patterns.com/patterns/dao/): Often used together with the Service Layer to handle data persistence.

@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Saga Pattern in Microservices"
+title: "Saga Pattern in Java: Mastering Long-Running Transactions in Distributed Systems"
+shortTitle: Saga
 description: "Explore the Saga pattern in Java for managing distributed transactions across microservices with resilience and fault tolerance. Learn how the Saga pattern ensures data consistency without locking resources."
 category: Resilience
 language: en
@@ -30,7 +31,7 @@ Wikipedia says
 
 > Long-running transactions (also known as the saga interaction pattern) are computer database transactions that avoid locks on non-local resources, use compensation to handle failures, potentially aggregate smaller ACID transactions (also referred to as atomic transactions), and typically use a coordinator to complete or abort the transaction. In contrast to rollback in ACID transactions, compensation restores the original state, or an equivalent, and is business-specific. For example, the compensating action for making a hotel reservation is canceling that reservation.
 
-**Programmatic Example**
+### Programmatic Example of Saga Pattern in Java
 
 The Saga design pattern is a sequence of local transactions where each transaction updates data within a single service. It's particularly useful in a microservices architecture where each service has its own database. The Saga pattern ensures data consistency and fault tolerance across services. Here are the key components of the Saga pattern:
 
@@ -165,7 +166,7 @@ This is a basic example of how to use the Saga design pattern. In a real-world a
 * When you need to ensure data consistency across services without using a traditional two-phase commit.
 * When you need to handle long-running transactions in an asynchronous manner.
 
-## Known Uses
+## Real-World Applications of Saga Pattern in Java
 
 * E-commerce platforms managing orders, inventory, and payment services.
 * Banking systems coordinating between account debits and credits across multiple services.
@@ -185,7 +186,7 @@ Trade-offs:
 * Requires careful design to handle partial failures and rollback scenarios.
 * Potential latency due to asynchronous nature.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Event Sourcing](https://java-design-patterns.com/patterns/event-sourcing/): Used to capture state changes as a sequence of events, which can complement the Saga pattern by providing a history of state changes.
 * [Command Query Responsibility Segregation (CQRS)](https://java-design-patterns.com/patterns/cqrs/): Can be used in conjunction with the Saga pattern to separate command and query responsibilities, improving scalability and fault tolerance.

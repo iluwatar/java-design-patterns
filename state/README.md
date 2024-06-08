@@ -1,5 +1,6 @@
 ---
-title: "Understanding the State Pattern in Java Design: A Complete Guide"
+title: "State Pattern in Java: Enhancing Behavior Dynamics with State Encapsulation"
+shortTitle: State
 description: "Explore the State Pattern, a core component of Java design patterns that enables dynamic behavior change in objects with internal state shifts. Includes real-world examples, applicability, benefits, and detailed code snippets."
 category: Behavioral
 language: en
@@ -37,7 +38,7 @@ Wikipedia says
 
 > The state pattern is a behavioral software design pattern that allows an object to alter its behavior when its internal state changes. This pattern is close to the concept of finite-state machines. The state pattern can be interpreted as a strategy pattern, which is able to switch a strategy through invocations of methods defined in the pattern's interface.
 
-**Programmatic Example**
+### Programmatic Example of State Pattern in Java
 
 In our programmatic example there is a mammoth with alternating moods.
 
@@ -159,7 +160,7 @@ Program output:
 * An object's behavior depends on its state, and it must change its behavior at runtime depending on that state.
 * Operations have large, multipart conditional statements that depend on the object's state.
 
-## Known Uses
+## Real-World Applications of State Pattern in Java
 
 * `java.util.Iterator` in Java's Collections Framework uses different states for iteration.
 * TCP connection classes in network programming often implement states like `Established`, `Listen`, and `Closed`.
@@ -177,7 +178,7 @@ Trade-offs:
 * Can result in a large number of classes for states.
 * Context class can become complicated with the state transition logic.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): State objects may be shared between different contexts.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): State objects are often singletons.

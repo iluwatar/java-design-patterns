@@ -1,5 +1,6 @@
 ---
-title: "Step Builder Pattern in Java: Simplify Complex Object Creation"
+title: "Step Builder Pattern in Java: Crafting Fluent Interfaces for Complex Object Construction"
+shortTitle: Step Builder
 description: "Master the Step Builder pattern in Java to streamline complex object creation. Learn through detailed explanations and examples. Perfect for software developers aiming to enhance code readability and maintainability."
 category: Creational
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > The Step Builder pattern is a variation of the Builder design pattern, designed to provide a flexible solution for constructing complex objects step-by-step. This pattern is particularly useful when an object requires multiple initialization steps, which can be done incrementally to ensure clarity and flexibility in the creation process.
 
-**Programmatic Example**
+### Programmatic Example of Step Builder Pattern in Java
 
 The Step Builder pattern in Java is an extension of the Builder pattern that guides the user through the creation of an object in a step-by-step manner. This pattern improves the user experience by only showing the next step methods available, and not showing the build method until it's the right time to build the object.
 
@@ -177,7 +178,7 @@ The Step Builder pattern in Java is used
 
 * [Step Builder (Marco Castigliego)](http://rdafbn.blogspot.co.uk/2012/07/step-builder-pattern_28.html)
 
-## Known Uses
+## Real-World Applications of Step Builder Pattern in Java
 
 * Complex configuration settings in Java applications.
 * Constructing objects for database records with multiple fields.
@@ -196,7 +197,7 @@ Trade-offs:
 * May result in more complex code due to the additional classes and interfaces required.
 * Can lead to verbose code when many steps are involved.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Builder](https://java-design-patterns.com/patterns/builder/): Both patterns help in constructing complex objects. Step Builder is a variation that emphasizes incremental step-by-step construction.
 * [Fluent Interface](https://java-design-patterns.com/patterns/fluentinterface/): Often used in conjunction with the Step Builder pattern to provide a fluent API for constructing objects.
