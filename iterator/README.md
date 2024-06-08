@@ -1,5 +1,6 @@
 ---
-title: "Java Iterator Design Pattern: Access Collections Efficiently"
+title: "Iterator Pattern in Java: Mastering Sequential Element Access"
+shortTitle: Iterator
 description: "Learn how to implement the Iterator Design Pattern in Java. Access elements of a collection sequentially without exposing its underlying structure. Explore real-world examples, code snippets, and benefits of using iterators."
 category: Behavioral
 language: en
@@ -34,9 +35,9 @@ Wikipedia says
 
 > In object-oriented programming, the iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements.
 
-**Programmatic Example**
+### Programmatic Example of Iterator Pattern in Java
 
-The main class in our Java Iterator Design Pattern example is the TreasureChest that contains items. This demonstrates how to implement and use iterators for efficient collection traversal in Java.
+The main class in our Java Iterator Design Pattern example is the `TreasureChest` that contains items. This demonstrates how to implement and use iterators for efficient collection traversal in Java.
 
 ```java
 public class TreasureChest {
@@ -239,7 +240,7 @@ Trade-offs:
 * Overhead of using an iterator object may slightly reduce performance compared to direct traversal methods.
 * Complex aggregate structures may require complex iterators that can be difficult to manage or extend.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Composite](https://java-design-patterns.com/patterns/composite/): Iterators are often used to traverse Composite trees.
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Used to create appropriate iterators for different data structures.

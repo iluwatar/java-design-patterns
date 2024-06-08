@@ -1,5 +1,6 @@
 ---
-title: "Identity Map Pattern in Java | Prevent Duplicate Objects with Best Practices"
+title: "Identity Map Pattern in Java: Managing Object Identity for Efficiency"
+shortTitle: Identity Map
 description: "Learn about the Identity Map pattern in Java. This design pattern prevents duplicate objects in memory, improving performance and consistency in your applications. Explore implementation examples, benefits, and best practices."
 category: Behavioral
 language: en
@@ -30,7 +31,7 @@ Wikipedia says
 
 > In the design of DBMS, the identity map pattern is a database access design pattern used to improve performance by providing a context-specific, in-memory cache to prevent duplicate retrieval of the same object data from the database.
 
-**Programmatic Example**
+### Programmatic Example of Identity Map Pattern in Java
 
 For the purpose of this demonstration in Java programming, assume we have already created a database instance, showcasing the Identity Map pattern to avoid duplicate objects in memory.
 
@@ -186,7 +187,7 @@ The Identity Map design pattern is used in Java applications where multiple acce
 
 * [Identity Map Pattern (Source Code Examples)](https://www.sourcecodeexamples.net/2018/04/identity-map-pattern.html)
 
-## Known Uses
+## Real-World Applications of Identity Map Pattern in Java
 
 * ORM (Object-Relational Mapping) frameworks in Java often implement Identity Maps to handle database interactions more efficiently, demonstrating the pattern’s importance in Java design patterns.
 * Enterprise applications to maintain consistent data states across different business processes.
@@ -204,7 +205,7 @@ Trade-offs:
 * Increases complexity in object management and persistence logic.
 * Can lead to stale data if not managed correctly, especially in concurrent environments.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Data Mapper](https://java-design-patterns.com/patterns/data-mapper/): Separates persistence logic from domain logic. Identity Map can be used by a Data Mapper to ensure that each object is loaded only once, enhancing performance and data consistency.
 * [Unit of Work](https://java-design-patterns.com/patterns/unit-of-work/): Coordinates the actions of multiple objects by keeping track of changes and handling transactional consistency. Identity Map is used within the Unit of Work to track the objects being affected by a transaction.

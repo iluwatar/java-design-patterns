@@ -1,5 +1,6 @@
 ---
-title: "Intercepting Filter Pattern in Java: Design, Example, and Implementation"
+title: "Intercepting Filter Pattern in Java: Enhancing Request Processing in Web Applications"
+shortTitle: Intercepting Filter
 description: "Learn about the Intercepting Filter Pattern in Java. Discover how to design, implement, and use this pattern to enhance web request handling with practical examples and detailed explanations."
 category: Architectural
 language: en
@@ -30,7 +31,7 @@ Wikipedia says
 
 > Intercepting Filter is a Java pattern which creates pluggable filters to process common services in a standard manner without requiring changes to core request processing code.
 
-## Programmatic Example
+### Programmatic Example of Intercepting Filter Pattern in Java
 
 In this article, we delve into the Intercepting Filter Pattern and provide a Java example to illustrate its use. This pattern is essential for Java web development, offering a modular approach to handling common services such as logging, authentication, and data compression.
 
@@ -128,7 +129,7 @@ Use the Intercepting Filter pattern when
 * [Introduction to Intercepting Filter Pattern in Java (Baeldung)](https://www.baeldung.com/intercepting-filter-pattern-in-java)
 * [Design Pattern - Intercepting Filter Pattern (TutorialsPoint)](http://www.tutorialspoint.com/design_pattern/intercepting_filter_pattern.htm)
 
-## Known Uses
+## Real-World Applications of Intercepting Filter Pattern in Java
 
 * Frameworks like Spring MVC and web servers such as Apache Tomcat utilize the Intercepting Filter Pattern to enhance Java web development. This pattern's ability to centralize control and streamline web request handling makes it a go-to choice for developers.
 * [javax.servlet.FilterChain](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/FilterChain.html) and [javax.servlet.Filter](https://tomcat.apache.org/tomcat-8.0-doc/servletapi/javax/servlet/Filter.html)
@@ -147,7 +148,7 @@ Trade-offs:
 * Introducing many filters can lead to performance overhead due to the processing of each request and response through multiple filters.
 * Debugging and tracing the request flow through multiple filters can be complex.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Filters in the Intercepting Filter pattern can be considered as decorators that add additional responsibilities to request handling. They modify the request/response without altering their fundamental behavior.
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Filters are linked in a chain, where each filter processes the request or response and optionally passes it to the next filter in the chain, similar to how responsibilities are passed along in the Chain of Responsibility pattern.

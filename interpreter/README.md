@@ -1,5 +1,6 @@
 ---
-title: "Interpreter Design Pattern - Examples, Usage, and Implementation in Java"
+title: "Interpreter Pattern in Java: Building Custom Parsers for Java Applications"
+shortTitle: Interpreter
 description: "Explore the Interpreter Design Pattern in Java with real-world examples, class diagrams, and step-by-step implementation. Learn when and how to use this powerful behavioral pattern."
 category: Behavioral
 language: en
@@ -31,7 +32,7 @@ Wikipedia says
 
 > In computer programming, the interpreter pattern is a design pattern that specifies how to evaluate sentences in a language. The basic idea is to have a class for each symbol (terminal or nonterminal) in a specialized computer language. The syntax tree of a sentence in the language is an instance of the composite pattern and is used to evaluate (interpret) the sentence for a client.
 
-**Programmatic example**
+### Programmatic Example of Interpreter Pattern in Java
 
 To be able to interpret basic math in Java, we need a hierarchy of expressions. The `Expression` class is the base, and concrete implementations like `NumberExpression` handle specific parts of the grammar. The Interpreter pattern in Java simplifies parsing and evaluating arithmetic expressions by translating them into a structured format that the application can process.
 
@@ -204,7 +205,7 @@ Trade-offs:
 * Can become complex and inefficient for large grammars.
 * Each rule in the grammar results in a class, leading to a large number of classes for complex grammars.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Composite](https://java-design-patterns.com/patterns/composite/): Often used together, where the Interpreter pattern leverages the Composite pattern to represent the grammar as a tree structure.
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Useful for sharing state to reduce memory usage in the Interpreter pattern, particularly for interpreters that deal with repetitive elements in a language.
