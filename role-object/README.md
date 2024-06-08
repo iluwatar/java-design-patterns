@@ -1,5 +1,6 @@
 ---
-title: "Role Object Design Pattern in Java: Dynamic Behavior & Responsiveness"
+title: "Role Object Pattern in Java: Enhancing Flexibility in Object Roles and Behaviors"
+shortTitle: Role Object
 description: "Explore the Role Object design pattern in Java, which allows objects to dynamically assume various roles, enhancing flexibility and system adaptability. Ideal for developers looking to implement dynamic behavior in applications."
 category: Structural
 language: en
@@ -31,7 +32,7 @@ wiki.c2.com says
 
 > Adapt an object to different client’s needs through transparently attached role objects, each one representing a role the object has to play in that client’s context. The object manages its role set dynamically. By representing roles as individual objects, different contexts are kept separate and system configuration is simplified.
 
-**Programmatic Example**
+### Programmatic Example of Role Object Pattern in Java
 
 The Role Object design pattern is a pattern that suggests modeling context-specific views of an object as separate role objects. These role objects are dynamically attached to and removed from the core object. The resulting composite object structure, consisting of the core and its role objects, is called a subject. A subject often plays several roles and the same role is likely to be played by different subjects.
 
@@ -147,7 +148,7 @@ Running the example outputs:
 * When multiple objects share common behaviors but should exhibit those behaviors differently based on their roles.
 * In scenarios where roles can be added, removed, or changed at runtime.
 
-## Known Uses
+## Real-World Applications of Role Object Pattern in Java
 
 * User role management in applications where users can have different permissions and responsibilities.
 * Game character roles where characters can take on different roles (e.g., healer, warrior, mage) dynamically.
@@ -166,7 +167,7 @@ Trade-offs:
 * Increases complexity due to the need for managing multiple role objects.
 * Potential performance overhead due to the dynamic nature of role assignment and behavior switching.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Similar in dynamically changing an object's behavior, but Role Object focuses on roles that can be combined.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Both can add behaviors to objects, but Role Object allows for dynamic role switching rather than static enhancement.

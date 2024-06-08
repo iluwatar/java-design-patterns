@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Reactor Pattern in Java - Concurrency and Event Handling Explained"
+title: "Reactor Pattern in Java: Mastering Non-blocking Event-Driven Architectures"
+shortTitle: Reactor
 description: "Explore the Reactor pattern in Java: Learn how this concurrency model handles multiple simultaneous I/O operations using a single thread for improved performance and scalability. Ideal for developers building high-performance network applications."
 category: Concurrency
 language: en
@@ -37,7 +38,7 @@ Wikipedia says
 
 > The reactor software design pattern is an event handling strategy that can respond to many potential service requests concurrently. The pattern's key component is an event loop, running in a single thread or process, which demultiplexes incoming requests and dispatches them to the correct request handler.
 
-**Programmatic Example**
+### Programmatic Example of Reactor Pattern in Java
 
 The Reactor design pattern is a concurrency model that efficiently handles multiple simultaneous I/O operations using a single or a limited number of threads. It is particularly useful in scenarios where an application needs to handle multiple clients sending service requests concurrently.
 
@@ -164,7 +165,7 @@ This concludes our detailed explanation of the Reactor design pattern. The React
 
 Employ the Reactor pattern in scenarios requiring low-latency and high-throughput in server-side applications, making it an essential strategy for modern networking frameworks and web servers.
 
-## Known Uses
+## Real-World Applications of Reactor Pattern in Java
 
 * Netty: An asynchronous event-driven network application framework for rapid development of maintainable high-performance protocol servers and clients.
 * Akka: A toolkit and runtime for building concurrent, distributed, and fault-tolerant applications on the JVM.
@@ -184,7 +185,7 @@ Trade-offs:
 * Debugging and maintaining asynchronous code can be challenging.
 * Potential difficulty in ensuring thread safety and avoiding race conditions.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Observer](https://java-design-patterns.com/patterns/observer/): Reactor uses the Observer pattern for handling events where event handlers are notified of changes.
 * Proactor: Similar to Reactor but handles asynchronous I/O completion rather than readiness.

@@ -1,5 +1,6 @@
 ---
-title: "Repository Design Pattern in Java - Simplified Data Access and Management"
+title: "Repository Pattern in Java: Simplifying Data Access with Abstracted Persistence"
+shortTitle: Repository
 description: "Learn how the Repository design pattern in Java enhances data access and abstraction, simplifying application architecture while boosting maintainability and decoupling. Ideal for Java developers seeking streamlined data management solutions."
 category: Data access
 language: en
@@ -28,7 +29,7 @@ In plain words
 
 > Repositories are classes or components that encapsulate the logic required to access data sources. They centralize common data access functionality, providing better maintainability and decoupling the infrastructure or technology used to access databases from the domain model layer.
 
-**Programmatic Example**
+### Programmatic Example of Repository Pattern in Java
 
 Let's first look at the person entity that we need to persist.
 
@@ -187,7 +188,7 @@ INFO  [2024-05-27 07:00:32,881] com.iluwatar.repository.App: Person(id=4, name=T
 * [Repository Pattern Benefits and Spring Implementation (Stack Overflow)](https://stackoverflow.com/questions/40068965/repository-pattern-benefits-and-spring-implementation)
 * [Design patterns that I often avoid: Repository pattern (InfoWorld)](https://www.infoworld.com/article/3117713/design-patterns-that-i-often-avoid-repository-pattern.html)
 
-## Known Uses
+## Real-World Applications of Repository Pattern in Java
 
 * Spring Data JPA exemplifies the Repository pattern by providing a robust repository abstraction layer over JPA implementations, tailored for Java.
 * Hibernate: Often used with DAOs that act as repositories for accessing and managing data entities.
@@ -206,7 +207,7 @@ Trade-offs:
 * Introduces additional layers of abstraction which might add complexity.
 * Potential performance overhead due to the abstraction layer.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Data Mapper](https://java-design-patterns.com/patterns/data-mapper/): While Repository handles data access, Data Mapper is responsible for transferring data between objects and a database, maintaining the data integrity.
 * [Unit of Work](https://java-design-patterns.com/patterns/unit-of-work/): Often used alongside Repository to manage transactions and track changes to the data.

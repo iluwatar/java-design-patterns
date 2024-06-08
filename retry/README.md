@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Retry Pattern in Java: Enhancing Software Resilience and Fault Tolerance"
+title: "Retry Pattern in Java: Building Fault-Tolerant Systems with Adaptive Retries"
+shortTitle: Retry
 description: "Explore the Retry pattern in Java for robust software design. Learn how to implement fault tolerance and improve application reliability through transparent retries of operations involving external communications like network requests."
 category: Resilience
 language: en
@@ -33,7 +34,7 @@ In plain words
 
 > Enable an application to handle transient failures when it tries to connect to a service or network resource, by transparently retrying a failed operation. This can improve the stability of the application.
 
-**Programmatic Example**
+### Programmatic Example of Retry Pattern in Java
 
 The Retry design pattern is a resilience pattern that allows an application to transparently attempt to execute operations multiple times in the expectation that it'll succeed. This pattern is particularly useful when the application is connecting to a network service or a remote resource, where temporary failures are common.
 
@@ -197,7 +198,7 @@ Applying the Retry pattern is particularly effective
 * When operations can fail transiently, such as network calls, database connections, or external service integrations.
 * In scenarios where the likelihood of transient failure is high but the cost of retries is low.
 
-## Known Uses
+## Real-World Applications of Retry Pattern in Java
 
 * In network communication libraries to handle transient failures.
 * Database connection libraries to manage temporary outages or timeouts.
@@ -216,7 +217,7 @@ Trade-offs:
 * Can lead to resource exhaustion if not managed properly.
 * Requires careful configuration of retry parameters to avoid exacerbating the problem.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Used to stop the flow of requests to an external service after a failure threshold is reached, preventing system overload.
 
