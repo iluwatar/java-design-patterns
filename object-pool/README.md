@@ -1,5 +1,6 @@
 ---
-title: "Object Pool Design Pattern: Enhance Performance and Resource Management"
+title: "Object Pool Pattern in Java: Enhancing Performance with Reusable Object Management"
+shortTitle: Object Pool
 description: "Learn how the Object Pool design pattern improves performance by reusing expensive objects efficiently. Explore examples, benefits, and best practices in Java."
 category: Creational
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > The object pool pattern is a software creational design pattern that uses a set of initialized objects kept ready to use – a "pool" – rather than allocating and destroying them on demand.
 
-**Programmatic Example**
+### Programmatic Example of Object Pool Pattern in Java
 
 In our war game we need to use oliphaunts, massive and mythic beasts, but the problem is that they are extremely expensive to create. The solution is to create a pool of them, track which ones are in-use, and instead of disposing them re-use the instances.
 
@@ -159,7 +160,7 @@ Use the Object Pool pattern when
 * A fixed number of objects need to be controlled, like in connection pooling.
 * Object reuse can significantly improve system performance and resource management.
 
-## Known Uses
+## Real-World Applications of Object Mother Pattern in Java
 
 * Database connection pooling in Java applications.
 * Thread pooling in Java concurrent programming.
@@ -180,7 +181,7 @@ Trade-offs:
 * Thread Safety: Requires careful handling of concurrent access to the pool, introducing potential synchronization issues.
 * Initialization Cost: Initial creation of the pool can be resource-intensive.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Ensures a single instance of the pool is used, providing a global point of access.
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Shares fine-grained objects to reduce memory usage, complementing object pooling by managing object state efficiently.

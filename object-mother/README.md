@@ -1,5 +1,6 @@
 ---
-title: "Object Mother Design Pattern in Java: Simplify Your Test Code Creation"
+title: "Object Mother Pattern in Java: Simplifying Object Creation for Testing"
+shortTitle: Object Mother
 description: "Explore the Object Mother pattern in Java for simplifying test object creation. Learn how to efficiently generate test data, reduce boilerplate, and enhance test maintainability with our in-depth guide and examples."
 category: Testing
 language: en
@@ -36,7 +37,7 @@ wiki.c2.com says
 > 2. providing methods to update the objects during the tests, and
 > 3. if necessary, deleting the object from the database at the completion of the test.
 
-**Programmatic example**
+### Programmatic Example of Object Mother Pattern in Java
 
 The Object Mother is a design pattern that aims to provide an easy way to create objects for testing purposes. It encapsulates the logic for building instances of complex objects in one place, making it easier to maintain and reuse across multiple tests.
 
@@ -136,7 +137,7 @@ Use the Object Mother pattern when
 * [Object Mother (c2wiki)](http://c2.com/cgi/wiki?ObjectMother)
 * [Test Data Builders: an alternative to the Object Mother pattern (Nat Pryce)](http://www.natpryce.com/articles/000714.html)
 
-## Known Uses
+## Real-World Applications of Object Mother Pattern in Java
 
 * In unit testing frameworks to create test fixtures.
 * In enterprise applications to generate standard domain objects required across multiple test cases.
@@ -155,7 +156,7 @@ Trade-offs:
 * Maintenance: Requires maintaining the Object Mother class itself, which can grow complex over time.
 * Overhead: May introduce additional layers of abstraction that could complicate understanding for new developers.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Builder](https://java-design-patterns.com/patterns/builder/): Both patterns deal with object creation. The Object Mother is often simpler and used specifically in a testing context, whereas the Builder Pattern is more general-purpose.
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Similar in the sense of centralizing object creation logic. The Object Mother is specifically aimed at tests, while Factory Method is used more broadly in application code.

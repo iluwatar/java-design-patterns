@@ -1,5 +1,6 @@
 ---
-title: "Naked Objects Design Pattern in Java: A Comprehensive Guide"
+title: "Naked Objects Pattern in Java: Leveraging Domain Objects for Dynamic UI Generation"
+shortTitle: Naked Objects
 description: “Explore the Naked Objects design pattern in Java. Learn how to dynamically create user interfaces from domain objects with examples and best practices.”
 category: Architectural
 language: en
@@ -43,7 +44,7 @@ Wikipedia says
 >
 > The naked object pattern's innovative feature arises by combining the 1st and 2nd principles into a 3rd principle: 3. The user interface shall be entirely automatically created from the definitions of the domain objects. This may be done using reflection or source code generation.
 
-**Programmatic example**
+### Programmatic Example of Naked Objects Pattern in Java
 
 Consider a simplified example with domain objects representing books and authors. In a Java-based application using the Naked Objects pattern, we define domain objects such as `Book` and `Author`. This example illustrates how Naked Objects can streamline user interface generation and domain object manipulation.
 
@@ -123,7 +124,7 @@ Trade-offs:
 * Potential over-exposure of the domain model
 * Reliance on framework capabilities
 
-## Related Patterns
+## Related Java Design Patterns
 
 Active Record: Similar in exposing domain models directly, but Active Record typically involves persistence aspects as well.
 Domain-Driven Design: Shares the focus on domain modeling but without the automatic UI generation of Naked Objects.

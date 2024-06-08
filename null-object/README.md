@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Null Object Pattern in Java: Design Patterns Explained"
+title: "Null Object Pattern in Java: Streamlining Error Handling with Graceful Defaults"
+shortTitle: Null Object
 description: "Learn how the Null Object Pattern simplifies your Java code by handling null references effectively. Discover its implementation, advantages, and practical use cases."
 category: Behavioral
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > In object-oriented computer programming, a null object is an object with no referenced value or with defined neutral ("null") behavior. The null object design pattern describes the uses of such objects and their behavior (or lack thereof).
 
-**Programmatic Example**
+### Programmatic Example of Null Object in Java
 
 By implementing the Null Object Pattern, Java developers can ensure that their applications handle 'empty' objects more gracefully, enhancing code stability and readability.
 
@@ -186,7 +187,7 @@ Trade-offs:
 * May introduce additional classes, potentially increasing the overall complexity of the system.
 * The default behavior might mask potential issues that would otherwise be caught by explicit null handling.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Null Object can be seen as a special case of the Strategy Pattern where the strategy is to do nothing.
 * [State](https://java-design-patterns.com/patterns/state/): Similar in that both patterns can handle different states or behaviors; Null Object is like a state that does nothing.

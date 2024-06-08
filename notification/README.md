@@ -1,5 +1,6 @@
 ---
-title: "Java Notification Design Pattern: Overview & Examples"
+title: "Notification Pattern in Java: Enhancing System Communication with Event Alerts"
+shortTitle: Notification
 description: "Learn how to implement the Notification design pattern in Java with detailed explanations, code examples, and use cases. Improve your design patterns knowledge and code quality."
 category: Behavioral
 language: en 
@@ -31,7 +32,7 @@ In plain words
 
 > The Notification design pattern enables an object to automatically notify a list of interested observers about changes or events without knowing the specifics of the subscribers.
 
-**Programatic example**
+### Programmatic Example of Notification Pattern in Java
 
 The Java Notification pattern is used to capture information passed between layers, validate the information, and return any errors to the presentation layer if needed. It reduces coupling between the producer and consumer of events, enhances flexibility and reusability of components, and allows for dynamic event subscription and unsubscription.
 

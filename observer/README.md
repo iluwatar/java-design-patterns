@@ -1,5 +1,6 @@
 ---
-title: "Observer Design Pattern in Java: Explained with Code Examples"
+title: "Observer Pattern in Java: Mastering Reactive Interfaces in Java Applications"
+shortTitle: Observer
 description: "Learn the Observer design pattern in Java. Discover its intent, applicability, and real-world examples. Understand how it promotes loose coupling and dynamic observer management. Ideal for software developers and architects."
 category: Behavioral
 language: en
@@ -8,10 +9,6 @@ tag:
   - Event-driven
   - Gang Of Four
   - Publish/subscribe
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Also known as
@@ -36,7 +33,7 @@ Wikipedia says
 
 > The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
 
-**Programmatic Example**
+### Programmatic Example of Observer Pattern in Java
 
 In a land far away live the races of hobbits and orcs. Both of them are mostly outdoors, so they closely follow the weather changes. One could say that they are constantly observing the weather.
 
@@ -196,7 +193,7 @@ Trade-offs:
 * The order of notification is not specified, leading to potential unexpected behavior.
 * Potential for performance issues with a large number of observers.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Mediator](https://java-design-patterns.com/patterns/mediator/): Encapsulates how a set of objects interact, which can be used to reduce the direct dependencies among objects.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Often used with the Observer pattern to ensure a single instance of the subject.

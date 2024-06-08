@@ -1,5 +1,6 @@
 ---
-title: "Optimistic Offline Lock Design Pattern in Java: Implementation & Examples"
+title: "Optimistic Offline Lock Pattern in Java: Mastering Conflict Resolution in Database Transactions"
+shortTitle: Optimistic Offline Lock
 description: "Explore the Optimistic Offline Lock design pattern in Java with detailed implementation guidelines and practical examples. Learn how to manage data concurrency effectively in your Java applications."
 category: Data access
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > Optimistic concurrency control (OCC), also known as optimistic locking, is a concurrency control method applied to transactional systems such as relational database management systems and software transactional memory.
 
-**Programmatic Example**
+### Programmatic Example of Optimistic Offline Lock Pattern in Java
 
 In this section, we delve into the practical implementation of the Optimistic Offline Lock in Java. By following these steps, you can ensure that your application handles data conflicts and concurrency with minimal overhead.
 
@@ -122,7 +123,7 @@ Trade-offs:
 * Can lead to more frequent retries of transactions if conflicts are common.
 * Not suitable for high-conflict scenarios where frequent data modification collisions occur.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * Pessimistic Offline Lock: Unlike the Optimistic Offline Lock, this pattern uses locks to prevent conflicts by locking the data during the entire transaction. It is useful in high-conflict scenarios.
 * [Unit of Work](https://java-design-patterns.com/patterns/unit-of-work/): Helps in managing a set of changes as a single transaction, ensuring data integrity. It can be used in conjunction with Optimistic Offline Lock to handle complex transactions.
