@@ -1,5 +1,6 @@
 ---
-title: "Flyweight Design Pattern | Optimize Java Memory Management"
+title: "Flyweight Pattern in Java: Maximizing Memory Efficiency with Shared Object Instances"
+shortTitle: Flyweight
 description: "Learn how the Flyweight design pattern optimizes memory usage in Java applications by sharing data among similar objects. Enhance performance and reduce memory footprint with practical examples and detailed explanations."
 category: Structural
 language: en
@@ -9,10 +10,6 @@ tag:
   - Object composition
   - Optimization
   - Performance
-head:
-  - - meta
-    - name: keywords
-      content:
 ---
 
 ## Intent of Flyweight Design Pattern
@@ -33,7 +30,7 @@ Wikipedia says
 
 > In computer programming, flyweight is a software design pattern. A flyweight is an object that minimizes memory use by sharing as much data as possible with other similar objects; it is a way to use objects in large numbers when a simple repeated representation would use an unacceptable amount of memory.
 
-**Programmatic example**
+### Programmatic Example of Flyweight Pattern in Java
 
 Alchemist's shop has shelves full of magic potions. Many of the potions are the same so there is no need to create a new object for each of them. Instead, one object instance can represent  multiple shelf items so the memory footprint remains small.
 
@@ -209,7 +206,7 @@ Trade-offs:
 * Increases complexity by adding the management layer for shared objects.
 * Potential overhead in accessing shared objects if not well implemented.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Composite](https://java-design-patterns.com/patterns/composite/): Often combined with Flyweight when the composites are shareable. Both are used to manage hierarchies and structures of objects.
 * [State](https://java-design-patterns.com/patterns/state/): Can be used to manage state in a shared Flyweight object, distinguishing internal state (invariant) from external state (context-specific).

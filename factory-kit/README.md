@@ -1,5 +1,6 @@
 ---
-title: "Factory Kit Pattern in Java: Definition, Examples, and Uses"
+title: "Factory Kit Pattern in Java: Crafting Flexible Component Assemblies"
+shortTitle: Factory Kit
 description: "Learn about the Factory Kit Pattern in Java with detailed explanations, real-world examples, and practical applications. Improve your Java skills with our comprehensive guide."
 category: Creational
 language: en
@@ -31,7 +32,7 @@ In plain words
 
 > Factory kit is a configurable object builder, a factory to create factories.
 
-**Programmatic Example**
+### Programmatic Example of Factory Kit Pattern in Java
 
 Imagine a magical weapon factory in Java capable of creating any desired weapon using the Factory Kit Pattern. This pattern allows for configurable object builders, making it ideal for scenarios where the types of objects are not known upfront.
 
@@ -125,7 +126,7 @@ Use the Factory Kit Pattern when
 
 * [Factory Kit Pattern (Diego Pacheco)](https://diego-pacheco.medium.com/factory-kit-pattern-66d5ccb0c405)
 
-## Known Uses
+## Real-World Applications of Factory Kit Pattern in Java
 
 * In Java libraries such as the Java Development Kit (JDK) where different rendering engines might be instantiated based on the runtime environment.
 * Frameworks like Spring or applications where dependency injection is heavily used, often implement this pattern to manage object creation more flexibly.

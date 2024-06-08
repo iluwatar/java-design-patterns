@@ -1,5 +1,6 @@
 ---
-title: "Mastering Fluent Interface Design Pattern in Java: Method Chaining & Fluent API Examples"
+title: "Fluent Interface Pattern in Java: Enhancing Code Expressiveness with Fluent APIs"
+shortTitle: Fluent Interface
 description: "Learn how to implement the Fluent Interface design pattern in Java. Explore method chaining and Fluent API with practical examples and improve your code readability and maintainability."
 category: Behavioral
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > In software engineering, a fluent interface is an object-oriented API whose design relies extensively on method chaining. Its goal is to increase code legibility by creating a  domain-specific language (DSL).
 
-**Programmatic Example**
+### Programmatic Example of Fluent Interface Pattern in Java
 
 We need to select numbers based on different criteria from the list. It's a great chance to  utilize fluent interface pattern to provide readable easy-to-use developer experience.
 
@@ -186,7 +187,7 @@ Trade-offs:
 * Debugging can be challenging due to the chaining of method calls.
 * Overuse can lead to complex and hard-to-maintain code structures.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Builder](https://java-design-patterns.com/patterns/builder/): Often implemented using a Fluent Interface to construct objects step-by-step. The Builder Pattern focuses on constructing complex objects, while Fluent Interface emphasizes the method chaining mechanism.
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Fluent Interfaces can be seen as a specific utilization of the Chain of Responsibility, where each method in the chain handles a part of the task and then delegates to the next method.

@@ -1,5 +1,6 @@
 ---
-title: "Front Controller Design Pattern | Centralized Request Handling in Java"
+title: "Front Controller Pattern in Java: Centralizing Web Request Handling"
+shortTitle: Front Controller
 description: "Explore the Front Controller design pattern in Java for centralized request handling. Learn how to improve web application efficiency and consistency with this architectural pattern."
 category: Architectural
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > The front controller software design pattern is listed in several pattern catalogs and is related to the design of web applications. It is "a controller that handles all requests for a website", which is a useful structure for web application developers to achieve flexibility and reuse without code redundancy.
 
-**Programmatic example**
+### Programmatic Example of Front Controller Pattern in Java
 
 The Front Controller design pattern is a pattern that provides a centralized entry point for handling all requests in a web application. It ensures that request handling is managed consistently and efficiently across an application.
 
@@ -108,7 +109,7 @@ Trade-offs:
 * Can become a bottleneck if not properly managed.
 * Increases complexity in the dispatcher controller, requiring careful design to avoid tight coupling.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Page Controller](https://java-design-patterns.com/patterns/page-controller/): Front Controller can delegate requests to Page Controllers, which handle specific page requests. This division supports the Single Responsibility Principle.
 * [Model-View-Controller (MVC)](https://java-design-patterns.com/patterns/model-view-controller/): Front Controller acts as the controller, managing the flow between model and view.

@@ -1,5 +1,6 @@
 ---
-title: "Fan-Out/Fan-In Design Pattern in Java: Enhance Concurrency and Efficiency"
+title: "Fan-Out Fan-In Pattern in Java: Maximizing Concurrency for Efficient Data Processing"
+shortTitle: Fan-Out/Fan-In
 description: "Learn how the Fan-Out/Fan-In design pattern in Java can optimize concurrency and processing efficiency. Explore real-world examples, detailed explanations, and programmatic implementations."
 category: Concurrency
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 >
 > The fan-in concept, on the other hand, typically refers to the aggregation of multiple inputs. In digital electronics, it describes the number of inputs a logic gate can handle. Combining these concepts, the Fan-Out/Fan-In pattern in software engineering involves distributing tasks (fan-out) and then aggregating the results (fan-in).
 
-**Programmatic Example**
+### Programmatic Example of Fan-Out/Fan-In Pattern in Java
 
 The provided implementation involves a list of numbers with the objective to square them and aggregate the results. The `FanOutFanIn` class receives the list of numbers as `SquareNumberRequest` objects and a `Consumer` instance that collects the squared results as the requests complete. Each `SquareNumberRequest` squares its number with a random delay, simulating a long-running process that finishes at unpredictable times. The `Consumer` instance gathers the results from the various `SquareNumberRequest` objects as they become available at different times.
 
@@ -160,7 +161,7 @@ Trade-offs:
 * Potential for increased overhead due to task synchronization and result aggregation.
 * Dependency on the underlying infrastructure's ability to support concurrent execution.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * MapReduce: Similar to Fan-Out/Fan-In, MapReduce also involves distributing tasks across a number of workers (map) and aggregating the results (reduce), which is particularly useful for processing large data sets.
 * [Command](https://java-design-patterns.com/patterns/command/): Command Pattern facilitates the decoupling of the sender and the receiver, akin to how Fan-Out/Fan-In decouples task submission from task processing.

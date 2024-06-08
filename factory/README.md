@@ -1,5 +1,6 @@
 ---
-title: "Java Factory Design Pattern: Comprehensive Guide & Examples"
+title: "Factory Pattern in Java: Streamlining Object Creation"
+shortTitle: Factory
 description: "Learn the Factory Design Pattern in Java with detailed examples and explanations. Understand how to create flexible and scalable code using the Factory Pattern. Ideal for developers looking to improve their object-oriented design skills."
 category: Creational
 language: en
@@ -25,7 +26,7 @@ Wikipedia says
 
 > Factory is an object for creating other objects – formally a factory is a function or method that returns objects of a varying prototype or class.
 
-**Programmatic Example**
+### Programmatic Example of Factory Pattern in Java
 
 Imagine an alchemist who is about to manufacture coins. The alchemist must be able to create both gold and copper coins and switching between them must be possible without modifying the existing source code. The factory pattern makes it possible by providing a static construction method which can be called with relevant parameters.
 
@@ -135,7 +136,7 @@ Trade-offs:
 * The code can become more complicated due to the introduction of multiple additional classes.
 * Overuse can make the code less readable if the underlying complexity of the object creation is low or unnecessary.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Can be considered a kind of Factory that works with groups of products.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Often used in conjunction with Factory to ensure that a class has only one instance.

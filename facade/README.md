@@ -1,5 +1,6 @@
 ---
-title: "Facade Design Pattern in Java: Simplifying Complex Systems"
+title: "Facade Pattern in Java: Simplifying Complex System Interfaces"
+shortTitle: Facade
 description: "Learn how to implement the Facade Design Pattern in Java to create a unified interface for complex subsystems. Simplify your code and enhance maintainability with practical examples and use cases."
 category: Structural
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > A facade is an object that provides a simplified interface to a larger body of code, such as a class library.
 
-**Programmatic Example**
+### Programmatic Example of Facade Pattern in Java
 
 Here's an example of the Facade Design Pattern in a goldmine scenario, demonstrating how a Java facade can streamline complex operations.
 
@@ -214,7 +215,7 @@ Use the Facade pattern in Java when:
 * [Facade Method Design Pattern (GeekforGeeks)](https://www.geeksforgeeks.org/facade-design-pattern-introduction/)
 * [Design Patterns - Facade Pattern (TutorialsPoint)](https://www.tutorialspoint.com/design_pattern/facade_pattern.htm)
 
-## Known Uses
+## Real-World Applications of Facade Pattern in Java
 
 * Java libraries such as java.net.URL and javax.faces.context.FacesContext use Facade to simplify complex underlying classes.
 * In many Java frameworks, facades are used to simplify the usage of APIs by providing a simpler interface to more complex underlying code structures.
@@ -233,7 +234,7 @@ Trade-offs:
 
 * A facade can become a god object coupled to all classes of an app if not implemented correctly.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): Facade provides a unified interface while Adapter makes two existing interfaces work together.
 * [Mediator](https://java-design-patterns.com/patterns/mediator/): Facade defines a simpler interface to a subsystem while Mediator centralizes complex communications and control between objects.

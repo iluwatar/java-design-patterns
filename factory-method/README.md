@@ -1,5 +1,6 @@
 ---
-title: "Factory Method Pattern in Java: Examples, Uses, and Benefits"
+title: "Factory Method Pattern in Java: Enhancing Flexibility with Polymorphic Manufacturing"
+shortTitle: Factory Method
 description: "Learn about the Factory Method pattern in Java. Explore examples, uses, benefits, and how it enhances code flexibility and maintenance."
 category: Creational
 language: en
@@ -35,7 +36,7 @@ Wikipedia says
 
 > In class-based programming, the factory method pattern is a creational pattern that uses factory methods to deal with the problem of creating objects without having to specify the exact class of the object that will be created. This is done by creating objects by calling a factory method — either specified in an interface and implemented by child classes, or implemented in a base class and optionally overridden by derived classes—rather than by calling a constructor.
 
-**Programmatic Example**
+### Programmatic Example of Factory Method Pattern in Java
 
 The Factory Method approach is pivotal in Java Design Patterns for achieving flexible and maintainable code as we see in the following example.
 
@@ -119,7 +120,7 @@ Trade-offs:
 
 * Can complicate the code by requiring the addition of new subclasses to implement the extended factory methods.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Factory methods are often called within Abstract Factory patterns.
 * [Prototype](https://java-design-patterns.com/patterns/prototype/): A factory method that returns a new instance of a class that is a clone of a prototype class.
