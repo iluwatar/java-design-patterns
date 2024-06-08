@@ -1,5 +1,6 @@
 ---
-title: "Update Method Pattern in Java: Enhancing Game and App Performance"
+title: "Update Method Pattern in Java: Enhancing Game Loop Efficiency with Systematic Updates"
+shortTitle: Update Method
 description: "Explore the Update Method design pattern for Java, ideal for real-time games and applications. Learn how it optimizes performance by updating objects frame-by-frame to maintain synchronized, efficient operations."
 category: Behavioral
 language: en
@@ -34,7 +35,7 @@ gameprogrammingpatterns.com says
 
 > The game world maintains a collection of objects. Each object implements an update method that simulates one frame of the object’s behavior. Each frame, the game updates every object in the collection.
 
-**Programmatic Example**
+### Programmatic Example of Update Method Pattern in Java
 
 The Update Method design pattern is a behavioral pattern that simulates a collection of independent game or application objects by telling each to process one frame of behavior at a time. This pattern is commonly used in game development, where each object in the game world needs to be updated once per frame.
 
@@ -211,7 +212,7 @@ Trade-offs:
 * The state needs to be stored to enable resuming updates after each frame
 * Entities are simulated each frame, but they are not truly concurrent
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Component](https://java-design-patterns.com/patterns/component/): Often used in game development to allow entities to be composed of various components, each potentially having its own update method.
 * [Game Loop](https://java-design-patterns.com/patterns/game-loop/): Continuously updates game state and renders the game, which may include the Update Method for various game objects.

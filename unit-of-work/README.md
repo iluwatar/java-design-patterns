@@ -1,5 +1,6 @@
 ---
-title: "Mastering the Unit of Work Pattern in Java: Best Practices & Examples"
+title: "Unit of Work Pattern in Java: Orchestrating Efficient Transaction Management"
+shortTitle: Unit of Work
 description: "Discover how the Unit of Work pattern can streamline your Java applications. This guide offers a comprehensive explanation, real-world applications, and code examples to enhance your project’s efficiency and maintain data integrity."
 category: Data access
 language: en
@@ -28,7 +29,7 @@ In plain words
 
 > Maintains a list of objects affected by a business transaction and coordinates the writing out of changes and the resolution of concurrency problems.
 
-**Programmatic Example**
+### Programmatic Example of Unit of Work Pattern in Java
 
 Arms dealer has a database containing weapon information. Merchants all over the town are constantly updating this information causing a high load on the database server. To make the load more manageable we apply to Unit of Work pattern to send many small updates in batches.
 
@@ -189,7 +190,7 @@ Here is the console output.
 * [Unit Of Work Design Pattern (Code Project)](https://www.codeproject.com/Articles/581487/Unit-of-Work-Design-Pattern)
 * [Unit of Work - a Design Pattern (Mono)](https://mono.software/2017/01/13/unit-of-work-a-design-pattern/)
 
-## Known Uses
+## Real-World Applications of Unit of Work Pattern in Java
 
 * Implementations in Java-based ORM frameworks like Hibernate.
 * Enterprise applications where multiple database operations need to be atomic.
@@ -208,7 +209,7 @@ Trade-offs:
 * Can introduce complexity in managing the life cycle of objects within the unit of work.
 * Potential performance overhead if not managed properly, especially with large datasets.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Identity Map](https://java-design-patterns.com/patterns/identity-map/): Helps to ensure that each object is only loaded once per transaction, reducing redundancy and improving performance.
 * [Repository](https://java-design-patterns.com/patterns/repository/): Often used in conjunction with Unit of Work to abstract the persistence logic and provide a cleaner way to access data.

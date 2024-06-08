@@ -1,5 +1,6 @@
 ---
-title: "Understanding Table Module Pattern in Java: Detailed Guide"
+title: "Table Module Pattern in Java: Enhancing Maintainability with Organized Data Handling Modules"
+shortTitle: Table Module
 description: "Explore the Table Module pattern in Java with our in-depth guide. Learn how it simplifies database interaction by encapsulating data access logic, enhances code maintenance, and secures data operations."
 category: Data access
 language: en
@@ -27,7 +28,7 @@ In plain words
 
 > The Table Module pattern centralizes and encapsulates database access logic for a specific table, simplifying data retrieval and manipulation while hiding database complexities.
 
-**Programmatic Example**
+### Programmatic Example of Table Module Pattern in Java
 
 In the user system example, the domain logic for user login and registration needs to be managed. By using the Table Module pattern, we can create an instance of the `UserTableModule` class to encapsulate and handle all business logic associated with the rows in the user table.
 
@@ -152,7 +153,7 @@ This example shows how the Table Module pattern centralizes database operations 
 
 * [Architecture patterns: Domain model and friends (Inviqa)](https://inviqa.com/blog/architecture-patterns-domain-model-and-friends)
 
-## Known Uses
+## Real-World Applications of Table Module Pattern in Java
 
 * In enterprise applications where multiple modules need to interact with the same database tables.
 * Web applications that require CRUD operations on database tables.
@@ -171,7 +172,7 @@ Trade-offs:
 * May lead to a large module if the table has many operations, potentially reducing readability.
 * Can become a bottleneck if not properly optimized, especially in high-load scenarios.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * Active Record: Unlike Table Module, Active Record combines data access and domain logic in the same class.
 * [Data Access Object (DAO)](https://java-design-patterns.com/patterns/dao/): Provides an abstract interface to some type of database or other persistence mechanism, often used alongside Table Module to separate low-level data access operations from high-level business logic.

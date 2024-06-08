@@ -1,5 +1,6 @@
 ---
-title: "Mastering Throttling: Rate Limiting in Java Design Patterns"
+title: "Throttling Pattern in Java: Optimizing Resource Usage in High-Demand Applications"
+shortTitle: Throttling
 description: "Explore the Throttling design pattern in Java to manage application stability and prevent system overload. Learn how rate limiting ensures consistent performance and system resilience. Ideal for developers and software architects."
 category: Resource management
 language: en
@@ -33,7 +34,7 @@ In plain words
 
 > Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. This can allow the system to continue to function and meet service level agreements, even when an increase in demand places an extreme load on resources.
 
-**Programmatic Example**
+### Programmatic Example of Throttling Pattern in Java
 
 In this Java example, we demonstrate throttling. A young human and an old dwarf walk into a bar. They start ordering beers from the bartender. The bartender immediately sees that the young human shouldn't consume too many drinks too fast and refuses to serve if enough time has not passed. For the old dwarf, the serving rate can be higher.
 
@@ -218,7 +219,7 @@ An excerpt from the example's console output:
 * You want to ensure fair usage of a service among multiple users.
 * You need to maintain the quality of service under high load conditions.
 
-## Known Uses
+## Real-World Applications of Throttling Pattern in Java
 
 * APIs of major cloud providers like AWS, Google Cloud, and Azure use throttling to manage resource usage.
 * Web services to prevent denial-of-service (DoS) attacks by limiting the number of requests from a single IP address.
@@ -238,7 +239,7 @@ Trade-offs:
 * Requires careful tuning to balance between resource protection and user experience.
 * Could lead to denial of service to legitimate users if not configured correctly.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Works in tandem with throttling to prevent repeated attempts to access an overloaded service.
 * Bulkhead: Isolates different parts of the system to limit the impact of throttling on other components.

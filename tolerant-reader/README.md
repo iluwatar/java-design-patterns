@@ -1,5 +1,6 @@
 ---
-title: "Tolerant Reader Pattern Explained: Enhancing API Resilience and Compatibility"
+title: "Tolerant Reader Pattern in Java: Enhancing API Resilience and Compatibility"
+shortTitle: Tolerant Reader
 description: "Discover how the Tolerant Reader pattern can boost your API's resilience by ignoring unrecognized data, ensuring backward compatibility and seamless integration. Learn through examples and best practices on implementing this robust communication mechanism."
 category: Resilience
 language: en
@@ -32,7 +33,7 @@ In plain words
 
 > Be conservative in what you do, be liberal in what you accept from others.
 
-**Programmatic Example**
+### Programmatic Example of Tolerant Reader Pattern in Java
 
 We are persisting `RainbowFish` objects to file. Later on they need to be restored. What makes it problematic is that `RainbowFish` data structure is versioned and evolves over time. New version of `RainbowFish` needs to be able to restore old versions as well.
 
@@ -176,7 +177,7 @@ Program output:
 * Applicable when backward compatibility is required in API design.
 * Suitable for integration scenarios where different systems exchange data and evolve independently.
 
-## Known Uses
+## Real-World Applications of Tolerant Reader Pattern in Java
 
 * JSON or XML parsers that skip unknown elements.
 * API clients in microservices architectures that interact with multiple versions of a service.
@@ -194,7 +195,7 @@ Trade-offs:
 * May result in silent failures if important data is ignored.
 * Can complicate debugging and tracing of issues due to missing or unrecognized data.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): Both patterns deal with data transformation and integration, but the Adapter Pattern focuses on converting interfaces, while Tolerant Reader focuses on ignoring unrecognized data.
 * [Facade](https://java-design-patterns.com/patterns/facade/): Simplifies interactions with complex systems, similar to how Tolerant Reader simplifies data consumption by ignoring irrelevant data.

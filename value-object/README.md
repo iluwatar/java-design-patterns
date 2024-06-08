@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Value Object Pattern in Java: A Comprehensive Guide"
+title: "Value Object Pattern in Java: Enhancing Performance with Immutable Data Types"
+shortTitle: Value Object
 description: "Explore the Value Object pattern in Java with our in-depth guide. Learn how immutable objects enhance performance and memory efficiency in software design. Ideal for developers looking to optimize Java applications."
 category: Structural
 language: en
@@ -42,7 +43,7 @@ Wikipedia says
 
 > In computer science, a value object is a small object that represents a simple entity whose equality is not based on identity: i.e. two value objects are equal when they have the same value, not necessarily being the same object.
 
-**Programmatic Example**
+### Programmatic Example of Value Object Pattern in Java
 
 There is a class for hero statistics in a role-playing game. The statistics contain attributes such as strength, intelligence, and luck. The statistics of different heroes should be equal when all the attributes are equal.
 
@@ -126,7 +127,7 @@ Trade-offs:
 * Increases complexity in object design and can lead to tightly coupled systems.
 * Modifying the embedded value necessitates changes across all objects that embed this value, which can complicate maintenance.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Often used to create instances of value objects.
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Shares objects to support large quantities using a minimal amount of memory, somewhat similar in intent but different in implementation.

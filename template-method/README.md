@@ -1,5 +1,6 @@
 ---
-title: "Mastering the Template Method Pattern in Java: Design Techniques"
+title: "Template Method Pattern in Java: Streamlining Complex Algorithms with Predefined Scaffolds"
+shortTitle: Template Method
 description: "Discover the essentials of the Template Method pattern in Java, including how it simplifies code, promotes reusability, and allows flexibility in algorithm design. Perfect for developers looking to refine their object-oriented programming skills."
 category: Behavioral
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > In object-oriented programming, the template method is one of the behavioral design patterns identified by Gamma et al. in the book Design Patterns. The template method is a method in a superclass, usually an abstract superclass, and defines the skeleton of an operation in terms of a number of high-level steps. These steps are themselves implemented by additional helper methods in the same class as the template method.
 
-**Programmatic Example**
+### Programmatic Example of Template Method Pattern in Java
 
 Our programmatic example is about thieves and stealing. The general steps in stealing an item are the same. First, you pick the target, next you confuse him somehow and finally, you steal the item. However, there are many ways to implement these steps.
 
@@ -173,7 +174,7 @@ Trade-offs:
 * Can lead to an increase in the number of classes, making the system more complex.
 * Requires careful design to ensure that the steps exposed to subclasses are useful and meaningful.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Often used with Template Method to create objects needed for specific steps of the algorithm.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): While Template Method defines the skeleton of an algorithm and lets subclasses implement specific steps, the Strategy Pattern defines a family of algorithms and makes them interchangeable.

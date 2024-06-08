@@ -1,5 +1,6 @@
 ---
-title: "Understanding Transaction Script Pattern in Java: Simplify Your Code"
+title: "Transaction Script Pattern in Java: Simplifying Business Logic with Consolidated Scripts"
+shortTitle: Transaction Script
 description: "Explore the Transaction Script design pattern for Java applications. Learn how to organize simple business logic into efficient scripts with real-world examples and improve your coding efficiency."
 category: Data access
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > The Transaction Script design pattern is a straightforward way to organize business logic in applications, particularly suitable for scenarios where each request from the presentation layer can be handled by a single procedure. This pattern is often used in simple applications or in systems where rapid development and ease of understanding are crucial. Each transaction script is responsible for a particular task, such as processing an order or calculating a result, and typically interacts directly with the database.
 
-**Programmatic example**
+### Programmatic Example of Transaction Script Pattern in Java
 
 Our Transaction Script pattern in Java example is about booking hotel rooms.
 
@@ -241,7 +242,7 @@ This pattern is suitable for simple business logic and can be easily understood 
 * [Transaction Script Pattern (DZone)](https://dzone.com/articles/transaction-script-pattern#:~:text=Transaction%20Script%20(TS)%20is%20the,need%20big%20architecture%20behind%20them.)
 * [Transaction Script (InformIT)](https://www.informit.com/articles/article.aspx?p=1398617)
 
-### Known Uses
+### Real-World Applications of Transaction Script Pattern in Java
 
 * Early-stage startups and small-scale applications where rapid development is crucial.
 * Enterprise applications with well-defined procedures like banking transactions or e-commerce order processing.

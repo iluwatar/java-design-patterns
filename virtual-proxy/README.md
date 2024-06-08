@@ -1,5 +1,6 @@
 ---
-title: "Virtual Proxy Design Pattern in Java: Enhancing Performance & Resource Management"
+title: "Virtual Proxy Pattern in Java: Enhancing Performance with Lazy Loading Techniques"
+shortTitle: Virtual Proxy
 description: "Explore the Virtual Proxy Design Pattern in Java to improve your applications. Learn how this pattern optimizes performance and manages resources efficiently by controlling the creation and access of resource-intensive objects. Ideal for developers looking to enhance system responsiveness."
 category: Structural
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > A proxy that controls access to a resource that is expensive to create.
 
-**Programmatic Example**
+### Programmatic Example of Virtual Proxy Pattern in Java
 
 The Virtual Proxy design pattern in Java can optimize resource utilization and system performance.
 
@@ -124,7 +125,7 @@ Use the Virtual Proxy pattern when:
 
 * [The Proxy Pattern in Java (Baeldung)](https://www.baeldung.com/java-proxy-pattern)
 
-## Known Uses
+## Real-World Applications of Virtual Proxy Pattern in Java
 
 * Lazy Initialization: Create objects only when they are actually needed.
 * Resource Management: Efficiently manage resources by creating heavy objects only on demand.
@@ -146,7 +147,7 @@ Trade-offs:
 * Introduces complexity in the codebase.
 * Can lead to unexpected behaviors if not handled properly, especially in multithreaded environments.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): Virtual Proxy is a specific type of the Proxy pattern focused on lazy initialization.
 * [Lazy Loading](https://java-design-patterns.com/patterns/lazy-loading/): Directly related as the core idea of Virtual Proxy is to defer object creation.

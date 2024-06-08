@@ -1,5 +1,6 @@
 ---
-title: "Mastering Type Object Pattern in Java: Extend and Modify Classes Dynamically"
+title: "Type Object Pattern in Java: Enhancing Flexibility with Dynamic Class Definitions"
+shortTitle: Type Object
 description: "Discover how the Type Object Pattern in Java allows for dynamic and flexible class creation without altering existing code. Ideal for developers looking to understand and apply this powerful design pattern in real-world Java applications."
 category: Creational
 language: en
@@ -37,7 +38,7 @@ gameprogrammingpatterns.com says
 
 > Define a type object class and a typed object class. Each type object instance represents a different logical type. Each typed object stores a reference to the type object that describes its type.
 
-**Programmatic example**
+### Programmatic Example of Type Object Pattern in Java
 
 The Type Object pattern is a design pattern that allows for the creation of flexible and reusable objects by creating a class with a field that represents the 'type' of the object. This design pattern proves invaluable for scenarios where anticipated Java types are undefined upfront, or when modifications or additions are required, ensuring efficient Java development without frequent recompilations.
 

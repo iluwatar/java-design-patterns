@@ -1,5 +1,6 @@
 ---
-title: "Implementing the Trampoline Pattern in Java: Optimize Recursion"
+title: "Trampoline Pattern in Java: Mastering Recursion Without Stack Overflow"
+shortTitle: Trampoline
 description: "Discover how to implement the Trampoline pattern in Java to efficiently manage recursive functions and prevent stack overflow errors, with real-world examples and programming insights."
 category: Functional
 language: en
@@ -35,7 +36,7 @@ Wikipedia says
 
 > In Java, trampoline refers to using reflection to avoid using inner classes, for example in event listeners. The time overhead of a reflection call is traded for the space overhead of an inner class. Trampolines in Java usually involve the creation of a GenericListener to pass events to an outer class.
 
-**Programmatic Example**
+### Programmatic Example of Trampoline Pattern in Java
 
 Here's the `Trampoline` implementation in Java.
 
@@ -136,7 +137,7 @@ Use the Trampoline pattern when
 * [Trampolining: A practical guide for awesome Java Developers (John McClean)](https://medium.com/@johnmcclean/trampolining-a-practical-guide-for-awesome-java-developers-4b657d9c3076)
 * [What is a trampoline function? (Stack Overflow)](https://stackoverflow.com/questions/189725/what-is-a-trampoline-function)
 
-## Known Uses
+## Real-World Applications of Trampoline Pattern in Java
 
 * Implementing algorithms that require deep recursion, such as certain tree traversals, combinatorial algorithms, and mathematical computations.
 * Functional programming libraries and frameworks where tail-call optimization is necessary for performance and stack safety.
@@ -155,7 +156,7 @@ Trade-offs:
 * May introduce additional complexity in terms of understanding and implementing the trampoline mechanism.
 * Requires converting naturally recursive algorithms into a continuation-passing style.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Iterator](https://java-design-patterns.com/patterns/iterator/): Both patterns aim to transform potentially recursive operations into iterative processes, though the iterator pattern is more general-purpose.
 * [State](https://java-design-patterns.com/patterns/state/): Like the Trampoline, the State pattern can also handle complex state transitions, which can sometimes involve recursive-like state changes.

@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Visitor Design Pattern in Java"
+title: "Visitor Pattern in Java: Implementing Robust Operations Across Diverse Object Structures"
+shortTitle: Visitor
 description: "Explore the Visitor design pattern in Java with detailed examples and class diagrams. Learn how to implement operations without altering object structures for clean and maintainable code."
 category: Behavioral
 language: en
@@ -31,7 +32,7 @@ Wikipedia says
 
 > In object-oriented programming and software engineering, the visitor design pattern is a way of separating an algorithm from an object structure on which it operates. A practical result of this separation is the ability to add new operations to existing object structures without modifying the structures.
 
-**Programmatic Example**
+### Programmatic Example of Visitor Pattern in Java
 
 Consider a tree structure with army units. Commander has two sergeants under it and each sergeant has three soldiers under them. Given that the hierarchy implements the visitor pattern, we can easily create new objects that interact with the commander, sergeants, soldiers, or all of them.
 
@@ -262,7 +263,7 @@ Trade-offs:
 * Circular dependencies: In complex systems, this pattern can introduce circular dependencies between visitor and element classes.
 * Breaking encapsulation: Visitor pattern requires that the element classes expose enough details to allow the visitor to do its job, potentially breaking encapsulation.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Composite](https://java-design-patterns.com/patterns/composite/): The Visitor pattern is often used in conjunction with the Composite pattern, where the visitor can perform operations over a composite structure.
 * [Interpreter](https://java-design-patterns.com/patterns/interpreter/): Visitors can be used to implement the non-terminal expressions in the Interpreter pattern.
