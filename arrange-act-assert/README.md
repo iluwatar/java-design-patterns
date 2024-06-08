@@ -38,7 +38,7 @@ WikiWikiWeb says
 
 > Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods.
 
-### Programmatic Example of Arrange/Act/Assert Pattern in Java
+## Programmatic Example of Arrange/Act/Assert Pattern in Java
 
 We need to write comprehensive and clear unit test suite for a class. Using the Arrange/Act/Assert pattern in Java testing ensures clarity.
 

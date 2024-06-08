@@ -34,7 +34,7 @@ Wikipedia says
 
 > In computer science, multiple buffering is the use of more than one buffer to hold a block of data, so that a "reader" will see a complete (though perhaps old) version of the data, rather than a partially updated version of the data being created by a "writer". It is very commonly used for computer display images.
 
-### Programmatic Example of Double Buffer Pattern in Java
+## Programmatic Example of Double Buffer Pattern in Java
 
 A typical example, and one that every game engine must address, is rendering. When the game draws the world the users see, it does so one piece at a time - the mountains in the distance, the rolling hills, the trees, each in its turn. If the user watched the view draw incrementally like that, the illusion of a coherent world would be shattered. The scene must update smoothly and quickly, displaying a series of complete frames, each appearing instantly. Double buffering solves the problem.
 

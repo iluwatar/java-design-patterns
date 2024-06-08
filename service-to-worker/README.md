@@ -26,7 +26,7 @@ In plain words
 
 > Separates the processing logic from the view in web applications to improve maintainability and scalability.
 
-### Programmatic Example of Service to Worker Pattern in Java
+## Programmatic Example of Service to Worker Pattern in Java
 
 The Service to Worker design pattern separates the processing logic from the view in web applications to improve maintainability and scalability. It combines the Dispatcher View and Service Locator patterns to facilitate the separation of processing, control flow, and view management in web applications.
 

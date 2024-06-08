@@ -35,7 +35,7 @@ Wikipedia says
 
 > In concurrent programming, Guarded Suspension manages operations requiring a lock and a precondition, delaying execution until the precondition is met.
 
-### Programmatic Example of Guarded Suspension Pattern in Java
+## Programmatic Example of Guarded Suspension Pattern in Java
 
 The `GuardedQueue` class in Java showcases concurrent programming using the Guarded Suspension pattern. It includes synchronized methods that manage thread management and synchronization, demonstrating how threads wait for the right conditions to execute.
 

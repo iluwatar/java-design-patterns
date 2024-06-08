@@ -29,7 +29,7 @@ In plain words
 
 > Poison Pill is a known message structure that ends the message exchange.   
 
-### Programmatic Example of Poison Pill Pattern in Java
+## Programmatic Example of Poison Pill Pattern in Java
 
 In this Java example, the Poison Pill serves as a shutdown signal within message queues, demonstrating effective thread management and consumer communication.
 

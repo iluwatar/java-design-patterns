@@ -37,7 +37,7 @@ In plain words
 
 > The Model-View-Intent (MVI) pattern is a reactive architectural approach where user actions (Intent) modify the application state (Model), and the updated state is then reflected back in the user interface (View) in a unidirectional and cyclical data flow.
 
-### Programmatic Example of Model-View-Intent Pattern in Java
+## Programmatic Example of Model-View-Intent Pattern in Java
 
 The Model-View-Intent (MVI) pattern for Java is a modern approach to structuring your application's logic, ensuring a smooth, unidirectional flow of data and events. It's a variation of the Model-View-Presenter (MVP) and Model-View-ViewModel (MVVM) patterns, but with a more streamlined flow of data and events.
 

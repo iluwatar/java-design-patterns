@@ -30,7 +30,7 @@ Wikipedia says
 
 > To support React's concept of unidirectional data flow (which might be contrasted with AngularJS's bidirectional flow), the Flux architecture was developed as an alternative to the popular model–view–controller architecture. Flux features actions which are sent through a central dispatcher to a store, and changes to the store are propagated back to the view.
 
-### Programmatic Example of Flux Pattern in Java
+## Programmatic Example of Flux Pattern in Java
 
 The Flux design pattern is used for building client-side web applications. It advocates for a unidirectional data flow. When a user interacts with a view, the view propagates an action through a central dispatcher, to the various stores that hold the application's data and business logic, which updates all the views that are affected.
 

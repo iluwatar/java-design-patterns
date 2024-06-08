@@ -32,7 +32,7 @@ In plain words
 
 > Factory kit is a configurable object builder, a factory to create factories.
 
-### Programmatic Example of Factory Kit Pattern in Java
+## Programmatic Example of Factory Kit Pattern in Java
 
 Imagine a magical weapon factory in Java capable of creating any desired weapon using the Factory Kit Pattern. This pattern allows for configurable object builders, making it ideal for scenarios where the types of objects are not known upfront.
 

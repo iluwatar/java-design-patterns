@@ -31,7 +31,7 @@ In plain words
 
 > An instruction set defines the low-level operations that can be performed. A series of instructions is encoded as a sequence of bytes. A virtual machine executes these instructions one at a time, using a stack for intermediate values. By combining instructions, complex high-level behavior can be defined.
 
-### Programmatic Example of Bytecode Pattern in Java
+## Programmatic Example of Bytecode Pattern in Java
 
 In this programmatic example, we show how the Bytecode pattern in Java can simplify the execution of complex virtual machine instructions through a well-defined set of operations. This real-world example demonstrates how the Bytecode design pattern in Java can streamline game programming by allowing wizards' behavior to be easily adjusted through bytecode instructions.
 

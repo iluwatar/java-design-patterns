@@ -35,7 +35,7 @@ Wikipedia says
 
 > In object-oriented computer programming, a null object is an object with no referenced value or with defined neutral ("null") behavior. The null object design pattern describes the uses of such objects and their behavior (or lack thereof).
 
-### Programmatic Example of Null Object in Java
+## Programmatic Example of Null Object in Java
 
 By implementing the Null Object Pattern, Java developers can ensure that their applications handle 'empty' objects more gracefully, enhancing code stability and readability.
 

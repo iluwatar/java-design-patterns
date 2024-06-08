@@ -28,7 +28,7 @@ In plain words
 
 > The Table Module pattern centralizes and encapsulates database access logic for a specific table, simplifying data retrieval and manipulation while hiding database complexities.
 
-### Programmatic Example of Table Module Pattern in Java
+## Programmatic Example of Table Module Pattern in Java
 
 In the user system example, the domain logic for user login and registration needs to be managed. By using the Table Module pattern, we can create an instance of the `UserTableModule` class to encapsulate and handle all business logic associated with the rows in the user table.
 

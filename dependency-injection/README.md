@@ -35,7 +35,7 @@ Wikipedia says
 
 > In software engineering, dependency injection is a technique in which an object receives other objects that it depends on. These other objects are called dependencies.
 
-### Programmatic Example of Dependency Injection Pattern in Java
+## Programmatic Example of Dependency Injection Pattern in Java
 
 The old wizard likes to fill his pipe and smoke tobacco once in a while. However, he doesn't want to depend on a single tobacco brand only but likes to be able to enjoy them all interchangeably.
 

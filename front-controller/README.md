@@ -34,7 +34,7 @@ Wikipedia says
 
 > The front controller software design pattern is listed in several pattern catalogs and is related to the design of web applications. It is "a controller that handles all requests for a website", which is a useful structure for web application developers to achieve flexibility and reuse without code redundancy.
 
-### Programmatic Example of Front Controller Pattern in Java
+## Programmatic Example of Front Controller Pattern in Java
 
 The Front Controller design pattern is a pattern that provides a centralized entry point for handling all requests in a web application. It ensures that request handling is managed consistently and efficiently across an application.
 

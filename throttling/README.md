@@ -34,7 +34,7 @@ In plain words
 
 > Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. This can allow the system to continue to function and meet service level agreements, even when an increase in demand places an extreme load on resources.
 
-### Programmatic Example of Throttling Pattern in Java
+## Programmatic Example of Throttling Pattern in Java
 
 In this Java example, we demonstrate throttling. A young human and an old dwarf walk into a bar. They start ordering beers from the bartender. The bartender immediately sees that the young human shouldn't consume too many drinks too fast and refuses to serve if enough time has not passed. For the old dwarf, the serving rate can be higher.
 

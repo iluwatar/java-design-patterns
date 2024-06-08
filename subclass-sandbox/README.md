@@ -35,7 +35,7 @@ In plain words
 
 > A base class defines an abstract sandbox method and several provided operations. Marking them protected makes it clear that they are for use by derived classes. Each derived sandboxed subclass implements the sandbox method using the provided operations.
 
-### Programmatic Example of Subclass Sandbox Pattern in Java
+## Programmatic Example of Subclass Sandbox Pattern in Java
 
 Using the Subclass Sandbox pattern, developers can create distinct functionalities within Java applications, enhancing game development and software design.
 

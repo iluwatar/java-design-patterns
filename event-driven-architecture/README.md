@@ -38,7 +38,7 @@ Wikipedia says
 
 > Event-driven architecture (EDA) is a software architecture paradigm concerning the production and detection of events.
 
-### Programmatic Example of Event-Driven Architecture in Java
+## Programmatic Example of Event-Driven Architecture in Java
 
 The Event-Driven Architecture (EDA) pattern in this module is implemented using several key classes and concepts:  
 

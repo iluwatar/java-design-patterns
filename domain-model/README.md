@@ -34,7 +34,7 @@ In plain words
 
 > The Domain Model is an object model of the domain that incorporates both behavior and data.
 
-### Programmatic Example of Domain Model Pattern in Java
+## Programmatic Example of Domain Model Pattern in Java
 
 Let's assume that we need to build an e-commerce web application. While analyzing requirements you will notice that there are few nouns you talk about repeatedly. It’s your Customer, and a Product the customer looks for. These two are your domain-specific classes and each of that classes will include some business logic specific to its domain.
 

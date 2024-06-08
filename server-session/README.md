@@ -34,7 +34,7 @@ Wikipedia says
 
 > A session token is a unique identifier that is generated and sent from a server to a client to identify the current interaction session. The client usually stores and sends the token as an HTTP cookie and/or sends it as a parameter in GET or POST queries. The reason to use session tokens is that the client only has to handle the identifier—all session data is stored on the server (usually in a database, to which the client does not have direct access) linked to that identifier.
 
-### Programmatic Example of Server Session Pattern in Java
+## Programmatic Example of Server Session Pattern in Java
 
 The Server Session design pattern is a behavioral design pattern that assigns the responsibility of storing session data on the server side. This pattern is particularly useful in the context of stateless protocols like HTTP where all requests are isolated events independent of previous requests.
 

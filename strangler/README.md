@@ -32,7 +32,7 @@ Wikipedia says
 
 > The Strangler Design Pattern involves incrementally migrating a legacy system by gradually replacing it with a new system. It wraps old code with new code, redirecting or logging uses of the old code to ensure a seamless transition. This pattern is named after the strangler fig plant, which grows around a host tree and eventually replaces it entirely. It's particularly useful for modernizing monolithic applications and transitioning them to microservices architecture with minimal risk and disruption.
 
-### Programmatic Example of Strangler Pattern in Java
+## Programmatic Example of Strangler Pattern in Java
 
 The Strangler design pattern in Java is a software design pattern that incrementally migrates a legacy system by gradually replacing specific pieces of functionality with new applications and services. As features from the legacy system are replaced, the new system eventually replaces all the old system's features, strangling the old system and allowing you to decommission it.
 

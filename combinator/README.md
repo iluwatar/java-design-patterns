@@ -35,7 +35,7 @@ Wikipedia says
 
 > A combinator is a higher-order function that uses only function application and earlier defined combinators to define a result from its arguments.
 
-### Programmatic Example of Combinator Pattern in Java
+## Programmatic Example of Combinator Pattern in Java
 
 In software design, combinatory logic is pivotal for creating reusable and modular code components. By leveraging higher-order functions, the Combinator pattern promotes code reuse and maintainability in Java applications.
 

@@ -37,7 +37,7 @@ Wikipedia says
 > 
 > To use this pattern, a class implements a marker interface (also called tagging interface) which is an empty interface, and methods that interact with instances of that class test for the existence of the interface. Whereas a typical interface specifies functionality (in the form of method declarations) that an implementing class must support, a marker interface need not do so. The mere presence of such an interface indicates specific behavior on the part of the implementing class. Hybrid interfaces, which both act as markers and specify required methods, are possible but may prove confusing if improperly used.
 
-### Programmatic Example of Marker Interface Pattern in Java
+## Programmatic Example of Marker Interface Pattern in Java
 
 The Marker Interface design pattern is a design pattern in computer science that is used with languages that provide run-time type information about objects. It provides a means to associate metadata with a class where the language does not have explicit support for such metadata.
 

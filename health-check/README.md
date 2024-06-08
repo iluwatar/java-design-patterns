@@ -30,7 +30,7 @@ In plain words
 
 > The Health Check Pattern is like a regular doctor's visit for services in a microservices architecture. It helps in early detection of issues and ensures that services are healthy and available.
 
-### Programmatic Example of Health Check Pattern in Java
+## Programmatic Example of Health Check Pattern in Java
 
 The Health Check design pattern is particularly useful in distributed systems where the health of individual components can affect the overall health of the system. Using Spring Boot Actuator, developers can easily implement health checks in Java applications.
 

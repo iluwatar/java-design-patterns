@@ -36,7 +36,7 @@ Wikipedia says
 
 > The memento pattern is a software design pattern that provides the ability to restore an object to its previous state (undo via rollback).
 
-### Programmatic Example of Memento Pattern in Java
+## Programmatic Example of Memento Pattern in Java
 
 In our astrology application, we use the Memento pattern to capture and restore the state of star objects. Each state is saved as a memento, allowing us to revert to previous states as needed.
 

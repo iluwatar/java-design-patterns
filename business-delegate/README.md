@@ -36,7 +36,7 @@ Wikipedia says
 
 > Business Delegate is a Java EE design pattern. This pattern is directing to reduce the coupling in between business services and the connected presentation tier, and to hide the implementation details of services (including lookup and accessibility of EJB architecture). Business Delegates acts as an adaptor to invoke business objects from the presentation tier.
 
-### Programmatic Example of Business Delegate Pattern in Java
+## Programmatic Example of Business Delegate Pattern in Java
 
 The following Java code demonstrates how to implement the Business Delegate pattern. This pattern is particularly useful in applications requiring loose coupling and efficient service interaction.
 

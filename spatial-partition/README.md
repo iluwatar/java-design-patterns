@@ -39,7 +39,7 @@ Wikipedia says
 >
 > For example, in ray tracing, space partitioning helps quickly determine the objects a ray might intersect by narrowing down the search space, leading to faster rendering times. Similarly, in game development, Quadtrees can efficiently manage 2D game environments by segmenting the space into smaller regions, facilitating quicker collision detection and rendering.
 
-### Programmatic Example of Spatial Partition Pattern in Java
+## Programmatic Example of Spatial Partition Pattern in Java
 
 The Spatial Partition design pattern in Java is a strategic approach for handling multiple objects in expansive game worlds or detailed simulation environments, boosting query efficiency and operational speed. It allows us to efficiently manage these objects and perform operations like collision detection or range queries. The pattern works by dividing the space into smaller, manageable regions, and each object is associated with the region it belongs to. This way, we can limit our operations to a specific region, instead of checking every object against every other object.
 

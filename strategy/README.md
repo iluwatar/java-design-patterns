@@ -34,7 +34,7 @@ Wikipedia says
 
 > In computer programming, the strategy pattern (also known as the policy pattern) is a behavioral software design pattern that enables selecting an algorithm at runtime.
 
-### Programmatic Example of Strategy Pattern in Java
+## Programmatic Example of Strategy Pattern in Java
 
 Slaying dragons is a dangerous job. With experience, it becomes easier. Veteran dragonslayers have developed different fighting strategies against different types of dragons.
 

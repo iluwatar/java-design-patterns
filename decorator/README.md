@@ -35,7 +35,7 @@ Wikipedia says
 
 > In object-oriented programming, the decorator pattern is a design pattern that allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class. The decorator pattern is often useful for adhering to the Single Responsibility Principle, as it allows functionality to be divided between classes with unique areas of concern as well as to the Open-Closed Principle, by allowing the functionality of a class to be extended without being modified.
 
-### Programmatic Example of Decorator Pattern in Java
+## Programmatic Example of Decorator Pattern in Java
 
 There is an angry troll living in the nearby hills. Usually, it goes bare-handed, but sometimes it has a weapon. To arm the troll it's not necessary to create a new troll but to decorate it dynamically with a suitable weapon.
 

@@ -29,7 +29,7 @@ Wikipedia says
 
 > In software engineering, double-checked locking (also known as "double-checked locking optimization") is a software design pattern used to reduce the overhead of acquiring a lock by testing the locking criterion (the "lock hint") before acquiring the lock. Locking occurs only if the locking criterion check indicates that locking is required.
 
-### Programmatic Example of Double-Checked Locking Pattern in Java
+## Programmatic Example of Double-Checked Locking Pattern in Java
 
 The Double-Checked Locking pattern is used in the `HolderThreadSafe` class to ensure that the `Heavy` object is only created once, even when accessed from multiple threads.  Here's how it works:
 

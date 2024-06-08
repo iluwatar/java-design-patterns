@@ -34,7 +34,7 @@ Wikipedia says
 
 > Model–view–controller (MVC) is commonly used for developing user interfaces that divide the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.
 
-### Programmatic Example of Model-View-Controller Pattern in Java
+## Programmatic Example of Model-View-Controller Pattern in Java
 
 Consider following `GiantModel` model class that provides the health, fatigue & nourishment information.
 

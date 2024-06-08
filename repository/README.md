@@ -29,7 +29,7 @@ In plain words
 
 > Repositories are classes or components that encapsulate the logic required to access data sources. They centralize common data access functionality, providing better maintainability and decoupling the infrastructure or technology used to access databases from the domain model layer.
 
-### Programmatic Example of Repository Pattern in Java
+## Programmatic Example of Repository Pattern in Java
 
 Let's first look at the person entity that we need to persist.
 

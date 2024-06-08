@@ -29,7 +29,7 @@ Wikipedia says
 
 > In software engineering, a pipeline consists of a chain of processing elements (processes, threads, coroutines, functions, etc.), arranged so that the output of each element is the input of the next; the name is by analogy to a physical pipeline. Usually some amount of buffering is provided between consecutive elements. The information that flows in these pipelines is often a stream of records, bytes, or bits, and the elements of a pipeline may be called filters; this is also called the pipe(s) and filters design pattern. Connecting elements into a pipeline is analogous to function composition.
 
-### Programmatic Example of Collection Pipeline Pattern in Java
+## Programmatic Example of Collection Pipeline Pattern in Java
 
 The Collection Pipeline is a programming pattern where you organize some computation as a sequence of operations which compose by taking a collection as output of one operation and feeding it into the next.
 

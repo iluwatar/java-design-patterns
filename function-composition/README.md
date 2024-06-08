@@ -39,7 +39,7 @@ Wikipedia says
 
 > Function composition is an act or mechanism to combine simple functions to build more complicated ones. Like the usual composition of functions in mathematics, the result of each function is passed as the argument of the next, and the result of the last one is the result of the whole.
 
-### Programmatic Example of Function Composition Pattern in Java
+## Programmatic Example of Function Composition Pattern in Java
 
 In the functional programming paradigm, function composition is a powerful technique. For instance, in Java, you can use higher-order functions to compose operations like multiplying and squaring numbers.
 

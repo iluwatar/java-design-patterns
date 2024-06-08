@@ -31,7 +31,7 @@ Wikipedia says
 
 > The Twin pattern is a software design pattern that allows developers to simulate multiple inheritance in languages that don't support it. Instead of creating a single class inheriting from multiple parents, two closely linked subclasses are created, each inheriting from one of the parents. These subclasses are mutually dependent, working together as a pair to achieve the desired functionality. This approach avoids the complications and inefficiencies often associated with multiple inheritance, while still allowing the reuse of functionalities from different classes.
 
-### Programmatic Example of Twin Pattern in Java
+## Programmatic Example of Twin Pattern in Java
 
 Consider a game where a ball needs to function as both a `GameItem` and a `Thread`. Instead of inheriting from both, we use the Twin pattern with two closely linked objects: `BallItem` and `BallThread`.
 

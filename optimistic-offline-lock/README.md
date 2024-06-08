@@ -35,7 +35,7 @@ Wikipedia says
 
 > Optimistic concurrency control (OCC), also known as optimistic locking, is a concurrency control method applied to transactional systems such as relational database management systems and software transactional memory.
 
-### Programmatic Example of Optimistic Offline Lock Pattern in Java
+## Programmatic Example of Optimistic Offline Lock Pattern in Java
 
 In this section, we delve into the practical implementation of the Optimistic Offline Lock in Java. By following these steps, you can ensure that your application handles data conflicts and concurrency with minimal overhead.
 

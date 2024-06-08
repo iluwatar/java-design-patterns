@@ -36,7 +36,7 @@ In Plain Words
 
 > Event Aggregator is a design pattern that allows multiple event sources to communicate with event handlers through a central point, rather than having each event source communicate directly with each handler.
 
-### Programmatic Example of Event Aggregator Pattern in Java
+## Programmatic Example of Event Aggregator Pattern in Java
 
 Consider the following example where we use the Event Aggregator to handle multiple events.
 

@@ -32,7 +32,7 @@ In Plain Words
 
 > The Event-Based Asynchronous design pattern allows tasks to be executed in the background, notifying the main program via events when completed, thereby enhancing system efficiency and responsiveness without blocking ongoing operations.
 
-### Programmatic Example of Event-Based Asynchronous Pattern in Java
+## Programmatic Example of Event-Based Asynchronous Pattern in Java
 
 Event-Based Asynchronous design pattern allows tasks to be executed in the background, notifying the main program via events when completed, thereby enhancing system efficiency and responsiveness without blocking ongoing operations.
 

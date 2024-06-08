@@ -35,7 +35,7 @@ Wikipedia says
 
 > A proxy that controls access to a resource that is expensive to create.
 
-### Programmatic Example of Virtual Proxy Pattern in Java
+## Programmatic Example of Virtual Proxy Pattern in Java
 
 The Virtual Proxy design pattern in Java can optimize resource utilization and system performance.
 

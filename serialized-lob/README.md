@@ -30,7 +30,7 @@ In plain words
 
 > The Serialized LOB design pattern manages the storage of large objects, such as files or multimedia, by serializing and storing them directly within a database.
 
-### Programmatic Example of Serialized LOB Pattern in Java
+## Programmatic Example of Serialized LOB Pattern in Java
 
 The Serialized Large Object (LOB) design pattern is a way to handle large objects in a database. It involves serializing an object graph into a single large object (a BLOB or CLOB, for Binary Large Object or Character Large Object, respectively) and storing it in the database. When the object graph needs to be retrieved, it is read from the database and deserialized back into the original object graph.
 

@@ -35,7 +35,7 @@ Wikipedia says
 
 > A server that acts as an API front-end, receives API requests, enforces throttling and security policies, passes requests to the back-end service and then passes the response back to the requester.
 
-### Programmatic Example of Gateway Pattern in Java
+## Programmatic Example of Gateway Pattern in Java
 
 First, we define a `Gateway` interface. This interface represents the contract for our external services. Each service that we want to interact with will implement this interface.
 

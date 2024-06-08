@@ -29,7 +29,7 @@ In plain words
 
 > Maintains a list of objects affected by a business transaction and coordinates the writing out of changes and the resolution of concurrency problems.
 
-### Programmatic Example of Unit of Work Pattern in Java
+## Programmatic Example of Unit of Work Pattern in Java
 
 Arms dealer has a database containing weapon information. Merchants all over the town are constantly updating this information causing a high load on the database server. To make the load more manageable we apply to Unit of Work pattern to send many small updates in batches.
 

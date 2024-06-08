@@ -32,7 +32,7 @@ Wikipedia says
 
 > In software engineering, the multiton pattern is a design pattern which generalizes the singleton pattern. Whereas the singleton allows only one instance of a class to be created, the multiton pattern allows for the controlled creation of multiple instances, which it manages through the use of a map.
 
-### Programmatic Example of Multiton Pattern in Java
+## Programmatic Example of Multiton Pattern in Java
 
 In this tutorial, we’ll explore how to implement the Multiton pattern in Java, covering its structure, benefits, and providing code examples. By following these implementation tips, you’ll be able to effectively utilize this Java design pattern.
 

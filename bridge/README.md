@@ -36,7 +36,7 @@ Wikipedia says
 
 > The bridge pattern is a design pattern used in software engineering that is meant to "decouple an abstraction from its implementation so that the two can vary independently"
 
-### Programmatic Example of Bridge Pattern in Java
+## Programmatic Example of Bridge Pattern in Java
 
 Imagine you have a weapon that can have various enchantments, and you need to combine different weapons with different enchantments. How would you handle this? Would you create multiple copies of each weapon, each with a different enchantment, or would you create separate enchantments and apply them to the weapon as needed? The Bridge pattern enables you to do the latter.
 

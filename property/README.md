@@ -31,7 +31,7 @@ In plain words
 
 > Define and manage a dynamic set of properties for an object, allowing customization without altering its structure.
 
-### Programmatic Example of Property Pattern in Java
+## Programmatic Example of Property Pattern in Java
 
 The Property design pattern, also known as Prototype inheritance, is a pattern that allows objects to be created from other objects, forming object hierarchies. This pattern is particularly useful when you want to create a new object that is a slight variation of an existing object.
 

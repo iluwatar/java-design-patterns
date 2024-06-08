@@ -35,7 +35,7 @@ Wikipedia says
 
 > In software engineering, the adapter pattern is a software design pattern that allows the interface of an existing class to be used as another interface. It is often used to make existing classes work with others without modifying their source code.
 
-### Programmatic Example of Adapter Pattern in Java
+## Programmatic Example of Adapter Pattern in Java
 
 The Adapter Pattern example in Java shows how a class with an incompatible interface can be adapted to work with another class.
 

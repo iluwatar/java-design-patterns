@@ -40,7 +40,7 @@ wiki.c2.com says
 
 > Replace the LongParameterList with a ParameterObject; an object or structure with data members representing the arguments to be passed in.
 
-### Programmatic Example of Parameter Object Pattern in Java
+## Programmatic Example of Parameter Object Pattern in Java
 
 The Parameter Object design pattern is a way to group multiple parameters into a single object. This simplifies method signatures and enhances code maintainability enabling Java developers to streamline complex method calls, focusing on cleaner and more maintainable Java code.
 

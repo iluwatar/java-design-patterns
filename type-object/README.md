@@ -38,7 +38,7 @@ gameprogrammingpatterns.com says
 
 > Define a type object class and a typed object class. Each type object instance represents a different logical type. Each typed object stores a reference to the type object that describes its type.
 
-### Programmatic Example of Type Object Pattern in Java
+## Programmatic Example of Type Object Pattern in Java
 
 The Type Object pattern is a design pattern that allows for the creation of flexible and reusable objects by creating a class with a field that represents the 'type' of the object. This design pattern proves invaluable for scenarios where anticipated Java types are undefined upfront, or when modifications or additions are required, ensuring efficient Java development without frequent recompilations.
 

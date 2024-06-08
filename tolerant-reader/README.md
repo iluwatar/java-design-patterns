@@ -33,7 +33,7 @@ In plain words
 
 > Be conservative in what you do, be liberal in what you accept from others.
 
-### Programmatic Example of Tolerant Reader Pattern in Java
+## Programmatic Example of Tolerant Reader Pattern in Java
 
 We are persisting `RainbowFish` objects to file. Later on they need to be restored. What makes it problematic is that `RainbowFish` data structure is versioned and evolves over time. New version of `RainbowFish` needs to be able to restore old versions as well.
 

@@ -38,7 +38,7 @@ Wikipedia says
 
 > The reactor software design pattern is an event handling strategy that can respond to many potential service requests concurrently. The pattern's key component is an event loop, running in a single thread or process, which demultiplexes incoming requests and dispatches them to the correct request handler.
 
-### Programmatic Example of Reactor Pattern in Java
+## Programmatic Example of Reactor Pattern in Java
 
 The Reactor design pattern is a concurrency model that efficiently handles multiple simultaneous I/O operations using a single or a limited number of threads. It is particularly useful in scenarios where an application needs to handle multiple clients sending service requests concurrently.
 

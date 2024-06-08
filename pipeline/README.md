@@ -46,7 +46,7 @@ Wikipedia says
 
 > In software engineering, a pipeline consists of a chain of processing elements (processes, threads, coroutines, functions, etc.), arranged so that the output of each element is the input of the next; the name is by analogy to a physical pipeline.
 
-### Programmatic Example of Pipeline Pattern in Java
+## Programmatic Example of Pipeline Pattern in Java
 
 Let's create a string processing pipeline example. The stages of our pipeline are called `Handler`s.
 

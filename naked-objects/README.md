@@ -44,7 +44,7 @@ Wikipedia says
 >
 > The naked object pattern's innovative feature arises by combining the 1st and 2nd principles into a 3rd principle: 3. The user interface shall be entirely automatically created from the definitions of the domain objects. This may be done using reflection or source code generation.
 
-### Programmatic Example of Naked Objects Pattern in Java
+## Programmatic Example of Naked Objects Pattern in Java
 
 Consider a simplified example with domain objects representing books and authors. In a Java-based application using the Naked Objects pattern, we define domain objects such as `Book` and `Author`. This example illustrates how Naked Objects can streamline user interface generation and domain object manipulation.
 

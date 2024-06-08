@@ -34,7 +34,7 @@ Wikipedia says
 
 > In object-oriented programming, the template method is one of the behavioral design patterns identified by Gamma et al. in the book Design Patterns. The template method is a method in a superclass, usually an abstract superclass, and defines the skeleton of an operation in terms of a number of high-level steps. These steps are themselves implemented by additional helper methods in the same class as the template method.
 
-### Programmatic Example of Template Method Pattern in Java
+## Programmatic Example of Template Method Pattern in Java
 
 Our programmatic example is about thieves and stealing. The general steps in stealing an item are the same. First, you pick the target, next you confuse him somehow and finally, you steal the item. However, there are many ways to implement these steps.
 

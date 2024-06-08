@@ -35,7 +35,7 @@ Wikipedia says
 
 > In computer science, a lock or mutex (from mutual exclusion) is a synchronization primitive that prevents state from being modified or accessed by multiple threads of execution at once. Locks enforce mutual exclusion concurrency control policies, and with a variety of possible methods there exist multiple unique implementations for different applications.
 
-### Programmatic Example of Lockable Object Pattern in Java
+## Programmatic Example of Lockable Object Pattern in Java
 
 The Lockable Object pattern is a concurrency control design pattern in Java that allows only one thread to access a shared resource at a time, ensuring mutual exclusion and preventing data corruption. Instead of using the `synchronized` keyword on the methods to be synchronized, the object which implements the Lockable interface handles the request.
 

@@ -40,7 +40,7 @@ public Hero(Profession profession,String name,HairType hairType,HairColor hairCo
 
 As you can see, the number of constructor parameters can quickly become overwhelming, making it difficult to understand their arrangement. Additionally, this list of parameters might continue to grow if you decide to add more options in the future. This is known as the telescoping constructor antipattern.
 
-### Programmatic Example of Builder Pattern in Java
+## Programmatic Example of Builder Pattern in Java
 
 In this Java Builder pattern example, we construct different types of `Hero` objects with varying attributes.
 

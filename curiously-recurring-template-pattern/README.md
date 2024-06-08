@@ -40,7 +40,7 @@ Wikipedia says
 
 > The curiously recurring template pattern (CRTP) is an idiom, originally in C++, in which a class X derives from a class template instantiation using X itself as a template argument.
 
-### Programmatic example of CRTP in Java
+## Programmatic example of CRTP in Java
 
 For a mixed martial arts promotion that is planning an event, ensuring that the fights are organized between athletes of the same weight class is crucial. This prevents mismatches between fighters of significantly different sizes, such as a heavyweight facing off against a bantamweight.
 

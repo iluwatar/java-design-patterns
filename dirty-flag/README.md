@@ -34,7 +34,7 @@ Wikipedia says
 
 > A dirty bit or modified bit is a bit that is associated with a block of computer memory and indicates whether the corresponding block of memory has been modified. The dirty bit is set when the processor writes to (modifies) this memory. The bit indicates that its associated block of memory has been modified and has not been saved to storage yet. When a block of memory is to be replaced, its corresponding dirty bit is checked to see if the block needs to be written back to secondary memory before being replaced or if it can simply be removed. Dirty bits are used by the CPU cache and in the page replacement algorithms of an operating system.
 
-### Programmatic Example of Dirty Flag Pattern in Java
+## Programmatic Example of Dirty Flag Pattern in Java
 
 The `DataFetcher` class is responsible for fetching data from a file. It has a dirty flag that indicates whether the data in the file has changed since the last fetch.
 

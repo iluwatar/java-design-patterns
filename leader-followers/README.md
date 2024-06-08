@@ -29,7 +29,7 @@ In plain words
 
 > Select one server in the cluster as a leader. The leader is responsible for taking decisions on behalf of the entire cluster and propagating the decisions to all the other servers.
 
-### Programmatic Example of Leader-Followers Pattern in Java
+## Programmatic Example of Leader-Followers Pattern in Java
 
 The Leader-Followers pattern is a concurrency design pattern where one thread (the leader) waits for work to arrive, de-multiplexes, dispatches, and processes the work, thereby enhancing CPU cache affinity and reducing event dispatching latency. Once the leader finishes processing the work, it promotes one of the follower threads to be the new leader. This pattern is useful for enhancing CPU cache affinity, minimizing locking overhead, and reducing event dispatching latency.
 

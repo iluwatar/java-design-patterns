@@ -35,7 +35,7 @@ Wikipedia says
 >
 > The fan-in concept, on the other hand, typically refers to the aggregation of multiple inputs. In digital electronics, it describes the number of inputs a logic gate can handle. Combining these concepts, the Fan-Out/Fan-In pattern in software engineering involves distributing tasks (fan-out) and then aggregating the results (fan-in).
 
-### Programmatic Example of Fan-Out/Fan-In Pattern in Java
+## Programmatic Example of Fan-Out/Fan-In Pattern in Java
 
 The provided implementation involves a list of numbers with the objective to square them and aggregate the results. The `FanOutFanIn` class receives the list of numbers as `SquareNumberRequest` objects and a `Consumer` instance that collects the squared results as the requests complete. Each `SquareNumberRequest` squares its number with a random delay, simulating a long-running process that finishes at unpredictable times. The `Consumer` instance gathers the results from the various `SquareNumberRequest` objects as they become available at different times.
 

@@ -32,7 +32,7 @@ Wikipedia says
 
 > In computer programming, the interpreter pattern is a design pattern that specifies how to evaluate sentences in a language. The basic idea is to have a class for each symbol (terminal or nonterminal) in a specialized computer language. The syntax tree of a sentence in the language is an instance of the composite pattern and is used to evaluate (interpret) the sentence for a client.
 
-### Programmatic Example of Interpreter Pattern in Java
+## Programmatic Example of Interpreter Pattern in Java
 
 To be able to interpret basic math in Java, we need a hierarchy of expressions. The `Expression` class is the base, and concrete implementations like `NumberExpression` handle specific parts of the grammar. The Interpreter pattern in Java simplifies parsing and evaluating arithmetic expressions by translating them into a structured format that the application can process.
 

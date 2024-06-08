@@ -33,7 +33,7 @@ Wikipedia says
 
 > The observer pattern is a software design pattern in which an object, called the subject, maintains a list of its dependents, called observers, and notifies them automatically of any state changes, usually by calling one of their methods.
 
-### Programmatic Example of Observer Pattern in Java
+## Programmatic Example of Observer Pattern in Java
 
 In a land far away live the races of hobbits and orcs. Both of them are mostly outdoors, so they closely follow the weather changes. One could say that they are constantly observing the weather.
 

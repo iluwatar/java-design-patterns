@@ -34,7 +34,7 @@ Wikipedia says
 
 > A feature toggle in software development provides an alternative to maintaining multiple feature branches in source code. A condition within the code enables or disables a feature during runtime. In agile settings the toggle is used in production, to switch on the feature on demand, for some or all the users.
 
-### Programmatic Example of Feature Toggle Pattern in Java
+## Programmatic Example of Feature Toggle Pattern in Java
 
 This Java code example demonstrates how to display a feature when it is enabled by the developer and the user is a Premium member of the application. This approach is useful for managing subscription-locked features.
 

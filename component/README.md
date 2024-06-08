@@ -30,7 +30,7 @@ In plain words
 
 > The component design pattern provides a single attribute to be accessible by numerous objects without requiring the existence of a relationship between the objects themselves.
 
-### Programmatic Example of Component Pattern in Java
+## Programmatic Example of Component Pattern in Java
 
 The `App` class creates a demonstration of the use of the component pattern by creating two different objects which inherit a small collection of individual components that are modifiable.
 

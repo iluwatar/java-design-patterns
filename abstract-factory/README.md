@@ -36,7 +36,7 @@ Wikipedia says
 
 > The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
 
-### Programmatic Example of Abstract Factory in Java
+## Programmatic Example of Abstract Factory in Java
 
 To create a kingdom using the Abstract Factory pattern in Java, we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency between the objects in the kingdom.
 

@@ -29,7 +29,7 @@ Wikipedia says
 
 > Composite views that are composed of multiple atomic subviews. Each component of the template may be included dynamically into the whole and the layout of the page may be managed independently of the content. This solution provides for the creation of a composite view based on the inclusion and substitution of modular dynamic and static template fragments. It promotes the reuse of atomic portions of the view by encouraging modular design.
 
-### Programmatic Example of Composite View Pattern in Java
+## Programmatic Example of Composite View Pattern in Java
 
 A news site wants to display the current date and news to different users based on that user's preferences. The news site will substitute in different news feed components depending on the user's interest, defaulting to local news.
 

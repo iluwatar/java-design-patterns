@@ -43,7 +43,7 @@ Wikipedia says
 
 > In computer science, a value object is a small object that represents a simple entity whose equality is not based on identity: i.e. two value objects are equal when they have the same value, not necessarily being the same object.
 
-### Programmatic Example of Value Object Pattern in Java
+## Programmatic Example of Value Object Pattern in Java
 
 There is a class for hero statistics in a role-playing game. The statistics contain attributes such as strength, intelligence, and luck. The statistics of different heroes should be equal when all the attributes are equal.
 

@@ -31,7 +31,7 @@ Wikipedia says
 
 > In the design of DBMS, the identity map pattern is a database access design pattern used to improve performance by providing a context-specific, in-memory cache to prevent duplicate retrieval of the same object data from the database.
 
-### Programmatic Example of Identity Map Pattern in Java
+## Programmatic Example of Identity Map Pattern in Java
 
 For the purpose of this demonstration in Java programming, assume we have already created a database instance, showcasing the Identity Map pattern to avoid duplicate objects in memory.
 

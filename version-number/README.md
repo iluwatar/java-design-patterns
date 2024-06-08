@@ -35,7 +35,7 @@ Wikipedia says
 
 > The Version Number pattern is a technique used to manage concurrent access to data in databases and other data stores. It involves associating a version number with each record, which is incremented every time the record is updated. This pattern helps ensure that when multiple users or processes attempt to update the same data simultaneously, conflicts can be detected and resolved.
 
-### Programmatic Example of Version Number Pattern in Java
+## Programmatic Example of Version Number Pattern in Java
 
 Alice and Bob are working on the book, which stored in the database. Our heroes are making changes simultaneously, and we need some mechanism to prevent them from overwriting each other.
 

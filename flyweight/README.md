@@ -30,7 +30,7 @@ Wikipedia says
 
 > In computer programming, flyweight is a software design pattern. A flyweight is an object that minimizes memory use by sharing as much data as possible with other similar objects; it is a way to use objects in large numbers when a simple repeated representation would use an unacceptable amount of memory.
 
-### Programmatic Example of Flyweight Pattern in Java
+## Programmatic Example of Flyweight Pattern in Java
 
 Alchemist's shop has shelves full of magic potions. Many of the potions are the same so there is no need to create a new object for each of them. Instead, one object instance can represent  multiple shelf items so the memory footprint remains small.
 
