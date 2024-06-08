@@ -1,5 +1,6 @@
 ---
-title: "Parameter Object Pattern in Java: Enhance Code Maintainability & Encapsulation"
+title: "Parameter Object Pattern in Java: Simplifying Method Signatures with Structured Data"
+shortTitle: Parameter Object
 description: "Explore the Parameter Object pattern at Java Design Patterns. Learn how it simplifies method signatures, enhances maintainability, and promotes encapsulation with real-world examples and detailed code snippets."
 category: Structural
 language: en
@@ -39,7 +40,7 @@ wiki.c2.com says
 
 > Replace the LongParameterList with a ParameterObject; an object or structure with data members representing the arguments to be passed in.
 
-**Programmatic example**
+### Programmatic Example of Parameter Object Pattern in Java
 
 The Parameter Object design pattern is a way to group multiple parameters into a single object. This simplifies method signatures and enhances code maintainability enabling Java developers to streamline complex method calls, focusing on cleaner and more maintainable Java code.
 
@@ -139,8 +140,7 @@ This example demonstrates how the Parameter Object pattern can simplify method s
 
 * [Does Java have default parameters? (Daniel Olszewski)](http://dolszewski.com/java/java-default-parameters)
 
-
-## Known Uses
+## Real-World Applications of Parameter Object Pattern in Java
 
 * Java Libraries: Many Java frameworks and libraries use this pattern. For example, Java’s java.util.Calendar class has various methods where parameter objects are used to represent date and time components.
 * Enterprise Applications: In large enterprise systems, parameter objects are used to encapsulate configuration data passed to services or API endpoints.

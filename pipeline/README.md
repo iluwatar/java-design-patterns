@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Pipeline Design Pattern in Java: Enhance Your Coding Skills"
+title: "Pipeline Pattern in Java: Streamlining Data Processing with Modular Components"
+shortTitle: Pipeline
 description: "Master the Pipeline design pattern in Java with our comprehensive guide. Learn how to implement data processing in discrete stages for improved code scalability and flexibility. Ideal for developers looking to advance their software engineering skills."
 category: Behavioral
 language: en
@@ -45,7 +46,7 @@ Wikipedia says
 
 > In software engineering, a pipeline consists of a chain of processing elements (processes, threads, coroutines, functions, etc.), arranged so that the output of each element is the input of the next; the name is by analogy to a physical pipeline.
 
-**Programmatic Example**
+### Programmatic Example of Pipeline Pattern in Java
 
 Let's create a string processing pipeline example. The stages of our pipeline are called `Handler`s.
 
@@ -132,7 +133,7 @@ Use the Pipeline pattern when you want to
 * [The Pipeline Pattern — for fun and profit (Aaron Weatherall)](https://medium.com/@aaronweatherall/the-pipeline-pattern-for-fun-and-profit-9b5f43a98130)
 * [Pipelines (Microsoft)](https://docs.microsoft.com/en-us/previous-versions/msp-n-p/ff963548(v=pandp.10))
 
-## Known Uses
+## Real-World Applications of Pipeline Pattern in Java
 
 * Data transformation and ETL (Extract, Transform, Load) processes.
 * Compilers for processing source code through various stages such as lexical analysis, syntax analysis, semantic analysis, and code generation.
@@ -154,7 +155,7 @@ Trade-offs:
 * Performance Overhead: Each stage introduces some performance overhead due to context switching and data transfer between stages.
 * Debugging Difficulty: Debugging pipelines can be more challenging since the data flows through multiple components.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Both patterns involve passing data through a series of handlers, but in Chain of Responsibility, handlers can decide not to pass the data further.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Both patterns involve adding behavior dynamically, but Decorator wraps additional behavior around objects, whereas Pipeline processes data in discrete steps.

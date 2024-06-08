@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Proxy Design Pattern in Java"
+title: "Proxy Pattern in Java: Enhancing Security and Control with Smart Proxies"
+shortTitle: Proxy
 description: "Explore the Proxy design pattern in Java with detailed examples. Learn how it provides controlled access, facilitates lazy initialization, and ensures security. Ideal for developers looking to implement advanced Java techniques."
 category: Structural
 language: en
@@ -35,7 +36,7 @@ Wikipedia says
 
 > A proxy, in its most general form, is a class functioning as an interface to something else. A proxy is a wrapper or agent object that is being called by the client to access the real serving object behind the scenes. Use of the proxy can simply be forwarding to the real object, or can provide additional logic. In the proxy extra functionality can be provided, for example caching when operations on the real object are resource intensive, or checking preconditions before operations on the real object are invoked.
 
-**Programmatic Example**
+### Programmatic Example of Proxy Pattern in Java
 
 Imagine a tower where the local wizards go to study their spells. The ivory tower can only be accessed through a proxy which ensures that only the first three wizards can enter. Here the proxy represents the functionality of the tower and adds access control to it.
 
@@ -135,7 +136,7 @@ Proxy is applicable whenever there is a need for a more versatile or sophisticat
 * Count references to an object
 * Provide a local representation for an object that is in a different address space.
 
-## Known Uses
+## Real-World Applications of Proxy Pattern in Java
 
 * Virtual Proxies: In applications that need heavy resources like large images or complex calculations, virtual proxies can be used to instantiate objects only when needed.
 * Remote Proxies: Used in remote method invocation (RMI) to manage interactions with remote objects.
@@ -158,7 +159,7 @@ Trade-offs:
 * Overhead: Adding a proxy introduces additional layers that might add overhead.
 * Complexity: Increases the complexity of the system by adding more classes.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): The Adapter pattern changes the interface of an existing object, whereas Proxy provides the same interface as the original object.
 * [Ambassador](https://java-design-patterns.com/patterns/ambassador/): Ambassador is similar to Proxy as it acts as an intermediary, especially in remote communications, enhancing access control and monitoring.

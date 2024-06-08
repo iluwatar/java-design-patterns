@@ -1,5 +1,6 @@
 ---
-title: "Mastering the Page Object Design Pattern in Java - Java Design Patterns"
+title: "Page Object Pattern in Java: Streamlining UI Testing for Better Maintainability"
+shortTitle: Page Object
 description: "Explore the Page Object design pattern for Java. Learn how to implement, use, and optimize this pattern for better code maintainability and test automation in Java applications."
 category: Testing
 language: en
@@ -38,7 +39,7 @@ selenium.dev says
 >
 > Page Object is a Design Pattern that has become popular in test automation for enhancing test maintenance and reducing code duplication. A page object is an object-oriented class that serves as an interface to a page of your AUT. The tests then use the methods of this page object class whenever they need to interact with the UI of that page. The benefit is that if the UI changes for the page, the tests themselves don’t need to change, only the code within the page object needs to change. Subsequently, all changes to support that new UI are located in one place.
 
-**Programmatic example**
+### Programmatic Example of Page Object Pattern in Java
 
 The Page Object design pattern is a popular design pattern in test automation. It helps in enhancing test maintenance and reducing code duplication. A page object is an object-oriented class that serves as an interface to a page of your Application Under Test (AUT). The tests then use the methods of this page object class whenever they need to interact with the UI of that page. The benefit is that if the UI changes for the page, the tests themselves don’t need to change, only the code within the page object needs to change. Subsequently, all changes to support that new UI are located in one place.
 
@@ -91,7 +92,7 @@ Use the Page Object pattern when
 * Enhancing test code readability and reducing duplication.
 * Simplifying maintenance when the web UI changes.
 
-## Known Uses
+## Real-World Applications of Page Object Pattern in Java
 
 * Selenium WebDriver tests for web applications.
 * Automated UI testing frameworks in Java.
@@ -111,7 +112,7 @@ Trade-offs:
 * Initial Setup: Requires extra effort to design and implement page objects.
 * Complexity: Overuse may lead to a complex structure with many page objects and methods.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used alongside Page Objects to add additional responsibilities to objects dynamically.
 * [Facade](https://java-design-patterns.com/patterns/facade/): Both provide a simplified interface to a complex subsystem. Page Object abstracts the complexities of the UI.

@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Producer-Consumer Pattern in Java Design"
+title: "Producer-Consumer Pattern in Java: Streamlining Production and Consumption Processes"
+shortTitle: Producer-Consumer
 description: "Explore the Producer-Consumer pattern, a fundamental concept in Java for managing concurrent data production and consumption with buffer management. Ideal for improving system design and performance."
 category: Concurrency
 language: en
@@ -35,7 +36,7 @@ Wikipedia says
 
 > Dijkstra wrote about the case: "We consider two processes, which are called the 'producer' and the 'consumer' respectively. The producer is a cyclic process that produces a certain portion of information, that has to be processed by the consumer. The consumer is also a cyclic process that needs to process the next portion of information, as has been produced by the producer. We assume the two processes to be connected for this purpose via a buffer with unbounded capacity."
 
-**Programmatic Example**
+### Programmatic Example of Producer-Consumer Pattern in Java
 
 Consider a manufacturing process of item, the producer will need to pause the production when manufacturing pipeline is full and the consumer will need to pause the consumption of item when the manufacturing pipeline is empty. We can separate the process of production and consumption which work together and pause at separate times.
 
@@ -186,7 +187,7 @@ Program output:
 * When decoupling the production and consumption of data is beneficial for the application's design, performance, or maintainability.
 * Suitable for scenarios requiring synchronized access to a shared resource or data structure.
 
-## Known Uses
+## Real-World Applications of Producer-Consumer Pattern in Java
 
 * Thread pools where worker threads act as consumers processing tasks produced by another thread.
 * Logging frameworks where log messages are produced by various parts of an application and consumed by a logging service.
@@ -205,7 +206,7 @@ Trade-offs:
 * Complexity: Requires careful handling of synchronization and potential deadlocks.
 * Resource Management: Properly managing the buffer size to avoid overflow or underflow conditions.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Observer](https://java-design-patterns.com/patterns/observer/): While both deal with notifying or handling events, the Observer pattern is more about event subscription and notification, whereas Producer-Consumer focuses on decoupled data production and consumption.
 * [Thread Pool](https://java-design-patterns.com/patterns/thread-pool/): Uses a similar decoupling approach where tasks are produced and consumed by a pool of worker threads.

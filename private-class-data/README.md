@@ -1,5 +1,6 @@
 ---
-title: "Understanding Private Class Data Pattern in Java"
+title: "Private Class Data Pattern in Java: Safeguarding Data Integrity with Encapsulation"
+shortTitle: Private Class Data
 description: "Explore the Private Class Data pattern in Java, ideal for enhancing data security and integrity in object-oriented programming. Learn how it prevents unintended data manipulation with encapsulation."
 category: Structural
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > Private class data is a design pattern in computer programming used to encapsulate class attributes and their manipulation.
 
-**Programmatic Example**
+### Programmatic Example of Private Class Data Pattern in Java
 
 Imagine you are cooking a stew for your family dinner. You want to stop your family members from tasting the stew while you're still preparing it. If they do, there might not be enough stew left for dinner.
 
@@ -132,7 +133,7 @@ Use the Private Class Data pattern when
 * When you need to limit the visibility of the internal data of an object to prevent unintended modification.
 * In scenarios where multiple classes need to share access to some common data without exposing it directly.
 
-## Known Uses
+## Real-World Applications of Private Class Data Pattern in Java
 
 * Java Beans, where properties are accessed via getters and setters.
 * In many Java libraries where the internal state is hidden from the user to ensure consistency and security.
@@ -151,7 +152,7 @@ Trade-offs:
 * Performance Overhead: Additional method calls (getters/setters) can introduce slight performance overhead.
 * Complexity: May increase the complexity of the class design due to the additional layer of methods for data access.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): Both patterns restrict access to the underlying object but Proxy controls access to the object itself, while Private Class Data controls access to the data.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Ensures that a class has only one instance and provides a global point of access to it; often used to manage shared data with controlled access.

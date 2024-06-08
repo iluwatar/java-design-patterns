@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Page Controller Pattern in Java - Java Design Patterns"
+title: "Page Controller Pattern in Java: Centralizing Web Page Logic for Cleaner Design"
+shortTitle: Page Controller
 description: "Explore the Page Controller design pattern in Java with detailed examples. Learn how it handles web application requests and improves architectural organization."
 categories: Architectural
 language: en
@@ -30,7 +31,7 @@ In plain words
 
 > The Page Controller pattern handles requests for specific pages or actions within a Java web application, processing input, executing business logic, and determining the appropriate view for rendering the response, enhancing response handling and system architecture.
 
-**Programmatic Example**
+### Programmatic Example of Page Controller Pattern in Java
 
 The Page Controller design pattern is a pattern used in web development where each page of a website is associated with a class or function known as a controller. The controller handles the HTTP requests for that page and determines which model and view to use. Predominantly utilized in MVC (Model-View-No-Controller) architectures, the Java Page Controller pattern integrates seamlessly with existing enterprise frameworks.
 
@@ -126,7 +127,7 @@ In this example, the controllers (`SignupController` and `UserController`) are t
 * When aiming to separate the request handling logic from the view rendering logic.
 * In scenarios where a clear separation of concerns between different layers (controller, view) is required.
 
-## Known Uses
+## Real-World Applications of Page Controller Pattern in Java
 
 * Spring MVC (Java)
 * Apache Struts
@@ -145,7 +146,7 @@ Trade-offs:
 * Complexity: Can add complexity to the application structure, requiring careful organization and documentation.
 * Overhead: May introduce performance overhead due to additional layers of abstraction and processing.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Front Controller](https://java-design-patterns.com/patterns/front-controller/): Often used in conjunction with Page Controller to handle common pre-processing logic such as authentication and logging.
 * View Helper: Works alongside Page Controller to assist in preparing the view, often handling formatting and other presentation logic.

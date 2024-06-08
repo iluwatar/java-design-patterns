@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Property Design Pattern in Java: Dynamic Object Customization"
+title: "Property Pattern in Java: Enhancing Flexibility with Dynamic Attribute Management"
+shortTitle: Property
 description: "Explore how the Property design pattern facilitates dynamic property management in Java objects, enabling runtime modifications without altering class structure. Ideal for developers looking to enhance flexibility and maintainability in their code."
 category: Behavioral
 language: en
@@ -30,7 +31,7 @@ In plain words
 
 > Define and manage a dynamic set of properties for an object, allowing customization without altering its structure.
 
-**Programmatic Example**
+### Programmatic Example of Property Pattern in Java
 
 The Property design pattern, also known as Prototype inheritance, is a pattern that allows objects to be created from other objects, forming object hierarchies. This pattern is particularly useful when you want to create a new object that is a slight variation of an existing object.
 
@@ -164,7 +165,7 @@ Use the Property pattern when
 * When properties need to be added or removed dynamically at runtime.
 * When different instances of a class need different properties.
 
-## Known Uses
+## Real-World Applications of Property Pattern in Java
 
 * Configurations in applications where different entities require different sets of configurable parameters.
 * Game development where game entities (like characters or objects) need various attributes that can change during gameplay.
@@ -186,7 +187,7 @@ Trade-offs:
 * Complexity: May increase the complexity of the code, making it harder to maintain and understand.
 * Type Safety: Reduces type safety since properties are often managed as generic key-value pairs.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Composite](https://java-design-patterns.com/patterns/composite/): Composite allows a tree structure of objects where each node can be a complex or simple object. Property pattern can be seen as a flattened version, managing properties without hierarchy.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Both patterns enhance an object's behavior, but the Property pattern focuses on adding properties dynamically, while the Decorator adds responsibilities.

@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Promise Design Pattern in Java: A Comprehensive Guide"
+title: "Promise Pattern in Java: Streamlining Async Tasks for Better Performance"
+shortTitle: Promise
 description: "Explore the Promise design pattern in Java, ideal for managing asynchronous operations efficiently. Learn how it enhances code readability and maintainability with practical examples and detailed explanations."
 category: Concurrency
 language: en
@@ -36,7 +37,7 @@ Wikipedia says
 
 > In computer science, future, promise, delay, and deferred refer to constructs used for synchronizing program execution in some concurrent programming languages. They describe an object that acts as a proxy for a result that is initially unknown, usually because the computation of its value is not yet complete.
 
-**Programmatic Example**
+### Programmatic Example of Promise Pattern in Java
 
 The Promise design pattern is a software design pattern that's often used in concurrent programming to handle asynchronous operations. It represents a proxy for a value not necessarily known when the promise is created. It allows you to associate handlers with an asynchronous action's eventual success value or failure reason.
 
@@ -137,7 +138,7 @@ Program output:
 * [Guide To CompletableFuture (Baeldung)](https://www.baeldung.com/java-completablefuture)
 * [You are missing the point to Promises (Domenic Denicola)](https://gist.github.com/domenic/3889970)
 
-## Known Uses
+## Real-World Applications of Promise Pattern in Java
 
 * Java's CompletableFuture and Future classes.
 * JavaScript’s Promise object for managing asynchronous operations.
@@ -157,7 +158,7 @@ Trade-offs:
 * Complexity: Can add complexity to the codebase if overused or misused.
 * Debugging: Asynchronous code can be harder to debug compared to synchronous code due to the non-linear flow of execution.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Observer](https://java-design-patterns.com/patterns/observer/): Promises can be used in conjunction with the Observer pattern to notify subscribers about the completion of asynchronous operations.
 * [Callback](https://java-design-patterns.com/patterns/callback/): Promises often replace callback mechanisms by providing a more structured and readable way to handle asynchronous results.
