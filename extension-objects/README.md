@@ -1,5 +1,6 @@
 ---
-title: "Extension Objects Design Pattern"
+title: "Extension Objects Pattern in Java: Enhancing Object Functionality Flexibly"
+shortTitle: Extension Objects
 description: "Learn about the Extension Objects Design Pattern in Java. Understand its purpose, benefits, and implementation with examples to enhance your software design."
 category: Structural
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > In object-oriented computer programming, an extension objects pattern is a design pattern added to an object after the original object was compiled. The modified object is often a class, a prototype or a type. Extension object patterns are features of some object-oriented programming languages. There is no syntactic difference between calling an extension method and calling a method declared in the type definition.
 
-**Programmatic example**
+### Programmatic Example of Extension Objects Pattern in Java
 
 The Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure, by attaching additional objects that can dynamically add new functionality.
 
@@ -150,7 +151,7 @@ This example demonstrates how the Extension Objects pattern allows for the flexi
 
 This pattern is applicable in scenarios where an object's functionality needs to be extended at runtime, avoiding the complications of subclassing. It's particularly useful in systems where object capabilities need to be augmented post-deployment, or where the capabilities might vary significantly across instances.
 
-## Known Uses
+## Real-World Applications of Extension Objects Pattern in Java
 
 * Extending services in an application server without altering existing code.
 * Plugins in IDEs like IntelliJ IDEA or Eclipse to add features to the base application.
@@ -171,7 +172,7 @@ Trade-offs:
 * Can increase complexity due to the management of extension objects.
 * May introduce performance overhead if the interaction between objects and extensions is not efficiently designed.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar in intent to add responsibilities dynamically, but uses a different structure.
 * [Composite](https://java-design-patterns.com/patterns/composite/): Also manages a group of objects, which can be seen as a form of extension.

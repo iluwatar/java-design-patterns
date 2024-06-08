@@ -1,5 +1,6 @@
 ---
-title: "Event Queue Design Pattern in Java: Best Practices and Examples"
+title: "Event Queue Pattern in Java: Managing Concurrent Events Efficiently"
+shortTitle: Event Queue
 description: "Learn about the Event Queue design pattern in Java. Discover its best practices, examples, and how to implement it effectively in your Java projects."
 category: Concurrency
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > Message queues (also known as event queues) implement an asynchronous communication pattern between two or more processes/threads whereby the sending and receiving party do not need to interact with the queue at the same time.
 
-**Programmatic Example**
+### Programmatic Example of Event Queue Pattern in Java
 
 This example demonstrates an application using an event queue system to handle audio playback asynchronously.
 
@@ -143,7 +144,7 @@ This pattern is applicable in scenarios where tasks can be handled asynchronousl
 * You want to process events asynchronously.
 * You have a limited accessibility resource and the asynchronous process is acceptable to reach that.
 
-## Known Uses
+## Real-World Applications of Event Queue Pattern in Java
 
 * Event-driven architectures
 * GUI frameworks in Java (such as Swing and JavaFX)
@@ -164,7 +165,7 @@ Trade-offs:
 * Overhead of maintaining event queue integrity and performance.
 * As the event queue model decouples the sender-receiver relationship - this means that the event-queue design pattern is unsuitable for scenarios in which the sender requires a response. For example, this is a prominent feature within online multiplayer games, therefore, this approach requires thorough consideration.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Command](https://java-design-patterns.com/patterns/command/) (for encapsulating request processing in a command object)
 * [Observer](https://java-design-patterns.com/patterns/observer/) (for subscribing and notifying changes to multiple observers)

@@ -1,5 +1,6 @@
 ---
-title: "Master Event-Based Asynchronous Patterns in Java: Comprehensive Guide"
+title: "Event-Based Asynchronous Pattern in Java: Mastering Non-Blocking System Design"
+shortTitle: Event-Based Asynchronous
 description: "Explore the best practices and implementations of event-based asynchronous patterns in Java. Enhance your programming skills with our comprehensive guide and real-world examples."
 category: Concurrency
 language: en
@@ -31,7 +32,7 @@ In Plain Words
 
 > The Event-Based Asynchronous design pattern allows tasks to be executed in the background, notifying the main program via events when completed, thereby enhancing system efficiency and responsiveness without blocking ongoing operations.
 
-**Programmatic Example**
+### Programmatic Example of Event-Based Asynchronous Pattern in Java
 
 Event-Based Asynchronous design pattern allows tasks to be executed in the background, notifying the main program via events when completed, thereby enhancing system efficiency and responsiveness without blocking ongoing operations.
 
@@ -168,7 +169,7 @@ Trade-offs:
 * Increases complexity of error handling as errors may occur in different threads or at different times.
 * Can lead to harder-to-follow code and debugging challenges due to the non-linear nature of asynchronous code execution.
 
-Related Patterns
+## Related Java Design Patterns
 
 * [Observer](https://java-design-patterns.com/patterns/observer/): Often used in conjunction where the observer reacts to events as they occur.
 * Publish/Subscribe: Related in terms of event handling mechanisms, particularly for messaging and event distribution across components.

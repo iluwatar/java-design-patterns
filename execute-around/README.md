@@ -1,5 +1,6 @@
 ---
-title: "Execute Around Pattern in Java: Comprehensive Guide & Examples"
+title: "Execute Around Pattern in Java: Encapsulating Pre and Post Execution Steps"
+shortTitle: Execute Around
 description: "Explore the Execute Around Pattern in Java with detailed explanations, real-world examples, and best practices. Learn how to implement this design pattern to streamline resource management."
 category: Behavioral
 language: en
@@ -38,7 +39,7 @@ In plain words
 
 > Basically it's the pattern where you write a method to do things which are always required, e.g. resource allocation and clean-up, and make the caller pass in "what we want to do with the resource".
 
-**Programmatic Example**
+### Programmatic Example of Execute Around Pattern in Java
 
 The Execute Around Pattern is a design pattern that is widely used in Java programming to manage resource allocation and deallocation. It ensures that important setup and cleanup operations are performed reliably around a core business operation. This pattern is particularly useful for resource management, such as handling files, databases, or network connections in Java applications.
 
@@ -123,7 +124,7 @@ Trade-offs:
 * Introduces additional abstraction layers, which might increase complexity and obscure control flow for some developers.
 * May require more sophisticated understanding of closures and functional interfaces in Java.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Template Method](https://java-design-patterns.com/patterns/template-method/): Similar in concept but differs in that it uses inheritance and abstract classes, while Execute Around typically uses interfaces and lambdas.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Shares the concept of adding functionality around a core component; can be extended to wrap additional behaviors dynamically.

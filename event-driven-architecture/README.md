@@ -1,5 +1,6 @@
 ---
-title: "Event-Driven Architecture Patterns | Java Design Patterns & Examples"
+title: "Event-Driven Architecture Pattern in Java: Building Responsive and Scalable Java Systems"
+shortTitle: Event-Driven Architecture
 description: "Discover comprehensive guides on Event-Driven Architecture patterns with practical Java examples. Learn to implement effective event-driven systems in your projects."
 category: Architectural
 language: en
@@ -37,7 +38,7 @@ Wikipedia says
 
 > Event-driven architecture (EDA) is a software architecture paradigm concerning the production and detection of events.
 
-**Programmatic Example**
+### Programmatic Example of Event-Driven Architecture in Java
 
 The Event-Driven Architecture (EDA) pattern in this module is implemented using several key classes and concepts:  
 
@@ -165,7 +166,7 @@ Use an Event-driven architecture when
 * Systems needing to efficiently handle high throughput and sporadic loads.
 * When integrating with microservices to enhance agility and scalability.
 
-## Known Uses
+## Real-World Applications of Event-Driven Architecture Pattern in Java
 
 * Real-time data processing applications.
 * Complex event processing systems in finance, such as stock trading platforms.
@@ -188,7 +189,7 @@ Trade-offs:
 * Dependency on Messaging Systems: Heavily relies on robust messaging infrastructures.
 * Event Consistency: Requires careful design to handle event ordering and consistency.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * Microservices Architecture: Often used together with EDA to enhance agility and scalability.
 * Publish/Subscribe: A common pattern used within EDA for messaging between event producers and consumers.
