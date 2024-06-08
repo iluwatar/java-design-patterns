@@ -1,5 +1,6 @@
 ---
-title: "Health Check Pattern in Java: Enhancing System Reliability and Monitoring"
+title: "Health Check Pattern in Java: Monitoring System Health for Optimal Operation"
+shortTitle: Health Check
 description: "Learn about the Health Check pattern in Java, a vital design for monitoring system health and ensuring reliability in microservices and distributed systems. Discover examples, applications, and benefits."
 category: Behavioral
 language: en
@@ -29,7 +30,7 @@ In plain words
 
 > The Health Check Pattern is like a regular doctor's visit for services in a microservices architecture. It helps in early detection of issues and ensures that services are healthy and available.
 
-## Programmatic Example
+### Programmatic Example of Health Check Pattern in Java
 
 The Health Check design pattern is particularly useful in distributed systems where the health of individual components can affect the overall health of the system. Using Spring Boot Actuator, developers can easily implement health checks in Java applications.
 
@@ -81,7 +82,7 @@ This is a basic example of the Health Check pattern, where health checks are bui
 * Use when building Java microservices or distributed systems where it is crucial to monitor the health of each service.
 * Suitable for scenarios where automated systems need to determine the operational status of services to perform load balancing, failover, or recovery operations.
 
-## Known Uses
+## Real-World Applications of Health Check Pattern in Java
 
 Known uses of the Health Check pattern in Java include
 
@@ -102,7 +103,7 @@ Trade-offs:
 * Additional overhead for implementing and maintaining health check mechanisms.
 * May introduce complexity in handling false positives and negatives in health status reporting.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Both patterns enhance system resilience; while Health Check monitors health status, Circuit Breaker protects a system from repeated failures.
 * [Observer](https://java-design-patterns.com/patterns/observer/): Health Check can be seen as a specific use case of the Observer pattern, where the subject being observed is the system’s health.

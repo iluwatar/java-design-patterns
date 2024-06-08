@@ -1,5 +1,6 @@
 ---
-title: "Half-Sync/Half-Async Pattern in Java: Enhance Concurrency and Efficiency"
+title: "Half-Sync/Half-Async Pattern in Java: Enhancing System Performance with Dual Processing"
+shortTitle: Half-Sync/Half-Async
 description: "Learn how the Half-Sync/Half-Async design pattern in Java improves concurrency and system efficiency by decoupling asynchronous and synchronous processing. Explore real-world examples, programmatic implementations, and key use cases."
 category: Concurrency
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > The Half-Sync/Half-Async design pattern is used to solve situations where one part of the application runs synchronously while another runs asynchronously, and the two modules need to communicate with each other.
 
-## Programmatic Example
+### Programmatic Example of Half-Sync/Half-Async Pattern in Java
 
 The Half-Sync/Half-Async design pattern is a concurrency pattern that separates synchronous and asynchronous processing in a system, simplifying the programming model without affecting performance. It's particularly useful in scenarios where you have a mix of short, mid, and long duration tasks.
 
@@ -153,7 +154,7 @@ Trade-offs:
 * Adds complexity in managing two different processing modes.
 * Requires careful design to avoid bottlenecks between the synchronous and asynchronous parts.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Leader/Followers](https://java-design-patterns.com/patterns/leader-followers/): Both patterns manage thread assignments and concurrency, but Leader/Followers uses a single thread to handle all I/O events, dispatching work to others.
 * [Producer/Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Can be integrated with Half-Sync/Half-Async to manage work queues between the async and sync parts.

@@ -1,5 +1,6 @@
 ---
-title: "Hexagonal Architecture Pattern in Java: A Comprehensive Guide"
+title: "Hexagonal Architecture Pattern in Java: Decoupling Core Logic for Enhanced Flexibility"
+shortTitle: Hexagonal Architecture
 description: "Explore the Hexagonal Architecture pattern in Java. Learn how it decouples core logic from external interfaces, enhances maintainability, and improves testability with practical examples."
 category: Architectural
 language: en
@@ -30,7 +31,7 @@ Wikipedia says
 
 > The hexagonal architecture, or ports and adapters architecture, is an architectural pattern used in software design. It aims at creating loosely coupled application components that can be easily connected to their software environment by means of ports and adapters. This makes components exchangeable at any level and facilitates test automation.
 
-## Programmatic Example
+### Programmatic Example of Hexagonal Architecture Pattern in Java
 
 The Hexagonal Architecture, also known as Ports and Adapters, is a design pattern that aims to create a loosely coupled application where the core business logic is isolated from external interfaces like databases, user interfaces, or third-party services. This allows the core application to be independent and easily testable.
 
@@ -179,7 +180,7 @@ Hexagonal Architecture is particularly beneficial in scenarios:
 * There is a requirement for high testability and maintainability.
 * The application should remain unaffected by changes in external interfaces.
 
-## Known Uses
+## Real-World Applications of Hexagonal Architecure Pattern in Java
 
 * Implemented extensively within enterprise applications that leverage frameworks like Spring.
 * Used in microservices architectures to maintain clear boundaries and protocols between services.
@@ -198,7 +199,7 @@ Trade-offs:
 * Complexity: Introduces more abstractions and layers, which can complicate the system design and understanding.
 * Overhead: Might be an over-engineering for simple applications, where simpler architectural patterns could suffice.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Layered Architecture](https://java-design-patterns.com/patterns/layers/): Shares the concept of organizing code into responsibilities; however, Hexagonal emphasizes port-based interaction with external elements.
 * Microservices: Often used in conjunction with Hexagonal Architecture to define clear boundaries and protocols between services.

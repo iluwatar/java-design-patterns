@@ -131,7 +131,7 @@
     <module>value-object</module>
     <module>monad</module>
     <module>mute-idiom</module>
-    <module>hexagonal</module>
+    <module>hexagonal-architecture</module>
     <module>abstract-document</module>
     <module>microservices-aggregrator</module>
     <module>promise</module>
