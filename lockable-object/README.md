@@ -1,5 +1,6 @@
 ---
-title: "Lockable Object Design Pattern in Java: Usage, Examples, and Benefits"
+title: "Lockable Object Pattern in Java: Implementing Robust Synchronization Mechanisms"
+shortTitle: Lockable Object
 description: "Learn about the Lockable Object design pattern in Java. Explore its usage, real-world examples, benefits, and how it ensures thread safety and resource management in multithreaded environments."
 category: Concurrency
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > In computer science, a lock or mutex (from mutual exclusion) is a synchronization primitive that prevents state from being modified or accessed by multiple threads of execution at once. Locks enforce mutual exclusion concurrency control policies, and with a variety of possible methods there exist multiple unique implementations for different applications.
 
-**Programmatic Example**
+### Programmatic Example of Lockable Object Pattern in Java
 
 The Lockable Object pattern is a concurrency control design pattern in Java that allows only one thread to access a shared resource at a time, ensuring mutual exclusion and preventing data corruption. Instead of using the `synchronized` keyword on the methods to be synchronized, the object which implements the Lockable interface handles the request.
 
@@ -135,7 +136,7 @@ This example demonstrates the Lockable Object pattern by showing how multiple th
 * Use the Lockable Object pattern in Java when you need to prevent data corruption by multiple threads accessing a shared resource concurrently, ensuring thread safety and robust shared resource management.
 * Suitable for systems where thread safety is critical and data integrity must be maintained across various operations.
 
-## Known Uses
+## Real-World Applications of Lockable Object Pattern in Java
 
 * Java’s synchronized keyword and the Lock interfaces in the java.util.concurrent.locks package implement lockable objects to manage synchronization.
 
@@ -151,7 +152,7 @@ Trade-offs:
 * Can lead to decreased performance due to overhead of acquiring and releasing locks.
 * Potential for deadlocks if not implemented and managed carefully.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Monitor Object](https://java-design-patterns.com/patterns/monitor/): Both patterns manage access to shared resources; Monitor Object combines synchronization and encapsulation of the condition variable.
 * [Read/Write Lock](https://java-design-patterns.com/patterns/reader-writer-lock/): Specialization of Lockable Object for scenarios where read operations outnumber write operations.

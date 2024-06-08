@@ -1,5 +1,6 @@
 ---
-title: "Leader Election Design Pattern in Java: Ensuring Reliable Distributed Systems"
+title: "Leader Election Pattern in Java: Mastering Node Coordination and Consensus"
+shortTitle: Leader Election
 description: "Learn how the Leader Election design pattern helps Java applications maintain consistency, fault tolerance, and scalability in distributed systems. Discover examples, use cases, and implementation details."
 category: Concurrency
 language: en
@@ -34,7 +35,7 @@ Wikipedia says
 
 > In distributed computing, leader election is the process of designating a single process as the organizer of some task distributed among several computers (nodes). Before the task has begun, all network nodes are either unaware which node will serve as the "leader" (or coordinator) of the task, or unable to communicate with the current coordinator. After a leader election algorithm has been run, however, each node throughout the network recognizes a particular, unique node as the task leader.
 
-**Programmatic Example**
+### Programmatic Example of Leader Election Pattern in Java
 
 The Leader Election pattern is a design approach that enables a distributed system to select one node as the coordinator or leader to manage tasks and maintain order, while other nodes operate as followers. This pattern is particularly useful in distributed systems where one node needs to act as a central coordinator for a specific function or decision-making process.
 
@@ -168,7 +169,7 @@ Trade-offs:
 * Overhead: Election processes may introduce performance overhead.
 * Single Point of Failure: Even with redundancy, the leader can become a bottleneck if not carefully designed.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Observer](https://java-design-patterns.com/patterns/observer/): Followers can observe changes from the leader to stay updated.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): The leader functions as a single instance, acting as a unique decision-maker.

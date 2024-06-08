@@ -1,5 +1,6 @@
 ---
-title: "Layered Architecture Design Pattern: Benefits, Examples, and Use Cases"
+title: "Layered Architecture Pattern in Java: Building Scalable and Maintainable Applications"
+shortTitle: Layered Architecture
 description: "Explore the Layered Architecture design pattern in Java. Learn its benefits, real-world examples, use cases, and how it enhances maintainability and scalability in enterprise applications."
 category: Architectural
 language: en
@@ -37,7 +38,7 @@ Wikipedia says
 
 > In software engineering, multitier architecture (often referred to as n-tier architecture) or multilayered architecture is a client–server architecture in which presentation, application processing, and data management functions are physically separated.
 
-**Programmatic Example**
+### Programmatic Example of Layered Architecture in Java
 
 On the data layer, we keep our cake building blocks. `Cake` consist of layers and topping.
 
@@ -99,7 +100,7 @@ Use the Layers architecture when
 * You want to prevent a change from propagating throughout the application.
 * You want to make your application more maintainable and testable.
 
-## Known Uses
+## Real-World Applications of Layered Architecture Pattern in Java
 
 * Web applications where the presentation, business logic, and data access layers are distinctly separated.
 * Enterprise systems where core functionalities are isolated from interface applications and databases.
@@ -118,7 +119,7 @@ Trade-offs
 * Complexity in layer management
 * Challenges in designing an effective layer distribution.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Model-View-Controller](https://java-design-patterns.com/patterns/model-view-controller/): Shares separation of concerns by dividing application into input, processing, and output. Layered Architecture often implements an MVC within its presentation layer.
 * Service-Oriented Architecture (SOA): Both patterns emphasize modularization but SOA focuses more on distributed services that can be reused across different systems.

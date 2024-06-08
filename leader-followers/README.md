@@ -1,5 +1,6 @@
 ---
-title: "Leader-Followers Design Pattern: Efficient Thread Management"
+title: "Leader-Followers Pattern in Java: Enhancing Efficiency with Dynamic Worker Allocation"
+shortTitle: Leader-Followers
 description: "Discover the Leader-Followers design pattern for efficient thread management and synchronization. Learn how to optimize resource usage and improve system performance with detailed examples and applications."
 category: Concurrency
 language: en
@@ -28,7 +29,7 @@ In plain words
 
 > Select one server in the cluster as a leader. The leader is responsible for taking decisions on behalf of the entire cluster and propagating the decisions to all the other servers.
 
-## Programmatic Example
+### Programmatic Example of Leader-Followers Pattern in Java
 
 The Leader-Followers pattern is a concurrency design pattern where one thread (the leader) waits for work to arrive, de-multiplexes, dispatches, and processes the work, thereby enhancing CPU cache affinity and reducing event dispatching latency. Once the leader finishes processing the work, it promotes one of the follower threads to be the new leader. This pattern is useful for enhancing CPU cache affinity, minimizing locking overhead, and reducing event dispatching latency.
 
@@ -142,7 +143,7 @@ This is a basic example of the Leader/Followers pattern. The leader worker proce
 * The Leader-Followers pattern is useful in scenarios requiring efficient handling of multiple services on a single thread, avoiding resource thrashing, and improving scalability in concurrent programming environments.
 * Applicable in server environments where multiple client requests must be handled concurrently with minimal resource consumption.
 
-## Known Uses
+## Real-World Applications of Leader-Followers Pattern in Java
 
 * Network servers handling multiple incoming connections.
 * Event-driven applications that manage a large number of input/output sources.
@@ -159,7 +160,7 @@ Trade-offs:
 * Increased complexity in managing the synchronization between leader and followers.
 * Potential for underutilization of resources if not correctly implemented.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Half-Sync/Half-Async](https://java-design-patterns.com/patterns/half-sync-half-async/): Leader and Followers can be seen as a variation where the synchronization aspect is divided between the leader (synchronous handling) and followers (waiting asynchronously).
 * [Thread Pool](https://java-design-patterns.com/patterns/thread-pool/): Both patterns manage a pool of worker threads, but Thread Pool assigns tasks to any available thread rather than using a leader to distribute work.
