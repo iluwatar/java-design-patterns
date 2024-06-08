@@ -1,5 +1,6 @@
 ---
-title: "Understanding the Monostate Pattern in Java: A Comprehensive Guide"
+title: "Monostate Pattern in Java: Achieving Singleton Behavior with Class-Level State"
+shortTitle: Monostate
 description: "Learn how the Monostate design pattern works in Java. Discover its benefits, implementation details, and use cases. Perfect for ensuring shared state across multiple class instances."
 category: Creational
 language: en
@@ -33,7 +34,7 @@ wiki.c2.com says
 
 > A monostate is a "conceptual singleton" - all data members of a monostate are static, so all instances of the monostate use the same (static) data. Applications using a monostate can create any number of instances that they desire, as each instance uses the same data.
 
-**Programmatic Examples**
+### Programmatic Example of Monostate Pattern in Java
 
 The Monostate pattern in Java ensures that all instances of a class share the same state, making it a great Singleton alternative for maintaining consistent data. This is achieved by using static fields in the class. Any changes to these fields will be reflected across all instances of the class. This pattern is useful when you want to avoid global variables but still need a shared state across multiple instances.
 
@@ -111,7 +112,7 @@ Trade-offs:
 * Can lead to hidden dependencies due to shared state, making the system harder to understand and debug.
 * Reduces the flexibility to have instances with independent states.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Both Singleton and Monostate patterns ensure a single shared state, but the Monostate pattern in Java allows for multiple instances with the same state, making it a unique object-oriented design approach.
 * [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Flyweight shares state to reduce memory usage, similar to how Monostate shares state among instances.

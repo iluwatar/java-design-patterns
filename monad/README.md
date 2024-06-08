@@ -1,5 +1,6 @@
 ---
-title: "Mastering the Monad Design Pattern in Java: Functional Programming Guide"
+title: "Monad Pattern in Java: Mastering Functional Programming Paradigms"
+shortTitle: Monad
 description: "Learn how to implement the Monad design pattern in Java for functional programming. Discover its benefits, real-world examples, and best practices to enhance code readability and error handling."
 category: Functional
 language: en
@@ -42,7 +43,7 @@ Wikipedia says
 
 > In functional programming, a monad is a structure that combines program fragments (functions) and wraps their return values in a type with additional computation. In addition to defining a wrapping monadic type, monads define two operators: one to wrap a value in the monad type, and another to compose together functions that output values of the monad type (these are known as monadic functions). General-purpose languages use monads to reduce boilerplate code needed for common operations (such as dealing with undefined values or fallible functions, or encapsulating bookkeeping code). Functional languages use monads to turn complicated sequences of functions into succinct pipelines that abstract away control flow, and side effects.
 
-**Programmatic Example**
+### Programmatic Example of Monad Pattern in Java
 
 Here’s the Monad implementation in Java. The `Validator` class encapsulates an object and performs validation steps in a monadic fashion, showcasing the benefits of using the Monad pattern for error handling and state management.
 
@@ -152,7 +153,7 @@ Trade-offs:
 * May introduce performance overhead due to additional abstraction layers.
 * Debugging can be difficult due to less transparent operational flow.
 
-## Related Patterns
+## Related Java Design Patterns
 
 Related design patterns to monads in Java include
 

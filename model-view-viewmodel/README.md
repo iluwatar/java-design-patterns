@@ -1,5 +1,6 @@
 ---
-title: "Model-View-ViewModel (MVVM) Design Pattern: Java Best Practices"
+title: "Model-View-ViewModel Pattern in Java: Separating UI and Logic for Cleaner Code"
+shortTitle: Model-View-ViewModel
 description: "Learn about the Model-View-ViewModel (MVVM) design pattern in Java. Discover its benefits, real-world applications, and how it improves UI and business logic separation for scalable and maintainable code."
 category: Architectural
 language: en
@@ -41,8 +42,7 @@ Wikipedia says
 
 > Model–view–viewmodel (MVVM) is a software architectural pattern that facilitates the separation of the development of the graphical user interface (the view) – be it via a markup language or GUI code – from the development of the business logic or back-end logic (the model) so that the view is not dependent on any specific model platform. 
 
-**Programmatic Example**
-
+### Programmatic Example of Model-View-ViewModel Pattern in Java
 
 ViewModel will hold the business logic and expose the data from model to View.
 
@@ -153,7 +153,7 @@ Trade-offs:
 * Increased complexity in small applications where simpler patterns might suffice.
 * Learning curve associated with understanding and applying the pattern correctly.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [MVC (Model-View-Controller)](https://java-design-patterns.com/patterns/model-view-controller/): MVVM can be seen as a derivative of MVC with a stronger emphasis on binding and decoupling, where the ViewModel acts as an intermediary unlike the controller in MVC.
 * [MVP (Model-View-Presenter)](https://java-design-patterns.com/patterns/model-view-presenter/): Similar to MVVM but with a focus on the presenter handling the UI logic, making MVVM's ViewModel more passive in terms of direct UI manipulation.

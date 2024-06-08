@@ -1,5 +1,6 @@
 ---
-title: "Monitor Design Pattern in Java: Synchronization & Thread Safety"
+title: "Monitor Pattern in Java: Implementing Robust Locking Mechanisms with Monitors"
+shortTitle: Monitor
 description: "Learn how the Monitor design pattern in Java ensures thread safety and synchronization. Explore examples, applicability, and benefits of using monitors in concurrent programming."
 category: Concurrency
 language: en
@@ -17,7 +18,7 @@ tag:
 
 ## Intent of Monitor Design Pattern
 
-The Monitor design pattern in Java is essential for synchronizing concurrent operations, ensuring thread safety and preventing race conditions. This guide will help you understand how to implement the Monitor pattern to manage shared resources effectively.
+The Monitor design pattern in Java is essential for synchronizing concurrent operations, ensuring thread safety and preventing race conditions.
 
 ## Detailed Explanation of Monitor Pattern with Real-World Examples
 
@@ -35,7 +36,7 @@ Wikipedia says
 
 > In concurrent programming (also known as parallel programming), a monitor is a synchronization construct that allows threads to have both mutual exclusion and the ability to wait (block) for a certain condition to become false. Monitors also have a mechanism for signaling other threads that their condition has been met.
 
-**Programmatic Examples**
+### Programmatic Example of Monitor Pattern in Java
 
 The Monitor design pattern is a synchronization technique used in concurrent programming to ensure that only one thread can execute a particular section of code at a time. It is a method of wrapping and hiding the synchronization primitives (like semaphores or locks) within the methods of an object. This pattern is useful in situations where race conditions could occur.
 
@@ -156,7 +157,7 @@ Trade-offs:
 * Can lead to decreased performance due to locking overhead.
 * Potential for deadlocks if not carefully designed.
 
-## Related Patterns
+## Related Java Design Patterns
 
 Semaphore: Used to control access to a common resource by multiple threads; Monitor uses a binary semaphore concept at its core.
 Mutex: Another mechanism for ensuring mutual exclusion; Monitor is a higher-level construct often implemented using mutexes.

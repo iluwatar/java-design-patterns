@@ -1,5 +1,6 @@
 ---
-title: "Memento Pattern in Java: Capturing and Restoring Object State"
+title: "Memento Pattern in Java: Preserving Object State for Undo Operations"
+shortTitle: Memento
 description: "Learn how to implement the Memento design pattern in Java to capture and restore object state without violating encapsulation. Ideal for undo functionality in applications."
 category: Behavioral
 language: en
@@ -35,7 +36,7 @@ Wikipedia says
 
 > The memento pattern is a software design pattern that provides the ability to restore an object to its previous state (undo via rollback).
 
-**Programmatic Example**
+### Programmatic Example of Memento Pattern in Java
 
 In our astrology application, we use the Memento pattern to capture and restore the state of star objects. Each state is saved as a memento, allowing us to revert to previous states as needed.
 
@@ -183,7 +184,7 @@ Trade-offs:
 * Can be expensive in terms of memory if a large number of states are saved.
 * Care must be taken to manage the lifecycle of mementos to avoid memory leaks.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Command](https://java-design-patterns.com/patterns/command/): Often used together; commands store state for undoing operations in mementos.
 * [Prototype](https://java-design-patterns.com/patterns/prototype/): Mementos may use prototyping to store the state.

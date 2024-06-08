@@ -1,5 +1,6 @@
 ---
-title: "Master-Worker Design Pattern in Java: Enhance Concurrency and Performance"
+title: "Master-Worker Pattern in Java: Coordinating Concurrent Processing with Ease"
+shortTitle: Master-Worker
 description: "Discover the Master-Worker design pattern in Java. Learn how it improves concurrency, scalability, and performance through parallel task processing. Includes real-world examples and code snippets."
 category: Concurrency
 language: en
@@ -32,7 +33,7 @@ Wikipedia says
 
 > Master–slave is a model of asymmetric communication or control where one device or process (the master) controls one or more other devices or processes (the slaves) and serves as their communication hub. In some systems, a master is selected from a group of eligible devices, with the other devices acting in the role of slaves.
 
-**Programmatic Example**
+### Programmatic Example of Master-Worker Pattern in Java
 
 In the provided code, the `MasterWorker` class initiates the concurrent computation process. The `Master` class divides the work among `Worker` objects, each performing its task in parallel, thus optimizing task processing and enhancing system efficiency.
 
@@ -116,7 +117,7 @@ The `Input` class has a `divideData` method that is used to divide the input dat
 
 * [Master-Worker Pattern (Gigaspaces)](https://docs.gigaspaces.com/sbp/master-worker-pattern.html)
 
-## Known Uses
+## Real-World Applications of Master-Worker Pattern in Java
 
 * Implemented in distributed systems to manage tasks across different computing resources.
 * Used in server architectures to process multiple client requests simultaneously.
@@ -135,7 +136,7 @@ Trade-offs:
 * Complexity in managing synchronization and state consistency between master and workers.
 * Overhead of managing communication between master and workers, especially in distributed environments.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * Task Parallelism and Data Parallelism: Master-Worker utilizes these patterns to divide work into tasks or data segments.
 * [Producer-Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Similar in structure but focuses on balancing production and consumption rates; Master-Worker is more about task distribution and aggregation.

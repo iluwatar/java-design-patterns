@@ -1,5 +1,6 @@
 ---
-title: "Multiton Pattern in Java: Ensure Unique Named Instances"
+title: "Multiton Pattern in Java: Mastering Advanced Singleton Variants"
+shortTitle: Multiton
 description: "Learn how the Multiton pattern in Java ensures unique named instances and provides a global access point. Discover implementation tips and code examples."
 category: Creational
 language: en
@@ -31,7 +32,7 @@ Wikipedia says
 
 > In software engineering, the multiton pattern is a design pattern which generalizes the singleton pattern. Whereas the singleton allows only one instance of a class to be created, the multiton pattern allows for the controlled creation of multiple instances, which it manages through the use of a map.
 
-**Programmatic Example**
+### Programmatic Example of Multiton Pattern in Java
 
 In this tutorial, we’ll explore how to implement the Multiton pattern in Java, covering its structure, benefits, and providing code examples. By following these implementation tips, you’ll be able to effectively utilize this Java design pattern.
 
@@ -138,7 +139,7 @@ Use cases for the Multiton pattern in Java
 * Global access to these instances is necessary without requiring global variables.
 * You want to manage shared resources categorized by key.
 
-## Known Uses
+## Real-World Applications of Multiton Pattern in Java
 
 * Managing database connections in different contexts.
 * Configuration settings for different environments in an application.
@@ -155,7 +156,7 @@ Trade-offs:
 * Increased memory usage if not managed properly due to multiple instances.
 * Potential issues with concurrency if not implemented with thread safety in mind.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Multiton can be seen as an extension of the Singleton pattern where Singleton allows only one instance of a class, Multiton allows one instance per key.
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Multiton uses a method to create or retrieve instances, similar to how a Factory Method controls object creation.

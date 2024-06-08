@@ -1,5 +1,6 @@
 ---
-title: "Microservices Log Aggregation Pattern: Centralized Logging for Efficient Monitoring"
+title: "Microservices Log Aggregation Pattern in Java: Centralizing Logs for Enhanced Monitoring"
+shortTitle: Microservices Log Aggregation
 description: "Learn about the Microservices Log Aggregation pattern, a method for centralizing log collection and analysis to enhance monitoring, debugging, and operational intelligence in distributed systems."
 category: Integration
 language: en
@@ -37,7 +38,7 @@ Wikipedia says
 
 > You have applied the Microservice architecture pattern. The application consists of multiple services and service instances that are running on multiple machines. Requests often span multiple service instances. Each service instance generates writes information about what it is doing to a log file in a standardized format. The log file contains errors, warnings, information and debug messages.
 
-**Programmatic example**
+### Programmatic Example of Microservices Log Aggregation Pattern in Java
 
 Log Aggregation is a pattern that centralizes the collection, storage, and analysis of logs from multiple sources to facilitate monitoring, debugging, and operational intelligence. It is particularly useful in distributed systems where logs from various components need to be centralized for better management and analysis.
 
@@ -148,7 +149,7 @@ Trade-offs:
 * Introduces a potential single point of failure if the log aggregation system is not adequately resilient.
 * Can lead to high data volumes requiring significant storage and processing resources.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * Messaging Patterns: Log Aggregation often utilizes messaging systems to transport log data, facilitating decoupling and asynchronous data processing.
 * Microservices: Often employed in microservice architectures to handle logs from various services efficiently.

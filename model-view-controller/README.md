@@ -1,5 +1,6 @@
 ---
-title: "Model-View-Controller (MVC) Design Pattern in Java: Benefits, Examples, and Use Cases"
+title: "Model-View-Controller Pattern in Java: Streamlining Java Web Development"
+shortTitle: Model-View-Controller (MVC)
 description: "Learn about the Model-View-Controller (MVC) design pattern in Java, including its benefits, real-world examples, use cases, and how to implement it effectively in your applications."
 category: Architectural
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > Model–view–controller (MVC) is commonly used for developing user interfaces that divide the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.
 
-**Programmatic Example**
+### Programmatic Example of Model-View-Controller Pattern in Java
 
 Consider following `GiantModel` model class that provides the health, fatigue & nourishment information.
 
@@ -144,7 +145,7 @@ Trade-offs:
 * Increased complexity in initially setting up the architecture.
 * Can lead to excessive boilerplate if not implemented correctly or for very small projects.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Observer](https://java-design-patterns.com/patterns/observer/): Often used in MVC where the view observes the model for changes; this is a fundamental relationship for updating the UI when the model state changes.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Controllers may use different strategies for handling user input, related through the ability to switch strategies for user input processing in Java MVC applications.

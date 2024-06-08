@@ -1,5 +1,6 @@
 ---
-title: "Microservices Aggregator Design Pattern: Java Examples and Use Cases"
+title: "Microservices Aggregator Pattern in Java: Building Efficient Composite Services in Java"
+shortTitle: Microservices Aggregator
 description: "Learn about the Microservices Aggregator Design Pattern with Java examples. Understand its intent, real-world applications, benefits, and trade-offs for scalable system design."
 category: Architectural
 language: en
@@ -35,7 +36,7 @@ Stack Overflow says
 
 > Microservices Aggregator invokes multiple services to achieve the functionality required by the application.
 
-**Programmatic Example**
+### Programmatic Example of Microservices Aggregator Pattern in Java
 
 Our web marketplace utilizes an Aggregator microservice to fetch combined product and inventory information from separate microservices, ensuring efficient data processing and improved system performance.
 
@@ -121,7 +122,7 @@ Trade-offs:
 * Single Point of Failure: The aggregator service can become a bottleneck or a single point of failure if not designed with high availability and scalability in mind.
 * Complexity: Implementing an aggregator can introduce complexity, especially in terms of data aggregation logic and error handling when dealing with multiple services.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [API Gateway](https://java-design-patterns.com/patterns/microservices-api-gateway/): The Microservices Aggregator pattern is often used in conjunction with an API Gateway, which provides a single entry point for clients to access multiple microservices.
 * [Composite](https://java-design-patterns.com/patterns/composite/): The Microservices Aggregator pattern can be seen as a form of the Composite pattern, where the composite is the aggregated response from multiple microservices.
