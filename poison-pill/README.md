@@ -1,7 +1,7 @@
 ---
 title: "Poison Pill Pattern in Java: Gracefully Terminating Multithreaded Processes"
 shortTitle: Poison Pill
-description: "Explore the Poison As an alternative to "Poison Pill" design pattern in Java, used for gracefully shutting down multi-threaded applications. Understand its intent, applicability, and see a real-world example. Perfect for developers looking to enhance concurrency and messaging systems."
+description: "Explore the Poison Pill design pattern in Java, used for gracefully shutting down multi-threaded applications. Understand its intent, applicability, and see a real-world example. Perfect for developers looking to enhance concurrency and messaging systems."
 category: Concurrency
 language: en
 tag:
