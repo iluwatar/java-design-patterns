@@ -1,5 +1,6 @@
 ---
-title: "Comprehensive Guide to the Gateway Design Pattern in Java"
+title: "Gateway Pattern in Java: Simplifying External System Integration"
+shortTitle: Gateway
 description: "Discover the Gateway design pattern in Java, a powerful technique for integrating remote services and APIs. Learn how to encapsulate interactions and simplify your application architecture with practical examples and real-world use cases."
 category: Integration
 language: en
@@ -15,8 +16,6 @@ tag:
 * Service Gateway
 
 ## Intent of Gateway Design Pattern
-
-### Combined Introduction and Intent
 
 The Gateway design pattern is a crucial concept in Java design patterns for simplifying API integration and interactions with remote services. It provides a unified and simplified interface to external systems, enhancing the maintainability and architecture of applications. By encapsulating these interactions, the Gateway pattern ensures loose coupling and promotes a more modular and scalable software design, making it essential for robust and efficient application development.
 
@@ -36,7 +35,7 @@ Wikipedia says
 
 > A server that acts as an API front-end, receives API requests, enforces throttling and security policies, passes requests to the back-end service and then passes the response back to the requester.
 
-**Programmatic Example**
+### Programmatic Example of Gateway Pattern in Java
 
 First, we define a `Gateway` interface. This interface represents the contract for our external services. Each service that we want to interact with will implement this interface.
 
@@ -153,7 +152,7 @@ Trade-offs:
 * Introduces an additional layer that could potentially impact performance.
 * Requires careful design to avoid creating a monolithic gateway that becomes a bottleneck.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Facade](https://java-design-patterns.com/patterns/facade/): Similar to Gateway in abstracting complex subsystems, but Gateway specifically targets external or remote interfaces.
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): While both patterns provide a different interface to a subsystem, Gateway focuses more on networked data sources and services.

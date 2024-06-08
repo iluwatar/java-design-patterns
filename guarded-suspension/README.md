@@ -1,5 +1,6 @@
 ---
-title: "Guarded Suspension Pattern in Java: Efficient Concurrency Control"
+title: "Guarded Suspension Pattern in Java: Ensuring Safe Concurrency in Critical Sections"
+shortTitle: Guarded Suspension
 description: "Learn about the Guarded Suspension design pattern in Java. Understand its implementation for efficient concurrency control, with real-world examples and code snippets."
 category: Concurrency
 language: en
@@ -34,9 +35,9 @@ Wikipedia says
 
 > In concurrent programming, Guarded Suspension manages operations requiring a lock and a precondition, delaying execution until the precondition is met.
 
-**Programmatic Example**
+### Programmatic Example of Guarded Suspension Pattern in Java
 
-The GuardedQueue class in Java showcases concurrent programming using the Guarded Suspension pattern. It includes synchronized methods that manage thread management and synchronization, demonstrating how threads wait for the right conditions to execute.
+The `GuardedQueue` class in Java showcases concurrent programming using the Guarded Suspension pattern. It includes synchronized methods that manage thread management and synchronization, demonstrating how threads wait for the right conditions to execute.
 
 The `GuardedQueue` class demonstrates the Guarded Suspension pattern by encapsulating a queue and providing two synchronized methods, `get` and `put`. The `get` method waits if the queue is empty, while the `put` method adds an item to the queue and notifies any waiting threads.
 
@@ -126,7 +127,7 @@ Execution yields:
 
 This pattern is ideal for scenarios requiring a thread to wait for specific conditions, promoting efficient concurrency control and reducing busy waiting overhead.
 
-## Known Uses
+## Real-World Applications of Guarded Suspension Pattern in Java
 
 * Network servers waiting for client requests.
 * Producer-consumer scenarios where the consumer must wait for the producer to provide data.
@@ -144,7 +145,7 @@ Trade-offs:
 * Complexity in implementation, especially when multiple conditions need to be managed.
 * Potential for deadlocks if not carefully managed.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Monitor](https://java-design-patterns.com/patterns/monitor/): Both patterns manage the synchronization of threads based on conditions. Guarded Suspension specifically deals with suspending threads until conditions are met, while Monitor Object encapsulates condition and mutual exclusion handling.
 * [Producer-Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Often implemented using Guarded Suspension to handle waiting consumers and producers efficiently.

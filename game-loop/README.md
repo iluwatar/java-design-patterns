@@ -1,5 +1,6 @@
 ---
-title: "Game Loop Design Pattern | Java Design Patterns for Smooth Gaming Experience"
+title: "Game Loop Pattern in Java: Mastering Smooth Game Mechanics"
+shortTitle: Game Loop
 description: "Learn about the Game Loop design pattern, its implementation in Java, and how it ensures smooth gameplay by continuously updating game state, processing inputs, and rendering. Ideal for real-time simulations and gaming."
 category: Behavioral
 language: en
@@ -33,7 +34,7 @@ Wikipedia says
 
 > The central component of any game, from a programming standpoint, is the game loop. The game loop allows the game to run smoothly regardless of a user's input, or lack thereof.
 
-**Programmatic Example**
+### Programmatic Example of Game Loop Pattern in Java
 
 In our Java example, we illustrate a simple game loop controlling a bullet's movement, updating its position, ensuring smooth rendering, and responding to user inputs. The Game Loop is the main process driving all game rendering threads, present in all modern games. It handles input processing, internal status updates, rendering, AI, and other processes. Starting with a simple `Bullet` class, we demonstrate the movement of bullets in our game, focusing on their 1-dimensional position for demonstration purposes.
 
@@ -306,7 +307,7 @@ Stop variable-step game loop.
 
 The Game Loop pattern is perfect for real-time simulations and gaming where continuous state updates and smooth frame rates are critical.
 
-## Known Uses
+## Real-World Applications of Game Loop Pattern in Java
 
 * Video games, both 2D and 3D, across various platforms.
 * Real-time simulations that require a steady frame rate for updating logic and rendering.
@@ -324,7 +325,7 @@ Trade-offs:
 * Can lead to performance issues if the loop is not well-managed, especially in resource-intensive updates or rendering.
 * Difficulty in managing varying frame rates across different hardware.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [State](https://java-design-patterns.com/patterns/state/): Often used within a game loop to manage different states of the game (e.g., menu, playing, paused). The relationship lies in managing the state-specific behavior and transitions smoothly within the game loop.
 * [Observer](https://java-design-patterns.com/patterns/observer/): Useful in a game loop for event handling, where game entities can subscribe to and react to events (e.g., collision, scoring).
