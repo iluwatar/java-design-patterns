@@ -44,9 +44,8 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/10/15 - 9:34 PM
+ * InventoryTest
  *
- * @author Jeroen Meulemeester
  */
 class InventoryTest {
 

@@ -29,7 +29,6 @@ package com.iluwatar.intercepting.filter;
  * the input consist of numbers and it also checks if the input follows the length constraint (11
  * digits).
  *
- * @author joshzambales
  */
 public class ContactFilter extends AbstractFilter {
 

@@ -1548,7 +1548,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/17254162?v=4",
       "profile": "https://www.linkedin.com/in/souzasamuel/",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -2546,7 +2547,7 @@
       "login": "tiennm99",
       "name": "Tien Nguyen Minh",
       "avatar_url": "https://avatars.githubusercontent.com/u/39063457?v=4",
-      "profile": "http://miti99.dev",
+      "profile": "https://github.com/tiennm99",
       "contributions": [
         "code",
         "translation"
@@ -3104,9 +3105,45 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Adelechka",
+      "name": "Adelya",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65678470?v=4",
+      "profile": "https://github.com/Adelechka",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "gatlanagaprasanna",
+      "name": "gatlanagaprasanna",
+      "avatar_url": "https://avatars.githubusercontent.com/u/154739216?v=4",
+      "profile": "https://github.com/gatlanagaprasanna",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "Avinash2110",
+      "name": "Avinash Shukla",
+      "avatar_url": "https://avatars.githubusercontent.com/u/37360069?v=4",
+      "profile": "https://github.com/Avinash2110",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Mayankchoudhary294",
+      "name": "Mayank Choudhary",
+      "avatar_url": "https://avatars.githubusercontent.com/u/97609699?v=4",
+      "profile": "https://github.com/Mayankchoudhary294",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "contributorsPerLine": 7,
+  "contributorsPerLine": 6,
   "projectName": "java-design-patterns",
   "projectOwner": "iluwatar",
   "repoType": "github",

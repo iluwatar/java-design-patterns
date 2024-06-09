@@ -34,9 +34,8 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/28/15 - 12:12 AM
+ * ProducerTest
  *
- * @author Jeroen Meulemeester
  */
 class ProducerTest {
 

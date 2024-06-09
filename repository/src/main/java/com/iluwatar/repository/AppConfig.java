@@ -61,7 +61,7 @@ public class AppConfig {
   }
 
   /**
-   * Factory to create a especific instance of Entity Manager.
+   * Factory to create a specific instance of Entity Manager.
    */
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {

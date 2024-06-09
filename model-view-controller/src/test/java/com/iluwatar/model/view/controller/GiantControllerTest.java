@@ -31,9 +31,8 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/20/15 - 2:19 PM
+ * GiantControllerTest
  *
- * @author Jeroen Meulemeester
  */
 class GiantControllerTest {
 

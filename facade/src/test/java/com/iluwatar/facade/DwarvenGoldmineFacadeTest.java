@@ -38,9 +38,8 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/9/15 - 9:40 PM
+ * DwarvenGoldmineFacadeTest
  *
- * @author Jeroen Meulemeester
  */
 class DwarvenGoldmineFacadeTest {
 

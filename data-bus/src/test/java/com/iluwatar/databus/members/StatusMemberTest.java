@@ -38,7 +38,6 @@ import org.junit.jupiter.api.Test;
 /**
  * Tests for {@link StatusMember}.
  *
- * @author Paul Campbell (pcampbell@kemitix.net)
  */
 class StatusMemberTest {
 

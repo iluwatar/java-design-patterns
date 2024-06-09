@@ -1,30 +1,41 @@
 ---
-title: Bytecode
+title: "Bytecode Pattern in Java: Interpreting Instructions with Custom Virtual Machines"
+shortTitle: Bytecode
+description: "Explore the Bytecode design pattern in Java, including its implementation, real-world examples, and use cases for efficient virtual machine instruction handling."
 category: Behavioral
 language: en
 tag:
-    - Game programming
+  - Abstraction
+  - Code simplification
+  - Encapsulation
+  - Game programming
+  - Performance
+  - Runtime
 ---
 
-## Intent
+## Intent of Bytecode Design Pattern
 
-Allows encoding behavior as instructions for a virtual machine.
+The Bytecode design pattern in Java allows encoding behavior as instructions for a virtual machine, making it a powerful tool in game development and other applications.
 
-## Explanation
+## Detailed Explanation of Bytecode Pattern with Real-World Examples
 
-Real world example
+Real-world example
 
-> A team is working on a new game where wizards battle against each other. The wizard behavior needs to be carefully adjusted and iterated hundreds of times through playtesting. It's not optimal to ask the programmer to make changes each time the game designer wants to vary the behavior, so the wizard behavior is implemented as a data-driven virtual machine.
+> An analogous real-world example of the Bytecode design pattern can be seen in the process of translating a book into multiple languages. Instead of directly translating the book from the original language into every other language, the book is first translated into a common intermediate language, like Esperanto. This intermediate version is easier to translate because it is simpler and more structured. Translators for each target language then translate from Esperanto into their specific languages. This approach ensures consistency, reduces errors, and simplifies the translation process, similar to how bytecode serves as an intermediate representation to optimize and facilitate the execution of high-level programming languages across different platforms.
 
 In plain words
 
 > Bytecode pattern enables behavior driven by data instead of code.
 
-[Gameprogrammingpatterns.com](https://gameprogrammingpatterns.com/bytecode.html) documentation states:
+[gameprogrammingpatterns.com](https://gameprogrammingpatterns.com/bytecode.html) documentation states:
 
 > An instruction set defines the low-level operations that can be performed. A series of instructions is encoded as a sequence of bytes. A virtual machine executes these instructions one at a time, using a stack for intermediate values. By combining instructions, complex high-level behavior can be defined.
 
-**Programmatic Example**
+## Programmatic Example of Bytecode Pattern in Java
+
+In this programmatic example, we show how the Bytecode pattern in Java can simplify the execution of complex virtual machine instructions through a well-defined set of operations. This real-world example demonstrates how the Bytecode design pattern in Java can streamline game programming by allowing wizards' behavior to be easily adjusted through bytecode instructions.
+
+A team is working on a new game where wizards battle against each other. The wizard behavior needs to be carefully adjusted and iterated hundreds of times through playtesting. It's not optimal to ask the programmer to make changes each time the game designer wants to vary the behavior, so the wizard behavior is implemented as a data-driven virtual machine.
 
 One of the most important game objects is the `Wizard` class.
 
@@ -73,7 +84,8 @@ public enum Instruction {
     GET_WISDOM(9),      // e.g. "GET_WISDOM", pop value as wizard number, push wizard's wisdom
     ADD(10),            // e.g. "ADD", pop 2 values, push their sum
     DIVIDE(11);         // e.g. "DIVIDE", pop 2 values, push their division
-    // ...
+    
+    // Other properties and methods...
 }
 ```
 
@@ -166,33 +178,33 @@ public class VirtualMachine {
     public void setHealth(int wizard, int amount) {
         wizards[wizard].setHealth(amount);
     }
-    // other setters ->
-    // ...
+
+    // Other properties and methods...
 }
 ```
 
 Now we can show the full example utilizing the virtual machine.
 
 ```java
-  public static void main(String[]args){
+public static void main(String[] args) {
 
-        var vm=new VirtualMachine(
-        new Wizard(45,7,11,0,0),
-        new Wizard(36,18,8,0,0));
+    var vm = new VirtualMachine(
+            new Wizard(45, 7, 11, 0, 0),
+            new Wizard(36, 18, 8, 0, 0));
 
-        vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("GET_HEALTH"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("GET_AGILITY"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 0"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("GET_WISDOM"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("ADD"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("LITERAL 2"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("DIVIDE"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("ADD"));
-        vm.execute(InstructionConverterUtil.convertToByteCode("SET_HEALTH"));
-        }
+    vm.execute(InstructionConverterUtil.convertToByteCode(LITERAL_0));
+    vm.execute(InstructionConverterUtil.convertToByteCode(LITERAL_0));
+    vm.execute(InstructionConverterUtil.convertToByteCode(String.format(HEALTH_PATTERN, "GET")));
+    vm.execute(InstructionConverterUtil.convertToByteCode(LITERAL_0));
+    vm.execute(InstructionConverterUtil.convertToByteCode(GET_AGILITY));
+    vm.execute(InstructionConverterUtil.convertToByteCode(LITERAL_0));
+    vm.execute(InstructionConverterUtil.convertToByteCode(GET_WISDOM));
+    vm.execute(InstructionConverterUtil.convertToByteCode(ADD));
+    vm.execute(InstructionConverterUtil.convertToByteCode(LITERAL_2));
+    vm.execute(InstructionConverterUtil.convertToByteCode(DIVIDE));
+    vm.execute(InstructionConverterUtil.convertToByteCode(ADD));
+    vm.execute(InstructionConverterUtil.convertToByteCode(String.format(HEALTH_PATTERN, "SET")));
+}
 ```
 
 Here is the console output.
@@ -212,11 +224,9 @@ Here is the console output.
 16:20:10.198 [main] INFO com.iluwatar.bytecode.VirtualMachine - Executed SET_HEALTH, Stack contains []
 ```
 
-## Class diagram
+Utilizing the Bytecode design pattern in Java can significantly enhance the flexibility and maintainability of your virtual machine-based applications.
 
-![alt text](./etc/bytecode.urm.png "Bytecode class diagram")
-
-## Applicability
+## When to Use the Bytecode Pattern in Java
 
 Use the Bytecode pattern when you have a lot of behavior you need to define and your game’s implementation language isn’t a good fit because:
 
@@ -224,13 +234,13 @@ Use the Bytecode pattern when you have a lot of behavior you need to define and 
 * Iterating on it takes too long due to slow compile times or other tooling issues.
 * It has too much trust. If you want to ensure the behavior being defined can’t break the game, you need to sandbox it from the rest of the codebase.
 
-## Known Uses
+## Real-World Applications of Bytecode Pattern in Java
 
 * Java Virtual Machine (JVM) uses bytecode to allow Java programs to run on any device that has JVM installed
 * Python compiles its scripts to bytecode which is then interpreted by Python Virtual Machine
 * The .NET Framework uses a form of bytecode called Microsoft Intermediate Language (MSIL)
 
-## Consequences
+## Benefits and Trade-offs of Bytecode Pattern
 
 Benefits:
 
@@ -243,13 +253,14 @@ Trade-offs:
 * Overhead: Running bytecode typically involves more overhead than running native code, potentially affecting performance.
 * Complexity: Implementing and maintaining a VM adds complexity to the system.
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Interpreter](https://java-design-patterns.com/patterns/interpreter/) is often used within the implementation of VMs to interpret bytecode instructions
 * [Command](https://java-design-patterns.com/patterns/command/): Bytecode instructions can be seen as commands executed by the VM.
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/): VMs may use factory methods to instantiate operations or instructions defined in the bytecode.
 
-## Credits
+## References and Credits
 
-* [Game programming patterns](http://gameprogrammingpatterns.com/bytecode.html)
+* [Game Programming Patterns](https://amzn.to/3K96fOn)
 * [Programming Language Pragmatics](https://amzn.to/49Tusnn)
+* [Bytecode (Game Programming Patterns)](http://gameprogrammingpatterns.com/bytecode.html)

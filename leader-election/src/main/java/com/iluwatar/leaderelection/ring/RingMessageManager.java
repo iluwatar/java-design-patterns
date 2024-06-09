@@ -51,8 +51,7 @@ public class RingMessageManager extends AbstractMessageManager {
   @Override
   public boolean sendHeartbeatMessage(int leaderId) {
     var leaderInstance = instanceMap.get(leaderId);
-    var alive = leaderInstance.isAlive();
-    return alive;
+    return leaderInstance.isAlive();
   }
 
   /**

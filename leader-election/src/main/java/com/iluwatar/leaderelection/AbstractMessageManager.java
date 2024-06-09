@@ -44,7 +44,7 @@ public abstract class AbstractMessageManager implements MessageManager {
   }
 
   /**
-   * Find the next instance with smallest ID.
+   * Find the next instance with the smallest ID.
    *
    * @return The next instance.
    */

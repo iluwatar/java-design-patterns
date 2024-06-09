@@ -88,7 +88,7 @@ class HotelDaoImplTest {
     }
 
     /**
-     * Represents the scenario when DAO operations are being performed on a non existing room.
+     * Represents the scenario when DAO operations are being performed on a non-existing room.
      */
     @Nested
     class NonExistingRoom {
@@ -209,16 +209,12 @@ class HotelDaoImplTest {
 
     @Test
     void addingARoomFailsWithExceptionAsFeedbackToClient() {
-      assertThrows(Exception.class, () -> {
-        dao.add(new Room(2, "Double", 80, false));
-      });
+      assertThrows(Exception.class, () -> dao.add(new Room(2, "Double", 80, false)));
     }
 
     @Test
     void deletingARoomFailsWithExceptionAsFeedbackToTheClient() {
-      assertThrows(Exception.class, () -> {
-        dao.delete(existingRoom);
-      });
+      assertThrows(Exception.class, () -> dao.delete(existingRoom));
     }
 
     @Test
@@ -226,23 +222,17 @@ class HotelDaoImplTest {
       final var newRoomType = "Double";
       final var newPrice = 80;
       final var newBookingStatus = false;
-      assertThrows(Exception.class, () -> {
-        dao.update(new Room(existingRoom.getId(), newRoomType, newPrice, newBookingStatus));
-      });
+      assertThrows(Exception.class, () -> dao.update(new Room(existingRoom.getId(), newRoomType, newPrice, newBookingStatus)));
     }
 
     @Test
     void retrievingARoomByIdFailsWithExceptionAsFeedbackToClient() {
-      assertThrows(Exception.class, () -> {
-        dao.getById(existingRoom.getId());
-      });
+      assertThrows(Exception.class, () -> dao.getById(existingRoom.getId()));
     }
 
     @Test
     void retrievingAllRoomsFailsWithExceptionAsFeedbackToClient() {
-      assertThrows(Exception.class, () -> {
-        dao.getAll();
-      });
+      assertThrows(Exception.class, () -> dao.getAll());
     }
 
   }

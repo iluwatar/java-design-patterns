@@ -38,10 +38,8 @@ import java.util.function.Supplier;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
- * Date: 12/27/15 - 11:44 AM
  * Test for Observers
  * @param <O> Type of Observer
- * @author Jeroen Meulemeester
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class ObserverTest<O extends Observer<?, ?, WeatherType>> {

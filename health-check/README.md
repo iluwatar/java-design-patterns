@@ -1,5 +1,7 @@
 ---
-title: Health Check
+title: "Health Check Pattern in Java: Monitoring System Health for Optimal Operation"
+shortTitle: Health Check
+description: "Learn about the Health Check pattern in Java, a vital design for monitoring system health and ensuring reliability in microservices and distributed systems. Discover examples, applications, and benefits."
 category: Behavioral
 language: en
 tag:
@@ -14,38 +16,29 @@ tag:
 * Health Monitoring
 * Service Health Check
 
-## Intent
+## Intent of Health Check Design Pattern
 
-The Health Check pattern is designed to proactively monitor the health of individual software components or services, allowing for quick identification and remediation of issues that may affect overall system functionality.
+The Health Check pattern in Java is designed to proactively monitor the health of individual software components or services, allowing for quick identification and remediation of issues that may affect overall system functionality in microservices architectures.
 
-## Explanation
-
-In microservices architecture, it's critical to continuously check the health of individual services. The Health Check Pattern is a mechanism for microservices to expose their health status. This pattern is implemented by including a health check endpoint in microservices that returns the service's current state. This is vital for maintaining system resilience and operational readiness.
+## Detailed Explanation of Health Check Pattern with Real-World Examples
 
 Real-world example
 
-> In a cloud-native environment, such as Kubernetes or AWS ECS, health checks are used to ensure that containers are running correctly. If a service fails its health check, it can be automatically restarted or replaced, ensuring high availability and resilience.
+> Consider a hospital where patient monitoring systems are used to ensure the health of patients. Each monitoring device periodically checks the vital signs of a patient and reports back to a central system. Similarly, in Java-based software systems, a Health Check pattern allows each service to periodically report its status to a central monitoring system. If any device detects abnormal vital signs, it triggers an alert for immediate medical attention. Similarly, in software, a Health Check pattern allows each service to periodically report its status to a central monitoring system. If a service is found to be unhealthy, the system can take corrective actions such as alerting administrators, restarting the service, or redirecting traffic to healthy instances, thereby ensuring continuous and reliable operation.
 
-In Plain Words
+In plain words
 
 > The Health Check Pattern is like a regular doctor's visit for services in a microservices architecture. It helps in early detection of issues and ensures that services are healthy and available.
 
-## Programmatic Example
+## Programmatic Example of Health Check Pattern in Java
 
-The Health Check design pattern is a pattern that allows a system to proactively monitor the health of its components. This pattern is particularly useful in distributed systems where the health of individual components can affect the overall health of the system.
+The Health Check design pattern is particularly useful in distributed systems where the health of individual components can affect the overall health of the system. Using Spring Boot Actuator, developers can easily implement health checks in Java applications.
 
 In the provided code, we can see an example of the Health Check pattern in the `App` class and the use of Spring Boot's Actuator.
 
 The `App` class is the entry point of the application. It starts a Spring Boot application which has health check capabilities built-in through the use of Spring Boot Actuator.
 
 ```java
-package com.iluwatar.health.check;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.scheduling.annotation.EnableScheduling;
-
 @EnableCaching
 @EnableScheduling
 @SpringBootApplication
@@ -61,10 +54,6 @@ Spring Boot Actuator provides several built-in health checks through its `/actua
 To add a custom health check, you can create a class that implements the `HealthIndicator` interface and override its `health` method. Here is an example:
 
 ```java
-import org.springframework.boot.actuate.health.Health;
-import org.springframework.boot.actuate.health.HealthIndicator;
-import org.springframework.stereotype.Component;
-
 @Component
 public class CustomHealthCheck implements HealthIndicator {
     @Override
@@ -88,21 +77,20 @@ In this example, the `check` method contains the logic for the health check. If 
 
 This is a basic example of the Health Check pattern, where health checks are built into the system and can be easily accessed and monitored.
 
-## Class Diagram
+## When to Use the Health Check Pattern in Java
 
-![Health Check Pattern](./etc/health-check.png)
+* Use when building Java microservices or distributed systems where it is crucial to monitor the health of each service.
+* Suitable for scenarios where automated systems need to determine the operational status of services to perform load balancing, failover, or recovery operations.
 
-## Applicability
+## Real-World Applications of Health Check Pattern in Java
 
-This pattern is applicable in microservices architectures, distributed systems, or any complex system where it’s crucial to continuously check the health of various software components to ensure system reliability and availability.
-
-## Known Uses
+Known uses of the Health Check pattern in Java include
 
 * Kubernetes liveness and readiness probes
 * AWS elastic load balancing health checks
-* Spring Boot Actuator
+* Spring Boot Actuator integrations
 
-## Consequences
+## Benefits and Trade-offs of Health Check Pattern
 
 Benefits:
 
@@ -115,13 +103,13 @@ Trade-offs:
 * Additional overhead for implementing and maintaining health check mechanisms.
 * May introduce complexity in handling false positives and negatives in health status reporting.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Both patterns enhance system resilience; while Health Check monitors health status, Circuit Breaker protects a system from repeated failures.
 * [Observer](https://java-design-patterns.com/patterns/observer/): Health Check can be seen as a specific use case of the Observer pattern, where the subject being observed is the system’s health.
 
-## Credits
+## References and Credits
 
-* [Health Check API pattern on Microservices.io](https://microservices.io/patterns/observability/health-check-api.html)
-* [Release It! Design and Deploy Production-Ready Software](https://amzn.to/3Uul4kF)
 * [Microservices Patterns: With examples in Java](https://amzn.to/3UyWD5O)
+* [Release It! Design and Deploy Production-Ready Software](https://amzn.to/3Uul4kF)
+* [Pattern: Health Check API (Microservices.io)](https://microservices.io/patterns/observability/health-check-api.html)

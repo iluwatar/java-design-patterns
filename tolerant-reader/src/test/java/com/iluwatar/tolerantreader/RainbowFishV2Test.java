@@ -31,9 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/30/15 - 18:35 PM
+ * RainbowFishV2Test
  *
- * @author Jeroen Meulemeester
  */
 class RainbowFishV2Test {
 

@@ -31,9 +31,9 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Base class for spell targets.
  */
-@Setter
 @Slf4j
 @Getter
+@Setter
 public abstract class Target {
 
   private Size size;

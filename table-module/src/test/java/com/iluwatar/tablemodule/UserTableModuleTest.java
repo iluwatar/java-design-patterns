@@ -86,9 +86,7 @@ class UserTableModuleTest {
     var userTableModule = new UserTableModule(dataSource);
     var user = new User(1, "123456", "123456");
     userTableModule.registerUser(user);
-    assertThrows(SQLException.class, () -> {
-      userTableModule.registerUser(user);
-    });
+    assertThrows(SQLException.class, () -> userTableModule.registerUser(user));
   }
 
   @Test

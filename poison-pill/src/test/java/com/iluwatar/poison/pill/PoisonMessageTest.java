@@ -31,24 +31,19 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/27/15 - 10:30 PM
+ * PoisonMessageTest
  *
- * @author Jeroen Meulemeester
  */
 class PoisonMessageTest {
 
   @Test
   void testAddHeader() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.addHeader(Headers.SENDER, "sender");
-    });
+    assertThrows(UnsupportedOperationException.class, () -> POISON_PILL.addHeader(Headers.SENDER, "sender"));
   }
 
   @Test
   void testGetHeader() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.getHeader(Headers.SENDER);
-    });
+    assertThrows(UnsupportedOperationException.class, () -> POISON_PILL.getHeader(Headers.SENDER));
   }
 
   @Test
@@ -58,9 +53,7 @@ class PoisonMessageTest {
 
   @Test
   void testSetBody() {
-    assertThrows(UnsupportedOperationException.class, () -> {
-      POISON_PILL.setBody("Test message.");
-    });
+    assertThrows(UnsupportedOperationException.class, () -> POISON_PILL.setBody("Test message."));
   }
 
   @Test

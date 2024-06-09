@@ -34,9 +34,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/12/15 - 10:57 AM
+ * KingsHandTest
  *
- * @author Jeroen Meulemeester
  */
 class KingsHandTest extends EventEmitterTest<KingsHand> {
 

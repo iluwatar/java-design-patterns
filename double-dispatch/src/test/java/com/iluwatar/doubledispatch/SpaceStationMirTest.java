@@ -30,9 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/10/15 - 11:31 PM
+ * SpaceStationMirTest
  *
- * @author Jeroen Meulemeester
  */
 class SpaceStationMirTest extends CollisionTest<SpaceStationMir> {
 

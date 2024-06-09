@@ -1,9 +1,13 @@
 ---
-title: Delegation
+title: "Delegation Pattern in Java: Mastering Efficient Task Assignment"
+shortTitle: Delegation
+description: "Explore the Delegation Design Pattern in Java with real-world examples, class diagrams, and its benefits. Learn how to enhance your code flexibility and reuse."
 category: Behavioral
 language: en
 tag:
-    - Delegation
+  - Decoupling
+  - Delegation
+  - Object composition
 ---
 
 ## Also known as
@@ -11,21 +15,27 @@ tag:
 * Helper
 * Surrogate
 
-## Intent
+## Intent of Delegation Design Pattern
 
-The Delegation pattern in Java allows an object to delegate one or more tasks to a helper object. It is a technique where an object expresses certain behavior but actually delegates responsibility for implementing that behavior to an associated helper object.
+To allow an object to delegate responsibility for a task to another helper object.
 
-## Explanation
+## Detailed Explanation of Delegation Pattern with Real-World Examples
 
 Real-world example
 
 > In a restaurant, the head chef delegates tasks to sous-chefs: one manages grilling, another handles salads, and a third is in charge of desserts. Each sous-chef specializes in their area, allowing the head chef to focus on overall kitchen management. This mirrors the Delegation design pattern, where a main object delegates specific tasks to helper objects, each expert in their domain.
 
+In plain words
+
+> Delegation is a design pattern where an object passes on a task to a helper object.
+
 Wikipedia says
 
 > In object-oriented programming, delegation refers to evaluating a member (property or method) of one object (the receiver) in the context of another original object (the sender). Delegation can be done explicitly, by passing the sending object to the receiving object, which can be done in any object-oriented language; or implicitly, by the member lookup rules of the language, which requires language support for the feature.
 
-**Programmatic Example**
+## Programmatic Example of Delegation Pattern in Java
+
+Let's consider a printing example.
 
 We have an interface `Printer` and three implementations `CanonPrinter`, `EpsonPrinter` and `HpPrinter`.
 
@@ -59,8 +69,7 @@ public class HpPrinter implements Printer {
 }
 ```
 
-The `PrinterController` can be used as a `Printer` by delegating any work handled by this
-interface to an object implementing it.
+The `PrinterController` can be used as a `Printer` by delegating any work handled by this interface to an object implementing it.
 
 ```java
 public class PrinterController implements Printer {
@@ -78,8 +87,7 @@ public class PrinterController implements Printer {
 }
 ```
 
-Now on the client code printer controllers can print messages differently depending on the
-object they're delegating that work to.
+In the client code, printer controllers can print messages differently depending on the object they're delegating that work to.
 
 ```java
 public class App {
@@ -106,23 +114,23 @@ Canon Printer:hello world
 Epson Printer:hello world
 ```
 
-## Class diagram
+## Detailed Explanation of Delegation Pattern with Real-World Examples
 
 ![Delegate class diagram](./etc/delegation.png "Delegate")
 
-## Applicability
+## When to Use the Delegation Pattern in Java
 
 * When you want to pass responsibility from one class to another without inheritance.
 * To achieve composition-based reuse instead of inheritance-based.
 * When you need to use several interchangeable helper classes at runtime.
 
-## Known Uses
+## Real-World Applications of Delegation Pattern in Java
 
 * Java's java.awt.event package, where listeners are often used to handle events.
 * Wrapper classes in Java's Collections Framework (java.util.Collections), which delegate to other collection objects.
 * In Spring Framework, delegation is used extensively in the IoC container where beans delegate tasks to other beans.
 
-## Consequences
+## Benefits and Trade-offs of Delegation Pattern
 
 Benefits:
 
@@ -135,13 +143,13 @@ Trade-offs:
 * Runtime Overhead: Delegation can introduce additional layers of indirection, which may result in slight performance costs.
 * Complexity: The design can become more complicated since it involves additional classes and interfaces to manage delegation.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Composite](https://java-design-patterns.com/patterns/composite/): Delegation can be used within a composite pattern to delegate component-specific behavior to child components.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Delegation is often used in the strategy pattern where a context object delegates tasks to a strategy object.
 * https://java-design-patterns.com/patterns/proxy/: The proxy pattern is a form of delegation where a proxy object controls access to another object, which it delegates work to.
 
-## Credits
+## References and Credits
 
 * [Effective Java](https://amzn.to/4aGE7gX)
 * [Head First Design Patterns](https://amzn.to/3J9tuaB)

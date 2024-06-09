@@ -30,9 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 01/29/23 - 1:33 PM
+ * TargetTest
  *
- * @author Rahul Raj
  */
 class TargetTest {
     

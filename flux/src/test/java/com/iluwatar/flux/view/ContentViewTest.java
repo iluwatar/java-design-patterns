@@ -35,9 +35,8 @@ import com.iluwatar.flux.store.ContentStore;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/12/15 - 10:31 PM
+ * ContentViewTest
  *
- * @author Jeroen Meulemeester
  */
 class ContentViewTest {
 

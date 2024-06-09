@@ -28,7 +28,6 @@ package com.iluwatar.intercepting.filter;
  * Concrete implementation of filter. This filter checks if the input in the Name field is valid.
  * (alphanumeric)
  *
- * @author joshzambales
  */
 public class NameFilter extends AbstractFilter {
 

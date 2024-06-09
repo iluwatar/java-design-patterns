@@ -37,7 +37,6 @@ import org.springframework.boot.actuate.health.Status;
 /**
  * Test class for the {@link CpuHealthIndicator} class.
  *
- * @author ydoksanbir
  */
 class CpuHealthIndicatorTest {
 

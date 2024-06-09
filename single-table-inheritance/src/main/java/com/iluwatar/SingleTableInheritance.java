@@ -81,7 +81,7 @@ public class SingleTableInheritance implements CommandLineRunner {
    * @param args program runtime arguments
    */
   @Override
-  public void run(String... args) throws Exception {
+  public void run(String... args) {
 
     Logger log = LoggerFactory.getLogger(SingleTableInheritance.class);
 

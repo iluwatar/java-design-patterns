@@ -29,10 +29,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.Objects;
 
 /**
- * Date: 12/10/15 - 8:37 PM Test for Collision
+ * CollisionTest
  *
  * @param <O> Type of GameObject
- * @author Jeroen Meulemeester
  */
 public abstract class CollisionTest<O extends GameObject> {
 

@@ -34,9 +34,8 @@ import org.junit.jupiter.api.Test;
 
 
 /**
- * Date: 12/10/15 - 8:40 PM
+ * AdvancedWizardTest
  *
- * @author Jeroen Meulemeester
  */
 class AdvancedWizardTest {
 

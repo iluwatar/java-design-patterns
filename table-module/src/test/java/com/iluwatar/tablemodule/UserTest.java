@@ -45,7 +45,8 @@ class UserTest {
   @Test
   void testEquals1() {
     var user = new User(1, "janedoe", "iloveyou");
-    assertNotEquals("42", user);
+    assertNotEquals(user, new User(123, "abcd",
+        "qwerty"));
   }
 
   @Test

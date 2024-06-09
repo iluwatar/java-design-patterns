@@ -26,17 +26,15 @@ package com.iluwatar.registry;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import lombok.Getter;
 
 /**
  * CustomerRegistry class used to store/access {@link Customer} objects.
  */
 public final class CustomerRegistry {
 
+  @Getter
   private static final CustomerRegistry instance = new CustomerRegistry();
-
-  public static CustomerRegistry getInstance() {
-    return instance;
-  }
 
   private final Map<String, Customer> customerMap;
 

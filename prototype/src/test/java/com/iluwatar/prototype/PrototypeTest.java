@@ -35,10 +35,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /**
- * Date: 12/28/15 - 8:45 PM
+ * PrototypeTest
  *
  * @param <P> Prototype
- * @author Jeroen Meulemeester
  */
 class PrototypeTest<P extends Prototype<P>> {
   static Collection<Object[]> dataProvider() {

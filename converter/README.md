@@ -1,11 +1,16 @@
 ---
-title: Converter
+title: "Converter Pattern in Java: Streamlining Data Conversion Across Layers"
+shortTitle: Converter
+description: "Discover the benefits and implementation of the Converter Pattern in Java. Learn how to achieve seamless bidirectional conversion between different data formats, promoting clean code and flexibility in your applications."
 category: Structural
 language: en
 tag:
-    - Compatibility
-    - Data transformation
-    - Object mapping
+  - Compatibility
+  - Data transformation
+  - Decoupling
+  - Interface
+  - Object mapping
+  - Wrapping
 ---
 
 ## Also known as
@@ -13,23 +18,25 @@ tag:
 * Mapper
 * Translator
 
-## Intent
+## Intent of Converter Design Pattern
 
-The purpose of the Converter pattern is to provide a generic, common way of bidirectional conversion between corresponding types, allowing a clean implementation in which the types do not need to be aware of each other. Moreover, the Converter pattern introduces bidirectional collection mapping, reducing a boilerplate code to minimum.
+The purpose of the Converter Pattern is to provide a generic, systematic way of bidirectional conversion between corresponding data types. This allows for a clean, decoupled implementation where types are unaware of each other. Additionally, the Converter pattern supports bidirectional collection mapping, minimizing boilerplate code.
 
-## Explanation
+## Detailed Explanation of Converter Pattern with Real-World Examples
 
-Real world example
+Real-world example
 
-> In real world applications it is often the case that database layer consists of entities that need to be mapped into DTOs for use on the business logic layer. Similar mapping is done for potentially huge amount of classes, and we need a generic way to achieve this.
+> In a real-world scenario, consider a library system that interacts with a third-party book database. The library uses an internal book format, while the third-party database uses a different format. By employing the Converter Pattern, a converter class can transform the third-party book data into the library's format and vice versa. This ensures seamless integration without altering the internal structures of either system.
 
 In plain words
 
-> Converter pattern makes it easy to map instances of one class into instances of another class.
+> The Converter Pattern simplifies mapping instances of one class to instances of another class, ensuring consistent and clean data transformation.
 
-**Programmatic Example**
+## Programmatic Example of Converter Pattern in Java
 
-We need a generic solution for the mapping problem. To achieve this, let's introduce a generic converter.
+In applications, it's common for the database layer to have entities that need mapping to DTOs (Data Transfer Objects) for business logic. This mapping often involves many classes, necessitating a generic solution.
+
+We introduce a generic `Converter` class:
 
 ```java
 public class Converter<T, U> {
@@ -60,7 +67,7 @@ public class Converter<T, U> {
 }
 ```
 
-The specialized converters inherit from this base class as follows.
+Specialized converters inherit from this base class:
 
 ```java
 public class UserConverter extends Converter<UserDto, User> {
@@ -79,19 +86,45 @@ public class UserConverter extends Converter<UserDto, User> {
 }
 ```
 
-Now mapping between `User` and `UserDto` becomes trivial.
+Mapping between `User` and `UserDto` becomes straightforward:
 
 ```java
-var userConverter=new UserConverter();
-        var dtoUser=new UserDto("John","Doe",true,"whatever[at]wherever.com");
-        var user=userConverter.convertFromDto(dtoUser);
+  public static void main(String[] args) {
+    Converter<UserDto, User> userConverter = new UserConverter();
+
+    UserDto dtoUser = new UserDto("John", "Doe", true, "whatever[at]wherever.com");
+    User user = userConverter.convertFromDto(dtoUser);
+    LOGGER.info("Entity converted from DTO: {}", user);
+
+    var users = List.of(
+            new User("Camile", "Tough", false, "124sad"),
+            new User("Marti", "Luther", true, "42309fd"),
+            new User("Kate", "Smith", true, "if0243")
+    );
+    LOGGER.info("Domain entities:");
+    users.stream().map(User::toString).forEach(LOGGER::info);
+
+    LOGGER.info("DTO entities converted from domain:");
+    List<UserDto> dtoEntities = userConverter.createFromEntities(users);
+    dtoEntities.stream().map(UserDto::toString).forEach(LOGGER::info);
+}
 ```
 
-## Class diagram
+Program output:
 
-![alt text](./etc/converter.png "Converter Pattern")
+```
+08:28:27.019 [main] INFO com.iluwatar.converter.App -- Entity converted from DTO: User[firstName=John, lastName=Doe, active=true, userId=whatever[at]wherever.com]
+08:28:27.035 [main] INFO com.iluwatar.converter.App -- Domain entities:
+08:28:27.035 [main] INFO com.iluwatar.converter.App -- User[firstName=Camile, lastName=Tough, active=false, userId=124sad]
+08:28:27.035 [main] INFO com.iluwatar.converter.App -- User[firstName=Marti, lastName=Luther, active=true, userId=42309fd]
+08:28:27.035 [main] INFO com.iluwatar.converter.App -- User[firstName=Kate, lastName=Smith, active=true, userId=if0243]
+08:28:27.036 [main] INFO com.iluwatar.converter.App -- DTO entities converted from domain:
+08:28:27.037 [main] INFO com.iluwatar.converter.App -- UserDto[firstName=Camile, lastName=Tough, active=false, email=124sad]
+08:28:27.037 [main] INFO com.iluwatar.converter.App -- UserDto[firstName=Marti, lastName=Luther, active=true, email=42309fd]
+08:28:27.037 [main] INFO com.iluwatar.converter.App -- UserDto[firstName=Kate, lastName=Smith, active=true, email=if0243]
+```
 
-## Applicability
+## When to Use the Converter Pattern in Java
 
 Use the Converter Pattern in the following situations:
 
@@ -100,14 +133,18 @@ Use the Converter Pattern in the following situations:
 * For legacy systems integration where data models differ significantly from newer systems.
 * When aiming to encapsulate conversion logic to promote single responsibility and cleaner code.
 
-## Known Uses
+## Converter Pattern Java Tutorials
+
+* [Converter Pattern in Java 8 (Boldare)](http://www.xsolve.pl/blog/converter-pattern-in-java-8/)
+
+## Real-World Applications of Converter Pattern in Java
 
 * Data Transfer Objects (DTOs) conversions in multi-layered applications.
 * Adapting third-party data structures or API responses to internal models.
 * ORM (Object-Relational Mapping) frameworks for mapping between database records and domain objects.
 * Microservices architecture for data exchange between different services.
 
-## Consequences
+## Benefits and Trade-offs of Converter Pattern
 
 Benefits:
 
@@ -121,12 +158,13 @@ Trade-offs:
 * Overhead: Introducing converters can add complexity and potential performance overhead, especially in systems with numerous data formats.
 * Duplication: There's a risk of duplicating model definitions if not carefully managed, leading to increased maintenance.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): Similar in intent to adapting interfaces, but Converter focuses on data models.
 * [Facade](https://java-design-patterns.com/patterns/facade/): Provides a simplified interface to a complex system, which might involve data conversion.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Converters can use different strategies for conversion, especially when multiple formats are involved.
 
-## Credits
+## References and Credits
 
-* [Converter Pattern in Java 8](http://www.xsolve.pl/blog/converter-pattern-in-java-8/)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Effective Java](https://amzn.to/4cGk2Jz)

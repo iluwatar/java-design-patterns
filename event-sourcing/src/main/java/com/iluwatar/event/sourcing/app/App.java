@@ -49,8 +49,6 @@ import lombok.extern.slf4j.Slf4j;
  * After the shut-down, system state is recovered by re-creating the past events from event
  * journals. Then state is printed so a user can view the last state is same with the state before a
  * system shut-down.
- *
- * <p>Created by Serdar Hamzaogullari on 06.08.2017.
  */
 @Slf4j
 public class App {
@@ -112,6 +110,4 @@ public class App {
     LOGGER.info(AccountAggregate.getAccount(ACCOUNT_OF_DAENERYS).toString());
     LOGGER.info(AccountAggregate.getAccount(ACCOUNT_OF_JON).toString());
   }
-
-
 }

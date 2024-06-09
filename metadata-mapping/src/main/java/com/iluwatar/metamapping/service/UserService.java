@@ -49,8 +49,8 @@ public class UserService {
     try (var session = factory.openSession()) {
       var tx = session.beginTransaction();
       List<User> userIter = session.createQuery("FROM User").list();
-      for (var iterator = userIter.iterator(); iterator.hasNext();) {
-        users.add(iterator.next());
+      for (User user : userIter) {
+        users.add(user);
       }
       tx.commit();
     } catch (HibernateException e) {

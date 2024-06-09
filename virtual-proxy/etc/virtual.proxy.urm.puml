@@ -1,0 +1,29 @@
+@startuml
+class Client {
+    + main(args : String[]) {static}
+}
+
+class RealVideoObject {
+    - videoData : String
+    + RealVideoObject()
+    + process()
+    + getVideoData() : String
+    - heavyInitialConfiguration() : void
+}
+
+interface ExpensiveObject {
+    + process() {abstract}
+}
+
+class VideoObjectProxy {
+    - realVideoObject : RealVideoObject
+    + VideoObjectProxy()
+    + process()
+    + setRealVideoObject(realVideoObject : RealVideoObject) : void
+    + getRealVideoObject() : RealVideoObject
+}
+
+VideoObjectProxy -->  "-realVideoObject" RealVideoObject
+RealVideoObject ..|> ExpensiveObject
+VideoObjectProxy ..|> ExpensiveObject
+@enduml

@@ -66,6 +66,5 @@ public class App {
 
   private static void logContext(ServiceContext context) {
     LOGGER.info("Context = {}", context);
-
   }
 }

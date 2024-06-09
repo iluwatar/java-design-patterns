@@ -26,7 +26,6 @@ package com.iluwatar.leaderelection.bully;
 
 import com.iluwatar.leaderelection.Instance;
 import com.iluwatar.leaderelection.Message;
-import com.iluwatar.leaderelection.MessageManager;
 import com.iluwatar.leaderelection.MessageType;
 import java.util.HashMap;
 import java.util.Map;

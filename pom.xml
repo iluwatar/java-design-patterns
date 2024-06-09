@@ -36,17 +36,17 @@
   <description>Java Design Patterns</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
+    <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
     <spring-boot.version>2.7.5</spring-boot.version>
-    <jacoco.version>0.8.11</jacoco.version>
+    <jacoco.version>0.8.12</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <htmlunit.version>4.1.0</htmlunit.version>
-    <gson.version>2.10.1</gson.version>
-    <guice.version>5.1.0</guice.version>
+    <gson.version>2.11.0</gson.version>
+    <guice.version>6.0.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
     <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
     <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
-    <license-maven-plugin.version>4.3</license-maven-plugin.version>
+    <license-maven-plugin.version>4.5</license-maven-plugin.version>
     <urm-maven-plugin.version>2.1.1</urm-maven-plugin.version>
     <slf4j.version>2.0.13</slf4j.version>
     <logback.version>1.5.6</logback.version>
@@ -68,7 +68,7 @@
     <module>adapter</module>
     <module>bridge</module>
     <module>composite</module>
-    <module>dao</module>
+    <module>data-access-object</module>
     <module>data-mapper</module>
     <module>decorator</module>
     <module>facade</module>
@@ -99,7 +99,6 @@
     <module>producer-consumer</module>
     <module>pipeline</module>
     <module>poison-pill</module>
-    <module>reader-writer-lock</module>
     <module>lazy-loading</module>
     <module>service-layer</module>
     <module>specification</module>
@@ -109,7 +108,6 @@
     <module>double-dispatch</module>
     <module>multiton</module>
     <module>resource-acquisition-is-initialization</module>
-    <module>thread-pool</module>
     <module>twin</module>
     <module>private-class-data</module>
     <module>object-pool</module>
@@ -121,36 +119,35 @@
     <module>step-builder</module>
     <module>business-delegate</module>
     <module>half-sync-half-async</module>
-    <module>layers</module>
-    <module>fluentinterface</module>
+    <module>layered-architecture</module>
+    <module>fluent-interface</module>
     <module>reactor</module>
     <module>caching</module>
     <module>delegation</module>
     <module>event-driven-architecture</module>
-    <module>api-gateway</module>
+    <module>microservices-api-gateway</module>
     <module>factory-kit</module>
     <module>feature-toggle</module>
     <module>value-object</module>
-    <module>module</module>
     <module>monad</module>
     <module>mute-idiom</module>
-    <module>hexagonal</module>
+    <module>hexagonal-architecture</module>
     <module>abstract-document</module>
-    <module>aggregator-microservices</module>
+    <module>microservices-aggregrator</module>
     <module>promise</module>
     <module>page-controller</module>
     <module>page-object</module>
     <module>event-based-asynchronous</module>
     <module>event-queue</module>
-    <module>queue-load-leveling</module>
+    <module>queue-based-load-leveling</module>
     <module>object-mother</module>
     <module>data-bus</module>
     <module>converter</module>
     <module>guarded-suspension</module>
     <module>balking</module>
     <module>extension-objects</module>
-    <module>marker</module>
-    <module>cqrs</module>
+    <module>marker-interface</module>
+    <module>command-query-responsibility-segregation</module>
     <module>event-sourcing</module>
     <module>data-transfer-object</module>
     <module>throttling</module>
@@ -162,11 +159,10 @@
     <module>ambassador</module>
     <module>acyclic-visitor</module>
     <module>collection-pipeline</module>
-    <module>master-worker-pattern</module>
+    <module>master-worker</module>
     <module>spatial-partition</module>
-    <module>priority-queue</module>
     <module>commander</module>
-    <module>typeobjectpattern</module>
+    <module>type-object</module>
     <module>bytecode</module>
     <module>leader-election</module>
     <module>data-locality</module>
@@ -202,24 +198,24 @@
     <module>service-to-worker</module>
     <module>client-session</module>
     <module>model-view-intent</module>
-    <module>embedded-value</module>
     <module>currying</module>
     <module>serialized-entity</module>
     <module>identity-map</module>
     <module>component</module>
     <module>context-object</module>
-    <module>thread-local-storage</module>
     <module>optimistic-offline-lock</module>
-    <module>crtp</module>
-    <module>log-aggregation</module>
+    <module>curiously-recurring-template-pattern</module>
+    <module>microservices-log-aggregation</module>
     <module>anti-corruption-layer</module>
     <module>health-check</module>
     <module>notification</module>
     <module>single-table-inheritance</module>
     <module>dynamic-proxy</module>
     <module>gateway</module>
-    <module>slob</module>
+    <module>serialized-lob</module>
     <module>server-session</module>
+    <module>virtual-proxy</module>
+    <module>function-composition</module>
   </modules>
   <repositories>
     <repository>

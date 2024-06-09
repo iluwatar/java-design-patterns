@@ -1,60 +1,59 @@
 ---
-title: Specification
+title: "Specification Pattern in Java: Enhancing Business Rules with Decoupled Logic"
+shortTitle: Specification
+description: "Dive deep into the Specification design pattern in Java, a strategic solution for encapsulating business rules. Learn how to implement, combine, and apply this pattern effectively in your software development projects."
 category: Behavioral
 language: en
 tag:
- - Data access
+  - Business
+  - Domain
+  - Encapsulation
+  - Enterprise patterns
+  - Extensibility
 ---
 
 ## Also known as
 
-Filter, Criteria
+* Filter
+* Criteria
 
-## Intent
+## Intent of Specification Design Pattern
 
-Specification pattern separates the statement of how to match a candidate, from the candidate object 
-that it is matched against. As well as its usefulness in selection, it is also valuable for 
-validation and for building to order.
+Encapsulate business rules and criteria that an object must satisfy to enable checking these rules in various parts of the application.
 
-## Explanation
+## Detailed Explanation of Specification Pattern with Real-World Examples
 
-Real world example
+Real-world example
 
-> There is a pool of different creatures and we often need to select some subset of them. We can 
-> write our search specification such as "creatures that can fly", "creatures heavier than 500 
-> kilograms", or as a combination of other search specifications, and then give it to the party that 
-> will perform the filtering.
+> Imagine you are organizing a conference and need to filter attendees based on specific criteria such as registration status, payment completion, and session interests.
+> 
+> Using the Specification design pattern, you would create separate specifications for each criterion (e.g., "IsRegistered", "HasPaid", "IsInterestedInSessionX"). These specifications can be combined dynamically to filter attendees who meet all the required criteria, such as those who are registered, have completed their payment, and are interested in a particular session. This approach allows for flexible and reusable business rules, ensuring that the filtering logic can be easily adjusted as needed without changing the underlying attendee objects.
 
-In Plain Words
+In plain words
 
-> Specification pattern allows us to separate the search criteria from the object that performs the 
-> search.
+> The Specification design pattern in Java enables the efficient encapsulation and reuse of business rules, offering a flexible and dynamic way to combine criteria for robust software development
 
 Wikipedia says
 
-> In computer programming, the specification pattern is a particular software design pattern, 
-> whereby business rules can be recombined by chaining the business rules together using boolean 
-> logic.
+> In computer programming, the specification pattern is a particular software design pattern, whereby business rules can be recombined by chaining the business rules together using boolean logic.
 
-**Programmatic Example**
+## Programmatic Example of Specification Pattern in Java
 
-If we look at our creature pool example from above, we have a set of creatures with certain 
-properties. Those properties can be part of a pre-defined, limited set (represented here by the 
-enums Size, Movement and Color); but they can also be continuous values (e.g. the mass of a 
-Creature). In this case, it is more appropriate to use what we call "parameterized specification", 
-where the property value can be given as an argument when the Creature is instantiated, allowing for 
-more flexibility. A third option is to combine pre-defined and/or parameterized properties using 
-boolean logic, allowing for near-endless selection possibilities (this is called "composite 
-specification", see below). The pros and cons of each approach are detailed in the table at the end 
-of this document.
+Let's consider a creature pool example. We have a collection of creatures with specific properties. These properties might belong to a predefined, limited set (represented by enums like `Size`, `Movement`, and `Color`) or they might be continuous values (e.g., the mass of a `Creature`). In cases with continuous values, it's better to use a "parameterized specification," where the property value is provided as an argument when the `Creature` is instantiated, allowing for greater flexibility. Additionally, predefined and/or parameterized properties can be combined using boolean logic, offering almost limitless selection possibilities (this is known as a "composite specification," explained further below). The advantages and disadvantages of each approach are detailed in the table at the end of this document.
+
+First, here is interface `Creature`.
 
 ```java
 public interface Creature {
-  String getName();
-  Size getSize();
-  Movement getMovement();
-  Color getColor();
-  Mass getMass();
+    String getName();
+
+    Size getSize();
+
+    Movement getMovement();
+
+    Color getColor();
+
+    Mass getMass();
 }
 ```
 
@@ -69,8 +68,24 @@ public class Dragon extends AbstractCreature {
 }
 ```
 
-Now that we want to select some subset of them, we use selectors. To select creatures that fly, we 
-should use `MovementSelector`.
+Now that we want to select some subset of them, we use selectors. To select creatures that fly, we should use `MovementSelector`. The snippet also shows the base class `AbstractSelector`.
+
+```java
+public abstract class AbstractSelector<T> implements Predicate<T> {
+
+    public AbstractSelector<T> and(AbstractSelector<T> other) {
+        return new ConjunctionSelector<>(this, other);
+    }
+
+    public AbstractSelector<T> or(AbstractSelector<T> other) {
+        return new DisjunctionSelector<>(this, other);
+    }
+
+    public AbstractSelector<T> not() {
+        return new NegationSelector<>(this);
+    }
+}
+```
 
 ```java
 public class MovementSelector extends AbstractSelector<Creature> {
@@ -88,8 +103,7 @@ public class MovementSelector extends AbstractSelector<Creature> {
 }
 ```
 
-On the other hand, when selecting creatures heavier than a chosen amount, we use 
-`MassGreaterThanSelector`.
+On the other hand, when selecting creatures heavier than a chosen amount, we use `MassGreaterThanSelector`.
 
 ```java
 public class MassGreaterThanSelector extends AbstractSelector<Creature> {
@@ -107,108 +121,129 @@ public class MassGreaterThanSelector extends AbstractSelector<Creature> {
 }
 ```
 
-With these building blocks in place, we can perform a search for red creatures as follows:
+With these building blocks in place, we can perform some searches.
 
 ```java
-    var redCreatures = creatures.stream().filter(new ColorSelector(Color.RED))
-      .collect(Collectors.toList());
-```
+@Slf4j
+public class App {
 
-But we could also use our parameterized selector like this:
-
-```java
-    var heavyCreatures = creatures.stream().filter(new MassGreaterThanSelector(500.0)
-      .collect(Collectors.toList());
-```
-
-Our third option is to combine multiple selectors together. Performing a search for special 
-creatures (defined as red, flying, and not small) could be done as follows:
-
-```java
-    var specialCreaturesSelector = 
-      new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING)).and(new SizeSelector(Size.SMALL).not());
-
-    var specialCreatures = creatures.stream().filter(specialCreaturesSelector)
-      .collect(Collectors.toList());
-```
-
-**More on Composite Specification**
-
-In Composite Specification, we will create custom instances of `AbstractSelector` by combining 
-other selectors (called "leaves") using the three basic logical operators. These are implemented in 
-`ConjunctionSelector`, `DisjunctionSelector` and `NegationSelector`.
-
-```java
-public abstract class AbstractSelector<T> implements Predicate<T> {
-
-  public AbstractSelector<T> and(AbstractSelector<T> other) {
-    return new ConjunctionSelector<>(this, other);
+  public static void main(String[] args) {
+    // initialize creatures list
+    var creatures = List.of(
+        new Goblin(),
+        new Octopus(),
+        new Dragon(),
+        new Shark(),
+        new Troll(),
+        new KillerBee()
+    );
+    // so-called "hard-coded" specification
+    LOGGER.info("Demonstrating hard-coded specification :");
+    // find all walking creatures
+    LOGGER.info("Find all walking creatures");
+    print(creatures, new MovementSelector(Movement.WALKING));
+    // find all dark creatures
+    LOGGER.info("Find all dark creatures");
+    print(creatures, new ColorSelector(Color.DARK));
+    LOGGER.info("\n");
+    // so-called "parameterized" specification
+    LOGGER.info("Demonstrating parameterized specification :");
+    // find all creatures heavier than 500kg
+    LOGGER.info("Find all creatures heavier than 600kg");
+    print(creatures, new MassGreaterThanSelector(600.0));
+    // find all creatures heavier than 500kg
+    LOGGER.info("Find all creatures lighter than or weighing exactly 500kg");
+    print(creatures, new MassSmallerThanOrEqSelector(500.0));
+    LOGGER.info("\n");
+    // so-called "composite" specification
+    LOGGER.info("Demonstrating composite specification :");
+    // find all red and flying creatures
+    LOGGER.info("Find all red and flying creatures");
+    var redAndFlying = new ColorSelector(Color.RED).and(new MovementSelector(Movement.FLYING));
+    print(creatures, redAndFlying);
+    // find all creatures dark or red, non-swimming, and heavier than or equal to 400kg
+    LOGGER.info("Find all scary creatures");
+    var scaryCreaturesSelector = new ColorSelector(Color.DARK)
+        .or(new ColorSelector(Color.RED)).and(new MovementSelector(Movement.SWIMMING).not())
+        .and(new MassGreaterThanSelector(400.0).or(new MassEqualSelector(400.0)));
+    print(creatures, scaryCreaturesSelector);
   }
 
-  public AbstractSelector<T> or(AbstractSelector<T> other) {
-    return new DisjunctionSelector<>(this, other);
-  }
-
-  public AbstractSelector<T> not() {
-    return new NegationSelector<>(this);
-  }
-}
-```
-
-```java
-public class ConjunctionSelector<T> extends AbstractSelector<T> {
-
-  private final List<AbstractSelector<T>> leafComponents;
-
-  @SafeVarargs
-  ConjunctionSelector(AbstractSelector<T>... selectors) {
-    this.leafComponents = List.of(selectors);
-  }
-
-  /**
-   * Tests if *all* selectors pass the test.
-   */
-  @Override
-  public boolean test(T t) {
-    return leafComponents.stream().allMatch(comp -> (comp.test(t)));
+  private static void print(List<? extends Creature> creatures, Predicate<Creature> selector) {
+    creatures.stream().filter(selector).map(Objects::toString).forEach(LOGGER::info);
   }
 }
 ```
 
-All that is left to do is now to create leaf selectors (be it hard-coded or parameterized ones) that 
-are as generic as possible, and we will be able to instantiate the ``AbstractSelector`` class by 
-combining any amount of selectors, as exemplified above. We should be careful though, as it is easy 
-to make a mistake when combining many logical operators; in particular, we should pay attention to 
-the priority of the operations. In general, Composite Specification is a great way to write more 
-reusable code, as there is no need to create a Selector class for each filtering operation. Instead, 
-we just create an instance of ``AbstractSelector`` "on the spot", using tour generic "leaf" 
-selectors and some basic boolean logic.
+Console output:
 
-**Comparison of the different approaches**
+```
+12:49:24.808 [main] INFO com.iluwatar.specification.app.App -- Demonstrating hard-coded specification :
+12:49:24.810 [main] INFO com.iluwatar.specification.app.App -- Find all walking creatures
+12:49:24.812 [main] INFO com.iluwatar.specification.app.App -- Goblin [size=small, movement=walking, color=green, mass=30.0kg]
+12:49:24.812 [main] INFO com.iluwatar.specification.app.App -- Troll [size=large, movement=walking, color=dark, mass=4000.0kg]
+12:49:24.812 [main] INFO com.iluwatar.specification.app.App -- Find all dark creatures
+12:49:24.815 [main] INFO com.iluwatar.specification.app.App -- Octopus [size=normal, movement=swimming, color=dark, mass=12.0kg]
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Troll [size=large, movement=walking, color=dark, mass=4000.0kg]
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- 
 
-| Pattern | Usage | Pros | Cons |
-|---|---|---|---|
-| Hard-Coded Specification | Selection criteria are few and known in advance | + Easy to implement | - Inflexible |
-| | | + Expressive |
-| Parameterized Specification | Selection criteria are a large range of values (e.g. mass, speed,...) | + Some flexibility | - Still requires special-purpose classes |
-| Composite Specification | There are a lot of selection criteria that can be combined in multiple ways, hence it is not feasible to create a class for each selector | + Very flexible, without requiring many specialized classes | - Somewhat more difficult to comprehend |
-| | | + Supports logical operations | - You still need to create the base classes used as leaves |
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Demonstrating parameterized specification :
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Find all creatures heavier than 600kg
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Dragon [size=large, movement=flying, color=red, mass=39300.0kg]
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Troll [size=large, movement=walking, color=dark, mass=4000.0kg]
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Find all creatures lighter than or weighing exactly 500kg
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Goblin [size=small, movement=walking, color=green, mass=30.0kg]
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Octopus [size=normal, movement=swimming, color=dark, mass=12.0kg]
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Shark [size=normal, movement=swimming, color=light, mass=500.0kg]
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- KillerBee [size=small, movement=flying, color=light, mass=6.7kg]
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- 
 
-## Class diagram
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Demonstrating composite specification :
+12:49:24.816 [main] INFO com.iluwatar.specification.app.App -- Find all red and flying creatures
+12:49:24.817 [main] INFO com.iluwatar.specification.app.App -- Dragon [size=large, movement=flying, color=red, mass=39300.0kg]
+12:49:24.817 [main] INFO com.iluwatar.specification.app.App -- Find all scary creatures
+12:49:24.818 [main] INFO com.iluwatar.specification.app.App -- Dragon [size=large, movement=flying, color=red, mass=39300.0kg]
+12:49:24.818 [main] INFO com.iluwatar.specification.app.App -- Troll [size=large, movement=walking, color=dark, mass=4000.0kg]
+```
 
-![alt text](./etc/specification.png "Specification")
+Adopting the Specification pattern significantly enhances the flexibility and reusability of business rules within Java applications, contributing to more maintainable code.
 
-## Applicability
+## When to Use the Specification Pattern in Java
 
-Use the Specification pattern when
+Apply the Java Specification pattern when
 
-* You need to select a subset of objects based on some criteria, and to refresh the selection at various times.
-* You need to check that only suitable objects are used for a certain role (validation).
+* You need to filter objects based on different criteria.
+* The filtering criteria can change dynamically.
+* Ideal for use cases involving complex business rules that must be reused across different parts of an application.
 
-## Related patterns
+## Real-World Applications of Specification Pattern in Java
 
-* Repository
+* Validating user inputs in enterprise applications.
+* Filtering search results in e-commerce applications.
+* Business rule validation in domain-driven design (DDD).
 
-## Credits
+## Benefits and Trade-offs of Specification Pattern
 
-* [Martin Fowler - Specifications](http://martinfowler.com/apsupp/spec.pdf)
+Benefits:
+
+* Enhances the flexibility and reusability of business rules.
+* Promotes [single responsibility principle](https://java-design-patterns.com/principles/#single-responsibility-principle) by separating business rules from the entities.
+* Facilitates unit testing of business rules.
+
+Trade-offs:
+
+* Can lead to a proliferation of small classes, increasing complexity.
+* Might introduce performance overhead due to the dynamic checking of specifications.
+
+## Related Java Design Patterns
+
+* [Composite](https://java-design-patterns.com/patterns/composite/): Often used together with Specification to combine multiple specifications.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used to add additional criteria to a specification dynamically.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Both patterns involve encapsulating a family of algorithms. Strategy encapsulates different strategies or algorithms, while Specification encapsulates business rules.
+
+## References and Credits
+
+* [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
+* [Implementing Domain-Driven Design](https://amzn.to/4dmBjrB)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Specifications (Martin Fowler)](http://martinfowler.com/apsupp/spec.pdf)

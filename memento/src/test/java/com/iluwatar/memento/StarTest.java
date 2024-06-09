@@ -29,9 +29,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/20/15 - 10:08 AM
+ * StarTest
  *
- * @author Jeroen Meulemeester
  */
 class StarTest {
 

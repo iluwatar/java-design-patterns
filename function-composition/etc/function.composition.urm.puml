@@ -1,0 +1,21 @@
+@startuml
+skinparam monochrome true
+
+participant "App" as App
+participant "FunctionComposer" as Composer
+participant "Function<Integer, Integer>" as F1
+
+create F1
+App -> F1 : func1 = x -> x * 2
+create F1
+App -> F1 : func2 = x -> x * x
+
+App -> Composer : func1, func2
+activate Composer
+Composer -> F1 : func1.andThen(func2)
+deactivate Composer
+activate F1
+F1 -> App : composedFunction
+deactivate F1
+
+@enduml

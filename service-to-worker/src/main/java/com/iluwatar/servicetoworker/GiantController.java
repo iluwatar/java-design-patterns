@@ -24,8 +24,6 @@
  */
 package com.iluwatar.servicetoworker;
 
-import lombok.Getter;
-
 /**
  * GiantController can update the giant data and redraw it using the view. Singleton object that
  * intercepts all requests and performs common functions.

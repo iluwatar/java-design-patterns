@@ -1,24 +1,29 @@
 ---
-title: Abstract Document
+title: "Abstract Document Pattern in Java: Simplifying Data Handling with Flexibility"
+shortTitle: Abstract Document
+description: "Explore the Abstract Document design pattern in Java. Learn its intent, explanation, applicability, benefits, and see real-world examples to implement flexible and dynamic data structures."
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Extensibility
-    - Decoupling
+  - Abstraction
+  - Decoupling
+  - Dynamic typing
+  - Encapsulation
+  - Extensibility
+  - Polymorphism
 ---
 
-## Intent
+## Intent of Abstract Document Design Pattern
 
-The Abstract Document design pattern is a structural design pattern that aims to provide a consistent way to handle hierarchical and tree-like data structures by defining a common interface for various document types. It separates the core document structure from specific data formats, enabling dynamic updates and simplified maintenance.
+The Abstract Document design pattern in Java is a crucial structural design pattern that provides a consistent way to handle hierarchical and tree-like data structures by defining a common interface for various document types. It separates the core document structure from specific data formats, enabling dynamic updates and simplified maintenance.
 
-## Explanation
+## Detailed Explanation of Abstract Document Pattern with Real-World Examples
 
-The Abstract Document pattern enables handling additional, non-static properties. This pattern uses concept of traits to enable type safety and separate properties of different classes into set of interfaces.
+The Abstract Document design pattern in Java allows dynamic handling of non-static properties. This pattern uses concept of traits to enable type safety and separate properties of different classes into set of interfaces.
 
-Real world example
+Real-world example
 
-> Consider a car that consists of multiple parts. However, we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
+> Consider a library system implementing the Abstract Document design pattern in Java, where books can have diverse formats and attributes: physical books, eBooks, and audiobooks. Each format has unique properties, such as page count for physical books, file size for eBooks, and duration for audiobooks. The Abstract Document design pattern allows the library system to manage these diverse formats flexibly. By using this pattern, the system can store and retrieve properties dynamically, without needing a rigid structure for each book type, making it easier to add new formats or attributes in the future without significant changes to the codebase.
 
 In plain words
 
@@ -28,7 +33,9 @@ Wikipedia says
 
 > An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the support of type-safety. The pattern makes use of traits to separate different properties of a class into different interfaces.
 
-**Programmatic Example**
+## Programmatic Example of Abstract Document Pattern in Java
+
+Consider a car that consists of multiple parts. However, we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
 
 Let's first define the base classes `Document` and `AbstractDocument`. They basically make the object hold a property map and any amount of child objects.
 
@@ -72,7 +79,8 @@ public abstract class AbstractDocument implements Document {
                 .flatMap(Collection::stream)
                 .map(constructor);
     }
-  ...
+    
+    // Other properties and methods...
 }
 ```
 
@@ -127,51 +135,57 @@ public class Car extends AbstractDocument implements HasModel, HasPrice, HasPart
 And finally here's how we construct and use the `Car` in a full example.
 
 ```java
+  public static void main(String[] args) {
     LOGGER.info("Constructing parts and car");
 
-        var wheelProperties=Map.of(
-        Property.TYPE.toString(),"wheel",
-        Property.MODEL.toString(),"15C",
-        Property.PRICE.toString(),100L);
+    var wheelProperties = Map.of(
+            Property.TYPE.toString(), "wheel",
+            Property.MODEL.toString(), "15C",
+            Property.PRICE.toString(), 100L);
 
-        var doorProperties=Map.of(
-        Property.TYPE.toString(),"door",
-        Property.MODEL.toString(),"Lambo",
-        Property.PRICE.toString(),300L);
+    var doorProperties = Map.of(
+            Property.TYPE.toString(), "door",
+            Property.MODEL.toString(), "Lambo",
+            Property.PRICE.toString(), 300L);
 
-        var carProperties=Map.of(
-        Property.MODEL.toString(),"300SL",
-        Property.PRICE.toString(),10000L,
-        Property.PARTS.toString(),List.of(wheelProperties,doorProperties));
+    var carProperties = Map.of(
+            Property.MODEL.toString(), "300SL",
+            Property.PRICE.toString(), 10000L,
+            Property.PARTS.toString(), List.of(wheelProperties, doorProperties));
 
-        var car=new Car(carProperties);
+    var car = new Car(carProperties);
 
-        LOGGER.info("Here is our car:");
-        LOGGER.info("-> model: {}",car.getModel().orElseThrow());
-        LOGGER.info("-> price: {}",car.getPrice().orElseThrow());
-        LOGGER.info("-> parts: ");
-        car.getParts().forEach(p->LOGGER.info("\t{}/{}/{}",
-        p.getType().orElse(null),
-        p.getModel().orElse(null),
-        p.getPrice().orElse(null))
-        );
-
-// Constructing parts and car
-// Here is our car:
-// model: 300SL
-// price: 10000
-// parts: 
-// wheel/15C/100
-// door/Lambo/300
+    LOGGER.info("Here is our car:");
+    LOGGER.info("-> model: {}", car.getModel().orElseThrow());
+    LOGGER.info("-> price: {}", car.getPrice().orElseThrow());
+    LOGGER.info("-> parts: ");
+    car.getParts().forEach(p -> LOGGER.info("\t{}/{}/{}",
+            p.getType().orElse(null),
+            p.getModel().orElse(null),
+            p.getPrice().orElse(null))
+    );
+}
 ```
 
-## Class diagram
+The program output:
 
-![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
+```
+07:21:57.391 [main] INFO com.iluwatar.abstractdocument.App -- Constructing parts and car
+07:21:57.393 [main] INFO com.iluwatar.abstractdocument.App -- Here is our car:
+07:21:57.393 [main] INFO com.iluwatar.abstractdocument.App -- -> model: 300SL
+07:21:57.394 [main] INFO com.iluwatar.abstractdocument.App -- -> price: 10000
+07:21:57.394 [main] INFO com.iluwatar.abstractdocument.App -- -> parts: 
+07:21:57.395 [main] INFO com.iluwatar.abstractdocument.App -- 	wheel/15C/100
+07:21:57.395 [main] INFO com.iluwatar.abstractdocument.App -- 	door/Lambo/300
+```
 
-## Applicability
+## Abstract Document Pattern Class Diagram
 
-This pattern is particularly useful in scenarios where you have different types of documents that share some common attributes or behaviors, but also have unique attributes or behaviors specific to their individual types. Here are some scenarios where the Abstract Document design pattern can be applicable:
+![Abstract Document](./etc/abstract-document.png "Abstract Document Traits and Domain")
+
+## When to Use the Abstract Document Pattern in Java
+
+The Abstract Document design pattern is especially beneficial in scenarios requiring management of different document types in Java that share some common attributes or behaviors, but also have unique attributes or behaviors specific to their individual types. Here are some scenarios where the Abstract Document design pattern can be applicable:
 
 * Content Management Systems (CMS): In a CMS, you might have various types of content such as articles, images, videos, etc. Each type of content could have shared attributes like creation date, author, and tags, while also having specific attributes like image dimensions for images or video duration for videos.
 
@@ -197,9 +211,9 @@ This pattern is particularly useful in scenarios where you have different types 
 
 The key idea behind the Abstract Document design pattern is to provide a flexible and extensible way to manage different types of documents or entities with shared and distinct attributes. By defining a common interface and implementing it across various document types, you can achieve a more organized and consistent approach to handling complex data structures.
 
-## Consequences
+## Benefits and Trade-offs of Abstract Document Pattern
 
-Benefits
+Benefits:
 
 * Flexibility: Accommodates varied document structures and properties.
 
@@ -209,14 +223,17 @@ Benefits
 
 * Reusability: Typed views enable code reuse for accessing specific attribute types.
 
-Trade-offs
+Trade-offs:
 
 * Complexity: Requires defining interfaces and views, adding implementation overhead.
 
 * Performance: Might introduce slight performance overhead compared to direct data access.
 
-## Credits
+## References and Credits
 
-* [Wikipedia: Abstract Document Pattern](https://en.wikipedia.org/wiki/Abstract_Document_Pattern)
-* [Martin Fowler: Dealing with properties](http://martinfowler.com/apsupp/properties.pdf)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
 * [Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing (v. 4)](https://amzn.to/49zRP4R)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Abstract Document Pattern (Wikipedia)](https://en.wikipedia.org/wiki/Abstract_Document_Pattern)
+* [Dealing with Properties (Martin Fowler)](http://martinfowler.com/apsupp/properties.pdf)

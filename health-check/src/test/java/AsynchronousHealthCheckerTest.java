@@ -48,7 +48,6 @@ import org.springframework.boot.actuate.health.Status;
 /**
  * Tests for {@link AsynchronousHealthChecker}.
  *
- * @author ydoksanbir
  */
 @Slf4j
 class AsynchronousHealthCheckerTest {

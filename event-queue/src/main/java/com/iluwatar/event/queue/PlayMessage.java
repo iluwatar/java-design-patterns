@@ -32,7 +32,6 @@ import lombok.Setter;
 /**
  * The Event Queue's queue will store the instances of this class.
  *
- * @author mkuprivecz
  */
 @Getter
 @AllArgsConstructor
