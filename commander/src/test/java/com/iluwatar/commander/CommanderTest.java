@@ -52,6 +52,8 @@ class CommanderTest {
 
     private static final List<Exception> exceptionList = new ArrayList<>();
 
+    private static final AppAllCases appAllCases = new AppAllCases();
+
     static {
         exceptionList.add(new DatabaseUnavailableException());
         exceptionList.add(new ShippingNotPossibleException());
@@ -592,4 +594,32 @@ class CommanderTest {
         }
     }
 
+    @Test
+    void testAllSuccessCases() throws Exception{
+      appAllCases.employeeDbSuccessCase();
+      appAllCases.messagingSuccessCase();
+      appAllCases.paymentSuccessCase();
+      appAllCases.queueSuccessCase();
+      appAllCases.shippingSuccessCase();
+    }
+
+    @Test
+    void testAllUnavailableCase() throws Exception {
+      appAllCases.employeeDatabaseUnavailableCase();
+      appAllCases.messagingDatabaseUnavailableCasePaymentSuccess();
+      appAllCases.messagingDatabaseUnavailableCasePaymentError();
+      appAllCases.messagingDatabaseUnavailableCasePaymentFailure();
+      appAllCases.paymentDatabaseUnavailableCase();
+      appAllCases.queuePaymentTaskDatabaseUnavailableCase();
+      appAllCases.queueMessageTaskDatabaseUnavailableCase();
+      appAllCases.queueEmployeeDbTaskDatabaseUnavailableCase();
+      appAllCases.itemUnavailableCase();
+      appAllCases.shippingDatabaseUnavailableCase();
+    }
+
+    @Test
+    void testAllNotPossibleCase() throws Exception {
+      appAllCases.paymentNotPossibleCase();
+      appAllCases.shippingItemNotPossibleCase();
+    }
 }

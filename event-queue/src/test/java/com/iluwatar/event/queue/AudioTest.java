@@ -35,7 +35,6 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Testing the Audio service of the Queue
- * @author mkuprivecz
  *
  */
 class AudioTest {

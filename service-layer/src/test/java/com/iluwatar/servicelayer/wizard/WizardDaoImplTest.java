@@ -31,9 +31,8 @@ import com.iluwatar.servicelayer.common.BaseDaoTest;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/28/15 - 11:46 PM
+ * WizardDaoImplTest
  *
- * @author Jeroen Meulemeester
  */
 class WizardDaoImplTest extends BaseDaoTest<Wizard, WizardDaoImpl> {
 

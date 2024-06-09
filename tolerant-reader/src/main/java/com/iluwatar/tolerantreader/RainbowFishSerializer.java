@@ -30,6 +30,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Map;
+import lombok.NoArgsConstructor;
 
 /**
  * RainbowFishSerializer provides methods for reading and writing {@link RainbowFish} objects to
@@ -37,13 +38,11 @@ import java.util.Map;
  * RainbowFish} objects. This way the reader does not break even though new properties are added to
  * the schema.
  */
+@NoArgsConstructor
 public final class RainbowFishSerializer {
 
   public static final String LENGTH_METERS = "lengthMeters";
   public static final String WEIGHT_TONS = "weightTons";
-
-  private RainbowFishSerializer() {
-  }
 
   /**
    * Write V1 RainbowFish to file.

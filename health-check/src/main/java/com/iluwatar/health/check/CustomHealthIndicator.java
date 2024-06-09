@@ -41,7 +41,6 @@ import org.springframework.stereotype.Component;
  * A custom health indicator that periodically checks the health of a database and caches the
  * result. It leverages an asynchronous health checker to perform the health checks.
  *
- * @author ydoksanbir
  */
 @Slf4j
 @Component

@@ -30,7 +30,6 @@ import java.util.List;
 /**
  * A middle-layer app that calls/passes along data from the back-end.
  *
- * @author swaisuan
  */
 public class World {
 

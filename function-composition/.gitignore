@@ -1,0 +1,59 @@
+################## Eclipse ######################
+target
+.metadata
+.settings
+.classpath
+.project
+*.class
+tmp/
+*.tmp
+*.bak
+*~.nib
+local.properties
+.loadpath
+.recommenders
+.DS_Store
+
+#######  Java annotation processor (APT) ########
+.factorypath
+
+################ Package Files ##################
+*.jar
+*.war
+*.ear
+*.swp
+datanucleus.log
+/bin/
+*.log
+event-sourcing/Journal.json
+
+################## Checkstyle ###################
+.checkstyle
+
+##################### STS #######################
+.apt_generated
+.springBeans
+.sts4-cache
+
+################# IntelliJ IDEA #################
+.idea
+*.iws
+*.iml
+*.ipr
+
+################### NetBeans ####################
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+#################### VS Code ####################
+.vscode/
+
+#################### Java Design Patterns #######
+etc/Java Design Patterns.urm.puml
+serialized-entity/output.txt

@@ -42,7 +42,6 @@ import org.springframework.stereotype.Component;
  * the health indicator returns {@link Health#up()} and logs a success message. If all retry
  * attempts fail, the health indicator returns {@link Health#down()} and logs an error message.
  *
- * @author ydoksanbir
  */
 @Slf4j
 @Component

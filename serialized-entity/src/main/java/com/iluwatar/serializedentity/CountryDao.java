@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 /**
  * In an application the Data Access Object (DAO) is a part of Data access layer. It is an object
  * that provides an interface to some type of persistence mechanism. By mapping application calls to

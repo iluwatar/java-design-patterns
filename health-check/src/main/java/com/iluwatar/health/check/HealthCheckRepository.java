@@ -34,7 +34,6 @@ import org.springframework.stereotype.Repository;
  * A repository class for managing health check records in the database. This class provides methods
  * for checking the health of the database connection and performing test transactions.
  *
- * @author ydoksanbir
  */
 @Slf4j
 @Repository

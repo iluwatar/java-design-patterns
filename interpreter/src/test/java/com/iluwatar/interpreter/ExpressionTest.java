@@ -37,12 +37,9 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /**
- * Date: 12/14/15 - 11:48 AM
- * <p>
  * Test Case for Expressions
  *
  * @param <E> Type of Expression
- * @author Jeroen Meulemeester
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class ExpressionTest<E extends Expression> {

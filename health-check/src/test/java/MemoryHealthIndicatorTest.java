@@ -44,7 +44,6 @@ import org.springframework.boot.actuate.health.Status;
 /**
  * Unit tests for {@link MemoryHealthIndicator}.
  *
- * @author ydoksanbir
  */
 @ExtendWith(MockitoExtension.class)
 class MemoryHealthIndicatorTest {

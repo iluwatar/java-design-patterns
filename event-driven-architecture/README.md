@@ -1,16 +1,18 @@
 ---
-title: Event-Driven Architecture
+title: "Event-Driven Architecture Pattern in Java: Building Responsive and Scalable Java Systems"
+shortTitle: Event-Driven Architecture
+description: "Discover comprehensive guides on Event-Driven Architecture patterns with practical Java examples. Learn to implement effective event-driven systems in your projects."
 category: Architectural
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Enterprise patterns
-    - Event-driven
-    - Messaging
-    - Publish/subscribe
-    - Reactive
-    - Scalability
+  - Asynchronous
+  - Decoupling
+  - Enterprise patterns
+  - Event-driven
+  - Messaging
+  - Publish/subscribe
+  - Reactive
+  - Scalability
 ---
 
 ## Also known as
@@ -18,25 +20,25 @@ tag:
 * Event-Driven System
 * Event-Based Architecture
 
-## Intent
+## Intent of Event-Driven Architecture Design Pattern
 
 Event-Driven Architecture (EDA) is designed to orchestrate behavior around the production, detection, consumption of, and reaction to events. This architecture enables highly decoupled, scalable, and dynamic interconnections between event producers and consumers.
 
-## Explanation
+## Detailed Explanation of Event-Driven Architecture Pattern with Real-World Examples
 
-### Real-world example
+Real-world example
 
 > A real-world example of the Event-Driven Architecture (EDA) pattern is the operation of an air traffic control system. In this system, events such as aircraft entering airspace, changes in weather conditions, and ground vehicle movements trigger specific responses like altering flight paths, scheduling gate assignments, and updating runway usage. This setup allows for highly efficient, responsive, and safe management of airport operations, reflecting EDA's core principles of asynchronous communication and dynamic event handling.
 
-### In plain words
+In plain words
 
 > Event-Driven Architecture is a design pattern where system behavior is dictated by the occurrence of specific events, allowing for dynamic, efficient, and decoupled responses.
 
-### Wikipedia says
+Wikipedia says
 
 > Event-driven architecture (EDA) is a software architecture paradigm concerning the production and detection of events.
 
-### Programmatic Example
+## Programmatic Example of Event-Driven Architecture in Java
 
 The Event-Driven Architecture (EDA) pattern in this module is implemented using several key classes and concepts:  
 
@@ -45,33 +47,117 @@ The Event-Driven Architecture (EDA) pattern in this module is implemented using 
 * EventDispatcher: This class is responsible for dispatching events to their respective handlers. It maintains a mapping of event types to handlers.  
 * UserCreatedEventHandler and UserUpdatedEventHandler: These are the handler classes for the UserCreatedEvent and UserUpdatedEvent respectively. They contain the logic to execute when these events occur.  
 
-Here's a simplified code example of how these classes interact:
+First, we'll define the `Event` abstract class and the concrete event classes `UserCreatedEvent` and `UserUpdatedEvent`.
 
 ```java
-// Create an EventDispatcher
-EventDispatcher dispatcher = new EventDispatcher();
-
-// Register handlers for UserCreatedEvent and UserUpdatedEvent
-dispatcher.registerHandler(UserCreatedEvent.class, new UserCreatedEventHandler());
-dispatcher.registerHandler(UserUpdatedEvent.class, new UserUpdatedEventHandler());
-
-// Create a User
-User user = new User("iluwatar");
-
-// Dispatch UserCreatedEvent
-dispatcher.dispatch(new UserCreatedEvent(user));
-
-// Dispatch UserUpdatedEvent
-dispatcher.dispatch(new UserUpdatedEvent(user));
+public abstract class Event {
+  // Event related properties and methods
+}
 ```
 
-In this example, the EventDispatcher is created and handlers for UserCreatedEvent and UserUpdatedEvent are registered. Then a User is created and UserCreatedEvent and UserUpdatedEvent are dispatched. When these events are dispatched, the EventDispatcher calls the appropriate handler to handle the event.  This is a basic example of an Event-Driven Architecture, where the occurrence of events drives the flow of the program. The system is designed to respond to events as they occur, which allows for a high degree of flexibility and decoupling between components.
+```java
+public class UserCreatedEvent extends Event {
+  private User user;
 
-## Class diagram
+  public UserCreatedEvent(User user) {
+    this.user = user;
+  }
+
+  public User getUser() {
+    return user;
+  }
+}
+```
+
+```java
+public class UserUpdatedEvent extends Event {
+  private User user;
+
+  public UserUpdatedEvent(User user) {
+    this.user = user;
+  }
+
+  public User getUser() {
+    return user;
+  }
+}
+```
+
+Next, we'll define the event handlers `UserCreatedEventHandler` and `UserUpdatedEventHandler`.
+
+```java
+public class UserCreatedEventHandler {
+  public void onUserCreated(UserCreatedEvent event) {
+    // Logic to execute when a UserCreatedEvent occurs
+  }
+}
+```
+
+```java
+public class UserUpdatedEventHandler {
+  public void onUserUpdated(UserUpdatedEvent event) {
+    // Logic to execute when a UserUpdatedEvent occurs
+  }
+}
+```
+
+Then, we'll define the `EventDispatcher` class that is responsible for dispatching events to their respective handlers.
+
+```java
+public class EventDispatcher {
+  private Map<Class<? extends Event>, List<Consumer<Event>>> handlers = new HashMap<>();
+
+  public <E extends Event> void registerHandler(Class<E> eventType, Consumer<E> handler) {
+    handlers.computeIfAbsent(eventType, k -> new ArrayList<>()).add(handler::accept);
+  }
+
+  public void dispatch(Event event) {
+    List<Consumer<Event>> eventHandlers = handlers.get(event.getClass());
+    if (eventHandlers != null) {
+      eventHandlers.forEach(handler -> handler.accept(event));
+    }
+  }
+}
+```
+
+Finally, we'll demonstrate how to use these classes in the main application.
+
+```java
+public class App {
+  public static void main(String[] args) {
+    // Create an EventDispatcher
+    EventDispatcher dispatcher = new EventDispatcher();
+
+    // Register handlers for UserCreatedEvent and UserUpdatedEvent
+    dispatcher.registerHandler(UserCreatedEvent.class, new UserCreatedEventHandler()::onUserCreated);
+    dispatcher.registerHandler(UserUpdatedEvent.class, new UserUpdatedEventHandler()::onUserUpdated);
+
+    // Create a User
+    User user = new User("iluwatar");
+
+    // Dispatch UserCreatedEvent
+    dispatcher.dispatch(new UserCreatedEvent(user));
+
+    // Dispatch UserUpdatedEvent
+    dispatcher.dispatch(new UserUpdatedEvent(user));
+  }
+}
+```
+
+Running the example produces the following console output:
+
+```
+22:15:19.997 [main] INFO com.iluwatar.eda.handler.UserCreatedEventHandler -- User 'iluwatar' has been Created!
+22:15:20.000 [main] INFO com.iluwatar.eda.handler.UserUpdatedEventHandler -- User 'iluwatar' has been Updated!
+```
+
+This example demonstrates the Event-Driven Architecture pattern, where the occurrence of events drives the flow of the program. The system is designed to respond to events as they occur, which allows for a high degree of flexibility and decoupling between components.
+
+## Detailed Explanation of Event-Driven Architecture Pattern with Real-World Examples
 
 ![Event-Driven Architecture](./etc/eda.png "Event-Driven Architecture")
 
-## Applicability
+## When to Use the Event-Driven Architecture Pattern in Java
 
 Use an Event-driven architecture when
 
@@ -80,7 +166,7 @@ Use an Event-driven architecture when
 * Systems needing to efficiently handle high throughput and sporadic loads.
 * When integrating with microservices to enhance agility and scalability.
 
-## Known Uses
+## Real-World Applications of Event-Driven Architecture Pattern in Java
 
 * Real-time data processing applications.
 * Complex event processing systems in finance, such as stock trading platforms.
@@ -89,7 +175,7 @@ Use an Event-driven architecture when
 * Amazon's AWS Lambda, lets you execute code in response to events such as changes to Amazon S3 buckets, updates to an Amazon DynamoDB table, or custom events generated by your applications or devices. (https://aws.amazon.com/lambda)
 * MySQL runs triggers based on events such as inserts and update events happening on database tables.
 
-## Consequences
+## Benefits and Trade-offs of Event-Driven Architecture Pattern
 
 Benefits:
 
@@ -103,17 +189,14 @@ Trade-offs:
 * Dependency on Messaging Systems: Heavily relies on robust messaging infrastructures.
 * Event Consistency: Requires careful design to handle event ordering and consistency.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * Microservices Architecture: Often used together with EDA to enhance agility and scalability.
 * Publish/Subscribe: A common pattern used within EDA for messaging between event producers and consumers.
 
-## Credits
+## References and Credits
 
-* [Event-driven architecture - Wikipedia](https://en.wikipedia.org/wiki/Event-driven_architecture)
-* [What is an Event-Driven Architecture](https://aws.amazon.com/event-driven-architecture/)
-* [Real World Applications/Event Driven Applications](https://wiki.haskell.org/Real_World_Applications/Event_Driven_Applications)
-* [Event-driven architecture definition](http://searchsoa.techtarget.com/definition/event-driven-architecture)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3Q3vBki)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/49Aljz0)
 * [Reactive Messaging Patterns With the Actor Model: Applications and Integration in Scala and Akka](https://amzn.to/3UeoBUa)
+* [What is an Event-Driven Architecture (Amazon)](https://aws.amazon.com/event-driven-architecture/)

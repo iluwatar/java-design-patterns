@@ -63,9 +63,8 @@ class MuteTest {
 
     Mute.loggedMute(this::methodThrowingException);
 
-    assertTrue(new String(stream.toByteArray()).contains(MESSAGE));
+    assertTrue(stream.toString().contains(MESSAGE));
   }
-
 
   private void methodNotThrowingAnyException() {
     LOGGER.info("Executed successfully");

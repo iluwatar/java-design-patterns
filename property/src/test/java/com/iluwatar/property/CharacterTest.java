@@ -34,14 +34,13 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/28/15 - 7:46 PM
+ * CharacterTest
  *
- * @author Jeroen Meulemeester
  */
 class CharacterTest {
 
   @Test
-  void testPrototypeStats() throws Exception {
+  void testPrototypeStats() {
     final var prototype = new Character();
 
     for (final var stat : Stats.values()) {

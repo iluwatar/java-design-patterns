@@ -33,7 +33,6 @@ package com.iluwatar.singleton;
  * yet, it won't be loaded into memory, and no memory will be allocated for
  * a static instance. This makes the singleton instance lazy-loaded and thread-safe.</p>
  *
- * @author owen.leung2@gmail.com
  */
 public final class BillPughImplementation {
 
@@ -45,7 +44,7 @@ public final class BillPughImplementation {
   }
 
   /**
-   * The InstanceHolder is a static inner class and it holds the Singleton instance.
+   * The InstanceHolder is a static inner class, and it holds the Singleton instance.
    * It is not loaded into memory until the getInstance() method is called.
    */
   private static class InstanceHolder {

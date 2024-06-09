@@ -24,6 +24,7 @@
  */
 package com.iluwatar.model.view.presenter;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 /**
@@ -37,6 +38,7 @@ public class FileSelectorPresenter implements Serializable {
   /**
    * Generated serial version UID.
    */
+  @Serial
   private static final long serialVersionUID = 1210314339075855074L;
 
   /**
@@ -86,7 +88,7 @@ public class FileSelectorPresenter implements Serializable {
    * Ok button handler.
    */
   public void confirmed() {
-    if (loader.getFileName() == null || loader.getFileName().equals("")) {
+    if (loader.getFileName() == null || loader.getFileName().isEmpty()) {
       view.showMessage("Please give the name of the file first!");
       return;
     }

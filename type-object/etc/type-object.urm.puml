@@ -1,0 +1,77 @@
+@startuml
+package com.iluwatar.typeobject {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Candy {
+    ~ name : String
+    ~ parent : Candy
+    ~ parentName : String
+    - points : int
+    - type : Type
+    ~ Candy(name : String, parentName : String, type : Type, points : int)
+    ~ getName() : String
+    ~ getParent() : Candy
+    ~ getParentName() : String
+    ~ getPoints() : int
+    ~ getType() : Type
+    + setPoints(points : int)
+  }
+  ~enum Type {
+    + CRUSHABLE_CANDY {static}
+    + REWARD_FRUIT {static}
+    + valueOf(name : String) : Type {static}
+    + values() : Type[] {static}
+  }
+  class CandyGame {
+    - LOGGER : Logger {static}
+    ~ cells : Cell[][]
+    ~ pool : CellPool
+    ~ totalPoints : int
+    ~ CandyGame(num : int, pool : CellPool)
+    ~ adjacentCells(y : int, x : int) : List<Cell>
+    ~ continueRound() : boolean
+    ~ handleChange(points : int)
+    ~ numOfSpaces(num : int) : String {static}
+    ~ printGameStatus()
+    ~ round(timeSoFar : int, totalTime : int)
+  }
+  class Cell {
+    ~ candy : Candy
+    ~ positionX : int
+    ~ positionY : int
+    + Cell()
+    + Cell(candy : Candy, positionX : int, positionY : int)
+    ~ crush(pool : CellPool, cellMatrix : Cell[][])
+    ~ fillThisSpace(pool : CellPool, cellMatrix : Cell[][])
+    ~ handleCrush(c : Cell, pool : CellPool, cellMatrix : Cell[][])
+    ~ interact(c : Cell, pool : CellPool, cellMatrix : Cell[][]) : int
+  }
+  class CellPool {
+    + CANDY : String {static}
+    + FRUIT : String {static}
+    - LOGGER : Logger {static}
+    - RANDOM : SecureRandom {static}
+    ~ pointer : int
+    ~ pool : List<Cell>
+    ~ randomCode : Candy[]
+    ~ CellPool(num : int)
+    ~ addNewCell(c : Cell)
+    ~ assignRandomCandytypes() : Candy[]
+    ~ getNewCell() : Cell
+  }
+  class JsonParser {
+    ~ candies : Hashtable<String, Candy>
+    ~ JsonParser()
+    ~ parse()
+    ~ setParentAndPoints()
+  }
+}
+Candy -->  "-type" Type
+Cell -->  "-candy" Candy
+Candy -->  "-parent" Candy
+CandyGame -->  "-pool" CellPool
+CellPool -->  "-pool" Cell
+@enduml

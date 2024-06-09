@@ -42,7 +42,6 @@ import javax.swing.table.DefaultTableModel;
 /**
  * This is where the requests are displayed after being validated by filters.
  *
- * @author mjoshzambales
  */
 public class Target extends JFrame { //NOSONAR
 

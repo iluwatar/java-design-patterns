@@ -40,7 +40,6 @@ import org.springframework.stereotype.Component;
 /**
  * An asynchronous health checker component that executes health checks in a separate thread.
  *
- * @author ydoksanbir
  */
 @Slf4j
 @Component

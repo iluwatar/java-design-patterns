@@ -35,9 +35,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/10/15 - 8:57 PM
+ * GuiceWizardTest
  *
- * @author Jeroen Meulemeester
  */
 class GuiceWizardTest {
 

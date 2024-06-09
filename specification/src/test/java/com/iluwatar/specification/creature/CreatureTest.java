@@ -37,9 +37,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /**
- * Date: 12/29/15 - 7:47 PM
+ * CreatureTest
  *
- * @author Jeroen Meulemeester
  */
 class CreatureTest {
 

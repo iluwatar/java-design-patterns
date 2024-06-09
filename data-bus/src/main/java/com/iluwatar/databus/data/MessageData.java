@@ -32,7 +32,6 @@ import lombok.Getter;
 /**
  * An event raised when a string message is sent.
  *
- * @author Paul Campbell (pcampbell@kemitix.net)
  */
 @Getter
 @AllArgsConstructor

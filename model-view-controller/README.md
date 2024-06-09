@@ -1,24 +1,30 @@
 ---
-title: Model-View-Controller
+title: "Model-View-Controller Pattern in Java: Streamlining Java Web Development"
+shortTitle: Model-View-Controller (MVC)
+description: "Learn about the Model-View-Controller (MVC) design pattern in Java, including its benefits, real-world examples, use cases, and how to implement it effectively in your applications."
 category: Architectural
 language: en
 tag:
- - Decoupling
+  - Architecture
+  - Client-server
+  - Decoupling
+  - Layered architecture
+  - Presentation
 ---
 
-## Intent
-Separate the user interface into three interconnected components:
-the model, the view and the controller. Let the model manage the data, the view
-display the data and the controller mediate updating the data and redrawing the
-display.
+## Also known as
 
-## Explanation
+* MVC
+
+## Intent of Model-View-Controller Design Pattern
+
+To separate an application into three interconnected components (Model, View, Controller), enabling modular development of each part independently, enhancing maintainability and scalability. Model-View-Controller (MVC) design pattern is widely used in Java applications for web development and user interface separation.
+
+## Detailed Explanation of Model-View-Controller Pattern with Real-World Examples
 
 Real-world example
 
-> Consider ICU room in hospital which displays the patients health information on device displays which 
-> are taking input from sensors connected to patient. Here, display's job is to display the data that 
-> it receives from the controller which in turn gets update from sensor model.
+> Consider ICU room in a hospital displaying patient health information on devices taking input from sensors. The display shows data received from the controller, which updates from the sensor model. This exemplifies the MVC design pattern in a real-world Java application.
 
 In plain words
 
@@ -26,53 +32,23 @@ In plain words
 
 Wikipedia says
 
-> Model–view–controller (MVC) is commonly used for developing user interfaces that divide the 
-> related program logic into three interconnected elements. This is done to separate internal 
-> representations of information from the ways information is presented to and accepted from the user.
+> Model–view–controller (MVC) is commonly used for developing user interfaces that divide the related program logic into three interconnected elements. This is done to separate internal representations of information from the ways information is presented to and accepted from the user.
 
-**Programmatic Example**
+## Programmatic Example of Model-View-Controller Pattern in Java
 
 Consider following `GiantModel` model class that provides the health, fatigue & nourishment information.
 
 ```java
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class GiantModel {
 
   private Health health;
   private Fatigue fatigue;
   private Nourishment nourishment;
-
-  /**
-   * Instantiates a new GiantModel.
-   */
-  public GiantModel(Health health, Fatigue fatigue, Nourishment nourishment) {
-    this.health = health;
-    this.fatigue = fatigue;
-    this.nourishment = nourishment;
-  }
-
-  public Health getHealth() {
-    return health;
-  }
-
-  public void setHealth(Health health) {
-    this.health = health;
-  }
-
-  public Fatigue getFatigue() {
-    return fatigue;
-  }
-
-  public void setFatigue(Fatigue fatigue) {
-    this.fatigue = fatigue;
-  }
-
-  public Nourishment getNourishment() {
-    return nourishment;
-  }
-
-  public void setNourishment(Nourishment nourishment) {
-    this.nourishment = nourishment;
-  }
 
   @Override
   public String toString() {
@@ -92,7 +68,7 @@ public class GiantView {
 }
 ```
 
-And `GiantController` class that takes updates from `GiantModel` & sends to `GiantView` for display.
+`GiantController` class takes updates from `GiantModel` and sends to `GiantView` for display.
 
 ```java
 public class GiantController {
@@ -138,23 +114,48 @@ public class GiantController {
 }
 ```
 
-## Class diagram
-![alt text](./etc/model-view-controller.png "Model-View-Controller")
+This example demonstrates how the MVC pattern separates concerns in a Java application, making it easier to manage and update components independently.
 
-## Applicability
-Use the Model-View-Controller pattern when
+## When to Use the Model-View-Controller Pattern in Java
 
-* You want to clearly separate the domain data from its user interface representation
+* Used in web applications to separate data model, user interface, and user input processing.
+* Suitable for applications requiring a clear separation of concerns, ensuring that the business logic, user interface, and user input are loosely coupled and independently managed, following the MVC pattern.
 
-## Tutorials
+## Model-View-Controller Pattern Java Tutorials
 
-* [Spring Boot MVC](https://zetcode.com/springboot/model/)
-* [Spring MVC Tutorial](https://www.baeldung.com/spring-mvc-tutorial)
+* [Spring Boot Model (ZetCode)](https://zetcode.com/springboot/model/)
+* [Spring MVC Tutorial (Baeldung)](https://www.baeldung.com/spring-mvc-tutorial)
 
-## Credits
+## Real-World Applications of Model-View-Controller Pattern in Java
 
-* [Trygve Reenskaug - Model-view-controller](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
-* [Patterns of Enterprise Application Architecture](https://www.amazon.com/gp/product/0321127420/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0321127420&linkCode=as2&tag=javadesignpat-20&linkId=d9f7d37b032ca6e96253562d075fcc4a)
-* [Head First Design Patterns: A Brain-Friendly Guide](https://www.amazon.com/gp/product/0596007124/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596007124&linkCode=as2&tag=javadesignpat-20&linkId=6b8b6eea86021af6c8e3cd3fc382cb5b)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=f27d2644fbe5026ea448791a8ad09c94)
+* Frameworks like Spring MVC in Java for web applications.
+* Desktop applications in Java, such as those using Swing or JavaFX.
+
+## Benefits and Trade-offs of Model-View-Controller Pattern
+
+Benefits:
+
+* Promotes organized code structure by separating concerns.
+* Facilitates parallel development of components.
+* Enhances testability due to decoupled nature.
+* Easier to manage and update individual parts without affecting others.
+
+Trade-offs:
+
+* Increased complexity in initially setting up the architecture.
+* Can lead to excessive boilerplate if not implemented correctly or for very small projects.
+
+## Related Java Design Patterns
+
+* [Observer](https://java-design-patterns.com/patterns/observer/): Often used in MVC where the view observes the model for changes; this is a fundamental relationship for updating the UI when the model state changes.
+* [Strategy](https://java-design-patterns.com/patterns/strategy/): Controllers may use different strategies for handling user input, related through the ability to switch strategies for user input processing in Java MVC applications.
+* [Composite](https://java-design-patterns.com/patterns/composite/): Views can be structured using the Composite Pattern to manage hierarchies of user interface components.
+
+## References and Credits
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
+* [J2EE Design Patterns](https://amzn.to/4dpzgmx)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Pro Spring 5: An In-Depth Guide to the Spring Framework and Its Tools](https://amzn.to/3y9Rrwp)
+* [Model-view-controller (Wikipedia)](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)

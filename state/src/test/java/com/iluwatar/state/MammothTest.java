@@ -38,9 +38,8 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
 /**
- * Date: 12/29/15 - 8:27 PM
+ * MammothTest
  *
- * @author Jeroen Meulemeester
  */
 class MammothTest {
 
@@ -96,7 +95,7 @@ class MammothTest {
     assertEquals("The mammoth", toString);
   }
 
-  private class InMemoryAppender extends AppenderBase<ILoggingEvent> {
+  private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 
     public InMemoryAppender() {

@@ -34,9 +34,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/11/15 - 8:12 PM
+ * MessengerTest
  *
- * @author Jeroen Meulemeester
  */
 class MessengerTest {
 

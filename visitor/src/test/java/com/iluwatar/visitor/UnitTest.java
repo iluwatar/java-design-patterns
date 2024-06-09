@@ -34,10 +34,9 @@ import java.util.function.Function;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/30/15 - 18:59 PM. Test related to Units
+ * Test related to Units
  *
  * @param <U> Type of Unit
- * @author Jeroen Meulemeester
  */
 public abstract class UnitTest<U extends Unit> {
 

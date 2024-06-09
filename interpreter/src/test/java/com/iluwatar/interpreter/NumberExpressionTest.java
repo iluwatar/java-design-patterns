@@ -32,9 +32,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 /**
- * Date: 12/14/15 - 12:08 PM
+ * NumberExpressionTest
  *
- * @author Jeroen Meulemeester
  */
 class NumberExpressionTest extends ExpressionTest<NumberExpression> {
 

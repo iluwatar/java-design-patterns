@@ -48,12 +48,14 @@
 package com.iluwatar.monitor;
 
 import java.util.Arrays;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /** Bank Definition. */
 @Slf4j
 public class Bank {
 
+  @Getter
   private final int[] accounts;
 
   /**
@@ -112,14 +114,5 @@ public class Bank {
    */
   public synchronized int getBalance(int accountNumber) {
     return accounts[accountNumber];
-  }
-
-  /**
-   * Get all accounts.
-   *
-   * @return accounts
-   */
-  public int[] getAccounts() {
-    return accounts;
   }
 }

@@ -24,6 +24,7 @@
  */
 package com.iluwatar.tolerantreader;
 
+import java.io.Serial;
 import lombok.Getter;
 
 /**
@@ -32,6 +33,7 @@ import lombok.Getter;
 @Getter
 public class RainbowFishV2 extends RainbowFish {
 
+  @Serial
   private static final long serialVersionUID = 1L;
 
   private boolean sleeping;

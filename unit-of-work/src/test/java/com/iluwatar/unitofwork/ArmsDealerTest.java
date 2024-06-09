@@ -46,7 +46,7 @@ class ArmsDealerTest {
 
   private final Map<String, List<Weapon>> context = new HashMap<>();
   private final WeaponDatabase weaponDatabase = mock(WeaponDatabase.class);
-  private final ArmsDealer armsDealer = new ArmsDealer(context, weaponDatabase);;
+  private final ArmsDealer armsDealer = new ArmsDealer(context, weaponDatabase);
 
   @Test
   void shouldSaveNewStudentWithoutWritingToDb() {

@@ -38,7 +38,7 @@ public class RangeShardManager extends ShardManager {
     var shardId = allocateShard(data);
     var shard = shardMap.get(shardId);
     shard.storeData(data);
-    LOGGER.info(data.toString() + " is stored in Shard " + shardId);
+    LOGGER.info(data + " is stored in Shard " + shardId);
     return shardId;
   }
 
@@ -49,7 +49,6 @@ public class RangeShardManager extends ShardManager {
       case TYPE_1 -> 1;
       case TYPE_2 -> 2;
       case TYPE_3 -> 3;
-      default -> -1;
     };
   }
 

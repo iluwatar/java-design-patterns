@@ -37,9 +37,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
- * Date: 10/24/2022 - 3:18
+ * ServiceContextTest
  *
- * @author Chak Chan
  */
 public class ServiceContextTest {
 

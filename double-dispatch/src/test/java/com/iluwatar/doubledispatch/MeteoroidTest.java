@@ -30,9 +30,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/10/15 - 11:31 PM
+ * MeteoroidTest
  *
- * @author Jeroen Meulemeester
  */
 class MeteoroidTest extends CollisionTest<Meteoroid> {
 

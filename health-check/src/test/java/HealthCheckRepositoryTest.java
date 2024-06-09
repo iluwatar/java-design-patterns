@@ -38,7 +38,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 /**
  * Tests class for {@link HealthCheckRepository}.
  *
- * @author ydoksanbir
  */
 @ExtendWith(MockitoExtension.class)
 class HealthCheckRepositoryTest {

@@ -24,6 +24,8 @@
  */
 package com.iluwatar.lockableobject.domain;
 
+import lombok.Getter;
+
 /** Attribute constants of each Creature implementation. */
 public enum CreatureStats {
   ELF_HEALTH(90),
@@ -33,13 +35,10 @@ public enum CreatureStats {
   HUMAN_HEALTH(60),
   HUMAN_DAMAGE(60);
 
-  int value;
+  @Getter
+  final int value;
 
-  private CreatureStats(int value) {
+  CreatureStats(int value) {
     this.value = value;
-  }
-
-  public int getValue() {
-    return this.value;
   }
 }

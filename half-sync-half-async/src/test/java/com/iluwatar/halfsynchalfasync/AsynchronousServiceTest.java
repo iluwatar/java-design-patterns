@@ -40,9 +40,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/12/15 - 11:15 PM
+ * AsynchronousServiceTest
  *
- * @author Jeroen Meulemeester
  */
 class AsynchronousServiceTest {
   private AsynchronousService service;

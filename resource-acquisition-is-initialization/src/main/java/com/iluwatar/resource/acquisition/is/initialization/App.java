@@ -51,7 +51,7 @@ public class App {
   /**
    * Program entry point.
    */
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
 
     try (var ignored = new SlidingDoor()) {
       LOGGER.info("Walking in.");

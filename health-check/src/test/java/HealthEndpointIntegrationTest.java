@@ -49,7 +49,6 @@ import org.springframework.http.HttpStatus;
  * "availableProcessors":2,"systemCpuLoad":"100.00%","loadAverage":1.97,"timestamp":"2023-11-09T08:34:15.974557865Z",
  * * "error":"High system CPU load"}}} *
  *
- * @author ydoksanbir
  */
 @Slf4j
 @SpringBootTest(

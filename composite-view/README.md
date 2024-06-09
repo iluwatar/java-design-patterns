@@ -1,31 +1,37 @@
 ---
-title: Composite View
+title: "Composite View Pattern in Java: Enhancing UI Consistency Across Applications"
+shortTitle: Composite View
+description: "Learn about the Composite View design pattern in Java, which helps in managing complex hierarchical views. This guide includes examples, applications, and benefits of using the Composite View pattern."
 category: Structural
 language: en
 tag:
-    - Enterprise patterns
-    - Presentation
+  - Abstraction
+  - Enterprise patterns
+  - Object composition
+  - Presentation
 ---
 
-## Intent
+## Intent of Composite View Design Pattern
 
-The primary goal of the Composite View design pattern is to compose objects into tree structures to represent part-whole hierarchies. This allows clients to treat individual objects and compositions of objects uniformly, simplifying the management of complex structures.
+The primary goal of the Composite View design pattern is to compose objects into tree structures to represent part-whole hierarchies. This allows clients to treat individual objects and compositions of objects uniformly, simplifying the management of complex hierarchical views.
 
-## Explanation
+## Detailed Explanation of Composite View Pattern with Real-World Examples
 
-Real World Example
+Real-world example
 
-> A news site wants to display the current date and news to different users based on that user's preferences. The news site will substitute in different news feed components depending on the user's interest, defaulting to local news.
+> A real-world example of the Composite View design pattern is the layout of a dashboard in a web application. Consider a financial dashboard that displays various widgets such as stock charts, recent transactions, account balances, and news feeds. Each of these widgets is a separate view component that can be independently updated and managed. By using the Composite View pattern, these individual widgets are composed into a single unified dashboard view. This approach allows for easy reorganization of the dashboard, the addition of new widgets without disrupting existing ones, and consistent management of the overall layout. This hierarchical composition of views mirrors how different sections of the dashboard are treated both as individual entities and as part of a larger whole.
 
-In Plain Words
+In plain words
 
 > Composite View Pattern is having a main view being composed of smaller subviews. The layout of this composite view is based on a template. A View-manager then decides which subviews to include in this template.
 
-Wikipedia Says
+Wikipedia says
 
 > Composite views that are composed of multiple atomic subviews. Each component of the template may be included dynamically into the whole and the layout of the page may be managed independently of the content. This solution provides for the creation of a composite view based on the inclusion and substitution of modular dynamic and static template fragments. It promotes the reuse of atomic portions of the view by encouraging modular design.
 
-**Programmatic Example**
+## Programmatic Example of Composite View Pattern in Java
+
+A news site wants to display the current date and news to different users based on that user's preferences. The news site will substitute in different news feed components depending on the user's interest, defaulting to local news.
 
 Since this is a web development pattern, a server is required to demonstrate it. This example uses Tomcat 10.0.13 to run the servlet, and this programmatic example will only work with Tomcat 10+.
 
@@ -285,11 +291,6 @@ Here are two examples of the mock atomic subviews used in the composite: `busine
 </html>
 ```
 
-The results are as such:
-
-1) The user has put their name as `Tammy` in the request parameters and no preferences: ![alt text](./etc/images/noparam.png)
-2) The user has put their name as `Johnny` in the request parameters and has a preference for world, business, and science news: ![alt text](./etc/images/threeparams.png)
-
 The different subviews such as `worldNews.jsp`, `businessNews.jsp`, etc. are included conditionally based on the request parameters.
 
 **How To Use**
@@ -302,13 +303,7 @@ Under `Run` and `edit configurations` Make sure Tomcat server is one of the run 
 
 Ensure that the artifact is being built from the content of the `web` directory and the compilation results of the module. Point the output of the artifact to a convenient place. Run the configuration and view the landing page, follow instructions on that page to continue.
 
-## Class diagram
-
-![alt text](./etc/composite_view.png)
-
-The class diagram here displays the Javabean which is the view manager. The views are JSP's held inside the web directory.
-
-## Applicability:
+## When to Use the Composite View Pattern in Java
 
 Use the Composite View design pattern when:
 
@@ -316,12 +311,16 @@ Use the Composite View design pattern when:
 * You expect that the composite structures might include any new components in the future.
 * You want clients to be able to ignore the difference between compositions of objects and individual objects. Clients will treat all objects in the composite structure uniformly.
 
-## Known Uses
+## Composite View Pattern Java Tutorials
+
+* [Composite View Design Pattern – Core J2EE Patterns (Dinesh on Java)](https://www.dineshonjava.com/composite-view-design-pattern/)
+
+## Real-World Applications of Composite View Pattern in Java
 
 * Graphical User Interfaces (GUIs) where widgets can contain other widgets (e.g., a window containing panels, buttons, and text fields).
 * Document structures, such as the representation of tables containing rows, which in turn contain cells, all of which can be treated as elements in a unified hierarchy.
 
-## Consequences
+## Benefits and Trade-offs of Composite View Pattern
 
 Benefits:
 
@@ -333,17 +332,15 @@ Trade-offs:
 * Overgeneralization: Designing the system might become more complex if you make everything composite, especially if your application doesn't require it.
 * Difficulty in constraint enforcement: It can be harder to restrict the components of a composite to only certain types.
 
-## Related Patterns
+## Related Java Design Patterns
 
-* [Decorator](https://java-design-patterns.com/patterns/decorator/): While Decorator is used to add responsibilities to objects, Composite is meant for building structures of objects.
-* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Composite can often be combined with Flyweight to implement shared leaf nodes in a composite structure, reducing the memory footprint.
-* [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Can be used with Composite to let components pass requests through the hierarchy.
-* [Composite](https://java-design-patterns.com/patterns/composite/)
-* [View Helper](https://www.oracle.com/java/technologies/viewhelper.html)
+* [Composite](https://java-design-patterns.com/patterns/composite/): General structural pattern that is the foundation for Composite View, used for treating individual objects and compositions uniformly.
+* [Decorator](https://java-design-patterns.com/patterns/decorator/): Enhances the behavior of individual views without modifying the underlying view.
+* [Flyweight](https://java-design-patterns.com/patterns/flyweight/): Can be used to manage memory consumption of large numbers of similar view objects.
+* View Helper: Separates the view logic from business logic, aiding in the clean organization and management of view components.
 
-## Credits
+## References and Credits
 
-* [Core J2EE Patterns - Composite View](https://www.oracle.com/java/technologies/composite-view.html)
-* [Composite View Design Pattern – Core J2EE Patterns](https://www.dineshonjava.com/composite-view-design-pattern/)
-* [Patterns of Enterprise Application Architecture](https://amzn.to/49jpQG3)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/3xfntGJ)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/49jpQG3)
+* [Core J2EE Patterns - Composite View (Oracle)](https://www.oracle.com/java/technologies/composite-view.html)

@@ -30,7 +30,6 @@ import static org.mockito.Mockito.when;
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.time.Instant;
 import java.util.HashMap;
 import java.util.Map;
@@ -64,7 +63,7 @@ public class LoginHandlerTest {
   }
 
   @Test
-  public void testHandle() throws IOException {
+  public void testHandle() {
 
     //assemble
     ByteArrayOutputStream outputStream =

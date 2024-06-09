@@ -25,7 +25,7 @@
 package com.iluwatar.partialresponse;
 
 /**
- * {@link Video} is a entity to serve from server.It contains all video related information.
+ * {@link Video} is an entity to serve from server.It contains all video related information.
  * Video is a record class.
  */
 

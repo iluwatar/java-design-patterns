@@ -89,7 +89,7 @@ public class App {
     LOGGER.info("enumIvoryTower1={}", enumIvoryTower1);
     LOGGER.info("enumIvoryTower2={}", enumIvoryTower2);
 
-    // double checked locking
+    // double-checked locking
     var dcl1 = ThreadSafeDoubleCheckLocking.getInstance();
     LOGGER.info(dcl1.toString());
     var dcl2 = ThreadSafeDoubleCheckLocking.getInstance();

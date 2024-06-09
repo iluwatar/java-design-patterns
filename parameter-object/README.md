@@ -1,136 +1,172 @@
 ---
-title: Parameter Object
-category: Behavioral
+title: "Parameter Object Pattern in Java: Simplifying Method Signatures with Structured Data"
+shortTitle: Parameter Object
+description: "Explore the Parameter Object pattern at Java Design Patterns. Learn how it simplifies method signatures, enhances maintainability, and promotes encapsulation with real-world examples and detailed code snippets."
+category: Structural
 language: en
 tag:
- - Extensibility
+  - Abstraction
+  - Code simplification
+  - Decoupling
+  - Encapsulation
+  - Object composition
 ---
 
-## Intent
+## Also known as
 
-The syntax of Java language doesn’t allow you to declare a method with a predefined value
-for a parameter. Probably the best option to achieve default method parameters in Java is
-by using the method overloading. Method overloading allows you to declare several methods
-with the same name but with a different number of parameters. But the main problem with
-method overloading as a solution for default parameter values reveals itself when a method
-accepts multiple parameters. Creating an overloaded method for each possible combination of
-parameters might be cumbersome. To deal with this issue, the Parameter Object pattern is used.
+* Argument Object
 
-## Explanation
+## Intent of Parameter Object Design Pattern
 
-The Parameter Object is simply a wrapper object for all parameters of a method.
-It is nothing more than just a regular POJO. The advantage of the Parameter Object over a
-regular method parameter list is the fact that class fields can have default values.
-Once the wrapper class is created for the method parameter list, a corresponding builder class
-is also created. Usually it's an inner static class. The final step is to use the builder
-to construct a new parameter object. For those parameters that are skipped,
-their default values are going to be used.
+The Parameter Object pattern is a key Java design pattern aimed at improving code maintainability by reducing method complexity through encapsulation of parameters into a single object.
 
+## Detailed Explanation of Parameter Object Pattern with Real-World Examples
 
-**Programmatic Example**
+Real-world example
 
-Here's the simple `SearchService` class where Method Overloading is used to default values here. To use method overloading, either the number of arguments or argument type has to be different.
+> Imagine booking a travel package that includes a flight, hotel, and car rental. Instead of asking the customer to provide separate details for each component (flight details, hotel details, and car rental details) every time, a travel agent asks the customer to fill out a single comprehensive form that encapsulates all the necessary information:
+>
+> - Flight details: Departure city, destination city, departure date, return date.
+> - Hotel details: Hotel name, check-in date, check-out date, room type.
+> - Car rental details: Pickup location, drop-off location, rental dates, car type.
+> 
+> In this analogy, the comprehensive form is the parameter object. It groups together all related details (parameters) into a single entity, making the booking process more streamlined and manageable. The travel agent (method) only needs to handle one form (parameter object) instead of juggling multiple pieces of information.
 
-```java
-public class SearchService {
-  //Method Overloading example. SortOrder is defaulted in this method
-  public String search(String type, String sortBy) {
-    return getQuerySummary(type, sortBy, SortOrder.DESC);
-  }
+In plain words
 
-  /* Method Overloading example. SortBy is defaulted in this method. Note that the type has to be 
-  different here to overload the method */
-  public String search(String type, SortOrder sortOrder) {
-    return getQuerySummary(type, "price", sortOrder);
-  }
+> The Parameter Object pattern encapsulates multiple related parameters into a single object to simplify method signatures and enhance code maintainability.
 
-  private String getQuerySummary(String type, String sortBy, SortOrder sortOrder) {
-    return "Requesting shoes of type \"" + type + "\" sorted by \"" + sortBy + "\" in \""
-        + sortOrder.getValue() + "ending\" order...";
-  }
-}
+wiki.c2.com says
 
-```
+> Replace the LongParameterList with a ParameterObject; an object or structure with data members representing the arguments to be passed in.
 
-Next we present the `SearchService` with `ParameterObject` created with Builder pattern.
+## Programmatic Example of Parameter Object Pattern in Java
+
+The Parameter Object design pattern is a way to group multiple parameters into a single object. This simplifies method signatures and enhances code maintainability enabling Java developers to streamline complex method calls, focusing on cleaner and more maintainable Java code.
+
+First, let's look at the `ParameterObject` class. This class encapsulates the parameters needed for the search operation. It uses [Builder pattern](https://java-design-patterns.com/patterns/builder/) to allow for easy creation of objects, even when there are many parameters.
 
 ```java
-public class SearchService {
-
-  /* Parameter Object example. Default values are abstracted into the Parameter Object 
-  at the time of Object creation */
-  public String search(ParameterObject parameterObject) {
-    return getQuerySummary(parameterObject.getType(), parameterObject.getSortBy(),
-        parameterObject.getSortOrder());
-  }
-  
-  private String getQuerySummary(String type, String sortBy, SortOrder sortOrder) {
-    return "Requesting shoes of type \"" + type + "\" sorted by \"" + sortBy + "\" in \""
-        + sortOrder.getValue() + "ending\" order...";
-  }
-}
-
 public class ParameterObject {
-  public static final String DEFAULT_SORT_BY = "price";
-  public static final SortOrder DEFAULT_SORT_ORDER = SortOrder.ASC;
 
-  private String type;
-  private String sortBy = DEFAULT_SORT_BY;
-  private SortOrder sortOrder = DEFAULT_SORT_ORDER;
+    private final String type;
+    private final String sortBy;
+    private final SortOrder sortOrder;
 
-  private ParameterObject(Builder builder) {
-    type = builder.type;
-    sortBy = builder.sortBy != null && !builder.sortBy.isBlank() ? builder.sortBy : sortBy;
-    sortOrder = builder.sortOrder != null ? builder.sortOrder : sortOrder;
-  }
-
-  public static Builder newBuilder() {
-    return new Builder();
-  }
-
-  //Getters and Setters...
-
-  public static final class Builder {
-
-    private String type;
-    private String sortBy;
-    private SortOrder sortOrder;
-
-    private Builder() {
+    private ParameterObject(Builder builder) {
+        this.type = builder.type;
+        this.sortBy = builder.sortBy;
+        this.sortOrder = builder.sortOrder;
     }
 
+    public static Builder newBuilder() {
+        return new Builder();
+    }
+
+    // getters and Builder class omitted for brevity
+}
+```
+
+The `Builder` class inside `ParameterObject` provides a way to construct a `ParameterObject` instance. It has methods for setting each of the parameters, and a `build` method to create the `ParameterObject`.
+
+```java
+public static class Builder {
+
+    private String type = "all";
+    private String sortBy = "price";
+    private SortOrder sortOrder = SortOrder.ASCENDING;
+
     public Builder withType(String type) {
-      this.type = type;
-      return this;
+        this.type = type;
+        return this;
     }
 
     public Builder sortBy(String sortBy) {
-      this.sortBy = sortBy;
-      return this;
+        this.sortBy = sortBy;
+        return this;
     }
 
     public Builder sortOrder(SortOrder sortOrder) {
-      this.sortOrder = sortOrder;
-      return this;
+        this.sortOrder = sortOrder;
+        return this;
     }
 
     public ParameterObject build() {
-      return new ParameterObject(this);
+        return new ParameterObject(this);
     }
-  }
 }
-
-
 ```
 
-## Class diagram
+The `SearchService` class has a `search()` method that takes a `ParameterObject` as a parameter. This method uses the parameters encapsulated in the `ParameterObject` to perform a search operation.
 
-![alt text](./etc/parameter-object.png "Parameter Object")
+```java
+public class SearchService {
 
-## Applicability
+    public String search(ParameterObject parameterObject) {
+        return getQuerySummary(parameterObject.getType(), parameterObject.getSortBy(),
+                parameterObject.getSortOrder());
+    }
 
-This pattern shows us the way to have default parameters for a method in Java as the language doesn't default parameters feature out of the box. 
+    // getQuerySummary method omitted for brevity
+}
+```
 
-## Credits
+Finally, in the `App` class, we create a `ParameterObject` using its builder, and then pass it to the `search()` method of `SearchService`.
 
-- [Does Java have default parameters?](http://dolszewski.com/java/java-default-parameters)
+```java
+public class App {
+
+    public static void main(String[] args) {
+        ParameterObject params = ParameterObject.newBuilder()
+                .withType("sneakers")
+                .sortBy("brand")
+                .build();
+        LOGGER.info(params.toString());
+        LOGGER.info(new SearchService().search(params));
+    }
+}
+```
+
+This example demonstrates how the Parameter Object pattern can simplify method signatures and make the code more maintainable. It also shows how the pattern can be combined with the Builder pattern to make object creation more flexible and readable.
+
+## When to Use the Parameter Object Pattern in Java
+
+* Methods require multiple parameters that logically belong together.
+* There is a need to reduce the complexity of method signatures.
+* The parameters may need to evolve over time, adding more properties without breaking existing method signatures.
+* It’s beneficial to pass data through a method chain.
+
+## Parameter Object Pattern Java Tutorials
+
+* [Does Java have default parameters? (Daniel Olszewski)](http://dolszewski.com/java/java-default-parameters)
+
+## Real-World Applications of Parameter Object Pattern in Java
+
+* Java Libraries: Many Java frameworks and libraries use this pattern. For example, Java’s java.util.Calendar class has various methods where parameter objects are used to represent date and time components.
+* Enterprise Applications: In large enterprise systems, parameter objects are used to encapsulate configuration data passed to services or API endpoints.
+
+## Benefits and Trade-offs of Parameter Object Pattern
+
+Benefits:
+
+* Encapsulation: Groups related parameters into a single object, promoting encapsulation.
+* Maintainability: Reduces method signature changes when parameters need to be added or modified.
+* Readability: Simplifies method signatures, making the code easier to read and understand.
+* Reusability: Parameter objects can be reused across different methods, reducing redundancy.
+
+Trade-offs:
+
+* Overhead: Introducing parameter objects can add some overhead, especially for simple methods that do not benefit significantly from this abstraction.
+* Complexity: The initial creation of parameter objects might add complexity, especially for beginners.
+
+## Related Patterns
+
+* [Builder](https://java-design-patterns.com/patterns/builder/): Helps in creating complex objects step-by-step, often used in conjunction with parameter objects to manage the construction of these objects.
+* [Composite](https://java-design-patterns.com/patterns/composite/): Sometimes used with parameter objects to handle hierarchical parameter data.
+* [Factory Method](https://java-design-patterns.com/patterns/factory-method/): Can be used to create instances of parameter objects, particularly when different parameter combinations are needed.
+
+## References and Credits
+
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Refactoring: Improving the Design of Existing Code](https://amzn.to/3TVEgaB)

@@ -34,7 +34,6 @@ import lombok.extern.slf4j.Slf4j;
  * then placed into the cache map. On next hit, if same service name will be requested, it will be
  * returned from the cache
  *
- * @author saifasif
  */
 @Slf4j
 public class ServiceCache {

@@ -35,9 +35,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/27/15 - 1:05 AM
- *
- * @author Jeroen Meulemeester
+ * OliphauntPoolTest.
  */
 class OliphauntPoolTest {
 

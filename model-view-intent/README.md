@@ -1,245 +1,225 @@
 ---
-title: Model-View-Intent
+title: "Model-View-Intent Pattern in Java: Building Robust and Scalable Java UIs with MVI"
+shortTitle: Model-View-Intent (MVI)
+description: "Discover the Model-View-Intent (MVI) pattern for Java applications. Learn how MVI enhances UI predictability, maintainability, and state management through unidirectional data flow. Explore real-world examples and implementation details."
 category: Architectural
 language: en
 tags:
- - Decoupling
- - Encapsulation
+  - Abstraction
+  - Decoupling
+  - Presentation
+  - Reactive
+  - State tracking
 ---
 
-## Intent
-MVI is a derivation of the original MVC architectural pattern. Instead of working with a 
-proactive controller MVI works with the reactive component called intent: it's a component
-which translates user input events into model updates.
+## Also known as
 
-## Explanation
+* MVI
 
-> MVI is a Reactive Architecture Pattern which is short for Model -View-Intent. 
-It introduces two new concepts: the intent and the state. 
-UI might have different states — Loading State, Fetch Data State, Error State, 
-and user events are submitted in the form of an Intent.
+## Intent of Model-View-Intent Design Pattern
 
-* [Stateful Android Apps With MVI (MODEL — VIEW — INTENT)](https://medium.com/huawei-developers/stateful-android-apps-with-mvi-architecture-model-view-intent-d106b09bd967)
+The Model-View-Intent (MVI) pattern for Java applications creates a unidirectional and cyclical data flow between the Model, View, and Intent components, enhancing UI predictability and state management.
 
-## Class diagram
-![alt text](./etc/model-view-intent.png "Model-View-Intent")
+## Detailed Explanation of Model-View-Intent Pattern with Real-World Examples
 
-**Programmatic Example**
+Real-world example
 
-CalculatorAction defines our Intent in MVI for user interactions. It has to be an interface 
-instead of enum, so that we can pass parameters to certain children.
+> Consider a real-world analogy of the Model-View-Intent (MVI) pattern in Java using the scenario of ordering at a fast-food restaurant to understand its application in enhancing UI state management.
+>
+> In this analogy:
+> - **Model:** It's like the kitchen of the restaurant, where the current state of your order is managed. As you choose items, the kitchen updates the order status and ingredients used.
+> - **View:** This represents the menu and the digital display board where you see your current order summary. It reflects the current state of your order, showing what items you've added or removed.
+> - **Intent:** Think of this as your decision-making process when you interact with the menu. Each choice you make (like adding a burger or removing a drink) sends a specific intention to the system (kitchen).
+>
+> When you decide to add an item to your order (Intent), the kitchen (Model) processes this request, updates the state of your order, and then the display (View) updates to show the latest status of your order. This cycle continues until you finalize your order, demonstrating the unidirectional and cyclical flow characteristic of MVI. This ensures that every change in the order is predictably and accurately reflected in the customer's view, similar to how UI components update in response to state changes in software using MVI.
+
+In plain words
+
+> The Model-View-Intent (MVI) pattern is a reactive architectural approach where user actions (Intent) modify the application state (Model), and the updated state is then reflected back in the user interface (View) in a unidirectional and cyclical data flow.
+
+## Programmatic Example of Model-View-Intent Pattern in Java
+
+The Model-View-Intent (MVI) pattern for Java is a modern approach to structuring your application's logic, ensuring a smooth, unidirectional flow of data and events. It's a variation of the Model-View-Presenter (MVP) and Model-View-ViewModel (MVVM) patterns, but with a more streamlined flow of data and events.
+
+In MVI, the View sends user events to the Intent. The Intent translates these events into a state change in the Model. The Model then pushes this new state to the View, which updates itself accordingly. This creates a unidirectional data flow, which can make your code easier to understand and debug.
+
+First, we have the `App` class, which serves as the entry point for the application. It creates the View and ViewModel, and then simulates a series of user interactions with the calculator.
+
 ```java
-public interface CalculatorAction {
+public final class App {
+  private static final double RANDOM_VARIABLE = 10.0;
 
-  /**
-   * Makes identifying action trivial.
-   *
-   * @return subclass tag.
-   * */
-  String tag();
+  public static void main(final String[] args) {
+    var view = new CalculatorView(new CalculatorViewModel());
+    var variable1 = RANDOM_VARIABLE;
+
+    view.setVariable(variable1);
+    view.add();
+    view.displayTotal();
+
+    variable1 = 2.0;
+    view.setVariable(variable1);
+    view.subtract();
+    view.divide();
+    view.multiply();
+    view.displayTotal();
+  }
+
+  private App() {
+  }
 }
 ```
 
-CalculatorModel defines the state of our view or in out case, variable and output of the calculator.
+The `CalculatorView` class represents the View in MVI. It receives user events (in this case, simulated by the `App` class), and sends them to the ViewModel. It also updates its display when it receives a new state from the ViewModel.
+
 ```java
-@Data
-public class CalculatorModel {
-
-  /**
-   * Current calculator variable used for operations.
-   **/
-  final Double variable;
-
-  /**
-   * Current calculator output -> is affected by operations.
-   **/
-  final Double output;
-}
-```
-
-
-CalculatorView will serve as a mock view which will expose potential user actions and 
-display calculator state -> output and current variable
-```java
-@Slf4j
 public class CalculatorView {
+  private CalculatorViewModel viewModel;
 
-  /**
-   * View model param handling the operations.
-   * */
-  private final CalculatorViewModel viewModel = new CalculatorViewModel();
-
-  /**
-   * Display current view model output with logger.
-   * */
-  void displayTotal() {
-    LOGGER.info(
-        "Total value = {}",
-        viewModel.getCalculatorModel().getOutput().toString()
-    );
+  public CalculatorView(CalculatorViewModel viewModel) {
+    this.viewModel = viewModel;
   }
 
-  /**
-   * Handle addition action.
-   * */
-  void add() {
-    viewModel.handleAction(new AdditionCalculatorAction());
+  public void setVariable(double variable) {
+    viewModel.process(new SetVariableEvent(variable));
   }
 
-  /**
-   * Handle subtraction action.
-   * */
-  void subtract() {
-    viewModel.handleAction(new SubtractionCalculatorAction());
+  public void add() {
+    viewModel.process(new AddEvent());
   }
 
-  /**
-   * Handle multiplication action.
-   * */
-  void multiply() {
-    viewModel.handleAction(new MultiplicationCalculatorAction());
+  public void subtract() {
+    viewModel.process(new SubtractEvent());
   }
 
-  /**
-   * Handle division action.
-   * */
-  void divide() {
-    viewModel.handleAction(new DivisionCalculatorAction());
+  public void divide() {
+    viewModel.process(new DivideEvent());
   }
 
-  /**
-   * Handle setting new variable action.
-   *
-   * @param value -> new calculator variable.
-   * */
-  void setVariable(final Double value) {
-    viewModel.handleAction(new SetVariableCalculatorAction(value));
+  public void multiply() {
+    viewModel.process(new MultiplyEvent());
+  }
+
+  public void displayTotal() {
+    System.out.println("Total: " + viewModel.getState().getTotal());
   }
 }
 ```
 
-Finally, ViewModel handles the exposed events with the handleAction(event) method, which delegates
-the specific handling to private methods. Initially calculator output and variable are equal to 0.
+The `CalculatorViewModel` class represents the ViewModel in MVI. It receives events from the View, updates the Model's state accordingly, and then pushes the new state to the View.
+
 ```java
-public final class CalculatorViewModel {
+public class CalculatorViewModel {
+  private CalculatorModel model;
 
-  /**
-   * Current calculator model (can be changed).
-   */
-  private CalculatorModel model =
-      new CalculatorModel(0.0, 0.0);
-
-  /**
-   * Handle calculator action.
-   *
-   * @param action -> transforms calculator model.
-   */
-  void handleAction(final CalculatorAction action) {
-    switch (action.tag()) {
-      case AdditionCalculatorAction.TAG -> add();
-      case SubtractionCalculatorAction.TAG -> subtract();
-      case MultiplicationCalculatorAction.TAG -> multiply();
-      case DivisionCalculatorAction.TAG -> divide();
-      case SetVariableCalculatorAction.TAG -> {
-        SetVariableCalculatorAction setVariableAction =
-            (SetVariableCalculatorAction) action;
-        setVariable(setVariableAction.getVariable());
-      }
-      default -> {
-      }
-    }
+  public CalculatorViewModel() {
+    this.model = new CalculatorModel();
   }
 
-  /**
-   * Getter.
-   *
-   * @return current calculator model.
-   */
-  public CalculatorModel getCalculatorModel() {
+  public void process(UserEvent event) {
+    event.apply(model);
+  }
+
+  public CalculatorModel getState() {
     return model;
   }
+}
+```
 
-  /**
-   * Set new calculator model variable.
-   *
-   * @param variable -> value of new calculator model variable.
-   */
-  private void setVariable(final Double variable) {
-    model = new CalculatorModel(
-        variable,
-        model.getOutput()
-    );
+The `CalculatorModel` class represents the Model in MVI. It holds the current state of the calculator, and provides methods for updating that state.
+
+```java
+public class CalculatorModel {
+  private double total;
+  private double variable;
+
+  public void setVariable(double variable) {
+    this.variable = variable;
   }
 
-  /**
-   * Add variable to model output.
-   */
-  private void add() {
-    model = new CalculatorModel(
-        model.getVariable(),
-        model.getOutput() + model.getVariable()
-    );
+  public void add() {
+    total += variable;
   }
 
-  /**
-   * Subtract variable from model output.
-   */
-  private void subtract() {
-    model = new CalculatorModel(
-        model.getVariable(),
-        model.getOutput() - model.getVariable()
-    );
+  public void subtract() {
+    total -= variable;
   }
 
-  /**
-   * Multiply model output by variable.
-   */
-  private void multiply() {
-    model = new CalculatorModel(
-        model.getVariable(),
-        model.getOutput() * model.getVariable()
-    );
+  public void divide() {
+    total /= variable;
   }
 
-  /**
-   * Divide model output by variable.
-   */
-  private void divide() {
-    model = new CalculatorModel(
-        model.getVariable(),
-        model.getOutput() / model.getVariable()
-    );
+  public void multiply() {
+    total *= variable;
+  }
+
+  public double getTotal() {
+    return total;
   }
 }
 ```
 
-## Applicability
-Use the Model-View-Intent pattern when
+Finally, the `UserEvent` interface and its implementations represent the different types of user events that can occur. Each event knows how to apply itself to the Model.
 
-* You want to clearly separate the domain data from its user interface representation
-* You want to minimise the public api of the view model
+```java
+public interface UserEvent {
+  void apply(CalculatorModel model);
+}
 
-## Known uses
-A popular architecture pattern in android. The small public api is particularly powerful 
-with the new Android Compose UI, as you can pass a single method (viewModel::handleEvent) 
-to all Composables(parts of UI) as a callback for user input event.
+public class SetVariableEvent implements UserEvent {
+  private double variable;
 
-## Consequences
-Pros:
-* Encapsulation
-* Separation of concerns
-* Clear list of all possible user events
+  public SetVariableEvent(double variable) {
+    this.variable = variable;
+  }
 
-Cons:
-* More boilerplate code compared to alternatives (especially in Java)
+  @Override
+  public void apply(CalculatorModel model) {
+    model.setVariable(variable);
+  }
+}
 
-## Related patterns
-MVC:
-* [Trygve Reenskaug - Model-view-controller](http://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)
-* [J2EE Design Patterns](https://www.amazon.com/gp/product/0596004273/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=0596004273&linkCode=as2&tag=javadesignpat-20&linkId=48d37c67fb3d845b802fa9b619ad8f31)
+// Similar classes would be created for AddEvent, SubtractEvent, DivideEvent, and MultiplyEvent ...
+```
 
-## Credits
+This example demonstrates the key aspects of the MVI pattern: unidirectional data flow, clear separation of concerns, and the use of events to drive changes in the Model's state.
 
-* [Model View Intent: a new Android Architecture Pattern](https://apiumacademy.com/blog/model-view-intent-pattern/)
-* [MVI Architecture for Android Tutorial](https://www.kodeco.com/817602-mvi-architecture-for-android-tutorial-getting-started)
+## When to Use the Model-View-Intent Pattern in Java
 
+* The MVI pattern is useful in Java applications with complex user interfaces that require a clear separation of concerns, predictable state management, and enhanced maintainability.
+* Often applied in reactive programming environments to ensure a smooth data flow and state consistency.
+
+## Model-View-Intent Pattern Java Tutorials
+
+* [Model View Intent: a new Android Architecture Pattern (Apium Academy)](https://apiumacademy.com/blog/model-view-intent-pattern/)
+* [MVI Architecture for Android Tutorial: Getting Started (Kodeco)](https://www.kodeco.com/817602-mvi-architecture-for-android-tutorial-getting-started)
+
+## Real-World Applications of Model-View-Intent Pattern in Java
+
+* Widely adopted in reactive and event-driven Java applications, particularly those using frameworks like RxJava or Project Reactor.
+* Used in Android development, especially with libraries that support reactive programming such as RxJava and LiveData.
+
+## Benefits and Trade-offs of Model-View-Intent Pattern
+
+Benefits:
+
+* Enhances the predictability of the UI by establishing a clear and cyclical data flow.
+* Improves testability due to well-defined separation between components.
+* Supports better state management by centralizing the state within the Model.
+
+Trade-offs:
+
+* Increases complexity for simple UIs due to the structured and cyclical flow.
+* Requires familiarity with reactive programming paradigms.
+* Can lead to boilerplate code if not managed properly.
+
+## Related Java Design Patterns
+
+[Model-View-ViewModel (MVVM)](https://java-design-patterns.com/patterns/model-view-viewmodel/): Shares a similar goal of separating the view from the model but differs as MVI introduces a cyclical data flow.
+[Model-View-Controller (MVC)](https://java-design-patterns.com/patterns/model-view-controller/): MVI can be seen as an evolution of MVC, focusing more on reactive programming and unidirectional data flow.
+[Observer](https://java-design-patterns.com/patterns/observer/): Essential in MVI to observe changes in the Model and update the View accordingly.
+
+## References and Credits
+
+* [Functional and Reactive Domain Modeling](https://amzn.to/4adghJ8)
+* [Reactive Programming with RxJava: Creating Asynchronous, Event-Based Applications](https://amzn.to/4dxwawC)

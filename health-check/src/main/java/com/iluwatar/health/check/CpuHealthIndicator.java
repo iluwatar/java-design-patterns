@@ -41,7 +41,6 @@ import org.springframework.stereotype.Component;
 /**
  * A health indicator that checks the health of the system's CPU.
  *
- * @author ydoksanbir
  */
 @Getter
 @Setter

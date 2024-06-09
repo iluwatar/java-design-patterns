@@ -30,9 +30,8 @@ import java.lang.reflect.InvocationTargetException;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/29/15 - 19:26 PM.
+ * ThreadSafeDoubleCheckLockingTest
  *
- * @author Jeroen Meulemeester
  */
 class ThreadSafeDoubleCheckLockingTest extends SingletonTest<ThreadSafeDoubleCheckLocking> {
 

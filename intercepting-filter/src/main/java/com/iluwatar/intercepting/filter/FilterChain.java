@@ -28,7 +28,6 @@ package com.iluwatar.intercepting.filter;
 /**
  * Filter Chain carries multiple filters and help to execute them in defined order on target.
  *
- * @author joshzambales
  */
 public class FilterChain {
 

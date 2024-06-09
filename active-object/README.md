@@ -1,26 +1,51 @@
 ---
-title: Active Object
+title: "Active Object Pattern in Java: Achieving Efficient Asynchronous Processing"
+shortTitle: Active Object
+description: "Learn about the Active Object design pattern in Java. This guide covers asynchronous behavior, concurrency, and practical examples to enhance your Java applications' performance."
 category: Concurrency
 language: en
 tag:
-    - Performance
+  - Asynchronous
+  - Decoupling
+  - Messaging
+  - Synchronization
+  - Thread management
 ---
 
-## Intent
+## Intent of Active Object Design Pattern
 
-The Active Object design pattern provides a safe and reliable way to implement asynchronous behavior in concurrent systems. It achieves this by encapsulating tasks within objects that have their own thread and message queue. This separation keeps the main thread responsive and avoids issues like direct thread manipulation or shared state access.
+The Active Object pattern provides a reliable method for asynchronous processing in Java, ensuring responsive applications and efficient thread management. It achieves this by encapsulating tasks within objects that have their own thread and message queue. This separation keeps the main thread responsive and avoids issues like direct thread manipulation or shared state access.
 
-## Explanation
-
-The class that implements the active object pattern will contain a self-synchronization mechanism without using 'synchronized' methods.
+## Detailed Explanation of Active Object Pattern with Real-World Examples
 
 Real-world example
 
-> The Orcs are known for their wildness and untameable soul. It seems like they have their own thread of control based on previous behavior.
+> Imagine a busy restaurant where customers place orders with waiters. Instead of the waiters going to the kitchen to prepare the food themselves, they write the orders on slips and hand them to a dispatcher. The dispatcher manages a pool of chefs who prepare the meals asynchronously. Once a chef is free, they pick up the next order from the queue, prepare the dish, and notify the waiter when it's ready for serving.
+>
+> In this analogy, the waiters represent the client threads, the dispatcher represents the scheduler, and the chefs represent the method execution in separate threads. This setup allows the waiters to continue taking orders without being blocked by the food preparation process, much like the Active Object pattern decouples method invocation from execution to enhance concurrency.
 
-To implement a creature that has its own thread of control mechanism and expose its API only and not the execution itself, we can use the Active Object pattern.
+In plain words
 
-**Programmatic Example**
+> The Active Object pattern decouples method execution from method invocation to improve concurrency and responsiveness in multithreaded applications.
+
+Wikipedia says
+
+> The active object design pattern decouples method execution from method invocation for objects that each reside in their own thread of control.[1] The goal is to introduce concurrency, by using asynchronous method invocation and a scheduler for handling requests.
+>
+> The pattern consists of six elements:
+>
+> * A proxy, which provides an interface towards clients with publicly accessible methods.
+> * An interface which defines the method request on an active object.
+> * A list of pending requests from clients.
+> * A scheduler, which decides which request to execute next.
+> * The implementation of the active object method.
+> * A callback or variable for the client to receive the result.
+
+## Programmatic Example of Active Object in Java
+
+This section explains how the Active Object design pattern works in Java, highlighting its use in asynchronous task management and concurrency control.
+
+The Orcs are known for their wildness and untameable soul. It seems like they have their own thread of control based on previous behavior. To implement a creature that has its own thread of control mechanism and expose its API only and not the execution itself, we can use the Active Object pattern.
 
 ```java
 public abstract class ActiveCreature {
@@ -78,9 +103,9 @@ public abstract class ActiveCreature {
 }
 ```
 
-We can see that any class that will extend the ActiveCreature class will have its own thread of control to invoke and execute methods.
+We can see that any class that will extend the `ActiveCreature` class will have its own thread of control to invoke and execute methods.
 
-For example, the Orc class:
+For example, the `Orc` class:
 
 ```java
 public class Orc extends ActiveCreature {
@@ -88,74 +113,105 @@ public class Orc extends ActiveCreature {
     public Orc(String name) {
         super(name);
     }
-
 }
 ```
 
-Now, we can create multiple creatures such as Orcs, tell them to eat and roam, and they will execute it on their own thread of control:
+Now, we can create multiple creatures such as orcs, tell them to eat and roam, and they will execute it on their own thread of control:
 
 ```java
-  public static void main(String[]args){
-        var app=new App();
-        app.run();
-        }
+public class App implements Runnable {
 
-@Override
-public void run(){
-        ActiveCreature creature;
-        try{
-        for(int i=0;i<creatures;i++){
-        creature=new Orc(Orc.class.getSimpleName().toString()+i);
-        creature.eat();
-        creature.roam();
+    private static final Logger logger = LoggerFactory.getLogger(App.class.getName());
+
+    private static final int NUM_CREATURES = 3;
+
+    public static void main(String[] args) {
+        var app = new App();
+        app.run();
+    }
+
+    @Override
+    public void run() {
+        List<ActiveCreature> creatures = new ArrayList<>();
+        try {
+            for (int i = 0; i < NUM_CREATURES; i++) {
+                creatures.add(new Orc(Orc.class.getSimpleName() + i));
+                creatures.get(i).eat();
+                creatures.get(i).roam();
+            }
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            logger.error(e.getMessage());
+            Thread.currentThread().interrupt();
+        } finally {
+            for (int i = 0; i < NUM_CREATURES; i++) {
+                creatures.get(i).kill(0);
+            }
         }
-        Thread.sleep(1000);
-        }catch(InterruptedException e){
-        logger.error(e.getMessage());
-        }
-        Runtime.getRuntime().exit(1);
-        }
+    }
+}
 ```
 
-## Class diagram
+Program output:
 
-![alt text](./etc/active-object.urm.png "Active Object class diagram")
+```
+09:00:02.501 [Thread-0] INFO com.iluwatar.activeobject.ActiveCreature -- Orc0 is eating!
+09:00:02.501 [Thread-2] INFO com.iluwatar.activeobject.ActiveCreature -- Orc2 is eating!
+09:00:02.501 [Thread-1] INFO com.iluwatar.activeobject.ActiveCreature -- Orc1 is eating!
+09:00:02.504 [Thread-0] INFO com.iluwatar.activeobject.ActiveCreature -- Orc0 has finished eating!
+09:00:02.504 [Thread-1] INFO com.iluwatar.activeobject.ActiveCreature -- Orc1 has finished eating!
+09:00:02.504 [Thread-0] INFO com.iluwatar.activeobject.ActiveCreature -- Orc0 has started to roam in the wastelands.
+09:00:02.504 [Thread-2] INFO com.iluwatar.activeobject.ActiveCreature -- Orc2 has finished eating!
+09:00:02.504 [Thread-1] INFO com.iluwatar.activeobject.ActiveCreature -- Orc1 has started to roam in the wastelands.
+09:00:02.504 [Thread-2] INFO com.iluwatar.activeobject.ActiveCreature -- Orc2 has started to roam in the wastelands.
+```
 
-## Applicability
+## When to Use the Active Object Pattern in Java
 
-* When you need to perform long-running operations without blocking the main thread.
+Use the Active Object pattern in Java when:
+
+* when you need to handle asynchronous tasks without blocking the main thread, ensuring better performance and responsiveness.
 * When you need to interact with external resources asynchronously.
 * When you want to improve the responsiveness of your application.
 * When you need to manage concurrent tasks in a modular and maintainable way.
 
-## Tutorials
+## Active Object Pattern Java Tutorials
 
-* [Android and Java Concurrency: The Active Object Pattern](https://www.youtube.com/watch?v=Cd8t2u5Qmvc)
+* [Android and Java Concurrency: The Active Object Pattern(Douglas Schmidt)](https://www.youtube.com/watch?v=Cd8t2u5Qmvc)
 
-## Consequences
+## Real-World Applications of Active Object Pattern in Java
 
-Benefits
+* Real-time trading systems where transaction requests are handled asynchronously.
+* GUIs where long-running tasks are executed in the background without freezing the user interface.
+* Game programming to handle concurrent updates to game state or AI computations.
+
+## Benefits and Trade-offs of Active Object Pattern
+
+Discover the benefits and trade-offs of using the Active Object pattern in Java, including improved thread safety and potential overhead concerns.
+
+Benefits:
 
 * Improves responsiveness of the main thread.
 * Encapsulates concurrency concerns within objects.
 * Promotes better code organization and maintainability.
 * Provides thread safety and avoids shared state access problems.
 
-Trade-offs
+Trade-offs:
 
 * Introduces additional overhead due to message passing and thread management.
 * May not be suitable for all types of concurrency problems.
 
-## Related patterns
+## Related Java Design Patterns
 
-* Observer
-* Reactor
-* Producer-consumer
-* Thread pool
+* [Command](https://java-design-patterns.com/patterns/command/): Encapsulates a request as an object, similarly to how the Active Object pattern encapsulates method calls.
+* [Promise](https://java-design-patterns.com/patterns/promise/): Provides a means to retrieve the result of an asynchronous method call, often used in conjunction with Active Object.
+* [Proxy](https://java-design-patterns.com/patterns/proxy/): The Active Object pattern can use a proxy to handle method invocations asynchronously.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object Software](https://amzn.to/3HYqrBE)
 * [Concurrent Programming in Java: Design Principles and Patterns](https://amzn.to/498SRVq)
+* [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 * [Learning Concurrent Programming in Scala](https://amzn.to/3UE07nV)
 * [Pattern Languages of Program Design 3](https://amzn.to/3OI1j61)
+* [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)

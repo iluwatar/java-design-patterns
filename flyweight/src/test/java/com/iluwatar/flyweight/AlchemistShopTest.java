@@ -32,9 +32,8 @@ import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
 /**
- * Date: 12/12/15 - 10:54 PM
+ * AlchemistShopTest
  *
- * @author Jeroen Meulemeester
  */
 class AlchemistShopTest {
 

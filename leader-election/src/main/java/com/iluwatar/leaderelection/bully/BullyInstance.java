@@ -100,7 +100,7 @@ public class BullyInstance extends AbstractInstance {
    */
   @Override
   protected void handleLeaderMessage(Message message) {
-    leaderId = Integer.valueOf(message.getContent());
+    leaderId = Integer.parseInt(message.getContent());
     LOGGER.info(INSTANCE + localId + " - Leader update done.");
   }
 
