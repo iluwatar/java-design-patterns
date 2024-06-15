@@ -86,7 +86,7 @@ public class CakeViewImpl implements View {
 }
 ```
 
-## Detailed Explanation of Layered Architecture Pattern with Real-World Examples
+## Layered Architecture Pattern Class Diagram
 
 ![Layered Architecture](./etc/layers.png "Layered Architecture")
 
