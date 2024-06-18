@@ -28,6 +28,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
@@ -66,9 +67,10 @@ public class Retry<T> {
   private final AtomicInteger attempts;
   private final Predicate<Exception> test;
   private final List<Exception> errors;
+  private final ScheduledExecutorService scheduler;
 
   Retry(Operation op, HandleErrorIssue<T> handleError, int maxAttempts,
-        long maxDelay, Predicate<Exception>... ignoreTests) {
+      long maxDelay, Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.handleError = handleError;
     this.maxAttempts = maxAttempts;
@@ -76,36 +78,43 @@ public class Retry<T> {
     this.attempts = new AtomicInteger();
     this.test = Arrays.stream(ignoreTests).reduce(Predicate::or).orElse(e -> false);
     this.errors = new ArrayList<>();
+    this.scheduler = Executors.newScheduledThreadPool(1);
   }
 
   /**
    * Performing the operation with retries.
    *
    * @param list is the exception list
-   * @param obj  is the parameter to be passed into handleIsuue method
+   * @param obj  is the parameter to be passed into handleIssue method
    */
-
   public void perform(List<Exception> list, T obj) {
-    do {
-      try {
-        op.operation(list);
-        return;
-      } catch (Exception e) {
-        this.errors.add(e);
-        if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
-          this.handleError.handleIssue(obj, e);
-          return; //return here... don't go further
-        }
-        try {
-          long testDelay =
-              (long) Math.pow(2, this.attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
-          long delay = Math.min(testDelay, this.maxDelay);
-          Thread.sleep(delay);
-        } catch (InterruptedException f) {
-          //ignore
-        }
-      }
-    } while (true);
+    attempts.set(0); // reset attempts before starting
+    executeWithRetry(list, obj);
   }
 
+  private void executeWithRetry(List<Exception> list, T obj) {
+    scheduler.schedule(() -> {
+      try {
+        op.operation(list);
+      } catch (Exception e) {
+        errors.add(e);
+        if (attempts.incrementAndGet() >= maxAttempts || !test.test(e)) {
+          handleError.handleIssue(obj, e);
+          scheduler.shutdown();
+        } else {
+          long testDelay = (long) Math.pow(2, attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
+          long delay = Math.min(testDelay, maxDelay);
+          executeWithRetry(list, obj);
+        }
+      }
+    }, calculateDelay(), TimeUnit.MILLISECONDS);
+  }
+
+  private long calculateDelay() {
+    if (attempts.get() == 0) {
+      return 0;
+    }
+    long testDelay = (long) Math.pow(2, attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
+    return Math.min(testDelay, maxDelay);
+  }
 }

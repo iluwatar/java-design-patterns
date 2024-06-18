@@ -43,40 +43,40 @@ import org.mockito.MockitoAnnotations;
  */
 public class LoginHandlerTest {
 
-  private LoginHandler loginHandler;
-  //private Headers headers;
-  private Map<String, Integer> sessions;
-  private Map<String, Instant> sessionCreationTimes;
+	private LoginHandler loginHandler;
+	// private Headers headers;
+	private Map<String, Integer> sessions;
+	private Map<String, Instant> sessionCreationTimes;
 
-  @Mock
-  private HttpExchange exchange;
+	@Mock
+	private HttpExchange exchange;
 
-  /**
-   * Setup tests.
-   */
-  @BeforeEach
-  public void setUp() {
-    MockitoAnnotations.initMocks(this);
-    sessions = new HashMap<>();
-    sessionCreationTimes = new HashMap<>();
-    loginHandler = new LoginHandler(sessions, sessionCreationTimes);
-  }
+	/**
+	 * Setup tests.
+	 */
+	@BeforeEach
+	public void setUp() {
+		MockitoAnnotations.initMocks(this);
+		sessions = new HashMap<>();
+		sessionCreationTimes = new HashMap<>();
+		loginHandler = new LoginHandler(sessions, sessionCreationTimes);
+	}
 
-  @Test
-  public void testHandle() {
+	@Test
+	public void testHandle() {
 
-    //assemble
-    ByteArrayOutputStream outputStream =
-        new ByteArrayOutputStream(); //Exchange object is mocked so OutputStream must be manually created
-    when(exchange.getResponseHeaders()).thenReturn(
-        new Headers()); //Exchange object is mocked so Header object must be manually created
-    when(exchange.getResponseBody()).thenReturn(outputStream);
+		// assemble
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream(); // Exchange object is mocked so OutputStream
+																			// must be manually created
+		when(exchange.getResponseHeaders()).thenReturn(new Headers()); // Exchange object is mocked so Header object
+																		// must be manually created
+		when(exchange.getResponseBody()).thenReturn(outputStream);
 
-    //act
-    loginHandler.handle(exchange);
+		// act
+		loginHandler.handle(exchange);
 
-    //assert
-    String[] response = outputStream.toString().split("Session ID: ");
-    assertEquals(sessions.entrySet().toArray()[0].toString().split("=1")[0], response[1]);
-  }
+		// assert
+		String[] response = outputStream.toString().split("Session ID: ");
+		assertEquals(sessions.entrySet().toArray()[0].toString().split("=1")[0], response[1]);
+	}
 }

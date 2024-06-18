@@ -24,18 +24,18 @@
  */
 package com.iluwatar.logaggregation;
 
-import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 import lombok.extern.slf4j.Slf4j;
+
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Responsible for collecting and buffering logs from different services.
  * Once the logs reach a certain threshold or after a certain time interval,
- * they are flushed to the central log store. This class ensures logs are collected
- * and processed asynchronously and efficiently, providing both an immediate collection
+ * they are flushed to the central log store. This class ensures logs are
+ * collected
+ * and processed asynchronously and efficiently, providing both an immediate
+ * collection
  * and periodic flushing.
  */
 @Slf4j
@@ -45,14 +45,14 @@ public class LogAggregator {
   private final CentralLogStore centralLogStore;
   private final ConcurrentLinkedQueue<LogEntry> buffer = new ConcurrentLinkedQueue<>();
   private final LogLevel minLogLevel;
-  private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+  private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
   private final AtomicInteger logCount = new AtomicInteger(0);
 
   /**
    * constructor of LogAggregator.
    *
    * @param centralLogStore central log store implement
-   * @param minLogLevel min log level to store log
+   * @param minLogLevel     min log level to store log
    */
   public LogAggregator(CentralLogStore centralLogStore, LogLevel minLogLevel) {
     this.centralLogStore = centralLogStore;
@@ -86,15 +86,23 @@ public class LogAggregator {
   /**
    * Stops the log aggregator service and flushes any remaining logs to
    * the central log store.
-   *
-   * @throws InterruptedException If any thread has interrupted the current thread.
    */
-  public void stop() throws InterruptedException {
-    executorService.shutdownNow();
-    if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
-      LOGGER.error("Log aggregator did not terminate.");
+  public void stop() {
+    scheduler.shutdown();
+    try {
+      if (!scheduler.awaitTermination(10, TimeUnit.SECONDS)) {
+        scheduler.shutdownNow();
+        if (!scheduler.awaitTermination(10, TimeUnit.SECONDS)) {
+          LOGGER.error("Log aggregator did not terminate.");
+        }
+      }
+    } catch (InterruptedException e) {
+      scheduler.shutdownNow();
+      Thread.currentThread().interrupt();
+      LOGGER.error("Log aggregator thread interrupted.", e);
+    } finally {
+      flushBuffer();
     }
-    flushBuffer();
   }
 
   private void flushBuffer() {
@@ -106,15 +114,6 @@ public class LogAggregator {
   }
 
   private void startBufferFlusher() {
-    executorService.execute(() -> {
-      while (!Thread.currentThread().isInterrupted()) {
-        try {
-          Thread.sleep(5000); // Flush every 5 seconds.
-          flushBuffer();
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-        }
-      }
-    });
+    scheduler.scheduleAtFixedRate(this::flushBuffer, 5, 5, TimeUnit.SECONDS);
   }
 }
