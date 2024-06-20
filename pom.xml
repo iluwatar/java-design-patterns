@@ -58,6 +58,7 @@
     <sonar.projectName>Java Design Patterns</sonar.projectName>
   </properties>
   <modules>
+    <module>publish-subscribe</module>
     <module>abstract-factory</module>
     <module>collecting-parameter</module>
     <module>monitor</module>
