@@ -6,11 +6,12 @@ import java.util.Map;
 public class ServiceRegistry {
   public static final Map<String, Object> registry = new HashMap<>();
 
-  public static void registerService(String serviceName, Object serviceInstance) {
+  public static <T> void registerService(String serviceName, T serviceInstance) {
     registry.put(serviceName, serviceInstance);
   }
 
-  public static Object getService(String serviceName) {
-    return registry.get(serviceName);
+  @SuppressWarnings("unchecked")
+  public static <T> T getService(String serviceName) {
+    return (T) registry.get(serviceName);
   }
 }
