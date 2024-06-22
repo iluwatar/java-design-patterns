@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOA Services</title>
+    <script>
+        function callService2() {
+            var name = prompt("Enter your name:");
+            if (name != null && name.trim() != "") {
+                window.location.href = "/two/" + name.trim();
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Welcome to your services!</h1>
+<p>Select a service:</p>
+<ul>
+    <li><a href="/one">Service 1: simple greeting</a></li>
+    <li><a href="#" onclick="callService2()">Service 2: personalized greeting</a></li>
+</ul>
+</body>
+</html>

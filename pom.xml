@@ -214,6 +214,7 @@
     <module>gateway</module>
     <module>serialized-lob</module>
     <module>server-session</module>
+      <module>service-oriented-architecture</module>
     <module>virtual-proxy</module>
     <module>function-composition</module>
   </modules>
