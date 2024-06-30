@@ -22,18 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.queue.load.leveling;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * ServiceExecuotr class. This class will pick up Messages one by one from the Blocking Queue and
+ * ServiceExecutor class. This class will pick up Messages one by one from the
+ * Blocking Queue and
  * process them.
  */
 @Slf4j
 public class ServiceExecutor implements Runnable {
 
   private final MessageQueue msgQueue;
+  private volatile boolean isRunning = true;
 
   public ServiceExecutor(MessageQueue msgQueue) {
     this.msgQueue = msgQueue;
@@ -42,21 +45,31 @@ public class ServiceExecutor implements Runnable {
   /**
    * The ServiceExecutor thread will retrieve each message and process it.
    */
+  @Override
   public void run() {
     try {
-      while (!Thread.currentThread().isInterrupted()) {
+      while (isRunning) {
         var msg = msgQueue.retrieveMsg();
 
-        if (null != msg) {
+        if (msg != null) {
           LOGGER.info(msg + " is served.");
         } else {
           LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
         }
 
+        // Simulating processing time
         Thread.sleep(1000);
       }
-    } catch (Exception e) {
-      LOGGER.error(e.getMessage());
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt(); // Reset interrupt status
+      LOGGER.error("ServiceExecutor thread interrupted", e);
     }
+  }
+
+  /**
+   * Stops the execution of the ServiceExecutor thread.
+   */
+  public void stop() {
+    isRunning = false;
   }
 }

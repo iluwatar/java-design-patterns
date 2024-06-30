@@ -28,11 +28,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 /**
- * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
+ * Decorates {@link BusinessOperation business operation} with "retry"
+ * capabilities.
  *
  * @param <T> the remote op's return type
  */
@@ -43,6 +48,7 @@ public final class Retry<T> implements BusinessOperation<T> {
   private final AtomicInteger attempts;
   private final Predicate<Exception> test;
   private final List<Exception> errors;
+  private final ScheduledExecutorService scheduler;
 
   /**
    * Ctor.
@@ -50,7 +56,8 @@ public final class Retry<T> implements BusinessOperation<T> {
    * @param op          the {@link BusinessOperation} to retry
    * @param maxAttempts number of times to retry
    * @param delay       delay (in milliseconds) between attempts
-   * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
+   * @param ignoreTests tests to check whether the remote exception can be
+   *                    ignored. No exceptions
    *                    will be ignored if no tests are given
    */
   @SafeVarargs
@@ -58,14 +65,14 @@ public final class Retry<T> implements BusinessOperation<T> {
       BusinessOperation<T> op,
       int maxAttempts,
       long delay,
-      Predicate<Exception>... ignoreTests
-  ) {
+      Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.maxAttempts = maxAttempts;
     this.delay = delay;
     this.attempts = new AtomicInteger();
     this.test = Arrays.stream(ignoreTests).reduce(Predicate::or).orElse(e -> false);
     this.errors = new ArrayList<>();
+    this.scheduler = Executors.newScheduledThreadPool(1);
   }
 
   /**
@@ -88,22 +95,37 @@ public final class Retry<T> implements BusinessOperation<T> {
 
   @Override
   public T perform() throws BusinessException {
-    do {
+    CompletableFuture<T> future = new CompletableFuture<>();
+    performWithRetry(future);
+    try {
+      return future.get();
+    } catch (Exception e) {
+      throw new BusinessException("Operation failed after retries");
+    } finally {
+      scheduler.shutdown();
+    }
+  }
+
+  private void performWithRetry(CompletableFuture<T> future) {
+    scheduler.schedule(() -> {
       try {
-        return this.op.perform();
-      } catch (BusinessException e) {
-        this.errors.add(e);
-
+        future.complete(this.op.perform());
+      } catch (Exception e) {
+        this.errors.add((Exception) e);
         if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
-          throw e;
-        }
-
-        try {
-          Thread.sleep(this.delay);
-        } catch (InterruptedException f) {
-          //ignore
+          future.completeExceptionally(e);
+          scheduler.shutdown();
+        } else {
+          performWithRetry(future);
         }
       }
-    } while (true);
+    }, calculateDelay(), TimeUnit.MILLISECONDS);
+  }
+
+  private long calculateDelay() {
+    if (attempts.get() == 0) {
+      return 0;
+    }
+    return delay;
   }
 }

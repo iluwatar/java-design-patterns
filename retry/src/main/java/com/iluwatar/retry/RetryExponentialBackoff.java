@@ -29,11 +29,13 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 /**
- * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
+ * Decorates {@link BusinessOperation business operation} with "retry"
+ * capabilities.
  *
  * @param <T> the remote op's return type
  */
@@ -45,13 +47,16 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   private final AtomicInteger attempts;
   private final Predicate<Exception> test;
   private final List<Exception> errors;
+  private final ScheduledExecutorService scheduler;
 
   /**
    * Ctor.
    *
    * @param op          the {@link BusinessOperation} to retry
    * @param maxAttempts number of times to retry
-   * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
+   * @param maxDelay    maximum delay between retries (in milliseconds)
+   * @param ignoreTests tests to check whether the remote exception can be
+   *                    ignored. No exceptions
    *                    will be ignored if no tests are given
    */
   @SafeVarargs
@@ -59,14 +64,14 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
       BusinessOperation<T> op,
       int maxAttempts,
       long maxDelay,
-      Predicate<Exception>... ignoreTests
-  ) {
+      Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.maxAttempts = maxAttempts;
     this.maxDelay = maxDelay;
     this.attempts = new AtomicInteger();
     this.test = Arrays.stream(ignoreTests).reduce(Predicate::or).orElse(e -> false);
     this.errors = new ArrayList<>();
+    this.scheduler = Executors.newScheduledThreadPool(1); // Create a single-threaded scheduled executor
   }
 
   /**
@@ -89,6 +94,23 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
 
   @Override
   public T perform() throws BusinessException {
+    try {
+      return executeWithRetry();
+    } finally {
+      scheduler.shutdown(); // Shutdown the scheduler when no longer needed
+    }
+  }
+
+  private T executeWithRetry() throws BusinessException {
+    ScheduledFuture<T> future = scheduler.schedule(this::retryOperation, 0, TimeUnit.MILLISECONDS);
+    try {
+      return future.get(); // Wait for the operation to complete
+    } catch (InterruptedException | ExecutionException e) {
+      throw new BusinessException("Retry operation failed");
+    }
+  }
+
+  private T retryOperation() throws BusinessException {
     do {
       try {
         return this.op.perform();
@@ -100,11 +122,12 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
         }
 
         try {
-          var testDelay = (long) Math.pow(2, this.attempts()) * 1000 + RANDOM.nextInt(1000);
-          var delay = Math.min(testDelay, this.maxDelay);
+          long testDelay = (long) Math.pow(2, this.attempts()) * 1000 + RANDOM.nextInt(1000);
+          long delay = Math.min(testDelay, this.maxDelay);
           Thread.sleep(delay);
         } catch (InterruptedException f) {
-          //ignore
+          Thread.currentThread().interrupt(); // Reset interrupt status
+          throw new BusinessException("Thread interrupted while retrying operation");
         }
       }
     } while (true);
