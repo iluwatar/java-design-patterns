@@ -1,0 +1,15 @@
+@startuml
+!theme vibrant
+package com.iluwatar.microservices-distributed-tracing {
+package "Order Microservice" {
+    class OrderController {
+        +processOrder()
+    }
+
+    class OrderService {
+        +validateProduct()
+        +processPayment()
+    }
+}
+}
+@enduml
