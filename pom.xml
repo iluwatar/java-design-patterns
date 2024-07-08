@@ -216,6 +216,7 @@
     <module>server-session</module>
     <module>virtual-proxy</module>
     <module>function-composition</module>
+    <module>microservices-distributed-tracing</module>
   </modules>
   <repositories>
     <repository>

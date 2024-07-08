@@ -67,9 +67,9 @@ class OrderControllerTest {
   @Test
   void ProcessOrderShouldReturnFailureStatusWhen() {
     // Arrange
-    String request = "test order";
+    when(orderService.processOrder()).thenReturn("Order processing failed");
     // Act
-    ResponseEntity<String> response = orderController.processOrder(request);
+    ResponseEntity<String> response = orderController.processOrder("test order");
     // Assert
     assertEquals("Order processing failed", response.getBody());
   }
