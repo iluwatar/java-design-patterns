@@ -28,9 +28,12 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.time.Instant;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -54,8 +57,9 @@ import lombok.extern.slf4j.Slf4j;
 public class App {
 
   // Map to store session data (simulated using a HashMap)
-  private static Map<String, Integer> sessions = new HashMap<>();
-  private static Map<String, Instant> sessionCreationTimes = new HashMap<>();
+  private static final Map<String, Integer> sessions = new ConcurrentHashMap<>();
+  private static final Map<String, Instant> sessionCreationTimes = new ConcurrentHashMap<>();
+  private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
   private static final long SESSION_EXPIRATION_TIME = 10000;
 
   /**
@@ -81,31 +85,24 @@ public class App {
   }
 
   private static void sessionExpirationTask() {
-    new Thread(() -> {
-      while (true) {
-        try {
-          LOGGER.info("Session expiration checker started...");
-          Thread.sleep(SESSION_EXPIRATION_TIME); // Sleep for expiration time
-          Instant currentTime = Instant.now();
-          synchronized (sessions) {
-            synchronized (sessionCreationTimes) {
-              Iterator<Map.Entry<String, Instant>> iterator =
-                  sessionCreationTimes.entrySet().iterator();
-              while (iterator.hasNext()) {
-                Map.Entry<String, Instant> entry = iterator.next();
-                if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
-                  sessions.remove(entry.getKey());
-                  iterator.remove();
-                }
-              }
-            }
+    scheduler.scheduleWithFixedDelay(() -> {
+      try {
+        LOGGER.info("Session expiration checker started...");
+        Iterator<Map.Entry<String, Instant>> iterator = sessionCreationTimes.entrySet().iterator();
+        Instant currentTime = Instant.now();
+
+        while (iterator.hasNext()) {
+          Map.Entry<String, Instant> entry = iterator.next();
+          if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
+            sessions.remove(entry.getKey());
+            iterator.remove();
           }
-          LOGGER.info("Session expiration checker finished!");
-        } catch (InterruptedException e) {
-          LOGGER.error("An error occurred: ", e);
-          Thread.currentThread().interrupt();
         }
+        LOGGER.info("Session expiration checker finished!");
+
+      } catch (Exception e) {
+        LOGGER.error("An error occured: ", e);
       }
-    }).start();
+    }, 0, SESSION_EXPIRATION_TIME, TimeUnit.MILLISECONDS);
   }
 }
