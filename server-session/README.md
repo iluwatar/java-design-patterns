@@ -47,46 +47,45 @@ The `main` application starts a server and assigns handlers to manage login and 
 ```java
 public class App {
 
-  private static Map<String, Integer> sessions = new HashMap<>();
-  private static Map<String, Instant> sessionCreationTimes = new HashMap<>();
-  private static final long SESSION_EXPIRATION_TIME = 10000;
+    private static final Map<String, Integer> sessions = new ConcurrentHashMap<>();
+    private static final Map<String, Instant> sessionCreationTimes = new ConcurrentHashMap<>();
+    private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    private static final long SESSION_EXPIRATION_TIME = 10000;
 
-  public static void main(String[] args) throws IOException {
-    HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+    public static void main(String[] args) {
+        HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
 
-    server.createContext("/login", new LoginHandler(sessions, sessionCreationTimes));
-    server.createContext("/logout", new LogoutHandler(sessions, sessionCreationTimes));
+        server.createContext("/login", new LoginHandler(sessions, sessionCreationTimes));
+        server.createContext("/logout", new LogoutHandler(sessions, sessionCreationTimes));
 
-    server.start();
+        server.start();
 
-    sessionExpirationTask();
-  }
+        sessionExpirationTask();
 
-  private static void sessionExpirationTask() {
-    new Thread(() -> {
-      while (true) {
-        try {
-          Thread.sleep(SESSION_EXPIRATION_TIME);
-          Instant currentTime = Instant.now();
-          synchronized (sessions) {
-            synchronized (sessionCreationTimes) {
-              Iterator<Map.Entry<String, Instant>> iterator =
-                  sessionCreationTimes.entrySet().iterator();
-              while (iterator.hasNext()) {
-                Map.Entry<String, Instant> entry = iterator.next();
-                if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
-                  sessions.remove(entry.getKey());
-                  iterator.remove();
+        LOGGER.info("Server started. Listening on port 8080...");
+    }
+
+    private static void sessionExpirationTask() {
+        scheduler.scheduleWithFixedDelay(() -> {
+            try {
+                LOGGER.info("Session expiration checker started...");
+                Iterator<Map.Entry<String, Instant>> iterator = sessionCreationTimes.entrySet().iterator();
+                Instant currentTime = Instant.now();
+
+                while (iterator.hasNext()) {
+                    Map.Entry<String, Instant> entry = iterator.next();
+                    if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
+                        sessions.remove(entry.getKey());
+                        iterator.remove();
+                    }
                 }
-              }
+                LOGGER.info("Session expiration checker finished!");
+
+            } catch (Exception e) {
+                LOGGER.error("An error occured: ", e);
             }
-          }
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-        }
-      }
-    }).start();
-  }
+        }, 0, SESSION_EXPIRATION_TIME, TimeUnit.MILLISECONDS);
+    }
 }
 ```
 

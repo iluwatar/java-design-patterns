@@ -24,11 +24,11 @@
  */
 package com.iluwatar.twin;
 
-import lombok.Setter;
-import lombok.extern.slf4j.Slf4j;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
@@ -50,8 +50,8 @@ public class BallThread extends Thread {
    * Run the thread.
    */
   public void run() {
-    scheduler.scheduleWithFixedDelay(()->{
-      if (!isSuspended){
+    scheduler.scheduleWithFixedDelay(() -> {
+      if (!isSuspended) {
         twin.draw();
         twin.move();
       }
@@ -70,7 +70,7 @@ public class BallThread extends Thread {
 
   public void stopMe() {
     this.isSuspended = true;
-    if (scheduler != null){
+    if (scheduler != null) {
       scheduler.shutdown();
     }
   }
