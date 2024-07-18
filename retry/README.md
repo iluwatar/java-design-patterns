@@ -61,14 +61,14 @@ The `Retry` class is where the Retry pattern is implemented. It takes a `Busines
 
 ```java
 public final class Retry<T> implements BusinessOperation<T> {
-    
     private final BusinessOperation<T> op;
+    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
     private final int maxAttempts;
     private final long delay;
     private final AtomicInteger attempts;
     private final Predicate<Exception> test;
     private final List<Exception> errors;
-
+    
     @SafeVarargs
     public Retry(
             BusinessOperation<T> op,
@@ -83,34 +83,48 @@ public final class Retry<T> implements BusinessOperation<T> {
         this.test = Arrays.stream(ignoreTests).reduce(Predicate::or).orElse(e -> false);
         this.errors = new ArrayList<>();
     }
-
+    
     public List<Exception> errors() {
         return Collections.unmodifiableList(this.errors);
     }
-
+    
     public int attempts() {
         return this.attempts.intValue();
     }
 
     @Override
     public T perform() throws BusinessException {
-        do {
+        final CompletableFuture<T> future = new CompletableFuture<>();
+
+        performRetry(future);
+        try {
+            return future.get();
+        } catch (InterruptedException | ExecutionException e) {
+            if (e.getCause() instanceof BusinessException be){
+                throw be;
+            }
+            throw new BusinessException("Unexpected exception occurred " + e.getMessage());
+        } finally {
+            scheduler.shutdown();
+        }
+    }
+
+    private void performRetry(CompletableFuture<T> future){
+        scheduler.schedule(() -> {
             try {
-                return this.op.perform();
-            } catch (BusinessException e) {
+                T result = this.op.perform();
+                future.complete(result);
+            } catch (BusinessException e){
                 this.errors.add(e);
 
                 if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
-                    throw e;
+                    future.completeExceptionally(e);
+                    return;
                 }
 
-                try {
-                    Thread.sleep(this.delay);
-                } catch (InterruptedException f) {
-                    //ignore
-                }
+                performRetry(future);
             }
-        } while (true);
+        }, this.delay, TimeUnit.MILLISECONDS);
     }
 }
 ```
