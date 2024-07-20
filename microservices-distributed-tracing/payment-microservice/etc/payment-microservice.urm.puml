@@ -1,0 +1,11 @@
+@startuml
+!theme vibrant
+package com.iluwatar.microservices-distributed-tracing {
+
+package "Payment Microservice" {
+    class PaymentController {
+        +processPayment()
+    }
+}
+}
+@enduml

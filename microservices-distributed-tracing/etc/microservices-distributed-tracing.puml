@@ -1,0 +1,31 @@
+@startuml
+!theme vibrant
+package com.iluwatar.microservices-distributed-tracing {
+package "Order Microservice" {
+    class OrderController {
+        +processOrder()
+    }
+
+    class OrderService {
+        +validateProduct()
+        +processPayment()
+    }
+}
+
+package "Payment Microservice" {
+    class PaymentController {
+        +processPayment()
+    }
+}
+
+package "Product Microservice" {
+    class ProductController {
+        +validateProduct()
+    }
+}
+
+OrderController --> OrderService
+OrderService --> PaymentController : processPayment()
+OrderService --> ProductController : validateProduct()
+}
+@enduml
