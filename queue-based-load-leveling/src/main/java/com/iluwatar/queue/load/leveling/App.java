@@ -26,7 +26,6 @@ package com.iluwatar.queue.load.leveling;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -104,12 +103,7 @@ public class App {
           + " Executor will shutdown only after all the Threads are completed.");
       executor.shutdown();
 
-      // Wait for SHUTDOWN_TIME seconds for all the threads to complete 
-      // their tasks and then shut down the executor and then exit. 
-      if (!executor.awaitTermination(SHUTDOWN_TIME, TimeUnit.SECONDS)) {
-        LOGGER.info("Executor was shut down and Exiting.");
-        executor.shutdownNow();
-      }
+      srvRunnable.shutdown(SHUTDOWN_TIME);
     } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }

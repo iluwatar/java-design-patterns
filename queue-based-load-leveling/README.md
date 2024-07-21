@@ -99,25 +99,36 @@ The `ServiceExecutor` class represents the task consumer. It retrieves tasks fro
 
 ```java
 public class ServiceExecutor implements Runnable {
-    
-  private MessageQueue msgQueue;
 
-  public ServiceExecutor(MessageQueue msgQueue) {
-    this.msgQueue = msgQueue;
-  }
+    private final MessageQueue msgQueue;
+    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
-  @Override
-  public void run() {
-    while (true) {
-      Message message = msgQueue.getMessage(); // Retrieve a message from the queue
-      if (message != null) {
-        // Process the message
-      } else {
-        // No more messages to process
-        break;
-      }
+    public ServiceExecutor(MessageQueue msgQueue) {
+        this.msgQueue = msgQueue;
     }
-  }
+
+    public void run() {
+        scheduler.scheduleWithFixedDelay(() -> {
+            var msg = msgQueue.retrieveMsg();
+
+            if (null != msg) {
+                LOGGER.info(msg + " is served.");
+            } else {
+                LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
+            }
+        }, 0, 1, TimeUnit.SECONDS);
+    }
+
+    public void shutdown(int shutdownTime) {
+        try {
+            if (!scheduler.awaitTermination(shutdownTime, TimeUnit.SECONDS)) {
+                LOGGER.info("Executor was shut down and Exiting.");
+                scheduler.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            LOGGER.error(e.getMessage());
+        }
+    }
 }
 ```
 
@@ -125,23 +136,29 @@ Finally, we have the `App` class which sets up the `TaskGenerator` and `ServiceE
 
 ```java
 public class App {
-  public static void main(String[] args) {
-    var msgQueue = new MessageQueue();
+    public static void main(String[] args) {
+        ExecutorService executor = null;
 
-    final var taskRunnable1 = new TaskGenerator(msgQueue, 5);
-    final var taskRunnable2 = new TaskGenerator(msgQueue, 1);
-    final var taskRunnable3 = new TaskGenerator(msgQueue, 2);
+        var msgQueue = new MessageQueue();
 
-    final var srvRunnable = new ServiceExecutor(msgQueue);
+        final var taskRunnable1 = new TaskGenerator(msgQueue, 5);
+        final var taskRunnable2 = new TaskGenerator(msgQueue, 1);
+        final var taskRunnable3 = new TaskGenerator(msgQueue, 2);
 
-    ExecutorService executor = Executors.newFixedThreadPool(2);
-    executor.submit(taskRunnable1);
-    executor.submit(taskRunnable2);
-    executor.submit(taskRunnable3);
-    executor.submit(srvRunnable);
+        final var srvRunnable = new ServiceExecutor(msgQueue);
 
-    executor.shutdown();
-  }
+        executor = Executors.newFixedThreadPool(2);
+        executor.submit(taskRunnable1);
+        executor.submit(taskRunnable2);
+        executor.submit(taskRunnable3);
+
+        executor.submit(srvRunnable);
+
+        executor.shutdown();
+
+        srvRunnable.shutdown(SHUTDOWN_TIME);
+
+    }
 }
 ```
 

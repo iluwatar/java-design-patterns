@@ -25,6 +25,9 @@
 package com.iluwatar.queue.load.leveling;
 
 import lombok.extern.slf4j.Slf4j;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * ServiceExecuotr class. This class will pick up Messages one by one from the Blocking Queue and
@@ -32,8 +35,8 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class ServiceExecutor implements Runnable {
-
   private final MessageQueue msgQueue;
+  private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
   public ServiceExecutor(MessageQueue msgQueue) {
     this.msgQueue = msgQueue;
@@ -43,19 +46,26 @@ public class ServiceExecutor implements Runnable {
    * The ServiceExecutor thread will retrieve each message and process it.
    */
   public void run() {
-    try {
-      while (!Thread.currentThread().isInterrupted()) {
-        var msg = msgQueue.retrieveMsg();
+    scheduler.scheduleWithFixedDelay(() -> {
+      var msg = msgQueue.retrieveMsg();
 
-        if (null != msg) {
-          LOGGER.info(msg + " is served.");
-        } else {
-          LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
-        }
-
-        Thread.sleep(1000);
+      if (null != msg) {
+        LOGGER.info(msg + " is served.");
+      } else {
+        LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
       }
-    } catch (Exception e) {
+    }, 0, 1, TimeUnit.SECONDS);
+  }
+
+  public void shutdown(int shutdownTime) {
+    // Wait for SHUTDOWN_TIME seconds for all the threads to complete
+    // their tasks and then shut down the executor and then exit.
+    try {
+      if (!scheduler.awaitTermination(shutdownTime, TimeUnit.SECONDS)) {
+        LOGGER.info("Executor was shut down and Exiting.");
+        scheduler.shutdownNow();
+      }
+    } catch (InterruptedException e) {
       LOGGER.error(e.getMessage());
     }
   }
