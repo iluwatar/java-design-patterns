@@ -24,12 +24,9 @@
  */
 package com.iluwatar.twin;
 
-import static java.lang.Thread.UncaughtExceptionHandler;
 import static java.lang.Thread.sleep;
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -100,21 +97,27 @@ class BallThreadTest {
   }
 
   /**
-   * Verify if the {@link BallThread} is interruptible
+   * Verify if the {@link BallThread} can be stopped
    */
   @Test
-  void testInterrupt() {
+  void testStopped() {
     assertTimeout(ofMillis(5000), () -> {
       final var ballThread = new BallThread();
-      final var exceptionHandler = mock(UncaughtExceptionHandler.class);
-      ballThread.setUncaughtExceptionHandler(exceptionHandler);
-      ballThread.setTwin(mock(BallItem.class));
+      final var twin = mock(BallItem.class);
+      ballThread.setTwin(twin);
       ballThread.start();
-      ballThread.interrupt();
+
+
+      sleep(300);
+      verify(twin, atLeastOnce()).draw();
+      verify(twin, atLeastOnce()).move();
+
+      // Stop the thread
+      ballThread.stopMe();
       ballThread.join();
 
-      verify(exceptionHandler).uncaughtException(eq(ballThread), any(RuntimeException.class));
-      verifyNoMoreInteractions(exceptionHandler);
+      // Ensure that the thread has stopped and no more interactions occur
+      verifyNoMoreInteractions(twin);
     });
   }
 }
