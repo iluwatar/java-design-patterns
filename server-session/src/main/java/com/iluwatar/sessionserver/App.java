@@ -88,8 +88,9 @@ public class App {
     scheduler.scheduleWithFixedDelay(() -> {
       try {
         LOGGER.info("Session expiration checker started...");
-        Iterator<Map.Entry<String, Instant>> iterator = sessionCreationTimes.entrySet().iterator();
+
         Instant currentTime = Instant.now();
+        Iterator<Map.Entry<String, Instant>> iterator = sessionCreationTimes.entrySet().iterator();
 
         while (iterator.hasNext()) {
           Map.Entry<String, Instant> entry = iterator.next();
@@ -103,6 +104,6 @@ public class App {
       } catch (Exception e) {
         LOGGER.error("An error occured: ", e);
       }
-    }, 0, SESSION_EXPIRATION_TIME, TimeUnit.MILLISECONDS);
+    }, SESSION_EXPIRATION_TIME, SESSION_EXPIRATION_TIME, TimeUnit.MILLISECONDS);
   }
 }
