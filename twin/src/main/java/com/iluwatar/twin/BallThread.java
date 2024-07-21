@@ -68,6 +68,9 @@ public class BallThread extends Thread {
     LOGGER.info("Begin to resume BallThread");
   }
 
+  /**
+   * Stop the scheduled task.
+   */
   public void stopMe() {
     this.isSuspended = true;
     if (scheduler != null) {
