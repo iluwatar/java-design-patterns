@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.retry;
 
 import java.util.ArrayList;
@@ -29,6 +30,11 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
@@ -40,6 +46,7 @@ import java.util.function.Predicate;
 public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
   private static final Random RANDOM = new Random();
   private final BusinessOperation<T> op;
+  private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
   private final int maxAttempts;
   private final long maxDelay;
   private final AtomicInteger attempts;
@@ -89,24 +96,41 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
 
   @Override
   public T perform() throws BusinessException {
-    do {
+    final CompletableFuture<T> future = new CompletableFuture<>();
+
+    performWithRetries(future);
+    try {
+      return future.get();
+    } catch (InterruptedException | ExecutionException e) {
+      if (e.getCause() instanceof BusinessException be) {
+        throw be;
+      }
+      throw new BusinessException("Unexpected exception occurred " + e.getMessage());
+    } finally {
+      scheduler.shutdown();
+    }
+  }
+
+  private void performWithRetries(CompletableFuture<T> future) {
+    scheduler.schedule(() -> {
       try {
-        return this.op.perform();
+        T result = this.op.perform();
+        future.complete(result);
       } catch (BusinessException e) {
         this.errors.add(e);
 
         if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
-          throw e;
+          future.completeExceptionally(e);
+          return;
         }
 
-        try {
-          var testDelay = (long) Math.pow(2, this.attempts()) * 1000 + RANDOM.nextInt(1000);
-          var delay = Math.min(testDelay, this.maxDelay);
-          Thread.sleep(delay);
-        } catch (InterruptedException f) {
-          //ignore
-        }
+        performWithRetries(future);
       }
-    } while (true);
+    }, calculateDelay(), TimeUnit.MILLISECONDS);
+  }
+
+  private long calculateDelay() {
+    var testDelay = (long) Math.pow(2, this.attempts()) * 1000 + RANDOM.nextInt(1000);
+    return Math.min(testDelay, this.maxDelay);
   }
 }

@@ -66,19 +66,58 @@ The `LogAggregator` collects logs from various services and stores them in the `
 ```java
 public class LogAggregator {
 
-  private final CentralLogStore centralLogStore;
-  private final LogLevel minimumLogLevel;
 
-  public LogAggregator(CentralLogStore centralLogStore, LogLevel minimumLogLevel) {
-    this.centralLogStore = centralLogStore;
-    this.minimumLogLevel = minimumLogLevel;
-  }
-
-  public void collectLog(LogEntry logEntry) {
-    if (logEntry.getLogLevel().compareTo(minimumLogLevel) >= 0) {
-      centralLogStore.storeLog(logEntry);
+    private static final int BUFFER_THRESHOLD = 3;
+    private final CentralLogStore centralLogStore;
+    private final ConcurrentLinkedQueue<LogEntry> buffer = new ConcurrentLinkedQueue<>();
+    private final LogLevel minLogLevel;
+    private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+    private final AtomicInteger logCount = new AtomicInteger(0);
+    
+    public LogAggregator(CentralLogStore centralLogStore, LogLevel minLogLevel) {
+        this.centralLogStore = centralLogStore;
+        this.minLogLevel = minLogLevel;
+        startBufferFlusher();
     }
-  }
+    
+    public void collectLog(LogEntry logEntry) {
+        if (logEntry.getLevel() == null || minLogLevel == null) {
+            LOGGER.warn("Log level or threshold level is null. Skipping.");
+            return;
+        }
+
+        if (logEntry.getLevel().compareTo(minLogLevel) < 0) {
+            LOGGER.debug("Log level below threshold. Skipping.");
+            return;
+        }
+
+        buffer.offer(logEntry);
+
+        if (logCount.incrementAndGet() >= BUFFER_THRESHOLD) {
+            flushBuffer();
+        }
+    }
+    
+    public void stop() {
+        executorService.shutdownNow();
+        if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
+            LOGGER.error("Log aggregator did not terminate.");
+        }
+        flushBuffer();
+    }
+
+    private void flushBuffer() {
+        LogEntry logEntry;
+        while ((logEntry = buffer.poll()) != null) {
+            centralLogStore.storeLog(logEntry);
+            logCount.decrementAndGet();
+        }
+    }
+
+    private void startBufferFlusher() {
+        scheduler.scheduleWithFixedDelay(this::flushBuffer, 0, 5000, TimeUnit.MILLISECONDS);
+    }
 }
 ```
 
@@ -107,7 +146,7 @@ The `main` application creates services, generates logs, aggregates, and finally
 ```java
 public class App {
 
-  public static void main(String[] args) throws InterruptedException {
+  public static void main(String[] args) {
     final CentralLogStore centralLogStore = new CentralLogStore();
     final LogAggregator aggregator = new LogAggregator(centralLogStore, LogLevel.INFO);
 

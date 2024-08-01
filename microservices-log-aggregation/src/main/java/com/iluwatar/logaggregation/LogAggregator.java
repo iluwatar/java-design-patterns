@@ -25,8 +25,8 @@
 package com.iluwatar.logaggregation;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +45,7 @@ public class LogAggregator {
   private final CentralLogStore centralLogStore;
   private final ConcurrentLinkedQueue<LogEntry> buffer = new ConcurrentLinkedQueue<>();
   private final LogLevel minLogLevel;
-  private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+  private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
   private final AtomicInteger logCount = new AtomicInteger(0);
 
   /**
@@ -90,8 +90,8 @@ public class LogAggregator {
    * @throws InterruptedException If any thread has interrupted the current thread.
    */
   public void stop() throws InterruptedException {
-    executorService.shutdownNow();
-    if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
+    scheduler.shutdownNow();
+    if (!scheduler.awaitTermination(10, TimeUnit.SECONDS)) {
       LOGGER.error("Log aggregator did not terminate.");
     }
     flushBuffer();
@@ -106,15 +106,7 @@ public class LogAggregator {
   }
 
   private void startBufferFlusher() {
-    executorService.execute(() -> {
-      while (!Thread.currentThread().isInterrupted()) {
-        try {
-          Thread.sleep(5000); // Flush every 5 seconds.
-          flushBuffer();
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-        }
-      }
-    });
+    //flush every 5 seconds
+    scheduler.scheduleWithFixedDelay(this::flushBuffer, 0, 5000, TimeUnit.MILLISECONDS);
   }
 }

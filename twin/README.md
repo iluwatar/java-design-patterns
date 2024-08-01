@@ -85,20 +85,15 @@ public class BallThread extends Thread {
   @Setter
   private BallItem twin;
   private volatile boolean isSuspended;
-  private volatile boolean isRunning = true;
+  private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
   public void run() {
-    while (isRunning) {
-      if (!isSuspended) {
-        twin.draw();
-        twin.move();
+    scheduler.scheduleWithFixedDelay(()->{
+      if (!isSuspended){
+          twin.draw();
+          twin.move();
       }
-      try {
-        Thread.sleep(250);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
-    }
+    }, 0, 250, TimeUnit.MILLISECONDS);
   }
 
   public void suspendMe() {
@@ -112,8 +107,10 @@ public class BallThread extends Thread {
   }
 
   public void stopMe() {
-    this.isRunning = false;
     this.isSuspended = true;
+    if (scheduler != null){
+      scheduler.shutdown();
+    }
   }
 }
 ```
