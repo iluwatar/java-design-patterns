@@ -63,7 +63,7 @@ class VideoResourceTest {
     var actualDetails = resource.getDetails(1);
 
     var expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178,\"description\": "
-        + "\"epic science fiction film\",\"director\": \"James Cameron\",\"language\": \"English\",}";
+        + "\"epic science fiction film\",\"director\": \"James Cameron\",\"language\": \"English\"}";
     Assertions.assertEquals(expectedDetails, actualDetails);
   }
 
@@ -75,6 +75,19 @@ class VideoResourceTest {
     Mockito.when(fieldJsonMapper.toJson(any(Video.class), eq(fields))).thenReturn(expectedDetails);
 
     var actualFieldsDetails = resource.getDetails(2, fields);
+
+    Assertions.assertEquals(expectedDetails, actualFieldsDetails);
+  }
+
+  @Test
+  void shouldAllSpecifiedFieldsInformationOfVideo() throws Exception {
+    var fields = new String[]{"id", "title", "length", "description", "director", "language"};
+
+    var expectedDetails = "{\"id\": 1,\"title\": \"Avatar\",\"length\": 178,\"description\": "
+        + "\"epic science fiction film\",\"director\": \"James Cameron\",\"language\": \"English\"}";
+    Mockito.when(fieldJsonMapper.toJson(any(Video.class), eq(fields))).thenReturn(expectedDetails);
+
+    var actualFieldsDetails = resource.getDetails(1, fields);
 
     Assertions.assertEquals(expectedDetails, actualFieldsDetails);
   }
