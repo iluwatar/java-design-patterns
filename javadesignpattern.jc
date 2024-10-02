@@ -1,0 +1,100 @@
+// Product interface
+interface Vehicle {
+    void start();
+}
+
+// Concrete Product classes
+class Car implements Vehicle {
+    public void start() {
+        System.out.println("Car started");
+    }
+}
+
+class Bike implements Vehicle {
+    public void start() {
+        System.out.println("Bike started");
+    }
+}
+
+// Factory class
+class VehicleFactory {
+    public static Vehicle createVehicle(String type) {
+        if (type.equals("car")) {
+            return new Car();
+        } else if (type.equals("bike")) {
+            return new Bike();
+        }
+        return null;
+    }
+}
+
+// Client code
+public class Main {
+    public static void main(String[] args) {
+        Vehicle vehicle1 = VehicleFactory.createVehicle("car");
+        vehicle1.start(); // Output: Car started
+
+        Vehicle vehicle2 = VehicleFactory.createVehicle("bike");
+        vehicle2.start(); // Output: Bike started
+    }
+}
+
+
+Other Java Design Patterns:
+
+1. Singleton Pattern:
+
+public class Singleton {
+    private static Singleton instance;
+    private Singleton() {}
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+
+
+1. Observer Pattern:
+
+interface Observer {
+    void update(String message);
+}
+
+class Subject {
+    private List<Observer> observers;
+    public void registerObserver(Observer observer) {
+        observers.add(observer);
+    }
+    public void notifyObservers(String message) {
+        for (Observer observer : observers) {
+            observer.update(message);
+        }
+    }
+}
+
+
+1. Decorator Pattern:
+
+interface Coffee {
+    void make();
+}
+
+class SimpleCoffee implements Coffee {
+    public void make() {
+        System.out.println("Simple coffee");
+    }
+}
+
+class MilkDecorator implements Coffee {
+    private Coffee coffee;
+    public MilkDecorator(Coffee coffee) {
+        this.coffee = coffee;
+    }
+    public void make() {
+        coffee.make();
+System.out.println("Adding milk");
+    }
+}
+
