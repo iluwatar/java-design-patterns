@@ -3186,6 +3186,15 @@
       "contributions": [
         "review"
       ]
+    },
+    {
+      "login": "trivikr",
+      "name": "Trivikram Kamat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16024985?v=4",
+      "profile": "https://github.com/trivikr",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
