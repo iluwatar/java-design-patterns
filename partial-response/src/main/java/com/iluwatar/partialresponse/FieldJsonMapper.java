@@ -25,6 +25,7 @@
 package com.iluwatar.partialresponse;
 
 import java.lang.reflect.Field;
+import java.util.StringJoiner;
 
 /**
  * Map a video to json.
@@ -39,18 +40,15 @@ public class FieldJsonMapper {
    * @return json of required fields from video
    */
   public String toJson(Video video, String[] fields) throws Exception {
-    var json = new StringBuilder().append("{");
+    var json = new StringJoiner(",", "{", "}");
 
     var i = 0;
     var fieldsLength = fields.length;
     while (i < fieldsLength) {
-      json.append(getString(video, Video.class.getDeclaredField(fields[i])));
-      if (i != fieldsLength - 1) {
-        json.append(",");
-      }
+      json.add(getString(video, Video.class.getDeclaredField(fields[i])));
       i++;
     }
-    json.append("}");
+
     return json.toString();
   }
 

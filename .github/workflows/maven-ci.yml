@@ -42,20 +42,20 @@ jobs:
     steps:
 
     - name: Checkout Code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       with:
         # Disabling shallow clone for improving relevancy of SonarQube reporting
         fetch-depth: 0
 
     - name: Set up JDK 17
-      uses: actions/setup-java@v3
+      uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: 'maven'
 
     - name: Cache local Maven repository
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -64,7 +64,7 @@ jobs:
 
     # Cache Sonar packages which as used to run analysis and collect metrics
     - name: Cache SonarCloud packages
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.sonar/cache
         key: ${{ runner.os }}-sonar

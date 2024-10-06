@@ -3168,6 +3168,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Xcyq",
+      "name": "Xcyq",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39086666?v=4",
+      "profile": "https://github.com/Xcyq",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Ritabrata1080",
+      "name": "Ritabrata",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60834250?v=4",
+      "profile": "https://github.com/Ritabrata1080",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "trivikr",
+      "name": "Trivikram Kamat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16024985?v=4",
+      "profile": "https://github.com/trivikr",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
