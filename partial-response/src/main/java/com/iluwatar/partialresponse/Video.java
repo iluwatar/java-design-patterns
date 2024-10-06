@@ -43,7 +43,7 @@ public record Video(Integer id, String title, Integer length, String description
             + "\"length\": " + length + ","
             + "\"description\": \"" + description + "\","
             + "\"director\": \"" + director + "\","
-            + "\"language\": \"" + language + "\","
+            + "\"language\": \"" + language + "\""
             + "}";
   }
 }
