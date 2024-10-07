@@ -151,6 +151,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about delegation](https://runtimehub.com/p/jdp@20240509:delegation/)
 * [Effective Java](https://amzn.to/4aGE7gX)
 * [Head First Design Patterns](https://amzn.to/3J9tuaB)
 * [Refactoring: Improving the Design of Existing Code](https://amzn.to/3VOcRsw)

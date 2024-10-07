@@ -164,6 +164,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about trampoline](https://runtimehub.com/p/jdp@20240509:trampoline/)
 * [Functional Programming in Java](https://amzn.to/3JUIc5Q)
 * [Functional Programming for Java Developers: Tools for Better Concurrency, Abstraction, and Agility](https://amzn.to/4dRu4rJ)
 * [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://amzn.to/3QCmGXs)

@@ -163,6 +163,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about pipeline](https://runtimehub.com/p/jdp@20240509:pipeline/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

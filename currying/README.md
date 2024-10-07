@@ -228,6 +228,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about currying](https://runtimehub.com/p/jdp@20240509:currying/)
 * [Functional Programming in Java: Harnessing the Power Of Java 8 Lambda Expressions](https://amzn.to/3TKeZPD)
 * [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://amzn.to/3J6vEaW)
 * [Modern Java in Action: Lambdas, streams, functional and reactive programming](https://amzn.to/3J6vJLM)

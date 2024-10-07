@@ -200,6 +200,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about observer](https://runtimehub.com/p/jdp@20240509:observer/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Generics and Collections](https://amzn.to/3VhOBxp)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

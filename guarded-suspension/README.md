@@ -153,6 +153,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about guarded-suspension](https://runtimehub.com/p/jdp@20240509:guarded-suspension/)
 * [Concurrent Programming in Java : Design Principles and Patterns](https://amzn.to/4dIBqxL)
 * [Java Concurrency in Practice](https://amzn.to/3JxnXek)
 * [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/49Ke1c9)

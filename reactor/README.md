@@ -193,6 +193,7 @@ Trade-offs:
   
 ## References and Credits
 
+* [Study about reactor](https://runtimehub.com/p/jdp@20240509:reader-writer-lock/)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 * [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)
 * [Reactive Programming with RxJava: Creating Asynchronous, Event-Based Applications](https://amzn.to/4dNTLJC)

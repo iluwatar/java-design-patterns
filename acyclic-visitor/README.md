@@ -177,6 +177,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study Acyclic-Visitor](https://runtimehub.com/p/jdp@20240509:acyclic-visitor/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)

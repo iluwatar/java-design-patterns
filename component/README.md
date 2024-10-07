@@ -154,6 +154,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about component](https://runtimehub.com/p/jdp@20240509:component/)
 * [Game Programming Patterns](https://amzn.to/4cDRWhV)
 * [Procedural Content Generation for Unity Game Development](https://amzn.to/3vBKCTp)
 * [Unity in Action: Multiplatform Game Development in C#](https://amzn.to/3THO6vw)

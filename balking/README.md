@@ -152,6 +152,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about balking](https://runtimehub.com/p/jdp@20240509:balking/)
 * [Concurrent Programming in Java : Design Principles and Patterns](https://amzn.to/4dIBqxL)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 * [Patterns in Java: A Catalog of Reusable Design Patterns Illustrated with UML](https://amzn.to/4bOtzwF)

@@ -213,6 +213,7 @@ Trade-Offs:
 
 ## References and Credits
 
+* [Study about Callback](https://runtimehub.com/p/jdp@20240509:circuit-breaker/)
 * [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/43Dx86g)
 * [Microservices Patterns: With examples in Java](https://amzn.to/3xaZwk0)
 * [Release It! Design and Deploy Production-Ready Software](https://amzn.to/4aqTNEP)

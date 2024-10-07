@@ -223,6 +223,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about retry](https://runtimehub.com/p/jdp@20240509:retry/)
 * [Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications](https://amzn.to/4dLvowg)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)

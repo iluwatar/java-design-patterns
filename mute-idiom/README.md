@@ -118,6 +118,7 @@ Trade-offs:
 
 ## Related Java Design Patterns
 
+* [Website to host runtime view in HTML](www.codestep.io)
 * [Null Object](https://java-design-patterns.com/patterns/null-object/): Both aim to simplify error handling; Null Object avoids null checks while Mute Idiom avoids exception handling complexities.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Can be used to wrap functionality with additional error handling or muting behaviors.
 

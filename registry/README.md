@@ -151,6 +151,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about registry](https://runtimehub.com/p/jdp@20240509:registry/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)

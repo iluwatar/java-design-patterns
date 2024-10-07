@@ -152,6 +152,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about collecting-parameter](https://runtimehub.com/p/jdp@20240509:collecting-parameter/)
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/4aApLP0)
 * [Refactoring: Improving the Design of Existing Code](https://amzn.to/3TVEgaB)
 * [Collecting Parameter (WikiWikiWeb)](https://wiki.c2.com/?CollectingParameter)

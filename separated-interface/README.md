@@ -148,6 +148,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about separated-interface](https://runtimehub.com/p/jdp@20240509:separated-interface/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Pattern-Oriented Software Architecture Volume 1: A System of Patterns](https://amzn.to/3xZ1ELU)

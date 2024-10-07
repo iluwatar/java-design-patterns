@@ -247,6 +247,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about double-buffer](https://runtimehub.com/p/jdp@20240509:double-buffer/)
 * [Game Programming Patterns](https://amzn.to/4ayDNkS)
 * [Real-Time Design Patterns: Robust Scalable Architecture for Real-Time Systems](https://amzn.to/3xFfNxA)
 * [Double Buffer (Game Programming Patterns)](https://gameprogrammingpatterns.com/double-buffer.html)

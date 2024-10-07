@@ -211,6 +211,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about queue-based-load-leveling](https://runtimehub.com/p/jdp@20240509:queue-load-leveling/)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3WcFVui)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

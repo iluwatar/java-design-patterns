@@ -163,6 +163,7 @@ Related design patterns to monads in Java include
 
 ## References and Credits
 
+* [Study about monad](https://runtimehub.com/p/jdp@20240509:monad/)
 * [Functional Programming in Java](https://amzn.to/3JUIc5Q)
 * [Java 8 in Action: Lambdas, Streams, and functional-style programming](https://amzn.to/3QCmGXs)
 * [Real-World Software Development: A Project-Driven Guide to Fundamentals in Java](https://amzn.to/4btoN7U)

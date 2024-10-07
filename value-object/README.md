@@ -137,6 +137,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about value-object](https://runtimehub.com/p/jdp@20240509:value-object/)
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)

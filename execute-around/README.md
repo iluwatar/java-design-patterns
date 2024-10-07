@@ -131,6 +131,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about event-based-around](https://runtimehub.com/p/jdp@20240509:execute-around/)
 * [Effective Java](https://amzn.to/4aDdWbs)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3vUGApm)
 * [Functional Programming in Java](https://amzn.to/3JUIc5Q)
