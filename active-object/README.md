@@ -209,6 +209,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study Active-Object](https://runtimehub.com/p/jdp@20240509:active-object/)
 * [Design Patterns: Elements of Reusable Object Software](https://amzn.to/3HYqrBE)
 * [Concurrent Programming in Java: Design Principles and Patterns](https://amzn.to/498SRVq)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)

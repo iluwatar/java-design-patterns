@@ -161,6 +161,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about gateway](https://runtimehub.com/p/jdp@20240509:gateway/)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3WcFVui)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Gateway (Martin Fowler)](https://martinfowler.com/articles/gateway-pattern.html)

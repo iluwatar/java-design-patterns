@@ -188,6 +188,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about business-delegate](https://runtimehub.com/p/jdp@20240509:business-delegate/)
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

@@ -332,6 +332,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about game-loop](https://runtimehub.com/p/jdp@20240509:game-loop/)
 * [Game Programming Patterns](https://amzn.to/3K96fOn)
 * [Game Engine Architecture, Third Edition](https://amzn.to/3VgB4av)
 * [Real-Time Collision Detection](https://amzn.to/3W9Jj8T)

@@ -113,6 +113,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about commander](https://runtimehub.com/p/jdp@20240509:commander/)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/4aATcRe)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/4axHwOV)
 * [Microservices Patterns: With examples in Java](https://amzn.to/4axjnYW)

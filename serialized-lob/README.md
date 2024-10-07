@@ -220,6 +220,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about serialized-job](https://runtimehub.com/p/jdp@20240509:serialized-entity/)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

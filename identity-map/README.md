@@ -212,6 +212,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about identity-map](https://runtimehub.com/p/jdp@20240509:identity-map/)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Java Persistence with Hibernate](https://amzn.to/4aUfyhd)
 * [Pro Java EE Spring Patterns: Best Practices and Design Strategies Implementing Java EE Patterns with the Spring Framework](https://amzn.to/49YQN24)

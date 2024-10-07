@@ -257,6 +257,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about metadata-mapping](https://runtimehub.com/p/jdp@20240509:metadata-mapping/)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

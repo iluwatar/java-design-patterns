@@ -270,6 +270,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about domain-model](https://runtimehub.com/p/jdp@20240509:domain-model/)
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3vMCjnP)
 * [Implementing Domain-Driven Design](https://amzn.to/4cUX4OL)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

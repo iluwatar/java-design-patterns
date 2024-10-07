@@ -173,6 +173,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about event-based-queue](https://runtimehub.com/p/jdp@20240509:execute-around/)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3xzSlC2)
 * [Game Programming Patterns](https://amzn.to/3K96fOn)
 * [Java Concurrency in Practice](https://amzn.to/3Ji16mX)

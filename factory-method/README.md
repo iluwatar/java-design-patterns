@@ -127,6 +127,7 @@ Trade-offs:
 
 ## References and Credits
 
+*[Study about factory-method](https://runtimehub.com/p/jdp@20240509:factory-method/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0Rk5y)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/3UpTLrG)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/4b2ZxoM)

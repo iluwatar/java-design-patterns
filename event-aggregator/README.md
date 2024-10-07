@@ -200,6 +200,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about event-aggregator](https://runtimehub.com/p/jdp@20240509:event-aggregator/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/44eWKXv)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/440b0CZ)
 * [Java Design Pattern Essentials](https://amzn.to/43XHCgM)

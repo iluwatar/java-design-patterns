@@ -152,6 +152,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about dependency-injection](https://runtimehub.com/p/jdp@20240509:dependency-injection/)
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/3wRnjp5)
 * [Dependency Injection: Design patterns using Spring and Guice](https://amzn.to/4aMyHkI)
 * [Dependency Injection Principles, Practices, and Patterns](https://amzn.to/4aupmxe)

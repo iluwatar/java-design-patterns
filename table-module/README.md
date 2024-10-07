@@ -183,6 +183,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about table-module](https://runtimehub.com/p/jdp@20240509:table-module/)
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

@@ -221,6 +221,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study Abstract-Factory](https://runtimehub.com/p/jdp@20240509:abstract-factory/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Design Patterns in Java](https://amzn.to/3Syw0vC)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

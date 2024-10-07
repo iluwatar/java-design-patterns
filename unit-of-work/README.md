@@ -217,6 +217,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about unit-of-work](https://runtimehub.com/p/jdp@20240509:unit-of-work/)
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

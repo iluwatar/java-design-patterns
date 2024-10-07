@@ -160,6 +160,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about private-class-data](https://runtimehub.com/p/jdp@20240509:private-class-data/)
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/3UJTZJk)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

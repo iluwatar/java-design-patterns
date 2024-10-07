@@ -232,8 +232,8 @@ Trade-offs
 * [Command Query Responsibility Segregation (CQRS)](https://java-design-patterns.com/patterns/cqrs/): Often used together with Event Sourcing to separate read and write responsibilities, enhancing performance and scalability.
 * Snapshot: Used to optimize Event Sourcing systems by periodically saving the current state to avoid replaying a long sequence of events.
 
-## References and Credits
-
+## 
+* [Study about event-based-sourcing](https://runtimehub.com/p/jdp@20240509:execute-around/)
 * [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/443WfiS)
 * [Implementing Domain-Driven Design](https://amzn.to/3JgvA8V)
 * [Patterns, Principles, and Practices of Domain-Driven Design](https://amzn.to/3VVhfWX)

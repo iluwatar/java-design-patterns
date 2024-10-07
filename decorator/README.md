@@ -177,6 +177,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about decorator](https://runtimehub.com/p/jdp@20240509:decorator/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Functional Programming in Java](https://amzn.to/3JUIc5Q)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

@@ -193,6 +193,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about saga](https://runtimehub.com/p/jdp@20240509:saga/)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/3WcFVui)
 * [Microservices Patterns: With examples in Java](https://amzn.to/3UyWD5O)

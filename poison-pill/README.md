@@ -249,6 +249,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about poison-pill](https://runtimehub.com/p/jdp@20240509:poison-pill/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 * [Effective Java](https://amzn.to/4cGk2Jz)

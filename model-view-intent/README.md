@@ -221,5 +221,6 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about model-view-intent](https://runtimehub.com/p/jdp@20240509:model-view-intent/)
 * [Functional and Reactive Domain Modeling](https://amzn.to/4adghJ8)
 * [Reactive Programming with RxJava: Creating Asynchronous, Event-Based Applications](https://amzn.to/4dxwawC)

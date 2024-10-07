@@ -167,6 +167,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about parameter-object](https://runtimehub.com/p/jdp@20240509:parameter-object/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Refactoring: Improving the Design of Existing Code](https://amzn.to/3TVEgaB)

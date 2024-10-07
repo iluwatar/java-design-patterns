@@ -196,6 +196,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about event-driven-architecture](https://runtimehub.com/p/jdp@20240509:event-driven-architecture/)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3Q3vBki)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/49Aljz0)
 * [Reactive Messaging Patterns With the Actor Model: Applications and Integration in Scala and Akka](https://amzn.to/3UeoBUa)

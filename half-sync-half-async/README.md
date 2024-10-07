@@ -162,6 +162,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about half-sync-half-async](https://runtimehub.com/p/jdp@20240509:half-sync-half-async/)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 * [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)
 * [Half-Sync/Half-Async (Douglas C. Schmidt and Charles D. Cranor)](https://www.dre.vanderbilt.edu/~schmidt/PDF/PLoP-95.pdf)

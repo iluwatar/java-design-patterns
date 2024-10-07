@@ -231,6 +231,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study Abstract-Documen]( https://codestep.io/p/jdp@20240509:abstract-document/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
 * [Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing (v. 4)](https://amzn.to/49zRP4R)

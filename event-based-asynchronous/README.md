@@ -177,6 +177,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about event-based-asynchronous](https://runtimehub.com/p/jdp@20240509:event-based-asynchronous/)
 * [Java Concurrency in Practice](https://amzn.to/4cYY4kU)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3Uh7rW1)
 * [Pro JavaFX 8: A Definitive Guide to Building Desktop, Mobile, and Embedded Java Clients](https://amzn.to/3vHUqLL)

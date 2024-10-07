@@ -163,4 +163,5 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about multiton](https://runtimehub.com/p/jdp@20240509:multiton/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)

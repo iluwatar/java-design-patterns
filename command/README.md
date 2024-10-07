@@ -212,6 +212,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about command](https://runtimehub.com/p/jdp@20240509:command/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)

@@ -162,6 +162,7 @@ Trade-offs:
 
 ## References and Credits  
 
+* [Study about subclass-sandbox](https://runtimehub.com/p/jdp@20240509:subclass-sandbox/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Game Programming Patterns](https://amzn.to/3K96fOn)

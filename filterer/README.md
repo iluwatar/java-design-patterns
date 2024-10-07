@@ -262,6 +262,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about filterer](https://runtimehub.com/p/jdp@20240509:filterer/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3W8sn2W)
 * [Kafka: The Definitive Guide: Real-Time Data and Stream Processing at Scale](https://amzn.to/49N3nRU)
 * [Java Performance: The Definitive Guide](https://amzn.to/3vRW3qj)

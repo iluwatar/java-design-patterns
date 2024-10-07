@@ -155,6 +155,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about intercepting-filter](https://runtimehub.com/p/jdp@20240509:intercepting-filter/)
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

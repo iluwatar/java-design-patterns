@@ -142,6 +142,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about feature-toggle](https://runtimehub.com/p/jdp@20240509:feature-toggle/)
 * [Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation](https://amzn.to/4488ESM)
 * [Release It! Design and Deploy Production-Ready Software](https://amzn.to/3UoeJY4)
 * [Feature Toggle (Martin Fowler)](http://martinfowler.com/bliki/FeatureToggle.html)

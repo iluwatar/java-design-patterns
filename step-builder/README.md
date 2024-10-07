@@ -205,6 +205,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about step-builder](https://runtimehub.com/p/jdp@20240509:step-builder/)
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/3wRnjp5)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)

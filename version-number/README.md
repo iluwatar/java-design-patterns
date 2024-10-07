@@ -190,6 +190,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about version-number](https://runtimehub.com/p/jdp@20240509:version-number/)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/3y6yv1z)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Java Persistence with Hibernate](https://amzn.to/44tP1ox)

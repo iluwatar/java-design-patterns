@@ -241,6 +241,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about facade](https://runtimehub.com/p/jdp@20240509:facade/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3QbO7qN)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/3UpTLrG)

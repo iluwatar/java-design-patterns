@@ -232,6 +232,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about combinator](https://runtimehub.com/p/jdp@20240509:combinator/)
 * [Functional Programming in Scala](https://amzn.to/4cEo6K2)
 * [Haskell: The Craft of Functional Programming](https://amzn.to/4axxtcF)
 * [Structure and Interpretation of Computer Programs](https://amzn.to/3PJwVsf)

@@ -169,6 +169,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about lazy-loading](https://runtimehub.com/p/jdp@20240509:lazy-loading/)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Java Performance: The Definitive Guide: Getting the Most Out of Your Code](https://amzn.to/3Wu5neF)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
