@@ -1,5 +1,6 @@
 ---
 title: Value Object
+shortTitle: Value Object
 category: Creational
 language: zn
 tag:

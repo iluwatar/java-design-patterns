@@ -1,5 +1,6 @@
 ---
 title: Observer
+shortTitle: Observer
 category: Behavioral
 language: zh
 tag:

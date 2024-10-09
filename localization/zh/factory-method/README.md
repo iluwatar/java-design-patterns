@@ -1,5 +1,6 @@
 ---
 title: Factory Method
+shortTitle: Factory Method
 category: Creational
 language: zh
 tag:

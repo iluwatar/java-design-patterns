@@ -1,5 +1,6 @@
 ---
 title: Command
+shortTitle: Command
 category: Behavioral
 language: zh
 tag:

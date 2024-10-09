@@ -1,5 +1,6 @@
 ---
 title: Commander
+shortTitle: Commander
 category: Concurrency
 language: zh
 tag:

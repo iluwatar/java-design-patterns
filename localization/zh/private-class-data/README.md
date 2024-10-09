@@ -1,5 +1,6 @@
 ---
 title: Private Class Data
+shortTitle: Private Class Data
 category: Idiom
 language: zh
 tag:

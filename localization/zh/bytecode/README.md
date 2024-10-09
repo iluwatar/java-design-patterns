@@ -1,5 +1,6 @@
 ---
 title: Bytecode
+shortTitle: Bytecode
 category: Behavioral
 language: zh
 tag:

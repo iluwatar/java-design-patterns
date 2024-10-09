@@ -1,5 +1,6 @@
 ---
 title: Curiously Recurring Template Pattern
+shortTitle: Curiously Recurring Template Pattern
 language: zh
 category: Structural
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Dirty Flag
+shortTitle: Dirty Flag
 category: Behavioral
 language: zh
 tag:

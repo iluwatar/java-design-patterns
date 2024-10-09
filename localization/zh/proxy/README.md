@@ -1,5 +1,6 @@
 ---
 title: Proxy
+shortTitle: Proxy
 category: Structural
 language: zh
 tag:

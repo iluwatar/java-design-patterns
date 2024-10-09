@@ -1,5 +1,6 @@
 ---
 title: Chain of responsibility
+shortTitle: Chain of responsibility
 category: Behavioral
 language: zh
 tag:

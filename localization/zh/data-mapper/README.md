@@ -1,5 +1,6 @@
 ---
 title: Data Mapper
+shortTitle: Data Mapper
 category: Architectural
 language: zh
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Async Method Invocation
+shortTitle: Async Method Invocation
 category: Concurrency
 language: zh
 tag:
