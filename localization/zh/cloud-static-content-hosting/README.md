@@ -1,5 +1,6 @@
 ---
 title: Static Content Hosting
+shortTitle: Static Content Hosting
 category: Cloud
 language: zh
 tag:

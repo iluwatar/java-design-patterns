@@ -1,5 +1,6 @@
 ---
 title: Monitor
+shortTitle: Monitor
 category: Concurrency
 language: zh
 tag:

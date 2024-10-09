@@ -1,5 +1,6 @@
 ---
 title: Table Module
+shortTitle: Table Module
 category: Structural
 language: zh
 tag:
