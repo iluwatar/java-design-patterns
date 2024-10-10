@@ -1,0 +1,10 @@
+@startuml
+package com.iluwatar.mapreduce {
+
+  class App {
+    + App()
+    + main(args : String[]) {static}
+    + map(sentences : List<String>) : List<Map.Entry<String, Integer>> {static}
+    + reduce(mappedWords : List<Map.Entry<String, Integer>>) : Map<String, Integer> {static}
+}
+@enduml
