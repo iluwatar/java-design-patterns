@@ -34,7 +34,7 @@ import java.util.Optional;
 public abstract class DataStore<V> {
   private final HashMap<String, V> inner;
 
-  public DataStore() {
+  protected DataStore() {
     inner = new HashMap<>();
   }
 

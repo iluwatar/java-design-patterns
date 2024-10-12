@@ -75,16 +75,16 @@ public abstract class AbstractDocument implements Document {
     builder.append(getClass().getName()).append("[");
 
     // Explaining variable for document properties map
-    Map<String, Object> documentProperties = this.documentProperties;
+    Map<String, Object> mpdocumentProperties = this.documentProperties;
 
     // Explaining variable for the size of document properties map
-    int numProperties = documentProperties.size();
+    int numProperties = mpdocumentProperties.size();
 
     // Explaining variable for tracking the current property index
     int currentPropertyIndex = 0;
 
     // Iterate over document properties map
-    for (Map.Entry<String, Object> entry : documentProperties.entrySet()) {
+    for (Map.Entry<String, Object> entry : mpdocumentProperties.entrySet()) {
       String key = entry.getKey();
       Object value = entry.getValue();
 

@@ -75,9 +75,9 @@ class AbstractDocumentTest {
   @Test
   void shouldIncludePropsInToString() {
     var props = Map.of(KEY, (Object) VALUE);
-    var document = new DocumentImplementation(props);
-    assertTrue(document.toString().contains(KEY));
-    assertTrue(document.toString().contains(VALUE));
+    var varDocument = new DocumentImplementation(props);
+    assertTrue(varDocument.toString().contains(KEY));
+    assertTrue(varDocument.toString().contains(VALUE));
   }
 
   @Test
