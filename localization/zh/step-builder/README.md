@@ -1,5 +1,6 @@
 ---
 title: Step Builder
+shortTitle: Step Builder
 category: Creational
 language: zn
 tag:

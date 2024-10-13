@@ -1,5 +1,6 @@
 ---
 title: Composite Entity
+shortTitle: Composite Entity
 category: Structural
 language: zh
 tag:

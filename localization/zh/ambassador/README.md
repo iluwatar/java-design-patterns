@@ -1,5 +1,6 @@
 ---
 title: Ambassador
+shortTitle: Ambassador
 category: Structural
 language: zh
 tag:

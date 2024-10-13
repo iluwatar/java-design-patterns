@@ -1,5 +1,6 @@
 ---
 title: Delegation
+shortTitle: Delegation
 category: Structural
 language: zh
 tag:

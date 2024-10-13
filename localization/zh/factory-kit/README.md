@@ -1,5 +1,6 @@
 ---
 title: Factory Kit
+shortTitle: Factory Kit
 category: Creational
 language: zh
 tag:

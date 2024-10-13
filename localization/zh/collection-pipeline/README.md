@@ -1,5 +1,6 @@
 ---
 title: Collection Pipeline
+shortTitle: Collection Pipeline
 category: Functional
 language: zh
 tag:

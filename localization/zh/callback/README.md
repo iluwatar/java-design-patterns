@@ -1,5 +1,6 @@
 ---
 title: Callback
+shortTitle: Callback
 category: Idiom
 language: zh
 tag:

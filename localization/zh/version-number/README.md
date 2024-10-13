@@ -1,5 +1,6 @@
 ---
 title: Version Number
+shortTitle: Version Number
 category: Concurrency
 language: zh
 tag:

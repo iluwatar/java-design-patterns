@@ -1,5 +1,6 @@
 ---
 title: Data Bus
+shortTitle: Data Bus
 category: Architectural
 language: zh
 tag:
