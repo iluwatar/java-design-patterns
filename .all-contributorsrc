@@ -3195,6 +3195,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "vvanghelle",
+      "name": "Vincent Vanghelle",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3204600?v=4",
+      "profile": "https://github.com/vvanghelle",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
