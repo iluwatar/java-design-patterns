@@ -43,7 +43,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-dependencies</artifactId>
         <type>pom</type>
-        <version>3.2.4</version>
+        <version>3.3.4</version>
         <scope>import</scope>
       </dependency>
     </dependencies>
