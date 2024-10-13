@@ -79,23 +79,23 @@ public class CandyGame {
 
   List<Cell> adjacentCells(int y, int x) {
     var adjacent = new ArrayList<Cell>();
-    if (y == 0) {
+    if (y == 0 && cells.length > 0) {
       adjacent.add(this.cells[1][x]);
     }
-    if (x == 0) {
+    if (x == 0 & cells.length > 0) {
       adjacent.add(this.cells[y][1]);
     }
-    if (y == cells.length - 1) {
+    if ((cells.length > 0) && (y == cells.length - 1)) {
       adjacent.add(this.cells[cells.length - 2][x]);
     }
-    if (x == cells.length - 1) {
+    if ((cells.length > 0) && (x == cells.length - 1)) {
       adjacent.add(this.cells[y][cells.length - 2]);
     }
-    if (y > 0 && y < cells.length - 1) {
+    if ((cells.length > 0) && y > 0 && y < cells.length - 1) {
       adjacent.add(this.cells[y - 1][x]);
       adjacent.add(this.cells[y + 1][x]);
     }
-    if (x > 0 && x < cells.length - 1) {
+    if ((cells.length > 0) && x > 0 && x < cells.length - 1) {
       adjacent.add(this.cells[y][x - 1]);
       adjacent.add(this.cells[y][x + 1]);
     }
@@ -103,23 +103,25 @@ public class CandyGame {
   }
 
   boolean continueRound() {
-    for (var i = 0; i < this.cells.length; i++) {
-      if (this.cells[cells.length - 1][i].candy.getType().equals(Type.REWARD_FRUIT)) {
-        return true;
+    if(this.cells.length >0) {
+      for (var i = 0; i < this.cells.length; i++) {
+        if (this.cells[cells.length - 1][i].candy.getType().equals(Type.REWARD_FRUIT)) {
+          return true;
+        }
       }
-    }
-    for (var i = 0; i < this.cells.length; i++) {
-      for (var j = 0; j < this.cells.length; j++) {
-        if (!this.cells[i][j].candy.getType().equals(Type.REWARD_FRUIT)) {
-          var adj = adjacentCells(i, j);
-          for (Cell cell : adj) {
-            if (this.cells[i][j].candy.name.equals(cell.candy.name)) {
-              return true;
+      for (var i = 0; i < this.cells.length; i++) {
+        for (var j = 0; j < this.cells.length; j++) {
+          if (!this.cells[i][j].candy.getType().equals(Type.REWARD_FRUIT)) {
+            var adj = adjacentCells(i, j);
+            for (Cell cell : adj) {
+              if (this.cells[i][j].candy.name.equals(cell.candy.name)) {
+                return true;
+              }
             }
           }
         }
-      }
     }
+  }
     return false;
   }
 
