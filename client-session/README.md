@@ -138,6 +138,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about client-session](https://runtimehub.com/p/jdp@20240509:client-session/)
 * [Professional Java for Web Applications](https://amzn.to/4aazY59)
 * [Securing Web Applications with Spring Security](https://amzn.to/3PCCEA1)
 * [Client Session State Design Pattern: Explained Simply (Ram N Java)](https://www.youtube.com/watch?v=ycOSj9g41pc)

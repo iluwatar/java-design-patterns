@@ -145,6 +145,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about factory](https://runtimehub.com/p/jdp@20240509:factory/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0Rk5y)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/3UpTLrG)

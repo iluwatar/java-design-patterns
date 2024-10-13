@@ -139,5 +139,6 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about front-controller](https://runtimehub.com/p/jdp@20240509:front-controller/)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

@@ -199,6 +199,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about strangler](https://runtimehub.com/p/jdp@20240509:strangler/)
 * [Building Microservices](https://amzn.to/3UACtrU)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Refactoring: Improving the Design of Existing Code](https://amzn.to/3TVEgaB)

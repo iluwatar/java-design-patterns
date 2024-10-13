@@ -225,6 +225,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about Ambassador](https://runtimehub.com/p/jdp@20240509:ambassador/)
 * [Building Microservices: Designing Fine-Grained Systems](https://amzn.to/43aGpSR)
 * [Cloud Native Patterns: Designing Change-tolerant Software](https://amzn.to/3wUAl4O)
 * [Designing Distributed Systems: Patterns and Paradigms for Scalable, Reliable Services](https://amzn.to/3T9g9Uj)

@@ -143,6 +143,7 @@ On the other hand, an object adapter allows a single Adapter to work with multip
 
 ## References and Credits
 
+* [Study about Adaptor](https://runtimehub.com/p/jdp@20240509:adapter/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

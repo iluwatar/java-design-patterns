@@ -117,5 +117,6 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about flux](https://runtimehub.com/p/jdp@20240509:flux/)
 * [Learning React: Modern Patterns for Developing React Apps](https://amzn.to/3Qdn9Pg)
 * [Pro React](https://amzn.to/3xNRttK)

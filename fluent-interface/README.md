@@ -194,6 +194,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about fluentinterface](https://runtimehub.com/p/jdp@20240509:fluentinterface/)
 * [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3UrXkh2)
 * [Domain Specific Languages](https://amzn.to/3R1UYDA)
 * [Effective Java](https://amzn.to/4d4azvL)

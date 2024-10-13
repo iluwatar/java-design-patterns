@@ -219,5 +219,6 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about update-method](https://runtimehub.com/p/jdp@20240509:update-method/)
 * [Game Programming Patterns](https://amzn.to/3wLTbvr)
 * [Game Programming Patterns - Update Method](http://gameprogrammingpatterns.com/update-method.html)

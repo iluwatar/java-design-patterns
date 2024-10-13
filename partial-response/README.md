@@ -176,6 +176,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about partial-response](https://runtimehub.com/p/jdp@20240509:partial-response/)
 * [Building Microservices](https://amzn.to/3UACtrU)
 * [Designing Data-Intensive Applications: The Big Ideas Behind Reliable, Scalable, and Maintainable Systems](https://amzn.to/4dKEwBa)
 * [RESTful Web APIs: Services for a Changing World](https://amzn.to/3wG4fu3)

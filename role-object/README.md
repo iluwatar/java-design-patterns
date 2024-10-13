@@ -175,6 +175,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about role-object](https://runtimehub.com/p/jdp@20240509:role-object/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Pattern-Oriented Software Architecture Volume 1: A System of Patterns](https://amzn.to/3xZ1ELU)
 * [Role-Based Access Control](https://amzn.to/3UJzL2l)

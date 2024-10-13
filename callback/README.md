@@ -126,6 +126,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about Callback](https://runtimehub.com/p/jdp@20240509:callback/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)

@@ -216,5 +216,6 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about mediator](https://runtimehub.com/p/jdp@20240509:mediator/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)

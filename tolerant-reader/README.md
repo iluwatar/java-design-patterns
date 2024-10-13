@@ -203,6 +203,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about tolerant-reader](https://runtimehub.com/p/jdp@20240509:tolerant-reader/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Service Design Patterns: Fundamental Design Solutions for SOAP/WSDL and RESTful Web Services](https://amzn.to/4dNIfOx)

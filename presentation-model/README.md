@@ -142,6 +142,7 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about presentation-model](https://runtimehub.com/p/jdp@20240509:presentation-model/)
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Presentation Model (Martin Fowler)](https://martinfowler.com/eaaDev/PresentationModel.html)

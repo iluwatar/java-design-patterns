@@ -151,4 +151,5 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about factory-kit](https://runtimehub.com/p/jdp@20240509:factory-kit/)
 * [Design Pattern Reloaded (Remi Forax)](https://www.youtube.com/watch?v=-k2X7guaArU)

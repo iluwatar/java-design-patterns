@@ -246,5 +246,6 @@ Trade-offs:
 
 ## References and Credits
 
+* [Study about throttling](https://runtimehub.com/p/jdp@20240509:throttling/)
 * [Throttling pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling)
 * [Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications](https://amzn.to/4dLvowg)
