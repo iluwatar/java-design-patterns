@@ -57,7 +57,7 @@ public final class NullNode implements Node {
 
   @Override
   public String getName() {
-    return null;
+    return "There is no node create a node ";
   }
 
   @Override
