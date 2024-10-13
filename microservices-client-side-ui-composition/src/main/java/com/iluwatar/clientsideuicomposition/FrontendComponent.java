@@ -9,6 +9,8 @@ import java.util.Random;
  */
 public abstract class FrontendComponent {
 
+  public static final Random random = new Random();
+
   /**
    * Simulates asynchronous data fetching by introducing a random delay and
    * then fetching the data based on dynamic input.
@@ -19,7 +21,7 @@ public abstract class FrontendComponent {
   public String fetchData(Map<String, String> params) {
     try {
       // Simulate delay in fetching data (e.g., network latency)
-      Thread.sleep(new Random().nextInt(1000));
+      Thread.sleep(random.nextInt(1000));
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
     }
