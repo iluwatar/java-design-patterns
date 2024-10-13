@@ -30,11 +30,11 @@ class ClientSideCompositionTest {
     productParams.put("category", "electronics");
 
     // Compose UI for products and cart with dynamic params
-    integrator.composeUI("/products", productParams);
+    integrator.composeUi("/products", productParams);
 
     Map<String, String> cartParams = new HashMap<>();
     cartParams.put("userId", "user123");
-    integrator.composeUI("/cart", cartParams);
+    integrator.composeUi("/cart", cartParams);
 
     // Validate the dynamically fetched data
     String productData = apiGateway.handleRequest("/products", productParams);

@@ -4,14 +4,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ApiGateway class acts as a dynamic routing mechanism that forwards client requests
- * to the appropriate frontend components based on dynamically registered routes.
+ * ApiGateway class acts as a dynamic routing mechanism that forwards client
+ * requests to the appropriate frontend components based on dynamically
+ * registered routes.
  *
- * This allows for flexible, runtime-defined routing without hardcoding specific paths.
+ * <p>This allows for flexible, runtime-defined routing without hardcoding specific paths.
  */
 public class ApiGateway {
 
-  // A map to store routes dynamically, where the key is the path and the value is the associated FrontendComponent
+  // A map to store routes dynamically, where the key is the path and the value
+  // is the associated FrontendComponent
   private final Map<String, FrontendComponent> routes = new HashMap<>();
 
   /**
@@ -27,14 +29,14 @@ public class ApiGateway {
   /**
    * Handles a client request by routing it to the appropriate frontend component.
    *
-   * This method dynamically handles parameters passed with the request, which
+   * <p>This method dynamically handles parameters passed with the request, which
    * allows the frontend components to respond based on those parameters.
    *
    * @param path   the path for which the request is made (e.g., "/products", "/cart")
    * @param params a map of parameters that might influence the data fetching logic
    *               (e.g., filters, userId, categories, etc.)
-   * @return       the data fetched from the appropriate component or "404 Not Found"
-   *               if the path is not registered
+   * @return the data fetched from the appropriate component or "404 Not Found"
+   *         if the path is not registered
    */
   public String handleRequest(String path, Map<String, String> params) {
     if (routes.containsKey(path)) {

@@ -28,7 +28,8 @@ public abstract class FrontendComponent {
   }
 
   /**
-   * Abstract method to be implemented by subclasses to return data based on parameters.
+   * Abstract method to be implemented by subclasses to return data based on
+   * parameters.
    *
    * @param params a map of parameters that may affect the data fetching logic
    * @return the data for this specific component
