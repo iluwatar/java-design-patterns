@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework licensed under LGPL
+ * (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -31,12 +33,16 @@ import static com.iluwatar.caching.constants.CachingConstants.USER_NAME;
 
 import com.iluwatar.caching.UserAccount;
 import com.iluwatar.caching.constants.CachingConstants;
-import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.MongoCredential;
 import com.mongodb.ServerAddress;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.UpdateOptions;
+import io.github.cdimascio.dotenv.Dotenv;
+import java.util.Collections;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 
@@ -46,29 +52,69 @@ import org.bson.Document;
  */
 @Slf4j
 public class MongoDb implements DbManager {
-  private static final String DATABASE_NAME = "admin";
-  private static final String MONGO_USER = "root";
-  private static final String MONGO_PASSWORD = "rootpassword";
+
+  /**Initialize Dotenv object.*/
+  public static final Dotenv DOTENV = Dotenv.load();
+
+  /**Get database name from .env file.*/
+  private static final String DATABASE_NAME = DOTENV.get("MONGO_DB_NAME");
+
+  /**Get mongo username from .env file.*/
+  private static final String MONGO_USER = DOTENV.get("MONGO_USER");
+
+  /**Get mongo password from .env file.*/
+  private static final String MONGO_PASSWORD = DOTENV.get("MONGO_PASSWORD");
+
+  /**Get mongo db port number from .env file.*/
+  private static final String MONGO_DB_PORT = DOTENV.get("MONGO_DB_PORT");
+
+  /**Declaring MongoClient Object.*/
   private MongoClient client;
+
+  /**Setting MongoDatabase object using Lombok annotation.*/
+  @Setter
   private MongoDatabase db;
 
-  void setDb(MongoDatabase db) {
-    this.db = db;
-  }
-
   /**
-   * Connect to Db. Check th connection
+   * Connect to Db. Check th connection.
    */
   @Override
   public void connect() {
-    MongoCredential mongoCredential = MongoCredential.createCredential(MONGO_USER,
-                    DATABASE_NAME,
-                    MONGO_PASSWORD.toCharArray());
-    MongoClientOptions options = MongoClientOptions.builder().build();
-    client = new MongoClient(new ServerAddress(), mongoCredential, options);
+    // Create credentials
+    assert MONGO_USER != null;
+    assert DATABASE_NAME != null;
+    assert MONGO_PASSWORD != null;
+    assert MONGO_DB_PORT != null;
+    MongoCredential credential = MongoCredential.createCredential(
+        MONGO_USER,
+        DATABASE_NAME,
+        MONGO_PASSWORD.toCharArray()
+    );
+
+    // Set the cluster settings for server address
+    MongoClientSettings settings = MongoClientSettings.builder()
+        .applyToClusterSettings(builder ->
+                builder.hosts(
+                    Collections.singletonList(
+                        new ServerAddress(
+                            "localhost",
+                            Integer.parseInt(MONGO_DB_PORT)
+                        )
+                    )
+                ))
+        .credential(credential) // Add credentials
+        .build();
+
+    // Create the mongoDBClient with settings
+    client = MongoClients.create(settings);
+
+    // Get the database
     db = client.getDatabase(DATABASE_NAME);
   }
 
+  /**
+   * Close the connection.
+   */
   @Override
   public void disconnect() {
     client.close();
