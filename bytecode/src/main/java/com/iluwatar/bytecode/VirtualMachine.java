@@ -67,59 +67,60 @@ public class VirtualMachine {
     for (var i = 0; i < bytecode.length; i++) {
       Instruction instruction = Instruction.getInstruction(bytecode[i]);
       switch (instruction) {
-        case LITERAL:
-          // Read the next byte from the bytecode.
+        case LITERAL -> { // Read the next byte from the bytecode.
           int value = bytecode[++i];
           // Push the next value to stack
           stack.push(value);
-          break;
-        case SET_AGILITY:
+        }
+        case SET_AGILITY -> {
           var amount = stack.pop();
           var wizard = stack.pop();
           setAgility(wizard, amount);
-          break;
-        case SET_WISDOM:
-          amount = stack.pop();
-          wizard = stack.pop();
+        }
+        case SET_WISDOM -> {
+          var amount = stack.pop();
+          var wizard = stack.pop();
           setWisdom(wizard, amount);
-          break;
-        case SET_HEALTH:
-          amount = stack.pop();
-          wizard = stack.pop();
+        }
+        case SET_HEALTH -> {
+          var amount = stack.pop();
+          var wizard = stack.pop();
           setHealth(wizard, amount);
-          break;
-        case GET_HEALTH:
-          wizard = stack.pop();
+        }
+        case GET_HEALTH -> {
+          var wizard = stack.pop();
           stack.push(getHealth(wizard));
-          break;
-        case GET_AGILITY:
-          wizard = stack.pop();
+        }
+        case GET_AGILITY -> {
+          var wizard = stack.pop();
           stack.push(getAgility(wizard));
-          break;
-        case GET_WISDOM:
-          wizard = stack.pop();
+        }
+        case GET_WISDOM -> {
+          var wizard = stack.pop();
           stack.push(getWisdom(wizard));
-          break;
-        case ADD:
+        }
+        case ADD -> {
           var a = stack.pop();
           var b = stack.pop();
           stack.push(a + b);
-          break;
-        case DIVIDE:
-          a = stack.pop();
-          b = stack.pop();
+        }
+        case DIVIDE -> {
+          var a = stack.pop();
+          var b = stack.pop();
           stack.push(b / a);
-          break;
-        case PLAY_SOUND:
-          wizard = stack.pop();
+        }
+        case PLAY_SOUND -> {
+          var wizard = stack.pop();
           getWizards()[wizard].playSound();
-          break;
-        case SPAWN_PARTICLES:
-          wizard = stack.pop();
+
+        }
+        case SPAWN_PARTICLES -> {
+          var wizard = stack.pop();
           getWizards()[wizard].spawnParticles();
-          break;
-        default:
+        }
+        default -> {
           throw new IllegalArgumentException("Invalid instruction value");
+        }
       }
       LOGGER.info("Executed " + instruction.name() + ", Stack contains " + getStack());
     }
