@@ -44,7 +44,7 @@
     <gson.version>2.11.0</gson.version>
     <guice.version>6.0.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
-    <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>3.5.1</maven-surefire-plugin.version>
     <maven-checkstyle-plugin.version>3.5.0</maven-checkstyle-plugin.version>
     <license-maven-plugin.version>4.6</license-maven-plugin.version>
     <urm-maven-plugin.version>2.1.1</urm-maven-plugin.version>
