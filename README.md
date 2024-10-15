@@ -14,15 +14,32 @@
 Read in different language : [**zh**](localization/zh/README.md), [**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/ne/README.md), [**it**](localization/it/README.md), [**da**](localization/da/README.md)
 <br/>
 
-# Introduction
 
-Design patterns are the best, formalized practices a programmer can use to solve common problems when designing an application or system.
+<!--Line-->
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
 
-Design patterns can speed up the development process by providing tested, proven development paradigms.
 
-Reusing design patterns helps prevent subtle issues that cause major problems, and it also improves code readability for coders and architects who are familiar with the patterns.
+## 📗Introduction - Understanding Java Design Patterns
 
-# Getting Started
+Design patterns are established solutions to recurring software design challenges. They provide a structured approach to solving common problems, offering numerous benefits:
+
+Faster development: Leverage pre-tested and proven design principles.
+
+Higher code quality: Improve readability and maintainability for other developers and architects.
+
+Prevention of critical issues: Avoid subtle bugs and architectural flaws early in the design phase.
+
+By applying these patterns, developers can focus on writing efficient, scalable, and maintainable code, fostering a robust software architecture.
+
+
+
+
+
+
+<!--Line-->
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
+
+#🚀 Getting Started🚀
 
 This site showcases Java Design Patterns. The solutions have been developed by experienced programmers and architects from the open-source community. The patterns can be browsed by their high-level descriptions or by looking at their
 source code. The source code examples are well commented and can be thought of as programming tutorials on how to implement a specific pattern. We use the most popular battle-proven open-source Java technologies.
@@ -39,21 +56,33 @@ Once you are familiar with these concepts you can start drilling down into the [
 
 Hopefully, you find the object-oriented solutions presented on this site useful in your architectures and have as much fun learning them as we had while developing them.
 
-# How to Contribute
+<!--Line-->
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
+
+# 🤝How to Contribute💻
 
 If you are willing to contribute to the project you will find the relevant information in our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
-# The Book
+<!--Line-->
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
+
+#📒 The Book 📖
 
 The design patterns are now available as an e-book. Find out more about "Open Source Java Design Patterns" here: https://payhip.com/b/kcaF9
 
 The project contributors can get the book for free. Contact the maintainer via [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns) or email (iluwatar (at) gmail (dot) com ). Send a message that contains your email address, Github username, and a link to an accepted pull request.
 
-# License
+<!--Line-->
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
+
+#📝 License
 
 This project is licensed under the terms of the MIT license.
 
-# Contributors
+
+<!--Line-->
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
+#✨ Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
