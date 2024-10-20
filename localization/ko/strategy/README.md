@@ -1,5 +1,6 @@
 ---
 title: Strategy
+shortTitle: Strategy
 category: Behavioral
 language: ko
 tag:

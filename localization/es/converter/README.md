@@ -1,5 +1,6 @@
 ---
 title: Converter
+shortTitle: Converter
 category: Creational
 language: es
 tag:

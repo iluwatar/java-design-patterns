@@ -1,5 +1,6 @@
 ---
 title: Interpreter
+shortTitle: Interpreter
 category: Behavioral
 language: es
 tag:

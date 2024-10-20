@@ -1,5 +1,6 @@
 ---
 title: Flyweight
+shortTitle: Flyweight
 category: Structural
 language: es
 tag:

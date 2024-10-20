@@ -1,5 +1,6 @@
 ---
 title: Presentation Model
+shortTitle: Presentation Model
 category: Behavioral
 language: es
 tag:

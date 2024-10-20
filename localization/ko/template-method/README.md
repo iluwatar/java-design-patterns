@@ -1,5 +1,6 @@
 ---
 title: Template Method
+shortTitle: Template Method
 category: Behavioral
 language: ko
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Marker Interface
+shortTitle: Marker Interface
 category: Structural
 language: es
 tag:

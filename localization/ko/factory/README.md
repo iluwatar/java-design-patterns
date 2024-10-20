@@ -1,5 +1,6 @@
 ---
 title: Factory
+shortTitle: Factory
 category: Creational
 language: ko
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Module
+shortTitle: Module
 category: Structural
 language: es
 tag:

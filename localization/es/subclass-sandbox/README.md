@@ -1,5 +1,6 @@
 ---  
 title: Subclass Sandbox 
+shortTitle: Subclass Sandbox 
 category: Behavioral
 language: es
 tag:  

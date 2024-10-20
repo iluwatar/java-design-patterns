@@ -1,5 +1,6 @@
 ---
 title: Intercepting Filter
+shortTitle: Intercepting Filter
 category: Behavioral
 language: es
 tag:

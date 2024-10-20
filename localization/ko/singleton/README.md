@@ -1,5 +1,6 @@
 ---
 title: Singleton
+shortTitle: Singleton
 category: Creational
 language: ko
 tag:

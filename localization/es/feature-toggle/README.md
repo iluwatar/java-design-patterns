@@ -1,5 +1,6 @@
 ---
 title: Feature Toggle
+shortTitle: Feature Toggle
 category: Behavioral
 language: es
 tag:

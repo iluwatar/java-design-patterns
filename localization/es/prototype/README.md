@@ -1,5 +1,6 @@
 ---
 title: Prototype
+shortTitle: Prototype
 category: Creational
 language: es
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Single Table Inheritance Pattern
+shortTitle: Single Table Inheritance Pattern
 category: Structural
 language: es
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Servant
+shortTitle: Servant
 category: Behavioral
 language: es
 tag:

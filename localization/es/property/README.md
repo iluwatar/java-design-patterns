@@ -1,5 +1,6 @@
 ---
 title: Property
+shortTitle: Property
 category: Creational
 language: es
 tag:
