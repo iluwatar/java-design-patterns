@@ -1,15 +1,17 @@
 ---
-title: Filterer
+title: "Filterer Pattern in Java: Streamlining Data Processing with Dynamic Filters"
+shortTitle: Filterer
+description: "Learn about the Filterer design pattern in Java, which enhances data processing flexibility by applying a series of filters to data objects. Ideal for dynamic and scalable filtering solutions."
 language: en
 category: Behavioral
 tag:
-    - Data processing
-    - Data transformation
-    - Decoupling
-    - Functional decomposition
-    - Object composition
-    - Performance
-    - Runtime
+  - Data processing
+  - Data transformation
+  - Decoupling
+  - Functional decomposition
+  - Object composition
+  - Performance
+  - Runtime
 ---
 
 ## Also known as
@@ -17,23 +19,23 @@ tag:
 * Filters
 * Pipes and Filters
 
-## Intent
+## Intent of Filterer Design Pattern
 
-The Filterer pattern aims to apply a series of filters to data objects, where each filter processes the data based on specific rules and criteria, and passes the data to the next filter in the sequence.
+The Filterer design pattern in Java is essential for creating dynamic and scalable filtering solutions. This pattern allows the application of a series of filters to data objects, enhancing data processing flexibility and scalability.
 
-## Explanation
+## Detailed Explanation of Filterer Pattern with Real-World Examples
 
 Real-world example
 
-> Imagine a library that needs to filter books based on different criteria such as genre, author, publication year, or availability. Instead of writing separate methods for each possible combination of criteria, the library system employs the Filterer design pattern. Each filter criterion is encapsulated as an object, and these filter objects can be combined dynamically at runtime to create complex filtering logic. For example, a user can search for books that are both available and published after 2010 by combining the availability filter and the publication year filter. This approach makes the system more flexible and easier to maintain, as new filtering criteria can be added without modifying existing code.
+> Imagine a library system employing the Filterer pattern to dynamically combine filter criteria such as genre, author, and availability. This Java pattern makes the system more maintainable and scalable. Instead of writing separate methods for each possible combination of criteria, the library system employs the Filterer design pattern. Each filter criterion is encapsulated as an object, and these filter objects can be combined dynamically at runtime to create complex filtering logic. For example, a user can search for books that are both available and published after 2010 by combining the availability filter and the publication year filter. This approach makes the system more flexible and easier to maintain, as new filtering criteria can be added without modifying existing code.
 
 In plain words
 
 > Filterer pattern is a design pattern that helps container-like objects return filtered versions of themselves.
 
-**Programmatic Example**
+## Programmatic Example of Filterer Pattern in Java
 
-We are designing a threat (malware) detection software which can analyze target systems for threats that are present in it. In the design we have to take into consideration that new Threat types can be added later. Additionally, there is a requirement that the threat detection system can filter the detected threats based on different criteria (the target system acts as container-like object for threats).
+To illustrate, we use the Filterer design pattern for a malware detection system in Java. This system can filter threats based on various criteria, showcasing the pattern’s flexibility and dynamic nature. In the design we have to take into consideration that new Threat types can be added later. Additionally, there is a requirement that the threat detection system can filter the detected threats based on different criteria (the target system acts as container-like object for threats).
 
 To model the threat detection system, we introduce `Threat` and `ThreatAwareSystem` interfaces.
 
@@ -224,23 +226,23 @@ Running the example produces the following console output.
 08:33:23.581 [main] INFO com.iluwatar.filterer.App -- Filtered by probability = 0.99 : SimpleProbabilisticThreatAwareSystem(systemId=Sys-1, threats=[SimpleProbableThreat{probability=0.99} SimpleThreat(threatType=TROJAN, id=1, name=Trojan-ArcBomb)])
 ```
 
-## Applicability
+## When to Use the Filterer Pattern in Java
 
-* Use when you need to filter a collection of objects dynamically based on different criteria.
-* Suitable for applications where filtering logic changes frequently or needs to be combined in various ways.
+* Use the Filterer pattern when dynamic and flexible filtering of a collection of objects is needed.
+* This Java design pattern is ideal for applications where filtering logic frequently changes or requires combination in various ways.
 * Ideal for scenarios requiring separation of filtering logic from the core business logic.
 
-## Tutorials
+## Filterer Pattern Java Tutorials
 
 * [Filterer Pattern (Tomasz Linkowski)](https://blog.tlinkowski.pl/2018/filterer-pattern/)
 * [Filterer Pattern in 10 Steps (Java Code Geeks)](https://www.javacodegeeks.com/2019/02/filterer-pattern-10-steps.html)
 
-## Known Uses
+## Real-World Applications of Filterer Pattern in Java
 
 * Stream processing libraries in Java, such as Apache Kafka Streams, utilize this pattern to build complex data processing pipelines.
 * Image processing software often uses filters to apply effects or transformations to images sequentially.
 
-## Consequences
+## Benefits and Trade-offs of Filterer Pattern
 
 Benefits:
 
@@ -253,12 +255,12 @@ Trade-offs:
 * Potential performance overhead from continuous data passing between filters.
 * Complexity can increase with the number of filters, potentially affecting maintainability.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Filters can be seen as a specialized form of the Chain of Responsibility, where each filter decides if and how to process the input data and whether to pass it along the chain.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar to Decorator in that both modify behavior dynamically; however, filters focus more on data transformation than on adding responsibilities.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3W8sn2W)
 * [Kafka: The Definitive Guide: Real-Time Data and Stream Processing at Scale](https://amzn.to/49N3nRU)

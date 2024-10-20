@@ -1,5 +1,6 @@
 ---
 title: Identity Map
+shortTitle: Identity Map
 category: Behavioral
 language: es
 tag:

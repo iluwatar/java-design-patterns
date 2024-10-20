@@ -1,5 +1,6 @@
 ---
 title: Dependency Injection
+shortTitle: Dependency Injection
 category: Creational
 language: es
 tag:

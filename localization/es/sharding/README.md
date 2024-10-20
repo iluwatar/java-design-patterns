@@ -1,5 +1,6 @@
 ---
 title: Sharding 
+shortTitle: Sharding 
 category: Behavioral
 language: es
 tag:  

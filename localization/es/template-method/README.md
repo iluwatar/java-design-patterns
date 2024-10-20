@@ -1,5 +1,6 @@
 ---
 title: Template method
+shortTitle: Template method
 category: Behavioral
 language: es
 tag:

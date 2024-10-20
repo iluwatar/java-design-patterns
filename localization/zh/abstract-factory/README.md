@@ -1,5 +1,6 @@
 ---
 title: Abstract Factory
+shortTitle: Abstract Factory
 category: Creational
 language: zh
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Multiton
+shortTitle: Multiton
 category: Creational
 language: es
 tag:

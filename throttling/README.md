@@ -1,24 +1,26 @@
 ---
-title: Throttling
+title: "Throttling Pattern in Java: Optimizing Resource Usage in High-Demand Applications"
+shortTitle: Throttling
+description: "Explore the Throttling design pattern in Java to manage application stability and prevent system overload. Learn how rate limiting ensures consistent performance and system resilience. Ideal for developers and software architects."
 category: Resource management
 language: en
 tag:
-    - API design
-    - Fault tolerance
-    - Performance
-    - Resilience
-    - Scalability
+  - API design
+  - Fault tolerance
+  - Performance
+  - Resilience
+  - Scalability
 ---
 
 ## Also known as
 
 * Rate Limiting
 
-## Intent
+## Intent of Throttling Design Pattern
 
-Throttling limits the number of requests a system can process within a given time frame to prevent overload and ensure stability.
+The Throttling Pattern, also known as Rate Limiting, limits the number of requests a system can process within a given time frame to prevent overload and ensure stability. It is crucial for resource management in Java applications.
 
-## Explanation
+## Detailed Explanation of Throttling Pattern with Real-World Examples
 
 Real-world example
 
@@ -32,9 +34,9 @@ In plain words
 
 > Control the consumption of resources used by an instance of an application, an individual tenant, or an entire service. This can allow the system to continue to function and meet service level agreements, even when an increase in demand places an extreme load on resources.
 
-**Programmatic Example**
+## Programmatic Example of Throttling Pattern in Java
 
-In this example a young human and an old dwarf walk into a bar. They start ordering beers from the bartender. The bartender immediately sees that the young human shouldn't consume too many drinks too fast and refuses to serve if enough time has not passed. For the old dwarf, the serving rate can be higher.
+In this Java example, we demonstrate throttling. A young human and an old dwarf walk into a bar. They start ordering beers from the bartender. The bartender immediately sees that the young human shouldn't consume too many drinks too fast and refuses to serve if enough time has not passed. For the old dwarf, the serving rate can be higher.
 
 `BarCustomer` class presents the clients of the `Bartender` API. `CallsCount` tracks the number of calls per `BarCustomer`.
 
@@ -211,19 +213,19 @@ An excerpt from the example's console output:
 18:46:37.148 [pool-1-thread-2] ERROR com.iluwatar.throttling.Bartender - I'm sorry dwarf soldier, you've had enough for today!
 ```
 
-## Applicability
+## When to Use the Throttling Pattern in Java
 
 * You need to protect resources from being overwhelmed by too many requests.
 * You want to ensure fair usage of a service among multiple users.
 * You need to maintain the quality of service under high load conditions.
 
-## Known Uses
+## Real-World Applications of Throttling Pattern in Java
 
 * APIs of major cloud providers like AWS, Google Cloud, and Azure use throttling to manage resource usage.
 * Web services to prevent denial-of-service (DoS) attacks by limiting the number of requests from a single IP address.
 * Online platforms like social media sites and e-commerce websites to ensure even distribution of server load.
 
-## Consequences
+## Benefits and Trade-offs of Throttling Pattern
 
 Benefits:
 
@@ -237,12 +239,12 @@ Trade-offs:
 * Requires careful tuning to balance between resource protection and user experience.
 * Could lead to denial of service to legitimate users if not configured correctly.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Circuit Breaker](https://java-design-patterns.com/patterns/circuit-breaker/): Works in tandem with throttling to prevent repeated attempts to access an overloaded service.
 * Bulkhead: Isolates different parts of the system to limit the impact of throttling on other components.
 
-## Credits
+## References and Credits
 
 * [Throttling pattern (Microsoft)](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling)
 * [Cloud Design Patterns: Prescriptive Architecture Guidance for Cloud Applications](https://amzn.to/4dLvowg)

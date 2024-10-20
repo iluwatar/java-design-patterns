@@ -1,5 +1,6 @@
 ---
 title: Double Checked Locking
+shortTitle: Double Checked Locking
 category: Idiom
 language: zh
 tag:

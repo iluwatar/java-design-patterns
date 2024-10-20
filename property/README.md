@@ -1,13 +1,15 @@
 ---
-title: Property
+title: "Property Pattern in Java: Enhancing Flexibility with Dynamic Attribute Management"
+shortTitle: Property
+description: "Explore how the Property design pattern facilitates dynamic property management in Java objects, enabling runtime modifications without altering class structure. Ideal for developers looking to enhance flexibility and maintainability in their code."
 category: Behavioral
 language: en
 tag:
-    - Abstraction
-    - Encapsulation
-    - Interface
-    - Object composition
-    - Polymorphism
+  - Abstraction
+  - Encapsulation
+  - Interface
+  - Object composition
+  - Polymorphism
 ---
 
 ## Also known as
@@ -15,11 +17,11 @@ tag:
 * Dynamic Properties
 * Property Bag
 
-## Intent
+## Intent of Property Design Pattern
 
-The Property design pattern allows dynamic addition, removal, or modification of properties of an object at runtime.
+The Property design pattern in Java allows dynamic addition, removal, or modification of object properties, offering a flexible solution for developers to customize object attributes at runtime.
 
-## Explanation
+## Detailed Explanation of Property Pattern with Real-World Examples
 
 Real-world example
 
@@ -29,7 +31,7 @@ In plain words
 
 > Define and manage a dynamic set of properties for an object, allowing customization without altering its structure.
 
-**Programmatic Example**
+## Programmatic Example of Property Pattern in Java
 
 The Property design pattern, also known as Prototype inheritance, is a pattern that allows objects to be created from other objects, forming object hierarchies. This pattern is particularly useful when you want to create a new object that is a slight variation of an existing object.
 
@@ -118,44 +120,44 @@ Program output:
 08:27:52.567 [main] INFO com.iluwatar.property.App -- Player: Player_1
 Character type: MAGE
 Stats:
- - AGILITY:10
- - STRENGTH:10
- - ATTACK_POWER:10
- - ARMOR:8
- - INTELLECT:15
- - SPIRIT:10
+  - AGILITY:10
+  - STRENGTH:10
+  - ATTACK_POWER:10
+  - ARMOR:8
+  - INTELLECT:15
+  - SPIRIT:10
 
 08:27:52.569 [main] INFO com.iluwatar.property.App -- Player: Player_2
 Character type: WARRIOR
 Stats:
- - AGILITY:10
- - STRENGTH:10
- - ATTACK_POWER:10
- - ARMOR:15
- - RAGE:15
+  - AGILITY:10
+  - STRENGTH:10
+  - ATTACK_POWER:10
+  - ARMOR:15
+  - RAGE:15
 
 08:27:52.569 [main] INFO com.iluwatar.property.App -- Player: Player_3
 Character type: ROGUE
 Stats:
- - AGILITY:15
- - STRENGTH:10
- - ATTACK_POWER:10
- - ARMOR:10
- - ENERGY:15
+  - AGILITY:15
+  - STRENGTH:10
+  - ATTACK_POWER:10
+  - ARMOR:10
+  - ENERGY:15
 
 08:27:52.569 [main] INFO com.iluwatar.property.App -- Player: Player_4
 Character type: ROGUE
 Stats:
- - AGILITY:15
- - STRENGTH:10
- - ATTACK_POWER:12
- - ARMOR:10
- - ENERGY:15
+  - AGILITY:15
+  - STRENGTH:10
+  - ATTACK_POWER:12
+  - ARMOR:10
+  - ENERGY:15
 ```
 
 This way, we can easily create new characters with different properties without having to create a new class for each type of character.
 
-## Applicability
+## When to Use the Property Pattern in Java
 
 Use the Property pattern when
 
@@ -163,15 +165,17 @@ Use the Property pattern when
 * When properties need to be added or removed dynamically at runtime.
 * When different instances of a class need different properties.
 
-## Known Uses
+## Real-World Applications of Property Pattern in Java
 
 * Configurations in applications where different entities require different sets of configurable parameters.
 * Game development where game entities (like characters or objects) need various attributes that can change during gameplay.
 * User profile management systems where user profiles can have dynamic attributes.
 
-## Consequences
+## Benefits and Trade-offs of Property Pattern
 
 Benefits:
+
+Employing the Property design pattern enhances
 
 * Flexibility: Allows for the dynamic addition, removal, and modification of properties.
 * Decoupling: Reduces dependencies between classes and their properties.
@@ -183,13 +187,13 @@ Trade-offs:
 * Complexity: May increase the complexity of the code, making it harder to maintain and understand.
 * Type Safety: Reduces type safety since properties are often managed as generic key-value pairs.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Composite](https://java-design-patterns.com/patterns/composite/): Composite allows a tree structure of objects where each node can be a complex or simple object. Property pattern can be seen as a flattened version, managing properties without hierarchy.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Both patterns enhance an object's behavior, but the Property pattern focuses on adding properties dynamically, while the Decorator adds responsibilities.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Like the Property pattern, the Strategy pattern allows dynamic behavior changes, but Strategy is about changing the algorithm used by an object.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Effective Java](https://amzn.to/4cGk2Jz)

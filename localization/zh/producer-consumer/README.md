@@ -1,5 +1,6 @@
 ---
 title: Producer Consumer
+shortTitle: Producer Consumer
 category: Concurrency
 language: zh
 tag:

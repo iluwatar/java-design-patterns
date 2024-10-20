@@ -1,5 +1,6 @@
 ---
 title: Iterator
+shortTitle: Iterator
 categories: Behavioral
 language: ko
 tag:

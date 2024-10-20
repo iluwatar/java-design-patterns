@@ -1,24 +1,26 @@
 ---
-title: Data Mapper
+title: "Data Mapper Pattern in Java: Decoupling Data Storage from Business Logic"
+shortTitle: Data Mapper
+description: "Explore the Data Mapper pattern in Java, which decouples database operations from business logic. Learn how to implement and utilize this pattern to enhance maintainability and flexibility in your Java applications."
 category: Behavioral
 language: en
 tag:
-    - Data access
-    - Decoupling
-    - Domain
-    - Object mapping
-    - Persistence
+  - Data access
+  - Decoupling
+  - Domain
+  - Object mapping
+  - Persistence
 ---
 
 ## Also known as
 
 * Object-Relational Mapping (ORM)
 
-## Intent
+## Intent of the Data Mapper Pattern
 
-The Data Mapper pattern aims to create an abstraction layer between the database and the business logic, allowing them to evolve independently. It maps data from the database objects to in-memory data structures and vice versa, minimizing direct dependencies between the application's core logic and the underlying database structure.
+The Data Mapper pattern aims to create an abstraction layer between the database and the business logic, allowing them to evolve independently. It maps data from the database objects to in-memory data structures and vice versa, minimizing direct dependencies between the application's core logic and the underlying database structure. This decoupling is essential in promoting maintainability and flexibility in Java programming.
 
-## Explanation
+## Detailed Explanation of Data Mapper Pattern with Real-World Examples
 
 Real-world example
 
@@ -32,7 +34,7 @@ Wikipedia says
 
 > A Data Mapper is a Data Access Layer that performs bidirectional transfer of data between a persistent data store (often a relational database) and an in-memory data representation (the domain layer). The goal of the pattern is to keep the in-memory representation and the persistent data store independent of each other and the data mapper itself. This is useful when one needs to model and enforce strict business processes on the data in the domain layer that do not map neatly to the persistent data store.
 
-**Programmatic Example**
+## Programmatic Example of Data Mapper Pattern in Java
 
 The Data Mapper is a design pattern that separates the in-memory objects from the database. Its responsibility is to transfer data between the two and also to isolate them from each other. This pattern promotes the [Single Responsibility Principle](https://java-design-patterns.com/principles/#single-responsibility-principle) and [Separation of Concerns](https://java-design-patterns.com/principles/#separation-of-concerns).
 
@@ -117,7 +119,7 @@ Program output:
 13:54:29.238 [main] DEBUG com.iluwatar.datamapper.App -- App.main(), student : Student(studentId=1, name=AdamUpdated, grade=A), is going to be deleted
 ```
 
-## Applicability
+## When to Use the Data Mapper Pattern in Java
 
 Use the Data Mapper in any of the following situations
 
@@ -125,19 +127,19 @@ Use the Data Mapper in any of the following situations
 * In applications requiring an ORM tool to bridge the gap between object-oriented models and relational databases.
 * When working with complex database schemas where direct data manipulation and object creation lead to cumbersome and error-prone code.
 
-## Tutorials
+## Data Mapper Pattern Java Tutorials
 
 * [Spring Boot RowMapper (ZetCode)](https://zetcode.com/springboot/rowmapper/)
 * [Spring BeanPropertyRowMapper tutorial (ZetCode)](https://zetcode.com/spring/beanpropertyrowmapper/)
 * [Data Transfer Object Pattern in Java - Implementation and Mapping (StackAbuse)](https://stackabuse.com/data-transfer-object-pattern-in-java-implementation-and-mapping/)
 
-## Known uses
+## Real-World Applications of Data Mapper Pattern in Java
 
 * ORM frameworks such as Hibernate in Java.
 * Data access layers in enterprise applications where business logic and database management are kept separate.
 * Applications requiring database interactions without tying the code to a specific database implementation.
 
-## Consequences
+## Benefits and Trade-offs of Data Mapper Pattern
 
 Benefits:
 
@@ -151,14 +153,14 @@ Trade-offs:
 * Might lead to performance overhead due to the abstraction layer, especially in large-scale applications or with complex queries.
 * Requires developers to learn and understand the abstraction layer in addition to the database and ORM framework being used.
 
-## Related patterns
+## Related Java Design Patterns
 
 * Active Record: Combines data access logic and business logic in the domain entities themselves, contrary to Data Mapper's separation of concerns.
 * Object–Relational Mapping (ORM): A technique to map object-oriented programming language data to a relational database.
 * [Repository](https://java-design-patterns.com/patterns/repository/): Provides an abstraction of the data layer, acting as a collection of domain objects in memory.
 * [Unit of Work](https://java-design-patterns.com/patterns/unit-of-work/): Manages transactions and keeps track of the objects affected by a business transaction to ensure changes are consistent and transactional.
 
-## Credits
+## References and Credits
 
 * [Clean Architecture: A Craftsman's Guide to Software Structure and Design](https://amzn.to/3xyEFag)
 * [Java Persistence with Hibernate](https://amzn.to/3VNzlKe)

@@ -1,5 +1,6 @@
 ---
 title: Trampoline
+shortTitle: Trampoline
 category: Behavioral
 language: zh
 tag:

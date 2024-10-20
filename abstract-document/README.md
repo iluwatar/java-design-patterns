@@ -1,27 +1,29 @@
 ---
-title: Abstract Document
+title: "Abstract Document Pattern in Java: Simplifying Data Handling with Flexibility"
+shortTitle: Abstract Document
+description: "Explore the Abstract Document design pattern in Java. Learn its intent, explanation, applicability, benefits, and see real-world examples to implement flexible and dynamic data structures."
 category: Structural
 language: en
 tag:
-    - Abstraction
-    - Decoupling
-    - Dynamic typing
-    - Encapsulation
-    - Extensibility
-    - Polymorphism
+  - Abstraction
+  - Decoupling
+  - Dynamic typing
+  - Encapsulation
+  - Extensibility
+  - Polymorphism
 ---
 
-## Intent
+## Intent of Abstract Document Design Pattern
 
-The Abstract Document design pattern is a structural design pattern that aims to provide a consistent way to handle hierarchical and tree-like data structures by defining a common interface for various document types. It separates the core document structure from specific data formats, enabling dynamic updates and simplified maintenance.
+The Abstract Document design pattern in Java is a crucial structural design pattern that provides a consistent way to handle hierarchical and tree-like data structures by defining a common interface for various document types. It separates the core document structure from specific data formats, enabling dynamic updates and simplified maintenance.
 
-## Explanation
+## Detailed Explanation of Abstract Document Pattern with Real-World Examples
 
-The Abstract Document pattern enables handling additional, non-static properties. This pattern uses concept of traits to enable type safety and separate properties of different classes into set of interfaces.
+The Abstract Document design pattern in Java allows dynamic handling of non-static properties. This pattern uses concept of traits to enable type safety and separate properties of different classes into set of interfaces.
 
 Real-world example
 
-> Imagine a library system where books can have different formats and attributes: physical books, eBooks, and audiobooks. Each format has unique properties, such as page count for physical books, file size for eBooks, and duration for audiobooks. The Abstract Document design pattern allows the library system to manage these diverse formats flexibly. By using this pattern, the system can store and retrieve properties dynamically, without needing a rigid structure for each book type, making it easier to add new formats or attributes in the future without significant changes to the codebase.
+> Consider a library system implementing the Abstract Document design pattern in Java, where books can have diverse formats and attributes: physical books, eBooks, and audiobooks. Each format has unique properties, such as page count for physical books, file size for eBooks, and duration for audiobooks. The Abstract Document design pattern allows the library system to manage these diverse formats flexibly. By using this pattern, the system can store and retrieve properties dynamically, without needing a rigid structure for each book type, making it easier to add new formats or attributes in the future without significant changes to the codebase.
 
 In plain words
 
@@ -31,7 +33,7 @@ Wikipedia says
 
 > An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the support of type-safety. The pattern makes use of traits to separate different properties of a class into different interfaces.
 
-**Programmatic Example**
+## Programmatic Example of Abstract Document Pattern in Java
 
 Consider a car that consists of multiple parts. However, we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
 
@@ -177,13 +179,13 @@ The program output:
 07:21:57.395 [main] INFO com.iluwatar.abstractdocument.App -- 	door/Lambo/300
 ```
 
-## Class diagram
+## Abstract Document Pattern Class Diagram
 
 ![Abstract Document](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
-## Applicability
+## When to Use the Abstract Document Pattern in Java
 
-This pattern is particularly useful in scenarios where you have different types of documents that share some common attributes or behaviors, but also have unique attributes or behaviors specific to their individual types. Here are some scenarios where the Abstract Document design pattern can be applicable:
+The Abstract Document design pattern is especially beneficial in scenarios requiring management of different document types in Java that share some common attributes or behaviors, but also have unique attributes or behaviors specific to their individual types. Here are some scenarios where the Abstract Document design pattern can be applicable:
 
 * Content Management Systems (CMS): In a CMS, you might have various types of content such as articles, images, videos, etc. Each type of content could have shared attributes like creation date, author, and tags, while also having specific attributes like image dimensions for images or video duration for videos.
 
@@ -209,7 +211,7 @@ This pattern is particularly useful in scenarios where you have different types 
 
 The key idea behind the Abstract Document design pattern is to provide a flexible and extensible way to manage different types of documents or entities with shared and distinct attributes. By defining a common interface and implementing it across various document types, you can achieve a more organized and consistent approach to handling complex data structures.
 
-## Consequences
+## Benefits and Trade-offs of Abstract Document Pattern
 
 Benefits:
 
@@ -227,7 +229,7 @@ Trade-offs:
 
 * Performance: Might introduce slight performance overhead compared to direct data access.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)

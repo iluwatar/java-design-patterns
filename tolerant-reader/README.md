@@ -1,23 +1,25 @@
 ---
-title: Tolerant Reader
+title: "Tolerant Reader Pattern in Java: Enhancing API Resilience and Compatibility"
+shortTitle: Tolerant Reader
+description: "Discover how the Tolerant Reader pattern can boost your API's resilience by ignoring unrecognized data, ensuring backward compatibility and seamless integration. Learn through examples and best practices on implementing this robust communication mechanism."
 category: Resilience
 language: en
 tag:
-    - API design
-    - Decoupling
-    - Fault tolerance
-    - Integration
+  - API design
+  - Decoupling
+  - Fault tolerance
+  - Integration
 ---
 
 ## Also known as
 
 * Lenient Consumer
 
-## Intent
+## Intent of Tolerant Reader Design Pattern
 
-Allows a system to be more resilient to changes in the data structures it consumes by ignoring elements that it does not recognize.
+The Tolerant Reader pattern enhances system resilience to changes in data structures by strategically ignoring unrecognized elements, promoting robust API design.
 
-## Explanation
+## Detailed Explanation of Tolerant Reader Pattern with Real-World Examples
 
 Real-world example
 
@@ -25,13 +27,13 @@ Real-world example
 
 In plain words
 
-> Tolerant Reader pattern is used to create robust communication mechanisms between services.
+> Utilize the Tolerant Reader pattern to establish robust and resilient communication between services, ensuring data compatibility and integration.
 
 [Robustness Principle](https://java-design-patterns.com/principles/#robustness-principle) says
 
 > Be conservative in what you do, be liberal in what you accept from others.
 
-**Programmatic Example**
+## Programmatic Example of Tolerant Reader Pattern in Java
 
 We are persisting `RainbowFish` objects to file. Later on they need to be restored. What makes it problematic is that `RainbowFish` data structure is versioned and evolves over time. New version of `RainbowFish` needs to be able to restore old versions as well.
 
@@ -169,18 +171,18 @@ Program output:
 15:38:00.619 [main] INFO com.iluwatar.tolerantreader.App -- deserializedFishV2 name=Scar age=5 length=12 weight=15
 ```
 
-## Applicability
+## When to Use the Tolerant Reader Pattern in Java
 
-* Use when a system needs to consume data from external sources that may change over time.
+* Apply the Tolerant Reader pattern when your system consumes data from evolving external sources, maintaining efficiency and data integrity.
 * Applicable when backward compatibility is required in API design.
 * Suitable for integration scenarios where different systems exchange data and evolve independently.
 
-## Known Uses
+## Real-World Applications of Tolerant Reader Pattern in Java
 
 * JSON or XML parsers that skip unknown elements.
 * API clients in microservices architectures that interact with multiple versions of a service.
 
-## Consequences
+## Benefits and Trade-offs of Tolerant Reader Pattern
 
 Benefits:
 
@@ -193,13 +195,13 @@ Trade-offs:
 * May result in silent failures if important data is ignored.
 * Can complicate debugging and tracing of issues due to missing or unrecognized data.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Adapter](https://java-design-patterns.com/patterns/adapter/): Both patterns deal with data transformation and integration, but the Adapter Pattern focuses on converting interfaces, while Tolerant Reader focuses on ignoring unrecognized data.
 * [Facade](https://java-design-patterns.com/patterns/facade/): Simplifies interactions with complex systems, similar to how Tolerant Reader simplifies data consumption by ignoring irrelevant data.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Can be used in conjunction with Tolerant Reader to dynamically switch between different data handling strategies.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)

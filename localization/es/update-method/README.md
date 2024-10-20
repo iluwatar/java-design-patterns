@@ -1,5 +1,6 @@
 ---  
 title: Update Method
+shortTitle: Update Method
 category: Behavioral
 language: es
 tag:  

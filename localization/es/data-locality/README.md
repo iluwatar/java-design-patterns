@@ -1,5 +1,6 @@
 ---
 title: Data Locality
+shortTitle: Data Locality
 category: Behavioral
 language: es
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Strangler
+shortTitle: Strangler
 category: Structural
 language: es
 tag:

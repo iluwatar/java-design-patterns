@@ -1,5 +1,6 @@
 ---
 title: Mediator
+shortTitle: Mediator
 category: Behavioral
 language: es
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Null Object
+shortTitle: Null Object
 category: Behavioral
 language: es
 tag:

@@ -1,0 +1,10 @@
+@startuml
+!theme vibrant
+package com.iluwatar.microservices-distributed-tracing {
+package "Product Microservice" {
+    class ProductController {
+        +validateProduct()
+    }
+}
+}
+@enduml

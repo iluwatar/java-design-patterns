@@ -1,20 +1,22 @@
 ---
-title: Active Object
+title: "Active Object Pattern in Java: Achieving Efficient Asynchronous Processing"
+shortTitle: Active Object
+description: "Learn about the Active Object design pattern in Java. This guide covers asynchronous behavior, concurrency, and practical examples to enhance your Java applications' performance."
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Decoupling
-    - Messaging
-    - Synchronization
-    - Thread management
+  - Asynchronous
+  - Decoupling
+  - Messaging
+  - Synchronization
+  - Thread management
 ---
 
-## Intent
+## Intent of Active Object Design Pattern
 
-The Active Object design pattern provides a safe and reliable way to implement asynchronous behavior in concurrent systems. It achieves this by encapsulating tasks within objects that have their own thread and message queue. This separation keeps the main thread responsive and avoids issues like direct thread manipulation or shared state access.
+The Active Object pattern provides a reliable method for asynchronous processing in Java, ensuring responsive applications and efficient thread management. It achieves this by encapsulating tasks within objects that have their own thread and message queue. This separation keeps the main thread responsive and avoids issues like direct thread manipulation or shared state access.
 
-## Explanation
+## Detailed Explanation of Active Object Pattern with Real-World Examples
 
 Real-world example
 
@@ -39,7 +41,9 @@ Wikipedia says
 > * The implementation of the active object method.
 > * A callback or variable for the client to receive the result.
 
-**Programmatic Example**
+## Programmatic Example of Active Object in Java
+
+This section explains how the Active Object design pattern works in Java, highlighting its use in asynchronous task management and concurrency control.
 
 The Orcs are known for their wildness and untameable soul. It seems like they have their own thread of control based on previous behavior. To implement a creature that has its own thread of control mechanism and expose its API only and not the execution itself, we can use the Active Object pattern.
 
@@ -162,24 +166,28 @@ Program output:
 09:00:02.504 [Thread-2] INFO com.iluwatar.activeobject.ActiveCreature -- Orc2 has started to roam in the wastelands.
 ```
 
-## Applicability
+## When to Use the Active Object Pattern in Java
 
-* When you need to perform long-running operations without blocking the main thread.
+Use the Active Object pattern in Java when:
+
+* when you need to handle asynchronous tasks without blocking the main thread, ensuring better performance and responsiveness.
 * When you need to interact with external resources asynchronously.
 * When you want to improve the responsiveness of your application.
 * When you need to manage concurrent tasks in a modular and maintainable way.
 
-## Tutorials
+## Active Object Pattern Java Tutorials
 
 * [Android and Java Concurrency: The Active Object Pattern(Douglas Schmidt)](https://www.youtube.com/watch?v=Cd8t2u5Qmvc)
 
-## Known Uses
+## Real-World Applications of Active Object Pattern in Java
 
 * Real-time trading systems where transaction requests are handled asynchronously.
 * GUIs where long-running tasks are executed in the background without freezing the user interface.
 * Game programming to handle concurrent updates to game state or AI computations.
 
-## Consequences
+## Benefits and Trade-offs of Active Object Pattern
+
+Discover the benefits and trade-offs of using the Active Object pattern in Java, including improved thread safety and potential overhead concerns.
 
 Benefits:
 
@@ -193,13 +201,13 @@ Trade-offs:
 * Introduces additional overhead due to message passing and thread management.
 * May not be suitable for all types of concurrency problems.
 
-## Related patterns
+## Related Java Design Patterns
 
 * [Command](https://java-design-patterns.com/patterns/command/): Encapsulates a request as an object, similarly to how the Active Object pattern encapsulates method calls.
 * [Promise](https://java-design-patterns.com/patterns/promise/): Provides a means to retrieve the result of an asynchronous method call, often used in conjunction with Active Object.
 * [Proxy](https://java-design-patterns.com/patterns/proxy/): The Active Object pattern can use a proxy to handle method invocations asynchronously.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object Software](https://amzn.to/3HYqrBE)
 * [Concurrent Programming in Java: Design Principles and Patterns](https://amzn.to/498SRVq)

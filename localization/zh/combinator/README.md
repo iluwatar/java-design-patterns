@@ -1,5 +1,6 @@
 ---
 title: Combinator
+shortTitle: Combinator
 category: Idiom
 language: zh
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Type-Object
+shortTitle: Type-Object
 category: Behavioral
 language: es
 tag:

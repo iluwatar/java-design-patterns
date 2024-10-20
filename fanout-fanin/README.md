@@ -1,27 +1,29 @@
 ---
-title: Fan-Out/Fan-In
+title: "Fan-Out Fan-In Pattern in Java: Maximizing Concurrency for Efficient Data Processing"
+shortTitle: Fan-Out/Fan-In
+description: "Learn how the Fan-Out/Fan-In design pattern in Java can optimize concurrency and processing efficiency. Explore real-world examples, detailed explanations, and programmatic implementations."
 category: Concurrency
 language: en
 tag:
-    - Asynchronous
-    - Data processing
-    - Decoupling
-    - Scalability
+  - Asynchronous
+  - Data processing
+  - Decoupling
+  - Scalability
 ---
 
 ## Also known as
 
 * Scatter-Gather
 
-## Intent
+## Intent of Fan-Out/Fan-In Design Pattern
 
-The Fan-Out/Fan-In pattern aims to improve concurrency and optimize processing time by dividing a task into multiple sub-tasks that can be processed in parallel (fan-out) and then combining the results of these sub-tasks into a single outcome (fan-in).
+The Fan-Out/Fan-In design pattern in Java aims to improve concurrency and optimize processing time by dividing a task into multiple sub-tasks that can be processed in parallel (fan-out) and then combining the results of these sub-tasks into a single outcome (fan-in).
 
-## Explanation
+## Detailed Explanation of Fan-Out/Fan-In Pattern with Real-World Examples
 
 Real-world example
 
-> A real-world example of the Fan-Out/Fan-In design pattern is a food delivery service like UberEats or DoorDash. When a customer places an order, the service (fan-out) sends out individual tasks to different restaurants to prepare the various items. Each restaurant works independently to prepare its part of the order. Once all restaurants have completed their tasks, the delivery service (fan-in) aggregates the items from different restaurants into a single order, ensuring that everything is delivered together to the customer. This parallel processing improves efficiency and ensures timely delivery.
+> A real-world example of the Fan-Out/Fan-In pattern in Java is a food delivery service like UberEats or DoorDash. When a customer places an order, the service (fan-out) sends out individual tasks to different restaurants to prepare the various items. Each restaurant works independently to prepare its part of the order. Once all restaurants have completed their tasks, the delivery service (fan-in) aggregates the items from different restaurants into a single order, ensuring that everything is delivered together to the customer. This parallel processing improves efficiency and ensures timely delivery.
 
 In plain words
 
@@ -33,11 +35,11 @@ Wikipedia says
 >
 > The fan-in concept, on the other hand, typically refers to the aggregation of multiple inputs. In digital electronics, it describes the number of inputs a logic gate can handle. Combining these concepts, the Fan-Out/Fan-In pattern in software engineering involves distributing tasks (fan-out) and then aggregating the results (fan-in).
 
-**Programmatic Example**
+## Programmatic Example of Fan-Out/Fan-In Pattern in Java
 
 The provided implementation involves a list of numbers with the objective to square them and aggregate the results. The `FanOutFanIn` class receives the list of numbers as `SquareNumberRequest` objects and a `Consumer` instance that collects the squared results as the requests complete. Each `SquareNumberRequest` squares its number with a random delay, simulating a long-running process that finishes at unpredictable times. The `Consumer` instance gathers the results from the various `SquareNumberRequest` objects as they become available at different times.
 
-Here's the `FanOutFanIn` class that asynchronously distributes the requests:
+Here's the `FanOutFanIn` class in Java that demonstrates the Fan-Out/Fan-In pattern by asynchronously distributing the requests.
 
 ```java
 public class FanOutFanIn {
@@ -130,22 +132,22 @@ Running the example produces the following console output.
 06:52:11.465 [main] INFO com.iluwatar.fanout.fanin.App -- Sum of all squared numbers --> 139
 ```
 
-## Applicability
+## When to Use the Fan-Out/Fan-In Pattern in Java
 
-Appropriate in scenarios where tasks can be broken down and executed in parallel, especially suitable for data processing, batch processing, and situations requiring aggregation of results from various sources.
+The Fan-Out/Fan-In design pattern in Java is appropriate in scenarios where tasks can be broken down and executed in parallel, especially suitable for data processing, batch processing, and situations requiring aggregation of results from various sources.
 
-## Tutorials
+## Fan-Out/Fan-In Pattern Java Tutorials
 
 * [Fan-out/fan-in scenario in Durable Functions - Cloud backup example (Microsoft)](https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-cloud-backup)
 * [Understanding Azure Durable Functions - Part 8: The Fan Out/Fan In Pattern (Don't Code Tired)](http://dontcodetired.com/blog/post/Understanding-Azure-Durable-Functions-Part-8-The-Fan-OutFan-In-Pattern)
 * [Understanding the Fan-Out/Fan-In API Integration Pattern (DZone)](https://dzone.com/articles/understanding-the-fan-out-fan-in-api-integration-p)
 
-## Known Uses
+## Real-World Applications of Fan-Out/Fan-In Pattern in Java
 
-* Large-scale data processing applications.
+* The Fan-Out/Fan-In pattern in Java is widely used in large-scale data processing applications.
 * Services requiring aggregation from multiple sources before delivering a response, such as in distributed caching or load balancing systems.
 
-## Consequences
+## Benefits and Trade-offs of Fan-Out/Fan-In Pattern
 
 Benefits:
 
@@ -159,13 +161,13 @@ Trade-offs:
 * Potential for increased overhead due to task synchronization and result aggregation.
 * Dependency on the underlying infrastructure's ability to support concurrent execution.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * MapReduce: Similar to Fan-Out/Fan-In, MapReduce also involves distributing tasks across a number of workers (map) and aggregating the results (reduce), which is particularly useful for processing large data sets.
 * [Command](https://java-design-patterns.com/patterns/command/): Command Pattern facilitates the decoupling of the sender and the receiver, akin to how Fan-Out/Fan-In decouples task submission from task processing.
 * [Producer-Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Works synergistically with Fan-Out/Fan-In by organizing task execution where producers distribute tasks that are processed by multiple consumers, and results are then combined, enhancing throughput and efficiency in data processing.
 
-## Credits
+## References and Credits
 
 * [Java Concurrency in Practice](https://amzn.to/3vXytsb)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/49QQcPD)

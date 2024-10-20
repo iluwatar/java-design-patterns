@@ -1,5 +1,6 @@
 ---
 title: Throttling
+shortTitle: Throttling
 category: Behavioral
 language: es
 tag:

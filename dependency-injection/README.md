@@ -1,11 +1,13 @@
 ---
-title: Dependency Injection
+title: "Dependency Injection Pattern in Java: Boosting Maintainability with Loose Coupling"
+shortTitle: Dependency Injection
+description: "Learn about the Dependency Injection design pattern. Explore its benefits, real-world examples, class diagrams, and best practices for implementation in Java."
 category: Creational
 language: en
 tag:
-    - Decoupling
-    - Dependency management
-    - Inversion of control
+  - Decoupling
+  - Dependency management
+  - Inversion of control
 ---
 
 ## Also known as
@@ -13,11 +15,11 @@ tag:
 * Inversion of Control (IoC)
 * Dependency Inversion
 
-## Intent
+## Intent of Dependency Injection Design Pattern
 
 To decouple the creation of object dependencies from their usage, allowing for more flexible and testable code.
 
-## Explanation
+## Detailed Explanation of Dependency Injection Pattern with Real-World Examples
 
 Real-world example
 
@@ -27,13 +29,13 @@ Real-world example
 
 In plain words
 
-> Dependency Injection separates creation of client's dependencies from its own behavior.
+> Dependency Injection separates the creation of the client's dependencies from its own behavior.
 
 Wikipedia says
 
 > In software engineering, dependency injection is a technique in which an object receives other objects that it depends on. These other objects are called dependencies.
 
-**Programmatic Example**
+## Programmatic Example of Dependency Injection Pattern in Java
 
 The old wizard likes to fill his pipe and smoke tobacco once in a while. However, he doesn't want to depend on a single tobacco brand only but likes to be able to enjoy them all interchangeably.
 
@@ -112,23 +114,23 @@ The program output:
 11:54:05.308 [main] INFO com.iluwatar.dependency.injection.Tobacco -- GuiceWizard smoking RivendellTobacco
 ```
 
-## Class diagram
+## Detailed Explanation of Dependency Injection Pattern with Real-World Examples
 
 ![Dependency Injection](./etc/dependency-injection.png "Dependency Injection")
 
-## Applicability
+## When to Use the Dependency Injection Pattern in Java
 
 * When aiming to reduce the coupling between classes and increase the modularity of the application.
 * In scenarios where the object creation process is complex or should be separated from the class usage.
 * In applications requiring easier unit testing by allowing dependencies to be mocked or stubbed.
 * Within frameworks or libraries that manage object lifecycles and dependencies, such as Spring or Jakarta EE (formerly Java EE).
 
-## Known Uses
+## Real-World Applications of Dependency Injection Pattern in Java
 
-* Frameworks like Spring, Jakarta EE, and Google Guice use DI extensively to manage component lifecycles and dependencies.
+* Frameworks like Spring, Jakarta EE, and Google Guice use Dependency Injection (DI) extensively to manage component lifecycles and dependencies.
 * Desktop and web applications that require flexible architecture with easily interchangeable components.
 
-## Consequences
+## Benefits and Trade-offs of Dependency Injection Pattern
 
 Benefits:
 
@@ -139,16 +141,16 @@ Benefits:
 Trade-offs:
 
 * Can introduce complexity in the configuration, especially in large projects.
-* Might increase the learning curve for developers unfamiliar with DI patterns or frameworks.
+* Might increase the learning curve for developers unfamiliar with Dependency Injection patterns or frameworks.
 * Requires careful management of object lifecycles and scopes.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Factory Method](https://java-design-patterns.com/patterns/factory-method/) and [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): Used to create instances that the DI mechanism will inject.
 * [Service Locator](https://java-design-patterns.com/patterns/service-locator/): An alternative to DI for locating services or components, though it does not decouple the lookup process as effectively as DI.
 * [Singleton](https://java-design-patterns.com/patterns/singleton/): Often used in conjunction with DI to provide a single instance of a service across the application.
 
-## Credits
+## References and Credits
 
 * [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/3wRnjp5)
 * [Dependency Injection: Design patterns using Spring and Guice](https://amzn.to/4aMyHkI)

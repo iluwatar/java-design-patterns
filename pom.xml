@@ -40,15 +40,15 @@
     <spring-boot.version>2.7.5</spring-boot.version>
     <jacoco.version>0.8.12</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <htmlunit.version>4.1.0</htmlunit.version>
+    <htmlunit.version>4.4.0</htmlunit.version>
     <gson.version>2.11.0</gson.version>
-    <guice.version>5.1.0</guice.version>
+    <guice.version>6.0.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
-    <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
-    <maven-checkstyle-plugin.version>3.3.0</maven-checkstyle-plugin.version>
-    <license-maven-plugin.version>4.5</license-maven-plugin.version>
+    <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
+    <maven-checkstyle-plugin.version>3.5.0</maven-checkstyle-plugin.version>
+    <license-maven-plugin.version>4.6</license-maven-plugin.version>
     <urm-maven-plugin.version>2.1.1</urm-maven-plugin.version>
-    <slf4j.version>2.0.13</slf4j.version>
+    <slf4j.version>2.0.16</slf4j.version>
     <logback.version>1.5.6</logback.version>
     <!-- SonarCloud -->
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
@@ -131,7 +131,7 @@
     <module>value-object</module>
     <module>monad</module>
     <module>mute-idiom</module>
-    <module>hexagonal</module>
+    <module>hexagonal-architecture</module>
     <module>abstract-document</module>
     <module>microservices-aggregrator</module>
     <module>promise</module>
@@ -146,7 +146,7 @@
     <module>guarded-suspension</module>
     <module>balking</module>
     <module>extension-objects</module>
-    <module>marker</module>
+    <module>marker-interface</module>
     <module>command-query-responsibility-segregation</module>
     <module>event-sourcing</module>
     <module>data-transfer-object</module>
@@ -217,6 +217,7 @@
     <module>server-session</module>
     <module>virtual-proxy</module>
     <module>function-composition</module>
+    <module>microservices-distributed-tracing</module>
   </modules>
   <repositories>
     <repository>

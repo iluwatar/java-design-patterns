@@ -32,6 +32,10 @@ import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import service.CakeBakingService;
 import view.CakeViewImpl;
@@ -44,6 +48,8 @@ import view.CakeViewImpl;
  * It uses the CakeBakingService to save new layers and toppings and to bake new cakes.
  * It also handles exceptions that might occur during the cake baking process.</p>
  */
+@EntityScan(basePackages = "entity")
+@ComponentScan(basePackages = {"com.iluwatar.layers", "service", "dto", "exception", "view", "dao"})
 @Component
 @Slf4j
 public class Runner implements CommandLineRunner {
@@ -62,6 +68,10 @@ public class Runner implements CommandLineRunner {
     // create view and render it
     var cakeView = new CakeViewImpl(cakeBakingService);
     cakeView.render();
+  }
+
+  public static void main(String[] args) {
+    SpringApplication.run(Runner.class, args);
   }
 
   /**

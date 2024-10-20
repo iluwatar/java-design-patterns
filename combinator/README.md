@@ -1,13 +1,15 @@
 ---
-title: Combinator
+title: "Combinator Pattern in Java: Crafting Flexible Code Compositions"
+shortTitle: Combinator
+description: "Learn how to use the Combinator pattern in Java with real-world examples and comprehensive explanations. Enhance your Java design skills with this detailed guide."
 category: Functional
 language: en
 tag:
-    - Abstraction
-    - Code simplification
-    - Functional decomposition
-    - Idiom
-    - Reactive
+  - Abstraction
+  - Code simplification
+  - Functional decomposition
+  - Idiom
+  - Reactive
 ---
 
 ## Also known as
@@ -15,11 +17,11 @@ tag:
 * Function Composition
 * Functional Combinator
 
-## Intent
+## Intent of Combinator Design Pattern
 
-Combine multiple smaller functions or operations into a single, more complex operation, allowing for flexible and reusable code.
+The Combinator pattern, a functional programming technique widely used in Java, is essential for combining functions to build complex behaviors. This pattern allows developers to combine multiple smaller functions or operations into a single, more complex operation, promoting flexible and reusable code. By leveraging higher-order functions, the Combinator pattern enhances code reuse and maintainability in Java applications, making it a valuable tool in software design. This approach fosters the creation of modular, scalable solutions in Java development.
 
-## Explanation
+## Detailed Explanation of Combinator Pattern with Real-World Examples
 
 Real-world example
 
@@ -33,11 +35,11 @@ Wikipedia says
 
 > A combinator is a higher-order function that uses only function application and earlier defined combinators to define a result from its arguments.
 
-**Programmatic Example**
+## Programmatic Example of Combinator Pattern in Java
 
-In computer science, combinatory logic is used as a simplified model of computation, used in computability theory and proof theory. Despite its simplicity, combinatory logic captures many essential features of computation.
+In software design, combinatory logic is pivotal for creating reusable and modular code components. By leveraging higher-order functions, the Combinator pattern promotes code reuse and maintainability in Java applications.
 
-First of all, we have an interface consist of several methods `contains`, `not`, `or`, `and` .
+In this Java example, we demonstrate the implementation of combinators such as `contains`, `not`, `or`, and `and` to create complex finders.
 
 ```java
 // Functional interface to find lines in text.
@@ -178,7 +180,7 @@ public class CombinatorApp {
 }
 ```
 
-**Program output:**
+Program output:
 
 ```
 20:03:52.746 [main] INFO com.iluwatar.combinator.CombinatorApp -- the result of expanded(or) query[[many, Annabel]] is [It was many and many a year ago,, By the name of ANNABEL LEE;, I and my Annabel Lee;]
@@ -189,15 +191,17 @@ public class CombinatorApp {
 
 Now we can design our app to with the queries finding feature `expandedFinder`, `specializedFinder`, `advancedFinder`, `filteredFinder` which are all derived from `contains`, `or`, `not`, `and`.
 
-## Applicability
+## When to Use the Combinator Pattern in Java
 
-This pattern is applicable in scenarios where:
+The Combinator pattern is particularly useful in functional programming where complex values are built from simpler, reusable components.
+
+The applicable scenarios include:
 
 * The solution to a problem can be constructed from simple, reusable components.
 * There is a need for high modularity and reusability of functions.
 * The programming environment supports first-class functions and higher-order functions.
 
-## Known Uses
+## Real-World Applications of Combinator Pattern in Java
 
 * Functional programming languages like Haskell and Scala extensively use combinators for tasks ranging from parsing to UI construction.
 * In domain-specific languages, particularly those involved in parsing, such as parsing expression grammars.
@@ -205,10 +209,11 @@ This pattern is applicable in scenarios where:
 * java.util.function.Function#compose
 * java.util.function.Function#andThen
 
-## Consequences
+## Benefits and Trade-offs of Combinator Pattern
 
 Benefits:
 
+* Enhances developer productivity by using domain-specific terms and facilitates parallel execution in Java applications.
 * Enhances modularity and reusability by breaking down complex tasks into simpler, composable functions.
 * Promotes readability and maintainability by using a declarative style of programming.
 * Facilitates lazy evaluation and potentially more efficient execution through function composition.
@@ -219,13 +224,13 @@ Trade-offs:
 * May result in performance overhead due to the creation of intermediate functions.
 * Debugging can be challenging due to the abstract nature of function compositions.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/): Relies on chaining objects, whereas Combinator chains functions.
 * [Decorator](https://java-design-patterns.com/patterns/decorator/): Similar to Combinator in enhancing functionality, but Decorator focuses on object augmentation.
 * [Strategy](https://java-design-patterns.com/patterns/strategy/): Both involve selecting an algorithm at runtime, but Combinator uses composition of functions.
 
-## Credits
+## References and Credits
 
 * [Functional Programming in Scala](https://amzn.to/4cEo6K2)
 * [Haskell: The Craft of Functional Programming](https://amzn.to/4axxtcF)

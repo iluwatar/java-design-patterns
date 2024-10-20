@@ -1,13 +1,15 @@
 ---
-title: Data Transfer Object
+title: "Data Transfer Object Pattern in Java: Simplifying Data Exchange Between Subsystems"
+shortTitle: Data Transfer Object (DTO)
+description: "Learn about the Data Transfer Object (DTO) pattern, its implementation, and practical uses in Java applications. Optimize data transfer between layers with this structural design pattern."
 category: Structural
 language: en
 tag:
-    - Client-server
-    - Data transfer
-    - Decoupling
-    - Layered architecture
-    - Optimization
+  - Client-server
+  - Data transfer
+  - Decoupling
+  - Layered architecture
+  - Optimization
 ---
 
 ## Also known as
@@ -15,11 +17,11 @@ tag:
 * Transfer Object
 * Value Object
 
-## Intent
+## Intent of Data Transfer Object Design Pattern
 
 The Data Transfer Object (DTO) pattern is used to transfer data between software application subsystems or layers, particularly in the context of network calls or database retrieval in Java applications. It reduces the number of method calls by aggregating the data in a single transfer.
 
-## Explanation
+## Detailed Explanation of Data Transfer Object Pattern with Real-World Examples
 
 Real-world example
 
@@ -27,13 +29,13 @@ Real-world example
 
 In plain words
 
-> Using DTO relevant information can be fetched with a single backend query. 
+> Using DTO, relevant information can be fetched with a single backend query.
 
 Wikipedia says
 
 > In the field of programming a data transfer object (DTO) is an object that carries data between processes. The motivation for its use is that communication between processes is usually done resorting to remote interfaces (e.g. web services), where each call is an expensive operation. Because the majority of the cost of each call is related to the round-trip time between the client and the server, one way of reducing the number of calls is to use an object (the DTO) that aggregates the data that would have been transferred by the several calls, but that is served by one call only.
 
-**Programmatic Example**
+## Programmatic Example of DTO Pattern in Java
 
 Let's first introduce our simple `CustomerDTO` record.
 
@@ -164,7 +166,7 @@ The console output:
 11:10:51.856 [main] INFO com.iluwatar.datatransfer.App -- ####### List of products after adding PS5: [Product{id=1, name='TV', price=1000.0, cost=1090.0, supplier='Sony'}, Product{id=2, name='microwave', price=1000.0, cost=1090.0, supplier='Delonghi'}, Product{id=3, name='refrigerator', price=1000.0, cost=1090.0, supplier='Botsch'}, Product{id=4, name='airConditioner', price=1000.0, cost=1090.0, supplier='LG'}, Product{id=5, name='PS5', price=1220.0, cost=1000.0, supplier='Sony'}]
 ```
 
-## Applicability
+## When to Use the Data Transfer Object Pattern in Java
 
 Use the Data Transfer Object pattern when:
 
@@ -172,19 +174,19 @@ Use the Data Transfer Object pattern when:
 * In scenarios where batch processing of data is preferred over individual processing.
 * When working with remote interfaces, to encapsulate the data transfer in a serializable object that can be easily transmitted.
 
-## Tutorials
+## Data Transfer Object Pattern Java Tutorials
 
 * [Data Transfer Object Pattern in Java - Implementation and Mapping (StackAbuse)](https://stackabuse.com/data-transfer-object-pattern-in-java-implementation-and-mapping/)
 * [Design Pattern - Transfer Object Pattern (TutorialsPoint)](https://www.tutorialspoint.com/design_pattern/transfer_object_pattern.htm)
 * [The DTO Pattern (Baeldung)](https://www.baeldung.com/java-dto-pattern)
 
-## Known Uses
+## Real-World Applications of DTO Pattern in Java
 
 * Remote Method Invocation (RMI) in Java, where DTOs are used to pass data across network.
 * Enterprise JavaBeans (EJB), particularly when data needs to be transferred from EJBs to clients.
 * Various web service frameworks where DTOs encapsulate request and response data.
 
-## Consequences
+## Benefits and Trade-offs of Data Transfer Object Pattern
 
 Benefits:
 
@@ -204,7 +206,7 @@ Trade-offs:
 * [Facade](https://java-design-patterns.com/patterns/facade/): Similar to DTO, a Facade may aggregate multiple calls into one, improving efficiency.
 * [Service Layer](https://java-design-patterns.com/patterns/service-layer/): Often involves using DTOs to transfer data across the boundary between the service layer and its clients.
 
-## Credits
+## References and Credits
 
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cKndQp)
 * [J2EE Design Patterns](https://amzn.to/4dpzgmx)

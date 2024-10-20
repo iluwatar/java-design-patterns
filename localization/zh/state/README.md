@@ -1,5 +1,6 @@
 ---
 title: State
+shortTitle: State
 category: Behavioral
 language: zh
 tag:

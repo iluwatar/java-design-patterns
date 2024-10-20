@@ -1,5 +1,6 @@
 ---
 title: Context object
+shortTitle: Context object
 category: Creational
 language: es
 tags:

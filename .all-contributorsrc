@@ -3141,6 +3141,87 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "romannimets",
+      "name": "romannimets",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137268574?v=4",
+      "profile": "https://github.com/romannimets",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Joel-Dandin",
+      "name": "Joel",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60149879?v=4",
+      "profile": "https://github.com/Joel-Dandin",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "244Walyson",
+      "name": "Walyson Moises",
+      "avatar_url": "https://avatars.githubusercontent.com/u/125759796?v=4",
+      "profile": "https://github.com/244Walyson",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Xcyq",
+      "name": "Xcyq",
+      "avatar_url": "https://avatars.githubusercontent.com/u/39086666?v=4",
+      "profile": "https://github.com/Xcyq",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Ritabrata1080",
+      "name": "Ritabrata",
+      "avatar_url": "https://avatars.githubusercontent.com/u/60834250?v=4",
+      "profile": "https://github.com/Ritabrata1080",
+      "contributions": [
+        "review"
+      ]
+    },
+    {
+      "login": "trivikr",
+      "name": "Trivikram Kamat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16024985?v=4",
+      "profile": "https://github.com/trivikr",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "vvanghelle",
+      "name": "Vincent Vanghelle",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3204600?v=4",
+      "profile": "https://github.com/vvanghelle",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "antoheri",
+      "name": "Antoine Héritier",
+      "avatar_url": "https://avatars.githubusercontent.com/u/79988396?v=4",
+      "profile": "https://github.com/antoheri",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "fishandsheep",
+      "name": "QinShower",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43347407?v=4",
+      "profile": "https://github.com/fishandsheep",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,

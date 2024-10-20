@@ -1,23 +1,25 @@
 ---
-title: Poison Pill
+title: "Poison Pill Pattern in Java: Gracefully Terminating Multithreaded Processes"
+shortTitle: Poison Pill
+description: "Explore the Poison Pill design pattern in Java, used for gracefully shutting down multi-threaded applications. Understand its intent, applicability, and see a real-world example. Perfect for developers looking to enhance concurrency and messaging systems."
 category: Concurrency
 language: en
 tag:
-    - Decoupling
-    - Fault tolerance
-    - Messaging
-    - Thread management
+  - Decoupling
+  - Fault tolerance
+  - Messaging
+  - Thread management
 ---
 
 ## Also known as
 
 * Shutdown Signal
 
-## Intent
+## Intent of Poison Pill Design Pattern
 
-The Poison Pill design pattern is used to gracefully shut down a service or a producer-consumer system by sending a special message (the "poison pill") which indicates that no more messages will be sent, allowing the consumers to terminate.
+The Poison Pill design pattern is used to gracefully shut down a service or a producer-consumer system by sending a special message (the "poison pill") to message queue which indicates that no more messages will be sent, allowing the consumers to terminate.
 
-## Explanation
+## Detailed Explanation of Poison Pill Pattern with Real-World Examples
 
 Real-world example
 
@@ -27,7 +29,9 @@ In plain words
 
 > Poison Pill is a known message structure that ends the message exchange.   
 
-**Programmatic Example**
+## Programmatic Example of Poison Pill Pattern in Java
+
+In this Java example, the Poison Pill serves as a shutdown signal within message queues, demonstrating effective thread management and consumer communication.
 
 Let's define the message structure first. There's interface `Message` and implementation `SimpleMessage`.
 
@@ -206,25 +210,25 @@ Program output:
 07:43:01.520 [Thread-0] INFO com.iluwatar.poison.pill.Consumer -- Consumer CONSUMER_1 receive request to terminate.
 ```
 
-## Class diagram
+## Detailed Explanation of Poison Pill Pattern with Real-World Examples
 
 ![Poison Pill](./etc/poison-pill.png "Poison Pill")
 
-## Applicability
+## When to Use the Poison Pill Pattern in Java
 
 Use the Poison Pill idiom when:
 
-* When there is a need to gracefully shut down a multithreaded application.
+* Systems require robust fault tolerance and seamless consumer shutdown in multithreaded environments.
 * In producer-consumer scenarios where consumers need to be informed about the end of message processing.
 * To ensure that consumers can finish processing remaining messages before shutting down.
 
-## Known Uses
+## Real-World Applications of Poison Pill Pattern in Java
 
 * Java ExecutorService shutdown using a special task to signal shutdown.
 * Messaging systems where a specific message indicates the end of the queue processing.
 * [Akka framework](https://doc.akka.io/japi/akka/2.5/akka/actor/typed/internal/PoisonPill.html)
 
-## Consequences
+## Benefits and Trade-offs of Poison Pill Pattern
 
 Benefits:
 
@@ -237,13 +241,13 @@ Trade-offs:
 * Requires consumers to check for the poison pill, adding some overhead.
 * If not managed properly, could lead to consumers not recognizing the poison pill, causing indefinite blocking.
 
-## Related Patterns
+## Related Java Design Patterns
 
 * [Producer-Consumer](https://java-design-patterns.com/patterns/producer-consumer/): Works in tandem with the Poison Pill pattern to handle the communication and shutdown of consumers.
 * Message Queue: Often uses poison pills to signal the end of message processing in the queue.
 * [Observer](https://java-design-patterns.com/patterns/observer/): Can be used to notify subscribers about the shutdown event.
 
-## Credits
+## References and Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
