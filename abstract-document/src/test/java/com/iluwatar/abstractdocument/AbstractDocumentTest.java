@@ -114,12 +114,16 @@ class AbstractDocumentTest {
     final String originalValue = "originalValue";
     final String updatedValue = "updatedValue";
 
+    // Initializing the value
     document.put(key, originalValue);
+
+    // Verifying that the initial value is retrieved correctly
+    assertEquals(originalValue, document.get(key));
 
     // Updating the value
     document.put(key, updatedValue);
 
-    //Verifying that the updated value is retrieved correctly
+    // Verifying that the updated value is retrieved correctly
     assertEquals(updatedValue, document.get(key));
   }
 }
