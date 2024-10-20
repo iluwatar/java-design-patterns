@@ -1,5 +1,6 @@
 ---
 title: Circuit Breaker
+shortTitle: Circuit Breaker
 category: Behavioral
 language: zh
 tag:

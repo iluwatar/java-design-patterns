@@ -1,5 +1,6 @@
 ---
 title: Retry
+shortTitle: Retry
 category: Behavioral
 language: es
 tag:

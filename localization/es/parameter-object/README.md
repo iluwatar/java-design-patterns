@@ -1,5 +1,6 @@
 ---
 title: Parameter Object
+shortTitle: Parameter Object
 category: Behavioral
 language: es
 tag:

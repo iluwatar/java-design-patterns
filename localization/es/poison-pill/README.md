@@ -1,5 +1,6 @@
 ---
 title: Poison Pill
+shortTitle: Poison Pill
 category: Behavioral
 language: es
 tag:

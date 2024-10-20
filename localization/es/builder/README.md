@@ -1,5 +1,6 @@
 ---
 title: Builder
+shortTitle: Builder
 category: Creational
 language: es
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Separated Interface
+shortTitle: Separated Interface
 category: Structural
 language: es
 tag:

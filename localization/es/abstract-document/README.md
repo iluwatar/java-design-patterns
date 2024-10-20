@@ -1,5 +1,6 @@
 ---
 title: Abstract Document
+shortTitle: Abstract Document
 category: Structural
 language: es
 tag:

@@ -3195,6 +3195,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "vvanghelle",
+      "name": "Vincent Vanghelle",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3204600?v=4",
+      "profile": "https://github.com/vvanghelle",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "antoheri",
+      "name": "Antoine Héritier",
+      "avatar_url": "https://avatars.githubusercontent.com/u/79988396?v=4",
+      "profile": "https://github.com/antoheri",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "fishandsheep",
+      "name": "QinShower",
+      "avatar_url": "https://avatars.githubusercontent.com/u/43347407?v=4",
+      "profile": "https://github.com/fishandsheep",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,

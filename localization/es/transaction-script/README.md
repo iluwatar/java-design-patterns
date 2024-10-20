@@ -1,5 +1,6 @@
 ---
 title: Transaction Script
+shortTitle: Transaction Script
 category: Behavioral
 language: es
 tag:

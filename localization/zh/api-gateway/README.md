@@ -1,5 +1,6 @@
 ---
 title: API Gateway
+shortTitle: API Gateway
 category: Architectural
 language: zh
 tag:

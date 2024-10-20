@@ -1,5 +1,6 @@
 ---
 title: MonoState
+shortTitle: MonoState
 category: Creational
 language: es
 tag:

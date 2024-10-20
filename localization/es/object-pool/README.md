@@ -1,5 +1,6 @@
 ---
 title: Object Pool
+shortTitle: Object Pool
 category: Creational
 language: es
 tag:

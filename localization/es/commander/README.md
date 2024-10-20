@@ -1,5 +1,6 @@
 ---
 title: Commander
+shortTitle: Commander
 category: Behavioral
 language: es
 tag:
