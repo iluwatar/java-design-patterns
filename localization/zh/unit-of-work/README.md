@@ -1,5 +1,6 @@
 ---
 title: Unit Of Work
+shortTitle: Unit Of Work
 category: Architectural
 language: zn
 tag:

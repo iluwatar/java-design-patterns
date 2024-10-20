@@ -1,5 +1,6 @@
 ---
 title: Aggregator Microservices
+shortTitle: Aggregator Microservices
 category: Architectural
 language: zh
 tag:
