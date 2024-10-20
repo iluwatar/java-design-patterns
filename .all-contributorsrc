@@ -3204,6 +3204,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "antoheri",
+      "name": "Antoine Héritier",
+      "avatar_url": "https://avatars.githubusercontent.com/u/79988396?v=4",
+      "profile": "https://github.com/antoheri",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
