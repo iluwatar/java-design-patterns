@@ -8,7 +8,6 @@ public class App {
   }
   public static void main(String[] args) {
 
-
     // Create a new user
     User newUser = new User("John Doe", "john@example.com");
     newUser.save();

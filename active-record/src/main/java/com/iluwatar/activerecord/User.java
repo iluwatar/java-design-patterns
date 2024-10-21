@@ -6,8 +6,22 @@ public class User extends ActiveRecord {
   private Integer id;
   private String name;
   private String email;
+  private String tableName;
 
   public User() {
+  }
+  public User(Integer id, String name, String email){
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.tableName = "users";
+  }
+
+  public User(Integer id, String name, String email, String tableName){
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.tableName = tableName;
   }
 
   public User(String name, String email) {
@@ -17,7 +31,7 @@ public class User extends ActiveRecord {
 
   @Override
   protected String getTableName() {
-    return "users";
+    return this.tableName;
   }
 
   @Override
@@ -27,11 +41,12 @@ public class User extends ActiveRecord {
 
   @Override
   protected void insert(Connection conn) throws SQLException {
-    String sql = "INSERT INTO users (name, email) VALUES (?, ?)";
+    String sql = "INSERT INTO ? (name, email) VALUES (?, ?)";
     try (PreparedStatement stmt = conn.prepareStatement(
         sql, Statement.RETURN_GENERATED_KEYS)) {
-      stmt.setString(1, name);
-      stmt.setString(2, email);
+      stmt.setString(1, tableName);
+      stmt.setString(2, name);
+      stmt.setString(3, email);
       stmt.executeUpdate();
       ResultSet generatedKeys = stmt.getGeneratedKeys();
       if (generatedKeys.next()) {
@@ -61,6 +76,7 @@ public class User extends ActiveRecord {
     this.id = rs.getInt("id");
     this.name = rs.getString("name");
     this.email = rs.getString("email");
+
   }
 
   @Override

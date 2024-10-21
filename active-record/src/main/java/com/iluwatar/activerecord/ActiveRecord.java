@@ -12,7 +12,7 @@ public abstract class ActiveRecord {
   protected abstract String getTableName();
   protected abstract String getPrimaryKey();
 
-  protected Connection getConnection() throws SQLException {
+  protected static Connection getConnection() throws SQLException {
     return DriverManager.getConnection(DB_URL);
   }
 
@@ -55,12 +55,15 @@ public abstract class ActiveRecord {
   }
 
   // Save the current record (insert or update)
-  public void save() {
+  public String save() {
     try (Connection conn = getConnection()) {
       if (isNewRecord()) {
         insert(conn);
+        return "Inserted new entry successfully";
       } else {
         update(conn);
+        return "Updated existing entry successfully";
+
       }
     } catch (SQLException e) {
       throw new RuntimeException("Database exception occurred while saving record", e);
