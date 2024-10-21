@@ -1,10 +1,13 @@
-package com.iluwatar;
+package com.iluwatar.activerecord;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.sql.*;
 
 public abstract class ActiveRecord {
   // Database connection configuration
   private static final String DB_URL = "jdbc:sqlite:my_database.db";
+  private static final Logger log = LoggerFactory.getLogger(ActiveRecord.class);
 
   protected abstract String getTableName();
   protected abstract String getPrimaryKey();
@@ -13,7 +16,7 @@ public abstract class ActiveRecord {
     return DriverManager.getConnection(DB_URL);
   }
 
-  //We are creating a table using SQLlite
+  //Create table
   protected void createTable(String createTableSQL) {
     try (Connection conn = getConnection();
          Statement stmt = conn.createStatement()) {
@@ -35,13 +38,18 @@ public abstract class ActiveRecord {
            PreparedStatement stmt = conn.prepareStatement(sql)) {
         stmt.setInt(1, id);
         ResultSet rs = stmt.executeQuery();
+
         if (rs.next()) {
           instance.loadFromResultSet(rs);
           return instance;
+        } else {
+          throw new Exception("No record found with id: " + id);
         }
+      } catch (SQLException e) {
+        throw new RuntimeException("Database exception occurred while finding record with id: " + id, e);
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      System.out.println(e.getMessage());
     }
     return null;
   }
@@ -55,7 +63,7 @@ public abstract class ActiveRecord {
         update(conn);
       }
     } catch (SQLException e) {
-      e.printStackTrace();
+      throw new RuntimeException("Database exception occurred while saving record", e);
     }
   }
 
@@ -67,7 +75,8 @@ public abstract class ActiveRecord {
       stmt.setInt(1, getId());
       stmt.executeUpdate();
     } catch (SQLException e) {
-      e.printStackTrace();
+      throw new RuntimeException("Database exception occurred while deleting record", e);
+
     }
   }
 

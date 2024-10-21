@@ -1,10 +1,13 @@
-package com.iluwatar;
+package com.iluwatar.activerecord;
 
 public class App {
+
+  public App(){
+    //create a temporary table
+    User.createTable();
+  }
   public static void main(String[] args) {
 
-    //Create a temporary table
-    User.createTable();
 
     // Create a new user
     User newUser = new User("John Doe", "john@example.com");
