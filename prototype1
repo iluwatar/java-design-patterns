@@ -1,0 +1,60 @@
+import java.util.HashMap;
+import java.util.Map;
+
+// Prototype interface
+interface Prototype {
+    Prototype clone();
+}
+
+// Concrete class implementing the Prototype interface
+class Shape implements Prototype {
+    private String type;
+    
+    public Shape(String type) {
+        this.type = type;
+    }
+
+    @Override
+    public Prototype clone() {
+        return new Shape(this.type);
+    }
+
+    public String getType() {
+        return type;
+    }
+}
+
+// Prototype registry
+class ShapeRegistry {
+    private Map<String, Shape> shapeMap = new HashMap<>();
+
+    public ShapeRegistry() {
+        loadShapes();
+    }
+
+    private void loadShapes() {
+        Shape circle = new Shape("Circle");
+        Shape square = new Shape("Square");
+        
+        shapeMap.put("Circle", circle);
+        shapeMap.put("Square", square);
+    }
+
+    public Shape getShape(String shapeType) {
+        Shape cachedShape = shapeMap.get(shapeType);
+        return (Shape) cachedShape.clone();
+    }
+}
+
+// Client
+public class PrototypePatternDemo {
+    public static void main(String[] args) {
+        ShapeRegistry shapeRegistry = new ShapeRegistry();
+
+        Shape clonedShape1 = shapeRegistry.getShape("Circle");
+        System.out.println("Shape : " + clonedShape1.getType());
+
+        Shape clonedShape2 = shapeRegistry.getShape("Square");
+        System.out.println("Shape : " + clonedShape2.getType());
+    }
+}
