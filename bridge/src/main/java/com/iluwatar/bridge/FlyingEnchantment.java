@@ -48,4 +48,7 @@ public class FlyingEnchantment implements Enchantment {
   public void onDeactivate() {
     LOGGER.info("The item's glow fades.");
   }
+
+
+
 }
