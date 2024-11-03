@@ -217,6 +217,7 @@
     <module>virtual-proxy</module>
     <module>function-composition</module>
     <module>microservices-distributed-tracing</module>
+      <module>idempotent-consumer</module>
   </modules>
   <repositories>
     <repository>
