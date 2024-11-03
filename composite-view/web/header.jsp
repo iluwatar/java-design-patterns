@@ -39,11 +39,30 @@
         h1 { text-align: center;}
         h2 { text-align: center;}
         h3 { text-align: center;}
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .home-link {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .home-link:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
+    <nav>
+        <!-- Add a Home button that links back to the homepage -->
+        <a href="/" class="home-link">Home</a>
+    </nav>
+
     <% String todayDateStr = (new Date().toString()); %>
     <h1>Today's Personalized Frontpage</h1>
-    <h2><%=todayDateStr%></h2>
+    <h2><%= todayDateStr %></h2>
 </body>
 </html>
