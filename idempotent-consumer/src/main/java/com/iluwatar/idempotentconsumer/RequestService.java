@@ -52,7 +52,7 @@ public class RequestService {
    * @return Return existing Request or save and return a new Request.
    */
   public Request create(UUID uuid) {
-    Optional<Request> optReq = requestRepository.findById(UUID.randomUUID());
+    Optional<Request> optReq = requestRepository.findById(uuid);
     if (!optReq.isEmpty()) {
       return optReq.get();
     }
