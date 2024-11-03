@@ -33,12 +33,6 @@ The Idempotent Consumer pattern is used to handle duplicate messages in distribu
 
 > In computing, idempotence is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application.
 
-## Detailed Explanation with Real-World Example Diagram
-
-![Idempotent Consumer Diagram](./etc/idempotent_consumer.png)
-
-The diagram shows the flow in which the consumer processes the first message and skips the duplicate using the unique transaction ID stored in memory or a persistent storage.
-
 ## When to Use the Idempotent Consumer Pattern
 
 The Idempotent Consumer pattern is particularly useful in scenarios:
