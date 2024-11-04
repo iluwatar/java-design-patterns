@@ -1,67 +1,80 @@
 package com.iluwatar.activerecord;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+class UserTest {
 
-public class UserTest {
-  User testUser1 = new User(
-      null,
-      "Test1 Name",
-      "test1@test.com"
-  );
-  User testUser2 = new User(
-      1,
-      "Test2 Name",
-      "test2@test.com"
+  @BeforeAll
+  static void setupDatabase() throws SQLException {
+    User.initializeTable();
+  }
 
-  );
-  User testUser3 = new User(
-      null,
-      "Test3 Name",
-      "test3@test.com"
-  );
-
-  private final String sqlStatement = "" +
-      "CREATE TABLE IF NOT EXISTS usersTEST (" +
-      "id INTEGER PRIMARY KEY AUTOINCREMENT," +
-      "name TEXT NOT NULL, email TEXT NOT NULL)";
-
-  /**
-   * Setup of application test includes initializing DB connection.
-   */
   @BeforeEach
-  public void setup() {
-    assertDoesNotThrow(() -> {
-      Connection conn = ActiveRecord.getConnection();
-      assertNotNull(conn);
-      try (Statement stmt = conn.createStatement()) {
-        stmt.execute(sqlStatement);
-      }
-    });
+  void clearDatabase() throws SQLException {
+    // Clean up table before each test
+    try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database.db");
+         Statement stmt = conn.createStatement()) {
+      stmt.execute("DELETE FROM users");
+    }
   }
 
   @Test
-  void testInsertUser(){
-
+  void testSaveNewUser() throws SQLException {
+    User user = new User(null, "Alice", "alice@example.com");
+    user.save();
+    assertNotNull(user.getId(), "User ID should be generated upon saving");
   }
 
   @Test
-  void testUpdateUser() {
+  void testFindById() throws SQLException {
+    User user = new User(null, "Bob", "bob@example.com");
+    user.save();
 
+    User foundUser = User.findById(user.getId());
+    assertNotNull(foundUser, "User should be found by ID");
+    assertEquals("Bob", foundUser.getName());
+    assertEquals("bob@example.com", foundUser.getEmail());
   }
 
   @Test
-  void testDeleteUser() {
+  void testFindAll() throws SQLException {
+    User user1 = new User(null, "Charlie", "charlie@example.com");
+    User user2 = new User(null, "Diana", "diana@example.com");
+    user1.save();
+    user2.save();
 
+    List<User> users = User.findAll();
+    assertEquals(2, users.size(), "There should be two users in the database");
   }
 
   @Test
-  void testFindUserById() {
+  void testUpdateUser() throws SQLException {
+    User user = new User(null, "Eve", "eve@example.com");
+    user.save();
 
+    user.setName("Eve Updated");
+    user.setEmail("eve.updated@example.com");
+    user.save();
+
+    User updatedUser = User.findById(user.getId());
+    assert updatedUser != null;
+    assertEquals("Eve Updated", updatedUser.getName());
+    assertEquals("eve.updated@example.com", updatedUser.getEmail());
+  }
+
+  @Test
+  void testDeleteUser() throws SQLException {
+    User user = new User(null, "Frank", "frank@example.com");
+    user.save();
+    Integer userId = user.getId();
+
+    user.delete();
+    assertNull(User.findById(userId), "User should be deleted from the database");
   }
 }

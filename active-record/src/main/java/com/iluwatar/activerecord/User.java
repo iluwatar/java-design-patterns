@@ -1,113 +1,108 @@
 package com.iluwatar.activerecord;
 
+import lombok.Data;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class User extends ActiveRecord {
+
+public class User {
+  private static final String DB_URL = "jdbc:sqlite:database.db";
+
   private Integer id;
   private String name;
   private String email;
-  private String tableName;
 
-  public User() {
-  }
-  public User(Integer id, String name, String email){
+  public User() { }
+
+  public User(Integer id, String name, String email) {
     this.id = id;
     this.name = name;
     this.email = email;
-    this.tableName = "users";
   }
 
-  public User(Integer id, String name, String email, String tableName){
-    this.id = id;
-    this.name = name;
-    this.email = email;
-    this.tableName = tableName;
+  // Establish a database connection
+  private static Connection connect() throws SQLException {
+    return DriverManager.getConnection(DB_URL);
   }
 
-  public User(String name, String email) {
-    this.name = name;
-    this.email = email;
+  // Initialize the table (if not exists)
+  public static void initializeTable() throws SQLException {
+    String sql = "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT)";
+    try (Connection conn = connect();
+         Statement stmt = conn.createStatement()) {
+      stmt.execute(sql);
+    }
   }
 
-  @Override
-  protected String getTableName() {
-    return this.tableName;
-  }
-
-  @Override
-  protected String getPrimaryKey() {
-    return "id";
-  }
-
-  @Override
-  protected void insert(Connection conn) throws SQLException {
-    String sql = "INSERT INTO ? (name, email) VALUES (?, ?)";
-    try (PreparedStatement stmt = conn.prepareStatement(
-        sql, Statement.RETURN_GENERATED_KEYS)) {
-      stmt.setString(1, tableName);
-      stmt.setString(2, name);
-      stmt.setString(3, email);
-      stmt.executeUpdate();
-      ResultSet generatedKeys = stmt.getGeneratedKeys();
-      if (generatedKeys.next()) {
-        this.id = generatedKeys.getInt(1);
+  // Insert a new record into the database
+  public void save() throws SQLException {
+    String sql;
+    if (this.id == null) { // New record
+      sql = "INSERT INTO users(name, email) VALUES(?, ?)";
+    } else { // Update existing record
+      sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
+    }
+    try (Connection conn = connect();
+         PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+      pstmt.setString(1, this.name);
+      pstmt.setString(2, this.email);
+      if (this.id != null) pstmt.setInt(3, this.id);
+      pstmt.executeUpdate();
+      if (this.id == null) {
+        try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
+          if (generatedKeys.next()) {
+            this.id = generatedKeys.getInt(1);
+          }
+        }
       }
     }
   }
 
-  @Override
-  protected void update(Connection conn) throws SQLException {
-    String sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
-    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-      stmt.setString(1, name);
-      stmt.setString(2, email);
-      stmt.setInt(3, id);
-      stmt.executeUpdate();
+  // Find a user by ID
+  public static User findById(int id) throws SQLException {
+    String sql = "SELECT * FROM users WHERE id = ?";
+    try (Connection conn = connect();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+      pstmt.setInt(1, id);
+      ResultSet rs = pstmt.executeQuery();
+      if (rs.next()) {
+        return new User(rs.getInt("id"), rs.getString("name"), rs.getString("email"));
+      }
+    }
+    return null;
+  }
+
+  // Get all users
+  public static List<User> findAll() throws SQLException {
+    String sql = "SELECT * FROM users";
+    List<User> users = new ArrayList<>();
+    try (Connection conn = connect();
+         Statement stmt = conn.createStatement();
+         ResultSet rs = stmt.executeQuery(sql)) {
+      while (rs.next()) {
+        users.add(new User(rs.getInt("id"), rs.getString("name"), rs.getString("email")));
+      }
+    }
+    return users;
+  }
+
+  // Delete the user from the database
+  public void delete() throws SQLException {
+    if (this.id == null) return;
+    String sql = "DELETE FROM users WHERE id = ?";
+    try (Connection conn = connect();
+         PreparedStatement pstmt = conn.prepareStatement(sql)) {
+      pstmt.setInt(1, this.id);
+      pstmt.executeUpdate();
+      this.id = null;
     }
   }
 
-  @Override
-  protected boolean isNewRecord() {
-    return this.id == null;
-  }
-
-  @Override
-  protected void loadFromResultSet(ResultSet rs) throws SQLException {
-    this.id = rs.getInt("id");
-    this.name = rs.getString("name");
-    this.email = rs.getString("email");
-
-  }
-
-  @Override
-  protected int getId() {
-    return this.id;
-  }
-
-
-  public String getName() {
-    return name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public static void createTable() {
-    String sql = "CREATE TABLE IF NOT EXISTS users (" +
-        "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
-        "name TEXT NOT NULL, " +
-        "email TEXT NOT NULL)";
-
-    // Call the method from the ActiveRecord base class
-    new User().createTable(sql);
-  }
+  // Getters and Setters
+  public Integer getId() { return id; }
+  public String getName() { return name; }
+  public void setName(String name) { this.name = name; }
+  public String getEmail() { return email; }
+  public void setEmail(String email) { this.email = email; }
 }
