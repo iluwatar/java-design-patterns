@@ -41,8 +41,7 @@ public class Request {
   enum Status {
     PENDING,
     STARTED,
-    COMPLETED,
-    INERROR
+    COMPLETED
   }
 
   @Id
