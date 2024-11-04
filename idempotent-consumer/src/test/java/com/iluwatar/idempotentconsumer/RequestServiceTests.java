@@ -24,20 +24,20 @@
  */
 package com.iluwatar.idempotentconsumer;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.util.Optional;
+import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
-import java.util.Optional;
-import java.util.UUID;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class RequestServiceTests {
@@ -90,6 +90,26 @@ class RequestServiceTests {
     assertEquals(startedEntity, requestService.start(uuid));
     verify(requestRepository, times(1)).findById(uuid);
     verify(requestRepository, times(1)).save(startedEntity);
+  }
+
+  @Test
+  void startRequest_whenIsStarted_shouldThrowError() {
+    UUID uuid = UUID.randomUUID();
+    Request requestStarted = new Request(uuid, Request.Status.STARTED);
+    when(requestRepository.findById(any())).thenReturn(Optional.of(requestStarted));
+    assertThrows(InvalidNextStateException.class, ()->requestService.start(uuid));
+    verify(requestRepository, times(1)).findById(uuid);
+    verify(requestRepository, times(0)).save(any());
+  }
+
+  @Test
+  void startRequest_whenIsCompleted_shouldThrowError() {
+    UUID uuid = UUID.randomUUID();
+    Request requestStarted = new Request(uuid, Request.Status.COMPLETED);
+    when(requestRepository.findById(any())).thenReturn(Optional.of(requestStarted));
+    assertThrows(InvalidNextStateException.class, ()->requestService.start(uuid));
+    verify(requestRepository, times(1)).findById(uuid);
+    verify(requestRepository, times(0)).save(any());
   }
 
   @Test
