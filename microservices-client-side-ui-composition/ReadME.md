@@ -1,4 +1,3 @@
-
 # Client-Side UI Composition Pattern: Assembling Modular UIs in Microservices Architecture
 
 ### **shortTitle**: Client-Side UI Composition
