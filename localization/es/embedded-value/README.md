@@ -1,5 +1,6 @@
 ---
 title: Embedded Value
+shortTitle: Embedded Value
 category: Structural
 language: es
 tag:

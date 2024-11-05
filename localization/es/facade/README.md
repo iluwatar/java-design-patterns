@@ -1,5 +1,6 @@
 ---
 title: Facade
+shortTitle: Facade
 category: Structural
 language: es
 tag:

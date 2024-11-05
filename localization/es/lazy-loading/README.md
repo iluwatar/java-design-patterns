@@ -1,5 +1,6 @@
 ---
 title: Lazy Loading
+shortTitle: Lazy Loading
 category: Idiom
 language: es
 tag:

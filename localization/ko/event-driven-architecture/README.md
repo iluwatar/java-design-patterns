@@ -1,5 +1,6 @@
 ---
 title: Event Driven Architecture
+shortTitle: Event Driven Architecture
 category: Architectural
 language: ko
 tag:

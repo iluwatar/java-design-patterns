@@ -1,5 +1,6 @@
 ---
 title: Twin
+shortTitle: Twin
 category: Structural
 language: es
 tag:

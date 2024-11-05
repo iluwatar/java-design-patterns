@@ -1,5 +1,6 @@
 ---
 title: Event Aggregator
+shortTitle: Event Aggregator
 category: Structural
 language: es
 tag:

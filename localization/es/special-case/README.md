@@ -1,5 +1,6 @@
 ---
 title: Special Case
+shortTitle: Special Case
 category: Behavioral
 language: es
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Specification
+shortTitle: Specification
 category: Behavioral
 language: es
 tag:

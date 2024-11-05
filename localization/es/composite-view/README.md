@@ -1,5 +1,6 @@
 ---
 title: Composite View
+shortTitle: Composite View
 category: Structural
 language: es
 tag:
