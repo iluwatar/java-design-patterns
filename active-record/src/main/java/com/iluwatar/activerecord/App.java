@@ -1,7 +1,5 @@
 /*
- * This project is licensed under the MIT license.
- * Module model-view-viewmodel is using ZK framework
- * licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -24,11 +22,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.activerecord;
-import lombok.extern.slf4j.Slf4j;
 import java.sql.SQLException;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The Active Record pattern is an architectural pattern that simplifies
@@ -56,27 +53,23 @@ public final class App {
    *
    * @param args the command line arguments - not used
    */
-
-
   public static void main(final String[] args) {
     try {
       // Initialize the database and create the users table if it doesn't exist
       User.initializeTable();
-      System.out.println("Database and table initialized.");
+      LOGGER.info("Database and table initialized.");
 
       // Create a new user and save it to the database
       User user1 = new User(null, "John Doe", "john.doe@example.com");
       user1.save();
-      System.out.println("New user saved: " + user1.getName()
-          + " with ID " + user1.getId());
+      LOGGER.info("New user saved: {} with ID {}", user1.getName(), user1.getId());
 
       // Retrieve and display the user by ID
       User foundUser = User.findById(user1.getId());
       if (foundUser != null) {
-        System.out.println("User found: " + foundUser.getName()
-            + " with email " + foundUser.getEmail());
+        LOGGER.info("User found: {} with email {}", foundUser.getName(), foundUser.getEmail());
       } else {
-        System.out.println("User not found.");
+        LOGGER.info("User not found.");
       }
 
       // Update the user’s details
@@ -84,29 +77,26 @@ public final class App {
       foundUser.setName("John Updated");
       foundUser.setEmail("john.updated@example.com");
       foundUser.save();
-      System.out.println("User updated: " + foundUser.getName()
-          + " with email " + foundUser.getEmail());
+      LOGGER.info("User updated: {} with email {}", foundUser.getName(), foundUser.getEmail());
 
       // Retrieve all users
       List<User> users = User.findAll();
-      System.out.println("All users in the database:");
+      LOGGER.info("All users in the database:");
       for (User user : users) {
-        System.out.println("ID: " + user.getId()
-            + ", Name: " + user.getName()
-            + ", Email: " + user.getEmail());
+        LOGGER.info("ID: {}, Name: {}, Email: {}", user.getId(), user.getName(), user.getEmail());
       }
 
       // Delete the user
       try {
-        System.out.println("Deleting user with ID: " + foundUser.getId());
+        LOGGER.info("Deleting user with ID: {}", foundUser.getId());
         foundUser.delete();
-        System.out.println("User successfully deleted!");
+        LOGGER.info("User successfully deleted!");
       } catch (Exception e) {
-        System.out.println(e.getMessage());
+        LOGGER.error(e.getMessage(), e);
       }
 
     } catch (SQLException e) {
-      System.err.println("SQL error: " + e.getMessage());
+      LOGGER.error("SQL error: {}", e.getMessage(), e);
     }
   }
 }
