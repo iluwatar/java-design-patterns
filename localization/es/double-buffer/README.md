@@ -1,5 +1,6 @@
 ---
 title: Double Buffer
+shortTitle: Double Buffer
 category: Behavioral
 language: es
 tag:

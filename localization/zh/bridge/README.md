@@ -1,5 +1,6 @@
 ---
 title: Bridge
+shortTitle: Bridge
 category: Structural
 language: zh
 tag:

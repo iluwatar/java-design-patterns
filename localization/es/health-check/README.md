@@ -1,5 +1,6 @@
 ---
 title: Health Check Pattern
+shortTitle: Health Check Pattern
 category: Behavioral
 language: es
 tag:

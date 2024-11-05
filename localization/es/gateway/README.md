@@ -1,5 +1,6 @@
 ---
 title: Gateway
+shortTitle: Gateway
 category: Structural
 language: es
 tag:

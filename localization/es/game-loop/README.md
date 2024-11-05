@@ -1,5 +1,6 @@
 ---  
 title: Game Loop 
+shortTitle: Game Loop 
 category: Behavioral
 language: es
 tag:  

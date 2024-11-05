@@ -1,5 +1,6 @@
 ---
 title: Object Mother
+shortTitle: Object Mother
 category: Creational
 language: es
 tag:

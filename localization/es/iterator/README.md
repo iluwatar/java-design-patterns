@@ -1,5 +1,6 @@
 ---
 title: Iterator
+shortTitle: Iterator
 category: Behavioral
 language: es
 tag:

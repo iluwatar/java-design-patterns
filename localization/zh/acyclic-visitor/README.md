@@ -1,5 +1,6 @@
 ---
 title: Acyclic Visitor
+shortTitle: Acyclic Visitor
 category: Behavioral
 language: zh
 tag:

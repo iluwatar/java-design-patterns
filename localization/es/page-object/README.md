@@ -1,5 +1,6 @@
 ---
 title: Page Object
+shortTitle: Page Object
 category: Structural
 language: es
 tag:

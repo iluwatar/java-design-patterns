@@ -1,5 +1,6 @@
 ---
 title: Balking
+shortTitle: Balking
 category: Concurrency
 language: es
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Decorator
+shortTitle: Decorator
 category: Structural
 language: es
 tag:

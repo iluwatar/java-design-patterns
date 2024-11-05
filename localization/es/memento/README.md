@@ -1,5 +1,6 @@
 ---
 title: Memento
+shortTitle: Memento
 category: Behavioral
 language: es
 tag:

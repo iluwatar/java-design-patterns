@@ -1,5 +1,6 @@
 ---
 title: Extension objects
+shortTitle: Extension objects
 category: Behavioral
 language: es
 tag:

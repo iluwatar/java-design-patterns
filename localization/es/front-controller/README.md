@@ -1,5 +1,6 @@
 ---
 title: Front Controller
+shortTitle: Front Controller
 category: Structural
 language: es
 tag:
