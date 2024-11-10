@@ -1,0 +1,27 @@
+@startuml
+package com.iluwatar.activerecord {
+  class App {
+    - LOGGER : Logger {static}
+    - App()
+    + main(args : String[]) {static}
+  }
+  class User {
+    - DB_URL : String {static}
+    - email : String
+    - id : Integer
+    - name : String
+    + User(id : Integer, name : String, email : String)
+    - connect() : Connection {static}
+    + delete()
+    + findAll() : List<User> {static}
+    + findById(id : int) : User {static}
+    + getEmail() : String
+    + getId() : Integer
+    + getName() : String
+    + initializeTable() {static}
+    + save()
+    + setEmail(email : String)
+    + setName(name : String)
+  }
+}
+@enduml
