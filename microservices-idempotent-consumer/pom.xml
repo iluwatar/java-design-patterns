@@ -35,7 +35,7 @@
         <version>1.26.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>idempotent-consumer</artifactId>
+    <artifactId>microservices-idempotent-consumer</artifactId>
     <dependencyManagement>
         <dependencies>
             <dependency>
