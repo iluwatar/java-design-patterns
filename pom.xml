@@ -217,6 +217,7 @@
     <module>virtual-proxy</module>
     <module>function-composition</module>
     <module>microservices-distributed-tracing</module>
+      <module>microservices-client-side-ui-composition</module>
   </modules>
   <repositories>
     <repository>
