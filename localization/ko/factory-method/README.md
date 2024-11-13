@@ -1,7 +1,6 @@
 ---
-title: "Factory Method Pattern in Java: Enhancing Flexibility with Polymorphic Manufacturing"
+title: "Factory Method"
 shortTitle: Factory Method
-description: "Learn about the Factory Method pattern in Java. Explore examples, uses, benefits, and how it enhances code flexibility and maintenance."
 category: Creational
 language: ko
 tag:
