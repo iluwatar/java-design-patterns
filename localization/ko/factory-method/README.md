@@ -4,11 +4,7 @@ shortTitle: Factory Method
 category: Creational
 language: ko
 tag:
-  - Encapsulation
   - Gang of Four
-  - Instantiation
-  - Object composition
-  - Polymorphism
 ---
 
 ## 또한 ~으로 알려진
