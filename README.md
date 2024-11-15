@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-358-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-359-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -537,6 +537,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/jeffmorrison"><img src="https://avatars.githubusercontent.com/u/26047158?v=4?s=100" width="100px;" alt="jeffmorrison"/><br /><sub><b>jeffmorrison</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=jeffmorrison" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/dmgodoy"><img src="https://avatars.githubusercontent.com/u/10840681?v=4?s=100" width="100px;" alt="David M."/><br /><sub><b>David M.</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=dmgodoy" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/apophizzz"><img src="https://avatars.githubusercontent.com/u/12052783?v=4?s=100" width="100px;" alt="Patrick Kleindienst"/><br /><sub><b>Patrick Kleindienst</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=apophizzz" title="Code">💻</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/proceane"><img src="https://avatars.githubusercontent.com/u/62143949?v=4?s=100" width="100px;" alt="Juyeon"/><br /><sub><b>Juyeon</b></sub></a><br /><a href="#translation-proceane" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
