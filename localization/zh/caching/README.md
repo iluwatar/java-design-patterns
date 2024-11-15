@@ -1,5 +1,6 @@
 ---
 title: Caching
+shortTitle: Caching
 category: Behavioral
 language: zh
 tag:

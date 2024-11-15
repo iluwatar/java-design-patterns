@@ -1,5 +1,6 @@
 ---
 title: Event Sourcing
+shortTitle: Event Sourcing
 category: Architectural
 language: ko
 tag:

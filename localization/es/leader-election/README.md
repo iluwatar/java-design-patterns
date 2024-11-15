@@ -1,5 +1,6 @@
 ---
 title: Leader Election
+shortTitle: Leader Election
 category: Behavioral
 language: es
 tag:

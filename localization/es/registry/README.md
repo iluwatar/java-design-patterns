@@ -1,5 +1,6 @@
 ---
 title: Registry
+shortTitle: Registry
 category: Creational
 language: es
 tag:

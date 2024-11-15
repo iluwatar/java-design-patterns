@@ -1,5 +1,6 @@
 ---
 title: Active Object
+shortTitle: Active Object
 category: Concurrency
 language: es
 tag:

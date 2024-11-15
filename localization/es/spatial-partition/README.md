@@ -1,5 +1,6 @@
 ---
 title: Spatial Partition
+shortTitle: Spatial Partition
 category: Behavioral
 language: es
 tag:

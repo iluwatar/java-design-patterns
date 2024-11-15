@@ -1,5 +1,6 @@
 ---
 title: Layers
+shortTitle: Layers
 category: Architectural
 language: es
 tag:

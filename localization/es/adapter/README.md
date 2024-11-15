@@ -1,5 +1,6 @@
 ---
 title: Adapter
+shortTitle: Adapter
 category: Structural
 language: es
 tag:

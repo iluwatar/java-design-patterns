@@ -1,5 +1,6 @@
 ---
 title: Data Access Object
+shortTitle: Data Access Object
 category: Architectural
 language: zh
 tag:

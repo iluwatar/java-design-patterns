@@ -1,5 +1,6 @@
 ---
 title: Data Transfer Object
+shortTitle: Data Transfer Object
 category: Architectural
 language: zh
 tag:

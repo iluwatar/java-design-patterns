@@ -1,5 +1,6 @@
 ---
 title: Page Controller
+shortTitle: Page Controller
 category: Structural
 language: es
 tags:

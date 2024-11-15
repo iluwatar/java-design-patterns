@@ -1,5 +1,6 @@
 ---
 title: Priority Queue Pattern
+shortTitle: Priority Queue Pattern
 category: Behavioral
 language: es
 tag:

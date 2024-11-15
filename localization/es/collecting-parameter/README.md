@@ -1,5 +1,6 @@
 ---
 title: Collecting Parameter
+shortTitle: Collecting Parameter
 category: Behavioral
 language: es
 tag:

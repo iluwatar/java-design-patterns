@@ -1,5 +1,6 @@
 ---
 title: Role Object
+shortTitle: Role Object
 category: Structural
 language: es
 tag:

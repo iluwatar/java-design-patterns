@@ -1,5 +1,6 @@
 ---
 title: Partial Response
+shortTitle: Partial Response
 category: Behavioral
 language: es
 tag:

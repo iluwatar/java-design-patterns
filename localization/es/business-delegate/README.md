@@ -1,5 +1,6 @@
 ---
 title: Business Delegate
+shortTitle: Business Delegate
 category: Structural
 language: es
 tag:

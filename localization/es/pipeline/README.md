@@ -1,5 +1,6 @@
 ---
 title: Pipeline
+shortTitle: Pipeline
 category: Behavioral
 language: es
 tag:

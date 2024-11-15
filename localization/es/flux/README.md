@@ -1,5 +1,6 @@
 ---
 title: Flux
+shortTitle: Flux
 category: Structural
 language: es
 tag:

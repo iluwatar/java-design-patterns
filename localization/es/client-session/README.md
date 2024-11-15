@@ -1,5 +1,6 @@
 ---
 title: Client Session
+shortTitle: Client Session
 category: Behavioral
 language: es
 tags:

@@ -1,5 +1,6 @@
 ---
 title: Visitor
+shortTitle: Visitor
 category: Behavioral
 language: ko
 tag:

@@ -1,5 +1,6 @@
 ---
 title: Composite
+shortTitle: Composite
 category: Structural
 language: zh
 tag:
