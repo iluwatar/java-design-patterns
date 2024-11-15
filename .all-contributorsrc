@@ -3267,6 +3267,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "proceane",
+      "name": "Juyeon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62143949?v=4",
+      "profile": "https://github.com/proceane",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
