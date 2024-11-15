@@ -318,9 +318,8 @@
                 <descriptorRefs>
                   <descriptorRef>jar-with-dependencies</descriptorRef>
                 </descriptorRefs>
-                <!-- below two line make sure the fat jar is sharing the same name
-                                    as of project name -->
-                <finalName>${project.artifactId}</finalName>
+                <!-- below two line make sure the fat jar is sharing the same name as of project name -->
+                <finalName>${project.artifactId}-${project.version}</finalName>
                 <appendAssemblyId>false</appendAssemblyId>
               </configuration>
             </execution>
