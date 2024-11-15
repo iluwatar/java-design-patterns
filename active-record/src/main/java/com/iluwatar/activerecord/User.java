@@ -239,7 +239,7 @@ public class User {
    * @param userName the name to set for the user
    */
   public void setName(final String userName) {
-    this.name = name;
+    this.name = userName;
   }
 
   /**
@@ -257,6 +257,6 @@ public class User {
    * @param userEmail the email address to set for the user
    */
   public void setEmail(final String userEmail) {
-    this.email = email;
+    this.email = userEmail;
   }
 }

@@ -86,6 +86,8 @@ class UserTest {
 
     List<User> users = User.findAll();
     assertEquals(2, users.size(), "There should be two users in the database");
+    assertTrue(users.stream().anyMatch(u -> "Charlie".equals(u.getName())), "User Charlie should exist");
+    assertTrue(users.stream().anyMatch(u -> "Diana".equals(u.getName())), "User Diana should exist");
   }
 
   @Test
@@ -118,5 +120,4 @@ class UserTest {
     Optional<User> deletedUserOpt = User.findById(userId);
     assertTrue(deletedUserOpt.isEmpty(), "User should be deleted from the database");
   }
-
 }

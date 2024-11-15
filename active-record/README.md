@@ -44,30 +44,46 @@ public class User {
     private Integer id;
     private String name;
     private String email;
-    
-    public User(Integer id, String name, String email) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
+
+    /**
+     * User constructor.
+     *
+     * @param userId    the unique identifier of the user
+     * @param userName  the name of the user
+     * @param userEmail the email address of the user
+     */
+    public User(
+            final Integer userId,
+            final String userName,
+            final String userEmail) {
+        this.id = userId;
+        this.name = userName;
+        this.email = userEmail;
     }
+
+    /**
+     * Getters and setters
+     */
     public Integer getId() {
         return id;
     }
+    
     public String getName() {
         return name;
     }
+    
+    public void setName(final String userName) {
+        this.name = userName;
+    }
+    
     public String getEmail() {
         return email;
     }
-    
-    public void setName(String name) {
-        this.name = name;
+    public void setEmail(final String userEmail) {
+        this.email = userEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
     }
-}
 ```
 
 For convenience, we are storing the database configuration logic inside the same User class:
@@ -76,26 +92,31 @@ For convenience, we are storing the database configuration logic inside the same
     
      // Credentials for in-memory H2 database.
 
-    private static final String JDBC_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
-    private static final String USERNAME = "sa";
-    private static final String PASSWORD = "";
-    
+     private static final String JDBC_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
+     private static final String USERNAME = "sa";
+     private static final String PASSWORD = "";
+     
+     
     // Establish a database connection.
 
-    private static Connection connect() throws SQLException {
-        return DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
-    }
+     private static Connection connect() throws SQLException {
+         return DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+     }
     
      // Initialize the table (required each time program runs
     // as we are using an in-memory DB solution).
 
-    public static void initializeTable() throws SQLException {
-        String sql = "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT)";
-        try (Connection conn = connect();
-             Statement stmt = conn.createStatement()) {
-            stmt.execute(sql);
-        }
-    }
+     public static void initializeTable() throws SQLException {
+         String sql = "CREATE TABLE IF NOT EXISTS users (\n"
+                 + "    id INTEGER PRIMARY KEY AUTO_INCREMENT,\n"
+                 + "    name VARCHAR(255),\n"
+                 + "    email VARCHAR(255)\n"
+                 + ");";
+         try (Connection conn = connect();
+              Statement stmt = conn.createStatement()) {
+             stmt.execute(sql);
+         }
+     }
 ```
 
 After configuring the database, our User class will contain methods thar mimic the typical CRUD operations performed on a database entry:
@@ -114,7 +135,8 @@ public void save() throws SQLException {
         sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
     }
     try (Connection conn = connect();
-         PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+         PreparedStatement pstmt = conn.prepareStatement(
+                 sql, Statement.RETURN_GENERATED_KEYS)) {
         pstmt.setString(1, this.name);
         pstmt.setString(2, this.email);
         if (this.id != null) {
@@ -135,17 +157,22 @@ public void save() throws SQLException {
  * Find a user by ID.
  */
 
-public static User findById(int id) throws SQLException {
+public static Optional<User> findById(final int id) {
     String sql = "SELECT * FROM users WHERE id = ?";
     try (Connection conn = connect();
          PreparedStatement pstmt = conn.prepareStatement(sql)) {
         pstmt.setInt(1, id);
         ResultSet rs = pstmt.executeQuery();
         if (rs.next()) {
-            return new User(rs.getInt("id"), rs.getString("name"), rs.getString("email"));
+            return Optional.of(new User(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("email")));
         }
+    } catch (SQLException e) {
+        LOGGER.error("SQL error: {}", e.getMessage(), e);
     }
-    return null;
+    return Optional.empty();
 }
 /**
  * Get all users.
@@ -158,7 +185,10 @@ public static List<User> findAll() throws SQLException {
          Statement stmt = conn.createStatement();
          ResultSet rs = stmt.executeQuery(sql)) {
         while (rs.next()) {
-            users.add(new User(rs.getInt("id"), rs.getString("name"), rs.getString("email")));
+            users.add(new User(
+                    rs.getInt("id"),
+                    rs.getString("name"),
+                    rs.getString("email")));
         }
     }
     return users;
@@ -188,45 +218,59 @@ Finally, here is the Active Record Pattern in action:
 ```java
 public static void main(final String[] args) {
     try {
-        // Initialize the database and create the users table if it doesn't exist
+        // Initialize the database and create the users table
         User.initializeTable();
         LOGGER.info("Database and table initialized.");
 
         // Create a new user and save it to the database
-        User user1 = new User(null, "John Doe", "john.doe@example.com");
+        User user1 = new User(
+                null,
+                "John Doe",
+                "john.doe@example.com");
         user1.save();
-        LOGGER.info("New user saved: {} with ID {}", user1.getName(), user1.getId());
+        LOGGER.info("New user saved: {} with ID {}",
+                user1.getName(), user1.getId());
 
         // Retrieve and display the user by ID
-        User foundUser = User.findById(user1.getId());
-        if (foundUser != null) {
-            LOGGER.info("User found: {} with email {}", foundUser.getName(), foundUser.getEmail());
-        } else {
-            LOGGER.info("User not found.");
-        }
+        Optional<User> foundUser = User.findById(user1.getId());
+        foundUser.ifPresentOrElse(
+                user -> LOGGER.info("User found: {} with email {}",
+                        user.getName(), user.getEmail()),
+                () -> LOGGER.info("User not found.")
+        );
 
         // Update the user’s details
-        assert foundUser != null;
-        foundUser.setName("John Updated");
-        foundUser.setEmail("john.updated@example.com");
-        foundUser.save();
-        LOGGER.info("User updated: {} with email {}", foundUser.getName(), foundUser.getEmail());
+        Optional<User> foundUserOpt = User.findById(user1.getId());
+        foundUserOpt.ifPresent(user -> {
+            user.setName("John Updated");
+            user.setEmail("john.updated@example.com");
+            try {
+                user.save();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+            LOGGER.info("User updated: {} with email {}",
+                    user.getName(), user.getEmail());
+        });
 
         // Retrieve all users
         List<User> users = User.findAll();
         LOGGER.info("All users in the database:");
         for (User user : users) {
-            LOGGER.info("ID: {}, Name: {}, Email: {}", user.getId(), user.getName(), user.getEmail());
+            LOGGER.info("ID: {}, Name: {}, Email: {}",
+                    user.getId(), user.getName(), user.getEmail());
         }
 
         // Delete the user
-        try {
-            LOGGER.info("Deleting user with ID: {}", foundUser.getId());
-            foundUser.delete();
-            LOGGER.info("User successfully deleted!");
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage(), e);
-        }
+        foundUserOpt.ifPresentOrElse(user -> {
+            try {
+                LOGGER.info("Deleting user with ID: {}", user.getId());
+                user.delete();
+                LOGGER.info("User successfully deleted!");
+            } catch (Exception e) {
+                LOGGER.error("Error deleting user with ID: {}", user.getId(), e);
+            }
+        }, () -> LOGGER.info("User not found to delete."));
 
     } catch (SQLException e) {
         LOGGER.error("SQL error: {}", e.getMessage(), e);
@@ -237,14 +281,14 @@ public static void main(final String[] args) {
 The program outputs:
 
 ```
-19:34:53.731 [main] INFO com.iluwatar.activerecord.App -- Database and table initialized.
-19:34:53.755 [main] INFO com.iluwatar.activerecord.App -- New user saved: John Doe with ID 1
-19:34:53.759 [main] INFO com.iluwatar.activerecord.App -- User found: John Doe with email john.doe@example.com
-19:34:53.762 [main] INFO com.iluwatar.activerecord.App -- User updated: John Updated with email john.updated@example.com
-19:34:53.764 [main] INFO com.iluwatar.activerecord.App -- All users in the database:
-19:34:53.764 [main] INFO com.iluwatar.activerecord.App -- ID: 1, Name: John Updated, Email: john.updated@example.com
-19:34:53.764 [main] INFO com.iluwatar.activerecord.App -- Deleting user with ID: 1
-19:34:53.768 [main] INFO com.iluwatar.activerecord.App -- User successfully deleted!
+21:32:55.119 [main] INFO com.iluwatar.activerecord.App -- Database and table initialized.
+21:32:55.128 [main] INFO com.iluwatar.activerecord.App -- New user saved: John Doe with ID 1
+21:32:55.141 [main] INFO com.iluwatar.activerecord.App -- User found: John Doe with email john.doe@example.com
+21:32:55.145 [main] INFO com.iluwatar.activerecord.App -- User updated: John Updated with email john.updated@example.com
+21:32:55.145 [main] INFO com.iluwatar.activerecord.App -- All users in the database:
+21:32:55.145 [main] INFO com.iluwatar.activerecord.App -- ID: 1, Name: John Updated, Email: john.updated@example.com
+21:32:55.146 [main] INFO com.iluwatar.activerecord.App -- Deleting user with ID: 1
+21:32:55.147 [main] INFO com.iluwatar.activerecord.App -- User successfully deleted!
 ```
 
 ## When to Use the Active Record Pattern in Java
