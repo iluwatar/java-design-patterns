@@ -37,8 +37,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class UserTest {
 
   private static final String JDBC_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
-  private static final String USERNAME = "sa";
-  private static final String PASSWORD = "";
 
   @BeforeAll
   static void setupDatabase() throws SQLException {
@@ -48,7 +46,7 @@ class UserTest {
   @BeforeEach
   void clearDatabase() throws SQLException {
     // Clean up table before each test
-    try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+    try (Connection conn = DriverManager.getConnection(JDBC_URL);
          Statement stmt = conn.createStatement()) {
       stmt.execute("DELETE FROM users");
     }

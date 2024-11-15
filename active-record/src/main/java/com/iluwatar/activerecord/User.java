@@ -24,7 +24,6 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.activerecord;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -47,16 +46,6 @@ public class User {
    * Credentials for in-memory H2 database.
    */
   private static final String JDBC_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
-
-  /**
-   * Database username.
-   */
-  private static final String USERNAME = "sa";
-
-  /**
-   * Database password.
-   */
-  private static final String PASSWORD = "";
 
   /**
    * User ID.
@@ -97,7 +86,7 @@ public class User {
    */
 
   private static Connection connect() throws SQLException {
-    return DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+    return DriverManager.getConnection(JDBC_URL);
   }
 
 
