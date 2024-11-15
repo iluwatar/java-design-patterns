@@ -1,5 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license. Module model-view-viewmodel
+ * is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -32,18 +33,30 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Implementation of active record pattern.
  */
 
-
+@Slf4j
 public class User {
-  /**
-   * DB_URL.
-   */
 
-  private static final String DB_URL = "jdbc:sqlite:database.db";
+  /**
+   * Credentials for in-memory H2 database.
+   */
+  private static final String JDBC_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
+
+  /**
+   * Database username.
+   */
+  private static final String USERNAME = "sa";
+
+  /**
+   * Database password.
+   */
+  private static final String PASSWORD = "";
 
   /**
    * User ID.
@@ -60,31 +73,45 @@ public class User {
    */
   private String email;
 
-
   /**
    * User constructor.
+   *
+   * @param userId    the unique identifier of the user
+   * @param userName  the name of the user
+   * @param userEmail the email address of the user
    */
-  public User(Integer id, String name, String email) {
-    this.id = id;
-    this.name = name;
-    this.email = email;
+  public User(
+      final Integer userId,
+      final String userName,
+      final String userEmail) {
+    this.id = userId;
+    this.name = userName;
+    this.email = userEmail;
   }
 
   /**
    * Establish a database connection.
+   *
+   * @return a {@link Connection} object to interact with the database
+   * @throws SQLException if a database access error occurs
    */
 
   private static Connection connect() throws SQLException {
-    return DriverManager.getConnection(DB_URL);
+    return DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
   }
 
 
   /**
-   * Initialize the table (if not exists).
+   * Initialize the table (required each time program runs
+   * as we are using an in-memory DB solution).
    */
 
   public static void initializeTable() throws SQLException {
-    String sql = "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT)";
+    String sql = "CREATE TABLE IF NOT EXISTS users (\n"
+        + "    id INTEGER PRIMARY KEY AUTO_INCREMENT,\n"
+        + "    name VARCHAR(255),\n"
+        + "    email VARCHAR(255)\n"
+        + ");";
     try (Connection conn = connect();
          Statement stmt = conn.createStatement()) {
       stmt.execute(sql);
@@ -103,7 +130,8 @@ public class User {
       sql = "UPDATE users SET name = ?, email = ? WHERE id = ?";
     }
     try (Connection conn = connect();
-         PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+         PreparedStatement pstmt = conn.prepareStatement(
+             sql, Statement.RETURN_GENERATED_KEYS)) {
       pstmt.setString(1, this.name);
       pstmt.setString(2, this.email);
       if (this.id != null) {
@@ -122,22 +150,34 @@ public class User {
 
   /**
    * Find a user by ID.
+   *
+   * @param id userID
+   * @return the found user if a user is found, or an empty {@link Optional}
+   *     if no user is found or an exception occurs
    */
 
-  public static User findById(int id) throws SQLException {
+  public static Optional<User> findById(final int id) {
     String sql = "SELECT * FROM users WHERE id = ?";
     try (Connection conn = connect();
          PreparedStatement pstmt = conn.prepareStatement(sql)) {
       pstmt.setInt(1, id);
       ResultSet rs = pstmt.executeQuery();
       if (rs.next()) {
-        return new User(rs.getInt("id"), rs.getString("name"), rs.getString("email"));
+        return Optional.of(new User(
+            rs.getInt("id"),
+            rs.getString("name"),
+            rs.getString("email")));
       }
+    } catch (SQLException e) {
+      LOGGER.error("SQL error: {}", e.getMessage(), e);
     }
-    return null;
+    return Optional.empty();
   }
+
   /**
    * Get all users.
+   *
+   * @return all users from the database;
    */
 
   public static List<User> findAll() throws SQLException {
@@ -147,7 +187,10 @@ public class User {
          Statement stmt = conn.createStatement();
          ResultSet rs = stmt.executeQuery(sql)) {
       while (rs.next()) {
-        users.add(new User(rs.getInt("id"), rs.getString("name"), rs.getString("email")));
+        users.add(new User(
+            rs.getInt("id"),
+            rs.getString("name"),
+            rs.getString("email")));
       }
     }
     return users;
@@ -172,21 +215,48 @@ public class User {
   }
 
   /**
-   * Getters and setters.
+   * Gets the ID of the user.
+   *
+   * @return the unique identifier of the user,
+   *     or null if the user is not yet saved to the database
    */
   public Integer getId() {
     return id;
   }
+
+  /**
+   * Gets the name of the user.
+   *
+   * @return the name of the user
+   */
   public String getName() {
     return name;
   }
-  public void setName(String name) {
+
+  /**
+   * Sets the name of the user.
+   *
+   * @param userName the name to set for the user
+   */
+  public void setName(final String userName) {
     this.name = name;
   }
+
+  /**
+   * Gets the email address of the user.
+   *
+   * @return the email address of the user
+   */
   public String getEmail() {
     return email;
   }
-  public void setEmail(String email) {
+
+  /**
+   * Sets the email address of the user.
+   *
+   * @param userEmail the email address to set for the user
+   */
+  public void setEmail(final String userEmail) {
     this.email = email;
   }
 }

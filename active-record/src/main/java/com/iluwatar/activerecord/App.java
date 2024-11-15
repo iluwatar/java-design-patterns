@@ -1,5 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license. Module model-view-viewmodel
+ * is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -25,6 +26,7 @@
 package com.iluwatar.activerecord;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -36,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>In this example, we demonstrate the Active Record pattern
  * by creating, updating, retrieving, and deleting user records in
- * a SQLite database. The User class contains methods to perform
+ * an H2 in-memory database. The User class contains methods to perform
  * these operations, ensuring that the database interactions are
  * straightforward and intuitive.
  */
@@ -55,45 +57,59 @@ public final class App {
    */
   public static void main(final String[] args) {
     try {
-      // Initialize the database and create the users table if it doesn't exist
+      // Initialize the database and create the users table
       User.initializeTable();
       LOGGER.info("Database and table initialized.");
 
       // Create a new user and save it to the database
-      User user1 = new User(null, "John Doe", "john.doe@example.com");
+      User user1 = new User(
+          null,
+          "John Doe",
+          "john.doe@example.com");
       user1.save();
-      LOGGER.info("New user saved: {} with ID {}", user1.getName(), user1.getId());
+      LOGGER.info("New user saved: {} with ID {}",
+          user1.getName(), user1.getId());
 
       // Retrieve and display the user by ID
-      User foundUser = User.findById(user1.getId());
-      if (foundUser != null) {
-        LOGGER.info("User found: {} with email {}", foundUser.getName(), foundUser.getEmail());
-      } else {
-        LOGGER.info("User not found.");
-      }
+      Optional<User> foundUser = User.findById(user1.getId());
+      foundUser.ifPresentOrElse(
+          user -> LOGGER.info("User found: {} with email {}",
+              user.getName(), user.getEmail()),
+          () -> LOGGER.info("User not found.")
+      );
 
       // Update the user’s details
-      assert foundUser != null;
-      foundUser.setName("John Updated");
-      foundUser.setEmail("john.updated@example.com");
-      foundUser.save();
-      LOGGER.info("User updated: {} with email {}", foundUser.getName(), foundUser.getEmail());
+      Optional<User> foundUserOpt = User.findById(user1.getId());
+      foundUserOpt.ifPresent(user -> {
+        user.setName("John Updated");
+        user.setEmail("john.updated@example.com");
+        try {
+          user.save();
+        } catch (SQLException e) {
+          throw new RuntimeException(e);
+        }
+        LOGGER.info("User updated: {} with email {}",
+            user.getName(), user.getEmail());
+      });
 
       // Retrieve all users
       List<User> users = User.findAll();
       LOGGER.info("All users in the database:");
       for (User user : users) {
-        LOGGER.info("ID: {}, Name: {}, Email: {}", user.getId(), user.getName(), user.getEmail());
+        LOGGER.info("ID: {}, Name: {}, Email: {}",
+            user.getId(), user.getName(), user.getEmail());
       }
 
       // Delete the user
-      try {
-        LOGGER.info("Deleting user with ID: {}", foundUser.getId());
-        foundUser.delete();
-        LOGGER.info("User successfully deleted!");
-      } catch (Exception e) {
-        LOGGER.error(e.getMessage(), e);
-      }
+      foundUserOpt.ifPresentOrElse(user -> {
+        try {
+          LOGGER.info("Deleting user with ID: {}", user.getId());
+          user.delete();
+          LOGGER.info("User successfully deleted!");
+        } catch (Exception e) {
+          LOGGER.error("Error deleting user with ID: {}", user.getId(), e);
+        }
+      }, () -> LOGGER.info("User not found to delete."));
 
     } catch (SQLException e) {
       LOGGER.error("SQL error: {}", e.getMessage(), e);

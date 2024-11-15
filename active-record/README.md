@@ -73,16 +73,21 @@ public class User {
 For convenience, we are storing the database configuration logic inside the same User class:
 
 ```java
+    
+     // Credentials for in-memory H2 database.
 
-    private static final String DB_URL = "jdbc:sqlite:database.db";
+    private static final String JDBC_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
+    private static final String USERNAME = "sa";
+    private static final String PASSWORD = "";
     
     // Establish a database connection.
 
     private static Connection connect() throws SQLException {
-        return DriverManager.getConnection(DB_URL);
+        return DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
     }
     
-     // Initialize the table (if not exists).
+     // Initialize the table (required each time program runs
+    // as we are using an in-memory DB solution).
 
     public static void initializeTable() throws SQLException {
         String sql = "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT)";

@@ -30,9 +30,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
+
+  private static final String JDBC_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
+  private static final String USERNAME = "sa";
+  private static final String PASSWORD = "";
 
   @BeforeAll
   static void setupDatabase() throws SQLException {
@@ -42,7 +48,7 @@ class UserTest {
   @BeforeEach
   void clearDatabase() throws SQLException {
     // Clean up table before each test
-    try (Connection conn = DriverManager.getConnection("jdbc:sqlite:database.db");
+    try (Connection conn = DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
          Statement stmt = conn.createStatement()) {
       stmt.execute("DELETE FROM users");
     }
@@ -57,13 +63,18 @@ class UserTest {
 
   @Test
   void testFindById() throws SQLException {
+    // Create and save a new user
     User user = new User(null, "Bob", "bob@example.com");
     user.save();
 
-    User foundUser = User.findById(user.getId());
-    assertNotNull(foundUser, "User should be found by ID");
-    assertEquals("Bob", foundUser.getName());
-    assertEquals("bob@example.com", foundUser.getEmail());
+    Optional<User> foundUserOpt = User.findById(user.getId());
+
+    assertTrue(foundUserOpt.isPresent(), "User should be found by ID");
+
+    foundUserOpt.ifPresent(foundUser -> {
+      assertEquals("Bob", foundUser.getName());
+      assertEquals("bob@example.com", foundUser.getEmail());
+    });
   }
 
   @Test
@@ -86,10 +97,14 @@ class UserTest {
     user.setEmail("eve.updated@example.com");
     user.save();
 
-    User updatedUser = User.findById(user.getId());
-    assert updatedUser != null;
-    assertEquals("Eve Updated", updatedUser.getName());
-    assertEquals("eve.updated@example.com", updatedUser.getEmail());
+    Optional<User> updatedUserOpt = User.findById(user.getId());
+
+    assertTrue(updatedUserOpt.isPresent(), "Updated user should be found by ID");
+
+    updatedUserOpt.ifPresent(updatedUser -> {
+      assertEquals("Eve Updated", updatedUser.getName());
+      assertEquals("eve.updated@example.com", updatedUser.getEmail());
+    });
   }
 
   @Test
@@ -99,6 +114,9 @@ class UserTest {
     Integer userId = user.getId();
 
     user.delete();
-    assertNull(User.findById(userId), "User should be deleted from the database");
+
+    Optional<User> deletedUserOpt = User.findById(userId);
+    assertTrue(deletedUserOpt.isEmpty(), "User should be deleted from the database");
   }
+
 }
