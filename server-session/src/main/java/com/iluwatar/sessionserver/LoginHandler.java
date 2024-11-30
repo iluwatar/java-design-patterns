@@ -60,7 +60,7 @@ public class LoginHandler implements HttpHandler {
 
     // Set session ID as cookie
     exchange.getResponseHeaders().add("Set-Cookie", "sessionID=" + sessionId);
-
+    App.expirationTaskWake(); // Wake up expiration task
     // Send response
     String response = "Login successful!\n" + "Session ID: " + sessionId;
     try {

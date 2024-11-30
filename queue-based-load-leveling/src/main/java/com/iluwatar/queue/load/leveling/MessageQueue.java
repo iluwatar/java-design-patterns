@@ -36,6 +36,7 @@ import lombok.extern.slf4j.Slf4j;
 public class MessageQueue {
 
   private final BlockingQueue<Message> blkQueue;
+  public Object serviceExecutorWait=new Object();
 
   // Default constructor when called creates Blocking Queue object. 
   public MessageQueue() {
@@ -50,6 +51,7 @@ public class MessageQueue {
     try {
       if (null != msg) {
         blkQueue.add(msg);
+        serviceExecutorWait.notify();
       }
     } catch (Exception e) {
       LOGGER.error(e.getMessage());

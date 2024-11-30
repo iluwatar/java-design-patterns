@@ -82,21 +82,38 @@ public class BallItem extends GameItem {
 ```java
 @Slf4j
 public class BallThread extends Thread {
+
   @Setter
   private BallItem twin;
+
   private volatile boolean isSuspended;
+
   private volatile boolean isRunning = true;
 
+  private Object lock=new Object();
+
+  /**
+   * Run the thread.
+   */
   public void run() {
+
     while (isRunning) {
-      if (!isSuspended) {
+      if (isSuspended) {
+        synchronized (lock) {
+          try {
+            lock.wait(); // Wait until resumed ::  busy loop fix
+          } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+          }
+        }
+      } else {
         twin.draw();
         twin.move();
-      }
-      try {
-        Thread.sleep(250);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
+        try {
+          Thread.sleep(250);
+        } catch (InterruptedException e) {
+          throw new RuntimeException(e);
+        }
       }
     }
   }
@@ -109,11 +126,19 @@ public class BallThread extends Thread {
   public void resumeMe() {
     isSuspended = false;
     LOGGER.info("Begin to resume BallThread");
+    synchronized (lock)
+    {
+      lock.notify();
+    }
   }
 
   public void stopMe() {
     this.isRunning = false;
     this.isSuspended = true;
+    synchronized (lock)
+    {
+      lock.notify();
+    }
   }
 }
 ```

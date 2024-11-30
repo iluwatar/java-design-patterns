@@ -46,6 +46,7 @@ public class LogAggregator {
   private final ConcurrentLinkedQueue<LogEntry> buffer = new ConcurrentLinkedQueue<>();
   private final LogLevel minLogLevel;
   private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+  private final Object bufferWait=new Object();
   private final AtomicInteger logCount = new AtomicInteger(0);
 
   /**
@@ -77,6 +78,7 @@ public class LogAggregator {
     }
 
     buffer.offer(logEntry);
+    bufferWake();
 
     if (logCount.incrementAndGet() >= BUFFER_THRESHOLD) {
       flushBuffer();
@@ -109,6 +111,11 @@ public class LogAggregator {
     executorService.execute(() -> {
       while (!Thread.currentThread().isInterrupted()) {
         try {
+          synchronized (bufferWait) {
+            if (buffer.isEmpty()) {
+              bufferWait.wait();
+            }
+          }
           Thread.sleep(5000); // Flush every 5 seconds.
           flushBuffer();
         } catch (InterruptedException e) {
@@ -116,5 +123,11 @@ public class LogAggregator {
         }
       }
     });
+  }
+  public void bufferWake(){
+    synchronized (bufferWait)
+    {
+      bufferWait.notify();
+    }
   }
 }

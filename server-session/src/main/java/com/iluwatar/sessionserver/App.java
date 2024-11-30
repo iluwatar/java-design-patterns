@@ -33,6 +33,7 @@ import java.util.Iterator;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
+
 /**
  * The server session pattern is a behavioral design pattern concerned with assigning the responsibility
  * of storing session data on the server side. Within the context of stateless protocols like HTTP all
@@ -54,9 +55,11 @@ import lombok.extern.slf4j.Slf4j;
 public class App {
 
   // Map to store session data (simulated using a HashMap)
-  private static Map<String, Integer> sessions = new HashMap<>();
-  private static Map<String, Instant> sessionCreationTimes = new HashMap<>();
+
+  private static Map<String, Integer> sessions = new HashMap<String,Integer>();
+  private static Map<String, Instant> sessionCreationTimes = new HashMap<String,Instant>();
   private static final long SESSION_EXPIRATION_TIME = 10000;
+  private static Object sessionExpirationWait=new Object(); // used to make expiration task wait or work based on event (login request sent or not)
 
   /**
    * Main entry point.
@@ -81,9 +84,17 @@ public class App {
   }
 
   private static void sessionExpirationTask() {
-    new Thread(() -> {
+     new Thread(() -> {
       while (true) {
         try {
+          synchronized (sessions)
+          {
+            if(sessions.isEmpty())
+            synchronized (sessionExpirationWait)
+            {
+              sessionExpirationWait.wait(); // Make Session expiration Checker wait until at least a single login request is sent.
+            }
+          }
           LOGGER.info("Session expiration checker started...");
           Thread.sleep(SESSION_EXPIRATION_TIME); // Sleep for expiration time
           Instant currentTime = Instant.now();
@@ -94,6 +105,7 @@ public class App {
               while (iterator.hasNext()) {
                 Map.Entry<String, Instant> entry = iterator.next();
                 if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
+                  LOGGER.info("User " + entry.getValue() + " removed");
                   sessions.remove(entry.getKey());
                   iterator.remove();
                 }
@@ -108,4 +120,13 @@ public class App {
       }
     }).start();
   }
+
+  public static void expirationTaskWake() //Wake up sleeping Expiration task thread
+  {
+      synchronized (sessionExpirationWait)
+      {
+        sessionExpirationWait.notify();
+      }
+    }
+
 }
