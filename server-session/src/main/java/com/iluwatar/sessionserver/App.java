@@ -59,7 +59,7 @@ public class App {
   private static Map<String, Integer> sessions = new HashMap<String,Integer>();
   private static Map<String, Instant> sessionCreationTimes = new HashMap<String,Instant>();
   private static final long SESSION_EXPIRATION_TIME = 10000;
-  private static Object sessionExpirationWait=new Object(); // used to make expiration task wait or work based on event (login request sent or not)
+  private static final Object sessionExpirationWait=new Object(); // used to make expiration task wait or work based on event (login request sent or not)
 
   /**
    * Main entry point.
@@ -89,11 +89,11 @@ public class App {
         try {
           synchronized (sessions)
           {
-            if(sessions.isEmpty())
-            synchronized (sessionExpirationWait)
-            {
-              sessionExpirationWait.wait(); // Make Session expiration Checker wait until at least a single login request is sent.
-            }
+              if(sessions.isEmpty())
+              synchronized (sessionExpirationWait)
+              {
+                sessionExpirationWait.wait(); // Make Session expiration Checker wait until at least a single login request is sent.
+              }
           }
           LOGGER.info("Session expiration checker started...");
           Thread.sleep(SESSION_EXPIRATION_TIME); // Sleep for expiration time

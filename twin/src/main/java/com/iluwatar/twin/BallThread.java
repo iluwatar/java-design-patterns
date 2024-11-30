@@ -42,7 +42,7 @@ public class BallThread extends Thread {
 
   private volatile boolean isRunning = true;
 
-  private Object lock=new Object();
+  private final Object lock=new Object();
 
   /**
    * Run the thread.
