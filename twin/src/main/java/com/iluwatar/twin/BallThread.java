@@ -42,7 +42,7 @@ public class BallThread extends Thread {
 
   private volatile boolean isRunning = true;
 
-  private final Object lock=new Object();
+  private final Object lock = new Object();
 
   /**
    * Run the thread.
@@ -78,8 +78,7 @@ public class BallThread extends Thread {
   public void resumeMe() {
     isSuspended = false;
     LOGGER.info("Begin to resume BallThread");
-    synchronized (lock)
-    {
+    synchronized (lock) {
       lock.notify();
     }
   }
@@ -87,8 +86,7 @@ public class BallThread extends Thread {
   public void stopMe() {
     this.isRunning = false;
     this.isSuspended = true;
-    synchronized (lock)
-    {
+    synchronized (lock) {
       lock.notify();
     }
   }
