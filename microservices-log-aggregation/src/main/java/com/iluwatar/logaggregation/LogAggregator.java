@@ -130,7 +130,7 @@ public class LogAggregator {
    */
   public void bufferWake() {
     synchronized (bufferWait) {
-      bufferWait.notify();
+      bufferWait.notifyAll();
     }
   }
 }

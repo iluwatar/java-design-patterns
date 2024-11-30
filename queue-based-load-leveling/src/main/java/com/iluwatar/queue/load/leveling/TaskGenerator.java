@@ -50,9 +50,7 @@ public class TaskGenerator implements Task, Runnable {
    */
   public void submit(Message msg) {
     try {
-      synchronized (msg) {
-        this.msgQueue.submitMsg(msg);
-      }
+      this.msgQueue.submitMsg(msg);
     } catch (Exception e) {
       LOGGER.error(e.getMessage());
     }
@@ -68,12 +66,8 @@ public class TaskGenerator implements Task, Runnable {
     try {
       while (count > 0) {
         var statusMsg = "Message-" + count + " submitted by " + Thread.currentThread().getName();
-        Message msg = new Message(statusMsg);
-        synchronized (msg) {
-          this.submit(msg);
-          LOGGER.info(statusMsg);
-        }
-
+        LOGGER.info(statusMsg);
+        this.submit(new Message(statusMsg));
 
         // reduce the message count.
         count--;
