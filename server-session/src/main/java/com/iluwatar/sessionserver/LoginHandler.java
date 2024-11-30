@@ -42,6 +42,9 @@ public class LoginHandler implements HttpHandler {
   private Map<String, Integer> sessions;
   private Map<String, Instant> sessionCreationTimes;
 
+  /**
+   * Handles new login requests.
+   */
   public LoginHandler(Map<String, Integer> sessions, Map<String, Instant> sessionCreationTimes) {
     this.sessions = sessions;
     this.sessionCreationTimes = sessionCreationTimes;

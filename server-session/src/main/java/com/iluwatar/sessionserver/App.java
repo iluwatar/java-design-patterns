@@ -56,10 +56,10 @@ public class App {
 
   // Map to store session data (simulated using a HashMap)
 
-  private static Map<String, Integer> sessions = new HashMap<String,Integer>();
-  private static Map<String, Instant> sessionCreationTimes = new HashMap<String,Instant>();
+  private static Map<String, Integer> sessions = new HashMap<String, Integer>();
+  private static Map<String, Instant> sessionCreationTimes = new HashMap<String, Instant>();
   private static final long SESSION_EXPIRATION_TIME = 10000;
-  private static final Object sessionExpirationWait=new Object(); // used to make expiration task wait or work based on event (login request sent or not)
+  private static final Object sessionExpirationWait = new Object(); // used to make expiration task wait or work based on event (login request sent or not)
 
   /**
    * Main entry point.
@@ -84,16 +84,15 @@ public class App {
   }
 
   private static void sessionExpirationTask() {
-     new Thread(() -> {
+    new Thread(() -> {
       while (true) {
         try {
-          synchronized (sessions)
-          {
-              if(sessions.isEmpty())
-              synchronized (sessionExpirationWait)
-              {
-                sessionExpirationWait.wait(); // Make Session expiration Checker wait until at least a single login request is sent.
+          synchronized (sessions) {
+            if (sessions.isEmpty()) {
+              synchronized (sessionExpirationWait) {
+                sessionExpirationWait.wait();
               }
+            }
           }
           LOGGER.info("Session expiration checker started...");
           Thread.sleep(SESSION_EXPIRATION_TIME); // Sleep for expiration time
@@ -121,12 +120,13 @@ public class App {
     }).start();
   }
 
-  public static void expirationTaskWake() //Wake up sleeping Expiration task thread
-  {
-      synchronized (sessionExpirationWait)
-      {
-        sessionExpirationWait.notify();
-      }
+  /**
+   * allows sessionExpirationTask to run again, called when a login request is sent.
+   */
+  public static void expirationTaskWake() {
+    synchronized (sessionExpirationWait) {
+      sessionExpirationWait.notify();
     }
+  }
 
 }

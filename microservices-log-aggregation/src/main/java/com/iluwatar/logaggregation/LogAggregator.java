@@ -46,7 +46,7 @@ public class LogAggregator {
   private final ConcurrentLinkedQueue<LogEntry> buffer = new ConcurrentLinkedQueue<>();
   private final LogLevel minLogLevel;
   private final ExecutorService executorService = Executors.newSingleThreadExecutor();
-  private final Object bufferWait=new Object();
+  private final Object bufferWait = new Object();
   private final AtomicInteger logCount = new AtomicInteger(0);
 
   /**
@@ -124,9 +124,12 @@ public class LogAggregator {
       }
     });
   }
-  public void bufferWake(){
-    synchronized (bufferWait)
-    {
+
+  /**
+   * Wakes up buffer.
+   */
+  public void bufferWake() {
+    synchronized (bufferWait) {
       bufferWait.notify();
     }
   }

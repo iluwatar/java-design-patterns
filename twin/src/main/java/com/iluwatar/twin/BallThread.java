@@ -53,7 +53,7 @@ public class BallThread extends Thread {
       if (isSuspended) {
         synchronized (lock) {
           try {
-            lock.wait(); //Wait until resumed :: busy loop fix
+            lock.wait();
           } catch (InterruptedException e) {
             throw new RuntimeException(e);
           }
@@ -69,20 +69,30 @@ public class BallThread extends Thread {
       }
     }
   }
-
+  /**
+   * suspend the thread.
+   */
   public void suspendMe() {
     isSuspended = true;
     LOGGER.info("Begin to suspend BallThread");
   }
 
+  /**
+   * notify run to resume.
+   */
+
   public void resumeMe() {
     isSuspended = false;
     LOGGER.info("Begin to resume BallThread");
+
     synchronized (lock) {
       lock.notify();
     }
   }
 
+  /**
+   * Stop running thread.
+   */
   public void stopMe() {
     this.isRunning = false;
     this.isSuspended = true;

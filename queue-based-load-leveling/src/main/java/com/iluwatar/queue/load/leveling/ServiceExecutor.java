@@ -50,9 +50,8 @@ public class ServiceExecutor implements Runnable {
           LOGGER.info(msg + " is served.");
         } else {
           LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
-          synchronized (msgQueue.serviceExecutorWait)
-          {
-              msgQueue.serviceExecutorWait.wait();
+          synchronized (msgQueue.serviceExecutorWait) {
+            msgQueue.serviceExecutorWait.wait();
           }
         }
       }
