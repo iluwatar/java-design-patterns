@@ -86,7 +86,7 @@ public class BallThread extends Thread {
     LOGGER.info("Begin to resume BallThread");
 
     synchronized (lock) {
-      lock.notify();
+      lock.notifyAll();
     }
   }
 
@@ -97,7 +97,7 @@ public class BallThread extends Thread {
     this.isRunning = false;
     this.isSuspended = true;
     synchronized (lock) {
-      lock.notify();
+      lock.notifyAll();
     }
   }
 }

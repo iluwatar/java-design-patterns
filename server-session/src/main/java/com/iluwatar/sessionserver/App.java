@@ -56,8 +56,8 @@ public class App {
 
   // Map to store session data (simulated using a HashMap)
 
-  private static Map<String, Integer> sessions = new HashMap<String, Integer>();
-  private static Map<String, Instant> sessionCreationTimes = new HashMap<String, Instant>();
+  private static Map<String, Integer> sessions = new HashMap<>();
+  private static Map<String, Instant> sessionCreationTimes = new HashMap<>();
   private static final long SESSION_EXPIRATION_TIME = 10000;
   private static final Object sessionExpirationWait = new Object(); // used to make expiration task wait or work based on event (login request sent or not)
 
@@ -125,7 +125,7 @@ public class App {
    */
   public static void expirationTaskWake() {
     synchronized (sessionExpirationWait) {
-      sessionExpirationWait.notify();
+      sessionExpirationWait.notifyAll();
     }
   }
 
