@@ -48,6 +48,7 @@ import org.w3c.dom.NodeList;
 public class Forest implements Serializable {
 
   private String name;
+  private String NEWLINE = "\n--------------------------\n";
   private Set<Animal> animals = new HashSet<>();
   private Set<Plant> plants = new HashSet<>();
 
@@ -105,16 +106,16 @@ public class Forest implements Serializable {
     sb.append("Forest Name = ").append(name).append("\n");
     sb.append("Animals found in the ").append(name).append(" Forest: \n");
     for (Animal animal : animals) {
-      sb.append("\n--------------------------\n");
+      sb.append(NEWLINE);
       sb.append(animal.toString());
-      sb.append("\n--------------------------\n");
+      sb.append(NEWLINE);
     }
     sb.append("\n");
     sb.append("Plants in the ").append(name).append(" Forest: \n");
     for (Plant plant : plants) {
-      sb.append("\n--------------------------\n");
+      sb.append(NEWLINE);
       sb.append(plant.toString());
-      sb.append("\n--------------------------\n");
+      sb.append(NEWLINE);
     }
     return sb.toString();
   }
