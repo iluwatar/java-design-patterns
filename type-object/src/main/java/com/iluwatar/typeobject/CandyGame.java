@@ -27,6 +27,8 @@ package com.iluwatar.typeobject;
 import com.iluwatar.typeobject.Candy.Type;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.LoggerFactory;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -37,7 +39,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SuppressWarnings("java:S3776") //"Cognitive Complexity of methods should not be too high"
 public class CandyGame {
-
   Cell[][] cells;
   CellPool pool;
   int totalPoints;
@@ -86,19 +87,28 @@ public class CandyGame {
       adjacent.add(this.cells[y][1]);
     }
     if (y == cells.length - 1) {
-      adjacent.add(this.cells[cells.length - 2][x]);
+      if (cells.length > 1) {
+          adjacent.add(this.cells[cells.length - 2][x]);
+      } else {
+          LOGGER.info("Warning: Attempted to access a row in an array with insufficient rows.");
+      }
     }
     if (x == cells.length - 1) {
-      adjacent.add(this.cells[y][cells.length - 2]);
+      if (cells.length > 1) {
+          adjacent.add(this.cells[y][cells.length - 2]);
+      } else {
+          LOGGER.info("Warning: Attempted to access an out-of-bounds index.");
+      }
     }
+  
     if (y > 0 && y < cells.length - 1) {
       adjacent.add(this.cells[y - 1][x]);
       adjacent.add(this.cells[y + 1][x]);
     }
-    if (x > 0 && x < cells.length - 1) {
+    if (y >= 0 && y < cells.length && x > 0 && x < cells[y].length - 1) {
       adjacent.add(this.cells[y][x - 1]);
       adjacent.add(this.cells[y][x + 1]);
-    }
+  }  
     return adjacent;
   }
 
