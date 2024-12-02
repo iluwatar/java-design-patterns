@@ -86,20 +86,14 @@ public class CandyGame {
     if (x == 0) {
       adjacent.add(this.cells[y][1]);
     }
-    if (y == cells.length - 1) {
-      if (cells.length > 1) {
+    if (y == cells.length - 1 && cells.length > 1) {
           adjacent.add(this.cells[cells.length - 2][x]);
-      } else {
-          LOGGER.info("Warning: Attempted to access a row in an array with insufficient rows.");
-      }
     }
-    if (x == cells.length - 1) {
-      if (cells.length > 1) {
+    
+    if (x == cells.length - 1 && cells.length > 1) {
           adjacent.add(this.cells[y][cells.length - 2]);
-      } else {
-          LOGGER.info("Warning: Attempted to access an out-of-bounds index.");
-      }
     }
+    
   
     if (y > 0 && y < cells.length - 1) {
       adjacent.add(this.cells[y - 1][x]);
