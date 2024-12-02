@@ -48,12 +48,6 @@ public class Candy {
   private int points;
   private final Type type;
 
-  public Type getType() {
-    return type;
-  }
-  public int getPoints() {
-    return points;
-  }
   Candy(String name, String parentName, Type type, int points) {
     this.name = name;
     this.parent = null;
