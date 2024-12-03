@@ -4,16 +4,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
 /**
- * Represents a databse of products .
+ * Represents a database of products.
  */
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Products {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Generated Auto-increment ID
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -24,3 +29,4 @@ public class Products {
 
     private Integer stock;
 }
+
