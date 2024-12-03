@@ -27,10 +27,9 @@ package com.iluwatar.typeobject;
 import com.iluwatar.typeobject.Candy.Type;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import lombok.extern.slf4j.Slf4j;
 
 /**
  * The CandyGame class contains the rules for the continuation of the game and has the game matrix
@@ -88,11 +87,11 @@ public class CandyGame {
       adjacent.add(this.cells[y][1]);
     }
     if (y == cells.length - 1 && cells.length > 1) {
-          adjacent.add(this.cells[cells.length - 2][x]);
+      adjacent.add(this.cells[cells.length - 2][x]);
     }
     
     if (x == cells.length - 1 && cells.length > 1) {
-          adjacent.add(this.cells[y][cells.length - 2]);
+      adjacent.add(this.cells[y][cells.length - 2]);
     }
     
   
@@ -103,7 +102,7 @@ public class CandyGame {
     if (y >= 0 && y < cells.length && x > 0 && x < cells[y].length - 1) {
       adjacent.add(this.cells[y][x - 1]);
       adjacent.add(this.cells[y][x + 1]);
-  }  
+    }
     return adjacent;
   }
 
