@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.table.inheritance;
 
 /**
  * Represents a generic vehicle with basic attributes like make, model, year, and ID.

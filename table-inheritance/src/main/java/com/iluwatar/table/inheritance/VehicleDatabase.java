@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.table.inheritance;
 
 import java.util.HashMap;
 import java.util.Map;

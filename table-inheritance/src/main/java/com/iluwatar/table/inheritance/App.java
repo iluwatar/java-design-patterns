@@ -1,10 +1,9 @@
-package com.iluwatar;
+package com.iluwatar.table.inheritance;
 
 /**
  * The main entry point of the application demonstrating the use of vehicles.
  */
-public class Main {
-
+public class App {
   /**
    * The main method to demonstrate adding and retrieving vehicles from the database.
    *

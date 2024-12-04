@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.table.inheritance;
 
 /**
  * Represents a car with a specific number of doors.
@@ -17,6 +17,9 @@ public class Car extends Vehicle {
    */
   public Car(int year, String make, String model, int numDoors, int id) {
     super(year, make, model, id);
+    if (numDoors <= 0) {
+      throw new IllegalArgumentException("Number of doors must be positive.");
+    }
     this.numDoors = numDoors;
   }
 
@@ -26,6 +29,9 @@ public class Car extends Vehicle {
    * @param doors the number of doors
    */
   public void setNumDoors(int doors) {
+    if (doors <= 0) {
+      throw new IllegalArgumentException("Number of doors must be positive.");
+    }
     this.numDoors = doors;
   }
 
@@ -49,4 +55,3 @@ public class Car extends Vehicle {
         + '}';
   }
 }
-

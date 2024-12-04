@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.table.inheritance;
 
 /**
  * Represents a truck, a type of vehicle with a specific load capacity.
@@ -17,7 +17,10 @@ public class Truck extends Vehicle {
    */
   public Truck(int year, String make, String model, double loadCapacity, int id) {
     super(year, make, model, id);
-    this.loadCapacity = loadCapacity; // Added spaces around '='
+    if (loadCapacity <= 0) {
+      throw new IllegalArgumentException("Load capacity must be positive.");
+    }
+    this.loadCapacity = loadCapacity;
   }
 
   /**
@@ -26,7 +29,10 @@ public class Truck extends Vehicle {
    * @param capacity the new load capacity
    */
   public void setLoadCapacity(double capacity) {
-    this.loadCapacity = capacity; // Added spaces around '='
+    if (capacity <= 0) {
+      throw new IllegalArgumentException("Load capacity must be positive.");
+    }
+    this.loadCapacity = capacity;
   }
 
   /**
@@ -54,3 +60,4 @@ public class Truck extends Vehicle {
         + '}';
   }
 }
+
