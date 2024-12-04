@@ -180,7 +180,7 @@ Here is the console output.
 
 ## When to Use the Unit Of Work Pattern in Java
 
-* he Unit of Work pattern is ideal for managing multiple database operations in Java that must be executed as a single transaction, ensuring data consistency and integrity.
+* The Unit of Work pattern is ideal for managing multiple database operations in Java that must be executed as a single transaction, ensuring data consistency and integrity.
 * Ideal in scenarios where changes to the business objects must be tracked and saved in a coordinated manner.
 * Useful when working with object-relational mapping (ORM) frameworks in Java such as Hibernate.
 
