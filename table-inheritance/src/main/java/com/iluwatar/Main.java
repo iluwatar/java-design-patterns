@@ -1,11 +1,20 @@
 package com.iluwatar;
 
+/**
+ * The main entry point of the application demonstrating the use of vehicles.
+ */
 public class Main {
+
+  /**
+   * The main method to demonstrate adding and retrieving vehicles from the database.
+   *
+   * @param args command-line arguments
+   */
   public static void main(String[] args) {
-    Vehicle_Database database = new Vehicle_Database();
+    VehicleDatabase database = new VehicleDatabase();
 
     Car car = new Car(2020, "Toyota", "Corolla", 4, 1);
-    Truck truck = new Truck(2018, "Ford", "F-150", 60,2);
+    Truck truck = new Truck(2018, "Ford", "F-150", 60, 2);
 
     database.saveVehicle(car);
     database.saveVehicle(truck);

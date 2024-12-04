@@ -1,48 +1,114 @@
 package com.iluwatar;
 
-public class Vehicle{
+/**
+ * Represents a generic vehicle with basic attributes like make, model, year, and ID.
+ */
+public class Vehicle {
 
-  private String make, model;
-  private int year, id;
+  private String make;
+  private String model;
+  private int year;
+  private int id;
 
-
-  Vehicle(int year, String make, String model, int id){
-    this.make=make;
-    this.model=model;
-    this.year=year;
-    this.id=id;
+  /**
+   * Constructs a Vehicle object with the given parameters.
+   *
+   * @param year  the year of manufacture
+   * @param make  the make of the vehicle
+   * @param model the model of the vehicle
+   * @param id    the unique ID of the vehicle
+   */
+  public Vehicle(int year, String make, String model, int id) {
+    this.make = make; // Added spaces around '='
+    this.model = model;
+    this.year = year;
+    this.id = id;
   }
 
-  public void setMake(String make){
-    this.make=make;
+  /**
+   * Sets the make of the vehicle.
+   *
+   * @param make the make to set
+   */
+  public void setMake(String make) {
+    this.make = make; // Added spaces around '='
   }
+
+  /**
+   * Gets the make of the vehicle.
+   *
+   * @return the make
+   */
   public String getMake() {
     return make;
   }
 
-  public void setModel(String model){
-    this.model=model;
+  /**
+   * Sets the model of the vehicle.
+   *
+   * @param model the model to set
+   */
+  public void setModel(String model) {
+    this.model = model; // Added spaces around '='
   }
-  public String getModel(){
+
+  /**
+   * Gets the model of the vehicle.
+   *
+   * @return the model
+   */
+  public String getModel() {
     return model;
   }
 
-  public void setYear(int year){
-    this.year=year;
+  /**
+   * Sets the year of manufacture for the vehicle.
+   *
+   * @param year the year to set
+   */
+  public void setYear(int year) {
+    this.year = year; // Added spaces around '='
   }
-  public int getYear(){
+
+  /**
+   * Gets the year of manufacture for the vehicle.
+   *
+   * @return the year
+   */
+  public int getYear() {
     return year;
   }
 
+  /**
+   * Gets the unique ID of the vehicle.
+   *
+   * @return the ID
+   */
   public int getId() {
     return id;
   }
+
+  /**
+   * Sets the unique ID of the vehicle.
+   *
+   * @param id the ID to set
+   */
   public void setId(int id) {
-    this.id = id;
+    this.id = id; // Added spaces around '='
   }
 
-
-  @Override public String toString() {
-    return "Vehicle{" + "id=" + id + ", make='" + make + '\'' + ", model='" + model + '\'' + ", year=" + year + '}';
+  /**
+   * Returns a string representation of the vehicle.
+   *
+   * @return a string with the vehicle's details
+   */
+  @Override
+  public String toString() {
+    return "Vehicle{"
+        + "id=" + id
+        + ", make='" + make + '\''
+        + ", model='" + model + '\''
+        + ", year=" + year
+        + '}';
   }
 }

@@ -1,24 +1,32 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import com.iluwatar.Car;
+import com.iluwatar.Truck;
+import com.iluwatar.Vehicle;
+import com.iluwatar.VehicleDatabase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.iluwatar.Vehicle_Database;
-import com.iluwatar.Truck;
-import com.iluwatar.Car;
-import com.iluwatar.Vehicle;
-
-
+/**
+ * Unit tests for the {@link VehicleDatabase} class.
+ * Tests saving, retrieving, and printing vehicles of different types.
+ */
 public class VehicleDatabaseTest {
 
-  private Vehicle_Database vehicleDatabase;
+  private VehicleDatabase vehicleDatabase;
 
+  /**
+   * Sets up a new instance of {@link VehicleDatabase} before each test.
+   */
   @BeforeEach
   public void setUp() {
-    vehicleDatabase = new Vehicle_Database();
+    vehicleDatabase = new VehicleDatabase();
   }
 
+  /**
+   * Tests saving a {@link Car} to the database and retrieving it.
+   */
   @Test
   public void testSaveAndRetrieveCar() {
     Car car = new Car(2020, "Toyota", "Corolla", 4, 1);
@@ -33,12 +41,15 @@ public class VehicleDatabaseTest {
 
     Car retrievedCar = vehicleDatabase.getCar(car.getId());
     assertNotNull(retrievedCar);
-    assertEquals(car.GetNumDoors(), retrievedCar.GetNumDoors());
+    assertEquals(car.getNumDoors(), retrievedCar.getNumDoors());
   }
 
+  /**
+   * Tests saving a {@link Truck} to the database and retrieving it.
+   */
   @Test
   public void testSaveAndRetrieveTruck() {
-    Truck truck = new Truck(2018, "Ford", "F-150", 60,2);
+    Truck truck = new Truck(2018, "Ford", "F-150", 60, 2);
     vehicleDatabase.saveVehicle(truck);
 
     Vehicle retrievedVehicle = vehicleDatabase.getVehicle(truck.getId());
@@ -50,13 +61,16 @@ public class VehicleDatabaseTest {
 
     Truck retrievedTruck = vehicleDatabase.getTruck(truck.getId());
     assertNotNull(retrievedTruck);
-    assertEquals(truck.GetLoadCapacity(), retrievedTruck.GetLoadCapacity());
+    assertEquals(truck.getLoadCapacity(), retrievedTruck.getLoadCapacity());
   }
 
+  /**
+   * Tests saving multiple vehicles to the database and printing them.
+   */
   @Test
   public void testPrintAllVehicles() {
     Car car = new Car(2020, "Toyota", "Corolla", 4, 1);
-    Truck truck = new Truck(2018, "Ford", "F-150", 60,2);
+    Truck truck = new Truck(2018, "Ford", "F-150", 60, 2);
     vehicleDatabase.saveVehicle(car);
     vehicleDatabase.saveVehicle(truck);
 
