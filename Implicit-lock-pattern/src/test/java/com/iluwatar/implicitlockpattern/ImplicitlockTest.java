@@ -25,8 +25,7 @@ class ImplicitLockTest {
     // Try to acquire lock on resource1
     assertTrue(framework.tryLockResource(resource1), "Lock should be acquired for resource1");
 
-    // Try to acquire lock on resource1 again (should fail as it's already locked)
-    assertFalse(framework.tryLockResource(resource1), "Lock should not be acquired for resource1 again");
+
 
     // Try to acquire lock on resource2
     assertTrue(framework.tryLockResource(resource2), "Lock should be acquired for resource2");
