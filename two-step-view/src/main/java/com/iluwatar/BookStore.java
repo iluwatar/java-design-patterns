@@ -35,4 +35,5 @@ public class BookStore {
   double price;
   double discountPrice; // Calculates price if the book is discounted
   boolean inStock; // Indicates if the book is in stock
+
 }

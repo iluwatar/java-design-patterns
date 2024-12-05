@@ -23,15 +23,25 @@
  * THE SOFTWARE.
  */
 package com.iluwatar;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /** Represents a Book. */
-@AllArgsConstructor
 @Data
 public class Book {
   String name;
   double price;
   boolean discount;
   int stock;
+  Book(String name, double price, boolean discount, int stock) {
+    if (!name.isEmpty()) { // Make sure is not empty
+      this.name = name;
+    }
+    if (price > 0) { // Make sure price is set with a realistic value
+      this.price = price;
+    }
+    if (stock >= 0) { // Make sure stock is not negative
+      this.stock = stock;
+    }
+    this.discount = discount;
+  }
 }
