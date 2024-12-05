@@ -59,7 +59,8 @@ public class App {
   private static Map<String, Integer> sessions = new HashMap<>();
   private static Map<String, Instant> sessionCreationTimes = new HashMap<>();
   private static final long SESSION_EXPIRATION_TIME = 10000;
-  private static final Object sessionExpirationWait = new Object(); // used to make expiration task wait or work based on event (login request sent or not)
+  private static Object sessionExpirationWait = new Object(); // used to make expiration task wait or work based on event (login request sent or not)
+  private static Thread sessionExpirationThread;
 
   /**
    * Main entry point.
@@ -84,7 +85,7 @@ public class App {
   }
 
   private static void sessionExpirationTask() {
-    new Thread(() -> {
+    sessionExpirationThread= new Thread(() -> {
       while (true) {
         try {
           synchronized (sessions) {
@@ -117,7 +118,8 @@ public class App {
           Thread.currentThread().interrupt();
         }
       }
-    }).start();
+    });
+    sessionExpirationThread.start();
   }
 
   /**
@@ -127,6 +129,10 @@ public class App {
     synchronized (sessionExpirationWait) {
       sessionExpirationWait.notifyAll();
     }
+  }
+
+  public static Thread.State getExpirationTaskState(){
+    return sessionExpirationThread.getState();
   }
 
 }
