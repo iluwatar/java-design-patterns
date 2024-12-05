@@ -24,22 +24,13 @@
  */
 package com.iluwatar.sessionserver;
 
-import static java.lang.Thread.State;
 import static java.lang.Thread.State.WAITING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
 
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpExchange;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 /**
@@ -47,14 +38,6 @@ import org.mockito.MockitoAnnotations;
  */
 @Slf4j
 public class AppTest {
-
-  private LoginHandler loginHandler;
-  //private Headers headers;
-  private Map<String, Integer> sessions;
-  private Map<String, Instant> sessionCreationTimes;
-
-  @Mock
-  private HttpExchange exchange;
 
   /**
    * Setup tests.

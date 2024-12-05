@@ -85,7 +85,7 @@ public class App {
   }
 
   private static void sessionExpirationTask() {
-    sessionExpirationThread= new Thread(() -> {
+    sessionExpirationThread = new Thread(() -> {
       while (true) {
         try {
           synchronized (sessions) {
@@ -131,7 +131,7 @@ public class App {
     }
   }
 
-  public static Thread.State getExpirationTaskState(){
+  public static Thread.State getExpirationTaskState() {
     return sessionExpirationThread.getState();
   }
 
