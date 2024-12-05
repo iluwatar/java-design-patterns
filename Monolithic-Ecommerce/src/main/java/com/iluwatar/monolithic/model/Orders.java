@@ -5,10 +5,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
-
 
 /**
  * Represents a Database in which Orders are stored.
@@ -18,17 +17,17 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Orders {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @ManyToOne
-    private User user;
+  @ManyToOne
+  private User user;
 
-    @ManyToOne
-    private Products product;
+  @ManyToOne
+  private Products product;
 
-    private Integer quantity;
+  private Integer quantity;
 
-    private Double totalPrice;
+  private Double totalPrice;
 }
