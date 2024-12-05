@@ -22,53 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.queue.load.leveling;
+package com.iluwatar.sessionserver;
 
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
+import static java.lang.Thread.State.WAITING;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
 
 /**
- * MessageQueue class. In this class we will create a Blocking Queue and submit/retrieve all the
- * messages from it.
+ * LoginHandlerTest.
  */
 @Slf4j
-public class MessageQueue {
-
-  private final BlockingQueue<Message> blkQueue;
-
-  // Default constructor when called creates Blocking Queue object. 
-  public MessageQueue() {
-    this.blkQueue = new ArrayBlockingQueue<>(1024);
-  }
+public class AppTest {
 
   /**
-   * All the TaskGenerator threads will call this method to insert the Messages in to the Blocking
-   * Queue.
+   * Setup tests.
    */
-  public void submitMsg(Message msg) {
-    try {
-      if (null != msg) {
-        blkQueue.add(msg);
-        synchronized (ServiceExecutor.serviceExecutorWait) {
-          ServiceExecutor.serviceExecutorWait.notifyAll();
-        }
-      }
-    } catch (Exception e) {
-      LOGGER.error(e.getMessage());
-    }
+  @BeforeEach
+  public void setUp() throws IOException {
+    MockitoAnnotations.initMocks(this);
+    App.main(new String [] {});
   }
 
-  /**
-   * All the messages will be retrieved by the ServiceExecutor by calling this method and process
-   * them. Retrieves and removes the head of this queue, or returns null if this queue is empty.
-   */
-  public Message retrieveMsg() {
-    try {
-      return blkQueue.poll();
-    } catch (Exception e) {
-      LOGGER.error(e.getMessage());
-    }
-    return null;
+  @Test
+  public void expirationTaskStartStateTest() {
+
+    //assert
+    LOGGER.info("Expiration Task Status: "+String.valueOf(App.getExpirationTaskState()));
+    assertEquals(App.getExpirationTaskState(),WAITING);
+
   }
+
 }

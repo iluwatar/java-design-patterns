@@ -69,9 +69,11 @@ public class LogoutHandlerTest {
   public void testHandler_SessionNotExpired() {
 
     //assemble
-    sessions.put("1234", 1); //Fake login details since LoginHandler isn't called
+    sessions.put("1234", 1);//Fake login details since LoginHandler isn't called
+
     sessionCreationTimes.put("1234",
         Instant.now()); //Fake login details since LoginHandler isn't called
+    App.expirationTaskWake();
     when(exchange.getRequestHeaders()).thenReturn(headers);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     when(exchange.getResponseBody()).thenReturn(outputStream);

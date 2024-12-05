@@ -66,9 +66,8 @@ public class TaskGenerator implements Task, Runnable {
     try {
       while (count > 0) {
         var statusMsg = "Message-" + count + " submitted by " + Thread.currentThread().getName();
-        this.submit(new Message(statusMsg));
-
         LOGGER.info(statusMsg);
+        this.submit(new Message(statusMsg));
 
         // reduce the message count.
         count--;
