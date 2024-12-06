@@ -1,10 +1,20 @@
-public class TrafficLightFSM {
-  // State Interface
+package com.iluwatar;
+
+/**
+ * The TrafficLightFsm class demonstrates a Finite State Machine (FSM)
+ * implementation using a traffic light system.
+ */
+public class TrafficLightFsm {
+  /**
+   * State interface for traffic light states.
+   */
   interface TrafficLightState {
     void handleEvent(TrafficLightContext context);
   }
 
-  // Concrete States
+  /**
+   * Concrete state representing the Red Light.
+   */
   static class RedLightState implements TrafficLightState {
     @Override
     public void handleEvent(TrafficLightContext context) {
@@ -13,6 +23,9 @@ public class TrafficLightFSM {
     }
   }
 
+  /**
+   * Concrete state representing the Green Light.
+   */
   static class GreenLightState implements TrafficLightState {
     @Override
     public void handleEvent(TrafficLightContext context) {
@@ -21,6 +34,9 @@ public class TrafficLightFSM {
     }
   }
 
+  /**
+   * Concrete state representing the Yellow Light.
+   */
   static class YellowLightState implements TrafficLightState {
     @Override
     public void handleEvent(TrafficLightContext context) {
@@ -29,24 +45,43 @@ public class TrafficLightFSM {
     }
   }
 
-  // Context Class
+  /**
+   * Context class for managing the current state and transitions.
+   */
   static class TrafficLightContext {
     private TrafficLightState currentState;
 
+    /**
+     * Initializes the context with the given initial state.
+     *
+     * @param initialState the initial state of the traffic light
+     */
     public TrafficLightContext(TrafficLightState initialState) {
       this.currentState = initialState;
     }
 
+    /**
+     * Updates the current state of the traffic light.
+     *
+     * @param newState the new state to transition to
+     */
     public void setState(TrafficLightState newState) {
       this.currentState = newState;
     }
 
+    /**
+     * Handles the current state's event and transitions to the next state.
+     */
     public void handleEvent() {
       currentState.handleEvent(this);
     }
   }
 
-  // Main Method
+  /**
+   * Main method to simulate the traffic light FSM.
+   *
+   * @param args the command-line arguments
+   */
   public static void main(String[] args) {
     // Initialize the traffic light with the Red state
     TrafficLightContext trafficLight = new TrafficLightContext(new RedLightState());
@@ -57,3 +92,5 @@ public class TrafficLightFSM {
     }
   }
 }
+
+
