@@ -1,7 +1,5 @@
 package com.iluwater.fieild;
-import jakarta.persistence.Entity;
 
-@Entity
 public class Book extends DomainObject {
   private String title;
   private String author;
