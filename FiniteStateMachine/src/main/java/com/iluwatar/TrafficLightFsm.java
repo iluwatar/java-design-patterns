@@ -5,6 +5,7 @@ package com.iluwatar;
  * implementation using a traffic light system.
  */
 public class TrafficLightFsm {
+
   /**
    * State interface for traffic light states.
    */
@@ -75,6 +76,14 @@ public class TrafficLightFsm {
     public void handleEvent() {
       currentState.handleEvent(this);
     }
+
+    /**
+     * Gets the current state of the traffic light.
+     * This can be useful for testing purposes.
+     */
+    public TrafficLightState getCurrentState() {
+      return currentState;
+    }
   }
 
   /**
@@ -92,5 +101,6 @@ public class TrafficLightFsm {
     }
   }
 }
+
 
 
