@@ -64,4 +64,5 @@ class ImplicitLockTest {
     thread2.start();
     thread2.join();
   }
+
 }
