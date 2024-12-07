@@ -3276,6 +3276,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "mammadyahyayev",
+      "name": "Mammad Yahyayev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66476643?v=4",
+      "profile": "https://mammadyahya.vercel.app",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 6,
