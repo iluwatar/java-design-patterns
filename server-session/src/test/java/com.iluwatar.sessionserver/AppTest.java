@@ -24,37 +24,74 @@
  */
 package com.iluwatar.sessionserver;
 
+import static java.lang.Thread.State.TIMED_WAITING;
 import static java.lang.Thread.State.WAITING;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
 import org.mockito.MockitoAnnotations;
 
 /**
  * LoginHandlerTest.
  */
 @Slf4j
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class AppTest {
+
+  /**
+   * Start App before tests
+   * @throws IOException
+   */
+
+  @BeforeAll
+  public static void init() throws IOException {
+    App.main(new String [] {});
+  }
 
   /**
    * Setup tests.
    */
+
   @BeforeEach
-  public void setUp() throws IOException {
+  public void setUp() {
     MockitoAnnotations.initMocks(this);
-    App.main(new String [] {});
   }
 
-  @Test
-  public void expirationTaskStartStateTest() {
+  /**
+   * Run the Start state test first
+   * Checks that the session expiration task is waiting when the app is first started
+   */
 
+  @Test
+  @Order(1)
+  public void expirationTaskStartStateTest() {
     //assert
     LOGGER.info("Expiration Task Status: "+String.valueOf(App.getExpirationTaskState()));
     assertEquals(App.getExpirationTaskState(),WAITING);
+  }
 
+
+  /**
+   * Run the wake state test second
+   * Test whether expiration Task is currently sleeping or not (should sleep when woken)
+   */
+
+  @Test
+  @Order(2)
+  public void expirationTaskWakeStateTest() throws InterruptedException {
+    App.expirationTaskWake();
+    Thread.sleep(200); // Wait until sessionExpirationTask is sleeping
+    LOGGER.info("Expiration Task Status: "+String.valueOf(App.getExpirationTaskState()));
+    assertEquals(App.getExpirationTaskState(),TIMED_WAITING);
   }
 
 }
