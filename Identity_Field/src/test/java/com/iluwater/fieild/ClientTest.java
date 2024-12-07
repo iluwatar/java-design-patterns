@@ -24,6 +24,7 @@
  */
 package com.iluwater.fieild;
 
+import com.iluwater.fieild.Model.Client;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

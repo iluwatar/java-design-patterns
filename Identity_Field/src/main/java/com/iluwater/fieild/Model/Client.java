@@ -22,31 +22,27 @@
   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   * THE SOFTWARE.
 */
-package com.iluwater.fieild;
-/*
- * The DomainObject class provides a base for domain entities
- * that require unique identification within the application.
- *
- * <p>All child classes inherit the unique identifier field
- * and associated functionality.</p>
- */
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+package com.iluwater.fieild.Model;
+import java.util.regex.Pattern;
+
 import lombok.Getter;
 import lombok.Setter;
+import javax.persistence.Entity;
 
-@Getter
 @Setter
-@MappedSuperclass
+@Getter
 @Entity
-public abstract class DomainObject {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY) // automatically generate unique values for primary key columns
-  private Long id;
-  //strategy = GenerationType.IDENTITY generate the primary key value by the database itself using the auto-increment column option
+public class Client extends DomainObject {
+  private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+  private String name;
+  private String Email;
 
+  public Client(String name, String Email) {
+    Pattern pattern = Pattern.compile(EMAIL_REGEX);
+    this.name = name;
+    if (pattern.matcher(Email).matches()) {
+      this.Email = Email;
+    }
+  }
 
 }
