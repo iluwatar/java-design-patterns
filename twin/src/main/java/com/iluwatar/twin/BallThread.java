@@ -1,37 +1,12 @@
-/*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
- * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package com.iluwatar.twin;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
- * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
+ * This class is a UI thread for drawing the {@link BallItem}, and provides methods to pause, resume,
+ * and stop the thread. It holds the reference of {@link BallItem} to delegate drawing and movement tasks.
  */
-
 @Slf4j
 public class BallThread extends Thread {
 
@@ -39,40 +14,62 @@ public class BallThread extends Thread {
   private BallItem twin;
 
   private volatile boolean isSuspended;
-
   private volatile boolean isRunning = true;
 
   /**
-   * Run the thread.
+   * Main execution logic for the thread.
    */
+  @Override
   public void run() {
-
-    while (isRunning) {
-      if (!isSuspended) {
+    try {
+      while (isRunning) {
+        synchronized (this) {
+          while (isSuspended) {
+            LOGGER.info("BallThread is suspended.");
+            wait(); // Wait until notified
+          }
+        }
+        // Perform drawing and movement tasks
         twin.draw();
         twin.move();
+
+        Thread.sleep(250); // Pause briefly between actions
       }
-      try {
-        Thread.sleep(250);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
+    } catch (InterruptedException e) {
+      LOGGER.warn("BallThread interrupted, shutting down.");
+      Thread.currentThread().interrupt(); // Preserve interrupted status
+    } finally {
+      LOGGER.info("BallThread has stopped.");
     }
   }
 
-  public void suspendMe() {
+  /**
+   * Suspends the thread's execution.
+   */
+  public synchronized void pauseThread() {
     isSuspended = true;
-    LOGGER.info("Begin to suspend BallThread");
+    LOGGER.info("BallThread paused.");
   }
 
-  public void resumeMe() {
+  /**
+   * Resumes the thread's execution.
+   */
+  public synchronized void resumeThread() {
     isSuspended = false;
-    LOGGER.info("Begin to resume BallThread");
+    notify(); // Notify the waiting thread
+    LOGGER.info("BallThread resumed.");
   }
 
-  public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
-  }
+  /**
+   * Stops the thread's execution.
+   */
+  public void stopThread() {
+    isRunning = false;
+    // Notify the thread in case it is waiting
+    synchronized (this) {
+      isSuspended = false;
+      notify(); // Notify any waiting thread to allow graceful shutdown
+    }
+    LOGGER.info("BallThread stopping.");
+  }
 }
-
