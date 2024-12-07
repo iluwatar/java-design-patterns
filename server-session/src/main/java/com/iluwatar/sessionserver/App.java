@@ -23,17 +23,30 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.sessionserver;
-
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.time.Instant;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+
+    
+        
+          
+    
+
+        
+        Expand All
+    
+    @@ -54,8 +57,9 @@
+  
  * The server session pattern is a behavioral design pattern concerned with assigning the responsibility
  * of storing session data on the server side. Within the context of stateless protocols like HTTP all
  * requests are isolated events independent of previous requests. In order to create sessions during
@@ -49,16 +62,27 @@ import lombok.extern.slf4j.Slf4j;
  * requests in a list. When a user logs out the session identifier is deleted from the list along with
  * the appropriate user session data, which is handle by the ({@link LogoutHandler}) class.
  */
-
 @Slf4j
 public class App {
 
   // Map to store session data (simulated using a HashMap)
-  private static Map<String, Integer> sessions = new HashMap<>();
-  private static Map<String, Instant> sessionCreationTimes = new HashMap<>();
+  private static final Map<String, Integer> sessions = new ConcurrentHashMap<>();
+  private static final Map<String, Instant> sessionCreationTimes = new ConcurrentHashMap<>();
+  private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
   private static final long SESSION_EXPIRATION_TIME = 10000;
 
   /**
+
+    
+        
+          
+    
+
+        
+        Expand All
+    
+    @@ -81,31 +85,25 @@ public static void main(String[] args) throws IOException {
+  
    * Main entry point.
    * @param args arguments
    * @throws IOException ex
@@ -66,46 +90,36 @@ public class App {
   public static void main(String[] args) throws IOException {
     // Create HTTP server listening on port 8000
     HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
-
     // Set up session management endpoints
     server.createContext("/login", new LoginHandler(sessions, sessionCreationTimes));
     server.createContext("/logout", new LogoutHandler(sessions, sessionCreationTimes));
-
     // Start the server
     server.start();
-
     // Start background task to check for expired sessions
     sessionExpirationTask();
-
     LOGGER.info("Server started. Listening on port 8080...");
   }
 
   private static void sessionExpirationTask() {
-    new Thread(() -> {
-      while (true) {
-        try {
-          LOGGER.info("Session expiration checker started...");
-          Thread.sleep(SESSION_EXPIRATION_TIME); // Sleep for expiration time
-          Instant currentTime = Instant.now();
-          synchronized (sessions) {
-            synchronized (sessionCreationTimes) {
-              Iterator<Map.Entry<String, Instant>> iterator =
-                  sessionCreationTimes.entrySet().iterator();
-              while (iterator.hasNext()) {
-                Map.Entry<String, Instant> entry = iterator.next();
-                if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
-                  sessions.remove(entry.getKey());
-                  iterator.remove();
-                }
-              }
-            }
+    scheduler.scheduleWithFixedDelay(() -> {
+      try {
+        LOGGER.info("Session expiration checker started...");
+
+        Instant currentTime = Instant.now();
+        Iterator<Map.Entry<String, Instant>> iterator = sessionCreationTimes.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+          Map.Entry<String, Instant> entry = iterator.next();
+          if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
+            sessions.remove(entry.getKey());
+            iterator.remove();
           }
-          LOGGER.info("Session expiration checker finished!");
-        } catch (InterruptedException e) {
-          LOGGER.error("An error occurred: ", e);
-          Thread.currentThread().interrupt();
         }
+        LOGGER.info("Session expiration checker finished!");
+
+      } catch (Exception e) {
+        LOGGER.error("An error occured: ", e);
       }
-    }).start();
+    }, SESSION_EXPIRATION_TIME, SESSION_EXPIRATION_TIME, TimeUnit.MILLISECONDS);
   }
 }

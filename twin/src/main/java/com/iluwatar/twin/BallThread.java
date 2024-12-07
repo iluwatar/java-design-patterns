@@ -24,55 +24,76 @@
  */
 package com.iluwatar.twin;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+
+    
+        
+          
+    
+
+        
+        Expand All
+    
+    @@ -40,24 +43,19 @@ public class BallThread extends Thread {
+  
 /**
  * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
  * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
  */
-
 @Slf4j
 public class BallThread extends Thread {
-
   @Setter
   private BallItem twin;
 
   private volatile boolean isSuspended;
 
-  private volatile boolean isRunning = true;
+  private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
 
   /**
    * Run the thread.
    */
   public void run() {
-
-    while (isRunning) {
+    scheduler.scheduleWithFixedDelay(() -> {
       if (!isSuspended) {
         twin.draw();
         twin.move();
       }
-      try {
-        Thread.sleep(250);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
-    }
+    }, 0, 250, TimeUnit.MILLISECONDS);
   }
 
   public void suspendMe() {
+
+    
+        
+          
+    
+
+        
+        Expand All
+    
+    @@ -70,9 +68,14 @@ public void resumeMe() {
+  
     isSuspended = true;
     LOGGER.info("Begin to suspend BallThread");
   }
-
   public void resumeMe() {
     isSuspended = false;
     LOGGER.info("Begin to resume BallThread");
   }
 
+  /**
+   * Stop the scheduled task.
+   */
   public void stopMe() {
-    this.isRunning = false;
     this.isSuspended = true;
+    if (scheduler != null) {
+      scheduler.shutdown();
+    }
   }
 }
-
