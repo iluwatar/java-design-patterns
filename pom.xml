@@ -36,16 +36,16 @@
   <description>Java Design Patterns</description>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <sonar-maven-plugin.version>4.0.0.4121</sonar-maven-plugin.version>
+    <sonar-maven-plugin.version>5.0.0.4389</sonar-maven-plugin.version>
     <spring-boot.version>2.7.5</spring-boot.version>
     <jacoco.version>0.8.12</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <htmlunit.version>4.4.0</htmlunit.version>
+    <htmlunit.version>4.7.0</htmlunit.version>
     <gson.version>2.11.0</gson.version>
     <guice.version>6.0.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
-    <maven-surefire-plugin.version>3.5.0</maven-surefire-plugin.version>
-    <maven-checkstyle-plugin.version>3.5.0</maven-checkstyle-plugin.version>
+    <maven-surefire-plugin.version>3.5.1</maven-surefire-plugin.version>
+    <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
     <license-maven-plugin.version>4.6</license-maven-plugin.version>
     <urm-maven-plugin.version>2.1.1</urm-maven-plugin.version>
     <slf4j.version>2.0.16</slf4j.version>
@@ -218,6 +218,7 @@
     <module>virtual-proxy</module>
     <module>function-composition</module>
     <module>microservices-distributed-tracing</module>
+    <module>microservices-idempotent-consumer</module>
   </modules>
   <repositories>
     <repository>
@@ -318,9 +319,8 @@
                 <descriptorRefs>
                   <descriptorRef>jar-with-dependencies</descriptorRef>
                 </descriptorRefs>
-                <!-- below two line make sure the fat jar is sharing the same name
-                                    as of project name -->
-                <finalName>${project.artifactId}</finalName>
+                <!-- below two line make sure the fat jar is sharing the same name as of project name -->
+                <finalName>${project.artifactId}-${project.version}</finalName>
                 <appendAssemblyId>false</appendAssemblyId>
               </configuration>
             </execution>

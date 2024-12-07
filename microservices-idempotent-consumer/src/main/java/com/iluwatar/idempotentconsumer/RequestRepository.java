@@ -22,53 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.gameloop;
+package com.iluwatar.idempotentconsumer;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.UUID;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 /**
- * GameLoop unit test class.
+ * This is a repository interface for the "Request" entity. It extends the JpaRepository interface from Spring Data JPA.
+ * JpaRepository comes with many operations out of the box, including standard CRUD operations.
+ * With JpaRepository, we are also able to leverage the power of Spring Data's query methods.
+ * The UUID parameter in JpaRepository refers to the type of the ID in the "Request" entity.
+ *
  */
-class GameLoopTest {
-
-  private GameLoop gameLoop;
-
-  /**
-   * Create mock implementation of GameLoop.
-   */
-  @BeforeEach
-  void setup() {
-    gameLoop = new GameLoop() {
-      @Override
-      protected void processGameLoop() {
-        throw new UnsupportedOperationException("Not supported yet.");
-      }
-    };
-  }
-
-  @AfterEach
-  void tearDown() {
-    gameLoop = null;
-  }
-
-  @Test
-  void testRun() {
-    gameLoop.run();
-    Assertions.assertEquals(GameStatus.RUNNING, gameLoop.status);
-  }
-
-  @Test
-  void testStop() {
-    gameLoop.stop();
-    Assertions.assertEquals(GameStatus.STOPPED, gameLoop.status);
-  }
-
-  @Test
-  void testIsGameRunning() {
-    assertFalse(gameLoop.isGameRunning());
-  }
+@Repository
+public interface RequestRepository extends JpaRepository<Request, UUID> {
 }

@@ -3222,6 +3222,78 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "LakshyaPunyani-01",
+      "name": "LakshyaPunyani-01",
+      "avatar_url": "https://avatars.githubusercontent.com/u/103628913?v=4",
+      "profile": "https://github.com/LakshyaPunyani-01",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jasonjyu",
+      "name": "jasonjyu",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10333076?v=4",
+      "profile": "https://github.com/jasonjyu",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "jeffmorrison",
+      "name": "jeffmorrison",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26047158?v=4",
+      "profile": "https://github.com/jeffmorrison",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "dmgodoy",
+      "name": "David M.",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10840681?v=4",
+      "profile": "https://github.com/dmgodoy",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "apophizzz",
+      "name": "Patrick Kleindienst",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12052783?v=4",
+      "profile": "https://github.com/apophizzz",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "proceane",
+      "name": "Juyeon",
+      "avatar_url": "https://avatars.githubusercontent.com/u/62143949?v=4",
+      "profile": "https://github.com/proceane",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "mammadyahyayev",
+      "name": "Mammad Yahyayev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66476643?v=4",
+      "profile": "https://mammadyahya.vercel.app",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "SalmaAzeem",
+      "name": "Salma",
+      "avatar_url": "https://avatars.githubusercontent.com/u/121863224?v=4",
+      "profile": "https://github.com/SalmaAzeem",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,

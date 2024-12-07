@@ -22,53 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.gameloop;
+package com.iluwatar.idempotentconsumer;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import java.util.UUID;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * GameLoop unit test class.
+ * The {@code Request} class represents a request with a unique UUID and a status.
+ * The status of a request can be one of four values: PENDING, STARTED, COMPLETED, or INERROR.
  */
-class GameLoopTest {
-
-  private GameLoop gameLoop;
-
-  /**
-   * Create mock implementation of GameLoop.
-   */
-  @BeforeEach
-  void setup() {
-    gameLoop = new GameLoop() {
-      @Override
-      protected void processGameLoop() {
-        throw new UnsupportedOperationException("Not supported yet.");
-      }
-    };
+@Entity
+@NoArgsConstructor
+@Data
+public class Request {
+  enum Status {
+    PENDING,
+    STARTED,
+    COMPLETED
   }
 
-  @AfterEach
-  void tearDown() {
-    gameLoop = null;
+  @Id
+  private UUID uuid;
+  private Status status;
+
+  public Request(UUID uuid) {
+    this(uuid, Status.PENDING);
   }
 
-  @Test
-  void testRun() {
-    gameLoop.run();
-    Assertions.assertEquals(GameStatus.RUNNING, gameLoop.status);
-  }
-
-  @Test
-  void testStop() {
-    gameLoop.stop();
-    Assertions.assertEquals(GameStatus.STOPPED, gameLoop.status);
-  }
-
-  @Test
-  void testIsGameRunning() {
-    assertFalse(gameLoop.isGameRunning());
+  public Request(UUID uuid, Status status) {
+    this.uuid = uuid;
+    this.status = status;
   }
 }

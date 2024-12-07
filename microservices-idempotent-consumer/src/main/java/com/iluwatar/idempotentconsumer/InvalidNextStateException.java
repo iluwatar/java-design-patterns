@@ -22,53 +22,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.gameloop;
-
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+package com.iluwatar.idempotentconsumer;
 
 /**
- * GameLoop unit test class.
+ * This exception is thrown when an invalid transition is attempted in the Statemachine
+ * for the request status. This can occur when attempting to move to a state that is not valid
+ * from the current state.
  */
-class GameLoopTest {
-
-  private GameLoop gameLoop;
-
-  /**
-   * Create mock implementation of GameLoop.
-   */
-  @BeforeEach
-  void setup() {
-    gameLoop = new GameLoop() {
-      @Override
-      protected void processGameLoop() {
-        throw new UnsupportedOperationException("Not supported yet.");
-      }
-    };
-  }
-
-  @AfterEach
-  void tearDown() {
-    gameLoop = null;
-  }
-
-  @Test
-  void testRun() {
-    gameLoop.run();
-    Assertions.assertEquals(GameStatus.RUNNING, gameLoop.status);
-  }
-
-  @Test
-  void testStop() {
-    gameLoop.stop();
-    Assertions.assertEquals(GameStatus.STOPPED, gameLoop.status);
-  }
-
-  @Test
-  void testIsGameRunning() {
-    assertFalse(gameLoop.isGameRunning());
+public class InvalidNextStateException extends RuntimeException {
+  public InvalidNextStateException(String s) {
+    super(s);
   }
 }

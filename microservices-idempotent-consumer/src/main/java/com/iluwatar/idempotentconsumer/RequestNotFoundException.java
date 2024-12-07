@@ -22,53 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.gameloop;
+package com.iluwatar.idempotentconsumer;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import java.util.UUID;
 
 /**
- * GameLoop unit test class.
+ * This class extends the RuntimeException class to handle scenarios where a Request is not found.
+ * It is intended to be used where you would like to have a custom exception that signals that a requested object or action
+ * was not found in the system, based on the UUID of the request.
+ *
  */
-class GameLoopTest {
-
-  private GameLoop gameLoop;
-
-  /**
-   * Create mock implementation of GameLoop.
-   */
-  @BeforeEach
-  void setup() {
-    gameLoop = new GameLoop() {
-      @Override
-      protected void processGameLoop() {
-        throw new UnsupportedOperationException("Not supported yet.");
-      }
-    };
-  }
-
-  @AfterEach
-  void tearDown() {
-    gameLoop = null;
-  }
-
-  @Test
-  void testRun() {
-    gameLoop.run();
-    Assertions.assertEquals(GameStatus.RUNNING, gameLoop.status);
-  }
-
-  @Test
-  void testStop() {
-    gameLoop.stop();
-    Assertions.assertEquals(GameStatus.STOPPED, gameLoop.status);
-  }
-
-  @Test
-  void testIsGameRunning() {
-    assertFalse(gameLoop.isGameRunning());
+public class RequestNotFoundException extends RuntimeException {
+  RequestNotFoundException(UUID uuid) {
+    super(String.format("Request %s not found", uuid));
   }
 }
