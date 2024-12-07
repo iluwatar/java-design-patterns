@@ -219,6 +219,7 @@
     <module>microservices-distributed-tracing</module>
     <module>microservices-idempotent-consumer</module>
       <module>FiniteStateMachine</module>
+      <module>fsm</module>
   </modules>
   <repositories>
     <repository>

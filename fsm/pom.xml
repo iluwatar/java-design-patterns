@@ -9,7 +9,7 @@
         <version>1.26.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>FiniteStateMachine</artifactId>
+    <artifactId>fsm</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -18,8 +18,14 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -1,4 +1,4 @@
-package trafficlight;
+package com.iluwatar.trafficlight;
 
 /**
  * Context class for managing the current state and transitions.
@@ -39,4 +39,5 @@ public class TrafficLightContext {
     return currentState;
   }
 }
+
 

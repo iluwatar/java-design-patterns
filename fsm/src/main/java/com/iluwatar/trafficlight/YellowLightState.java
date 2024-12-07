@@ -1,4 +1,4 @@
-package trafficlight;
+package com.iluwatar.trafficlight;
 
 /**
  * Concrete state representing the Yellow Light.
@@ -10,3 +10,4 @@ public class YellowLightState implements TrafficLightState {
     context.setState(new RedLightState());
   }
 }
+

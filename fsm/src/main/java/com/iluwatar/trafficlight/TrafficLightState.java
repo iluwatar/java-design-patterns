@@ -1,4 +1,4 @@
-package trafficlight;
+package com.iluwatar.trafficlight;
 
 /**
  * State interface for traffic light states.
@@ -12,6 +12,7 @@ public interface TrafficLightState {
    */
   void handleEvent(TrafficLightContext context);
 }
+
 
 
 

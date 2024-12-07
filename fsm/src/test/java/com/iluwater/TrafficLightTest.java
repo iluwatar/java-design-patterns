@@ -1,7 +1,11 @@
-package trafficlight;
+package com.iluwater;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.iluwatar.trafficlight.GreenLightState;
+import com.iluwatar.trafficlight.RedLightState;
+import com.iluwatar.trafficlight.TrafficLightContext;
+import com.iluwatar.trafficlight.YellowLightState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -55,3 +59,4 @@ public class TrafficLightTest {
     assertTrue(context.getCurrentState() instanceof RedLightState);
   }
 }
+

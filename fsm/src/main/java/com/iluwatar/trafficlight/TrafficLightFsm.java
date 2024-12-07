@@ -1,7 +1,4 @@
-/**
- * Package for simulating a traffic light system using states.
- */
-package trafficlight;
+package com.iluwatar.trafficlight;
 
 /**
  * Simulates a traffic light system using a Finite State Machine (FSM).
@@ -23,6 +20,7 @@ public class TrafficLightFsm {
     }
   }
 }
+
 
 
 
