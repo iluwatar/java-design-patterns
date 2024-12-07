@@ -1,0 +1,47 @@
+@startuml
+package com.iluwatar.viewhelper {
+  class ViewHelper {
+    <<interface>>
+    + handle(object : T) : String
+  }
+
+  class User {
+    - name : String
+    - age : int
+    - email : String
+    + User(name : String, age : int, email : String)
+    + getName() : String
+    + getAge() : int
+    + getEmail() : String
+  }
+
+  class Product {
+    - id : int
+    - name : String
+    - price : double
+    + Product(id : int, name : String, price : double)
+    + getId() : int
+    + getName() : String
+    + getPrice() : double
+  }
+
+  class UserViewHelper {
+    + handle(user : User) : String
+  }
+
+  class ProductViewHelper {
+    + handle(product : Product) : String
+  }
+
+  class ViewHelperApp {
+    - LOGGER : Logger {static}
+    + main(args : String[]) {static}
+  }
+
+  ViewHelperApp ..> UserViewHelper : Uses
+  ViewHelperApp ..> ProductViewHelper : Uses
+  UserViewHelper ..|> ViewHelper : Implements
+  ProductViewHelper ..|> ViewHelper : Implements
+}
+
+@enduml
