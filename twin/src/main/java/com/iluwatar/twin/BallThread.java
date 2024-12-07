@@ -32,7 +32,6 @@ import lombok.extern.slf4j.Slf4j;
  * This class is a UI thread for drawing the {@link BallItem}, and provides methods for suspend
  * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
  */
-
 @Slf4j
 public class BallThread extends Thread {
 
@@ -43,6 +42,11 @@ public class BallThread extends Thread {
   private final Object lock = new Object();
   private final BallItem twin;
 
+  /**
+   * Constructor.
+   *
+   * @param twin the BallItem instance
+   */
   public BallThread(BallItem twin) {
     this.twin = twin;
   }
