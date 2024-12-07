@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    This project is licensed under the MIT license. Module Monolithic-Ecommerce is part of the Java Design Patterns project.
+    This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
 
     The MIT License
     Copyright © 2014-2022 Ilkka Seppälä
@@ -81,3 +81,5 @@
     </dependency>
   </dependencies>
 </project>
+
+
