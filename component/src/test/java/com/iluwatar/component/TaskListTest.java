@@ -9,7 +9,7 @@ public class TaskListTest
   @Test
   public void testCreateFirstTask()
   {
-    // Test creating the first task
+    // Test creating the first task.
     Task task = new FirstTask("Study for the exam");
     assertNotNull(task, "Task should not be exit");
     assertEquals("Study for the exam", task.getTitle(), "Task title should match");
