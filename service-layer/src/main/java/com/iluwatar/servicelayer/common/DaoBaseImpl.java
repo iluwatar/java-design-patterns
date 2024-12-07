@@ -74,6 +74,27 @@ public abstract class DaoBaseImpl<E extends BaseEntity> implements Dao<E> {
     }
     return result;
   }
+  @Override
+  public E findByName(String name) {
+    Transaction tx = null;
+    E result;
+    try (var session = getSessionFactory().openSession()) {
+      tx = session.beginTransaction();
+      CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+      CriteriaQuery<E> builderQuery = criteriaBuilder.createQuery(persistentClass);
+      Root<E> root = builderQuery.from(persistentClass);
+      builderQuery.select(root).where(criteriaBuilder.equal(root.get("name"), name));
+      Query<E> query = session.createQuery(builderQuery);
+      result = query.uniqueResult();
+      tx.commit();
+    } catch (Exception e) {
+      if (tx != null) {
+        tx.rollback();
+      }
+      throw e;
+    }
+    return result;
+  }
 
   @Override
   public void persist(E entity) {

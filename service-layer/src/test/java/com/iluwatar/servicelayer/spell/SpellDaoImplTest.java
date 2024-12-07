@@ -40,16 +40,4 @@ class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
     super(Spell::new, new SpellDaoImpl());
   }
 
-  @Test
-  void testFindByName() {
-    final var dao = getDao();
-    final var allSpells = dao.findAll();
-    for (final var spell : allSpells) {
-      final var spellByName = dao.findByName(spell.getName());
-      assertNotNull(spellByName);
-      assertEquals(spell.getId(), spellByName.getId());
-      assertEquals(spell.getName(), spellByName.getName());
-    }
-  }
-
 }

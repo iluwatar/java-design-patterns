@@ -24,11 +24,8 @@
  */
 package com.iluwatar.servicelayer.wizard;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import com.iluwatar.servicelayer.common.BaseDaoTest;
-import org.junit.jupiter.api.Test;
+
 
 /**
  * WizardDaoImplTest
@@ -38,18 +35,6 @@ class WizardDaoImplTest extends BaseDaoTest<Wizard, WizardDaoImpl> {
 
   public WizardDaoImplTest() {
     super(Wizard::new, new WizardDaoImpl());
-  }
-
-  @Test
-  void testFindByName() {
-    final var dao = getDao();
-    final var allWizards = dao.findAll();
-    for (final var spell : allWizards) {
-      final var byName = dao.findByName(spell.getName());
-      assertNotNull(byName);
-      assertEquals(spell.getId(), byName.getId());
-      assertEquals(spell.getName(), byName.getName());
-    }
   }
 
 }

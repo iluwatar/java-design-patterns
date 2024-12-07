@@ -141,5 +141,16 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
     assertEquals(expectedName, entity.getName());
     assertEquals(expectedName, entity.toString());
   }
+  @Test
+  void testFindByName() {
+    final var dao = getDao();
+    final var allEntities = dao.findAll();
+    for (final var entity : allEntities) {
+      final var entityByName = dao.findByName(entity.getName());
+      assertNotNull(entityByName);
+      assertEquals(entity.getId(), entityByName.getId());
+      assertEquals(entity.getName(), entityByName.getName());
+    }
+  }
 
 }

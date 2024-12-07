@@ -40,16 +40,4 @@ class SpellbookDaoImplTest extends BaseDaoTest<Spellbook, SpellbookDaoImpl> {
     super(Spellbook::new, new SpellbookDaoImpl());
   }
 
-  @Test
-  void testFindByName() {
-    final var dao = getDao();
-    final var allBooks = dao.findAll();
-    for (final var book : allBooks) {
-      final var spellByName = dao.findByName(book.getName());
-      assertNotNull(spellByName);
-      assertEquals(book.getId(), spellByName.getId());
-      assertEquals(book.getName(), spellByName.getName());
-    }
-  }
-
 }

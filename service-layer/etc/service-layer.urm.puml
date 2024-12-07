@@ -22,6 +22,7 @@ package com.iluwatar.servicelayer.common {
     + findAll() : List<E extends BaseEntity> {abstract}
     + merge(E extends BaseEntity) : E extends BaseEntity {abstract}
     + persist(E extends BaseEntity) {abstract}
+    + findByName(String) : E extends BaseEntity {abstract}
   }
   abstract class DaoBaseImpl<E extends BaseEntity> {
     # persistentClass : Class<E extends BaseEntity>
@@ -29,6 +30,7 @@ package com.iluwatar.servicelayer.common {
     + delete(entity : E extends BaseEntity)
     + find(id : Long) : E extends BaseEntity
     + findAll() : List<E extends BaseEntity>
+    + findByName(name : String) : E extends BaseEntity
     # getSessionFactory() : SessionFactory
     + merge(entity : E extends BaseEntity) : E extends BaseEntity
     + persist(entity : E extends BaseEntity)
@@ -71,11 +73,9 @@ package com.iluwatar.servicelayer.wizard {
     + toString() : String
   }
   interface WizardDao {
-    + findByName(String) : Wizard {abstract}
   }
   class WizardDaoImpl {
     + WizardDaoImpl()
-    + findByName(name : String) : Wizard
   }
 }
 package com.iluwatar.servicelayer.spellbook {
@@ -98,11 +98,9 @@ package com.iluwatar.servicelayer.spellbook {
     + toString() : String
   }
   interface SpellbookDao {
-    + findByName(String) : Spellbook {abstract}
   }
   class SpellbookDaoImpl {
     + SpellbookDaoImpl()
-    + findByName(name : String) : Spellbook
   }
 }
 package com.iluwatar.servicelayer.spell {
@@ -121,11 +119,9 @@ package com.iluwatar.servicelayer.spell {
     + toString() : String
   }
   interface SpellDao {
-    + findByName(String) : Spell {abstract}
   }
   class SpellDaoImpl {
     + SpellDaoImpl()
-    + findByName(name : String) : Spell
   }
 }
 package com.iluwatar.servicelayer.app {
@@ -142,18 +138,18 @@ MagicServiceImpl -->  "-spellbookDao" SpellbookDao
 MagicServiceImpl -->  "-spellDao" SpellDao
 Spellbook -->  "-spells" Spell
 Spellbook -->  "-wizards" Wizard
-DaoBaseImpl ..|> Dao 
-MagicServiceImpl ..|> MagicService 
-Spell --|> BaseEntity 
-SpellDao --|> Dao 
-SpellDaoImpl ..|> SpellDao 
-SpellDaoImpl --|> DaoBaseImpl 
-Spellbook --|> BaseEntity 
-SpellbookDao --|> Dao 
-SpellbookDaoImpl ..|> SpellbookDao 
-SpellbookDaoImpl --|> DaoBaseImpl 
-Wizard --|> BaseEntity 
-WizardDao --|> Dao 
-WizardDaoImpl ..|> WizardDao 
-WizardDaoImpl --|> DaoBaseImpl 
+DaoBaseImpl ..|> Dao
+MagicServiceImpl ..|> MagicService
+Spell --|> BaseEntity
+SpellDao --|> Dao
+SpellDaoImpl ..|> SpellDao
+SpellDaoImpl --|> DaoBaseImpl
+Spellbook --|> BaseEntity
+SpellbookDao --|> Dao
+SpellbookDaoImpl ..|> SpellbookDao
+SpellbookDaoImpl --|> DaoBaseImpl
+Wizard --|> BaseEntity
+WizardDao --|> Dao
+WizardDaoImpl ..|> WizardDao
+WizardDaoImpl --|> DaoBaseImpl
 @enduml
