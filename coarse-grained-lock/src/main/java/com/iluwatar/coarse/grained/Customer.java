@@ -1,15 +1,23 @@
 package com.iluwatar.coarse.grained;
 
-
+/**
+ * Represents a customer with a unique ID and a name.
+ * Provides methods to access and modify customer attributes.
+ */
 public class Customer {
 
-
+  /** The name of the customer. */
   private String name;
 
-
+  /** The unique identifier for the customer. */
   private int customerId;
 
-
+  /**
+   * Constructs a {@code Customer} object with the specified ID and name.
+   *
+   * @param customerId the unique ID of the customer
+   * @param name       the name of the customer
+   */
   public Customer(int customerId, String name) {
     this.customerId = customerId;
     this.name = name;
