@@ -35,15 +35,9 @@ public class App {
    * @param args the input arguments
    */
   public static void main(String[] args) {
-    ShoppingFacade shoppingFacade1 = new ShoppingFacade();
-    shoppingFacade1.addToCart(1);
-    shoppingFacade1.order();
-    shoppingFacade1.selectPaymentMethod("cash");
-
-    ShoppingFacade shoppingFacade2 = new ShoppingFacade();
-    shoppingFacade1.addToCart(2);
-    shoppingFacade2.order();
-    shoppingFacade2.selectPaymentMethod("credit");
-
+    ShoppingFacade shoppingFacade = new ShoppingFacade();
+    shoppingFacade.addToCart(1);
+    shoppingFacade.order();
+    shoppingFacade.selectPaymentMethod("cash");
   }
 }
