@@ -39,7 +39,7 @@ public class TaskListTest
   @Test
   public void testRemoveTaskFromTaskList()
   {
-    // Test removing a task from a task list
+
     TaskList taskList = new TaskList("My Task List");
     Task task = new FirstTask("Complete homework");
     taskList.addTask(task);
