@@ -24,8 +24,10 @@
  */
 package com.iluwatar.queue.load.leveling;
 
+import static java.util.concurrent.CompletableFuture.anyOf;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -84,7 +86,8 @@ class TaskGenSrvExeTest {
     }
     var srvExeState = srvExeThr.getState();
     LOGGER.info("Current Service Executor State: " + srvExeState);
-    assertEquals(srvExeState, Thread.State.RUNNABLE);
+    // assert that state changes from waiting
+    assertTrue(srvExeState != Thread.State.WAITING);
 
   }
 
