@@ -8,7 +8,7 @@
         <version>1.26.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>fsm</artifactId>
+    <artifactId>FiniteStateMachine</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
