@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.iluwatar.trafficlight.GreenLightState;
 import com.iluwatar.trafficlight.RedLightState;
 import com.iluwatar.trafficlight.TrafficLightContext;
+import com.iluwatar.trafficlight.TrafficLightFsm;
 import com.iluwatar.trafficlight.YellowLightState;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -151,7 +152,25 @@ public class TrafficLightTest {
     context.handleEvent(); // Yellow -> Red
     assertTrue(context.getCurrentState() instanceof RedLightState);
   }
+
+  // Test if state changes properly when reset in the middle of cycles
+  @Test
+  void testResetMidCycle() {
+    context.handleEvent(); // Red -> Green
+    context.setState(new YellowLightState()); // Manually set Yellow
+    assertTrue(context.getCurrentState() instanceof YellowLightState);
+    context.handleEvent(); // Yellow -> Red
+    assertTrue(context.getCurrentState() instanceof RedLightState);
+  }
+
+  // Test for traffic light FSM running through multiple cycles
+  @Test
+  void testTrafficLightFsmCycles() {
+    // Start the FSM and cycle through multiple events
+    TrafficLightFsm.main(new String[0]);  // This will run the logic in the main function of TrafficLightFsm
+  }
 }
+
 
 
 
