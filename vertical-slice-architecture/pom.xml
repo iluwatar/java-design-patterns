@@ -35,26 +35,77 @@
         <version>1.26.0-SNAPSHOT</version>
     </parent>
     <dependencies>
+        <!--
+          Exclude problematic versions from the parent:
+
+          The parent POM includes newer versions of SLF4J (2.x) and Logback (1.5.x)
+          that are not compatible with the Spring Boot 2.7.x logging setup, which
+          relies on SLF4J 1.7.x and Logback 1.2.x. If these newer versions remain,
+          they cause runtime errors due to classes like org/slf4j/impl/StaticLoggerBinder
+          no longer existing where Spring Boot expects them.
+
+          By excluding these dependencies, we ensure that our module only uses versions
+          of SLF4J and Logback that align with the Spring Boot ecosystem. This approach
+          helps prevent `NoClassDefFoundError` issues and ensures stable, expected
+          logging behavior within this module.
+        -->        <dependency>
+            <groupId>com.iluwatar</groupId>
+            <artifactId>java-design-patterns</artifactId>
+            <version>1.26.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-classic</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>ch.qos.logback</groupId>
+                    <artifactId>logback-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Add Spring Boot starters -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Force recommended SLF4J and Logback versions if you must specify them explicitly -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.36</version> <!-- A version compatible with Spring Boot 2.7.x -->
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.2.11</version> <!-- A version compatible with Spring Boot 2.7.x -->
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-core</artifactId>
+            <version>1.2.11</version>
+        </dependency>
+
     </dependencies>
+
 
     <build>
         <plugins>
