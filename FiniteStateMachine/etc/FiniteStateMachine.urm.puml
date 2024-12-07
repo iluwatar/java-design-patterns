@@ -1,0 +1,34 @@
+@startuml
+package com.iluwatar.trafficlight {
+  class GreenLightState {
+    + GreenLightState()
+    + handleEvent(context : TrafficLightContext)
+  }
+  class RedLightState {
+    + RedLightState()
+    + handleEvent(context : TrafficLightContext)
+  }
+  class TrafficLightContext {
+    - currentState : TrafficLightState
+    + TrafficLightContext(initialState : TrafficLightState)
+    + getCurrentState() : TrafficLightState
+    + handleEvent()
+    + setState(newState : TrafficLightState)
+  }
+  class TrafficLightFsm {
+    + TrafficLightFsm()
+    + main(args : String[]) {static}
+  }
+  interface TrafficLightState {
+    + handleEvent(TrafficLightContext) {abstract}
+  }
+  class YellowLightState {
+    + YellowLightState()
+    + handleEvent(context : TrafficLightContext)
+  }
+}
+TrafficLightContext -->  "-currentState" TrafficLightState
+GreenLightState ..|> TrafficLightState 
+RedLightState ..|> TrafficLightState 
+YellowLightState ..|> TrafficLightState 
+@enduml
