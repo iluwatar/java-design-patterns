@@ -24,11 +24,7 @@
  */
 package com.iluwatar.servicelayer.spell;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import com.iluwatar.servicelayer.common.BaseDaoTest;
-import org.junit.jupiter.api.Test;
 
 /**
  * SpellDaoImplTest
