@@ -99,6 +99,59 @@ public class TrafficLightTest {
     context.setState(new RedLightState());
     assertTrue(context.getCurrentState() instanceof RedLightState);
   }
+
+  // Additional tests for edge cases
+
+  // Test if state is correctly set in the middle of a cycle
+  @Test
+  void testMidCycleStateSet() {
+    context.handleEvent(); // Red -> Green
+    assertTrue(context.getCurrentState() instanceof GreenLightState);
+
+    // Set state manually in the middle of the cycle
+    context.setState(new YellowLightState());
+    assertTrue(context.getCurrentState() instanceof YellowLightState);
+
+    context.handleEvent(); // Yellow -> Red
+    assertTrue(context.getCurrentState() instanceof RedLightState);
+  }
+
+  // Test if context properly resets after complete cycle
+  @Test
+  void testContextResetAfterFullCycle() {
+    context.handleEvent(); // Red -> Green
+    context.handleEvent(); // Green -> Yellow
+    context.handleEvent(); // Yellow -> Red
+
+    // Reset and verify again
+    context.setState(new GreenLightState());
+    assertTrue(context.getCurrentState() instanceof GreenLightState);
+
+    context.handleEvent(); // Green -> Yellow
+    assertTrue(context.getCurrentState() instanceof YellowLightState);
+
+    context.handleEvent(); // Yellow -> Red
+    assertTrue(context.getCurrentState() instanceof RedLightState);
+  }
+
+  // Test if the initial state remains unchanged after multiple cycles
+  @Test
+  void testMultipleCycles() {
+    context.handleEvent(); // Red -> Green
+    context.handleEvent(); // Green -> Yellow
+    context.handleEvent(); // Yellow -> Red
+
+    // Perform another full cycle and ensure the state remains correct
+    context.handleEvent(); // Red -> Green
+    assertTrue(context.getCurrentState() instanceof GreenLightState);
+
+    context.handleEvent(); // Green -> Yellow
+    assertTrue(context.getCurrentState() instanceof YellowLightState);
+
+    context.handleEvent(); // Yellow -> Red
+    assertTrue(context.getCurrentState() instanceof RedLightState);
+  }
 }
+
 
 
