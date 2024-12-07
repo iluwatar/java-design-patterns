@@ -192,6 +192,70 @@ class MonolithicAppTest {
     });
     assertEquals("Not enough stock for product 1", exception.getMessage());
 }
+  @Test
+  void testProductConAddProduct() {
+    ProductRepo mockProductRepo = mock(ProductRepo.class);
+
+    Products mockProduct = new Products(1L, "Smartphone", "High-end smartphone", 1000.00, 20);
+
+    when(mockProductRepo.save(any(Products.class))).thenReturn(mockProduct);
+
+    ProductCon productCon = new ProductCon(mockProductRepo);
+
+    Products savedProduct = productCon.addProduct(mockProduct);
+
+    verify(mockProductRepo, times(1)).save(any(Products.class));
+
+    assertNotNull(savedProduct);
+    assertEquals("Smartphone", savedProduct.getName());
+    assertEquals("High-end smartphone", savedProduct.getDescription());
+    assertEquals(1000.00, savedProduct.getPrice());
+    assertEquals(20, savedProduct.getStock());
+  }
+
+  @Test
+  void testRun() {
+    String simulatedInput = """
+        1
+        John Doe
+        john@example.com
+        password123
+        2
+        Laptop
+        Gaming Laptop
+        1200.50
+        10
+        3
+        1
+        1
+        2
+        4
+        """;                                          // Exit
+    System.setIn(new ByteArrayInputStream(simulatedInput.getBytes(StandardCharsets.UTF_8)));
+
+    ByteArrayOutputStream outputTest = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(outputTest, true, StandardCharsets.UTF_8));
+
+    when(userService.registerUser(any(User.class))).thenReturn(new User(1L, "John Doe", "john@example.com", "password123"));
+    when(productService.addProduct(any(Products.class))).thenReturn(new Products(1L, "Laptop", "Gaming Laptop", 1200.50, 10));
+    when(orderService.placeOrder(anyLong(), anyLong(), anyInt())).thenReturn(new Orders(1L, new User(1L, "John Doe", "john@example.com","password123" ), new Products(1L, "Laptop", "Gaming Laptop", 1200.50, 10), 5, 6002.50));
+
+    ecommerceApp.run();
+
+    verify(userService, times(1)).registerUser(any(User.class));
+    verify(productService, times(1)).addProduct(any(Products.class));
+    verify(orderService, times(1)).placeOrder(anyLong(), anyLong(), anyInt());
+
+    String output = outputTest.toString(StandardCharsets.UTF_8);
+    assertTrue(output.contains("Welcome to the Monolithic E-commerce CLI!"));
+    assertTrue(output.contains("Choose an option:"));
+    assertTrue(output.contains("Register User"));
+    assertTrue(output.contains("Add Product"));
+    assertTrue(output.contains("Place Order"));
+    assertTrue(output.contains("Exiting the application. Goodbye!"));
+}
+
+
 
 
 }
