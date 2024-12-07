@@ -54,6 +54,9 @@ The `State` class holds the representation of the state of the application that 
 ```java
 package com.iluwatar.bloc;
 
+import lombok.Getter;
+
+@Getter
 public class State {
     private final int value;
 
@@ -61,9 +64,6 @@ public class State {
         this.value = value;
     }
 
-    public int getValue() {
-        return value;
-    }
 }
 ```
 The `ListenerManager` interface manages the basic operations for the listeners and is implemented by bloc class
