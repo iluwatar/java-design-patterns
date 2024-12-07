@@ -1,58 +1,34 @@
-/*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
- * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package com.iluwatar.logaggregation;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Responsible for collecting and buffering logs from different services.
- * Once the logs reach a certain threshold or after a certain time interval,
- * they are flushed to the central log store. This class ensures logs are collected
- * and processed asynchronously and efficiently, providing both an immediate collection
- * and periodic flushing.
+ * Collects and buffers logs from different services, periodically flushing them
+ * to a central log store based on a time interval or buffer threshold.
  */
 @Slf4j
 public class LogAggregator {
 
   private static final int BUFFER_THRESHOLD = 3;
+  private static final int FLUSH_INTERVAL = 5; // Interval in seconds for periodic flushing
+
   private final CentralLogStore centralLogStore;
   private final ConcurrentLinkedQueue<LogEntry> buffer = new ConcurrentLinkedQueue<>();
   private final LogLevel minLogLevel;
-  private final ExecutorService executorService = Executors.newSingleThreadExecutor();
   private final AtomicInteger logCount = new AtomicInteger(0);
 
+  private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+
   /**
-   * constructor of LogAggregator.
+   * Constructor of LogAggregator.
    *
-   * @param centralLogStore central log store implement
-   * @param minLogLevel min log level to store log
+   * @param centralLogStore central log store implementation
+   * @param minLogLevel     minimum log level to store log
    */
   public LogAggregator(CentralLogStore centralLogStore, LogLevel minLogLevel) {
     this.centralLogStore = centralLogStore;
@@ -61,7 +37,8 @@ public class LogAggregator {
   }
 
   /**
-   * Collects a given log entry, and filters it by the defined log level.
+   * Collects a log entry and buffers it for eventual flushing to the central log store.
+   * Filters logs based on the configured minimum log level.
    *
    * @param logEntry The log entry to collect.
    */
@@ -87,34 +64,41 @@ public class LogAggregator {
    * Stops the log aggregator service and flushes any remaining logs to
    * the central log store.
    *
-   * @throws InterruptedException If any thread has interrupted the current thread.
+   * @throws InterruptedException If interrupted while shutting down.
    */
   public void stop() throws InterruptedException {
-    executorService.shutdownNow();
-    if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
-      LOGGER.error("Log aggregator did not terminate.");
+    LOGGER.info("Stopping log aggregator...");
+    scheduler.shutdown();
+    if (!scheduler.awaitTermination(10, TimeUnit.SECONDS)) {
+      LOGGER.error("Log aggregator did not terminate cleanly.");
     }
     flushBuffer();
   }
 
+  /**
+   * Flushes the buffered logs to the central log store.
+   */
   private void flushBuffer() {
+    LOGGER.info("Flushing buffer...");
     LogEntry logEntry;
     while ((logEntry = buffer.poll()) != null) {
       centralLogStore.storeLog(logEntry);
       logCount.decrementAndGet();
     }
+    LOGGER.info("Buffer flushed.");
   }
 
+  /**
+   * Starts the periodic buffer flusher task using a scheduled executor service.
+   */
   private void startBufferFlusher() {
-    executorService.execute(() -> {
-      while (!Thread.currentThread().isInterrupted()) {
-        try {
-          Thread.sleep(5000); // Flush every 5 seconds.
-          flushBuffer();
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-        }
+    scheduler.scheduleAtFixedRate(() -> {
+      try {
+        LOGGER.info("Periodic buffer flush initiated...");
+        flushBuffer();
+      } catch (Exception e) {
+        LOGGER.error("Error during buffer flush", e);
       }
-    });
+    }, FLUSH_INTERVAL, FLUSH_INTERVAL, TimeUnit.SECONDS);
   }
 }

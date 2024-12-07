@@ -24,39 +24,32 @@
  */
 package com.iluwatar.queue.load.leveling;
 
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * ServiceExecuotr class. This class will pick up Messages one by one from the Blocking Queue and
- * process them.
- */
 @Slf4j
 public class ServiceExecutor implements Runnable {
+    private final BlockingQueue<String> msgQueue;
 
-  private final MessageQueue msgQueue;
-
-  public ServiceExecutor(MessageQueue msgQueue) {
-    this.msgQueue = msgQueue;
-  }
-
-  /**
-   * The ServiceExecutor thread will retrieve each message and process it.
-   */
-  public void run() {
-    try {
-      while (!Thread.currentThread().isInterrupted()) {
-        var msg = msgQueue.retrieveMsg();
-
-        if (null != msg) {
-          LOGGER.info(msg + " is served.");
-        } else {
-          LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
-        }
-
-        Thread.sleep(1000);
-      }
-    } catch (Exception e) {
-      LOGGER.error(e.getMessage());
+    public ServiceExecutor(BlockingQueue<String> msgQueue) {
+        this.msgQueue = msgQueue;
     }
-  }
+
+    @Override
+    public void run() {
+        try {
+            while (!Thread.currentThread().isInterrupted()) {
+                String msg = msgQueue.poll(1, TimeUnit.SECONDS);  // Wait for message with timeout
+
+                if (msg != null) {
+                    LOGGER.info(msg + " is served.");
+                } else {
+                    LOGGER.info("Service Executor: Waiting for Messages to serve...");
+                }
+            }
+        } catch (InterruptedException e) {
+            LOGGER.error("Service Executor interrupted: " + e.getMessage());
+        }
+    }
 }
