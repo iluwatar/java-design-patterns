@@ -100,10 +100,6 @@ Name: Wireless Mouse
 Price: $25.99
 Description: Ergonomic wireless mouse with USB receiver. successfully added to the cart
 19:43:17.910 [main] INFO com.iluwatar.sessionfacade.OrderService -- Client has chosen to order [ID: 1
-Name: Wireless Mouse
-Price: $25.99
-Description: Ergonomic wireless mouse with USB receiver.]
-19:43:17.910 [main] INFO com.iluwatar.sessionfacade.PaymentService -- Client have chosen cash payment option
 ```
 
 This is a basic example of the Session Facade design pattern. The actual implementation would depend on specific requirements of your application.
