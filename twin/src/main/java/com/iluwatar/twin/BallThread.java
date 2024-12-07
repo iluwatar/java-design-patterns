@@ -6,7 +6,7 @@
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including but not limited to the rights
+ * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
@@ -55,15 +55,14 @@ public class BallThread extends Thread {
   public void run() {
     try {
       while (isRunning) {
-        if (isSuspended) {
-          synchronized (lock) {
+        synchronized (lock) {
+          while (isSuspended) {
             lock.wait();
           }
-        } else {
-          twin.doDraw();
-          twin.move();
-          Thread.sleep(250);
         }
+        twin.doDraw();
+        twin.move();
+        Thread.sleep(250);
       }
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
@@ -83,21 +82,18 @@ public class BallThread extends Thread {
    * Notify run to resume.
    */
   public void resumeMe() {
-    isSuspended = false;
-    LOGGER.info("Begin to resume BallThread");
     synchronized (lock) {
+      isSuspended = false;
       lock.notifyAll();
     }
+    LOGGER.info("Begin to resume BallThread");
   }
 
   /**
    * Stop running thread.
    */
   public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
-    synchronized (lock) {
-      lock.notifyAll();
-    }
+    isRunning = false;
+    resumeMe(); // Ensure the thread exits if it is waiting
   }
 }
