@@ -219,7 +219,6 @@
     <module>microservices-distributed-tracing</module>
     <module>microservices-idempotent-consumer</module>
       <module>FiniteStateMachine</module>
-      <module>FiniteStateMachine</module>
   </modules>
   <repositories>
     <repository>
