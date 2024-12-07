@@ -1,4 +1,4 @@
- /*
+/*
   * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
   *
   * The MIT License
@@ -21,8 +21,7 @@
   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   * THE SOFTWARE.
-  */
-
+*/
 package com.iluwater.fieild;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,13 +29,13 @@ import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
- /*
+/*
   * The DomainObject class provides a base for domain entities
   * that require unique identification within the application.
   *
   * <p>All child classes inherit the unique identifier field
   * and associated functionality.</p>
-  */
+*/
 @Getter
 @Setter
 @MappedSuperclass

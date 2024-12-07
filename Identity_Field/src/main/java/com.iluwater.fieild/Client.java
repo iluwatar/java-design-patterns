@@ -1,4 +1,4 @@
- /*
+/*
   * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
   *
   * The MIT License
@@ -21,21 +21,25 @@
   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   * THE SOFTWARE.
-  */
+*/
 package com.iluwater.fieild;
-
+import java.util.regex.Pattern;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class Client extends DomainObject{
+public class Client extends DomainObject {
+  private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
   private String name;
   private String Email;
 
-  public Client(String name,String Email) {
+  public Client(String name, String Email) {
+    Pattern pattern = Pattern.compile(EMAIL_REGEX);
     this.name = name;
-    this.Email = Email;
+    if (pattern.matcher(Email).matches()) {
+      this.Email = Email;
+    }
   }
 
 }

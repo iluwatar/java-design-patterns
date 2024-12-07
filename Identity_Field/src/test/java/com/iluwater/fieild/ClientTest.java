@@ -1,4 +1,4 @@
- /*
+/*
   * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
   *
   * The MIT License
@@ -21,7 +21,7 @@
   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   * THE SOFTWARE.
-  */
+ */
 package com.iluwater.fieild;
 
 import static org.junit.jupiter.api.Assertions.*;

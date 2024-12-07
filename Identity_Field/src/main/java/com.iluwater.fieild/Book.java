@@ -1,4 +1,4 @@
- /*
+/*
   * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
   *
   * The MIT License
@@ -21,18 +21,11 @@
   * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   * THE SOFTWARE.
-  */
+*/
 
 package com.iluwater.fieild;
 import lombok.Getter;
 import lombok.Setter;
- /*
-  * The Book class represents a book entity in the application.
-  *
-  * <p>This class extends DomainObject and inherits its unique identifier.
-  * It includes additional fields and methods specific to a book's attributes,
-  * such as title and author.</p>
-  */
 @Setter
 @Getter
 public class Book extends DomainObject {
