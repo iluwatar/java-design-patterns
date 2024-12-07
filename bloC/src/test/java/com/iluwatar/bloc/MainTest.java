@@ -78,7 +78,7 @@ public class MainTest {
   }
 
   @Test
-  public void testToggleListener() {
+  public void testToggleListenerButton() {
     // Disable listener
     simulateButtonClick(toggleListenerButton);
     simulateButtonClick(incrementButton);
