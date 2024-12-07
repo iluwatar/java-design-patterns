@@ -50,8 +50,7 @@ Then in order to use:
 ```java
     var enumIvoryTower1 = EnumIvoryTower.INSTANCE;
     var enumIvoryTower2 = EnumIvoryTower.INSTANCE;
-    LOGGER.info("enumIvoryTower1={}", enumIvoryTower1);
-    LOGGER.info("enumIvoryTower2={}", enumIvoryTower2);
+    
 ```
 
 The console output

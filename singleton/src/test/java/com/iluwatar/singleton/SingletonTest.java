@@ -1,27 +1,3 @@
-/*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
- * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package com.iluwatar.singleton;
 
 import static java.time.Duration.ofMillis;
@@ -38,72 +14,70 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
 /**
- * <p>This class provides several test case that test singleton construction.</p>
+ * <p>싱글턴 패턴 테스트 클래스.</p>
  *
- * <p>The first proves that multiple calls to the singleton getInstance object are the same when
- * called in the SAME thread. The second proves that multiple calls to the singleton getInstance
- * object are the same when called in the DIFFERENT thread.</p>
+ * <p>첫 번째 테스트는 동일한 스레드 내에서 getInstance 메서드가 항상 동일한 객체를 반환하는지 확인합니다.</p>
+ * <p>두 번째 테스트는 서로 다른 스레드에서 getInstance 메서드가 동일한 객체를 반환하는지 확인합니다.</p>
  *
- * @param <S> Supplier method generating singletons
+ * @param <S> 싱글턴을 생성하는 Supplier 메서드
  */
 abstract class SingletonTest<S> {
 
   /**
-   * The singleton's getInstance method.
+   * 싱글턴 클래스의 getInstance 메서드를 제공하는 Supplier.
    */
-  private final Supplier<S> singletonInstanceMethod;
+  private final Supplier<S> 싱글턴인스턴스메서드;
 
   /**
-   * Create a new singleton test instance using the given 'getInstance' method.
+   * 주어진 'getInstance' 메서드를 사용하여 싱글턴 테스트 인스턴스를 생성합니다.
    *
-   * @param singletonInstanceMethod The singleton's getInstance method
+   * @param 싱글턴인스턴스메서드 싱글턴의 getInstance 메서드
    */
-  public SingletonTest(final Supplier<S> singletonInstanceMethod) {
-    this.singletonInstanceMethod = singletonInstanceMethod;
+  public SingletonTest(final Supplier<S> 싱글턴인스턴스메서드) {
+    this.싱글턴인스턴스메서드 = 싱글턴인스턴스메서드;
   }
 
   /**
-   * Test the singleton in a non-concurrent setting.
+   * 동일한 스레드에서 여러 번 호출 시 동일한 객체가 반환되는지 테스트합니다.
    */
   @Test
-  void testMultipleCallsReturnTheSameObjectInSameThread() {
-    // Create several instances in the same calling thread
-    var instance1 = this.singletonInstanceMethod.get();
-    var instance2 = this.singletonInstanceMethod.get();
-    var instance3 = this.singletonInstanceMethod.get();
-    // now check they are equal
-    assertSame(instance1, instance2);
-    assertSame(instance1, instance3);
-    assertSame(instance2, instance3);
+  void 동일_스레드_테스트() {
+    // 동일한 스레드에서 여러 인스턴스를 생성
+    var instance1 = this.싱글턴인스턴스메서드.get();
+    var instance2 = this.싱글턴인스턴스메서드.get();
+    var instance3 = this.싱글턴인스턴스메서드.get();
+
+    // 동일한 인스턴스인지 확인
+    assertSame(instance1, instance2, "첫 번째와 두 번째 인스턴스는 동일해야 합니다.");
+    assertSame(instance1, instance3, "첫 번째와 세 번째 인스턴스는 동일해야 합니다.");
+    assertSame(instance2, instance3, "두 번째와 세 번째 인스턴스는 동일해야 합니다.");
   }
 
   /**
-   * Test singleton instance in a concurrent setting.
+   * 서로 다른 스레드에서 여러 번 호출 시 동일한 객체가 반환되는지 테스트합니다.
    */
   @Test
-  void testMultipleCallsReturnTheSameObjectInDifferentThreads() {
+  void 다중_스레드_테스트() {
     assertTimeout(ofMillis(10000), () -> {
-      // Create 10000 tasks and inside each callable instantiate the singleton class
-      final var tasks = IntStream.range(0, 10000)
-          .<Callable<S>>mapToObj(i -> this.singletonInstanceMethod::get)
+      // 10000개의 작업 생성, 각 작업에서 싱글턴 인스턴스를 생성
+      final var 작업들 = IntStream.range(0, 10000)
+          .<Callable<S>>mapToObj(i -> this.싱글턴인스턴스메서드::get)
           .collect(Collectors.toCollection(ArrayList::new));
 
-      // Use up to 8 concurrent threads to handle the tasks
-      final var executorService = Executors.newFixedThreadPool(8);
-      final var results = executorService.invokeAll(tasks);
+      // 최대 8개의 동시 실행 스레드를 사용하여 작업 처리
+      final var 실행서비스 = Executors.newFixedThreadPool(8);
+      final var 결과들 = 실행서비스.invokeAll(작업들);
 
-      // wait for all the threads to complete
-      final var expectedInstance = this.singletonInstanceMethod.get();
-      for (var res : results) {
-        final var instance = res.get();
-        assertNotNull(instance);
-        assertSame(expectedInstance, instance);
+      // 모든 스레드가 완료될 때까지 대기
+      final var 예상_인스턴스 = this.싱글턴인스턴스메서드.get();
+      for (var 결과 : 결과들) {
+        final var 인스턴스 = 결과.get();
+        assertNotNull(인스턴스, "각 스레드에서 반환된 인스턴스는 null이 아니어야 합니다.");
+        assertSame(예상_인스턴스, 인스턴스, "모든 스레드에서 동일한 인스턴스가 반환되어야 합니다.");
       }
 
-      // tidy up the executor
-      executorService.shutdown();
+      // Executor 종료
+      실행서비스.shutdown();
     });
-
   }
-
 }
