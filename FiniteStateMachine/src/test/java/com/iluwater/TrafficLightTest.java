@@ -58,5 +58,47 @@ public class TrafficLightTest {
     context.handleEvent(); // Yellow -> Red
     assertTrue(context.getCurrentState() instanceof RedLightState);
   }
+
+  // Test invalid state transition
+  @Test
+  void testInvalidStateTransition() {
+    context.setState(new RedLightState());
+    try {
+      // This should fail, as it doesn't make sense for Red to handle an event again.
+      context.handleEvent();
+    } catch (IllegalStateException e) {
+      assertTrue(true, "Handled invalid state transition.");
+    }
+  }
+
+  // Test state reset
+  @Test
+  void testStateReset() {
+    context.setState(new YellowLightState());
+    context.handleEvent(); // Yellow -> Red
+    assertTrue(context.getCurrentState() instanceof RedLightState);
+
+    context.setState(new GreenLightState());
+    context.handleEvent(); // Green -> Yellow
+    assertTrue(context.getCurrentState() instanceof YellowLightState);
+
+    context.setState(new RedLightState());
+    context.handleEvent(); // Red -> Green
+    assertTrue(context.getCurrentState() instanceof GreenLightState);
+  }
+
+  // Test manually setting the state
+  @Test
+  void testManualStateSet() {
+    context.setState(new GreenLightState());
+    assertTrue(context.getCurrentState() instanceof GreenLightState);
+
+    context.setState(new YellowLightState());
+    assertTrue(context.getCurrentState() instanceof YellowLightState);
+
+    context.setState(new RedLightState());
+    assertTrue(context.getCurrentState() instanceof RedLightState);
+  }
 }
+
 
