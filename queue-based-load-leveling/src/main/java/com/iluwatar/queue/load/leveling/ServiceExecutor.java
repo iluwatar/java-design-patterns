@@ -33,7 +33,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ServiceExecutor implements Runnable {
   private final MessageQueue msgQueue;
-  public static final Object serviceExecutorWait = new Object();
   public ServiceExecutor(MessageQueue msgQueue) {
     this.msgQueue = msgQueue;
   }
@@ -50,8 +49,8 @@ public class ServiceExecutor implements Runnable {
           LOGGER.info(msg + " is served.");
         } else {
           LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
-          synchronized (serviceExecutorWait) {
-            serviceExecutorWait.wait();
+          synchronized (msgQueue.serviceExecutorWait) {
+            msgQueue.serviceExecutorWait.wait();
           }
         }
       }
