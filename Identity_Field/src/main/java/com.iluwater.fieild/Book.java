@@ -26,8 +26,11 @@
 package com.iluwater.fieild;
 import lombok.Getter;
 import lombok.Setter;
+import javax.persistence.Entity;
+
 @Setter
 @Getter
+@Entity
 public class Book extends DomainObject {
   private String title;
   private String author;

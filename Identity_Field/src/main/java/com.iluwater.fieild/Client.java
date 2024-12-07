@@ -26,9 +26,11 @@ package com.iluwater.fieild;
 import java.util.regex.Pattern;
 import lombok.Getter;
 import lombok.Setter;
+import javax.persistence.Entity;
 
 @Setter
 @Getter
+@Entity
 public class Client extends DomainObject {
   private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
   private String name;

@@ -30,27 +30,37 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class BookTest {
+  BookRepository bookRepository;
   @Test
   void checkIdNotNull()
   {
-    Book book= new Book("Design patterns","someone");
+    Book book = bookRepository.createBook("Design patterns","someone");
     assertNotNull(book.getId());
   }
+  @Test
   void checkTwoIdsNotEqual()
   {
-    Book book= new Book("Design patterns","someone");
-    Book book2= new Book("Head first","someone");
+    Book book = bookRepository.createBook("Design patterns","someone");
+    Book book2 = bookRepository.createBook("Head first","someone");
     assertNotEquals(book.getId(),book2.getId());
   }
+  @Test
   void checkTitleNotNull()
   {
-    Book book= new Book("Design patterns","someone");
+    Book book = bookRepository.createBook("Design patterns","someone");
     assertNotNull(book.getTitle());
   }
+  @Test
   void checkAuthorNotNull()
   {
-    Book book= new Book("Design patterns","someone");
+    Book book = bookRepository.createBook("Design patterns","someone");
     assertNotNull(book.getAuthor());
+  }
+  void checkSearch()
+  {
+    Book book = bookRepository.createBook("Design patterns","someone");
+    assertNotNull(bookRepository.getBookById(book.getId()));
+
   }
 
 }

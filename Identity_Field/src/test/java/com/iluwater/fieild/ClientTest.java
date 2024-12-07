@@ -24,26 +24,32 @@
  */
 package com.iluwater.fieild;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ClientTest {
+  @Test
   void checkIdNotNull()
   {
     Client client= new Client("John","Jhon9201@gmail.com");
     assertNotNull(client.getId());
   }
+  @Test
   void checkTwoIdsNotEqual()
   {
     Client client= new Client("John","jhon9201@gmail.com");
     Client client2= new Client("Sara","sara4825@gmail.com");
     assertNotEquals(client.getId(),client2.getId());
   }
+  @Test
   void checkEmails()
   {
     Client client= new Client("John","jhon9201@gmail.com");
     Client client2= new Client("Sara","sara4825@gmail.com");
     assertNotEquals(client.getEmail(),client2.getEmail());
   }
+  @Test
   void checkEmailNotNull()
   {
     Client client= new Client("John","jhon9201@gmail.com");
