@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ClientTest {
   void checkIdNotNull()
   {
-    Client client= new Client("John","jhon9201@gmail.com");
+    Client client= new Client("John","Jhon9201@gmail.com");
     assertNotNull(client.getId());
   }
   void checkTwoIdsNotEqual()
@@ -19,5 +19,10 @@ class ClientTest {
     Client client= new Client("John","jhon9201@gmail.com");
     Client client2= new Client("Sara","sara4825@gmail.com");
     assertNotEquals(client.getEmail(),client2.getEmail());
+  }
+  void checkEmailNotNull()
+  {
+    Client client= new Client("John","jhon9201@gmail.com");
+    assertNotNull(client.getEmail());
   }
 }

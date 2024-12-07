@@ -1,5 +1,16 @@
+/*
+ * The Book class represents a book entity in the application.
+ *
+ * <p>This class extends DomainObject and inherits its unique identifier.
+ * It includes additional fields and methods specific to a book's attributes,
+ * such as title and author.</p>
+ */
 package com.iluwater.fieild;
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class Book extends DomainObject {
   private String title;
   private String author;
@@ -10,19 +21,4 @@ public class Book extends DomainObject {
     this.author = author;
   }
 
-  public String getTitle() {
-    return title;
-  }
-
-  public void setTitle(String title) {
-    this.title = title;
-  }
-
-  public String getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(String author) {
-    this.author = author;
-  }
 }
