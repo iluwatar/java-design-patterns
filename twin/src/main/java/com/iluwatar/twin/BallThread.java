@@ -51,14 +51,15 @@ public class BallThread extends Thread {
   public void run() {
     try {
       while (isRunning) {
-        synchronized (lock) {
-          while (isSuspended) {
+        if (isSuspended) {
+          synchronized (lock) {
             lock.wait();
           }
+        } else {
+          twin.doDraw();
+          twin.move();
+          Thread.sleep(250);
         }
-        twin.doDraw();
-        twin.move();
-        Thread.sleep(250);
       }
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
@@ -66,21 +67,33 @@ public class BallThread extends Thread {
     }
   }
 
+  /**
+   * Suspend the thread.
+   */
   public void suspendMe() {
     isSuspended = true;
     LOGGER.info("Begin to suspend BallThread");
   }
 
+  /**
+   * Notify run to resume.
+   */
   public void resumeMe() {
+    isSuspended = false;
+    LOGGER.info("Begin to resume BallThread");
     synchronized (lock) {
-      isSuspended = false;
       lock.notifyAll();
     }
-    LOGGER.info("Begin to resume BallThread");
   }
 
+  /**
+   * Stop running thread.
+   */
   public void stopMe() {
-    isRunning = false;
-    resumeMe(); // Ensure the thread exits if it is waiting
+    this.isRunning = false;
+    this.isSuspended = true;
+    synchronized (lock) {
+      lock.notifyAll();
+    }
   }
 }
