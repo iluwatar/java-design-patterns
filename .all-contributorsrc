@@ -3276,6 +3276,24 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "mammadyahyayev",
+      "name": "Mammad Yahyayev",
+      "avatar_url": "https://avatars.githubusercontent.com/u/66476643?v=4",
+      "profile": "https://mammadyahya.vercel.app",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "SalmaAzeem",
+      "name": "Salma",
+      "avatar_url": "https://avatars.githubusercontent.com/u/121863224?v=4",
+      "profile": "https://github.com/SalmaAzeem",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
