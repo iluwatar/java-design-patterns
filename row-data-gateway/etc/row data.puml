@@ -1,0 +1,33 @@
+@startuml
+package com.iluwatar.rowdata {
+  class UserGateway {
+    - rowdata : RowData
+    - connection : Connection
+    - logger : Logger
+    + UserGateway(RowData rowData, Connection connection)
+    + RowData read()
+    + void insert()
+    + void update()
+    + void delete()
+    }
+
+    class RowData {
+        - int id
+        - String name
+        - int value
+        + int getId()
+        + String getName()
+        + int getValue()
+    }
+
+    UserGateway --> RowData : "uses"
+
+
+  class App {
+    + main(args : String[]) : void
+  }
+  App --> RowData : "uses"
+  App --> UserGateway : "uses"
+  }
+}
+@enduml
