@@ -82,14 +82,13 @@ java.lang.System#getSecurityManager()
 추상 팩토리(Abstract Factory): 클래스가 단일 인스턴스를 가지도록 보장할 때 사용
 팩토리 메서드(Factory Method): 싱글턴 패턴은 생성 로직을 캡슐화하는 팩토리 메서드를 사용하여 구현 가능
 프로토타입(Prototype): 인스턴스 생성을 피하고 고유 인스턴스를 관리하며 싱글턴과 함께 작동 가능
-참고 문헌 및 크레딧
+ 참고 문헌 및 크레딧
 Design Patterns: Elements of Reusable Object-Oriented Software
 Effective Java
 Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software
 Java Design Patterns: A Hands-On Experience with Real-World Examples
 Refactoring to Patterns
-yaml
-Copy code
+
 
 
 
