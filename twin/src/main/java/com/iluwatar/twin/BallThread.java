@@ -24,55 +24,76 @@
  */
 package com.iluwatar.twin;
 
-import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
+ * This class is a UI thread for drawing the {@link BallItem}, and provides methods for suspend
  * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
  */
-
 @Slf4j
 public class BallThread extends Thread {
 
-  @Setter
-  private BallItem twin;
-
-  private volatile boolean isSuspended;
+  private static final Logger LOGGER = LoggerFactory.getLogger(BallThread.class);
 
   private volatile boolean isRunning = true;
+  private volatile boolean isSuspended = false;
+  private final Object lock = new Object();
+  private final BallItem twin;
 
   /**
-   * Run the thread.
+   * Constructor.
+   *
+   * @param twin the BallItem instance
    */
-  public void run() {
+  public BallThread(BallItem twin) {
+    this.twin = twin;
+  }
 
-    while (isRunning) {
-      if (!isSuspended) {
-        twin.draw();
+  @Override
+  public void run() {
+    try {
+      while (isRunning) {
+        synchronized (lock) {
+          while (isSuspended) {
+            lock.wait();
+          }
+        }
+        twin.doDraw();
         twin.move();
-      }
-      try {
         Thread.sleep(250);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
       }
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new RuntimeException(e);
     }
   }
 
+  /**
+   * Suspend the thread.
+   */
   public void suspendMe() {
     isSuspended = true;
     LOGGER.info("Begin to suspend BallThread");
   }
 
+  /**
+   * Notify run to resume.
+   */
   public void resumeMe() {
-    isSuspended = false;
+    synchronized (lock) {
+      isSuspended = false;
+      lock.notifyAll();
+    }
     LOGGER.info("Begin to resume BallThread");
   }
 
+  /**
+   * Stop running thread.
+   */
   public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
+    isRunning = false;
+    resumeMe(); // Ensure the thread exits if it is waiting
   }
 }
-
