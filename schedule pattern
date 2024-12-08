@@ -1,0 +1,69 @@
+import java.util.ArrayList;  
+import java.util.List;  
+interface Job {  
+    void execute();  
+}  
+interface Trigger {  
+    boolean shouldRun();  
+}  
+class Scheduler {  
+    private List<Job> jobs;  
+    private List<Trigger> triggers;  
+    public Scheduler() {  
+        this.jobs = new ArrayList<>();  
+        this.triggers = new ArrayList<>();  
+    }  
+    public void addJob(Job job, Trigger trigger) {  
+        jobs.add(job);  
+        triggers.add(trigger);  
+    }  
+    public void start() {  
+        while (true) {  
+            for (int i = 0; i < jobs.size(); i++) {  
+                Job job = jobs.get(i);  
+                Trigger trigger = triggers.get(i);  
+  
+                if (trigger.shouldRun()) {  
+                    job.execute();  
+                }  
+            }  
+            try {  
+                Thread.sleep(1000); // Delay for 1 second  
+            } catch (InterruptedException e) {  
+                Thread.currentThread().interrupt();  
+            }  
+        }  
+    }  
+}  
+class ExampleJob implements Job {  
+    @Override  
+    public void execute() {  
+        System.out.println("Executing ExampleJob at " + System.currentTimeMillis());  
+    }  
+}  
+class TimeBasedTrigger implements Trigger {  
+    private long lastExecutionTime;  
+    private long interval;  
+    public TimeBasedTrigger(long interval) {  
+        this.interval = interval;  
+        this.lastExecutionTime = System.currentTimeMillis();  
+    }  
+    @Override  
+    public boolean shouldRun() {  
+        long currentTime = System.currentTimeMillis();  
+        if (currentTime - lastExecutionTime >= interval) {  
+            lastExecutionTime = currentTime;  
+            return true;  
+        }  
+        return false;  
+    }  
+}  
+public class JobSDesign {  
+    public static void main(String[] args) {  
+        Scheduler scheduler = new Scheduler();  
+        Job exampleJob = new ExampleJob();  
+        Trigger timeBasedTrigger = new TimeBasedTrigger(5000); // Run every 5 seconds  
+        scheduler.addJob(exampleJob, timeBasedTrigger);  
+        scheduler.start();  
+    }  
+}  
