@@ -1,4 +1,4 @@
-package com.hungrydev399.publishsubscribe.publisher;
+package com.iluwatar.publishsubscribe.publisher;
 
 import javax.jms.DeliveryMode;
 import javax.jms.JMSException;
@@ -6,8 +6,8 @@ import javax.jms.MessageProducer;
 import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
-import com.hungrydev399.publishsubscribe.jms.JmsUtil;
-import com.hungrydev399.publishsubscribe.model.Message;
+import com.iluwatar.publishsubscribe.jms.JmsUtil;
+import com.iluwatar.publishsubscribe.model.Message;
 
 /**
  * JMS topic publisher that supports persistent messages and message grouping

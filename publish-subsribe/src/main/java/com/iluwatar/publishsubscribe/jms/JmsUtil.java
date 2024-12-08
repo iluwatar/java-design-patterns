@@ -1,4 +1,4 @@
-package com.hungrydev399.publishsubscribe.jms;
+package com.iluwatar.publishsubscribe.jms;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.broker.BrokerService;

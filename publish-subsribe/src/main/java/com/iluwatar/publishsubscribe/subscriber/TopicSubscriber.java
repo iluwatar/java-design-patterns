@@ -1,4 +1,4 @@
-package com.hungrydev399.publishsubscribe.subscriber;
+package com.iluwatar.publishsubscribe.subscriber;
 
 import javax.jms.Message;
 import javax.jms.MessageConsumer;
@@ -7,7 +7,7 @@ import javax.jms.Session;
 import javax.jms.TextMessage;
 import javax.jms.Topic;
 import javax.jms.JMSException;
-import com.hungrydev399.publishsubscribe.jms.JmsUtil;
+import com.iluwatar.publishsubscribe.jms.JmsUtil;
 
 /**
  * JMS topic subscriber that supports different subscription types:

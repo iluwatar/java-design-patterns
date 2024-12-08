@@ -1,4 +1,4 @@
-package com.hungrydev399.publishsubscribe.model;
+package com.iluwatar.publishsubscribe.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;

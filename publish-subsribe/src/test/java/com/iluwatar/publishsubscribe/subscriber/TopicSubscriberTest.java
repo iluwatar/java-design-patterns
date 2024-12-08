@@ -1,12 +1,12 @@
-package com.hungrydev399.publishsubscribe.subscriber;
+package com.iluwatar.publishsubscribe.subscriber;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.*;
 
-import com.hungrydev399.publishsubscribe.model.Message;
-import com.hungrydev399.publishsubscribe.publisher.TopicPublisher;
-import com.hungrydev399.publishsubscribe.TestBase;
-import com.hungrydev399.publishsubscribe.jms.JmsUtil;
+import com.iluwatar.publishsubscribe.model.Message;
+import com.iluwatar.publishsubscribe.publisher.TopicPublisher;
+import com.iluwatar.publishsubscribe.TestBase;
+import com.iluwatar.publishsubscribe.jms.JmsUtil;
 
 /**
  * Tests for the TopicSubscriber class.

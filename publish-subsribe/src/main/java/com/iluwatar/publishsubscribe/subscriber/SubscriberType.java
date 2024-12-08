@@ -1,4 +1,4 @@
-package com.hungrydev399.publishsubscribe.subscriber;
+package com.iluwatar.publishsubscribe.subscriber;
 
 public enum SubscriberType {
   NONDURABLE,    // Regular non-durable subscriber

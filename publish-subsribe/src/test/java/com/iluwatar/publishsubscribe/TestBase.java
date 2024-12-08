@@ -1,8 +1,8 @@
-package com.hungrydev399.publishsubscribe;
+package com.iluwatar.publishsubscribe;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
-import com.hungrydev399.publishsubscribe.jms.JmsUtil;
+import com.iluwatar.publishsubscribe.jms.JmsUtil;
 
 /**
  * Base class for JMS-related tests.

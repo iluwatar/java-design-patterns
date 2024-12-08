@@ -1,10 +1,10 @@
-package com.hungrydev399.publishsubscribe;
+package com.iluwatar.publishsubscribe;
 
-import com.hungrydev399.publishsubscribe.jms.JmsUtil;
-import com.hungrydev399.publishsubscribe.model.Message;
-import com.hungrydev399.publishsubscribe.publisher.TopicPublisher;
-import com.hungrydev399.publishsubscribe.subscriber.TopicSubscriber;
-import com.hungrydev399.publishsubscribe.subscriber.SubscriberType;
+import com.iluwatar.publishsubscribe.jms.JmsUtil;
+import com.iluwatar.publishsubscribe.model.Message;
+import com.iluwatar.publishsubscribe.publisher.TopicPublisher;
+import com.iluwatar.publishsubscribe.subscriber.TopicSubscriber;
+import com.iluwatar.publishsubscribe.subscriber.SubscriberType;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.hungrydev399.publishsubscribe.model;
+package com.iluwatar.publishsubscribe.model;
 
 import java.io.Serializable;
 
