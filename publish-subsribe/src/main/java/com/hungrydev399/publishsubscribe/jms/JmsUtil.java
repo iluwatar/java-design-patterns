@@ -19,27 +19,29 @@ public final class JmsUtil {
   private static Connection defaultConnection;
   private static BrokerService broker;
   private static Map<String, Connection> clientConnections = new ConcurrentHashMap<>();
-
-  static {
-    try {
-      // Start embedded broker for self-contained messaging
-      broker = new BrokerService();
-      broker.addConnector(BROKER_URL);
-      broker.setPersistent(false);  // Messages won't survive broker restart
-      broker.start();
-
-      // Default connection for non-durable subscribers
-      factory = new ActiveMQConnectionFactory(BROKER_URL);
-      defaultConnection = factory.createConnection();
-      defaultConnection.start();
-    } catch (Exception e) {
-      System.err.println("Failed to initialize JMS: " + e.getMessage());
-      throw new RuntimeException(e);
-    }
-  }
+  private static boolean isInitialized = false;
 
   private JmsUtil() {
     // Utility class, prevent instantiation
+  }
+
+  public static synchronized void initialize() {
+    if (!isInitialized) {
+      try {
+        broker = new BrokerService();
+        broker.addConnector(BROKER_URL);
+        broker.setPersistent(false);
+        broker.start();
+
+        factory = new ActiveMQConnectionFactory(BROKER_URL);
+        defaultConnection = factory.createConnection();
+        defaultConnection.start();
+        isInitialized = true;
+      } catch (Exception e) {
+        System.err.println("Failed to initialize JMS: " + e.getMessage());
+        throw new RuntimeException(e);
+      }
+    }
   }
 
   /**
@@ -47,6 +49,9 @@ public final class JmsUtil {
    * Each client ID gets its own dedicated connection to support durable subscribers.
    */
   public static Session createSession(String clientId) throws JMSException {
+    if (!isInitialized) {
+      initialize();
+    }
     if (clientId == null) {
       return defaultConnection.createSession(false, Session.AUTO_ACKNOWLEDGE);
     }
@@ -72,8 +77,9 @@ public final class JmsUtil {
   /**
    * Closes all JMS resources.
    */
-  public static void closeConnection() {
+  public static synchronized void closeConnection() {
     try {
+      isInitialized = false;
       if (defaultConnection != null) {
         defaultConnection.close();
       }
@@ -89,5 +95,11 @@ public final class JmsUtil {
     } catch (Exception e) {
       System.err.println("Error closing JMS resources: " + e.getMessage());
     }
+  }
+
+  public static synchronized void reset() {
+    closeConnection();
+    isInitialized = false;
+    initialize();
   }
 }
