@@ -1,0 +1,57 @@
+@startuml
+package com.iluwatar {
+  class App {
+    - MAX_ATTEMPTS : int {static}
+    - RETRY_DELAY : int {static}
+    - TIMEOUT : int {static}
+    - circuitBreaker : CircuitBreaker
+    - executor : ExecutorService
+    - fallbackService : Service
+    - primaryService : Service
+    + App()
+    + App(primaryService : Service, fallbackService : Service)
+    + executeWithFallback() : String
+    - getFallbackData() : String
+    + main(args : String[]) {static}
+    + shutdown()
+  }
+  interface CircuitBreaker {
+    + isOpen() : boolean {abstract}
+    + recordFailure() {abstract}
+    + recordSuccess() {abstract}
+    + reset() {abstract}
+  }
+  class DefaultCircuitBreaker {
+    - RESET_TIMEOUT : long {static}
+    - failureCount : int
+    - failureThreshold : int
+    - lastFailureTime : long
+    + DefaultCircuitBreaker(failureThreshold : int)
+    + isOpen() : boolean
+    + recordFailure()
+    + recordSuccess()
+    + reset()
+  }
+  class LocalCacheService {
+    - cache : ConcurrentHashMap<String, String>
+    + LocalCacheService()
+    + getData() : String
+    + updateCache(key : String, value : String)
+  }
+  class RemoteService {
+    - HTTP_OK : int {static}
+    - client : HttpClient
+    - serviceUrl : String
+    + RemoteService(serviceUrl : String)
+    + getData() : String
+  }
+  interface Service {
+    + getData() : String {abstract}
+  }
+}
+App -->  "-circuitBreaker" CircuitBreaker
+App -->  "-primaryService" Service
+DefaultCircuitBreaker ..|> CircuitBreaker 
+LocalCacheService ..|> Service 
+RemoteService ..|> Service 
+@enduml
