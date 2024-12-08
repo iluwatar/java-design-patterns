@@ -64,29 +64,30 @@ public class App {
 
   private static void sessionExpirationTask() {
     new Thread(() -> {
-      while (true) {
-        try {
-          Thread.sleep(SESSION_EXPIRATION_TIME);
-          Instant currentTime = Instant.now();
-          synchronized (sessions) {
-            synchronized (sessionCreationTimes) {
-              Iterator<Map.Entry<String, Instant>> iterator =
-                  sessionCreationTimes.entrySet().iterator();
-              while (iterator.hasNext()) {
-                Map.Entry<String, Instant> entry = iterator.next();
-                if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
-                  sessions.remove(entry.getKey());
-                  iterator.remove();
+        while (true) {
+            try {
+                Thread.sleep(SESSION_EXPIRATION_TIME);
+                Instant currentTime = Instant.now();
+                synchronized (sessions) {
+                    synchronized (sessionCreationTimes) {
+                        Iterator<Map.Entry<String, Instant>> iterator =
+                            sessionCreationTimes.entrySet().iterator();
+                        while (iterator.hasNext()) {
+                            Map.Entry<String, Instant> entry = iterator.next();
+                            if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
+                                sessions.remove(entry.getKey());
+                                iterator.remove();
+                                System.out.println("Session expired for user: " + entry.getKey());
+                            }
+                        }
+                    }
                 }
-              }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                break;  
             }
-          }
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
         }
-      }
     }).start();
-  }
 }
 ```
 
