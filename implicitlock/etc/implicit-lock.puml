@@ -1,0 +1,39 @@
+@startuml
+package com.iluwatar.implicitlockpattern {
+  class App {
+    + main(args: String[]) {static}
+  }
+
+  class BusinessTransaction {
+    - framework : Framework
+    + BusinessTransaction(framework: Framework)
+    + processCustomer(resource: Resource, customerId: String, customerData: String)
+  }
+
+  class Framework {
+    - lockManager : LockManager
+    + Framework(lockManager: LockManager)
+    + tryLockResource(resource: Resource) : boolean
+    + notifyReleaseLock(resource: Resource) : boolean
+    + loadCustomerData(resource: Resource) : String
+  }
+
+  class LockManager {
+    - lockMap : ConcurrentHashMap<String, Lock>
+    + acquireLock(resource: Resource) : boolean
+    + releaseLock(resource: Resource) : boolean
+  }
+
+  class Resource {
+    - id : String
+    + Resource(id: String)
+    + getId() : String
+  }
+}
+
+App --> BusinessTransaction : "Creates"
+BusinessTransaction --> Framework : "Uses"
+Framework --> LockManager : "Notifies"
+Framework --> Resource : "Interacts with"
+LockManager --> Resource : "Locks"
+@enduml

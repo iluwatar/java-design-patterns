@@ -1,0 +1,49 @@
+@startuml
+package com.iluwatar.idempotentconsumer {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+    + run(requestService : RequestService, requestRepository : RequestRepository) : CommandLineRunner
+  }
+  class Request {
+    - status : Status
+    - uuid : UUID
+    + Request()
+    + Request(uuid : UUID)
+    + Request(uuid : UUID, status : Status)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getStatus() : Status
+    + getUuid() : UUID
+    + hashCode() : int
+    + setStatus(status : Status)
+    + setUuid(uuid : UUID)
+    + toString() : String
+  }
+  ~enum Status {
+    + COMPLETED {static}
+    + PENDING {static}
+    + STARTED {static}
+    + valueOf(name : String) : Status {static}
+    + values() : Status[] {static}
+  }
+  interface RequestRepository {
+  }
+  class RequestService {
+    ~ requestRepository : RequestRepository
+    ~ requestStateMachine : RequestStateMachine
+    + RequestService(requestRepository : RequestRepository, requestStateMachine : RequestStateMachine)
+    + complete(uuid : UUID) : Request
+    + create(uuid : UUID) : Request
+    + start(uuid : UUID) : Request
+  }
+  class RequestStateMachine {
+    + RequestStateMachine()
+    + next(req : Request, nextStatus : Status) : Request
+  }
+}
+RequestService -->  "-requestRepository" RequestRepository
+Request -->  "-status" Status
+RequestService -->  "-requestStateMachine" RequestStateMachine
+@enduml
