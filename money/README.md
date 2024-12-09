@@ -2,7 +2,7 @@
 title: "Money Pattern in Java: Encapsulating Monetary Values with Currency Consistency"
 shortTitle: Money
 description: "Learn how the Money design pattern in Java ensures currency safety, precision handling, and maintainable financial operations. Explore examples, applicability, and benefits of the pattern."
-category: Finance
+category: Behavioral
 language: en
 tag:
   - Encapsulation
