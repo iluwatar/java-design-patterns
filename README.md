@@ -543,6 +543,7 @@ This project is licensed under the terms of the MIT license.
     <tr>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/SalmaAzeem"><img src="https://avatars.githubusercontent.com/u/121863224?v=4?s=100" width="100px;" alt="Salma"/><br /><sub><b>Salma</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=SalmaAzeem" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://codemaverick-143.github.io/My-Portfolio/"><img src="https://avatars.githubusercontent.com/u/182847716?v=4?s=100" width="100px;" alt="Arpit Sarang"/><br /><sub><b>Arpit Sarang</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=CodeMaverick-143" title="Code">💻</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/mayatarek"><img src="https://avatars.githubusercontent.com/u/111644421?v=4?s=100" width="100px;" alt="Maya"/><br /><sub><b>Maya</b></sub></a><br /><a href="#translation-mayatarek" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
