@@ -1,17 +1,19 @@
 package com.iluwatar.publishsubscribe.jms;
 
-import org.apache.activemq.ActiveMQConnectionFactory;
-import org.apache.activemq.broker.BrokerService;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
 import javax.jms.Session;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
+import org.apache.activemq.ActiveMQConnectionFactory;
+import org.apache.activemq.broker.BrokerService;
 
 /**
- * JMS utility class that manages connections and provides an embedded message broker.
- * Supports both shared connections and client-specific connections for durable subscriptions.
+ * JMS utility class that manages connections and provides an embedded message
+ * broker.
+ * Supports both shared connections and client-specific connections for durable
+ * subscriptions.
  */
 public final class JmsUtil {
   private static final String BROKER_URL = "tcp://localhost:61616";
@@ -21,10 +23,21 @@ public final class JmsUtil {
   private static Map<String, Connection> clientConnections = new ConcurrentHashMap<>();
   private static boolean isInitialized = false;
 
+  /**
+   * Private constructor to prevent instantiation.
+   */
   private JmsUtil() {
     // Utility class, prevent instantiation
   }
 
+  /**
+   * Initializes the JMS environment by starting the embedded broker and creating
+   * the default connection. This method is thread-safe and ensures single
+   * initialization.
+   * 
+   *
+   * @throws RuntimeException if initialization fails
+   */
   public static synchronized void initialize() {
     if (!isInitialized) {
       try {
@@ -46,7 +59,8 @@ public final class JmsUtil {
 
   /**
    * Creates a JMS session, optionally with a client ID for durable subscriptions.
-   * Each client ID gets its own dedicated connection to support durable subscribers.
+   * Each client ID gets its own dedicated connection to support durable
+   * subscribers.
    */
   public static Session createSession(String clientId) throws JMSException {
     if (!isInitialized) {
@@ -70,6 +84,9 @@ public final class JmsUtil {
     return conn.createSession(false, Session.AUTO_ACKNOWLEDGE);
   }
 
+  /**
+   * Creates a default JMS session without client ID.
+   */
   public static Session createSession() throws JMSException {
     return createSession(null);
   }
@@ -97,6 +114,10 @@ public final class JmsUtil {
     }
   }
 
+  /**
+   * Resets the JMS environment by closing existing connections and
+   * reinitializing.
+   */
   public static synchronized void reset() {
     closeConnection();
     isInitialized = false;
