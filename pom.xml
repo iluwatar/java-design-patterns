@@ -218,6 +218,8 @@
     <module>function-composition</module>
     <module>microservices-distributed-tracing</module>
     <module>microservices-idempotent-consumer</module>
+      <module>bloC</module>
+
   </modules>
   <repositories>
     <repository>
