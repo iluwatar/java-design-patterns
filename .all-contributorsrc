@@ -3294,6 +3294,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "mayatarek",
+      "name": "Maya",
+      "avatar_url": "https://avatars.githubusercontent.com/u/111644421?v=4",
+      "profile": "https://github.com/mayatarek",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
