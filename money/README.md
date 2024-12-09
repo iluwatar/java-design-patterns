@@ -10,11 +10,15 @@ tag:
   - Currency safety
   - Value Object
   - Financial operations
+  - Currency
+  - Financial
+  - Immutable
+  - Value Object
 ---
 
 ## Also known as
 
-* Value Object
+* Monetary Value Object
 
 ## Intent of Money Design Pattern
 
@@ -43,9 +47,6 @@ In this example:
 ### Money Class
 
 ```java
-package com.iluwatar;
-
-import lombok.Getter;
 
 /**
  * Represents a monetary value with an associated currency.
@@ -155,10 +156,10 @@ The Money pattern should be used in scenarios where:
 
 1. **Value Object**  
    Money is a classic example of the Value Object pattern, where objects are immutable and define equality based on their value.
-
+   Link:https://martinfowler.com/bliki/ValueObject.html
 2. **Factory Method**  
    Factories can be employed to handle creation logic, such as applying default exchange rates or rounding rules.
-
+    Link:https://www.geeksforgeeks.org/factory-method-for-designing-pattern/
 ---
 
 ## References and Credits
