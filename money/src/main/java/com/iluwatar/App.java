@@ -2,12 +2,26 @@ package com.iluwatar;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * The `App` class demonstrates the functionality of the {@link Money} class, which encapsulates
+ * monetary values and their associated currencies. It showcases operations like addition,
+ * subtraction, multiplication, and currency conversion, while ensuring validation and immutability.
+ *
+ * <p>Through this example, the handling of invalid operations (e.g., mismatched currencies or
+ * invalid inputs) is demonstrated using custom exceptions. Logging is used for transparency.
+ *
+ * <p>This highlights the practical application of object-oriented principles such as encapsulation
+ * and validation in a financial context.
+ */
 public class App {
 
   // Initialize the logger
   private static final Logger logger = Logger.getLogger(App.class.getName());
-
+  /**
+   * Program entry point.
+   *
+   * @param args command line args
+   */
   public static void main(String[] args) {
     // Create instances of Money
     Money usdAmount1 = new Money(50.00, "USD");
