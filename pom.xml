@@ -218,6 +218,7 @@
     <module>function-composition</module>
     <module>microservices-distributed-tracing</module>
     <module>microservices-idempotent-consumer</module>
+      <module>two-step-view</module>
   </modules>
   <repositories>
     <repository>
