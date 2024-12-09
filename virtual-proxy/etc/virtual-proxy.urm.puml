@@ -1,0 +1,26 @@
+@startuml
+package com.iluwatar.virtual.proxy {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  interface ExpensiveObject {
+    + process() {abstract}
+  }
+  class RealVideoObject {
+    - LOGGER : Logger {static}
+    + RealVideoObject()
+    - heavyInitialConfiguration()
+    + process()
+  }
+  class VideoObjectProxy {
+    - realVideoObject : RealVideoObject
+    + VideoObjectProxy()
+    + getRealVideoObject() : RealVideoObject
+    + process()
+  }
+}
+VideoObjectProxy -->  "-realVideoObject" RealVideoObject
+RealVideoObject ..|> ExpensiveObject 
+VideoObjectProxy ..|> ExpensiveObject 
+@enduml
