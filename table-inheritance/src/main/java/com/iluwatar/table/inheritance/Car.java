@@ -1,8 +1,10 @@
 package com.iluwatar.table.inheritance;
-
+import lombok.Getter;
 /**
  * Represents a car with a specific number of doors.
  */
+
+@Getter
 public class Car extends Vehicle {
   private int numDoors;
 
@@ -33,15 +35,6 @@ public class Car extends Vehicle {
       throw new IllegalArgumentException("Number of doors must be positive.");
     }
     this.numDoors = doors;
-  }
-
-  /**
-   * Gets the number of doors for the car.
-   *
-   * @return the number of doors
-   */
-  public int getNumDoors() {
-    return numDoors;
   }
 
   @Override

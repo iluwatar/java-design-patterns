@@ -1,8 +1,11 @@
 package com.iluwatar.table.inheritance;
 
+import lombok.Getter;
+
 /**
  * Represents a truck, a type of vehicle with a specific load capacity.
  */
+@Getter
 public class Truck extends Vehicle {
   private double loadCapacity;
 
@@ -33,15 +36,6 @@ public class Truck extends Vehicle {
       throw new IllegalArgumentException("Load capacity must be positive.");
     }
     this.loadCapacity = capacity;
-  }
-
-  /**
-   * Retrieves the load capacity of the truck.
-   *
-   * @return the load capacity
-   */
-  public double getLoadCapacity() {
-    return loadCapacity;
   }
 
   /**
