@@ -26,21 +26,53 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
+    <title>Composite Patterns Mock News Site</title>
     <style>
-      h1 { text-align: center;}
-      h2 { text-align: center;}
-      h3 { text-align: center;}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        h2 {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        h3 {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+        .parameters {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <h1>Welcome To The Composite Patterns Mock News Site</h1>
-    <h2>Send a GET request to the "/news" path to see the composite view with mock news</h2>
-    <h2>Use the following parameters:</h2>
-    <h3>name: string name to be dynamically displayed</h3>
-    <h3>bus: boolean for whether you want to see the mock business news</h3>
-    <h3>world: boolean for whether you want to see the mock world news</h3>
-    <h3>sci: boolean for whether you want to see the mock world news</h3>
-    <h3>sport: boolean for whether you want to see the mock world news</h3>
-  </body>
+    <div class="parameters">
+        <h2>Send a GET request to the "/news" path to see the composite view with mock news</h2>
+        <h2>Use the following parameters:</h2>
+        <h3>name: <em>string</em> - Your name to be dynamically displayed</h3>
+        <h3>bus: <em>boolean</em> - Set to true to see mock business news</h3>
+        <h3>world: <em>boolean</em> - Set to true to see mock world news</h3>
+        <h3>sci: <em>boolean</em> - Set to true to see mock science news</h3>
+        <h3>sport: <em>boolean</em> - Set to true to see mock sports news</h3>
+        <h2>Example Request:</h2>
+        <h3>/news?name=John&bus=true&world=false&sci=true&sport=false</h3>
+        <h3>If the request fails, ensure you have the correct parameters and try again.</h3>
+    </div>
+</body>
 </html>
