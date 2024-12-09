@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import com.iluwatar.CannotAddTwoCurrienciesException;
 import com.iluwatar.CannotSubtractException;
 import com.iluwatar.Money;
+import com.iluwatar.App;
 
 
  class MoneyTest {
@@ -112,4 +113,13 @@ import com.iluwatar.Money;
       money.exchangeCurrency("EUR", -0.85);
     });
   }
+
+
+  @Test
+     void testAppExecution() {
+       assertDoesNotThrow(() -> {
+         App.main(new String[]{});
+       }, "App execution should not throw any exceptions");
+     }
+
 }
