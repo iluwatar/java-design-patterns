@@ -1,4 +1,5 @@
-package com.iluwatar.singleton;
+package com.iluwatar.visitor.example;
+
 
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
