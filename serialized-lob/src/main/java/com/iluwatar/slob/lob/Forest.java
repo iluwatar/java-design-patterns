@@ -37,16 +37,17 @@ import lombok.NoArgsConstructor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
 /**
  * Creates an object Forest which contains animals and plants as its constituents. Animals may eat
  * plants or other animals in the forest.
  */
+
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Forest implements Serializable {
-
+  public static final String HORIZONTAL_DIVIDER = "\n--------------------------\n";
   private String name;
   private Set<Animal> animals = new HashSet<>();
   private Set<Plant> plants = new HashSet<>();
@@ -105,16 +106,16 @@ public class Forest implements Serializable {
     sb.append("Forest Name = ").append(name).append("\n");
     sb.append("Animals found in the ").append(name).append(" Forest: \n");
     for (Animal animal : animals) {
-      sb.append("\n--------------------------\n");
+      sb.append(HORIZONTAL_DIVIDER);
       sb.append(animal.toString());
-      sb.append("\n--------------------------\n");
+      sb.append(HORIZONTAL_DIVIDER);
     }
     sb.append("\n");
     sb.append("Plants in the ").append(name).append(" Forest: \n");
     for (Plant plant : plants) {
-      sb.append("\n--------------------------\n");
+      sb.append(HORIZONTAL_DIVIDER);
       sb.append(plant.toString());
-      sb.append("\n--------------------------\n");
+      sb.append(HORIZONTAL_DIVIDER);
     }
     return sb.toString();
   }
