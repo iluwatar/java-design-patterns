@@ -78,6 +78,7 @@
     <module>command</module>
     <module>interpreter</module>
     <module>iterator</module>
+    <module>join</module>
     <module>mediator</module>
     <module>memento</module>
     <module>model-view-presenter</module>
