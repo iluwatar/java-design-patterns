@@ -48,37 +48,85 @@ The `CentralLogStore` is responsible for storing the logs collected from various
 
 ```java
 public class CentralLogStore {
+    private final List<LogEntry> logs = new ArrayList<>();
 
-  private final List<LogEntry> logs = new ArrayList<>();
-
-  public void storeLog(LogEntry logEntry) {
-    logs.add(logEntry);
-  }
-
-  public void displayLogs() {
-    logs.forEach(System.out::println);
-  }
+    public void storeLog(LogEntry logEntry) {
+        logs.add(logEntry);
+    }
+    public void displayLogs() {
+        logs.forEach(System.out::println);
+    }
 }
 ```
 
 The `LogAggregator` collects logs from various services and stores them in the `CentralLogStore`. It filters logs based on their log level.
 
+
+```java
+//This will be the structure to hold the log data
+public class LogEntry {
+    private final String serviceName;
+    private final String logLevel;
+    private final String message;
+    private final LocalDateTime timestamp;
+
+    public LogEntry(String serviceName, String logLevel, String message, LocalDateTime timestamp) {
+        this.serviceName = serviceName;
+        this.logLevel = logLevel;
+        this.message = message;
+        this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "LogEntry{" +
+                "serviceName='" + serviceName + '\'' +
+                ", logLevel='" + logLevel + '\'' +
+                ", message='" + message + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
+    public String getServiceName() {
+        return serviceName;
+    }
+
+    public String getLogLevel() {
+        return logLevel;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public LocalDateTime getTimestamp() {
+        return timestamp;
+    }
+}
+```
+
+
 ```java
 public class LogAggregator {
+    private final CentralLogStore centralLogStore;
+    private final BlockingQueue<LogEntry> logQueue;
 
-  private final CentralLogStore centralLogStore;
-  private final LogLevel minimumLogLevel;
-
-  public LogAggregator(CentralLogStore centralLogStore, LogLevel minimumLogLevel) {
-    this.centralLogStore = centralLogStore;
-    this.minimumLogLevel = minimumLogLevel;
-  }
-
-  public void collectLog(LogEntry logEntry) {
-    if (logEntry.getLogLevel().compareTo(minimumLogLevel) >= 0) {
-      centralLogStore.storeLog(logEntry);
+    public LogAggregator(CentralLogStore centralLogStore, BlockingQueue<LogEntry> logQueue) {
+        this.centralLogStore = centralLogStore;
+        this.logQueue = logQueue;
     }
-  }
+
+    public void startLogAggregation() {
+        new Thread(() -> {
+            try {
+                while (true) {
+                    LogEntry log = logQueue.take(); 
+                    centralLogStore.storeLog(log);
+                }
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }).start();
+    }
 }
 ```
 
@@ -86,19 +134,22 @@ The `LogProducer` represents a service that generates logs. It sends the logs to
 
 ```java
 public class LogProducer {
+    private final String serviceName;
+    private final BlockingQueue<LogEntry> logQueue;
 
-  private final String serviceName;
-  private final LogAggregator logAggregator;
+    public LogProducer(String serviceName, BlockingQueue<LogEntry> logQueue) {
+        this.serviceName = serviceName;
+        this.logQueue = logQueue;
+    }
 
-  public LogProducer(String serviceName, LogAggregator logAggregator) {
-    this.serviceName = serviceName;
-    this.logAggregator = logAggregator;
-  }
-
-  public void generateLog(LogLevel logLevel, String message) {
-    LogEntry logEntry = new LogEntry(serviceName, logLevel, message, LocalDateTime.now());
-    logAggregator.collectLog(logEntry);
-  }
+    public void generateLog(String logLevel, String message) {
+        LogEntry logEntry = new LogEntry(serviceName, logLevel, message, java.time.LocalDateTime.now());
+        try {
+            logQueue.put(logEntry); 
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
 }
 ```
 
@@ -106,20 +157,30 @@ The `main` application creates services, generates logs, aggregates, and finally
 
 ```java
 public class App {
+    public static void main(String[] args) {
+        CentralLogStore centralLogStore = new CentralLogStore();
 
-  public static void main(String[] args) throws InterruptedException {
-    final CentralLogStore centralLogStore = new CentralLogStore();
-    final LogAggregator aggregator = new LogAggregator(centralLogStore, LogLevel.INFO);
+        BlockingQueue<LogEntry> logQueue = new LinkedBlockingQueue<>();
+        
+        LogAggregator logAggregator = new LogAggregator(centralLogStore, logQueue);
+        logAggregator.startLogAggregation(); // Start aggregation in the background
 
-    final LogProducer serviceA = new LogProducer("ServiceA", aggregator);
-    final LogProducer serviceB = new LogProducer("ServiceB", aggregator);
+       
+        LogProducer serviceA = new LogProducer("ServiceA", logQueue);
+        LogProducer serviceB = new LogProducer("ServiceB", logQueue);
 
-    serviceA.generateLog(LogLevel.INFO, "This is an INFO log from ServiceA");
-    serviceB.generateLog(LogLevel.ERROR, "This is an ERROR log from ServiceB");
-    serviceA.generateLog(LogLevel.DEBUG, "This is a DEBUG log from ServiceA");
+       
+        serviceA.generateLog("INFO", "This is an INFO log from ServiceA");
+        serviceB.generateLog("ERROR", "This is an ERROR log from ServiceB");
+        serviceA.generateLog("DEBUG", "This is a DEBUG log from ServiceA");
 
-    centralLogStore.displayLogs();
-  }
+        try {
+            Thread.sleep(2000); // Wait for logs to be processed
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        centralLogStore.displayLogs();
+    }
 }
 ```
 
