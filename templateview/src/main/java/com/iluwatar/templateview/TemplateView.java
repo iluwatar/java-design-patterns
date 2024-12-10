@@ -22,31 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwater.templateview;
+package com.iluwatar.templateview;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The App class demonstrates the Template View pattern.
- * In this example, it renders different views such as the HomePage and ContactPage.
+ * TemplateView defines the skeleton for rendering views.
+ * Concrete subclasses will provide the dynamic content for specific views.
  */
 @Slf4j
-public class App {
+public abstract class TemplateView {
 
   /**
-   * Program entry point.
-   *
-   * @param args command line args
+   * Render the common structure of the view, delegating dynamic content to subclasses.
    */
-  public static void main(String[] args) {
-    // Create and render the HomePageView
-    TemplateView homePage = new HomePageView();
-    LOGGER.info("Rendering HomePage:");
-    homePage.render();
+  public final void render() {
+    printHeader();
+    renderDynamicContent();
+    printFooter();
+  }
 
-    // Create and render the ContactPageView
-    TemplateView contactPage = new ContactPageView();
-    LOGGER.info("\nRendering ContactPage:");
-    contactPage.render();
+  /**
+   * Prints the common header of the view.
+   */
+  protected void printHeader() {
+    LOGGER.info("Rendering header...");
+  }
+
+  /**
+   * Subclasses must provide the implementation for rendering dynamic content.
+   */
+  protected abstract void renderDynamicContent();
+
+  /**
+   * Prints the common footer of the view.
+   */
+  protected void printFooter() {
+    LOGGER.info("Rendering footer...");
   }
 }

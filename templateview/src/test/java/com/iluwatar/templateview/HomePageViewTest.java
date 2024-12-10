@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwater.templateview;
+package com.iluwatar.templateview;
 
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;

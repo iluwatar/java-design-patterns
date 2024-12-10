@@ -128,9 +128,9 @@ Rendering footer...
 - Design Overhead: Might be overkill for simple applications with few views.
 
 ## Related Java Design Patterns
-- **Template Method:** A similar pattern focusing on defining a skeleton algorithm, allowing subclasses to implement specific steps.
-- **Strategy Pattern:** Offers flexibility in choosing dynamic behaviors at runtime instead of hardcoding them in subclasses.
-- **Decorator Pattern:** Can complement Template View for dynamically adding responsibilities to views.
+- [Template Method](https://java-design-patterns.com/patterns/template-method/): A similar pattern focusing on defining a skeleton algorithm, allowing subclasses to implement specific steps.
+- [Strategy Pattern](https://java-design-patterns.com/patterns/strategy/): Offers flexibility in choosing dynamic behaviors at runtime instead of hardcoding them in subclasses.
+- [Decorator Pattern](https://java-design-patterns.com/patterns/decorator/): Can complement Template View for dynamically adding responsibilities to views.
 
 ## Real World Applications of Template View Pattern
 - Web frameworks like Spring MVC and Django use this concept to render views consistently.

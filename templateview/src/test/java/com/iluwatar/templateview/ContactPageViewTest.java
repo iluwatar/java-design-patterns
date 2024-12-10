@@ -22,38 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwater.templateview;
+package com.iluwatar.templateview;
 
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
-class TemplateViewTest {
+class ContactPageViewTest {
 
   @Test
-  void testRenderHomePage() {
-    // Create a spy for HomePageView
-    TemplateView homePage = spy(HomePageView.class);
-
-    // Call the render method
-    homePage.render();
-
-    // Verify that the steps of rendering are executed in the correct order
-    verify(homePage).printHeader(); // Header is printed
-    verify(homePage).renderDynamicContent(); // Dynamic content specific to home page
-    verify(homePage).printFooter(); // Footer is printed
-  }
-
-  @Test
-  void testRenderContactPage() {
+  void testRenderDynamicContent() {
     // Create a spy for ContactPageView
-    TemplateView contactPage = spy(ContactPageView.class);
+    ContactPageView contactPage = spy(ContactPageView.class);
 
-    // Call the render method
-    contactPage.render();
+    // Render dynamic content for ContactPageView
+    contactPage.renderDynamicContent();
 
-    // Verify that the steps of rendering are executed in the correct order
-    verify(contactPage).printHeader(); // Header is printed
-    verify(contactPage).renderDynamicContent(); // Dynamic content specific to contact page
-    verify(contactPage).printFooter(); // Footer is printed
+    // Verify that the correct message is logged
+    verify(contactPage).renderDynamicContent();
   }
 }

@@ -22,22 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwater.templateview;
+package com.iluwatar.templateview;
 
 import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-class ContactPageViewTest {
+/**
+ * Application test
+ */
+class AppTest {
 
   @Test
-  void testRenderDynamicContent() {
-    // Create a spy for ContactPageView
-    ContactPageView contactPage = spy(ContactPageView.class);
-
-    // Render dynamic content for ContactPageView
-    contactPage.renderDynamicContent();
-
-    // Verify that the correct message is logged
-    verify(contactPage).renderDynamicContent();
+  void shouldExecuteWithoutException() {
+    // Verify that main() method executes without throwing exceptions
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwater.templateview;
+package com.iluwatar.templateview;
 
 import lombok.extern.slf4j.Slf4j;
 

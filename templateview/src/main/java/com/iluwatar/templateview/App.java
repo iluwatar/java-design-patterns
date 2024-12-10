@@ -22,20 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwater.templateview;
+package com.iluwatar.templateview;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * HomePageView implements the TemplateView and provides dynamic content specific to the homepage.
+ * Template View defines a consistent layout for rendering views, delegating dynamic content
+ * rendering to subclasses.
+ *
+ * <p>In this example, the {@link TemplateView} class provides the skeleton for rendering views
+ * with a header, dynamic content, and a footer. Subclasses {@link HomePageView} and
+ * {@link ContactPageView} define the specific dynamic content for their respective views.
+ *
+ * <p>The {@link App} class demonstrates the usage of the Template View Pattern by rendering
+ * instances of {@link HomePageView} and {@link ContactPageView}.
  */
 @Slf4j
-public class HomePageView extends TemplateView {
+public class App {
+
   /**
-   * Renders dynamic content for the homepage.
+   * Program entry point.
+   *
+   * @param args command line args
    */
-  @Override
-  protected void renderDynamicContent() {
-    LOGGER.info("Welcome to the Home Page!");
+  public static void main(String[] args) {
+    // Create and render the HomePageView
+    TemplateView homePage = new HomePageView();
+    LOGGER.info("Rendering HomePage:");
+    homePage.render();
+
+    // Create and render the ContactPageView
+    TemplateView contactPage = new ContactPageView();
+    LOGGER.info("\nRendering ContactPage:");
+    contactPage.render();
   }
 }

@@ -22,42 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwater.templateview;
+package com.iluwatar.templateview;
 
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * TemplateView defines the skeleton for rendering views.
- * Concrete subclasses will provide the dynamic content for specific views.
+ * HomePageView implements the TemplateView and provides dynamic content specific to the homepage.
  */
 @Slf4j
-public abstract class TemplateView {
-
+public class HomePageView extends TemplateView {
   /**
-   * Render the common structure of the view, delegating dynamic content to subclasses.
+   * Renders dynamic content for the homepage.
    */
-  public final void render() {
-    printHeader();
-    renderDynamicContent();
-    printFooter();
-  }
-
-  /**
-   * Prints the common header of the view.
-   */
-  protected void printHeader() {
-    LOGGER.info("Rendering header...");
-  }
-
-  /**
-   * Subclasses must provide the implementation for rendering dynamic content.
-   */
-  protected abstract void renderDynamicContent();
-
-  /**
-   * Prints the common footer of the view.
-   */
-  protected void printFooter() {
-    LOGGER.info("Rendering footer...");
+  @Override
+  protected void renderDynamicContent() {
+    LOGGER.info("Welcome to the Home Page!");
   }
 }
