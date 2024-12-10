@@ -28,84 +28,56 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.*;
 import java.util.function.Predicate;
-
-/**
- * Retry pattern.
- *
- * @param <T> is the type of object passed into HandleErrorIssue as a parameter.
- */
 
 public class Retry<T> {
 
-  /**
-   * Operation Interface will define method to be implemented.
-   */
+    public interface Operation {
+        void operation(List<Exception> list) throws Exception;
+    }
 
-  public interface Operation {
-    void operation(List<Exception> list) throws Exception;
-  }
+    public interface HandleErrorIssue<T> {
+        void handleIssue(T obj, Exception e);
+    }
 
-  /**
-   * HandleErrorIssue defines how to handle errors.
-   *
-   * @param <T> is the type of object to be passed into the method as parameter.
-   */
+    private static final SecureRandom RANDOM = new SecureRandom();
 
-  public interface HandleErrorIssue<T> {
-    void handleIssue(T obj, Exception e);
-  }
+    private final Operation op;
+    private final HandleErrorIssue<T> handleError;
+    private final int maxAttempts;
+    private final long maxDelay;
+    private final AtomicInteger attempts;
+    private final Predicate<Exception> test;
+    private final List<Exception> errors;
+    private final ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
 
-  private static final SecureRandom RANDOM = new SecureRandom();
+    Retry(Operation op, HandleErrorIssue<T> handleError, int maxAttempts, long maxDelay, Predicate<Exception>... ignoreTests) {
+        this.op = op;
+        this.handleError = handleError;
+        this.maxAttempts = maxAttempts;
+        this.maxDelay = maxDelay;
+        this.attempts = new AtomicInteger();
+        this.test = Arrays.stream(ignoreTests).reduce(Predicate::or).orElse(e -> false);
+        this.errors = new ArrayList<>();
+    }
 
-  private final Operation op;
-  private final HandleErrorIssue<T> handleError;
-  private final int maxAttempts;
-  private final long maxDelay;
-  private final AtomicInteger attempts;
-  private final Predicate<Exception> test;
-  private final List<Exception> errors;
+    public void perform(List<Exception> list, T obj) {
+        do {
+            try {
+                op.operation(list);
+                return;
+            } catch (Exception e) {
+                this.errors.add(e);
+                if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
+                    this.handleError.handleIssue(obj, e);
+                    return;
+                }
 
-  Retry(Operation op, HandleErrorIssue<T> handleError, int maxAttempts,
-        long maxDelay, Predicate<Exception>... ignoreTests) {
-    this.op = op;
-    this.handleError = handleError;
-    this.maxAttempts = maxAttempts;
-    this.maxDelay = maxDelay;
-    this.attempts = new AtomicInteger();
-    this.test = Arrays.stream(ignoreTests).reduce(Predicate::or).orElse(e -> false);
-    this.errors = new ArrayList<>();
-  }
-
-  /**
-   * Performing the operation with retries.
-   *
-   * @param list is the exception list
-   * @param obj  is the parameter to be passed into handleIsuue method
-   */
-
-  public void perform(List<Exception> list, T obj) {
-    do {
-      try {
-        op.operation(list);
-        return;
-      } catch (Exception e) {
-        this.errors.add(e);
-        if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
-          this.handleError.handleIssue(obj, e);
-          return; //return here... don't go further
-        }
-        try {
-          long testDelay =
-              (long) Math.pow(2, this.attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
-          long delay = Math.min(testDelay, this.maxDelay);
-          Thread.sleep(delay);
-        } catch (InterruptedException f) {
-          //ignore
-        }
-      }
-    } while (true);
-  }
-
+                long testDelay = (long) Math.pow(2, this.attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
+                long delay = Math.min(testDelay, this.maxDelay);
+                executorService.schedule(() -> {}, delay, TimeUnit.MILLISECONDS);  // Schedule retry without blocking
+            }
+        } while (true);
+    }
 }
