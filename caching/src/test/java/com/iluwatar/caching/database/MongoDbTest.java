@@ -29,6 +29,8 @@ import com.iluwatar.caching.constants.CachingConstants;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.InsertOneResult;
+import com.mongodb.client.result.UpdateResult;
 import org.bson.Document;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -48,7 +50,7 @@ class MongoDbTest {
 
   @Mock
   MongoDatabase db;
-  private MongoDb mongoDb = new MongoDb();
+  private final MongoDb mongoDb = new MongoDb();
 
   private UserAccount userAccount;
 
@@ -67,8 +69,8 @@ class MongoDbTest {
   @Test
   void readFromDb() {
     Document document = new Document(USER_ID, ID)
-            .append(USER_NAME, NAME)
-            .append(ADD_INFO, ADDITIONAL_INFO);
+        .append(USER_NAME, NAME)
+        .append(ADD_INFO, ADDITIONAL_INFO);
     MongoCollection<Document> mongoCollection = mock(MongoCollection.class);
     when(db.getCollection(CachingConstants.USER_ACCOUNT)).thenReturn(mongoCollection);
 
@@ -77,27 +79,53 @@ class MongoDbTest {
 
     when(findIterable.first()).thenReturn(document);
 
-    assertEquals(mongoDb.readFromDb(ID),userAccount);
+    assertEquals(mongoDb.readFromDb(ID), userAccount);
   }
 
   @Test
   void writeToDb() {
+    // Create a mock for the MongoCollection
     MongoCollection<Document> mongoCollection = mock(MongoCollection.class);
+
+    // Stub the getCollection method to return the mocked mongoCollection
     when(db.getCollection(CachingConstants.USER_ACCOUNT)).thenReturn(mongoCollection);
-    assertDoesNotThrow(()-> {mongoDb.writeToDb(userAccount);});
+
+    // Create a mock for the InsertOneResult (assuming you want to capture the return type)
+    InsertOneResult mockResult = mock(InsertOneResult.class);
+
+    // Mock the insertOne method to return the mocked result
+    when(mongoCollection.insertOne(any(Document.class))).thenReturn(mockResult);
+
+    // Assert that calling writeToDb does not throw an exception
+    assertDoesNotThrow(() -> {
+      mongoDb.writeToDb(userAccount);
+    });
   }
+
 
   @Test
   void updateDb() {
     MongoCollection<Document> mongoCollection = mock(MongoCollection.class);
     when(db.getCollection(CachingConstants.USER_ACCOUNT)).thenReturn(mongoCollection);
-    assertDoesNotThrow(()-> {mongoDb.updateDb(userAccount);});
+
+    // If updateOne is not void, you should return a mock or a new instance of UpdateResult
+    UpdateResult mockResult = mock(UpdateResult.class);
+    when(mongoCollection.updateOne(any(Document.class), any(Document.class))).thenReturn(mockResult);
+
+    assertDoesNotThrow(() -> { mongoDb.updateDb(userAccount); });
   }
 
   @Test
   void upsertDb() {
     MongoCollection<Document> mongoCollection = mock(MongoCollection.class);
     when(db.getCollection(CachingConstants.USER_ACCOUNT)).thenReturn(mongoCollection);
-    assertDoesNotThrow(()-> {mongoDb.upsertDb(userAccount);});
+
+    // Similar to updateDb
+    UpdateResult mockResult = mock(UpdateResult.class);
+    when(mongoCollection.updateOne(any(Document.class), any(Document.class))).thenReturn(mockResult);
+
+    assertDoesNotThrow(() -> { mongoDb.upsertDb(userAccount); });
   }
+
+
 }

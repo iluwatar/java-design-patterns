@@ -47,11 +47,30 @@
     <dependency>
       <groupId>org.mongodb</groupId>
       <artifactId>bson</artifactId>
+        <version>4.9.0</version>
     </dependency>
-    <dependency>
-      <groupId>org.mongodb</groupId>
-      <artifactId>mongodb-driver-legacy</artifactId>
-    </dependency>
+      <dependency>
+          <groupId>org.mongodb</groupId>
+          <artifactId>mongodb-driver-sync</artifactId>
+          <version>4.9.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.mongodb</groupId>
+          <artifactId>mongodb-driver-core</artifactId>
+          <version>4.9.0</version>
+      </dependency>
+      <dependency>
+          <groupId>io.github.cdimascio</groupId>
+          <artifactId>java-dotenv</artifactId>
+          <version>5.2.2</version>
+      </dependency>
+      <dependency>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok</artifactId>
+          <version>1.18.30</version>
+          <scope>provided</scope>
+      </dependency>
+
   </dependencies>
   <!--
     Due to the use of MongoDB in the test of this pattern, TRAVIS and/or MAVEN might fail if the DB connection is
