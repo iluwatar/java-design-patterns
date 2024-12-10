@@ -201,6 +201,7 @@
     <module>currying</module>
     <module>serialized-entity</module>
     <module>identity-map</module>
+    <module>row-data-gateway</module>
     <module>component</module>
     <module>context-object</module>
     <module>optimistic-offline-lock</module>
@@ -218,6 +219,7 @@
     <module>function-composition</module>
     <module>microservices-distributed-tracing</module>
     <module>microservices-idempotent-consumer</module>
+      <module>row-data-gateway</module>
   </modules>
   <repositories>
     <repository>
