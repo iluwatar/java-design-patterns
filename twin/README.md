@@ -84,36 +84,47 @@ public class BallItem extends GameItem {
 public class BallThread extends Thread {
   @Setter
   private BallItem twin;
-  private volatile boolean isSuspended;
-  private volatile boolean isRunning = true;
+  private boolean isSuspended;
+  private boolean isRunning = true;
 
+  @Override
   public void run() {
-    while (isRunning) {
-      if (!isSuspended) {
+    synchronized (this) {
+      while (isRunning) {
+        while (isSuspended) {
+          try {
+            wait(); 
+          } catch (InterruptedException e) {
+            LOGGER.error("Thread interrupted", e);
+          }
+        }
         twin.draw();
         twin.move();
-      }
-      try {
-        Thread.sleep(250);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
+        try {
+          Thread.sleep(250); // Optional delay for smooth execution
+        } catch (InterruptedException e) {
+          LOGGER.error("Sleep interrupted", e);
+        }
       }
     }
   }
 
-  public void suspendMe() {
+  public synchronized void suspendMe() {
     isSuspended = true;
-    LOGGER.info("Begin to suspend BallThread");
+    LOGGER.info("BallThread suspended");
   }
 
-  public void resumeMe() {
+  public synchronized void resumeMe() {
     isSuspended = false;
-    LOGGER.info("Begin to resume BallThread");
+    LOGGER.info("BallThread resumed");
+    notify(); 
   }
 
-  public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
+  public synchronized void stopMe() {
+    isRunning = false;
+    isSuspended = false;
+    LOGGER.info("BallThread stopping");
+    notify();
   }
 }
 ```
