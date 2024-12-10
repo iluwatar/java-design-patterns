@@ -1,0 +1,121 @@
+@startuml
+package com.iluwatar {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  abstract class Component {
+    - isEnabled : boolean
+    - name : String
+    - parent : Entity
+    + Component()
+    + getEnabled() : boolean
+    + getName() : String
+    + getParent() : Entity
+    + setEnabled(isEnabled : boolean)
+    + setName(name : String)
+    + setParent(parent : Entity)
+    + update(float) {abstract}
+  }
+  class Entity {
+    - children : List<Entity>
+    - components : List<Component>
+    - entityId : UUID
+    - gameSystem : GameSystem
+    - isEnabled : boolean
+    - name : String
+    - parent : Entity
+    - transform : TransformComponent
+    + Entity(entityName : String)
+    + addChild(child : Entity)
+    + addComponent(component : Component)
+    + getChildren() : List<Entity>
+    + getComponent(componentName : String) : Component
+    + getEntityId() : UUID
+    + getGameSystem() : GameSystem
+    + getMeshRenderComponents() : List<Component>
+    + getName() : String
+    + getParent() : Entity
+    + getTransformComponent() : TransformComponent
+    + isEnabled() : boolean
+    + removeChild(child : Entity)
+    + removeComponent(component : Component)
+    + renderEntity()
+    + setEnabled(enabled : boolean)
+    + setGameSystem(gameSystem : GameSystem)
+    + setIsEnabled(isEnabled : boolean)
+    + setName(name : String)
+    + setParent(newParent : Entity)
+    + update(deltaTime : float)
+  }
+  class GameSystem {
+    - entities : List<Entity>
+    + GameSystem()
+    + addEntity(entity : Entity)
+    - calculateDistance(point1 : float[], point2 : float[]) : float
+    + getSystemMatrix(entity : Entity) : float[][]
+    + getSystemPosition(entity : Entity) : float[]
+    - multiplyMatrices(matrix1 : float[][], matrix2 : float[][]) : float[][]
+    + removeEntity(entity : Entity)
+    + renderSystem()
+    + sortEntitiesByDistance(referencePoint : float[])
+    + update(deltaTime : float)
+  }
+  class HealthComponent {
+    - currentHealth : float
+    - isAlive : boolean
+    - logger : Logger {static}
+    - maxHealth : float
+    + HealthComponent(maxHealth : float)
+    + applyDamage(damage : float)
+    + getCurrentHealth() : float
+    + getMaxHealth() : float
+    + heal(amount : float)
+    + isAlive() : boolean
+    + setAlive(isAlive : boolean)
+    + setCurrentHealth(currentHealth : float)
+    + setMaxHealth(maxHealth : float)
+    + update(deltaTime : float)
+  }
+  class TransformComponent {
+    - position : float[]
+    - rotation : float[]
+    - scale : float[]
+    + TransformComponent()
+    + TransformComponent(initPosition : float[], initRotation : float[], initScale : float[])
+    - applyRotation(matrix : float[][])
+    + getPosition() : float[]
+    + getRotation() : float[]
+    + getScale() : float[]
+    + getTransformMatrix() : float[][]
+    + setPosition(position : float[])
+    + setRotation(eulerAngles : float[])
+    + setScale(scale : float[])
+    + update(deltaTime : float)
+  }
+  class VelocityComponent {
+    - logger : Logger {static}
+    - velocityX : float
+    - velocityY : float
+    - velocityZ : float
+    + VelocityComponent(velocityX : float, velocityY : float, velocityZ : float)
+    + applyForce(forceX : float, forceY : float, forceZ : float)
+    + applyFriction(frictionCoefficient : float)
+    + getVelocityX() : float
+    + getVelocityY() : float
+    + getVelocityZ() : float
+    + setVelocityX(velocityX : float)
+    + setVelocityY(velocityY : float)
+    + setVelocityZ(velocityZ : float)
+    + update(deltaTime : float)
+  }
+}
+Entity -->  "-transform" TransformComponent
+Entity -->  "-parent" Entity
+Entity -->  "-children" Entity
+Entity -->  "-gameSystem" GameSystem
+Entity -->  "-components" Component
+HealthComponent --|> Component 
+TransformComponent --|> Component 
+VelocityComponent --|> Component 
+@enduml
