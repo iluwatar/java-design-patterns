@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar;
+package com.iluwatar.fallback;
 
 /**
  * Interface defining the contract for a circuit breaker implementation.

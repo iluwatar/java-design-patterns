@@ -1,7 +1,9 @@
-package com.iluwatar;
+package com.iluwatar.fallback;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+
 import java.time.Duration;
 import java.time.Instant;
 import java.util.concurrent.CountDownLatch;

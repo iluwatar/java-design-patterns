@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar;
+package com.iluwatar.fallback;
 
 import ch.qos.logback.classic.Logger;
 import java.time.Duration;

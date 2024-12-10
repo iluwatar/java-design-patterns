@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar;
+package com.iluwatar.fallback;
 
 import java.time.Duration;
 import java.time.Instant;
@@ -76,14 +76,30 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
    */
   @Override
   public synchronized boolean allowRequest() {
-    checkAndTransitionState();
-    return state != State.OPEN;
+    if (state == State.CLOSED) {
+      return true;
+    }
+    if (state == State.OPEN) {
+      if (System.currentTimeMillis() - lastFailureTime > RESET_TIMEOUT) {
+        transitionToHalfOpen();
+        return true;
+      }
+      return false;
+    }
+    // In HALF_OPEN state, allow limited testing
+    return true;
   }
 
   @Override
   public synchronized boolean isOpen() {
-    checkAndTransitionState();
-    return state == State.OPEN;
+    if (state == State.OPEN) {
+      if (System.currentTimeMillis() - lastFailureTime > RESET_TIMEOUT) {
+        transitionToHalfOpen();
+        return false;
+      }
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -144,21 +160,14 @@ public class DefaultCircuitBreaker implements CircuitBreaker {
    */
   @Override
   public synchronized CircuitState getState() {
-    checkAndTransitionState();
+    if (state == State.OPEN && System.currentTimeMillis() - lastFailureTime > RESET_TIMEOUT) {
+      transitionToHalfOpen();
+    }
     return switch (state) {
       case CLOSED -> CircuitState.CLOSED;
       case OPEN -> CircuitState.OPEN;
       case HALF_OPEN -> CircuitState.HALF_OPEN;
     };
-  }
-
-  /**
-   * Checks if state transition is needed and performs it if necessary.
-   */
-  private void checkAndTransitionState() {
-    if (state == State.OPEN && System.currentTimeMillis() - lastFailureTime > RESET_TIMEOUT) {
-      transitionToHalfOpen();
-    }
   }
 
   /**

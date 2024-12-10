@@ -22,7 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar;
+package com.iluwatar.fallback;
 
 /**
  * Service interface that defines a method to retrieve data.

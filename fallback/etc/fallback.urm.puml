@@ -1,51 +1,65 @@
 @startuml
-package com.iluwatar {
+package fallback {
   class App {
     - TIMEOUT : int {static}
+    - MAX_ATTEMPTS : int {static}
+    - RETRY_DELAY : int {static}
+    - DEFAULT_API_URL : String {static}
     - circuitBreaker : CircuitBreaker
     - executor : ExecutorService
     - fallbackService : Service
     - primaryService : Service
+    - state : ExecutionState
     - LOGGER : Logger {static}
     + App()
-    + App(primaryService : Service, fallbackService : Service)
+    + App(primaryService : Service, fallbackService : Service, circuitBreaker : CircuitBreaker)
     + executeWithFallback() : String
     - getFallbackData() : String
-    + main(args : String[]) {static}
+    - updateFallbackCache(result : String)
     + shutdown()
+    + main(args : String[]) {static}
   }
 
   interface Service {
-    + getData() : String {abstract}
+    + getData() : String
   }
 
   interface CircuitBreaker {
-    + isOpen() : boolean {abstract}
-    + recordFailure() {abstract}
-    + recordSuccess() {abstract}
-    + reset() {abstract}
+    + isOpen() : boolean
+    + allowRequest() : boolean
+    + recordFailure()
+    + recordSuccess()
+    + reset()
+    + getState() : CircuitState
   }
 
   class DefaultCircuitBreaker {
     - RESET_TIMEOUT : long {static}
-    - failureCount : int
+    - MIN_HALF_OPEN_DURATION : Duration {static}
+    - state : State
     - failureThreshold : int
     - lastFailureTime : long
-    - state : State
+    - failureTimestamps : Queue<Long>
+    - windowSize : Duration
+    - halfOpenStartTime : Instant
     + DefaultCircuitBreaker(failureThreshold : int)
     + isOpen() : boolean
+    + allowRequest() : boolean
     + recordFailure()
     + recordSuccess()
     + reset()
-    - enum State
+    + getState() : CircuitState
+    - transitionToHalfOpen()
+    - enum State { CLOSED, OPEN, HALF_OPEN }
   }
 
   class FallbackService {
-    - MAX_RETRIES : int {static}
-    - RETRY_DELAY_MS : int {static}
-    - TIMEOUT_MS : int {static}
-    - MAX_REQUESTS_PER_MINUTE : int {static}
-    - LOGGER : Logger {static}
+    - {static} MAX_RETRIES : int = 3
+    - {static} RETRY_DELAY_MS : long = 1000
+    - {static} TIMEOUT : int = 2
+    - {static} MIN_SUCCESS_RATE : double = 0.6
+    - {static} MAX_REQUESTS_PER_MINUTE : int = 60
+    - {static} LOGGER : Logger
     - primaryService : Service
     - fallbackService : Service
     - circuitBreaker : CircuitBreaker
@@ -53,7 +67,7 @@ package com.iluwatar {
     - healthChecker : ScheduledExecutorService
     - monitor : ServiceMonitor
     - rateLimiter : RateLimiter
-    - closed : boolean
+    - state : ServiceState
     + FallbackService(primaryService : Service, fallbackService : Service, circuitBreaker : CircuitBreaker)
     + getData() : String
     - executeWithTimeout(task : Callable<String>) : String
@@ -61,52 +75,99 @@ package com.iluwatar {
     - updateFallbackCache(result : String)
     - startHealthChecker()
     + close()
+    + getMonitor() : ServiceMonitor
+    + getState() : ServiceState
+    - enum ServiceState { STARTING, RUNNING, DEGRADED, CLOSED }
   }
 
   class LocalCacheService {
-    - cache : Cache
+    - cache : Cache<String, String>
+    - refreshExecutor : ScheduledExecutorService
+    - {static} CACHE_EXPIRY_MS : long = 300000
+    - {static} CACHE_REFRESH_INTERVAL : Duration = Duration.ofMinutes(5)
+    - {static} LOGGER : Logger
     + LocalCacheService()
     + getData() : String
     + updateCache(key : String, value : String)
-    - class Cache
-    - class CacheEntry
-  }
+    + close() : void
+    - initializeDefaultCache()
+    - scheduleMaintenanceTasks()
+    - cleanupExpiredEntries()
+    - enum FallbackLevel { PRIMARY, SECONDARY, TERTIARY }
+    - class Cache<K, V> {
+      - map : ConcurrentHashMap<K, CacheEntry<V>>
+      - expiryMs : long
+      + Cache(expiryMs : long)
+      + get(key : K) : V
+      + put(key : K, value : V)
+      + cleanup()
+      - record CacheEntry<V>(value : V, expiryTime : long) { + isExpired() : boolean }
+    }
+
 
   class RemoteService {
-    - HTTP_OK : int {static}
-    - client : HttpClient
-    - serviceUrl : String
-    + RemoteService(serviceUrl : String)
+    - apiUrl : String
+    - httpClient : HttpClient
+    - {static} TIMEOUT_SECONDS : int = 2
+    + RemoteService(apiUrl : String, httpClient : HttpClient)
     + getData() : String
   }
 
   class ServiceMonitor {
+    - successCount : AtomicInteger
+    - fallbackCount : AtomicInteger
+    - errorCount : AtomicInteger
+    - lastSuccessTime : AtomicReference<Instant>
+    - lastFailureTime : AtomicReference<Instant>
+    - lastResponseTime : AtomicReference<Duration>
     - metrics : Queue<ServiceMetric>
+    - fallbackWeight : double
+    - metricWindow : Duration
+    + ServiceMonitor()
+    + ServiceMonitor(fallbackWeight : double, metricWindow : Duration)
     + recordSuccess(responseTime : Duration)
-    + recordError()
     + recordFallback()
-    + getMetrics() : List<ServiceMetric>
-    - class ServiceMetric
-    - enum MetricType
+    + recordError()
+    + getSuccessCount() : int
+    + getFallbackCount() : int
+    + getErrorCount() : int
+    + getLastSuccessTime() : Instant
+    + getLastFailureTime() : Instant
+    + getLastResponseTime() : Duration
+    + getSuccessRate() : double
+    + reset()
+    - pruneOldMetrics()
+    - record ServiceMetric(timestamp : Instant, type : MetricType, responseTime : Duration)
+    - enum MetricType { SUCCESS, FALLBACK, ERROR }
+  }
+
+  class RateLimiter {
+    - maxRequests : int
+    - window : Duration
+    - requestTimestamps : Queue<Long>
+    + RateLimiter(maxRequests : int, window : Duration)
+    + tryAcquire() : boolean
   }
 
   class ServiceException {
     + ServiceException(message : String)
+    + ServiceException(message : String, cause : Throwable)
   }
-
+}
   ' Relationships
-  App -->  "-circuitBreaker" CircuitBreaker
-  App -->  "-primaryService" Service
-  App -->  "-fallbackService" Service
+  App --> CircuitBreaker
+  App --> Service : primaryService
+  App --> Service : fallbackService
   DefaultCircuitBreaker ..|> CircuitBreaker 
   LocalCacheService ..|> Service 
   RemoteService ..|> Service 
   FallbackService ..|> Service
   FallbackService ..|> AutoCloseable
-  FallbackService --> "-primaryService" Service
-  FallbackService --> "-fallbackService" Service
-  FallbackService --> "-circuitBreaker" CircuitBreaker
-  FallbackService --> "-monitor" ServiceMonitor
+  FallbackService --> Service : primaryService
+  FallbackService --> Service : fallbackService
+  FallbackService --> CircuitBreaker
+  FallbackService --> ServiceMonitor
+  FallbackService --> RateLimiter
   ServiceException --|> Exception
 }
 @enduml

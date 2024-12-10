@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.fallback;
 
 import java.net.http.HttpClient;
 import java.time.Duration;

@@ -1,4 +1,4 @@
-package com.iluwatar;
+package com.iluwatar.fallback;
 
 import java.time.Duration;
 import java.time.Instant;
