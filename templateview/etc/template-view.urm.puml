@@ -1,0 +1,33 @@
+@startuml
+package com.iluwater.templateview {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+
+  abstract class TemplateView {
+    - LOGGER : Logger {static}
+    + TemplateView()
+    + render() : void {final}
+    # printHeader() : void
+    # renderDynamicContent() : void {abstract}
+    # printFooter() : void
+  }
+
+  class HomePageView {
+    - LOGGER : Logger {static}
+    + HomePageView()
+    + renderDynamicContent() : void
+  }
+
+  class ContactPageView {
+    - LOGGER : Logger {static}
+    + ContactPageView()
+    + renderDynamicContent() : void
+  }
+}
+
+App --> TemplateView
+TemplateView <|-- HomePageView
+TemplateView <|-- ContactPageView
+@enduml
