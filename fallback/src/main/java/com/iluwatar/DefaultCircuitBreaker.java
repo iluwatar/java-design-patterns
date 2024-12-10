@@ -25,20 +25,38 @@
 package com.iluwatar;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * DefaultCircuitBreaker class that implements the CircuitBreaker interface.
- * It manages the state of a circuit breaker with a failure threshold and reset timeout.
+ * Circuit breaker implementation with three states:
+ * - CLOSED: Normal operation, requests flow through
+ * - OPEN: Failing fast, no attempts to call primary service
+ * - HALF_OPEN: Testing if service has recovered.
+ *
+ * <p>Features:
+ * - Thread-safe operation
+ * - Sliding window failure counting
+ * - Automatic state transitions
+ * - Configurable thresholds and timeouts
+ * - Recovery validation period
  */
-public final class DefaultCircuitBreaker implements CircuitBreaker {
+public class DefaultCircuitBreaker implements CircuitBreaker {
+  private static final Logger LOGGER = LoggerFactory.getLogger(DefaultCircuitBreaker.class);
+  
+  // Circuit breaker configuration
+  private static final long RESET_TIMEOUT = 5000; // 5 seconds
+  private static final Duration MIN_HALF_OPEN_DURATION = Duration.ofSeconds(30);
+
+  private volatile State state;
   private final int failureThreshold;
-  private long lastFailureTime;
-  private State state;
-  private static final long RESET_TIMEOUT = 5000;
+  private volatile long lastFailureTime;
   private final Queue<Long> failureTimestamps;
   private final Duration windowSize;
+  private volatile Instant halfOpenStartTime;
 
   /**
    * Constructs a DefaultCircuitBreaker with the given failure threshold.
@@ -52,35 +70,62 @@ public final class DefaultCircuitBreaker implements CircuitBreaker {
     this.windowSize = Duration.ofMinutes(1);
   }
 
+  /**
+   * Checks if a request should be allowed through the circuit breaker.
+   * @return true if request should be allowed, false if it should be blocked
+   */
   @Override
-  public boolean isOpen() {
-    if (state == State.OPEN) {
-      if (System.currentTimeMillis() - lastFailureTime > RESET_TIMEOUT) {
-        state = State.HALF_OPEN;
-        return false;
-      }
-      return true;
-    }
-    return false;
+  public synchronized boolean allowRequest() {
+    checkAndTransitionState();
+    return state != State.OPEN;
   }
 
   @Override
-  public void recordSuccess() {
+  public synchronized boolean isOpen() {
+    checkAndTransitionState();
+    return state == State.OPEN;
+  }
+
+  /**
+   * Transitions circuit breaker to half-open state.
+   * Clears failure history and starts recovery monitoring.
+   */
+  private synchronized void transitionToHalfOpen() {
+    state = State.HALF_OPEN;
+    halfOpenStartTime = Instant.now();
     failureTimestamps.clear();
-    state = State.CLOSED;
+    LOGGER.info("Circuit breaker transitioning to HALF_OPEN state");
+  }
+
+  /**
+   * Records successful operation.
+   * In half-open state, requires sustained success before closing circuit.
+   */
+  @Override
+  public synchronized void recordSuccess() {
+    if (state == State.HALF_OPEN) {
+      if (Duration.between(halfOpenStartTime, Instant.now())
+          .compareTo(MIN_HALF_OPEN_DURATION) >= 0) {
+        LOGGER.info("Circuit breaker recovering - transitioning to CLOSED");
+        state = State.CLOSED;
+      }
+    }
+    failureTimestamps.clear();
   }
 
   @Override
-  public void recordFailure() {
+  public synchronized void recordFailure() {
     long now = System.currentTimeMillis();
     failureTimestamps.offer(now);
 
-    while (!failureTimestamps.isEmpty()
+    // Cleanup old timestamps outside window
+    while (!failureTimestamps.isEmpty() 
         && failureTimestamps.peek() < now - windowSize.toMillis()) {
       failureTimestamps.poll();
     }
 
     if (failureTimestamps.size() >= failureThreshold) {
+      LOGGER.warn("Failure threshold reached - opening circuit breaker");
       state = State.OPEN;
       lastFailureTime = now;
     }
@@ -93,6 +138,33 @@ public final class DefaultCircuitBreaker implements CircuitBreaker {
     state = State.CLOSED;
   }
 
+  /**
+   * Returns the current state of the circuit breaker mapped to the public enum.
+   * @return Current CircuitState value
+   */
+  @Override
+  public synchronized CircuitState getState() {
+    checkAndTransitionState();
+    return switch (state) {
+      case CLOSED -> CircuitState.CLOSED;
+      case OPEN -> CircuitState.OPEN;
+      case HALF_OPEN -> CircuitState.HALF_OPEN;
+    };
+  }
+
+  /**
+   * Checks if state transition is needed and performs it if necessary.
+   */
+  private void checkAndTransitionState() {
+    if (state == State.OPEN && System.currentTimeMillis() - lastFailureTime > RESET_TIMEOUT) {
+      transitionToHalfOpen();
+    }
+  }
+
+  /**
+   * Internal states of the circuit breaker.
+   * Maps to the public CircuitState enum for external reporting.
+   */
   private enum State {
     CLOSED,
     OPEN,

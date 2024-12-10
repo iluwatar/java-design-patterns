@@ -25,29 +25,24 @@
 package com.iluwatar;
 
 /**
- * CircuitBreaker interface that defines methods to manage the state of a circuit breaker.
+ * Interface defining the contract for a circuit breaker implementation.
+ * Provides methods to check circuit state and record success/failure events.
  */
 public interface CircuitBreaker {
-
-  /**
-   * Checks if the circuit breaker is open.
-   *
-   * @return true if the circuit breaker is open, false otherwise
-   */
   boolean isOpen();
-
-  /**
-   * Records a successful operation.
-   */
+  boolean allowRequest();
   void recordSuccess();
-
-  /**
-   * Records a failed operation.
-   */
   void recordFailure();
+  CircuitState getState();
+  void reset();
 
   /**
-   * Resets the circuit breaker.
+   * Represents the possible states of the circuit breaker.
+   * CLOSED - Circuit is closed and allowing requests
+   * HALF_OPEN - Circuit is testing if service has recovered
+   * OPEN - Circuit is open and blocking requests
    */
-  void reset();
+  enum CircuitState {
+    CLOSED, HALF_OPEN, OPEN
+  }
 }

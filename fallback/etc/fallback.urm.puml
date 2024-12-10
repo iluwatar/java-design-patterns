@@ -1,13 +1,12 @@
 @startuml
 package com.iluwatar {
   class App {
-    - MAX_ATTEMPTS : int {static}
-    - RETRY_DELAY : int {static}
     - TIMEOUT : int {static}
     - circuitBreaker : CircuitBreaker
     - executor : ExecutorService
     - fallbackService : Service
     - primaryService : Service
+    - LOGGER : Logger {static}
     + App()
     + App(primaryService : Service, fallbackService : Service)
     + executeWithFallback() : String
@@ -15,29 +14,64 @@ package com.iluwatar {
     + main(args : String[]) {static}
     + shutdown()
   }
+
+  interface Service {
+    + getData() : String {abstract}
+  }
+
   interface CircuitBreaker {
     + isOpen() : boolean {abstract}
     + recordFailure() {abstract}
     + recordSuccess() {abstract}
     + reset() {abstract}
   }
+
   class DefaultCircuitBreaker {
     - RESET_TIMEOUT : long {static}
     - failureCount : int
     - failureThreshold : int
     - lastFailureTime : long
+    - state : State
     + DefaultCircuitBreaker(failureThreshold : int)
     + isOpen() : boolean
     + recordFailure()
     + recordSuccess()
     + reset()
+    - enum State
   }
+
+  class FallbackService {
+    - MAX_RETRIES : int {static}
+    - RETRY_DELAY_MS : int {static}
+    - TIMEOUT_MS : int {static}
+    - MAX_REQUESTS_PER_MINUTE : int {static}
+    - LOGGER : Logger {static}
+    - primaryService : Service
+    - fallbackService : Service
+    - circuitBreaker : CircuitBreaker
+    - executor : ExecutorService
+    - healthChecker : ScheduledExecutorService
+    - monitor : ServiceMonitor
+    - rateLimiter : RateLimiter
+    - closed : boolean
+    + FallbackService(primaryService : Service, fallbackService : Service, circuitBreaker : CircuitBreaker)
+    + getData() : String
+    - executeWithTimeout(task : Callable<String>) : String
+    - executeFallback() : String
+    - updateFallbackCache(result : String)
+    - startHealthChecker()
+    + close()
+  }
+
   class LocalCacheService {
-    - cache : ConcurrentHashMap<String, String>
+    - cache : Cache
     + LocalCacheService()
     + getData() : String
     + updateCache(key : String, value : String)
+    - class Cache
+    - class CacheEntry
   }
+
   class RemoteService {
     - HTTP_OK : int {static}
     - client : HttpClient
@@ -45,13 +79,34 @@ package com.iluwatar {
     + RemoteService(serviceUrl : String)
     + getData() : String
   }
-  interface Service {
-    + getData() : String {abstract}
+
+  class ServiceMonitor {
+    - metrics : Queue<ServiceMetric>
+    + recordSuccess(responseTime : Duration)
+    + recordError()
+    + recordFallback()
+    + getMetrics() : List<ServiceMetric>
+    - class ServiceMetric
+    - enum MetricType
   }
+
+  class ServiceException {
+    + ServiceException(message : String)
+  }
+
+  ' Relationships
+  App -->  "-circuitBreaker" CircuitBreaker
+  App -->  "-primaryService" Service
+  App -->  "-fallbackService" Service
+  DefaultCircuitBreaker ..|> CircuitBreaker 
+  LocalCacheService ..|> Service 
+  RemoteService ..|> Service 
+  FallbackService ..|> Service
+  FallbackService ..|> AutoCloseable
+  FallbackService --> "-primaryService" Service
+  FallbackService --> "-fallbackService" Service
+  FallbackService --> "-circuitBreaker" CircuitBreaker
+  FallbackService --> "-monitor" ServiceMonitor
+  ServiceException --|> Exception
 }
-App -->  "-circuitBreaker" CircuitBreaker
-App -->  "-primaryService" Service
-DefaultCircuitBreaker ..|> CircuitBreaker 
-LocalCacheService ..|> Service 
-RemoteService ..|> Service 
 @enduml

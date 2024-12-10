@@ -1,116 +1,106 @@
-/*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
- * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package com.iluwatar;
 
 import java.net.http.HttpClient;
-import java.time.Duration;  // Add this import
+import java.time.Duration;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * App class that demonstrates the use of Circuit Breaker pattern with fallback mechanism.
+ * Demonstrates the Fallback pattern with Circuit Breaker implementation.
+ * 
+ * <p>This application shows how to:
+ * - Handle failures gracefully using fallback mechanisms.
+ * - Implement circuit breaker pattern to prevent cascade failures.
+ * - Configure timeouts and retries for resilient service calls.
+ * - Monitor service health and performance.
+ * 
+ * <p>The app uses a primary remote service with a local cache fallback.
  */
 public class App {
-  private static final Logger LOGGER = Logger.getLogger(App.class.getName());
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  
+  /** Service call timeout in seconds. */
   private static final int TIMEOUT = 2;
+  
+  /** Maximum number of retry attempts. */
   private static final int MAX_ATTEMPTS = 3;
+  
+  /** Delay between retry attempts in milliseconds. */
   private static final int RETRY_DELAY = 1000;
+  
+  /** Default API endpoint for remote service. */
   private static final String DEFAULT_API_URL = "https://jsonplaceholder.typicode.com/todos";
+
+  /** Service execution state tracking. */
+  private enum ExecutionState {
+    READY, RUNNING, FAILED, SHUTDOWN
+  }
 
   private final CircuitBreaker circuitBreaker;
   private final ExecutorService executor;
   private final Service primaryService;
   private final Service fallbackService;
+  private volatile ExecutionState state;
 
   /**
-   * Constructs an App with default primary and fallback services.
+   * Constructs an App with default configuration.
+   * Creates HTTP client with timeout, remote service, and local cache fallback.
    */
   public App() {
-    HttpClient httpClient;
-    try {
-      httpClient = HttpClient.newBuilder()
-          .connectTimeout(Duration.ofSeconds(TIMEOUT))
-          .build();
-    } catch (Exception e) {
-      LOGGER.severe("Failed to create HTTP client: " + e.getMessage());
-      httpClient = HttpClient.newHttpClient(); // Fallback to default client
-    }
-
+    HttpClient httpClient = createHttpClient();
     this.primaryService = new RemoteService(DEFAULT_API_URL, httpClient);
     this.fallbackService = new LocalCacheService();
     this.circuitBreaker = new DefaultCircuitBreaker(MAX_ATTEMPTS);
     this.executor = Executors.newSingleThreadExecutor();
+    this.state = ExecutionState.READY;
+  }
+
+  private HttpClient createHttpClient() {
+    try {
+      return HttpClient.newBuilder()
+          .connectTimeout(Duration.ofSeconds(TIMEOUT))
+          .build();
+    } catch (Exception e) {
+      LOGGER.warn("Failed to create custom HTTP client, using default", e);
+      return HttpClient.newHttpClient();
+    }
   }
 
   /**
-   * Constructs an App with the specified primary and fallback services and a circuit breaker.
+   * Constructs an App with custom services and circuit breaker.
    *
-   * @param primaryService the primary service to use
-   * @param fallbackService the fallback service to use
-   * @param circuitBreaker the circuit breaker to use
+   * @param primaryService Primary service implementation
+   * @param fallbackService Fallback service implementation
+   * @param circuitBreaker Circuit breaker implementation
+   * @throws IllegalArgumentException if any parameter is null
    */
-  public App(final Service primaryService, final Service fallbackService, final CircuitBreaker circuitBreaker) {
+  public App(Service primaryService, Service fallbackService, CircuitBreaker circuitBreaker) {
+    if (primaryService == null || fallbackService == null || circuitBreaker == null) {
+      throw new IllegalArgumentException("All services must be non-null");
+    }
     this.circuitBreaker = circuitBreaker;
     this.executor = Executors.newSingleThreadExecutor();
     this.primaryService = primaryService;
     this.fallbackService = fallbackService;
+    this.state = ExecutionState.READY;
   }
 
   /**
-   * Main method to run the application.
+   * Executes the service with fallback mechanism.
    *
-   * @param args command line arguments
-   */
-  public static void main(final String[] args) {
-    App app = new App();
-    for (int i = 0; i < 5; i++) {
-      try {
-        String result = app.executeWithFallback();
-        System.out.println("Attempt " + (i + 1) + ": Result = " + result);
-      } catch (Exception e) {
-        System.err.println("Attempt " + (i + 1) + " failed: " + e.getMessage());
-      }
-      try {
-        Thread.sleep(RETRY_DELAY);
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-        System.err.println("Thread was interrupted: " + e.getMessage());
-      }
-    }
-    app.shutdown();
-  }
-
-  /**
-   * Executes the primary service with a fallback mechanism.
-   *
-   * @return the result from the primary or fallback service
+   * @return Result from primary or fallback service
+   * @throws IllegalStateException if app is shutdown
    */
   public String executeWithFallback() {
+    if (state == ExecutionState.SHUTDOWN) {
+      throw new IllegalStateException("Application is shutdown");
+    }
+
+    state = ExecutionState.RUNNING;
     if (circuitBreaker.isOpen()) {
       LOGGER.info("Circuit breaker is open, using cached data");
       return getFallbackData();
@@ -120,35 +110,68 @@ public class App {
       Future<String> future = executor.submit(primaryService::getData);
       String result = future.get(TIMEOUT, TimeUnit.SECONDS);
       circuitBreaker.recordSuccess();
-      if (fallbackService instanceof LocalCacheService) {
-        ((LocalCacheService) fallbackService).updateCache("default", result);
-      }
+      updateFallbackCache(result);
       return result;
     } catch (Exception e) {
-      LOGGER.warning("Primary service failed, using fallback. Exception: " + e.getMessage());
+      LOGGER.warn("Primary service failed: {}", e.getMessage());
       circuitBreaker.recordFailure();
+      state = ExecutionState.FAILED;
       return getFallbackData();
     }
   }
 
-  /**
-   * Retrieves data from the fallback service.
-   *
-   * @return the data from the fallback service
-   */
   private String getFallbackData() {
     try {
       return fallbackService.getData();
     } catch (Exception e) {
-      LOGGER.warning("Fallback service failed. Exception: " + e.getMessage());
+      LOGGER.error("Fallback service failed: {}", e.getMessage());
       return "System is currently unavailable";
     }
   }
 
+  private void updateFallbackCache(String result) {
+    if (fallbackService instanceof LocalCacheService) {
+      ((LocalCacheService) fallbackService).updateCache("default", result);
+    }
+  }
+
   /**
-   * Shuts down the executor service.
+   * Shuts down the executor service and cleans up resources.
    */
   public void shutdown() {
+    state = ExecutionState.SHUTDOWN;
     executor.shutdown();
+    try {
+      if (!executor.awaitTermination(5, TimeUnit.SECONDS)) {
+        executor.shutdownNow();
+      }
+    } catch (InterruptedException e) {
+      executor.shutdownNow();
+      Thread.currentThread().interrupt();
+      LOGGER.error("Shutdown interrupted", e);
+    }
+  }
+
+  /**
+   * Main method demonstrating the fallback pattern.
+   */
+  public static void main(String[] args) {
+    App app = new App();
+    try {
+      for (int i = 0; i < MAX_ATTEMPTS; i++) {
+        try {
+          String result = app.executeWithFallback();
+          LOGGER.info("Attempt {}: Result = {}", i + 1, result);
+        } catch (Exception e) {
+          LOGGER.error("Attempt {} failed: {}", i + 1, e.getMessage());
+        }
+        Thread.sleep(RETRY_DELAY);
+      }
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      LOGGER.error("Main thread interrupted", e);
+    } finally {
+      app.shutdown();
+    }
   }
 }

@@ -6,6 +6,7 @@
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
+ * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
@@ -32,20 +33,51 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
- * FallbackService class that implements the fallback pattern.
+ * FallbackService implements a resilient service pattern with circuit breaking,
+ * rate limiting, and fallback capabilities. It manages service degradation gracefully
+ * by monitoring service health and automatically switching to fallback mechanisms
+ * when the primary service is unavailable or performing poorly.
+ *
+ * <p>Features:
+ * - Circuit breaking to prevent cascading failures.
+ * - Rate limiting to protect from overload.
+ * - Automatic fallback to backup service.
+ * - Health monitoring and metrics collection.
+ * - Retry mechanism with exponential backoff.
  */
 public class FallbackService implements Service, AutoCloseable {
-  private static final Logger LOGGER = Logger.getLogger(FallbackService.class.getName());
+  
+  /** Logger for this class. */
+  private static final Logger LOGGER = LoggerFactory.getLogger(FallbackService.class);
+  
+  /** Timeout in seconds for primary service calls. */
   private static final int TIMEOUT = 2;
+  
+  /** Maximum number of retry attempts for failed requests. */
   private static final int MAX_RETRIES = 3;
+  
+  /** Base delay between retries in milliseconds. */
   private static final long RETRY_DELAY_MS = 1000;
+  
+  /** Minimum success rate threshold before triggering warnings. */
   private static final double MIN_SUCCESS_RATE = 0.6;
+  
+  /** Maximum requests allowed per minute for rate limiting. */
   private static final int MAX_REQUESTS_PER_MINUTE = 60;
+
+  /** Service state tracking. */
+  private enum ServiceState {
+    STARTING, RUNNING, DEGRADED, CLOSED
+  }
+
+  private volatile ServiceState state = ServiceState.STARTING;
   
   private final CircuitBreaker circuitBreaker;
   private final ExecutorService executor;
@@ -54,16 +86,22 @@ public class FallbackService implements Service, AutoCloseable {
   private final ServiceMonitor monitor;
   private final ScheduledExecutorService healthChecker;
   private final RateLimiter rateLimiter;
-  private volatile boolean closed = false;
 
   /**
-   * Constructs a FallbackService with the specified primary and fallback services and a circuit breaker.
+   * Constructs a new FallbackService with the specified components.
    *
-   * @param primaryService the primary service to use
-   * @param fallbackService the fallback service to use
-   * @param circuitBreaker the circuit breaker to use
+   * @param primaryService Main service implementation
+   * @param fallbackService Backup service for failover
+   * @param circuitBreaker Circuit breaker for failure detection
+   * @throws IllegalArgumentException if any parameter is null
    */
   public FallbackService(Service primaryService, Service fallbackService, CircuitBreaker circuitBreaker) {
+    // Validate parameters
+    if (primaryService == null || fallbackService == null || circuitBreaker == null) {
+      throw new IllegalArgumentException("All service components must be non-null");
+    }
+
+    // Initialize components
     this.primaryService = primaryService;
     this.fallbackService = fallbackService;
     this.circuitBreaker = circuitBreaker;
@@ -73,19 +111,24 @@ public class FallbackService implements Service, AutoCloseable {
     this.rateLimiter = new RateLimiter(MAX_REQUESTS_PER_MINUTE, Duration.ofMinutes(1));
     
     startHealthChecker();
+    state = ServiceState.RUNNING;
   }
 
+  /**
+   * Starts the health monitoring schedule.
+   * Monitors service health metrics and logs warnings when thresholds are exceeded.
+   */
   private void startHealthChecker() {
     healthChecker.scheduleAtFixedRate(() -> {
       try {
         if (monitor.getSuccessRate() < MIN_SUCCESS_RATE) {
-          LOGGER.warning("Success rate below threshold: " + monitor.getSuccessRate());
+          LOGGER.warn("Success rate below threshold: {}", monitor.getSuccessRate());
         }
         if (Duration.between(monitor.getLastSuccessTime(), Instant.now()).toMinutes() > 5) {
-          LOGGER.warning("No successful requests in last 5 minutes");
+          LOGGER.warn("No successful requests in last 5 minutes");
         }
       } catch (Exception e) {
-        LOGGER.severe("Health check failed: " + e.getMessage());
+        LOGGER.error("Health check failed: {}", e.getMessage());
       }
     }, 1, 1, TimeUnit.MINUTES);
   }
@@ -98,17 +141,23 @@ public class FallbackService implements Service, AutoCloseable {
    */
   @Override
   public String getData() throws Exception {
-    if (closed) {
+    // Validate service state
+    if (state == ServiceState.CLOSED) {
       throw new ServiceException("Service is closed");
     }
-    
+
+    // Apply rate limiting
     if (!rateLimiter.tryAcquire()) {
+      state = ServiceState.DEGRADED;
+      LOGGER.warn("Rate limit exceeded, switching to fallback");
       monitor.recordFallback();
       return executeFallback();
     }
-    
-    if (circuitBreaker.isOpen()) {
-      LOGGER.info("Circuit breaker is open, using fallback");
+
+    // Check circuit breaker
+    if (!circuitBreaker.allowRequest()) {
+      state = ServiceState.DEGRADED;
+      LOGGER.warn("Circuit breaker open, switching to fallback");
       monitor.recordFallback();
       return executeFallback();
     }
@@ -118,6 +167,13 @@ public class FallbackService implements Service, AutoCloseable {
 
     for (int attempt = 0; attempt < MAX_RETRIES; attempt++) {
       try {
+        if (attempt > 0) {
+          // Exponential backoff with jitter
+          long delay = RETRY_DELAY_MS * (long) Math.pow(2, attempt - 1);
+          delay += ThreadLocalRandom.current().nextLong(delay / 2);
+          Thread.sleep(delay);
+        }
+
         String result = executeWithTimeout(primaryService::getData);
         Duration responseTime = Duration.between(start, Instant.now());
         
@@ -128,23 +184,32 @@ public class FallbackService implements Service, AutoCloseable {
         return result;
       } catch (Exception e) {
         lastException = e;
-        LOGGER.warning("Attempt " + (attempt + 1) + " failed: " + e.getMessage());
+        LOGGER.warn("Attempt {} failed: {}", attempt + 1, e.getMessage());
+        
+        // Don't retry certain exceptions
+        if (e instanceof ServiceException 
+            || e instanceof IllegalArgumentException) {
+          break;
+        }
+
         circuitBreaker.recordFailure();
         monitor.recordError();
-        
-        if (attempt < MAX_RETRIES - 1) {
-          Thread.sleep(RETRY_DELAY_MS * (attempt + 1)); // Exponential backoff
-        }
       }
     }
     
     monitor.recordFallback();
     if (lastException != null) {
-      LOGGER.severe("All attempts failed. Last error: " + lastException.getMessage());
+      LOGGER.error("All attempts failed. Last error: {}", lastException.getMessage());
     }
     return executeFallback();
   }
 
+  /**
+   * Executes a service call with timeout protection.
+   * @param task The service call to execute
+   * @return The service response
+   * @throws Exception if the call fails or times out
+   */
   private String executeWithTimeout(Callable<String> task) throws Exception {
     Future<String> future = executor.submit(task);
     try {
@@ -159,7 +224,7 @@ public class FallbackService implements Service, AutoCloseable {
     try {
       return fallbackService.getData();
     } catch (Exception e) {
-      LOGGER.severe("Fallback service failed: " + e.getMessage());
+      LOGGER.error("Fallback service failed: {}", e.getMessage());
       return "Service temporarily unavailable";
     }
   }
@@ -170,7 +235,7 @@ public class FallbackService implements Service, AutoCloseable {
         ((LocalCacheService) fallbackService).updateCache("default", result);
       }
     } catch (Exception e) {
-      LOGGER.warning("Failed to update fallback cache: " + e.getMessage());
+      LOGGER.warn("Failed to update fallback cache: {}", e.getMessage());
     }
   }
 
@@ -178,8 +243,8 @@ public class FallbackService implements Service, AutoCloseable {
    * Shuts down the executor service.
    */
   @Override
-  public void close() {
-    closed = true;
+  public void close() throws Exception {
+    state = ServiceState.CLOSED;
     executor.shutdown();
     healthChecker.shutdown();
     try {
@@ -193,6 +258,7 @@ public class FallbackService implements Service, AutoCloseable {
       executor.shutdownNow();
       healthChecker.shutdownNow();
       Thread.currentThread().interrupt();
+      throw new Exception("Failed to shutdown executors", e);
     }
   }
   
@@ -200,6 +266,18 @@ public class FallbackService implements Service, AutoCloseable {
     return monitor;
   }
 
+  /**
+   * Returns the current service state.
+   * @return Current ServiceState enum value
+   */
+  public ServiceState getState() {
+    return state;
+  }
+
+  /**
+   * Rate limiter implementation using a sliding window approach.
+   * Manages request rate by tracking timestamps within a rolling time window.
+   */
   private static class RateLimiter {
     private final int maxRequests;
     private final Duration window;
@@ -214,7 +292,7 @@ public class FallbackService implements Service, AutoCloseable {
       long now = System.currentTimeMillis();
       long windowStart = now - window.toMillis();
       
-      // Remove expired timestamps
+      // Removing expired timestamps
       while (!requestTimestamps.isEmpty() && requestTimestamps.peek() < windowStart) {
         requestTimestamps.poll();
       }
