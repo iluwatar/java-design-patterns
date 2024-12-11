@@ -31,6 +31,7 @@ package com.iluwatar.adapter;
 public class FishingBoatAdapter implements RowingBoat {
 
   private final FishingBoat boat = new FishingBoat();
+  private int row = 0;
 
   public final void row() {
     boat.sail();
