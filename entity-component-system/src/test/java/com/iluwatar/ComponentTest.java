@@ -29,6 +29,21 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ComponentTest {
+  @Test
+  public void testGetName() {
+    Component component = new HealthComponent(100);
+    component.setName("Health");
+
+    assertEquals("Health", component.getName(), "getName should return 'TestComponent'");
+  }
+
+  @Test
+  public void testSetName() {
+    Component component = new HealthComponent(100);
+    component.setName("Health");
+
+    assertEquals("Health", component.getName(), "getName should return 'TestComponent'");
+  }
 
   @Test
   public void testComponentEnabled() {

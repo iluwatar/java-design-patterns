@@ -61,4 +61,25 @@ public class VelocityComponentTest {
 
     assertTrue(velocity.getVelocityX() > initialVelocityX, "VelocityX should increase after updating.");
   }
+
+  @Test
+  public void testSetVelocityX() {
+    
+    velocity = new VelocityComponent(1.0f, 0.0f, 0.0f);
+    velocity.setVelocityX(5.0f);
+    assertEquals(5.0f, velocity.getVelocityX(), "The velocityX should be set to 5.0f");
+    
+    velocity.setVelocityX(10.0f);
+    assertEquals(10.0f, velocity.getVelocityX(), "The velocityX should now be set to 10.0f");
+  }
+  @Test
+  public void testSetVelocityZ() {
+
+    velocity = new VelocityComponent(1.0f, 0.0f, 0.0f);
+    velocity.setVelocityZ(5.0f);
+    assertEquals(5.0f, velocity.getVelocityZ(), "The velocityZ should be set to 5.0f");
+
+    velocity.setVelocityZ(10.0f);
+    assertEquals(10.0f, velocity.getVelocityZ(), "The velocityZ should now be set to 10.0f");
+  }
 }
