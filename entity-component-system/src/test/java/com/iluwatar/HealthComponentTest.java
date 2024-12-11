@@ -60,7 +60,55 @@ public class HealthComponentTest {
     healthComponent.heal(50);
     assertEquals(100, healthComponent.getCurrentHealth(), "Health should not exceed maximum (100).");
   }
+  @Test
+  public void testUpdateFunction() {
+     healthComponent = new HealthComponent(100);
 
+    assertDoesNotThrow(() -> healthComponent.update(1.0f), "update function should not throw an exception");
+  }
+
+  @Test
+  public void testGetMaxHealth() {
+    HealthComponent healthComponent = new HealthComponent(100f);
+
+    assertEquals(100f, healthComponent.getMaxHealth(), "Max health should be 100.");
+  }
+
+  @Test
+  public void testSetMaxHealth() {
+    HealthComponent healthComponent = new HealthComponent(100f);
+    healthComponent.setMaxHealth(120f);
+
+    assertEquals(120f, healthComponent.getMaxHealth(), "Max health should be updated to 120.");
+  }
+
+  @Test
+  public void testIsAlive() {
+
+    HealthComponent healthComponent = new HealthComponent(100f);
+    assertTrue(healthComponent.isAlive(), "Entity should be alive initially.");
+    healthComponent.applyDamage(100f);
+
+    assertFalse(healthComponent.isAlive(), "Entity should be dead after taking 100 damage.");
+  }
+
+  @Test
+  public void testSetAlive() {
+
+    HealthComponent healthComponent = new HealthComponent(100f);
+    assertTrue(healthComponent.isAlive(), "Entity should be alive initially.");
+    healthComponent.setAlive(false);
+
+    assertFalse(healthComponent.isAlive(), "Entity should be dead after setting alive to false.");
+  }
+
+  @Test
+  public void testSetCurrentHealth() {
+    HealthComponent healthComponent = new HealthComponent(100f);
+    healthComponent.setCurrentHealth(80f);
+
+    assertEquals(80f, healthComponent.getCurrentHealth(), "Current health should be updated to 80.");
+  }
   @Test
   public void testHealthCannotGoAboveMax() {
     healthComponent.heal(150);

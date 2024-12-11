@@ -39,6 +39,20 @@ public class TransformComponentTest {
         new float[]{0.0f, 0.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f});
   }
 
+
+  @Test
+  public void testTransformComponentConstructor() {
+    TransformComponent transform = new TransformComponent();
+
+    float[] expectedPosition = new float[]{0.0f, 0.0f, 0.0f};
+    float[] expectedRotation = new float[]{0.0f, 0.0f, 0.0f};
+    float[] expectedScale = new float[]{1.0f, 1.0f, 1.0f};
+
+    assertArrayEquals(expectedPosition, transform.getPosition(), "Position should be initialized to [0.0f, 0.0f, 0.0f]");
+    assertArrayEquals(expectedRotation, transform.getRotation(), "Rotation should be initialized to [0.0f, 0.0f, 0.0f]");
+    assertArrayEquals(expectedScale, transform.getScale(), "Scale should be initialized to [1.0f, 1.0f, 1.0f]");
+  }
+
   @Test
   public void testGetPosition() {
     float[] position = transform.getPosition();
@@ -72,6 +86,13 @@ public class TransformComponentTest {
     float[] scale = transform.getScale();
 
     assertArrayEquals(new float[]{1.0f, 1.0f, 1.0f}, scale, "The scale should be initialized correctly.");
+  }
+
+  @Test
+  public void testUpdateFunction() {
+    TransformComponent transform = new TransformComponent();
+
+    assertDoesNotThrow(() -> transform.update(1.0f), "update function should not throw an exception");
   }
 
   @Test

@@ -26,6 +26,7 @@ package com.iluwatar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -58,6 +59,7 @@ public class Entity {
     final UUID entityId = UUID.randomUUID(); // Generates a unique UUID for this entity
     transform = new TransformComponent(new float[] {0.0f, 0.0f, 0.0f}, new float[] {0.0f, 0.0f, 0.0f}, new float[] {1.0f, 1.0f, 1.0f});
     addComponent(transform);
+
   }
 
   /**
@@ -90,7 +92,7 @@ public class Entity {
    */
   public Component getComponent(String componentName) {
     for (Component component : components) {
-      if (component.getName().equals(componentName)) {
+      if (Objects.equals(component.getName(), componentName)) {
         return component;
       }
     }
@@ -204,6 +206,7 @@ public class Entity {
    * @return a list of mesh render components
    */
   public List<Component> getComponents() {
+
     return components;
   }
 

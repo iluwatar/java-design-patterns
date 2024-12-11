@@ -59,7 +59,7 @@ public class HealthComponent extends Component {
    */
   @Override
   public void update(float deltaTime) {
-    logger.info(String.format("Updated health component: %f", currentHealth));
+    //update health
   }
 
   /**

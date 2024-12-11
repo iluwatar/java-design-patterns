@@ -24,11 +24,17 @@
  */
 package com.iluwatar;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * The main entry point for the application.
  * This class simulates a game loop where entities are created, updated, and their states are modified.
  */
 public class App {
+
+  // Create a logger instance
+  public static final Logger logger = LoggerFactory.getLogger(App.class);
 
   /**
    * The main method that runs the application.
@@ -38,7 +44,7 @@ public class App {
    * @param args Command-line arguments (not used in this application)
    */
   public static void main(String[] args) {
-    // Create example entities
+
     Entity entity1 = new Entity("Entity1");
     Entity entity2 = new Entity("Entity2");
 
@@ -70,7 +76,7 @@ public class App {
 
     // Simulate for a few frames
     for (int i = 0; i < 10; i++) {
-      System.out.println("Frame: " + (i + 1));
+      logger.info("Frame: {}", i + 1);
 
       // Update all entities in the system
       gameSystem.update(deltaTime);
@@ -78,14 +84,14 @@ public class App {
       // Apply some damage to entity1's health component at frame 6
       if (i == 5) {
         health1.applyDamage(30);
-        System.out.println("Entity1's health after damage: " + health1.getCurrentHealth());
+        logger.info("Entity1's health after damage: {}", health1.getCurrentHealth());
       }
 
       // Apply some force to entity1's velocity at frame 3
       if (i == 3) {
         velocity1.applyForce(0.5f, 0.0f, 0.0f);
-        System.out.println("Entity1's velocity after force: (" + velocity1.getVelocityX() + ", "
-            + velocity1.getVelocityY() + ", " + velocity1.getVelocityZ() + ")");
+        logger.info("Entity1's velocity after force: ({}, {}, {})", velocity1.getVelocityX(),
+            velocity1.getVelocityY(), velocity1.getVelocityZ());
       }
 
       // Render the system (optional rendering logic can be added here)
@@ -93,12 +99,13 @@ public class App {
     }
 
     // After the simulation, check final entity states
-    System.out.println("\nFinal Entity States:");
-    System.out.println("Entity1 position: " + entity1.getTransformComponent().getPosition()[0] + ", "
-        + entity1.getTransformComponent().getPosition()[1] + ", "
-        + entity1.getTransformComponent().getPosition()[2]);
-    System.out.println("Entity1 velocity: " + velocity1.getVelocityX() + ", "
-        + velocity1.getVelocityY() + ", " + velocity1.getVelocityZ());
-    System.out.println("Entity1 health: " + health1.getCurrentHealth());
+    logger.info("\nFinal Entity States:");
+    logger.info("Entity1 position: {}, {}, {}",
+        entity1.getTransformComponent().getPosition()[0],
+        entity1.getTransformComponent().getPosition()[1],
+        entity1.getTransformComponent().getPosition()[2]);
+    logger.info("Entity1 velocity: {}, {}, {}",
+        velocity1.getVelocityX(), velocity1.getVelocityY(), velocity1.getVelocityZ());
+    logger.info("Entity1 health: {}", health1.getCurrentHealth());
   }
 }
