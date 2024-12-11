@@ -180,7 +180,7 @@ Hexagonal Architecture is particularly beneficial in scenarios:
 * There is a requirement for high testability and maintainability.
 * The application should remain unaffected by changes in external interfaces.
 
-## Real-World Applications of Hexagonal Architecure Pattern in Java
+## Real-World Applications of Hexagonal Architecture Pattern in Java
 
 * Implemented extensively within enterprise applications that leverage frameworks like Spring.
 * Used in microservices architectures to maintain clear boundaries and protocols between services.
