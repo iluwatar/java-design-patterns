@@ -22,7 +22,6 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 #
-
 version: '3.7'
 services:
   mongodb_container:
@@ -33,4 +32,9 @@ services:
     ports:
       - '27017:27017'
     volumes:
-      - ./mongo-data/:/data/db
+      - mongo-data:/data/db  # Use a named volume
+
+volumes:
+  mongo-data:  # Declare the named volume
+
+ 
