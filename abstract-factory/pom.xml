@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+ <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
@@ -43,7 +43,7 @@
   <build>
     <plugins>
       <!-- Maven assembly plugin is invoked with default setting which we have 
-				in parent pom and specifying the class having main method -->
+           in parent pom and specifying the class having main method -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -58,6 +58,27 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+      <!-- Add Maven License Plugin -->
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>4.0.rc2</version>
+        <executions>
+          <execution>
+            <phase>validate</phase>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <header>LICENSE.txt</header>
+          <includes>
+            <include>**/*.java</include>
+            <include>**/*.xml</include>
+          </includes>
+        </configuration>
       </plugin>
     </plugins>
   </build>
