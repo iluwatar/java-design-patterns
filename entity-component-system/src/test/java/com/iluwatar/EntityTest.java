@@ -169,14 +169,17 @@ public class EntityTest {
   @Test
   public void testSetIsEnabled() {
     Entity entity = new Entity("MyEntity");
-
+    Entity entity2 = new Entity("child");
+    entity.addChild(entity2);
     entity.setIsEnabled(false);
 
     assertFalse(entity.isEnabled(), "The entity should be disabled after calling setIsEnabled(false).");
-    
+    assertFalse(entity2.isEnabled(), "The entity child should be disabled after calling setIsEnabled(false).");
+
     entity.setIsEnabled(true);
     
     assertTrue(entity.isEnabled(), "The entity should be enabled after calling setIsEnabled(true).");
+    assertTrue(entity2.isEnabled(), "The entity child should be enabled after calling setIsEnabled(true).");
   }
 
   @Test
