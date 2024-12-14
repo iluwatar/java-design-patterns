@@ -254,7 +254,13 @@ public class Entity {
    * @param isEnabled true to enable the entity, false to disable it
    */
   public void setIsEnabled(boolean isEnabled) {
+
     this.isEnabled = isEnabled;
+
+    for (Entity child : children) {
+      child.setIsEnabled(isEnabled);
+
+    }
   }
 
   /**

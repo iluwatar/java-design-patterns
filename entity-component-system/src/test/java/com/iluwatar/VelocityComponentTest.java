@@ -53,6 +53,19 @@ public class VelocityComponentTest {
   }
 
   @Test
+  public void testReset_shouldResetVelocityToZero() {
+
+    velocity.setVelocityX( 5.0f);
+    velocity.setVelocityY( 10.0f);
+    velocity.setVelocityZ( 15.0f);
+    velocity.resetVelocity();
+
+    assertEquals(1.0f, velocity.getVelocityX(), "Velocity X should be reset to 1.0f");
+    assertEquals(0.0f, velocity.getVelocityY(), "Velocity Y should be reset to 0");
+    assertEquals(0.0f, velocity.getVelocityZ(), "Velocity Z should be reset to 0");
+  }
+
+  @Test
   public void testUpdateVelocity() {
     float deltaTime = 1.0f / 60.0f;
 
