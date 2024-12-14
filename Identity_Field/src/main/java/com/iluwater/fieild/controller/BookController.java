@@ -1,7 +1,7 @@
-package com.iluwater.fieild.Controller;
+package com.iluwater.fieild.controller;
 
-import com.iluwater.fieild.Model.Book;
-import com.iluwater.fieild.Services.BookService;
+import com.iluwater.fieild.model.Book;
+import com.iluwater.fieild.services.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +17,8 @@ public class BookController {
 
   // Create a new book
   @PostMapping
-  public Book createBook(@RequestBody String title, String Author) {
-    return bookService.createBook(title,Author);
+  public Book createBook(@RequestBody String title, String author) {
+    return bookService.createBook(title,author);
   }
 
   // Get a book by ID

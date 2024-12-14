@@ -25,9 +25,9 @@
 
 package com.iluwater.fieild;
 
-import com.iluwater.fieild.Controller.BookController;
-import com.iluwater.fieild.Model.Book;
-import com.iluwater.fieild.Services.BookService;
+import com.iluwater.fieild.controller.BookController;
+import com.iluwater.fieild.model.Book;
+import com.iluwater.fieild.services.BookService;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
@@ -36,30 +36,39 @@ import static org.junit.jupiter.api.Assertions.*;
 class BookTest {
   @Mock
   private BookService bookService;
-  BookController bookController = new BookController(bookService);
+  BookController bookController;
+
+  {
+    bookController = new BookController(bookService);
+  }
+
   @Test
   void checkIdNotNull()
   {
-    Book book = bookController.createBook("Design patterns","someone");
+    Book book;
+    book = bookController.createBook("Design patterns","someone");
     assertNotNull(book.getId());
   }
   @Test
   void checkTwoIdsNotEqual()
   {
-    Book book = bookController.createBook("Design patterns","someone");
+    Book book;
+    book = bookController.createBook("Design patterns","someone");
     Book book2 = bookController.createBook("Head first","someone");
     assertNotEquals(book.getId(),book2.getId());
   }
   @Test
   void checkTitleNotNull()
   {
-    Book book = bookController.createBook("Design patterns","someone");
+    Book book;
+    book = bookController.createBook("Design patterns","someone");
     assertNotNull(book.getTitle());
   }
   @Test
   void checkAuthorNotNull()
   {
-    Book book = bookController.createBook("Design patterns","someone");
+    Book book;
+    book = bookController.createBook("Design patterns", "someone");
     assertNotNull(book.getAuthor());
   }
   void checkSearch()

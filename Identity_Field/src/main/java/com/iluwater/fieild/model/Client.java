@@ -22,8 +22,9 @@
   * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
   * THE SOFTWARE.
 */
+package com.iluwater.fieild.model;
+import java.util.regex.Pattern;
 
-package com.iluwater.fieild.Model;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.Entity;
@@ -31,14 +32,17 @@ import javax.persistence.Entity;
 @Setter
 @Getter
 @Entity
-public class Book extends DomainObject {
-  private String title;
-  private String author;
+public class Client extends DomainObject {
+  private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+  private String name;
+  private String email;
 
-
-  public Book(String title, String author) {
-    this.title = title;
-    this.author = author;
+  public Client(String name, String email) {
+    Pattern pattern = Pattern.compile(EMAIL_REGEX);
+    this.name = name;
+    if (pattern.matcher(email).matches()) {
+      this.email = email;
+    }
   }
 
 }
