@@ -25,18 +25,24 @@
 
 package com.iluwatar.sessionfacade;
 
-import java.util.List;
-import lombok.extern.slf4j.Slf4j;
 
+import java.util.Map;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * The type Cart service.
+ * Represents the cart entity, has add to cart and remove from cart methods
  */
 @Slf4j
 public class CartService {
-  
-  private final List<Product> cart;
-  private final List<Product> productCatalog;
+  /**
+   * -- GETTER --
+   *  Gets cart.
+   */
+  @Getter
+  private final Map<Integer, Product> cart;
+  private final Map<Integer, Product> productCatalog;
 
   /**
    * Instantiates a new Cart service.
@@ -44,7 +50,7 @@ public class CartService {
    * @param cart           the cart
    * @param productCatalog the product catalog
    */
-  public CartService(List<Product> cart, List<Product> productCatalog) {
+  public CartService(Map<Integer, Product> cart, Map<Integer, Product> productCatalog) {
     this.cart = cart;
     this.productCatalog = productCatalog;
   }
@@ -55,14 +61,13 @@ public class CartService {
    * @param productId the product id
    */
   public void addToCart(int productId) {
-    for (Product product : productCatalog) {
-      if (productId == product.id()) {
-        this.cart.add(product);
-        LOGGER.info("{} successfully added to the cart", product);
-        return;
-      }
+    Product product = productCatalog.get(productId);
+    if (product != null) {
+      cart.put(productId, product);
+      LOGGER.info("{} successfully added to the cart", product);
+    } else {
+      LOGGER.info("No product is found in catalog with id {}", productId);
     }
-    LOGGER.info("No product is found with id {}", productId);
   }
 
   /**
@@ -71,13 +76,12 @@ public class CartService {
    * @param productId the product id
    */
   public void removeFromCart(int productId) {
-    for (Product product : productCatalog) {
-      if (productId == product.id()) {
-        this.cart.remove(product);
-        LOGGER.info("{} successfully removed from the cart", product);
-        return;
-      }
+    Product product = cart.remove(productId); // Remove product from cart
+    if (product != null) {
+      LOGGER.info("{} successfully removed from the cart", product);
+    } else {
+      LOGGER.info("No product is found in cart with id {}", productId);
     }
-    LOGGER.info("No product is found with the id {}", productId);
   }
+
 }

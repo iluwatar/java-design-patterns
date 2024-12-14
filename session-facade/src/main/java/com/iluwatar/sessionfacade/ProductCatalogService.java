@@ -25,20 +25,36 @@
 
 package com.iluwatar.sessionfacade;
 
-import java.util.List;
+import java.util.Map;
 
 /**
- * The type Product catalog service.
+ * The type ProductCatalogService.
+ * This class manages a catalog of products. It holds a map of products,
+ * where each product is identified by a unique ID. The class
+ * provides functionality to access and manage the products in the catalog.
  */
 public class ProductCatalogService {
-  private List<Product> products;
+
+  private final Map<Integer, Product> products;
 
   /**
-   * Instantiates a new Product catalog service.
+   * Instantiates a new ProductCatalogService.
    *
-   * @param products the products
+   * @param products the map of products to be used by this service
    */
-  public ProductCatalogService(List<Product> products) {
+  public ProductCatalogService(Map<Integer, Product> products) {
     this.products = products;
+  }
+
+  // Additional methods to interact with products can be added here, for example:
+
+  /**
+   * Retrieves a product by its ID.
+   *
+   * @param id the product ID
+   * @return the product corresponding to the ID
+   */
+  public Product getProductById(int id) {
+    return products.get(id);
   }
 }

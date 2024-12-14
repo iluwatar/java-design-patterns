@@ -29,10 +29,19 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The type Payment service.
+ * The PaymentService class is responsible for handling the selection and processing
+ * of different payment methods. It provides functionality to select a payment method
+ * (cash or credit card) and process the corresponding payment option. The class uses
+ * logging to inform the client of the selected payment method.
+ * It includes methods to:
+ * - Select the payment method based on the client's choice.
+ * - Process cash payments through the `cashPayment()` method.
+ * - Process credit card payments through the `creditCardPayment()` method.
  */
-
 public class PaymentService {
+  /**
+   * The constant LOGGER.
+   */
   public static Logger LOGGER = LoggerFactory.getLogger(PaymentService.class);
 
   /**

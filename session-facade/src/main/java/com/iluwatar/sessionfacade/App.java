@@ -26,18 +26,37 @@
 package com.iluwatar.sessionfacade;
 
 /**
- * The type App.
+ * The main entry point of the application that demonstrates the usage
+ * of the ShoppingFacade to manage the shopping process using the Session Facade pattern.
+ * This class serves as a client that interacts with the simplified
+ * interface provided by the ShoppingFacade, which encapsulates
+ * complex interactions with the underlying business services.
+ * The ShoppingFacade acts as a session bean that coordinates the communication
+ * between multiple services, hiding their complexity and providing a single, unified API.
  */
 public class App {
   /**
-   * The entry point of application.
+   * The entry point of the application.
+   * This method demonstrates how the ShoppingFacade, acting as a Session Facade, is used to:
+   * - Add items to the shopping cart
+   * - Process a payment
+   * - Place the order
+   * The session facade manages the communication between the individual services
+   * and simplifies the interactions for the client.
    *
    * @param args the input arguments
    */
   public static void main(String[] args) {
     ShoppingFacade shoppingFacade = new ShoppingFacade();
+
+    // Adding items to the shopping cart
     shoppingFacade.addToCart(1);
+    shoppingFacade.addToCart(2);
+
+    // Processing the payment with the chosen method
+    shoppingFacade.processPayment("cash");
+
+    // Finalizing the order
     shoppingFacade.order();
-    shoppingFacade.selectPaymentMethod("cash");
   }
 }

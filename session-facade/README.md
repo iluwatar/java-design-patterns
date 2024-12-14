@@ -58,26 +58,30 @@ public class App {
 The `ShoppingFacade` acts as an intermediary that facilitates interaction between different services promoting low coupling between these services. 
 ```java
 public class ShoppingFacade {
-    List<Product> productCatalog;
-    List<Product> cart;
-    CartService cartService;
-    OrderService orderService;
-    PaymentService paymentService;
+    
+    private final CartService cartService;
+    private final OrderService orderService;
+    private final PaymentService paymentService;
     
     public ShoppingFacade() {
-        productCatalog = new ArrayList<>();
-        productCatalog.add(new Product(1, "Wireless Mouse", 25.99, "Ergonomic wireless mouse with USB receiver."));
-        productCatalog.add(new Product(2, "Gaming Keyboard", 79.99, "RGB mechanical gaming keyboard with programmable keys."));
-        cart = new ArrayList<>();
+        Map<Integer, Product> productCatalog = new HashMap<>();
+        productCatalog.put(1, new Product(1, "Wireless Mouse", 25.99, "Ergonomic wireless mouse with USB receiver."));
+        productCatalog.put(2, new Product(2, "Gaming Keyboard", 79.99, "RGB mechanical gaming keyboard with programmable keys."));
+        Map<Integer, Product> cart = new HashMap<>();
         cartService = new CartService(cart, productCatalog);
         orderService = new OrderService(cart);
         paymentService = new PaymentService();
     }
     
+    public Map<Integer, Product> getCart() {
+        return this.cartService.getCart();
+    }
+    
     public void addToCart(int productId) {
         this.cartService.addToCart(productId);
     }
-    
+
+   
     public void removeFromCart(int productId) {
         this.cartService.removeFromCart(productId);
     }
@@ -86,10 +90,21 @@ public class ShoppingFacade {
         this.orderService.order();
     }
     
-    public void selectPaymentMethod(String method) {
-        this.paymentService.selectPaymentMethod(method);
+    public Boolean isPaymentRequired() {
+        double total = this.orderService.getTotal();
+        if (total == 0.0) {
+            LOGGER.info("No payment required");
+            return false;
+        }
+        return true;
     }
-}
+    
+    public void processPayment(String method) {
+        Boolean isPaymentRequired = isPaymentRequired();
+        if (Boolean.TRUE.equals(isPaymentRequired)) {
+            paymentService.selectPaymentMethod(method);
+        }
+    }
 ```
 
 Console output for starting the `App` class's `main` method:

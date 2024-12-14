@@ -30,7 +30,9 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,7 +43,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class CartServiceTest {
 
   private CartService cartService;
-  private List<Product> cart;
+  private Map<Integer,Product> cart;
 
   /**
    * Sets up.
@@ -49,10 +51,10 @@ class CartServiceTest {
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
-    cart = new ArrayList<>();
-    List<Product> productCatalog = new ArrayList<>();
-    productCatalog.add(new Product(1, "Product A", 2.0, "any description"));
-    productCatalog.add(new Product(2, "Product B", 300.0, "a watch"));
+    cart = new HashMap<>();
+    Map<Integer,Product> productCatalog = new HashMap<>();
+    productCatalog.put(1,new Product(1, "Product A", 2.0, "any description"));
+    productCatalog.put(2,new Product(2, "Product B", 300.0, "a watch"));
     cartService = new CartService(cart, productCatalog);
   }
 
@@ -63,7 +65,7 @@ class CartServiceTest {
   void testAddToCart() {
     cartService.addToCart(1);
     assertEquals(1, cart.size());
-    assertEquals("Product A", cart.get(0).name());
+    assertEquals("Product A", cart.get(1).name());
   }
 
   /**

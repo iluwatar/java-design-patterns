@@ -25,45 +25,52 @@
 
 package com.iluwatar.sessionfacade;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import lombok.extern.slf4j.Slf4j;
+
 
 /**
- * The type Shopping facade.
+ * The ShoppingFacade class provides a simplified interface for clients to interact with the shopping system.
+ * It acts as a facade to handle operations related to a shopping cart, order processing, and payment.
+ * Responsibilities:
+ * - Add products to the shopping cart.
+ * - Remove products from the shopping cart.
+ * - Retrieve the current shopping cart.
+ * - Finalize an order by calling the order service.
+ * - Check if a payment is required based on the order total.
+ * - Process payment using different payment methods (e.g., cash, credit card).
+ * The ShoppingFacade class delegates operations to the following services:
+ * - CartService: Manages the cart and product catalog.
+ * - OrderService: Handles the order finalization process and calculation of the total.
+ * - PaymentService: Handles the payment processing based on the selected payment method.
  */
+@Slf4j
 public class ShoppingFacade {
-  /**
-   * The Product catalog.
-   */
-  List<Product> productCatalog = new ArrayList<>();
-  /**
-   * The Cart.
-   */
-  List<Product> cart = new ArrayList<>();
-  /**
-   * The Cart service.
-   */
-  CartService cartService = new CartService(cart, productCatalog);
-  /**
-   * The Order service.
-   */
-  OrderService orderService = new OrderService(cart);
-  /**
-   * The Payment service.
-   */
-  PaymentService paymentService = new PaymentService();
+  private final CartService cartService;
+  private final OrderService orderService;
+  private final PaymentService paymentService;
 
   /**
    * Instantiates a new Shopping facade.
    */
   public ShoppingFacade() {
-    productCatalog = new ArrayList<>();
-    productCatalog.add(new Product(1, "Wireless Mouse", 25.99, "Ergonomic wireless mouse with USB receiver."));
-    productCatalog.add(new Product(2, "Gaming Keyboard", 79.99, "RGB mechanical gaming keyboard with programmable keys."));
-    cart = new ArrayList<>();
+    Map<Integer, Product> productCatalog = new HashMap<>();
+    productCatalog.put(1, new Product(1, "Wireless Mouse", 25.99, "Ergonomic wireless mouse with USB receiver."));
+    productCatalog.put(2, new Product(2, "Gaming Keyboard", 79.99, "RGB mechanical gaming keyboard with programmable keys."));
+    Map<Integer, Product> cart = new HashMap<>();
     cartService = new CartService(cart, productCatalog);
     orderService = new OrderService(cart);
     paymentService = new PaymentService();
+  }
+
+  /**
+   * Gets cart.
+   *
+   * @return the cart
+   */
+  public Map<Integer, Product> getCart() {
+    return this.cartService.getCart();
   }
 
   /**
@@ -92,11 +99,28 @@ public class ShoppingFacade {
   }
 
   /**
-   * Select payment method.
+   * Is payment required boolean.
+   *
+   * @return the boolean
+   */
+  public Boolean isPaymentRequired() {
+    double total = this.orderService.getTotal();
+    if (total == 0.0) {
+      LOGGER.info("No payment required");
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Process payment.
    *
    * @param method the method
    */
-  public void selectPaymentMethod(String method) {
-    this.paymentService.selectPaymentMethod(method);
+  public void processPayment(String method) {
+    Boolean isPaymentRequired = isPaymentRequired();
+    if (Boolean.TRUE.equals(isPaymentRequired)) {
+      paymentService.selectPaymentMethod(method);
+    }
   }
 }
