@@ -1,0 +1,28 @@
+@startuml
+abstract class DomainObject {
+    + id: Long
+    + getId(): Long
+    + setId(id: Long): void
+}
+
+class Book {
+    - title: String
+    - author: String
+    + getTitle(): String
+    + setTitle(title: String): void
+    + getAuthor(): String
+    + setAuthor(author: String): void
+}
+
+class Client {
+    - name: String
+    - Email: String
+    + getName(): String
+    + setName(name: String): void
+    + getEmail(): String
+    + setEmail(email: String): void
+}
+
+DomainObject <|-- Book
+DomainObject <|-- Client
+@enduml
