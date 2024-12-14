@@ -38,6 +38,9 @@ import javax.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * Setters & Getters.
+ */
 @Getter
 @Setter
 @MappedSuperclass

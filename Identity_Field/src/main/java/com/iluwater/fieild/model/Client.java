@@ -24,11 +24,13 @@
 */
 package com.iluwater.fieild.model;
 import java.util.regex.Pattern;
-
+import javax.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
-import javax.persistence.Entity;
 
+/**
+ * Setters & Getters.
+ */
 @Setter
 @Getter
 @Entity
@@ -36,7 +38,9 @@ public class Client extends DomainObject {
   private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
   private String name;
   private String email;
-
+  /**
+   * Client Constructor.
+   */
   public Client(String name, String email) {
     Pattern pattern = Pattern.compile(EMAIL_REGEX);
     this.name = name;

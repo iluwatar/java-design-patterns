@@ -27,6 +27,9 @@ package com.iluwater.fieild.model;
 import javax.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;
+/**
+ * Setters & Getters.
+ */
 @Setter
 @Getter
 @Entity
@@ -34,7 +37,9 @@ public class Book extends DomainObject {
   private String title;
   private String author;
 
-/** Book constructor*/
+  /**
+ * Book constructor.
+ */
   public Book(String title, String author) {
     this.title = title;
     this.author = author;
