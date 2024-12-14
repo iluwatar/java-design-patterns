@@ -27,6 +27,8 @@ package com.iluwatar;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class AppTest {
 
@@ -53,7 +55,16 @@ public class AppTest {
     velocity1 = new VelocityComponent(1.0f, 0.0f, 0.0f);
     entity1.addComponent(velocity1);
   }
+  @Test
+  public void testMain_shouldPrintHelloWorld() {
 
+    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(outputStream));
+
+    App.main(new String[]{});
+
+    assertEquals("Hello, World!", outputStream.toString(), "The output should be 'Hello, World!'");
+  }
   @Test
   public void testHealthComponentApplyDamage() {
 
@@ -120,5 +131,87 @@ public class AppTest {
     assertEquals(1.5f, velocity1.getVelocityX(), "Final velocity X should be 1.5 after applying force");
     assertNotNull(entity1.getTransformComponent(), "Entity1 should have a transform component");
 
+  }
+
+  @Test
+  public void testAddTransformComponent() {
+    entity1.addComponent(transform1);
+    assertTrue(entity1.getComponents().contains(transform1), "Entity1 should contain the added TransformComponent.");
+  }
+
+  @Test
+  public void testGameLoopUpdatesEntityState() {
+    GameSystem gameSystem = new GameSystem();
+    gameSystem.addEntity(entity1);
+
+    for (int i = 0; i < 5; i++) {
+      gameSystem.update(1.0f / 60.0f);
+    }
+
+    // Check the updated health and velocity
+    assertEquals(100, health1.getCurrentHealth(), "Health should not be affected yet.");
+    assertEquals(1.0f, velocity1.getVelocityX(), "Velocity X should remain the same as no force is applied.");
+  }
+
+  @Test
+  public void testHealthReductionOverMultipleDamages() {
+    health1.applyDamage(20);
+    health1.applyDamage(30);
+
+    assertEquals(50, health1.getCurrentHealth(), "Health should be reduced by 50 after two damage applications.");
+  }
+
+  @Test
+  public void testEntityRemovalFromGameSystem() {
+    GameSystem gameSystem = new GameSystem();
+    gameSystem.addEntity(entity1);
+
+    gameSystem.removeEntity(entity1);
+
+    // Assert that entity1 is no longer in the system
+    assertFalse(gameSystem.getEntities().contains(entity1), "Entity1 should no longer be in the GameSystem after removal.");
+  }
+
+  @Test
+  public void testEntityWithoutComponents() {
+    Entity entity = new Entity("EmptyEntity");
+    entity.removeComponent(entity.getTransformComponent());
+    assertTrue(entity.getComponents().isEmpty(), "Entity should have no components.");
+    assertEquals("EmptyEntity", entity.getName(), "Entity should have the correct name.");
+  }
+
+  @Test
+  public void testSetParentAndChildren() {
+    Entity parentEntity = new Entity("ParentEntity");
+    Entity childEntity = new Entity("ChildEntity");
+
+    parentEntity.addChild(childEntity);
+
+    assertTrue(parentEntity.getChildren().contains(childEntity), "Parent entity should contain the child entity.");
+    assertEquals(parentEntity, childEntity.getParent(), "Child entity should have the parent entity set.");
+  }
+
+  @Test
+  public void testVelocityComponentReset() {
+    velocity1.applyForce(1.0f, 0.0f, 0.0f);
+    float newVelocityX = velocity1.getVelocityX();
+
+    velocity1.resetVelocity();
+
+    assertEquals(1.0f, velocity1.getVelocityX(), "Velocity should be reset to its initial value.");
+    assertEquals(0.0f, velocity1.getVelocityY(), "Velocity Y should remain reset.");
+    assertEquals(0.0f, velocity1.getVelocityZ(), "Velocity Z should remain reset.");
+  }
+
+  @Test
+  public void testHealthAndForceAppliedTogether() {
+    health1.applyDamage(20);
+    velocity1.applyForce(0.5f, 0.0f, 0.0f);
+
+    // Update entity state after applying damage and force
+    entity1.update(1.0f / 60.0f);
+
+    assertEquals(80, health1.getCurrentHealth(), "Health should be reduced by 20 after damage.");
+    assertEquals(1.5f, velocity1.getVelocityX(), "Velocity X should increase by 0.5 after applying force.");
   }
 }

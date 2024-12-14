@@ -24,17 +24,11 @@
  */
 package com.iluwatar;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * The main entry point for the application.
  * This class simulates a game loop where entities are created, updated, and their states are modified.
  */
 public class App {
-
-  // Create a logger instance
-  public static final Logger logger = LoggerFactory.getLogger(App.class);
 
   /**
    * The main method that runs the application.
@@ -44,68 +38,44 @@ public class App {
    * @param args Command-line arguments (not used in this application)
    */
   public static void main(String[] args) {
+    System.out.print("Hello, World!");
 
     Entity entity1 = new Entity("Entity1");
     Entity entity2 = new Entity("Entity2");
 
-    // Set up some transform components (position, rotation, scale)
     TransformComponent transform1 = new TransformComponent(new float[]{0.0f, 0.0f, 0.0f},
         new float[]{0.0f, 0.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f});
     TransformComponent transform2 = new TransformComponent(new float[]{5.0f, 0.0f, 0.0f},
         new float[]{0.0f, 45.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f});
 
-    // Set the transform components for each entity
     entity1.addComponent(transform1);
     entity2.addComponent(transform2);
 
-    // Create a health component for entity1 with initial health of 100
     HealthComponent health1 = new HealthComponent(100);  // Ensure HealthComponent is implemented
     entity1.addComponent(health1);
 
-    // Create a velocity component for entity1
     VelocityComponent velocity1 = new VelocityComponent(1.0f, 0.0f, 0.0f);
     entity1.addComponent(velocity1);
 
-    // Set up a system and add entities to the system
     GameSystem gameSystem = new GameSystem();
     gameSystem.addEntity(entity1);
     gameSystem.addEntity(entity2);
 
-    // Simulate game update loop (e.g., 60 FPS)
-    float deltaTime = 1.0f / 60.0f; // 60 FPS
+    float deltaTime = 1.0f / 60.0f;
 
-    // Simulate for a few frames
     for (int i = 0; i < 10; i++) {
-      logger.info("Frame: {}", i + 1);
 
-      // Update all entities in the system
       gameSystem.update(deltaTime);
 
-      // Apply some damage to entity1's health component at frame 6
       if (i == 5) {
         health1.applyDamage(30);
-        logger.info("Entity1's health after damage: {}", health1.getCurrentHealth());
       }
 
-      // Apply some force to entity1's velocity at frame 3
       if (i == 3) {
         velocity1.applyForce(0.5f, 0.0f, 0.0f);
-        logger.info("Entity1's velocity after force: ({}, {}, {})", velocity1.getVelocityX(),
-            velocity1.getVelocityY(), velocity1.getVelocityZ());
       }
 
-      // Render the system (optional rendering logic can be added here)
       gameSystem.renderSystem();
     }
-
-    // After the simulation, check final entity states
-    logger.info("\nFinal Entity States:");
-    logger.info("Entity1 position: {}, {}, {}",
-        entity1.getTransformComponent().getPosition()[0],
-        entity1.getTransformComponent().getPosition()[1],
-        entity1.getTransformComponent().getPosition()[2]);
-    logger.info("Entity1 velocity: {}, {}, {}",
-        velocity1.getVelocityX(), velocity1.getVelocityY(), velocity1.getVelocityZ());
-    logger.info("Entity1 health: {}", health1.getCurrentHealth());
   }
 }

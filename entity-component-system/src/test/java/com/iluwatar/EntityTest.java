@@ -191,4 +191,52 @@ public class EntityTest {
     
     assertEquals(gameSystem, entity.getGameSystem(), "The game system should match the one set.");
   }
+
+  @Test
+  public void testUpdate_whenEntityDisabled_shouldReturnImmediately() {
+
+
+    Entity parent = new Entity("parent");
+    Entity child = new Entity("child");
+
+    child.setParent(parent);
+
+    parent.setEnabled(false);
+    parent.addComponent(transform1);
+
+    parent.update(1.0f);
+
+    assertFalse(transform1.getEnabled(), "Component should not be enabled.");
+    assertDoesNotThrow(() -> transform1.update(1.0f), "Component update should not throw an exception when entity is disabled.");
+
+    assertDoesNotThrow(() -> child.update(1.0f), "Child entity should not throw an exception if the parent is disabled.");
+  }
+
+  @Test
+  public void testUpdate_shouldUpdateEnabledComponents() {
+    entity1.setEnabled(true);
+    entity2.setEnabled(false);
+    entity1.addComponent(transform1);
+    entity2.addComponent(transform2);
+    entity1.update(1.0f);
+    entity2.update(1.0f);
+
+    assertTrue(transform1.getEnabled(), "Transform1 should be enabled after update when the parent entity is enabled.");
+    assertDoesNotThrow(() -> transform1.update(1.0f), "Transform1 update should not throw an exception when the parent entity is enabled.");
+
+    assertFalse(transform2.getEnabled(), "Transform2 should remain disabled after update when it is added but disabled.");
+    assertDoesNotThrow(() -> transform2.update(1.0f), "Transform2 update should not throw an exception even though it's disabled.");
+  }
+
+  @Test
+  public void testUpdate_shouldUpdateChildEntities() {
+    Entity child = new Entity("child");
+    entity1.setEnabled(true);
+    entity1.addChild(child);
+    child.setParent(entity1);
+    entity1.update(1.0f);
+    assertDoesNotThrow(() -> child.update(1.0f));
+  }
 }
+
+

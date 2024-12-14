@@ -38,6 +38,10 @@ public class VelocityComponent extends Component {
   private float velocityY;  // The velocity in the Y direction
   private float velocityZ;  // The velocity in the Z direction
 
+  private final float initialVelocityX;
+  private final float initialVelocityY;
+  private final float initialVelocityZ;
+
   /**
    * Constructs a VelocityComponent with the given velocity values in the X, Y, and Z directions.
    *
@@ -49,7 +53,23 @@ public class VelocityComponent extends Component {
     this.velocityX = velocityX;
     this.velocityY = velocityY;
     this.velocityZ = velocityZ;
+
+    this.initialVelocityX = velocityX;
+    this.initialVelocityY = velocityY;
+    this.initialVelocityZ = velocityZ;
   }
+
+  /**
+   * update the velocity of the entity.
+   * This method resets the velocity
+   *
+   */
+  public void resetVelocity() {
+    this.velocityX = this.initialVelocityX;
+    this.velocityY = this.initialVelocityY;
+    this.velocityZ = this.initialVelocityZ;
+  }
+
 
   /**
    * Updates the velocity of the entity based on delta time.
