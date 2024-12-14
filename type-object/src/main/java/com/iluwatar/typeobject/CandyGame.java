@@ -28,6 +28,8 @@ import com.iluwatar.typeobject.Candy.Type;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The CandyGame class contains the rules for the continuation of the game and has the game matrix
@@ -37,7 +39,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SuppressWarnings("java:S3776") //"Cognitive Complexity of methods should not be too high"
 public class CandyGame {
-
   Cell[][] cells;
   CellPool pool;
   int totalPoints;
@@ -85,17 +86,20 @@ public class CandyGame {
     if (x == 0) {
       adjacent.add(this.cells[y][1]);
     }
-    if (y == cells.length - 1) {
+    if (y == cells.length - 1 && cells.length > 1) {
       adjacent.add(this.cells[cells.length - 2][x]);
     }
-    if (x == cells.length - 1) {
+    
+    if (x == cells.length - 1 && cells.length > 1) {
       adjacent.add(this.cells[y][cells.length - 2]);
     }
+    
+  
     if (y > 0 && y < cells.length - 1) {
       adjacent.add(this.cells[y - 1][x]);
       adjacent.add(this.cells[y + 1][x]);
     }
-    if (x > 0 && x < cells.length - 1) {
+    if (y >= 0 && y < cells.length && x > 0 && x < cells[y].length - 1) {
       adjacent.add(this.cells[y][x - 1]);
       adjacent.add(this.cells[y][x + 1]);
     }
