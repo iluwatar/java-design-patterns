@@ -1,0 +1,123 @@
+@startuml
+package com.iluwatar.monolithic.model {
+  class Orders {
+    - id : Long
+    - product : Products
+    - quantity : Integer
+    - totalPrice : Double
+    - user : User
+    + Orders()
+    + Orders(id : Long, user : User, product : Products, quantity : Integer, totalPrice : Double)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getId() : Long
+    + getProduct() : Products
+    + getQuantity() : Integer
+    + getTotalPrice() : Double
+    + getUser() : User
+    + hashCode() : int
+    + setId(id : Long)
+    + setProduct(product : Products)
+    + setQuantity(quantity : Integer)
+    + setTotalPrice(totalPrice : Double)
+    + setUser(user : User)
+    + toString() : String
+  }
+  class Products {
+    - description : String
+    - id : Long
+    - name : String
+    - price : Double
+    - stock : Integer
+    + Products()
+    + Products(id : Long, name : String, description : String, price : Double, stock : Integer)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getDescription() : String
+    + getId() : Long
+    + getName() : String
+    + getPrice() : Double
+    + getStock() : Integer
+    + hashCode() : int
+    + setDescription(description : String)
+    + setId(id : Long)
+    + setName(name : String)
+    + setPrice(price : Double)
+    + setStock(stock : Integer)
+    + toString() : String
+  }
+  class User {
+    - email : String
+    - id : Long
+    - name : String
+    - password : String
+    + User()
+    + User(id : Long, name : String, email : String, password : String)
+    # canEqual(other : Object) : boolean
+    + equals(o : Object) : boolean
+    + getEmail() : String
+    + getId() : Long
+    + getName() : String
+    + getPassword() : String
+    + hashCode() : int
+    + setEmail(email : String)
+    + setId(id : Long)
+    + setName(name : String)
+    + setPassword(password : String)
+    + toString() : String
+  }
+}
+package com.iluwatar.monolithic.repository {
+  interface OrderRepo {
+  }
+  interface ProductRepo {
+  }
+  interface UserRepo {
+    + findByEmail(String) : User {abstract}
+  }
+}
+package com.iluwatar.monolithic.controller {
+  class OrderCon {
+    - orderRepository : OrderRepo
+    - productRepository : ProductRepo
+    - userRepository : UserRepo
+    + OrderCon(orderRepository : OrderRepo, userRepository : UserRepo, productRepository : ProductRepo)
+    + placeOrder(userId : Long, productId : Long, quantity : Integer) : Orders
+  }
+  class ProductCon {
+    - productRepository : ProductRepo
+    + ProductCon(productRepository : ProductRepo)
+    + addProduct(product : Products) : Products
+    + getAllProducts() : List<Products>
+  }
+  class UserCon {
+    - userRepository : UserRepo
+    + UserCon(userRepository : UserRepo)
+    + registerUser(user : User) : User
+  }
+}
+package com.iluwatar.monolithic {
+  class EcommerceApp {
+    - log : Logger {static}
+    - orderService : OrderCon
+    - productService : ProductCon
+    - userService : UserCon
+    + EcommerceApp(userService : UserCon, productService : ProductCon, orderService : OrderCon)
+    # addProduct(scanner : Scanner)
+    + main(args : String[]) {static}
+    # placeOrder(scanner : Scanner)
+    # registerUser(scanner : Scanner)
+    + run(args : String[])
+  }
+}
+UserCon -->  "-userRepository" UserRepo
+Orders -->  "-user" User
+OrderCon -->  "-productRepository" ProductRepo
+OrderCon -->  "-userRepository" UserRepo
+OrderCon -->  "-orderRepository" OrderRepo
+EcommerceApp -->  "-userService" UserCon
+EcommerceApp -->  "-productService" ProductCon
+ProductCon -->  "-productRepository" ProductRepo
+Orders -->  "-product" Products
+EcommerceApp -->  "-orderService" OrderCon
+@enduml
