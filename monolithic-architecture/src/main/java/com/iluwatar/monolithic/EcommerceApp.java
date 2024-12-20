@@ -39,7 +39,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Main entry point for the Monolithic E-commerce application.
+ * ------------------------------------------------------------------------
+ * Monolithic architecture is a software design pattern where all components
+ * of the application (presentation, business logic, and data access layers)
+ * are part of a single unified codebase and deployable unit.
+ * ------------------------------------------------------------------------
+ * This example implements a monolithic architecture by integrating
+ * user management, product management, and order placement within
+ * the same application, sharing common resources and a single database.
  */
+
 @SpringBootApplication
 public class EcommerceApp implements CommandLineRunner {
 

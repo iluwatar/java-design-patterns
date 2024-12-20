@@ -53,16 +53,10 @@ public class OrderCon {
    * This function handles placing orders with all of its cases.
    * */
   public Orders placeOrder(Long userId, Long productId, Integer quantity) {
-    User user = userRepository.findById(userId).orElse(null);
-    if (user == null) {
-      throw new NonExistentUserException("User with ID " + userId + " not found");
-    }
+    final User user = userRepository.findById(userId).orElseThrow(() -> new NonExistentUserException("User with ID " + userId + " not found"));
 
-    Products product = productRepository.findById(productId).orElse(null);
-    if (product == null) {
-      throw new NonExistentProductException("Product with ID " + productId + " not found");
-    }
-
+    final Products product = productRepository.findById(productId).orElseThrow(() -> new NonExistentProductException("Product with ID " + productId + " not found"));
+    
     if (product.getStock() < quantity) {
       throw new InsufficientStockException("Not enough stock for product " + productId);
     }
@@ -70,7 +64,7 @@ public class OrderCon {
     product.setStock(product.getStock() - quantity);
     productRepository.save(product);
 
-    Orders order = new Orders(null, user, product, quantity, product.getPrice() * quantity);
+    final Orders order = new Orders(null, user, product, quantity, product.getPrice() * quantity);
     return orderRepository.save(order);
   }
 }

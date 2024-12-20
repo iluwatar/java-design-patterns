@@ -8,6 +8,9 @@
 Real-world Example
 > A traditional E-commerce website is the most straightforward example for a monolithic application as it is comprised of a catalogue of products, orders to be made, shopping carts, and payment processes that are all inseperable of each other.
 
+In Plain words
+>The monolithic design pattern structures an application as a single unified unit, where all components are tightly coupled and run within a single process.
+
 GeeksforGeeks states
 > Monolithic architecture, a traditional approach in system design, which contains all application components into a single codebase. This unified structure simplifies development and deployment processes, offering ease of management and tight integration. However, because of its rigidity, it is difficult to scale and maintain, which makes it difficult to adjust to changing needs.
 
@@ -109,7 +112,14 @@ public class EcommerceApp implements CommandLineRunner {
 >* Deployment Risks: A single failure can crash the entire application.
 >* Complex Maintenance: Harder to manage as the codebase grows.
 >* Limited Flexibility: Difficult to adopt new technologies for specific parts.
->
+
+## Real-World Applications of Monolithic architecture Pattern in Java
+>* E-Commerce Platforms
+>* Content Management Systems (CMS)
+>* Banking and Financial Systems
+>* Enterprise Resource Planning (ERP) Systems
+>* Retail Point of Sale (POS) Systems
+
 ## References
 >* [GeeksforGeeks](https://www.geeksforgeeks.org/monolithic-architecture-system-design/)
 >* [Wikipedia](https://en.wikipedia.org/wiki/Monolithic_application)
