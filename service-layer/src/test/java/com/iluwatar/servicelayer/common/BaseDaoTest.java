@@ -27,10 +27,13 @@ package com.iluwatar.servicelayer.common;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Function;
+import com.iluwatar.servicelayer.spell.Spell;
+import org.hibernate.HibernateException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -143,14 +146,49 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
   }
   @Test
   void testFindByName() {
-    final var dao = getDao();
-    final var allEntities = dao.findAll();
+    final var localDao = getDao();
+    final var allEntities = localDao.findAll();
     for (final var entity : allEntities) {
-      final var entityByName = dao.findByName(entity.getName());
+      final var entityByName = localDao.findByName(entity.getName());
       assertNotNull(entityByName);
       assertEquals(entity.getId(), entityByName.getId());
       assertEquals(entity.getName(), entityByName.getName());
     }
   }
+  @Test
+  void testPersistException() {
+    final var faultyDao = new DaoBaseImpl<Spell>() {
+      @Override
+      public void persist(Spell entity) {
+        throw new HibernateException("Simulated Hibernate exception");
+      }
+    };
+    Spell faultyEntity = new Spell();
+    assertThrows(HibernateException.class, () -> faultyDao.persist(faultyEntity));
+  }
 
+  @Test
+  void testFindException() {
+    final var faultyDao = new DaoBaseImpl<Spell>() {
+      @Override
+      public Spell find(Long id) {
+        throw new HibernateException("Simulated Hibernate exception");
+      }
+    };
+
+    assertThrows(HibernateException.class, () -> faultyDao.find(1L));
+  }
+
+  @Test
+  void testDeleteException() {
+    final var faultyDao = new DaoBaseImpl<Spell>() {
+      @Override
+      public void delete(Spell entity) {
+        throw new HibernateException("Simulated Hibernate exception");
+      }
+    };
+
+    Spell faultyEntity = new Spell();
+    assertThrows(HibernateException.class, () -> faultyDao.delete(faultyEntity));
+  }
 }
