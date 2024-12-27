@@ -77,7 +77,7 @@ import static org.junit.jupiter.api.Assertions.*;
   @Test
     void testSetMaxHealth() {
     HealthComponent TesthealthComponent = new HealthComponent(100f);
-    healthComponent.setMaxHealth(120f);
+    TesthealthComponent.setMaxHealth(120f);
 
     assertEquals(120f, TesthealthComponent.getMaxHealth(), "Max health should be updated to 120.");
   }
