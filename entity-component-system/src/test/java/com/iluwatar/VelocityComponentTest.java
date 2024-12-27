@@ -29,31 +29,31 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class VelocityComponentTest {
+  class VelocityComponentTest {
 
   private VelocityComponent velocity;
 
   @BeforeEach
-  public void setUp() {
+    void setUp() {
     velocity = new VelocityComponent(1.0f, 0.0f, 0.0f);
   }
 
   @Test
-  public void testApplyForce() {
+    void testApplyForce() {
     velocity.applyForce(2.0f, 0.0f, 0.0f);
 
     assertEquals(3.0f, velocity.getVelocityX(), "VelocityX should increase after applying force.");
   }
 
   @Test
-  public void testApplyFriction() {
+    void testApplyFriction() {
     velocity.applyFriction(0.1f);  // Applying friction coefficient of 0.1
 
     assertEquals(0.9f, velocity.getVelocityX(), "VelocityX should be reduced by the friction coefficient.");
   }
 
   @Test
-  public void testReset_shouldResetVelocityToZero() {
+    void testReset_shouldResetVelocityToZero() {
 
     velocity.setVelocityX( 5.0f);
     velocity.setVelocityY( 10.0f);
@@ -66,7 +66,7 @@ public class VelocityComponentTest {
   }
 
   @Test
-  public void testUpdateVelocity() {
+    void testUpdateVelocity() {
     float deltaTime = 1.0f / 60.0f;
 
     float initialVelocityX = velocity.getVelocityX();
@@ -76,17 +76,17 @@ public class VelocityComponentTest {
   }
 
   @Test
-  public void testSetVelocityX() {
-    
+    void testSetVelocityX() {
+
     velocity = new VelocityComponent(1.0f, 0.0f, 0.0f);
     velocity.setVelocityX(5.0f);
     assertEquals(5.0f, velocity.getVelocityX(), "The velocityX should be set to 5.0f");
-    
+
     velocity.setVelocityX(10.0f);
     assertEquals(10.0f, velocity.getVelocityX(), "The velocityX should now be set to 10.0f");
   }
   @Test
-  public void testSetVelocityZ() {
+    void testSetVelocityZ() {
 
     velocity = new VelocityComponent(1.0f, 0.0f, 0.0f);
     velocity.setVelocityZ(5.0f);

@@ -29,20 +29,20 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class TransformComponentTest {
+  class TransformComponentTest {
 
   private TransformComponent transform;
 
   @BeforeEach
-  public void setUp() {
+    void setUp() {
     transform = new TransformComponent(new float[]{0.0f, 0.0f, 0.0f},
         new float[]{0.0f, 0.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f});
   }
 
 
   @Test
-  public void testTransformComponentConstructor() {
-    TransformComponent transform = new TransformComponent();
+    void testTransformComponentConstructor() {
+    TransformComponent Testtransform = new TransformComponent();
 
     float[] expectedPosition = new float[]{0.0f, 0.0f, 0.0f};
     float[] expectedRotation = new float[]{0.0f, 0.0f, 0.0f};
@@ -54,49 +54,49 @@ public class TransformComponentTest {
   }
 
   @Test
-  public void testGetPosition() {
+    void testGetPosition() {
     float[] position = transform.getPosition();
 
     assertArrayEquals(new float[]{0.0f, 0.0f, 0.0f}, position, "The position should be initialized correctly.");
   }
 
   @Test
-  public void testSetPosition() {
+    void testSetPosition() {
     transform.setPosition(new float[]{10.0f, 20.0f, 30.0f});
 
     assertArrayEquals(new float[]{10.0f, 20.0f, 30.0f}, transform.getPosition(), "Position should be updated correctly.");
   }
 
   @Test
-  public void testGetRotation() {
+    void testGetRotation() {
     float[] rotation = transform.getRotation();
 
     assertArrayEquals(new float[]{0.0f, 0.0f, 0.0f}, rotation, "The rotation should be initialized correctly.");
   }
 
   @Test
-  public void testSetRotation() {
+    void testSetRotation() {
     transform.setRotation(new float[]{90.0f, 0.0f, 0.0f});
 
     assertArrayEquals(new float[]{90.0f, 0.0f, 0.0f}, transform.getRotation(), "Rotation should be updated correctly.");
   }
 
   @Test
-  public void testGetScale() {
+    void testGetScale() {
     float[] scale = transform.getScale();
 
     assertArrayEquals(new float[]{1.0f, 1.0f, 1.0f}, scale, "The scale should be initialized correctly.");
   }
 
   @Test
-  public void testUpdateFunction() {
-    TransformComponent transform = new TransformComponent();
+    void testUpdateFunction() {
+    TransformComponent Testtransform = new TransformComponent();
 
     assertDoesNotThrow(() -> transform.update(1.0f), "update function should not throw an exception");
   }
 
   @Test
-  public void testSetScale() {
+    void testSetScale() {
     transform.setScale(new float[]{2.0f, 2.0f, 2.0f});
 
     assertArrayEquals(new float[]{2.0f, 2.0f, 2.0f}, transform.getScale(), "Scale should be updated correctly.");

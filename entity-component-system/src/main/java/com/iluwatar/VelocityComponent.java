@@ -32,7 +32,6 @@ import java.util.logging.Logger;
  */
 public class VelocityComponent extends Component {
 
-  private static final Logger logger = Logger.getLogger(VelocityComponent.class.getName());
 
   private float velocityX;  // The velocity in the X direction
   private float velocityY;  // The velocity in the Y direction

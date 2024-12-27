@@ -112,9 +112,9 @@ public class GameSystem {
    * Renders the system (rendering logic can be implemented as needed).
    */
   public void renderSystem() {
-    for (Entity entity : entities) {
+    //for (Entity entity : entities) {
       // Implement rendering logic
-    }
+    //}
   }
 
   /**

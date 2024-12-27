@@ -158,10 +158,6 @@ public class Entity {
     }
   }
 
-  public boolean getEnabled() {
-    return isEnabled;
-  }
-
   /**
    * Updates the entity and its components.
    *
@@ -214,9 +210,9 @@ public class Entity {
    * Renders the entity and its components.
    */
   public void renderEntity() {
-    for (Component component : components) {
+    //for (Component component : components) {
       // Render each component
-    }
+    //}
   }
 
   // Getters and Setters for fields

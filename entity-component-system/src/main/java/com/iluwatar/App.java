@@ -38,7 +38,7 @@ public class App {
    * @param args Command-line arguments (not used in this application)
    */
   public static void main(String[] args) {
-    System.out.print("Hello, World!");
+
 
     Entity entity1 = new Entity("Entity1");
     Entity entity2 = new Entity("Entity2");

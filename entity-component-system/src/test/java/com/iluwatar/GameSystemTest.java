@@ -29,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
-public class GameSystemTest {
+ class GameSystemTest {
 
   private GameSystem gameSystem;
   private Entity entity1;
@@ -37,7 +37,7 @@ public class GameSystemTest {
   private Entity childEntity;
 
   @BeforeEach
-  public void setUp() {
+ void setUp() {
     gameSystem = new GameSystem();
 
     entity1 = new Entity("Entity1");
@@ -51,18 +51,18 @@ public class GameSystemTest {
   }
 
   @Test
-  public void testAddEntity() {
+ void testAddEntity() {
     assertEquals(3, gameSystem.getEntities().size(), "There should be three entities in the system.");
   }
 
   @Test
-  public void testRemoveEntity() {
+ void testRemoveEntity() {
     gameSystem.removeEntity(entity2);
     assertEquals(2, gameSystem.getEntities().size(), "Entity2 should be removed from the system.");
   }
 
   @Test
-  public void testGetSystemMatrix() {
+ void testGetSystemMatrix() {
     // Set a mock transform for entity1 and childEntity
     float[][] matrix1 = gameSystem.getSystemMatrix(entity1);
     float[][] matrix2 = gameSystem.getSystemMatrix(childEntity);
@@ -73,7 +73,7 @@ public class GameSystemTest {
   }
 
   @Test
-  public void testGetSystemPosition() {
+ void testGetSystemPosition() {
     float[] position1 = gameSystem.getSystemPosition(entity1);
     float[] position2 = gameSystem.getSystemPosition(entity2);
 
@@ -84,7 +84,7 @@ public class GameSystemTest {
   }
 
   @Test
-  public void testSortEntitiesByDistance() {
+void testSortEntitiesByDistance() {
 
     float[] referencePoint = {0.0f, 0.0f, 0.0f};
 
@@ -100,7 +100,7 @@ public class GameSystemTest {
   }
 
   @Test
-  public void testRenderSystem() {
+void testRenderSystem() {
 
     try {
       gameSystem.renderSystem();

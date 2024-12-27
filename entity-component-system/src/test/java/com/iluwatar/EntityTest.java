@@ -33,11 +33,11 @@ public class EntityTest {
 
   private Entity entity1;
   private Entity entity2;
-  private TransformComponent transform1;
-  private TransformComponent transform2;
+  TransformComponent transform1;
+  TransformComponent transform2;
 
   @BeforeEach
-  public void setUp() {
+ void setUp() {
     entity1 = new Entity("Entity1");
     entity2 = new Entity("Entity2");
 
@@ -49,7 +49,7 @@ public class EntityTest {
   }
 
   @Test
-  public void testAddComponent() {
+ void testAddComponent() {
     Component component = new HealthComponent(100);
     entity1.addComponent(component);
 
@@ -57,7 +57,7 @@ public class EntityTest {
   }
 
   @Test
-  public void testRemoveComponent() {
+ void testRemoveComponent() {
     Component component = new HealthComponent(100);
 
     entity2.removeComponent(component);
@@ -65,32 +65,15 @@ public class EntityTest {
     assertEquals(1, entity2.getComponents().size(), "Entity1 should have no components.");
   }
 
-  /*
   @Test
-  public void testSetParent() {
-    entity1 = new Entity("Entity1");
-    entity2 = new Entity("Entity2");
-    entity1.setParent(entity2);
-    assertEquals(entity2.getEntityId(), entity1.getParent().getEntityId(), "Entity1 should have Entity2 as its parent.");
-  }
-*/
-  @Test
-  public void testAddChild() {
+ void testAddChild() {
     entity1.addChild(entity2);
 
     assertTrue(entity1.getChildren().contains(entity2), "Entity1 should have Entity2 as its child.");
   }
-/*
-  @Test
-  public void testSetEnabled() {
-    entity1.setEnabled(false);
-    assertFalse(entity1.getEnabled(), "Entity1 should be disabled.");
-    entity1.setEnabled(true);
-    assertTrue(entity1.getEnabled(), "Entity1 should be enabled.");
-  } */
 
   @Test
-  public void testGetComponent() {
+ void testGetComponent() {
 
     Component component = new HealthComponent(100);
     component.setName("HealthComponent");
@@ -105,7 +88,7 @@ public class EntityTest {
   }
 
   @Test
-  public void testSetEnabled() {
+ void testSetEnabled() {
 
     Component component = new HealthComponent(100);
     Entity entity = new Entity("MyEntity");
@@ -123,7 +106,7 @@ public class EntityTest {
   }
 
   @Test
-  public void testSetParent() {
+ void testSetParent() {
 
     Entity parent = new Entity("parent");
     Entity child = new Entity("child");
@@ -141,7 +124,7 @@ public class EntityTest {
   }
 
   @Test
-  public void testUpdate() {
+ void testUpdate() {
     float deltaTime = 1.0f / 60.0f;
     entity1.update(deltaTime);
 
@@ -149,7 +132,7 @@ public class EntityTest {
   }
 
   @Test
-  public void testRenderEntity() {
+ void testRenderEntity() {
 
     Component component = new HealthComponent(100);
     Entity entity = new Entity("MyEntity");
@@ -160,30 +143,30 @@ public class EntityTest {
   }
 
   @Test
-  public void testGetName() {
+ void testGetName() {
     Entity entity = new Entity("MyEntity");
 
     assertEquals("MyEntity", entity.getName(), "The entity name should match the given name.");
   }
 
   @Test
-  public void testSetIsEnabled() {
+ void testSetIsEnabled() {
     Entity entity = new Entity("MyEntity");
-    Entity entity2 = new Entity("child");
-    entity.addChild(entity2);
+    Entity entityChild = new Entity("child");
+    entity.addChild(entityChild);
     entity.setIsEnabled(false);
 
     assertFalse(entity.isEnabled(), "The entity should be disabled after calling setIsEnabled(false).");
-    assertFalse(entity2.isEnabled(), "The entity child should be disabled after calling setIsEnabled(false).");
+    assertFalse(entityChild.isEnabled(), "The entity child should be disabled after calling setIsEnabled(false).");
 
     entity.setIsEnabled(true);
     
     assertTrue(entity.isEnabled(), "The entity should be enabled after calling setIsEnabled(true).");
-    assertTrue(entity2.isEnabled(), "The entity child should be enabled after calling setIsEnabled(true).");
+    assertTrue(entityChild.isEnabled(), "The entity child should be enabled after calling setIsEnabled(true).");
   }
 
   @Test
-  public void testGetAndSetGameSystem() {
+ void testGetAndSetGameSystem() {
  
     GameSystem gameSystem = new GameSystem();
     Entity entity = new Entity("MyEntity");
@@ -193,7 +176,7 @@ public class EntityTest {
   }
 
   @Test
-  public void testUpdate_whenEntityDisabled_shouldReturnImmediately() {
+ void testUpdate_whenEntityDisabled_shouldReturnImmediately() {
 
 
     Entity parent = new Entity("parent");
@@ -213,7 +196,7 @@ public class EntityTest {
   }
 
   @Test
-  public void testUpdate_shouldUpdateEnabledComponents() {
+ void testUpdate_shouldUpdateEnabledComponents() {
     entity1.setEnabled(true);
     entity2.setEnabled(false);
     entity1.addComponent(transform1);
@@ -229,7 +212,7 @@ public class EntityTest {
   }
 
   @Test
-  public void testUpdate_shouldUpdateChildEntities() {
+ void testUpdate_shouldUpdateChildEntities() {
     Entity child = new Entity("child");
     entity1.setEnabled(true);
     entity1.addChild(child);

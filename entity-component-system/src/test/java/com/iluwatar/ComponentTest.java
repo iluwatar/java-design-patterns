@@ -28,25 +28,25 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class ComponentTest {
+ class ComponentTest {
   @Test
-  public void testGetName() {
-    Component component = new HealthComponent(100);
+  void testGetName() {
+    Component component = new HealthComponent(10);
     component.setName("Health");
 
-    assertEquals("Health", component.getName(), "getName should return 'TestComponent'");
+    assertEquals("Health", component.getName(), "getName should return 'Health'");
   }
 
   @Test
-  public void testSetName() {
+ void testSetName() {
     Component component = new HealthComponent(100);
-    component.setName("Health");
-
-    assertEquals("Health", component.getName(), "getName should return 'TestComponent'");
+    component.setName("Velocity");
+    component.setName("Transform");
+    assertEquals("Transform", component.getName(), "getName should return 'Transform'");
   }
 
   @Test
-  public void testComponentEnabled() {
+ void testComponentEnabled() {
     Component component = new HealthComponent(100);
     component.setEnabled(true);
 
@@ -57,7 +57,7 @@ public class ComponentTest {
   }
 
   @Test
-  public void testComponentParent() {
+void testComponentParent() {
     Component component = new HealthComponent(100);
     Entity parentEntity = new Entity("ParentEntity");
 

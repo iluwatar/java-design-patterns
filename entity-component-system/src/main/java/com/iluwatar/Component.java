@@ -39,7 +39,7 @@ public abstract class Component {
    * Default constructor for the component.
    * Initializes a new component with default values.
    */
-  public Component() {
+  protected Component() {
     // Constructor left empty intentionally, no specific initialization required
   }
 

@@ -28,22 +28,22 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class HealthComponentTest {
+ class HealthComponentTest {
 
   private HealthComponent healthComponent;
 
   @BeforeEach
-  public void setUp() {
+ void setUp() {
     healthComponent = new HealthComponent(100);
   }
 
   @Test
-  public void testInitialHealth() {
+ void testInitialHealth() {
     assertEquals(100, healthComponent.getCurrentHealth(), "Initial health should be 100.");
   }
 
   @Test
-  public void testApplyDamage() {
+ void testApplyDamage() {
     healthComponent.applyDamage(30);
     assertEquals(70, healthComponent.getCurrentHealth(), "Health should decrease by 30 after damage.");
 
@@ -52,7 +52,7 @@ public class HealthComponentTest {
   }
 
   @Test
-  public void testHeal() {
+ void testHeal() {
     healthComponent.applyDamage(50);
     healthComponent.heal(30);
     assertEquals(80, healthComponent.getCurrentHealth(), "Health should increase by 30 after healing.");
@@ -61,62 +61,62 @@ public class HealthComponentTest {
     assertEquals(100, healthComponent.getCurrentHealth(), "Health should not exceed maximum (100).");
   }
   @Test
-  public void testUpdateFunction() {
+    void testUpdateFunction() {
      healthComponent = new HealthComponent(100);
 
     assertDoesNotThrow(() -> healthComponent.update(1.0f), "update function should not throw an exception");
   }
 
   @Test
-  public void testGetMaxHealth() {
-    HealthComponent healthComponent = new HealthComponent(100f);
+    void testGetMaxHealth() {
+    HealthComponent TesthealthComponent = new HealthComponent(100f);
 
-    assertEquals(100f, healthComponent.getMaxHealth(), "Max health should be 100.");
+    assertEquals(100f, TesthealthComponent.getMaxHealth(), "Max health should be 100.");
   }
 
   @Test
-  public void testSetMaxHealth() {
-    HealthComponent healthComponent = new HealthComponent(100f);
+    void testSetMaxHealth() {
+    HealthComponent TesthealthComponent = new HealthComponent(100f);
     healthComponent.setMaxHealth(120f);
 
-    assertEquals(120f, healthComponent.getMaxHealth(), "Max health should be updated to 120.");
+    assertEquals(120f, TesthealthComponent.getMaxHealth(), "Max health should be updated to 120.");
   }
 
   @Test
-  public void testIsAlive() {
+    void testIsAlive() {
 
-    HealthComponent healthComponent = new HealthComponent(100f);
-    assertTrue(healthComponent.isAlive(), "Entity should be alive initially.");
-    healthComponent.applyDamage(100f);
+    HealthComponent TesthealthComponent = new HealthComponent(100f);
+    assertTrue(TesthealthComponent.isAlive(), "Entity should be alive initially.");
+    TesthealthComponent.applyDamage(100f);
 
-    assertFalse(healthComponent.isAlive(), "Entity should be dead after taking 100 damage.");
+    assertFalse(TesthealthComponent.isAlive(), "Entity should be dead after taking 100 damage.");
   }
 
   @Test
-  public void testSetAlive() {
+    void testSetAlive() {
 
-    HealthComponent healthComponent = new HealthComponent(100f);
-    assertTrue(healthComponent.isAlive(), "Entity should be alive initially.");
-    healthComponent.setAlive(false);
+    HealthComponent TesthealthComponent = new HealthComponent(100f);
+    assertTrue(TesthealthComponent.isAlive(), "Entity should be alive initially.");
+    TesthealthComponent.setAlive(false);
 
-    assertFalse(healthComponent.isAlive(), "Entity should be dead after setting alive to false.");
+    assertFalse(TesthealthComponent.isAlive(), "Entity should be dead after setting alive to false.");
   }
 
   @Test
-  public void testSetCurrentHealth() {
-    HealthComponent healthComponent = new HealthComponent(100f);
-    healthComponent.setCurrentHealth(80f);
+    void testSetCurrentHealth() {
+    HealthComponent TesthealthComponent = new HealthComponent(100f);
+    TesthealthComponent.setCurrentHealth(80f);
 
-    assertEquals(80f, healthComponent.getCurrentHealth(), "Current health should be updated to 80.");
+    assertEquals(80f, TesthealthComponent.getCurrentHealth(), "Current health should be updated to 80.");
   }
   @Test
-  public void testHealthCannotGoAboveMax() {
+    void testHealthCannotGoAboveMax() {
     healthComponent.heal(150);
     assertEquals(100, healthComponent.getCurrentHealth(), "Health should not exceed the max value (100).");
   }
 
   @Test
-  public void testHealthCannotGoBelowZero() {
+    void testHealthCannotGoBelowZero() {
     healthComponent.applyDamage(200);
     assertEquals(0, healthComponent.getCurrentHealth(), "Health should not go below 0.");
   }

@@ -33,8 +33,6 @@ import java.util.logging.Logger;
  */
 public class HealthComponent extends Component {
 
-  private static final Logger logger = Logger.getLogger(HealthComponent.class.getName());
-
   private float currentHealth;
   private float maxHealth;
   private boolean isAlive;

@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class AppTest {
+class AppTest {
 
   private Entity entity1;
   private Entity entity2;
@@ -42,7 +42,7 @@ public class AppTest {
       new float[]{0.0f, 45.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f});
 
   @BeforeEach
-  public void setUp() {
+void setUp() {
     entity1 = new Entity("Entity1");
     entity2 = new Entity("Entity2");
 
@@ -56,17 +56,12 @@ public class AppTest {
     entity1.addComponent(velocity1);
   }
   @Test
-  public void testMain_shouldPrintHelloWorld() {
-
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    System.setOut(new PrintStream(outputStream));
-
-    App.main(new String[]{});
-
-    assertEquals("Hello, World!", outputStream.toString(), "The output should be 'Hello, World!'");
+void testMain_DoesNotThrowException() {
+    assertDoesNotThrow(() -> App.main(new String[]{}), "Child entity should not throw an exception if the parent is disabled.");
   }
+
   @Test
-  public void testHealthComponentApplyDamage() {
+void testHealthComponentApplyDamage() {
 
     health1.applyDamage(30);
 
@@ -74,7 +69,7 @@ public class AppTest {
   }
 
   @Test
-  public void testVelocityComponentApplyForce() {
+void testVelocityComponentApplyForce() {
 
     velocity1.applyForce(0.5f, 0.0f, 0.0f);
 
@@ -84,7 +79,7 @@ public class AppTest {
   }
 
   @Test
-  public void testEntityUpdate() {
+void testEntityUpdate() {
 
     float deltaTime = 1.0f / 60.0f;
     velocity1.setVelocityY(12.0f);
@@ -95,7 +90,7 @@ public class AppTest {
   }
 
   @Test
-  public void testEntityHealthAfterDamageAndForce() {
+void testEntityHealthAfterDamageAndForce() {
 
     health1.applyDamage(40);
 
@@ -108,7 +103,7 @@ public class AppTest {
   }
 
   @Test
-  public void testFinalEntityStateAfterSimulation() {
+void testFinalEntityStateAfterSimulation() {
 
     GameSystem gameSystem = new GameSystem();
     gameSystem.addEntity(entity1);
@@ -134,13 +129,13 @@ public class AppTest {
   }
 
   @Test
-  public void testAddTransformComponent() {
+void testAddTransformComponent() {
     entity1.addComponent(transform1);
     assertTrue(entity1.getComponents().contains(transform1), "Entity1 should contain the added TransformComponent.");
   }
 
   @Test
-  public void testGameLoopUpdatesEntityState() {
+void testGameLoopUpdatesEntityState() {
     GameSystem gameSystem = new GameSystem();
     gameSystem.addEntity(entity1);
 
@@ -154,7 +149,7 @@ public class AppTest {
   }
 
   @Test
-  public void testHealthReductionOverMultipleDamages() {
+void testHealthReductionOverMultipleDamages() {
     health1.applyDamage(20);
     health1.applyDamage(30);
 
@@ -162,7 +157,7 @@ public class AppTest {
   }
 
   @Test
-  public void testEntityRemovalFromGameSystem() {
+void testEntityRemovalFromGameSystem() {
     GameSystem gameSystem = new GameSystem();
     gameSystem.addEntity(entity1);
 
@@ -173,7 +168,7 @@ public class AppTest {
   }
 
   @Test
-  public void testEntityWithoutComponents() {
+void testEntityWithoutComponents() {
     Entity entity = new Entity("EmptyEntity");
     entity.removeComponent(entity.getTransformComponent());
     assertTrue(entity.getComponents().isEmpty(), "Entity should have no components.");
@@ -181,7 +176,7 @@ public class AppTest {
   }
 
   @Test
-  public void testSetParentAndChildren() {
+void testSetParentAndChildren() {
     Entity parentEntity = new Entity("ParentEntity");
     Entity childEntity = new Entity("ChildEntity");
 
@@ -192,9 +187,8 @@ public class AppTest {
   }
 
   @Test
-  public void testVelocityComponentReset() {
+void testVelocityComponentReset() {
     velocity1.applyForce(1.0f, 0.0f, 0.0f);
-    float newVelocityX = velocity1.getVelocityX();
 
     velocity1.resetVelocity();
 
@@ -204,7 +198,7 @@ public class AppTest {
   }
 
   @Test
-  public void testHealthAndForceAppliedTogether() {
+void testHealthAndForceAppliedTogether() {
     health1.applyDamage(20);
     velocity1.applyForce(0.5f, 0.0f, 0.0f);
 
