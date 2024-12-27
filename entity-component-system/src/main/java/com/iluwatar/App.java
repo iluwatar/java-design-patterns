@@ -75,7 +75,6 @@ public class App {
         velocity1.applyForce(0.5f, 0.0f, 0.0f);
       }
 
-      gameSystem.renderSystem();
     }
   }
 }

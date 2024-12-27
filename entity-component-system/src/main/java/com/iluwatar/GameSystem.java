@@ -109,15 +109,6 @@ public class GameSystem {
   }
 
   /**
-   * Renders the system (rendering logic can be implemented as needed).
-   */
-  public void renderSystem() {
-    //for (Entity entity : entities) {
-      // Implement rendering logic
-    //}
-  }
-
-  /**
    * Sorts the entities by their distance from a given reference point in descending order.
    *
    * @param referencePoint the point from which the distance is measured

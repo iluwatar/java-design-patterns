@@ -69,45 +69,45 @@ import static org.junit.jupiter.api.Assertions.*;
 
   @Test
     void testGetMaxHealth() {
-    HealthComponent TesthealthComponent = new HealthComponent(100f);
+    HealthComponent  testHealthComponent = new HealthComponent(100f);
 
-    assertEquals(100f, TesthealthComponent.getMaxHealth(), "Max health should be 100.");
+    assertEquals(100f,  testHealthComponent.getMaxHealth(), "Max health should be 100.");
   }
 
   @Test
     void testSetMaxHealth() {
-    HealthComponent TesthealthComponent = new HealthComponent(100f);
-    TesthealthComponent.setMaxHealth(120f);
+    HealthComponent  testHealthComponent = new HealthComponent(100f);
+     testHealthComponent.setMaxHealth(120f);
 
-    assertEquals(120f, TesthealthComponent.getMaxHealth(), "Max health should be updated to 120.");
+    assertEquals(120f,  testHealthComponent.getMaxHealth(), "Max health should be updated to 120.");
   }
 
   @Test
     void testIsAlive() {
 
-    HealthComponent TesthealthComponent = new HealthComponent(100f);
-    assertTrue(TesthealthComponent.isAlive(), "Entity should be alive initially.");
-    TesthealthComponent.applyDamage(100f);
+    HealthComponent  testHealthComponent = new HealthComponent(100f);
+    assertTrue( testHealthComponent.isAlive(), "Entity should be alive initially.");
+     testHealthComponent.applyDamage(100f);
 
-    assertFalse(TesthealthComponent.isAlive(), "Entity should be dead after taking 100 damage.");
+    assertFalse( testHealthComponent.isAlive(), "Entity should be dead after taking 100 damage.");
   }
 
   @Test
     void testSetAlive() {
 
-    HealthComponent TesthealthComponent = new HealthComponent(100f);
-    assertTrue(TesthealthComponent.isAlive(), "Entity should be alive initially.");
-    TesthealthComponent.setAlive(false);
+    HealthComponent  testHealthComponent = new HealthComponent(100f);
+    assertTrue( testHealthComponent.isAlive(), "Entity should be alive initially.");
+     testHealthComponent.setAlive(false);
 
-    assertFalse(TesthealthComponent.isAlive(), "Entity should be dead after setting alive to false.");
+    assertFalse( testHealthComponent.isAlive(), "Entity should be dead after setting alive to false.");
   }
 
   @Test
     void testSetCurrentHealth() {
-    HealthComponent TesthealthComponent = new HealthComponent(100f);
-    TesthealthComponent.setCurrentHealth(80f);
+    HealthComponent  testHealthComponent = new HealthComponent(100f);
+     testHealthComponent.setCurrentHealth(80f);
 
-    assertEquals(80f, TesthealthComponent.getCurrentHealth(), "Current health should be updated to 80.");
+    assertEquals(80f,  testHealthComponent.getCurrentHealth(), "Current health should be updated to 80.");
   }
   @Test
     void testHealthCannotGoAboveMax() {

@@ -98,14 +98,5 @@ void testSortEntitiesByDistance() {
     assertEquals(entity2, sortedEntities.get(0), "Entity2 should be closer to the reference point than Entity1.");
     assertEquals(entity1, sortedEntities.get(1), "Entity1 should be farther from the reference point than Entity2.");
   }
+ }
 
-  @Test
-void testRenderSystem() {
-
-    try {
-      gameSystem.renderSystem();
-    } catch (Exception e) {
-      fail("Render method should not throw any exceptions.");
-    }
-  }
-}

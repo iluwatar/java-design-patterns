@@ -131,6 +131,19 @@ public class Entity {
     }
   }
 
+  /**
+   * Finds a Child Entity in Children List.
+   *
+   * @param entityId the child entity to be removed
+   */
+  public Entity findChildEntity(UUID entityId) {
+    for (Entity child : children) {
+      if (Objects.equals(child.getEntityId(), entityId)) {
+        return child;
+      }
+    }
+    return null;
+  }
 
   /**
    * Removes a child entity from this entity.
@@ -204,15 +217,6 @@ public class Entity {
   public List<Component> getComponents() {
 
     return components;
-  }
-
-  /**
-   * Renders the entity and its components.
-   */
-  public void renderEntity() {
-    //for (Component component : components) {
-      // Render each component
-    //}
   }
 
   // Getters and Setters for fields

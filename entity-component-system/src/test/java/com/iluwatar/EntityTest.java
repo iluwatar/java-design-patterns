@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class EntityTest {
+ class EntityTest {
 
   private Entity entity1;
   private Entity entity2;
@@ -45,7 +45,6 @@ public class EntityTest {
         new float[]{0.0f, 0.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f});
     transform2 = new TransformComponent(new float[]{5.0f, 0.0f, 0.0f},
         new float[]{0.0f, 45.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f});
-
   }
 
   @Test
@@ -131,16 +130,6 @@ public class EntityTest {
     assertNotNull(entity1, "Entity1 should be updated.");
   }
 
-  @Test
- void testRenderEntity() {
-
-    Component component = new HealthComponent(100);
-    Entity entity = new Entity("MyEntity");
-    entity.addComponent(component);
-    entity.renderEntity();
-
-    assertDoesNotThrow(() -> component.update(1.0f), "render function should not throw an exception");
-  }
 
   @Test
  void testGetName() {
@@ -220,6 +209,28 @@ public class EntityTest {
     entity1.update(1.0f);
     assertDoesNotThrow(() -> child.update(1.0f));
   }
+
+   @Test
+   void testFindChildEntity() {
+    Entity parent = new Entity("parent");
+    Entity child = new Entity("child");
+    child.setParent(parent);
+    parent.addChild(child);
+
+     assertEquals(parent.findChildEntity(child.getEntityId()),child, "The child object should match the one found.");
+
+   }
+
+   @Test
+   void testNotFindChildEntity() {
+     Entity parent = new Entity("parent");
+     Entity child = new Entity("child");
+
+     assertNull(parent.findChildEntity(child.getEntityId()), "The child object should match the one found.");
+
+   }
+
+
 }
 
 

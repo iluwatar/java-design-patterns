@@ -24,7 +24,6 @@
  */
 package com.iluwatar;
 
-import java.util.logging.Logger;
 
 /**
  * A component that handles the velocity of an entity in 3D space.

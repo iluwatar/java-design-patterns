@@ -27,8 +27,6 @@ package com.iluwatar;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 
 class AppTest {
 
@@ -108,9 +106,9 @@ void testFinalEntityStateAfterSimulation() {
     GameSystem gameSystem = new GameSystem();
     gameSystem.addEntity(entity1);
     gameSystem.addEntity(entity2);
-    TransformComponent transform1 = new TransformComponent(new float[]{5.0f, 0.0f, 0.0f},
+    TransformComponent Testtransform = new TransformComponent(new float[]{5.0f, 0.0f, 0.0f},
         new float[]{0.0f, 45.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f});
-    entity1.setTransformComponent(transform1);
+    entity1.setTransformComponent(Testtransform);
 
     for (int i = 0; i < 10; i++) {
       gameSystem.update(1.0f / 60.0f);

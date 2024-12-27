@@ -24,7 +24,7 @@
  */
 package com.iluwatar;
 
-import java.util.logging.Logger;
+
 
 /**
  * Abstract class representing a health component in the ECS system.
