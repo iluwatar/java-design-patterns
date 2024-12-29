@@ -51,8 +51,6 @@ public class GameSystem {
   public void addEntity(Entity entity) {
     if (entity != null) {
       entities.add(entity);
-      entity.setGameSystem(this);
-
       // Recursively add children entities
       for (Entity child : entity.getChildren()) {
         addEntity(child);

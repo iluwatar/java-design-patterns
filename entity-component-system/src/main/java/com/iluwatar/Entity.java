@@ -40,7 +40,6 @@ public class Entity {
   private boolean isEnabled;
   private TransformComponent transform;
   private Entity parent;
-  private GameSystem gameSystem;
   private List<Component> components;
   private List<Entity> children;
 
@@ -260,24 +259,6 @@ public class Entity {
       child.setIsEnabled(isEnabled);
 
     }
-  }
-
-  /**
-   * Gets the game system this entity belongs to.
-   *
-   * @return the game system the entity is part of
-   */
-  public GameSystem getGameSystem() {
-    return gameSystem;
-  }
-
-  /**
-   * Sets the game system this entity belongs to.
-   *
-   * @param gameSystem the game system to set
-   */
-  public void setGameSystem(GameSystem gameSystem) {
-    this.gameSystem = gameSystem;
   }
 
   /**

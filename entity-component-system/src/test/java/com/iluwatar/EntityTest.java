@@ -155,16 +155,6 @@ import static org.junit.jupiter.api.Assertions.*;
   }
 
   @Test
- void testGetAndSetGameSystem() {
- 
-    GameSystem gameSystem = new GameSystem();
-    Entity entity = new Entity("MyEntity");
-    entity.setGameSystem(gameSystem);
-    
-    assertEquals(gameSystem, entity.getGameSystem(), "The game system should match the one set.");
-  }
-
-  @Test
  void testUpdate_whenEntityDisabled_shouldReturnImmediately() {
 
 

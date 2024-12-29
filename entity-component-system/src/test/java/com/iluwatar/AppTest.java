@@ -106,9 +106,9 @@ void testFinalEntityStateAfterSimulation() {
     GameSystem gameSystem = new GameSystem();
     gameSystem.addEntity(entity1);
     gameSystem.addEntity(entity2);
-    TransformComponent TestTransform = new TransformComponent(new float[]{5.0f, 0.0f, 0.0f},
+    TransformComponent testTransform = new TransformComponent(new float[]{5.0f, 0.0f, 0.0f},
         new float[]{0.0f, 45.0f, 0.0f}, new float[]{1.0f, 1.0f, 1.0f});
-    entity1.setTransformComponent(TestTransform);
+    entity1.setTransformComponent(testTransform);
 
     for (int i = 0; i < 10; i++) {
       gameSystem.update(1.0f / 60.0f);
