@@ -56,12 +56,4 @@ import static org.junit.jupiter.api.Assertions.*;
     assertFalse(component.getEnabled(), "The component should be disabled.");
   }
 
-  @Test
-void testComponentParent() {
-    Component component = new HealthComponent(100);
-    Entity parentEntity = new Entity("ParentEntity");
-
-    component.setParent(parentEntity);
-    assertEquals(parentEntity, component.getParent(), "The component's parent should be set correctly.");
-  }
 }

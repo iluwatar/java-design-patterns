@@ -56,7 +56,7 @@ public class Entity {
     name = entityName;
     components = new ArrayList<>();
     children = new ArrayList<>();
-    final UUID entityId = UUID.randomUUID(); // Generates a unique UUID for this entity
+    entityId = UUID.randomUUID(); // Generates a unique UUID for this entity
     transform = new TransformComponent(new float[] {0.0f, 0.0f, 0.0f}, new float[] {0.0f, 0.0f, 0.0f}, new float[] {1.0f, 1.0f, 1.0f});
     addComponent(transform);
 
@@ -71,7 +71,6 @@ public class Entity {
     if (component != null) {
       components.add(component);
       component.setEnabled(isEnabled);
-      component.setParent(this);
     }
   }
 

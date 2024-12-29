@@ -33,7 +33,6 @@ public abstract class Component {
 
   private String name;
   private boolean isEnabled;
-  private Entity parent;
 
   /**
    * Default constructor for the component.
@@ -77,24 +76,6 @@ public abstract class Component {
    */
   public void setEnabled(boolean isEnabled) {
     this.isEnabled = isEnabled;
-  }
-
-  /**
-   * Gets the parent entity of this component.
-   *
-   * @return the parent entity
-   */
-  public Entity getParent() {
-    return parent;
-  }
-
-  /**
-   * Sets the parent entity of this component.
-   *
-   * @param parent the parent entity to set
-   */
-  public void setParent(Entity parent) {
-    this.parent = parent;
   }
 
   /**
