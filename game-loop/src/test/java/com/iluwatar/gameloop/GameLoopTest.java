@@ -24,10 +24,9 @@
  */
 package com.iluwatar.gameloop;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,6 +45,7 @@ class GameLoopTest {
     gameLoop = new GameLoop() {
       @Override
       protected void processGameLoop() {
+        throw new UnsupportedOperationException("Not supported yet.");
       }
     };
   }
