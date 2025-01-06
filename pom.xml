@@ -218,7 +218,8 @@
     <module>function-composition</module>
     <module>microservices-distributed-tracing</module>
     <module>microservices-idempotent-consumer</module>
-      <module>money</module>
+    <module>money</module>
+    <module>table-inheritance</module>
   </modules>
   <repositories>
     <repository>
