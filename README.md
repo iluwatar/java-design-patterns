@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-367-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-368-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -550,6 +550,7 @@ This project is licensed under the terms of the MIT license.
     </tr>
     <tr>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/depthlending"><img src="https://avatars.githubusercontent.com/u/164312726?v=4?s=100" width="100px;" alt="BiKangNing"/><br /><sub><b>BiKangNing</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=depthlending" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/TarunVishwakarma1"><img src="https://avatars.githubusercontent.com/u/138651451?v=4?s=100" width="100px;" alt="Tarun Vishwakarma"/><br /><sub><b>Tarun Vishwakarma</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=TarunVishwakarma1" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
