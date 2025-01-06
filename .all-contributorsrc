@@ -3348,6 +3348,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "TarunVishwakarma1",
+      "name": "Tarun Vishwakarma",
+      "avatar_url": "https://avatars.githubusercontent.com/u/138651451?v=4",
+      "profile": "https://github.com/TarunVishwakarma1",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
