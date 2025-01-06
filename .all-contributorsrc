@@ -3330,6 +3330,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "malak-elbanna",
+      "name": "Malak Elbanna",
+      "avatar_url": "https://avatars.githubusercontent.com/u/67643605?v=4",
+      "profile": "https://malakelbanna.netlify.app/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
