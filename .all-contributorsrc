@@ -3339,6 +3339,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "depthlending",
+      "name": "BiKangNing",
+      "avatar_url": "https://avatars.githubusercontent.com/u/164312726?v=4",
+      "profile": "https://github.com/depthlending",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 6,

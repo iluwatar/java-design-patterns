@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-366-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-367-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -547,6 +547,9 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/HabibaMekay"><img src="https://avatars.githubusercontent.com/u/133516736?v=4?s=100" width="100px;" alt="HabibaMekay"/><br /><sub><b>HabibaMekay</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=HabibaMekay" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/Ahmed-Taha-981"><img src="https://avatars.githubusercontent.com/u/122402269?v=4?s=100" width="100px;" alt="Ahmed-Taha-981"/><br /><sub><b>Ahmed-Taha-981</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Ahmed-Taha-981" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://malakelbanna.netlify.app/"><img src="https://avatars.githubusercontent.com/u/67643605?v=4?s=100" width="100px;" alt="Malak Elbanna"/><br /><sub><b>Malak Elbanna</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=malak-elbanna" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/depthlending"><img src="https://avatars.githubusercontent.com/u/164312726?v=4?s=100" width="100px;" alt="BiKangNing"/><br /><sub><b>BiKangNing</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=depthlending" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
