@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  * Dependent threads will execute only after completion of all demothreads.
  */
 @Slf4j
-public class DependentThread {
+public class DependentThread implements Runnable {
 
     
   private int id;
@@ -44,13 +44,13 @@ public class DependentThread {
    */
   public void run() {
 
-    Logger.info(" Dependent Thread " + id + " starts ");
+    LOGGER.info(" Dependent Thread " + id + " starts ");
     try {
       Thread.sleep(id * 200);
     } catch (InterruptedException e) {
       e.printStackTrace();
     } finally {
-      Logger.info("Dependent Thread " + id + " completed ");
+      LOGGER.info("Dependent Thread " + id + " completed ");
     }
 
   }

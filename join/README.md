@@ -1,119 +1,135 @@
 ---
-title: "Join Pattern in Java: Synchronizing Concurrent Tasks"
+title: "Join Pattern in Java: Streamlining Concurrent Operations"
 shortTitle: Join
-description: "Learn the Join Design Pattern in Java with detailed examples and explanations. Understand how to synchronize concurrent tasks and manage execution flow using the Join Pattern. Ideal for developers looking to improve their multithreading and synchronization skills."
-category: Behavioral
+description: "Master the Join Design Pattern in Java to coordinate and synchronize concurrent tasks effectively. Explore examples, code implementations, benefits, and practical applications."
+category: Concurrency
 language: en
-issue: #70
 tag:
   - Concurrency
   - Synchronization
-  - Threads
-  - Multithreading
-  - Parallel Execution
+  - Parallel processing
+  - Gang of Four
 ---
 
-## Intent of Join Design Pattern
+## Also known as
 
-The **Join Design Pattern** in Java is used to synchronize multiple concurrent processes or threads so that they must all complete before any subsequent tasks can proceed. This pattern is essential when tasks are executed in parallel, but the subsequent tasks need to wait until all parallel tasks are finished. It allows threads to "join" at a synchronization point and ensures correct execution order and timing.
+* Fork-Join Pattern
+
+## Intent of Join Pattern
+
+The Join Pattern in Java focuses on coordinating and synchronizing concurrent tasks to achieve a specific outcome. It ensures that multiple tasks can execute independently, and their results are merged once all tasks complete.
 
 ## Detailed Explanation of Join Pattern with Real-World Examples
 
-#### Real-World Example
+Real-world example
 
-Imagine a **construction project** where multiple contractors are working on different aspects of the building simultaneously. The project manager doesn't want to proceed with the final inspection of the building until all the contractors have finished their respective tasks. Using the **Join Design Pattern**, the manager waits for all contractors (threads) to complete their work before proceeding with the inspection (subsequent task). 
+> Imagine a multi-chef kitchen preparing different dishes for a single order. Each chef works independently on their assigned dish, but the order cannot be delivered until every dish is ready. The kitchen manager, acting as the join point, ensures synchronization and prepares the final order once all dishes are done. Similarly, the Join Pattern allows tasks to execute concurrently and synchronizes their results for a final outcome.
 
-This pattern allows the project manager to synchronize all contractors' tasks to ensure that the inspection is only performed once all work is completed.
+In plain words
 
-#### Wikipedia Definition:
+> The Join Pattern helps in synchronizing multiple independent tasks, allowing them to work concurrently and combining their outcomes efficiently.
 
-> "Join is a synchronization technique that allows multiple concurrent threads or processes to synchronize and wait for the completion of other threads before proceeding to subsequent tasks."
+Wikipedia says
+
+> The join design pattern is a parallel processing pattern that helps merge results of concurrently executed tasks.
 
 ## Programmatic Example of Join Pattern in Java
 
-In this example, we simulate a scenario where four demo tasks run concurrently, and the main thread waits for their completion before proceeding. This is achieved using the **Thread#join()** method, which ensures that the main thread waits for all demo tasks to finish before continuing.
-
-### DemoThreadClass
+In this example, we demonstrate how the Join Pattern can be implemented to manage multiple threads and synchronize their results. We use a task aggregator that collects data from individual tasks and combines it into a final result.
 
 ```java
-/*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
- * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
+
 package com.iluwatar.join;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
- * DemoThreads implementing Runnable
+/** Here main thread will execute after completion of 4 demo threads 
+ * main thread will continue when CountDownLatch count becomes 0 
+ * CountDownLatch will start with count 4 and 4 demo threads will decrease it by 1 
+ * everytime when they will finish .
  */
+
 @Slf4j
-public class DemoThread implements Runnable {
+public class JoinPatternDemo {
 
-    private static int[] executionOrder;
-    private static int[] actualExecutionOrder;
-    private static int index = 0;
-    private static JoinPattern pattern;
-    private int id;
-    private Thread previous;
+  /**
+   * execution of demo and dependent threads. 
+   */
+  public static void main(String[] args) {
 
-    public DemoThread(int id, Thread previous) {
-        this.id = id;
-        this.previous = previous;
+    int[] executionOrder = {4, 2, 1, 3};
+    int noOfDemoThreads = 4;
+    int noOfDependentThreads = 2;
+    JoinPattern pattern = new JoinPattern(noOfDemoThreads, executionOrder);
+    Thread previous = null;
 
+    for (int i = 0; i < noOfDemoThreads; i++) {
+      previous = new Thread(new DemoThread(executionOrder[i], previous));
+      previous.start();
     }
+    pattern.await();
 
-    public static int[] getActualExecutionOrder() {
-        return actualExecutionOrder;
+    //Dependent threads after execution of DemoThreads
+    for (int i = 0; i < noOfDependentThreads; i++) {
+      new DependentThread(i + 1).start();
     }
+    LOGGER.info("end of program ");
 
-    public static void setExecutionOrder(int[] executionOrder, JoinPattern pattern) {
-        DemoThread.executionOrder = executionOrder;
-        DemoThread.pattern = pattern;
-        actualExecutionOrder = new int[executionOrder.length];
-    }
-
-    public void run() {
-        if (previous != null) {
-            try {
-                previous.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        Logger.info("Thread " + id + " starts");
-        try {
-            Thread.sleep(id * 250);
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            Logger.info("Thread " + id + " ends");
-            actualExecutionOrder[index++] = id;
-            pattern.countdown();
-
-        }
-    }
+  }
 
 }
 
+```
+
+### Program Output:
+
+```
+Running com.iluwatar.join.JoinPatternTest
+01:13:17.890 [Thread-2] INFO com.iluwatar.join.DemoThread -- Thread 1 starts
+01:13:18.167 [Thread-2] INFO com.iluwatar.join.DemoThread -- Thread 1 ends
+01:13:18.168 [Thread-3] INFO com.iluwatar.join.DemoThread -- Thread 4 starts
+01:13:19.176 [Thread-3] INFO com.iluwatar.join.DemoThread -- Thread 4 ends
+01:13:19.176 [Thread-4] INFO com.iluwatar.join.DemoThread -- Thread 3 starts
+01:13:19.935 [Thread-4] INFO com.iluwatar.join.DemoThread -- Thread 3 ends
+01:13:19.935 [Thread-5] INFO com.iluwatar.join.DemoThread -- Thread 2 starts
+01:13:20.437 [Thread-5] INFO com.iluwatar.join.DemoThread -- Thread 2 ends
+```
+
+## When to Use the Join Pattern in Java
+
+Use the Join Pattern in Java:
+
+* To synchronize results from multiple independent tasks executing in parallel.
+* To aggregate and process data from various sources concurrently.
+* To reduce the complexity of managing multiple threads in parallel operations.
+
+## Real-World Applications of Join Pattern in Java
+
+* Managing concurrent HTTP requests and aggregating their responses into a single result.
+* Parallel processing of large datasets, such as in map-reduce frameworks.
+* Synchronizing asynchronous operations, e.g., CompletableFutures in Java.
+
+## Benefits and Trade-offs of Join Pattern
+
+### Benefits:
+
+* Efficiently handles parallel processing tasks with minimal synchronization overhead.
+* Improves application performance by utilizing available system resources optimally.
+* Simplifies the logic for managing and synchronizing multiple tasks.
+
+### Trade-offs:
+
+* Debugging can become challenging with large numbers of asynchronous tasks.
+* Improper use may lead to deadlocks or performance bottlenecks.
+
+## Related Java Design Patterns
+
+* [Fork-Join Framework](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/ForkJoinPool.html): Built-in Java framework for recursive task splitting and joining.
+* [Future and CompletableFuture](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/CompletableFuture.html): Used for handling and synchronizing asynchronous operations.
+* [Observer Pattern](https://java-design-patterns.com/patterns/observer/): Can be combined with Join to monitor task progress.
+
+## References and Credits
+
+* [Java Concurrency in Practice](https://amzn.to/3sfS8mT)
+* [Effective Java](https://amzn.to/3GxS8p4)
+* [Oracle Java Documentation on Concurrency](https://docs.oracle.com/javase/tutorial/essential/concurrency/)

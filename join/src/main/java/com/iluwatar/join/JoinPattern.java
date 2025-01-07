@@ -39,15 +39,25 @@ public class JoinPattern {
   private CountDownLatch latch;
   int[] executionOrder;
 
+  /**
+   * Initialise join pattern object.
+   */
   public JoinPattern(int noOfDemoThreads, int[] executionOrder) {
     latch = new CountDownLatch(noOfDemoThreads);
     this.executionOrder = executionOrder;
+    DemoThread.setExecutionOrder(executionOrder, this);
   }
-
+  
+  /**
+   * decreases count by one. 
+   */
   public void countdown() {
     latch.countDown();
   }
 
+  /**
+   * thread waits until count reaches 0.
+   */
   public void await() throws InterruptedException {
     latch.await();
   }

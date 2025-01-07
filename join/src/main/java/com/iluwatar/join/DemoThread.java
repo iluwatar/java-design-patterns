@@ -70,13 +70,13 @@ public class DemoThread implements Runnable {
         e.printStackTrace();
       }
     }
-    Logger.info("Thread " + id + " starts");
+    LOGGER.info("Thread " + id + " starts");
     try {
       Thread.sleep(id * 250);
     } catch (InterruptedException e) {
       e.printStackTrace();
     } finally {
-      Logger.info("Thread " + id + " ends");
+      LOGGER.info("Thread " + id + " ends");
       actualExecutionOrder[index++] = id;
       pattern.countdown();
     }

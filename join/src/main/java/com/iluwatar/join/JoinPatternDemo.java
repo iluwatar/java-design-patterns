@@ -56,7 +56,7 @@ public class JoinPatternDemo {
     for (int i = 0; i < noOfDependentThreads; i++) {
       new DependentThread(i + 1).start();
     }
-    Logger.info("end of program ");
+    LOGGER.info("end of program ");
 
   }
 
