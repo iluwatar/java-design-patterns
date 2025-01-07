@@ -26,55 +26,60 @@ package com.iluwatar.join;
 
 import lombok.extern.slf4j.Slf4j;
 
-/*
- * DemoThreads implementing Runnable
+/**
+ * demo threads implementing Runnable .
  */
 @Slf4j
 public class DemoThread implements Runnable {
 
-    private static int[] executionOrder;
-    private static int[] actualExecutionOrder;
-    private static int index = 0;
-    private static JoinPattern pattern;
-    private int id;
-    private Thread previous;
+  private static int[] executionOrder;
+  private static int[] actualExecutionOrder;
+  private static int index = 0;
+  private static JoinPattern pattern;
+  private int id;
+  private Thread previous;
+  
+  /**
+   * Initalise a demo thread object with id and previous thread .
+   */
+  public DemoThread(int id, Thread previous) {
+    this.id = id;
+    this.previous = previous;
 
-    public DemoThread(int id, Thread previous) {
-        this.id = id;
-        this.previous = previous;
+  }
 
+  public static int[] getActualExecutionOrder() {
+    return actualExecutionOrder;
+  }
+  /**
+   * set custom execution order of threads .
+   */
+  public static void setExecutionOrder(int[] executionOrder, JoinPattern pattern) {
+    DemoThread.executionOrder = executionOrder;
+    DemoThread.pattern = pattern;
+    actualExecutionOrder = new int[executionOrder.length];
+  }
+  /**
+   * use to run demo thread.
+   */
+  public void run() {
+    if (previous != null) {
+      try {
+        previous.join();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
     }
-
-    public static int[] getActualExecutionOrder() {
-        return actualExecutionOrder;
+    Logger.info("Thread " + id + " starts");
+    try {
+      Thread.sleep(id * 250);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    } finally {
+      Logger.info("Thread " + id + " ends");
+      actualExecutionOrder[index++] = id;
+      pattern.countdown();
     }
-
-    public static void setExecutionOrder(int[] executionOrder, JoinPattern pattern) {
-        DemoThread.executionOrder = executionOrder;
-        DemoThread.pattern = pattern;
-        actualExecutionOrder = new int[executionOrder.length];
-    }
-
-    public void run() {
-        if (previous != null) {
-            try {
-                previous.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        Logger.info("Thread " + id + " starts");
-        try {
-            Thread.sleep(id * 250);
-
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            Logger.info("Thread " + id + " ends");
-            actualExecutionOrder[index++] = id;
-            pattern.countdown();
-
-        }
-    }
+  }
 
 }

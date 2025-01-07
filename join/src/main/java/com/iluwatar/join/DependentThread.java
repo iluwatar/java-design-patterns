@@ -28,28 +28,30 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/*
- * Dependent threads will execute only after completion of all demothreads 
+/**
+ * Dependent threads will execute only after completion of all demothreads.
  */
 @Slf4j
 public class DependentThread {
 
-    private int id;
+    
+  private int id;
+  DependentThread(int id) {
+    this.id = id;
+  }
+  /**
+   * dependent threads run .
+   */
+  public void run() {
 
-    DependentThread(int id) {
-        this.id = id;
+    Logger.info(" Dependent Thread " + id + " starts ");
+    try {
+      Thread.sleep(id * 200);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    } finally {
+      Logger.info("Dependent Thread " + id + " completed ");
     }
 
-    public void run() {
-
-        Logger.info(" Dependent Thread " + id + " starts ");
-        try {
-            Thread.sleep(id * 200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } finally {
-            Logger.info("Dependent Thread " + id + " completed ");
-        }
-
-    }
+  }
 }

@@ -35,21 +35,21 @@ import java.util.concurrent.CountDownLatch;
  */
 public class JoinPattern {
 
-    int noOfDemoThreads;
-    private CountDownLatch latch;
-    int[] executionOrder;
+  int noOfDemoThreads;
+  private CountDownLatch latch;
+  int[] executionOrder;
 
-    public JoinPattern(int noOfDemoThreads, int[] executionOrder) {
-        latch = new CountDownLatch(noOfDemoThreads);
-        this.executionOrder = executionOrder;
-    }
+  public JoinPattern(int noOfDemoThreads, int[] executionOrder) {
+    latch = new CountDownLatch(noOfDemoThreads);
+    this.executionOrder = executionOrder;
+  }
 
-    public void countdown() {
-        latch.countDown();
-    }
+  public void countdown() {
+    latch.countDown();
+  }
 
-    public void await() throws InterruptedException {
-        latch.await();
-    }
+  public void await() throws InterruptedException {
+    latch.await();
+  }
 
 }
