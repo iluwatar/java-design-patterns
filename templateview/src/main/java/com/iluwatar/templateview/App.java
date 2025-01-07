@@ -22,45 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.sharding;
+package com.iluwatar.templateview;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Basic data structure for each tuple stored in data shards.
+ * Template View defines a consistent layout for rendering views, delegating dynamic content
+ * rendering to subclasses.
+ *
+ * <p>In this example, the {@link TemplateView} class provides the skeleton for rendering views
+ * with a header, dynamic content, and a footer. Subclasses {@link HomePageView} and
+ * {@link ContactPageView} define the specific dynamic content for their respective views.
+ *
+ * <p>The {@link App} class demonstrates the usage of the Template View Pattern by rendering
+ * instances of {@link HomePageView} and {@link ContactPageView}.
  */
-@Getter
-@Setter
-public class Data {
-
-  private int key;
-
-  private String value;
-
-  private DataType type;
+@Slf4j
+public class App {
 
   /**
-   * Constructor of Data class.
-   * @param key data key
-   * @param value data value
-   * @param type data type
+   * Program entry point.
+   *
+   * @param args command line args
    */
-  public Data(final int key, final String value, final DataType type) {
-    this.key = key;
-    this.value = value;
-    this.type = type;
-  }
+  public static void main(String[] args) {
+    // Create and render the HomePageView
+    TemplateView homePage = new HomePageView();
+    LOGGER.info("Rendering HomePage:");
+    homePage.render();
 
-  enum DataType {
-    TYPE_1, TYPE_2, TYPE_3
-  }
-
-  @Override
-  public String toString() {
-    return "Data {" + "key="
-        + key + ", value='" + value
-        + '\'' + ", type=" + type + '}';
+    // Create and render the ContactPageView
+    TemplateView contactPage = new ContactPageView();
+    LOGGER.info("\nRendering ContactPage:");
+    contactPage.render();
   }
 }
-

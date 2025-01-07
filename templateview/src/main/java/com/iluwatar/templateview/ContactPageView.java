@@ -22,45 +22,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.sharding;
+package com.iluwatar.templateview;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Basic data structure for each tuple stored in data shards.
+ * ContactPageView implements the TemplateView and provides dynamic content specific to the contact page.
  */
-@Getter
-@Setter
-public class Data {
-
-  private int key;
-
-  private String value;
-
-  private DataType type;
+@Slf4j
+public class ContactPageView extends TemplateView {
 
   /**
-   * Constructor of Data class.
-   * @param key data key
-   * @param value data value
-   * @param type data type
+   * Renders dynamic content for the contact page.
    */
-  public Data(final int key, final String value, final DataType type) {
-    this.key = key;
-    this.value = value;
-    this.type = type;
-  }
-
-  enum DataType {
-    TYPE_1, TYPE_2, TYPE_3
-  }
-
   @Override
-  public String toString() {
-    return "Data {" + "key="
-        + key + ", value='" + value
-        + '\'' + ", type=" + type + '}';
+  protected void renderDynamicContent() {
+    LOGGER.info("Contact us at: contact@example.com");
   }
 }
-
