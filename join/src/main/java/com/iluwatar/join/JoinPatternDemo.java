@@ -38,7 +38,7 @@ public class JoinPatternDemo {
   /**
    * execution of demo and dependent threads. 
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
 
     int[] executionOrder = {4, 2, 1, 3};
     int noOfDemoThreads = 4;
