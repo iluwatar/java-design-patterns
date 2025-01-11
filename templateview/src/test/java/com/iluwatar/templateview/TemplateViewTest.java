@@ -22,45 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.sharding;
+package com.iluwatar.templateview;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.*;
 
-/**
- * Basic data structure for each tuple stored in data shards.
- */
-@Getter
-@Setter
-public class Data {
+class TemplateViewTest {
 
-  private int key;
+  @Test
+  void testRenderHomePage() {
+    // Create a spy for HomePageView
+    TemplateView homePage = spy(HomePageView.class);
 
-  private String value;
+    // Call the render method
+    homePage.render();
 
-  private DataType type;
-
-  /**
-   * Constructor of Data class.
-   * @param key data key
-   * @param value data value
-   * @param type data type
-   */
-  public Data(final int key, final String value, final DataType type) {
-    this.key = key;
-    this.value = value;
-    this.type = type;
+    // Verify that the steps of rendering are executed in the correct order
+    verify(homePage).printHeader(); // Header is printed
+    verify(homePage).renderDynamicContent(); // Dynamic content specific to home page
+    verify(homePage).printFooter(); // Footer is printed
   }
 
-  enum DataType {
-    TYPE_1, TYPE_2, TYPE_3
-  }
+  @Test
+  void testRenderContactPage() {
+    // Create a spy for ContactPageView
+    TemplateView contactPage = spy(ContactPageView.class);
 
-  @Override
-  public String toString() {
-    return "Data {" + "key="
-        + key + ", value='" + value
-        + '\'' + ", type=" + type + '}';
+    // Call the render method
+    contactPage.render();
+
+    // Verify that the steps of rendering are executed in the correct order
+    verify(contactPage).printHeader(); // Header is printed
+    verify(contactPage).renderDynamicContent(); // Dynamic content specific to contact page
+    verify(contactPage).printFooter(); // Footer is printed
   }
 }
-

@@ -22,45 +22,42 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.sharding;
+package com.iluwatar.templateview;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
 
 /**
- * Basic data structure for each tuple stored in data shards.
+ * TemplateView defines the skeleton for rendering views.
+ * Concrete subclasses will provide the dynamic content for specific views.
  */
-@Getter
-@Setter
-public class Data {
-
-  private int key;
-
-  private String value;
-
-  private DataType type;
+@Slf4j
+public abstract class TemplateView {
 
   /**
-   * Constructor of Data class.
-   * @param key data key
-   * @param value data value
-   * @param type data type
+   * Render the common structure of the view, delegating dynamic content to subclasses.
    */
-  public Data(final int key, final String value, final DataType type) {
-    this.key = key;
-    this.value = value;
-    this.type = type;
+  public final void render() {
+    printHeader();
+    renderDynamicContent();
+    printFooter();
   }
 
-  enum DataType {
-    TYPE_1, TYPE_2, TYPE_3
+  /**
+   * Prints the common header of the view.
+   */
+  protected void printHeader() {
+    LOGGER.info("Rendering header...");
   }
 
-  @Override
-  public String toString() {
-    return "Data {" + "key="
-        + key + ", value='" + value
-        + '\'' + ", type=" + type + '}';
+  /**
+   * Subclasses must provide the implementation for rendering dynamic content.
+   */
+  protected abstract void renderDynamicContent();
+
+  /**
+   * Prints the common footer of the view.
+   */
+  protected void printFooter() {
+    LOGGER.info("Rendering footer...");
   }
 }
-

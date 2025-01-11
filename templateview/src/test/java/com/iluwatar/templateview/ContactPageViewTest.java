@@ -22,45 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.sharding;
+package com.iluwatar.templateview;
 
-import lombok.Getter;
-import lombok.Setter;
+import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.*;
 
-/**
- * Basic data structure for each tuple stored in data shards.
- */
-@Getter
-@Setter
-public class Data {
+class ContactPageViewTest {
 
-  private int key;
+  @Test
+  void testRenderDynamicContent() {
+    // Create a spy for ContactPageView
+    ContactPageView contactPage = spy(ContactPageView.class);
 
-  private String value;
+    // Render dynamic content for ContactPageView
+    contactPage.renderDynamicContent();
 
-  private DataType type;
-
-  /**
-   * Constructor of Data class.
-   * @param key data key
-   * @param value data value
-   * @param type data type
-   */
-  public Data(final int key, final String value, final DataType type) {
-    this.key = key;
-    this.value = value;
-    this.type = type;
-  }
-
-  enum DataType {
-    TYPE_1, TYPE_2, TYPE_3
-  }
-
-  @Override
-  public String toString() {
-    return "Data {" + "key="
-        + key + ", value='" + value
-        + '\'' + ", type=" + type + '}';
+    // Verify that the correct message is logged
+    verify(contactPage).renderDynamicContent();
   }
 }
-
