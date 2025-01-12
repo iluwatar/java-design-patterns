@@ -6,8 +6,9 @@ permissions:
   issues: write
 
 on:
-  pull_request:
-  pull_request_review_comment:
+  pull_request_target: # Handle forked repository PRs in the base repository context
+    types: [opened, synchronize]
+  pull_request_review_comment: # Handle review comments
     types: [created]
 
 jobs:
@@ -20,7 +21,14 @@ jobs:
             echo "Error: LLM_API_KEY secret is not configured"
             exit 1
           fi
-      - uses: presubmit/ai-reviewer@latest
+
+      - name: Check out PR code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: Run AI Reviewer
+        uses: presubmit/ai-reviewer@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
