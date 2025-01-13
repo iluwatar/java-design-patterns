@@ -223,6 +223,7 @@
     <module>templateview</module>
     <module>money</module>
     <module>table-inheritance</module>
+    <module>entity-component-system</module>
   </modules>
   <repositories>
     <repository>
