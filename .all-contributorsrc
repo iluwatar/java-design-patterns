@@ -3375,6 +3375,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "clintaire",
+      "name": "Clint Airé",
+      "avatar_url": "https://avatars.githubusercontent.com/u/111376518?v=4",
+      "profile": "https://github.com/clintaire",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
