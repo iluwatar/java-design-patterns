@@ -39,12 +39,6 @@ The Bloc pattern manages the state of an object and allows for dynamically notif
 
 ## Programmatic Example of the Bloc Pattern in Java
 
-### 1. `Troll` Analogy Using Bloc
-
-Imagine a simple state-driven system that maintains a counter. Whenever the counter changes, any registered listener receives updates dynamically.
-
----
-
 ### **Core Components of the Bloc Pattern**
 
 #### **1. State Object**
