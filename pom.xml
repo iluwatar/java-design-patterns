@@ -223,7 +223,6 @@
     <module>templateview</module>
     <module>money</module>
     <module>table-inheritance</module>
-      <module>bloc</module>
   </modules>
   <repositories>
     <repository>
