@@ -68,13 +68,13 @@ public class Bloc implements ListenerManager<State> {
    * Increments the current state value by 1 and notifies listeners of the change.
    */
   public void increment() {
-    emitState(new State(currentState.getValue() + 1));
+    emitState(new State(currentState.value() + 1));
   }
 
   /**
    * Decrements the current state value by 1 and notifies listeners of the change.
    */
   public void decrement() {
-    emitState(new State(currentState.getValue() - 1));
+    emitState(new State(currentState.value() - 1));
   }
 }

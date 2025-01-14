@@ -40,7 +40,7 @@ public class BlocUiTest {
     frame.add(decrementButton, BorderLayout.SOUTH);
     frame.add(toggleListenerButton, BorderLayout.EAST);
 
-    stateListener = state -> counterLabel.setText("Counter: " + state.getValue());
+    stateListener = state -> counterLabel.setText("Counter: " + state.value());
     bloc.addListener(stateListener);
 
     incrementButton.addActionListener(e -> bloc.increment());

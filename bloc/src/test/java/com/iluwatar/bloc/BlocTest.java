@@ -19,14 +19,14 @@ class BlocTest {
 
   @Test
   void IncrementUpdateState() {
-    bloc.addListener(state -> stateValue.set(state.getValue()));
+    bloc.addListener(state -> stateValue.set(state.value()));
     bloc.increment();
     assertEquals(1, stateValue.get(), "State should increment to 1");
   }
 
   @Test
   void DecrementUpdateState() {
-    bloc.addListener(state -> stateValue.set(state.getValue()));
+    bloc.addListener(state -> stateValue.set(state.value()));
     bloc.decrement();
     assertEquals(-1, stateValue.get(), "State should decrement to -1");
   }
@@ -47,8 +47,8 @@ class BlocTest {
   @Test
   void multipleListeners() {
     AtomicInteger secondValue = new AtomicInteger();
-    bloc.addListener(state -> stateValue.set(state.getValue()));
-    bloc.addListener(state -> secondValue.set(state.getValue()));
+    bloc.addListener(state -> stateValue.set(state.value()));
+    bloc.addListener(state -> secondValue.set(state.value()));
     bloc.increment();
     assertEquals(1, stateValue.get(), "First listener should receive state 1.");
     assertEquals(1, secondValue.get(), "Second listener should receive state 1.");

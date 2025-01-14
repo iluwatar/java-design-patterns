@@ -41,7 +41,7 @@ public class BlocUi {
     frame.add(toggleListenerButton, BorderLayout.EAST);
 
     // making a state listener to update the counter label when the state changes
-    StateListener<State> stateListener = state -> counterLabel.setText("Counter: " + state.getValue());
+    StateListener<State> stateListener = state -> counterLabel.setText("Counter: " + state.value());
 
     // adding the listener to the Bloc instance
     bloc.addListener(stateListener);
