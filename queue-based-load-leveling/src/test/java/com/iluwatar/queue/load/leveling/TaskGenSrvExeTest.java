@@ -24,14 +24,19 @@
  */
 package com.iluwatar.queue.load.leveling;
 
+import static java.util.concurrent.CompletableFuture.anyOf;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
 /**
  * Test case for submitting Message to Blocking Queue by TaskGenerator and retrieve the message by
  * ServiceExecutor.
  */
+@Slf4j
 class TaskGenSrvExeTest {
 
   @Test
@@ -51,6 +56,39 @@ class TaskGenSrvExeTest {
     srvExeThr.start();
 
     assertNotNull(srvExeThr);
+  }
+
+  /**
+   * Tests that service executor waits at start since no message is sent to execute upon.
+   * @throws InterruptedException
+   */
+  @Test
+  void serviceExecutorStartStateTest() throws InterruptedException {
+    var msgQueue = new MessageQueue();
+    var srvRunnable = new ServiceExecutor(msgQueue);
+    var srvExeThr = new Thread(srvRunnable);
+    srvExeThr.start();
+    Thread.sleep(200); // sleep a little until service executor thread waits
+    LOGGER.info("Current Service Executor State: " + srvExeThr.getState());
+    assertEquals(srvExeThr.getState(), Thread.State.WAITING);
+
+  }
+
+  @Test
+  void serviceExecutorWakeStateTest() throws InterruptedException {
+    var msgQueue = new MessageQueue();
+    var srvRunnable = new ServiceExecutor(msgQueue);
+    var srvExeThr = new Thread(srvRunnable);
+    srvExeThr.start();
+    Thread.sleep(200); // sleep a little until service executor thread waits
+    synchronized (msgQueue.serviceExecutorWait){
+      msgQueue.serviceExecutorWait.notifyAll();
+    }
+    var srvExeState = srvExeThr.getState();
+    LOGGER.info("Current Service Executor State: " + srvExeState);
+    // assert that state changes from waiting
+    assertTrue(srvExeState != Thread.State.WAITING);
+
   }
 
 }

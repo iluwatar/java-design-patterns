@@ -24,96 +24,76 @@
  */
 package com.iluwatar.twin;
 
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * This class represents a UI thread for drawing the {@link BallItem} and provides methods
- * for suspension and resumption. It holds a reference to {@link BallItem} to delegate the draw task.
+ * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
+ * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
  */
+
 @Slf4j
 public class BallThread extends Thread {
 
   @Setter
   private BallItem twin;
 
-  private final Lock lock = new ReentrantLock();
-  private final Condition notSuspended = lock.newCondition();
+  private volatile boolean isSuspended;
 
-  private volatile boolean isSuspended = false;
   private volatile boolean isRunning = true;
 
+  private final Object lock = new Object();
+
   /**
-   * Run the thread to continuously draw and move the ball unless suspended.
+   * Run the thread.
    */
-  @Override
   public void run() {
-    while (isRunning) {
-      lock.lock();
-      try {
-        while (isSuspended) {
-          LOGGER.info("BallThread suspended.");
-          notSuspended.await(); // Wait until resumed
+    try {
+      while (isRunning) {
+        if (isSuspended) {
+          synchronized (lock) {
+            lock.wait();
+          }
+        } else {
+          twin.draw();
+          twin.move();
+          Thread.sleep(250);
         }
-      } catch (InterruptedException e) {
-        LOGGER.info("BallThread interrupted.", e);
-        Thread.currentThread().interrupt(); // Re-interrupt the thread for proper handling
-        break;
-      } finally {
-        lock.unlock();
       }
-
-      // Perform the twin's tasks if not suspended
-      try {
-        twin.draw();
-        twin.move();
-        Thread.sleep(250); // Introduce a controlled interval between actions
-      } catch (InterruptedException e) {
-        LOGGER.info("BallThread interrupted during sleep.", e);
-        Thread.currentThread().interrupt(); // Handle interrupt properly
-        break;
-      }
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
     }
-
-    LOGGER.info("BallThread has stopped.");
   }
-
   /**
-   * Suspend the thread's operations.
+   * suspend the thread.
    */
   public void suspendMe() {
-    lock.lock();
-    try {
-      isSuspended = true;
-      LOGGER.info("Suspending BallThread.");
-    } finally {
-      lock.unlock();
-    }
+    isSuspended = true;
+    LOGGER.info("Begin to suspend BallThread");
   }
 
   /**
-   * Resume the thread's operations.
+   * notify run to resume.
    */
+
   public void resumeMe() {
-    lock.lock();
-    try {
-      isSuspended = false;
-      notSuspended.signal(); // Notify the thread to resume
-      LOGGER.info("Resuming BallThread.");
-    } finally {
-      lock.unlock();
+    isSuspended = false;
+    LOGGER.info("Begin to resume BallThread");
+
+    synchronized (lock) {
+      lock.notifyAll();
     }
   }
 
   /**
-   * Stop the thread's operations.
+   * Stop running thread.
    */
   public void stopMe() {
-    isRunning = false;
-    this.interrupt(); // Interrupt the thread to terminate
-    LOGGER.info("Stopping BallThread.");
+    this.isRunning = false;
+    this.isSuspended = true;
+    synchronized (lock) {
+      lock.notifyAll();
+    }
   }
 }
+
