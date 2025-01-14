@@ -1,0 +1,31 @@
+@startuml client_side_ui_composition_updated
+skinparam classAttributeIconSize 0
+
+class ApiGateway {
+    +registerRoute(path: String, component: FrontendComponent)
+    +handleRequest(path: String, params: Map<String, String>): String
+}
+
+class FrontendComponent {
+    +fetchData(params: Map<String, String>): String
+    #getData(params: Map<String, String>): String
+}
+
+class ProductFrontend {
+    +getData(params: Map<String, String>): String
+}
+
+class CartFrontend {
+    +getData(params: Map<String, String>): String
+}
+
+class ClientSideIntegrator {
+    +composeUI(path: String, params: Map<String, String>)
+}
+
+ApiGateway --> FrontendComponent
+FrontendComponent <|-- ProductFrontend
+FrontendComponent <|-- CartFrontend
+ClientSideIntegrator --> ApiGateway
+
+@enduml
