@@ -47,26 +47,15 @@ import lombok.extern.slf4j.Slf4j;
  * main thread will continue when CountDownLatch count becomes 0 
  * CountDownLatch will start with count 4 and 4 demo threads will decrease it by 1 
  * everytime when they will finish .
+ * DemoThreads are implemented in join pattern such that every newly created thread 
+ * waits for the completion of previous thread by previous.join() . Hence maintaining 
+ * execution order of demo threads .
+ * JoinPattern object ensures that dependent threads execute only after completion of
+ * demo threads by pattern.await() . This method keep the main thread in waiting state
+ * until countdown latch becomes 0 . CountdownLatch will become 0 as all demo threads 
+ * will be completed as each of them have decreased it by 1 and its initial count was set to noOfDemoThreads.
+ * Hence this pattern ensures dependent threads will start only after completion of demo threads .
  */
-
-@Slf4j
-public class JoinPatternDemo {
-
-  /**
-   * execution of demo and dependent threads. 
-   */
-  public static void main(String[] args) {
-
-    int[] executionOrder = {4, 2, 1, 3};
-    int noOfDemoThreads = 4;
-    int noOfDependentThreads = 2;
-    JoinPattern pattern = new JoinPattern(noOfDemoThreads, executionOrder);
-    Thread previous = null;
-
-    for (int i = 0; i < noOfDemoThreads; i++) {
-      previous = new Thread(new DemoThread(executionOrder[i], previous));
-      previous.start();
-    }
     pattern.await();
 
     //Dependent threads after execution of DemoThreads
@@ -75,25 +64,43 @@ public class JoinPatternDemo {
     }
     LOGGER.info("end of program ");
 
-  }
+    /**
+   * use to run demo thread.
+   * every newly created thread waits for 
+   * the completion of previous thread 
+   * by previous.join() .
+   */
+  @Override
+  public void run() {
+    if (previous != null) {
+      try {
+        previous.join();
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+        LOGGER.error("Interrupted exception : ", e);
+      }
+    }
 
-}
 
 ```
 
 ### Program Output:
 
-```
-Running com.iluwatar.join.JoinPatternTest
-01:13:17.890 [Thread-2] INFO com.iluwatar.join.DemoThread -- Thread 1 starts
-01:13:18.167 [Thread-2] INFO com.iluwatar.join.DemoThread -- Thread 1 ends
-01:13:18.168 [Thread-3] INFO com.iluwatar.join.DemoThread -- Thread 4 starts
-01:13:19.176 [Thread-3] INFO com.iluwatar.join.DemoThread -- Thread 4 ends
-01:13:19.176 [Thread-4] INFO com.iluwatar.join.DemoThread -- Thread 3 starts
-01:13:19.935 [Thread-4] INFO com.iluwatar.join.DemoThread -- Thread 3 ends
-01:13:19.935 [Thread-5] INFO com.iluwatar.join.DemoThread -- Thread 2 starts
-01:13:20.437 [Thread-5] INFO com.iluwatar.join.DemoThread -- Thread 2 ends
-```
+[INFO] Running com.iluwatar.join.JoinPatternTest
+16:12:01.815 [Thread-2] INFO com.iluwatar.join.DemoThread -- Thread 1 starts
+16:12:02.086 [Thread-2] INFO com.iluwatar.join.DemoThread -- Thread 1 ends
+16:12:02.087 [Thread-3] INFO com.iluwatar.join.DemoThread -- Thread 4 starts
+16:12:03.090 [Thread-3] INFO com.iluwatar.join.DemoThread -- Thread 4 ends
+16:12:03.091 [Thread-4] INFO com.iluwatar.join.DemoThread -- Thread 3 starts
+16:12:03.851 [Thread-4] INFO com.iluwatar.join.DemoThread -- Thread 3 ends
+16:12:03.851 [Thread-5] INFO com.iluwatar.join.DemoThread -- Thread 2 starts
+16:12:04.352 [Thread-5] INFO com.iluwatar.join.DemoThread -- Thread 2 ends
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.904 s -- in com.iluwatar.join.JoinPatternTest
+[INFO] 
+[INFO] Results:
+[INFO]
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
+[INFO]
 
 ## When to Use the Join Pattern in Java
 

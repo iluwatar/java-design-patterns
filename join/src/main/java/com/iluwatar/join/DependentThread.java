@@ -24,8 +24,6 @@
  */
 package com.iluwatar.join;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -34,21 +32,22 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DependentThread implements Runnable {
 
-    
-  private int id;
+  private final int id;
   DependentThread(int id) {
     this.id = id;
   }
   /**
    * dependent threads run .
    */
+  @Override
   public void run() {
 
     LOGGER.info(" Dependent Thread " + id + " starts ");
     try {
-      Thread.sleep(id * 200);
+      Thread.sleep(id * (long) 200);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      Thread.currentThread().interrupt();
+      LOGGER.error("Interrupted exception : ", e);
     } finally {
       LOGGER.info("Dependent Thread " + id + " completed ");
     }

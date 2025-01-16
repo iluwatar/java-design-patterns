@@ -32,15 +32,14 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DemoThread implements Runnable {
 
-  private static int[] executionOrder;
   private static int[] actualExecutionOrder;
   private static int index = 0;
   private static JoinPattern pattern;
-  private int id;
-  private Thread previous;
+  private final int id;
+  private final Thread previous;
   
   /**
-   * Initalise a demo thread object with id and previous thread .
+   * Initialise a demo thread object with id and previous thread .
    */
   public DemoThread(int id, Thread previous) {
     this.id = id;
@@ -55,26 +54,31 @@ public class DemoThread implements Runnable {
    * set custom execution order of threads .
    */
   public static void setExecutionOrder(int[] executionOrder, JoinPattern pattern) {
-    DemoThread.executionOrder = executionOrder;
     DemoThread.pattern = pattern;
     actualExecutionOrder = new int[executionOrder.length];
   }
   /**
    * use to run demo thread.
+   * every newly created thread waits for 
+   * the completion of previous thread 
+   * by previous.join() .
    */
+  @Override
   public void run() {
     if (previous != null) {
       try {
         previous.join();
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        Thread.currentThread().interrupt();
+        LOGGER.error("Interrupted exception : ", e);
       }
     }
     LOGGER.info("Thread " + id + " starts");
     try {
-      Thread.sleep(id * 250);
+      Thread.sleep(id * (long) 250);
     } catch (InterruptedException e) {
-      e.printStackTrace();
+      Thread.currentThread().interrupt();
+      LOGGER.error("Interrupted exception : ", e);
     } finally {
       LOGGER.info("Thread " + id + " ends");
       actualExecutionOrder[index++] = id;

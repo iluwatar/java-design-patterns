@@ -30,6 +30,14 @@ import lombok.extern.slf4j.Slf4j;
  * main thread will continue when CountDownLatch count becomes 0 
  * CountDownLatch will start with count 4 and 4 demo threads will decrease it by 1 
  * everytime when they will finish .
+ * DemoThreads are implemented in join pattern such that every newly created thread 
+ * waits for the completion of previous thread by previous.join() . Hence maintaining 
+ * execution order of demo threads .
+ * JoinPattern object ensures that dependent threads execute only after completion 
+ * demo threads by pattern.await() . This method keep the main thread in waiting state
+ * until countdown latch becomes 0 . CountdownLatch will become 0 as all demo threads 
+ * will be completed as each of them have decreased it by 1 and its initial count was set to noOfDemoThreads.
+ * Hence this pattern ensures dependent threads will start only after completion of demo threads .
  */
 
 @Slf4j
