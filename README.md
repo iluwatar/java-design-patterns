@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-371-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-372-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -554,6 +554,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/shahdhoss"><img src="https://avatars.githubusercontent.com/u/132148556?v=4?s=100" width="100px;" alt="Shahd Hossam"/><br /><sub><b>Shahd Hossam</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=shahdhoss" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://mehdirahimi.github.io"><img src="https://avatars.githubusercontent.com/u/24210842?v=4?s=100" width="100px;" alt="Mehdi Rahimi"/><br /><sub><b>Mehdi Rahimi</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=mehdirahimi" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/clintaire"><img src="https://avatars.githubusercontent.com/u/111376518?v=4?s=100" width="100px;" alt="Clint Airé"/><br /><sub><b>Clint Airé</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=clintaire" title="Code">💻</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/darkhyper24"><img src="https://avatars.githubusercontent.com/u/132711528?v=4?s=100" width="100px;" alt="darkhyper24"/><br /><sub><b>darkhyper24</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=darkhyper24" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
