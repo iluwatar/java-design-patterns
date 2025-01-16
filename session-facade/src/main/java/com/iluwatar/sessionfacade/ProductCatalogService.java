@@ -22,36 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.strategy;
 
-import lombok.extern.slf4j.Slf4j;
+package com.iluwatar.sessionfacade;
+
+import java.util.Map;
 
 /**
- * Lambda implementation for enum strategy pattern.
+ * The type ProductCatalogService.
+ * This class manages a catalog of products. It holds a map of products,
+ * where each product is identified by a unique ID. The class
+ * provides functionality to access and manage the products in the catalog.
  */
-@Slf4j
-public class LambdaStrategy {
+public class ProductCatalogService {
+
+  private final Map<Integer, Product> products;
 
   /**
-   * Enum to demonstrate strategy pattern.
+   * Instantiates a new ProductCatalogService.
+   *
+   * @param products the map of products to be used by this service
    */
-  public enum Strategy implements DragonSlayingStrategy {
-    MELEE_STRATEGY(() -> LOGGER.info(
-        "With your Excalibur you sever the dragon's head!")),
-    PROJECTILE_STRATEGY(() -> LOGGER.info(
-        "You shoot the dragon with the magical crossbow and it falls dead on the ground!")),
-    SPELL_STRATEGY(() -> LOGGER.info(
-        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+  public ProductCatalogService(Map<Integer, Product> products) {
+    this.products = products;
+  }
 
-    private final DragonSlayingStrategy dragonSlayingStrategy;
+  // Additional methods to interact with products can be added here, for example:
 
-    Strategy(DragonSlayingStrategy dragonSlayingStrategy) {
-      this.dragonSlayingStrategy = dragonSlayingStrategy;
-    }
-
-    @Override
-    public void execute() {
-      dragonSlayingStrategy.execute();
-    }
+  /**
+   * Retrieves a product by its ID.
+   *
+   * @param id the product ID
+   * @return the product corresponding to the ID
+   */
+  public Product getProductById(int id) {
+    return products.get(id);
   }
 }

@@ -3357,6 +3357,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "shahdhoss",
+      "name": "Shahd Hossam",
+      "avatar_url": "https://avatars.githubusercontent.com/u/132148556?v=4",
+      "profile": "https://github.com/shahdhoss",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "mehdirahimi",
+      "name": "Mehdi Rahimi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24210842?v=4",
+      "profile": "https://mehdirahimi.github.io",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "clintaire",
+      "name": "Clint Airé",
+      "avatar_url": "https://avatars.githubusercontent.com/u/111376518?v=4",
+      "profile": "https://github.com/clintaire",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,

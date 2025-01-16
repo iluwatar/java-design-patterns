@@ -66,7 +66,7 @@ public class App {
     // Java 8 functional implementation Strategy pattern
     LOGGER.info(GREEN_DRAGON_SPOTTED);
     dragonSlayer = new DragonSlayer(
-        () -> LOGGER.info("With your Excalibur you severe the dragon's head!"));
+        () -> LOGGER.info("With your Excalibur you sever the dragon's head!"));
     dragonSlayer.goToBattle();
     LOGGER.info(RED_DRAGON_EMERGES);
     dragonSlayer.changeStrategy(() -> LOGGER.info(

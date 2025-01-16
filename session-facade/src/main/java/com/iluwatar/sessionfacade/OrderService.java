@@ -22,36 +22,62 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.strategy;
 
+package com.iluwatar.sessionfacade;
+
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Lambda implementation for enum strategy pattern.
+ * The OrderService class is responsible for finalizing a customer's order.
+ * It includes a method to calculate the total cost of the order, which follows
+ * the information expert principle from GRASP by assigning the responsibility
+ * of total calculation to this service.
+ * Additionally, it provides a method to complete the order, which empties the
+ * client's shopping cart once the order is finalized.
  */
 @Slf4j
-public class LambdaStrategy {
+public class OrderService {
+  private final Map<Integer, Product> cart;
 
   /**
-   * Enum to demonstrate strategy pattern.
+   * Instantiates a new Order service.
+   *
+   * @param cart the cart
    */
-  public enum Strategy implements DragonSlayingStrategy {
-    MELEE_STRATEGY(() -> LOGGER.info(
-        "With your Excalibur you sever the dragon's head!")),
-    PROJECTILE_STRATEGY(() -> LOGGER.info(
-        "You shoot the dragon with the magical crossbow and it falls dead on the ground!")),
-    SPELL_STRATEGY(() -> LOGGER.info(
-        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+  public OrderService(Map<Integer, Product> cart) {
+    this.cart = cart;
+  }
 
-    private final DragonSlayingStrategy dragonSlayingStrategy;
-
-    Strategy(DragonSlayingStrategy dragonSlayingStrategy) {
-      this.dragonSlayingStrategy = dragonSlayingStrategy;
+  /**
+   * Order.
+   */
+  public void order() {
+    Double total = getTotal();
+    if (!this.cart.isEmpty()) {
+      LOGGER.info("Client has chosen to order {} with total {}", cart,
+          String.format("%.2f", total));
+      this.completeOrder();
+    } else {
+      LOGGER.info("Client's shopping cart is empty");
     }
+  }
 
-    @Override
-    public void execute() {
-      dragonSlayingStrategy.execute();
-    }
+  /**
+   * Gets total.
+   *
+   * @return the total
+   */
+  public double getTotal() {
+    final double[] total = {0.0};
+    this.cart.forEach((key, product) -> total[0] += product.price());
+    return total[0];
+  }
+
+  /**
+   * Complete order.
+   */
+  public void completeOrder() {
+    this.cart.clear();
   }
 }

@@ -22,36 +22,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.strategy;
 
-import lombok.extern.slf4j.Slf4j;
+package com.iluwatar.sessionfacade;
 
 /**
- * Lambda implementation for enum strategy pattern.
+ * The type Product.
  */
-@Slf4j
-public class LambdaStrategy {
-
-  /**
-   * Enum to demonstrate strategy pattern.
-   */
-  public enum Strategy implements DragonSlayingStrategy {
-    MELEE_STRATEGY(() -> LOGGER.info(
-        "With your Excalibur you sever the dragon's head!")),
-    PROJECTILE_STRATEGY(() -> LOGGER.info(
-        "You shoot the dragon with the magical crossbow and it falls dead on the ground!")),
-    SPELL_STRATEGY(() -> LOGGER.info(
-        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
-
-    private final DragonSlayingStrategy dragonSlayingStrategy;
-
-    Strategy(DragonSlayingStrategy dragonSlayingStrategy) {
-      this.dragonSlayingStrategy = dragonSlayingStrategy;
-    }
-
-    @Override
-    public void execute() {
-      dragonSlayingStrategy.execute();
-    }
+public record Product(int id, String name, double price, String description) {
+  @Override
+  public String toString() {
+    return "ID: " + id + "\nName: " + name + "\nPrice: $" + price + "\nDescription: " + description;
   }
 }
+
+

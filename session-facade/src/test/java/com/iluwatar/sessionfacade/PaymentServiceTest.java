@@ -22,36 +22,59 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.strategy;
+package com.iluwatar.sessionfacade;
 
-import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+
+import static org.mockito.Mockito.*;
 
 /**
- * Lambda implementation for enum strategy pattern.
+ * The type Payment service test.
  */
-@Slf4j
-public class LambdaStrategy {
+class PaymentServiceTest {
+  private PaymentService paymentService;
+  private OrderService orderService;
+  private Logger mockLogger;
 
   /**
-   * Enum to demonstrate strategy pattern.
+   * Sets up.
    */
-  public enum Strategy implements DragonSlayingStrategy {
-    MELEE_STRATEGY(() -> LOGGER.info(
-        "With your Excalibur you sever the dragon's head!")),
-    PROJECTILE_STRATEGY(() -> LOGGER.info(
-        "You shoot the dragon with the magical crossbow and it falls dead on the ground!")),
-    SPELL_STRATEGY(() -> LOGGER.info(
-        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+  @BeforeEach
+  void setUp() {
+    paymentService = new PaymentService();
+    mockLogger = mock(Logger.class);
+    paymentService.LOGGER = mockLogger;
+  }
 
-    private final DragonSlayingStrategy dragonSlayingStrategy;
+  /**
+   * Test select cash payment method.
+   */
+  @Test
+  void testSelectCashPaymentMethod() {
+    String method = "cash";
+    paymentService.selectPaymentMethod(method);
+    verify(mockLogger).info("Client have chosen cash payment option");
+  }
 
-    Strategy(DragonSlayingStrategy dragonSlayingStrategy) {
-      this.dragonSlayingStrategy = dragonSlayingStrategy;
-    }
+  /**
+   * Test select credit card payment method.
+   */
+  @Test
+  void testSelectCreditCardPaymentMethod() {
+    String method = "credit";
+    paymentService.selectPaymentMethod(method);
+    verify(mockLogger).info("Client have chosen credit card payment option");
+  }
 
-    @Override
-    public void execute() {
-      dragonSlayingStrategy.execute();
-    }
+  /**
+   * Test select unspecified payment method.
+   */
+  @Test
+  void testSelectUnspecifiedPaymentMethod() {
+    String method = "cheque";
+    paymentService.selectPaymentMethod(method);
+    verify(mockLogger).info("Unspecified payment method type");
   }
 }
