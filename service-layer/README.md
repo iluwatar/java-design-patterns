@@ -36,6 +36,18 @@ Wikipedia says
 
 > Service layer is an architectural pattern, applied within the service-orientation design paradigm, which aims to organize the services, within a service inventory, into a set of logical layers. Services that are categorized into a particular layer share functionality. This helps to reduce the conceptual overhead related to managing the service inventory, as the services belonging to the same layer address a smaller set of activities.
 
+## Application of Layer Supertype Pattern in This Example
+
+The `Layer Supertype` pattern is used in this implementation to provide a common base class for all entities (`BaseEntity`) and DAOs (`DaoBaseImpl`). This pattern helps reduce redundancy by defining shared properties and methods in a superclass that all child classes can inherit.
+
+### Layer Supertype in the Entity Layer
+
+The `BaseEntity` class serves as the common base class for all entities, providing shared attributes like `id`. This ensures consistent handling of these attributes across different entity classes like `Wizard`, `Spellbook`, and `Spell`.
+
+### Layer Supertype in the DAO Layer
+
+In the DAO layer, the `DaoBaseImpl` class acts as a common base implementation for all DAO classes, offering shared functionalities such as session handling and basic CRUD operations. By inheriting from `DaoBaseImpl`, specific DAO implementations like `WizardDaoImpl` can focus solely on their unique logic, while reusing common functionality.
+
 ## Programmatic Example of Service Layer Pattern in Java
 
 Our Java implementation uses the Service Layer pattern to streamline interactions between data access objects (DAOs) and the business logic, ensuring a clean separation of concerns.
@@ -88,32 +100,13 @@ Above the entity layer we have DAOs. For `Wizard` the DAO layer looks as follows
 
 ```java
 public interface WizardDao extends Dao<Wizard> {
-
-    Wizard findByName(String name);
+    
 }
 ```
 
 ```java
 public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
-
-    @Override
-    public Wizard findByName(String name) {
-        Transaction tx = null;
-        Wizard result;
-        try (var session = getSessionFactory().openSession()) {
-            tx = session.beginTransaction();
-            var criteria = session.createCriteria(persistentClass);
-            criteria.add(Restrictions.eq("name", name));
-            result = (Wizard) criteria.uniqueResult();
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            throw e;
-        }
-        return result;
-    }
+    
 }
 ```
 
@@ -379,6 +372,11 @@ Implementing a Service Layer in Java
 * Enhances testability by isolating business logic.
 * Improves maintainability and flexibility of enterprise applications.
 
+Using the Layer Supertype pattern in conjunction:
+
+* Reduces boilerplate code by centralizing common logic.
+* Increases consistency across layers, simplifying debugging and enhancement.
+
 Trade-offs:
 
 * May introduce additional complexity by adding another layer to the application.
@@ -386,6 +384,7 @@ Trade-offs:
 
 ## Related Java Design Patterns
 
+* [Layer Supertype](https://martinfowler.com/eaaCatalog/layerSupertype.html): Helps reduce duplication in entities and DAOs by centralizing common logic.
 * [Facade](https://java-design-patterns.com/patterns/facade/): Simplifies interactions with complex subsystems by providing a unified interface.
 * [DAO (Data Access Object)](https://java-design-patterns.com/patterns/dao/): Often used together with the Service Layer to handle data persistence.
 * [MVC (Model-View-Controller)](https://java-design-patterns.com/patterns/model-view-controller/): The Service Layer can be used to encapsulate business logic in the model component.
@@ -396,3 +395,4 @@ Trade-offs:
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
 * [Spring in Action](https://amzn.to/4asnpSG)
 * [Service Layer (Martin Fowler)](http://martinfowler.com/eaaCatalog/serviceLayer.html)
+* [Layer Supertype (Martin Fowler)](https://martinfowler.com/eaaCatalog/layerSupertype.html)

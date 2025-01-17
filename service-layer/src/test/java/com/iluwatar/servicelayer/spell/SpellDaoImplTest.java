@@ -24,11 +24,7 @@
  */
 package com.iluwatar.servicelayer.spell;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import com.iluwatar.servicelayer.common.BaseDaoTest;
-import org.junit.jupiter.api.Test;
 
 /**
  * SpellDaoImplTest
@@ -38,18 +34,6 @@ class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
 
   public SpellDaoImplTest() {
     super(Spell::new, new SpellDaoImpl());
-  }
-
-  @Test
-  void testFindByName() {
-    final var dao = getDao();
-    final var allSpells = dao.findAll();
-    for (final var spell : allSpells) {
-      final var spellByName = dao.findByName(spell.getName());
-      assertNotNull(spellByName);
-      assertEquals(spell.getId(), spellByName.getId());
-      assertEquals(spell.getName(), spellByName.getName());
-    }
   }
 
 }
