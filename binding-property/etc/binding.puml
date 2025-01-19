@@ -1,0 +1,35 @@
+@startuml
+title Two-Way Binding Properties Pattern - Class Diagram
+
+class ObservableProperty {
+  - value : T
+  - observers : List<Observer<T>>
+  - isUpdating : boolean
+  + ObservableProperty(initialValue : T)
+  + getValue() : T
+  + setValue(value : T)
+  + addObserver(observer : Observer<T>)
+  + removeObserver(observer : Observer<T>)
+  - notifyObservers()
+}
+
+interface Observer {
+  + update(newValue : T)
+  + bind(observableProperty : ObservableProperty<T>)
+  + unbind()
+}
+
+class TextView {
+  - text : String
+  - observableProperty : ObservableProperty<String>
+  + update(newValue : String)
+  + bind(observableProperty : ObservableProperty<String>)
+  + unbind()
+  + setText(newText : String)
+  + getText() : String
+}
+
+ObservableProperty "1" o-- "*" Observer
+Observer <|-- TextView
+
+@enduml
