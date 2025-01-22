@@ -26,6 +26,18 @@ package com.iluwatar;
 
 import java.util.logging.Logger;
 
+/*
+ * The Two Step View Pattern:
+ * Separates generating dynamic web content into:
+ * 1. Data Preparation: Raw data is structured for presentation.
+ * 2. Data Presentation: Prepared data is rendered into a display format (e.g., HTML).
+ * This enhances modularity, maintainability, and testability by decoupling preparation and presentation.
+
+ * Implementation in this Example:
+ * 1. Data Preparation: `DataPreparation` transforms a `Book` into a `BookStore` object, calculating discount prices and stock status.
+ * 2. Data Presentation: `Presentation` generates an HTML view of the `BookStore` object, focusing only on rendering.
+ */
+
 /** Main class. */
 public class App {
   private static final Logger logger = Logger.getLogger(App.class.getName());
@@ -38,6 +50,7 @@ public class App {
     // Convert raw book data into a structured format
     BookStore preparedData = DataPreparation.prepareBook(book);
 
+    // Converts the prepared book data into an HTML string for display
     String htmlOutput = Presentation.presentBook(preparedData);
 
     // Output the rendered HTML
