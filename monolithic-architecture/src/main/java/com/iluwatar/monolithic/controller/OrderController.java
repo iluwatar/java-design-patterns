@@ -26,25 +26,25 @@ package com.iluwatar.monolithic.controller;
 import com.iluwatar.monolithic.exceptions.InsufficientStockException;
 import com.iluwatar.monolithic.exceptions.NonExistentProductException;
 import com.iluwatar.monolithic.exceptions.NonExistentUserException;
-import com.iluwatar.monolithic.model.Orders;
-import com.iluwatar.monolithic.model.Products;
+import com.iluwatar.monolithic.model.Order;
+import com.iluwatar.monolithic.model.Product;
 import com.iluwatar.monolithic.model.User;
-import com.iluwatar.monolithic.repository.OrderRepo;
-import com.iluwatar.monolithic.repository.ProductRepo;
-import com.iluwatar.monolithic.repository.UserRepo;
+import com.iluwatar.monolithic.repository.OrderRepository;
+import com.iluwatar.monolithic.repository.ProductRepository;
+import com.iluwatar.monolithic.repository.UserRepository;
 import org.springframework.stereotype.Service;
 /**
- * OrderCon is a controller class for managing Order operations.
+ * OrderController is a controller class for managing Order operations.
  * */
 @Service
-public class OrderCon {
-  private final OrderRepo orderRepository;
-  private final UserRepo userRepository;
-  private final ProductRepo productRepository;
+public class OrderController {
+  private final OrderRepository orderRepository;
+  private final UserRepository userRepository;
+  private final ProductRepository productRepository;
   /**
    * This function handles the initializing of the controller.
    * */
-  public OrderCon(OrderRepo orderRepository, UserRepo userRepository, ProductRepo productRepository) {
+  public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository) {
     this.orderRepository = orderRepository;
     this.userRepository = userRepository;
     this.productRepository = productRepository;
@@ -52,10 +52,10 @@ public class OrderCon {
   /**
    * This function handles placing orders with all of its cases.
    * */
-  public Orders placeOrder(Long userId, Long productId, Integer quantity) {
+  public Order placeOrder(Long userId, Long productId, Integer quantity) {
     final User user = userRepository.findById(userId).orElseThrow(() -> new NonExistentUserException("User with ID " + userId + " not found"));
 
-    final Products product = productRepository.findById(productId).orElseThrow(() -> new NonExistentProductException("Product with ID " + productId + " not found"));
+    final Product product = productRepository.findById(productId).orElseThrow(() -> new NonExistentProductException("Product with ID " + productId + " not found"));
     
     if (product.getStock() < quantity) {
       throw new InsufficientStockException("Not enough stock for product " + productId);
@@ -64,7 +64,7 @@ public class OrderCon {
     product.setStock(product.getStock() - quantity);
     productRepository.save(product);
 
-    final Orders order = new Orders(null, user, product, quantity, product.getPrice() * quantity);
+    final Order order = new Order(null, user, product, quantity, product.getPrice() * quantity);
     return orderRepository.save(order);
   }
 }

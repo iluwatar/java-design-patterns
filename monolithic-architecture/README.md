@@ -1,3 +1,17 @@
+---
+title: "Monolithic Ecommerce App: A Cohesive Application Model"
+shortTitle: Monolithic Ecommerce
+description: "Explore the Monolithic Ecommerce application structure, its design intent, benefits, limitations, and real-world applications. Understand its simplicity and practical use cases."
+category: Architectural
+language: en
+tag:
+  - Cohesion
+  - Simplicity
+  - Scalability
+  - Deployment
+  - Maintainability
+---
+
 ## Monolithic-Ecommerce App
 * A Monolithic Ecommerce example to showcase Monolithic Architecture
 

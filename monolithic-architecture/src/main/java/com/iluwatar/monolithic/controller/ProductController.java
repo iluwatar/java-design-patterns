@@ -24,25 +24,35 @@
  */
 package com.iluwatar.monolithic.controller;
 
-import com.iluwatar.monolithic.model.User;
-import com.iluwatar.monolithic.repository.UserRepo;
+import com.iluwatar.monolithic.model.Product;
+import com.iluwatar.monolithic.repository.ProductRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
+
 /**
- * UserCon is a controller class for managing user operations.
- */
+ * ProductCon is a controller class for managing Product operations.
+ * */
+
+
 @Service
-public class UserCon {
-  private final UserRepo userRepository;
+public class ProductController {
+  private final ProductRepository productRepository;
   /**
  * Linking Controller to DB.
- */
-  public UserCon(UserRepo userRepository) {
-    this.userRepository = userRepository;
+ * */
+  public ProductController(ProductRepository productRepository) {
+    this.productRepository = productRepository;
   }
   /**
-  * Adds a user to the DB.
-  */
-  public User registerUser(User user) {
-    return userRepository.save(user);
+ * Adds a product to the DB.
+ * */
+  public Product addProduct(Product product) {
+    return productRepository.save(product);
+  }
+  /**
+ * Returns all relevant Product.
+ * */
+  public List<Product> getAllProducts() {
+    return productRepository.findAll();
   }
 }

@@ -29,7 +29,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * This interface allows JpaRepository to generate queries for the required tables.
  */
-public interface UserRepo extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
   /**
    * Utilizes JpaRepository functionalities to generate a function which looks up in the User table using emails.
    * */

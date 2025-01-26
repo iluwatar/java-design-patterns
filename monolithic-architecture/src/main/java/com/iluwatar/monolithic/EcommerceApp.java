@@ -24,10 +24,10 @@
  */
 package com.iluwatar.monolithic;
 
-import com.iluwatar.monolithic.controller.OrderCon;
-import com.iluwatar.monolithic.controller.ProductCon;
-import com.iluwatar.monolithic.controller.UserCon;
-import com.iluwatar.monolithic.model.Products;
+import com.iluwatar.monolithic.controller.OrderController;
+import com.iluwatar.monolithic.controller.ProductController;
+import com.iluwatar.monolithic.controller.UserController;
+import com.iluwatar.monolithic.model.Product;
 import com.iluwatar.monolithic.model.User;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
@@ -53,13 +53,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class EcommerceApp implements CommandLineRunner {
 
   private static final Logger log = LogManager.getLogger(EcommerceApp.class);
-  private final UserCon userService;
-  private final ProductCon productService;
-  private final OrderCon orderService;
+  private final UserController userService;
+  private final ProductController productService;
+  private final OrderController orderService;
   /**
   * Initilizing controllers as services.
   * */
-  public EcommerceApp(UserCon userService, ProductCon productService, OrderCon orderService) {
+  public EcommerceApp(UserController userService, ProductController productService, OrderController orderService) {
     this.userService = userService;
     this.productService = productService;
     this.orderService = orderService;
@@ -129,7 +129,7 @@ public class EcommerceApp implements CommandLineRunner {
     double price = scanner.nextDouble();
     log.info("Stock: ");
     int stock = scanner.nextInt();
-    Products product = new Products(null, name, description, price, stock);
+    Product product = new Product(null, name, description, price, stock);
     scanner.nextLine();
     productService.addProduct(product);
     log.info("Product added successfully!");

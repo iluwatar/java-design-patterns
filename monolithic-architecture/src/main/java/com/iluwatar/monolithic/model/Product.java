@@ -22,12 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.monolithic.repository;
+package com.iluwatar.monolithic.model;
 
-import com.iluwatar.monolithic.model.Products;
-import org.springframework.data.jpa.repository.JpaRepository;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
- * This interface allows JpaRepository to generate queries for the required tables.
+ * Represents a database of products.
  */
-public interface ProductRepo extends JpaRepository<Products, Long> {
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Product {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
+  private String name;
+
+  private String description;
+
+  private Double price;
+
+  private Integer stock;
 }
+

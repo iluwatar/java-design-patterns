@@ -22,37 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.monolithic.controller;
+package com.iluwatar.monolithic.repository;
 
-import com.iluwatar.monolithic.model.Products;
-import com.iluwatar.monolithic.repository.ProductRepo;
-import java.util.List;
-import org.springframework.stereotype.Service;
-
+import com.iluwatar.monolithic.model.Product;
+import org.springframework.data.jpa.repository.JpaRepository;
 /**
- * ProductCon is a controller class for managing Product operations.
- * */
-
-
-@Service
-public class ProductCon {
-  private final ProductRepo productRepository;
-  /**
- * Linking Controller to DB.
- * */
-  public ProductCon(ProductRepo productRepository) {
-    this.productRepository = productRepository;
-  }
-  /**
- * Adds a product to the DB.
- * */
-  public Products addProduct(Products product) {
-    return productRepository.save(product);
-  }
-  /**
- * Returns all relevant Products.
- * */
-  public List<Products> getAllProducts() {
-    return productRepository.findAll();
-  }
+ * This interface allows JpaRepository to generate queries for the required tables.
+ */
+public interface ProductRepository extends JpaRepository<Product, Long> {
 }

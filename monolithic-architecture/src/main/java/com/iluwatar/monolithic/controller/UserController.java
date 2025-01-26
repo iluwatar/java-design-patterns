@@ -22,36 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.monolithic.model;
+package com.iluwatar.monolithic.controller;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import com.iluwatar.monolithic.model.User;
+import com.iluwatar.monolithic.repository.UserRepository;
+import org.springframework.stereotype.Service;
 /**
- * Represents a Database in which Orders are stored.
+ * UserController is a controller class for managing user operations.
  */
-@Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Orders {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-
-  @ManyToOne
-  private User user;
-
-  @ManyToOne
-  private Products product;
-
-  private Integer quantity;
-
-  private Double totalPrice;
+@Service
+public class UserController {
+  private final UserRepository userRepository;
+  /**
+ * Linking Controller to DB.
+ */
+  public UserController(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
+  /**
+  * Adds a user to the DB.
+  */
+  public User registerUser(User user) {
+    return userRepository.save(user);
+  }
 }
