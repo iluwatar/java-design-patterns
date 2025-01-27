@@ -23,8 +23,7 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.virtual.proxy;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.instanceOf;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
@@ -37,7 +36,7 @@ class RealVideoObjectTest {
   @Test
   void testVideoObject() {
     var videoObject = new RealVideoObject();
-    assertThat(videoObject, instanceOf(ExpensiveObject.class));
+    assertTrue(videoObject instanceof ExpensiveObject);
   }
 
   @Test

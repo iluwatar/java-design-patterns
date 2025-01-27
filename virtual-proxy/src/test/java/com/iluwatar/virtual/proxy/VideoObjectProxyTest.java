@@ -25,10 +25,7 @@
 
 package com.iluwatar.virtual.proxy;
 
-import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.jupiter.api.Assertions.*;
-
-import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -37,7 +34,7 @@ import org.junit.jupiter.api.Test;
 public class VideoObjectProxyTest {
   @Test
   void shouldBeInstanceOfExpensiveObject() {
-    MatcherAssert.assertThat(new VideoObjectProxy(), instanceOf(ExpensiveObject.class));
+    assertTrue(new VideoObjectProxy() instanceof ExpensiveObject);
   }
 
   @Test
