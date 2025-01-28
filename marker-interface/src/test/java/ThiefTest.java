@@ -23,7 +23,7 @@
  * THE SOFTWARE.
  */
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +34,6 @@ class ThiefTest {
   @Test
   void testThief() {
     var thief = new Thief();
-    assertTrue(thief instanceof Permission);
+    assertFalse(thief instanceof Permission);
   }
 }
