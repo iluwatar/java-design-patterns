@@ -25,8 +25,6 @@ MapReduce aims to process and generate large datasets with a parallel, distribut
 Real-world example
 
 > Imagine a large e-commerce company that wants to analyze its sales data across multiple regions. They have terabytes of transaction data stored across hundreds of servers. Using MapReduce, they can efficiently process this data to calculate total sales by product category. The Map function would process individual sales records, emitting key-value pairs of (category, sale amount). The Reduce function would then sum up all sale amounts for each category, producing the final result.
->
-> In this scenario, the Abstract Factory is an interface for creating families of related furniture objects (chairs, tables, sofas). Each concrete factory (ModernFurnitureFactory, VictorianFurnitureFactory, RusticFurnitureFactory) implements the Abstract Factory interface and creates a set of products that match the specific style. This way, clients can create a whole set of modern or Victorian furniture without worrying about the details of their instantiation. This maintains a consistent style and allows easy swapping of one style of furniture for another.
 
 In plain words
 
