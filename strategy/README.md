@@ -127,7 +127,7 @@ public class App {
     // Java 8 functional implementation Strategy pattern
     LOGGER.info(GREEN_DRAGON_SPOTTED);
     dragonSlayer = new DragonSlayer(
-        () -> LOGGER.info("With your Excalibur you severe the dragon's head!"));
+        () -> LOGGER.info("With your Excalibur you sever the dragon's head!"));
     dragonSlayer.goToBattle();
     LOGGER.info(RED_DRAGON_EMERGES);
     dragonSlayer.changeStrategy(() -> LOGGER.info(
@@ -162,13 +162,13 @@ Program output:
 13:06:36.634 [main] INFO com.iluwatar.strategy.App -- Black dragon lands before you.
 13:06:36.634 [main] INFO com.iluwatar.strategy.SpellStrategy -- You cast the spell of disintegration and the dragon vaporizes in a pile of dust!
 13:06:36.634 [main] INFO com.iluwatar.strategy.App -- Green dragon spotted ahead!
-13:06:36.634 [main] INFO com.iluwatar.strategy.App -- With your Excalibur you severe the dragon's head!
+13:06:36.634 [main] INFO com.iluwatar.strategy.App -- With your Excalibur you sever the dragon's head!
 13:06:36.634 [main] INFO com.iluwatar.strategy.App -- Red dragon emerges.
 13:06:36.635 [main] INFO com.iluwatar.strategy.App -- You shoot the dragon with the magical crossbow and it falls dead on the ground!
 13:06:36.635 [main] INFO com.iluwatar.strategy.App -- Black dragon lands before you.
 13:06:36.635 [main] INFO com.iluwatar.strategy.App -- You cast the spell of disintegration and the dragon vaporizes in a pile of dust!
 13:06:36.635 [main] INFO com.iluwatar.strategy.App -- Green dragon spotted ahead!
-13:06:36.637 [main] INFO com.iluwatar.strategy.LambdaStrategy -- With your Excalibur you severe the dragon's head!
+13:06:36.637 [main] INFO com.iluwatar.strategy.LambdaStrategy -- With your Excalibur you sever the dragon's head!
 13:06:36.637 [main] INFO com.iluwatar.strategy.App -- Red dragon emerges.
 13:06:36.637 [main] INFO com.iluwatar.strategy.LambdaStrategy -- You shoot the dragon with the magical crossbow and it falls dead on the ground!
 13:06:36.637 [main] INFO com.iluwatar.strategy.App -- Black dragon lands before you.
