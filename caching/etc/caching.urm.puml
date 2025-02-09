@@ -13,7 +13,7 @@ package com.iluwatar.caching {
     - LOGGER : Logger {static}
     + App()
     + main(args : String[]) {static}
-    + useCacheAsideStategy()
+    + useCacheAsideStrategy()
     + useReadAndWriteThroughStrategy()
     + useReadThroughAndWriteAroundStrategy()
     + useReadThroughAndWriteBehindStrategy()
