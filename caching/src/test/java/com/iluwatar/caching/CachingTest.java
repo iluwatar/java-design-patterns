@@ -68,6 +68,6 @@ class CachingTest {
   @Test
   void testCacheAsideStrategy() {
     assertNotNull(app);
-    app.useCacheAsideStategy();
+    app.useCacheAsideStrategy();
   }
 }
