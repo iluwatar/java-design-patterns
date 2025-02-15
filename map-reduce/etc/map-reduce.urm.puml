@@ -1,0 +1,24 @@
+@startuml
+package com.iluwatar {
+  class Main {
+    + Main()
+    + main(args : String[]) {static}
+  }
+  class MapReduce {
+    + MapReduce()
+    + mapReduce(inputs : List<String>) : List<Map.Entry<String, Integer>> {static}
+  }
+  class Mapper {
+    + Mapper()
+    + map(input : String) : Map<String, Integer> {static}
+  }
+  class Reducer {
+    + Reducer()
+    + reduce(grouped : Map<String, List<Integer>>) : List<Map.Entry<String, Integer>> {static}
+  }
+  class Shuffler {
+    + Shuffler()
+    + shuffleAndSort(mapped : List<Map<String, Integer>>) : Map<String, List<Integer>> {static}
+  }
+}
+@enduml
