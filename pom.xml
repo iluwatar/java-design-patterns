@@ -217,8 +217,14 @@
     <module>virtual-proxy</module>
     <module>function-composition</module>
     <module>microservices-distributed-tracing</module>
+    <module>microservices-client-side-ui-composition</module>
     <module>microservices-idempotent-consumer</module>
-      <module>monolithic-architecture</module>
+    <module>monolithic-architecture</module>
+    <module>session-facade</module>
+    <module>templateview</module>
+    <module>money</module>
+    <module>table-inheritance</module>
+    <module>bloc</module>
   </modules>
   <repositories>
     <repository>
