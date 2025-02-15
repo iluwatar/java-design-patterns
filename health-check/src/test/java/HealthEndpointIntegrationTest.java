@@ -23,7 +23,6 @@
  * THE SOFTWARE.
  */
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.equalTo;
 
 import com.iluwatar.health.check.App;
 import io.restassured.builder.RequestSpecBuilder;
@@ -31,6 +30,9 @@ import io.restassured.filter.log.LogDetail;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import lombok.extern.slf4j.Slf4j;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -95,7 +97,8 @@ class HealthEndpointIntegrationTest {
       LOGGER.error("Health endpoint status: " + response.getStatusCode());
     }
 
-    response.then().assertThat().statusCode(HttpStatus.OK.value()).body("status", equalTo("UP"));
+    response.then().assertThat().statusCode(HttpStatus.OK.value()); 
+    assertTrue("UP".equals(response.path("status")));
   }
 
   /**
@@ -130,13 +133,14 @@ class HealthEndpointIntegrationTest {
     response
         .then()
         .assertThat()
-        .statusCode(HttpStatus.OK.value()) // Check that the status is UP
-        .body("status", equalTo("UP")) // Verify the status body is UP
-        .body("components.cpu.status", equalTo("UP")) // Check CPU status
-        .body("components.db.status", equalTo("UP")) // Check DB status
-        .body("components.diskSpace.status", equalTo("UP")) // Check disk space status
-        .body("components.ping.status", equalTo("UP")) // Check ping status
-        .body("components.custom.status", equalTo("UP")); // Check custom component status
+        .statusCode(HttpStatus.OK.value()); // Check that the status is UP
+   
+    assertTrue("UP".equals(response.path("status"))); // Verify the status body is UP
+    assertTrue("UP".equals(response.path("components.cpu.status"))); // Check CPU status
+    assertTrue("UP".equals(response.path("components.db.status"))); // Check DB status
+    assertTrue("UP".equals(response.path("components.diskSpace.status"))); // Check disk space status
+    assertTrue("UP".equals(response.path("components.ping.status"))); // Check ping status
+    assertTrue("UP".equals(response.path("components.custom.status"))); // Check custom component status
 
     // Check for "DOWN" status and high CPU load
     if ("DOWN".equals(response.path("status"))) {
@@ -177,7 +181,8 @@ class HealthEndpointIntegrationTest {
     }
 
     // If status is 200, proceed with additional checks
-    response.then().assertThat().statusCode(HttpStatus.OK.value()).body("status", equalTo("UP"));
+    response.then().assertThat().statusCode(HttpStatus.OK.value());
+    assertTrue("UP".equals(response.path("status")));
 
     // Check for "DOWN" status and high CPU load
     if ("DOWN".equals(response.path("status"))) {
@@ -221,9 +226,9 @@ class HealthEndpointIntegrationTest {
     response
         .then()
         .assertThat()
-        .statusCode(HttpStatus.OK.value()) // Check that the status is UP
-        .body("components.custom.status", equalTo("UP")) // Verify the custom component status
-        .body("components.custom.details.database", equalTo("reachable")); // Verify custom details
+        .statusCode(HttpStatus.OK.value()); // Check that the status is UP
+    assertTrue("UP".equals(response.path("components.custom.status"))); // Verify the custom component status
+    assertTrue("reachable".equals(response.path("components.custom.details.database"))); // Verify custom details
 
     // Check for "DOWN" status and high CPU load
     if ("DOWN".equals(response.path("status"))) {
