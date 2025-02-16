@@ -204,6 +204,7 @@
     <module>component</module>
     <module>context-object</module>
     <module>optimistic-offline-lock</module>
+    <module>vertical-slice-architecture</module>
     <module>curiously-recurring-template-pattern</module>
     <module>microservices-log-aggregation</module>
     <module>anti-corruption-layer</module>
