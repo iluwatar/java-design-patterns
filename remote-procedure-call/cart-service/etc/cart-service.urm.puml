@@ -1,0 +1,70 @@
+@startuml
+skinparam dpi 300
+scale 0.3
+
+package com.iluwatar.rpc.cart.model {
+  class ProductInCart {
+    - id : Long
+    - name : String
+    - price : double
+    - quantityToReduce : int
+    - type : String
+  }
+}
+
+package com.iluwatar.rpc.cart.service {
+  interface CartService {
+    + getAllProducts() {abstract}
+    + getRandomProductFromCart() : ProductInCart {abstract}
+    + reduceCartQuantityFromProduct(ProductInCart) {abstract}
+  }
+
+  class CartServiceImpl {
+    - log : Logger {static}
+    - productsInCart : List<ProductInCart>
+    - shoppingServiceBlockingStub : ShoppingServiceBlockingStub
+    + CartServiceImpl(shoppingStub : ShoppingServiceBlockingStub)
+    + getAllProducts()
+    + getRandomProductFromCart() : ProductInCart
+    + reduceCartQuantityFromProduct(product : ProductInCart)
+  }
+}
+
+package com.iluwatar.rpc.proto {
+  class Empty {}
+
+  class ProductResponse {
+    - id : long
+    - name : String
+    - price : double
+    - type : String
+  }
+
+  class ReduceProductRequest {
+    - productId : long
+    - quantity : int
+  }
+
+  class ReduceProductResponse {
+    - message : String
+    - status : boolean
+  }
+
+  class ShoppingServiceImplBase {
+    - getAllProducts(request: Empty, responseStreamObserver: StreamObserver<ProductResponse>)
+    - reduceProductQuantity(request: ReduceProductRequest, responseStreamObserver : StreamObserver<ReduceProductResponse>)
+  }
+
+}
+package com.iluwatar.rpc.cart {
+  class Main {
+    - HOST : String {static}
+    - SERVER_PORT : int {static}
+    - log : Logger {static}
+    + main(args : String[]) {static}
+  }
+}
+
+CartServiceImpl -->  "-productsInCart" ProductInCart
+CartServiceImpl ..|> CartService
+@enduml

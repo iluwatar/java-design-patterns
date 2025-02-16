@@ -1,0 +1,80 @@
+@startuml
+skinparam dpi 300
+scale 0.3
+
+package com.iluwatar.rpc.product {
+  class Main {
+    - SERVER_PORT : int {static}
+    - log : Logger {static}
+    + main(args : String[]) {static}
+  }
+}
+
+package com.iluwatar.rpc.product.model {
+  class Product {
+    - id : Long
+    - name : String
+    - price : double
+    - quantity : int
+    - type : String
+  }
+}
+
+package com.iluwatar.rpc.product.mocks {
+  class ProductMocks {
+    + ProductMocks()
+    + getMockProducts() : List<Product> {static}
+  }
+}
+
+package com.iluwatar.rpc.product.service {
+  interface ProductService {
+    + getAllProducts() : List<Product> {abstract}
+    + getProduct(Long) : Optional<Product> {abstract}
+  }
+  class ProductServiceGrpcImpl {
+    - log : Logger {static}
+    - productService : ProductService
+    + ProductServiceGrpcImpl(productService : ProductService)
+    + getAllProducts(request : Empty, responseStreamObserver : StreamObserver<ProductResponse>)
+    + reduceProductQuantity(request : ReduceProductRequest, responseStreamObserver : StreamObserver<ReduceProductResponse>)
+  }
+  class ProductServiceImpl {
+    - products : List<Product>
+    + ProductServiceImpl(products : List<Product>)
+    + getAllProducts() : List<Product>
+    + getProduct(id : Long) : Optional<Product>
+  }
+}
+
+package com.iluwatar.rpc.proto {
+  class Empty {}
+
+  class ProductResponse {
+    - id : long
+    - name : String
+    - price : double
+    - type : String
+  }
+
+  class ReduceProductRequest {
+    - productId : long
+    - quantity : int
+  }
+
+  class ReduceProductResponse {
+    - message : String
+    - status : boolean
+  }
+
+  class ShoppingServiceImplBase {
+    - getAllProducts(request: Empty, responseStreamObserver: StreamObserver<ProductResponse>)
+    - reduceProductQuantity(request: ReduceProductRequest, responseStreamObserver : StreamObserver<ReduceProductResponse>)
+  }
+}
+
+ProductServiceImpl -->  "-products" Product
+ProductServiceGrpcImpl -->  "-productService" ProductService
+ProductServiceGrpcImpl --|> ShoppingServiceImplBase
+ProductServiceImpl ..|> ProductService
+@enduml
