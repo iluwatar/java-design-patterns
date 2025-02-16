@@ -1,0 +1,37 @@
+@startuml
+package com.iluwatar.join {
+  class DemoThread {
+    - LOGGER : Logger {static}
+    - actualExecutionOrder : int[] {static}
+    - executionOrder : int[] {static}
+    - id : int
+    - index : int {static}
+    - pattern : JoinPattern {static}
+    - previous : Thread
+    + DemoThread(id : int, previous : Thread)
+    + getActualExecutionOrder() : int[] {static}
+    + run()
+    + setExecutionOrder(executionOrder : int[], pattern : JoinPattern) {static}
+  }
+  class DependentThread {
+    - LOGGER : Logger {static}
+    - id : int
+    ~ DependentThread(id : int)
+    + run()
+  }
+  class JoinPattern {
+    ~ executionOrder : int[]
+    - latch : CountDownLatch
+    ~ noOfDemoThreads : int
+    + JoinPattern(noOfDemoThreads : int, executionOrder : int[])
+    + await()
+    + countdown()
+  }
+  class JoinPatternDemo {
+    - LOGGER : Logger {static}
+    + JoinPatternDemo()
+    + main(String[]) {static}
+  }
+}
+DemoThread -->  "-pattern" JoinPattern
+@enduml
