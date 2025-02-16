@@ -1,6 +1,6 @@
 package com.iluwatar;
 /**
- * An exception for when the user tries to subtract two diffrent currencies or subtract an amount he doesn't have.
+ * An exception for when the user tries to subtract two different currencies or subtract an amount he doesn't have.
  */
 public class CannotSubtractException extends Exception {
   /**
