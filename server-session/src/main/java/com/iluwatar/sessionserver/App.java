@@ -91,21 +91,24 @@ public class App {
   private static void sessionExpirationTask() {
     LOGGER.info("Session expiration checker started...");
     Instant currentTime = Instant.now();
-    synchronized (sessions) {
-      synchronized (sessionCreationTimes) {
-        Iterator<Map.Entry<String, Instant>> iterator =
-            sessionCreationTimes.entrySet().iterator();
-        while (iterator.hasNext()) {
-          Map.Entry<String, Instant> entry = iterator.next();
-          if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
-            LOGGER.info("User " + entry.getValue() + " removed");
-            sessions.remove(entry.getKey());
-            iterator.remove();
+    try {
+      synchronized (sessions) {
+        synchronized (sessionCreationTimes) {
+          Iterator<Map.Entry<String, Instant>> iterator =
+              sessionCreationTimes.entrySet().iterator();
+          while (iterator.hasNext()) {
+            Map.Entry<String, Instant> entry = iterator.next();
+            if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
+              LOGGER.info("User " + entry.getValue() + " removed");
+              sessions.remove(entry.getKey());
+              iterator.remove();
+            }
           }
         }
       }
+    } catch (Exception e) {
+      LOGGER.error("An error occurred: ", e);
     }
     LOGGER.info("Session expiration checker finished!");
   }
-
 }
