@@ -123,7 +123,7 @@ public class LambdaStrategy {
 
   public enum Strategy implements DragonSlayingStrategy {
     MeleeStrategy(() -> LOGGER.info(
-        "With your Excalibur you severe the dragon's head!")),
+        "With your Excalibur you sever the dragon's head!")),
     ProjectileStrategy(() -> LOGGER.info(
         "You shoot the dragon with the magical crossbow and it falls dead on the ground!")),
     SpellStrategy(() -> LOGGER.info(
