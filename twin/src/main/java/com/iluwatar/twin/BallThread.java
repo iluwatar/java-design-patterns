@@ -48,19 +48,19 @@ public class BallThread extends Thread {
    * Run the thread.
    */
   public void run() {
-    try {
-      while (isRunning) {
-        if (isSuspended) {
-          synchronized (lock) {
+    while (isRunning) {
+      if (!isSuspended) {
+        twin.draw();
+        twin.move();
+      } else {
+        synchronized (lock) {
+          try {
             lock.wait();
+          } catch (InterruptedException e) {
+            throw new RuntimeException(e);
           }
-        } else {
-          twin.draw();
-          twin.move();
         }
       }
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
     }
   }
   /**
