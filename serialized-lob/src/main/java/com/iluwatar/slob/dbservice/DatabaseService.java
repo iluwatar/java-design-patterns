@@ -92,7 +92,7 @@ public class DatabaseService {
       throws SQLException {
     try (var connection = dataSource.getConnection();
         var statement = connection.createStatement()) {
-      if (dataTypeDb.equals("BINARY")) {
+      if (dataTypeDb.equals(BINARY_DATA)) {
         statement.execute(CREATE_BINARY_SCHEMA_DDL);
       } else {
         statement.execute(CREATE_TEXT_SCHEMA_DDL);
