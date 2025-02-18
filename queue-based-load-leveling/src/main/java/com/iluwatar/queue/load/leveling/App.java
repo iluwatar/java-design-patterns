@@ -26,6 +26,7 @@ package com.iluwatar.queue.load.leveling;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 
@@ -88,7 +89,8 @@ public class App {
 
       // Create e service which should process the submitted jobs.
       final var srvRunnable = new ServiceExecutor(msgQueue);
-
+      ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+      scheduler.scheduleAtFixedRate(srvRunnable, 1, 1, TimeUnit.SECONDS);
       // Create a ThreadPool of 2 threads and
       // submit all Runnable task for execution to executor
       executor = Executors.newFixedThreadPool(2);

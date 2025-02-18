@@ -57,7 +57,6 @@ public class BallThread extends Thread {
         } else {
           twin.draw();
           twin.move();
-          Thread.sleep(250);
         }
       }
     } catch (InterruptedException e) {
