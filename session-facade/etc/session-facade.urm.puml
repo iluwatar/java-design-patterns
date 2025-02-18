@@ -1,0 +1,48 @@
+@startuml
+package com.iluwatar.sessionfacade {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class CartService {
+    - LOGGER : Logger {static}
+    - cart : List<Product>
+    - productCatalog : List<Product>
+    + CartService(cart : List<Product>, productCatalog : List<Product>)
+    + addToCart(productId : int)
+    + removeFromCart(productId : int)
+  }
+  class OrderService {
+    - LOGGER : Logger {static}
+    - cart : List<Product>
+    + OrderService(cart : List<Product>)
+    + order()
+  }
+  class PaymentService {
+    + LOGGER : Logger {static}
+    + PaymentService()
+    + cashPayment()
+    + creditCardPayment()
+    + selectPaymentMethod(method : String)
+  }
+  class ProductCatalogService {
+    - products : List<Product>
+    + ProductCatalogService(products : List<Product>)
+  }
+  class ShoppingFacade {
+    ~ cart : List<Product>
+    ~ cartService : CartService
+    ~ orderService : OrderService
+    ~ paymentService : PaymentService
+    ~ productCatalog : List<Product>
+    + ShoppingFacade()
+    + addToCart(productId : int)
+    + order()
+    + removeFromCart(productId : int)
+    + selectPaymentMethod(method : String)
+  }
+}
+ShoppingFacade -->  "-cartService" CartService
+ShoppingFacade -->  "-paymentService" PaymentService
+ShoppingFacade -->  "-orderService" OrderService
+@enduml

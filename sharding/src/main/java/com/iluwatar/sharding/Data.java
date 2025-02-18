@@ -43,7 +43,7 @@ public class Data {
   /**
    * Constructor of Data class.
    * @param key data key
-   * @param value data vlue
+   * @param value data value
    * @param type data type
    */
   public Data(final int key, final String value, final DataType type) {

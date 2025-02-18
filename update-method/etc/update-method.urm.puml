@@ -20,7 +20,7 @@ package com.iluwatar.updatemethod {
     - PATROLLING_RIGHT_BOUNDING : int {static}
     # patrollingLeft : boolean
     + Skeleton(id : int)
-    + Skeleton(id : int, postition : int)
+    + Skeleton(id : int, position : int)
     + update()
   }
   class Statue {
