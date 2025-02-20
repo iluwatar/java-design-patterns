@@ -133,7 +133,7 @@ public class App {
     LOGGER.info(splitLine);
     app.useReadThroughAndWriteBehindStrategy();
     LOGGER.info(splitLine);
-    app.useCacheAsideStategy();
+    app.useCacheAsideStrategy();
     LOGGER.info(splitLine);
   }
 
@@ -224,7 +224,7 @@ public class App {
   /**
    * Cache-Aside.
    */
-  public void useCacheAsideStategy() {
+  public void useCacheAsideStrategy() {
     LOGGER.info("# CachingPolicy.ASIDE");
     appManager.initCachingPolicy(CachingPolicy.ASIDE);
     LOGGER.info(appManager.printCacheContent());

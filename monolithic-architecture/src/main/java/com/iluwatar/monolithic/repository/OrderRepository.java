@@ -22,52 +22,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.caching;
+package com.iluwatar.monolithic.repository;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
+import com.iluwatar.monolithic.model.Order;
+import org.springframework.data.jpa.repository.JpaRepository;
 /**
- * Application test
+ * This interface allows JpaRepository to generate queries for the required tables.
  */
-class CachingTest {
-  private App app;
-
-  /**
-   * Setup of application test includes: initializing DB connection and cache size/capacity.
-   */
-  @BeforeEach
-  void setUp() {
-    // VirtualDB (instead of MongoDB) was used in running the JUnit tests
-    // to avoid Maven compilation errors. Set flag to true to run the
-    // tests with MongoDB (provided that MongoDB is installed and socket
-    // connection is open).
-    app = new App(false);
-  }
-
-  @Test
-  void testReadAndWriteThroughStrategy() {
-    assertNotNull(app);
-    app.useReadAndWriteThroughStrategy();
-  }
-
-  @Test
-  void testReadThroughAndWriteAroundStrategy() {
-    assertNotNull(app);
-    app.useReadThroughAndWriteAroundStrategy();
-  }
-
-  @Test
-  void testReadThroughAndWriteBehindStrategy() {
-    assertNotNull(app);
-    app.useReadThroughAndWriteBehindStrategy();
-  }
-
-  @Test
-  void testCacheAsideStrategy() {
-    assertNotNull(app);
-    app.useCacheAsideStrategy();
-  }
+public interface OrderRepository extends JpaRepository<Order, Long> {
 }
