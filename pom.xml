@@ -224,6 +224,7 @@
     <module>money</module>
     <module>table-inheritance</module>
       <module>bloc</module>
+      <module>map-reduce</module>
   </modules>
   <repositories>
     <repository>
