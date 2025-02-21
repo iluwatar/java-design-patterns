@@ -22,52 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.caching;
+package com.iluwatar.monolithic.model;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
- * Application test
+ * Represents a database of products.
  */
-class CachingTest {
-  private App app;
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Product {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-  /**
-   * Setup of application test includes: initializing DB connection and cache size/capacity.
-   */
-  @BeforeEach
-  void setUp() {
-    // VirtualDB (instead of MongoDB) was used in running the JUnit tests
-    // to avoid Maven compilation errors. Set flag to true to run the
-    // tests with MongoDB (provided that MongoDB is installed and socket
-    // connection is open).
-    app = new App(false);
-  }
+  private String name;
 
-  @Test
-  void testReadAndWriteThroughStrategy() {
-    assertNotNull(app);
-    app.useReadAndWriteThroughStrategy();
-  }
+  private String description;
 
-  @Test
-  void testReadThroughAndWriteAroundStrategy() {
-    assertNotNull(app);
-    app.useReadThroughAndWriteAroundStrategy();
-  }
+  private Double price;
 
-  @Test
-  void testReadThroughAndWriteBehindStrategy() {
-    assertNotNull(app);
-    app.useReadThroughAndWriteBehindStrategy();
-  }
-
-  @Test
-  void testCacheAsideStrategy() {
-    assertNotNull(app);
-    app.useCacheAsideStrategy();
-  }
+  private Integer stock;
 }
+

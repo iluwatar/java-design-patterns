@@ -22,52 +22,37 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.caching;
+package com.iluwatar.monolithic.controller;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import com.iluwatar.monolithic.model.Product;
+import com.iluwatar.monolithic.repository.ProductRepository;
+import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
- * Application test
- */
-class CachingTest {
-  private App app;
+ * ProductCon is a controller class for managing Product operations.
+ * */
 
+
+@Service
+public class ProductController {
+  private final ProductRepository productRepository;
   /**
-   * Setup of application test includes: initializing DB connection and cache size/capacity.
-   */
-  @BeforeEach
-  void setUp() {
-    // VirtualDB (instead of MongoDB) was used in running the JUnit tests
-    // to avoid Maven compilation errors. Set flag to true to run the
-    // tests with MongoDB (provided that MongoDB is installed and socket
-    // connection is open).
-    app = new App(false);
+ * Linking Controller to DB.
+ * */
+  public ProductController(ProductRepository productRepository) {
+    this.productRepository = productRepository;
   }
-
-  @Test
-  void testReadAndWriteThroughStrategy() {
-    assertNotNull(app);
-    app.useReadAndWriteThroughStrategy();
+  /**
+ * Adds a product to the DB.
+ * */
+  public Product addProduct(Product product) {
+    return productRepository.save(product);
   }
-
-  @Test
-  void testReadThroughAndWriteAroundStrategy() {
-    assertNotNull(app);
-    app.useReadThroughAndWriteAroundStrategy();
-  }
-
-  @Test
-  void testReadThroughAndWriteBehindStrategy() {
-    assertNotNull(app);
-    app.useReadThroughAndWriteBehindStrategy();
-  }
-
-  @Test
-  void testCacheAsideStrategy() {
-    assertNotNull(app);
-    app.useCacheAsideStrategy();
+  /**
+ * Returns all relevant Product.
+ * */
+  public List<Product> getAllProducts() {
+    return productRepository.findAll();
   }
 }
