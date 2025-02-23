@@ -38,6 +38,10 @@ Wikipedia says
 
 > Event-driven architecture (EDA) is a software architecture paradigm concerning the production and detection of events.
 
+Architecture diagram
+
+![EDA Architecture Diagram](./etc/eda-architecture-diagram.png)
+
 ## Programmatic Example of Event-Driven Architecture in Java
 
 The Event-Driven Architecture (EDA) pattern in this module is implemented using several key classes and concepts:  
@@ -152,10 +156,6 @@ Running the example produces the following console output:
 ```
 
 This example demonstrates the Event-Driven Architecture pattern, where the occurrence of events drives the flow of the program. The system is designed to respond to events as they occur, which allows for a high degree of flexibility and decoupling between components.
-
-## Detailed Explanation of Event-Driven Architecture Pattern with Real-World Examples
-
-![Event-Driven Architecture](./etc/eda.png "Event-Driven Architecture")
 
 ## When to Use the Event-Driven Architecture Pattern in Java
 
