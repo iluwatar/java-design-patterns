@@ -34,7 +34,7 @@ Microsoft's documentation says
 
 Architecture diagram
 
-![CQRS Architecture Diagram](etc/CQRS Architecture Diagram.png)
+![CQRS Architecture Diagram](./etc/cqrs-architecture-diagram.png)
 
 ## Programmatic Example of CQRS Pattern in Java
 
