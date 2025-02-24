@@ -42,6 +42,9 @@ public class LoginHandler implements HttpHandler {
   private Map<String, Integer> sessions;
   private Map<String, Instant> sessionCreationTimes;
 
+  /**
+   * Handles new login requests.
+   */
   public LoginHandler(Map<String, Integer> sessions, Map<String, Instant> sessionCreationTimes) {
     this.sessions = sessions;
     this.sessionCreationTimes = sessionCreationTimes;
@@ -60,7 +63,7 @@ public class LoginHandler implements HttpHandler {
 
     // Set session ID as cookie
     exchange.getResponseHeaders().add("Set-Cookie", "sessionID=" + sessionId);
-
+    App.expirationTaskWake(); // Wake up expiration task
     // Send response
     String response = "Login successful!\n" + "Session ID: " + sessionId;
     try {

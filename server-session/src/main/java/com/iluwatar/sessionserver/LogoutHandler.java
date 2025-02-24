@@ -41,6 +41,9 @@ public class LogoutHandler implements HttpHandler {
   private Map<String, Integer> sessions;
   private Map<String, Instant> sessionCreationTimes;
 
+  /**
+   * Handles logging out requests.
+   */
   public LogoutHandler(Map<String, Integer> sessions, Map<String, Instant> sessionCreationTimes) {
     this.sessions = sessions;
     this.sessionCreationTimes = sessionCreationTimes;

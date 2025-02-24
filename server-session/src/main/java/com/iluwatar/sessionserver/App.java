@@ -33,6 +33,7 @@ import java.util.Iterator;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
+
 /**
  * The server session pattern is a behavioral design pattern concerned with assigning the responsibility
  * of storing session data on the server side. Within the context of stateless protocols like HTTP all
@@ -54,9 +55,12 @@ import lombok.extern.slf4j.Slf4j;
 public class App {
 
   // Map to store session data (simulated using a HashMap)
+
   private static Map<String, Integer> sessions = new HashMap<>();
   private static Map<String, Instant> sessionCreationTimes = new HashMap<>();
   private static final long SESSION_EXPIRATION_TIME = 10000;
+  private static Object sessionExpirationWait = new Object(); // used to make expiration task wait or work based on event (login request sent or not)
+  private static Thread sessionExpirationThread;
 
   /**
    * Main entry point.
@@ -81,9 +85,16 @@ public class App {
   }
 
   private static void sessionExpirationTask() {
-    new Thread(() -> {
+    sessionExpirationThread = new Thread(() -> {
       while (true) {
         try {
+          synchronized (sessions) {
+            if (sessions.isEmpty()) {
+              synchronized (sessionExpirationWait) {
+                sessionExpirationWait.wait();
+              }
+            }
+          }
           LOGGER.info("Session expiration checker started...");
           Thread.sleep(SESSION_EXPIRATION_TIME); // Sleep for expiration time
           Instant currentTime = Instant.now();
@@ -94,6 +105,7 @@ public class App {
               while (iterator.hasNext()) {
                 Map.Entry<String, Instant> entry = iterator.next();
                 if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
+                  LOGGER.info("User " + entry.getValue() + " removed");
                   sessions.remove(entry.getKey());
                   iterator.remove();
                 }
@@ -106,6 +118,21 @@ public class App {
           Thread.currentThread().interrupt();
         }
       }
-    }).start();
+    });
+    sessionExpirationThread.start();
   }
+
+  /**
+   * allows sessionExpirationTask to run again, called when a login request is sent.
+   */
+  public static void expirationTaskWake() {
+    synchronized (sessionExpirationWait) {
+      sessionExpirationWait.notifyAll();
+    }
+  }
+
+  public static Thread.State getExpirationTaskState() {
+    return sessionExpirationThread.getState();
+  }
+
 }
