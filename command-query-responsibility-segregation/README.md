@@ -32,6 +32,10 @@ Microsoft's documentation says
 
 > CQRS separates reads and writes into different models, using commands to update data, and queries to read data.
 
+Architecture diagram
+
+![CQRS Architecture Diagram](./etc/cqrs-architecture-diagram.png)
+
 ## Programmatic Example of CQRS Pattern in Java
 
 One way to implement the Command Query Responsibility Segregation (CQRS) pattern is to separate the read and write operations into different services.
