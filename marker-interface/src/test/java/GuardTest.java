@@ -22,8 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +34,6 @@ class GuardTest {
   @Test
   void testGuard() {
     var guard = new Guard();
-    assertThat(guard, instanceOf(Permission.class));
+    assertTrue(guard instanceof Permission);
   }
 }
