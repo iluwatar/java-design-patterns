@@ -25,12 +25,22 @@
 package com.iluwatar.logaggregation;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.extern.slf4j.Slf4j;
 
+    
+        
+          
+    
+
+        
+        Expand All
+    
+    @@ -45,7 +45,7 @@ public class LogAggregator {
+  
 /**
  * Responsible for collecting and buffering logs from different services.
  * Once the logs reach a certain threshold or after a certain time interval,
@@ -40,15 +50,31 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class LogAggregator {
-
   private static final int BUFFER_THRESHOLD = 3;
   private final CentralLogStore centralLogStore;
   private final ConcurrentLinkedQueue<LogEntry> buffer = new ConcurrentLinkedQueue<>();
   private final LogLevel minLogLevel;
-  private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+  private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
   private final AtomicInteger logCount = new AtomicInteger(0);
 
   /**
+
+    
+          
+            
+    
+
+          
+          Expand Down
+          
+            
+    
+
+          
+          Expand Up
+    
+    @@ -90,8 +90,8 @@ public void collectLog(LogEntry logEntry) {
+  
    * constructor of LogAggregator.
    *
    * @param centralLogStore central log store implement
@@ -59,7 +85,6 @@ public class LogAggregator {
     this.minLogLevel = minLogLevel;
     startBufferFlusher();
   }
-
   /**
    * Collects a given log entry, and filters it by the defined log level.
    *
@@ -70,19 +95,15 @@ public class LogAggregator {
       LOGGER.warn("Log level or threshold level is null. Skipping.");
       return;
     }
-
     if (logEntry.getLevel().compareTo(minLogLevel) < 0) {
       LOGGER.debug("Log level below threshold. Skipping.");
       return;
     }
-
     buffer.offer(logEntry);
-
     if (logCount.incrementAndGet() >= BUFFER_THRESHOLD) {
       flushBuffer();
     }
   }
-
   /**
    * Stops the log aggregator service and flushes any remaining logs to
    * the central log store.
@@ -90,13 +111,23 @@ public class LogAggregator {
    * @throws InterruptedException If any thread has interrupted the current thread.
    */
   public void stop() throws InterruptedException {
-    executorService.shutdownNow();
-    if (!executorService.awaitTermination(10, TimeUnit.SECONDS)) {
+    scheduler.shutdownNow();
+    if (!scheduler.awaitTermination(10, TimeUnit.SECONDS)) {
       LOGGER.error("Log aggregator did not terminate.");
     }
     flushBuffer();
-  }
 
+    
+        
+          
+    
+
+        
+        Expand All
+    
+    @@ -106,15 +106,7 @@ private void flushBuffer() {
+  
+  }
   private void flushBuffer() {
     LogEntry logEntry;
     while ((logEntry = buffer.poll()) != null) {
@@ -106,15 +137,7 @@ public class LogAggregator {
   }
 
   private void startBufferFlusher() {
-    executorService.execute(() -> {
-      while (!Thread.currentThread().isInterrupted()) {
-        try {
-          Thread.sleep(5000); // Flush every 5 seconds.
-          flushBuffer();
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-        }
-      }
-    });
+    //flush every 5 seconds
+    scheduler.scheduleWithFixedDelay(this::flushBuffer, 0, 5000, TimeUnit.MILLISECONDS);
   }
 }
