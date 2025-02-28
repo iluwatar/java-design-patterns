@@ -30,6 +30,10 @@ Wikipedia says
 
 > To support React's concept of unidirectional data flow (which might be contrasted with AngularJS's bidirectional flow), the Flux architecture was developed as an alternative to the popular model–view–controller architecture. Flux features actions which are sent through a central dispatcher to a store, and changes to the store are propagated back to the view.
 
+Architecture diagram
+
+![Flux Architecture Diagram](./etc/flux-architecture-diagram.png)
+
 ## Programmatic Example of Flux Pattern in Java
 
 The Flux design pattern is used for building client-side web applications. It advocates for a unidirectional data flow. When a user interacts with a view, the view propagates an action through a central dispatcher, to the various stores that hold the application's data and business logic, which updates all the views that are affected.
@@ -83,17 +87,13 @@ In this example, when a menu item is clicked, the `MenuView` triggers a `MENU_IT
 
 This is a basic example of the Flux pattern, where actions are dispatched from the views, handled by the stores, and cause the views to update.
 
-## Detailed Explanation of Flux Pattern with Real-World Examples
-
-![Flux](./etc/flux.png "Flux")
-
 ## When to Use the Flux Pattern in Java
 
 Flux is applicable in developing client-side Java applications, where maintaining consistent data across various components and managing complex state interactions are critical. It is especially suited for applications with dynamic user interfaces that react to frequent data updates.
 
 ## Real-World Applications of Flux Pattern in Java
 
-* Facebook extensively uses the Flux design pattern in conjunction with React to build robust, scalable user interfaces that can handle complex data updates efficiently. Many modern web applications adopt Flux or its variations (like Redux) to manage state in environments that demand high responsiveness and predictability.
+* Facebook extensively uses the Flux design pattern in conjunction with React to build robust, scalable user interfaces that can handle complex data updates efficiently. 
 * Many modern web applications adopt Flux or its variations (like Redux) to manage state in environments that demand high responsiveness and predictability.
 
 ## Benefits and Trade-offs of Flux Pattern
