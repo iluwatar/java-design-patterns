@@ -36,6 +36,10 @@ Stack Overflow says
 
 > Microservices Aggregator invokes multiple services to achieve the functionality required by the application.
 
+Architecture diagram
+
+![Microservices Aggregator Architecture Diagram](./etc/microservices-aggregator-architecture-diagram.png)
+
 ## Programmatic Example of Microservices Aggregator Pattern in Java
 
 Our web marketplace utilizes an Aggregator microservice to fetch combined product and inventory information from separate microservices, ensuring efficient data processing and improved system performance.
