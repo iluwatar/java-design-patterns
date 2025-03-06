@@ -42,4 +42,6 @@ public interface Dao<E extends BaseEntity> {
   void delete(E entity);
 
   List<E> findAll();
+
+  E findByName(String name);
 }
