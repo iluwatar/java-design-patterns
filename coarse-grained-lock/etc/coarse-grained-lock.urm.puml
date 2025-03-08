@@ -1,0 +1,42 @@
+@startuml
+package com.iluwatar.coarse.grained {
+
+  class App {
+    + App()
+    + main(args: String[]) {static}
+  }
+
+  class Lock {
+    + synchronizedMethod(task: Runnable): void
+  }
+
+  class Customer {
+    - customerId: int
+    - name: String
+    + Customer(customerId: int, name: String)
+    + setCustomerId(customerId: int): void
+    + getCustomerId(): int
+    + getName(): String
+    + setName(name: String): void
+
+  }
+
+  class Address {
+    - addressId: int
+    - customerId: int
+    - city: String
+    + Address(customerId: int, addressId: int, city: String)
+    + getAddressId(): int
+    + getCustomerId(): int
+    + getCity(): String
+    + setAddressId(addressId: int): void
+    + setCustomerId(customerId: int): void
+    + setCity(city: String): void
+  }
+
+  Lock --> Customer : "Protects"
+  Lock --> Address : "Protects"
+
+}
+
+@enduml
