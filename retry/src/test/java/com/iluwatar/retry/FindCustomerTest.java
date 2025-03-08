@@ -24,9 +24,8 @@
  */
 package com.iluwatar.retry;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +39,7 @@ class FindCustomerTest {
    */
   @Test
   void noExceptions() throws Exception {
-    assertThat(new FindCustomer("123").perform(), is("123"));
+    assertEquals(new FindCustomer("123").perform(), "123", "perform() output is not 123");
   }
 
   /**
@@ -75,6 +74,6 @@ class FindCustomerTest {
       //ignore
     }
 
-    assertThat(op.perform(), is("123"));
+    assertEquals(op.perform(), "123", "op.perform() output is not 123");
   }
 }
