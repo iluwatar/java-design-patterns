@@ -24,6 +24,10 @@
  */
 package com.iluwatar.singleton;
 
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 /**
  * EnumIvoryTowerTest
  *
@@ -35,6 +39,16 @@ class EnumIvoryTowerTest extends SingletonTest<EnumIvoryTower> {
    */
   public EnumIvoryTowerTest() {
     super(() -> EnumIvoryTower.INSTANCE);
+  }
+
+  /**
+   * Test creating new instance by reflection.
+   */
+  @Override
+  @Test
+  void testCreatingNewInstanceByReflection() throws Exception {
+    // Java does not allow Enum instantiation http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.9
+    assertThrows(ReflectiveOperationException.class, EnumIvoryTower.class::getDeclaredConstructor);
   }
 
 }
