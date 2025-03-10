@@ -24,9 +24,8 @@
  */
 package com.iluwatar.retry;
 
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -55,7 +54,7 @@ class RetryTest {
       //ignore
     }
 
-    assertThat(retry.errors(), hasItem(e));
+    assertTrue(retry.errors().contains(e));
   }
 
   /**
@@ -78,7 +77,7 @@ class RetryTest {
       //ignore
     }
 
-    assertThat(retry.attempts(), is(1));
+    assertEquals(retry.attempts(), 1, "Retry attempts do not equal 1");
   }
 
   /**
@@ -102,7 +101,7 @@ class RetryTest {
       //ignore
     }
 
-    assertThat(retry.attempts(), is(2));
+    assertEquals(retry.attempts(), 2, "Retry attempts do not equal 2");
   }
 
 }
