@@ -40,7 +40,10 @@ public final class BillPughImplementation {
    * Private constructor to prevent instantiation from outside the class.
    */
   private BillPughImplementation() {
-    // private constructor
+    // to prevent instantiating by Reflection call
+    if (InstanceHolder.instance != null) {
+      throw new IllegalStateException("Already initialized.");
+    }
   }
 
   /**
