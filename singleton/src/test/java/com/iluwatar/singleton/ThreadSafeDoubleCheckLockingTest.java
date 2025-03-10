@@ -43,10 +43,10 @@ class ThreadSafeDoubleCheckLockingTest extends SingletonTest<ThreadSafeDoubleChe
   }
 
   /**
-   * Test creating new instance by refection.
+   * Test creating new instance by reflection.
    */
   @Test
-  void testCreatingNewInstanceByRefection() throws Exception {
+  void testCreatingNewInstanceByReflection() throws Exception {
     ThreadSafeDoubleCheckLocking.getInstance();
     var constructor = ThreadSafeDoubleCheckLocking.class.getDeclaredConstructor();
     constructor.setAccessible(true);
