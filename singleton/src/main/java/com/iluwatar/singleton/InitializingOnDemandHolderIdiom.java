@@ -43,6 +43,10 @@ public final class InitializingOnDemandHolderIdiom {
    * Private constructor.
    */
   private InitializingOnDemandHolderIdiom() {
+    // to prevent instantiating by Reflection call
+    if (HelperHolder.INSTANCE != null) {
+      throw new IllegalStateException("Already initialized.");
+    }
   }
 
   /**

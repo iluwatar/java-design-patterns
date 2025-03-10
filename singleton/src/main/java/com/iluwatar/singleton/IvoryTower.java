@@ -33,6 +33,10 @@ public final class IvoryTower {
    * Private constructor so nobody can instantiate the class.
    */
   private IvoryTower() {
+    // to prevent instantiating by Reflection call
+    if (INSTANCE != null) {
+      throw new IllegalStateException("Already initialized.");
+    }
   }
 
   /**
