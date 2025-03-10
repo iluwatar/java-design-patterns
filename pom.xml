@@ -66,6 +66,7 @@
     <module>prototype</module>
     <module>singleton</module>
     <module>adapter</module>
+    <module>binding-property</module>
     <module>bridge</module>
     <module>composite</module>
     <module>data-access-object</module>
