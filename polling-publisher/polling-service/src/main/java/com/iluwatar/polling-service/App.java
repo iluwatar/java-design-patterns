@@ -23,19 +23,21 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.polling.publisher;
-import lombok.extern.slf4j.Slf4j;
 
 /**
- * 
+ * Polling-Publisher pattern paradigm.
  */
-@Slf4j
 public class App {
 
   private static final String DEFAULT_URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/polling-publisher/README.md";
 
-  private App() {
-    executor = Executors.newFixedThreadPool(2);
-    stopLatch = new CountDownLatch(2);
+
+  App() {
+
+  }
+
+  int sum(int x, int y){
+    return x+y;
   }
 
   /**
@@ -47,11 +49,9 @@ public class App {
   public static void main(String[] args) throws InterruptedException {
     var app = new App();
     try {
-      
+      System.out.println("checking...");
     } finally {
-      
+      System.out.println("finally-block");
     }
   }
-
-  
 }

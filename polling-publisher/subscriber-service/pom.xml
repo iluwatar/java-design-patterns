@@ -29,37 +29,18 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
       <groupId>com.iluwatar</groupId>
-      <artifactId>java-design-patterns</artifactId>
+      <artifactId>polling-publisher</artifactId>
       <version>1.26.0-SNAPSHOT</version>
     </parent>
 
     <groupId>com.iluwatar</groupId>
-    <artifactId>polling-publisher</artifactId>
+    <artifactId>subscriber-service</artifactId>
     <version>1.26.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-     
-    <properties>
-        <java.version>21</java.version>
-        <spring.boot.version>3.2.0</spring.boot.version>
-    </properties>
-
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${spring.boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-            <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <scope>test</scope>
-          </dependency>
-
+    
           <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
@@ -68,7 +49,7 @@
         </dependencies>
     </dependencyManagement>
 
-  <!-- <build>
+  <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -78,7 +59,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.polling-publisher.App</mainClass>
+                  <mainClass>com.iluwatar.subscriber-service.App</mainClass>
                 </manifest>
               </archive>
             </configuration>
@@ -86,6 +67,6 @@
         </executions>
       </plugin>
     </plugins>
-  </build> -->
+  </build>
 
 </project>

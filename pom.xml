@@ -37,7 +37,8 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>5.0.0.4389</sonar-maven-plugin.version>
-    <spring-boot.version>2.7.5</spring-boot.version>
+    <spring-boot.version>3.1.4</spring-boot.version>
+    <lombok.version>1.18.30</lombok.version>
     <jacoco.version>0.8.12</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <htmlunit.version>4.7.0</htmlunit.version>
@@ -289,6 +290,7 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
