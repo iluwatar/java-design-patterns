@@ -27,8 +27,10 @@ package com.iluwatar.singleton;
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Executors;
@@ -106,4 +108,14 @@ abstract class SingletonTest<S> {
 
   }
 
+  /**
+   * Test creating new instance by reflection.
+   */
+  @Test
+  void testCreatingNewInstanceByReflection() throws Exception {
+    var firstTimeInstantiated = this.singletonInstanceMethod.get();
+    var constructor = firstTimeInstantiated.getClass().getDeclaredConstructor();
+    constructor.setAccessible(true);
+    assertThrows(InvocationTargetException.class, () -> constructor.newInstance((Object[]) null));
+  }
 }
