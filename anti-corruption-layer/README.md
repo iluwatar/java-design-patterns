@@ -122,7 +122,7 @@ public class LegacyShop {
 
         String id = legacyOrder.getId();
 
-        Optional<LegacyOrder> orderInModernSystem = acl.findOrderInModernSystem(id);
+        Optional<ModernOrder> orderInModernSystem = acl.findOrderInModernSystem(id);
 
         if (orderInModernSystem.isPresent()) {
             // order is already in the modern system
