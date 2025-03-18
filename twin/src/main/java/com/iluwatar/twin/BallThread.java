@@ -1,5 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license. Module model-view-viewmodel
+ * is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -28,8 +29,10 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
- * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
+ * This class is a UI thread for drawing the {@link BallItem}, and provides
+ * methods to suspend
+ * and resume execution. It holds the reference of {@link BallItem} to delegate
+ * the draw task.
  */
 
 @Slf4j
@@ -38,41 +41,49 @@ public class BallThread extends Thread {
   @Setter
   private BallItem twin;
 
-  private volatile boolean isSuspended;
-
   private volatile boolean isRunning = true;
+  private boolean isSuspended = false; // Removed volatile, now synchronized.
 
   /**
    * Run the thread.
    */
   public void run() {
-
-    while (isRunning) {
-      if (!isSuspended) {
+    synchronized (this) {
+      while (isRunning) {
+        while (isSuspended) {
+          try {
+            wait(); // Puts the thread in waiting state.
+          } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Restores the interruption.
+            return;
+          }
+        }
         twin.draw();
         twin.move();
-      }
-      try {
-        Thread.sleep(250);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
+        try {
+          Thread.sleep(250);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+          return;
+        }
       }
     }
   }
 
-  public void suspendMe() {
+  public synchronized void suspendMe() {
     isSuspended = true;
-    LOGGER.info("Begin to suspend BallThread");
+    LOGGER.info("Suspending BallThread");
   }
 
-  public void resumeMe() {
+  public synchronized void resumeMe() {
     isSuspended = false;
-    LOGGER.info("Begin to resume BallThread");
+    notify(); // Wakes up the thread from waiting state.
+    LOGGER.info("Resuming BallThread");
   }
 
-  public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
+  public synchronized void stopMe() {
+    isRunning = false;
+    isSuspended = false;
+    notify(); // Makes sure the thread wakes up and exits (stops).
   }
 }
-
