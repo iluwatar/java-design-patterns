@@ -3439,6 +3439,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "Duartegdm",
+      "name": "Gabriel Duarte",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137895372?v=4",
+      "profile": "https://github.com/Duartegdm",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 6,
