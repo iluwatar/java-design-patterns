@@ -90,7 +90,7 @@ public class BallThread extends Thread {
   public void run() {
     synchronized (this) {
       while (isRunning) {
-        while (isSuspended) {
+        while (isSuspended && isRunning) {
           try {
             wait();
           } catch (InterruptedException e) {
@@ -98,6 +98,9 @@ public class BallThread extends Thread {
             return;
           }
         }
+
+        if (!isRunning) break;
+
         twin.draw();
         twin.move();
         try {

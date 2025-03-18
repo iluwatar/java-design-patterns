@@ -50,7 +50,7 @@ public class BallThread extends Thread {
   public void run() {
     synchronized (this) {
       while (isRunning) {
-        while (isSuspended) {
+        while (isSuspended && isRunning) {
           try {
             wait(); // Puts the thread in waiting state.
           } catch (InterruptedException e) {
@@ -58,6 +58,10 @@ public class BallThread extends Thread {
             return;
           }
         }
+
+        if (!isRunning)
+          break; // Secures clean exit
+
         twin.draw();
         twin.move();
         try {
