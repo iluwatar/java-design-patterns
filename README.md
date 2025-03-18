@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-376-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-377-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -561,6 +561,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/maximevtush"><img src="https://avatars.githubusercontent.com/u/154841002?v=4?s=100" width="100px;" alt="Maxim Evtush"/><br /><sub><b>Maxim Evtush</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=maximevtush" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/hvgh88"><img src="https://avatars.githubusercontent.com/u/65297242?v=4?s=100" width="100px;" alt="Harshita Vidapanakal"/><br /><sub><b>Harshita Vidapanakal</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=hvgh88" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/smile-ab"><img src="https://avatars.githubusercontent.com/u/202159894?v=4?s=100" width="100px;" alt="smile-ab"/><br /><sub><b>smile-ab</b></sub></a><br /><a href="#translation-smile-ab" title="Translation">🌍</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=smile-ab" title="Code">💻</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/Francisco-G-P"><img src="https://avatars.githubusercontent.com/u/186766789?v=4?s=100" width="100px;" alt="Francisco-G-P"/><br /><sub><b>Francisco-G-P</b></sub></a><br /><a href="#translation-Francisco-G-P" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
