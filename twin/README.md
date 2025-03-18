@@ -117,14 +117,14 @@ public class BallThread extends Thread {
 
   public synchronized void resumeMe() {
     isSuspended = false;
-    notify();
+    notifyAll();
     LOGGER.info("Resuming BallThread");
   }
 
   public synchronized void stopMe() {
     isRunning = false;
     isSuspended = false;
-    notify();
+    notifyAll();
   }
 }
 ```

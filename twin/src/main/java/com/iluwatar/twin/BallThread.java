@@ -77,13 +77,13 @@ public class BallThread extends Thread {
 
   public synchronized void resumeMe() {
     isSuspended = false;
-    notify(); // Wakes up the thread from waiting state.
+    notifyAll(); // Wakes up the thread from waiting state (prevents lost wake-ups).
     LOGGER.info("Resuming BallThread");
   }
 
   public synchronized void stopMe() {
     isRunning = false;
     isSuspended = false;
-    notify(); // Makes sure the thread wakes up and exits (stops).
+    notifyAll(); // Makes sure the thread wakes up and exits (prevents lost wake-ups).
   }
 }
