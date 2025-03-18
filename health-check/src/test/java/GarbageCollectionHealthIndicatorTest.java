@@ -31,6 +31,7 @@ import java.lang.management.MemoryPoolMXBean;
 import java.lang.management.MemoryUsage;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -72,6 +73,7 @@ class GarbageCollectionHealthIndicatorTest {
               }
             });
     healthIndicator.setMemoryUsageThreshold(0.8);
+    Locale.setDefault(Locale.US);
   }
 
   /** Test case to verify that the health status is up when memory usage is low. */

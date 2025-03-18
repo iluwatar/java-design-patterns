@@ -1,0 +1,12 @@
+@startuml
+package com.iluwatar.function.composition {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class FunctionComposer {
+    + FunctionComposer()
+    + composeFunctions(f1 : Function<Integer, Integer>, f2 : Function<Integer, Integer>) : Function<Integer, Integer> {static}
+  }
+}
+@enduml

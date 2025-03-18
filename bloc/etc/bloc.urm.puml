@@ -1,0 +1,32 @@
+@startuml
+package com.iluwatar.bloc {
+  class Bloc {
+    - currentState : State
+    - listeners : List<StateListener<State>>
+    + Bloc()
+    + addListener(listener : StateListener<State>)
+    + decrement()
+    - emitState(newState : State)
+    + getListeners() : List<StateListener<State>>
+    + increment()
+    + removeListener(listener : StateListener<State>)
+  }
+  class BlocUi {
+    + BlocUi()
+    + createAndShowUi()
+  }
+  interface ListenerManager<T> {
+    + addListener(StateListener<T>) {abstract}
+    + getListeners() : List<StateListener<T>> {abstract}
+    + removeListener(StateListener<T>) {abstract}
+  }
+  class Main {
+    + Main()
+    + main(args : String[]) {static}
+  }
+  interface StateListener<T> {
+    + onStateChange(T) {abstract}
+  }
+}
+Bloc ..|> ListenerManager 
+@enduml

@@ -36,6 +36,7 @@ import com.iluwatar.monolithic.model.User;
 import com.iluwatar.monolithic.repository.OrderRepository;
 import com.iluwatar.monolithic.repository.ProductRepository;
 import com.iluwatar.monolithic.repository.UserRepository;
+import java.util.Locale;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -73,6 +74,7 @@ class MonolithicAppTest {
     ecommerceApp = new EcommerceApp(userService, productService, orderService);
     outputStream = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputStream, true, StandardCharsets.UTF_8));
+    Locale.setDefault(Locale.US);
   }
 
   @Test
