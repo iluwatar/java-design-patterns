@@ -1,29 +1,3 @@
-#
-# The MIT License
-# Copyright © 2014-2021 Ilkka Seppälä
-#
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
-#
-
-# This workflow will build a Java project with Maven
-# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
-
 name: Java PR Builder
 
 on:
@@ -37,47 +11,47 @@ permissions:
 jobs:
   build-and-analyze:
 
-    name: Build on JDK 17
-    runs-on: ubuntu-20.04
+    name: Build on JDK 21
+    runs-on: ubuntu-22.04
     steps:
-    
-    - name: Checkout Code
-      uses: actions/checkout@v4
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
-    
-    - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: 'maven'
 
-    - name: Cache local Maven repository
-      uses: actions/cache@v4
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-        restore-keys: |
-          ${{ runner.os }}-maven-      
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
-    # Cache Sonar packages which as used to run analysis and collect metrics
-    - name: Cache SonarCloud packages
-      uses: actions/cache@v4
-      with:
-        path: ~/.sonar/cache
-        key: ${{ runner.os }}-sonar
-        restore-keys: ${{ runner.os }}-sonar
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
 
-    # Some tests need screen access
-    - name: Install xvfb
-      run: sudo apt-get install -y xvfb
+      - name: Cache local Maven repository
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-      
 
-    - name: Build with Maven and run SonarQube analysis
-      env:
-        # Intermediate variable
-        HEAD_REF: ${{ github.head_ref }}
-        # These two env variables are needed for sonar analysis
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-      run: xvfb-run ./mvnw clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=iluwatar -Dsonar.projectKey=iluwatar_java-design-patterns -Dsonar.pullrequest.branch=$HEAD_REF -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
+      # Cache Sonar packages which are used to run analysis and collect metrics
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+
+      # Some tests need screen access
+      - name: Install xvfb
+        run: sudo apt-get install -y xvfb
+
+      - name: Build with Maven and run SonarQube analysis
+        env:
+          # Intermediate variable
+          HEAD_REF: ${{ github.head_ref }}
+          # These two env variables are needed for sonar analysis
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: xvfb-run ./mvnw clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=iluwatar -Dsonar.projectKey=iluwatar_java-design-patterns -Dsonar.pullrequest.branch=$HEAD_REF -Dsonar.pullrequest.base=${{ github.base_ref }} -Dsonar.pullrequest.key=${{ github.event.pull_request.number }}
