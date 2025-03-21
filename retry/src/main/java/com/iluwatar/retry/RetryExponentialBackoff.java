@@ -1,112 +1,106 @@
-/*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
- * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package com.iluwatar.retry;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 /**
- * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
+ * Decorates {@link BusinessOperation} with "retry with exponential backoff" capabilities.
  *
- * @param <T> the remote op's return type
+ * @param <T> the remote operation's return type
  */
 public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
-  private static final Random RANDOM = new Random();
-  private final BusinessOperation<T> op;
+
+  private final BusinessOperation<T> operation;
   private final int maxAttempts;
   private final long maxDelay;
+  private final Predicate<Exception> ignoreCondition;
+  private final RetryDelayCalculator delayCalculator;
   private final AtomicInteger attempts;
-  private final Predicate<Exception> test;
-  private final List<Exception> errors;
+  private final List<Exception> encounteredErrors;
 
   /**
-   * Ctor.
+   * Constructor.
    *
-   * @param op          the {@link BusinessOperation} to retry
-   * @param maxAttempts number of times to retry
-   * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
-   *                    will be ignored if no tests are given
+   * @param operation       the business operation to retry
+   * @param maxAttempts     the maximum number of retry attempts
+   * @param maxDelay        the maximum delay between retries
+   * @param delayCalculator a delay calculator for customizable backoff logic
+   * @param ignoreCondition a condition to test whether exceptions should be retried
    */
-  @SafeVarargs
   public RetryExponentialBackoff(
-      BusinessOperation<T> op,
+      BusinessOperation<T> operation,
       int maxAttempts,
       long maxDelay,
-      Predicate<Exception>... ignoreTests
+      RetryDelayCalculator delayCalculator,
+      Predicate<Exception> ignoreCondition
   ) {
-    this.op = op;
+    this.operation = operation;
     this.maxAttempts = maxAttempts;
     this.maxDelay = maxDelay;
-    this.attempts = new AtomicInteger();
-    this.test = Arrays.stream(ignoreTests).reduce(Predicate::or).orElse(e -> false);
-    this.errors = new ArrayList<>();
+    this.delayCalculator = delayCalculator;
+    this.ignoreCondition = ignoreCondition;
+    this.attempts = new AtomicInteger(0);
+    this.encounteredErrors = new ArrayList<>();
   }
 
   /**
-   * The errors encountered while retrying, in the encounter order.
+   * Returns an unmodifiable list of encountered errors during retries.
    *
-   * @return the errors encountered while retrying
+   * @return the list of errors
    */
-  public List<Exception> errors() {
-    return Collections.unmodifiableList(this.errors);
+  public List<Exception> getEncounteredErrors() {
+    return Collections.unmodifiableList(encounteredErrors);
   }
 
   /**
-   * The number of retries performed.
+   * Returns the number of attempts made.
    *
-   * @return the number of retries performed
+   * @return the number of retry attempts
    */
-  public int attempts() {
-    return this.attempts.intValue();
+  public int getAttempts() {
+    return attempts.intValue();
   }
 
   @Override
   public T perform() throws BusinessException {
     do {
       try {
-        return this.op.perform();
+        return operation.perform();
       } catch (BusinessException e) {
-        this.errors.add(e);
+        encounteredErrors.add(e);
 
-        if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
-          throw e;
+        if (attempts.incrementAndGet() >= maxAttempts || !ignoreCondition.test(e)) {
+          throw e; // Terminate retries if max attempts reached or ignore condition is not met
         }
 
         try {
-          var testDelay = (long) Math.pow(2, this.attempts()) * 1000 + RANDOM.nextInt(1000);
-          var delay = Math.min(testDelay, this.maxDelay);
+          long delay = Math.min(delayCalculator.calculate(attempts.intValue()), maxDelay);
           Thread.sleep(delay);
-        } catch (InterruptedException f) {
-          //ignore
+        } catch (InterruptedException interruptedException) {
+          Thread.currentThread().interrupt(); // Restore interrupt status
+          throw new BusinessException("Retry operation interrupted", interruptedException);
         }
       }
     } while (true);
+  }
+
+  /**
+   * Interface for calculating retry delay.
+   */
+  public interface RetryDelayCalculator {
+    long calculate(int attempt);
+  }
+
+  /**
+   * Default implementation of exponential backoff with jitter.
+   */
+  public static class ExponentialBackoffWithJitter implements RetryDelayCalculator {
+    @Override
+    public long calculate(int attempt) {
+      long baseDelay = (long) Math.pow(2, attempt) * 1000;
+      return baseDelay + ThreadLocalRandom.current().nextInt(1000);
+    }
   }
 }
