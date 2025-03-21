@@ -24,6 +24,12 @@
  */
 package com.iluwatar.polling;
 
-public class AppTest{
+import org.junit.api.Test;
 
+public class AppTest {
+
+  @Test
+  public void polling() {
+    System.out.println(".(checking.. code is not running)");
+  }
 }
