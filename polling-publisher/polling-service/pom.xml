@@ -33,20 +33,18 @@
       <version>1.26.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.iluwatar</groupId>
     <artifactId>polling-service</artifactId>
     <version>1.26.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <dependencyManagement>
         <dependencies>
-    
           <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
+              <groupId>com.h2database</groupId>
+              <artifactId>h2</artifactId>
+              <scope>runtime</scope>
           </dependency>
-        </dependencies>
+      </dependencies>
     </dependencyManagement>
 
   <build>

@@ -22,36 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.polling.publisher;
+
+package com.iluwatar.polling;
+
+import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
- * Polling-Publisher pattern paradigm.
+ * This class is responsible for keep the events.
  */
-public class App {
-
-  private static final String DEFAULT_URL = "https://raw.githubusercontent.com/iluwatar/java-design-patterns/master/polling-publisher/README.md";
-
-
-  App() {
-
-  }
-
-  int sum(int x, int y){
-    return x+y;
-  }
+@Service
+public class DataSourceService{
 
   /**
-   * Program entry point.
-   *
-   * @param args arguments
-   * @throws InterruptedException if main thread is interrupted.
-   */
-  public static void main(String[] args) throws InterruptedException {
-    var app = new App();
-    try {
-      System.out.println("checking...");
-    } finally {
-      System.out.println("finally-block");
-    }
+   * Function to fetch data from DataRepository.
+   * */
+  public String fetchData(){
+    // Simulate fetching data from a data source
+    return "Sample Data " + System.currentTimeMillis();
   }
 }
