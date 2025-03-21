@@ -32,12 +32,12 @@ import org.springframework.stereotype.Service;
  * This class is responsible for keep the events.
  */
 @Service
-public class DataSourceService{
+public class DataSourceService {
 
   /**
    * Function to fetch data from DataRepository.
    * */
-  public String fetchData(){
+  public String fetchData() {
     // Simulate fetching data from a data source
     return "Sample Data " + System.currentTimeMillis();
   }

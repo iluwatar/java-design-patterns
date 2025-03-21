@@ -31,6 +31,6 @@ import org.springframework.stereotype.Repository;
  * Data repository to keep or store data.
  * */
 @Repository
-public class DataRepository{
+public class DataRepository {
   // Simulate a repository for data access
 }

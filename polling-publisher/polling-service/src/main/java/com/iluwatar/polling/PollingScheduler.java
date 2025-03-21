@@ -33,7 +33,7 @@ import org.springframework.stereotype.Component;
  * This class is responsible for scheduling polling tasks.
  */
 @Component
-public class PollingScheduler{
+public class PollingScheduler {
 
   @Autowired
   private DataSourceService dataSourceService;
@@ -45,9 +45,9 @@ public class PollingScheduler{
    * schedular for poll data on each 5 second.
    * */
   @Scheduled(fixedRate = 5000) // Poll every 5 seconds
-  public void pollDataSource(){
+  public void pollDataSource() {
     String data = dataSourceService.fetchData();
-    if(data != null){
+    if (data != null) {
       kafkaProducer.sendMessage(data);
     }
   }

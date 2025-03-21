@@ -32,10 +32,10 @@ import org.springframework.web.bind.annotation.RestController;
  * This class is responsible for contolling polling tasks.
  */
 @RestController
-public class PollingController{
+public class PollingController {
 
   @GetMapping("/health")
-  public String healthCheck(){
+  public String healthCheck() {
     return "Polling Service is up and running!";
   }
 }

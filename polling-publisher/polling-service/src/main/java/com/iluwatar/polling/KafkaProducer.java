@@ -34,11 +34,11 @@ import org.springframework.stereotype.Service;
  * This class is responsible for sending messages to Kafka.
  */
 @Service
-public class KafkaProducer{
+public class KafkaProducer {
 
   private final KafkaTemplate<String, String> kafkaTemplate;
 
-  public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate){
+  public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
     this.kafkaTemplate = kafkaTemplate;
   }
 
@@ -47,7 +47,7 @@ public class KafkaProducer{
    *
    * @param message The message to send.
    */
-  public void sendMessage(String message){
+  public void sendMessage(String message) {
     kafkaTemplate.send("updates", message);
   }
 }
