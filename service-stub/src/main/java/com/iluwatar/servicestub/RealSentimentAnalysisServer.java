@@ -26,6 +26,7 @@ public class RealSentimentAnalysisServer implements SentimentAnalysisServer {
     this.sentimentSupplier = sentimentSupplier;
   }
 
+  @SuppressWarnings("java:S2245") // Safe use: Randomness is for simulation/testing only
   public RealSentimentAnalysisServer() {
     this(() -> new Random().nextInt(3));
   }
