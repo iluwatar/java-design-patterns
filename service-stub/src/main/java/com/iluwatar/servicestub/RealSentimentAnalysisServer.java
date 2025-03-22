@@ -3,6 +3,11 @@ package com.iluwatar.servicestub;
 import java.util.Random;
 import java.util.function.Supplier;
 
+/**
+ * Real implementation of SentimentAnalysisServer.
+ * Simulates random sentiment classification with processing delay.
+ */
+
 public class RealSentimentAnalysisServer implements SentimentAnalysisServer {
   /**
    * A real sentiment analysis implementation would analyze the input string using, e.g., NLP and
@@ -14,26 +19,26 @@ public class RealSentimentAnalysisServer implements SentimentAnalysisServer {
    * @return sentiment classification result (Positive, Negative, or Neutral)
    */
 
-    private final Supplier<Integer> sentimentSupplier;
+  private final Supplier<Integer> sentimentSupplier;
 
-    // Constructor
-    public RealSentimentAnalysisServer(Supplier<Integer> sentimentSupplier) {
-      this.sentimentSupplier = sentimentSupplier;
-    }
-
-    public RealSentimentAnalysisServer() {
-      this(() -> new Random().nextInt(3));
-    }
-
-    @Override
-    public String analyzeSentiment(String text) {
-      int sentiment = sentimentSupplier.get();
-      try {
-        Thread.sleep(5000);
-      } catch (InterruptedException e) {
-        Thread.currentThread().interrupt();
-      }
-      return sentiment == 0 ? "Positive" : sentiment == 1 ? "Negative" : "Neutral";
-    }
+  // Constructor
+  public RealSentimentAnalysisServer(Supplier<Integer> sentimentSupplier) {
+    this.sentimentSupplier = sentimentSupplier;
   }
+
+  public RealSentimentAnalysisServer() {
+    this(() -> new Random().nextInt(3));
+  }
+
+  @Override
+  public String analyzeSentiment(String text) {
+    int sentiment = sentimentSupplier.get();
+    try {
+      Thread.sleep(5000);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+    }
+    return sentiment == 0 ? "Positive" : sentiment == 1 ? "Negative" : "Neutral";
+  }
+}
 

@@ -1,5 +1,10 @@
 package com.iluwatar.servicestub;
 
+/**
+ * Stub implementation of SentimentAnalysisServer.
+ * Returns deterministic sentiment based on input keywords.
+ */
+
 public class StubSentimentAnalysisServer implements SentimentAnalysisServer {
 
   /**
@@ -13,11 +18,9 @@ public class StubSentimentAnalysisServer implements SentimentAnalysisServer {
   public String analyzeSentiment(String text) {
     if (text.toLowerCase().contains("good")) {
       return "Positive";
-    }
-    else if (text.toLowerCase().contains("bad")) {
+    } else if (text.toLowerCase().contains("bad")) {
       return "Negative";
-    }
-    else {
+    } else {
       return "Neutral";
     }
   }
