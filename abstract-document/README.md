@@ -33,6 +33,11 @@ Wikipedia says
 
 > An object-oriented structural design pattern for organizing objects in loosely typed key-value stores and exposing the data using typed views. The purpose of the pattern is to achieve a high degree of flexibility between components in a strongly typed language where new properties can be added to the object-tree on the fly, without losing the support of type-safety. The pattern makes use of traits to separate different properties of a class into different interfaces.
 
+Class diagram
+
+![Abstract Document class diagram](./etc/abstract-document.png "Abstract Document class diagram")
+
+
 ## Programmatic Example of Abstract Document Pattern in Java
 
 Consider a car that consists of multiple parts. However, we don't know if the specific car really has all the parts, or just some of them. Our cars are dynamic and extremely flexible.
@@ -119,6 +124,13 @@ public interface HasParts extends Document {
         return children(Property.PARTS.toString(), Part::new);
     }
 }
+
+public class Part extends AbstractDocument implements HasType, HasModel, HasPrice {
+
+    public Part(Map<String, Object> properties) {
+        super(properties);
+    }
+}
 ```
 
 Now we are ready to introduce the `Car`.
@@ -178,10 +190,6 @@ The program output:
 07:21:57.395 [main] INFO com.iluwatar.abstractdocument.App -- 	wheel/15C/100
 07:21:57.395 [main] INFO com.iluwatar.abstractdocument.App -- 	door/Lambo/300
 ```
-
-## Abstract Document Pattern Class Diagram
-
-![Abstract Document](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
 ## When to Use the Abstract Document Pattern in Java
 
