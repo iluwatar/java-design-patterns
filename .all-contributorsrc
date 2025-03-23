@@ -3457,6 +3457,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "johnklint81",
+      "name": "John Klint",
+      "avatar_url": "https://avatars.githubusercontent.com/u/70539458?v=4",
+      "profile": "https://github.com/johnklint81",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
