@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-378-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-379-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -563,6 +563,9 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/smile-ab"><img src="https://avatars.githubusercontent.com/u/202159894?v=4?s=100" width="100px;" alt="smile-ab"/><br /><sub><b>smile-ab</b></sub></a><br /><a href="#translation-smile-ab" title="Translation">🌍</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=smile-ab" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/Francisco-G-P"><img src="https://avatars.githubusercontent.com/u/186766789?v=4?s=100" width="100px;" alt="Francisco-G-P"/><br /><sub><b>Francisco-G-P</b></sub></a><br /><a href="#translation-Francisco-G-P" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/Duartegdm"><img src="https://avatars.githubusercontent.com/u/137895372?v=4?s=100" width="100px;" alt="Gabriel Duarte"/><br /><sub><b>Gabriel Duarte</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Duartegdm" title="Documentation">📖</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/DenizAltunkapan"><img src="https://avatars.githubusercontent.com/u/93663085?v=4?s=100" width="100px;" alt="Deniz Altunkapan"/><br /><sub><b>Deniz Altunkapan</b></sub></a><br /><a href="#translation-DenizAltunkapan" title="Translation">🌍</a></td>
     </tr>
   </tbody>
 </table>
