@@ -3448,6 +3448,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "DenizAltunkapan",
+      "name": "Deniz Altunkapan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/93663085?v=4",
+      "profile": "https://github.com/DenizAltunkapan",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
