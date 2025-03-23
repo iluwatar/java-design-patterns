@@ -41,6 +41,11 @@ Wikipedia says
 > * The implementation of the active object method.
 > * A callback or variable for the client to receive the result.
 
+Sequence diagram
+
+![Active Object sequence diagram](./etc/active-object-sequence-diagram.png)
+
+
 ## Programmatic Example of Active Object in Java
 
 This section explains how the Active Object design pattern works in Java, highlighting its use in asynchronous task management and concurrency control.
