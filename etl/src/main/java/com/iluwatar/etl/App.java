@@ -22,18 +22,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+package com.iluwatar.etl;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-
-import org.junit.jupiter.api.Test;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.List;
 
 /**
- * Thief test
+ * The ETL pattern is a ...
  */
-class ThiefTest {
-  @Test
-  void testThief() {
-    var thief = new Thief();
-    assertFalse(thief instanceof Permission);
+public class App {
+
+  /**
+   * Program entry point.
+   *
+   * @param args command line args
+   */
+  public static void main(String[] args) {	  
+	    var extract = new Extract();
+	    var transform = new Transform();
+
+	    
+	    try {
+	    	 List<List<String>> result = extract.extract();
+	    	 transform.transform(result);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
   }
 }

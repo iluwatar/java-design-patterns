@@ -170,7 +170,6 @@ Use the Fluent Interface Pattern in Java when
 * [Google Guava FluentIterable](https://github.com/google/guava/wiki/FunctionalExplained)
 * [JOOQ](http://www.jooq.org/doc/3.0/manual/getting-started/use-cases/jooq-as-a-standalone-sql-builder/)
 * [Mockito](http://mockito.org/)
-* [Java Hamcrest](http://code.google.com/p/hamcrest/wiki/Tutorial)
 * Builders in libraries like Apache Camel for integration workflows.
 
 ## Benefits and Trade-offs of Fluent Interface Pattern
