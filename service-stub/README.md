@@ -49,7 +49,7 @@ public interface SentimentAnalysisServer {
 }
 ```
 The real sentiment analysis class returns a random response for a given input and simulates the runtime by sleeping 
-the Thread for 5 seconds. The Supplier<Integer> allows injecting controlled sentiment values during testing, ensuring
+the Thread for 5 seconds. The Supplier\<Integer\> allows injecting controlled sentiment values during testing, ensuring
 deterministic outputs.
 ```java
 public class RealSentimentAnalysisServer implements SentimentAnalysisServer {
