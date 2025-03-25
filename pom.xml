@@ -226,6 +226,7 @@
     <module>table-inheritance</module>
     <module>bloc</module>
     <module>map-reduce</module>
+      <module>service-stub</module>
   </modules>
   <repositories>
     <repository>

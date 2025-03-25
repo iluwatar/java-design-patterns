@@ -29,6 +29,11 @@ In plain words
 
 > The Acyclic Visitor pattern allows new functions to be added to existing class hierarchies without affecting those hierarchies, and without creating the dependency cycles that are inherent to the GangOfFour VisitorPattern.
 
+Sequence diagram
+
+![Acyclic Visitor sequence diagram](./etc/acyclic-visitor-sequence-diagram.png "Acyclic Visitor sequence diagram")
+
+
 ## Programmatic Example of Acyclic Visitor in Java
 
 In this Java example, we have a hierarchy of modem classes illustrating the Acyclic Visitor pattern. The modems in this hierarchy need to be visited by an external algorithm based on filtering criteria (is it Unix or DOS compatible modem).
@@ -137,10 +142,6 @@ Program output:
 09:15:11.127 [main] INFO com.iluwatar.acyclicvisitor.Hayes -- Only HayesVisitor is allowed to visit Hayes modem
 09:15:11.127 [main] INFO com.iluwatar.acyclicvisitor.ConfigureForUnixVisitor -- Zoom modem used with Unix configurator.
 ```
-
-## Acyclic Visitor Pattern Class Diagram
-
-![Acyclic Visitor](./etc/acyclic-visitor.png "Acyclic Visitor")
 
 ## When to Use the Acyclic Visitor Pattern in Java
 
