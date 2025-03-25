@@ -423,29 +423,6 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <groupId>com.iluwatar.urm</groupId>
-        <artifactId>urm-maven-plugin</artifactId>
-        <version>${urm-maven-plugin.version}</version>
-        <configuration>
-          <!-- if outputDirectory is not set explicitly it will default to your build dir -->
-          <outputDirectory>${project.basedir}/etc</outputDirectory>
-          <packages>
-            <param>com.iluwatar</param>
-          </packages>
-          <includeMainDirectory>true</includeMainDirectory>
-          <includeTestDirectory>false</includeTestDirectory>
-          <presenter>plantuml</presenter>
-        </configuration>
-        <executions>
-          <execution>
-            <phase>process-classes</phase>
-            <goals>
-              <goal>map</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 </project>
