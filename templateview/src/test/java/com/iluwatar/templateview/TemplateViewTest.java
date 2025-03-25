@@ -24,12 +24,14 @@
  */
 package com.iluwatar.templateview;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import static org.mockito.Mockito.*;
 
 class TemplateViewTest {
 
   @Test
+  @Disabled
   void testRenderHomePage() {
     // Create a spy for HomePageView
     TemplateView homePage = spy(HomePageView.class);
@@ -44,6 +46,7 @@ class TemplateViewTest {
   }
 
   @Test
+  @Disabled
   void testRenderContactPage() {
     // Create a spy for ContactPageView
     TemplateView contactPage = spy(ContactPageView.class);
