@@ -31,7 +31,6 @@ import static org.mockito.Mockito.*;
 class HomePageViewTest {
 
   @Test
-  @Disabled
   void testRenderDynamicContent() {
     // Create a spy for HomePageView
     HomePageView homePage = spy(HomePageView.class);

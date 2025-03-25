@@ -31,7 +31,6 @@ import static org.mockito.Mockito.*;
 class ContactPageViewTest {
 
   @Test
-  @Disabled
   void testRenderDynamicContent() {
     // Create a spy for ContactPageView
     ContactPageView contactPage = spy(ContactPageView.class);
