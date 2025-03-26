@@ -1,111 +1,122 @@
-/*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
- * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 package com.iluwatar.commander;
 
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 /**
- * Retry pattern.
+ * Retry class that applies the retry pattern with customizable backoff and error handling.
  *
- * @param <T> is the type of object passed into HandleErrorIssue as a parameter.
+ * @param <T> The type of object passed into HandleErrorIssue as a parameter.
  */
-
 public class Retry<T> {
 
   /**
-   * Operation Interface will define method to be implemented.
+   * Operation interface for performing the core operation.
    */
-
   public interface Operation {
     void operation(List<Exception> list) throws Exception;
   }
 
   /**
-   * HandleErrorIssue defines how to handle errors.
+   * HandleErrorIssue defines how to handle errors during retries.
    *
-   * @param <T> is the type of object to be passed into the method as parameter.
+   * @param <T> The type of object passed into the method as a parameter.
    */
-
   public interface HandleErrorIssue<T> {
     void handleIssue(T obj, Exception e);
   }
 
-  private static final SecureRandom RANDOM = new SecureRandom();
+  /**
+   * BackoffStrategy defines the strategy for calculating retry delay.
+   */
+  public interface BackoffStrategy {
+    long calculateDelay(int attempt);
+  }
 
-  private final Operation op;
-  private final HandleErrorIssue<T> handleError;
+  private final Operation operation;
+  private final HandleErrorIssue<T> errorHandler;
   private final int maxAttempts;
-  private final long maxDelay;
+  private final BackoffStrategy backoffStrategy;
+  private final Predicate<Exception> ignoreCondition;
   private final AtomicInteger attempts;
-  private final Predicate<Exception> test;
-  private final List<Exception> errors;
+  private final List<Exception> errorList;
 
-  Retry(Operation op, HandleErrorIssue<T> handleError, int maxAttempts,
-        long maxDelay, Predicate<Exception>... ignoreTests) {
-    this.op = op;
-    this.handleError = handleError;
+  /**
+   * Constructor for Retry class.
+   *
+   * @param operation       The operation to retry.
+   * @param errorHandler    The handler for errors.
+   * @param maxAttempts     The maximum number of retry attempts.
+   * @param backoffStrategy The backoff strategy for retry delays.
+   * @param ignoreCondition A predicate to determine whether to ignore certain exceptions.
+   */
+  public Retry(Operation operation, HandleErrorIssue<T> errorHandler, int maxAttempts,
+               BackoffStrategy backoffStrategy, Predicate<Exception> ignoreCondition) {
+    this.operation = operation;
+    this.errorHandler = errorHandler;
     this.maxAttempts = maxAttempts;
-    this.maxDelay = maxDelay;
-    this.attempts = new AtomicInteger();
-    this.test = Arrays.stream(ignoreTests).reduce(Predicate::or).orElse(e -> false);
-    this.errors = new ArrayList<>();
+    this.backoffStrategy = backoffStrategy;
+    this.ignoreCondition = ignoreCondition;
+    this.attempts = new AtomicInteger(0);
+    this.errorList = new ArrayList<>();
   }
 
   /**
-   * Performing the operation with retries.
+   * Perform the operation with retries.
    *
-   * @param list is the exception list
-   * @param obj  is the parameter to be passed into handleIsuue method
+   * @param exceptions The list of exceptions encountered during retries.
+   * @param obj        The object passed to the error handler.
    */
-
-  public void perform(List<Exception> list, T obj) {
+  public void perform(List<Exception> exceptions, T obj) {
     do {
       try {
-        op.operation(list);
-        return;
+        operation.operation(exceptions);
+        return; // Exit if successful
       } catch (Exception e) {
-        this.errors.add(e);
-        if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(e)) {
-          this.handleError.handleIssue(obj, e);
-          return; //return here... don't go further
+        errorList.add(e);
+
+        if (attempts.incrementAndGet() >= maxAttempts || !ignoreCondition.test(e)) {
+          errorHandler.handleIssue(obj, e);
+          return; // Stop retrying if max attempts are exceeded or exception is non-recoverable
         }
+
         try {
-          long testDelay =
-              (long) Math.pow(2, this.attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
-          long delay = Math.min(testDelay, this.maxDelay);
+          long delay = backoffStrategy.calculateDelay(attempts.intValue());
           Thread.sleep(delay);
-        } catch (InterruptedException f) {
-          //ignore
+        } catch (InterruptedException ie) {
+          Thread.currentThread().interrupt(); // Restore interrupted status
+          errorHandler.handleIssue(obj, new RuntimeException("Thread interrupted during retry", ie));
+          return;
         }
       }
     } while (true);
   }
 
+  /**
+   * Returns an unmodifiable list of errors encountered during retries.
+   *
+   * @return A list of encountered errors.
+   */
+  public List<Exception> getErrorList() {
+    return Collections.unmodifiableList(errorList);
+  }
+
+  /**
+   * Default ExponentialBackoffStrategy with jitter.
+   */
+  public static class ExponentialBackoffWithJitter implements BackoffStrategy {
+    private final long maxDelay;
+
+    public ExponentialBackoffWithJitter(long maxDelay) {
+      this.maxDelay = maxDelay;
+    }
+
+    @Override
+    public long calculateDelay(int attempt) {
+      long baseDelay = (long) Math.pow(2, attempt) * 1000;
+      return Math.min(baseDelay + ThreadLocalRandom.current().nextInt(1000), maxDelay);
+    }
+  }
 }
