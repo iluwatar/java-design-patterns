@@ -1,0 +1,125 @@
+@startuml
+package com.iluwatar.vertical-slice-architecture {
+
+  !define ENTITY class
+  !define SERVICE class
+  !define REPOSITORY class
+  !define VIEW class
+
+  package Customer {
+    ENTITY Customer {
+      +id: int
+      name: String
+      email: String
+      +getId(): int
+      +getName(): String
+      +getEmail(): String
+      +builder(): Builder
+    }
+
+    SERVICE CustomerService {
+      +createCustomer(name: String, email: String): Customer
+      +getCustomerById(id: int): Customer
+      +getAllCustomers(): List<Customer>
+    }
+
+    REPOSITORY CustomerRepository {
+      +save(customer: Customer): Customer
+      +findById(id: int): Optional<Customer>
+      +findAll(): List<Customer>
+    }
+
+
+    VIEW CustomerView {
+      -customerService: CustomerService
+      -LOGGER: logger
+      +render(): void
+    }
+  }
+
+  package Product {
+    ENTITY Product {
+      +id: int
+      name: String
+      price: double
+      +getId(): int
+      +getName(): String
+      +getPrice(): Double
+      +builder(): Builder
+    }
+
+    SERVICE ProductService {
+      +createProduct(name: String, price: double): Product
+      +getProductById(id: int): Product
+      +getAllProducts(): List<Product>
+    }
+
+    REPOSITORY ProductRepository {
+      +save(product: Product): Product
+      +findById(id: int): Optional<Product>
+      +findAll(): List<Product>
+    }
+
+
+    VIEW ProductView {
+      -productService: ProductService
+      -LOGGER: logger
+      +render(): void
+    }
+  }
+
+  package Order {
+    ENTITY Orders {
+      +id: int
+      customer: Customer
+      product: Product
+      +getId(): int
+      +getCustomer(): Customer
+      +getProduct(): Product
+      +builder(): Builder
+    }
+
+    SERVICE OrderService {
+      +createOrder(customer: Customer, product: Product): void
+      +getOrderById(id: int): Orders
+      +getOrdersByCustomer(customer: Customer): List<Orders>
+    }
+
+    REPOSITORY OrderRepository {
+      +save(order: Orders): Orders
+      +findById(id: int): Optional<Orders>
+      +findByCustomer(customer: Customer): List<Orders>
+    }
+
+
+    VIEW OrderView {
+      -orderService: OrderService
+      -LOGGER: logger
+      +render(customer: Customer): void
+      +showAllOrders(orders: List<Orders>): void
+    }
+  }
+
+  class App {
+    +initializeData(): void
+    +run(): void
+  }
+
+  Customer.Customer --> Customer.CustomerService
+  Customer.CustomerService --> Customer.CustomerRepository
+  Customer.CustomerService --> Customer.CustomerView
+
+  Product.Product --> Product.ProductService
+  Product.ProductService --> Product.ProductRepository
+  Product.ProductService --> Product.ProductView
+
+  Order.Orders --> Order.OrderService
+  Order.OrderService --> Order.OrderRepository
+  Order.OrderService --> Order.OrderView
+
+  App --> Customer.CustomerService
+  App --> Product.ProductService
+  App --> Order.OrderService
+
+}
+@enduml
