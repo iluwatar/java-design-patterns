@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+f<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
@@ -424,5 +424,21 @@
         </executions>
       </plugin>
     </plugins>
+    <build>
+    <plugins>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.10</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
   </build>
 </project>
