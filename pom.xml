@@ -37,7 +37,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>5.0.0.4389</sonar-maven-plugin.version>
-<!--    <spring-boot.version>2.7.5</spring-boot.version>-->
+    <spring-boot.version>3.4.4</spring-boot.version>
     <jacoco.version>0.8.12</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <htmlunit.version>4.7.0</htmlunit.version>
@@ -67,8 +67,8 @@
     <module>active-object</module>
     <module>acyclic-visitor</module>
     <module>adapter</module>
-<!--    <module>ambassador</module>-->
-<!--    <module>anti-corruption-layer</module>-->
+    <module>ambassador</module>
+    <module>anti-corruption-layer</module>
 <!--    <module>arrange-act-assert</module>-->
 <!--    <module>async-method-invocation</module>-->
 <!--    <module>balking</module>-->
@@ -245,6 +245,18 @@
 <!--        <type>pom</type>-->
 <!--        <scope>import</scope>-->
 <!--      </dependency>-->
+
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+        <version>${spring-boot.version}</version>
+      </dependency>
       <dependency>
         <groupId>commons-dbcp</groupId>
         <artifactId>commons-dbcp</artifactId>
