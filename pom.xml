@@ -54,6 +54,8 @@
     <slf4j.version>2.0.17</slf4j.version>
     <logback.version>1.5.18</logback.version>
     <mockito.version>5.16.1</mockito.version>
+    <mongo.version>5.4.0</mongo.version>
+    <bson.version>5.4.0</bson.version>
     <!-- SonarCloud -->
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.organization>iluwatar</sonar.organization>
@@ -73,11 +75,11 @@
 <!--    <module>async-method-invocation</module>-->
 <!--    <module>balking</module>-->
 <!--    <module>bloc</module>-->
-    <module>bridge</module>
-    <module>builder</module>
-    <module>business-delegate</module>
-    <module>bytecode</module>
-<!--    <module>caching</module>-->
+<!--    <module>bridge</module>-->
+<!--    <module>builder</module>-->
+<!--    <module>business-delegate</module>-->
+<!--    <module>bytecode</module>-->
+    <module>caching</module>
 <!--    <module>callback</module>-->
 <!--    <module>chain-of-responsibility</module>-->
 <!--    <module>circuit-breaker</module>-->
@@ -303,6 +305,16 @@
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
         <version>${mockito.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>bson</artifactId>
+        <version>${bson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-legacy</artifactId>
+        <version>${mongo.version}</version>
       </dependency>
       <!--      <dependency>-->
 <!--        <groupId>ch.qos.logback</groupId>-->
