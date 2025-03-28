@@ -24,14 +24,14 @@
  */
 package com.iluwatar.bloc;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import javax.swing.*;
 import java.awt.*;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BlocUiTest {
 
@@ -43,7 +43,7 @@ public class BlocUiTest {
   private Bloc bloc;
   private StateListener<State> stateListener;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     bloc = new Bloc();  // Re-initialize the Bloc for each test
 
@@ -82,12 +82,11 @@ public class BlocUiTest {
     frame.setVisible(true);
   }
 
-  @After
+  @AfterEach
   public void tearDown() {
     frame.dispose();
     bloc = new Bloc();  // Reset Bloc state after each test to avoid state carryover
   }
-
 
   @Test
   public void testIncrementButton() {
