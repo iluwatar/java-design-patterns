@@ -62,15 +62,15 @@
     <sonar.projectName>Java Design Patterns</sonar.projectName>
   </properties>
   <modules>
-    <module>abstract-document</module>
-    <module>abstract-factory</module>
-    <module>active-object</module>
-    <module>acyclic-visitor</module>
-    <module>adapter</module>
-    <module>ambassador</module>
-    <module>anti-corruption-layer</module>
-<!--    <module>arrange-act-assert</module>-->
-<!--    <module>async-method-invocation</module>-->
+<!--    <module>abstract-document</module>-->
+<!--    <module>abstract-factory</module>-->
+<!--    <module>active-object</module>-->
+<!--    <module>acyclic-visitor</module>-->
+<!--    <module>adapter</module>-->
+<!--    <module>ambassador</module>-->
+<!--    <module>anti-corruption-layer</module>-->
+    <module>arrange-act-assert</module>
+    <module>async-method-invocation</module>
 <!--    <module>balking</module>-->
 <!--    <module>bloc</module>-->
 <!--    <module>bridge</module>-->
