@@ -56,6 +56,7 @@
     <mockito.version>5.16.1</mockito.version>
     <mongo.version>5.4.0</mongo.version>
     <bson.version>5.4.0</bson.version>
+    <h2.version>2.3.232</h2.version>
     <!-- SonarCloud -->
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.organization>iluwatar</sonar.organization>
@@ -79,7 +80,7 @@
 <!--    <module>builder</module>-->
 <!--    <module>business-delegate</module>-->
 <!--    <module>bytecode</module>-->
-    <module>caching</module>
+<!--    <module>caching</module>-->
 <!--    <module>callback</module>-->
 <!--    <module>chain-of-responsibility</module>-->
 <!--    <module>circuit-breaker</module>-->
@@ -88,7 +89,7 @@
 <!--    <module>collection-pipeline</module>-->
 <!--    <module>combinator</module>-->
 <!--    <module>command</module>-->
-<!--    <module>command-query-responsibility-segregation</module>-->
+    <module>command-query-responsibility-segregation</module>
 <!--    <module>commander</module>-->
 <!--    <module>component</module>-->
 <!--    <module>composite</module>-->
@@ -315,6 +316,11 @@
         <groupId>org.mongodb</groupId>
         <artifactId>mongodb-driver-legacy</artifactId>
         <version>${mongo.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${h2.version}</version>
       </dependency>
       <!--      <dependency>-->
 <!--        <groupId>ch.qos.logback</groupId>-->
