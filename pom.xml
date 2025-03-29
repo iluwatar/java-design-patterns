@@ -136,7 +136,7 @@
 <!--    <module>gateway</module>-->
 <!--    <module>guarded-suspension</module>-->
 <!--    <module>half-sync-half-async</module>-->
-    <module>health-check</module>
+<!--    <module>health-check</module>-->
 <!--    <module>hexagonal-architecture</module>-->
 <!--    <module>identity-map</module>-->
 <!--    <module>intercepting-filter</module>-->
@@ -150,8 +150,9 @@
 <!--    <module>map-reduce</module>-->
 <!--    <module>marker-interface</module>-->
 <!--    <module>master-worker</module>-->
-<!--    <module>mediator</module>-->
-<!--    <module>metadata-mapping</module>-->
+<!--        <module>mediator</module>-->
+<!--        <module>memento</module>-->
+    <module>metadata-mapping</module>
 <!--    <module>microservices-aggregrator</module>-->
 <!--    <module>microservices-api-gateway</module>-->
 <!--    <module>microservices-client-side-ui-composition</module>-->
@@ -304,6 +305,12 @@
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-params</artifactId>
         <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
