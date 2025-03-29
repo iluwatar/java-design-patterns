@@ -227,6 +227,7 @@
     <module>bloc</module>
     <module>map-reduce</module>
       <module>service-stub</module>
+      <module>publish-subscribe</module>
   </modules>
   <repositories>
     <repository>
