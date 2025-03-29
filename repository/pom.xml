@@ -33,26 +33,15 @@
     <version>1.26.0-SNAPSHOT</version>
   </parent>
   <artifactId>repository</artifactId>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <type>pom</type>
-        <version>3.2.3</version>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>6.4.4.Final</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
   <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
+      <version>3.4.4</version>
     </dependency>
     <dependency>
       <groupId>org.hibernate</groupId>
@@ -74,14 +63,22 @@
     <dependency>
       <groupId>jakarta.xml.bind</groupId>
       <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>4.0.2</version>
     </dependency>
     <dependency>
       <groupId>jakarta.annotation</groupId>
       <artifactId>jakarta.annotation-api</artifactId>
+      <version>2.1.1</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>6.4.4.Final</version>
     </dependency>
   </dependencies>
   <build>
