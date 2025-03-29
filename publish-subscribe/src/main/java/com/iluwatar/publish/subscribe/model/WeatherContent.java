@@ -1,7 +1,7 @@
 package com.iluwatar.publish.subscribe.model;
 
 /**
- * This enum defines the content for {@link Topic} WEATHER
+ * This enum defines the content for {@link Topic} WEATHER.
  */
 public enum WeatherContent {
   earthquake("earthquake tsunami warning"),

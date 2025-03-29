@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
- * This class represents a Topic that topic name and subscribers
+ * This class represents a Topic that topic name and subscribers.
  */
 public class Topic {
 
@@ -22,7 +22,7 @@ public class Topic {
   }
 
   /**
-   * Get the name of the topic
+   * Get the name of the topic.
    *
    * @return topic name
    */
@@ -31,7 +31,7 @@ public class Topic {
   }
 
   /**
-   * Add a subscriber to the list of subscribers
+   * Add a subscriber to the list of subscribers.
    *
    * @param subscriber subscriber to add
    */
@@ -40,7 +40,7 @@ public class Topic {
   }
 
   /**
-   * Remove a subscriber to the list of subscribers
+   * Remove a subscriber to the list of subscribers.
    *
    * @param subscriber subscriber to remove
    */
@@ -49,7 +49,7 @@ public class Topic {
   }
 
   /**
-   * Publish a message to subscribers
+   * Publish a message to subscribers.
    *
    * @param message message with content to publish
    */

@@ -8,7 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class is an implementation of the Publisher
+ * This class is an implementation of the Publisher.
  */
 public class PublisherImpl implements Publisher {
 
