@@ -89,7 +89,7 @@
 <!--    <module>collection-pipeline</module>-->
 <!--    <module>combinator</module>-->
 <!--    <module>command</module>-->
-    <module>command-query-responsibility-segregation</module>
+<!--    <module>command-query-responsibility-segregation</module>-->
 <!--    <module>commander</module>-->
 <!--    <module>component</module>-->
 <!--    <module>composite</module>-->
@@ -97,8 +97,8 @@
 <!--    <module>composite-view</module>-->
 <!--    <module>context-object</module>-->
 <!--    <module>converter</module>-->
-<!--    <module>currying</module>-->
 <!--    <module>curiously-recurring-template-pattern</module>-->
+<!--    <module>currying</module>-->
 <!--    <module>data-access-object</module>-->
 <!--    <module>data-bus</module>-->
 <!--    <module>data-locality</module>-->
@@ -136,7 +136,7 @@
 <!--    <module>gateway</module>-->
 <!--    <module>guarded-suspension</module>-->
 <!--    <module>half-sync-half-async</module>-->
-<!--    <module>health-check</module>-->
+    <module>health-check</module>
 <!--    <module>hexagonal-architecture</module>-->
 <!--    <module>identity-map</module>-->
 <!--    <module>intercepting-filter</module>-->
@@ -252,6 +252,21 @@
       <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
         <version>${spring-boot.version}</version>
       </dependency>
       <dependency>

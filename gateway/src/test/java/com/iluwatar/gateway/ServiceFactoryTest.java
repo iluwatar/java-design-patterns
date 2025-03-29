@@ -24,25 +24,21 @@
  */
 package com.iluwatar.gateway;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
-
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.junit.Before;
-import org.junit.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ServiceFactoryTest {
+
     private GatewayFactory gatewayFactory;
     private ExecutorService executorService;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         gatewayFactory = new GatewayFactory();
         executorService = Executors.newFixedThreadPool(2);
         gatewayFactory.registerGateway("ServiceA", new ExternalServiceA());
@@ -51,25 +47,25 @@ public class ServiceFactoryTest {
     }
 
     @Test
-    public void testGatewayFactoryRegistrationAndRetrieval() {
+    void testGatewayFactoryRegistrationAndRetrieval() {
         Gateway serviceA = gatewayFactory.getGateway("ServiceA");
         Gateway serviceB = gatewayFactory.getGateway("ServiceB");
         Gateway serviceC = gatewayFactory.getGateway("ServiceC");
 
         // Check if the retrieved instances match their expected types
-        assertTrue("ServiceA should be an instance of ExternalServiceA", serviceA instanceof ExternalServiceA);
-        assertTrue("ServiceB should be an instance of ExternalServiceB", serviceB instanceof ExternalServiceB);
-        assertTrue("ServiceC should be an instance of ExternalServiceC", serviceC instanceof ExternalServiceC);
+        assertTrue(serviceA instanceof ExternalServiceA, "ServiceA should be an instance of ExternalServiceA");
+        assertTrue(serviceB instanceof ExternalServiceB, "ServiceB should be an instance of ExternalServiceB");
+        assertTrue(serviceC instanceof ExternalServiceC, "ServiceC should be an instance of ExternalServiceC");
     }
 
     @Test
-    public void testGatewayFactoryRegistrationWithNonExistingKey() {
+    void testGatewayFactoryRegistrationWithNonExistingKey() {
         Gateway nonExistingService = gatewayFactory.getGateway("NonExistingService");
         assertNull(nonExistingService);
     }
 
     @Test
-    public void testGatewayFactoryConcurrency() throws InterruptedException {
+    void testGatewayFactoryConcurrency() throws InterruptedException {
         int numThreads = 10;
         CountDownLatch latch = new CountDownLatch(numThreads);
         AtomicBoolean failed = new AtomicBoolean(false);
@@ -88,6 +84,6 @@ public class ServiceFactoryTest {
         }
 
         latch.await();
-        assertFalse("This should not fail", failed.get());
+        assertFalse(failed.get(), "This should not fail");
     }
 }

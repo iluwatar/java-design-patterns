@@ -24,23 +24,20 @@
  */
 package com.iluwatar.gateway;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
+
     private GatewayFactory gatewayFactory;
     private ExecutorService executorService;
 
-    @Before
-    public void setUp() {
+    @BeforeEach
+    void setUp() {
         gatewayFactory = new GatewayFactory();
         executorService = Executors.newFixedThreadPool(2);
         gatewayFactory.registerGateway("ServiceA", new ExternalServiceA());
@@ -49,7 +46,7 @@ public class AppTest {
     }
 
     @Test
-    public void testServiceAExecution() throws InterruptedException, ExecutionException {
+    void testServiceAExecution() throws InterruptedException, ExecutionException {
         // Test Service A execution
         Future<?> serviceAFuture = executorService.submit(() -> {
             try {
@@ -65,7 +62,7 @@ public class AppTest {
     }
 
     @Test
-    public void testServiceCExecutionWithException() throws InterruptedException, ExecutionException {
+    void testServiceCExecutionWithException() throws InterruptedException, ExecutionException {
         // Test Service B execution with an exception
         Future<?> serviceBFuture = executorService.submit(() -> {
             try {
@@ -81,7 +78,7 @@ public class AppTest {
     }
 
     @Test
-    public void testServiceCExecution() throws InterruptedException, ExecutionException {
+    void testServiceCExecution() throws InterruptedException, ExecutionException {
         // Test Service C execution
         Future<?> serviceCFuture = executorService.submit(() -> {
             try {
@@ -97,7 +94,7 @@ public class AppTest {
     }
 
     @Test
-    public void testServiceCError() {
+    void testServiceCError() {
         try {
             ExternalServiceC serviceC = (ExternalServiceC) gatewayFactory.getGateway("ServiceC");
             serviceC.error();
@@ -107,3 +104,4 @@ public class AppTest {
         }
     }
 }
+
