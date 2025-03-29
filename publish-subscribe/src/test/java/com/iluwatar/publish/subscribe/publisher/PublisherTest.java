@@ -15,8 +15,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 
 public class PublisherTest {
 
-  @RegisterExtension
-  public LoggerExtension loggerExtension = new LoggerExtension();
+  @RegisterExtension public LoggerExtension loggerExtension = new LoggerExtension();
 
   @Test
   void testRegisterTopic() throws NoSuchFieldException, IllegalAccessException {
@@ -52,8 +51,8 @@ public class PublisherTest {
     Topic topicUnregistered = new Topic(TopicName.CUSTOMER_SUPPORT);
     Message message = new Message("support");
     publisher.publish(topicUnregistered, message);
-    assertEquals("This topic is not registered: CUSTOMER_SUPPORT",
+    assertEquals(
+        "This topic is not registered: CUSTOMER_SUPPORT",
         loggerExtension.getFormattedMessages().getFirst());
-
   }
 }

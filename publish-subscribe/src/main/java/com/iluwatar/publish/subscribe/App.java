@@ -12,30 +12,31 @@ import com.iluwatar.publish.subscribe.subscriber.Subscriber;
 import com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber;
 
 /**
- * <p>The Publish and Subscribe pattern is a messaging paradigm used in software architecture with
- * several key points: <li>Decoupling of publishers and subscribers: Publishers and subscribers
- * operate independently, and there's no direct link between them. This enhances the scalability and
- * * modularity of applications.</li><li>Event-driven communication: The pattern facilitates
- * event-driven architectures by allowing publishers to broadcast events without concerning
- * themselves with who receives the events.</li><li>Dynamic subscription: Subscribers can
- * dynamically choose to listen for specific events or messages they are interested in, often by
- * subscribing to a particular topic or channel.</li><li>Asynchronous processing: The pattern
- * inherently supports asynchronous message processing, enabling efficient handling of events and
- * improving application responsiveness.</li><li>Scalability: By decoupling senders and receivers,
- * the pattern can support a large number of publishers and subscribers, making it suitable for
- * scalable systems.</li><li>Flexibility and adaptability: New subscribers or publishers can be
- * added to the system without significant changes to the existing components, making the system
- * highly adaptable to evolving requirements.</li></p>
+ * The Publish and Subscribe pattern is a messaging paradigm used in software architecture with
+ * several key points:
+ * <li>Decoupling of publishers and subscribers: Publishers and subscribers operate independently,
+ *     and there's no direct link between them. This enhances the scalability and * modularity of
+ *     applications.
+ * <li>Event-driven communication: The pattern facilitates event-driven architectures by allowing
+ *     publishers to broadcast events without concerning themselves with who receives the events.
+ * <li>Dynamic subscription: Subscribers can dynamically choose to listen for specific events or
+ *     messages they are interested in, often by subscribing to a particular topic or channel.
+ * <li>Asynchronous processing: The pattern inherently supports asynchronous message processing,
+ *     enabling efficient handling of events and improving application responsiveness.
+ * <li>Scalability: By decoupling senders and receivers, the pattern can support a large number of
+ *     publishers and subscribers, making it suitable for scalable systems.
+ * <li>Flexibility and adaptability: New subscribers or publishers can be added to the system
+ *     without significant changes to the existing components, making the system highly adaptable to
+ *     evolving requirements.
  *
- * <p>In this example we will create two {@link TopicName}s WEATHER and CUSTOMER_SUPPORT.
- * Then we will register those topics in the {@link Publisher}.
- * After that we will create two {@link WeatherSubscriber}s to WEATHER {@link Topic}.
- * Also, we will create two {@link CustomerSupportSubscriber}s to CUSTOMER_SUPPORT {@link Topic}.
- * Now we can publish the two {@link Topic}s with different content in the {@link Message}s.
- * And we can observe the output in the log where,
- * {@link WeatherSubscriber} will output the message with {@link WeatherContent}.
- * {@link CustomerSupportSubscriber} will output the message with {@link CustomerSupportContent}.
- * Each subscriber is only listening to the subscribed topic.
+ *     <p>In this example we will create two {@link TopicName}s WEATHER and CUSTOMER_SUPPORT. Then
+ *     we will register those topics in the {@link Publisher}. After that we will create two {@link
+ *     WeatherSubscriber}s to WEATHER {@link Topic}. Also, we will create two {@link
+ *     CustomerSupportSubscriber}s to CUSTOMER_SUPPORT {@link Topic}. Now we can publish the two
+ *     {@link Topic}s with different content in the {@link Message}s. And we can observe the output
+ *     in the log where, {@link WeatherSubscriber} will output the message with {@link
+ *     WeatherContent}. {@link CustomerSupportSubscriber} will output the message with {@link
+ *     CustomerSupportContent}. Each subscriber is only listening to the subscribed topic.
  */
 public class App {
 

@@ -23,7 +23,9 @@ public class WeatherSubscriber implements Subscriber {
     if (message.content() instanceof WeatherContent content) {
       logger.info("Subscriber: {} issued message: {}", subscriberName, content.getMessage());
     } else {
-      logger.error("Unknown content type: {} expected: {}", message.content().getClass(),
+      logger.error(
+          "Unknown content type: {} expected: {}",
+          message.content().getClass(),
           CustomerSupportContent.class);
     }
   }

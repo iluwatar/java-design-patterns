@@ -17,8 +17,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 
 public class SubscriberTest {
 
-  @RegisterExtension
-  public LoggerExtension loggerExtension = new LoggerExtension();
+  @RegisterExtension public LoggerExtension loggerExtension = new LoggerExtension();
 
   private static final String WEATHER_SUB_NAME = "weatherSubscriber";
   private static final String CUSTOMER_SUPPORT_SUB_NAME = "customerSupportSubscriber";
@@ -34,7 +33,8 @@ public class SubscriberTest {
     publisher.registerTopic(topic);
 
     publisher.publish(topic, new Message(WeatherContent.earthquake));
-    assertEquals("Subscriber: weatherSubscriber issued message: earthquake tsunami warning",
+    assertEquals(
+        "Subscriber: weatherSubscriber issued message: earthquake tsunami warning",
         loggerExtension.getFormattedMessages().getFirst());
   }
 
@@ -68,9 +68,11 @@ public class SubscriberTest {
     publisher.registerTopic(weatherTopic);
 
     publisher.publish(weatherTopic, new Message(WeatherContent.tornado));
-    assertEquals("Subscriber: weatherSubscriber1 issued message: tornado use storm cellars",
+    assertEquals(
+        "Subscriber: weatherSubscriber1 issued message: tornado use storm cellars",
         loggerExtension.getFormattedMessages().getFirst());
-    assertEquals("Subscriber: weatherSubscriber2 issued message: tornado use storm cellars",
+    assertEquals(
+        "Subscriber: weatherSubscriber2 issued message: tornado use storm cellars",
         loggerExtension.getFormattedMessages().get(1));
   }
 
@@ -91,7 +93,8 @@ public class SubscriberTest {
 
     publisher.publish(weatherTopic, new Message(WeatherContent.flood));
     publisher.publish(customerSupportTopic, new Message(CustomerSupportContent.AT));
-    assertEquals("Subscriber: weatherSubscriber issued message: flood start evacuation",
+    assertEquals(
+        "Subscriber: weatherSubscriber issued message: flood start evacuation",
         loggerExtension.getFormattedMessages().getFirst());
     assertEquals(
         "Subscriber: customerSupportSubscriber sent the email to: customer.support@test.at",

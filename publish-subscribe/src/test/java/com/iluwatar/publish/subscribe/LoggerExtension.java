@@ -33,7 +33,8 @@ public class LoggerExtension implements BeforeEachCallback, AfterEachCallback {
   }
 
   public List<String> getFormattedMessages() {
-    return listAppender.list.stream().map(e -> e.getFormattedMessage())
+    return listAppender.list.stream()
+        .map(e -> e.getFormattedMessage())
         .collect(Collectors.toList());
   }
 }

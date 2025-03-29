@@ -22,7 +22,9 @@ public class CustomerSupportSubscriber implements Subscriber {
     if (message.content() instanceof CustomerSupportContent content) {
       logger.info("Subscriber: {} sent the email to: {}", subscriberName, content.getEmail());
     } else {
-      logger.error("Unknown content type: {} expected: {}", message.content().getClass(),
+      logger.error(
+          "Unknown content type: {} expected: {}",
+          message.content().getClass(),
           CustomerSupportContent.class);
     }
   }
