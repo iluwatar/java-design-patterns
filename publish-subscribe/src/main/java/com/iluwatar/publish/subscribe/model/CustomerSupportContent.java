@@ -1,5 +1,8 @@
 package com.iluwatar.publish.subscribe.model;
 
+/**
+ * This enum defines the content for {@link Topic} CUSTOMER_SUPPORT
+ */
 public enum CustomerSupportContent {
 
   DE("customer.support@test.de"),

@@ -7,6 +7,9 @@ import java.util.Set;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * This class is an implementation of the Publisher
+ */
 public class PublisherImpl implements Publisher {
 
   private static final Logger logger = LoggerFactory.getLogger(PublisherImpl.class);
