@@ -7,7 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class subscribes to CUSTOMER_SUPPORT topic
+ * This class subscribes to CUSTOMER_SUPPORT topic.
  */
 @Slf4j
 public class CustomerSupportSubscriber implements Subscriber {
