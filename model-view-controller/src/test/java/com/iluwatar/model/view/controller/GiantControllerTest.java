@@ -30,15 +30,10 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * GiantControllerTest
- *
- */
+/** GiantControllerTest */
 class GiantControllerTest {
 
-  /**
-   * Verify if the controller passes the health level through to the model and vice versa
-   */
+  /** Verify if the controller passes the health level through to the model and vice versa */
   @Test
   void testSetHealth() {
     final var model = mock(GiantModel.class);
@@ -60,9 +55,7 @@ class GiantControllerTest {
     verifyNoMoreInteractions(model, view);
   }
 
-  /**
-   * Verify if the controller passes the fatigue level through to the model and vice versa
-   */
+  /** Verify if the controller passes the fatigue level through to the model and vice versa */
   @Test
   void testSetFatigue() {
     final var model = mock(GiantModel.class);
@@ -84,9 +77,7 @@ class GiantControllerTest {
     verifyNoMoreInteractions(model, view);
   }
 
-  /**
-   * Verify if the controller passes the nourishment level through to the model and vice versa
-   */
+  /** Verify if the controller passes the nourishment level through to the model and vice versa */
   @Test
   void testSetNourishment() {
     final var model = mock(GiantModel.class);
@@ -121,5 +112,4 @@ class GiantControllerTest {
 
     verifyNoMoreInteractions(model, view);
   }
-
 }

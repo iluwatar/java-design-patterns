@@ -30,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
-/**
- * Test Lottery Tickets for equality
- */
+/** Test Lottery Tickets for equality */
 class LotteryTicketTest {
 
   @Test

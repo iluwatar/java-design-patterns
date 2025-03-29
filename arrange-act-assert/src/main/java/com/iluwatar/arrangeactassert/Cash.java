@@ -35,12 +35,12 @@ public class Cash {
 
   private int amount;
 
-  //plus
+  // plus
   void plus(int addend) {
     amount += addend;
   }
 
-  //minus
+  // minus
   boolean minus(int subtrahend) {
     if (amount >= subtrahend) {
       amount -= subtrahend;
@@ -50,7 +50,7 @@ public class Cash {
     }
   }
 
-  //count
+  // count
   int count() {
     return amount;
   }

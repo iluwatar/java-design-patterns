@@ -29,10 +29,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * A class to keep track of the counter of different Tenants.
- *
- */
+/** A class to keep track of the counter of different Tenants. */
 @Slf4j
 public final class CallsCount {
   private final Map<String, AtomicLong> tenantCallsCount = new ConcurrentHashMap<>();
@@ -65,9 +62,7 @@ public final class CallsCount {
     return tenantCallsCount.get(tenantName).get();
   }
 
-  /**
-   * Resets the count of all the tenants in the map.
-   */
+  /** Resets the count of all the tenants in the map. */
   public void reset() {
     tenantCallsCount.replaceAll((k, v) -> new AtomicLong(0));
     LOGGER.info("reset counters");

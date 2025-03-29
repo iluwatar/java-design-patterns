@@ -50,9 +50,7 @@ public abstract class Observable<S extends Observable<S, O, A>, O extends Observ
     this.observers.remove(observer);
   }
 
-  /**
-   * Notify observers.
-   */
+  /** Notify observers. */
   @SuppressWarnings("unchecked")
   public void notifyObservers(A argument) {
     for (var observer : observers) {

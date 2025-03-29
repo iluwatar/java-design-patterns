@@ -24,10 +24,7 @@
  */
 package com.iluwatar.lazy.loading;
 
-/**
- * HolderNaiveTest
- *
- */
+/** HolderNaiveTest */
 class HolderNaiveTest extends AbstractHolderTest {
 
   private final HolderNaive holder = new HolderNaive();
@@ -43,5 +40,4 @@ class HolderNaiveTest extends AbstractHolderTest {
   Heavy getHeavy() {
     return holder.getHeavy();
   }
-
 }

@@ -28,9 +28,7 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Abstract class of all the instance implementation classes.
- */
+/** Abstract class of all the instance implementation classes. */
 @Slf4j
 public abstract class AbstractInstance implements Instance, Runnable {
 
@@ -43,9 +41,7 @@ public abstract class AbstractInstance implements Instance, Runnable {
   protected int leaderId;
   protected boolean alive;
 
-  /**
-   * Constructor of BullyInstance.
-   */
+  /** Constructor of BullyInstance. */
   public AbstractInstance(MessageManager messageManager, int localId, int leaderId) {
     this.messageManager = messageManager;
     this.messageQueue = new ConcurrentLinkedQueue<>();
@@ -54,9 +50,7 @@ public abstract class AbstractInstance implements Instance, Runnable {
     this.alive = true;
   }
 
-  /**
-   * The instance will execute the message in its message queue periodically once it is alive.
-   */
+  /** The instance will execute the message in its message queue periodically once it is alive. */
   @Override
   @SuppressWarnings("squid:S2189")
   public void run() {
@@ -129,8 +123,7 @@ public abstract class AbstractInstance implements Instance, Runnable {
         LOGGER.info(INSTANCE + localId + " - Heartbeat Invoke Message handling...");
         handleHeartbeatInvokeMessage();
       }
-      default -> {
-      }
+      default -> {}
     }
   }
 
@@ -149,5 +142,4 @@ public abstract class AbstractInstance implements Instance, Runnable {
   protected abstract void handleHeartbeatMessage(Message message);
 
   protected abstract void handleHeartbeatInvokeMessage();
-
 }

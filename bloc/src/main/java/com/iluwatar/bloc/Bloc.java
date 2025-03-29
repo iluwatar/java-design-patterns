@@ -30,17 +30,15 @@ import java.util.List;
 
 /**
  * The Bloc class is responsible for managing the current state and notifying registered listeners
- * whenever the state changes. It implements the ListenerManager interface, allowing listeners
- * to be added, removed, and notified of state changes.
+ * whenever the state changes. It implements the ListenerManager interface, allowing listeners to be
+ * added, removed, and notified of state changes.
  */
 public class Bloc implements ListenerManager<State> {
 
   private State currentState;
   private final List<StateListener<State>> listeners = new ArrayList<>();
 
-  /**
-   * Constructs a new Bloc instance with an initial state of value 0.
-   */
+  /** Constructs a new Bloc instance with an initial state of value 0. */
   public Bloc() {
     this.currentState = new State(0);
   }
@@ -88,16 +86,12 @@ public class Bloc implements ListenerManager<State> {
     }
   }
 
-  /**
-   * Increments the current state value by 1 and notifies listeners of the change.
-   */
+  /** Increments the current state value by 1 and notifies listeners of the change. */
   public void increment() {
     emitState(new State(currentState.value() + 1));
   }
 
-  /**
-   * Decrements the current state value by 1 and notifies listeners of the change.
-   */
+  /** Decrements the current state value by 1 and notifies listeners of the change. */
   public void decrement() {
     emitState(new State(currentState.value() - 1));
   }

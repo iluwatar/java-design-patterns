@@ -33,9 +33,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests {@link InMemoryCustomerDao}.
- */
+/** Tests {@link InMemoryCustomerDao}. */
 class InMemoryCustomerDaoTest {
 
   private InMemoryCustomerDao dao;
@@ -48,8 +46,7 @@ class InMemoryCustomerDaoTest {
   }
 
   /**
-   * Represents the scenario when the DAO operations are being performed on a non-existent
-   * customer.
+   * Represents the scenario when the DAO operations are being performed on a non-existent customer.
    */
   @Nested
   class NonExistingCustomer {
@@ -121,8 +118,8 @@ class InMemoryCustomerDaoTest {
     }
 
     @Test
-    void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation() throws
-        Exception {
+    void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation()
+        throws Exception {
       final var newFirstname = "Bernard";
       final var newLastname = "Montgomery";
       final var customer = new Customer(CUSTOMER.getId(), newFirstname, newLastname);

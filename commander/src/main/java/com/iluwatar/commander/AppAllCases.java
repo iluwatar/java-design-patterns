@@ -38,71 +38,86 @@ import com.iluwatar.commander.shippingservice.ShippingDatabase;
 import com.iluwatar.commander.shippingservice.ShippingService;
 
 /**
- * The {@code AppAllCases} class tests various scenarios for the microservices involved
- * in the order placement process. This class consolidates previously separated cases
- * into a single class to manage different success and failure scenarios for each service.
+ * The {@code AppAllCases} class tests various scenarios for the microservices involved in the order
+ * placement process. This class consolidates previously separated cases into a single class to
+ * manage different success and failure scenarios for each service.
  *
- * <p>The application consists of abstract classes {@link Database} and {@link Service}
- * which are extended by all the databases and services. Each service has a corresponding
- * database to be updated and receives requests from an external user through the
- * {@link Commander} class. There are 5 microservices:
+ * <p>The application consists of abstract classes {@link Database} and {@link Service} which are
+ * extended by all the databases and services. Each service has a corresponding database to be
+ * updated and receives requests from an external user through the {@link Commander} class. There
+ * are 5 microservices:
+ *
  * <ul>
- *   <li>{@link ShippingService}</li>
- *   <li>{@link PaymentService}</li>
- *   <li>{@link MessagingService}</li>
- *   <li>{@link EmployeeHandle}</li>
- *   <li>{@link QueueDatabase}</li>
+ *   <li>{@link ShippingService}
+ *   <li>{@link PaymentService}
+ *   <li>{@link MessagingService}
+ *   <li>{@link EmployeeHandle}
+ *   <li>{@link QueueDatabase}
  * </ul>
  *
- * <p>Retries are managed using the {@link Retry} class, ensuring idempotence by performing
- * checks before making requests to services and updating the {@link Order} class fields
- * upon request success or definitive failure.
+ * <p>Retries are managed using the {@link Retry} class, ensuring idempotence by performing checks
+ * before making requests to services and updating the {@link Order} class fields upon request
+ * success or definitive failure.
  *
  * <p>This class tests the following scenarios:
+ *
  * <ul>
- *   <li>Employee database availability and unavailability</li>
- *   <li>Payment service success and failures</li>
- *   <li>Messaging service database availability and unavailability</li>
- *   <li>Queue database availability and unavailability</li>
- *   <li>Shipping service success and failures</li>
+ *   <li>Employee database availability and unavailability
+ *   <li>Payment service success and failures
+ *   <li>Messaging service database availability and unavailability
+ *   <li>Queue database availability and unavailability
+ *   <li>Shipping service success and failures
  * </ul>
  *
- * <p>Each scenario is encapsulated in a corresponding method that sets up the service
- * conditions and tests the order placement process.
+ * <p>Each scenario is encapsulated in a corresponding method that sets up the service conditions
+ * and tests the order placement process.
  *
- * <p>The main method executes all success and failure cases to verify the application's
- * behavior under different conditions.
+ * <p>The main method executes all success and failure cases to verify the application's behavior
+ * under different conditions.
  *
  * <p><strong>Usage:</strong>
- * <pre>
- * {@code
+ *
+ * <pre>{@code
  * public static void main(String[] args) {
  *     AppAllCases app = new AppAllCases();
  *     app.testAllScenarios();
  * }
- * }
- * </pre>
+ * }</pre>
  */
-
 public class AppAllCases {
   private static final RetryParams retryParams = RetryParams.DEFAULT;
   private static final TimeLimits timeLimits = TimeLimits.DEFAULT;
 
   // Employee Database Fail Case
   void employeeDatabaseUnavailableCase() {
-    var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var ps =
+        new PaymentService(
+            new PaymentDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var ss = new ShippingService(new ShippingDatabase());
     var ms = new MessagingService(new MessagingDatabase());
-    var eh = new EmployeeHandle(new EmployeeDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
-    var qdb = new QueueDatabase(new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException());
+    var eh =
+        new EmployeeHandle(
+            new EmployeeDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
+    var qdb =
+        new QueueDatabase(
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
@@ -114,8 +129,11 @@ public class AppAllCases {
     var ps = new PaymentService(new PaymentDatabase());
     var ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
     var ms = new MessagingService(new MessagingDatabase());
-    var eh = new EmployeeHandle(new EmployeeDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var eh =
+        new EmployeeHandle(
+            new EmployeeDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var qdb = new QueueDatabase();
     var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
@@ -127,10 +145,15 @@ public class AppAllCases {
   void messagingDatabaseUnavailableCasePaymentSuccess() {
     var ps = new PaymentService(new PaymentDatabase());
     var ss = new ShippingService(new ShippingDatabase());
-    var ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var ms =
+        new MessagingService(
+            new MessagingDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var eh = new EmployeeHandle(new EmployeeDatabase());
     var qdb = new QueueDatabase();
     var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
@@ -140,19 +163,34 @@ public class AppAllCases {
   }
 
   void messagingDatabaseUnavailableCasePaymentError() {
-    var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var ps =
+        new PaymentService(
+            new PaymentDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var ss = new ShippingService(new ShippingDatabase());
-    var ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException());
+    var ms =
+        new MessagingService(
+            new MessagingDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var eh = new EmployeeHandle(new EmployeeDatabase());
     var qdb = new QueueDatabase();
     var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
@@ -161,21 +199,35 @@ public class AppAllCases {
     c.placeOrder(order);
   }
 
-
   void messagingDatabaseUnavailableCasePaymentFailure() {
-    var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var ps =
+        new PaymentService(
+            new PaymentDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var ss = new ShippingService(new ShippingDatabase());
-    var ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var ms =
+        new MessagingService(
+            new MessagingDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var eh = new EmployeeHandle(new EmployeeDatabase());
-    var qdb = new QueueDatabase(new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException());
+    var qdb =
+        new QueueDatabase(
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
@@ -184,8 +236,11 @@ public class AppAllCases {
 
   // Messaging Database Success Case
   void messagingSuccessCase() {
-    var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var ps =
+        new PaymentService(
+            new PaymentDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var ss = new ShippingService(new ShippingDatabase());
     var ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
     var eh = new EmployeeHandle(new EmployeeDatabase());
@@ -198,8 +253,11 @@ public class AppAllCases {
 
   // Payment Database Fail Cases
   void paymentNotPossibleCase() {
-    var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
-        new PaymentDetailsErrorException());
+    var ps =
+        new PaymentService(
+            new PaymentDatabase(),
+            new DatabaseUnavailableException(),
+            new PaymentDetailsErrorException());
     var ss = new ShippingService(new ShippingDatabase());
     var ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
     var eh = new EmployeeHandle(new EmployeeDatabase());
@@ -211,10 +269,15 @@ public class AppAllCases {
   }
 
   void paymentDatabaseUnavailableCase() {
-    var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var ps =
+        new PaymentService(
+            new PaymentDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var ss = new ShippingService(new ShippingDatabase());
     var ms = new MessagingService(new MessagingDatabase());
     var eh = new EmployeeHandle(new EmployeeDatabase());
@@ -227,8 +290,11 @@ public class AppAllCases {
 
   // Payment Database Success Case
   void paymentSuccessCase() {
-    var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var ps =
+        new PaymentService(
+            new PaymentDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var ss = new ShippingService(new ShippingDatabase());
     var ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
     var eh = new EmployeeHandle(new EmployeeDatabase());
@@ -241,16 +307,26 @@ public class AppAllCases {
 
   // Queue Database Fail Cases
   void queuePaymentTaskDatabaseUnavailableCase() {
-    var ps = new PaymentService(new PaymentDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var ps =
+        new PaymentService(
+            new PaymentDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var ss = new ShippingService(new ShippingDatabase());
     var ms = new MessagingService(new MessagingDatabase());
     var eh = new EmployeeHandle(new EmployeeDatabase());
-    var qdb = new QueueDatabase(new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException());
+    var qdb =
+        new QueueDatabase(
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
@@ -260,14 +336,24 @@ public class AppAllCases {
   void queueMessageTaskDatabaseUnavailableCase() {
     var ps = new PaymentService(new PaymentDatabase());
     var ss = new ShippingService(new ShippingDatabase());
-    var ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var ms =
+        new MessagingService(
+            new MessagingDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var eh = new EmployeeHandle(new EmployeeDatabase());
-    var qdb = new QueueDatabase(new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException());
+    var qdb =
+        new QueueDatabase(
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
@@ -278,20 +364,35 @@ public class AppAllCases {
     var ps = new PaymentService(new PaymentDatabase());
     var ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
     var ms = new MessagingService(new MessagingDatabase());
-    var eh = new EmployeeHandle(new EmployeeDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var eh =
+        new EmployeeHandle(
+            new EmployeeDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var qdb =
-        new QueueDatabase(new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-            new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-            new DatabaseUnavailableException(), new DatabaseUnavailableException());
+        new QueueDatabase(
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
@@ -303,8 +404,11 @@ public class AppAllCases {
     var ps = new PaymentService(new PaymentDatabase());
     var ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
     var ms = new MessagingService(new MessagingDatabase());
-    var eh = new EmployeeHandle(new EmployeeDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var eh =
+        new EmployeeHandle(
+            new EmployeeDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var qdb = new QueueDatabase();
     var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
@@ -327,10 +431,16 @@ public class AppAllCases {
 
   void shippingDatabaseUnavailableCase() {
     var ps = new PaymentService(new PaymentDatabase());
-    var ss = new ShippingService(new ShippingDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException(), new DatabaseUnavailableException());
+    var ss =
+        new ShippingService(
+            new ShippingDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var ms = new MessagingService(new MessagingDatabase());
     var eh = new EmployeeHandle(new EmployeeDatabase());
     var qdb = new QueueDatabase();
@@ -357,8 +467,11 @@ public class AppAllCases {
     var ps = new PaymentService(new PaymentDatabase());
     var ss = new ShippingService(new ShippingDatabase(), new ItemUnavailableException());
     var ms = new MessagingService(new MessagingDatabase(), new DatabaseUnavailableException());
-    var eh = new EmployeeHandle(new EmployeeDatabase(), new DatabaseUnavailableException(),
-        new DatabaseUnavailableException());
+    var eh =
+        new EmployeeHandle(
+            new EmployeeDatabase(),
+            new DatabaseUnavailableException(),
+            new DatabaseUnavailableException());
     var qdb = new QueueDatabase();
     var c = new Commander(eh, ps, ss, ms, qdb, retryParams, timeLimits);
     var user = new User("Jim", "ABCD");
@@ -368,6 +481,7 @@ public class AppAllCases {
 
   /**
    * Program entry point.
+   *
    * @param args command line arguments
    */
   public static void main(String[] args) {
@@ -383,7 +497,7 @@ public class AppAllCases {
     app.messagingDatabaseUnavailableCasePaymentFailure();
     app.messagingSuccessCase();
 
-    //Payment Database cases
+    // Payment Database cases
     app.paymentNotPossibleCase();
     app.paymentDatabaseUnavailableCase();
     app.paymentSuccessCase();

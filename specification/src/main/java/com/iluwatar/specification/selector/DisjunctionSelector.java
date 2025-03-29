@@ -26,9 +26,7 @@ package com.iluwatar.specification.selector;
 
 import java.util.List;
 
-/**
- * A Selector defined as the disjunction (OR) of other (leaf) selectors.
- */
+/** A Selector defined as the disjunction (OR) of other (leaf) selectors. */
 public class DisjunctionSelector<T> extends AbstractSelector<T> {
 
   private final List<AbstractSelector<T>> leafComponents;
@@ -38,9 +36,7 @@ public class DisjunctionSelector<T> extends AbstractSelector<T> {
     this.leafComponents = List.of(selectors);
   }
 
-  /**
-   * Tests if *at least one* selector passes the test.
-   */
+  /** Tests if *at least one* selector passes the test. */
   @Override
   public boolean test(T t) {
     return leafComponents.stream().anyMatch(comp -> comp.test(t));

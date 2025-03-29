@@ -43,11 +43,10 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>In this example, we create a new Lockable object with the SwordOfAragorn implementation of it.
  * Afterward we create 6 Creatures with the Elf, Orc and Human implementations and assign them each
- * to a Fiend object and the Sword is the target object. Because there is only one Sword, and it uses
- * the Lockable Object pattern, only one creature can hold the sword at a given time. When the sword
- * is locked, any other alive Fiends will try to lock, which will result in a race to lock the
+ * to a Fiend object and the Sword is the target object. Because there is only one Sword, and it
+ * uses the Lockable Object pattern, only one creature can hold the sword at a given time. When the
+ * sword is locked, any other alive Fiends will try to lock, which will result in a race to lock the
  * sword.
- *
  */
 @Slf4j
 public class App implements Runnable {

@@ -26,20 +26,13 @@ package com.iluwatar.templatemethod;
 
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * HalflingThiefTest
- *
- */
+/** HalflingThiefTest */
 class HalflingThiefTest {
 
-  /**
-   * Verify if the thief uses the provided stealing method
-   */
+  /** Verify if the thief uses the provided stealing method */
   @Test
   void testSteal() {
     final var method = spy(StealingMethod.class);
@@ -48,9 +41,7 @@ class HalflingThiefTest {
     verify(method).steal();
   }
 
-  /**
-   * Verify if the thief uses the provided stealing method, and the new method after changing it
-   */
+  /** Verify if the thief uses the provided stealing method, and the new method after changing it */
   @Test
   void testChangeMethod() {
     final var initialMethod = spy(StealingMethod.class);

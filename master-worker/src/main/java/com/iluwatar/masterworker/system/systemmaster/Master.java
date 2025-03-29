@@ -37,14 +37,12 @@ import lombok.Getter;
  * number of results), allResultData (hashtable of results obtained from workers, mapped by their
  * ids) and finalResult (aggregated from allResultData).
  */
-
 public abstract class Master {
   private final int numOfWorkers;
   private final List<Worker> workers;
   private final Hashtable<Integer, Result<?>> allResultData;
   private int expectedNumResults;
-  @Getter
-  private Result<?> finalResult;
+  @Getter private Result<?> finalResult;
 
   Master(int numOfWorkers) {
     this.numOfWorkers = numOfWorkers;
@@ -77,7 +75,7 @@ public abstract class Master {
     if (dividedInput != null) {
       this.expectedNumResults = dividedInput.size();
       for (var i = 0; i < this.expectedNumResults; i++) {
-        //ith division given to ith worker in this.workers
+        // ith division given to ith worker in this.workers
         this.workers.get(i).setReceivedData(this, dividedInput.get(i));
         this.workers.get(i).start();
       }
@@ -99,7 +97,7 @@ public abstract class Master {
   private void collectResult(Result<?> data, int workerId) {
     this.allResultData.put(workerId, data);
     if (this.allResultData.size() == this.expectedNumResults) {
-      //all data received
+      // all data received
       this.finalResult = aggregateData();
     }
   }

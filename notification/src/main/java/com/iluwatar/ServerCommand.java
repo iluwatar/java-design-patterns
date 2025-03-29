@@ -27,8 +27,8 @@ package com.iluwatar;
 import lombok.AllArgsConstructor;
 
 /**
- * Stores the dto and access the notification within it.
- * Acting as a layer supertype in this instance for the domain layer.
+ * Stores the dto and access the notification within it. Acting as a layer supertype in this
+ * instance for the domain layer.
  */
 @AllArgsConstructor
 public class ServerCommand {

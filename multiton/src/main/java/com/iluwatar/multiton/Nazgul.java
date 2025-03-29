@@ -35,8 +35,7 @@ public final class Nazgul {
 
   private static final Map<NazgulName, Nazgul> nazguls;
 
-  @Getter
-  private final NazgulName name;
+  @Getter private final NazgulName name;
 
   static {
     nazguls = new ConcurrentHashMap<>();

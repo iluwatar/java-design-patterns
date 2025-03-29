@@ -38,10 +38,7 @@ import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.stereotype.Component;
 
-/**
- * A health indicator that checks the health of the system's CPU.
- *
- */
+/** A health indicator that checks the health of the system's CPU. */
 @Getter
 @Setter
 @Slf4j

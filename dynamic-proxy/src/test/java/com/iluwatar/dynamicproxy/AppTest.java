@@ -24,14 +24,14 @@
  */
 package com.iluwatar.dynamicproxy;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import org.junit.jupiter.api.Test;
 
 class AppTest {
 
   @Test
   void shouldRunAppWithoutExceptions() {
-    assertDoesNotThrow(() ->  App.main(null));
+    assertDoesNotThrow(() -> App.main(null));
   }
 }

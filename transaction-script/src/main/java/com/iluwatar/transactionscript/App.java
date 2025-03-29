@@ -31,18 +31,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Transaction Script (TS) is one of the simplest domain logic pattern.
- * It needs less work to implement than other domain logic patterns, and therefore
- * it’s perfect fit for smaller applications that don't need big architecture behind them.
+ * Transaction Script (TS) is one of the simplest domain logic pattern. It needs less work to
+ * implement than other domain logic patterns, and therefore it’s perfect fit for smaller
+ * applications that don't need big architecture behind them.
  *
- * <p>In this example we will use the TS pattern to implement booking and cancellation
- * methods for a Hotel management App. The main method will initialise an instance of
- * {@link Hotel} and add rooms to it. After that it will book and cancel a couple of rooms
- * and that will be printed by the logger.</p>
+ * <p>In this example we will use the TS pattern to implement booking and cancellation methods for a
+ * Hotel management App. The main method will initialise an instance of {@link Hotel} and add rooms
+ * to it. After that it will book and cancel a couple of rooms and that will be printed by the
+ * logger.
  *
- * <p>The thing we have to note here is that all the operations related to booking or cancelling
- * a room like checking the database if the room exists, checking the booking status or the
- * room, calculating refund price are all clubbed inside a single transaction script method.</p>
+ * <p>The thing we have to note here is that all the operations related to booking or cancelling a
+ * room like checking the database if the room exists, checking the booking status or the room,
+ * calculating refund price are all clubbed inside a single transaction script method.
  */
 public class App {
 
@@ -50,9 +50,9 @@ public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   /**
-   * Program entry point.
-   * Initialises an instance of Hotel and adds rooms to it.
-   * Carries out booking and cancel booking transactions.
+   * Program entry point. Initialises an instance of Hotel and adds rooms to it. Carries out booking
+   * and cancel booking transactions.
+   *
    * @param args command line arguments
    * @throws Exception if any error occurs
    */
@@ -87,7 +87,6 @@ public class App {
     getRoomStatus(dao);
 
     deleteSchema(dataSource);
-
   }
 
   private static void getRoomStatus(HotelDaoImpl dao) throws Exception {
@@ -98,14 +97,14 @@ public class App {
 
   private static void deleteSchema(DataSource dataSource) throws java.sql.SQLException {
     try (var connection = dataSource.getConnection();
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.DELETE_SCHEMA_SQL);
     }
   }
 
   private static void createSchema(DataSource dataSource) throws Exception {
     try (var connection = dataSource.getConnection();
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(RoomSchemaSql.CREATE_SCHEMA_SQL);
     } catch (Exception e) {
       throw new Exception(e.getMessage(), e);

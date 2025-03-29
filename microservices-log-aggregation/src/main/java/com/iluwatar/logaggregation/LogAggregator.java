@@ -32,11 +32,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Responsible for collecting and buffering logs from different services.
- * Once the logs reach a certain threshold or after a certain time interval,
- * they are flushed to the central log store. This class ensures logs are collected
- * and processed asynchronously and efficiently, providing both an immediate collection
- * and periodic flushing.
+ * Responsible for collecting and buffering logs from different services. Once the logs reach a
+ * certain threshold or after a certain time interval, they are flushed to the central log store.
+ * This class ensures logs are collected and processed asynchronously and efficiently, providing
+ * both an immediate collection and periodic flushing.
  */
 @Slf4j
 public class LogAggregator {
@@ -84,8 +83,7 @@ public class LogAggregator {
   }
 
   /**
-   * Stops the log aggregator service and flushes any remaining logs to
-   * the central log store.
+   * Stops the log aggregator service and flushes any remaining logs to the central log store.
    *
    * @throws InterruptedException If any thread has interrupted the current thread.
    */
@@ -106,15 +104,16 @@ public class LogAggregator {
   }
 
   private void startBufferFlusher() {
-    executorService.execute(() -> {
-      while (!Thread.currentThread().isInterrupted()) {
-        try {
-          Thread.sleep(5000); // Flush every 5 seconds.
-          flushBuffer();
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-        }
-      }
-    });
+    executorService.execute(
+        () -> {
+          while (!Thread.currentThread().isInterrupted()) {
+            try {
+              Thread.sleep(5000); // Flush every 5 seconds.
+              flushBuffer();
+            } catch (InterruptedException e) {
+              Thread.currentThread().interrupt();
+            }
+          }
+        });
   }
 }

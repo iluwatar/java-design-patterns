@@ -27,12 +27,12 @@ package com.iluwatar.identitymap;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The basic idea behind the Identity Map is to have a series of maps containing objects that have been pulled from the database.
- * The below example demonstrates the identity map pattern by creating a sample DB.
- * Since only 1 DB has been created we only have 1 map corresponding to it for the purpose of this demo.
- * When you load an object from the database, you first check the map.
- * If there’s an object in it that corresponds to the one you’re loading, you return it. If not, you go to the database,
- * putting the objects on the map for future reference as you load them.
+ * The basic idea behind the Identity Map is to have a series of maps containing objects that have
+ * been pulled from the database. The below example demonstrates the identity map pattern by
+ * creating a sample DB. Since only 1 DB has been created we only have 1 map corresponding to it for
+ * the purpose of this demo. When you load an object from the database, you first check the map. If
+ * there’s an object in it that corresponds to the one you’re loading, you return it. If not, you go
+ * to the database, putting the objects on the map for future reference as you load them.
  */
 @Slf4j
 public class App {

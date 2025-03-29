@@ -27,9 +27,7 @@ package com.iluwatar.mediator;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Party implementation.
- */
+/** Party implementation. */
 public class PartyImpl implements Party {
 
   private final List<PartyMember> members;

@@ -33,18 +33,14 @@ import com.iluwatar.servicelayer.wizard.WizardDao;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Service implementation.
- */
+/** Service implementation. */
 public class MagicServiceImpl implements MagicService {
 
   private final WizardDao wizardDao;
   private final SpellbookDao spellbookDao;
   private final SpellDao spellDao;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public MagicServiceImpl(WizardDao wizardDao, SpellbookDao spellbookDao, SpellDao spellDao) {
     this.wizardDao = wizardDao;
     this.spellbookDao = spellbookDao;

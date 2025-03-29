@@ -43,20 +43,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
 
-/**
- * SLOB Application test
- */
+/** SLOB Application test */
 @Slf4j
 class AppTest {
 
   /**
    * Creates a Forest with Animals and Plants along with their respective relationships.
-   * <p> The method creates a forest with 2 Plants Grass and Oak of type Herb and tree
-   * respectively.</p>
-   * <p> It also creates 3 animals Zebra and Buffalo which eat the plant grass. Lion consumes the
-   * Zebra and the Buffalo.</p>
-   * <p>With the above animals and plants and their relationships a forest
-   * object is created which represents the Object Graph.</p>
+   *
+   * <p>The method creates a forest with 2 Plants Grass and Oak of type Herb and tree respectively.
+   *
+   * <p>It also creates 3 animals Zebra and Buffalo which eat the plant grass. Lion consumes the
+   * Zebra and the Buffalo.
+   *
+   * <p>With the above animals and plants and their relationships a forest object is created which
+   * represents the Object Graph.
    *
    * @return Forest Object
    */
@@ -72,28 +72,30 @@ class AppTest {
   }
 
   /**
-   * Tests the {@link App} without passing any argument in the args to test the
-   * {@link ClobSerializer}.
+   * Tests the {@link App} without passing any argument in the args to test the {@link
+   * ClobSerializer}.
    */
   @Test
   void shouldExecuteWithoutExceptionClob() {
-    assertDoesNotThrow(() -> App.main(new String[]{"CLOB"}));
+    assertDoesNotThrow(() -> App.main(new String[] {"CLOB"}));
   }
 
   /**
-   * Tests the {@link App} without passing any argument in the args to test the
-   * {@link BlobSerializer}.
+   * Tests the {@link App} without passing any argument in the args to test the {@link
+   * BlobSerializer}.
    */
   @Test
   void shouldExecuteWithoutExceptionBlob() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 
   /**
    * Tests the serialization of the input object using the {@link ClobSerializer} and persists the
    * serialized object to DB, then load the object back from DB and deserializes it using the
-   * provided {@link ClobSerializer}.<p>After loading the object back from DB the test matches the
-   * hash of the input object with the hash of the object that was loaded from DB and deserialized.
+   * provided {@link ClobSerializer}.
+   *
+   * <p>After loading the object back from DB the test matches the hash of the input object with the
+   * hash of the object that was loaded from DB and deserialized.
    */
   @Test
   void clobSerializerTest() {
@@ -106,11 +108,16 @@ class AppTest {
       Object fromDb = serializer.loadFromDb(id, Forest.class.getSimpleName());
       Forest forestFromDb = serializer.deSerialize(fromDb);
 
-      Assertions.assertEquals(forest.hashCode(), forestFromDb.hashCode(),
+      Assertions.assertEquals(
+          forest.hashCode(),
+          forestFromDb.hashCode(),
           "Hashes of objects after Serializing and Deserializing are the same");
-    } catch (SQLException | IOException | TransformerException | ParserConfigurationException |
-             SAXException |
-             ClassNotFoundException e) {
+    } catch (SQLException
+        | IOException
+        | TransformerException
+        | ParserConfigurationException
+        | SAXException
+        | ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
   }
@@ -118,8 +125,10 @@ class AppTest {
   /**
    * Tests the serialization of the input object using the {@link BlobSerializer} and persists the
    * serialized object to DB, then loads the object back from DB and deserializes it using the
-   * {@link BlobSerializer}.<p>After loading the object back from DB the test matches the hash of
-   * the input object with the hash of the object that was loaded from DB and deserialized.
+   * {@link BlobSerializer}.
+   *
+   * <p>After loading the object back from DB the test matches the hash of the input object with the
+   * hash of the object that was loaded from DB and deserialized.
    */
   @Test
   void blobSerializerTest() {
@@ -132,11 +141,16 @@ class AppTest {
       Object fromDb = serializer.loadFromDb(id, Forest.class.getSimpleName());
       Forest forestFromDb = serializer.deSerialize(fromDb);
 
-      Assertions.assertEquals(forest.hashCode(), forestFromDb.hashCode(),
+      Assertions.assertEquals(
+          forest.hashCode(),
+          forestFromDb.hashCode(),
           "Hashes of objects after Serializing and Deserializing are the same");
-    } catch (SQLException | IOException | TransformerException | ParserConfigurationException |
-             SAXException |
-             ClassNotFoundException e) {
+    } catch (SQLException
+        | IOException
+        | TransformerException
+        | ParserConfigurationException
+        | SAXException
+        | ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
   }

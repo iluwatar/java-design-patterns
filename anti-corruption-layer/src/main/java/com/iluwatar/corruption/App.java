@@ -28,9 +28,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * This layer translates communications between the two systems,
- * allowing one system to remain unchanged while the other can avoid compromising
- * its design and technological approach.
+ * This layer translates communications between the two systems, allowing one system to remain
+ * unchanged while the other can avoid compromising its design and technological approach.
  */
 @SpringBootApplication
 public class App {

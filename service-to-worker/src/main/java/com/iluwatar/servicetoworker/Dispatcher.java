@@ -34,8 +34,7 @@ import lombok.Getter;
  */
 public class Dispatcher {
 
-  @Getter
-  private final GiantView giantView;
+  @Getter private final GiantView giantView;
   private final List<Action> actions;
 
   /**
@@ -60,7 +59,7 @@ public class Dispatcher {
   /**
    * Perform an action.
    *
-   * @param s           the s
+   * @param s the s
    * @param actionIndex the action index
    */
   public void performAction(Command s, int actionIndex) {
@@ -75,5 +74,4 @@ public class Dispatcher {
   public void updateView(GiantModel giantModel) {
     giantView.displayGiant(giantModel);
   }
-
 }

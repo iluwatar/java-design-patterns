@@ -22,9 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/**
- * Define Model, View and ViewModel.
- * Use them in {@link com.iluwatar.model.view.intent.App}
- */
-
+/** Define Model, View and ViewModel. Use them in {@link com.iluwatar.model.view.intent.App} */
 package com.iluwatar.model.view.intent;

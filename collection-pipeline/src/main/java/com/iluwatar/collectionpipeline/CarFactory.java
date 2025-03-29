@@ -26,12 +26,9 @@ package com.iluwatar.collectionpipeline;
 
 import java.util.List;
 
-/**
- * A factory class to create a collection of {@link Car} instances.
- */
+/** A factory class to create a collection of {@link Car} instances. */
 public class CarFactory {
-  private CarFactory() {
-  }
+  private CarFactory() {}
 
   /**
    * Factory method to create a {@link List} of {@link Car} instances.
@@ -39,7 +36,8 @@ public class CarFactory {
    * @return {@link List} of {@link Car}
    */
   public static List<Car> createCars() {
-    return List.of(new Car("Jeep", "Wrangler", 2011, Category.JEEP),
+    return List.of(
+        new Car("Jeep", "Wrangler", 2011, Category.JEEP),
         new Car("Jeep", "Comanche", 1990, Category.JEEP),
         new Car("Dodge", "Avenger", 2010, Category.SEDAN),
         new Car("Buick", "Cascada", 2016, Category.CONVERTIBLE),

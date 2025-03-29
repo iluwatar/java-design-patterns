@@ -28,16 +28,13 @@ import com.iluwatar.typeobject.Candy.Type;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * The CandyGame class contains the rules for the continuation of the game and has the game matrix
  * (field 'cells') and totalPoints gained during the game.
  */
-
 @Slf4j
-@SuppressWarnings("java:S3776") //"Cognitive Complexity of methods should not be too high"
+@SuppressWarnings("java:S3776") // "Cognitive Complexity of methods should not be too high"
 public class CandyGame {
   Cell[][] cells;
   CellPool pool;
@@ -67,8 +64,11 @@ public class CandyGame {
         var candyName = cell[j].candy.name;
         if (candyName.length() < 20) {
           var totalSpaces = 20 - candyName.length();
-          LOGGER.info(numOfSpaces(totalSpaces / 2) + cell[j].candy.name
-              + numOfSpaces(totalSpaces - totalSpaces / 2) + "|");
+          LOGGER.info(
+              numOfSpaces(totalSpaces / 2)
+                  + cell[j].candy.name
+                  + numOfSpaces(totalSpaces - totalSpaces / 2)
+                  + "|");
         } else {
           LOGGER.info(candyName + "|");
         }
@@ -89,12 +89,11 @@ public class CandyGame {
     if (y == cells.length - 1 && cells.length > 1) {
       adjacent.add(this.cells[cells.length - 2][x]);
     }
-    
+
     if (x == cells.length - 1 && cells.length > 1) {
       adjacent.add(this.cells[y][cells.length - 2]);
     }
-    
-  
+
     if (y > 0 && y < cells.length - 1) {
       adjacent.add(this.cells[y - 1][x]);
       adjacent.add(this.cells[y + 1][x]);
@@ -173,5 +172,4 @@ public class CandyGame {
       end = System.currentTimeMillis();
     }
   }
-
 }

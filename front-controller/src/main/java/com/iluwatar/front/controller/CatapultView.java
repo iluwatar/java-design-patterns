@@ -26,9 +26,7 @@ package com.iluwatar.front.controller;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * View for catapults.
- */
+/** View for catapults. */
 @Slf4j
 public class CatapultView implements View {
 

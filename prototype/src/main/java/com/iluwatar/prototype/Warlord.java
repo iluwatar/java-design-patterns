@@ -27,14 +27,10 @@ package com.iluwatar.prototype;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-/**
- * Warlord.
- */
+/** Warlord. */
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public abstract class Warlord extends Prototype<Warlord> {
 
-  public Warlord(Warlord source) {
-  }
-
+  public Warlord(Warlord source) {}
 }

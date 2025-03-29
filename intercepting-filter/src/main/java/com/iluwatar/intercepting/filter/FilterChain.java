@@ -24,19 +24,12 @@
  */
 package com.iluwatar.intercepting.filter;
 
-
-/**
- * Filter Chain carries multiple filters and help to execute them in defined order on target.
- *
- */
+/** Filter Chain carries multiple filters and help to execute them in defined order on target. */
 public class FilterChain {
 
   private Filter chain;
 
-
-  /**
-   * Adds filter.
-   */
+  /** Adds filter. */
   public void addFilter(Filter filter) {
     if (chain == null) {
       chain = filter;
@@ -45,9 +38,7 @@ public class FilterChain {
     }
   }
 
-  /**
-   * Execute filter chain.
-   */
+  /** Execute filter chain. */
   public String execute(Order order) {
     if (chain != null) {
       return chain.execute(order);

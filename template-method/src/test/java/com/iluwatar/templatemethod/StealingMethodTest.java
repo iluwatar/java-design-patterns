@@ -56,42 +56,36 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
     appender.stop();
   }
 
-  /**
-   * The tested stealing method
-   */
+  /** The tested stealing method */
   private final M method;
 
-  /**
-   * The expected target
-   */
+  /** The expected target */
   private final String expectedTarget;
 
-  /**
-   * The expected target picking result
-   */
+  /** The expected target picking result */
   private final String expectedTargetResult;
 
-  /**
-   * The expected confusion method
-   */
+  /** The expected confusion method */
   private final String expectedConfuseMethod;
 
-  /**
-   * The expected stealing method
-   */
+  /** The expected stealing method */
   private final String expectedStealMethod;
 
   /**
    * Create a new test for the given stealing method, together with the expected results
    *
-   * @param method                The tested stealing method
-   * @param expectedTarget        The expected target name
-   * @param expectedTargetResult  The expected target picking result
+   * @param method The tested stealing method
+   * @param expectedTarget The expected target name
+   * @param expectedTargetResult The expected target picking result
    * @param expectedConfuseMethod The expected confusion method
-   * @param expectedStealMethod   The expected stealing method
+   * @param expectedStealMethod The expected stealing method
    */
-  public StealingMethodTest(final M method, String expectedTarget, final String expectedTargetResult,
-                            final String expectedConfuseMethod, final String expectedStealMethod) {
+  public StealingMethodTest(
+      final M method,
+      String expectedTarget,
+      final String expectedTargetResult,
+      final String expectedConfuseMethod,
+      final String expectedStealMethod) {
 
     this.method = method;
     this.expectedTarget = expectedTarget;
@@ -100,17 +94,13 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
     this.expectedStealMethod = expectedStealMethod;
   }
 
-  /**
-   * Verify if the thief picks the correct target
-   */
+  /** Verify if the thief picks the correct target */
   @Test
   void testPickTarget() {
     assertEquals(expectedTarget, this.method.pickTarget());
   }
 
-  /**
-   * Verify if the target confusing step goes as planned
-   */
+  /** Verify if the target confusing step goes as planned */
   @Test
   void testConfuseTarget() {
     assertEquals(0, appender.getLogSize());
@@ -120,9 +110,7 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
     assertEquals(1, appender.getLogSize());
   }
 
-  /**
-   * Verify if the stealing step goes as planned
-   */
+  /** Verify if the stealing step goes as planned */
   @Test
   void testStealTheItem() {
     assertEquals(0, appender.getLogSize());
@@ -132,9 +120,7 @@ public abstract class StealingMethodTest<M extends StealingMethod> {
     assertEquals(1, appender.getLogSize());
   }
 
-  /**
-   * Verify if the complete steal process goes as planned
-   */
+  /** Verify if the complete steal process goes as planned */
   @Test
   void testSteal() {
     this.method.steal();

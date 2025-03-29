@@ -26,13 +26,10 @@ package com.iluwatar.event.asynchronous;
 
 import java.io.Serial;
 
-/**
- * Type of Exception raised when the max number of allowed events is exceeded.
- */
+/** Type of Exception raised when the max number of allowed events is exceeded. */
 public class MaxNumOfEventsAllowedException extends Exception {
 
-  @Serial
-  private static final long serialVersionUID = -8430876973516292695L;
+  @Serial private static final long serialVersionUID = -8430876973516292695L;
 
   public MaxNumOfEventsAllowedException(String message) {
     super(message);

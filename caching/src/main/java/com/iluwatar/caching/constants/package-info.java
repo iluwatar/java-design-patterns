@@ -22,7 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/**
- * Constants.
- */
+/** Constants. */
 package com.iluwatar.caching.constants;

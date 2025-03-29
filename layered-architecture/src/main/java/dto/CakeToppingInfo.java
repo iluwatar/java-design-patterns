@@ -25,27 +25,21 @@
 
 package dto;
 
-/**
- * DTO for cake toppings.
- */
+/** DTO for cake toppings. */
 public class CakeToppingInfo {
 
   public final Long id;
   public final String name;
   public final int calories;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public CakeToppingInfo(Long id, String name, int calories) {
     this.id = id;
     this.name = name;
     this.calories = calories;
   }
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public CakeToppingInfo(String name, int calories) {
     this.id = null;
     this.name = name;
@@ -54,7 +48,6 @@ public class CakeToppingInfo {
 
   @Override
   public String toString() {
-    return String.format("CakeToppingInfo id=%d name=%s calories=%d", id, name,
-        calories);
+    return String.format("CakeToppingInfo id=%d name=%s calories=%d", id, name, calories);
   }
 }

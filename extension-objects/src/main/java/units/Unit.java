@@ -28,9 +28,7 @@ import abstractextensions.UnitExtension;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Class defining Unit, other units will extend this class.
- */
+/** Class defining Unit, other units will extend this class. */
 @Setter
 @Getter
 public class Unit {

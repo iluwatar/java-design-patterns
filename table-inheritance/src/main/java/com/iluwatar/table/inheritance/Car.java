@@ -23,11 +23,10 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.table.inheritance;
-import lombok.Getter;
-/**
- * Represents a car with a specific number of doors.
- */
 
+import lombok.Getter;
+
+/** Represents a car with a specific number of doors. */
 @Getter
 public class Car extends Vehicle {
   private int numDoors;
@@ -35,11 +34,11 @@ public class Car extends Vehicle {
   /**
    * Constructs a Car object.
    *
-   * @param year     the manufacturing year
-   * @param make     the make of the car
-   * @param model    the model of the car
+   * @param year the manufacturing year
+   * @param make the make of the car
+   * @param model the model of the car
    * @param numDoors the number of doors
-   * @param id       the unique identifier for the car
+   * @param id the unique identifier for the car
    */
   public Car(int year, String make, String model, int numDoors, int id) {
     super(year, make, model, id);
@@ -64,11 +63,18 @@ public class Car extends Vehicle {
   @Override
   public String toString() {
     return "Car{"
-        + "id=" + getId()
-        + ", make='" + getMake() + '\''
-        + ", model='" + getModel() + '\''
-        + ", year=" + getYear()
-        + ", numberOfDoors=" + getNumDoors()
+        + "id="
+        + getId()
+        + ", make='"
+        + getMake()
+        + '\''
+        + ", model='"
+        + getModel()
+        + '\''
+        + ", year="
+        + getYear()
+        + ", numberOfDoors="
+        + getNumDoors()
         + '}';
   }
 }

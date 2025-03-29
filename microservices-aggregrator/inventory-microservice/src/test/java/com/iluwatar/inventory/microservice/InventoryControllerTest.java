@@ -24,13 +24,11 @@
  */
 package com.iluwatar.inventory.microservice;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test Inventory Rest Controller
- */
+import org.junit.jupiter.api.Test;
+
+/** Test Inventory Rest Controller */
 class InventoryControllerTest {
 
   @Test

@@ -29,9 +29,7 @@ import com.iluwatar.data.locality.game.component.RenderComponent;
 import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Render component manager for Game.
- */
+/** Render component manager for Game. */
 @Slf4j
 public class RenderComponentManager {
 
@@ -45,18 +43,13 @@ public class RenderComponentManager {
     this.numEntities = numEntities;
   }
 
-  /**
-   * Start render component.
-   */
+  /** Start render component. */
   public void start() {
     LOGGER.info("Start Render Game Component ");
     IntStream.range(0, numEntities).forEach(i -> renderComponents[i] = new RenderComponent());
   }
 
-
-  /**
-   * render component.
-   */
+  /** render component. */
   public void render() {
     LOGGER.info("Update Render Game Component ");
     // Process Render.

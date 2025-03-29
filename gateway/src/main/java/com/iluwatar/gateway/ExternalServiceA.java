@@ -24,12 +24,9 @@
  */
 package com.iluwatar.gateway;
 
-
 import lombok.extern.slf4j.Slf4j;
 
-/**
-* ExternalServiceA is one of external services.
-*/
+/** ExternalServiceA is one of external services. */
 @Slf4j
 class ExternalServiceA implements Gateway {
   @Override

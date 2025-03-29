@@ -33,9 +33,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for {@link IvoryTower}
- */
+/** Tests for {@link IvoryTower} */
 class IvoryTowerTest {
 
   private InMemoryAppender appender;
@@ -52,12 +50,12 @@ class IvoryTowerTest {
 
   @Test
   void testEnter() {
-    final var wizards = List.of(
-        new Wizard("Gandalf"),
-        new Wizard("Dumbledore"),
-        new Wizard("Oz"),
-        new Wizard("Merlin")
-    );
+    final var wizards =
+        List.of(
+            new Wizard("Gandalf"),
+            new Wizard("Dumbledore"),
+            new Wizard("Oz"),
+            new Wizard("Merlin"));
 
     var tower = new IvoryTower();
     wizards.forEach(tower::enter);

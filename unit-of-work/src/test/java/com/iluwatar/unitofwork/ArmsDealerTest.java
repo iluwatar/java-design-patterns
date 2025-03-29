@@ -36,10 +36,7 @@ import java.util.List;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 
-/**
- * tests {@link ArmsDealer}
- */
-
+/** tests {@link ArmsDealer} */
 class ArmsDealerTest {
   private final Weapon weapon1 = new Weapon(1, "battle ram");
   private final Weapon weapon2 = new Weapon(1, "wooden lance");

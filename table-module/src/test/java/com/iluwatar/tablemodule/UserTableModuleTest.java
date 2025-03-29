@@ -24,16 +24,16 @@
  */
 package com.iluwatar.tablemodule;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.sql.DataSource;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import javax.sql.DataSource;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class UserTableModuleTest {
   private static final String DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
@@ -47,7 +47,7 @@ class UserTableModuleTest {
   @BeforeEach
   void setUp() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL);
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(UserTableModule.DELETE_SCHEMA_SQL);
       statement.execute(UserTableModule.CREATE_SCHEMA_SQL);
     }
@@ -56,7 +56,7 @@ class UserTableModuleTest {
   @AfterEach
   void tearDown() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL);
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(UserTableModule.DELETE_SCHEMA_SQL);
     }
   }
@@ -66,8 +66,7 @@ class UserTableModuleTest {
     var dataSource = createDataSource();
     var userTableModule = new UserTableModule(dataSource);
     var user = new User(1, "123456", "123456");
-    assertEquals(0, userTableModule.login(user.getUsername(),
-            user.getPassword()));
+    assertEquals(0, userTableModule.login(user.getUsername(), user.getPassword()));
   }
 
   @Test
@@ -76,8 +75,7 @@ class UserTableModuleTest {
     var userTableModule = new UserTableModule(dataSource);
     var user = new User(1, "123456", "123456");
     userTableModule.registerUser(user);
-    assertEquals(1, userTableModule.login(user.getUsername(),
-            user.getPassword()));
+    assertEquals(1, userTableModule.login(user.getUsername(), user.getPassword()));
   }
 
   @Test

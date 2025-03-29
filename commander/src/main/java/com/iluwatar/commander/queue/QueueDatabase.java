@@ -29,10 +29,7 @@ import com.iluwatar.commander.exceptions.IsEmptyException;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * QueueDatabase id where the instructions to be implemented are queued.
- */
-
+/** QueueDatabase id where the instructions to be implemented are queued. */
 public class QueueDatabase extends Database<QueueTask> {
 
   private final Queue<QueueTask> data;
@@ -47,16 +44,15 @@ public class QueueDatabase extends Database<QueueTask> {
   public QueueTask add(QueueTask t) {
     data.enqueue(t);
     return t;
-    //even if same thing queued twice, it is taken care of in other dbs
+    // even if same thing queued twice, it is taken care of in other dbs
   }
 
   /**
    * peek method returns object at front without removing it from queue.
    *
    * @return object at front of queue
-   * @throws IsEmptyException             if queue is empty
+   * @throws IsEmptyException if queue is empty
    */
-
   public QueueTask peek() throws IsEmptyException {
     return this.data.peek();
   }
@@ -65,9 +61,8 @@ public class QueueDatabase extends Database<QueueTask> {
    * dequeue method removes the object at front and returns it.
    *
    * @return object at front of queue
-   * @throws IsEmptyException             if queue is empty
+   * @throws IsEmptyException if queue is empty
    */
-
   public QueueTask dequeue() throws IsEmptyException {
     return this.data.dequeue();
   }
@@ -76,5 +71,4 @@ public class QueueDatabase extends Database<QueueTask> {
   public QueueTask get(String taskId) {
     return null;
   }
-
 }

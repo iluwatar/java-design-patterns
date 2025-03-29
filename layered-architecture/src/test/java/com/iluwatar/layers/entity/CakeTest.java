@@ -38,9 +38,9 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 /**
- * This class contains unit tests for the Cake class.
- * It tests the functionality of setting and getting the id, topping, and layers of a Cake object.
- * It also tests the functionality of adding a layer to a Cake object and converting a Cake object to a string.
+ * This class contains unit tests for the Cake class. It tests the functionality of setting and
+ * getting the id, topping, and layers of a Cake object. It also tests the functionality of adding a
+ * layer to a Cake object and converting a Cake object to a string.
  */
 class CakeTest {
 
@@ -70,8 +70,11 @@ class CakeTest {
     assertNotNull(cake.getLayers());
     assertTrue(cake.getLayers().isEmpty());
 
-    final var expectedLayers = Set.of(new CakeLayer("layer1", 1000), new CakeLayer("layer2", 2000),
-        new CakeLayer("layer3", 3000));
+    final var expectedLayers =
+        Set.of(
+            new CakeLayer("layer1", 1000),
+            new CakeLayer("layer2", 2000),
+            new CakeLayer("layer3", 3000));
     cake.setLayers(expectedLayers);
     assertEquals(expectedLayers, cake.getLayers());
   }
@@ -112,10 +115,9 @@ class CakeTest {
     cake.setTopping(topping);
     cake.addLayer(layer);
 
-    final var expected = "id=1234 topping=id=2345 name=topping calories=20 "
-        + "layers=[id=3456 name=layer calories=100]";
+    final var expected =
+        "id=1234 topping=id=2345 name=topping calories=20 "
+            + "layers=[id=3456 name=layer calories=100]";
     assertEquals(expected, cake.toString());
-
   }
-
 }

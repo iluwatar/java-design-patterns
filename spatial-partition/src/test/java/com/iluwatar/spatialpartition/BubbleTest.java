@@ -33,10 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 
-/**
- * Testing methods in Bubble class.
- */
-
+/** Testing methods in Bubble class. */
 class BubbleTest {
 
   @Test
@@ -45,7 +42,7 @@ class BubbleTest {
     var initialX = b.coordinateX;
     var initialY = b.coordinateY;
     b.move();
-    //change in x and y < |2|
+    // change in x and y < |2|
     assertTrue(b.coordinateX - initialX < 2 && b.coordinateX - initialX > -2);
     assertTrue(b.coordinateY - initialY < 2 && b.coordinateY - initialY > -2);
   }
@@ -55,7 +52,7 @@ class BubbleTest {
     var b1 = new Bubble(0, 0, 1, 2);
     var b2 = new Bubble(1, 1, 2, 1);
     var b3 = new Bubble(10, 10, 3, 1);
-    //b1 touches b2 but not b3
+    // b1 touches b2 but not b3
     assertTrue(b1.touches(b2));
     assertFalse(b1.touches(b3));
   }
@@ -68,7 +65,7 @@ class BubbleTest {
     bubbles.put(1, b1);
     bubbles.put(2, b2);
     b1.pop(bubbles);
-    //after popping, bubble no longer in hashMap containing all bubbles
+    // after popping, bubble no longer in hashMap containing all bubbles
     assertNull(bubbles.get(1));
     assertNotNull(bubbles.get(2));
   }
@@ -86,7 +83,7 @@ class BubbleTest {
     bubblesToCheck.add(b2);
     bubblesToCheck.add(b3);
     b1.handleCollision(bubblesToCheck, bubbles);
-    //b1 touches b2 and not b3, so b1, b2 will be popped
+    // b1 touches b2 and not b3, so b1, b2 will be popped
     assertNull(bubbles.get(1));
     assertNull(bubbles.get(2));
     assertNotNull(bubbles.get(3));

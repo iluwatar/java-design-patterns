@@ -26,15 +26,11 @@ package com.iluwatar.data.locality.game.component;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Implementation of AI component for Game.
- */
+/** Implementation of AI component for Game. */
 @Slf4j
 public class AiComponent implements Component {
 
-  /**
-   * Update ai component.
-   */
+  /** Update ai component. */
   @Override
   public void update() {
     LOGGER.info("update AI component");

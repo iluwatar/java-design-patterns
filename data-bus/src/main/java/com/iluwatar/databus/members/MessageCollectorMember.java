@@ -31,10 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Receiver of Data-Bus events that collects the messages from each {@link MessageData}.
- *
- */
+/** Receiver of Data-Bus events that collects the messages from each {@link MessageData}. */
 @Slf4j
 public class MessageCollectorMember implements Member {
 

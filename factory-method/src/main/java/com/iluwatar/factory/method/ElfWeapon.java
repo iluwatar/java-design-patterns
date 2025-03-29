@@ -24,12 +24,7 @@
  */
 package com.iluwatar.factory.method;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-
-/**
- * ElfWeapon.
- */
+/** ElfWeapon. */
 public record ElfWeapon(WeaponType weaponType) implements Weapon {
 
   @Override

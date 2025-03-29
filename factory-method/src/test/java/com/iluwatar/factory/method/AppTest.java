@@ -24,17 +24,15 @@
  */
 package com.iluwatar.factory.method;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Tests that Factory Method example runs without errors.
- */
+import org.junit.jupiter.api.Test;
+
+/** Tests that Factory Method example runs without errors. */
 class AppTest {
 
   @Test
   void shouldExecuteWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

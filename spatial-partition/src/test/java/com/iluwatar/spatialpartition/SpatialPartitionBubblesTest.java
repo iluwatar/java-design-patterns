@@ -30,10 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 
-/**
- * Testing SpatialPartition_Bubbles class.
- */
-
+/** Testing SpatialPartition_Bubbles class. */
 class SpatialPartitionBubblesTest {
 
   @Test
@@ -55,7 +52,7 @@ class SpatialPartitionBubblesTest {
     qt.insert(b4);
     var sp = new SpatialPartitionBubbles(bubbles, qt);
     sp.handleCollisionsUsingQt(b1);
-    //b1 touches b3 and b4 but not b2 - so b1,b3,b4 get popped
+    // b1 touches b3 and b4 but not b2 - so b1,b3,b4 get popped
     assertNull(bubbles.get(1));
     assertNotNull(bubbles.get(2));
     assertNull(bubbles.get(3));

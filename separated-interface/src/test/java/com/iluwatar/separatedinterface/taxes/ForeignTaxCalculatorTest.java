@@ -38,5 +38,4 @@ class ForeignTaxCalculatorTest {
     var tax = target.calculate(100.0);
     Assertions.assertEquals(tax, 60.0);
   }
-
 }

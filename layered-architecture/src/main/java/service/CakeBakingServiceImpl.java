@@ -43,9 +43,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-/**
- * Implementation of CakeBakingService.
- */
+/** Implementation of CakeBakingService. */
 @Service
 @Transactional
 public class CakeBakingServiceImpl implements CakeBakingService {
@@ -62,8 +60,8 @@ public class CakeBakingServiceImpl implements CakeBakingService {
    * @param cakeToppingDao the DAO for cake topping-related operations
    */
   @Autowired
-  public CakeBakingServiceImpl(CakeDao cakeDao, CakeLayerDao cakeLayerDao,
-                               CakeToppingDao cakeToppingDao) {
+  public CakeBakingServiceImpl(
+      CakeDao cakeDao, CakeLayerDao cakeLayerDao, CakeToppingDao cakeToppingDao) {
     this.cakeDao = cakeDao;
     this.cakeLayerDao = cakeLayerDao;
     this.cakeToppingDao = cakeToppingDao;
@@ -73,7 +71,8 @@ public class CakeBakingServiceImpl implements CakeBakingService {
   public void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException {
     var allToppings = getAvailableToppingEntities();
     var matchingToppings =
-        allToppings.stream().filter(t -> t.getName().equals(cakeInfo.cakeToppingInfo.name))
+        allToppings.stream()
+            .filter(t -> t.getName().equals(cakeInfo.cakeToppingInfo.name))
             .toList();
     if (matchingToppings.isEmpty()) {
       throw new CakeBakingException(
@@ -184,7 +183,9 @@ public class CakeBakingServiceImpl implements CakeBakingService {
     List<CakeInfo> result = new ArrayList<>();
     for (Cake cake : cakeDao.findAll()) {
       var cakeToppingInfo =
-          new CakeToppingInfo(cake.getTopping().getId(), cake.getTopping().getName(),
+          new CakeToppingInfo(
+              cake.getTopping().getId(),
+              cake.getTopping().getName(),
               cake.getTopping().getCalories());
       List<CakeLayerInfo> cakeLayerInfos = new ArrayList<>();
       for (var layer : cake.getLayers()) {

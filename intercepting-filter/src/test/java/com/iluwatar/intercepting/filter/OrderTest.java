@@ -28,10 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * OrderTest
- *
- */
+/** OrderTest */
 class OrderTest {
 
   private static final String EXPECTED_VALUE = "test";
@@ -70,5 +67,4 @@ class OrderTest {
     order.setOrderItem(EXPECTED_VALUE);
     assertEquals(EXPECTED_VALUE, order.getOrderItem());
   }
-
 }

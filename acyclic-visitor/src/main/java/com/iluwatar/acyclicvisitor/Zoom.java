@@ -26,15 +26,11 @@ package com.iluwatar.acyclicvisitor;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Zoom class implements its accept method.
- */
+/** Zoom class implements its accept method. */
 @Slf4j
 public class Zoom implements Modem {
 
-  /**
-   * Accepts all visitors but honors only ZoomVisitor.
-   */
+  /** Accepts all visitors but honors only ZoomVisitor. */
   @Override
   public void accept(ModemVisitor modemVisitor) {
     if (modemVisitor instanceof ZoomVisitor) {
@@ -44,9 +40,7 @@ public class Zoom implements Modem {
     }
   }
 
-  /**
-   * Zoom modem's toString method.
-   */
+  /** Zoom modem's toString method. */
   @Override
   public String toString() {
     return "Zoom modem";

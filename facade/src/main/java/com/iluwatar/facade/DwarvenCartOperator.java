@@ -26,9 +26,7 @@ package com.iluwatar.facade;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * DwarvenCartOperator is one of the goldmine subsystems.
- */
+/** DwarvenCartOperator is one of the goldmine subsystems. */
 @Slf4j
 public class DwarvenCartOperator extends DwarvenMineWorker {
 

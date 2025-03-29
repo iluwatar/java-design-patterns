@@ -35,9 +35,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-/**
- * Creates an object Animal with a list of animals and/or plants it consumes.
- */
+/** Creates an object Animal with a list of animals and/or plants it consumes. */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -51,12 +49,12 @@ public class Animal implements Serializable {
    * Iterates over the input nodes recursively and adds new plants to {@link Animal#plantsEaten} or
    * animals to {@link Animal#animalsEaten} found to input sets respectively.
    *
-   * @param childNodes   contains the XML Node containing the Forest
+   * @param childNodes contains the XML Node containing the Forest
    * @param animalsEaten set of Animals eaten
-   * @param plantsEaten  set of Plants eaten
+   * @param plantsEaten set of Plants eaten
    */
-  protected static void iterateXmlForAnimalAndPlants(NodeList childNodes, Set<Animal> animalsEaten,
-      Set<Plant> plantsEaten) {
+  protected static void iterateXmlForAnimalAndPlants(
+      NodeList childNodes, Set<Animal> animalsEaten, Set<Plant> plantsEaten) {
     for (int i = 0; i < childNodes.getLength(); i++) {
       Node child = childNodes.item(i);
       if (child.getNodeType() == Node.ELEMENT_NODE) {

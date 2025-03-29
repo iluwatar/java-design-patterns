@@ -26,9 +26,7 @@ package com.iluwatar.callback;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Implementation of task that need to be executed.
- */
+/** Implementation of task that need to be executed. */
 @Slf4j
 public final class SimpleTask extends Task {
 

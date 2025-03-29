@@ -33,8 +33,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 /**
  * The Layers pattern is a structural design pattern that organizes system architecture into
  * distinct layers, each with a specific responsibility and abstraction level. This separation
- * allows for increased modularity, facilitating independent development, maintenance, and reuse
- * of each layer. Commonly, layers interact with each other through well-defined interfaces, with
+ * allows for increased modularity, facilitating independent development, maintenance, and reuse of
+ * each layer. Commonly, layers interact with each other through well-defined interfaces, with
  * higher layers (more abstract) depending on lower layers (more concrete), but not vice versa,
  * promoting a clear hierarchy and separation of concerns.
  */
@@ -46,7 +46,5 @@ public class LayersApp {
 
   public static void main(String[] args) {
     SpringApplication.run(LayersApp.class, args);
-
   }
-
 }

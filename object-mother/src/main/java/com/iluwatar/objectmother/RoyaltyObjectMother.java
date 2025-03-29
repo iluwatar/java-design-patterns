@@ -24,9 +24,7 @@
  */
 package com.iluwatar.objectmother;
 
-/**
- * Object Mother Pattern generating Royalty Types.
- */
+/** Object Mother Pattern generating Royalty Types. */
 public final class RoyaltyObjectMother {
 
   /**

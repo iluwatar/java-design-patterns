@@ -32,10 +32,7 @@ import java.util.logging.Handler;
 import java.util.logging.Logger;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests if the main method runs without throwing exceptions and prints expected output.
- */
-
+/** Tests if the main method runs without throwing exceptions and prints expected output. */
 class AppTest {
 
   @Test
@@ -48,27 +45,24 @@ class AppTest {
 
     Logger logger = Logger.getLogger(App.class.getName());
 
-    Handler handler = new ConsoleHandler() {
-      @Override
-      public void publish(java.util.logging.LogRecord recordObj) {
-        printStream.println(getFormatter().format(recordObj));
-      }
-    };
+    Handler handler =
+        new ConsoleHandler() {
+          @Override
+          public void publish(java.util.logging.LogRecord recordObj) {
+            printStream.println(getFormatter().format(recordObj));
+          }
+        };
     handler.setLevel(java.util.logging.Level.ALL);
     logger.addHandler(handler);
 
-    App.main(new String[]{});
+    App.main(new String[] {});
 
     String output = outContent.toString();
 
     assertTrue(output.contains("Retrieved Vehicle:"));
-    assertTrue(output.contains("Toyota"));  // Car make
-    assertTrue(output.contains("Ford"));    // Truck make
+    assertTrue(output.contains("Toyota")); // Car make
+    assertTrue(output.contains("Ford")); // Truck make
     assertTrue(output.contains("Retrieved Car:"));
     assertTrue(output.contains("Retrieved Truck:"));
   }
 }
-
-
-
-

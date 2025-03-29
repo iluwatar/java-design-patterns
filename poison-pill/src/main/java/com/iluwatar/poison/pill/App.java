@@ -50,11 +50,13 @@ public class App {
 
     new Thread(consumer::consume).start();
 
-    new Thread(() -> {
-      producer.send("hand shake");
-      producer.send("some very important information");
-      producer.send("bye!");
-      producer.stop();
-    }).start();
+    new Thread(
+            () -> {
+              producer.send("hand shake");
+              producer.send("some very important information");
+              producer.send("bye!");
+              producer.stop();
+            })
+        .start();
   }
 }

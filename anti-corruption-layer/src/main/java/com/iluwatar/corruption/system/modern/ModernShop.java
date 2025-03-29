@@ -31,20 +31,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * The class represents a modern shop system.
- * The main purpose of the class is to place orders and find orders.
+ * The class represents a modern shop system. The main purpose of the class is to place orders and
+ * find orders.
  */
 @Service
 public class ModernShop {
-  @Autowired
-  private ModernStore store;
+  @Autowired private ModernStore store;
 
-  @Autowired
-  private AntiCorruptionLayer acl;
+  @Autowired private AntiCorruptionLayer acl;
 
   /**
-   * Places the order in the modern system.
-   * If the order is already present in the legacy system, then no need to place it again.
+   * Places the order in the modern system. If the order is already present in the legacy system,
+   * then no need to place it again.
    */
   public void placeOrder(ModernOrder order) throws ShopException {
 
@@ -62,9 +60,7 @@ public class ModernShop {
     }
   }
 
-  /**
-   * Finds the order in the modern system.
-   */
+  /** Finds the order in the modern system. */
   public Optional<ModernOrder> findOrder(String orderId) {
     return store.get(orderId);
   }

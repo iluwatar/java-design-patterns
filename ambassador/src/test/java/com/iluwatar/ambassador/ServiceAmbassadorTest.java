@@ -24,18 +24,17 @@
  */
 package com.iluwatar.ambassador;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test for {@link ServiceAmbassador}
- */
+import org.junit.jupiter.api.Test;
+
+/** Test for {@link ServiceAmbassador} */
 class ServiceAmbassadorTest {
 
   @Test
   void test() {
     long result = new ServiceAmbassador().doRemoteFunction(10);
-    assertTrue(result == 100 || result == RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue());
+    assertTrue(
+        result == 100 || result == RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue());
   }
 }

@@ -32,17 +32,17 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * The Monad pattern defines a monad structure, that enables chaining operations in pipelines and
  * processing data step by step. Formally, monad consists of a type constructor M and two
- * operations:
- * <br>bind - that takes monadic object and a function from plain object to the
- * monadic value and returns monadic value.
- * <br>return - that takes plain type object and returns this object wrapped in a monadic value.
+ * operations: <br>
+ * bind - that takes monadic object and a function from plain object to the monadic value and
+ * returns monadic value. <br>
+ * return - that takes plain type object and returns this object wrapped in a monadic value.
  *
  * <p>In the given example, the Monad pattern is represented as a {@link Validator} that takes an
  * instance of a plain object with {@link Validator#of(Object)} and validates it {@link
  * Validator#validate(Function, Predicate, String)} against given predicates.
  *
- * <p>As a validation result {@link Validator#get()} either returns valid object
- * or throws {@link IllegalStateException} with list of exceptions collected during validation.
+ * <p>As a validation result {@link Validator#get()} either returns valid object or throws {@link
+ * IllegalStateException} with list of exceptions collected during validation.
  */
 @Slf4j
 public class App {
@@ -54,10 +54,13 @@ public class App {
    */
   public static void main(String[] args) {
     var user = new User("user", 24, Sex.FEMALE, "foobar.com");
-    LOGGER.info(Validator.of(user).validate(User::name, Objects::nonNull, "name is null")
-        .validate(User::name, name -> !name.isEmpty(), "name is empty")
-        .validate(User::email, email -> !email.contains("@"), "email doesn't contains '@'")
-        .validate(User::age, age -> age > 20 && age < 30, "age isn't between...").get()
-        .toString());
+    LOGGER.info(
+        Validator.of(user)
+            .validate(User::name, Objects::nonNull, "name is null")
+            .validate(User::name, name -> !name.isEmpty(), "name is empty")
+            .validate(User::email, email -> !email.contains("@"), "email doesn't contains '@'")
+            .validate(User::age, age -> age > 20 && age < 30, "age isn't between...")
+            .get()
+            .toString());
   }
 }

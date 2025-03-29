@@ -25,14 +25,10 @@
 package concreteextensions;
 
 import abstractextensions.SoldierExtension;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import units.SoldierUnit;
 
-/**
- * Class defining Soldier.
- */
+/** Class defining Soldier. */
 @Slf4j
 public record Soldier(SoldierUnit unit) implements SoldierExtension {
 
@@ -40,5 +36,4 @@ public record Soldier(SoldierUnit unit) implements SoldierExtension {
   public void soldierReady() {
     LOGGER.info("[Soldier] " + unit.getName() + " is ready!");
   }
-
 }

@@ -27,9 +27,7 @@ package com.iluwatar.corruption.system.modern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-/**
- * The class represents an order in the modern system.
- */
+/** The class represents an order in the modern system. */
 @Data
 @AllArgsConstructor
 public class ModernOrder {
@@ -39,6 +37,4 @@ public class ModernOrder {
   private Shipment shipment;
 
   private String extra;
-
-
 }

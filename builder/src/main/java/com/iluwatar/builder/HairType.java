@@ -26,12 +26,9 @@ package com.iluwatar.builder;
 
 import lombok.AllArgsConstructor;
 
-/**
- * HairType enumeration.
- */
+/** HairType enumeration. */
 @AllArgsConstructor
 public enum HairType {
-
   BALD("bald"),
   SHORT("short"),
   CURLY("curly"),

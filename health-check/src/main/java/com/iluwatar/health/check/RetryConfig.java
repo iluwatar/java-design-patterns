@@ -32,10 +32,7 @@ import org.springframework.retry.policy.SimpleRetryPolicy;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.stereotype.Component;
 
-/**
- * Configuration class for retry policies used in health check operations.
- *
- */
+/** Configuration class for retry policies used in health check operations. */
 @Configuration
 @Component
 public class RetryConfig {

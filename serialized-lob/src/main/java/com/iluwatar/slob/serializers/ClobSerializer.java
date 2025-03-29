@@ -76,7 +76,7 @@ public class ClobSerializer extends LobSerializer {
    * @param forest Object which is to be serialized
    * @return Serialized object
    * @throws ParserConfigurationException If any issues occur in parsing input object
-   * @throws TransformerException         If any issues occur in Transformation from Node to XML
+   * @throws TransformerException If any issues occur in Transformation from Node to XML
    */
   @Override
   public Object serialize(Forest forest) throws ParserConfigurationException, TransformerException {
@@ -90,14 +90,14 @@ public class ClobSerializer extends LobSerializer {
    * @param toDeserialize Input Object to De-serialize
    * @return Deserialized Object
    * @throws ParserConfigurationException If any issues occur in parsing input object
-   * @throws IOException                  if any issues occur during reading object
-   * @throws SAXException                 If any issues occur in Transformation from Node to XML
+   * @throws IOException if any issues occur during reading object
+   * @throws SAXException If any issues occur in Transformation from Node to XML
    */
   @Override
   public Forest deSerialize(Object toDeserialize)
       throws ParserConfigurationException, IOException, SAXException {
-    DocumentBuilder documentBuilder = DocumentBuilderFactory.newDefaultInstance()
-        .newDocumentBuilder();
+    DocumentBuilder documentBuilder =
+        DocumentBuilderFactory.newDefaultInstance().newDocumentBuilder();
     var stream = new ByteArrayInputStream(toDeserialize.toString().getBytes());
     Document parsed = documentBuilder.parse(stream);
     Forest forest = new Forest();

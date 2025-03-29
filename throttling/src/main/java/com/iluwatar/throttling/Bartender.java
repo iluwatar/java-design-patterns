@@ -30,8 +30,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Bartender is a service which accepts a BarCustomer (tenant) and throttles
- * the resource based on the time given to the tenant.
+ * Bartender is a service which accepts a BarCustomer (tenant) and throttles the resource based on
+ * the time given to the tenant.
  */
 class Bartender {
 
@@ -45,6 +45,7 @@ class Bartender {
 
   /**
    * Orders a drink from the bartender.
+   *
    * @return customer id which is randomly generated
    */
   public int orderDrink(BarCustomer barCustomer) {

@@ -36,34 +36,22 @@ package com.iluwatar.model.view.presenter;
  */
 public class FileSelectorStub implements FileSelectorView {
 
-  /**
-   * Indicates whether or not the view is opened.
-   */
+  /** Indicates whether or not the view is opened. */
   private boolean opened;
 
-  /**
-   * The presenter Component.
-   */
+  /** The presenter Component. */
   private FileSelectorPresenter presenter;
 
-  /**
-   * The current name of the file.
-   */
+  /** The current name of the file. */
   private String name;
 
-  /**
-   * Indicates the number of messages that were "displayed" to the user.
-   */
+  /** Indicates the number of messages that were "displayed" to the user. */
   private int numOfMessageSent;
 
-  /**
-   * Indicates if the data of the file where displayed or not.
-   */
+  /** Indicates if the data of the file where displayed or not. */
   private boolean dataDisplayed;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public FileSelectorStub() {
     this.opened = false;
     this.presenter = null;
@@ -117,9 +105,7 @@ public class FileSelectorStub implements FileSelectorView {
     this.dataDisplayed = true;
   }
 
-  /**
-   * Returns the number of messages that were displayed to the user.
-   */
+  /** Returns the number of messages that were displayed to the user. */
   public int getMessagesSent() {
     return this.numOfMessageSent;
   }

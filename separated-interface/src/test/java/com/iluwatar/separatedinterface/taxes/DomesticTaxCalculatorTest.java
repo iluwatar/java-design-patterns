@@ -38,5 +38,4 @@ class DomesticTaxCalculatorTest {
     var tax = target.calculate(100.0);
     Assertions.assertEquals(tax, 20.0);
   }
-
 }

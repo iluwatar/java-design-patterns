@@ -24,18 +24,15 @@
  */
 package com.iluwatar.saga.orchestration;
 
-import org.junit.jupiter.api.Test;
-
 import static com.iluwatar.saga.orchestration.Saga.Result;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.jupiter.api.Test;
 
-/**
- * test to test orchestration logic
- */
+/** test to test orchestration logic */
 class SagaOrchestratorInternallyTest {
 
   private final List<String> records = new ArrayList<>();
@@ -46,16 +43,12 @@ class SagaOrchestratorInternallyTest {
     var result = sagaOrchestrator.execute(1);
     assertEquals(Result.ROLLBACK, result);
     assertArrayEquals(
-            new String[]{"+1", "+2", "+3", "+4", "-4", "-3", "-2", "-1"},
-            records.toArray(new String[]{}));
+        new String[] {"+1", "+2", "+3", "+4", "-4", "-3", "-2", "-1"},
+        records.toArray(new String[] {}));
   }
 
   private static Saga newSaga() {
-    return Saga.create()
-        .chapter("1")
-        .chapter("2")
-        .chapter("3")
-        .chapter("4");
+    return Saga.create().chapter("1").chapter("2").chapter("3").chapter("4");
   }
 
   private ServiceDiscoveryService serviceDiscovery() {

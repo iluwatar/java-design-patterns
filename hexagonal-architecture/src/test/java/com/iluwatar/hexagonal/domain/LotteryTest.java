@@ -39,18 +39,13 @@ import java.util.Set;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Test the lottery system
- */
+/** Test the lottery system */
 class LotteryTest {
 
   private final Injector injector;
-  @Inject
-  private LotteryAdministration administration;
-  @Inject
-  private LotteryService service;
-  @Inject
-  private WireTransfers wireTransfers;
+  @Inject private LotteryAdministration administration;
+  @Inject private LotteryService service;
+  @Inject private WireTransfers wireTransfers;
 
   LotteryTest() {
     this.injector = Guice.createInjector(new LotteryTestingModule());
@@ -70,14 +65,20 @@ class LotteryTest {
     assertEquals(0, administration.getAllSubmittedTickets().size());
 
     // players submit the lottery tickets
-    var ticket1 = service.submitTicket(LotteryTestUtils.createLotteryTicket("cvt@bbb.com",
-        "123-12312", "+32425255", Set.of(1, 2, 3, 4)));
+    var ticket1 =
+        service.submitTicket(
+            LotteryTestUtils.createLotteryTicket(
+                "cvt@bbb.com", "123-12312", "+32425255", Set.of(1, 2, 3, 4)));
     assertTrue(ticket1.isPresent());
-    var ticket2 = service.submitTicket(LotteryTestUtils.createLotteryTicket("ant@bac.com",
-        "123-12312", "+32423455", Set.of(11, 12, 13, 14)));
+    var ticket2 =
+        service.submitTicket(
+            LotteryTestUtils.createLotteryTicket(
+                "ant@bac.com", "123-12312", "+32423455", Set.of(11, 12, 13, 14)));
     assertTrue(ticket2.isPresent());
-    var ticket3 = service.submitTicket(LotteryTestUtils.createLotteryTicket("arg@boo.com",
-        "123-12312", "+32421255", Set.of(6, 8, 13, 19)));
+    var ticket3 =
+        service.submitTicket(
+            LotteryTestUtils.createLotteryTicket(
+                "arg@boo.com", "123-12312", "+32421255", Set.of(6, 8, 13, 19)));
     assertTrue(ticket3.isPresent());
     assertEquals(3, administration.getAllSubmittedTickets().size());
 
@@ -85,8 +86,10 @@ class LotteryTest {
     var winningNumbers = administration.performLottery();
 
     // cheat a bit for testing sake, use winning numbers to submit another ticket
-    var ticket4 = service.submitTicket(LotteryTestUtils.createLotteryTicket("lucky@orb.com",
-        "123-12312", "+12421255", winningNumbers.getNumbers()));
+    var ticket4 =
+        service.submitTicket(
+            LotteryTestUtils.createLotteryTicket(
+                "lucky@orb.com", "123-12312", "+12421255", winningNumbers.getNumbers()));
     assertTrue(ticket4.isPresent());
     assertEquals(4, administration.getAllSubmittedTickets().size());
 

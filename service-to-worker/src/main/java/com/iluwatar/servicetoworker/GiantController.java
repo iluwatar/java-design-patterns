@@ -44,7 +44,7 @@ public class GiantController {
   /**
    * Sets command to control the dispatcher.
    *
-   * @param s     the s
+   * @param s the s
    * @param index the index
    */
   public void setCommand(Command s, int index) {

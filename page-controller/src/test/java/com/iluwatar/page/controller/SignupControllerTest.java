@@ -24,19 +24,16 @@
  */
 package com.iluwatar.page.controller;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributesModelMap;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test for Signup Controller
- */
+/** Test for Signup Controller */
 public class SignupControllerTest {
 
-  /**
-   * Verify if user can sign up and redirect to user page
-   */
+  /** Verify if user can sign up and redirect to user page */
   @Test
   void testSignup() {
     var controller = new SignupController();

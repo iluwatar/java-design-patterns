@@ -28,9 +28,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * A centralized store for logs. It collects logs from various services and stores them.
- * This class is thread-safe, ensuring that logs from different services are safely stored
- * concurrently without data races.
+ * A centralized store for logs. It collects logs from various services and stores them. This class
+ * is thread-safe, ensuring that logs from different services are safely stored concurrently without
+ * data races.
  */
 @Slf4j
 public class CentralLogStore {
@@ -50,9 +50,7 @@ public class CentralLogStore {
     logs.offer(logEntry);
   }
 
-  /**
-   * Displays all logs currently stored in the central log store.
-   */
+  /** Displays all logs currently stored in the central log store. */
   public void displayLogs() {
     LOGGER.info("----- Centralized Logs -----");
     for (LogEntry logEntry : logs) {

@@ -29,17 +29,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * TargetTest
- *
- */
+/** TargetTest */
 class TargetTest {
-    
-    @Test
-    void testSetup(){
-        final var target = new Target();
-        assertEquals(target.getSize().getWidth(), Double.valueOf(640));
-        assertEquals(target.getSize().getHeight(), Double.valueOf(480));
-        assertTrue(target.isVisible());
-    }
+
+  @Test
+  void testSetup() {
+    final var target = new Target();
+    assertEquals(target.getSize().getWidth(), Double.valueOf(640));
+    assertEquals(target.getSize().getHeight(), Double.valueOf(480));
+    assertTrue(target.isVisible());
+  }
 }

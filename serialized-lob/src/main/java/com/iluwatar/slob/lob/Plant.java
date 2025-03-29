@@ -34,9 +34,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-/**
- * Creates an object Plant which contains its name and type.
- */
+/** Creates an object Plant which contains its name and type. */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

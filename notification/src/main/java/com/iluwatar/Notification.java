@@ -30,9 +30,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 /**
- * The notification. Used for storing errors and any other methods
- * that may be necessary for when we send information back to the
- * presentation layer.
+ * The notification. Used for storing errors and any other methods that may be necessary for when we
+ * send information back to the presentation layer.
  */
 @Getter
 @NoArgsConstructor

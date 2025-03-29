@@ -28,7 +28,6 @@ import java.util.function.Supplier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 /**
  * Common abstraction class representing services. implementing a general contract @see {@link
  * ChoreographyChapter}
@@ -70,21 +69,24 @@ public abstract class Service implements ChoreographyChapter {
     }
     var finalNextSaga = nextSaga;
 
-    return sd.find(chapterName).map(ch -> ch.execute(finalNextSaga))
+    return sd.find(chapterName)
+        .map(ch -> ch.execute(finalNextSaga))
         .orElseThrow(serviceNotFoundException(chapterName));
   }
 
   private Supplier<RuntimeException> serviceNotFoundException(String chServiceName) {
-    return () -> new RuntimeException(
-        String.format("the service %s has not been found", chServiceName));
+    return () ->
+        new RuntimeException(String.format("the service %s has not been found", chServiceName));
   }
 
   @Override
   public Saga process(Saga saga) {
     var inValue = saga.getCurrentValue();
-    LOGGER.info("The chapter '{}' has been started. "
+    LOGGER.info(
+        "The chapter '{}' has been started. "
             + "The data {} has been stored or calculated successfully",
-        getName(), inValue);
+        getName(),
+        inValue);
     saga.setCurrentStatus(Saga.ChapterResult.SUCCESS);
     saga.setCurrentValue(inValue);
     return saga;
@@ -93,9 +95,11 @@ public abstract class Service implements ChoreographyChapter {
   @Override
   public Saga rollback(Saga saga) {
     var inValue = saga.getCurrentValue();
-    LOGGER.info("The Rollback for a chapter '{}' has been started. "
+    LOGGER.info(
+        "The Rollback for a chapter '{}' has been started. "
             + "The data {} has been rollbacked successfully",
-        getName(), inValue);
+        getName(),
+        inValue);
 
     saga.setCurrentStatus(Saga.ChapterResult.ROLLBACK);
     saga.setCurrentValue(inValue);
@@ -110,5 +114,4 @@ public abstract class Service implements ChoreographyChapter {
     }
     return false;
   }
-
 }

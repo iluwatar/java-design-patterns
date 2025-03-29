@@ -28,20 +28,17 @@ import com.iluwatar.delegation.simple.Printer;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Specialised Implementation of {@link Printer} for an Epson Printer, in this case the message to be
- * printed is appended to "Epson Printer : ".
+ * Specialised Implementation of {@link Printer} for an Epson Printer, in this case the message to
+ * be printed is appended to "Epson Printer : ".
  *
  * @see Printer
  */
 @Slf4j
 public class EpsonPrinter implements Printer {
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void print(String message) {
     LOGGER.info("Epson Printer : {}", message);
   }
-
 }

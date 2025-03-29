@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 public class UserModelTest {
-  /**
-   * Verify if a user can set a name properly
-   */
+  /** Verify if a user can set a name properly */
   @Test
   void testSetName() {
     UserModel model = new UserModel();
@@ -39,9 +37,7 @@ public class UserModelTest {
     assertEquals("Lily", model.getName());
   }
 
-  /**
-   * Verify if a user can set an email properly
-   */
+  /** Verify if a user can set an email properly */
   @Test
   void testSetEmail() {
     UserModel model = new UserModel();

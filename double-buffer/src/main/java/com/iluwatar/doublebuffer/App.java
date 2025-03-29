@@ -45,19 +45,13 @@ public class App {
    */
   public static void main(String[] args) {
     final var scene = new Scene();
-    var drawPixels1 = List.of(
-        new MutablePair<>(1, 1),
-        new MutablePair<>(5, 6),
-        new MutablePair<>(3, 2)
-    );
+    var drawPixels1 =
+        List.of(new MutablePair<>(1, 1), new MutablePair<>(5, 6), new MutablePair<>(3, 2));
     scene.draw(drawPixels1);
     var buffer1 = scene.getBuffer();
     printBlackPixelCoordinate(buffer1);
 
-    var drawPixels2 = List.of(
-        new MutablePair<>(3, 7),
-        new MutablePair<>(6, 1)
-    );
+    var drawPixels2 = List.of(new MutablePair<>(3, 7), new MutablePair<>(6, 1));
     scene.draw(drawPixels2);
     var buffer2 = scene.getBuffer();
     printBlackPixelCoordinate(buffer2);

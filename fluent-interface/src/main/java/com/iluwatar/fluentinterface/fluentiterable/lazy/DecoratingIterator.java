@@ -38,9 +38,7 @@ public abstract class DecoratingIterator<E> implements Iterator<E> {
 
   private E next;
 
-  /**
-   * Creates an iterator that decorates the given iterator.
-   */
+  /** Creates an iterator that decorates the given iterator. */
   public DecoratingIterator(Iterator<E> fromIterator) {
     this.fromIterator = fromIterator;
   }

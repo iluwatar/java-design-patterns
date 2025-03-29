@@ -29,11 +29,11 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
- * Functional interface, an example of the factory-kit design pattern.
- * <br>Instance created locally gives an opportunity to strictly define
- * which objects types the instance of a factory will be able to create.
- * <br>Factory is a placeholder for {@link Builder}s
- * with {@link WeaponFactory#create(WeaponType)} method to initialize new objects.
+ * Functional interface, an example of the factory-kit design pattern. <br>
+ * Instance created locally gives an opportunity to strictly define which objects types the instance
+ * of a factory will be able to create. <br>
+ * Factory is a placeholder for {@link Builder}s with {@link WeaponFactory#create(WeaponType)}
+ * method to initialize new objects.
  */
 public interface WeaponFactory {
 

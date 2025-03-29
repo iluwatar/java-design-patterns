@@ -24,9 +24,7 @@
  */
 package com.iluwatar.cqrs.commandes;
 
-/**
- * This interface represents the commands of the CQRS pattern.
- */
+/** This interface represents the commands of the CQRS pattern. */
 public interface CommandService {
 
   void authorCreated(String username, String name, String email);
@@ -42,5 +40,4 @@ public interface CommandService {
   void bookTitleUpdated(String oldTitle, String newTitle);
 
   void bookPriceUpdated(String title, double price);
-
 }

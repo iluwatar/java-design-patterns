@@ -29,20 +29,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * The Session class. Each client get assigned a Session which is then used for further communications.
+ * The Session class. Each client get assigned a Session which is then used for further
+ * communications.
  */
 @Data
 @AllArgsConstructor
 public class Session {
 
-  /**
-   * Session id.
-   */
+  /** Session id. */
   private String id;
 
-  /**
-   * Client name.
-   */
+  /** Client name. */
   private String clientName;
-
 }

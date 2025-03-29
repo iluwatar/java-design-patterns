@@ -39,16 +39,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Main entry point for the Monolithic E-commerce application.
- * ------------------------------------------------------------------------
- * Monolithic architecture is a software design pattern where all components
- * of the application (presentation, business logic, and data access layers)
- * are part of a single unified codebase and deployable unit.
- * ------------------------------------------------------------------------
- * This example implements a monolithic architecture by integrating
- * user management, product management, and order placement within
- * the same application, sharing common resources and a single database.
+ * ------------------------------------------------------------------------ Monolithic architecture
+ * is a software design pattern where all components of the application (presentation, business
+ * logic, and data access layers) are part of a single unified codebase and deployable unit.
+ * ------------------------------------------------------------------------ This example implements
+ * a monolithic architecture by integrating user management, product management, and order placement
+ * within the same application, sharing common resources and a single database.
  */
-
 @SpringBootApplication
 public class EcommerceApp implements CommandLineRunner {
 
@@ -56,18 +53,19 @@ public class EcommerceApp implements CommandLineRunner {
   private final UserController userService;
   private final ProductController productService;
   private final OrderController orderService;
-  /**
-  * Initilizing controllers as services.
-  * */
-  public EcommerceApp(UserController userService, ProductController productService, OrderController orderService) {
+
+  /** Initilizing controllers as services. */
+  public EcommerceApp(
+      UserController userService, ProductController productService, OrderController orderService) {
     this.userService = userService;
     this.productService = productService;
     this.orderService = orderService;
   }
+
   /**
-  * The main entry point for the Monolithic E-commerce application.
-  * Initializes the Spring Boot application and starts the embedded server.
-  */
+   * The main entry point for the Monolithic E-commerce application. Initializes the Spring Boot
+   * application and starts the embedded server.
+   */
   public static void main(String... args) {
     SpringApplication.run(EcommerceApp.class, args);
   }
@@ -100,9 +98,8 @@ public class EcommerceApp implements CommandLineRunner {
       }
     }
   }
-  /**
-   * Handles User Registration through user CLI inputs.
-   * */
+
+  /** Handles User Registration through user CLI inputs. */
   protected void registerUser(Scanner scanner) {
     log.info("Enter user details:");
     log.info("Name: ");
@@ -116,9 +113,8 @@ public class EcommerceApp implements CommandLineRunner {
     userService.registerUser(user);
     log.info("User registered successfully!");
   }
-  /**
-   * Handles the addition of products.
-   * */
+
+  /** Handles the addition of products. */
   protected void addProduct(Scanner scanner) {
     log.info("Enter product details:");
     log.info("Name: ");
@@ -134,9 +130,8 @@ public class EcommerceApp implements CommandLineRunner {
     productService.addProduct(product);
     log.info("Product added successfully!");
   }
-  /**
-   * Handles Order Placement through user CLI inputs.
-   */
+
+  /** Handles Order Placement through user CLI inputs. */
   protected void placeOrder(Scanner scanner) {
     log.info("Enter order details:");
     log.info("User ID: ");

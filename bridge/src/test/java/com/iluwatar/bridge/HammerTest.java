@@ -29,9 +29,7 @@ import static org.mockito.Mockito.spy;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for hammer
- */
+/** Tests for hammer */
 class HammerTest extends WeaponTest {
 
   /**

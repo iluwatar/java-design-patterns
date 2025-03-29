@@ -27,9 +27,7 @@ package com.iluwatar.doubledispatch;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Game objects have coordinates and some other status information.
- */
+/** Game objects have coordinates and some other status information. */
 @Getter
 @Setter
 public abstract class GameObject extends Rectangle {
@@ -43,8 +41,9 @@ public abstract class GameObject extends Rectangle {
 
   @Override
   public String toString() {
-    return String.format("%s at %s damaged=%b onFire=%b", this.getClass().getSimpleName(),
-        super.toString(), isDamaged(), isOnFire());
+    return String.format(
+        "%s at %s damaged=%b onFire=%b",
+        this.getClass().getSimpleName(), super.toString(), isDamaged(), isOnFire());
   }
 
   public abstract void collision(GameObject gameObject);

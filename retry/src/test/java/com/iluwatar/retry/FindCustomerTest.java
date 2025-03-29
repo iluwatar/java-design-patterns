@@ -30,22 +30,15 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for {@link FindCustomer}.
- *
- */
+/** Unit tests for {@link FindCustomer}. */
 class FindCustomerTest {
-  /**
-   * Returns the given result with no exceptions.
-   */
+  /** Returns the given result with no exceptions. */
   @Test
   void noExceptions() throws Exception {
     assertThat(new FindCustomer("123").perform(), is("123"));
   }
 
-  /**
-   * Throws the given exception.
-   */
+  /** Throws the given exception. */
   @Test
   void oneException() {
     var findCustomer = new FindCustomer("123", new BusinessException("test"));
@@ -59,20 +52,20 @@ class FindCustomerTest {
    */
   @Test
   void resultAfterExceptions() throws Exception {
-    final var op = new FindCustomer(
-        "123",
-        new CustomerNotFoundException("not found"),
-        new DatabaseNotAvailableException("not available")
-    );
+    final var op =
+        new FindCustomer(
+            "123",
+            new CustomerNotFoundException("not found"),
+            new DatabaseNotAvailableException("not available"));
     try {
       op.perform();
     } catch (CustomerNotFoundException e) {
-      //ignore
+      // ignore
     }
     try {
       op.perform();
     } catch (DatabaseNotAvailableException e) {
-      //ignore
+      // ignore
     }
 
     assertThat(op.perform(), is("123"));

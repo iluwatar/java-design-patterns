@@ -26,9 +26,7 @@ package com.iluwatar.business.delegate;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * NetflixService implementation.
- */
+/** NetflixService implementation. */
 @Slf4j
 public class NetflixService implements VideoStreamingService {
 

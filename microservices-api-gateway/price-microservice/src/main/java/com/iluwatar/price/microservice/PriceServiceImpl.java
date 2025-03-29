@@ -27,16 +27,12 @@ package com.iluwatar.price.microservice;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-/**
- * {@inheritDoc}
- */
+/** {@inheritDoc} */
 @Service
 @Slf4j
 public class PriceServiceImpl implements PriceService {
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public String getPrice() {
     LOGGER.info("Successfully found price info");

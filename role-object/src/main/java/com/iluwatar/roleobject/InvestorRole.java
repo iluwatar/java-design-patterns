@@ -27,9 +27,7 @@ package com.iluwatar.roleobject;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Investor role.
- */
+/** Investor role. */
 @Getter
 @Setter
 public class InvestorRole extends CustomerRole {

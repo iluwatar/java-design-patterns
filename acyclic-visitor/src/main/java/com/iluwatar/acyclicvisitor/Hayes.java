@@ -26,15 +26,11 @@ package com.iluwatar.acyclicvisitor;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Hayes class implements its accept method.
- */
+/** Hayes class implements its accept method. */
 @Slf4j
 public class Hayes implements Modem {
 
-  /**
-   * Accepts all visitors but honors only HayesVisitor.
-   */
+  /** Accepts all visitors but honors only HayesVisitor. */
   @Override
   public void accept(ModemVisitor modemVisitor) {
     if (modemVisitor instanceof HayesVisitor) {
@@ -42,12 +38,9 @@ public class Hayes implements Modem {
     } else {
       LOGGER.info("Only HayesVisitor is allowed to visit Hayes modem");
     }
-
   }
 
-  /**
-   * Hayes' modem's toString method.
-   */
+  /** Hayes' modem's toString method. */
   @Override
   public String toString() {
     return "Hayes modem";

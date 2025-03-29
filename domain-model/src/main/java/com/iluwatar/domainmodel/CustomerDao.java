@@ -27,9 +27,7 @@ package com.iluwatar.domainmodel;
 import java.sql.SQLException;
 import java.util.Optional;
 
-/**
- * DAO interface for customer transactions.
- */
+/** DAO interface for customer transactions. */
 public interface CustomerDao {
 
   Optional<Customer> findByName(String name) throws SQLException;

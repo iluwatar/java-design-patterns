@@ -45,12 +45,12 @@ public class CustomerCore extends Customer {
 
   @Override
   public boolean addRole(Role role) {
-    return role
-        .instance()
-        .map(inst -> {
-          roles.put(role, inst);
-          return true;
-        })
+    return role.instance()
+        .map(
+            inst -> {
+              roles.put(role, inst);
+              return true;
+            })
         .orElse(false);
   }
 
@@ -66,8 +66,7 @@ public class CustomerCore extends Customer {
 
   @Override
   public <T extends Customer> Optional<T> getRole(Role role, Class<T> expectedRole) {
-    return Optional
-        .ofNullable(roles.get(role))
+    return Optional.ofNullable(roles.get(role))
         .filter(expectedRole::isInstance)
         .map(expectedRole::cast);
   }

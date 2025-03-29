@@ -35,12 +35,11 @@ import java.sql.SQLException;
 import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Country Schema SQL Class.
- */
+/** Country Schema SQL Class. */
 @Slf4j
 public class CountrySchemaSql implements CountryDao {
-  public static final String CREATE_SCHEMA_SQL = "CREATE TABLE IF NOT EXISTS WORLD (ID INT PRIMARY KEY, COUNTRY BLOB)";
+  public static final String CREATE_SCHEMA_SQL =
+      "CREATE TABLE IF NOT EXISTS WORLD (ID INT PRIMARY KEY, COUNTRY BLOB)";
 
   public static final String DELETE_SCHEMA_SQL = "DROP TABLE WORLD IF EXISTS";
 
@@ -54,27 +53,26 @@ public class CountrySchemaSql implements CountryDao {
    * @param country country
    */
   public CountrySchemaSql(Country country, DataSource dataSource) {
-    this.country = new Country(
-            country.getCode(),
-            country.getName(),
-            country.getContinents(),
-            country.getLanguage()
-    );
+    this.country =
+        new Country(
+            country.getCode(), country.getName(), country.getContinents(), country.getLanguage());
     this.dataSource = dataSource;
   }
 
   /**
    * This method will serialize a Country object and store it to database.
-   * @return int type, if successfully insert a serialized object to database then return country code, else return -1.
+   *
+   * @return int type, if successfully insert a serialized object to database then return country
+   *     code, else return -1.
    * @throws IOException if any.
    */
   @Override
   public int insertCountry() throws IOException {
     var sql = "INSERT INTO WORLD (ID, COUNTRY) VALUES (?, ?)";
     try (var connection = dataSource.getConnection();
-         var preparedStatement = connection.prepareStatement(sql);
-         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-         ObjectOutputStream oss = new ObjectOutputStream(baos)) {
+        var preparedStatement = connection.prepareStatement(sql);
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        ObjectOutputStream oss = new ObjectOutputStream(baos)) {
 
       oss.writeObject(country);
       oss.flush();
@@ -91,8 +89,9 @@ public class CountrySchemaSql implements CountryDao {
 
   /**
    * This method will select a data item from database and deserialize it.
-   * @return int type, if successfully select and deserialized object from database then return country code,
-   *     else return -1.
+   *
+   * @return int type, if successfully select and deserialized object from database then return
+   *     country code, else return -1.
    * @throws IOException if any.
    * @throws ClassNotFoundException if any.
    */
@@ -100,14 +99,15 @@ public class CountrySchemaSql implements CountryDao {
   public int selectCountry() throws IOException, ClassNotFoundException {
     var sql = "SELECT ID, COUNTRY FROM WORLD WHERE ID = ?";
     try (var connection = dataSource.getConnection();
-         var preparedStatement = connection.prepareStatement(sql)) {
+        var preparedStatement = connection.prepareStatement(sql)) {
 
       preparedStatement.setInt(1, country.getCode());
 
       try (ResultSet rs = preparedStatement.executeQuery()) {
         if (rs.next()) {
           Blob countryBlob = rs.getBlob("country");
-          ByteArrayInputStream baos = new ByteArrayInputStream(countryBlob.getBytes(1, (int) countryBlob.length()));
+          ByteArrayInputStream baos =
+              new ByteArrayInputStream(countryBlob.getBytes(1, (int) countryBlob.length()));
           ObjectInputStream ois = new ObjectInputStream(baos);
           country = (Country) ois.readObject();
           LOGGER.info("Country: " + country);
@@ -119,5 +119,4 @@ public class CountrySchemaSql implements CountryDao {
     }
     return -1;
   }
-
 }

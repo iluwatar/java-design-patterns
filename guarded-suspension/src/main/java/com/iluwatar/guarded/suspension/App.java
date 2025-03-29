@@ -30,14 +30,13 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Guarded-suspension is a concurrent design pattern for handling situation when to execute some
- * action we need condition to be satisfied.
- * The implementation utilizes a GuardedQueue, which features two primary methods: `get` and `put`.
- * The key condition governing these operations is that elements cannot be retrieved (`get`) from
- * an empty queue. When a thread attempts to retrieve an element under this condition, it triggers
- * the invocation of the `wait` method from the Object class, causing the thread to pause.
- * Conversely, when an element is added (`put`) to the queue by another thread, it invokes the
- * `notify` method. This notifies the waiting thread that it can now successfully retrieve an
- * element from the queue.
+ * action we need condition to be satisfied. The implementation utilizes a GuardedQueue, which
+ * features two primary methods: `get` and `put`. The key condition governing these operations is
+ * that elements cannot be retrieved (`get`) from an empty queue. When a thread attempts to retrieve
+ * an element under this condition, it triggers the invocation of the `wait` method from the Object
+ * class, causing the thread to pause. Conversely, when an element is added (`put`) to the queue by
+ * another thread, it invokes the `notify` method. This notifies the waiting thread that it can now
+ * successfully retrieve an element from the queue.
  */
 @Slf4j
 public class App {
@@ -50,7 +49,7 @@ public class App {
     var guardedQueue = new GuardedQueue();
     var executorService = Executors.newFixedThreadPool(3);
 
-    //here we create first thread which is supposed to get from guardedQueue
+    // here we create first thread which is supposed to get from guardedQueue
     executorService.execute(guardedQueue::get);
 
     // here we wait two seconds to show that the thread which is trying

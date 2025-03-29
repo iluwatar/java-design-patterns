@@ -26,9 +26,7 @@ package com.iluwatar.producer.consumer;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Class responsible for consume the {@link Item} produced by {@link Producer}.
- */
+/** Class responsible for consume the {@link Item} produced by {@link Producer}. */
 @Slf4j
 public class Consumer {
 
@@ -41,13 +39,10 @@ public class Consumer {
     this.queue = queue;
   }
 
-  /**
-   * Consume item from the queue.
-   */
+  /** Consume item from the queue. */
   public void consume() throws InterruptedException {
     var item = queue.take();
-    LOGGER.info("Consumer [{}] consume item [{}] produced by [{}]", name,
-        item.id(), item.producer());
-
+    LOGGER.info(
+        "Consumer [{}] consume item [{}] produced by [{}]", name, item.id(), item.producer());
   }
 }

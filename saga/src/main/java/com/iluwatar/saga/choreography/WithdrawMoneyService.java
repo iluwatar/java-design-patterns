@@ -24,9 +24,7 @@
  */
 package com.iluwatar.saga.choreography;
 
-/**
- * Class representing a service to withdraw a money.
- */
+/** Class representing a service to withdraw a money. */
 public class WithdrawMoneyService extends Service {
 
   public WithdrawMoneyService(ServiceDiscoveryService service) {
@@ -43,7 +41,8 @@ public class WithdrawMoneyService extends Service {
     var inValue = saga.getCurrentValue();
 
     if (inValue.equals("bad_order")) {
-      LOGGER.info("The chapter '{}' has been started. But the exception has been raised."
+      LOGGER.info(
+          "The chapter '{}' has been started. But the exception has been raised."
               + "The rollback is about to start",
           getName());
       saga.setCurrentStatus(Saga.ChapterResult.ROLLBACK);

@@ -39,7 +39,7 @@ public class MonitoringService {
     this.quickService = quickService;
   }
 
-  //Assumption: Local service won't fail, no need to wrap it in a circuit breaker logic
+  // Assumption: Local service won't fail, no need to wrap it in a circuit breaker logic
   public String localResourceResponse() {
     return "Local Service is working";
   }

@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for WorkCenter
- */
+/** Tests for WorkCenter */
 class WorkCenterTest {
 
   @Test

@@ -24,7 +24,5 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-/**
- * Immutable value object containing lottery player details.
- */
+/** Immutable value object containing lottery player details. */
 public record PlayerDetails(String email, String bankAccount, String phoneNumber) {}

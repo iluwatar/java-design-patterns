@@ -52,8 +52,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public final class App {
 
-  private App() {
-  }
+  private App() {}
 
   /**
    * Application entry point
@@ -85,6 +84,5 @@ public final class App {
     } catch (IOException ex) {
       LOGGER.error("An error occurred.", ex);
     }
-
   }
 }

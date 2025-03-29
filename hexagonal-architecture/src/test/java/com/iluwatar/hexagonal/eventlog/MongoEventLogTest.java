@@ -33,9 +33,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for Mongo event log
- */
+/** Tests for Mongo event log */
 @Disabled
 class MongoEventLogTest {
 
@@ -47,8 +45,9 @@ class MongoEventLogTest {
   @BeforeEach
   void init() {
     MongoConnectionPropertiesLoader.load();
-    var mongoClient = new MongoClient(System.getProperty("mongo-host"),
-        Integer.parseInt(System.getProperty("mongo-port")));
+    var mongoClient =
+        new MongoClient(
+            System.getProperty("mongo-host"), Integer.parseInt(System.getProperty("mongo-port")));
     mongoClient.dropDatabase(TEST_DB);
     mongoClient.close();
     mongoEventLog = new MongoEventLog(TEST_DB, TEST_EVENTS_COLLECTION);

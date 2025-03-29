@@ -29,9 +29,7 @@ import java.util.Map;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * DB class for seeding user info.
- */
+/** DB class for seeding user info. */
 public class Db {
 
   private static Db instance;
@@ -118,9 +116,7 @@ public class Db {
     return itemName2Product.get(itemName);
   }
 
-  /**
-   * User class to store user info.
-   */
+  /** User class to store user info. */
   @RequiredArgsConstructor
   @Getter
   public class User {
@@ -132,9 +128,7 @@ public class Db {
     }
   }
 
-  /**
-   * Account info.
-   */
+  /** Account info. */
   @RequiredArgsConstructor
   @Getter
   public static class Account {
@@ -155,9 +149,7 @@ public class Db {
     }
   }
 
-  /**
-   * Product info.
-   */
+  /** Product info. */
   @RequiredArgsConstructor
   @Getter
   public static class Product {

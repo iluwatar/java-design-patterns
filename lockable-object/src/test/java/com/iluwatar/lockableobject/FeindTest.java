@@ -39,14 +39,14 @@ class FeindTest {
   private Lockable sword;
 
   @BeforeEach
-  void init(){
+  void init() {
     elf = new Elf("Nagdil");
     orc = new Orc("Ghandar");
     sword = new SwordOfAragorn();
   }
 
   @Test
-  void nullTests(){
+  void nullTests() {
     Assertions.assertThrows(NullPointerException.class, () -> new Feind(null, null));
     Assertions.assertThrows(NullPointerException.class, () -> new Feind(elf, null));
     Assertions.assertThrows(NullPointerException.class, () -> new Feind(null, sword));
@@ -67,5 +67,4 @@ class FeindTest {
     sword.unlock(elf.isAlive() ? elf : orc);
     Assertions.assertNull(sword.getLocker());
   }
-
 }

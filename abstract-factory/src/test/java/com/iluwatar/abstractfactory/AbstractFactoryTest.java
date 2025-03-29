@@ -24,14 +24,12 @@
  */
 package com.iluwatar.abstractfactory;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Tests for abstract factory.
- */
+import org.junit.jupiter.api.Test;
+
+/** Tests for abstract factory. */
 class AbstractFactoryTest {
 
   private final App app = new App();

@@ -45,9 +45,7 @@ import lombok.extern.slf4j.Slf4j;
 public class RingInstance extends AbstractInstance {
   private static final String INSTANCE = "Instance ";
 
-  /**
-   * Constructor of RingInstance.
-   */
+  /** Constructor of RingInstance. */
   public RingInstance(MessageManager messageManager, int localId, int leaderId) {
     super(messageManager, localId, leaderId);
   }
@@ -76,18 +74,16 @@ public class RingInstance extends AbstractInstance {
 
   /**
    * Process election message. If the local ID is contained in the ID list, the instance will select
-   * the alive instance with the smallest ID to be the new leader, and send the leader inform message.
-   * If not, it will add its local ID to the list and send the message to the next instance in the
-   * ring.
+   * the alive instance with the smallest ID to be the new leader, and send the leader inform
+   * message. If not, it will add its local ID to the list and send the message to the next instance
+   * in the ring.
    */
   @Override
   protected void handleElectionMessage(Message message) {
     var content = message.getContent();
     LOGGER.info(INSTANCE + localId + " - Election Message: " + content);
-    var candidateList = Arrays.stream(content.trim().split(","))
-        .map(Integer::valueOf)
-        .sorted()
-        .toList();
+    var candidateList =
+        Arrays.stream(content.trim().split(",")).map(Integer::valueOf).sorted().toList();
     if (candidateList.contains(localId)) {
       var newLeaderId = candidateList.get(0);
       LOGGER.info(INSTANCE + localId + " - New leader should be " + newLeaderId + ".");
@@ -115,9 +111,7 @@ public class RingInstance extends AbstractInstance {
     }
   }
 
-  /**
-   * Not used in Ring instance.
-   */
+  /** Not used in Ring instance. */
   @Override
   protected void handleLeaderInvokeMessage() {
     // Not used in Ring instance.
@@ -132,5 +126,4 @@ public class RingInstance extends AbstractInstance {
   protected void handleElectionInvokeMessage() {
     // Not used in Ring instance.
   }
-
 }

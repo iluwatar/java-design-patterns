@@ -27,9 +27,7 @@ package com.iluwatar.specification.selector;
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Movement;
 
-/**
- * Movement selector.
- */
+/** Movement selector. */
 public class MovementSelector extends AbstractSelector<Creature> {
 
   private final Movement movement;

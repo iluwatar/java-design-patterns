@@ -51,5 +51,4 @@ public class RangeShardManager extends ShardManager {
       case TYPE_3 -> 3;
     };
   }
-
 }

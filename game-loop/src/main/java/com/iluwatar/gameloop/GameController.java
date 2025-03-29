@@ -25,16 +25,14 @@
 package com.iluwatar.gameloop;
 
 /**
- * Update and render objects in the game. Here we add a Bullet object to the
- * game system to show how the game loop works.
+ * Update and render objects in the game. Here we add a Bullet object to the game system to show how
+ * the game loop works.
  */
 public class GameController {
 
   protected final Bullet bullet;
 
-  /**
-   * Initialize Bullet instance.
-   */
+  /** Initialize Bullet instance. */
   public GameController() {
     bullet = new Bullet();
   }
@@ -57,6 +55,4 @@ public class GameController {
   public float getBulletPosition() {
     return bullet.getPosition();
   }
-
 }
-

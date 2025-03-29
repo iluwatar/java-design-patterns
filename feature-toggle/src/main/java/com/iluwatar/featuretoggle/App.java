@@ -94,7 +94,8 @@ public class App {
     // Demonstrates the TieredFeatureToggleVersion setup with
     // two users: one on the free tier and the other on the paid tier. When the
     // Service#getWelcomeMessage(User) method is called with the paid user, the welcome
-    // message includes their username. In contrast, calling the same service with the free tier user results
+    // message includes their username. In contrast, calling the same service with the free tier
+    // user results
     // in a more generic welcome message without the username.
 
     var service2 = new TieredFeatureToggleVersion();

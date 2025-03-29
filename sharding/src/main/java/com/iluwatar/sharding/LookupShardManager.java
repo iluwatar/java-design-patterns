@@ -30,9 +30,8 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * ShardManager with lookup strategy. In this strategy the sharding logic implements
- * a map that routes a request for data to the shard that contains that data by using
- * the shard key.
+ * ShardManager with lookup strategy. In this strategy the sharding logic implements a map that
+ * routes a request for data to the shard that contains that data by using the shard key.
  */
 @Slf4j
 public class LookupShardManager extends ShardManager {
@@ -59,5 +58,4 @@ public class LookupShardManager extends ShardManager {
       return new SecureRandom().nextInt(shardCount - 1) + 1;
     }
   }
-
 }

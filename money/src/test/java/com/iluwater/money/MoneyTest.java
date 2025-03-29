@@ -24,18 +24,18 @@
  */
 package com.iluwater.money;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import com.iluwatar.App;
 import com.iluwatar.CannotAddTwoCurrienciesException;
 import com.iluwatar.CannotSubtractException;
 import com.iluwatar.Money;
-import com.iluwatar.App;
+import org.junit.jupiter.api.Test;
 
-
- class MoneyTest {
+class MoneyTest {
 
   @Test
-   void testConstructor() {
+  void testConstructor() {
     // Test the constructor
     Money money = new Money(100.00, "USD");
     assertEquals(100.00, money.getAmount());
@@ -43,7 +43,7 @@ import com.iluwatar.App;
   }
 
   @Test
-   void testAddMoney_SameCurrency() throws CannotAddTwoCurrienciesException {
+  void testAddMoney_SameCurrency() throws CannotAddTwoCurrienciesException {
     // Test adding two Money objects with the same currency
     Money money1 = new Money(100.00, "USD");
     Money money2 = new Money(50.25, "USD");
@@ -54,18 +54,20 @@ import com.iluwatar.App;
   }
 
   @Test
-   void testAddMoney_DifferentCurrency() {
+  void testAddMoney_DifferentCurrency() {
     // Test adding two Money objects with different currencies
     Money money1 = new Money(100.00, "USD");
     Money money2 = new Money(50.25, "EUR");
 
-    assertThrows(CannotAddTwoCurrienciesException.class, () -> {
-      money1.addMoney(money2);
-    });
+    assertThrows(
+        CannotAddTwoCurrienciesException.class,
+        () -> {
+          money1.addMoney(money2);
+        });
   }
 
   @Test
-   void testSubtractMoney_SameCurrency() throws CannotSubtractException {
+  void testSubtractMoney_SameCurrency() throws CannotSubtractException {
     // Test subtracting two Money objects with the same currency
     Money money1 = new Money(100.00, "USD");
     Money money2 = new Money(50.25, "USD");
@@ -76,29 +78,33 @@ import com.iluwatar.App;
   }
 
   @Test
-   void testSubtractMoney_DifferentCurrency() {
+  void testSubtractMoney_DifferentCurrency() {
     // Test subtracting two Money objects with different currencies
     Money money1 = new Money(100.00, "USD");
     Money money2 = new Money(50.25, "EUR");
 
-    assertThrows(CannotSubtractException.class, () -> {
-      money1.subtractMoney(money2);
-    });
+    assertThrows(
+        CannotSubtractException.class,
+        () -> {
+          money1.subtractMoney(money2);
+        });
   }
 
   @Test
-   void testSubtractMoney_AmountTooLarge() {
+  void testSubtractMoney_AmountTooLarge() {
     // Test subtracting an amount larger than the current amount
     Money money1 = new Money(50.00, "USD");
     Money money2 = new Money(60.00, "USD");
 
-    assertThrows(CannotSubtractException.class, () -> {
-      money1.subtractMoney(money2);
-    });
+    assertThrows(
+        CannotSubtractException.class,
+        () -> {
+          money1.subtractMoney(money2);
+        });
   }
 
   @Test
-   void testMultiply() {
+  void testMultiply() {
     // Test multiplying the money amount by a factor
     Money money = new Money(100.00, "USD");
 
@@ -108,17 +114,19 @@ import com.iluwatar.App;
   }
 
   @Test
-   void testMultiply_NegativeFactor() {
+  void testMultiply_NegativeFactor() {
     // Test multiplying by a negative factor
     Money money = new Money(100.00, "USD");
 
-    assertThrows(IllegalArgumentException.class, () -> {
-      money.multiply(-2);
-    });
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          money.multiply(-2);
+        });
   }
 
   @Test
-   void testExchangeCurrency() {
+  void testExchangeCurrency() {
     // Test converting currency using an exchange rate
     Money money = new Money(100.00, "USD");
 
@@ -129,21 +137,23 @@ import com.iluwatar.App;
   }
 
   @Test
-   void testExchangeCurrency_NegativeExchangeRate() {
+  void testExchangeCurrency_NegativeExchangeRate() {
     // Test converting currency with a negative exchange rate
     Money money = new Money(100.00, "USD");
 
-    assertThrows(IllegalArgumentException.class, () -> {
-      money.exchangeCurrency("EUR", -0.85);
-    });
+    assertThrows(
+        IllegalArgumentException.class,
+        () -> {
+          money.exchangeCurrency("EUR", -0.85);
+        });
   }
 
-
   @Test
-     void testAppExecution() {
-       assertDoesNotThrow(() -> {
-         App.main(new String[]{});
-       }, "App execution should not throw any exceptions");
-     }
-
+  void testAppExecution() {
+    assertDoesNotThrow(
+        () -> {
+          App.main(new String[] {});
+        },
+        "App execution should not throw any exceptions");
+  }
 }

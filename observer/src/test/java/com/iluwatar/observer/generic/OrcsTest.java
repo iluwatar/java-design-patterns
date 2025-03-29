@@ -28,27 +28,20 @@ import com.iluwatar.observer.WeatherType;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * OrcsTest
- *
- */
+/** OrcsTest */
 class OrcsTest extends ObserverTest<GenOrcs> {
 
   @Override
   public Collection<Object[]> dataProvider() {
     return List.of(
-        new Object[]{WeatherType.SUNNY, "The orcs are facing Sunny weather now"},
-        new Object[]{WeatherType.RAINY, "The orcs are facing Rainy weather now"},
-        new Object[]{WeatherType.WINDY, "The orcs are facing Windy weather now"},
-        new Object[]{WeatherType.COLD, "The orcs are facing Cold weather now"}
-    );
+        new Object[] {WeatherType.SUNNY, "The orcs are facing Sunny weather now"},
+        new Object[] {WeatherType.RAINY, "The orcs are facing Rainy weather now"},
+        new Object[] {WeatherType.WINDY, "The orcs are facing Windy weather now"},
+        new Object[] {WeatherType.COLD, "The orcs are facing Cold weather now"});
   }
 
-  /**
-   * Create a new test with the given weather and expected response
-   */
+  /** Create a new test with the given weather and expected response */
   public OrcsTest() {
     super(GenOrcs::new);
   }
-
 }

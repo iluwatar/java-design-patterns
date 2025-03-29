@@ -27,15 +27,10 @@ package com.iluwatar.visitor;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.verify;
 
-/**
- * SergeantTest
- *
- */
+/** SergeantTest */
 class SergeantTest extends UnitTest<Sergeant> {
 
-  /**
-   * Create a new test instance for the given {@link Sergeant}.
-   */
+  /** Create a new test instance for the given {@link Sergeant}. */
   public SergeantTest() {
     super(Sergeant::new);
   }
@@ -44,5 +39,4 @@ class SergeantTest extends UnitTest<Sergeant> {
   void verifyVisit(Sergeant unit, UnitVisitor mockedVisitor) {
     verify(mockedVisitor).visit(eq(unit));
   }
-
 }

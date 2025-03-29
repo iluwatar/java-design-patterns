@@ -47,10 +47,7 @@ import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-/**
- * Tests class< for {@link CustomHealthIndicator}. *
- *
- */
+/** Tests class< for {@link CustomHealthIndicator}. * */
 class CustomHealthIndicatorTest {
 
   /** Mocked AsynchronousHealthChecker instance. */
