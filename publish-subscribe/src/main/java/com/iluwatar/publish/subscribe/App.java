@@ -27,14 +27,14 @@ import com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber;
  * added to the system without significant changes to the existing components, making the system
  * highly adaptable to evolving requirements.</li></p>
  *
- * <p>In this example we will create two topics {@link TopicName} WEATHER and CUSTOMER_SUPPORT.
- * then we will register those topics in {@link Publisher}
- * we will create two {@link WeatherSubscriber} to WEATHER {@link Topic}
- * we will create two {@link CustomerSupportSubscriber} to CUSTOMER_SUPPORT {@link Topic}
- * then we will publish the two {@link Topic} with different content in the {@link Message}
+ * <p>In this example we will create two {@link TopicName}s WEATHER and CUSTOMER_SUPPORT.
+ * Then we will register those topics in the {@link Publisher}.
+ * After that we will create two {@link WeatherSubscriber}s to WEATHER {@link Topic}.
+ * Also, we will create two {@link CustomerSupportSubscriber}s to CUSTOMER_SUPPORT {@link Topic}.
+ * Now we can publish the two {@link Topic}s with different content in the {@link Message}s.
  * And we can observe the output in the log where,
- * {@link WeatherSubscriber} publish the message with {@link WeatherContent}
- * {@link CustomerSupportSubscriber} publish the message with {@link CustomerSupportContent}
+ * {@link WeatherSubscriber} will output the message with {@link WeatherContent}.
+ * {@link CustomerSupportSubscriber} will output the message with {@link CustomerSupportContent}.
  * Each subscriber is only listening to the subscribed topic.
  */
 public class App {

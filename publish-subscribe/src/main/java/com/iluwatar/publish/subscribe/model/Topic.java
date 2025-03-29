@@ -4,9 +4,7 @@ import com.iluwatar.publish.subscribe.subscriber.Subscriber;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
-/**
- * This class represents a Topic that topic name and subscribers.
- */
+/** This class represents a Topic that topic name and subscribers. */
 public class Topic {
 
   private final TopicName name;

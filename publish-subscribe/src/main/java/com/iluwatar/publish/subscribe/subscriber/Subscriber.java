@@ -2,9 +2,7 @@ package com.iluwatar.publish.subscribe.subscriber;
 
 import com.iluwatar.publish.subscribe.model.Message;
 
-/**
- * This class represents a Subscriber.
- */
+/** This class represents a Subscriber. */
 public interface Subscriber {
 
   /**

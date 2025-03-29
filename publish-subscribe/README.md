@@ -1,5 +1,5 @@
 ---
-title: "Publisher-Subscriber Pattern in Java: Decoupling the solution with asynchronous communication"
+title: "Publish-Subscribe Pattern in Java: Decoupling the solution with asynchronous communication"
 shortTitle: Proxy
 description: "Explore the Proxy design pattern in Java with detailed examples. Learn how it provides controlled access, facilitates lazy initialization, and ensures security. Ideal for developers looking to implement advanced Java techniques."
 category: Structural
@@ -14,14 +14,14 @@ tag:
     - Wrapping
 ---
 
-## Intent of the Publisher-Subscriber Design Pattern
+## Intent of the Publish-Subscribe Design Pattern
 
-The publisher-subscriber design pattern is widely used in software architecture to transmit data between various components in a system.
+The Publish-Subscriber design pattern is widely used in software architecture to transmit data between various components in a system.
 It is a behavioral design pattern aimed at achieving loosely coupled communication between objects.
 The primary intent is to allow a one-to-many dependency relationship where one object (the Publisher) notifies multiple other objects (the Subscribers) about changes or events,
 without needing to know who or what the subscribers are.
 
-## Detailed Explanation of Publisher-Subscriber Pattern with Real-World Examples
+## Detailed Explanation of Publish-Subscribe Pattern with Real-World Examples
 
 - Messaging systems like Kafka, RabbitMQ, AWS SNS, JMS
     - **Kafka** : publishes messages to topics and subscribers consumes them in real time for analytics, logs or other purposes.
@@ -38,7 +38,7 @@ without needing to know who or what the subscribers are.
     - **Publisher** : Writes a new blog post and publish to subscribers
     - **Subscribers** : All the subscribers to the newsletter receive the email
 
-## Programmatic Example of Publisher-Subscriber Pattern in Java
+## Programmatic Example of Publish-Subscribe Pattern in Java
 
 First we need to identify the Event on which we need the pub-sub methods to trigger.
 For example:
@@ -157,7 +157,7 @@ Program output:
 11:46:44.311 [main] INFO com.iluwatar.publish.subscribe.subscriber.CustomerSupportSubscriber - Subscriber: supportSub2 sent the email to: customer.support@test.de
 ```
 
-## When to Use the Publisher-Subscriber Pattern
+## When to Use the Publish-Subscribe Pattern
 
 - Event-Driven Systems
     - Use Pub/Sub when your system relies on events (e.g., user registration, payment completion).
@@ -183,13 +183,13 @@ Program output:
     - Allow independent services to communicate without direct coupling.
     - Example: An order service publishes an event, and both the billing and shipping services process it.
 
-## When to avoid the Publisher-Subscriber Pattern
+## When to avoid the Publish-Subscribe Pattern
 
 - Simple applications where direct calls suffice.
 - Strong consistency requirements (e.g., banking transactions).
 - Low-latency synchronous communication needed.
 
-## Benefits and Trade-offs of Publisher-Subscriber Pattern
+## Benefits and Trade-offs of Publish-Subscribe Pattern
 
 ### Benefits:
 
