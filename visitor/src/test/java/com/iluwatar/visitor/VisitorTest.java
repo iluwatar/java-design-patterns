@@ -55,39 +55,30 @@ public abstract class VisitorTest<V extends UnitVisitor> {
     appender.stop();
   }
 
-  /**
-   * The tested visitor instance.
-   */
+  /** The tested visitor instance. */
   private final V visitor;
 
-  /**
-   * The expected response when being visited by a commander.
-   */
+  /** The expected response when being visited by a commander. */
   private final String commanderResponse;
 
-  /**
-   * The expected response when being visited by a sergeant.
-   */
+  /** The expected response when being visited by a sergeant. */
   private final String sergeantResponse;
 
-  /**
-   * The expected response when being visited by a soldier.
-   */
+  /** The expected response when being visited by a soldier. */
   private final String soldierResponse;
 
   /**
    * Create a new test instance for the given visitor.
    *
    * @param commanderResponse The expected response when being visited by a commander
-   * @param sergeantResponse  The expected response when being visited by a sergeant
-   * @param soldierResponse   The expected response when being visited by a soldier
+   * @param sergeantResponse The expected response when being visited by a sergeant
+   * @param soldierResponse The expected response when being visited by a soldier
    */
   public VisitorTest(
       final V visitor,
       final String commanderResponse,
       final String sergeantResponse,
-      final String soldierResponse
-  ) {
+      final String soldierResponse) {
     this.visitor = visitor;
     this.commanderResponse = commanderResponse;
     this.sergeantResponse = sergeantResponse;

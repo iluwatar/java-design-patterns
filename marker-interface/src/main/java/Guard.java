@@ -24,9 +24,7 @@
  */
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Class defining Guard.
- */
+/** Class defining Guard. */
 @Slf4j
 public class Guard implements Permission {
 

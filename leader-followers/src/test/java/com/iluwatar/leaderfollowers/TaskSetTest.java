@@ -28,9 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for TaskSet
- */
+/** Tests for TaskSet */
 class TaskSetTest {
 
   @Test
@@ -48,5 +46,4 @@ class TaskSetTest {
     assertEquals(100, task.getTime());
     assertEquals(0, taskSet.getSize());
   }
-
 }

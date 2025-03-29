@@ -34,10 +34,9 @@ import lombok.extern.slf4j.Slf4j;
  * derived classes—rather than by calling a constructor.
  *
  * <p>In this Factory Method example we have an interface ({@link Blacksmith}) with a method for
- * creating objects ({@link Blacksmith#manufactureWeapon}). The concrete subclasses (
- * {@link OrcBlacksmith}, {@link ElfBlacksmith}) then override the method to produce objects of
- * their liking.
- *
+ * creating objects ({@link Blacksmith#manufactureWeapon}). The concrete subclasses ( {@link
+ * OrcBlacksmith}, {@link ElfBlacksmith}) then override the method to produce objects of their
+ * liking.
  */
 @Slf4j
 public class App {
@@ -46,6 +45,7 @@ public class App {
 
   /**
    * Program entry point.
+   *
    * @param args command line args
    */
   public static void main(String[] args) {

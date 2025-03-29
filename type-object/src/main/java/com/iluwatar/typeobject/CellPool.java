@@ -51,7 +51,7 @@ public class CellPool {
       this.randomCode = assignRandomCandytypes();
     } catch (Exception e) {
       LOGGER.error("Error occurred: ", e);
-      //manually initialising this.randomCode
+      // manually initialising this.randomCode
       this.randomCode = new Candy[5];
       randomCode[0] = new Candy("cherry", FRUIT, Type.REWARD_FRUIT, 20);
       randomCode[1] = new Candy("mango", FRUIT, Type.REWARD_FRUIT, 20);
@@ -74,7 +74,7 @@ public class CellPool {
   }
 
   void addNewCell(Cell c) {
-    c.candy = randomCode[RANDOM.nextInt(randomCode.length)]; //changing candytype to new
+    c.candy = randomCode[RANDOM.nextInt(randomCode.length)]; // changing candytype to new
     this.pool.add(c);
     pointer++;
   }
@@ -82,12 +82,12 @@ public class CellPool {
   Candy[] assignRandomCandytypes() throws JsonParseException {
     var jp = new JsonParser();
     jp.parse();
-    var randomCode = new Candy[jp.candies.size() - 2]; //exclude generic types 'fruit' and 'candy'
+    var randomCode = new Candy[jp.candies.size() - 2]; // exclude generic types 'fruit' and 'candy'
     var i = 0;
     for (var e = jp.candies.keys(); e.hasMoreElements(); ) {
       var s = e.nextElement();
       if (!s.equals(FRUIT) && !s.equals(CANDY)) {
-        //not generic
+        // not generic
         randomCode[i] = jp.candies.get(s);
         i++;
       }

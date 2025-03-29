@@ -27,9 +27,7 @@ package com.iluwatar.producer.consumer;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-/**
- * Class as a channel for {@link Producer}-{@link Consumer} exchange.
- */
+/** Class as a channel for {@link Producer}-{@link Consumer} exchange. */
 public class ItemQueue {
 
   private final BlockingQueue<Item> queue;
@@ -48,5 +46,4 @@ public class ItemQueue {
 
     return queue.take();
   }
-
 }

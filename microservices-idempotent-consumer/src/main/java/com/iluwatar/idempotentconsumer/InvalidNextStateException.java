@@ -25,9 +25,9 @@
 package com.iluwatar.idempotentconsumer;
 
 /**
- * This exception is thrown when an invalid transition is attempted in the Statemachine
- * for the request status. This can occur when attempting to move to a state that is not valid
- * from the current state.
+ * This exception is thrown when an invalid transition is attempted in the Statemachine for the
+ * request status. This can occur when attempting to move to a state that is not valid from the
+ * current state.
  */
 public class InvalidNextStateException extends RuntimeException {
   public InvalidNextStateException(String s) {

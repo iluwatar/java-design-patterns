@@ -24,13 +24,11 @@
  */
 package com.iluwatar.price.microservice;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test for Price Rest Controller
- */
+import org.junit.jupiter.api.Test;
+
+/** Test for Price Rest Controller */
 class PriceControllerTest {
 
   @Test

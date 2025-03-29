@@ -28,9 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Message test case.
- */
+/** Message test case. */
 class MessageTest {
 
   @Test
@@ -45,5 +43,4 @@ class MessageTest {
     var message = new Message(MessageType.HEARTBEAT, content);
     assertEquals(content, message.getContent());
   }
-
 }

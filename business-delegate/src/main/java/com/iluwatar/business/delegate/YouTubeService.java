@@ -26,9 +26,7 @@ package com.iluwatar.business.delegate;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * YouTubeService implementation.
- */
+/** YouTubeService implementation. */
 @Slf4j
 public class YouTubeService implements VideoStreamingService {
 

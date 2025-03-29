@@ -24,14 +24,9 @@
  */
 package com.iluwatar.servicelayer.common;
 
-
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.MappedSuperclass;
 
-/**
- * Base class for entities.
- */
+/** Base class for entities. */
 @MappedSuperclass
 public abstract class BaseEntity {
 
@@ -62,5 +57,4 @@ public abstract class BaseEntity {
    * @param name The new name
    */
   public abstract void setName(final String name);
-
 }

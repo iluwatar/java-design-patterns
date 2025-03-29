@@ -31,10 +31,7 @@ import jakarta.persistence.criteria.Root;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-
-/**
- * SpellbookDao implementation.
- */
+/** SpellbookDao implementation. */
 public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements SpellbookDao {
 
   @Override
@@ -58,5 +55,4 @@ public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements Spellboo
     }
     return result;
   }
-
 }

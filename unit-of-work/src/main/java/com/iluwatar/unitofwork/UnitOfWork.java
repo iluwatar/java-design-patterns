@@ -31,9 +31,7 @@ package com.iluwatar.unitofwork;
  */
 public interface UnitOfWork<T> {
 
-  /**
-   * Any register new operation occurring on UnitOfWork is only going to be performed on commit.
-   */
+  /** Any register new operation occurring on UnitOfWork is only going to be performed on commit. */
   void registerNew(T entity);
 
   /**
@@ -46,9 +44,6 @@ public interface UnitOfWork<T> {
    */
   void registerDeleted(T entity);
 
-  /**
-   * All UnitOfWork operations batched together executed in commit only.
-   */
+  /** All UnitOfWork operations batched together executed in commit only. */
   void commit();
-
 }

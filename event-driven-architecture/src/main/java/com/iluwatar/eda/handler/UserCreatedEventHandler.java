@@ -28,9 +28,7 @@ import com.iluwatar.eda.event.UserCreatedEvent;
 import com.iluwatar.eda.framework.Handler;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Handles the {@link UserCreatedEvent} message.
- */
+/** Handles the {@link UserCreatedEvent} message. */
 @Slf4j
 public class UserCreatedEventHandler implements Handler<UserCreatedEvent> {
 
@@ -38,5 +36,4 @@ public class UserCreatedEventHandler implements Handler<UserCreatedEvent> {
   public void onEvent(UserCreatedEvent event) {
     LOGGER.info("User '{}' has been Created!", event.getUser().username());
   }
-
 }

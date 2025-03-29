@@ -24,16 +24,14 @@
  */
 package com.iluwatar.payment.microservice;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Application Context loads test
- */
+import org.junit.jupiter.api.Test;
+
+/** Application Context loads test */
 class MainTest {
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> Main.main(new String[]{}));
+    assertDoesNotThrow(() -> Main.main(new String[] {}));
   }
 }

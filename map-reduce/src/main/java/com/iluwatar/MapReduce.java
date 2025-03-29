@@ -29,13 +29,15 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The MapReduce class orchestrates the MapReduce process,
- * calling the Mapper, Shuffler, and Reducer components.
+ * The MapReduce class orchestrates the MapReduce process, calling the Mapper, Shuffler, and Reducer
+ * components.
  */
 public class MapReduce {
   private MapReduce() {
-    throw new UnsupportedOperationException("MapReduce is a utility class and cannot be instantiated.");
+    throw new UnsupportedOperationException(
+        "MapReduce is a utility class and cannot be instantiated.");
   }
+
   /**
    * Executes the MapReduce process on the given list of input strings.
    *

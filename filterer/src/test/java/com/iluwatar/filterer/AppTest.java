@@ -32,6 +32,6 @@ class AppTest {
 
   @Test
   void shouldLaunchApp() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

@@ -26,9 +26,7 @@ package com.iluwatar.event.aggregator;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * KingJoffrey observes events from {@link KingsHand}.
- */
+/** KingJoffrey observes events from {@link KingsHand}. */
 @Slf4j
 public class KingJoffrey implements EventObserver {
 

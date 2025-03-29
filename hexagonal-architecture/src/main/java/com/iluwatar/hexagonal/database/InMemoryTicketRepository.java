@@ -30,9 +30,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Mock database for lottery tickets.
- */
+/** Mock database for lottery tickets. */
 public class InMemoryTicketRepository implements LotteryTicketRepository {
 
   private static final Map<LotteryTicketId, LotteryTicket> tickets = new HashMap<>();

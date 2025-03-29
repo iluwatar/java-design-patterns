@@ -28,13 +28,12 @@ import java.sql.SQLException;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
-/**
- * Create h2 database.
- */
+/** Create h2 database. */
 @Slf4j
 public class DatabaseUtil {
   private static final String DB_URL = "jdbc:h2:mem:metamapping";
-  private static final String CREATE_SCHEMA_SQL = """
+  private static final String CREATE_SCHEMA_SQL =
+      """
           DROP TABLE IF EXISTS `user_account`;CREATE TABLE `user_account` (
             `id` int(11) NOT NULL AUTO_INCREMENT,
             `username` varchar(255) NOT NULL,
@@ -42,9 +41,7 @@ public class DatabaseUtil {
             PRIMARY KEY (`id`)
           );""";
 
-  /**
-   * Hide constructor.
-   */
+  /** Hide constructor. */
   private DatabaseUtil() {}
 
   static {

@@ -31,25 +31,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * CharacterStepBuilderTest
- *
- */
+/** CharacterStepBuilderTest */
 class CharacterStepBuilderTest {
 
-  /**
-   * Build a new wizard {@link Character} and verify if it has the expected attributes
-   */
+  /** Build a new wizard {@link Character} and verify if it has the expected attributes */
   @Test
   void testBuildWizard() {
-    final var character = CharacterStepBuilder.newBuilder()
-        .name("Merlin")
-        .wizardClass("alchemist")
-        .withSpell("poison")
-        .withAbility("invisibility")
-        .withAbility("wisdom")
-        .noMoreAbilities()
-        .build();
+    final var character =
+        CharacterStepBuilder.newBuilder()
+            .name("Merlin")
+            .wizardClass("alchemist")
+            .withSpell("poison")
+            .withAbility("invisibility")
+            .withAbility("wisdom")
+            .noMoreAbilities()
+            .build();
 
     assertEquals("Merlin", character.getName());
     assertEquals("alchemist", character.getWizardClass());
@@ -61,7 +57,6 @@ class CharacterStepBuilderTest {
     assertEquals(2, abilities.size());
     assertTrue(abilities.contains("invisibility"));
     assertTrue(abilities.contains("wisdom"));
-
   }
 
   /**
@@ -70,53 +65,46 @@ class CharacterStepBuilderTest {
    */
   @Test
   void testBuildPoorWizard() {
-    final var character = CharacterStepBuilder.newBuilder()
-        .name("Merlin")
-        .wizardClass("alchemist")
-        .noSpell()
-        .build();
+    final var character =
+        CharacterStepBuilder.newBuilder().name("Merlin").wizardClass("alchemist").noSpell().build();
 
     assertEquals("Merlin", character.getName());
     assertEquals("alchemist", character.getWizardClass());
     assertNull(character.getSpell());
     assertNull(character.getAbilities());
     assertNotNull(character.toString());
-
   }
 
-  /**
-   * Build a new wizard {@link Character} and verify if it has the expected attributes
-   */
+  /** Build a new wizard {@link Character} and verify if it has the expected attributes */
   @Test
   void testBuildWeakWizard() {
-    final var character = CharacterStepBuilder.newBuilder()
-        .name("Merlin")
-        .wizardClass("alchemist")
-        .withSpell("poison")
-        .noAbilities()
-        .build();
+    final var character =
+        CharacterStepBuilder.newBuilder()
+            .name("Merlin")
+            .wizardClass("alchemist")
+            .withSpell("poison")
+            .noAbilities()
+            .build();
 
     assertEquals("Merlin", character.getName());
     assertEquals("alchemist", character.getWizardClass());
     assertEquals("poison", character.getSpell());
     assertNull(character.getAbilities());
     assertNotNull(character.toString());
-
   }
 
-  /**
-   * Build a new warrior {@link Character} and verify if it has the expected attributes
-   */
+  /** Build a new warrior {@link Character} and verify if it has the expected attributes */
   @Test
   void testBuildWarrior() {
-    final var character = CharacterStepBuilder.newBuilder()
-        .name("Cuauhtemoc")
-        .fighterClass("aztec")
-        .withWeapon("spear")
-        .withAbility("speed")
-        .withAbility("strength")
-        .noMoreAbilities()
-        .build();
+    final var character =
+        CharacterStepBuilder.newBuilder()
+            .name("Cuauhtemoc")
+            .fighterClass("aztec")
+            .withWeapon("spear")
+            .withAbility("speed")
+            .withAbility("strength")
+            .noMoreAbilities()
+            .build();
 
     assertEquals("Cuauhtemoc", character.getName());
     assertEquals("aztec", character.getFighterClass());
@@ -128,7 +116,6 @@ class CharacterStepBuilderTest {
     assertEquals(2, abilities.size());
     assertTrue(abilities.contains("speed"));
     assertTrue(abilities.contains("strength"));
-
   }
 
   /**
@@ -137,18 +124,18 @@ class CharacterStepBuilderTest {
    */
   @Test
   void testBuildPoorWarrior() {
-    final var character = CharacterStepBuilder.newBuilder()
-        .name("Poor warrior")
-        .fighterClass("none")
-        .noWeapon()
-        .build();
+    final var character =
+        CharacterStepBuilder.newBuilder()
+            .name("Poor warrior")
+            .fighterClass("none")
+            .noWeapon()
+            .build();
 
     assertEquals("Poor warrior", character.getName());
     assertEquals("none", character.getFighterClass());
     assertNull(character.getWeapon());
     assertNull(character.getAbilities());
     assertNotNull(character.toString());
-
   }
 
   /**
@@ -157,19 +144,18 @@ class CharacterStepBuilderTest {
    */
   @Test
   void testBuildWeakWarrior() {
-    final var character = CharacterStepBuilder.newBuilder()
-        .name("Weak warrior")
-        .fighterClass("none")
-        .withWeapon("Slingshot")
-        .noAbilities()
-        .build();
+    final var character =
+        CharacterStepBuilder.newBuilder()
+            .name("Weak warrior")
+            .fighterClass("none")
+            .withWeapon("Slingshot")
+            .noAbilities()
+            .build();
 
     assertEquals("Weak warrior", character.getName());
     assertEquals("none", character.getFighterClass());
     assertEquals("Slingshot", character.getWeapon());
     assertNull(character.getAbilities());
     assertNotNull(character.toString());
-
   }
-
 }

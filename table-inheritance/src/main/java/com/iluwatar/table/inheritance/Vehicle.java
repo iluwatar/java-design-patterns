@@ -27,10 +27,7 @@ package com.iluwatar.table.inheritance;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Represents a generic vehicle with basic attributes like make, model, year, and ID.
- */
-
+/** Represents a generic vehicle with basic attributes like make, model, year, and ID. */
 @Setter
 @Getter
 public class Vehicle {
@@ -43,10 +40,10 @@ public class Vehicle {
   /**
    * Constructs a Vehicle object with the given parameters.
    *
-   * @param year  the year of manufacture
-   * @param make  the make of the vehicle
+   * @param year the year of manufacture
+   * @param make the make of the vehicle
    * @param model the model of the vehicle
-   * @param id    the unique ID of the vehicle
+   * @param id the unique ID of the vehicle
    */
   public Vehicle(int year, String make, String model, int id) {
     this.make = make;
@@ -63,10 +60,16 @@ public class Vehicle {
   @Override
   public String toString() {
     return "Vehicle{"
-        + "id=" + id
-        + ", make='" + make + '\''
-        + ", model='" + model + '\''
-        + ", year=" + year
+        + "id="
+        + id
+        + ", make='"
+        + make
+        + '\''
+        + ", model='"
+        + model
+        + '\''
+        + ", year="
+        + year
         + '}';
   }
 }

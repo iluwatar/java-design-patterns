@@ -24,15 +24,13 @@
  */
 package com.iluwatar.payment.microservice;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-/**
- * Payment controller test.
- */
+/** Payment controller test. */
 class ProductControllerTest {
 
   private PaymentController paymentController;
@@ -41,9 +39,8 @@ class ProductControllerTest {
   void setUp() {
     paymentController = new PaymentController();
   }
-  /**
-   * Test to process the payment.
-   */
+
+  /** Test to process the payment. */
   @Test
   void testValidateProduct() {
     // Arrange
@@ -54,9 +51,7 @@ class ProductControllerTest {
     assertEquals(ResponseEntity.ok(true), response);
   }
 
-  /**
-   * Test to process the payment with null request.
-   */
+  /** Test to process the payment with null request. */
   @Test
   void testValidateProductWithNullRequest() {
     // Arrange

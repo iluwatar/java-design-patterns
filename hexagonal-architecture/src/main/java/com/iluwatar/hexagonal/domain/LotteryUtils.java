@@ -27,22 +27,14 @@ package com.iluwatar.hexagonal.domain;
 import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
 
-/**
- * Lottery utilities.
- */
+/** Lottery utilities. */
 public class LotteryUtils {
 
-  private LotteryUtils() {
-  }
+  private LotteryUtils() {}
 
-  /**
-   * Checks if lottery ticket has won.
-   */
+  /** Checks if lottery ticket has won. */
   public static LotteryTicketCheckResult checkTicketForPrize(
-      LotteryTicketRepository repository,
-      LotteryTicketId id,
-      LotteryNumbers winningNumbers
-  ) {
+      LotteryTicketRepository repository, LotteryTicketId id, LotteryNumbers winningNumbers) {
     var optional = repository.findById(id);
     if (optional.isPresent()) {
       if (optional.get().lotteryNumbers().equals(winningNumbers)) {

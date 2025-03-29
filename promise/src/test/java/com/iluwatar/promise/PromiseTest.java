@@ -41,9 +41,7 @@ import java.util.function.Consumer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests Promise class.
- */
+/** Tests Promise class. */
 class PromiseTest {
 
   private Executor executor;
@@ -66,17 +64,18 @@ class PromiseTest {
   }
 
   @Test
-  void promiseIsFulfilledWithAnExceptionIfTaskThrowsAnException()
-      throws InterruptedException {
+  void promiseIsFulfilledWithAnExceptionIfTaskThrowsAnException() throws InterruptedException {
     testWaitingForeverForPromiseToBeFulfilled();
     testWaitingSomeTimeForPromiseToBeFulfilled();
   }
 
   private void testWaitingForeverForPromiseToBeFulfilled() throws InterruptedException {
     var promise = new Promise<Integer>();
-    promise.fulfillInAsync(() -> {
-      throw new RuntimeException("Barf!");
-    }, executor);
+    promise.fulfillInAsync(
+        () -> {
+          throw new RuntimeException("Barf!");
+        },
+        executor);
 
     try {
       promise.get();
@@ -97,9 +96,11 @@ class PromiseTest {
 
   private void testWaitingSomeTimeForPromiseToBeFulfilled() throws InterruptedException {
     var promise = new Promise<Integer>();
-    promise.fulfillInAsync(() -> {
-      throw new RuntimeException("Barf!");
-    }, executor);
+    promise.fulfillInAsync(
+        () -> {
+          throw new RuntimeException("Barf!");
+        },
+        executor);
 
     try {
       promise.get(1000, TimeUnit.SECONDS);
@@ -116,15 +117,15 @@ class PromiseTest {
       assertTrue(promise.isDone());
       assertFalse(promise.isCancelled());
     }
-
   }
 
   @Test
   void dependentPromiseIsFulfilledAfterTheConsumerConsumesTheResultOfThisPromise()
       throws InterruptedException, ExecutionException {
-    var dependentPromise = promise
-        .fulfillInAsync(new NumberCrunchingTask(), executor)
-        .thenAccept(value -> assertEquals(NumberCrunchingTask.CRUNCHED_NUMBER, value));
+    var dependentPromise =
+        promise
+            .fulfillInAsync(new NumberCrunchingTask(), executor)
+            .thenAccept(value -> assertEquals(NumberCrunchingTask.CRUNCHED_NUMBER, value));
 
     dependentPromise.get();
     assertTrue(dependentPromise.isDone());
@@ -134,16 +135,19 @@ class PromiseTest {
   @Test
   void dependentPromiseIsFulfilledWithAnExceptionIfConsumerThrowsAnException()
       throws InterruptedException {
-    var dependentPromise = promise
-        .fulfillInAsync(new NumberCrunchingTask(), executor)
-        .thenAccept(value -> {
-          throw new RuntimeException("Barf!");
-        });
+    var dependentPromise =
+        promise
+            .fulfillInAsync(new NumberCrunchingTask(), executor)
+            .thenAccept(
+                value -> {
+                  throw new RuntimeException("Barf!");
+                });
 
     try {
       dependentPromise.get();
-      fail("Fetching dependent promise should result in exception "
-          + "if the action threw an exception");
+      fail(
+          "Fetching dependent promise should result in exception "
+              + "if the action threw an exception");
     } catch (ExecutionException ex) {
       assertTrue(promise.isDone());
       assertFalse(promise.isCancelled());
@@ -151,8 +155,9 @@ class PromiseTest {
 
     try {
       dependentPromise.get(1000, TimeUnit.SECONDS);
-      fail("Fetching dependent promise should result in exception "
-          + "if the action threw an exception");
+      fail(
+          "Fetching dependent promise should result in exception "
+              + "if the action threw an exception");
     } catch (ExecutionException ex) {
       assertTrue(promise.isDone());
       assertFalse(promise.isCancelled());
@@ -162,13 +167,14 @@ class PromiseTest {
   @Test
   void dependentPromiseIsFulfilledAfterTheFunctionTransformsTheResultOfThisPromise()
       throws InterruptedException, ExecutionException {
-    var dependentPromise = promise
-        .fulfillInAsync(new NumberCrunchingTask(), executor)
-        .thenApply(value -> {
-          assertEquals(NumberCrunchingTask.CRUNCHED_NUMBER, value);
-          return String.valueOf(value);
-        });
-
+    var dependentPromise =
+        promise
+            .fulfillInAsync(new NumberCrunchingTask(), executor)
+            .thenApply(
+                value -> {
+                  assertEquals(NumberCrunchingTask.CRUNCHED_NUMBER, value);
+                  return String.valueOf(value);
+                });
 
     assertEquals(String.valueOf(NumberCrunchingTask.CRUNCHED_NUMBER), dependentPromise.get());
     assertTrue(dependentPromise.isDone());
@@ -178,16 +184,19 @@ class PromiseTest {
   @Test
   void dependentPromiseIsFulfilledWithAnExceptionIfTheFunctionThrowsException()
       throws InterruptedException {
-    var dependentPromise = promise
-        .fulfillInAsync(new NumberCrunchingTask(), executor)
-        .thenApply(value -> {
-          throw new RuntimeException("Barf!");
-        });
+    var dependentPromise =
+        promise
+            .fulfillInAsync(new NumberCrunchingTask(), executor)
+            .thenApply(
+                value -> {
+                  throw new RuntimeException("Barf!");
+                });
 
     try {
       dependentPromise.get();
-      fail("Fetching dependent promise should result in exception "
-          + "if the function threw an exception");
+      fail(
+          "Fetching dependent promise should result in exception "
+              + "if the function threw an exception");
     } catch (ExecutionException ex) {
       assertTrue(promise.isDone());
       assertFalse(promise.isCancelled());
@@ -195,8 +204,9 @@ class PromiseTest {
 
     try {
       dependentPromise.get(1000, TimeUnit.SECONDS);
-      fail("Fetching dependent promise should result in exception "
-          + "if the function threw an exception");
+      fail(
+          "Fetching dependent promise should result in exception "
+              + "if the function threw an exception");
     } catch (ExecutionException ex) {
       assertTrue(promise.isDone());
       assertFalse(promise.isCancelled());

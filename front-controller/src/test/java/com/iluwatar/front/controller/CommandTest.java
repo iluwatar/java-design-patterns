@@ -33,10 +33,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-/**
- * CommandTest
- *
- */
+/** CommandTest */
 class CommandTest {
 
   private InMemoryAppender appender;
@@ -53,14 +50,13 @@ class CommandTest {
 
   static List<Object[]> dataProvider() {
     return List.of(
-        new Object[]{"Archer", "Displaying archers"},
-        new Object[]{"Catapult", "Displaying catapults"},
-        new Object[]{"NonExistentCommand", "Error 500"}
-    );
+        new Object[] {"Archer", "Displaying archers"},
+        new Object[] {"Catapult", "Displaying catapults"},
+        new Object[] {"NonExistentCommand", "Error 500"});
   }
 
   /**
-   * @param request        The request that's been tested
+   * @param request The request that's been tested
    * @param displayMessage The expected display message
    */
   @ParameterizedTest
@@ -72,5 +68,4 @@ class CommandTest {
     assertEquals(displayMessage, appender.getLastMessage());
     assertEquals(1, appender.getLogSize());
   }
-
 }

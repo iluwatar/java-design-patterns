@@ -29,9 +29,7 @@ import com.iluwatar.data.locality.game.component.PhysicsComponent;
 import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Physics component Manager for Game.
- */
+/** Physics component Manager for Game. */
 @Slf4j
 public class PhysicsComponentManager {
 
@@ -45,18 +43,13 @@ public class PhysicsComponentManager {
     this.numEntities = numEntities;
   }
 
-  /**
-   * Start physics component of Game.
-   */
+  /** Start physics component of Game. */
   public void start() {
     LOGGER.info("Start Physics Game Component ");
     IntStream.range(0, numEntities).forEach(i -> physicsComponents[i] = new PhysicsComponent());
   }
 
-
-  /**
-   * Update physics component of Game.
-   */
+  /** Update physics component of Game. */
   public void update() {
     LOGGER.info("Update Physics Game Component ");
     // Process physics.

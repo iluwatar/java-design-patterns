@@ -27,14 +27,10 @@ package com.iluwatar.prototype;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-/**
- * Mage.
- */
+/** Mage. */
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public abstract class Mage extends Prototype<Mage> {
 
-  public Mage(Mage source) {
-  }
-
+  public Mage(Mage source) {}
 }

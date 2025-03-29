@@ -24,18 +24,12 @@
  */
 package com.iluwatar.model.view.intent.actions;
 
-/**
- *  Division {@link CalculatorAction}.
- * */
+/** Division {@link CalculatorAction}. */
 public class DivisionCalculatorAction implements CalculatorAction {
-  /**
-   * Subclass tag.
-   * */
+  /** Subclass tag. */
   public static final String DIVISION = "DIVISION";
 
-  /**
-   * Makes checking subclass type trivial.
-   * */
+  /** Makes checking subclass type trivial. */
   @Override
   public String tag() {
     return DIVISION;

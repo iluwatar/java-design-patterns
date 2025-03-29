@@ -31,10 +31,7 @@ import static org.mockito.Mockito.verify;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * ConsumerTest
- *
- */
+/** ConsumerTest */
 class ConsumerTest {
 
   private static final int ITEM_COUNT = 5;
@@ -55,5 +52,4 @@ class ConsumerTest {
 
     verify(queue, times(ITEM_COUNT)).take();
   }
-
 }

@@ -32,9 +32,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * This is an Author entity. It is used by Hibernate for persistence.
- */
+/** This is an Author entity. It is used by Hibernate for persistence. */
 @ToString
 @Getter
 @Setter
@@ -43,6 +41,7 @@ public class Author {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
+
   private String username;
   private String name;
   private String email;
@@ -51,8 +50,8 @@ public class Author {
    * Constructor.
    *
    * @param username username of the author
-   * @param name     name of the author
-   * @param email    email of the author
+   * @param name name of the author
+   * @param email email of the author
    */
   public Author(String username, String name, String email) {
     this.username = username;
@@ -60,7 +59,5 @@ public class Author {
     this.email = email;
   }
 
-  protected Author() {
-  }
-
+  protected Author() {}
 }

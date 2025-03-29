@@ -30,9 +30,9 @@ import com.iluwatar.featuretoggle.user.UserGroup;
 
 /**
  * This example of the Feature Toggle pattern shows how it could be implemented based on a {@link
- * User}. Therefore, showing its use within a tiered application where the paying users get access to
- * different content or better versions of features. So in this instance a {@link User} is passed in
- * and if they are found to be on the {@link UserGroup#isPaid(User)} they are welcomed with a
+ * User}. Therefore, showing its use within a tiered application where the paying users get access
+ * to different content or better versions of features. So in this instance a {@link User} is passed
+ * in and if they are found to be on the {@link UserGroup#isPaid(User)} they are welcomed with a
  * personalised message. While the other is more generic. However, this pattern is limited to simple
  * examples such as the one below.
  *
@@ -49,8 +49,8 @@ public class TieredFeatureToggleVersion implements Service {
    * the enhanced version of the welcome message will be returned where the username is displayed.
    *
    * @param user the {@link User} to generate the welcome message for, different messages are
-   *             displayed if the user is in the {@link UserGroup#isPaid(User)} or {@link
-   *             UserGroup#freeGroup}
+   *     displayed if the user is in the {@link UserGroup#isPaid(User)} or {@link
+   *     UserGroup#freeGroup}
    * @return Resulting welcome message.
    * @see User
    * @see UserGroup
@@ -75,5 +75,4 @@ public class TieredFeatureToggleVersion implements Service {
   public boolean isEnhanced() {
     return true;
   }
-
 }

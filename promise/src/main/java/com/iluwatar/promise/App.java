@@ -27,7 +27,6 @@ package com.iluwatar.promise;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import lombok.extern.slf4j.Slf4j;
@@ -36,26 +35,28 @@ import lombok.extern.slf4j.Slf4j;
  * The Promise object is used for asynchronous computations. A Promise represents an operation that
  * hasn't completed yet, but is expected in the future.
  *
- * <p>A Promise represents a proxy for a value not necessarily known when the promise is created.
- * It allows you to associate dependent promises to an asynchronous action's eventual success value
- * or failure reason. This lets asynchronous methods return values like synchronous methods: instead
- * of the final value, the asynchronous method returns a promise of having a value at some point in
- * the future.
+ * <p>A Promise represents a proxy for a value not necessarily known when the promise is created. It
+ * allows you to associate dependent promises to an asynchronous action's eventual success value or
+ * failure reason. This lets asynchronous methods return values like synchronous methods: instead of
+ * the final value, the asynchronous method returns a promise of having a value at some point in the
+ * future.
  *
  * <p>Promises provide a few advantages over callback objects:
+ *
  * <ul>
- * <li> Functional composition and error handling
- * <li> Prevents callback hell and provides callback aggregation
+ *   <li>Functional composition and error handling
+ *   <li>Prevents callback hell and provides callback aggregation
  * </ul>
  *
  * <p>In this application the usage of promise is demonstrated with two examples:
+ *
  * <ul>
- * <li>Count Lines: In this example a file is downloaded and its line count is calculated.
- * The calculated line count is then consumed and printed on console.
- * <li>Lowest Character Frequency: In this example a file is downloaded and its lowest frequency
- * character is found and printed on console. This happens via a chain of promises, we start with
- * a file download promise, then a promise of character frequency, then a promise of lowest
- * frequency character which is finally consumed and result is printed on console.
+ *   <li>Count Lines: In this example a file is downloaded and its line count is calculated. The
+ *       calculated line count is then consumed and printed on console.
+ *   <li>Lowest Character Frequency: In this example a file is downloaded and its lowest frequency
+ *       character is found and printed on console. This happens via a chain of promises, we start
+ *       with a file download promise, then a promise of character frequency, then a promise of
+ *       lowest frequency character which is finally consumed and result is printed on console.
  * </ul>
  *
  * @see CompletableFuture
@@ -99,12 +100,12 @@ public class App {
    * consume the result in a Consumer<Character>
    */
   private void calculateLowestFrequencyChar() {
-    lowestFrequencyChar().thenAccept(
-        charFrequency -> {
-          LOGGER.info("Char with lowest frequency is: {}", charFrequency);
-          taskCompleted();
-        }
-    );
+    lowestFrequencyChar()
+        .thenAccept(
+            charFrequency -> {
+              LOGGER.info("Char with lowest frequency is: {}", charFrequency);
+              taskCompleted();
+            });
   }
 
   /*
@@ -112,12 +113,12 @@ public class App {
    * in a Consumer<Integer>
    */
   private void calculateLineCount() {
-    countLines().thenAccept(
-        count -> {
-          LOGGER.info("Line count is: {}", count);
-          taskCompleted();
-        }
-    );
+    countLines()
+        .thenAccept(
+            count -> {
+              LOGGER.info("Line count is: {}", count);
+              taskCompleted();
+            });
   }
 
   /*
@@ -150,14 +151,12 @@ public class App {
    */
   private Promise<String> download(String urlString) {
     return new Promise<String>()
-        .fulfillInAsync(
-            () -> Utility.downloadFile(urlString), executor)
+        .fulfillInAsync(() -> Utility.downloadFile(urlString), executor)
         .onError(
             throwable -> {
               LOGGER.error("An error occurred: ", throwable);
               taskCompleted();
-            }
-        );
+            });
   }
 
   private void stop() throws InterruptedException {

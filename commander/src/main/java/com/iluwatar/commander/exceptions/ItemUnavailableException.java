@@ -24,10 +24,7 @@
  */
 package com.iluwatar.commander.exceptions;
 
-/**
- * ItemUnavailableException is thrown when item is not available for shipping.
- */
-
+/** ItemUnavailableException is thrown when item is not available for shipping. */
 public class ItemUnavailableException extends Exception {
   private static final long serialVersionUID = 575940L;
 }

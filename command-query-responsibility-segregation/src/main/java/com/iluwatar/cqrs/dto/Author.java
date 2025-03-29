@@ -30,9 +30,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * This is a DTO (Data Transfer Object) author, contains only useful information to be returned.
- */
+/** This is a DTO (Data Transfer Object) author, contains only useful information to be returned. */
 @ToString
 @EqualsAndHashCode
 @Getter
@@ -43,5 +41,4 @@ public class Author {
   private String name;
   private String email;
   private String username;
-
 }

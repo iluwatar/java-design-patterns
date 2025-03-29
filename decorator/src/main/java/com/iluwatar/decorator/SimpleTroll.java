@@ -26,9 +26,7 @@ package com.iluwatar.decorator;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * SimpleTroll implements {@link Troll} interface directly.
- */
+/** SimpleTroll implements {@link Troll} interface directly. */
 @Slf4j
 public class SimpleTroll implements Troll {
 

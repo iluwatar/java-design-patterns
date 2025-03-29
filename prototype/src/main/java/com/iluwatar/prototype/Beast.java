@@ -27,14 +27,10 @@ package com.iluwatar.prototype;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-/**
- * Beast.
- */
+/** Beast. */
 @EqualsAndHashCode(callSuper = false)
 @NoArgsConstructor
 public abstract class Beast extends Prototype<Beast> {
 
-  public Beast(Beast source) {
-  }
-
+  public Beast(Beast source) {}
 }

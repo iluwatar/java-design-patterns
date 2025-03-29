@@ -26,9 +26,7 @@ package com.iluwatar.servicetoworker;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * GiantView displays the giant.
- */
+/** GiantView displays the giant. */
 @Slf4j
 public class GiantView {
 

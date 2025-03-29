@@ -24,18 +24,15 @@
  */
 package com.iluwatar.business.delegate;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-/**
- * Tests for the {@link BusinessDelegate}
- */
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/** Tests for the {@link BusinessDelegate} */
 class BusinessDelegateTest {
 
   private NetflixService netflixService;
@@ -62,8 +59,8 @@ class BusinessDelegateTest {
   }
 
   /**
-   * In this example the client ({@link MobileClient}) utilizes a business delegate (
-   * {@link BusinessDelegate}) to execute a task. The Business Delegate then selects the appropriate
+   * In this example the client ({@link MobileClient}) utilizes a business delegate ( {@link
+   * BusinessDelegate}) to execute a task. The Business Delegate then selects the appropriate
    * service and makes the service call.
    */
   @Test

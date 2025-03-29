@@ -28,11 +28,8 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Order class holds details of the order.
- */
-
-public class Order { //can store all transactions ids also
+/** Order class holds details of the order. */
+public class Order { // can store all transactions ids also
 
   enum PaymentStatus {
     NOT_DONE,
@@ -56,8 +53,8 @@ public class Order { //can store all transactions ids also
   private static final String ALL_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
   private static final Map<String, Boolean> USED_IDS = new HashMap<>();
   PaymentStatus paid;
-  MessageSent messageSent; //to avoid sending error msg on page and text more than once
-  boolean addedToEmployeeHandle; //to avoid creating more to enqueue
+  MessageSent messageSent; // to avoid sending error msg on page and text more than once
+  boolean addedToEmployeeHandle; // to avoid creating more to enqueue
 
   Order(User user, String item, float price) {
     this.createdTime = System.currentTimeMillis();
@@ -85,5 +82,4 @@ public class Order { //can store all transactions ids also
     }
     return random.toString();
   }
-
 }

@@ -30,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.Objects;
 import org.junit.jupiter.api.Test;
 
-/**
- * Test for Monad Pattern
- */
+/** Test for Monad Pattern */
 class MonadTest {
 
   @Test
@@ -40,10 +38,8 @@ class MonadTest {
     var tom = new User(null, 21, Sex.MALE, "tom@foo.bar");
     assertThrows(
         IllegalStateException.class,
-        () -> Validator.of(tom)
-            .validate(User::name, Objects::nonNull, "name cannot be null")
-            .get()
-    );
+        () ->
+            Validator.of(tom).validate(User::name, Objects::nonNull, "name cannot be null").get());
   }
 
   @Test
@@ -51,22 +47,23 @@ class MonadTest {
     var john = new User("John", 17, Sex.MALE, "john@qwe.bar");
     assertThrows(
         IllegalStateException.class,
-        () -> Validator.of(john)
-            .validate(User::name, Objects::nonNull, "name cannot be null")
-            .validate(User::age, age -> age > 21, "user is underage")
-            .get()
-    );
+        () ->
+            Validator.of(john)
+                .validate(User::name, Objects::nonNull, "name cannot be null")
+                .validate(User::age, age -> age > 21, "user is underage")
+                .get());
   }
 
   @Test
   void testForValid() {
     var sarah = new User("Sarah", 42, Sex.FEMALE, "sarah@det.org");
-    var validated = Validator.of(sarah)
-        .validate(User::name, Objects::nonNull, "name cannot be null")
-        .validate(User::age, age -> age > 21, "user is underage")
-        .validate(User::sex, sex -> sex == Sex.FEMALE, "user is not female")
-        .validate(User::email, email -> email.contains("@"), "email does not contain @ sign")
-        .get();
+    var validated =
+        Validator.of(sarah)
+            .validate(User::name, Objects::nonNull, "name cannot be null")
+            .validate(User::age, age -> age > 21, "user is underage")
+            .validate(User::sex, sex -> sex == Sex.FEMALE, "user is not female")
+            .validate(User::email, email -> email.contains("@"), "email does not contain @ sign")
+            .get();
     assertSame(validated, sarah);
   }
 }

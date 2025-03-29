@@ -27,9 +27,7 @@ package com.iluwatar.page.controller;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Signup View.
- */
+/** Signup View. */
 @Slf4j
 @NoArgsConstructor
 public class SignupView {
@@ -39,11 +37,10 @@ public class SignupView {
     return "/signup";
   }
 
-  /**
-   * redirect to user page.
-   */
+  /** redirect to user page. */
   public String redirect(SignupModel form) {
-    LOGGER.info("Redirect to user page with " + "name " + form.getName() + " email " + form.getEmail());
+    LOGGER.info(
+        "Redirect to user page with " + "name " + form.getName() + " email " + form.getEmail());
     return "redirect:/user";
   }
 }

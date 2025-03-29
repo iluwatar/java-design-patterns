@@ -24,21 +24,21 @@
  */
 package com.iluwatar.compositeview;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import org.junit.jupiter.api.Test;
 
 class AppServletTest {
 
   private final String msgPartOne = "<h1>This Server Doesn't Support";
-  private final String msgPartTwo = """
+  private final String msgPartTwo =
+      """
             Requests</h1>
             <h2>Use a GET request with boolean values for the following parameters<h2>
             <h3>'name'</h3>

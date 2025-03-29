@@ -24,9 +24,7 @@
  */
 package com.iluwatar.factory;
 
-/**
- * CopperCoin implementation.
- */
+/** CopperCoin implementation. */
 public class CopperCoin implements Coin {
 
   static final String DESCRIPTION = "This is a copper coin.";

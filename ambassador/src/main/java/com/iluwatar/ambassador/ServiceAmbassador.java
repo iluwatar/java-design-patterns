@@ -40,8 +40,7 @@ public class ServiceAmbassador implements RemoteServiceInterface {
   private static final int RETRIES = 3;
   private static final int DELAY_MS = 3000;
 
-  ServiceAmbassador() {
-  }
+  ServiceAmbassador() {}
 
   @Override
   public long doRemoteFunction(int value) {

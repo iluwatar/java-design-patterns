@@ -44,9 +44,6 @@ public abstract class DomainEvent implements Serializable {
   private final String eventClassName;
   private boolean realTime = true;
 
-  /**
-   * Process.
-   */
+  /** Process. */
   public abstract void process();
-
 }

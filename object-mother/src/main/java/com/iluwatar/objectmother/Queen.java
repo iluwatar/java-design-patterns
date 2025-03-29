@@ -24,9 +24,7 @@
  */
 package com.iluwatar.objectmother;
 
-/**
- * Defines all attributes and behaviour related to the Queen.
- */
+/** Defines all attributes and behaviour related to the Queen. */
 public class Queen implements Royalty {
   private boolean isDrunk = false;
   private boolean isHappy = false;

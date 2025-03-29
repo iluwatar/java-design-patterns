@@ -29,9 +29,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Implementation of virtual machine.
- */
+/** Implementation of virtual machine. */
 @Getter
 @Slf4j
 public class VirtualMachine {
@@ -40,19 +38,13 @@ public class VirtualMachine {
 
   private final Wizard[] wizards = new Wizard[2];
 
-  /**
-   * No-args constructor.
-   */
+  /** No-args constructor. */
   public VirtualMachine() {
-    wizards[0] = new Wizard(randomInt(3, 32), randomInt(3, 32), randomInt(3, 32),
-        0, 0);
-    wizards[1] = new Wizard(randomInt(3, 32), randomInt(3, 32), randomInt(3, 32),
-        0, 0);
+    wizards[0] = new Wizard(randomInt(3, 32), randomInt(3, 32), randomInt(3, 32), 0, 0);
+    wizards[1] = new Wizard(randomInt(3, 32), randomInt(3, 32), randomInt(3, 32), 0, 0);
   }
 
-  /**
-   * Constructor taking the wizards as arguments.
-   */
+  /** Constructor taking the wizards as arguments. */
   public VirtualMachine(Wizard wizard1, Wizard wizard2) {
     wizards[0] = wizard1;
     wizards[1] = wizard2;
@@ -112,7 +104,6 @@ public class VirtualMachine {
         case PLAY_SOUND -> {
           var wizard = stack.pop();
           getWizards()[wizard].playSound();
-
         }
         case SPAWN_PARTICLES -> {
           var wizard = stack.pop();

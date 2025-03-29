@@ -23,8 +23,10 @@
  * THE SOFTWARE.
  */
 package com.iluwatar;
+
 /**
- * An exception for when the user tries to subtract two different currencies or subtract an amount he doesn't have.
+ * An exception for when the user tries to subtract two different currencies or subtract an amount
+ * he doesn't have.
  */
 public class CannotSubtractException extends Exception {
   /**
@@ -35,5 +37,4 @@ public class CannotSubtractException extends Exception {
   public CannotSubtractException(String message) {
     super(message);
   }
-
 }

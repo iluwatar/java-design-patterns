@@ -27,9 +27,7 @@ package com.iluwatar.component.component.graphiccomponent;
 import com.iluwatar.component.GameObject;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * ObjectGraphicComponent class mimics the graphic component of the Game Object.
- */
+/** ObjectGraphicComponent class mimics the graphic component of the Game Object. */
 @Slf4j
 public class ObjectGraphicComponent implements GraphicComponent {
 

@@ -24,9 +24,7 @@
  */
 package com.iluwatar.identitymap;
 
-/**
- * Simulator interface for Person DB.
- */
+/** Simulator interface for Person DB. */
 public interface PersonDbSimulator {
   Person find(int personNationalId);
 
@@ -35,5 +33,4 @@ public interface PersonDbSimulator {
   void update(Person person);
 
   void delete(int personNationalId);
-
 }

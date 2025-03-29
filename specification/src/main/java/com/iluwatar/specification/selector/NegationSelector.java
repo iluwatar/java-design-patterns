@@ -24,7 +24,6 @@
  */
 package com.iluwatar.specification.selector;
 
-
 /**
  * A Selector defined as the negation (NOT) of a (leaf) selectors. This is of course only useful
  * when used in combination with other composite selectors.
@@ -37,9 +36,7 @@ public class NegationSelector<T> extends AbstractSelector<T> {
     this.component = selector;
   }
 
-  /**
-   * Tests if the selector fails the test (yes).
-   */
+  /** Tests if the selector fails the test (yes). */
   @Override
   public boolean test(T t) {
     return !(component.test(t));

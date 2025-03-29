@@ -40,7 +40,8 @@ class RemoveAlphabetsHandler implements Handler<String, String> {
   public String process(String input) {
     var inputWithoutAlphabets = new StringBuilder();
     var isAlphabetic = (IntPredicate) Character::isAlphabetic;
-    input.chars()
+    input
+        .chars()
         .filter(isAlphabetic.negate())
         .mapToObj(x -> (char) x)
         .forEachOrdered(inputWithoutAlphabets::append);
@@ -49,10 +50,11 @@ class RemoveAlphabetsHandler implements Handler<String, String> {
     LOGGER.info(
         String.format(
             "Current handler: %s, input is %s of type %s, output is %s, of type %s",
-            RemoveAlphabetsHandler.class, input,
-            String.class, inputWithoutAlphabetsStr, String.class
-        )
-    );
+            RemoveAlphabetsHandler.class,
+            input,
+            String.class,
+            inputWithoutAlphabetsStr,
+            String.class));
 
     return inputWithoutAlphabetsStr;
   }

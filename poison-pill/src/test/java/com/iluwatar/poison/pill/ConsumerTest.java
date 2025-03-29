@@ -37,10 +37,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * ConsumerTest
- *
- */
+/** ConsumerTest */
 class ConsumerTest {
 
   private InMemoryAppender appender;
@@ -57,12 +54,12 @@ class ConsumerTest {
 
   @Test
   void testConsume() throws Exception {
-    final var messages = List.of(
-        createMessage("you", "Hello!"),
-        createMessage("me", "Hi!"),
-        Message.POISON_PILL,
-        createMessage("late_for_the_party", "Hello? Anyone here?")
-    );
+    final var messages =
+        List.of(
+            createMessage("you", "Hello!"),
+            createMessage("me", "Hi!"),
+            Message.POISON_PILL,
+            createMessage("late_for_the_party", "Hello? Anyone here?"));
 
     final var queue = new SimpleMessageQueue(messages.size());
     for (final var message : messages) {
@@ -79,7 +76,7 @@ class ConsumerTest {
   /**
    * Create a new message from the given sender with the given message body
    *
-   * @param sender  The sender's name
+   * @param sender The sender's name
    * @param message The message body
    * @return The message instance
    */
@@ -108,5 +105,4 @@ class ConsumerTest {
       return log.stream().map(ILoggingEvent::getFormattedMessage).anyMatch(message::equals);
     }
   }
-
 }

@@ -28,9 +28,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-/**
- * OrcKing makes requests that are handled by the chain.
- */
+/** OrcKing makes requests that are handled by the chain. */
 public class OrcKing {
 
   private List<RequestHandler> handlers;
@@ -43,12 +41,9 @@ public class OrcKing {
     handlers = Arrays.asList(new OrcCommander(), new OrcOfficer(), new OrcSoldier());
   }
 
-  /**
-   * Handle request by the chain.
-   */
+  /** Handle request by the chain. */
   public void makeRequest(Request req) {
-    handlers
-        .stream()
+    handlers.stream()
         .sorted(Comparator.comparing(RequestHandler::getPriority))
         .filter(handler -> handler.canHandleRequest(req))
         .findFirst()

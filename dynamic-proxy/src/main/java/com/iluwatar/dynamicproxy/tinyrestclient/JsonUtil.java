@@ -32,22 +32,19 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Utility class to handle Json operations.
- */
+/** Utility class to handle Json operations. */
 @Slf4j
 public class JsonUtil {
 
   private static ObjectMapper objectMapper = new ObjectMapper();
 
-  private JsonUtil() {
-  }
+  private JsonUtil() {}
 
   /**
    * Convert an object to a Json string representation.
    *
    * @param object Object to convert.
-   * @param <T>    Object's class.
+   * @param <T> Object's class.
    * @return Json string.
    */
   public static <T> String objectToJson(T object) {
@@ -62,9 +59,9 @@ public class JsonUtil {
   /**
    * Convert a Json string to an object of a class.
    *
-   * @param json  Json string to convert.
+   * @param json Json string to convert.
    * @param clazz Object's class.
-   * @param <T>   Object's generic class.
+   * @param <T> Object's generic class.
    * @return Object.
    */
   public static <T> T jsonToObject(String json, Class<T> clazz) {
@@ -79,20 +76,19 @@ public class JsonUtil {
   /**
    * Convert a Json string to a List of objects of a class.
    *
-   * @param json  Json string to convert.
+   * @param json Json string to convert.
    * @param clazz Object's class.
-   * @param <T>   Object's generic class.
+   * @param <T> Object's generic class.
    * @return List of objects.
    */
   public static <T> List<T> jsonToList(String json, Class<T> clazz) {
     try {
-      CollectionType listType = objectMapper.getTypeFactory()
-          .constructCollectionType(ArrayList.class, clazz);
+      CollectionType listType =
+          objectMapper.getTypeFactory().constructCollectionType(ArrayList.class, clazz);
       return objectMapper.reader().forType(listType).readValue(json);
     } catch (JsonProcessingException e) {
       LOGGER.error("Cannot convert the Json " + json + " to List of " + clazz.getName() + ".", e);
       return List.of();
     }
   }
-
 }

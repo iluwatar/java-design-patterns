@@ -30,23 +30,21 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 /**
- * The Main class serves as the entry point for executing the MapReduce program.
- * It processes a list of text inputs, applies the MapReduce pattern, and prints the results.
+ * The Main class serves as the entry point for executing the MapReduce program. It processes a list
+ * of text inputs, applies the MapReduce pattern, and prints the results.
  */
 public class Main {
   private static final Logger logger = Logger.getLogger(Main.class.getName());
+
   /**
    * The main method initiates the MapReduce process and displays the word count results.
    *
    * @param args Command-line arguments (not used).
    */
   public static void main(String[] args) {
-    List<String> inputs = Arrays.asList(
-        "Hello world hello",
-        "MapReduce is fun",
-        "Hello from the other side",
-        "Hello world"
-    );
+    List<String> inputs =
+        Arrays.asList(
+            "Hello world hello", "MapReduce is fun", "Hello from the other side", "Hello world");
     List<Map.Entry<String, Integer>> result = MapReduce.mapReduce(inputs);
     for (Map.Entry<String, Integer> entry : result) {
       logger.info(entry.getKey() + ": " + entry.getValue());

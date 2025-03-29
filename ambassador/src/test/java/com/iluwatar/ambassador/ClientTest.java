@@ -24,13 +24,11 @@
  */
 package com.iluwatar.ambassador;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Test for {@link Client}
- */
+import org.junit.jupiter.api.Test;
+
+/** Test for {@link Client} */
 class ClientTest {
 
   @Test
@@ -38,6 +36,7 @@ class ClientTest {
     Client client = new Client();
     var result = client.useService(10);
 
-    assertTrue(result == 100 || result == RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue());
+    assertTrue(
+        result == 100 || result == RemoteServiceStatus.FAILURE.getRemoteServiceStatusValue());
   }
 }

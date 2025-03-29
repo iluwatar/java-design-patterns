@@ -32,10 +32,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * A mock database manager -- Fetches data from a raw file.
- *
- */
+/** A mock database manager -- Fetches data from a raw file. */
 @Slf4j
 public class DataFetcher {
 

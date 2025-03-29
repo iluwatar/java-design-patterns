@@ -24,8 +24,9 @@
  */
 package com.iluwatar.servicestub;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 class RealSentimentAnalysisServerTest {
 
@@ -46,5 +47,4 @@ class RealSentimentAnalysisServerTest {
     RealSentimentAnalysisServer server = new RealSentimentAnalysisServer(() -> 2);
     assertEquals("Neutral", server.analyzeSentiment("Test"));
   }
-
 }

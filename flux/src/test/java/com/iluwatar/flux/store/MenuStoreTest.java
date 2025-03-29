@@ -38,10 +38,7 @@ import com.iluwatar.flux.action.MenuItem;
 import com.iluwatar.flux.view.View;
 import org.junit.jupiter.api.Test;
 
-/**
- * MenuStoreTest
- *
- */
+/** MenuStoreTest */
 class MenuStoreTest {
 
   @Test
@@ -62,7 +59,5 @@ class MenuStoreTest {
     verify(view, times(1)).storeChanged(eq(menuStore));
     verifyNoMoreInteractions(view);
     assertEquals(MenuItem.PRODUCTS, menuStore.getSelected());
-
   }
-
 }

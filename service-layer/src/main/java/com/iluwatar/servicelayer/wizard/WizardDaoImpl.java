@@ -31,9 +31,7 @@ import jakarta.persistence.criteria.Root;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-/**
- * WizardDao implementation.
- */
+/** WizardDao implementation. */
 public class WizardDaoImpl extends DaoBaseImpl<Wizard> implements WizardDao {
 
   @Override

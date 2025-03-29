@@ -27,8 +27,6 @@ package com.iluwatar.fanout.fanin;
 import java.util.concurrent.atomic.AtomicLong;
 import lombok.Getter;
 
-
-
 /**
  * Consumer or callback class that will be called every time a request is complete This will
  * aggregate individual result to form a final result.

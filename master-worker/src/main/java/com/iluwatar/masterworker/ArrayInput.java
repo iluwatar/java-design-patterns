@@ -28,10 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Class ArrayInput extends abstract class {@link Input} and contains data of type int[][].
- */
-
+/** Class ArrayInput extends abstract class {@link Input} and contains data of type int[][]. */
 public class ArrayInput extends Input<int[][]> {
 
   public ArrayInput(int[][] data) {
@@ -39,13 +36,13 @@ public class ArrayInput extends Input<int[][]> {
   }
 
   static int[] makeDivisions(int[][] data, int num) {
-    var initialDivision = data.length / num; //equally dividing
+    var initialDivision = data.length / num; // equally dividing
     var divisions = new int[num];
     Arrays.fill(divisions, initialDivision);
     if (initialDivision * num != data.length) {
       var extra = data.length - initialDivision * num;
       var l = 0;
-      //equally dividing extra among all parts
+      // equally dividing extra among all parts
       while (extra > 0) {
         divisions[l] = divisions[l] + 1;
         extra--;
@@ -66,7 +63,7 @@ public class ArrayInput extends Input<int[][]> {
     } else {
       var divisions = makeDivisions(this.data, num);
       var result = new ArrayList<Input<int[][]>>(num);
-      var rowsDone = 0; //number of rows divided so far
+      var rowsDone = 0; // number of rows divided so far
       for (var i = 0; i < num; i++) {
         var rows = divisions[i];
         if (rows != 0) {
@@ -76,7 +73,7 @@ public class ArrayInput extends Input<int[][]> {
           var dividedInput = new ArrayInput(divided);
           result.add(dividedInput);
         } else {
-          break; //rest of divisions will also be 0
+          break; // rest of divisions will also be 0
         }
       }
       return result;

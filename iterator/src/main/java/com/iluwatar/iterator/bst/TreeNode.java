@@ -37,13 +37,9 @@ public class TreeNode<T extends Comparable<T>> {
 
   private final T val;
 
-  @Getter
-  @Setter
-  private TreeNode<T> left;
+  @Getter @Setter private TreeNode<T> left;
 
-  @Getter
-  @Setter
-  private TreeNode<T> right;
+  @Getter @Setter private TreeNode<T> right;
 
   /**
    * Creates a TreeNode with a given value, and null children.
@@ -129,5 +125,4 @@ public class TreeNode<T extends Comparable<T>> {
   public String toString() {
     return val.toString();
   }
-
 }

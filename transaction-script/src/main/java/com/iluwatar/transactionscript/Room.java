@@ -30,9 +30,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * A room POJO that represents the data that will be read from the data source.
- */
+/** A room POJO that represents the data that will be read from the data source. */
 @Setter
 @Getter
 @ToString
@@ -44,5 +42,4 @@ public class Room {
   private String roomType;
   private int price;
   private boolean booked;
-
 }

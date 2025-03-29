@@ -24,16 +24,13 @@
  */
 package com.iluwatar.acyclicvisitor;
 
-
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-/**
- * Zoom test class
- */
+import org.junit.jupiter.api.Test;
+
+/** Zoom test class */
 class ZoomTest {
 
   @Test

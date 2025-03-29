@@ -29,10 +29,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Annotation to mark other annotations to be recognized as http methods.
- */
+/** Annotation to mark other annotations to be recognized as http methods. */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.ANNOTATION_TYPE)
-public @interface Http {
-}
+public @interface Http {}

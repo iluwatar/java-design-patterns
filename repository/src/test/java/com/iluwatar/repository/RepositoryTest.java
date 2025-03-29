@@ -28,8 +28,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.List;
 import jakarta.annotation.Resource;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,8 +45,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @SpringBootTest(properties = {"locations=classpath:applicationContext.xml"})
 class RepositoryTest {
 
-  @Resource
-  private PersonRepository repository;
+  @Resource private PersonRepository repository;
 
   private final Person peter = new Person("Peter", "Sagan", 17);
   private final Person nasta = new Person("Nasta", "Kuzminova", 25);
@@ -55,9 +54,7 @@ class RepositoryTest {
 
   private final List<Person> persons = List.of(peter, nasta, john, terry);
 
-  /**
-   * Prepare data for test
-   */
+  /** Prepare data for test */
   @BeforeEach
   void setup() {
     repository.saveAll(persons);
@@ -114,5 +111,4 @@ class RepositoryTest {
   void cleanup() {
     repository.deleteAll();
   }
-
 }

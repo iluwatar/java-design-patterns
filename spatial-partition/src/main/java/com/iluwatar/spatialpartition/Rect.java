@@ -28,14 +28,13 @@ package com.iluwatar.spatialpartition;
  * The Rect class helps in defining the boundary of the quadtree and is also used to define the
  * range within which objects need to be found in our example.
  */
-
 public class Rect {
   double coordinateX;
   double coordinateY;
   double width;
   double height;
 
-  //(x,y) - centre of rectangle
+  // (x,y) - centre of rectangle
 
   Rect(double x, double y, double width, double height) {
     this.coordinateX = x;
@@ -58,4 +57,3 @@ public class Rect {
         || this.coordinateY - this.height / 2 >= other.coordinateY + other.height / 2);
   }
 }
-

@@ -32,12 +32,11 @@ class ExceptionsTest {
   private static final String MSG = "test";
 
   @Test
-  void testException(){
+  void testException() {
     Exception e;
-    try{
+    try {
       throw new LockingException(MSG);
-    }
-    catch(LockingException ex){
+    } catch (LockingException ex) {
       e = ex;
     }
     Assertions.assertEquals(MSG, e.getMessage());

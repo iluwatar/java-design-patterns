@@ -32,7 +32,6 @@ import com.iluwatar.masterworker.system.systemmaster.Master;
  * Class ArrayTransposeWorker extends abstract class {@link Worker} and defines method
  * executeOperation(), to be performed on data received from master.
  */
-
 public class ArrayTransposeWorker extends Worker {
 
   public ArrayTransposeWorker(Master master, int id) {
@@ -41,14 +40,14 @@ public class ArrayTransposeWorker extends Worker {
 
   @Override
   ArrayResult executeOperation() {
-    //number of rows in result matrix is equal to number of columns in input matrix and vice versa
+    // number of rows in result matrix is equal to number of columns in input matrix and vice versa
     var arrayInput = (ArrayInput) this.getReceivedData();
     final var rows = arrayInput.data[0].length;
     final var cols = arrayInput.data.length;
     var resultData = new int[rows][cols];
     for (var i = 0; i < cols; i++) {
       for (var j = 0; j < rows; j++) {
-        //flipping element positions along diagonal
+        // flipping element positions along diagonal
         resultData[j][i] = arrayInput.data[i][j];
       }
     }

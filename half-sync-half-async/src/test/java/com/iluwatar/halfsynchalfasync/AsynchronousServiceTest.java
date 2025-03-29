@@ -39,10 +39,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * AsynchronousServiceTest
- *
- */
+/** AsynchronousServiceTest */
 class AsynchronousServiceTest {
   private AsynchronousService service;
   private AsyncTask<Object> task;
@@ -99,5 +96,4 @@ class AsynchronousServiceTest {
 
     verifyNoMoreInteractions(task);
   }
-
 }

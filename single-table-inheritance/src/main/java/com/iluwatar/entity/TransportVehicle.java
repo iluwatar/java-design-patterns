@@ -29,8 +29,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * An abstract class that extends the Vehicle class
- * and provides properties for the Transport type of Vehicles.
+ * An abstract class that extends the Vehicle class and provides properties for the Transport type
+ * of Vehicles.
  *
  * @see Vehicle
  */
@@ -45,5 +45,4 @@ public abstract class TransportVehicle extends Vehicle {
     super(manufacturer, model);
     this.loadCapacity = loadCapacity;
   }
-
 }

@@ -30,9 +30,7 @@ import com.iluwatar.flux.store.MenuStore;
 import com.iluwatar.flux.store.Store;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * MenuView is a concrete view.
- */
+/** MenuView is a concrete view. */
 @Slf4j
 public class MenuView implements View {
 

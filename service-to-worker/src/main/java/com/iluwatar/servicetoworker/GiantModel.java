@@ -29,27 +29,23 @@ import com.iluwatar.model.view.controller.Health;
 import com.iluwatar.model.view.controller.Nourishment;
 import lombok.Getter;
 
-/**
- * GiantModel contains the giant data.
- */
+/** GiantModel contains the giant data. */
 public class GiantModel {
 
   private final com.iluwatar.model.view.controller.GiantModel model;
-  @Getter
-  private final String name;
+  @Getter private final String name;
 
   /**
    * Instantiates a new Giant model.
    *
-   * @param name        the name
-   * @param health      the health
-   * @param fatigue     the fatigue
+   * @param name the name
+   * @param health the health
+   * @param fatigue the fatigue
    * @param nourishment the nourishment
    */
   GiantModel(String name, Health health, Fatigue fatigue, Nourishment nourishment) {
     this.name = name;
-    this.model = new com.iluwatar.model.view.controller.GiantModel(health, fatigue,
-        nourishment);
+    this.model = new com.iluwatar.model.view.controller.GiantModel(health, fatigue, nourishment);
   }
 
   /**
@@ -103,8 +99,8 @@ public class GiantModel {
 
   @Override
   public String toString() {
-    return String
-        .format("Giant %s, The giant looks %s, %s and %s.", name,
-            model.getHealth(), model.getFatigue(), model.getNourishment());
+    return String.format(
+        "Giant %s, The giant looks %s, %s and %s.",
+        name, model.getHealth(), model.getFatigue(), model.getNourishment());
   }
 }

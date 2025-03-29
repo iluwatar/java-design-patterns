@@ -42,32 +42,26 @@ import org.junit.jupiter.api.Test;
  */
 abstract class EventEmitterTest<E extends EventEmitter> {
 
-  /**
-   * Factory used to create a new instance of the test object with a default observer
-   */
+  /** Factory used to create a new instance of the test object with a default observer */
   private final BiFunction<EventObserver, Event, E> factoryWithDefaultObserver;
 
-  /**
-   * Factory used to create a new instance of the test object without passing a default observer
-   */
+  /** Factory used to create a new instance of the test object without passing a default observer */
   private final Supplier<E> factoryWithoutDefaultObserver;
 
-  /**
-   * The day of the week an event is expected
-   */
+  /** The day of the week an event is expected */
   private final Weekday specialDay;
 
-  /**
-   * The expected event, emitted on the special day
-   */
+  /** The expected event, emitted on the special day */
   private final Event event;
 
   /**
    * Create a new event emitter test, using the given test object factories, special day and event
    */
-  EventEmitterTest(final Weekday specialDay, final Event event,
-                   final BiFunction<EventObserver, Event, E> factoryWithDefaultObserver,
-                   final Supplier<E> factoryWithoutDefaultObserver) {
+  EventEmitterTest(
+      final Weekday specialDay,
+      final Event event,
+      final BiFunction<EventObserver, Event, E> factoryWithDefaultObserver,
+      final Supplier<E> factoryWithoutDefaultObserver) {
 
     this.specialDay = specialDay;
     this.event = event;
@@ -90,12 +84,15 @@ abstract class EventEmitterTest<E extends EventEmitter> {
    * received the correct event on the special day.
    *
    * @param specialDay The special day on which an event is emitted
-   * @param event      The expected event emitted by the test object
-   * @param emitter    The event emitter
-   * @param observers  The registered observer mocks
+   * @param event The expected event emitted by the test object
+   * @param emitter The event emitter
+   * @param observers The registered observer mocks
    */
-  private void testAllDays(final Weekday specialDay, final Event event, final E emitter,
-                           final EventObserver... observers) {
+  private void testAllDays(
+      final Weekday specialDay,
+      final Event event,
+      final E emitter,
+      final EventObserver... observers) {
 
     for (final var weekday : Weekday.values()) {
       // Pass each week of the day, day by day to the event emitter
@@ -121,7 +118,7 @@ abstract class EventEmitterTest<E extends EventEmitter> {
    * event emitter without a default observer
    *
    * @param specialDay The special day on which an event is emitted
-   * @param event      The expected event emitted by the test object
+   * @param event The expected event emitted by the test object
    */
   private void testAllDaysWithoutDefaultObserver(final Weekday specialDay, final Event event) {
     final var observer1 = mock(EventObserver.class);
@@ -138,7 +135,7 @@ abstract class EventEmitterTest<E extends EventEmitter> {
    * Go over every day of the month, and check if the event is emitted on the given day.
    *
    * @param specialDay The special day on which an event is emitted
-   * @param event      The expected event emitted by the test object
+   * @param event The expected event emitted by the test object
    */
   private void testAllDaysWithDefaultObserver(final Weekday specialDay, final Event event) {
     final var defaultObserver = mock(EventObserver.class);
@@ -151,5 +148,4 @@ abstract class EventEmitterTest<E extends EventEmitter> {
 
     testAllDays(specialDay, event, emitter, defaultObserver, observer1, observer2);
   }
-
 }

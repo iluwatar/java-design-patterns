@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.bloc;
+
 import java.util.List;
 
 /**
@@ -30,7 +31,6 @@ import java.util.List;
  *
  * @param <T> The type of state to be handled by the listeners.
  */
-
 public interface ListenerManager<T> {
 
   /**

@@ -32,16 +32,12 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for ShardManager class.
- */
+/** Unit tests for ShardManager class. */
 class ShardManagerTest {
 
   private ShardManager shardManager;
 
-  /**
-   * Initialize shardManager instance.
-   */
+  /** Initialize shardManager instance. */
   @BeforeEach
   void setup() {
     shardManager = new TestShardManager();

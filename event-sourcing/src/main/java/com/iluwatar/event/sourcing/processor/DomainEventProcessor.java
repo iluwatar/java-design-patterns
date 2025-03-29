@@ -50,16 +50,12 @@ public class DomainEventProcessor {
     eventJournal.write(domainEvent);
   }
 
-  /**
-   * Reset.
-   */
+  /** Reset. */
   public void reset() {
     eventJournal.reset();
   }
 
-  /**
-   * Recover.
-   */
+  /** Recover. */
   public void recover() {
     DomainEvent domainEvent;
     while ((domainEvent = eventJournal.readNext()) != null) {

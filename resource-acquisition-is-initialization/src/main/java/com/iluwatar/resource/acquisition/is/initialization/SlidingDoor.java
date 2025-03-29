@@ -26,9 +26,7 @@ package com.iluwatar.resource.acquisition.is.initialization;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * SlidingDoor resource.
- */
+/** SlidingDoor resource. */
 @Slf4j
 public class SlidingDoor implements AutoCloseable {
 

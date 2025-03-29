@@ -24,21 +24,18 @@
  */
 package com.iluwatar.idempotentconsumer;
 
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.springframework.boot.CommandLineRunner;
-
-import java.util.UUID;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-/**
- * Application test
- */
+import java.util.UUID;
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.boot.CommandLineRunner;
+
+/** Application test */
 class AppTest {
 
   @Test

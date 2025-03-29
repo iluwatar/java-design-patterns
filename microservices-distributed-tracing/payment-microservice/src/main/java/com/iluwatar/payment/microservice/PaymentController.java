@@ -30,9 +30,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Controller for handling payment processing requests.
- */
+/** Controller for handling payment processing requests. */
 @Slf4j
 @RestController
 public class PaymentController {

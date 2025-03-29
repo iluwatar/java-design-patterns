@@ -33,29 +33,25 @@ import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
 import java.util.Optional;
 
-/**
- * Implementation for lottery service.
- */
+/** Implementation for lottery service. */
 public class LotteryService {
 
   private final LotteryTicketRepository repository;
   private final LotteryEventLog notifications;
   private final WireTransfers wireTransfers;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   @Inject
-  public LotteryService(LotteryTicketRepository repository, LotteryEventLog notifications,
-                        WireTransfers wireTransfers) {
+  public LotteryService(
+      LotteryTicketRepository repository,
+      LotteryEventLog notifications,
+      WireTransfers wireTransfers) {
     this.repository = repository;
     this.notifications = notifications;
     this.wireTransfers = wireTransfers;
   }
 
-  /**
-   * Submit lottery ticket to participate in the lottery.
-   */
+  /** Submit lottery ticket to participate in the lottery. */
   public Optional<LotteryTicketId> submitTicket(LotteryTicket ticket) {
     var playerDetails = ticket.playerDetails();
     var playerAccount = playerDetails.bankAccount();
@@ -71,13 +67,9 @@ public class LotteryService {
     return optional;
   }
 
-  /**
-   * Check if lottery ticket has won.
-   */
+  /** Check if lottery ticket has won. */
   public LotteryTicketCheckResult checkTicketForPrize(
-      LotteryTicketId id,
-      LotteryNumbers winningNumbers
-  ) {
+      LotteryTicketId id, LotteryNumbers winningNumbers) {
     return LotteryUtils.checkTicketForPrize(repository, id, winningNumbers);
   }
 }

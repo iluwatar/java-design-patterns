@@ -32,10 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.retry.support.RetryTemplate;
 
-/**
- * Unit tests for the {@link RetryConfig} class.
- *
- */
+/** Unit tests for the {@link RetryConfig} class. */
 @SpringBootTest(classes = RetryConfig.class)
 class RetryConfigTest {
 

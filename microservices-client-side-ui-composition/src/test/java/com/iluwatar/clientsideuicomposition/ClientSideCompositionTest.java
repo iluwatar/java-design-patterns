@@ -24,21 +24,19 @@
  */
 package com.iluwatar.clientsideuicomposition;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /**
- * ClientSideCompositionTest contains unit tests to validate dynamic route registration and UI composition.
+ * ClientSideCompositionTest contains unit tests to validate dynamic route registration and UI
+ * composition.
  */
 class ClientSideCompositionTest {
 
-  /**
-   * Tests dynamic registration of frontend components and dynamic composition of UI.
-   */
+  /** Tests dynamic registration of frontend components and dynamic composition of UI. */
   @Test
   void testClientSideUIComposition() {
     // Create API Gateway and dynamically register frontend components

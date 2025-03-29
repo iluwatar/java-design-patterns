@@ -24,84 +24,88 @@
  */
 package com.iluwatar.gateway;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.concurrent.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.concurrent.*;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class AppTest {
 
-    private GatewayFactory gatewayFactory;
-    private ExecutorService executorService;
+  private GatewayFactory gatewayFactory;
+  private ExecutorService executorService;
 
-    @BeforeEach
-    void setUp() {
-        gatewayFactory = new GatewayFactory();
-        executorService = Executors.newFixedThreadPool(2);
-        gatewayFactory.registerGateway("ServiceA", new ExternalServiceA());
-        gatewayFactory.registerGateway("ServiceB", new ExternalServiceB());
-        gatewayFactory.registerGateway("ServiceC", new ExternalServiceC());
-    }
+  @BeforeEach
+  void setUp() {
+    gatewayFactory = new GatewayFactory();
+    executorService = Executors.newFixedThreadPool(2);
+    gatewayFactory.registerGateway("ServiceA", new ExternalServiceA());
+    gatewayFactory.registerGateway("ServiceB", new ExternalServiceB());
+    gatewayFactory.registerGateway("ServiceC", new ExternalServiceC());
+  }
 
-    @Test
-    void testServiceAExecution() throws InterruptedException, ExecutionException {
-        // Test Service A execution
-        Future<?> serviceAFuture = executorService.submit(() -> {
-            try {
+  @Test
+  void testServiceAExecution() throws InterruptedException, ExecutionException {
+    // Test Service A execution
+    Future<?> serviceAFuture =
+        executorService.submit(
+            () -> {
+              try {
                 Gateway serviceA = gatewayFactory.getGateway("ServiceA");
                 serviceA.execute();
-            } catch (Exception e) {
+              } catch (Exception e) {
                 fail("Service A should not throw an exception.");
-            }
-        });
+              }
+            });
 
-        // Wait for Service A to complete
-        serviceAFuture.get();
-    }
+    // Wait for Service A to complete
+    serviceAFuture.get();
+  }
 
-    @Test
-    void testServiceCExecutionWithException() throws InterruptedException, ExecutionException {
-        // Test Service B execution with an exception
-        Future<?> serviceBFuture = executorService.submit(() -> {
-            try {
+  @Test
+  void testServiceCExecutionWithException() throws InterruptedException, ExecutionException {
+    // Test Service B execution with an exception
+    Future<?> serviceBFuture =
+        executorService.submit(
+            () -> {
+              try {
                 Gateway serviceB = gatewayFactory.getGateway("ServiceB");
                 serviceB.execute();
-            } catch (Exception e) {
+              } catch (Exception e) {
                 fail("Service B should not throw an exception.");
-            }
-        });
+              }
+            });
 
-        // Wait for Service B to complete
-        serviceBFuture.get();
-    }
+    // Wait for Service B to complete
+    serviceBFuture.get();
+  }
 
-    @Test
-    void testServiceCExecution() throws InterruptedException, ExecutionException {
-        // Test Service C execution
-        Future<?> serviceCFuture = executorService.submit(() -> {
-            try {
+  @Test
+  void testServiceCExecution() throws InterruptedException, ExecutionException {
+    // Test Service C execution
+    Future<?> serviceCFuture =
+        executorService.submit(
+            () -> {
+              try {
                 Gateway serviceC = gatewayFactory.getGateway("ServiceC");
                 serviceC.execute();
-            } catch (Exception e) {
+              } catch (Exception e) {
                 fail("Service C should not throw an exception.");
-            }
-        });
+              }
+            });
 
-        // Wait for Service C to complete
-        serviceCFuture.get();
-    }
+    // Wait for Service C to complete
+    serviceCFuture.get();
+  }
 
-    @Test
-    void testServiceCError() {
-        try {
-            ExternalServiceC serviceC = (ExternalServiceC) gatewayFactory.getGateway("ServiceC");
-            serviceC.error();
-            fail("Service C should throw an exception.");
-        } catch (Exception e) {
-            assertEquals("Service C encountered an error", e.getMessage());
-        }
+  @Test
+  void testServiceCError() {
+    try {
+      ExternalServiceC serviceC = (ExternalServiceC) gatewayFactory.getGateway("ServiceC");
+      serviceC.error();
+      fail("Service C should throw an exception.");
+    } catch (Exception e) {
+      assertEquals("Service C encountered an error", e.getMessage());
     }
+  }
 }
-

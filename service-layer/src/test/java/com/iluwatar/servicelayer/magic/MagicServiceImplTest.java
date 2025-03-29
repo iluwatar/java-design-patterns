@@ -41,10 +41,7 @@ import com.iluwatar.servicelayer.wizard.WizardDao;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
-/**
- * MagicServiceImplTest
- *
- */
+/** MagicServiceImplTest */
 class MagicServiceImplTest {
 
   @Test
@@ -93,11 +90,7 @@ class MagicServiceImplTest {
   void testFindWizardsWithSpellbook() {
     final var bookname = "bookname";
     final var spellbook = mock(Spellbook.class);
-    final var wizards = Set.of(
-        mock(Wizard.class),
-        mock(Wizard.class),
-        mock(Wizard.class)
-    );
+    final var wizards = Set.of(mock(Wizard.class), mock(Wizard.class), mock(Wizard.class));
     when(spellbook.getWizards()).thenReturn(wizards);
 
     final var spellbookDao = mock(SpellbookDao.class);
@@ -105,7 +98,6 @@ class MagicServiceImplTest {
 
     final var wizardDao = mock(WizardDao.class);
     final var spellDao = mock(SpellDao.class);
-
 
     final var service = new MagicServiceImpl(wizardDao, spellbookDao, spellDao);
     verifyNoInteractions(wizardDao, spellbookDao, spellDao, spellbook);
@@ -122,11 +114,7 @@ class MagicServiceImplTest {
 
   @Test
   void testFindWizardsWithSpell() {
-    final var wizards = Set.of(
-        mock(Wizard.class),
-        mock(Wizard.class),
-        mock(Wizard.class)
-    );
+    final var wizards = Set.of(mock(Wizard.class), mock(Wizard.class), mock(Wizard.class));
     final var spellbook = mock(Spellbook.class);
     when(spellbook.getWizards()).thenReturn(wizards);
 
@@ -152,5 +140,4 @@ class MagicServiceImplTest {
 
     verifyNoMoreInteractions(wizardDao, spellbookDao, spellDao);
   }
-
 }

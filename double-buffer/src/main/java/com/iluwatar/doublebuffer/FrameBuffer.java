@@ -26,9 +26,7 @@ package com.iluwatar.doublebuffer;
 
 import java.util.Arrays;
 
-/**
- * FrameBuffer implementation class.
- */
+/** FrameBuffer implementation class. */
 public class FrameBuffer implements Buffer {
 
   public static final int WIDTH = 10;

@@ -33,20 +33,19 @@ import java.util.stream.Collectors;
 /**
  * Iterating and sorting with a collection pipeline
  *
- * <p>In functional programming, it's common to sequence complex operations through
- * a series of smaller modular functions or operations. The series is called a composition of
- * functions, or a function composition. When a collection of data flows through a function
- * composition, it becomes a collection pipeline. Function Composition and Collection Pipeline are
- * two design patterns frequently used in functional-style programming.
+ * <p>In functional programming, it's common to sequence complex operations through a series of
+ * smaller modular functions or operations. The series is called a composition of functions, or a
+ * function composition. When a collection of data flows through a function composition, it becomes
+ * a collection pipeline. Function Composition and Collection Pipeline are two design patterns
+ * frequently used in functional-style programming.
  *
- * <p>Instead of passing a lambda expression to the map method, we passed the
- * method reference Car::getModel. Likewise, instead of passing the lambda expression car ->
- * car.getYear() to the comparing method, we passed the method reference Car::getYear. Method
- * references are short, concise, and expressive. It is best to use them wherever possible.
+ * <p>Instead of passing a lambda expression to the map method, we passed the method reference
+ * Car::getModel. Likewise, instead of passing the lambda expression car -> car.getYear() to the
+ * comparing method, we passed the method reference Car::getYear. Method references are short,
+ * concise, and expressive. It is best to use them wherever possible.
  */
 public class FunctionalProgramming {
-  private FunctionalProgramming() {
-  }
+  private FunctionalProgramming() {}
 
   /**
    * Method to get models using for collection pipeline.
@@ -55,8 +54,11 @@ public class FunctionalProgramming {
    * @return {@link List} of {@link String} representing models built after year 2000
    */
   public static List<String> getModelsAfter2000(List<Car> cars) {
-    return cars.stream().filter(car -> car.year() > 2000).sorted(Comparator.comparing(Car::year))
-        .map(Car::model).toList();
+    return cars.stream()
+        .filter(car -> car.year() > 2000)
+        .sorted(Comparator.comparing(Car::year))
+        .map(Car::model)
+        .toList();
   }
 
   /**
@@ -76,8 +78,11 @@ public class FunctionalProgramming {
    * @return {@link List} of {@link Car} to belonging to the group
    */
   public static List<Car> getSedanCarsOwnedSortedByDate(List<Person> persons) {
-    return persons.stream().map(Person::cars).flatMap(List::stream)
+    return persons.stream()
+        .map(Person::cars)
+        .flatMap(List::stream)
         .filter(car -> Category.SEDAN.equals(car.category()))
-        .sorted(Comparator.comparing(Car::year)).toList();
+        .sorted(Comparator.comparing(Car::year))
+        .toList();
   }
 }

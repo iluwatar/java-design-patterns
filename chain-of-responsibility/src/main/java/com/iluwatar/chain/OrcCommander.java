@@ -26,9 +26,7 @@ package com.iluwatar.chain;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * OrcCommander.
- */
+/** OrcCommander. */
 @Slf4j
 public class OrcCommander implements RequestHandler {
   @Override

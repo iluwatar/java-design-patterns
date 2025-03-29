@@ -29,10 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * MenuItemTest
- *
- */
+/** MenuItemTest */
 class MenuItemTest {
 
   @Test
@@ -43,5 +40,4 @@ class MenuItemTest {
       assertFalse(toString.trim().isEmpty());
     }
   }
-
 }

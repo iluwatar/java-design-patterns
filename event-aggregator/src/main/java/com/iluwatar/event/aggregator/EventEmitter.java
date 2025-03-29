@@ -29,9 +29,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * EventEmitter is the base class for event producers that can be observed.
- */
+/** EventEmitter is the base class for event producers that can be observed. */
 public abstract class EventEmitter {
 
   private final Map<Event, List<EventObserver>> observerLists;
@@ -46,11 +44,11 @@ public abstract class EventEmitter {
   }
 
   /**
-  * Registers observer for specific event in the related list.
-  *
-  * @param obs the observer that observers this emitter
-  * @param e the specific event for that observation occurs
-  * */
+   * Registers observer for specific event in the related list.
+   *
+   * @param obs the observer that observers this emitter
+   * @param e the specific event for that observation occurs
+   */
   public final void registerObserver(EventObserver obs, Event e) {
     if (!observerLists.containsKey(e)) {
       observerLists.put(e, new LinkedList<>());
@@ -62,9 +60,7 @@ public abstract class EventEmitter {
 
   protected void notifyObservers(Event e) {
     if (observerLists.containsKey(e)) {
-      observerLists
-          .get(e)
-          .forEach(observer -> observer.onEvent(e));
+      observerLists.get(e).forEach(observer -> observer.onEvent(e));
     }
   }
 

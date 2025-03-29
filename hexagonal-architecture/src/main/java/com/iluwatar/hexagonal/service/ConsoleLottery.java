@@ -32,15 +32,11 @@ import com.iluwatar.hexagonal.mongo.MongoConnectionPropertiesLoader;
 import java.util.Scanner;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Console interface for lottery players.
- */
+/** Console interface for lottery players. */
 @Slf4j
 public class ConsoleLottery {
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
     MongoConnectionPropertiesLoader.load();
     var injector = Guice.createInjector(new LotteryModule());

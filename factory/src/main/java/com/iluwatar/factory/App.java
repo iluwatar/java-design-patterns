@@ -27,20 +27,17 @@ package com.iluwatar.factory;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Factory is an object for creating other objects. It provides a static method to 
- * create and return objects of varying classes, in order to hide the implementation logic 
- * and makes client code focus on usage rather than objects initialization and management.
+ * Factory is an object for creating other objects. It provides a static method to create and return
+ * objects of varying classes, in order to hide the implementation logic and makes client code focus
+ * on usage rather than objects initialization and management.
  *
  * <p>In this example an alchemist manufactures coins. CoinFactory is the factory class, and it
  * provides a static method to create different types of coins.
  */
-
 @Slf4j
 public class App {
 
-  /**
-   * Program main entry point.
-   */
+  /** Program main entry point. */
   public static void main(String[] args) {
     LOGGER.info("The alchemist begins his work.");
     var coin1 = CoinFactory.getCoin(CoinType.COPPER);

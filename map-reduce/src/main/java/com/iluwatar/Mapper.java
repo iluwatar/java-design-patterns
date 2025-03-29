@@ -27,15 +27,16 @@ package com.iluwatar;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
- * The Mapper class is responsible for processing an input string
- * and generating a map of word occurrences.
+ * The Mapper class is responsible for processing an input string and generating a map of word
+ * occurrences.
  */
 public class Mapper {
   private Mapper() {
-    throw new UnsupportedOperationException("Mapper is a utility class and cannot be instantiated.");
+    throw new UnsupportedOperationException(
+        "Mapper is a utility class and cannot be instantiated.");
   }
+
   /**
    * Splits a given input string into words and counts their occurrences.
    *

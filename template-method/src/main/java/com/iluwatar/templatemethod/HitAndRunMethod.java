@@ -26,9 +26,7 @@ package com.iluwatar.templatemethod;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * HitAndRunMethod implementation of {@link StealingMethod}.
- */
+/** HitAndRunMethod implementation of {@link StealingMethod}. */
 @Slf4j
 public class HitAndRunMethod extends StealingMethod {
 

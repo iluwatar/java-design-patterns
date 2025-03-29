@@ -26,8 +26,6 @@ package com.iluwatar.monolithic.repository;
 
 import com.iluwatar.monolithic.model.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
-/**
- * This interface allows JpaRepository to generate queries for the required tables.
- */
-public interface OrderRepository extends JpaRepository<Order, Long> {
-}
+
+/** This interface allows JpaRepository to generate queries for the required tables. */
+public interface OrderRepository extends JpaRepository<Order, Long> {}

@@ -27,9 +27,7 @@ package com.iluwatar.decorator;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Decorator that adds a club for the troll.
- */
+/** Decorator that adds a club for the troll. */
 @Slf4j
 @RequiredArgsConstructor
 public class ClubbedTroll implements Troll {

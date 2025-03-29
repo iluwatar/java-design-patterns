@@ -27,9 +27,7 @@ package com.iluwatar.doubledispatch;
 import com.iluwatar.doubledispatch.constants.AppConstants;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Meteoroid game object.
- */
+/** Meteoroid game object. */
 @Slf4j
 public class Meteoroid extends GameObject {
 
@@ -44,14 +42,14 @@ public class Meteoroid extends GameObject {
 
   @Override
   public void collisionResolve(FlamingAsteroid asteroid) {
-    LOGGER.info(AppConstants.HITS, asteroid.getClass().getSimpleName(), this.getClass()
-        .getSimpleName());
+    LOGGER.info(
+        AppConstants.HITS, asteroid.getClass().getSimpleName(), this.getClass().getSimpleName());
   }
 
   @Override
   public void collisionResolve(Meteoroid meteoroid) {
-    LOGGER.info(AppConstants.HITS, meteoroid.getClass().getSimpleName(), this.getClass()
-        .getSimpleName());
+    LOGGER.info(
+        AppConstants.HITS, meteoroid.getClass().getSimpleName(), this.getClass().getSimpleName());
   }
 
   @Override

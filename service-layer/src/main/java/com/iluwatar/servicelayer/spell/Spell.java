@@ -38,9 +38,7 @@ import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Spell entity.
- */
+/** Spell entity. */
 @Entity
 @Table(name = "SPELL")
 @Getter
@@ -59,8 +57,7 @@ public class Spell extends BaseEntity {
   @JoinColumn(name = "SPELLBOOK_ID_FK", referencedColumnName = "SPELLBOOK_ID")
   private Spellbook spellbook;
 
-  public Spell() {
-  }
+  public Spell() {}
 
   public Spell(String name) {
     this();

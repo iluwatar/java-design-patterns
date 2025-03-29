@@ -26,36 +26,31 @@ package com.iluwatar.currying;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import java.time.LocalDate;
 
-/**
- * Unit tests for the Book class
- */
+/** Unit tests for the Book class */
 class BookCurryingTest {
   private static Book expectedBook;
 
   @BeforeAll
   public static void initialiseBook() {
-    expectedBook = new Book(Genre.FANTASY,
-        "Dave",
-        "Into the Night",
-        LocalDate.of(2002, 4, 7));
+    expectedBook = new Book(Genre.FANTASY, "Dave", "Into the Night", LocalDate.of(2002, 4, 7));
   }
 
-  /**
-   * Tests that the expected book can be created via curried functions
-   */
+  /** Tests that the expected book can be created via curried functions */
   @Test
   void createsExpectedBook() {
-    Book builderCurriedBook = Book.builder()
-        .withGenre(Genre.FANTASY)
-        .withAuthor("Dave")
-        .withTitle("Into the Night")
-        .withPublicationDate(LocalDate.of(2002, 4, 7));
+    Book builderCurriedBook =
+        Book.builder()
+            .withGenre(Genre.FANTASY)
+            .withAuthor("Dave")
+            .withTitle("Into the Night")
+            .withPublicationDate(LocalDate.of(2002, 4, 7));
 
-    Book funcCurriedBook = Book.book_creator
+    Book funcCurriedBook =
+        Book.book_creator
             .apply(Genre.FANTASY)
             .apply("Dave")
             .apply("Into the Night")
@@ -65,17 +60,15 @@ class BookCurryingTest {
     assertEquals(expectedBook, funcCurriedBook);
   }
 
-  /**
-   * Tests that an intermediate curried function can be used to create the expected book
-   */
+  /** Tests that an intermediate curried function can be used to create the expected book */
   @Test
   void functionCreatesExpectedBook() {
-    Book.AddTitle daveFantasyBookFunc = Book.builder()
-      .withGenre(Genre.FANTASY)
-      .withAuthor("Dave");
+    Book.AddTitle daveFantasyBookFunc = Book.builder().withGenre(Genre.FANTASY).withAuthor("Dave");
 
-    Book curriedBook = daveFantasyBookFunc.withTitle("Into the Night")
-      .withPublicationDate(LocalDate.of(2002, 4, 7));
+    Book curriedBook =
+        daveFantasyBookFunc
+            .withTitle("Into the Night")
+            .withPublicationDate(LocalDate.of(2002, 4, 7));
 
     assertEquals(expectedBook, curriedBook);
   }

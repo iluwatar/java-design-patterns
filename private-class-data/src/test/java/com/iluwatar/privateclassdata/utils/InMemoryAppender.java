@@ -31,9 +31,7 @@ import java.util.LinkedList;
 import java.util.List;
 import org.slf4j.LoggerFactory;
 
-/**
- * InMemory Log Appender Util.
- */
+/** InMemory Log Appender Util. */
 public class InMemoryAppender extends AppenderBase<ILoggingEvent> {
   private final List<ILoggingEvent> log = new LinkedList<>();
 

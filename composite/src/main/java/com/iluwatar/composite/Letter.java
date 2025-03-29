@@ -26,9 +26,7 @@ package com.iluwatar.composite;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Letter.
- */
+/** Letter. */
 @RequiredArgsConstructor
 public class Letter extends LetterComposite {
 

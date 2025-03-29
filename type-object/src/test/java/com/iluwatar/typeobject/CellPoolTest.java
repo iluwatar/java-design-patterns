@@ -29,10 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Hashtable;
 import org.junit.jupiter.api.Test;
 
-/**
- * The CellPoolTest class tests the methods in the {@link CellPool} class.
- */
-
+/** The CellPoolTest class tests the methods in the {@link CellPool} class. */
 class CellPoolTest {
 
   @Test
@@ -48,5 +45,4 @@ class CellPoolTest {
     }
     assertTrue(ht.size() == 5 && parentTypes == 0);
   }
-
 }

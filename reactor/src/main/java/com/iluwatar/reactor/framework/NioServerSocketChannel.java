@@ -43,13 +43,13 @@ public class NioServerSocketChannel extends AbstractNioChannel {
   private final int port;
 
   /**
-   * Creates a {@link ServerSocketChannel} which will bind at provided port and use
-   * <code>handler</code> to handle incoming events on this channel.
+   * Creates a {@link ServerSocketChannel} which will bind at provided port and use <code>handler
+   * </code> to handle incoming events on this channel.
    *
    * <p>Note the constructor does not bind the socket, {@link #bind()} method should be called for
    * binding the socket.
    *
-   * @param port    the port on which channel will be bound to accept incoming connection requests.
+   * @param port the port on which channel will be bound to accept incoming connection requests.
    * @param handler the handler that will handle incoming requests on this channel.
    * @throws IOException if any I/O error occurs.
    */
@@ -57,7 +57,6 @@ public class NioServerSocketChannel extends AbstractNioChannel {
     super(handler, ServerSocketChannel.open());
     this.port = port;
   }
-
 
   @Override
   public int getInterestedOps() {

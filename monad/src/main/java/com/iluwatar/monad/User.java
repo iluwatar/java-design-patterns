@@ -27,11 +27,9 @@ package com.iluwatar.monad;
 /**
  * Record class.
  *
- * @param name  - name
- * @param age   - age
- * @param sex   - sex
+ * @param name - name
+ * @param age - age
+ * @param sex - sex
  * @param email - email address
  */
-public record User(String name, int age, Sex sex, String email) {
-}
-
+public record User(String name, int age, Sex sex, String email) {}

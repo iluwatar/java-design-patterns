@@ -25,11 +25,16 @@
 package com.iluwatar.partialresponse;
 
 /**
- * {@link Video} is an entity to serve from server.It contains all video related information.
- * Video is a record class.
+ * {@link Video} is an entity to serve from server.It contains all video related information. Video
+ * is a record class.
  */
-
-public record Video(Integer id, String title, Integer length, String description, String director, String language) {
+public record Video(
+    Integer id,
+    String title,
+    Integer length,
+    String description,
+    String director,
+    String language) {
   /**
    * ToString.
    *
@@ -38,12 +43,24 @@ public record Video(Integer id, String title, Integer length, String description
   @Override
   public String toString() {
     return "{"
-            + "\"id\": " + id + ","
-            + "\"title\": \"" + title + "\","
-            + "\"length\": " + length + ","
-            + "\"description\": \"" + description + "\","
-            + "\"director\": \"" + director + "\","
-            + "\"language\": \"" + language + "\""
-            + "}";
+        + "\"id\": "
+        + id
+        + ","
+        + "\"title\": \""
+        + title
+        + "\","
+        + "\"length\": "
+        + length
+        + ","
+        + "\"description\": \""
+        + description
+        + "\","
+        + "\"director\": \""
+        + director
+        + "\","
+        + "\"language\": \""
+        + language
+        + "\""
+        + "}";
   }
 }

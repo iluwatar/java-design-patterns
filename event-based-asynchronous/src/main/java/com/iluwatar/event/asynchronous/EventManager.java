@@ -31,9 +31,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import lombok.Getter;
 
 /**
- * EventManager handles and maintains a pool of event threads. {@link AsyncEvent} threads are created
- * upon user request. Thre are two types of events; Asynchronous and Synchronous. There can be
- * multiple Asynchronous events running at once but only one Synchronous event running at a time.
+ * EventManager handles and maintains a pool of event threads. {@link AsyncEvent} threads are
+ * created upon user request. Thre are two types of events; Asynchronous and Synchronous. There can
+ * be multiple Asynchronous events running at once but only one Synchronous event running at a time.
  * Currently supported event operations are: start, stop, and getStatus. Once an event is complete,
  * it then notifies EventManager through a listener. The EventManager then takes the event out of
  * the pool.
@@ -48,18 +48,14 @@ public class EventManager implements ThreadCompleteListener {
   private int currentlyRunningSyncEvent = -1;
   private final SecureRandom rand;
 
-  @Getter
-  private final Map<Integer, AsyncEvent> eventPool;
+  @Getter private final Map<Integer, AsyncEvent> eventPool;
 
   private static final String DOES_NOT_EXIST = " does not exist.";
 
-  /**
-   * EventManager constructor.
-   */
+  /** EventManager constructor. */
   public EventManager() {
     rand = new SecureRandom();
     eventPool = new ConcurrentHashMap<>(MAX_RUNNING_EVENTS);
-
   }
 
   /**
@@ -68,15 +64,18 @@ public class EventManager implements ThreadCompleteListener {
    * @param eventTime Time an event should run for.
    * @return eventId
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
-   * @throws InvalidOperationException      No new synchronous events can be created when one is
-   *                                        already running.
-   * @throws LongRunningEventException      Long-running events are not allowed in the app.
+   * @throws InvalidOperationException No new synchronous events can be created when one is already
+   *     running.
+   * @throws LongRunningEventException Long-running events are not allowed in the app.
    */
   public int create(Duration eventTime)
       throws MaxNumOfEventsAllowedException, InvalidOperationException, LongRunningEventException {
     if (currentlyRunningSyncEvent != -1) {
-      throw new InvalidOperationException("Event [" + currentlyRunningSyncEvent + "] is still"
-          + " running. Please wait until it finishes and try again.");
+      throw new InvalidOperationException(
+          "Event ["
+              + currentlyRunningSyncEvent
+              + "] is still"
+              + " running. Please wait until it finishes and try again.");
     }
 
     var eventId = createEvent(eventTime, true);
@@ -91,10 +90,10 @@ public class EventManager implements ThreadCompleteListener {
    * @param eventTime Time an event should run for.
    * @return eventId
    * @throws MaxNumOfEventsAllowedException When too many events are running at a time.
-   * @throws LongRunningEventException      Long-running events are not allowed in the app.
+   * @throws LongRunningEventException Long-running events are not allowed in the app.
    */
-  public int createAsync(Duration eventTime) throws MaxNumOfEventsAllowedException,
-      LongRunningEventException {
+  public int createAsync(Duration eventTime)
+      throws MaxNumOfEventsAllowedException, LongRunningEventException {
     return createEvent(eventTime, false);
   }
 
@@ -105,8 +104,8 @@ public class EventManager implements ThreadCompleteListener {
     }
 
     if (eventPool.size() == MAX_RUNNING_EVENTS) {
-      throw new MaxNumOfEventsAllowedException("Too many events are running at the moment."
-          + " Please try again later.");
+      throw new MaxNumOfEventsAllowedException(
+          "Too many events are running at the moment." + " Please try again later.");
     }
 
     if (eventTime.getSeconds() > MAX_EVENT_TIME.getSeconds()) {
@@ -170,17 +169,13 @@ public class EventManager implements ThreadCompleteListener {
     eventPool.get(eventId).status();
   }
 
-  /**
-   * Gets status of all running events.
-   */
+  /** Gets status of all running events. */
   @SuppressWarnings("rawtypes")
   public void statusOfAllEvents() {
     eventPool.entrySet().forEach(entry -> ((AsyncEvent) ((Map.Entry) entry).getValue()).status());
   }
 
-  /**
-   * Stop all running events.
-   */
+  /** Stop all running events. */
   @SuppressWarnings("rawtypes")
   public void shutdown() {
     eventPool.entrySet().forEach(entry -> ((AsyncEvent) ((Map.Entry) entry).getValue()).stop());
@@ -188,8 +183,7 @@ public class EventManager implements ThreadCompleteListener {
 
   /**
    * Returns a pseudo-random number between min and max, inclusive. The difference between min and
-   * max can be at most
-   * <code>Integer.MAX_VALUE - 1</code>.
+   * max can be at most <code>Integer.MAX_VALUE - 1</code>.
    */
   private int generateId() {
     // nextInt is normally exclusive of the top value,
@@ -203,7 +197,8 @@ public class EventManager implements ThreadCompleteListener {
   }
 
   /**
-   * Callback from an {@link AsyncEvent} (once it is complete). The Event is then removed from the pool.
+   * Callback from an {@link AsyncEvent} (once it is complete). The Event is then removed from the
+   * pool.
    */
   @Override
   public void completedEventHandler(int eventId) {
@@ -214,9 +209,7 @@ public class EventManager implements ThreadCompleteListener {
     eventPool.remove(eventId);
   }
 
-  /**
-   * Get number of currently running Synchronous events.
-   */
+  /** Get number of currently running Synchronous events. */
   public int numOfCurrentlyRunningSyncEvent() {
     return currentlyRunningSyncEvent;
   }

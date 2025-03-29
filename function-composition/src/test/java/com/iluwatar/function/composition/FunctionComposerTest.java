@@ -24,20 +24,15 @@
  */
 package com.iluwatar.function.composition;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.function.Function;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test class for FunctionComposer.
- */
+import java.util.function.Function;
+import org.junit.jupiter.api.Test;
+
+/** Test class for FunctionComposer. */
 public class FunctionComposerTest {
 
-  /**
-   * Tests the composition of two functions.
-   */
+  /** Tests the composition of two functions. */
   @Test
   void testComposeFunctions() {
     Function<Integer, Integer> timesTwo = x -> x * 2;
@@ -48,24 +43,24 @@ public class FunctionComposerTest {
     assertEquals(36, composed.apply(3), "Expected output of composed functions is 36");
   }
 
-  /**
-   * Tests function composition with identity function.
-   */
+  /** Tests function composition with identity function. */
   @Test
   void testComposeWithIdentity() {
     Function<Integer, Integer> identity = Function.identity();
     Function<Integer, Integer> timesThree = x -> x * 3;
 
-    Function<Integer, Integer> composedLeft = FunctionComposer.composeFunctions(identity, timesThree);
-    Function<Integer, Integer> composedRight = FunctionComposer.composeFunctions(timesThree, identity);
+    Function<Integer, Integer> composedLeft =
+        FunctionComposer.composeFunctions(identity, timesThree);
+    Function<Integer, Integer> composedRight =
+        FunctionComposer.composeFunctions(timesThree, identity);
 
-    assertEquals(9, composedLeft.apply(3), "Composition with identity on the left should be the same");
-    assertEquals(9, composedRight.apply(3), "Composition with identity on the right should be the same");
+    assertEquals(
+        9, composedLeft.apply(3), "Composition with identity on the left should be the same");
+    assertEquals(
+        9, composedRight.apply(3), "Composition with identity on the right should be the same");
   }
 
-  /**
-   * Tests function composition resulting in zero.
-   */
+  /** Tests function composition resulting in zero. */
   @Test
   void testComposeToZero() {
     Function<Integer, Integer> multiply = x -> x * 10;
@@ -73,12 +68,11 @@ public class FunctionComposerTest {
 
     Function<Integer, Integer> composed = FunctionComposer.composeFunctions(multiply, toZero);
 
-    assertEquals(0, composed.apply(5), "Expected output of function composition leading to zero is 0");
+    assertEquals(
+        0, composed.apply(5), "Expected output of function composition leading to zero is 0");
   }
 
-  /**
-   * Tests the composition with a negative function.
-   */
+  /** Tests the composition with a negative function. */
   @Test
   void testComposeNegative() {
     Function<Integer, Integer> negate = x -> -x;
@@ -89,9 +83,7 @@ public class FunctionComposerTest {
     assertEquals(9, composed.apply(3), "Expected square of negative number to be positive");
   }
 
-  /**
-   * Tests the composition of functions that cancel each other out.
-   */
+  /** Tests the composition of functions that cancel each other out. */
   @Test
   void testComposeInverseFunctions() {
     Function<Integer, Integer> timesTwo = x -> x * 2;

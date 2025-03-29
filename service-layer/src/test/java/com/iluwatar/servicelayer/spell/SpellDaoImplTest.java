@@ -30,10 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.iluwatar.servicelayer.common.BaseDaoTest;
 import org.junit.jupiter.api.Test;
 
-/**
- * SpellDaoImplTest
- *
- */
+/** SpellDaoImplTest */
 class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
 
   public SpellDaoImplTest() {
@@ -51,5 +48,4 @@ class SpellDaoImplTest extends BaseDaoTest<Spell, SpellDaoImpl> {
       assertEquals(spell.getName(), spellByName.getName());
     }
   }
-
 }

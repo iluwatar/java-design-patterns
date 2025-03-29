@@ -32,7 +32,6 @@ import java.util.List;
  *
  * @param <T> T will be type of data.
  */
-
 public abstract class Input<T> {
 
   public final T data;

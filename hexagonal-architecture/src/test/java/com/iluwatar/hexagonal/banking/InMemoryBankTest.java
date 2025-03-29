@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for banking
- */
+/** Tests for banking */
 class InMemoryBankTest {
 
   private final WireTransfers bank = new InMemoryBank();

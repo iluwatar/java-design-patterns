@@ -24,9 +24,10 @@
  */
 package com.iluwatar.monitor;
 
-import org.junit.jupiter.api.Test;
-import java.util.concurrent.CountDownLatch;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.concurrent.CountDownLatch;
+import org.junit.jupiter.api.Test;
 
 /** Test if the application starts without throwing an exception. */
 class MainTest {

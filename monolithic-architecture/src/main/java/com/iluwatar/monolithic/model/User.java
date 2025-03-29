@@ -33,9 +33,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Represents a Product entity for the database.
- */
+/** Represents a Product entity for the database. */
 @Entity
 @Data
 @NoArgsConstructor

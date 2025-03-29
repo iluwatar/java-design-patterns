@@ -32,7 +32,6 @@ import lombok.AllArgsConstructor;
  * ShippingService class receives request from {@link com.iluwatar.commander.Commander} class and
  * adds it to the {@link ShippingDatabase}.
  */
-
 public class ShippingService extends Service {
 
   @AllArgsConstructor
@@ -46,10 +45,7 @@ public class ShippingService extends Service {
     super(db, exc);
   }
 
-  /**
-   * Public method which will receive request from {@link com.iluwatar.commander.Commander}.
-   */
-
+  /** Public method which will receive request from {@link com.iluwatar.commander.Commander}. */
   public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
     var id = generateId();
     var item = (String) parameters[0];

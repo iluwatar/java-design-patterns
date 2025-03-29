@@ -31,19 +31,18 @@ import lombok.extern.slf4j.Slf4j;
  * inheriting from it just doesn't work for the case in hand. This happens when we either don't know
  * what types we will need upfront, or want to be able to modify or add new types conveniently w/o
  * recompiling repeatedly. The pattern provides a solution by allowing flexible creation of required
- * objects by creating one class, which has a field which represents the 'type' of the object.
- * In this example, we have a mini candy-crush game in action. There are many different candies
- * in the game, which may change over time, as we may want to upgrade the game. To make the object
- * creation convenient, we have a class {@link Candy} which has a field name, parent, points and
- * Type. We have a json file {@link candy} which contains the details about the candies, and this is
- * parsed to get all the different candies in {@link JsonParser}. The {@link Cell} class is what the
- * game matrix is made of, which has the candies that are to be crushed, and contains information on
- * how crushing can be done, how the matrix is to be reconfigured and how points are to be gained.
- * The {@link CellPool} class is a pool which reuses the candy cells that have been crushed instead
- * of making new ones repeatedly. The {@link CandyGame} class has the rules for the continuation of
- * the game and the {@link App} class has the game itself.
+ * objects by creating one class, which has a field which represents the 'type' of the object. In
+ * this example, we have a mini candy-crush game in action. There are many different candies in the
+ * game, which may change over time, as we may want to upgrade the game. To make the object creation
+ * convenient, we have a class {@link Candy} which has a field name, parent, points and Type. We
+ * have a json file {@link candy} which contains the details about the candies, and this is parsed
+ * to get all the different candies in {@link JsonParser}. The {@link Cell} class is what the game
+ * matrix is made of, which has the candies that are to be crushed, and contains information on how
+ * crushing can be done, how the matrix is to be reconfigured and how points are to be gained. The
+ * {@link CellPool} class is a pool which reuses the candy cells that have been crushed instead of
+ * making new ones repeatedly. The {@link CandyGame} class has the rules for the continuation of the
+ * game and the {@link App} class has the game itself.
  */
-
 @Slf4j
 public class App {
 
@@ -53,8 +52,8 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    var givenTime = 50; //50ms
-    var toWin = 500; //points
+    var givenTime = 50; // 50ms
+    var toWin = 500; // points
     var pointsWon = 0;
     var numOfRows = 3;
     var start = System.currentTimeMillis();

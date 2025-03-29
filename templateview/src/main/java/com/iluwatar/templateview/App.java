@@ -30,9 +30,9 @@ import lombok.extern.slf4j.Slf4j;
  * Template View defines a consistent layout for rendering views, delegating dynamic content
  * rendering to subclasses.
  *
- * <p>In this example, the {@link TemplateView} class provides the skeleton for rendering views
- * with a header, dynamic content, and a footer. Subclasses {@link HomePageView} and
- * {@link ContactPageView} define the specific dynamic content for their respective views.
+ * <p>In this example, the {@link TemplateView} class provides the skeleton for rendering views with
+ * a header, dynamic content, and a footer. Subclasses {@link HomePageView} and {@link
+ * ContactPageView} define the specific dynamic content for their respective views.
  *
  * <p>The {@link App} class demonstrates the usage of the Template View Pattern by rendering
  * instances of {@link HomePageView} and {@link ContactPageView}.

@@ -26,18 +26,14 @@ package com.iluwatar.iterator.list;
 
 import com.iluwatar.iterator.Iterator;
 
-/**
- * TreasureChestItemIterator.
- */
+/** TreasureChestItemIterator. */
 public class TreasureChestItemIterator implements Iterator<Item> {
 
   private final TreasureChest chest;
   private int idx;
   private final ItemType type;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public TreasureChestItemIterator(TreasureChest chest, ItemType type) {
     this.chest = chest;
     this.type = type;

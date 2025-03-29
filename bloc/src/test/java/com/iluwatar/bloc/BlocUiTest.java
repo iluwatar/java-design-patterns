@@ -24,14 +24,13 @@
  */
 package com.iluwatar.bloc;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.awt.*;
+import javax.swing.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import javax.swing.*;
-import java.awt.*;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BlocUiTest {
 
@@ -45,7 +44,7 @@ public class BlocUiTest {
 
   @BeforeEach
   public void setUp() {
-    bloc = new Bloc();  // Re-initialize the Bloc for each test
+    bloc = new Bloc(); // Re-initialize the Bloc for each test
 
     frame = new JFrame("BloC example");
     frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
@@ -69,15 +68,16 @@ public class BlocUiTest {
 
     incrementButton.addActionListener(e -> bloc.increment());
     decrementButton.addActionListener(e -> bloc.decrement());
-    toggleListenerButton.addActionListener(e -> {
-      if (bloc.getListeners().contains(stateListener)) {
-        bloc.removeListener(stateListener);
-        toggleListenerButton.setText("Enable Listener");
-      } else {
-        bloc.addListener(stateListener);
-        toggleListenerButton.setText("Disable Listener");
-      }
-    });
+    toggleListenerButton.addActionListener(
+        e -> {
+          if (bloc.getListeners().contains(stateListener)) {
+            bloc.removeListener(stateListener);
+            toggleListenerButton.setText("Enable Listener");
+          } else {
+            bloc.addListener(stateListener);
+            toggleListenerButton.setText("Disable Listener");
+          }
+        });
 
     frame.setVisible(true);
   }
@@ -85,7 +85,7 @@ public class BlocUiTest {
   @AfterEach
   public void tearDown() {
     frame.dispose();
-    bloc = new Bloc();  // Reset Bloc state after each test to avoid state carryover
+    bloc = new Bloc(); // Reset Bloc state after each test to avoid state carryover
   }
 
   @Test

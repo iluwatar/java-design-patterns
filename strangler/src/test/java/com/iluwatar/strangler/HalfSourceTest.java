@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Test methods in HalfSource
- */
+/** Test methods in HalfSource */
 class HalfSourceTest {
   private static final HalfSource source = new HalfSource();
 

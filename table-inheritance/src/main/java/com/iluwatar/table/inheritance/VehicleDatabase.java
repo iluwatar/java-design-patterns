@@ -24,15 +24,11 @@
  */
 package com.iluwatar.table.inheritance;
 
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-
-/**
- * Manages the storage and retrieval of Vehicle objects, including Cars and Trucks.
- */
+/** Manages the storage and retrieval of Vehicle objects, including Cars and Trucks. */
 public class VehicleDatabase {
 
   final Logger logger = Logger.getLogger(VehicleDatabase.class.getName());
@@ -42,7 +38,8 @@ public class VehicleDatabase {
   private Map<Integer, Truck> truckTable = new HashMap<>();
 
   /**
-   * Saves a vehicle to the database. If the vehicle is a Car or Truck, it is added to the respective table.
+   * Saves a vehicle to the database. If the vehicle is a Car or Truck, it is added to the
+   * respective table.
    *
    * @param vehicle the vehicle to save
    */
@@ -85,13 +82,10 @@ public class VehicleDatabase {
     return truckTable.get(id);
   }
 
-  /**
-   * Prints all vehicles in the database.
-   */
+  /** Prints all vehicles in the database. */
   public void printAllVehicles() {
     for (Vehicle vehicle : vehicleTable.values()) {
       logger.info(vehicle.toString());
     }
   }
 }
-

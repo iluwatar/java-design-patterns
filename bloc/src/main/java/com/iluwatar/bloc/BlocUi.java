@@ -32,14 +32,10 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-/**
- * The BlocUI class handles the creation and management of the UI components.
- */
+/** The BlocUI class handles the creation and management of the UI components. */
 public class BlocUi {
 
-  /**
-   * Creates and shows the UI.
-   */
+  /** Creates and shows the UI. */
   public void createAndShowUi() {
     // Create a Bloc instance to manage the state
     final Bloc bloc = new Bloc();
@@ -70,15 +66,16 @@ public class BlocUi {
     // adding the listener to the Bloc instance
     bloc.addListener(stateListener);
 
-    toggleListenerButton.addActionListener(e -> {
-      if (bloc.getListeners().contains(stateListener)) {
-        bloc.removeListener(stateListener);
-        toggleListenerButton.setText("Enable Listener");
-      } else {
-        bloc.addListener(stateListener);
-        toggleListenerButton.setText("Disable Listener");
-      }
-    });
+    toggleListenerButton.addActionListener(
+        e -> {
+          if (bloc.getListeners().contains(stateListener)) {
+            bloc.removeListener(stateListener);
+            toggleListenerButton.setText("Enable Listener");
+          } else {
+            bloc.addListener(stateListener);
+            toggleListenerButton.setText("Disable Listener");
+          }
+        });
 
     incrementButton.addActionListener(e -> bloc.increment());
     decrementButton.addActionListener(e -> bloc.decrement());

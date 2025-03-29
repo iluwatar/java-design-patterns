@@ -43,9 +43,7 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Spellbook entity.
- */
+/** Spellbook entity. */
 @Entity
 @Table(name = "SPELLBOOK")
 @Getter

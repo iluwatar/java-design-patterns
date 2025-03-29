@@ -38,8 +38,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 @ExtendWith(MockitoExtension.class)
 class LogAggregatorTest {
 
-  @Mock
-  private CentralLogStore centralLogStore;
+  @Mock private CentralLogStore centralLogStore;
   private LogAggregator logAggregator;
 
   @BeforeEach

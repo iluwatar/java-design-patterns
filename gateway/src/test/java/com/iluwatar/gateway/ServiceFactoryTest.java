@@ -24,66 +24,69 @@
  */
 package com.iluwatar.gateway;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ServiceFactoryTest {
 
-    private GatewayFactory gatewayFactory;
-    private ExecutorService executorService;
+  private GatewayFactory gatewayFactory;
+  private ExecutorService executorService;
 
-    @BeforeEach
-    void setUp() {
-        gatewayFactory = new GatewayFactory();
-        executorService = Executors.newFixedThreadPool(2);
-        gatewayFactory.registerGateway("ServiceA", new ExternalServiceA());
-        gatewayFactory.registerGateway("ServiceB", new ExternalServiceB());
-        gatewayFactory.registerGateway("ServiceC", new ExternalServiceC());
+  @BeforeEach
+  void setUp() {
+    gatewayFactory = new GatewayFactory();
+    executorService = Executors.newFixedThreadPool(2);
+    gatewayFactory.registerGateway("ServiceA", new ExternalServiceA());
+    gatewayFactory.registerGateway("ServiceB", new ExternalServiceB());
+    gatewayFactory.registerGateway("ServiceC", new ExternalServiceC());
+  }
+
+  @Test
+  void testGatewayFactoryRegistrationAndRetrieval() {
+    Gateway serviceA = gatewayFactory.getGateway("ServiceA");
+    Gateway serviceB = gatewayFactory.getGateway("ServiceB");
+    Gateway serviceC = gatewayFactory.getGateway("ServiceC");
+
+    // Check if the retrieved instances match their expected types
+    assertTrue(
+        serviceA instanceof ExternalServiceA, "ServiceA should be an instance of ExternalServiceA");
+    assertTrue(
+        serviceB instanceof ExternalServiceB, "ServiceB should be an instance of ExternalServiceB");
+    assertTrue(
+        serviceC instanceof ExternalServiceC, "ServiceC should be an instance of ExternalServiceC");
+  }
+
+  @Test
+  void testGatewayFactoryRegistrationWithNonExistingKey() {
+    Gateway nonExistingService = gatewayFactory.getGateway("NonExistingService");
+    assertNull(nonExistingService);
+  }
+
+  @Test
+  void testGatewayFactoryConcurrency() throws InterruptedException {
+    int numThreads = 10;
+    CountDownLatch latch = new CountDownLatch(numThreads);
+    AtomicBoolean failed = new AtomicBoolean(false);
+
+    for (int i = 0; i < numThreads; i++) {
+      executorService.submit(
+          () -> {
+            try {
+              Gateway serviceA = gatewayFactory.getGateway("ServiceA");
+              serviceA.execute();
+            } catch (Exception e) {
+              failed.set(true);
+            } finally {
+              latch.countDown();
+            }
+          });
     }
 
-    @Test
-    void testGatewayFactoryRegistrationAndRetrieval() {
-        Gateway serviceA = gatewayFactory.getGateway("ServiceA");
-        Gateway serviceB = gatewayFactory.getGateway("ServiceB");
-        Gateway serviceC = gatewayFactory.getGateway("ServiceC");
-
-        // Check if the retrieved instances match their expected types
-        assertTrue(serviceA instanceof ExternalServiceA, "ServiceA should be an instance of ExternalServiceA");
-        assertTrue(serviceB instanceof ExternalServiceB, "ServiceB should be an instance of ExternalServiceB");
-        assertTrue(serviceC instanceof ExternalServiceC, "ServiceC should be an instance of ExternalServiceC");
-    }
-
-    @Test
-    void testGatewayFactoryRegistrationWithNonExistingKey() {
-        Gateway nonExistingService = gatewayFactory.getGateway("NonExistingService");
-        assertNull(nonExistingService);
-    }
-
-    @Test
-    void testGatewayFactoryConcurrency() throws InterruptedException {
-        int numThreads = 10;
-        CountDownLatch latch = new CountDownLatch(numThreads);
-        AtomicBoolean failed = new AtomicBoolean(false);
-
-        for (int i = 0; i < numThreads; i++) {
-            executorService.submit(() -> {
-                try {
-                    Gateway serviceA = gatewayFactory.getGateway("ServiceA");
-                    serviceA.execute();
-                } catch (Exception e) {
-                    failed.set(true);
-                } finally {
-                    latch.countDown();
-                }
-            });
-        }
-
-        latch.await();
-        assertFalse(failed.get(), "This should not fail");
-    }
+    latch.await();
+    assertFalse(failed.get(), "This should not fail");
+  }
 }

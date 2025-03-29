@@ -32,9 +32,7 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-/**
- * {@inheritDoc}
- */
+/** {@inheritDoc} */
 @ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor
@@ -43,25 +41,19 @@ public class SimpleThreatAwareSystem implements ThreatAwareSystem {
   private final String systemId;
   private final List<Threat> issues;
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public String systemId() {
     return systemId;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public List<? extends Threat> threats() {
     return new ArrayList<>(issues);
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public Filterer<? extends ThreatAwareSystem, ? extends Threat> filtered() {
     return this::filteredGroup;
@@ -72,8 +64,6 @@ public class SimpleThreatAwareSystem implements ThreatAwareSystem {
   }
 
   private List<Threat> filteredItems(Predicate<? super Threat> predicate) {
-    return this.issues.stream()
-            .filter(predicate).toList();
+    return this.issues.stream().filter(predicate).toList();
   }
-
 }

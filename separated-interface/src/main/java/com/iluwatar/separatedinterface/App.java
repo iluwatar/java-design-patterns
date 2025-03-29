@@ -30,13 +30,13 @@ import com.iluwatar.separatedinterface.taxes.ForeignTaxCalculator;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * <p>The Separated Interface pattern encourages to separate the interface definition and
+ * The Separated Interface pattern encourages to separate the interface definition and
  * implementation in different packages. This allows the client to be completely unaware of the
- * implementation.</p>
+ * implementation.
  *
  * <p>In this class the {@link InvoiceGenerator} class is injected with different instances of
  * {@link com.iluwatar.separatedinterface.invoice.TaxCalculator} implementations located in separate
- * packages, to receive different responses for both of the implementations.</p>
+ * packages, to receive different responses for both of the implementations.
  */
 @Slf4j
 public class App {
@@ -49,12 +49,12 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    //Create the invoice generator with product cost as 50 and foreign product tax
-    var internationalProductInvoice = new InvoiceGenerator(PRODUCT_COST,
-        new ForeignTaxCalculator());
+    // Create the invoice generator with product cost as 50 and foreign product tax
+    var internationalProductInvoice =
+        new InvoiceGenerator(PRODUCT_COST, new ForeignTaxCalculator());
     LOGGER.info("Foreign Tax applied: {}", "" + internationalProductInvoice.getAmountWithTax());
 
-    //Create the invoice generator with product cost as 50 and domestic product tax
+    // Create the invoice generator with product cost as 50 and domestic product tax
     var domesticProductInvoice = new InvoiceGenerator(PRODUCT_COST, new DomesticTaxCalculator());
     LOGGER.info("Domestic Tax applied: {}", "" + domesticProductInvoice.getAmountWithTax());
   }

@@ -44,8 +44,7 @@ public class Candy {
   Candy parent;
   String parentName;
 
-  @Setter
-  private int points;
+  @Setter private int points;
   private final Type type;
 
   Candy(String name, String parentName, Type type, int points) {
@@ -55,5 +54,4 @@ public class Candy {
     this.points = points;
     this.parentName = parentName;
   }
-
 }

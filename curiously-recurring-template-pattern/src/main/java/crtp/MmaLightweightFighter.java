@@ -24,13 +24,10 @@
  */
 package crtp;
 
-/**
- * MmaLightweightFighter class.
- */
+/** MmaLightweightFighter class. */
 class MmaLightweightFighter extends MmaFighter<MmaLightweightFighter> {
 
   public MmaLightweightFighter(String name, String surname, String nickName, String speciality) {
     super(name, surname, nickName, speciality);
   }
-
 }

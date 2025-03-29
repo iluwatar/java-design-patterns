@@ -40,9 +40,7 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Wizard entity.
- */
+/** Wizard entity. */
 @Entity
 @Table(name = "WIZARD")
 @Getter

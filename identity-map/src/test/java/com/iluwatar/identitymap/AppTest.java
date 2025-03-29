@@ -23,13 +23,14 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.identitymap;
-import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-  class AppTest {
+import org.junit.jupiter.api.Test;
+
+class AppTest {
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

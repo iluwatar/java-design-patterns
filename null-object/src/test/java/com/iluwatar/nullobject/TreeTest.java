@@ -39,10 +39,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * TreeTest
- *
- */
+/** TreeTest */
 class TreeTest {
 
   private InMemoryAppender appender;
@@ -92,9 +89,7 @@ class TreeTest {
     assertEquals(7, TREE_ROOT.getTreeSize());
   }
 
-  /**
-   * Walk through the tree and verify if every item is handled
-   */
+  /** Walk through the tree and verify if every item is handled */
   @Test
   void testWalk() {
     TREE_ROOT.walk();
@@ -160,5 +155,4 @@ class TreeTest {
       return log.size();
     }
   }
-
 }

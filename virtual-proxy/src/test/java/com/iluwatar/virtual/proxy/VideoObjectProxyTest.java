@@ -31,9 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for VideoObjectProxy.
- */
+/** Tests for VideoObjectProxy. */
 public class VideoObjectProxyTest {
   @Test
   void shouldBeInstanceOfExpensiveObject() {
@@ -47,7 +45,7 @@ public class VideoObjectProxyTest {
 
   @Test
   void processDoesNotThrowException() {
-    assertDoesNotThrow(() -> new VideoObjectProxy().process(), "Process method should not throw any exception");
+    assertDoesNotThrow(
+        () -> new VideoObjectProxy().process(), "Process method should not throw any exception");
   }
-
 }

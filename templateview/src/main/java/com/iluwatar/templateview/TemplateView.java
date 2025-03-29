@@ -27,36 +27,28 @@ package com.iluwatar.templateview;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * TemplateView defines the skeleton for rendering views.
- * Concrete subclasses will provide the dynamic content for specific views.
+ * TemplateView defines the skeleton for rendering views. Concrete subclasses will provide the
+ * dynamic content for specific views.
  */
 @Slf4j
 public abstract class TemplateView {
 
-  /**
-   * Render the common structure of the view, delegating dynamic content to subclasses.
-   */
+  /** Render the common structure of the view, delegating dynamic content to subclasses. */
   public final void render() {
     printHeader();
     renderDynamicContent();
     printFooter();
   }
 
-  /**
-   * Prints the common header of the view.
-   */
+  /** Prints the common header of the view. */
   protected void printHeader() {
     LOGGER.info("Rendering header...");
   }
 
-  /**
-   * Subclasses must provide the implementation for rendering dynamic content.
-   */
+  /** Subclasses must provide the implementation for rendering dynamic content. */
   protected abstract void renderDynamicContent();
 
-  /**
-   * Prints the common footer of the view.
-   */
+  /** Prints the common footer of the view. */
   protected void printFooter() {
     LOGGER.info("Rendering footer...");
   }

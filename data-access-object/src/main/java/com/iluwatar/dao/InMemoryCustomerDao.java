@@ -31,17 +31,14 @@ import java.util.stream.Stream;
 
 /**
  * An in memory implementation of {@link CustomerDao}, which stores the customers in JVM memory and
- * data is lost when the application exits.
- * <br>
+ * data is lost when the application exits. <br>
  * This implementation is useful as temporary database or for testing.
  */
 public class InMemoryCustomerDao implements CustomerDao {
 
   private final Map<Integer, Customer> idToCustomer = new HashMap<>();
 
-  /**
-   * An eagerly evaluated stream of customers stored in memory.
-   */
+  /** An eagerly evaluated stream of customers stored in memory. */
   @Override
   public Stream<Customer> getAll() {
     return idToCustomer.values().stream();

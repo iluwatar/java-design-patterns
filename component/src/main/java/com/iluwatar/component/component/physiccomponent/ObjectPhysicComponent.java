@@ -27,9 +27,7 @@ package com.iluwatar.component.component.physiccomponent;
 import com.iluwatar.component.GameObject;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Take this component class to update the x coordinate for the Game Object instance.
- */
+/** Take this component class to update the x coordinate for the Game Object instance. */
 @Slf4j
 public class ObjectPhysicComponent implements PhysicComponent {
 

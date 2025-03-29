@@ -27,8 +27,7 @@ package com.iluwatar.acyclicvisitor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * ConfigureForDosVisitor class implements both zoom's and  hayes' visit method for Dos
- * manufacturer.
+ * ConfigureForDosVisitor class implements both zoom's and hayes' visit method for Dos manufacturer.
  */
 @Slf4j
 public class ConfigureForDosVisitor implements AllModemVisitor {

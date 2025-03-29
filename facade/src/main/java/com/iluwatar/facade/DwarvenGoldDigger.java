@@ -26,9 +26,7 @@ package com.iluwatar.facade;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * DwarvenGoldDigger is one of the goldmine subsystems.
- */
+/** DwarvenGoldDigger is one of the goldmine subsystems. */
 @Slf4j
 public class DwarvenGoldDigger extends DwarvenMineWorker {
 

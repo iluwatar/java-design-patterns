@@ -31,10 +31,7 @@ import jakarta.persistence.criteria.Root;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-
-/**
- * SpellDao implementation.
- */
+/** SpellDao implementation. */
 public class SpellDaoImpl extends DaoBaseImpl<Spell> implements SpellDao {
 
   @Override

@@ -26,9 +26,7 @@ package com.iluwatar.front.controller;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * View for archers.
- */
+/** View for archers. */
 @Slf4j
 public class ArcherView implements View {
 
