@@ -24,18 +24,18 @@
  */
 package com.iluwatar.domainmodel;
 
+import static org.joda.money.CurrencyUnit.USD;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import javax.sql.DataSource;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-
-import static org.joda.money.CurrencyUnit.USD;
-import static org.junit.jupiter.api.Assertions.*;
 
 class CustomerDaoImplTest {
 
@@ -62,7 +62,12 @@ class CustomerDaoImplTest {
     // setup objects
     customerDao = new CustomerDaoImpl(dataSource);
 
-    customer = Customer.builder().name("customer").money(Money.of(CurrencyUnit.USD,100.0)).customerDao(customerDao).build();
+    customer =
+        Customer.builder()
+            .name("customer")
+            .money(Money.of(CurrencyUnit.USD, 100.0))
+            .customerDao(customerDao)
+            .build();
 
     product =
         Product.builder()

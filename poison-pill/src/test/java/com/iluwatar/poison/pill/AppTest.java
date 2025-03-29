@@ -24,17 +24,15 @@
  */
 package com.iluwatar.poison.pill;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Application test
- */
+import org.junit.jupiter.api.Test;
+
+/** Application test */
 class AppTest {
 
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

@@ -40,7 +40,8 @@ class RemoveDigitsHandler implements Handler<String, String> {
   public String process(String input) {
     var inputWithoutDigits = new StringBuilder();
     var isDigit = (IntPredicate) Character::isDigit;
-    input.chars()
+    input
+        .chars()
         .filter(isDigit.negate())
         .mapToObj(x -> (char) x)
         .forEachOrdered(inputWithoutDigits::append);
@@ -49,9 +50,7 @@ class RemoveDigitsHandler implements Handler<String, String> {
     LOGGER.info(
         String.format(
             "Current handler: %s, input is %s of type %s, output is %s, of type %s",
-            RemoveDigitsHandler.class, input, String.class, inputWithoutDigitsStr, String.class
-        )
-    );
+            RemoveDigitsHandler.class, input, String.class, inputWithoutDigitsStr, String.class));
 
     return inputWithoutDigitsStr;
   }

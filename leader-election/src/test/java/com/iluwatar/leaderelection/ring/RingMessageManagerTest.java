@@ -36,9 +36,7 @@ import java.util.Map;
 import java.util.Queue;
 import org.junit.jupiter.api.Test;
 
-/**
- * RingMessageManager unit test.
- */
+/** RingMessageManager unit test. */
 class RingMessageManagerTest {
 
   @Test
@@ -112,5 +110,4 @@ class RingMessageManagerTest {
       fail("Error to access private field.");
     }
   }
-
 }

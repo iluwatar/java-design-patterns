@@ -24,24 +24,30 @@
  */
 package com.iluwatar.builder;
 
-/**
- * Hero,the record class.
- */
-
-public record Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
+/** Hero,the record class. */
+public record Hero(
+    Profession profession,
+    String name,
+    HairType hairType,
+    HairColor hairColor,
+    Armor armor,
+    Weapon weapon) {
 
   private Hero(Builder builder) {
-    this(builder.profession, builder.name, builder.hairType, builder.hairColor, builder.armor, builder.weapon);
+    this(
+        builder.profession,
+        builder.name,
+        builder.hairType,
+        builder.hairColor,
+        builder.armor,
+        builder.weapon);
   }
 
   @Override
   public String toString() {
 
     var sb = new StringBuilder();
-    sb.append("This is a ")
-        .append(profession)
-        .append(" named ")
-        .append(name);
+    sb.append("This is a ").append(profession).append(" named ").append(name);
     if (hairColor != null || hairType != null) {
       sb.append(" with ");
       if (hairColor != null) {
@@ -62,9 +68,7 @@ public record Hero(Profession profession, String name, HairType hairType, HairCo
     return sb.toString();
   }
 
-  /**
-   * The builder class.
-   */
+  /** The builder class. */
   public static class Builder {
 
     private final Profession profession;
@@ -74,9 +78,7 @@ public record Hero(Profession profession, String name, HairType hairType, HairCo
     private Armor armor;
     private Weapon weapon;
 
-    /**
-     * Constructor.
-     */
+    /** Constructor. */
     public Builder(Profession profession, String name) {
       if (profession == null || name == null) {
         throw new IllegalArgumentException("profession and name can not be null");

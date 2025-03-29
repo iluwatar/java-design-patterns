@@ -26,9 +26,7 @@ package com.iluwatar.front.controller;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * View for errors.
- */
+/** View for errors. */
 @Slf4j
 public class ErrorView implements View {
 

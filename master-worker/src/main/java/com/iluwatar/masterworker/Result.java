@@ -29,7 +29,6 @@ package com.iluwatar.masterworker;
  *
  * @param <T> T will be type of data.
  */
-
 public abstract class Result<T> {
 
   public final T data;

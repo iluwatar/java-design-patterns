@@ -31,11 +31,10 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Many solutions in the cloud involve running tasks that invoke services. In this environment, if a
- * service is subjected to intermittent heavy loads, it can cause performance or reliability
- * issues.
+ * service is subjected to intermittent heavy loads, it can cause performance or reliability issues.
  *
- * <p>A service could be a component that is part of the same solution as the tasks that utilize
- * it, or it could be a third-party service providing access to frequently used resources such as a
+ * <p>A service could be a component that is part of the same solution as the tasks that utilize it,
+ * or it could be a third-party service providing access to frequently used resources such as a
  * cache or a storage service. If the same service is utilized by a number of tasks running
  * concurrently, it can be difficult to predict the volume of requests to which the service might be
  * subjected at any given point in time.
@@ -45,8 +44,7 @@ import lombok.extern.slf4j.Slf4j;
  * The task posts a message containing the data required by the service to a queue. The queue acts
  * as a buffer, storing the message until it is retrieved by the service. The service retrieves the
  * messages from the queue and processes them. Requests from a number of tasks, which can be
- * generated at a highly variable rate, can be passed to the service through the same message
- * queue.
+ * generated at a highly variable rate, can be passed to the service through the same message queue.
  *
  * <p>The queue effectively decouples the tasks from the service, and the service can handle the
  * messages at its own pace irrespective of the volume of requests from concurrent tasks.
@@ -61,7 +59,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  //Executor shut down time limit.
+  // Executor shut down time limit.
   private static final int SHUTDOWN_TIME = 15;
 
   /**
@@ -71,7 +69,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    // An Executor that provides methods to manage termination and methods that can 
+    // An Executor that provides methods to manage termination and methods that can
     // produce a Future for tracking progress of one or more asynchronous tasks.
     ExecutorService executor = null;
 
@@ -100,12 +98,13 @@ public class App {
       executor.submit(srvRunnable);
 
       // Initiates an orderly shutdown.
-      LOGGER.info("Initiating shutdown."
-          + " Executor will shutdown only after all the Threads are completed.");
+      LOGGER.info(
+          "Initiating shutdown."
+              + " Executor will shutdown only after all the Threads are completed.");
       executor.shutdown();
 
-      // Wait for SHUTDOWN_TIME seconds for all the threads to complete 
-      // their tasks and then shut down the executor and then exit. 
+      // Wait for SHUTDOWN_TIME seconds for all the threads to complete
+      // their tasks and then shut down the executor and then exit.
       if (!executor.awaitTermination(SHUTDOWN_TIME, TimeUnit.SECONDS)) {
         LOGGER.info("Executor was shut down and Exiting.");
         executor.shutdownNow();

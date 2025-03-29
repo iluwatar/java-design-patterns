@@ -43,10 +43,7 @@ import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Status;
 import org.springframework.retry.support.RetryTemplate;
 
-/**
- * Unit tests for the {@link DatabaseTransactionHealthIndicator} class.
- *
- */
+/** Unit tests for the {@link DatabaseTransactionHealthIndicator} class. */
 class DatabaseTransactionHealthIndicatorTest {
 
   /** Timeout value in seconds for the health check. */

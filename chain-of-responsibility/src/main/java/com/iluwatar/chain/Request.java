@@ -27,9 +27,7 @@ package com.iluwatar.chain;
 import java.util.Objects;
 import lombok.Getter;
 
-/**
- * Request.
- */
+/** Request. */
 @Getter
 public class Request {
 
@@ -39,9 +37,7 @@ public class Request {
    */
   private final RequestType requestType;
 
-  /**
-   * A description of the request.
-   */
+  /** A description of the request. */
   private final String requestDescription;
 
   /**
@@ -53,7 +49,7 @@ public class Request {
   /**
    * Create a new request of the given type and accompanied description.
    *
-   * @param requestType        The type of request
+   * @param requestType The type of request
    * @param requestDescription The description of the request
    */
   public Request(final RequestType requestType, final String requestDescription) {
@@ -61,9 +57,7 @@ public class Request {
     this.requestDescription = Objects.requireNonNull(requestDescription);
   }
 
-  /**
-   * Mark the request as handled.
-   */
+  /** Mark the request as handled. */
   public void markHandled() {
     this.handled = true;
   }
@@ -72,5 +66,4 @@ public class Request {
   public String toString() {
     return getRequestDescription();
   }
-
 }

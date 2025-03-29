@@ -52,5 +52,4 @@ class TaskGenSrvExeTest {
 
     assertNotNull(srvExeThr);
   }
-
 }

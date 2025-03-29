@@ -34,12 +34,11 @@ import lombok.extern.slf4j.Slf4j;
  * Throttling pattern is a design pattern to throttle or limit the use of resources or even a
  * complete service by users or a particular tenant. This can allow systems to continue to function
  * and meet service level agreements, even when an increase in demand places load on resources.
- * <p>
- * In this example there is a {@link Bartender} serving beer to {@link BarCustomer}s. This is a time
- * based throttling, i.e. only a certain number of calls are allowed per second.
- * </p>
- * ({@link BarCustomer}) is the service tenant class having a name and the number of calls allowed.
- * ({@link Bartender}) is the service which is consumed by the tenants and is throttled.
+ *
+ * <p>In this example there is a {@link Bartender} serving beer to {@link BarCustomer}s. This is a
+ * time based throttling, i.e. only a certain number of calls are allowed per second. ({@link
+ * BarCustomer}) is the service tenant class having a name and the number of calls allowed. ({@link
+ * Bartender}) is the service which is consumed by the tenants and is throttled.
  */
 @Slf4j
 public class App {
@@ -69,20 +68,20 @@ public class App {
     }
   }
 
-  /**
-   * Make calls to the bartender.
-   */
+  /** Make calls to the bartender. */
   private static void makeServiceCalls(BarCustomer barCustomer, CallsCount callsCount) {
     var timer = new ThrottleTimerImpl(1000, callsCount);
     var service = new Bartender(timer, callsCount);
     // Sleep is introduced to keep the output in check and easy to view and analyze the results.
-    IntStream.range(0, 50).forEach(i -> {
-      service.orderDrink(barCustomer);
-      try {
-        Thread.sleep(100);
-      } catch (InterruptedException e) {
-        LOGGER.error("Thread interrupted: {}", e.getMessage());
-      }
-    });
+    IntStream.range(0, 50)
+        .forEach(
+            i -> {
+              service.orderDrink(barCustomer);
+              try {
+                Thread.sleep(100);
+              } catch (InterruptedException e) {
+                LOGGER.error("Thread interrupted: {}", e.getMessage());
+              }
+            });
   }
 }

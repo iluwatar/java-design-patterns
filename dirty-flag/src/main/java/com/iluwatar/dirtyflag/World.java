@@ -27,10 +27,7 @@ package com.iluwatar.dirtyflag;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A middle-layer app that calls/passes along data from the back-end.
- *
- */
+/** A middle-layer app that calls/passes along data from the back-end. */
 public class World {
 
   private List<String> countries;

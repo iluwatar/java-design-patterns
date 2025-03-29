@@ -23,19 +23,23 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.bloc;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.concurrent.atomic.AtomicInteger;
-import static org.junit.jupiter.api.Assertions.*;
 
 class BlocTest {
   private Bloc bloc;
   private AtomicInteger stateValue;
+
   @BeforeEach
   void setUp() {
     bloc = new Bloc();
     stateValue = new AtomicInteger(0);
   }
+
   @Test
   void initialState() {
     assertTrue(bloc.getListeners().isEmpty(), "No listeners should be present initially.");
@@ -68,6 +72,7 @@ class BlocTest {
     bloc.removeListener(listener);
     assertTrue(bloc.getListeners().isEmpty(), "Listener count should be 0 after removal.");
   }
+
   @Test
   void multipleListeners() {
     AtomicInteger secondValue = new AtomicInteger();

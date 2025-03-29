@@ -29,10 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * SpaceStationIssTest
- *
- */
+/** SpaceStationIssTest */
 class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
 
   @Override
@@ -40,9 +37,7 @@ class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
     return new SpaceStationIss(1, 2, 3, 4);
   }
 
-  /**
-   * Test the constructor parameters
-   */
+  /** Test the constructor parameters */
   @Test
   void testConstructor() {
     final var iss = new SpaceStationIss(1, 2, 3, 4);
@@ -55,52 +50,27 @@ class SpaceStationIssTest extends CollisionTest<SpaceStationIss> {
     assertEquals("SpaceStationIss at [1,2,3,4] damaged=false onFire=false", iss.toString());
   }
 
-  /**
-   * Test what happens we collide with an asteroid
-   */
+  /** Test what happens we collide with an asteroid */
   @Test
   void testCollideFlamingAsteroid() {
-    testCollision(
-        new FlamingAsteroid(1, 1, 3, 4),
-        false, true,
-        false, false
-    );
+    testCollision(new FlamingAsteroid(1, 1, 3, 4), false, true, false, false);
   }
 
-  /**
-   * Test what happens we collide with an meteoroid
-   */
+  /** Test what happens we collide with an meteoroid */
   @Test
   void testCollideMeteoroid() {
-    testCollision(
-        new Meteoroid(1, 1, 3, 4),
-        false, false,
-        false, false
-    );
+    testCollision(new Meteoroid(1, 1, 3, 4), false, false, false, false);
   }
 
-  /**
-   * Test what happens we collide with ISS
-   */
+  /** Test what happens we collide with ISS */
   @Test
   void testCollideSpaceStationIss() {
-    testCollision(
-        new SpaceStationIss(1, 1, 3, 4),
-        true, false,
-        false, false
-    );
+    testCollision(new SpaceStationIss(1, 1, 3, 4), true, false, false, false);
   }
 
-  /**
-   * Test what happens we collide with MIR
-   */
+  /** Test what happens we collide with MIR */
   @Test
   void testCollideSpaceStationMir() {
-    testCollision(
-        new SpaceStationMir(1, 1, 3, 4),
-        true, false,
-        false, false
-    );
+    testCollision(new SpaceStationMir(1, 1, 3, 4), true, false, false, false);
   }
-
 }

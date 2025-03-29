@@ -28,8 +28,8 @@ import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * New source. Completely covers functionalities of old source with new techniques
- * and also has some new features.
+ * New source. Completely covers functionalities of old source with new techniques and also has some
+ * new features.
  */
 @Slf4j
 public class NewSource {
@@ -41,10 +41,7 @@ public class NewSource {
     return Arrays.stream(nums).reduce(0, Integer::sum);
   }
 
-  /**
-   * Implement accumulate multiply with new technique.
-   * Replace old one in {@link OldSource}
-   */
+  /** Implement accumulate multiply with new technique. Replace old one in {@link OldSource} */
   public int accumulateMul(int... nums) {
     LOGGER.info(SOURCE_MODULE, VERSION);
     return Arrays.stream(nums).reduce(1, (a, b) -> a * b);

@@ -31,9 +31,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 /**
- * A service class that is used to provide the business logic
- * for the Vehicle class and connect to the database to
- * perform the CRUD operations on the root Vehicle class.
+ * A service class that is used to provide the business logic for the Vehicle class and connect to
+ * the database to perform the CRUD operations on the root Vehicle class.
  *
  * @see Vehicle
  */
@@ -91,5 +90,4 @@ public class VehicleService {
   public void deleteVehicle(Vehicle vehicle) {
     vehicleRepository.delete(vehicle);
   }
-
 }

@@ -27,20 +27,17 @@ package com.iluwatar.composite;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/**
- * Application test
- */
+/** Application test */
 class AppTest {
 
   /**
    * Issue: Add at least one assertion to this test case.
    *
-   * Solution: Inserted assertion to check whether the execution of the main method in {@link App#main(String[])}
-   * throws an exception.
+   * <p>Solution: Inserted assertion to check whether the execution of the main method in {@link
+   * App#main(String[])} throws an exception.
    */
-
   @Test
   void shouldExecuteApplicationWithoutException() {
-    Assertions.assertDoesNotThrow(() -> App.main(new String[]{}));
+    Assertions.assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

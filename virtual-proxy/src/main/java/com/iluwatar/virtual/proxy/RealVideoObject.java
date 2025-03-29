@@ -28,9 +28,7 @@ package com.iluwatar.virtual.proxy;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Represents a real video object that is expensive to create and manage.
- */
+/** Represents a real video object that is expensive to create and manage. */
 @Slf4j
 @Getter
 public class RealVideoObject implements ExpensiveObject {

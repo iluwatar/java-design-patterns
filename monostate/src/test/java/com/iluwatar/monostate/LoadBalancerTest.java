@@ -35,10 +35,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * LoadBalancerTest
- *
- */
+/** LoadBalancerTest */
 class LoadBalancerTest {
 
   @Test
@@ -71,7 +68,5 @@ class LoadBalancerTest {
 
     verify(server, times(2)).serve(request);
     verifyNoMoreInteractions(server);
-
   }
-
 }

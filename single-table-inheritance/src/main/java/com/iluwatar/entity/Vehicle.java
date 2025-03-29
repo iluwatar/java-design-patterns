@@ -37,8 +37,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * An abstract class that is the root of the Vehicle Inheritance hierarchy
- * and basic provides properties for all the vehicles.
+ * An abstract class that is the root of the Vehicle Inheritance hierarchy and basic provides
+ * properties for all the vehicles.
  */
 @Data
 @NoArgsConstructor
@@ -65,14 +65,13 @@ public abstract class Vehicle {
   @Override
   public String toString() {
     return "Vehicle{"
-            + "vehicleId="
-            + vehicleId
-            + ", manufacturer='"
-            + manufacturer
-            + '\''
-            + ", model='"
-            + model
-            + '}';
+        + "vehicleId="
+        + vehicleId
+        + ", manufacturer='"
+        + manufacturer
+        + '\''
+        + ", model='"
+        + model
+        + '}';
   }
-
 }

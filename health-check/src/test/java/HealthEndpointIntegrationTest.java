@@ -48,7 +48,6 @@ import org.springframework.http.HttpStatus;
  * {"status":"DOWN","components":{"cpu":{"status":"DOWN","details":{"processCpuLoad":"100.00%", *
  * "availableProcessors":2,"systemCpuLoad":"100.00%","loadAverage":1.97,"timestamp":"2023-11-09T08:34:15.974557865Z",
  * * "error":"High system CPU load"}}} *
- *
  */
 @Slf4j
 @SpringBootTest(

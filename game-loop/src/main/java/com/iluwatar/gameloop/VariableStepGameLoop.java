@@ -25,10 +25,9 @@
 package com.iluwatar.gameloop;
 
 /**
- * The variable-step game loop chooses a time step to advance based on how much
- * real time passed since the last frame. The longer the frame takes, the bigger
- * steps the game takes. It always keeps up with real time because it will take
- * bigger and bigger steps to get there.
+ * The variable-step game loop chooses a time step to advance based on how much real time passed
+ * since the last frame. The longer the frame takes, the bigger steps the game takes. It always
+ * keeps up with real time because it will take bigger and bigger steps to get there.
  */
 public class VariableStepGameLoop extends GameLoop {
 
@@ -48,5 +47,4 @@ public class VariableStepGameLoop extends GameLoop {
   protected void update(Long elapsedTime) {
     controller.moveBullet(0.5f * elapsedTime / 1000);
   }
-
 }

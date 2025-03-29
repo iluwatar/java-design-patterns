@@ -41,7 +41,6 @@ import org.springframework.stereotype.Component;
  * A custom health indicator that checks the memory usage of the application and reports the health
  * status accordingly. It uses an asynchronous health checker to perform the health check and a
  * configurable memory usage threshold to determine the health status.
- *
  */
 @Slf4j
 @Component

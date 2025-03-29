@@ -24,13 +24,11 @@
  */
 package com.iluwatar.image.microservice;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test for Image Rest Controller
- */
+import org.junit.jupiter.api.Test;
+
+/** Test for Image Rest Controller */
 class ImageControllerTest {
 
   @Test

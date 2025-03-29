@@ -34,10 +34,7 @@ import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.store.ContentStore;
 import org.junit.jupiter.api.Test;
 
-/**
- * ContentViewTest
- *
- */
+/** ContentViewTest */
 class ContentViewTest {
 
   @Test
@@ -51,5 +48,4 @@ class ContentViewTest {
     verify(store, times(1)).getContent();
     verifyNoMoreInteractions(store);
   }
-
 }

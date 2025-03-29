@@ -32,20 +32,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.hibernate.service.ServiceRegistry;
 
 /**
- * Metadata Mapping specifies the mapping
- * between classes and tables so that
- * we could treat a table of any database like a Java class.
+ * Metadata Mapping specifies the mapping between classes and tables so that we could treat a table
+ * of any database like a Java class.
  *
- * <p>With hibernate, we achieve list/create/update/delete/get operations:
- * 1)Create the H2 Database in {@link DatabaseUtil}.
- * 2)Hibernate resolve hibernate.cfg.xml and generate service like save/list/get/delete.
- *    For learning metadata mapping pattern, we go deeper into Hibernate here:
- * a)read properties from hibernate.cfg.xml and mapping from *.hbm.xml
- * b)create session factory to generate session interacting with database
- * c)generate session with factory pattern
- * d)create query object or use basic api with session,
- *      hibernate will convert all query to database query according to metadata
- * 3)We encapsulate hibernate service in {@link UserService} for our use.
+ * <p>With hibernate, we achieve list/create/update/delete/get operations: 1)Create the H2 Database
+ * in {@link DatabaseUtil}. 2)Hibernate resolve hibernate.cfg.xml and generate service like
+ * save/list/get/delete. For learning metadata mapping pattern, we go deeper into Hibernate here:
+ * a)read properties from hibernate.cfg.xml and mapping from *.hbm.xml b)create session factory to
+ * generate session interacting with database c)generate session with factory pattern d)create query
+ * object or use basic api with session, hibernate will convert all query to database query
+ * according to metadata 3)We encapsulate hibernate service in {@link UserService} for our use.
+ *
  * @see org.hibernate.cfg.Configuration#configure(String)
  * @see org.hibernate.cfg.Configuration#buildSessionFactory(ServiceRegistry)
  * @see org.hibernate.internal.SessionFactoryImpl#openSession()

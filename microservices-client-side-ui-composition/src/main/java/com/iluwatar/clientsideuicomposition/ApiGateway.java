@@ -28,9 +28,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * ApiGateway class acts as a dynamic routing mechanism that forwards client
- * requests to the appropriate frontend components based on dynamically
- * registered routes.
+ * ApiGateway class acts as a dynamic routing mechanism that forwards client requests to the
+ * appropriate frontend components based on dynamically registered routes.
  *
  * <p>This allows for flexible, runtime-defined routing without hardcoding specific paths.
  */
@@ -43,7 +42,7 @@ public class ApiGateway {
   /**
    * Registers a route dynamically at runtime.
    *
-   * @param path      the path to access the component (e.g., "/products")
+   * @param path the path to access the component (e.g., "/products")
    * @param component the frontend component to be accessed at the given path
    */
   public void registerRoute(String path, FrontendComponent component) {
@@ -53,14 +52,14 @@ public class ApiGateway {
   /**
    * Handles a client request by routing it to the appropriate frontend component.
    *
-   * <p>This method dynamically handles parameters passed with the request, which
-   * allows the frontend components to respond based on those parameters.
+   * <p>This method dynamically handles parameters passed with the request, which allows the
+   * frontend components to respond based on those parameters.
    *
-   * @param path   the path for which the request is made (e.g., "/products", "/cart")
-   * @param params a map of parameters that might influence the data fetching logic
-   *               (e.g., filters, userId, categories, etc.)
-   * @return the data fetched from the appropriate component or "404 Not Found"
-   *         if the path is not registered
+   * @param path the path for which the request is made (e.g., "/products", "/cart")
+   * @param params a map of parameters that might influence the data fetching logic (e.g., filters,
+   *     userId, categories, etc.)
+   * @return the data fetched from the appropriate component or "404 Not Found" if the path is not
+   *     registered
    */
   public String handleRequest(String path, Map<String, String> params) {
     if (routes.containsKey(path)) {

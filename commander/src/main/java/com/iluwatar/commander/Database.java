@@ -32,7 +32,6 @@ import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
  *
  * @param <T> T is the type of object being held by database.
  */
-
 public abstract class Database<T> {
   public abstract T add(T obj) throws DatabaseUnavailableException;
 

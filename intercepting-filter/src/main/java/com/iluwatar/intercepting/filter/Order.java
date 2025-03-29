@@ -27,12 +27,9 @@ package com.iluwatar.intercepting.filter;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-/**
- * Order class carries the order data.
- */
+/** Order class carries the order data. */
 @Getter
 @Setter
 @NoArgsConstructor

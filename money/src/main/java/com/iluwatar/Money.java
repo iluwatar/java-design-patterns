@@ -27,9 +27,9 @@ package com.iluwatar;
 import lombok.Getter;
 
 /**
- * Represents a monetary value with an associated currency.
- * Provides operations for basic arithmetic (addition, subtraction, multiplication),
- * as well as currency conversion while ensuring proper rounding.
+ * Represents a monetary value with an associated currency. Provides operations for basic arithmetic
+ * (addition, subtraction, multiplication), as well as currency conversion while ensuring proper
+ * rounding.
  */
 @Getter
 public class Money {
@@ -74,13 +74,15 @@ public class Money {
    * Subtracts another Money object from the current instance.
    *
    * @param moneyToBeSubtracted the Money object to subtract.
-   * @throws CannotSubtractException if the currencies do not match or if the amount to subtract is larger than the current amount.
+   * @throws CannotSubtractException if the currencies do not match or if the amount to subtract is
+   *     larger than the current amount.
    */
   public void subtractMoney(Money moneyToBeSubtracted) throws CannotSubtractException {
     if (!moneyToBeSubtracted.getCurrency().equals(this.currency)) {
       throw new CannotSubtractException("You are trying to subtract two different currencies");
     } else if (moneyToBeSubtracted.getAmount() > this.amount) {
-      throw new CannotSubtractException("The amount you are trying to subtract is larger than the amount you have");
+      throw new CannotSubtractException(
+          "The amount you are trying to subtract is larger than the amount you have");
     }
     this.amount = roundToTwoDecimals(this.amount - moneyToBeSubtracted.getAmount());
   }

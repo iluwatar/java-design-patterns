@@ -29,19 +29,18 @@ import java.time.Period;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Class which handles actual internal logic and validation for worker registration.
- * Part of the domain layer which collects information and sends it back to the presentation.
+ * Class which handles actual internal logic and validation for worker registration. Part of the
+ * domain layer which collects information and sends it back to the presentation.
  */
 @Slf4j
 public class RegisterWorker extends ServerCommand {
   static final int LEGAL_AGE = 18;
+
   protected RegisterWorker(RegisterWorkerDto worker) {
     super(worker);
   }
 
-  /**
-   * Validates the data provided and adds it to the database in the backend.
-   */
+  /** Validates the data provided and adds it to the database in the backend. */
   public void run() {
 
     validate();
@@ -50,12 +49,10 @@ public class RegisterWorker extends ServerCommand {
     }
   }
 
-  /**
-   * Validates our data. Checks for any errors and if found, adds to notification.
-   */
+  /** Validates our data. Checks for any errors and if found, adds to notification. */
   private void validate() {
     var ourData = ((RegisterWorkerDto) this.data);
-    //check if any of submitted data is not given
+    // check if any of submitted data is not given
     // passing for empty value validation
     fail(isNullOrBlank(ourData.getName()), RegisterWorkerDto.MISSING_NAME);
     fail(isNullOrBlank(ourData.getOccupation()), RegisterWorkerDto.MISSING_OCCUPATION);
@@ -93,7 +90,7 @@ public class RegisterWorker extends ServerCommand {
    * If a condition is met, adds the error to our notification.
    *
    * @param condition condition to check for.
-   * @param error     error to add if condition met.
+   * @param error error to add if condition met.
    */
   protected void fail(boolean condition, NotificationError error) {
     if (condition) {

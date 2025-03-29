@@ -27,9 +27,7 @@ package com.iluwatar.prototype;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
-/**
- * ElfBeast.
- */
+/** ElfBeast. */
 @EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor
 public class ElfBeast extends Beast {
@@ -45,5 +43,4 @@ public class ElfBeast extends Beast {
   public String toString() {
     return "Elven eagle helps in " + helpType;
   }
-
 }

@@ -24,11 +24,11 @@
  */
 package com.iluwatar.collectingparameter;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class PrinterQueueTest {
 
@@ -43,13 +43,14 @@ class PrinterQueueTest {
   @Test()
   @Timeout(1000)
   void negativePageCount() throws IllegalArgumentException {
-    Assertions.assertThrows(IllegalArgumentException.class, () -> new PrinterItem(PaperSizes.A4, -1, true, true));
+    Assertions.assertThrows(
+        IllegalArgumentException.class, () -> new PrinterItem(PaperSizes.A4, -1, true, true));
   }
 
   @Test()
   @Timeout(1000)
   void nullPageSize() throws IllegalArgumentException {
-    Assertions.assertThrows(IllegalArgumentException.class, () -> new PrinterItem(null, 1, true, true));
+    Assertions.assertThrows(
+        IllegalArgumentException.class, () -> new PrinterItem(null, 1, true, true));
   }
-
 }

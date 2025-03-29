@@ -37,16 +37,15 @@ package com.iluwatar.adapter;
  * <p>The Adapter ({@link FishingBoatAdapter}) converts the interface of the adaptee class ({@link
  * FishingBoat}) into a suitable one expected by the client ({@link RowingBoat}).
  *
- * <p>The story of this implementation is this. <br> Pirates are coming! we need a {@link
- * RowingBoat} to flee! We have a {@link FishingBoat} and our captain. We have no time to make up a
- * new ship! we need to reuse this {@link FishingBoat}. The captain needs a rowing boat which he can
- * operate. The spec is in {@link RowingBoat}. We will use the Adapter pattern to reuse {@link
- * FishingBoat}.
+ * <p>The story of this implementation is this. <br>
+ * Pirates are coming! we need a {@link RowingBoat} to flee! We have a {@link FishingBoat} and our
+ * captain. We have no time to make up a new ship! we need to reuse this {@link FishingBoat}. The
+ * captain needs a rowing boat which he can operate. The spec is in {@link RowingBoat}. We will use
+ * the Adapter pattern to reuse {@link FishingBoat}.
  */
 public final class App {
 
-  private App() {
-  }
+  private App() {}
 
   /**
    * Program entry point.

@@ -24,11 +24,8 @@
  */
 package com.iluwatar.builder;
 
-/**
- * HairColor enumeration.
- */
+/** HairColor enumeration. */
 public enum HairColor {
-
   WHITE,
   BLOND,
   RED,
@@ -39,5 +36,4 @@ public enum HairColor {
   public String toString() {
     return name().toLowerCase();
   }
-
 }

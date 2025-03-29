@@ -27,9 +27,7 @@ package com.iluwatar.specification.selector;
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Size;
 
-/**
- * Size selector.
- */
+/** Size selector. */
 public class SizeSelector extends AbstractSelector<Creature> {
 
   private final Size size;

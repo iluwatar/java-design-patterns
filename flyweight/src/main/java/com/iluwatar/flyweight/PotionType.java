@@ -24,10 +24,11 @@
  */
 package com.iluwatar.flyweight;
 
-/**
- * Enumeration for potion types.
- */
+/** Enumeration for potion types. */
 public enum PotionType {
-
-  HEALING, INVISIBILITY, STRENGTH, HOLY_WATER, POISON
+  HEALING,
+  INVISIBILITY,
+  STRENGTH,
+  HOLY_WATER,
+  POISON
 }

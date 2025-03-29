@@ -30,9 +30,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * GiantModel contains the giant data.
- */
+/** GiantModel contains the giant data. */
 @Getter
 @Setter
 @Builder
@@ -43,7 +41,6 @@ public class GiantModel {
   private Health health;
   private Fatigue fatigue;
   private Nourishment nourishment;
-
 
   @Override
   public String toString() {

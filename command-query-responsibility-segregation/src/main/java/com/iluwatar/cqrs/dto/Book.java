@@ -30,9 +30,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-/**
- * This is a DTO (Data Transfer Object) book, contains only useful information to be returned.
- */
+/** This is a DTO (Data Transfer Object) book, contains only useful information to be returned. */
 @ToString
 @EqualsAndHashCode
 @Getter
@@ -42,5 +40,4 @@ public class Book {
 
   private String title;
   private double price;
-
 }

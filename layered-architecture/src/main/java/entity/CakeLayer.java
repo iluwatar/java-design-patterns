@@ -25,7 +25,6 @@
 
 package entity;
 
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,9 +37,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * CakeLayer entity.
- */
+/** CakeLayer entity. */
 @Entity
 @Getter
 @Setter
@@ -50,9 +47,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class CakeLayer {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Id @GeneratedValue private Long id;
 
   private String name;
 

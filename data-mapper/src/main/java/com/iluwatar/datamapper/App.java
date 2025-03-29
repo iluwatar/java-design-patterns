@@ -77,6 +77,5 @@ public final class App {
     mapper.delete(student);
   }
 
-  private App() {
-  }
+  private App() {}
 }

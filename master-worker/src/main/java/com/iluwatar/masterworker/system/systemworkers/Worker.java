@@ -33,11 +33,9 @@ import lombok.Getter;
  * The abstract Worker class which extends Thread class to enable parallel processing. Contains
  * fields master(holding reference to master), workerId (unique id) and receivedData(from master).
  */
-
 public abstract class Worker extends Thread {
   private final Master master;
-  @Getter
-  private final int workerId;
+  @Getter private final int workerId;
   private Input<?> receivedData;
 
   Worker(Master master, int id) {
@@ -61,7 +59,7 @@ public abstract class Worker extends Thread {
     this.master.receiveData(data, this);
   }
 
-  public void run() { //from Thread class
+  public void run() { // from Thread class
     var work = executeOperation();
     sendToMaster(work);
   }

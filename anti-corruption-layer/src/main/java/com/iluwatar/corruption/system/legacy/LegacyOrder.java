@@ -28,8 +28,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * The class represents an order in the legacy system.
- * The class is used by the legacy system to store the data.
+ * The class represents an order in the legacy system. The class is used by the legacy system to
+ * store the data.
  */
 @Data
 @AllArgsConstructor

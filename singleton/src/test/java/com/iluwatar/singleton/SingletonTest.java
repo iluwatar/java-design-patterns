@@ -40,19 +40,17 @@ import java.util.stream.IntStream;
 import org.junit.jupiter.api.Test;
 
 /**
- * <p>This class provides several test case that test singleton construction.</p>
+ * This class provides several test case that test singleton construction.
  *
  * <p>The first proves that multiple calls to the singleton getInstance object are the same when
  * called in the SAME thread. The second proves that multiple calls to the singleton getInstance
- * object are the same when called in the DIFFERENT thread.</p>
+ * object are the same when called in the DIFFERENT thread.
  *
  * @param <S> Supplier method generating singletons
  */
 abstract class SingletonTest<S> {
 
-  /**
-   * The singleton's getInstance method.
-   */
+  /** The singleton's getInstance method. */
   private final Supplier<S> singletonInstanceMethod;
 
   /**
@@ -64,9 +62,7 @@ abstract class SingletonTest<S> {
     this.singletonInstanceMethod = singletonInstanceMethod;
   }
 
-  /**
-   * Test the singleton in a non-concurrent setting.
-   */
+  /** Test the singleton in a non-concurrent setting. */
   @Test
   void testMultipleCallsReturnTheSameObjectInSameThread() {
     // Create several instances in the same calling thread
@@ -79,38 +75,36 @@ abstract class SingletonTest<S> {
     assertSame(instance2, instance3);
   }
 
-  /**
-   * Test singleton instance in a concurrent setting.
-   */
+  /** Test singleton instance in a concurrent setting. */
   @Test
   void testMultipleCallsReturnTheSameObjectInDifferentThreads() {
-    assertTimeout(ofMillis(10000), () -> {
-      // Create 10000 tasks and inside each callable instantiate the singleton class
-      final var tasks = IntStream.range(0, 10000)
-          .<Callable<S>>mapToObj(i -> this.singletonInstanceMethod::get)
-          .collect(Collectors.toCollection(ArrayList::new));
+    assertTimeout(
+        ofMillis(10000),
+        () -> {
+          // Create 10000 tasks and inside each callable instantiate the singleton class
+          final var tasks =
+              IntStream.range(0, 10000)
+                  .<Callable<S>>mapToObj(i -> this.singletonInstanceMethod::get)
+                  .collect(Collectors.toCollection(ArrayList::new));
 
-      // Use up to 8 concurrent threads to handle the tasks
-      final var executorService = Executors.newFixedThreadPool(8);
-      final var results = executorService.invokeAll(tasks);
+          // Use up to 8 concurrent threads to handle the tasks
+          final var executorService = Executors.newFixedThreadPool(8);
+          final var results = executorService.invokeAll(tasks);
 
-      // wait for all the threads to complete
-      final var expectedInstance = this.singletonInstanceMethod.get();
-      for (var res : results) {
-        final var instance = res.get();
-        assertNotNull(instance);
-        assertSame(expectedInstance, instance);
-      }
+          // wait for all the threads to complete
+          final var expectedInstance = this.singletonInstanceMethod.get();
+          for (var res : results) {
+            final var instance = res.get();
+            assertNotNull(instance);
+            assertSame(expectedInstance, instance);
+          }
 
-      // tidy up the executor
-      executorService.shutdown();
-    });
-
+          // tidy up the executor
+          executorService.shutdown();
+        });
   }
 
-  /**
-   * Test creating new instance by reflection.
-   */
+  /** Test creating new instance by reflection. */
   @Test
   void testCreatingNewInstanceByReflection() throws Exception {
     var firstTimeInstantiated = this.singletonInstanceMethod.get();

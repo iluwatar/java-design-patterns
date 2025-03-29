@@ -37,22 +37,12 @@
     <artifactId>page-controller</artifactId>
     <name>page-controller</name>
     <description>page-controller</description>
-    <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <type>pom</type>
-        <version>3.2.4</version>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <dependencies>
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
+        <version>6.2.5</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -61,10 +51,12 @@
     <dependency>
        <groupId>org.springframework</groupId>
        <artifactId>spring-context</artifactId>
+        <version>6.2.5</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        <version>3.4.4</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -80,11 +72,6 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-test</artifactId>
-        <scope>test</scope>
     </dependency>
   </dependencies>
   <build>

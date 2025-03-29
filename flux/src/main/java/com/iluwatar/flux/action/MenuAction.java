@@ -24,16 +24,12 @@
  */
 package com.iluwatar.flux.action;
 
-
 import lombok.Getter;
 
-/**
- * MenuAction is a concrete action.
- */
+/** MenuAction is a concrete action. */
 public class MenuAction extends Action {
 
-  @Getter
-  private final MenuItem menuItem;
+  @Getter private final MenuItem menuItem;
 
   public MenuAction(MenuItem menuItem) {
     super(ActionType.MENU_ITEM_SELECTED);

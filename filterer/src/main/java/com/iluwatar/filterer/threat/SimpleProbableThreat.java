@@ -26,23 +26,19 @@ package com.iluwatar.filterer.threat;
 
 import lombok.EqualsAndHashCode;
 
-/**
- * {@inheritDoc}
- */
+/** {@inheritDoc} */
 @EqualsAndHashCode(callSuper = false)
 public class SimpleProbableThreat extends SimpleThreat implements ProbableThreat {
 
   private final double probability;
 
-  public SimpleProbableThreat(final String name, final int id, final ThreatType threatType,
-                              final double probability) {
+  public SimpleProbableThreat(
+      final String name, final int id, final ThreatType threatType, final double probability) {
     super(threatType, id, name);
     this.probability = probability;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public double probability() {
     return probability;
@@ -50,9 +46,6 @@ public class SimpleProbableThreat extends SimpleThreat implements ProbableThreat
 
   @Override
   public String toString() {
-    return "SimpleProbableThreat{"
-        + "probability=" + probability
-        + "} "
-        + super.toString();
+    return "SimpleProbableThreat{" + "probability=" + probability + "} " + super.toString();
   }
 }

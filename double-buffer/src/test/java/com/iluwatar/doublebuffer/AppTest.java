@@ -28,21 +28,17 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * App unit test.
- */
+/** App unit test. */
 class AppTest {
 
   /**
    * Issue: Add at least one assertion to this test case.
-   * <p>
-   * Solution: Inserted assertion to check whether the execution of the main method in {@link App#main(String[])}
-   * throws an exception.
+   *
+   * <p>Solution: Inserted assertion to check whether the execution of the main method in {@link
+   * App#main(String[])} throws an exception.
    */
-
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
-
 }

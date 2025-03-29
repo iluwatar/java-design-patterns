@@ -26,9 +26,7 @@ package com.iluwatar.state;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Angry state.
- */
+/** Angry state. */
 @Slf4j
 public class AngryState implements State {
 
@@ -47,5 +45,4 @@ public class AngryState implements State {
   public void onEnterState() {
     LOGGER.info("{} gets angry!", mammoth);
   }
-
 }

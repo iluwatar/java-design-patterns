@@ -29,9 +29,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Annotation to mark a method's parameter as a Path parameter.
- */
+/** Annotation to mark a method's parameter as a Path parameter. */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
 public @interface Path {

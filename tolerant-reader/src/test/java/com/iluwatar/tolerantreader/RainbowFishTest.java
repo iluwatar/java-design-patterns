@@ -28,15 +28,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * RainbowFishTest
- *
- */
+/** RainbowFishTest */
 class RainbowFishTest {
 
-  /**
-   * Verify if the getters of a {@link RainbowFish} return the expected values
-   */
+  /** Verify if the getters of a {@link RainbowFish} return the expected values */
   @Test
   void testValues() {
     final var fish = new RainbowFish("name", 1, 2, 3);
@@ -45,5 +40,4 @@ class RainbowFishTest {
     assertEquals(2, fish.getLengthMeters());
     assertEquals(3, fish.getWeightTons());
   }
-
 }

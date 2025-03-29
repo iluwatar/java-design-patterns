@@ -28,15 +28,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Item.
- */
+/** Item. */
 @AllArgsConstructor
 public class Item {
 
-  @Getter
-  @Setter
-  private ItemType type;
+  @Getter @Setter private ItemType type;
   private final String name;
 
   @Override

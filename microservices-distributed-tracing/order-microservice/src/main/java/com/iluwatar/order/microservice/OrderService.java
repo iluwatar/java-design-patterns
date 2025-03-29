@@ -31,9 +31,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
 
-/**
- * Service to handle order processing logic.
- */
+/** Service to handle order processing logic. */
 @Slf4j
 @Service
 public class OrderService {
@@ -50,9 +48,8 @@ public class OrderService {
   }
 
   /**
-   * Processes an order by calling
-   * {@link OrderService#validateProduct()} and
-   * {@link OrderService#processPayment()}.
+   * Processes an order by calling {@link OrderService#validateProduct()} and {@link
+   * OrderService#processPayment()}.
    *
    * @return A string indicating whether the order was processed successfully or failed.
    */
@@ -70,10 +67,11 @@ public class OrderService {
    */
   Boolean validateProduct() {
     try {
-      ResponseEntity<Boolean> productValidationResult = restTemplateBuilder
-          .build()
-          .postForEntity("http://localhost:30302/product/validate", "validating product",
-              Boolean.class);
+      ResponseEntity<Boolean> productValidationResult =
+          restTemplateBuilder
+              .build()
+              .postForEntity(
+                  "http://localhost:30302/product/validate", "validating product", Boolean.class);
       LOGGER.info("Product validation result: {}", productValidationResult.getBody());
       return productValidationResult.getBody();
     } catch (ResourceAccessException | HttpClientErrorException e) {
@@ -89,10 +87,11 @@ public class OrderService {
    */
   Boolean processPayment() {
     try {
-      ResponseEntity<Boolean> paymentProcessResult = restTemplateBuilder
-          .build()
-          .postForEntity("http://localhost:30301/payment/process", "processing payment",
-              Boolean.class);
+      ResponseEntity<Boolean> paymentProcessResult =
+          restTemplateBuilder
+              .build()
+              .postForEntity(
+                  "http://localhost:30301/payment/process", "processing payment", Boolean.class);
       LOGGER.info("Payment processing result: {}", paymentProcessResult.getBody());
       return paymentProcessResult.getBody();
     } catch (ResourceAccessException | HttpClientErrorException e) {

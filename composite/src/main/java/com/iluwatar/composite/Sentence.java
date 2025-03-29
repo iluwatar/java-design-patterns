@@ -26,14 +26,10 @@ package com.iluwatar.composite;
 
 import java.util.List;
 
-/**
- * Sentence.
- */
+/** Sentence. */
 public class Sentence extends LetterComposite {
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Sentence(List<Word> words) {
     words.forEach(this::add);
   }

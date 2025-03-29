@@ -27,9 +27,7 @@ package com.iluwatar.bridge;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Sword.
- */
+/** Sword. */
 @Slf4j
 @AllArgsConstructor
 public class Sword implements Weapon {

@@ -36,23 +36,18 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestTemplate;
 
-/**
- * OrderServiceTest class to test the OrderService.
- */
+/** OrderServiceTest class to test the OrderService. */
 class OrderServiceTest {
 
-  @InjectMocks
-  private OrderService orderService;
+  @InjectMocks private OrderService orderService;
 
-  @Mock
-  private RestTemplateBuilder restTemplateBuilder;
+  @Mock private RestTemplateBuilder restTemplateBuilder;
 
-  @Mock
-  private RestTemplate restTemplate;
+  @Mock private RestTemplate restTemplate;
 
   @BeforeEach
   void setup() {
@@ -60,15 +55,15 @@ class OrderServiceTest {
     when(restTemplateBuilder.build()).thenReturn(restTemplate);
   }
 
-  /**
-   * Test to process the order successfully.
-   */
+  /** Test to process the order successfully. */
   @Test
   void testProcessOrder_Success() {
     // Arrange
-    when(restTemplate.postForEntity(eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
         .thenReturn(ResponseEntity.ok(true));
-    when(restTemplate.postForEntity(eq("http://localhost:30301/payment/process"), anyString(), eq(Boolean.class)))
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30301/payment/process"), anyString(), eq(Boolean.class)))
         .thenReturn(ResponseEntity.ok(true));
     // Act
     String result = orderService.processOrder();
@@ -76,13 +71,12 @@ class OrderServiceTest {
     assertEquals("Order processed successfully", result);
   }
 
-  /**
-   * Test to process the order with failure caused by product validation failure.
-   */
+  /** Test to process the order with failure caused by product validation failure. */
   @Test
   void testProcessOrder_FailureWithProductValidationFailure() {
     // Arrange
-    when(restTemplate.postForEntity(eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
         .thenReturn(ResponseEntity.ok(false));
     // Act
     String result = orderService.processOrder();
@@ -90,15 +84,15 @@ class OrderServiceTest {
     assertEquals("Order processing failed", result);
   }
 
-  /**
-   * Test to process the order with failure caused by payment processing failure.
-   */
+  /** Test to process the order with failure caused by payment processing failure. */
   @Test
   void testProcessOrder_FailureWithPaymentProcessingFailure() {
     // Arrange
-    when(restTemplate.postForEntity(eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
         .thenReturn(ResponseEntity.ok(true));
-    when(restTemplate.postForEntity(eq("http://localhost:30301/payment/process"), anyString(), eq(Boolean.class)))
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30301/payment/process"), anyString(), eq(Boolean.class)))
         .thenReturn(ResponseEntity.ok(false));
     // Act
     String result = orderService.processOrder();
@@ -106,13 +100,12 @@ class OrderServiceTest {
     assertEquals("Order processing failed", result);
   }
 
-  /**
-   * Test to validate the product.
-   */
+  /** Test to validate the product. */
   @Test
   void testValidateProduct() {
     // Arrange
-    when(restTemplate.postForEntity(eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
         .thenReturn(ResponseEntity.ok(true));
     // Act
     Boolean result = orderService.validateProduct();
@@ -120,13 +113,12 @@ class OrderServiceTest {
     assertEquals(true, result);
   }
 
-  /**
-   * Test to process the payment.
-   */
+  /** Test to process the payment. */
   @Test
   void testProcessPayment() {
     // Arrange
-    when(restTemplate.postForEntity(eq("http://localhost:30301/payment/process"), anyString(), eq(Boolean.class)))
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30301/payment/process"), anyString(), eq(Boolean.class)))
         .thenReturn(ResponseEntity.ok(true));
     // Act
     Boolean result = orderService.processPayment();
@@ -134,13 +126,12 @@ class OrderServiceTest {
     assertEquals(true, result);
   }
 
-  /**
-   * Test to validate the product with ResourceAccessException.
-   */
+  /** Test to validate the product with ResourceAccessException. */
   @Test
   void testValidateProduct_ResourceAccessException() {
     // Arrange
-    when(restTemplate.postForEntity(eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
         .thenThrow(new ResourceAccessException("Service unavailable"));
     // Act
     Boolean result = orderService.validateProduct();
@@ -148,27 +139,27 @@ class OrderServiceTest {
     assertEquals(false, result);
   }
 
-  /**
-   * Test to validate the product with HttpClientErrorException.
-   */
+  /** Test to validate the product with HttpClientErrorException. */
   @Test
   void testValidateProduct_HttpClientErrorException() {
     // Arrange
-    when(restTemplate.postForEntity(eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
-        .thenThrow(new HttpClientErrorException(org.springframework.http.HttpStatus.BAD_REQUEST, "Bad request"));
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30302/product/validate"), anyString(), eq(Boolean.class)))
+        .thenThrow(
+            new HttpClientErrorException(
+                org.springframework.http.HttpStatus.BAD_REQUEST, "Bad request"));
     // Act
     Boolean result = orderService.validateProduct();
     // Assert
     assertEquals(false, result);
   }
 
-  /**
-   * Test to process the payment with ResourceAccessException.
-   */
+  /** Test to process the payment with ResourceAccessException. */
   @Test
   void testProcessPayment_ResourceAccessException() {
     // Arrange
-    when(restTemplate.postForEntity(eq("http://localhost:30301/payment/process"), anyString(), eq(Boolean.class)))
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30301/payment/process"), anyString(), eq(Boolean.class)))
         .thenThrow(new ResourceAccessException("Service unavailable"));
     // Act
     Boolean result = orderService.processPayment();
@@ -176,14 +167,15 @@ class OrderServiceTest {
     assertEquals(false, result);
   }
 
-  /**
-   * Test to process the payment with HttpClientErrorException.
-   */
+  /** Test to process the payment with HttpClientErrorException. */
   @Test
   void testProcessPayment_HttpClientErrorException() {
     // Arrange
-    when(restTemplate.postForEntity(eq("http://localhost:30301/payment/process"), anyString(), eq(Boolean.class)))
-        .thenThrow(new HttpClientErrorException(org.springframework.http.HttpStatus.BAD_REQUEST, "Bad request"));
+    when(restTemplate.postForEntity(
+            eq("http://localhost:30301/payment/process"), anyString(), eq(Boolean.class)))
+        .thenThrow(
+            new HttpClientErrorException(
+                org.springframework.http.HttpStatus.BAD_REQUEST, "Bad request"));
     // Act
     Boolean result = orderService.processPayment();
     // Assert

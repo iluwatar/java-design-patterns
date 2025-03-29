@@ -24,9 +24,7 @@
  */
 package com.iluwatar.gateway;
 
-/**
- * Service interface.
- */
+/** Service interface. */
 interface Gateway {
   void execute() throws Exception;
 }

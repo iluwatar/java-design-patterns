@@ -26,9 +26,7 @@ package com.iluwatar.transactionscript;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Hotel class to implement TS pattern.
- */
+/** Hotel class to implement TS pattern. */
 @Slf4j
 public class Hotel {
 

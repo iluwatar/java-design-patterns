@@ -30,10 +30,9 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation to mark a method's parameter as a Body parameter.
- * It is typically used on Post and Put http methods.
+ * Annotation to mark a method's parameter as a Body parameter. It is typically used on Post and Put
+ * http methods.
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.PARAMETER)
-public @interface Body {
-}
+public @interface Body {}

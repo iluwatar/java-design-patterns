@@ -24,15 +24,12 @@
  */
 package com.iluwatar.intercepting.filter;
 
-/**
- * Base class for order processing filters. Handles chain management.
- */
+/** Base class for order processing filters. Handles chain management. */
 public abstract class AbstractFilter implements Filter {
 
   private Filter next;
 
-  public AbstractFilter() {
-  }
+  public AbstractFilter() {}
 
   public AbstractFilter(Filter next) {
     this.next = next;

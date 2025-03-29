@@ -26,6 +26,7 @@ package com.iluwatar;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  * The `App` class demonstrates the functionality of the {@link Money} class, which encapsulates
  * monetary values and their associated currencies. It showcases operations like addition,
@@ -41,6 +42,7 @@ public class App {
 
   // Initialize the logger
   private static final Logger logger = Logger.getLogger(App.class.getName());
+
   /**
    * Program entry point.
    *
@@ -79,11 +81,12 @@ public class App {
     try {
       double exchangeRateUsdToEur = 0.85; // Example exchange rate
       usdAmount1.exchangeCurrency("EUR", exchangeRateUsdToEur);
-      logger.log(Level.INFO, "USD converted to EUR: {0} {1}", new Object[]{usdAmount1.getAmount(), usdAmount1.getCurrency()});
+      logger.log(
+          Level.INFO,
+          "USD converted to EUR: {0} {1}",
+          new Object[] {usdAmount1.getAmount(), usdAmount1.getCurrency()});
     } catch (IllegalArgumentException e) {
       logger.log(Level.SEVERE, "Error converting currency: {0}", e.getMessage());
     }
-
   }
 }
-

@@ -27,21 +27,22 @@ package com.iluwatar.subclasssandbox;
 import org.slf4j.Logger;
 
 /**
- * Superpower abstract class. In this class the basic operations of all types of
- * superpowers are provided as protected methods.
+ * Superpower abstract class. In this class the basic operations of all types of superpowers are
+ * provided as protected methods.
  */
 public abstract class Superpower {
 
   protected Logger logger;
 
   /**
-   * Subclass of superpower should implement this sandbox method by calling the
-   * methods provided in this super class.
+   * Subclass of superpower should implement this sandbox method by calling the methods provided in
+   * this super class.
    */
   protected abstract void activate();
 
   /**
    * Move to (x, y, z).
+   *
    * @param x X coordinate.
    * @param y Y coordinate.
    * @param z Z coordinate.
@@ -52,6 +53,7 @@ public abstract class Superpower {
 
   /**
    * Play sound effect for the superpower.
+   *
    * @param soundName Sound name.
    * @param volume Value of volume.
    */
@@ -61,6 +63,7 @@ public abstract class Superpower {
 
   /**
    * Spawn particles for the superpower.
+   *
    * @param particleType Particle type.
    * @param count Count of particles to be spawned.
    */

@@ -26,15 +26,11 @@ package com.iluwatar.lazy.loading;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Heavy objects are expensive to create.
- */
+/** Heavy objects are expensive to create. */
 @Slf4j
 public class Heavy {
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Heavy() {
     LOGGER.info("Creating Heavy ...");
     try {

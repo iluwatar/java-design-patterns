@@ -30,9 +30,7 @@ import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
-/**
- * Service to handle database operations.
- */
+/** Service to handle database operations. */
 @Slf4j
 public class DatabaseService {
 
@@ -73,8 +71,7 @@ public class DatabaseService {
    *
    * @throws SQLException if any issue occurs while executing DROP Query
    */
-  public void shutDownService()
-      throws SQLException {
+  public void shutDownService() throws SQLException {
     try (var connection = dataSource.getConnection();
         var statement = connection.createStatement()) {
       statement.execute(DELETE_SCHEMA_SQL);
@@ -82,14 +79,13 @@ public class DatabaseService {
   }
 
   /**
-   * Initaites startup sequence and executes the query
-   * {@link DatabaseService#CREATE_BINARY_SCHEMA_DDL} if {@link DatabaseService#dataTypeDb} is
-   * binary else will execute the query {@link DatabaseService#CREATE_TEXT_SCHEMA_DDL}.
+   * Initaites startup sequence and executes the query {@link
+   * DatabaseService#CREATE_BINARY_SCHEMA_DDL} if {@link DatabaseService#dataTypeDb} is binary else
+   * will execute the query {@link DatabaseService#CREATE_TEXT_SCHEMA_DDL}.
    *
    * @throws SQLException if there are any issues during DDL execution
    */
-  public void startupService()
-      throws SQLException {
+  public void startupService() throws SQLException {
     try (var connection = dataSource.getConnection();
         var statement = connection.createStatement()) {
       if (dataTypeDb.equals(BINARY_DATA)) {
@@ -103,14 +99,13 @@ public class DatabaseService {
   /**
    * Executes the insert query {@link DatabaseService#INSERT}.
    *
-   * @param id   with which row is to be inserted
+   * @param id with which row is to be inserted
    * @param name name to be added in the row
    * @param data object data to be saved in the row
-   * @throws SQLException if there are any issues in executing insert query
-   *                      {@link DatabaseService#INSERT}
+   * @throws SQLException if there are any issues in executing insert query {@link
+   *     DatabaseService#INSERT}
    */
-  public void insert(int id, String name, Object data)
-      throws SQLException {
+  public void insert(int id, String name, Object data) throws SQLException {
     try (var connection = dataSource.getConnection();
         var insert = connection.prepareStatement(INSERT)) {
       insert.setInt(1, id);
@@ -121,22 +116,20 @@ public class DatabaseService {
   }
 
   /**
-   * Runs the select query {@link DatabaseService#SELECT} form the result set returns an
-   * {@link java.io.InputStream} if {@link DatabaseService#dataTypeDb} is 'binary' else will return
-   * the object as a {@link String}.
+   * Runs the select query {@link DatabaseService#SELECT} form the result set returns an {@link
+   * java.io.InputStream} if {@link DatabaseService#dataTypeDb} is 'binary' else will return the
+   * object as a {@link String}.
    *
-   * @param id          with which row is to be selected
+   * @param id with which row is to be selected
    * @param columnsName column in which the object is stored
    * @return object found from DB
-   * @throws SQLException if there are any issues in executing insert query *
-   *                      {@link DatabaseService#SELECT}
+   * @throws SQLException if there are any issues in executing insert query * {@link
+   *     DatabaseService#SELECT}
    */
   public Object select(final long id, String columnsName) throws SQLException {
     ResultSet resultSet = null;
     try (var connection = dataSource.getConnection();
-        var preparedStatement =
-            connection.prepareStatement(SELECT)
-    ) {
+        var preparedStatement = connection.prepareStatement(SELECT)) {
       Object result = null;
       preparedStatement.setLong(1, id);
       resultSet = preparedStatement.executeQuery();

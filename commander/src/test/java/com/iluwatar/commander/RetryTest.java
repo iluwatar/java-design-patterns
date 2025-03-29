@@ -40,33 +40,47 @@ class RetryTest {
 
   @Test
   void performTest() {
-    Retry.Operation op = (l) -> {
-      if (!l.isEmpty()) {
-        throw l.remove(0);
-      }
-    };
-    Retry.HandleErrorIssue<Order> handleError = (o, e) -> {
-    };
-    var r1 = new Retry<>(op, handleError, 3, 30000,
-        e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
-    var r2 = new Retry<>(op, handleError, 3, 30000,
-        e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
+    Retry.Operation op =
+        (l) -> {
+          if (!l.isEmpty()) {
+            throw l.remove(0);
+          }
+        };
+    Retry.HandleErrorIssue<Order> handleError = (o, e) -> {};
+    var r1 =
+        new Retry<>(
+            op,
+            handleError,
+            3,
+            30000,
+            e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
+    var r2 =
+        new Retry<>(
+            op,
+            handleError,
+            3,
+            30000,
+            e -> DatabaseUnavailableException.class.isAssignableFrom(e.getClass()));
     var user = new User("Jim", "ABCD");
     var order = new Order(user, "book", 10f);
-    var arr1 = new ArrayList<>(List.of(new ItemUnavailableException(), new DatabaseUnavailableException()));
+    var arr1 =
+        new ArrayList<>(
+            List.of(new ItemUnavailableException(), new DatabaseUnavailableException()));
     try {
       r1.perform(arr1, order);
     } catch (Exception e1) {
       LOG.error("An exception occurred", e1);
     }
-    var arr2 = new ArrayList<>(List.of(new DatabaseUnavailableException(), new ItemUnavailableException()));
+    var arr2 =
+        new ArrayList<>(
+            List.of(new DatabaseUnavailableException(), new ItemUnavailableException()));
     try {
       r2.perform(arr2, order);
     } catch (Exception e1) {
       LOG.error("An exception occurred", e1);
     }
-    //r1 stops at ItemUnavailableException, r2 retries because it encounters DatabaseUnavailableException
+    // r1 stops at ItemUnavailableException, r2 retries because it encounters
+    // DatabaseUnavailableException
     assertTrue(arr1.size() == 1 && arr2.isEmpty());
   }
-
 }

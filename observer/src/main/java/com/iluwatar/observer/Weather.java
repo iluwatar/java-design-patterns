@@ -51,9 +51,7 @@ public class Weather {
     observers.remove(obs);
   }
 
-  /**
-   * Makes time pass for weather.
-   */
+  /** Makes time pass for weather. */
   public void timePasses() {
     var enumValues = WeatherType.values();
     currentWeather = enumValues[(currentWeather.ordinal() + 1) % enumValues.length];

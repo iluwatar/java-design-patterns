@@ -31,8 +31,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * The {@code Request} class represents a request with a unique UUID and a status.
- * The status of a request can be one of four values: PENDING, STARTED, COMPLETED, or INERROR.
+ * The {@code Request} class represents a request with a unique UUID and a status. The status of a
+ * request can be one of four values: PENDING, STARTED, COMPLETED, or INERROR.
  */
 @Entity
 @NoArgsConstructor
@@ -44,8 +44,7 @@ public class Request {
     COMPLETED
   }
 
-  @Id
-  private UUID uuid;
+  @Id private UUID uuid;
   private Status status;
 
   public Request(UUID uuid) {

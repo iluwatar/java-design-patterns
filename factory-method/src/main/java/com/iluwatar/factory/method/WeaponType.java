@@ -26,12 +26,9 @@ package com.iluwatar.factory.method;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * WeaponType enumeration.
- */
+/** WeaponType enumeration. */
 @RequiredArgsConstructor
 public enum WeaponType {
-
   SHORT_SWORD("short sword"),
   SPEAR("spear"),
   AXE("axe"),

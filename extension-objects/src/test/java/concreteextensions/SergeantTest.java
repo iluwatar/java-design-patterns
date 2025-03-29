@@ -24,20 +24,18 @@
  */
 package concreteextensions;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import units.SergeantUnit;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-/**
- * Created by Srdjan on 03-May-17.
- */
+/** Created by Srdjan on 03-May-17. */
 class SergeantTest {
 
   @Test
@@ -54,10 +52,8 @@ class SergeantTest {
     sergeant.sergeantReady();
 
     List<ILoggingEvent> logsList = listAppender.list;
-    assertEquals("[Sergeant] " + sergeant.unit().getName() + " is ready!", logsList.get(0)
-        .getMessage());
-    assertEquals(Level.INFO, logsList.get(0)
-        .getLevel());
+    assertEquals(
+        "[Sergeant] " + sergeant.unit().getName() + " is ready!", logsList.get(0).getMessage());
+    assertEquals(Level.INFO, logsList.get(0).getLevel());
   }
-
 }

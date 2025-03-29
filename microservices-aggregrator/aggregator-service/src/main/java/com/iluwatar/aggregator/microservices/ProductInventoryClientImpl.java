@@ -32,9 +32,7 @@ import java.net.http.HttpResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-/**
- * An adapter to communicate with inventory micro-service.
- */
+/** An adapter to communicate with inventory micro-service. */
 @Slf4j
 @Component
 public class ProductInventoryClientImpl implements ProductInventoryClient {
@@ -43,10 +41,11 @@ public class ProductInventoryClientImpl implements ProductInventoryClient {
   public Integer getProductInventories() {
     var response = "";
 
-    var request = HttpRequest.newBuilder()
-        .GET()
-        .uri(URI.create("http://localhost:51516/inventories"))
-        .build();
+    var request =
+        HttpRequest.newBuilder()
+            .GET()
+            .uri(URI.create("http://localhost:51516/inventories"))
+            .build();
     var client = HttpClient.newHttpClient();
     try {
       var httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());

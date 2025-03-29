@@ -26,9 +26,7 @@ package com.iluwatar.privateclassdata;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Mutable stew class.
- */
+/** Mutable stew class. */
 @Slf4j
 public class Stew {
 
@@ -37,9 +35,7 @@ public class Stew {
   private int numMeat;
   private int numPeppers;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Stew(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {
     this.numPotatoes = numPotatoes;
     this.numCarrots = numCarrots;
@@ -47,17 +43,17 @@ public class Stew {
     this.numPeppers = numPeppers;
   }
 
-  /**
-   * Mix the stew.
-   */
+  /** Mix the stew. */
   public void mix() {
-    LOGGER.info("Mixing the stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
-        numPotatoes, numCarrots, numMeat, numPeppers);
+    LOGGER.info(
+        "Mixing the stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
+        numPotatoes,
+        numCarrots,
+        numMeat,
+        numPeppers);
   }
 
-  /**
-   * Taste the stew.
-   */
+  /** Taste the stew. */
   public void taste() {
     LOGGER.info("Tasting the stew");
     if (numPotatoes > 0) {

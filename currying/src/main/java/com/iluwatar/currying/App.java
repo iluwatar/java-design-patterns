@@ -28,19 +28,17 @@ import java.time.LocalDate;
 import lombok.extern.slf4j.Slf4j;
 
 /**
-* Currying decomposes a function with multiple arguments in multiple functions that
-* take a single argument. A curried function which has only been passed some of its
-* arguments is called a partial application. Partial application is useful since it can
-* be used to create specialised functions in a concise way.
-*
-* <p>In this example, a librarian uses a curried book builder function create books belonging to
-* desired genres and written by specific authors.
-*/
+ * Currying decomposes a function with multiple arguments in multiple functions that take a single
+ * argument. A curried function which has only been passed some of its arguments is called a partial
+ * application. Partial application is useful since it can be used to create specialised functions
+ * in a concise way.
+ *
+ * <p>In this example, a librarian uses a curried book builder function create books belonging to
+ * desired genres and written by specific authors.
+ */
 @Slf4j
 public class App {
-  /**
-  * Main entry point of the program.
-  */
+  /** Main entry point of the program. */
   public static void main(String[] args) {
     LOGGER.info("Librarian begins their work.");
 
@@ -55,20 +53,28 @@ public class App {
     Book.AddTitle rowlingFantasyBooksFunc = fantasyBookFunc.withAuthor("J.K. Rowling");
 
     // Creates books by Stephen King (horror and fantasy genres)
-    Book shining = kingHorrorBooksFunc.withTitle("The Shining")
-            .withPublicationDate(LocalDate.of(1977, 1, 28));
-    Book darkTower = kingFantasyBooksFunc.withTitle("The Dark Tower: Gunslinger")
+    Book shining =
+        kingHorrorBooksFunc.withTitle("The Shining").withPublicationDate(LocalDate.of(1977, 1, 28));
+    Book darkTower =
+        kingFantasyBooksFunc
+            .withTitle("The Dark Tower: Gunslinger")
             .withPublicationDate(LocalDate.of(1982, 6, 10));
 
     // Creates fantasy books by J.K. Rowling
-    Book chamberOfSecrets = rowlingFantasyBooksFunc.withTitle("Harry Potter and the Chamber of Secrets")
+    Book chamberOfSecrets =
+        rowlingFantasyBooksFunc
+            .withTitle("Harry Potter and the Chamber of Secrets")
             .withPublicationDate(LocalDate.of(1998, 7, 2));
 
     // Create sci-fi books
-    Book dune = scifiBookFunc.withAuthor("Frank Herbert")
+    Book dune =
+        scifiBookFunc
+            .withAuthor("Frank Herbert")
             .withTitle("Dune")
             .withPublicationDate(LocalDate.of(1965, 8, 1));
-    Book foundation = scifiBookFunc.withAuthor("Isaac Asimov")
+    Book foundation =
+        scifiBookFunc
+            .withAuthor("Isaac Asimov")
             .withTitle("Foundation")
             .withPublicationDate(LocalDate.of(1942, 5, 1));
 

@@ -32,7 +32,6 @@ import com.iluwatar.commander.exceptions.DatabaseUnavailableException;
  * The EmployeeHandle class is the middle-man between {@link com.iluwatar.commander.Commander} and
  * {@link EmployeeDatabase}.
  */
-
 public class EmployeeHandle extends Service {
 
   public EmployeeHandle(EmployeeDatabase db, Exception... exc) {
@@ -47,9 +46,8 @@ public class EmployeeHandle extends Service {
     var o = (Order) parameters[0];
     if (database.get(o.id) == null) {
       database.add(o);
-      return o.id; //true rcvd - change addedToEmployeeHandle to true else don't do anything
+      return o.id; // true rcvd - change addedToEmployeeHandle to true else don't do anything
     }
     return null;
   }
-
 }

@@ -28,9 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Test case for submitting and retrieving messages from Blocking Queue.
- */
+/** Test case for submitting and retrieving messages from Blocking Queue. */
 class MessageQueueTest {
 
   @Test
@@ -44,5 +42,4 @@ class MessageQueueTest {
     // retrieve message
     assertEquals("MessageQueue Test", msgQueue.retrieveMsg().getMsg());
   }
-
 }

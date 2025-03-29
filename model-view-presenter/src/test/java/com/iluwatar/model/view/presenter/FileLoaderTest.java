@@ -28,10 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * FileLoaderTest
- *
- */
+/** FileLoaderTest */
 class FileLoaderTest {
 
   @Test
@@ -40,5 +37,4 @@ class FileLoaderTest {
     fileLoader.setFileName("non-existing-file");
     assertNull(fileLoader.loadData());
   }
-
 }

@@ -27,9 +27,7 @@ package com.iluwatar.leaderfollowers;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-/**
- * A TaskSet is a collection of the tasks, the leader receives task from here.
- */
+/** A TaskSet is a collection of the tasks, the leader receives task from here. */
 public class TaskSet {
 
   private final BlockingQueue<Task> queue = new ArrayBlockingQueue<>(100);

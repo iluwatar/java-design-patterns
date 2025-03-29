@@ -24,14 +24,12 @@
  */
 package com.iluwatar.acyclicvisitor;
 
-import org.junit.jupiter.api.Test;
-
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.*;
 
-/**
- * Hayes test class
- */
+import org.junit.jupiter.api.Test;
+
+/** Hayes test class */
 class HayesTest {
 
   @Test

@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.iluwatar.ambassador.util.RandomProvider;
 import org.junit.jupiter.api.Test;
 
-/**
- * Test for {@link RemoteService}
- */
+/** Test for {@link RemoteService} */
 class RemoteServiceTest {
 
   @Test

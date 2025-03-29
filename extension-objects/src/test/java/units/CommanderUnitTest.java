@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Created by Srdjan on 03-May-17.
- */
+/** Created by Srdjan on 03-May-17. */
 class CommanderUnitTest {
 
   @Test
@@ -42,5 +40,4 @@ class CommanderUnitTest {
     assertNull(unit.getUnitExtension("SergeantExtension"));
     assertNotNull(unit.getUnitExtension("CommanderExtension"));
   }
-
 }

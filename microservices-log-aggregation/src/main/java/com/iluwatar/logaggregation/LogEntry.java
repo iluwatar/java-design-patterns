@@ -29,8 +29,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * Represents a single log entry, capturing essential details like the service name,
- * log level, message, and the timestamp when the log was generated.
+ * Represents a single log entry, capturing essential details like the service name, log level,
+ * message, and the timestamp when the log was generated.
  */
 @Data
 @AllArgsConstructor

@@ -34,22 +34,21 @@ import com.iluwatar.servicelayer.wizard.Wizard;
 import com.iluwatar.servicelayer.wizard.WizardDaoImpl;
 import lombok.extern.slf4j.Slf4j;
 
-
 /**
  * Service layer defines an application's boundary with a layer of services that establishes a set
  * of available operations and coordinates the application's response in each operation.
  *
- * <p>Enterprise applications typically require different kinds of interfaces to the data they
- * store and the logic they implement: data loaders, user interfaces, integration gateways, and
- * others. Despite their different purposes, these interfaces often need common interactions with
- * the application to access and manipulate its data and invoke its business logic. The interactions
- * may be complex, involving transactions across multiple resources and the coordination of several
+ * <p>Enterprise applications typically require different kinds of interfaces to the data they store
+ * and the logic they implement: data loaders, user interfaces, integration gateways, and others.
+ * Despite their different purposes, these interfaces often need common interactions with the
+ * application to access and manipulate its data and invoke its business logic. The interactions may
+ * be complex, involving transactions across multiple resources and the coordination of several
  * responses to an action. Encoding the logic of the interactions separately in each interface
  * causes a lot of duplication.
  *
- * <p>The example application demonstrates interactions between a client ({@link App}) and a
- * service ({@link MagicService}). The service is implemented with 3-layer architecture (entity,
- * dao, service). For persistence the example uses in-memory H2 database which is populated on each
+ * <p>The example application demonstrates interactions between a client ({@link App}) and a service
+ * ({@link MagicService}). The service is implemented with 3-layer architecture (entity, dao,
+ * service). For persistence the example uses in-memory H2 database which is populated on each
  * application startup.
  */
 @Slf4j
@@ -68,9 +67,7 @@ public class App {
     queryData();
   }
 
-  /**
-   * Initialize data.
-   */
+  /** Initialize data. */
   public static void initData() {
     // spells
     var spell1 = new Spell("Ice dart");
@@ -173,9 +170,7 @@ public class App {
     wizardDao.merge(wizard4);
   }
 
-  /**
-   * Query the data.
-   */
+  /** Query the data. */
   public static void queryData() {
     var wizardDao = new WizardDaoImpl();
     var spellbookDao = new SpellbookDaoImpl();

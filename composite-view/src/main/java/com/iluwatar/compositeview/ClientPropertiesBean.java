@@ -30,15 +30,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 /**
- * A Java beans class that parses a http request and stores parameters.
- * Java beans used in JSP's to dynamically include elements in view.
- * DEFAULT_NAME = a constant, default name to be used for the default constructor
- * worldNewsInterest = whether current request has world news interest
- * sportsInterest = whether current request has a sportsInterest
- * businessInterest = whether current request has a businessInterest
- * scienceNewsInterest = whether current request has a scienceNewsInterest
+ * A Java beans class that parses a http request and stores parameters. Java beans used in JSP's to
+ * dynamically include elements in view. DEFAULT_NAME = a constant, default name to be used for the
+ * default constructor worldNewsInterest = whether current request has world news interest
+ * sportsInterest = whether current request has a sportsInterest businessInterest = whether current
+ * request has a businessInterest scienceNewsInterest = whether current request has a
+ * scienceNewsInterest
  */
 @Getter
 @Setter
@@ -51,7 +49,7 @@ public class ClientPropertiesBean implements Serializable {
   private static final String BUSINESS_PARAM = "bus";
   private static final String NAME_PARAM = "name";
 
-  private static final  String DEFAULT_NAME = "DEFAULT_NAME";
+  private static final String DEFAULT_NAME = "DEFAULT_NAME";
   private boolean worldNewsInterest = true;
   private boolean sportsInterest = true;
   private boolean businessInterest = true;

@@ -33,15 +33,10 @@ import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Movement;
 import org.junit.jupiter.api.Test;
 
-/**
- * MovementSelectorTest
- *
- */
+/** MovementSelectorTest */
 class MovementSelectorTest {
 
-  /**
-   * Verify if the movement selector gives the correct results.
-   */
+  /** Verify if the movement selector gives the correct results. */
   @Test
   void testMovement() {
     final var swimmingCreature = mock(Creature.class);
@@ -53,7 +48,5 @@ class MovementSelectorTest {
     final var swimmingSelector = new MovementSelector(Movement.SWIMMING);
     assertTrue(swimmingSelector.test(swimmingCreature));
     assertFalse(swimmingSelector.test(flyingCreature));
-
   }
-
 }

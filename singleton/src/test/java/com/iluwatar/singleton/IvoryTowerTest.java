@@ -24,17 +24,11 @@
  */
 package com.iluwatar.singleton;
 
-/**
- * IvoryTowerTest
- *
- */
+/** IvoryTowerTest */
 class IvoryTowerTest extends SingletonTest<IvoryTower> {
 
-  /**
-   * Create a new singleton test instance using the given 'getInstance' method.
-   */
+  /** Create a new singleton test instance using the given 'getInstance' method. */
   public IvoryTowerTest() {
     super(IvoryTower::getInstance);
   }
-
 }

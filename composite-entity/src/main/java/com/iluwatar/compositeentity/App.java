@@ -27,7 +27,6 @@ package com.iluwatar.compositeentity;
 import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 
-
 /**
  * Composite entity is a Java EE Software design pattern and it is used to model, represent, and
  * manage a set of interrelated persistent objects rather than representing them as individual
@@ -36,10 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-
-  /**
-   * An instance that a console manages two related objects.
-   */
+  /** An instance that a console manages two related objects. */
   public App(String message, String signal) {
     var console = new CompositeEntity();
     console.init();
@@ -57,6 +53,5 @@ public class App {
   public static void main(String[] args) {
 
     new App("No Danger", "Green Light");
-
   }
 }

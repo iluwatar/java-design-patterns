@@ -24,9 +24,7 @@
  */
 package com.iluwatar.identitymap;
 
-/**
- * Using Runtime Exception to control the flow in case Person Id doesn't exist.
- */
+/** Using Runtime Exception to control the flow in case Person Id doesn't exist. */
 public class IdNotFoundException extends RuntimeException {
   public IdNotFoundException(final String message) {
     super(message);

@@ -35,10 +35,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/**
- * Tests class for {@link HealthCheckRepository}.
- *
- */
+/** Tests class for {@link HealthCheckRepository}. */
 @ExtendWith(MockitoExtension.class)
 class HealthCheckRepositoryTest {
 

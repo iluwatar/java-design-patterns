@@ -30,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests {@link Room}.
- */
+/** Tests {@link Room}. */
 class RoomTest {
 
   private Room room;
@@ -90,7 +88,10 @@ class RoomTest {
 
   @Test
   void testToString() {
-    assertEquals(String.format("Room(id=%s, roomType=%s, price=%s, booked=%s)",
-        room.getId(), room.getRoomType(), room.getPrice(), room.isBooked()), room.toString());
+    assertEquals(
+        String.format(
+            "Room(id=%s, roomType=%s, price=%s, booked=%s)",
+            room.getId(), room.getRoomType(), room.getPrice(), room.isBooked()),
+        room.toString());
   }
 }

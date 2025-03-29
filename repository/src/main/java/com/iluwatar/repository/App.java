@@ -101,6 +101,5 @@ public class App {
     repository.deleteAll();
 
     context.close();
-
   }
 }

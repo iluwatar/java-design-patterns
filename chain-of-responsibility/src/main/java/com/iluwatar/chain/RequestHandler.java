@@ -24,9 +24,7 @@
  */
 package com.iluwatar.chain;
 
-/**
- * RequestHandler.
- */
+/** RequestHandler. */
 public interface RequestHandler {
 
   boolean canHandleRequest(Request req);

@@ -38,11 +38,9 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>The "real" sentiment analysis class simulates the processing time for the request by pausing
  * the execution of the thread for 5 seconds. In the stub sentiment analysis class the response is
- * immediate. In addition, the stub returns a deterministic output with regard to the input. This
- * is extra useful for testing purposes.
+ * immediate. In addition, the stub returns a deterministic output with regard to the input. This is
+ * extra useful for testing purposes.
  */
-
-
 @Slf4j
 public class App {
   /**
@@ -64,6 +62,5 @@ public class App {
     LOGGER.info("Analyzing input: {}", text);
     sentiment = stubSentimentAnalysisServer.analyzeSentiment(text);
     LOGGER.info("The sentiment is: {}", sentiment);
-
   }
 }

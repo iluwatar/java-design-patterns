@@ -26,12 +26,9 @@ package com.iluwatar.command;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Enumeration for target size.
- */
+/** Enumeration for target size. */
 @RequiredArgsConstructor
 public enum Size {
-
   SMALL("small"),
   NORMAL("normal");
 

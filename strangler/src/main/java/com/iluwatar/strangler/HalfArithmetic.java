@@ -27,8 +27,8 @@ package com.iluwatar.strangler;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * System under migration. Depends on old version source ({@link OldSource}) and
- * developing one ({@link HalfSource}).
+ * System under migration. Depends on old version source ({@link OldSource}) and developing one
+ * ({@link HalfSource}).
  */
 @Slf4j
 public class HalfArithmetic {
@@ -44,6 +44,7 @@ public class HalfArithmetic {
 
   /**
    * Accumulate sum.
+   *
    * @param nums numbers need to add together
    * @return accumulate sum
    */
@@ -54,6 +55,7 @@ public class HalfArithmetic {
 
   /**
    * Accumulate multiplication.
+   *
    * @param nums numbers need to multiply together
    * @return accumulate multiplication
    */
@@ -64,6 +66,7 @@ public class HalfArithmetic {
 
   /**
    * Check if it has any zero.
+   *
    * @param nums numbers need to check
    * @return if it has any zero, return true, else, return false
    */

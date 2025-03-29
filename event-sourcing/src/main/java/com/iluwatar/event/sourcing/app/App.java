@@ -53,13 +53,10 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * The constant ACCOUNT OF DAENERYS.
-   */
+  /** The constant ACCOUNT OF DAENERYS. */
   public static final int ACCOUNT_OF_DAENERYS = 1;
-  /**
-   * The constant ACCOUNT OF JON.
-   */
+
+  /** The constant ACCOUNT OF JON. */
   public static final int ACCOUNT_OF_JON = 2;
 
   /**
@@ -76,23 +73,24 @@ public class App {
 
     LOGGER.info("Creating the accounts............");
 
-    eventProcessor.process(new AccountCreateEvent(
-        0, new Date().getTime(), ACCOUNT_OF_DAENERYS, "Daenerys Targaryen"));
+    eventProcessor.process(
+        new AccountCreateEvent(0, new Date().getTime(), ACCOUNT_OF_DAENERYS, "Daenerys Targaryen"));
 
-    eventProcessor.process(new AccountCreateEvent(
-        1, new Date().getTime(), ACCOUNT_OF_JON, "Jon Snow"));
+    eventProcessor.process(
+        new AccountCreateEvent(1, new Date().getTime(), ACCOUNT_OF_JON, "Jon Snow"));
 
     LOGGER.info("Do some money operations............");
 
-    eventProcessor.process(new MoneyDepositEvent(
-        2, new Date().getTime(), ACCOUNT_OF_DAENERYS, new BigDecimal("100000")));
+    eventProcessor.process(
+        new MoneyDepositEvent(
+            2, new Date().getTime(), ACCOUNT_OF_DAENERYS, new BigDecimal("100000")));
 
-    eventProcessor.process(new MoneyDepositEvent(
-        3, new Date().getTime(), ACCOUNT_OF_JON, new BigDecimal("100")));
+    eventProcessor.process(
+        new MoneyDepositEvent(3, new Date().getTime(), ACCOUNT_OF_JON, new BigDecimal("100")));
 
-    eventProcessor.process(new MoneyTransferEvent(
-        4, new Date().getTime(), new BigDecimal("10000"), ACCOUNT_OF_DAENERYS,
-        ACCOUNT_OF_JON));
+    eventProcessor.process(
+        new MoneyTransferEvent(
+            4, new Date().getTime(), new BigDecimal("10000"), ACCOUNT_OF_DAENERYS, ACCOUNT_OF_JON));
 
     LOGGER.info("...............State:............");
     LOGGER.info(AccountAggregate.getAccount(ACCOUNT_OF_DAENERYS).toString());

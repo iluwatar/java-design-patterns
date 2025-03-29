@@ -47,19 +47,15 @@ public final class Retry<T> implements BusinessOperation<T> {
   /**
    * Ctor.
    *
-   * @param op          the {@link BusinessOperation} to retry
+   * @param op the {@link BusinessOperation} to retry
    * @param maxAttempts number of times to retry
-   * @param delay       delay (in milliseconds) between attempts
+   * @param delay delay (in milliseconds) between attempts
    * @param ignoreTests tests to check whether the remote exception can be ignored. No exceptions
-   *                    will be ignored if no tests are given
+   *     will be ignored if no tests are given
    */
   @SafeVarargs
   public Retry(
-      BusinessOperation<T> op,
-      int maxAttempts,
-      long delay,
-      Predicate<Exception>... ignoreTests
-  ) {
+      BusinessOperation<T> op, int maxAttempts, long delay, Predicate<Exception>... ignoreTests) {
     this.op = op;
     this.maxAttempts = maxAttempts;
     this.delay = delay;
@@ -101,7 +97,7 @@ public final class Retry<T> implements BusinessOperation<T> {
         try {
           Thread.sleep(this.delay);
         } catch (InterruptedException f) {
-          //ignore
+          // ignore
         }
       }
     } while (true);

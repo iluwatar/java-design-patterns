@@ -32,9 +32,7 @@ import java.util.Optional;
 import javax.sql.DataSource;
 import org.joda.money.Money;
 
-/**
- * Implementations for database operations of Customer.
- */
+/** Implementations for database operations of Customer. */
 public class CustomerDaoImpl implements CustomerDao {
 
   private final DataSource dataSource;

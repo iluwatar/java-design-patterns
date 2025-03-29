@@ -31,10 +31,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.junit.jupiter.api.Test;
 
-/**
- * AlchemistShopTest
- *
- */
+/** AlchemistShopTest */
 class AlchemistShopTest {
 
   @Test

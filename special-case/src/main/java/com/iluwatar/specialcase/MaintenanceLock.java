@@ -28,17 +28,14 @@ import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Acquire lock on the DB for maintenance.
- */
+/** Acquire lock on the DB for maintenance. */
 public class MaintenanceLock {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MaintenanceLock.class);
 
   private static MaintenanceLock instance;
 
-  @Getter
-  private boolean lock = true;
+  @Getter private boolean lock = true;
 
   /**
    * Get the instance of MaintenanceLock.

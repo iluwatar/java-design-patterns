@@ -28,17 +28,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * Represents lottery ticket check result.
- */
+/** Represents lottery ticket check result. */
 @Getter
 @EqualsAndHashCode
 @RequiredArgsConstructor
 public class LotteryTicketCheckResult {
 
-  /**
-   * Enumeration of Type of Outcomes of a Lottery.
-   */
+  /** Enumeration of Type of Outcomes of a Lottery. */
   public enum CheckResult {
     WIN_PRIZE,
     NO_PRIZE,
@@ -48,12 +44,9 @@ public class LotteryTicketCheckResult {
   private final CheckResult result;
   private final int prizeAmount;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public LotteryTicketCheckResult(CheckResult result) {
     this.result = result;
     prizeAmount = 0;
   }
-
 }

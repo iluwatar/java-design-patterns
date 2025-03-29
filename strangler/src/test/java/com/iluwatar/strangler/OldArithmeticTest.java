@@ -28,9 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Test methods in OldArithmetic
- */
+/** Test methods in OldArithmetic */
 class OldArithmeticTest {
   private static final OldArithmetic arithmetic = new OldArithmetic(new OldSource());
 

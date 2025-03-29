@@ -29,24 +29,23 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 /**
- * This service is responsible for handling request operations including
- * creation, start, and completion of requests.
+ * This service is responsible for handling request operations including creation, start, and
+ * completion of requests.
  */
 @Service
 public class RequestService {
   RequestRepository requestRepository;
   RequestStateMachine requestStateMachine;
 
-  public RequestService(RequestRepository requestRepository,
-                        RequestStateMachine requestStateMachine) {
+  public RequestService(
+      RequestRepository requestRepository, RequestStateMachine requestStateMachine) {
     this.requestRepository = requestRepository;
     this.requestStateMachine = requestStateMachine;
   }
 
   /**
-   * Creates a new Request or returns an existing one by it's UUID.
-   * This operation is idempotent: performing it once or several times
-   * successively leads to an equivalent result.
+   * Creates a new Request or returns an existing one by it's UUID. This operation is idempotent:
+   * performing it once or several times successively leads to an equivalent result.
    *
    * @param uuid The unique identifier for the Request.
    * @return Return existing Request or save and return a new Request.

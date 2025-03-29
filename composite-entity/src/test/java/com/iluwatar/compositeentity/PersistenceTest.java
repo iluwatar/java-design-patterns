@@ -24,13 +24,13 @@
  */
 package com.iluwatar.compositeentity;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 class PersistenceTest {
 
-  final static ConsoleCoarseGrainedObject console = new ConsoleCoarseGrainedObject();
+  static final ConsoleCoarseGrainedObject console = new ConsoleCoarseGrainedObject();
 
   @Test
   void dependentObjectChangedForPersistenceTest() {

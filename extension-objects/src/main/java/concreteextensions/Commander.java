@@ -25,14 +25,10 @@
 package concreteextensions;
 
 import abstractextensions.CommanderExtension;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import units.CommanderUnit;
 
-/**
- * Class defining Commander.
- */
+/** Class defining Commander. */
 @Slf4j
 public record Commander(CommanderUnit unit) implements CommanderExtension {
 
@@ -40,5 +36,4 @@ public record Commander(CommanderUnit unit) implements CommanderExtension {
   public void commanderReady() {
     LOGGER.info("[Commander] " + unit.getName() + " is ready!");
   }
-
 }

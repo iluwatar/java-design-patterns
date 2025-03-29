@@ -24,104 +24,104 @@
  */
 package com.iluwatar.domainmodel;
 
+import static org.joda.money.CurrencyUnit.USD;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import javax.sql.DataSource;
 import org.joda.money.Money;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import javax.sql.DataSource;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDate;
-
-import static org.joda.money.CurrencyUnit.USD;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ProductDaoImplTest {
 
-    public static final String INSERT_PRODUCT_SQL =
-            "insert into PRODUCTS values('product', 100, DATE '2021-06-27')";
-    public static final String SELECT_PRODUCTS_SQL =
-            "select name, price, expiration_date from PRODUCTS";
+  public static final String INSERT_PRODUCT_SQL =
+      "insert into PRODUCTS values('product', 100, DATE '2021-06-27')";
+  public static final String SELECT_PRODUCTS_SQL =
+      "select name, price, expiration_date from PRODUCTS";
 
-    private DataSource dataSource;
-    private ProductDao productDao;
-    private Product product;
+  private DataSource dataSource;
+  private ProductDao productDao;
+  private Product product;
 
-    @BeforeEach
-    void setUp() throws SQLException {
-        // create schema
-        dataSource = TestUtils.createDataSource();
+  @BeforeEach
+  void setUp() throws SQLException {
+    // create schema
+    dataSource = TestUtils.createDataSource();
 
-        TestUtils.deleteSchema(dataSource);
-        TestUtils.createSchema(dataSource);
+    TestUtils.deleteSchema(dataSource);
+    TestUtils.createSchema(dataSource);
 
-        // setup objects
-        productDao = new ProductDaoImpl(dataSource);
+    // setup objects
+    productDao = new ProductDaoImpl(dataSource);
 
-        product =
-                Product.builder()
-                        .name("product")
-                        .price(Money.of(USD, 100.0))
-                        .expirationDate(LocalDate.parse("2021-06-27"))
-                        .productDao(productDao)
-                        .build();
+    product =
+        Product.builder()
+            .name("product")
+            .price(Money.of(USD, 100.0))
+            .expirationDate(LocalDate.parse("2021-06-27"))
+            .productDao(productDao)
+            .build();
+  }
+
+  @AfterEach
+  void tearDown() throws SQLException {
+    TestUtils.deleteSchema(dataSource);
+  }
+
+  @Test
+  void shouldFindProductByName() throws SQLException {
+    var product = productDao.findByName("product");
+
+    assertTrue(product.isEmpty());
+
+    TestUtils.executeSQL(INSERT_PRODUCT_SQL, dataSource);
+
+    product = productDao.findByName("product");
+
+    assertTrue(product.isPresent());
+    assertEquals("product", product.get().getName());
+    assertEquals(Money.of(USD, 100), product.get().getPrice());
+    assertEquals(LocalDate.parse("2021-06-27"), product.get().getExpirationDate());
+  }
+
+  @Test
+  void shouldSaveProduct() throws SQLException {
+
+    productDao.save(product);
+
+    try (var connection = dataSource.getConnection();
+        var statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(SELECT_PRODUCTS_SQL)) {
+
+      assertTrue(rs.next());
+      assertEquals(product.getName(), rs.getString("name"));
+      assertEquals(product.getPrice(), Money.of(USD, rs.getBigDecimal("price")));
+      assertEquals(product.getExpirationDate(), rs.getDate("expiration_date").toLocalDate());
     }
 
-    @AfterEach
-    void tearDown() throws SQLException {
-        TestUtils.deleteSchema(dataSource);
+    assertThrows(SQLException.class, () -> productDao.save(product));
+  }
+
+  @Test
+  void shouldUpdateProduct() throws SQLException {
+    TestUtils.executeSQL(INSERT_PRODUCT_SQL, dataSource);
+
+    product.setPrice(Money.of(USD, 99.0));
+
+    productDao.update(product);
+
+    try (var connection = dataSource.getConnection();
+        var statement = connection.createStatement();
+        ResultSet rs = statement.executeQuery(SELECT_PRODUCTS_SQL)) {
+
+      assertTrue(rs.next());
+      assertEquals(product.getName(), rs.getString("name"));
+      assertEquals(product.getPrice(), Money.of(USD, rs.getBigDecimal("price")));
+      assertEquals(product.getExpirationDate(), rs.getDate("expiration_date").toLocalDate());
     }
-
-    @Test
-    void shouldFindProductByName() throws SQLException {
-        var product = productDao.findByName("product");
-
-        assertTrue(product.isEmpty());
-
-        TestUtils.executeSQL(INSERT_PRODUCT_SQL, dataSource);
-
-        product = productDao.findByName("product");
-
-        assertTrue(product.isPresent());
-        assertEquals("product", product.get().getName());
-        assertEquals(Money.of(USD, 100), product.get().getPrice());
-        assertEquals(LocalDate.parse("2021-06-27"), product.get().getExpirationDate());
-    }
-
-    @Test
-    void shouldSaveProduct() throws SQLException {
-
-        productDao.save(product);
-
-        try (var connection = dataSource.getConnection();
-             var statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(SELECT_PRODUCTS_SQL)) {
-
-            assertTrue(rs.next());
-            assertEquals(product.getName(), rs.getString("name"));
-            assertEquals(product.getPrice(), Money.of(USD, rs.getBigDecimal("price")));
-            assertEquals(product.getExpirationDate(), rs.getDate("expiration_date").toLocalDate());
-        }
-
-        assertThrows(SQLException.class, () -> productDao.save(product));
-    }
-
-    @Test
-    void shouldUpdateProduct() throws SQLException {
-        TestUtils.executeSQL(INSERT_PRODUCT_SQL, dataSource);
-
-        product.setPrice(Money.of(USD, 99.0));
-
-        productDao.update(product);
-
-        try (var connection = dataSource.getConnection();
-             var statement = connection.createStatement();
-             ResultSet rs = statement.executeQuery(SELECT_PRODUCTS_SQL)) {
-
-            assertTrue(rs.next());
-            assertEquals(product.getName(), rs.getString("name"));
-            assertEquals(product.getPrice(), Money.of(USD, rs.getBigDecimal("price")));
-            assertEquals(product.getExpirationDate(), rs.getDate("expiration_date").toLocalDate());
-        }
-    }
+  }
 }

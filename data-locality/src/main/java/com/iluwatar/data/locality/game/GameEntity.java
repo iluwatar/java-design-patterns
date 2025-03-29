@@ -46,9 +46,7 @@ public class GameEntity {
   private final PhysicsComponentManager physicsComponentManager;
   private final RenderComponentManager renderComponentManager;
 
-  /**
-   * Init components.
-   */
+  /** Init components. */
   public GameEntity(int numEntities) {
     LOGGER.info("Init Game with #Entity : {}", numEntities);
     aiComponentManager = new AiComponentManager(numEntities);
@@ -56,9 +54,7 @@ public class GameEntity {
     renderComponentManager = new RenderComponentManager(numEntities);
   }
 
-  /**
-   * start all component.
-   */
+  /** start all component. */
   public void start() {
     LOGGER.info("Start Game");
     aiComponentManager.start();
@@ -66,9 +62,7 @@ public class GameEntity {
     renderComponentManager.start();
   }
 
-  /**
-   * update all component.
-   */
+  /** update all component. */
   public void update() {
     LOGGER.info("Update Game Component");
     // Process AI.
@@ -80,5 +74,4 @@ public class GameEntity {
     // Draw to screen.
     renderComponentManager.render();
   }
-
 }

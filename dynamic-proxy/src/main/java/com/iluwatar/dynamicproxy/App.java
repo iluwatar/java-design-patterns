@@ -30,14 +30,14 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Application to demonstrate the Dynamic Proxy pattern. This application allow us to hit the public
- * fake API https://jsonplaceholder.typicode.com for the resource Album through an interface.
- * The call to Proxy.newProxyInstance creates a new dynamic proxy for the AlbumService interface and
+ * fake API https://jsonplaceholder.typicode.com for the resource Album through an interface. The
+ * call to Proxy.newProxyInstance creates a new dynamic proxy for the AlbumService interface and
  * sets the AlbumInvocationHandler class as the handler to intercept all the interface's methods.
  * Everytime that we call an AlbumService's method, the handler's method "invoke" will be call
  * automatically, and it will pass all the method's metadata and arguments to other specialized
- * class - TinyRestClient - to prepare the Rest API call accordingly.
- * In this demo, the Dynamic Proxy pattern help us to run business logic through interfaces without
- * an explicit implementation of the interfaces and supported on the Java Reflection approach.
+ * class - TinyRestClient - to prepare the Rest API call accordingly. In this demo, the Dynamic
+ * Proxy pattern help us to run business logic through interfaces without an explicit implementation
+ * of the interfaces and supported on the Java Reflection approach.
  */
 @Slf4j
 public class App {
@@ -51,7 +51,7 @@ public class App {
   /**
    * Class constructor.
    *
-   * @param baseUrl    Root url for endpoints.
+   * @param baseUrl Root url for endpoints.
    * @param httpClient Handle the http communication.
    */
   public App(String baseUrl, HttpClient httpClient) {
@@ -71,18 +71,23 @@ public class App {
   }
 
   /**
-   * Create the Dynamic Proxy linked to the AlbumService interface and to the AlbumInvocationHandler.
+   * Create the Dynamic Proxy linked to the AlbumService interface and to the
+   * AlbumInvocationHandler.
    */
   public void createDynamicProxy() {
     AlbumInvocationHandler albumInvocationHandler = new AlbumInvocationHandler(baseUrl, httpClient);
 
-    albumServiceProxy = (AlbumService) Proxy.newProxyInstance(
-        App.class.getClassLoader(), new Class<?>[]{AlbumService.class}, albumInvocationHandler);
+    albumServiceProxy =
+        (AlbumService)
+            Proxy.newProxyInstance(
+                App.class.getClassLoader(),
+                new Class<?>[] {AlbumService.class},
+                albumInvocationHandler);
   }
 
   /**
-   * Call the methods of the Dynamic Proxy, in other words, the AlbumService interface's methods
-   * and receive the responses from the Rest API.
+   * Call the methods of the Dynamic Proxy, in other words, the AlbumService interface's methods and
+   * receive the responses from the Rest API.
    */
   public void callMethods() {
     int albumId = 17;
@@ -94,16 +99,16 @@ public class App {
     var album = albumServiceProxy.readAlbum(albumId);
     LOGGER.info("{}", album);
 
-    var newAlbum = albumServiceProxy.createAlbum(Album.builder()
-        .title("Big World").userId(userId).build());
+    var newAlbum =
+        albumServiceProxy.createAlbum(Album.builder().title("Big World").userId(userId).build());
     LOGGER.info("{}", newAlbum);
 
-    var editAlbum = albumServiceProxy.updateAlbum(albumId, Album.builder()
-        .title("Green Valley").userId(userId).build());
+    var editAlbum =
+        albumServiceProxy.updateAlbum(
+            albumId, Album.builder().title("Green Valley").userId(userId).build());
     LOGGER.info("{}", editAlbum);
 
     var removedAlbum = albumServiceProxy.deleteAlbum(albumId);
     LOGGER.info("{}", removedAlbum);
   }
-
 }

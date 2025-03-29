@@ -28,20 +28,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Oliphaunts are expensive to create.
- */
+/** Oliphaunts are expensive to create. */
 @Slf4j
 public class Oliphaunt {
 
   private static final AtomicInteger counter = new AtomicInteger(0);
 
-  @Getter
-  private final int id;
+  @Getter private final int id;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Oliphaunt() {
     id = counter.incrementAndGet();
     try {

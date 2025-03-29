@@ -28,14 +28,11 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Test if the application starts without throwing an exception.
- */
-
+/** Test if the application starts without throwing an exception. */
 class AppTest {
 
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

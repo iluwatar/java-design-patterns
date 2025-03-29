@@ -26,24 +26,18 @@ package com.iluwatar.lazy.loading;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Simple implementation of the lazy loading idiom. However, this is not thread safe.
- */
+/** Simple implementation of the lazy loading idiom. However, this is not thread safe. */
 @Slf4j
 public class HolderNaive {
 
   private Heavy heavy;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public HolderNaive() {
     LOGGER.info("HolderNaive created");
   }
 
-  /**
-   * Get heavy object.
-   */
+  /** Get heavy object. */
   public Heavy getHeavy() {
     if (heavy == null) {
       heavy = new Heavy();

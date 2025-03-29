@@ -33,10 +33,7 @@ import static org.mockito.Mockito.when;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-/**
- * ServantTest
- *
- */
+/** ServantTest */
 class ServantTest {
 
   @Test
@@ -80,7 +77,5 @@ class ServantTest {
 
     assertTrue(new Servant("test").checkIfYouWillBeHanged(goodCompany));
     assertTrue(new Servant("test").checkIfYouWillBeHanged(badCompany));
-
   }
-
 }

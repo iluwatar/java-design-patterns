@@ -27,9 +27,7 @@ package com.iluwatar.specification.selector;
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Color;
 
-/**
- * Color selector.
- */
+/** Color selector. */
 public class ColorSelector extends AbstractSelector<Creature> {
 
   private final Color color;

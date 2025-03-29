@@ -43,7 +43,7 @@ class TheSwordOfAragornTest {
   }
 
   @Test
-  void invalidLockerTest(){
+  void invalidLockerTest() {
     var sword = new SwordOfAragorn();
     Assertions.assertThrows(NullPointerException.class, () -> sword.lock(null));
     Assertions.assertThrows(NullPointerException.class, () -> sword.unlock(null));

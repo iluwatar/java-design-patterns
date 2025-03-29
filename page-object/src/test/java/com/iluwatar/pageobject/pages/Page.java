@@ -26,14 +26,10 @@ package com.iluwatar.pageobject.pages;
 
 import org.htmlunit.WebClient;
 
-/**
- * Encapsulation for a generic 'Page'
- */
+/** Encapsulation for a generic 'Page' */
 public abstract class Page {
 
-  /**
-   * Application Under Test path This directory location is where html web pages are located
-   */
+  /** Application Under Test path This directory location is where html web pages are located */
   public static final String AUT_PATH = "src/main/resources/sample-ui/";
 
   protected final WebClient webClient;
@@ -53,6 +49,4 @@ public abstract class Page {
    * @return true if so, otherwise false
    */
   public abstract boolean isAt();
-
-
 }

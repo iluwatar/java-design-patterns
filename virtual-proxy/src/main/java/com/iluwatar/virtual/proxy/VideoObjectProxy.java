@@ -28,7 +28,8 @@ package com.iluwatar.virtual.proxy;
 import lombok.Getter;
 
 /**
- * A proxy class for the real video object, providing a layer of control over the object instantiation.
+ * A proxy class for the real video object, providing a layer of control over the object
+ * instantiation.
  */
 @Getter
 public class VideoObjectProxy implements ExpensiveObject {

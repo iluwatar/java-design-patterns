@@ -38,9 +38,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-/**
- * LogoutHandlerTest.
- */
+/** LogoutHandlerTest. */
 public class LogoutHandlerTest {
 
   private LogoutHandler logoutHandler;
@@ -48,12 +46,9 @@ public class LogoutHandlerTest {
   private Map<String, Integer> sessions;
   private Map<String, Instant> sessionCreationTimes;
 
-  @Mock
-  private HttpExchange exchange;
+  @Mock private HttpExchange exchange;
 
-  /**
-   * Setup tests.
-   */
+  /** Setup tests. */
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.initMocks(this);
@@ -61,25 +56,27 @@ public class LogoutHandlerTest {
     sessionCreationTimes = new HashMap<>();
     logoutHandler = new LogoutHandler(sessions, sessionCreationTimes);
     headers = new Headers();
-    headers.add("Cookie",
-        "sessionID=1234"); //Exchange object methods return Header Object but Exchange is mocked so Headers must be manually created
+    headers.add(
+        "Cookie",
+        "sessionID=1234"); // Exchange object methods return Header Object but Exchange is mocked so
+    // Headers must be manually created
   }
 
   @Test
   public void testHandler_SessionNotExpired() {
 
-    //assemble
-    sessions.put("1234", 1); //Fake login details since LoginHandler isn't called
-    sessionCreationTimes.put("1234",
-        Instant.now()); //Fake login details since LoginHandler isn't called
+    // assemble
+    sessions.put("1234", 1); // Fake login details since LoginHandler isn't called
+    sessionCreationTimes.put(
+        "1234", Instant.now()); // Fake login details since LoginHandler isn't called
     when(exchange.getRequestHeaders()).thenReturn(headers);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     when(exchange.getResponseBody()).thenReturn(outputStream);
 
-    //act
+    // act
     logoutHandler.handle(exchange);
 
-    //assert
+    // assert
     String[] response = outputStream.toString().split("Session ID: ");
     Assertions.assertEquals("1234", response[1]);
     Assertions.assertFalse(sessions.containsKey(response[1]));
@@ -89,15 +86,15 @@ public class LogoutHandlerTest {
   @Test
   public void testHandler_SessionExpired() {
 
-    //assemble
+    // assemble
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     when(exchange.getRequestHeaders()).thenReturn(headers);
     when(exchange.getResponseBody()).thenReturn(outputStream);
 
-    //act
+    // act
     logoutHandler.handle(exchange);
 
-    //assert
+    // assert
     String[] response = outputStream.toString().split("Session ID: ");
     Assertions.assertEquals("Session has already expired!", response[0]);
   }

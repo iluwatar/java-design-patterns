@@ -31,9 +31,7 @@ import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 
-/**
- * Test for Guarded Queue.
- */
+/** Test for Guarded Queue. */
 @Slf4j
 class GuardedQueueTest {
   private volatile Integer value;
@@ -59,5 +57,4 @@ class GuardedQueueTest {
     g.put(12);
     assertEquals(Integer.valueOf(12), g.get());
   }
-
 }

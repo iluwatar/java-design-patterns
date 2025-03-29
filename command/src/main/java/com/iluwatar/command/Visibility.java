@@ -26,12 +26,9 @@ package com.iluwatar.command;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Enumeration for target visibility.
- */
+/** Enumeration for target visibility. */
 @RequiredArgsConstructor
 public enum Visibility {
-
   VISIBLE("visible"),
   INVISIBLE("invisible");
 

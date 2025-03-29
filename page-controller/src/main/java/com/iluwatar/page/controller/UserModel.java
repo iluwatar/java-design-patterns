@@ -27,13 +27,10 @@ package com.iluwatar.page.controller;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * User model.
- */
+/** User model. */
 @Data
 @NoArgsConstructor
 public class UserModel {
   private String name;
   private String email;
-
 }

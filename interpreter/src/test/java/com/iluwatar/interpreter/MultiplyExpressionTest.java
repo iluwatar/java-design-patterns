@@ -27,10 +27,7 @@ package com.iluwatar.interpreter;
 import java.util.stream.Stream;
 import org.junit.jupiter.params.provider.Arguments;
 
-/**
- * MultiplyExpressionTest
- *
- */
+/** MultiplyExpressionTest */
 class MultiplyExpressionTest extends ExpressionTest<MultiplyExpression> {
 
   /**
@@ -43,11 +40,8 @@ class MultiplyExpressionTest extends ExpressionTest<MultiplyExpression> {
     return prepareParameters((f, s) -> f * s);
   }
 
-  /**
-   * Create a new test instance using the given test parameters and expected result
-   */
+  /** Create a new test instance using the given test parameters and expected result */
   public MultiplyExpressionTest() {
     super("*", MultiplyExpression::new);
   }
-
 }

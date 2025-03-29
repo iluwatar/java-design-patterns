@@ -48,5 +48,4 @@ class InvoiceGeneratorTest {
     Assertions.assertEquals(target.getAmountWithTax(), productCost + tax);
     verify(taxCalculatorMock, times(1)).calculate(productCost);
   }
-
 }

@@ -27,31 +27,19 @@ package com.iluwatar.caching;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
- * Enum class containing the four caching strategies implemented in the pattern.
- */
+/** Enum class containing the four caching strategies implemented in the pattern. */
 @AllArgsConstructor
 @Getter
 public enum CachingPolicy {
-  /**
-   * Through.
-   */
+  /** Through. */
   THROUGH("through"),
-  /**
-   * AROUND.
-   */
+  /** AROUND. */
   AROUND("around"),
-  /**
-   * BEHIND.
-   */
+  /** BEHIND. */
   BEHIND("behind"),
-  /**
-   * ASIDE.
-   */
+  /** ASIDE. */
   ASIDE("aside");
 
-  /**
-   * Policy value.
-   */
+  /** Policy value. */
   private final String policy;
 }

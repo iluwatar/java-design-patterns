@@ -35,8 +35,8 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 /**
- * The GameObject class has three component class instances that allow
- * the creation of different game objects based on the game design requirements.
+ * The GameObject class has three component class instances that allow the creation of different
+ * game objects based on the game design requirements.
  */
 @Getter
 @RequiredArgsConstructor
@@ -55,12 +55,12 @@ public class GameObject {
    * @return player object
    */
   public static GameObject createPlayer() {
-    return new GameObject(new PlayerInputComponent(),
+    return new GameObject(
+        new PlayerInputComponent(),
         new ObjectPhysicComponent(),
         new ObjectGraphicComponent(),
         "player");
   }
-
 
   /**
    * Creates a NPC game object.
@@ -69,16 +69,12 @@ public class GameObject {
    */
   public static GameObject createNpc() {
     return new GameObject(
-            new DemoInputComponent(),
-        new ObjectPhysicComponent(),
-        new ObjectGraphicComponent(),
-        "npc");
+        new DemoInputComponent(), new ObjectPhysicComponent(), new ObjectGraphicComponent(), "npc");
   }
 
   /**
-   * Updates the three components of the NPC object used in the demo in App.java
-   * note that this is simply a duplicate of update() without the key event for
-   * demonstration purposes.
+   * Updates the three components of the NPC object used in the demo in App.java note that this is
+   * simply a duplicate of update() without the key event for demonstration purposes.
    *
    * <p>This method is usually used in games if the player becomes inactive.
    */
@@ -108,10 +104,7 @@ public class GameObject {
     this.velocity += acceleration;
   }
 
-
-  /**
-   * Set the c based on the current velocity.
-   */
+  /** Set the c based on the current velocity. */
   public void updateCoordinate() {
     this.coordinate += this.velocity;
   }
