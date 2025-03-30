@@ -30,7 +30,8 @@ public class DelayedWeatherSubscriber implements Subscriber {
     try {
       TimeUnit.MILLISECONDS.sleep(2000);
     } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+      logger.error("Interrupted!", e);
+      Thread.currentThread().interrupt();
     }
   }
 }
