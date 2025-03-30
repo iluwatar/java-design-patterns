@@ -13,9 +13,12 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class SubscriberTest {
 
+  private static final Logger logger = LoggerFactory.getLogger(SubscriberTest.class);
   @RegisterExtension public LoggerExtension loggerExtension = new LoggerExtension();
 
   private static final String TOPIC_WEATHER = "WEATHER";
@@ -173,7 +176,8 @@ public class SubscriberTest {
     try {
       TimeUnit.SECONDS.sleep(1);
     } catch (InterruptedException e) {
-      throw new RuntimeException(e);
+      logger.error("Interrupted!", e);
+      Thread.currentThread().interrupt();
     }
   }
 }
