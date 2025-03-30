@@ -2,31 +2,20 @@ package com.iluwatar.publish.subscribe.model;
 
 import com.iluwatar.publish.subscribe.subscriber.Subscriber;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.CopyOnWriteArraySet;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 
 /** This class represents a Topic that topic name and subscribers. */
+@Getter
+@Setter
+@RequiredArgsConstructor
 public class Topic {
 
-  private final TopicName name;
+  private final String topicName;
   private final Set<Subscriber> subscribers = new CopyOnWriteArraySet<>();
-
-  /**
-   * Creates a new instance of the Topic class.
-   *
-   * @param name The name of the topic.
-   */
-  public Topic(TopicName name) {
-    this.name = name;
-  }
-
-  /**
-   * Get the name of the topic.
-   *
-   * @return topic name
-   */
-  public TopicName getName() {
-    return name;
-  }
 
   /**
    * Add a subscriber to the list of subscribers.
@@ -53,7 +42,7 @@ public class Topic {
    */
   public void publish(Message message) {
     for (Subscriber subscriber : subscribers) {
-      subscriber.onMessage(message);
+      CompletableFuture.runAsync(() -> subscriber.onMessage(message));
     }
   }
 }

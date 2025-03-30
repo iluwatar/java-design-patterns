@@ -21,7 +21,7 @@ public class PublisherImpl implements Publisher {
   @Override
   public void publish(Topic topic, Message message) {
     if (!topics.contains(topic)) {
-      logger.error("This topic is not registered: {}", topic.getName());
+      logger.error("This topic is not registered: {}", topic.getTopicName());
       return;
     }
     topic.publish(message);

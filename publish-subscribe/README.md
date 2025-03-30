@@ -1,27 +1,26 @@
 ---
 title: "Publish-Subscribe Pattern in Java: Decoupling the solution with asynchronous communication"
-shortTitle: Proxy
-description: "Explore the Proxy design pattern in Java with detailed examples. Learn how it provides controlled access, facilitates lazy initialization, and ensures security. Ideal for developers looking to implement advanced Java techniques."
-category: Structural
+shortTitle: Publish-Subscribe
+description: "Explore the Publish-Subscribe design pattern in Java with detailed examples. Learn how it helps to create loosely coupled, scalable, and flexible systems by allowing components to communicate asynchronously without knowing each other directly."
+category: Behavioral
 language: en
 tag:
     - Decoupling
-    - Encapsulation
+    - Event-driven
     - Gang Of Four
-    - Lazy initialization
-    - Proxy
-    - Security
-    - Wrapping
+    - Publish/subscribe
 ---
 
 ## Intent of the Publish-Subscribe Design Pattern
 
-The Publish-Subscriber design pattern is widely used in software architecture to transmit data between various components in a system.
+The Publish-Subscribe design pattern is widely used in software architecture to transmit data between various components in a system.
 It is a behavioral design pattern aimed at achieving loosely coupled communication between objects.
-The primary intent is to allow a one-to-many dependency relationship where one object (the Publisher) notifies multiple other objects (the Subscribers) about changes or events,
-without needing to know who or what the subscribers are.
+The primary intent is to allow a one-to-many dependency relationship where one object (the Publisher) notifies multiple other objects (the Subscribers)
+about changes or events, without needing to know who or what the subscribers are.
 
 ## Detailed Explanation of Publish-Subscribe Pattern with Real-World Examples
+
+### Real-world example
 
 - Messaging systems like Kafka, RabbitMQ, AWS SNS, JMS
     - **Kafka** : publishes messages to topics and subscribers consumes them in real time for analytics, logs or other purposes.
@@ -38,13 +37,32 @@ without needing to know who or what the subscribers are.
     - **Publisher** : Writes a new blog post and publish to subscribers
     - **Subscribers** : All the subscribers to the newsletter receive the email
 
+### In plain words
+
+The Publish-Subscribe design pattern allows senders (publishers) to broadcast messages to multiple receivers (subscribers) without knowing who they are,
+enabling loose coupling and asynchronous communication in a system
+
+### Wikipedia says
+
+In software architecture, publish–subscribe or pub/sub is a messaging pattern where publishers categorize messages into classes that are received by subscribers.
+This is contrasted to the typical messaging pattern model where publishers send messages directly to subscribers.
+
+Similarly, subscribers express interest in one or more classes and only receive messages that are of interest, without knowledge of which publishers, if any, there are.
+
+Publish–subscribe is a sibling of the message queue paradigm, and is typically one part of a larger message-oriented middleware system.
+Most messaging systems support both the pub/sub and message queue models in their API; e.g., Java Message Service (JMS).
+
+### Architectural Diagram
+![pub-sub](./etc/pub-sub.png)
+
 ## Programmatic Example of Publish-Subscribe Pattern in Java
 
 First we need to identify the Event on which we need the pub-sub methods to trigger.
 For example:
 
 - Sending alerts based on the weather events such as earthquakes, floods and tornadoes
-- Sending an email to different customer support accounts when a support ticket is created.
+- Sending alerts based on the temperature
+- Sending an email to different customer support emails when a support ticket is created.
 
 The Message class below will hold the content of the message we need to pass between the publisher and the subscribers.
 
@@ -57,8 +75,10 @@ public record Message(Object content) {
 The Topic class will have the topic **name** based on the event
 
 - Weather events TopicName WEATHER
+- Weather events TopicName TEMPERATURE
 - Support ticket created TopicName CUSTOMER_SUPPORT
-  Also the Topic contains a list of subscribers that will listen to that topic
+- Any other custom topic depending on use case
+- Also, the Topic contains a list of subscribers that will listen to that topic
 
 We can add or remove subscribers from the subscription to the topic
 
@@ -101,14 +121,17 @@ public class PublisherImpl implements Publisher {
 Finally, we can Subscribers to the Topics we want to listen to.
 
 - For WEATHER topic we will create _WeatherSubscriber_
+- _WeatherSubscriber_ can also subscribe to TEMPERATURE topic
 - For CUSTOMER_SUPPORT topic we will create _CustomerSupportSubscribe_
+- Also to demonstrate the async behavior we will create a _DelayedWeatherSubscriber_ who has a 0.2 sec processing deplay
 
-Both classes will have a _onMessage_ method which will take a Message input.
+All classes will have a _onMessage_ method which will take a Message input.
 
 - On message method will verify the content of the message is as expected
 - After content is verified it will perform the operation based on the message
-    - _WeatherSubscriber_ will send a weather alert based on the _Message_
+    - _WeatherSubscriber_ will send a weather or temperature alert based on the _Message_
     - _CustomerSupportSubscribe_will send an email based on the _Message_
+    - _DelayedWeatherSubscriber_ will send a weather alert based on the _Message_ after a delay
 
 ```java
 public interface Subscriber {
@@ -119,42 +142,66 @@ public interface Subscriber {
 And here is the invocation of the publisher and subscribers.
 
 ```java
-public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
 
-    final String weatherSub1Name = "weatherSub1";
-    final String weatherSub2Name = "weatherSub2";
-    final String supportSub1Name = "supportSub1";
-    final String supportSub2Name = "supportSub2";
+    final String topicWeather = "WEATHER";
+    final String topicTemperature = "TEMPERATURE";
+    final String topicCustomerSupport = "CUSTOMER_SUPPORT";
 
-    Topic weatherTopic = new Topic(TopicName.WEATHER);
-    Topic supportTopic = new Topic(TopicName.CUSTOMER_SUPPORT);
-
+    // 1. create the publisher.
     Publisher publisher = new PublisherImpl();
+
+    // 2. define the topics and register on publisher
+    Topic weatherTopic = new Topic(topicWeather);
     publisher.registerTopic(weatherTopic);
+
+    Topic temperatureTopic = new Topic(topicTemperature);
+    publisher.registerTopic(temperatureTopic);
+
+    Topic supportTopic = new Topic(topicCustomerSupport);
     publisher.registerTopic(supportTopic);
 
-    Subscriber weatherSub1 = new WeatherSubscriber(weatherSub1Name);
-    Subscriber weatherSub2 = new WeatherSubscriber(weatherSub2Name);
+    // 3. Create the subscribers and subscribe to the relevant topics
+    // weatherSub1 will subscribe to two topics WEATHER and TEMPERATURE.
+    Subscriber weatherSub1 = new WeatherSubscriber();
     weatherTopic.addSubscriber(weatherSub1);
+    temperatureTopic.addSubscriber(weatherSub1);
+
+    // weatherSub2 will subscribe to WEATHER topic
+    Subscriber weatherSub2 = new WeatherSubscriber();
     weatherTopic.addSubscriber(weatherSub2);
 
-    Subscriber supportSub1 = new CustomerSupportSubscriber(supportSub1Name);
-    Subscriber supportSub2 = new CustomerSupportSubscriber(supportSub2Name);
+    // delayedWeatherSub will subscribe to WEATHER topic
+    // NOTE :: DelayedWeatherSubscriber has a 0.2 sec delay of processing message.
+    Subscriber delayedWeatherSub = new DelayedWeatherSubscriber();
+    weatherTopic.addSubscriber(delayedWeatherSub);
+
+    // subscribe the customer support subscribers to the CUSTOMER_SUPPORT topic.
+    Subscriber supportSub1 = new CustomerSupportSubscriber();
     supportTopic.addSubscriber(supportSub1);
+    Subscriber supportSub2 = new CustomerSupportSubscriber();
     supportTopic.addSubscriber(supportSub2);
 
-    publisher.publish(weatherTopic, new Message(WeatherContent.earthquake));
-    publisher.publish(supportTopic, new Message(CustomerSupportContent.DE));
+    // 4. publish message from each topic
+    publisher.publish(weatherTopic, new Message("earthquake"));
+    publisher.publish(temperatureTopic, new Message("23C"));
+    publisher.publish(supportTopic, new Message("support@test.de"));
+    
 }
 ```
 
 Program output:
 
+Note that the order of output could change everytime you run the program.
+The subscribers could take different time to consume the message.
+
 ```
-11:46:44.310 [main] INFO com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber - Subscriber: weatherSub1 issued message: earthquake tsunami warning
-11:46:44.311 [main] INFO com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber - Subscriber: weatherSub2 issued message: earthquake tsunami warning
-11:46:44.311 [main] INFO com.iluwatar.publish.subscribe.subscriber.CustomerSupportSubscriber - Subscriber: supportSub1 sent the email to: customer.support@test.de
-11:46:44.311 [main] INFO com.iluwatar.publish.subscribe.subscriber.CustomerSupportSubscriber - Subscriber: supportSub2 sent the email to: customer.support@test.de
+14:01:45.599 [ForkJoinPool.commonPool-worker-6] INFO com.iluwatar.publish.subscribe.subscriber.CustomerSupportSubscriber -- Customer Support Subscriber: 1416331388 sent the email to: support@test.de
+14:01:45.599 [ForkJoinPool.commonPool-worker-4] INFO com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber -- Weather Subscriber: 1949521124 issued message: 23C
+14:01:45.599 [ForkJoinPool.commonPool-worker-2] INFO com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber -- Weather Subscriber: 60629172 issued message: earthquake
+14:01:45.599 [ForkJoinPool.commonPool-worker-5] INFO com.iluwatar.publish.subscribe.subscriber.CustomerSupportSubscriber -- Customer Support Subscriber: 1807508804 sent the email to: support@test.de
+14:01:45.599 [ForkJoinPool.commonPool-worker-1] INFO com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber -- Weather Subscriber: 1949521124 issued message: earthquake
+14:01:47.600 [ForkJoinPool.commonPool-worker-3] INFO com.iluwatar.publish.subscribe.subscriber.DelayedWeatherSubscriber -- Delayed Weather Subscriber: 2085808749 issued message: earthquake
 ```
 
 ## When to Use the Publish-Subscribe Pattern

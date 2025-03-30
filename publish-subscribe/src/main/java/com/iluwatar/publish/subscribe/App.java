@@ -1,15 +1,14 @@
 package com.iluwatar.publish.subscribe;
 
-import com.iluwatar.publish.subscribe.model.CustomerSupportContent;
 import com.iluwatar.publish.subscribe.model.Message;
 import com.iluwatar.publish.subscribe.model.Topic;
-import com.iluwatar.publish.subscribe.model.TopicName;
-import com.iluwatar.publish.subscribe.model.WeatherContent;
 import com.iluwatar.publish.subscribe.publisher.Publisher;
 import com.iluwatar.publish.subscribe.publisher.PublisherImpl;
 import com.iluwatar.publish.subscribe.subscriber.CustomerSupportSubscriber;
+import com.iluwatar.publish.subscribe.subscriber.DelayedWeatherSubscriber;
 import com.iluwatar.publish.subscribe.subscriber.Subscriber;
 import com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber;
+import java.util.concurrent.TimeUnit;
 
 /**
  * The Publish and Subscribe pattern is a messaging paradigm used in software architecture with
@@ -29,14 +28,18 @@ import com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber;
  *     without significant changes to the existing components, making the system highly adaptable to
  *     evolving requirements.
  *
- *     <p>In this example we will create two {@link TopicName}s WEATHER and CUSTOMER_SUPPORT. Then
- *     we will register those topics in the {@link Publisher}. After that we will create two {@link
- *     WeatherSubscriber}s to WEATHER {@link Topic}. Also, we will create two {@link
- *     CustomerSupportSubscriber}s to CUSTOMER_SUPPORT {@link Topic}. Now we can publish the two
+ *     <p>In this example we will create three topics WEATHER, TEMPERATURE and CUSTOMER_SUPPORT.
+ *     Then we will register those topics in the {@link Publisher}. After that we will create two
+ *     {@link WeatherSubscriber}s, one {@link DelayedWeatherSubscriber} and two {@link
+ *     CustomerSupportSubscriber}.The subscribers will subscribe to the relevant topics. One {@link
+ *     WeatherSubscriber} will subscribe to two topics (WEATHER, TEMPERATURE). {@link
+ *     DelayedWeatherSubscriber} has a delay in message processing. Now we can publish the three
  *     {@link Topic}s with different content in the {@link Message}s. And we can observe the output
- *     in the log where, {@link WeatherSubscriber} will output the message with {@link
- *     WeatherContent}. {@link CustomerSupportSubscriber} will output the message with {@link
- *     CustomerSupportContent}. Each subscriber is only listening to the subscribed topic.
+ *     in the log where, one {@link WeatherSubscriber} will output the message with weather and the
+ *     other {@link WeatherSubscriber} will output weather and temperature. {@link
+ *     CustomerSupportSubscriber}s will output the message with customer support email. {@link
+ *     DelayedWeatherSubscriber} has a delay in processing and will output the message at last. Each
+ *     subscriber is only listening to the subscribed topics.
  */
 public class App {
 
@@ -45,31 +48,56 @@ public class App {
    *
    * @param args command line args
    */
-  public static void main(String[] args) {
+  public static void main(String[] args) throws InterruptedException {
 
-    final String weatherSub1Name = "weatherSub1";
-    final String weatherSub2Name = "weatherSub2";
-    final String supportSub1Name = "supportSub1";
-    final String supportSub2Name = "supportSub2";
+    final String topicWeather = "WEATHER";
+    final String topicTemperature = "TEMPERATURE";
+    final String topicCustomerSupport = "CUSTOMER_SUPPORT";
 
-    Topic weatherTopic = new Topic(TopicName.WEATHER);
-    Topic supportTopic = new Topic(TopicName.CUSTOMER_SUPPORT);
-
+    // 1. create the publisher.
     Publisher publisher = new PublisherImpl();
+
+    // 2. define the topics and register on publisher
+    Topic weatherTopic = new Topic(topicWeather);
     publisher.registerTopic(weatherTopic);
+
+    Topic temperatureTopic = new Topic(topicTemperature);
+    publisher.registerTopic(temperatureTopic);
+
+    Topic supportTopic = new Topic(topicCustomerSupport);
     publisher.registerTopic(supportTopic);
 
-    Subscriber weatherSub1 = new WeatherSubscriber(weatherSub1Name);
-    Subscriber weatherSub2 = new WeatherSubscriber(weatherSub2Name);
+    // 3. Create the subscribers and subscribe to the relevant topics
+    // weatherSub1 will subscribe to two topics WEATHER and TEMPERATURE.
+    Subscriber weatherSub1 = new WeatherSubscriber();
     weatherTopic.addSubscriber(weatherSub1);
+    temperatureTopic.addSubscriber(weatherSub1);
+
+    // weatherSub2 will subscribe to WEATHER topic
+    Subscriber weatherSub2 = new WeatherSubscriber();
     weatherTopic.addSubscriber(weatherSub2);
 
-    Subscriber supportSub1 = new CustomerSupportSubscriber(supportSub1Name);
-    Subscriber supportSub2 = new CustomerSupportSubscriber(supportSub2Name);
+    // delayedWeatherSub will subscribe to WEATHER topic
+    // NOTE :: DelayedWeatherSubscriber has a 0.2 sec delay of processing message.
+    Subscriber delayedWeatherSub = new DelayedWeatherSubscriber();
+    weatherTopic.addSubscriber(delayedWeatherSub);
+
+    // subscribe the customer support subscribers to the CUSTOMER_SUPPORT topic.
+    Subscriber supportSub1 = new CustomerSupportSubscriber();
     supportTopic.addSubscriber(supportSub1);
+    Subscriber supportSub2 = new CustomerSupportSubscriber();
     supportTopic.addSubscriber(supportSub2);
 
-    publisher.publish(weatherTopic, new Message(WeatherContent.earthquake));
-    publisher.publish(supportTopic, new Message(CustomerSupportContent.DE));
+    // 4. publish message from each topic
+    publisher.publish(weatherTopic, new Message("earthquake"));
+    publisher.publish(temperatureTopic, new Message("23C"));
+    publisher.publish(supportTopic, new Message("support@test.de"));
+
+    /*
+     * Finally, wait for the subscribers to consume messages to check the output.
+     * this is not necessary in real life.
+     * the output depends on the time subscribers take to consume the message
+     */
+    TimeUnit.SECONDS.sleep(2);
   }
 }

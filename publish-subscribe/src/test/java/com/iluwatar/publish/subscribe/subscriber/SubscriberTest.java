@@ -5,13 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.iluwatar.publish.subscribe.LoggerExtension;
-import com.iluwatar.publish.subscribe.model.CustomerSupportContent;
 import com.iluwatar.publish.subscribe.model.Message;
 import com.iluwatar.publish.subscribe.model.Topic;
-import com.iluwatar.publish.subscribe.model.TopicName;
-import com.iluwatar.publish.subscribe.model.WeatherContent;
 import com.iluwatar.publish.subscribe.publisher.Publisher;
 import com.iluwatar.publish.subscribe.publisher.PublisherImpl;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
@@ -19,126 +18,162 @@ public class SubscriberTest {
 
   @RegisterExtension public LoggerExtension loggerExtension = new LoggerExtension();
 
-  private static final String WEATHER_SUB_NAME = "weatherSubscriber";
-  private static final String CUSTOMER_SUPPORT_SUB_NAME = "customerSupportSubscriber";
+  private static final String TOPIC_WEATHER = "WEATHER";
+  private static final String TOPIC_TEMPERATURE = "TEMPERATURE";
+  private static final String TOPIC_CUSTOMER_SUPPORT = "CUSTOMER_SUPPORT";
 
   @Test
-  void testSubscribeSuccess() {
+  void testSubscribeToMultipleTopics() {
 
-    Topic topic = new Topic(TopicName.WEATHER);
-    Subscriber weatherSubscriber = new WeatherSubscriber(WEATHER_SUB_NAME);
-    topic.addSubscriber(weatherSubscriber);
+    Topic topicWeather = new Topic(TOPIC_WEATHER);
+    Topic topicTemperature = new Topic(TOPIC_TEMPERATURE);
+    Subscriber weatherSubscriber = new WeatherSubscriber();
+
+    topicWeather.addSubscriber(weatherSubscriber);
+    topicTemperature.addSubscriber(weatherSubscriber);
 
     Publisher publisher = new PublisherImpl();
-    publisher.registerTopic(topic);
+    publisher.registerTopic(topicWeather);
+    publisher.registerTopic(topicTemperature);
 
-    publisher.publish(topic, new Message(WeatherContent.earthquake));
-    assertEquals(
-        "Subscriber: weatherSubscriber issued message: earthquake tsunami warning",
-        loggerExtension.getFormattedMessages().getFirst());
+    publisher.publish(topicWeather, new Message("earthquake"));
+    publisher.publish(topicTemperature, new Message("-2C"));
+
+    waitForOutput();
+    assertEquals(2, loggerExtension.getFormattedMessages().size());
   }
 
   @Test
   void testOnlyReceiveSubscribedTopic() {
 
-    Topic weatherTopic = new Topic(TopicName.WEATHER);
-    Subscriber weatherSubscriber = new WeatherSubscriber(WEATHER_SUB_NAME);
+    Topic weatherTopic = new Topic(TOPIC_WEATHER);
+    Subscriber weatherSubscriber = new WeatherSubscriber();
     weatherTopic.addSubscriber(weatherSubscriber);
 
-    Topic customerSupportTopic = new Topic(TopicName.CUSTOMER_SUPPORT);
+    Topic customerSupportTopic = new Topic(TOPIC_CUSTOMER_SUPPORT);
     Publisher publisher = new PublisherImpl();
     publisher.registerTopic(weatherTopic);
     publisher.registerTopic(customerSupportTopic);
 
-    publisher.publish(customerSupportTopic, new Message(CustomerSupportContent.DE));
+    publisher.publish(customerSupportTopic, new Message("support@test.de"));
+
+    waitForOutput();
     assertEquals(0, loggerExtension.getFormattedMessages().size());
   }
 
   @Test
-  void testMultipleSubscribersOnSameTopic() {
+  void testMultipleSubscribersOnSameTopic() throws InterruptedException {
 
-    Topic weatherTopic = new Topic(TopicName.WEATHER);
-    Subscriber weatherSubscriber1 = new WeatherSubscriber(WEATHER_SUB_NAME + "1");
+    Topic weatherTopic = new Topic(TOPIC_WEATHER);
+    Subscriber weatherSubscriber1 = new WeatherSubscriber();
     weatherTopic.addSubscriber(weatherSubscriber1);
 
-    Subscriber weatherSubscriber2 = new WeatherSubscriber(WEATHER_SUB_NAME + "2");
+    Subscriber weatherSubscriber2 = new WeatherSubscriber();
     weatherTopic.addSubscriber(weatherSubscriber2);
 
     Publisher publisher = new PublisherImpl();
     publisher.registerTopic(weatherTopic);
 
-    publisher.publish(weatherTopic, new Message(WeatherContent.tornado));
+    publisher.publish(weatherTopic, new Message("tornado"));
+
+    waitForOutput();
+    assertEquals(2, loggerExtension.getFormattedMessages().size());
     assertEquals(
-        "Subscriber: weatherSubscriber1 issued message: tornado use storm cellars",
-        loggerExtension.getFormattedMessages().getFirst());
+        "Weather Subscriber: " + weatherSubscriber1.hashCode() + " issued message: tornado",
+        getMessage(weatherSubscriber1.hashCode()));
     assertEquals(
-        "Subscriber: weatherSubscriber2 issued message: tornado use storm cellars",
-        loggerExtension.getFormattedMessages().get(1));
+        "Weather Subscriber: " + weatherSubscriber2.hashCode() + " issued message: tornado",
+        getMessage(weatherSubscriber2.hashCode()));
   }
 
   @Test
-  void testMultipleSubscribersOnDifferentTopics() {
+  void testMultipleSubscribersOnDifferentTopics() throws InterruptedException {
 
-    Topic weatherTopic = new Topic(TopicName.WEATHER);
-    Subscriber weatherSubscriber = new WeatherSubscriber(WEATHER_SUB_NAME);
+    Topic weatherTopic = new Topic(TOPIC_WEATHER);
+    Subscriber weatherSubscriber = new WeatherSubscriber();
     weatherTopic.addSubscriber(weatherSubscriber);
 
-    Topic customerSupportTopic = new Topic(TopicName.CUSTOMER_SUPPORT);
-    Subscriber customerSupportSubscriber = new CustomerSupportSubscriber(CUSTOMER_SUPPORT_SUB_NAME);
+    Topic customerSupportTopic = new Topic(TOPIC_CUSTOMER_SUPPORT);
+    Subscriber customerSupportSubscriber = new CustomerSupportSubscriber();
     customerSupportTopic.addSubscriber(customerSupportSubscriber);
 
     Publisher publisher = new PublisherImpl();
     publisher.registerTopic(weatherTopic);
     publisher.registerTopic(customerSupportTopic);
 
-    publisher.publish(weatherTopic, new Message(WeatherContent.flood));
-    publisher.publish(customerSupportTopic, new Message(CustomerSupportContent.AT));
+    publisher.publish(weatherTopic, new Message("flood"));
+    publisher.publish(customerSupportTopic, new Message("support@test.at"));
+
+    waitForOutput();
+    assertEquals(2, loggerExtension.getFormattedMessages().size());
     assertEquals(
-        "Subscriber: weatherSubscriber issued message: flood start evacuation",
-        loggerExtension.getFormattedMessages().getFirst());
+        "Weather Subscriber: " + weatherSubscriber.hashCode() + " issued message: flood",
+        getMessage(weatherSubscriber.hashCode()));
     assertEquals(
-        "Subscriber: customerSupportSubscriber sent the email to: customer.support@test.at",
-        loggerExtension.getFormattedMessages().get(1));
+        "Customer Support Subscriber: "
+            + customerSupportSubscriber.hashCode()
+            + " sent the email to: support@test.at",
+        getMessage(customerSupportSubscriber.hashCode()));
   }
 
   @Test
-  void testInvalidContentOnTopics() {
+  void testInvalidContentOnTopics() throws InterruptedException {
 
-    Topic weatherTopic = new Topic(TopicName.WEATHER);
-    Subscriber weatherSubscriber = new WeatherSubscriber(WEATHER_SUB_NAME);
+    Topic weatherTopic = new Topic(TOPIC_WEATHER);
+    Subscriber weatherSubscriber = new WeatherSubscriber();
     weatherTopic.addSubscriber(weatherSubscriber);
 
-    Topic customerSupportTopic = new Topic(TopicName.CUSTOMER_SUPPORT);
-    Subscriber customerSupportSubscriber = new CustomerSupportSubscriber(CUSTOMER_SUPPORT_SUB_NAME);
+    Topic customerSupportTopic = new Topic(TOPIC_CUSTOMER_SUPPORT);
+    Subscriber customerSupportSubscriber = new CustomerSupportSubscriber();
     customerSupportTopic.addSubscriber(customerSupportSubscriber);
 
     Publisher publisher = new PublisherImpl();
     publisher.registerTopic(weatherTopic);
     publisher.registerTopic(customerSupportTopic);
 
-    publisher.publish(weatherTopic, new Message(CustomerSupportContent.DE));
-    publisher.publish(customerSupportTopic, new Message(WeatherContent.earthquake));
+    publisher.publish(weatherTopic, new Message(123));
+    publisher.publish(customerSupportTopic, new Message(34.56));
+
+    waitForOutput();
     assertTrue(loggerExtension.getFormattedMessages().getFirst().contains("Unknown content type"));
     assertTrue(loggerExtension.getFormattedMessages().get(1).contains("Unknown content type"));
   }
 
   @Test
-  void testUnsubscribe() {
+  void testUnsubscribe() throws InterruptedException {
 
-    Topic weatherTopic = new Topic(TopicName.WEATHER);
-    Subscriber weatherSubscriber = new WeatherSubscriber(WEATHER_SUB_NAME);
+    Topic weatherTopic = new Topic(TOPIC_WEATHER);
+    Subscriber weatherSubscriber = new WeatherSubscriber();
     weatherTopic.addSubscriber(weatherSubscriber);
 
     Publisher publisher = new PublisherImpl();
     publisher.registerTopic(weatherTopic);
 
-    publisher.publish(weatherTopic, new Message(WeatherContent.earthquake));
+    publisher.publish(weatherTopic, new Message("earthquake"));
 
     weatherTopic.removeSubscriber(weatherSubscriber);
-    publisher.publish(weatherTopic, new Message(WeatherContent.tornado));
+    publisher.publish(weatherTopic, new Message("tornado"));
 
+    waitForOutput();
     assertEquals(1, loggerExtension.getFormattedMessages().size());
     assertTrue(loggerExtension.getFormattedMessages().getFirst().contains("earthquake"));
     assertFalse(loggerExtension.getFormattedMessages().getFirst().contains("tornado"));
+  }
+
+  private String getMessage(int subscriberHash) {
+    Optional<String> message =
+        loggerExtension.getFormattedMessages().stream()
+            .filter(str -> str.contains(String.valueOf(subscriberHash)))
+            .findFirst();
+    assertTrue(message.isPresent());
+    return message.get();
+  }
+
+  private void waitForOutput() {
+    try {
+      TimeUnit.SECONDS.sleep(1);
+    } catch (InterruptedException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

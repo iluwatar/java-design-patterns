@@ -11,18 +11,19 @@ import org.junit.jupiter.api.Test;
 
 public class TopicTest {
 
+  private static final String TOPIC_WEATHER = "WEATHER";
+
   @Test
   void testTopic() {
-    Topic topic = new Topic(TopicName.WEATHER);
-    assertEquals(TopicName.WEATHER, topic.getName());
+    Topic topic = new Topic(TOPIC_WEATHER);
+    assertEquals(TOPIC_WEATHER, topic.getTopicName());
   }
 
   @Test
   void testSubscribing() throws NoSuchFieldException, IllegalAccessException {
 
-    final String subscriberName = "subscriberName";
-    Topic topic = new Topic(TopicName.WEATHER);
-    Subscriber sub = new WeatherSubscriber(subscriberName);
+    Topic topic = new Topic(TOPIC_WEATHER);
+    Subscriber sub = new WeatherSubscriber();
     topic.addSubscriber(sub);
 
     Field field = topic.getClass().getDeclaredField("subscribers");

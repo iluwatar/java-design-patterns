@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import com.iluwatar.publish.subscribe.LoggerExtension;
 import com.iluwatar.publish.subscribe.model.Message;
 import com.iluwatar.publish.subscribe.model.Topic;
-import com.iluwatar.publish.subscribe.model.TopicName;
 import java.lang.reflect.Field;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
@@ -17,9 +16,12 @@ public class PublisherTest {
 
   @RegisterExtension public LoggerExtension loggerExtension = new LoggerExtension();
 
+  private static final String TOPIC_WEATHER = "WEATHER";
+  private static final String TOPIC_CUSTOMER_SUPPORT = "CUSTOMER_SUPPORT";
+
   @Test
   void testRegisterTopic() throws NoSuchFieldException, IllegalAccessException {
-    Topic topic = new Topic(TopicName.CUSTOMER_SUPPORT);
+    Topic topic = new Topic(TOPIC_CUSTOMER_SUPPORT);
     Publisher publisher = new PublisherImpl();
     publisher.registerTopic(topic);
 
@@ -34,7 +36,7 @@ public class PublisherTest {
 
   @Test
   void testPublish() {
-    Topic topic = new Topic(TopicName.WEATHER);
+    Topic topic = new Topic(TOPIC_WEATHER);
     Publisher publisher = new PublisherImpl();
     publisher.registerTopic(topic);
 
@@ -44,11 +46,11 @@ public class PublisherTest {
 
   @Test
   void testPublishUnregisteredTopic() {
-    Topic topic = new Topic(TopicName.WEATHER);
+    Topic topic = new Topic(TOPIC_WEATHER);
     Publisher publisher = new PublisherImpl();
     publisher.registerTopic(topic);
 
-    Topic topicUnregistered = new Topic(TopicName.CUSTOMER_SUPPORT);
+    Topic topicUnregistered = new Topic(TOPIC_CUSTOMER_SUPPORT);
     Message message = new Message("support");
     publisher.publish(topicUnregistered, message);
     assertEquals(
