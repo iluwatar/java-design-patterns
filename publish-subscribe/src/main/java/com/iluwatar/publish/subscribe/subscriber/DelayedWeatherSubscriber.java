@@ -25,7 +25,7 @@ public class DelayedWeatherSubscriber implements Subscriber {
     }
   }
 
-  /** This method will create an artificial delay to mimic the processing time. */
+  /** create an artificial delay to mimic the persistence and timeouts in real world. */
   private void processData() {
     try {
       TimeUnit.MILLISECONDS.sleep(2000);

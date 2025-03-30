@@ -142,7 +142,7 @@ public interface Subscriber {
 And here is the invocation of the publisher and subscribers.
 
 ```java
-  public static void main(String[] args) throws InterruptedException {
+public static void main(String[] args) throws InterruptedException {
 
     final String topicWeather = "WEATHER";
     final String topicTemperature = "TEMPERATURE";
@@ -186,7 +186,25 @@ And here is the invocation of the publisher and subscribers.
     publisher.publish(weatherTopic, new Message("earthquake"));
     publisher.publish(temperatureTopic, new Message("23C"));
     publisher.publish(supportTopic, new Message("support@test.de"));
-    
+
+    // 5. unregister subscriber from TEMPERATURE topic
+    temperatureTopic.removeSubscriber(weatherSub1);
+
+    // 6. publish message under TEMPERATURE topic
+    publisher.publish(temperatureTopic, new Message("0C"));
+
+    /*
+     * Finally, we wait for the subscribers to consume messages to check the output.
+     * The output can change on each run, depending on how long the execution on each
+     * subscriber would take
+     * Expected behavior:
+     * - weatherSub1 will consume earthquake and 23C
+     * - weatherSub2 will consume earthquake
+     * - delayedWeatherSub will take longer and consume earthquake
+     * - supportSub1, supportSub2 will consume support@test.de
+     * - the message 0C will not be consumed because weatherSub1 unsubscribed from TEMPERATURE topic
+     */
+    TimeUnit.SECONDS.sleep(2);
 }
 ```
 

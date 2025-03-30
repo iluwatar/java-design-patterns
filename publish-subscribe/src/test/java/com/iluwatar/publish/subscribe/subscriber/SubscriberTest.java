@@ -62,7 +62,7 @@ public class SubscriberTest {
   }
 
   @Test
-  void testMultipleSubscribersOnSameTopic() throws InterruptedException {
+  void testMultipleSubscribersOnSameTopic() {
 
     Topic weatherTopic = new Topic(TOPIC_WEATHER);
     Subscriber weatherSubscriber1 = new WeatherSubscriber();
@@ -87,7 +87,7 @@ public class SubscriberTest {
   }
 
   @Test
-  void testMultipleSubscribersOnDifferentTopics() throws InterruptedException {
+  void testMultipleSubscribersOnDifferentTopics() {
 
     Topic weatherTopic = new Topic(TOPIC_WEATHER);
     Subscriber weatherSubscriber = new WeatherSubscriber();
@@ -117,7 +117,7 @@ public class SubscriberTest {
   }
 
   @Test
-  void testInvalidContentOnTopics() throws InterruptedException {
+  void testInvalidContentOnTopics() {
 
     Topic weatherTopic = new Topic(TOPIC_WEATHER);
     Subscriber weatherSubscriber = new WeatherSubscriber();
@@ -140,7 +140,7 @@ public class SubscriberTest {
   }
 
   @Test
-  void testUnsubscribe() throws InterruptedException {
+  void testUnsubscribe() {
 
     Topic weatherTopic = new Topic(TOPIC_WEATHER);
     Subscriber weatherSubscriber = new WeatherSubscriber();
