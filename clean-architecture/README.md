@@ -1,6 +1,6 @@
 ---
 title: "Clean Architecture - A Software Maintainable Architectural style."
-shortTitle: Chain of Responsibility
+shortTitle: Clean Architecture
 description: "Learn the Clean Architecture Style in Java with real-world examples, code snippets, and class diagrams. Enhance your coding skills with our detailed explanations."
 category: Behavioral
 language: en
@@ -9,11 +9,15 @@ tag:
   - Architectural Style
 ---
 
+## Also known as
+
+* Hexagonal Architecture.
+
 ## Intent of Clean Architecture.
 
 The clean architecture is a software design architectural style which ensures the software application is easy to understand, maintainable and can be extend easily as per business requirement.
 
-## Detailed Explanation of Chain of Responsibility Pattern with Real-World Examples
+## Detailed Explanation of Clean Architecture Pattern with Real-World Examples
 
 Real World.
 
@@ -21,11 +25,7 @@ A real world example of clean architecture is like teh shopping mall example. Th
 
 In plain word
 
-It help to make the system more maintainable and easy to extend.
-
-## Also known as
-
-* Hexagonal Architecture
+It helps to make the system more maintainable and easy to extend.
 
 Wikipedia says
 
@@ -33,12 +33,10 @@ Wikipedia says
 > 
 > The clean architecture uses the principle of dependency inversion with the strict rule that dependencies shall only exist between an outer ring to an inner ring and never the contrary.
 
-## Programmatic Example of Chain of Responsibility Pattern
 
 ## Clean architecture Class Diagram
 
-
-![Clean Architecture](./etc/clean-architecture.png "Clean Architecture class diagram")
+![Clean Architecture](./etc/cleanArchitectureUMLDiagram.png "Clean Architecture class diagram")
 
 ## When to Use the Clean Architecture Pattern in Java
 
@@ -49,6 +47,8 @@ In all application we can use the clean architecture style and make the componen
 In the application say Ecommerce application user gives teh order and the application is represented using teh clean architecture pattern.
 
 There are facility like the **product** where user can see the product details like the price and the features, **Cart** user can add the product they have selected and the **Order** where user can see the total order and calculate the price of the order. Learn how to implement this design pattern in Java with the following code snippet.  
+
+## Programmatic Example of Clean Architecture Pattern
 
 First we have the entity class like the `Product`, `Order` and teh `Cart`
 ```java
