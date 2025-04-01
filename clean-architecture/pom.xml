@@ -50,7 +50,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.iluwatar.cleanArchitecture.App</mainClass>
+                                    <mainClass>com.iluwatar.cleanarchitecture.App</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>

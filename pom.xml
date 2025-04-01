@@ -75,6 +75,7 @@
     <module>flyweight</module>
     <module>proxy</module>
     <module>chain-of-responsibility</module>
+      <module>clean-architecture</module>
     <module>command</module>
     <module>interpreter</module>
     <module>iterator</module>

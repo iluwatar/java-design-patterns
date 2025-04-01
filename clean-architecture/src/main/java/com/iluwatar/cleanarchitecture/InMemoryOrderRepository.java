@@ -1,4 +1,4 @@
-package com.iluwatar.cleanArchitecture;
+package com.iluwatar.cleanarchitecture;
 
 import java.util.ArrayList;
 import java.util.List;

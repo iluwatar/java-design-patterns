@@ -1,4 +1,4 @@
-package com.iluwatar.cleanArchitecture;
+package com.iluwatar.cleanarchitecture;
 
 public class OrderController{
   private final ShoppingCartService shoppingCartUseCase;

@@ -1,4 +1,4 @@
-package com.iluwatar.cleanArchitecture;
+package com.iluwatar.cleanarchitecture;
 
 public class CartController {
   private final ShoppingCartService shoppingCartUseCase;
@@ -10,6 +10,7 @@ public class CartController {
   public void addItemToCart(String userId, String productId, int quantity) {
     shoppingCartUseCase.addItemToCart(userId, productId, quantity);
   }
+
 
   public void removeItemFromCart(String userId, String productId) {
     shoppingCartUseCase.removeItemFromCart(userId, productId);
