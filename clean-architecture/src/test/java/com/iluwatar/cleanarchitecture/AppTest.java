@@ -3,6 +3,7 @@ package com.iluwatar.cleanarchitecture;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 class AppTest {
   /**
    * Issue: Add at least one assertion to this test case.
