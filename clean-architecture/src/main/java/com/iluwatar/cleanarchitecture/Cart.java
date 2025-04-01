@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -24,27 +26,40 @@
  */
 package com.iluwatar.cleanarchitecture;
 
-/**
- *  Cart
- */
-public class Cart {
-  private Product product;
-  private int quantity;
+import lombok.Getter;
 
-  public Cart(Product product, int quantity) {
-    this.product = product;
-    this.quantity = quantity;
+/**
+ *  Cart.
+ */
+@Getter
+public class Cart {
+  /**
+   * Product.
+   */
+  private final Product product;
+
+
+  /**
+   * quantity.
+   */
+  private final int quantity;
+
+  /**
+   *
+   * @param prod
+   * @param qty
+   */
+  public Cart(final Product prod, final int qty) {
+    this.product = prod;
+    this.quantity = qty;
   }
 
+  /**
+   *
+   * @return double
+   */
   public double getTotalPrice() {
     return product.getPrice() * quantity;
-  }
-  public Product getProduct() {
-    return product;
-  }
-
-  public int getQuantity() {
-    return quantity;
   }
 
 }

@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -25,16 +27,34 @@
 package com.iluwatar.cleanarchitecture;
 
 /**
- * OrderController
+ * Controller for handling order-related operations.
+ *
+ * <p>This class provides an endpoint for users to checkout their cart
+ * and place an order.</p>
  */
 public class OrderController {
+  /**
+   * Service for managing shopping cart operations.
+   */
   private final ShoppingCartService shoppingCartUseCase;
 
-  public OrderController(ShoppingCartService shoppingCartUseCase) {
-    this.shoppingCartUseCase = shoppingCartUseCase;
+
+  /**
+   * Constructs an {@code OrderController} with the given shopping cart service.
+   *
+   * @param shoppingCartUse The shopping cart service used to process orders.
+   */
+  public OrderController(final ShoppingCartService shoppingCartUse) {
+    this.shoppingCartUseCase = shoppingCartUse;
   }
 
-  public Order checkout(String userId) {
+  /**
+   * Processes the checkout for a given user and creates an order.
+   *
+   * @param userId The ID of the user checking out.
+   * @return The created {@link Order} after checkout.
+   */
+  public Order checkout(final String userId) {
     return shoppingCartUseCase.checkout(userId);
   }
 }

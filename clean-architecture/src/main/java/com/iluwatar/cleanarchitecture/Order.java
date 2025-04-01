@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -24,30 +26,41 @@
  */
 package com.iluwatar.cleanarchitecture;
 
+import lombok.Getter;
 import java.util.List;
 
 /**
- * Order
+ * Represents an order placed by a user containing
+ * the ordered items and total price.
+ *
+ * <p>An order includes a unique order ID, a list of cart items
+ * and the total price of the order.</p>
  */
+@Getter
 public class Order {
-  private String orderId;
-  private List<Cart> items;
-  private double totalPrice;
+  /**
+   * The unique identifier for this order.
+   */
+  private final String orderId;
+  /**
+   * The list of items included in this order.
+   */
+  private final List<Cart> items;
+  /**
+   * The list of items included in this order.
+   */
+  private final double totalPrice;
 
-  public Order(String orderId, List<Cart> items) {
-    this.orderId = orderId;
-    this.items = items;
+  /**
+   * Constructs an {@code Order} with the given order ID and list of cart items.
+   * The total price is based on the individual item prices in the cart.
+   *
+   * @param id The unique identifier for the order.
+   * @param item   The list of cart items included in the order.
+   */
+  public Order(final String id, final List<Cart> item) {
+    this.orderId = id;
+    this.items = item;
     this.totalPrice = items.stream().mapToDouble(Cart::getTotalPrice).sum();
-  }
-  public String getOrderId() {
-    return orderId;
-  }
-
-  public List<Cart> getItems() {
-    return items;
-  }
-
-  public double getTotalPrice() {
-    return totalPrice;
   }
 }

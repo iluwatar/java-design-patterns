@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -27,12 +29,42 @@ package com.iluwatar.cleanarchitecture;
 import java.util.List;
 
 /**
- * CartRepository
+ * CartRepository.
  */
 public interface CartRepository {
+  /**
+   * Adds an item to the user's cart.
+   *
+   * @param userId The ID of the user.
+   * @param product The product to be added.
+   * @param quantity The quantity of the product.
+   */
   void addItemToCart(String userId, Product product, int quantity);
+  /**
+   * Removes an item from the user's cart.
+   *
+   * @param userId The ID of the user.
+   * @param productId The ID of the product to be removed.
+   */
   void removeItemFromCart(String userId, String productId);
+  /**
+   * Retrieves the list of items in the user's cart.
+   *
+   * @param userId The ID of the user.
+   * @return A list of items in the cart.
+   */
   List<Cart> getItemsInCart(String userId);
+  /**
+   * Calculates the total price of the items in the user's cart.
+   *
+   * @param userId The ID of the user.
+   * @return The total price of all items in the cart.
+   */
   double calculateTotal(String userId);
+  /**
+   * Clears all items from the user's cart.
+   *
+   * @param userId The ID of the user.
+   */
   void clearCart(String userId);
 }

@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -26,25 +28,55 @@
 package com.iluwatar.cleanarchitecture;
 
 /**
- * CartController
+ * Controller class for handling shopping cart operations.
+ *
+ * <p>This class provides methods to add, remove, and calculate the
+ * total price of items in a user's shopping cart.</p>
  */
 public class CartController {
+
+
+  /** Service layer responsible for cart operations. */
   private final ShoppingCartService shoppingCartUseCase;
 
-  public CartController(ShoppingCartService shoppingCartUseCase) {
-    this.shoppingCartUseCase = shoppingCartUseCase;
+  /**
+   * Constructs a CartController with the specified shopping cart service.
+   *
+   * @param shoppingCart The shopping cart service to handle cart operations.
+   */
+  public CartController(final ShoppingCartService shoppingCart) {
+    this.shoppingCartUseCase = shoppingCart;
   }
 
-  public void addItemToCart(String userId, String productId, int quantity) {
+  /**
+   * Adds an item to the user's cart.
+   *
+   * @param userId The ID of the user.
+   * @param productId The ID of the product to be added.
+   * @param quantity The quantity of the product.
+   */
+  public void addItemToCart(
+      final String userId, final String productId, final int quantity) {
     shoppingCartUseCase.addItemToCart(userId, productId, quantity);
   }
 
-
-  public void removeItemFromCart(String userId, String productId) {
+  /**
+   * Removes an item from the user's cart.
+   *
+   * @param userId The ID of the user.
+   * @param productId The ID of the product to be removed.
+   */
+  public void removeItemFromCart(final String userId, final String productId) {
     shoppingCartUseCase.removeItemFromCart(userId, productId);
   }
 
-  public double calculateTotal(String userId) {
+  /**
+   * Calculates the total cost of items in the user's cart.
+   *
+   * @param userId The ID of the user.
+   * @return The total price of all items in the cart.
+   */
+  public double calculateTotal(final String userId) {
     return shoppingCartUseCase.calculateTotal(userId);
   }
 }

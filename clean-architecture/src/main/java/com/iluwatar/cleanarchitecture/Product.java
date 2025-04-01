@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -24,29 +26,32 @@
  */
 package com.iluwatar.cleanarchitecture;
 
+import lombok.Getter;
+
 /**
- * Product
+ * Represents a product in the system.
  */
+@Getter
 public class Product {
-  private String id;
-  private String name;
-  private double price;
+  /** The unique identifier for the product. */
+  private final String id;
 
-  public Product(String id, String name, double price) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
-  }
+  /** The name of the product. */
+  private final String name;
 
-  public String getId() {
-    return id;
-  }
+  /** The price of the product. */
+  private final double price;
 
-  public String getName() {
-    return name;
-  }
-
-  public double getPrice() {
-    return price;
+  /**
+   * Constructs a new Product with the given details.
+   *
+   * @param pdtId The unique identifier of the product.
+   * @param firstName The name of the product.
+   * @param p The price of the product.
+   */
+  public Product(final String pdtId, final String firstName, final double p) {
+    this.id = pdtId;
+    this.name = firstName;
+    this.price = p;
   }
 }

@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -28,13 +30,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * InMemoryOrderRepository
+ * An in-memory implementation of the {@link OrderRepository}.
+ *
+ * <p>This class stores orders in a list, allowing orders to be saved
+ * but not persisted beyond the application's runtime.</p>
  */
 public class InMemoryOrderRepository implements OrderRepository {
+  /** A list to store orders in memory. */
   private final List<Order> orders = new ArrayList<>();
 
+  /**
+   * Saves an order to the in-memory repository.
+   *
+   * @param order The order to be saved.
+   */
   @Override
-  public void saveOrder(Order order) {
+  public void saveOrder(final Order order) {
     orders.add(order);
   }
 }

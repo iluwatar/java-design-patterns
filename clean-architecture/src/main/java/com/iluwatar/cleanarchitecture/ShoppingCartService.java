@@ -1,5 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using
  * ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
@@ -28,51 +29,81 @@ package com.iluwatar.cleanarchitecture;
 import java.util.List;
 
 /**
- * ShoppingCartService
+ * Service class for managing shopping cart operations.
+ *
+ * <p>This class provides functionalities to add and remove items from the cart,
+ * calculate the total price, and handle checkout operations.</p>
  */
 public class ShoppingCartService {
+  /** Repository for managing product data. */
   private final ProductRepository productRepository;
+  /** Repository for managing cart data. */
   private final CartRepository cartRepository;
+  /** Repository for managing order data. */
   private final OrderRepository orderRepository;
 
 
   /**
+   * Constructs a ShoppingCartService with the required repositories.
    *
-   * @param productRepository
-   * @param cartRepository
-   * @param orderRepository
+   * @param pRepository The repository to fetch product details.
+   * @param cRepository The repository to manage cart operations.
+   * @param oRepository The repository to handle order persistence.
    */
-  public ShoppingCartService(ProductRepository productRepository,
-                                 CartRepository cartRepository,
-                                 OrderRepository orderRepository) {
-    this.productRepository = productRepository;
-    this.cartRepository = cartRepository;
-    this.orderRepository = orderRepository;
+  public ShoppingCartService(final ProductRepository pRepository,
+                                 final CartRepository cRepository,
+                                 final OrderRepository oRepository) {
+    this.productRepository = pRepository;
+    this.cartRepository = cRepository;
+    this.orderRepository = oRepository;
   }
 
   /**
+   * Adds an item to the user's shopping cart.
    *
-   * @param userId
-   * @param productId
-   * @param quantity
+   * @param userId The ID of the user.
+   * @param productId The ID of the product to be added.
+   * @param quantity The quantity of the product.
    */
-  public void addItemToCart(String userId, String productId, int quantity) {
+  public void addItemToCart(
+      final String userId, final String productId, final int quantity) {
     Product product = productRepository.getProductById(productId);
     if (product != null) {
       cartRepository.addItemToCart(userId, product, quantity);
     }
   }
-  public void removeItemFromCart(String userId, String productId) {
+  /**
+   * Removes an item from the user's shopping cart.
+   *
+   * @param userId The ID of the user.
+   * @param productId The ID of the product to be removed.
+   */
+  public void removeItemFromCart(final String userId, final String productId) {
     cartRepository.removeItemFromCart(userId, productId);
   }
 
-  public double calculateTotal(String userId) {
+  /**
+   * Calculates the total cost of items in the user's shopping cart.
+   *
+   * @param userId The ID of the user.
+   * @return The total price of all items in the cart.
+   */
+  public double calculateTotal(final String userId) {
     return cartRepository.calculateTotal(userId);
   }
 
-  public Order checkout(String userId) {
+  /**
+   * Checks out the user's cart and creates an order.
+   *
+   * <p>This method retrieves the cart items, generates an order ID,
+   * creates a new order, saves it, and clears the cart.</p>
+   *
+   * @param userId The ID of the user.
+   * @return The created order containing purchased items.
+   */
+  public Order checkout(final String userId) {
     List<Cart> items = cartRepository.getItemsInCart(userId);
-    String orderId = "ORDER-" + System.currentTimeMillis(); // simple order ID generation
+    String orderId = "ORDER-" + System.currentTimeMillis();
     Order order = new Order(orderId, items);
     orderRepository.saveOrder(order);
     cartRepository.clearCart(userId);

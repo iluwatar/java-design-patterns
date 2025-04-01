@@ -1,6 +1,7 @@
-
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -26,8 +27,14 @@
 package com.iluwatar.cleanarchitecture;
 
 /**
- * ProductRepository
+ * Repository interface for handling product-related operations.
  */
 public interface ProductRepository {
+  /**
+   * Retrieves a product by its unique identifier.
+   *
+   * @param productId The unique ID of the product.
+   * @return The product corresponding to the given ID.
+   */
   Product getProductById(String productId);
 }

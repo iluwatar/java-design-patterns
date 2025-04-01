@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -28,18 +30,49 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * InMemoryProductRepository
+ * In-memory implementation of the {@link ProductRepository} interface.
+ *
+ * <p>This repository stores products in memory
+ * allowing retrieval by product ID.</p>
  */
 public class InMemoryProductRepository implements ProductRepository {
+  /**
+   * A map to store products by their unique product ID.
+   */
   private final Map<String, Product> products = new HashMap<>();
+  /**
+   * The price of the Laptop in USD.
+   * <p>Used in the in-memory product repository
+   * to define the cost of a Laptop.</p>
+   */
+  private static final double LAPTOP_PRICE = 1000.0;
 
+  /**
+   * The price of the Smartphone in USD.
+   * <p>Used in the in-memory product repository
+   * to define the cost of a Smartphone.</p>
+   */
+  private static final double SMARTPHONE_PRICE = 500.0;
+
+
+  /**
+   * Constructs an {@code InMemoryProductRepository} and
+   * initializes it with some example products.
+   */
   public InMemoryProductRepository() {
-    products.put("1", new Product("1", "Laptop", 1000.0));
-    products.put("2", new Product("2", "Smartphone", 500.0));
+    products.put("1", new Product("1", "Laptop", LAPTOP_PRICE));
+    products.put("2", new Product("2", "Smartphone", SMARTPHONE_PRICE));
   }
 
+  /**
+   * Retrieves a product by its unique ID.
+   *
+   * @param productId The ID of the product to retrieve.
+   * @return The {@link Product} corresponding to the given ID
+   * {@code null} if not found.
+   */
   @Override
-  public Product getProductById(String productId) {
+  public Product getProductById(final String productId) {
     return products.get(productId);
   }
 }

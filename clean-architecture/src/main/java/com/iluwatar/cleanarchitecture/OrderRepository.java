@@ -1,5 +1,7 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license.
+ * Module model-view-viewmodel is using ZK framework
+ * licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -25,8 +27,15 @@
 package com.iluwatar.cleanarchitecture;
 
 /**
- * OrderRepository
+ * Repository interface for managing order persistence.
+ *
+ * <p>This interface defines the contract for storing orders in the system.</p>
  */
 public interface OrderRepository {
+  /**
+   * Saves an order to the repository.
+   *
+   * @param order The order to be saved.
+   */
   void saveOrder(Order order);
 }
