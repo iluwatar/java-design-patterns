@@ -26,8 +26,8 @@
  */
 package com.iluwatar.cleanarchitecture;
 
-import lombok.Getter;
 import java.util.List;
+import lombok.Getter;
 
 /**
  * Represents an order placed by a user containing

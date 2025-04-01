@@ -46,16 +46,16 @@ public class ShoppingCartService {
   /**
    * Constructs a ShoppingCartService with the required repositories.
    *
-   * @param pRepository The repository to fetch product details.
-   * @param cRepository The repository to manage cart operations.
-   * @param oRepository The repository to handle order persistence.
+   * @param pdtRepository The repository to fetch product details.
+   * @param repository The repository to manage cart operations.
+   * @param ordRepository The repository to handle order persistence.
    */
-  public ShoppingCartService(final ProductRepository pRepository,
-                                 final CartRepository cRepository,
-                                 final OrderRepository oRepository) {
-    this.productRepository = pRepository;
-    this.cartRepository = cRepository;
-    this.orderRepository = oRepository;
+  public ShoppingCartService(final ProductRepository pdtRepository,
+                                 final CartRepository repository,
+                                 final OrderRepository ordRepository) {
+    this.productRepository = pdtRepository;
+    this.cartRepository = repository;
+    this.orderRepository = ordRepository;
   }
 
   /**

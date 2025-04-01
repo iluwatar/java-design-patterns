@@ -69,7 +69,7 @@ public class InMemoryProductRepository implements ProductRepository {
    *
    * @param productId The ID of the product to retrieve.
    * @return The {@link Product} corresponding to the given ID
-   * {@code null} if not found.
+   *         {@code null} if not found.
    */
   @Override
   public Product getProductById(final String productId) {
