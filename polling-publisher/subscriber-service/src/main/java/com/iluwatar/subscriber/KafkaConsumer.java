@@ -34,7 +34,12 @@ import org.springframework.stereotype.Service;
 public class KafkaConsumer {
 
   @KafkaListener(topics = "updates", groupId = "subscriber-group")
-  public void listen(String message) {
-    System.out.println("Received message: " + message);
+  public void listenUpdates(String message) {
+    System.out.println("[updates]: Received message: " + message);
+  }
+
+  @KafkaListener(topics = "API", groupId = "subscriber-group")
+  public void listenApi(String message) {
+    System.out.println("[API]: Received message from /send : " + message);
   }
 }
