@@ -52,7 +52,7 @@ public class PollingScheduler {
 
     if (data != null) {
       System.out.println("🟢 Publishing Data: " + data);
-      kafkaProducer.sendMessage("update", data);
+      kafkaProducer.sendMessage("updates", data);
     } else {
       System.out.println("🔴 No Data Found for ID: " + id);
     }

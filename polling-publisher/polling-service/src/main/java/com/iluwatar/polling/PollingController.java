@@ -48,7 +48,7 @@ public class PollingController {
 
   @PostMapping("/send")
   public String sendMessage(@RequestParam("message") String message) {
-    kafkaProducer.sendMessage("api-message", message);
+    kafkaProducer.sendMessage("API", message);
     return "Message sent: " + message;
   }
 }
