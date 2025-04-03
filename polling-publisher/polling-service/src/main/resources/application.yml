@@ -23,7 +23,12 @@
 
 server:
     port: 8081
+
 spring:
     kafka:
+        bootstrap-servers: localhost:9092 # Kafka broker address(es)
         consumer:
-            group-id: subscriber-group
+            group-id: subscriber-group # Consumer group ID
+            auto-offset-reset: earliest # How to reset offset on consumer startup
+            # Add other consumer properties here
+

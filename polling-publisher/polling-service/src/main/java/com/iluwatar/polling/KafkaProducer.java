@@ -27,15 +27,16 @@ package com.iluwatar.polling;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 
 /**
  * This class is responsible for sending messages to Kafka.
  */
-@Service
+@Component
 public class KafkaProducer {
 
+  @Autowired
   private final KafkaTemplate<String, String> kafkaTemplate;
 
   public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
@@ -47,7 +48,7 @@ public class KafkaProducer {
    *
    * @param message The message to send.
    */
-  public void sendMessage(String message) {
-    kafkaTemplate.send("updates", message);
+  public void sendMessage(String topic, String message) {
+    kafkaTemplate.send(topic, message);
   }
 }

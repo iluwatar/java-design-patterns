@@ -25,10 +25,10 @@
 
 package com.iluwatar.polling;
 
+import java.util.Random;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import java.util.Random;
 
 /**
  * This class is responsible for scheduling polling tasks.
@@ -52,7 +52,7 @@ public class PollingScheduler {
 
     if (data != null) {
       System.out.println("🟢 Publishing Data: " + data);
-      kafkaProducer.sendMessage(data);
+      kafkaProducer.sendMessage("update", data);
     } else {
       System.out.println("🔴 No Data Found for ID: " + id);
     }

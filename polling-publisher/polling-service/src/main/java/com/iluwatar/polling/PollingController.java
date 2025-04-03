@@ -25,7 +25,10 @@
 
 package com.iluwatar.polling;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -37,5 +40,15 @@ public class PollingController {
   @GetMapping("/health")
   public String healthCheck() {
     return "Polling Service is up and running!";
+  }
+
+
+  @Autowired
+  private KafkaProducer kafkaProducer;
+
+  @PostMapping("/send")
+  public String sendMessage(@RequestParam("message") String message) {
+    kafkaProducer.sendMessage("api-message", message);
+    return "Message sent: " + message;
   }
 }

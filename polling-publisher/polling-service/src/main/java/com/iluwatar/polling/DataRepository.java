@@ -27,18 +27,21 @@ package com.iluwatar.polling;
 
 import java.util.HashMap;
 import java.util.Map;
-import org.springframework.stereotype.Repository;
 import javax.annotation.PostConstruct;
+import org.springframework.stereotype.Repository;
 
 
 /**
  * Data repository to keep or store data.
  */
 @Repository
-public final class DataRepository {
+public class DataRepository {
 
   private final Map<Integer, String> dataStorage = new HashMap<>();
 
+  /**
+   * init after map creation ... to put dummy data.
+   */
   @PostConstruct
   public void init() {
     // Injecting dummy data at startup
