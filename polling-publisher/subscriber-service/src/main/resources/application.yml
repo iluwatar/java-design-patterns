@@ -26,5 +26,6 @@ server:
 
 spring:
     kafka:
+        bootstrap-servers: localhost:9092 # Kafka broker address(es)
         consumer:
             group-id: subscriber-group
