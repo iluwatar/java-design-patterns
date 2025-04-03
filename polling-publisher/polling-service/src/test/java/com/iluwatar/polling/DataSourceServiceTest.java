@@ -26,7 +26,7 @@
 package com.iluwatar.polling;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assertions;
 
 /*
  * this class contains the unit test for DataSoourceServiceTest class.

@@ -42,6 +42,6 @@ public class App {
    * @param args command line args.
    */
   public static void main(String[] args) {
-    SpringApplication.run(PollingApplication.class, args);
+    SpringApplication.run(App.class, args);
   }
 }

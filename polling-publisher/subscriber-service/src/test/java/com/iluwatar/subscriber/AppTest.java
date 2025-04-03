@@ -25,8 +25,10 @@
 
 package com.iluwatar.subscriber;
 
+import org.springframework.boot.SpringApplication;
+
 public class AppTest {
   public static void main(String[] args) {
-    SpringApplication.run(SubscriberApplication.class, args);
+    SpringApplication.run(App.class, args);
   }
 }

@@ -34,20 +34,9 @@
     </parent>
 
     <artifactId>polling-service</artifactId>
-    <version>1.26.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
-    <dependencyManagement>
-        <dependencies>
-          <dependency>
-              <groupId>com.h2database</groupId>
-              <artifactId>h2</artifactId>
-              <scope>runtime</scope>
-          </dependency>
-      </dependencies>
-    </dependencyManagement>
-
-  <build>
+    <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
