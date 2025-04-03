@@ -25,10 +25,16 @@
 
 package com.iluwatar.subscriber;
 
-import org.springframework.boot.SpringApplication;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-public class AppTest {
-  public static void main(String[] args) {
-    SpringApplication.run(App.class, args);
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+class AppTest {
+
+  @Test
+  void subscriber() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

@@ -28,7 +28,7 @@ package com.iluwatar.subscriber;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 /**
- * Kafak consumer service to consume messages / updates.
+ * Kafka consumer service to consume messages / updates.
  * */
 @Service
 public class KafkaConsumer {
