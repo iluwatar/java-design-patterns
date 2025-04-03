@@ -1,9 +1,9 @@
 # **Subscriber**
 README.md (Inside `subscriber-module/`)
 
-## Subscriber Module
+## Subscriber Microservice
 
-This module **listens** to Kafka topic **`updates_topic`** and processes updates.
+This module **listens** to Kafka topic **`updates & API`** and processes data.
 
 ## How It Works
 - Uses **Spring Kafka** to consume messages.
@@ -15,6 +15,7 @@ This module **listens** to Kafka topic **`updates_topic`** and processes updates
 subscriber-module/
 │➜ src/main/java/com/example/subscriber/
 |   ├── App.java
+|   |-- KafkaConsumer.java
 │
 │➜ pom.xml
 │➜ README.md  (This file)
@@ -23,16 +24,6 @@ subscriber-module/
 ## Running the Subscriber
 ```sh
 mvn spring-boot:run
-```
-
-## Testing
-Verify subscriber output:
-```sh
-mvn spring-boot:run
-```
-Expected console output:
-```
-
 ```
 
 ---

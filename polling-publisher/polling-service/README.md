@@ -2,7 +2,7 @@
 **README.md** (Inside `polling-module/`)
 
 
-## Publisher Module
+## Publisher Microservice
 
 This module is responsible for **polling a data source** at regular intervals and publishing updates to Kafka.
 
@@ -16,7 +16,12 @@ This module is responsible for **polling a data source** at regular intervals an
 ```
 publisher-module/
 │️— src/main/java/com/iluawatar/polling/
-|   ├── App.java
+|    ├── App.java
+│    ├── DataRepository.java
+│    ├── DataSourceService.java
+│    ├── KafkaProducer.java
+│    ├── PollingController.java
+│    └── PollingScheduler.java
 │
 │️— pom.xml
 │️— README.md  (This file)
@@ -29,8 +34,8 @@ mvn spring-boot:run
 ```
 
 ## 📝 **Endpoints**
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/publish` | Manually trigger data publishing |
+| Method | Endpoint         | Description                      |
+|--------|------------------|----------------------------------|
+| `GET`  | `/health`        | check health of polling          |
+| `POST` | `/send?message=""` | Manually trigger data publishing |
 
-## 🛠 **Testing Kafka Output**
