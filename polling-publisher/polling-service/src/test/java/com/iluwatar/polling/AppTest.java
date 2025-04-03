@@ -25,11 +25,15 @@
 package com.iluwatar.polling;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-public class AppTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+class AppTest {
 
   @Test
-  public void polling() {
-    System.out.println(".(checking.. code is not running)");
+  void polling() {
+    assertDoesNotThrow(() -> App.main(new String[]{}));
   }
 }

@@ -22,60 +22,58 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package com.iluwatar.polling;
 
-import org.junit.jupiter.api.*;
-import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DataSourceServiceTest {
+import java.util.Map;
+
+class DataRepositoryTest {
 
   private DataRepository repository;
-  private DataSourceService service;
 
   @BeforeEach
   void setUp() {
-    repository = new DataRepository();
-    service = new DataSourceService(repository);
+    repository = new DataRepository(); // Initialize before each test
   }
 
   @Test
-  void testAddData() {
-    service.addData(1, "Test Data");
-
-    assertEquals("Test Data", repository.findById(1));
-  }
-
-  @Test
-  void testGetData() {
+  void testSaveAndFindById() {
     repository.save(1, "Test Data");
 
-    String result = service.getData(1);
+    String result = repository.findById(1);
 
-    assertEquals("Test Data", result, "The retrieved data should match.");
+    assertEquals("Test Data", result, "The retrieved data should match the stored value.");
   }
 
   @Test
-  void testRemoveData() {
-    repository.save(2, "Some Data");
+  void testFindById_NotFound() {
+    String result = repository.findById(99);
 
-    service.removeData(2);
-
-    assertEquals("Data not found", repository.findById(2), "Deleted data should not be retrievable.");
-
+    assertEquals("Data not found", result, "Should return 'Data not found' for missing entries.");
   }
 
   @Test
-  void testGetAllData() {
+  void testDelete() {
+    repository.save(2, "To be deleted");
+    repository.delete(2);
+
+    String result = repository.findById(2);
+
+    assertEquals("Data not found", result, "Deleted data should not be retrievable.");
+  }
+
+  @Test
+  void testFindAll() {
     repository.save(1, "First");
     repository.save(2, "Second");
 
-    Map<Integer, String> result = service.getAllData();
+    Map<Integer, String> allData = repository.findAll();
 
-    assertEquals(2, result.size(), "Should return all stored data.");
-    assertEquals("First", result.get(1), "Value for key 1 should be 'First'.");
-    assertEquals("Second", result.get(2), "Value for key 2 should be 'Second'.");
+    assertEquals(2, allData.size(), "The repository should contain two items.");
+    assertTrue(allData.containsKey(1) && allData.containsKey(2), "Both keys should exist.");
   }
 }

@@ -26,6 +26,8 @@
 package com.iluwatar.polling;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import org.springframework.stereotype.Service;
 
 /**
@@ -34,11 +36,43 @@ import org.springframework.stereotype.Service;
 @Service
 public class DataSourceService {
 
-  /**
-   * Function to fetch data from DataRepository.
-   * */
-  public String fetchData() {
-    // Simulate fetching data from a data source
-    return "Sample Data " + System.currentTimeMillis();
+  private final DataRepository repository;
+
+  public DataSourceService(DataRepository repository) {
+    this.repository = repository;
+
+    // Start a separate thread to add data every 3 seconds
+    new Thread(() -> {
+      Random random = new Random();
+      while (true) {
+        try {
+          Thread.sleep(3000); // Add data every 3 seconds
+          int id = random.nextInt(100); // Random ID
+          String value = "Auto-Data-" + id;
+          this.addData(id, value);
+          System.out.println("🔵 Data Added: " + id + " -> " + value);
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+          break;
+        }
+      }
+    }).start();
+
+  }
+
+  public void addData(int id, String value) {
+    repository.save(id, value);
+  }
+
+  public String getData(int id) {
+    return repository.findById(id);
+  }
+
+  public void removeData(int id) {
+    repository.delete(id);
+  }
+
+  public Map<Integer, String> getAllData() {
+    return repository.findAll();
   }
 }

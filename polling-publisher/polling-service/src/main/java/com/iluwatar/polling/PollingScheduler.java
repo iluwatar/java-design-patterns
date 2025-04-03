@@ -28,6 +28,7 @@ package com.iluwatar.polling;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import java.util.Random;
 
 /**
  * This class is responsible for scheduling polling tasks.
@@ -42,13 +43,18 @@ public class PollingScheduler {
   private KafkaProducer kafkaProducer;
 
   /**
-   * schedular for poll data on each 5 second.
+   * Scheduler for poll data on each 5 second.
    * */
   @Scheduled(fixedRate = 5000) // Poll every 5 seconds
   public void pollDataSource() {
-    String data = dataSourceService.fetchData();
+    int id = new Random().nextInt(100); // Pick a random ID
+    String data = dataSourceService.getData(id); // Get data from service
+
     if (data != null) {
+      System.out.println("🟢 Publishing Data: " + data);
       kafkaProducer.sendMessage(data);
+    } else {
+      System.out.println("🔴 No Data Found for ID: " + id);
     }
   }
 }
