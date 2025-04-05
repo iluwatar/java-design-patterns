@@ -32,8 +32,8 @@ import java.util.List;
 /**
  * An in-memory implementation of the {@link OrderRepository}.
  *
- * <p>This class stores orders in a list, allowing orders to be saved
- * but not persisted beyond the application's runtime.</p>
+ * <p>This class stores orders in a list, allowing orders to be saved but not persisted beyond the
+ * application's runtime.
  */
 public class InMemoryOrderRepository implements OrderRepository {
   /** A list to store orders in memory. */

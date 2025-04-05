@@ -1,9 +1,9 @@
 package com.iluwatar.cleanarchitecture;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CartControllerTest {
 
@@ -15,7 +15,8 @@ public class CartControllerTest {
     ProductRepository productRepository = new InMemoryProductRepository();
     CartRepository cartRepository = new InMemoryCartRepository();
     OrderRepository orderRepository = new InMemoryOrderRepository();
-    shoppingCartUseCase = new ShoppingCartService(productRepository, cartRepository, orderRepository);
+    shoppingCartUseCase =
+        new ShoppingCartService(productRepository, cartRepository, orderRepository);
     cartController = new CartController(shoppingCartUseCase);
   }
 

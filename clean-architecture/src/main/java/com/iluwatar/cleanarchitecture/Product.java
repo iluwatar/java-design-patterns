@@ -28,9 +28,7 @@ package com.iluwatar.cleanarchitecture;
 
 import lombok.Getter;
 
-/**
- * Represents a product in the system.
- */
+/** Represents a product in the system. */
 @Getter
 public class Product {
   /** The unique identifier for the product. */

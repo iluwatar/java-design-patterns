@@ -30,33 +30,27 @@ import java.util.List;
 import lombok.Getter;
 
 /**
- * Represents an order placed by a user containing
- * the ordered items and total price.
+ * Represents an order placed by a user containing the ordered items and total price.
  *
- * <p>An order includes a unique order ID, a list of cart items
- * and the total price of the order.</p>
+ * <p>An order includes a unique order ID, a list of cart items and the total price of the order.
  */
 @Getter
 public class Order {
-  /**
-   * The unique identifier for this order.
-   */
+  /** The unique identifier for this order. */
   private final String orderId;
-  /**
-   * The list of items included in this order.
-   */
+
+  /** The list of items included in this order. */
   private final List<Cart> items;
-  /**
-   * The list of items included in this order.
-   */
+
+  /** The list of items included in this order. */
   private final double totalPrice;
 
   /**
-   * Constructs an {@code Order} with the given order ID and list of cart items.
-   * The total price is based on the individual item prices in the cart.
+   * Constructs an {@code Order} with the given order ID and list of cart items. The total price is
+   * based on the individual item prices in the cart.
    *
    * @param id The unique identifier for the order.
-   * @param item   The list of cart items included in the order.
+   * @param item The list of cart items included in the order.
    */
   public Order(final String id, final List<Cart> item) {
     this.orderId = id;

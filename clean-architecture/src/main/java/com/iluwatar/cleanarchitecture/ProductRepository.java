@@ -26,9 +26,7 @@
  */
 package com.iluwatar.cleanarchitecture;
 
-/**
- * Repository interface for handling product-related operations.
- */
+/** Repository interface for handling product-related operations. */
 public interface ProductRepository {
   /**
    * Retrieves a product by its unique identifier.

@@ -29,15 +29,11 @@ package com.iluwatar.cleanarchitecture;
 /**
  * Controller for handling order-related operations.
  *
- * <p>This class provides an endpoint for users to checkout their cart
- * and place an order.</p>
+ * <p>This class provides an endpoint for users to checkout their cart and place an order.
  */
 public class OrderController {
-  /**
-   * Service for managing shopping cart operations.
-   */
+  /** Service for managing shopping cart operations. */
   private final ShoppingCartService shoppingCartUseCase;
-
 
   /**
    * Constructs an {@code OrderController} with the given shopping cart service.

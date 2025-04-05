@@ -29,20 +29,17 @@ package com.iluwatar.cleanarchitecture;
 import lombok.Getter;
 
 /**
- * Represents a shopping cart containing a product and its quantity.
- * This class calculates the total price of the product based on its price and quantity.
+ * Represents a shopping cart containing a product and its quantity. This class calculates the total
+ * price of the product based on its price and quantity.
  */
 @Getter
 public class Cart {
-  /**
-   * The product in the cart.
-   * It holds the product details such as name, price, and description.
-   */
+  /** The product in the cart. It holds the product details such as name, price, and description. */
   private final Product product;
 
   /**
-   * The quantity of the product in the cart.
-   * It represents how many units of the product are added to the cart.
+   * The quantity of the product in the cart. It represents how many units of the product are added
+   * to the cart.
    */
   private final int quantity;
 
@@ -58,13 +55,12 @@ public class Cart {
   }
 
   /**
-   * Calculates the total price of the products in the cart.
-   * The total price is the product's price multiplied by the quantity.
+   * Calculates the total price of the products in the cart. The total price is the product's price
+   * multiplied by the quantity.
    *
    * @return the total price of the products in the cart.
    */
   public double getTotalPrice() {
     return product.getPrice() * quantity;
   }
-
 }

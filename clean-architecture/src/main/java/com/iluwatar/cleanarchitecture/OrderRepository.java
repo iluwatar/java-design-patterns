@@ -29,7 +29,7 @@ package com.iluwatar.cleanarchitecture;
 /**
  * Repository interface for managing order persistence.
  *
- * <p>This interface defines the contract for storing orders in the system.</p>
+ * <p>This interface defines the contract for storing orders in the system.
  */
 public interface OrderRepository {
   /**

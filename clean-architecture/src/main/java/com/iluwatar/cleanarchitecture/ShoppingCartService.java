@@ -31,17 +31,18 @@ import java.util.List;
 /**
  * Service class for managing shopping cart operations.
  *
- * <p>This class provides functionalities to add and remove items from the cart,
- * calculate the total price, and handle checkout operations.</p>
+ * <p>This class provides functionalities to add and remove items from the cart, calculate the total
+ * price, and handle checkout operations.
  */
 public class ShoppingCartService {
   /** Repository for managing product data. */
   private final ProductRepository productRepository;
+
   /** Repository for managing cart data. */
   private final CartRepository cartRepository;
+
   /** Repository for managing order data. */
   private final OrderRepository orderRepository;
-
 
   /**
    * Constructs a ShoppingCartService with the required repositories.
@@ -50,9 +51,10 @@ public class ShoppingCartService {
    * @param repository The repository to manage cart operations.
    * @param ordRepository The repository to handle order persistence.
    */
-  public ShoppingCartService(final ProductRepository pdtRepository,
-                                 final CartRepository repository,
-                                 final OrderRepository ordRepository) {
+  public ShoppingCartService(
+      final ProductRepository pdtRepository,
+      final CartRepository repository,
+      final OrderRepository ordRepository) {
     this.productRepository = pdtRepository;
     this.cartRepository = repository;
     this.orderRepository = ordRepository;
@@ -65,13 +67,13 @@ public class ShoppingCartService {
    * @param productId The ID of the product to be added.
    * @param quantity The quantity of the product.
    */
-  public void addItemToCart(
-      final String userId, final String productId, final int quantity) {
+  public void addItemToCart(final String userId, final String productId, final int quantity) {
     Product product = productRepository.getProductById(productId);
     if (product != null) {
       cartRepository.addItemToCart(userId, product, quantity);
     }
   }
+
   /**
    * Removes an item from the user's shopping cart.
    *
@@ -95,8 +97,8 @@ public class ShoppingCartService {
   /**
    * Checks out the user's cart and creates an order.
    *
-   * <p>This method retrieves the cart items, generates an order ID,
-   * creates a new order, saves it, and clears the cart.</p>
+   * <p>This method retrieves the cart items, generates an order ID, creates a new order, saves it,
+   * and clears the cart.
    *
    * @param userId The ID of the user.
    * @return The created order containing purchased items.

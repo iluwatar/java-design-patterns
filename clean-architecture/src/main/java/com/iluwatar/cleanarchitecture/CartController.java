@@ -30,11 +30,10 @@ package com.iluwatar.cleanarchitecture;
 /**
  * Controller class for handling shopping cart operations.
  *
- * <p>This class provides methods to add, remove, and calculate the
- * total price of items in a user's shopping cart.</p>
+ * <p>This class provides methods to add, remove, and calculate the total price of items in a user's
+ * shopping cart.
  */
 public class CartController {
-
 
   /** Service layer responsible for cart operations. */
   private final ShoppingCartService shoppingCartUseCase;
@@ -55,8 +54,7 @@ public class CartController {
    * @param productId The ID of the product to be added.
    * @param quantity The quantity of the product.
    */
-  public void addItemToCart(
-      final String userId, final String productId, final int quantity) {
+  public void addItemToCart(final String userId, final String productId, final int quantity) {
     shoppingCartUseCase.addItemToCart(userId, productId, quantity);
   }
 

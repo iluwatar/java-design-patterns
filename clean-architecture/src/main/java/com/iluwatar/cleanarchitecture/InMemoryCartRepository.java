@@ -34,25 +34,21 @@ import java.util.Map;
 /**
  * Implementation of {@link CartRepository} that stores cart items in memory.
  *
- * <p>This class maintains a map of user carts where each user has a
- * list of cart items.</p>
+ * <p>This class maintains a map of user carts where each user has a list of cart items.
  */
 public class InMemoryCartRepository implements CartRepository {
-  /**
-   * A map storing user carts with their respective cart items.
-   */
+  /** A map storing user carts with their respective cart items. */
   private final Map<String, List<Cart>> userCarts = new HashMap<>();
 
   /**
    * Adds an item to the user's cart.
    *
-   * @param userId  The ID of the user.
+   * @param userId The ID of the user.
    * @param product The product to be added.
    * @param quantity The quantity of the product.
    */
   @Override
-  public void addItemToCart(
-      final String userId, final Product product, final int quantity) {
+  public void addItemToCart(final String userId, final Product product, final int quantity) {
     List<Cart> cart = userCarts.getOrDefault(userId, new ArrayList<>());
     cart.add(new Cart(product, quantity));
     userCarts.put(userId, cart);
@@ -91,8 +87,7 @@ public class InMemoryCartRepository implements CartRepository {
    */
   @Override
   public double calculateTotal(final String userId) {
-    return userCarts.getOrDefault(userId, new ArrayList<>())
-        .stream()
+    return userCarts.getOrDefault(userId, new ArrayList<>()).stream()
         .mapToDouble(Cart::getTotalPrice)
         .sum();
   }

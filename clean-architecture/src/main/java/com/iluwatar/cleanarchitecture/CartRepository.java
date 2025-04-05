@@ -28,9 +28,7 @@ package com.iluwatar.cleanarchitecture;
 
 import java.util.List;
 
-/**
- * CartRepository.
- */
+/** CartRepository. */
 public interface CartRepository {
   /**
    * Adds an item to the user's cart.
@@ -40,6 +38,7 @@ public interface CartRepository {
    * @param quantity The quantity of the product.
    */
   void addItemToCart(String userId, Product product, int quantity);
+
   /**
    * Removes an item from the user's cart.
    *
@@ -47,6 +46,7 @@ public interface CartRepository {
    * @param productId The ID of the product to be removed.
    */
   void removeItemFromCart(String userId, String productId);
+
   /**
    * Retrieves the list of items in the user's cart.
    *
@@ -54,6 +54,7 @@ public interface CartRepository {
    * @return A list of items in the cart.
    */
   List<Cart> getItemsInCart(String userId);
+
   /**
    * Calculates the total price of the items in the user's cart.
    *
@@ -61,6 +62,7 @@ public interface CartRepository {
    * @return The total price of all items in the cart.
    */
   double calculateTotal(String userId);
+
   /**
    * Clears all items from the user's cart.
    *
