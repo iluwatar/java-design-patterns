@@ -30,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-/**
- * FrameBuffer unit test.
- */
+/** FrameBuffer unit test. */
 class FrameBufferTest {
 
   @Test
@@ -91,5 +89,4 @@ class FrameBufferTest {
       fail("Fail to modify field access.");
     }
   }
-
 }

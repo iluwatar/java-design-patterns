@@ -40,9 +40,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.joda.money.Money;
 
 /**
- * This class organizes domain logic of product.
- * A single instance of this class
- * contains both the data and behavior of a single product.
+ * This class organizes domain logic of product. A single instance of this class contains both the
+ * data and behavior of a single product.
  */
 @Slf4j
 @Getter
@@ -59,9 +58,7 @@ public class Product {
   @NonNull private Money price;
   @NonNull private LocalDate expirationDate;
 
-  /**
-   * Save product or update if product already exist.
-   */
+  /** Save product or update if product already exist. */
   public void save() {
     try {
       Optional<Product> product = productDao.findByName(name);
@@ -75,16 +72,14 @@ public class Product {
     }
   }
 
-  /**
-   * Calculate sale price of product with discount.
-   */
+  /** Calculate sale price of product with discount. */
   public Money getSalePrice() {
     return price.minus(calculateDiscount());
   }
 
   private Money calculateDiscount() {
     if (ChronoUnit.DAYS.between(LocalDate.now(), expirationDate)
-            < DAYS_UNTIL_EXPIRATION_WHEN_DISCOUNT_ACTIVE) {
+        < DAYS_UNTIL_EXPIRATION_WHEN_DISCOUNT_ACTIVE) {
 
       return price.multipliedBy(DISCOUNT_RATE, RoundingMode.DOWN);
     }

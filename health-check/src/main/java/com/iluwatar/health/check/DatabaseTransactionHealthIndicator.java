@@ -41,7 +41,6 @@ import org.springframework.stereotype.Component;
  * test transaction using a retry mechanism. If the transaction succeeds after multiple attempts,
  * the health indicator returns {@link Health#up()} and logs a success message. If all retry
  * attempts fail, the health indicator returns {@link Health#down()} and logs an error message.
- *
  */
 @Slf4j
 @Component

@@ -34,10 +34,7 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * FilterManagerTest
- *
- */
+/** FilterManagerTest */
 class FilterManagerTest {
 
   @Test

@@ -25,10 +25,9 @@
 package com.iluwatar.servicestub;
 
 /**
- * Stub implementation of SentimentAnalysisServer.
- * Returns deterministic sentiment based on input keywords.
+ * Stub implementation of SentimentAnalysisServer. Returns deterministic sentiment based on input
+ * keywords.
  */
-
 public class StubSentimentAnalysisServer implements SentimentAnalysisServer {
 
   /**

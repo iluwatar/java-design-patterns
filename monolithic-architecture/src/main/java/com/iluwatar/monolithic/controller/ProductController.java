@@ -29,29 +29,22 @@ import com.iluwatar.monolithic.repository.ProductRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
-/**
- * ProductCon is a controller class for managing Product operations.
- * */
-
-
+/** ProductCon is a controller class for managing Product operations. */
 @Service
 public class ProductController {
   private final ProductRepository productRepository;
-  /**
- * Linking Controller to DB.
- * */
+
+  /** Linking Controller to DB. */
   public ProductController(ProductRepository productRepository) {
     this.productRepository = productRepository;
   }
-  /**
- * Adds a product to the DB.
- * */
+
+  /** Adds a product to the DB. */
   public Product addProduct(Product product) {
     return productRepository.save(product);
   }
-  /**
- * Returns all relevant Product.
- * */
+
+  /** Returns all relevant Product. */
   public List<Product> getAllProducts() {
     return productRepository.findAll();
   }

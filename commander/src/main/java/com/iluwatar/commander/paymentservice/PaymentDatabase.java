@@ -29,12 +29,10 @@ import com.iluwatar.commander.paymentservice.PaymentService.PaymentRequest;
 import java.util.Hashtable;
 import java.util.Map;
 
-/**
- * PaymentDatabase is where the PaymentRequest is added, along with details.
- */
+/** PaymentDatabase is where the PaymentRequest is added, along with details. */
 public class PaymentDatabase extends Database<PaymentRequest> {
 
-  //0-fail, 1-error, 2-success
+  // 0-fail, 1-error, 2-success
   private final Map<String, PaymentRequest> data = new Hashtable<>();
 
   @Override
@@ -46,5 +44,4 @@ public class PaymentDatabase extends Database<PaymentRequest> {
   public PaymentRequest get(String requestId) {
     return data.get(requestId);
   }
-
 }

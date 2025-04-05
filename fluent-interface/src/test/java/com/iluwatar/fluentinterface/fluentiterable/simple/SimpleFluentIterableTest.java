@@ -27,15 +27,11 @@ package com.iluwatar.fluentinterface.fluentiterable.simple;
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterableTest;
 
-/**
- * SimpleFluentIterableTest
- *
- */
+/** SimpleFluentIterableTest */
 class SimpleFluentIterableTest extends FluentIterableTest {
 
   @Override
   protected FluentIterable<Integer> createFluentIterable(Iterable<Integer> integers) {
     return SimpleFluentIterable.fromCopyOf(integers);
   }
-
 }

@@ -24,35 +24,35 @@
  */
 package com.iluwatar.presentationmodel;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
+
 class AlbumTest {
   @Test
-  void testSetTitle(){
+  void testSetTitle() {
     Album album = new Album("a", "b", false, "");
     album.setTitle("b");
     assertEquals("b", album.getTitle());
   }
 
   @Test
-  void testSetArtist(){
+  void testSetArtist() {
     Album album = new Album("a", "b", false, "");
     album.setArtist("c");
     assertEquals("c", album.getArtist());
   }
 
   @Test
-  void testSetClassical(){
+  void testSetClassical() {
     Album album = new Album("a", "b", false, "");
     album.setClassical(true);
     assertTrue(album.isClassical());
   }
 
   @Test
-  void testSetComposer(){
+  void testSetComposer() {
     Album album = new Album("a", "b", false, "");
     album.setClassical(true);
     album.setComposer("w");

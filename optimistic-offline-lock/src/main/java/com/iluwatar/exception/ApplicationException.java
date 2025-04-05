@@ -24,9 +24,7 @@
  */
 package com.iluwatar.exception;
 
-/**
- * Exception happens in application during business-logic execution.
- */
+/** Exception happens in application during business-logic execution. */
 public class ApplicationException extends RuntimeException {
 
   /**

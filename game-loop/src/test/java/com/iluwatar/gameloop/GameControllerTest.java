@@ -54,5 +54,4 @@ class GameControllerTest {
   void testGetBulletPosition() {
     assertEquals(controller.bullet.getPosition(), controller.getBulletPosition(), 0);
   }
-
 }

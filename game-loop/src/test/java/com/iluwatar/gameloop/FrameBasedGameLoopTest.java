@@ -30,9 +30,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * FrameBasedGameLoop unit test class.
- */
+/** FrameBasedGameLoop unit test class. */
 class FrameBasedGameLoopTest {
 
   private FrameBasedGameLoop gameLoop;

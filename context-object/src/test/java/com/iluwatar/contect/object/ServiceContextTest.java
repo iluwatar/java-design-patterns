@@ -24,6 +24,11 @@
  */
 package com.iluwatar.contect.object;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
+
 import com.iluwatar.context.object.LayerA;
 import com.iluwatar.context.object.LayerB;
 import com.iluwatar.context.object.LayerC;
@@ -31,15 +36,7 @@ import com.iluwatar.context.object.ServiceContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-
-/**
- * ServiceContextTest
- *
- */
+/** ServiceContextTest */
 public class ServiceContextTest {
 
   private static final String SERVICE = "SERVICE";
@@ -82,27 +79,23 @@ public class ServiceContextTest {
     assertAll(
         () -> assertNull(layerA.getContext().getAccountService()),
         () -> assertNull(layerA.getContext().getSearchService()),
-        () -> assertNull(layerA.getContext().getSessionService())
-        );
+        () -> assertNull(layerA.getContext().getSessionService()));
     layerA.addAccountInfo(SERVICE);
     assertAll(
         () -> assertEquals(SERVICE, layerA.getContext().getAccountService()),
         () -> assertNull(layerA.getContext().getSearchService()),
-        () -> assertNull(layerA.getContext().getSessionService())
-    );
+        () -> assertNull(layerA.getContext().getSessionService()));
     var layerB = new LayerB(layerA);
     layerB.addSessionInfo(SERVICE);
     assertAll(
         () -> assertEquals(SERVICE, layerB.getContext().getAccountService()),
         () -> assertEquals(SERVICE, layerB.getContext().getSessionService()),
-        () -> assertNull(layerB.getContext().getSearchService())
-    );
+        () -> assertNull(layerB.getContext().getSearchService()));
     var layerC = new LayerC(layerB);
     layerC.addSearchInfo(SERVICE);
     assertAll(
         () -> assertEquals(SERVICE, layerC.getContext().getAccountService()),
         () -> assertEquals(SERVICE, layerC.getContext().getSearchService()),
-        () -> assertEquals(SERVICE, layerC.getContext().getSessionService())
-    );
+        () -> assertEquals(SERVICE, layerC.getContext().getSessionService()));
   }
 }

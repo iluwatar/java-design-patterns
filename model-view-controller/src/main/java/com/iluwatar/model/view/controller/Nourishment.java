@@ -26,9 +26,7 @@ package com.iluwatar.model.view.controller;
 
 import lombok.AllArgsConstructor;
 
-/**
- * Nourishment enumeration.
- */
+/** Nourishment enumeration. */
 @AllArgsConstructor
 public enum Nourishment {
   SATURATED("saturated"),
@@ -36,7 +34,6 @@ public enum Nourishment {
   STARVING("starving");
 
   private final String title;
-
 
   @Override
   public String toString() {

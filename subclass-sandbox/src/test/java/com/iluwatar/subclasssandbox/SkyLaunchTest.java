@@ -30,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.github.stefanbirkner.systemlambda.Statement;
 import org.junit.jupiter.api.Test;
 
-/**
- * SkyLaunch unit tests.
- */
+/** SkyLaunch unit tests. */
 class SkyLaunchTest {
 
   @Test
@@ -54,8 +52,7 @@ class SkyLaunchTest {
   @Test
   void testSpawnParticles() throws Exception {
     var skyLaunch = new SkyLaunch();
-    var outputLog = getLogContent(
-        () -> skyLaunch.spawnParticles("PARTICLE_TYPE", 100));
+    var outputLog = getLogContent(() -> skyLaunch.spawnParticles("PARTICLE_TYPE", 100));
     var expectedLog = "Spawn 100 particle with type PARTICLE_TYPE";
     assertEquals(outputLog, expectedLog);
   }
@@ -63,8 +60,7 @@ class SkyLaunchTest {
   @Test
   void testActivate() throws Exception {
     var skyLaunch = new SkyLaunch();
-    var logs = tapSystemOutNormalized(skyLaunch::activate)
-        .split("\n");
+    var logs = tapSystemOutNormalized(skyLaunch::activate).split("\n");
     final var expectedSize = 3;
     final var log1 = getLogContent(logs[0]);
     final var expectedLog1 = "Move to ( 0.0, 0.0, 20.0 )";

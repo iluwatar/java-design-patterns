@@ -28,8 +28,6 @@ import java.util.Arrays;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
-
-
 /**
  * FanOut/FanIn pattern is a concurrency pattern that refers to executing multiple instances of the
  * activity function concurrently. The "fan out" part is essentially splitting the data into

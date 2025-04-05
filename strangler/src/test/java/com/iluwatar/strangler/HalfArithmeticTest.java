@@ -29,11 +29,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Test methods in HalfArithmetic
- */
+/** Test methods in HalfArithmetic */
 class HalfArithmeticTest {
-  private static final HalfArithmetic arithmetic = new HalfArithmetic(new HalfSource(), new OldSource());
+  private static final HalfArithmetic arithmetic =
+      new HalfArithmetic(new HalfSource(), new OldSource());
 
   @Test
   void testSum() {

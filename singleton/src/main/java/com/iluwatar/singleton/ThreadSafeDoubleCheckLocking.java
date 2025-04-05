@@ -25,22 +25,20 @@
 package com.iluwatar.singleton;
 
 /**
- * <p>Double check locking.</p>
+ * Double check locking.
  *
- * <p>http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html</p>
+ * <p>http://www.cs.umd.edu/~pugh/java/memoryModel/DoubleCheckedLocking.html
  *
- * <p>Broken under Java 1.4.</p>
- *
+ * <p>Broken under Java 1.4.
  */
 public final class ThreadSafeDoubleCheckLocking {
   /**
-   * Singleton instance of the class, declared as volatile to ensure atomic access by multiple threads.
+   * Singleton instance of the class, declared as volatile to ensure atomic access by multiple
+   * threads.
    */
   private static volatile ThreadSafeDoubleCheckLocking instance;
 
-  /**
-   * private constructor to prevent client from instantiating.
-   */
+  /** private constructor to prevent client from instantiating. */
   private ThreadSafeDoubleCheckLocking() {
     // to prevent instantiating by Reflection call
     if (instance != null) {

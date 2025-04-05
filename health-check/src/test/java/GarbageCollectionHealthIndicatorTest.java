@@ -40,10 +40,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Status;
 
-/**
- * Test class for {@link GarbageCollectionHealthIndicator}.
- *
- */
+/** Test class for {@link GarbageCollectionHealthIndicator}. */
 class GarbageCollectionHealthIndicatorTest {
 
   /** Mocked garbage collector MXBean. */

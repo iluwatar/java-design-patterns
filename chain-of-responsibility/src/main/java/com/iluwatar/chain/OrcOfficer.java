@@ -26,9 +26,7 @@ package com.iluwatar.chain;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * OrcOfficer.
- */
+/** OrcOfficer. */
 @Slf4j
 public class OrcOfficer implements RequestHandler {
   @Override
@@ -52,4 +50,3 @@ public class OrcOfficer implements RequestHandler {
     return "Orc officer";
   }
 }
-

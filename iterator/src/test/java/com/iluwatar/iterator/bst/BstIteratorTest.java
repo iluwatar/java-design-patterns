@@ -56,7 +56,9 @@ class BstIteratorTest {
   @Test
   void nextForEmptyTree() {
     var iter = new BstIterator<>(emptyRoot);
-    assertThrows(NoSuchElementException.class, iter::next,
+    assertThrows(
+        NoSuchElementException.class,
+        iter::next,
         "next() should throw an IllegalStateException if hasNext() is false.");
   }
 
@@ -100,5 +102,4 @@ class BstIteratorTest {
     assertEquals(Integer.valueOf(7), iter.next().getVal(), "Sixth Node is 7.");
     assertFalse(iter.hasNext(), "Iterator hasNext() should be false, end of tree.");
   }
-
 }

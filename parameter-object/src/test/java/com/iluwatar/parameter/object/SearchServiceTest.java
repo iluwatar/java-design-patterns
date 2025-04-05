@@ -24,12 +24,12 @@
  */
 package com.iluwatar.parameter.object;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SearchServiceTest {
   private static final Logger LOGGER = LoggerFactory.getLogger(SearchServiceTest.class);
@@ -38,25 +38,25 @@ class SearchServiceTest {
 
   @BeforeEach
   void setUp() {
-    //Creating parameter object with default values set
-    parameterObject = ParameterObject.newBuilder()
-        .withType("sneakers")
-        .build();
+    // Creating parameter object with default values set
+    parameterObject = ParameterObject.newBuilder().withType("sneakers").build();
 
     searchService = new SearchService();
   }
 
-  /**
-   *  Testing parameter object against the overloaded method to verify if the behaviour is same.
-   */
+  /** Testing parameter object against the overloaded method to verify if the behaviour is same. */
   @Test
   void testDefaultParametersMatch() {
-    assertEquals(searchService.search(parameterObject), searchService.search("sneakers",
-        SortOrder.ASC), "Default Parameter values do not not match.");
+    assertEquals(
+        searchService.search(parameterObject),
+        searchService.search("sneakers", SortOrder.ASC),
+        "Default Parameter values do not not match.");
     LOGGER.info("SortBy Default parameter value matches.");
 
-    assertEquals(searchService.search(parameterObject), searchService.search("sneakers",
-        "price"), "Default Parameter values do not not match.");
+    assertEquals(
+        searchService.search(parameterObject),
+        searchService.search("sneakers", "price"),
+        "Default Parameter values do not not match.");
     LOGGER.info("SortOrder Default parameter value matches.");
 
     LOGGER.info("testDefaultParametersMatch executed successfully without errors.");

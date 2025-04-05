@@ -26,22 +26,17 @@ package com.iluwatar.model.view.viewmodel;
 
 import java.util.List;
 import lombok.Getter;
-import lombok.Setter;
 import org.zkoss.bind.annotation.Command;
 import org.zkoss.bind.annotation.NotifyChange;
 import org.zkoss.zk.ui.select.annotation.WireVariable;
 
-/**
- * BookViewModel class.
- */
+/** BookViewModel class. */
 public class BookViewModel {
-  
-  @WireVariable
-  private List<Book> bookList;
-  @Getter
-  private Book selectedBook;
+
+  @WireVariable private List<Book> bookList;
+  @Getter private Book selectedBook;
   private BookService bookService = new BookServiceImpl();
-  
+
   @NotifyChange("selectedBook")
   public void setSelectedBook(Book selectedBook) {
     this.selectedBook = selectedBook;
@@ -50,11 +45,11 @@ public class BookViewModel {
   public List<Book> getBookList() {
     return bookService.load();
   }
-  
-  /** Deleting a book.
-   * When event is triggered on click of Delete button, 
-   * this method will be notified with the selected entry that will be referenced
-   * and used to delete the selected book from the list of books. 
+
+  /**
+   * Deleting a book. When event is triggered on click of Delete button, this method will be
+   * notified with the selected entry that will be referenced and used to delete the selected book
+   * from the list of books.
    */
   @Command
   @NotifyChange({"selectedBook", "bookList"})
@@ -64,5 +59,4 @@ public class BookViewModel {
       selectedBook = null;
     }
   }
-
 }

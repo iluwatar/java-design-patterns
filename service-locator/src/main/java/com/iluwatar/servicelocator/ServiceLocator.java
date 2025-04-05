@@ -27,14 +27,12 @@ package com.iluwatar.servicelocator;
 /**
  * The service locator module. Will fetch service from cache, otherwise creates a fresh service and
  * update cache
- *
  */
 public final class ServiceLocator {
 
   private static final ServiceCache serviceCache = new ServiceCache();
 
-  private ServiceLocator() {
-  }
+  private ServiceLocator() {}
 
   /**
    * Fetch the service with the name param from the cache first, if no service is found, lookup the

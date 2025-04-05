@@ -34,11 +34,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ApiGateway {
 
-  @Resource
-  private ImageClient imageClient;
+  @Resource private ImageClient imageClient;
 
-  @Resource
-  private PriceClient priceClient;
+  @Resource private PriceClient priceClient;
 
   /**
    * Retrieves product information that desktop clients need.

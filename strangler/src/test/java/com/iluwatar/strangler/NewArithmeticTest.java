@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Test methods in NewArithmetic
- */
+/** Test methods in NewArithmetic */
 class NewArithmeticTest {
   private static final NewArithmetic arithmetic = new NewArithmetic(new NewSource());
 

@@ -31,10 +31,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * SimpleWizardTest
- *
- */
+/** SimpleWizardTest */
 class SimpleWizardTest {
 
   private InMemoryAppender appender;
@@ -60,5 +57,4 @@ class SimpleWizardTest {
     assertEquals("SimpleWizard smoking OldTobyTobacco", appender.getLastMessage());
     assertEquals(1, appender.getLogSize());
   }
-
 }

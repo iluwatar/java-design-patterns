@@ -24,9 +24,7 @@
  */
 package com.iluwatar.filterer.threat;
 
-/**
- * Represents a threat that can be detected in given system.
- */
+/** Represents a threat that can be detected in given system. */
 public interface Threat {
   /**
    * Returns name of the threat.
@@ -44,6 +42,7 @@ public interface Threat {
 
   /**
    * Returns threat type.
+   *
    * @return {@link ThreatType}
    */
   ThreatType type();

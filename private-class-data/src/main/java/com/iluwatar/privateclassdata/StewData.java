@@ -24,8 +24,5 @@
  */
 package com.iluwatar.privateclassdata;
 
-/**
- * Stew ingredients.
- */
-
+/** Stew ingredients. */
 public record StewData(int numPotatoes, int numCarrots, int numMeat, int numPeppers) {}

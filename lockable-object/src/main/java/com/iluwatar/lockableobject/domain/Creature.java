@@ -109,5 +109,4 @@ public abstract class Creature {
   public synchronized boolean isAlive() {
     return getHealth() > 0;
   }
-
 }

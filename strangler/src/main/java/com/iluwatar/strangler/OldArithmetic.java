@@ -26,9 +26,7 @@ package com.iluwatar.strangler;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Old version system depends on old version source ({@link OldSource}).
- */
+/** Old version system depends on old version source ({@link OldSource}). */
 @Slf4j
 public class OldArithmetic {
   private static final String VERSION = "1.0";
@@ -41,6 +39,7 @@ public class OldArithmetic {
 
   /**
    * Accumulate sum.
+   *
    * @param nums numbers need to add together
    * @return accumulate sum
    */
@@ -51,6 +50,7 @@ public class OldArithmetic {
 
   /**
    * Accumulate multiplication.
+   *
    * @param nums numbers need to multiply together
    * @return accumulate multiplication
    */

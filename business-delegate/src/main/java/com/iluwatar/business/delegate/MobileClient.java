@@ -24,9 +24,7 @@
  */
 package com.iluwatar.business.delegate;
 
-/**
- * MobileClient utilizes BusinessDelegate to call the business tier.
- */
+/** MobileClient utilizes BusinessDelegate to call the business tier. */
 public class MobileClient {
 
   private final BusinessDelegate businessDelegate;

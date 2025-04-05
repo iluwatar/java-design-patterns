@@ -28,13 +28,10 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
 
-/**
- * The Shard class stored data in a HashMap.
- */
+/** The Shard class stored data in a HashMap. */
 public class Shard {
 
-  @Getter
-  private final int id;
+  @Getter private final int id;
 
   private final Map<Integer, Data> dataStore;
 

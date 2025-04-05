@@ -24,6 +24,9 @@
  */
 package com.iluwatar.monolithic;
 
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
+
 import com.iluwatar.monolithic.controller.OrderController;
 import com.iluwatar.monolithic.controller.ProductController;
 import com.iluwatar.monolithic.controller.UserController;
@@ -36,33 +39,25 @@ import com.iluwatar.monolithic.model.User;
 import com.iluwatar.monolithic.repository.OrderRepository;
 import com.iluwatar.monolithic.repository.ProductRepository;
 import com.iluwatar.monolithic.repository.UserRepository;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
+import java.util.Optional;
+import java.util.Scanner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.nio.charset.StandardCharsets;
-import java.util.Optional;
-import java.util.Scanner;
-import static org.junit.jupiter.api.Assertions.*;
-
-
-import static org.mockito.Mockito.*;
-
 class MonolithicAppTest {
 
-  @Mock
-  private UserController userService;
+  @Mock private UserController userService;
 
-  @Mock
-  private ProductController productService;
+  @Mock private ProductController productService;
 
-  @Mock
-  private OrderController orderService;
+  @Mock private OrderController orderService;
 
   private EcommerceApp ecommerceApp;
 
@@ -96,16 +91,20 @@ class MonolithicAppTest {
 
     when(mockUserRepository.findById(1L)).thenReturn(Optional.empty());
 
-    OrderController orderCon = new OrderController(mockOrderRepo, mockUserRepository, mockProductRepository);
+    OrderController orderCon =
+        new OrderController(mockOrderRepo, mockUserRepository, mockProductRepository);
 
-    Exception exception = assertThrows(NonExistentUserException.class, () -> {
-        orderCon.placeOrder(1L, 1L, 5);
-    });
+    Exception exception =
+        assertThrows(
+            NonExistentUserException.class,
+            () -> {
+              orderCon.placeOrder(1L, 1L, 5);
+            });
 
     assertEquals("User with ID 1 not found", exception.getMessage());
   }
 
-    @Test
+  @Test
   void testPlaceOrderProductNotFound() {
     UserRepository mockUserRepository = mock(UserRepository.class);
     ProductRepository mockProductRepository = mock(ProductRepository.class);
@@ -116,24 +115,27 @@ class MonolithicAppTest {
 
     when(mockProductRepository.findById(1L)).thenReturn(Optional.empty());
 
-    OrderController orderCon = new OrderController(mockOrderRepository, mockUserRepository, mockProductRepository);
+    OrderController orderCon =
+        new OrderController(mockOrderRepository, mockUserRepository, mockProductRepository);
 
-    Exception exception = assertThrows(NonExistentProductException.class, () -> {
-        orderCon.placeOrder(1L, 1L, 5);
-    });
+    Exception exception =
+        assertThrows(
+            NonExistentProductException.class,
+            () -> {
+              orderCon.placeOrder(1L, 1L, 5);
+            });
 
     assertEquals("Product with ID 1 not found", exception.getMessage());
   }
 
-
-
   @Test
-  void testOrderConstructor(){
+  void testOrderConstructor() {
     OrderRepository mockOrderRepository = mock(OrderRepository.class);
     UserRepository mockUserRepository = mock(UserRepository.class);
     ProductRepository mockProductRepository = mock(ProductRepository.class);
 
-    OrderController orderCon = new OrderController(mockOrderRepository, mockUserRepository, mockProductRepository);
+    OrderController orderCon =
+        new OrderController(mockOrderRepository, mockUserRepository, mockProductRepository);
 
     assertNotNull(orderCon);
   }
@@ -169,13 +171,15 @@ class MonolithicAppTest {
     System.setIn(new ByteArrayInputStream(simulatedInput.getBytes(StandardCharsets.UTF_8)));
 
     doThrow(new RuntimeException("Product out of stock"))
-        .when(orderService).placeOrder(anyLong(), anyLong(), anyInt());
+        .when(orderService)
+        .placeOrder(anyLong(), anyLong(), anyInt());
 
     ecommerceApp.placeOrder(new Scanner(System.in, StandardCharsets.UTF_8));
 
     verify(orderService, times(1)).placeOrder(anyLong(), anyLong(), anyInt());
     assertTrue(outputStream.toString().contains("Error placing order: Product out of stock"));
   }
+
   @Test
   void testPlaceOrderInsufficientStock() {
     UserRepository mockUserRepository = mock(UserRepository.class);
@@ -184,16 +188,22 @@ class MonolithicAppTest {
 
     User mockUser = new User(1L, "John Doe", "john@example.com", "password123");
     when(mockUserRepository.findById(1L)).thenReturn(Optional.of(mockUser));
-    Product mockProduct = new Product(1L, "Laptop", "High-end gaming laptop", 1500.00, 2); // Only 2 in stock
+    Product mockProduct =
+        new Product(1L, "Laptop", "High-end gaming laptop", 1500.00, 2); // Only 2 in stock
     when(mockProductRepository.findById(1L)).thenReturn(Optional.of(mockProduct));
 
-    OrderController orderCon = new OrderController(mockOrderRepository, mockUserRepository, mockProductRepository);
+    OrderController orderCon =
+        new OrderController(mockOrderRepository, mockUserRepository, mockProductRepository);
 
-    Exception exception = assertThrows(InsufficientStockException.class, () -> {
-        orderCon.placeOrder(1L, 1L, 5);
-    });
+    Exception exception =
+        assertThrows(
+            InsufficientStockException.class,
+            () -> {
+              orderCon.placeOrder(1L, 1L, 5);
+            });
     assertEquals("Not enough stock for product 1", exception.getMessage());
-}
+  }
+
   @Test
   void testProductConAddProduct() {
     ProductRepository mockProductRepository = mock(ProductRepository.class);
@@ -217,7 +227,8 @@ class MonolithicAppTest {
 
   @Test
   void testRun() {
-    String simulatedInput = """
+    String simulatedInput =
+        """
         1
         John Doe
         john@example.com
@@ -232,15 +243,24 @@ class MonolithicAppTest {
         1
         2
         4
-        """;                                          // Exit
+        """; // Exit
     System.setIn(new ByteArrayInputStream(simulatedInput.getBytes(StandardCharsets.UTF_8)));
 
     ByteArrayOutputStream outputTest = new ByteArrayOutputStream();
     System.setOut(new PrintStream(outputTest, true, StandardCharsets.UTF_8));
 
-    when(userService.registerUser(any(User.class))).thenReturn(new User(1L, "John Doe", "john@example.com", "password123"));
-    when(productService.addProduct(any(Product.class))).thenReturn(new Product(1L, "Laptop", "Gaming Laptop", 1200.50, 10));
-    when(orderService.placeOrder(anyLong(), anyLong(), anyInt())).thenReturn(new Order(1L, new User(1L, "John Doe", "john@example.com","password123" ), new Product(1L, "Laptop", "Gaming Laptop", 1200.50, 10), 5, 6002.50));
+    when(userService.registerUser(any(User.class)))
+        .thenReturn(new User(1L, "John Doe", "john@example.com", "password123"));
+    when(productService.addProduct(any(Product.class)))
+        .thenReturn(new Product(1L, "Laptop", "Gaming Laptop", 1200.50, 10));
+    when(orderService.placeOrder(anyLong(), anyLong(), anyInt()))
+        .thenReturn(
+            new Order(
+                1L,
+                new User(1L, "John Doe", "john@example.com", "password123"),
+                new Product(1L, "Laptop", "Gaming Laptop", 1200.50, 10),
+                5,
+                6002.50));
 
     ecommerceApp.run();
 
@@ -255,9 +275,5 @@ class MonolithicAppTest {
     assertTrue(output.contains("Add Product"));
     assertTrue(output.contains("Place Order"));
     assertTrue(output.contains("Exiting the application. Goodbye!"));
-}
-
-
-
-
+  }
 }

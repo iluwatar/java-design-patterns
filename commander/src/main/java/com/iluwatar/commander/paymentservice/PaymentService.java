@@ -32,7 +32,6 @@ import lombok.RequiredArgsConstructor;
  * The PaymentService class receives request from the {@link com.iluwatar.commander.Commander} and
  * adds to the {@link PaymentDatabase}.
  */
-
 public class PaymentService extends Service {
 
   @RequiredArgsConstructor
@@ -46,12 +45,9 @@ public class PaymentService extends Service {
     super(db, exc);
   }
 
-  /**
-   * Public method which will receive request from {@link com.iluwatar.commander.Commander}.
-   */
-
+  /** Public method which will receive request from {@link com.iluwatar.commander.Commander}. */
   public String receiveRequest(Object... parameters) throws DatabaseUnavailableException {
-    //it could also be sending an userid, payment details here or something, not added here
+    // it could also be sending an userid, payment details here or something, not added here
     var id = generateId();
     var req = new PaymentRequest(id, (float) parameters[0]);
     return updateDb(req);

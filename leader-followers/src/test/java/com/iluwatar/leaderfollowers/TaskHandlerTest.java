@@ -28,9 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for TaskHandler
- */
+/** Tests for TaskHandler */
 class TaskHandlerTest {
 
   @Test
@@ -40,5 +38,4 @@ class TaskHandlerTest {
     taskHandler.handleTask(handle);
     assertTrue(handle.isFinished());
   }
-
 }

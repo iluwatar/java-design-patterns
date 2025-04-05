@@ -34,55 +34,38 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Exposes changes to the state of calculator
- * to {@link CalculatorViewModel} through
- * {@link com.iluwatar.model.view.intent.actions.CalculatorAction}
- * and displays its updated {@link CalculatorModel}.
+ * Exposes changes to the state of calculator to {@link CalculatorViewModel} through {@link
+ * com.iluwatar.model.view.intent.actions.CalculatorAction} and displays its updated {@link
+ * CalculatorModel}.
  */
 @Slf4j
 @Data
 public class CalculatorView {
 
-  /**
-   * View model param handling the operations.
-   */
-  @Getter
-  private final CalculatorViewModel viewModel;
+  /** View model param handling the operations. */
+  @Getter private final CalculatorViewModel viewModel;
 
-  /**
-   * Display current view model output with logger.
-   */
+  /** Display current view model output with logger. */
   void displayTotal() {
-    LOGGER.info(
-        "Total value = {}",
-        viewModel.getCalculatorModel().getOutput().toString()
-    );
+    LOGGER.info("Total value = {}", viewModel.getCalculatorModel().getOutput().toString());
   }
 
-  /**
-   * Handle addition action.
-   */
+  /** Handle addition action. */
   void add() {
     viewModel.handleAction(new AdditionCalculatorAction());
   }
 
-  /**
-   * Handle subtraction action.
-   */
+  /** Handle subtraction action. */
   void subtract() {
     viewModel.handleAction(new SubtractionCalculatorAction());
   }
 
-  /**
-   * Handle multiplication action.
-   */
+  /** Handle multiplication action. */
   void multiply() {
     viewModel.handleAction(new MultiplicationCalculatorAction());
   }
 
-  /**
-   * Handle division action.
-   */
+  /** Handle division action. */
   void divide() {
     viewModel.handleAction(new DivisionCalculatorAction());
   }

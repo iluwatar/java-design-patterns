@@ -24,15 +24,10 @@
  */
 package com.iluwatar.caching.database;
 
-/**
- * Creates the database connection according the input parameter.
- */
+/** Creates the database connection according the input parameter. */
 public final class DbManagerFactory {
-  /**
-   * Private constructor.
-   */
-  private DbManagerFactory() {
-  }
+  /** Private constructor. */
+  private DbManagerFactory() {}
 
   /**
    * Init database.

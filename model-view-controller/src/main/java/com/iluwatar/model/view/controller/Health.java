@@ -26,9 +26,7 @@ package com.iluwatar.model.view.controller;
 
 import lombok.AllArgsConstructor;
 
-/**
- * Health enumeration.
- */
+/** Health enumeration. */
 @AllArgsConstructor
 public enum Health {
   HEALTHY("healthy"),
@@ -36,7 +34,6 @@ public enum Health {
   DEAD("dead");
 
   private final String title;
-
 
   @Override
   public String toString() {

@@ -32,10 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * SimpleMessageTest
- *
- */
+/** SimpleMessageTest */
 class SimpleMessageTest {
 
   @Test
@@ -55,6 +52,7 @@ class SimpleMessageTest {
   void testUnModifiableHeaders() {
     final var message = new SimpleMessage();
     final var headers = message.getHeaders();
-    assertThrows(UnsupportedOperationException.class, () -> headers.put(Message.Headers.SENDER, "test"));
+    assertThrows(
+        UnsupportedOperationException.class, () -> headers.put(Message.Headers.SENDER, "test"));
   }
 }

@@ -26,15 +26,11 @@ package com.iluwatar.data.locality.game.component;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Implementation of Physics Component of Game.
- */
+/** Implementation of Physics Component of Game. */
 @Slf4j
 public class PhysicsComponent implements Component {
 
-  /**
-   * update physics component of game.
-   */
+  /** update physics component of game. */
   @Override
   public void update() {
     LOGGER.info("Update physics component of game");

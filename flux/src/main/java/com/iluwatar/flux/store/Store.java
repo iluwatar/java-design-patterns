@@ -29,9 +29,7 @@ import com.iluwatar.flux.view.View;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Store is a data model.
- */
+/** Store is a data model. */
 public abstract class Store {
 
   private final List<View> views = new LinkedList<>();

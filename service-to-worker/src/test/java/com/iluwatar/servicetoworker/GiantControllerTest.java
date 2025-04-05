@@ -32,19 +32,14 @@ import com.iluwatar.model.view.controller.Health;
 import com.iluwatar.model.view.controller.Nourishment;
 import org.junit.jupiter.api.Test;
 
-
-/**
- * The type Giant controller test.
- */
+/** The type Giant controller test. */
 class GiantControllerTest {
 
-  /**
-   * Test set command.
-   */
+  /** Test set command. */
   @Test
   void testSetCommand() {
-    final var model = new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT,
-        Nourishment.SATURATED);
+    final var model =
+        new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
     Action action = new Action(model);
     GiantView giantView = new GiantView();
     Dispatcher dispatcher = new Dispatcher(giantView);
@@ -57,17 +52,14 @@ class GiantControllerTest {
     assertEquals(Nourishment.HUNGRY, model.getNourishment());
   }
 
-  /**
-   * Test update view.
-   */
+  /** Test update view. */
   @Test
   void testUpdateView() {
-    final var model = new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT,
-        Nourishment.SATURATED);
+    final var model =
+        new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
     GiantView giantView = new GiantView();
     Dispatcher dispatcher = new Dispatcher(giantView);
     GiantController giantController = new GiantController(dispatcher);
     assertDoesNotThrow(() -> giantController.updateView(model));
   }
-
 }

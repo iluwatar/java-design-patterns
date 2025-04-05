@@ -33,20 +33,13 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * MessengerTest
- *
- */
+/** MessengerTest */
 class MessengerTest {
 
-  /**
-   * The buffer used to capture every write to {@link System#out}
-   */
+  /** The buffer used to capture every write to {@link System#out} */
   private ByteArrayOutputStream stdOutBuffer = new ByteArrayOutputStream();
 
-  /**
-   * Keep the original std-out so it can be restored after the test
-   */
+  /** Keep the original std-out so it can be restored after the test */
   private final PrintStream realStdOut = System.out;
 
   /**
@@ -58,43 +51,31 @@ class MessengerTest {
     System.setOut(new PrintStream(stdOutBuffer));
   }
 
-  /**
-   * Removed the mocked std-out {@link PrintStream} again from the {@link System} class
-   */
+  /** Removed the mocked std-out {@link PrintStream} again from the {@link System} class */
   @AfterEach
   void tearDown() {
     System.setOut(realStdOut);
   }
 
-  /**
-   * Test the message from the orcs
-   */
+  /** Test the message from the orcs */
   @Test
   void testMessageFromOrcs() {
     final var messenger = new Messenger();
-    testMessage(
-        messenger.messageFromOrcs(),
-        "Where there is a whip there is a way."
-    );
+    testMessage(messenger.messageFromOrcs(), "Where there is a whip there is a way.");
   }
 
-  /**
-   * Test the message from the elves
-   */
+  /** Test the message from the elves */
   @Test
   void testMessageFromElves() {
     final var messenger = new Messenger();
-    testMessage(
-        messenger.messageFromElves(),
-        "Much wind pours from your mouth."
-    );
+    testMessage(messenger.messageFromElves(), "Much wind pours from your mouth.");
   }
 
   /**
    * Test if the given composed message matches the expected message
    *
    * @param composedMessage The composed message, received from the messenger
-   * @param message         The expected message
+   * @param message The expected message
    */
   private void testMessage(final LetterComposite composedMessage, final String message) {
     // Test is the composed message has the correct number of words
@@ -108,5 +89,4 @@ class MessengerTest {
     // ... and verify if the message matches with the expected one
     assertEquals(message, new String(this.stdOutBuffer.toByteArray()).trim());
   }
-
 }

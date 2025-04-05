@@ -24,10 +24,7 @@
  */
 package com.iluwatar.acyclicvisitor;
 
-/**
- * //Modem abstract class.
- * converted to an interface
- */
+/** //Modem abstract class. converted to an interface */
 public interface Modem {
   void accept(ModemVisitor modemVisitor);
 }

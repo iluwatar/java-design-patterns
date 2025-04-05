@@ -31,18 +31,14 @@ import com.iluwatar.model.view.controller.Health;
 import com.iluwatar.model.view.controller.Nourishment;
 import org.junit.jupiter.api.Test;
 
-/**
- * The type Giant view test.
- */
+/** The type Giant view test. */
 class GiantViewTest {
 
-  /**
-   * Test display giant.
-   */
+  /** Test display giant. */
   @Test
   void testDispalyGiant() {
-    GiantModel giantModel = new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT,
-        Nourishment.SATURATED);
+    GiantModel giantModel =
+        new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
     GiantView giantView = new GiantView();
     assertDoesNotThrow(() -> giantView.displayGiant(giantModel));
   }

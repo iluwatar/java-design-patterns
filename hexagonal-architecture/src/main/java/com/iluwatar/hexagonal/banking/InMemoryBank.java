@@ -28,16 +28,14 @@ import com.iluwatar.hexagonal.domain.LotteryConstants;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Banking implementation.
- */
+/** Banking implementation. */
 public class InMemoryBank implements WireTransfers {
 
   private static final Map<String, Integer> accounts = new HashMap<>();
 
   static {
-    accounts
-        .put(LotteryConstants.SERVICE_BANK_ACCOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT_BALANCE);
+    accounts.put(
+        LotteryConstants.SERVICE_BANK_ACCOUNT, LotteryConstants.SERVICE_BANK_ACCOUNT_BALANCE);
   }
 
   @Override

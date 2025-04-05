@@ -27,9 +27,7 @@ package com.iluwatar.observer.generic;
 import com.iluwatar.observer.WeatherType;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * GOrcs.
- */
+/** GOrcs. */
 @Slf4j
 public class GenOrcs implements Race {
 

@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests {@link Student}.
- */
+/** Tests {@link Student}. */
 final class StudentTest {
 
   /**

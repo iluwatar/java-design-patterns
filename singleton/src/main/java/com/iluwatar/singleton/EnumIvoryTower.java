@@ -25,16 +25,14 @@
 package com.iluwatar.singleton;
 
 /**
- * <p>Enum based singleton implementation. Effective Java 2nd Edition (Joshua Bloch) p. 18</p>
+ * Enum based singleton implementation. Effective Java 2nd Edition (Joshua Bloch) p. 18
  *
- * <p>This implementation is thread safe, however adding any other method and its thread safety
- * is developers responsibility.</p>
+ * <p>This implementation is thread safe, however adding any other method and its thread safety is
+ * developers responsibility.
  */
 public enum EnumIvoryTower {
 
-  /**
-   * The singleton instance of the class, created by the Java enum singleton pattern.
-   */
+  /** The singleton instance of the class, created by the Java enum singleton pattern. */
   INSTANCE;
 
   @Override

@@ -41,9 +41,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-/**
- * SLOB Application using {@link LobSerializer} and H2 DB.
- */
+/** SLOB Application using {@link LobSerializer} and H2 DB. */
 public class App {
 
   public static final String CLOB = "CLOB";
@@ -51,20 +49,20 @@ public class App {
 
   /**
    * Main entry point to program.
+   *
    * <p>In the SLOB pattern, the object graph is serialized into a single large object (a BLOB or
    * CLOB, for Binary Large Object or Character Large Object, respectively) and stored in the
    * database. When the object graph needs to be retrieved, it is read from the database and
-   * deserialized back into the original object graph.</p>
+   * deserialized back into the original object graph.
    *
    * <p>A Forest is created using {@link #createForest()} with Animals and Plants along with their
-   * respective relationships.</p>
+   * respective relationships.
    *
-   * <p>Creates a {@link LobSerializer} using the method
-   * {@link #createLobSerializer(String[])}.</p>
+   * <p>Creates a {@link LobSerializer} using the method {@link #createLobSerializer(String[])}.
    *
-   * <p>Once created the serializer is passed to the
-   * {@link #executeSerializer(Forest, LobSerializer)} which handles the serialization,
-   * deserialization and persisting and loading from DB.</p>
+   * <p>Once created the serializer is passed to the {@link #executeSerializer(Forest,
+   * LobSerializer)} which handles the serialization, deserialization and persisting and loading
+   * from DB.
    *
    * @param args if first arg is CLOB then ClobSerializer is used else BlobSerializer is used.
    */
@@ -75,12 +73,13 @@ public class App {
   }
 
   /**
-   * <p>Creates a {@link LobSerializer} on the basis of input args. </p>
-   * <p>If input args are not empty and the value equals {@link App#CLOB}  then a
-   * {@link ClobSerializer} is created else a {@link BlobSerializer} is created.</p>
+   * Creates a {@link LobSerializer} on the basis of input args.
+   *
+   * <p>If input args are not empty and the value equals {@link App#CLOB} then a {@link
+   * ClobSerializer} is created else a {@link BlobSerializer} is created.
    *
    * @param args if first arg is {@link App#CLOB} then ClobSerializer is instantiated else
-   *             BlobSerializer is instantiated.
+   *     BlobSerializer is instantiated.
    */
   private static LobSerializer createLobSerializer(String[] args) throws SQLException {
     LobSerializer serializer;
@@ -96,14 +95,14 @@ public class App {
    * Creates a Forest with {@link Animal} and {@link Plant} along with their respective
    * relationships.
    *
-   * <p> The method creates a {@link Forest} with 2 Plants Grass and Oak of type Herb and tree
-   * respectively.</p>
+   * <p>The method creates a {@link Forest} with 2 Plants Grass and Oak of type Herb and tree
+   * respectively.
    *
-   * <p> It also creates 3 animals Zebra and Buffalo which eat the plant grass. Lion consumes the
-   * Zebra and the Buffalo.</p>
+   * <p>It also creates 3 animals Zebra and Buffalo which eat the plant grass. Lion consumes the
+   * Zebra and the Buffalo.
    *
-   * <p>With the above animals and plants and their relationships a forest
-   * object is created which represents the Object Graph.</p>
+   * <p>With the above animals and plants and their relationships a forest object is created which
+   * represents the Object Graph.
    *
    * @return Forest Object
    */
@@ -122,7 +121,7 @@ public class App {
    * Serialize the input object using the input serializer and persist to DB. After this it loads
    * the same object back from DB and deserializes using the same serializer.
    *
-   * @param forest        Object to Serialize and Persist
+   * @param forest Object to Serialize and Persist
    * @param lobSerializer Serializer to Serialize and Deserialize Object
    */
   private static void executeSerializer(Forest forest, LobSerializer lobSerializer) {
@@ -135,9 +134,12 @@ public class App {
       Forest forestFromDb = serializer.deSerialize(fromDb);
 
       LOGGER.info(forestFromDb.toString());
-    } catch (SQLException | IOException | TransformerException | ParserConfigurationException
-             | SAXException
-             | ClassNotFoundException e) {
+    } catch (SQLException
+        | IOException
+        | TransformerException
+        | ParserConfigurationException
+        | SAXException
+        | ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
   }

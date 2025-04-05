@@ -27,19 +27,15 @@ package com.iluwatar.caching.database;
 import com.iluwatar.caching.UserAccount;
 
 /**
- * <p>DBManager handles the communication with the underlying data store i.e.
- * Database. It contains the implemented methods for querying, inserting,
- * and updating data. MongoDB was used as the database for the application.</p>
+ * DBManager handles the communication with the underlying data store i.e. Database. It contains the
+ * implemented methods for querying, inserting, and updating data. MongoDB was used as the database
+ * for the application.
  */
 public interface DbManager {
-  /**
-   * Connect to DB.
-   */
+  /** Connect to DB. */
   void connect();
 
-  /**
-   * Disconnect from DB.
-   */
+  /** Disconnect from DB. */
   void disconnect();
 
   /**

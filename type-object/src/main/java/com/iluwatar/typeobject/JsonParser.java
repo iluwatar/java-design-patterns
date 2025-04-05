@@ -31,10 +31,7 @@ import com.iluwatar.typeobject.Candy.Type;
 import java.io.InputStreamReader;
 import java.util.Hashtable;
 
-/**
- * The JsonParser class helps parse the json file candy.json to get all the different candies.
- */
-
+/** The JsonParser class helps parse the json file candy.json to get all the different candies. */
 public class JsonParser {
   Hashtable<String, Candy> candies;
 
@@ -76,5 +73,4 @@ public class JsonParser {
       }
     }
   }
-
 }

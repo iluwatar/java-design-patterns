@@ -88,5 +88,4 @@ class CustomerCoreTest {
     core = new CustomerCore();
     assertEquals("Customer{roles=[]}", core.toString());
   }
-
 }

@@ -32,17 +32,14 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Each Event runs as a separate/individual thread.
- */
+/** Each Event runs as a separate/individual thread. */
 @Slf4j
 @RequiredArgsConstructor
 public class AsyncEvent implements Event, Runnable {
 
   private final int eventId;
   private final Duration eventTime;
-  @Getter
-  private final boolean synchronous;
+  @Getter private final boolean synchronous;
   private Thread thread;
   private final AtomicBoolean isComplete = new AtomicBoolean(false);
   private ThreadCompleteListener eventListener;

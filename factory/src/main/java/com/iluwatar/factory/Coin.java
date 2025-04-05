@@ -24,11 +24,8 @@
  */
 package com.iluwatar.factory;
 
-/**
- * Coin interface.
- */
+/** Coin interface. */
 public interface Coin {
 
   String getDescription();
-
 }

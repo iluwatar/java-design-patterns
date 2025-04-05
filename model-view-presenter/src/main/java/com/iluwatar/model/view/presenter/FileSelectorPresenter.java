@@ -35,20 +35,13 @@ import java.io.Serializable;
  */
 public class FileSelectorPresenter implements Serializable {
 
-  /**
-   * Generated serial version UID.
-   */
-  @Serial
-  private static final long serialVersionUID = 1210314339075855074L;
+  /** Generated serial version UID. */
+  @Serial private static final long serialVersionUID = 1210314339075855074L;
 
-  /**
-   * The View component that the presenter interacts with.
-   */
+  /** The View component that the presenter interacts with. */
   private final FileSelectorView view;
 
-  /**
-   * The Model component that the presenter interacts with.
-   */
+  /** The Model component that the presenter interacts with. */
   private FileLoader loader;
 
   /**
@@ -69,24 +62,18 @@ public class FileSelectorPresenter implements Serializable {
     this.loader = loader;
   }
 
-  /**
-   * Starts the presenter.
-   */
+  /** Starts the presenter. */
   public void start() {
     view.setPresenter(this);
     view.open();
   }
 
-  /**
-   * An "event" that fires when the name of the file to be loaded changes.
-   */
+  /** An "event" that fires when the name of the file to be loaded changes. */
   public void fileNameChanged() {
     loader.setFileName(view.getFileName());
   }
 
-  /**
-   * Ok button handler.
-   */
+  /** Ok button handler. */
   public void confirmed() {
     if (loader.getFileName() == null || loader.getFileName().isEmpty()) {
       view.showMessage("Please give the name of the file first!");
@@ -101,9 +88,7 @@ public class FileSelectorPresenter implements Serializable {
     }
   }
 
-  /**
-   * Cancels the file loading process.
-   */
+  /** Cancels the file loading process. */
   public void cancelled() {
     view.close();
   }

@@ -23,9 +23,8 @@
  * THE SOFTWARE.
  */
 package com.iluwatar;
-/**
- * An exception for when the user tries to add two diffrent currencies.
- */
+
+/** An exception for when the user tries to add two diffrent currencies. */
 public class CannotAddTwoCurrienciesException extends Exception {
   /**
    * Constructs an exception with the specified message.

@@ -33,7 +33,7 @@ import java.util.NoSuchElementException;
  * expect to retrieve TreeNodes according to the Integer's natural ordering (1, 2, 3...)
  *
  * @param <T> This Iterator has been implemented with generic typing to allow for TreeNodes of
- *            different value types
+ *     different value types
  */
 public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T>> {
 
@@ -83,5 +83,4 @@ public class BstIterator<T extends Comparable<T>> implements Iterator<TreeNode<T
     pushPathToNextSmallest(next.getRight());
     return next;
   }
-
 }

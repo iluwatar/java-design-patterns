@@ -39,9 +39,7 @@ public class ServiceExecutor implements Runnable {
     this.msgQueue = msgQueue;
   }
 
-  /**
-   * The ServiceExecutor thread will retrieve each message and process it.
-   */
+  /** The ServiceExecutor thread will retrieve each message and process it. */
   public void run() {
     try {
       while (!Thread.currentThread().isInterrupted()) {

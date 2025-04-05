@@ -33,28 +33,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-/**
- * Test API Gateway Pattern
- */
+/** Test API Gateway Pattern */
 class ApiGatewayTest {
 
-  @InjectMocks
-  private ApiGateway apiGateway;
+  @InjectMocks private ApiGateway apiGateway;
 
-  @Mock
-  private ImageClient imageClient;
+  @Mock private ImageClient imageClient;
 
-  @Mock
-  private PriceClient priceClient;
+  @Mock private PriceClient priceClient;
 
   @BeforeEach
   void setup() {
     MockitoAnnotations.openMocks(this);
   }
 
-  /**
-   * Tests getting the data for a desktop client
-   */
+  /** Tests getting the data for a desktop client */
   @Test
   void testGetProductDesktop() {
     var imagePath = "/product-image.png";
@@ -68,9 +61,7 @@ class ApiGatewayTest {
     assertEquals(imagePath, desktopProduct.getImagePath());
   }
 
-  /**
-   * Tests getting the data for a mobile client
-   */
+  /** Tests getting the data for a mobile client */
   @Test
   void testGetProductMobile() {
     var price = "20";

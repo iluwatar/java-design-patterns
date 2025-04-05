@@ -24,10 +24,7 @@
  */
 package com.iluwatar.commander.exceptions;
 
-/**
- * IsEmptyException is thrown when it is attempted to dequeue from an empty queue.
- */
-
+/** IsEmptyException is thrown when it is attempted to dequeue from an empty queue. */
 public class IsEmptyException extends Exception {
   private static final long serialVersionUID = 123546L;
 }

@@ -24,33 +24,27 @@
  */
 package com.iluwatar.sessionfacade;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-/**
- * The type Product test.
- */
+import org.junit.jupiter.api.Test;
+
+/** The type Product test. */
 public class ProductTest {
-  /**
-   * Test product creation.
-   */
+  /** Test product creation. */
   @Test
   public void testProductCreation() {
     int id = 1;
     String name = "Product A";
     double price = 200.0;
     String description = "a description";
-    Product product = new Product(id,name,price,description);
+    Product product = new Product(id, name, price, description);
     assertEquals(id, product.id());
     assertEquals(name, product.name());
     assertEquals(price, product.price());
     assertEquals(description, product.description());
   }
 
-  /**
-   * Test equals and hash code.
-   */
+  /** Test equals and hash code. */
   @Test
   public void testEqualsAndHashCode() {
     Product product1 = new Product(1, "Product A", 99.99, "a description");
@@ -63,9 +57,7 @@ public class ProductTest {
     assertNotEquals(product1.hashCode(), product3.hashCode());
   }
 
-  /**
-   * Test to string.
-   */
+  /** Test to string. */
   @Test
   public void testToString() {
     Product product = new Product(1, "Product A", 99.99, "a description");
@@ -73,5 +65,4 @@ public class ProductTest {
     assertTrue(toStringResult.contains("Product A"));
     assertTrue(toStringResult.contains("99.99"));
   }
-
 }

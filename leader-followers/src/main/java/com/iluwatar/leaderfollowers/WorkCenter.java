@@ -35,13 +35,10 @@ import lombok.Getter;
  */
 public class WorkCenter {
 
-  @Getter
-  private Worker leader;
+  @Getter private Worker leader;
   private final List<Worker> workers = new CopyOnWriteArrayList<>();
 
-  /**
-   * Create workers and set leader.
-   */
+  /** Create workers and set leader. */
   public void createWorkers(int numberOfWorkers, TaskSet taskSet, TaskHandler taskHandler) {
     for (var id = 1; id <= numberOfWorkers; id++) {
       var worker = new Worker(id, this, taskSet, taskHandler);
@@ -58,9 +55,7 @@ public class WorkCenter {
     workers.remove(worker);
   }
 
-  /**
-   * Promote a leader.
-   */
+  /** Promote a leader. */
   public void promoteLeader() {
     Worker leader = null;
     if (!workers.isEmpty()) {

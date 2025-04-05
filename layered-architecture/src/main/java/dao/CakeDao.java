@@ -28,8 +28,6 @@ import entity.Cake;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- * CRUD repository for cakes.
- */
+/** CRUD repository for cakes. */
 @Repository
 public interface CakeDao extends JpaRepository<Cake, Long> {}

@@ -38,16 +38,17 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    var root = new NodeImpl("1",
-        new NodeImpl("11",
-            new NodeImpl("111", NullNode.getInstance(), NullNode.getInstance()),
-            NullNode.getInstance()
-        ),
-        new NodeImpl("12",
-            NullNode.getInstance(),
-            new NodeImpl("122", NullNode.getInstance(), NullNode.getInstance())
-        )
-    );
+    var root =
+        new NodeImpl(
+            "1",
+            new NodeImpl(
+                "11",
+                new NodeImpl("111", NullNode.getInstance(), NullNode.getInstance()),
+                NullNode.getInstance()),
+            new NodeImpl(
+                "12",
+                NullNode.getInstance(),
+                new NodeImpl("122", NullNode.getInstance(), NullNode.getInstance())));
 
     root.walk();
   }

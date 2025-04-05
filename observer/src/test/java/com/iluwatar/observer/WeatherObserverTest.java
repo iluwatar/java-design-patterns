@@ -37,6 +37,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * Weather Observer Tests
+ *
  * @param <O> Type of WeatherObserver
  */
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
@@ -54,15 +55,13 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
     appender.stop();
   }
 
-  /**
-   * The observer instance factory
-   */
+  /** The observer instance factory */
   private final Supplier<O> factory;
 
   /**
    * Create a new test instance using the given parameters
    *
-   * @param factory  The factory, used to create an instance of the tested observer
+   * @param factory The factory, used to create an instance of the tested observer
    */
   WeatherObserverTest(final Supplier<O> factory) {
     this.factory = factory;
@@ -70,9 +69,7 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
 
   public abstract Collection<Object[]> dataProvider();
 
-  /**
-   * Verify if the weather has the expected influence on the observer
-   */
+  /** Verify if the weather has the expected influence on the observer */
   @ParameterizedTest
   @MethodSource("dataProvider")
   void testObserver(WeatherType weather, String response) {
@@ -83,5 +80,4 @@ public abstract class WeatherObserverTest<O extends WeatherObserver> {
     assertEquals(response, appender.getLastMessage());
     assertEquals(1, appender.getLogSize());
   }
-
 }

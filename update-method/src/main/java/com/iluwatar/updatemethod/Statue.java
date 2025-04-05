@@ -24,9 +24,7 @@
  */
 package com.iluwatar.updatemethod;
 
-/**
- * Statues shoot lightning at regular intervals.
- */
+/** Statues shoot lightning at regular intervals. */
 public class Statue extends Entity {
 
   protected int frames;

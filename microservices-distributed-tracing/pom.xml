@@ -34,17 +34,6 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>microservices-distributed-tracing</artifactId>
     <packaging>pom</packaging>
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <type>pom</type>
-                <version>3.3.1</version>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -57,11 +46,13 @@
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-tracing-bridge-brave</artifactId>
+            <version>1.4.4</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>io.zipkin.reporter2</groupId>
             <artifactId>zipkin-reporter-brave</artifactId>
+            <version>3.5.0</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

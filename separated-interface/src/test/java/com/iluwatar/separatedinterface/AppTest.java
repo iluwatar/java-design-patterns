@@ -24,18 +24,15 @@
  */
 package com.iluwatar.separatedinterface;
 
-import org.junit.jupiter.api.Test;
-import com.iluwatar.separatedinterface.App;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Application test.
- */
+import org.junit.jupiter.api.Test;
+
+/** Application test. */
 class AppTest {
 
   @Test
   void shouldExecuteWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

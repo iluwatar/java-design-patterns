@@ -28,9 +28,7 @@ import abstractextensions.UnitExtension;
 import concreteextensions.Sergeant;
 import java.util.Optional;
 
-/**
- * Class defining SergeantUnit.
- */
+/** Class defining SergeantUnit. */
 public class SergeantUnit extends Unit {
 
   public SergeantUnit(String name) {

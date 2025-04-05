@@ -27,13 +27,10 @@ package com.iluwatar.flux.action;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * Action is the data payload dispatched to the stores when something happens.
- */
+/** Action is the data payload dispatched to the stores when something happens. */
 @RequiredArgsConstructor
 @Getter
 public abstract class Action {
 
   private final ActionType type;
-
 }

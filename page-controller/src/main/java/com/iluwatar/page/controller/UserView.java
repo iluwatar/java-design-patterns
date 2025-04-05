@@ -26,13 +26,12 @@ package com.iluwatar.page.controller;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * User view class generating html file.
- */
+/** User view class generating html file. */
 @Slf4j
 public class UserView {
   /**
    * displaying command to generate html.
+   *
    * @param user model content.
    */
   public String display(SignupModel user) {

@@ -31,9 +31,7 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class HomePageView extends TemplateView {
-  /**
-   * Renders dynamic content for the homepage.
-   */
+  /** Renders dynamic content for the homepage. */
   @Override
   protected void renderDynamicContent() {
     LOGGER.info("Welcome to the Home Page!");

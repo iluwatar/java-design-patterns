@@ -28,9 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Test methods in OldSource
- */
+/** Test methods in OldSource */
 class OldSourceTest {
   private static final OldSource source = new OldSource();
 

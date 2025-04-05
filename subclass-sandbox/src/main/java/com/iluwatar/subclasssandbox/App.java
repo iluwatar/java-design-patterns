@@ -27,17 +27,18 @@ package com.iluwatar.subclasssandbox;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The subclass sandbox pattern describes a basic idea, while not having a lot
- * of detailed mechanics. You will need the pattern when you have several similar
- * subclasses. If you have to make a tiny change, then change the base class,
- * while all subclasses shouldn't have to be touched. So the base class has to be
- * able to provide all the operations a derived class needs to perform.
+ * The subclass sandbox pattern describes a basic idea, while not having a lot of detailed
+ * mechanics. You will need the pattern when you have several similar subclasses. If you have to
+ * make a tiny change, then change the base class, while all subclasses shouldn't have to be
+ * touched. So the base class has to be able to provide all the operations a derived class needs to
+ * perform.
  */
 @Slf4j
 public class App {
 
   /**
    * Entry point of the main program.
+   *
    * @param args Program runtime arguments.
    */
   public static void main(String[] args) {
@@ -48,5 +49,4 @@ public class App {
     var groundDive = new GroundDive();
     groundDive.activate();
   }
-
 }

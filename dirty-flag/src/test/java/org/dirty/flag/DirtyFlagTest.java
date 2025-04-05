@@ -28,9 +28,7 @@ import com.iluwatar.dirtyflag.DataFetcher;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/**
- * Application test
- */
+/** Application test */
 class DirtyFlagTest {
 
   @Test

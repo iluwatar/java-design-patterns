@@ -37,7 +37,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar-maven-plugin.version>5.0.0.4389</sonar-maven-plugin.version>
-    <spring-boot.version>2.7.5</spring-boot.version>
+    <spring-boot.version>3.4.4</spring-boot.version>
     <jacoco.version>0.8.12</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <htmlunit.version>4.7.0</htmlunit.version>
@@ -45,11 +45,17 @@
     <guice.version>6.0.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
     <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
-    <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
     <license-maven-plugin.version>4.6</license-maven-plugin.version>
     <urm-maven-plugin.version>2.1.1</urm-maven-plugin.version>
     <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
     <lombok.version>1.18.36</lombok.version>
+    <junit.version>5.11.4</junit.version>
+    <slf4j.version>2.0.17</slf4j.version>
+    <logback.version>1.5.18</logback.version>
+    <mockito.version>5.16.1</mockito.version>
+    <mongo.version>5.4.0</mongo.version>
+    <bson.version>5.4.0</bson.version>
+    <h2.version>2.3.232</h2.version>
     <!-- SonarCloud -->
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.organization>iluwatar</sonar.organization>
@@ -58,176 +64,177 @@
     <sonar.projectName>Java Design Patterns</sonar.projectName>
   </properties>
   <modules>
+    <module>abstract-document</module>
     <module>abstract-factory</module>
-    <module>collecting-parameter</module>
-    <module>monitor</module>
-    <module>builder</module>
-    <module>factory-method</module>
-    <module>prototype</module>
-    <module>singleton</module>
+    <module>active-object</module>
+    <module>acyclic-visitor</module>
     <module>adapter</module>
+    <module>ambassador</module>
+    <module>anti-corruption-layer</module>
+    <module>arrange-act-assert</module>
+    <module>async-method-invocation</module>
+    <module>balking</module>
+    <module>bloc</module>
     <module>bridge</module>
-    <module>composite</module>
-    <module>data-access-object</module>
-    <module>data-mapper</module>
-    <module>decorator</module>
-    <module>facade</module>
-    <module>flyweight</module>
-    <module>proxy</module>
+    <module>builder</module>
+    <module>business-delegate</module>
+    <module>bytecode</module>
+    <module>caching</module>
+    <module>callback</module>
     <module>chain-of-responsibility</module>
-      <module>clean-architecture</module>
+    <module>circuit-breaker</module>
+    <module>clean-architecture</module>
+    <module>client-session</module>
+    <module>collecting-parameter</module>
+    <module>collection-pipeline</module>
+    <module>combinator</module>
     <module>command</module>
+    <module>command-query-responsibility-segregation</module>
+    <module>commander</module>
+    <module>component</module>
+    <module>composite</module>
+    <module>composite-entity</module>
+    <module>composite-view</module>
+    <module>context-object</module>
+    <module>converter</module>
+    <module>curiously-recurring-template-pattern</module>
+    <module>currying</module>
+    <module>data-access-object</module>
+    <module>data-bus</module>
+    <module>data-locality</module>
+    <module>data-mapper</module>
+    <module>data-transfer-object</module>
+    <module>decorator</module>
+    <module>delegation</module>
+    <module>dependency-injection</module>
+    <module>dirty-flag</module>
+    <module>domain-model</module>
+    <module>double-buffer</module>
+    <module>double-checked-locking</module>
+    <module>double-dispatch</module>
+    <module>dynamic-proxy</module>
+    <module>event-aggregator</module>
+    <module>event-based-asynchronous</module>
+    <module>event-driven-architecture</module>
+    <module>event-queue</module>
+    <module>event-sourcing</module>
+    <module>execute-around</module>
+    <module>extension-objects</module>
+    <module>facade</module>
+    <module>factory</module>
+    <module>factory-kit</module>
+    <module>factory-method</module>
+    <module>fanout-fanin</module>
+    <module>feature-toggle</module>
+    <module>filterer</module>
+    <module>fluent-interface</module>
+    <module>flux</module>
+    <module>flyweight</module>
+    <module>front-controller</module>
+    <module>function-composition</module>
+    <module>game-loop</module>
+    <module>gateway</module>
+    <module>guarded-suspension</module>
+    <module>half-sync-half-async</module>
+    <module>health-check</module>
+    <module>hexagonal-architecture</module>
+    <module>identity-map</module>
+    <module>intercepting-filter</module>
     <module>interpreter</module>
     <module>iterator</module>
+    <module>layered-architecture</module>
+    <module>lazy-loading</module>
+    <module>leader-election</module>
+    <module>leader-followers</module>
+    <module>lockable-object</module>
+    <module>map-reduce</module>
+    <module>marker-interface</module>
+    <module>master-worker</module>
     <module>mediator</module>
     <module>memento</module>
-    <module>model-view-presenter</module>
-    <module>observer</module>
-    <module>state</module>
-    <module>strategy</module>
-    <module>template-method</module>
-    <module>version-number</module>
-    <module>visitor</module>
-    <module>double-checked-locking</module>
-    <module>servant</module>
-    <module>service-locator</module>
-    <module>null-object</module>
-    <module>event-aggregator</module>
-    <module>callback</module>
-    <module>execute-around</module>
-    <module>property</module>
-    <module>intercepting-filter</module>
-    <module>producer-consumer</module>
-    <module>pipeline</module>
-    <module>poison-pill</module>
-    <module>lazy-loading</module>
-    <module>service-layer</module>
-    <module>specification</module>
-    <module>tolerant-reader</module>
-    <module>model-view-controller</module>
-    <module>flux</module>
-    <module>double-dispatch</module>
-    <module>multiton</module>
-    <module>resource-acquisition-is-initialization</module>
-    <module>twin</module>
-    <module>private-class-data</module>
-    <module>object-pool</module>
-    <module>dependency-injection</module>
-    <module>front-controller</module>
-    <module>repository</module>
-    <module>async-method-invocation</module>
-    <module>monostate</module>
-    <module>step-builder</module>
-    <module>business-delegate</module>
-    <module>half-sync-half-async</module>
-    <module>layered-architecture</module>
-    <module>fluent-interface</module>
-    <module>reactor</module>
-    <module>caching</module>
-    <module>delegation</module>
-    <module>event-driven-architecture</module>
-    <module>microservices-api-gateway</module>
-    <module>factory-kit</module>
-    <module>feature-toggle</module>
-    <module>value-object</module>
-    <module>monad</module>
-    <module>mute-idiom</module>
-    <module>hexagonal-architecture</module>
-    <module>abstract-document</module>
+    <module>metadata-mapping</module>
     <module>microservices-aggregrator</module>
-    <module>promise</module>
+    <module>microservices-api-gateway</module>
+    <module>microservices-client-side-ui-composition</module>
+    <module>microservices-distributed-tracing</module>
+    <module>microservices-idempotent-consumer</module>
+    <module>microservices-log-aggregation</module>
+    <module>model-view-controller</module>
+    <module>model-view-intent</module>
+    <module>model-view-presenter</module>
+    <module>model-view-viewmodel</module>
+    <module>monad</module>
+    <module>money</module>
+    <module>monitor</module>
+    <module>monolithic-architecture</module>
+    <module>monostate</module>
+    <module>multiton</module>
+    <module>mute-idiom</module>
+    <module>notification</module>
+    <module>null-object</module>
+    <module>object-mother</module>
+    <module>object-pool</module>
+    <module>observer</module>
+    <module>optimistic-offline-lock</module>
     <module>page-controller</module>
     <module>page-object</module>
-    <module>event-based-asynchronous</module>
-    <module>event-queue</module>
-    <module>queue-based-load-leveling</module>
-    <module>object-mother</module>
-    <module>data-bus</module>
-    <module>converter</module>
-    <module>guarded-suspension</module>
-    <module>balking</module>
-    <module>extension-objects</module>
-    <module>marker-interface</module>
-    <module>command-query-responsibility-segregation</module>
-    <module>event-sourcing</module>
-    <module>data-transfer-object</module>
-    <module>throttling</module>
-    <module>unit-of-work</module>
+    <module>parameter-object</module>
     <module>partial-response</module>
+    <module>pipeline</module>
+    <module>poison-pill</module>
+    <module>presentation-model</module>
+    <module>private-class-data</module>
+    <module>producer-consumer</module>
+    <module>promise</module>
+    <module>property</module>
+    <module>prototype</module>
+    <module>proxy</module>
+    <module>publish-subscribe</module>
+    <module>queue-based-load-leveling</module>
+    <module>reactor</module>
+    <module>registry</module>
+    <module>repository</module>
+    <module>resource-acquisition-is-initialization</module>
     <module>retry</module>
-    <module>dirty-flag</module>
-    <module>trampoline</module>
-    <module>ambassador</module>
-    <module>acyclic-visitor</module>
-    <module>collection-pipeline</module>
-    <module>master-worker</module>
-    <module>spatial-partition</module>
-    <module>commander</module>
-    <module>type-object</module>
-    <module>bytecode</module>
-    <module>leader-election</module>
-    <module>data-locality</module>
-    <module>subclass-sandbox</module>
-    <module>circuit-breaker</module>
     <module>role-object</module>
     <module>saga</module>
-    <module>double-buffer</module>
-    <module>sharding</module>
-    <module>game-loop</module>
-    <module>combinator</module>
-    <module>update-method</module>
-    <module>leader-followers</module>
-    <module>strangler</module>
-    <module>arrange-act-assert</module>
-    <module>transaction-script</module>
-    <module>registry</module>
-    <module>filterer</module>
-    <module>factory</module>
     <module>separated-interface</module>
-    <module>special-case</module>
-    <module>parameter-object</module>
-    <module>active-object</module>
-    <module>model-view-viewmodel</module>
-    <module>composite-entity</module>
-    <module>table-module</module>
-    <module>presentation-model</module>
-    <module>lockable-object</module>
-    <module>fanout-fanin</module>
-    <module>domain-model</module>
-    <module>composite-view</module>
-    <module>metadata-mapping</module>
-    <module>service-to-worker</module>
-    <module>client-session</module>
-    <module>model-view-intent</module>
-    <module>currying</module>
     <module>serialized-entity</module>
-    <module>identity-map</module>
-    <module>component</module>
-    <module>context-object</module>
-    <module>optimistic-offline-lock</module>
-    <module>curiously-recurring-template-pattern</module>
-    <module>microservices-log-aggregation</module>
-    <module>anti-corruption-layer</module>
-    <module>health-check</module>
-    <module>notification</module>
-    <module>single-table-inheritance</module>
-    <module>dynamic-proxy</module>
-    <module>gateway</module>
     <module>serialized-lob</module>
+    <module>servant</module>
     <module>server-session</module>
-    <module>virtual-proxy</module>
-    <module>function-composition</module>
-    <module>microservices-distributed-tracing</module>
-    <module>microservices-client-side-ui-composition</module>
-    <module>microservices-idempotent-consumer</module>
-    <module>monolithic-architecture</module>
+    <module>service-layer</module>
+    <module>service-locator</module>
+    <module>service-stub</module>
+    <module>service-to-worker</module>
     <module>session-facade</module>
-    <module>templateview</module>
-    <module>money</module>
+    <module>sharding</module>
+    <module>single-table-inheritance</module>
+    <module>singleton</module>
+    <module>spatial-partition</module>
+    <module>special-case</module>
+    <module>specification</module>
+    <module>state</module>
+    <module>step-builder</module>
+    <module>strangler</module>
+    <module>strategy</module>
+    <module>subclass-sandbox</module>
     <module>table-inheritance</module>
-    <module>bloc</module>
-    <module>map-reduce</module>
-      <module>service-stub</module>
+    <module>table-module</module>
+    <module>template-method</module>
+    <module>templateview</module>
+    <module>throttling</module>
+    <module>tolerant-reader</module>
+    <module>trampoline</module>
+    <module>transaction-script</module>
+    <module>twin</module>
+    <module>type-object</module>
+    <module>unit-of-work</module>
+    <module>update-method</module>
+    <module>value-object</module>
+    <module>version-number</module>
+    <module>virtual-proxy</module>
+    <module>visitor</module>
   </modules>
   <repositories>
     <repository>
@@ -239,10 +246,29 @@
     <dependencies>
       <dependency>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
+        <artifactId>spring-boot-starter</artifactId>
         <version>${spring-boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-actuator</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+        <version>${spring-boot.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+        <version>${spring-boot.version}</version>
       </dependency>
       <dependency>
         <groupId>commons-dbcp</groupId>
@@ -270,21 +296,57 @@
         <version>${system-lambda.version}</version>
         <scope>test</scope>
       </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-params</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-migrationsupport</artifactId>
+        <version>${junit.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>${slf4j.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-core</artifactId>
+        <version>${mockito.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>bson</artifactId>
+        <version>${bson.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongodb-driver-legacy</artifactId>
+        <version>${mongo.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <version>${h2.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-core</artifactId>
-    </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
@@ -350,28 +412,6 @@
     </pluginManagement>
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>${maven-checkstyle-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>validate</id>
-            <goals>
-              <goal>check</goal>
-            </goals>
-            <phase>validate</phase>
-            <configuration>
-              <configLocation>google_checks.xml</configLocation>
-              <suppressionsLocation>checkstyle-suppressions.xml</suppressionsLocation>
-
-              <failOnViolation>true</failOnViolation>
-              <violationSeverity>warning</violationSeverity>
-              <includeTestSourceDirectory>false</includeTestSourceDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
         <groupId>com.mycila</groupId>
         <artifactId>license-maven-plugin</artifactId>
         <version>${license-maven-plugin.version}</version>
@@ -423,6 +463,26 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>com.diffplug.spotless</groupId>
+        <artifactId>spotless-maven-plugin</artifactId>
+        <version>2.44.3</version> <!-- Use latest version -->
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>     <!-- Run to check formatting -->
+              <goal>apply</goal>     <!-- Run to format automatically -->
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <java>
+            <googleJavaFormat>
+              <version>1.17.0</version> <!-- Optional: choose the GJF version -->
+            </googleJavaFormat>
+          </java>
+        </configuration>
       </plugin>
     </plugins>
   </build>

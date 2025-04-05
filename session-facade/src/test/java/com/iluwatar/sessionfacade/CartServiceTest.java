@@ -24,43 +24,34 @@
  */
 package com.iluwatar.sessionfacade;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.HashMap;
+import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import static org.junit.jupiter.api.Assertions.*;
-
-/**
- * The type Cart service test.
- */
+/** The type Cart service test. */
 @Slf4j
 class CartServiceTest {
 
   private CartService cartService;
-  private Map<Integer,Product> cart;
+  private Map<Integer, Product> cart;
 
-  /**
-   * Sets up.
-   */
+  /** Sets up. */
   @BeforeEach
   void setUp() {
     MockitoAnnotations.openMocks(this);
     cart = new HashMap<>();
-    Map<Integer,Product> productCatalog = new HashMap<>();
-    productCatalog.put(1,new Product(1, "Product A", 2.0, "any description"));
-    productCatalog.put(2,new Product(2, "Product B", 300.0, "a watch"));
+    Map<Integer, Product> productCatalog = new HashMap<>();
+    productCatalog.put(1, new Product(1, "Product A", 2.0, "any description"));
+    productCatalog.put(2, new Product(2, "Product B", 300.0, "a watch"));
     cartService = new CartService(cart, productCatalog);
   }
 
-  /**
-   * Test add to cart.
-   */
+  /** Test add to cart. */
   @Test
   void testAddToCart() {
     cartService.addToCart(1);
@@ -68,9 +59,7 @@ class CartServiceTest {
     assertEquals("Product A", cart.get(1).name());
   }
 
-  /**
-   * Test remove from cart.
-   */
+  /** Test remove from cart. */
   @Test
   void testRemoveFromCart() {
     cartService.addToCart(1);
@@ -79,18 +68,14 @@ class CartServiceTest {
     assertTrue(cart.isEmpty());
   }
 
-  /**
-   * Test add to cart with invalid product id.
-   */
+  /** Test add to cart with invalid product id. */
   @Test
   void testAddToCartWithInvalidProductId() {
     cartService.addToCart(999);
     assertTrue(cart.isEmpty());
   }
 
-  /**
-   * Test remove from cart with invalid product id.
-   */
+  /** Test remove from cart with invalid product id. */
   @Test
   void testRemoveFromCartWithInvalidProductId() {
     cartService.removeFromCart(999);

@@ -27,9 +27,7 @@ package com.iluwatar.async.method.invocation;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 
-/**
- * AsyncExecutor interface.
- */
+/** AsyncExecutor interface. */
 public interface AsyncExecutor {
 
   /**
@@ -44,7 +42,7 @@ public interface AsyncExecutor {
    * Starts processing of an async task. Returns immediately with async result. Executes callback
    * when the task is completed.
    *
-   * @param task     task to be executed asynchronously
+   * @param task task to be executed asynchronously
    * @param callback callback to be executed on task completion
    * @return async result for the task
    */
@@ -56,7 +54,7 @@ public interface AsyncExecutor {
    *
    * @param asyncResult async result of a task
    * @return evaluated value of the completed task
-   * @throws ExecutionException   if execution has failed, containing the root cause
+   * @throws ExecutionException if execution has failed, containing the root cause
    * @throws InterruptedException if the execution is interrupted
    */
   <T> T endProcess(AsyncResult<T> asyncResult) throws ExecutionException, InterruptedException;

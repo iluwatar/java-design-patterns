@@ -30,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Test User Group specific feature
- */
+/** Test User Group specific feature */
 class UserGroupTest {
 
   @Test

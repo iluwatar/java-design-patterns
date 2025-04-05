@@ -30,21 +30,22 @@ import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
-
 /**
  * Serialized Entity Pattern.
  *
- * <p> Serialized Entity Pattern allow us to easily persist Java objects to the database. It uses Serializable interface
- * and DAO pattern. Serialized Entity Pattern will first use Serializable to convert a Java object into a set of bytes,
- * then it will using DAO pattern to store this set of bytes as BLOB to database.</p>
+ * <p>Serialized Entity Pattern allow us to easily persist Java objects to the database. It uses
+ * Serializable interface and DAO pattern. Serialized Entity Pattern will first use Serializable to
+ * convert a Java object into a set of bytes, then it will using DAO pattern to store this set of
+ * bytes as BLOB to database.
  *
- * <p> In this example, we first initialize two Java objects (Country) "China" and "UnitedArabEmirates", then we
- * initialize "serializedChina" with "China" object and "serializedUnitedArabEmirates" with "UnitedArabEmirates",
- * then we use method "serializedChina.insertCountry()" and "serializedUnitedArabEmirates.insertCountry()" to serialize
- * "China" and "UnitedArabEmirates" and persist them to database.
- * Last, with "serializedChina.selectCountry()" and "serializedUnitedArabEmirates.selectCountry()" we could read "China"
- * and "UnitedArabEmirates" from database as sets of bytes, then deserialize them back to Java object (Country). </p>
- *
+ * <p>In this example, we first initialize two Java objects (Country) "China" and
+ * "UnitedArabEmirates", then we initialize "serializedChina" with "China" object and
+ * "serializedUnitedArabEmirates" with "UnitedArabEmirates", then we use method
+ * "serializedChina.insertCountry()" and "serializedUnitedArabEmirates.insertCountry()" to serialize
+ * "China" and "UnitedArabEmirates" and persist them to database. Last, with
+ * "serializedChina.selectCountry()" and "serializedUnitedArabEmirates.selectCountry()" we could
+ * read "China" and "UnitedArabEmirates" from database as sets of bytes, then deserialize them back
+ * to Java object (Country).
  */
 @Slf4j
 public class App {
@@ -55,6 +56,7 @@ public class App {
 
   /**
    * Program entry point.
+   *
    * @param args command line args.
    * @throws IOException if any
    * @throws ClassNotFoundException if any
@@ -66,20 +68,10 @@ public class App {
     createSchema(dataSource);
 
     // Initializing Country Object China
-    final var China = new Country(
-            86,
-            "China",
-            "Asia",
-            "Chinese"
-    );
+    final var China = new Country(86, "China", "Asia", "Chinese");
 
     // Initializing Country Object UnitedArabEmirates
-    final var UnitedArabEmirates = new Country(
-            971,
-            "United Arab Emirates",
-            "Asia",
-            "Arabic"
-    );
+    final var UnitedArabEmirates = new Country(971, "United Arab Emirates", "Asia", "Arabic");
 
     // Initializing CountrySchemaSql Object with parameter "China" and "dataSource"
     final var serializedChina = new CountrySchemaSql(China, dataSource);
@@ -105,7 +97,7 @@ public class App {
 
   private static void deleteSchema(DataSource dataSource) {
     try (var connection = dataSource.getConnection();
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(CountrySchemaSql.DELETE_SCHEMA_SQL);
     } catch (SQLException e) {
       LOGGER.info("Exception thrown " + e.getMessage());
@@ -114,7 +106,7 @@ public class App {
 
   private static void createSchema(DataSource dataSource) {
     try (var connection = dataSource.getConnection();
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(CountrySchemaSql.CREATE_SCHEMA_SQL);
     } catch (SQLException e) {
       LOGGER.info("Exception thrown " + e.getMessage());

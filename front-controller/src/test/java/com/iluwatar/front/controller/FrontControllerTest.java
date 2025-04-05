@@ -33,10 +33,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-/**
- * FrontControllerTest
- *
- */
+/** FrontControllerTest */
 class FrontControllerTest {
 
   private InMemoryAppender appender;
@@ -53,14 +50,13 @@ class FrontControllerTest {
 
   static List<Object[]> dataProvider() {
     return List.of(
-        new Object[]{new ArcherCommand(), "Displaying archers"},
-        new Object[]{new CatapultCommand(), "Displaying catapults"},
-        new Object[]{new UnknownCommand(), "Error 500"}
-    );
+        new Object[] {new ArcherCommand(), "Displaying archers"},
+        new Object[] {new CatapultCommand(), "Displaying catapults"},
+        new Object[] {new UnknownCommand(), "Error 500"});
   }
 
   /**
-   * @param command        The command that's been tested
+   * @param command The command that's been tested
    * @param displayMessage The expected display message
    */
   @ParameterizedTest
@@ -71,5 +67,4 @@ class FrontControllerTest {
     assertEquals(displayMessage, appender.getLastMessage());
     assertEquals(1, appender.getLogSize());
   }
-
 }

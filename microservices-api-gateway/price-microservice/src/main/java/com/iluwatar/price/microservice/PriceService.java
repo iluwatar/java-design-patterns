@@ -24,9 +24,7 @@
  */
 package com.iluwatar.price.microservice;
 
-/**
- * Service to get a product's price.
- */
+/** Service to get a product's price. */
 public interface PriceService {
 
   /**

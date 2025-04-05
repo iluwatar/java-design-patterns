@@ -28,9 +28,7 @@ import abstractextensions.UnitExtension;
 import concreteextensions.Soldier;
 import java.util.Optional;
 
-/**
- * Class defining SoldierUnit.
- */
+/** Class defining SoldierUnit. */
 public class SoldierUnit extends Unit {
 
   public SoldierUnit(String name) {

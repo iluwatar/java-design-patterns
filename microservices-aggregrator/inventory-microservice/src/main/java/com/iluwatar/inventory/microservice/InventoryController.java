@@ -27,9 +27,7 @@ package com.iluwatar.inventory.microservice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Controller providing endpoints to retrieve product inventories.
- */
+/** Controller providing endpoints to retrieve product inventories. */
 @RestController
 public class InventoryController {
 
@@ -42,5 +40,4 @@ public class InventoryController {
   public int getProductInventories() {
     return 5;
   }
-
 }

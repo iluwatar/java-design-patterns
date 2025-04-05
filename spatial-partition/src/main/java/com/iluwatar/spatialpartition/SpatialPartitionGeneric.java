@@ -32,7 +32,6 @@ import java.util.Map;
  *
  * @param <T> T will be type of object (that extends Point)
  */
-
 public abstract class SpatialPartitionGeneric<T> {
 
   Map<Integer, T> playerPositions;

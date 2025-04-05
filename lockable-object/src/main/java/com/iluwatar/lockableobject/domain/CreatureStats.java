@@ -35,8 +35,7 @@ public enum CreatureStats {
   HUMAN_HEALTH(60),
   HUMAN_DAMAGE(60);
 
-  @Getter
-  final int value;
+  @Getter final int value;
 
   CreatureStats(int value) {
     this.value = value;

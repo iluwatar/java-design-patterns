@@ -24,13 +24,11 @@
  */
 package com.iluwatar.partialresponse;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-/**
- * tests {@link FieldJsonMapper}.
- */
+/** tests {@link FieldJsonMapper}. */
 class FieldJsonMapperTest {
   private static FieldJsonMapper mapper;
 
@@ -41,11 +39,10 @@ class FieldJsonMapperTest {
 
   @Test
   void shouldReturnJsonForSpecifiedFieldsInVideo() throws Exception {
-    var fields = new String[]{"id", "title", "length"};
-    var video = new Video(
-        2, "Godzilla Resurgence", 120,
-        "Action & drama movie|", "Hideaki Anno", "Japanese"
-    );
+    var fields = new String[] {"id", "title", "length"};
+    var video =
+        new Video(
+            2, "Godzilla Resurgence", 120, "Action & drama movie|", "Hideaki Anno", "Japanese");
 
     var jsonFieldResponse = mapper.toJson(video, fields);
 

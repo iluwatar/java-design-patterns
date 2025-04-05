@@ -24,7 +24,5 @@
  */
 package com.iluwatar.converter;
 
-/**
- * User record.
- */
+/** User record. */
 public record User(String firstName, String lastName, boolean active, String userId) {}

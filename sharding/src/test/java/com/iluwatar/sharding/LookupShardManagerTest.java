@@ -31,16 +31,12 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for LookupShardManager class.
- */
+/** Unit tests for LookupShardManager class. */
 class LookupShardManagerTest {
 
   private LookupShardManager lookupShardManager;
 
-  /**
-   * Initialize lookupShardManager instance.
-   */
+  /** Initialize lookupShardManager instance. */
   @BeforeEach
   void setup() {
     lookupShardManager = new LookupShardManager();

@@ -26,9 +26,7 @@ package com.iluwatar.subclasssandbox;
 
 import org.slf4j.LoggerFactory;
 
-/**
- * SkyLaunch superpower.
- */
+/** SkyLaunch superpower. */
 public class SkyLaunch extends Superpower {
 
   public SkyLaunch() {

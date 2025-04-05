@@ -29,9 +29,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-/**
- * Lottery ticked id.
- */
+/** Lottery ticked id. */
 @Getter
 @EqualsAndHashCode
 @RequiredArgsConstructor
@@ -48,5 +46,4 @@ public class LotteryTicketId {
   public String toString() {
     return String.format("%d", id);
   }
-
 }

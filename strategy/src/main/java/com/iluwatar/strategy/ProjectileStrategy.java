@@ -26,9 +26,7 @@ package com.iluwatar.strategy;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Projectile strategy.
- */
+/** Projectile strategy. */
 @Slf4j
 public class ProjectileStrategy implements DragonSlayingStrategy {
 

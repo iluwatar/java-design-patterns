@@ -32,19 +32,18 @@ import java.net.http.HttpResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-/**
- * An adapter to communicate with information micro-service.
- */
+/** An adapter to communicate with information micro-service. */
 @Slf4j
 @Component
 public class ProductInformationClientImpl implements ProductInformationClient {
 
   @Override
   public String getProductTitle() {
-    var request = HttpRequest.newBuilder()
-        .GET()
-        .uri(URI.create("http://localhost:51515/information"))
-        .build();
+    var request =
+        HttpRequest.newBuilder()
+            .GET()
+            .uri(URI.create("http://localhost:51515/information"))
+            .build();
     var client = HttpClient.newHttpClient();
     try {
       var httpResponse = client.send(request, HttpResponse.BodyHandlers.ofString());

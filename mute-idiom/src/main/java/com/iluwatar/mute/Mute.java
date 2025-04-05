@@ -28,22 +28,19 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * A utility class that allows you to utilize mute idiom.
- */
+/** A utility class that allows you to utilize mute idiom. */
 @Slf4j
 public final class Mute {
 
   // The constructor is never meant to be called.
-  private Mute() {
-  }
+  private Mute() {}
 
   /**
    * Executes the <code>runnable</code> and throws the exception occurred within a {@link
    * AssertionError}. This method should be utilized to mute the operations that are guaranteed not
-   * to throw an exception. For instance {@link ByteArrayOutputStream#write(byte[])} declares in
-   * its signature that it can throw an {@link IOException}, but in reality it cannot. This is
-   * because the bulk write method is not overridden in {@link ByteArrayOutputStream}.
+   * to throw an exception. For instance {@link ByteArrayOutputStream#write(byte[])} declares in its
+   * signature that it can throw an {@link IOException}, but in reality it cannot. This is because
+   * the bulk write method is not overridden in {@link ByteArrayOutputStream}.
    *
    * @param runnable a runnable that should never throw an exception on execution.
    */

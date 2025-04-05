@@ -29,10 +29,7 @@ import com.iluwatar.servicelayer.spellbook.Spellbook;
 import com.iluwatar.servicelayer.wizard.Wizard;
 import java.util.List;
 
-
-/**
- * Service interface.
- */
+/** Service interface. */
 public interface MagicService {
 
   List<Wizard> findAllWizards();

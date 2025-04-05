@@ -45,12 +45,10 @@ import javax.swing.WindowConstants;
  *
  * <p>This is where {@link Filter}s come to play as the client pre-processes the request before
  * being displayed in the {@link Target}.
- *
  */
 public class Client extends JFrame { // NOSONAR
 
-  @Serial
-  private static final long serialVersionUID = 1L;
+  @Serial private static final long serialVersionUID = 1L;
 
   private transient FilterManager filterManager;
   private final JLabel jl;
@@ -59,9 +57,7 @@ public class Client extends JFrame { // NOSONAR
   private final JButton clearButton;
   private final JButton processButton;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Client() {
     super("Client System");
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -100,10 +96,11 @@ public class Client extends JFrame { // NOSONAR
     panel.add(clearButton);
     panel.add(processButton);
 
-    clearButton.addActionListener(e -> {
-      Arrays.stream(jtAreas).forEach(i -> i.setText(""));
-      Arrays.stream(jtFields).forEach(i -> i.setText(""));
-    });
+    clearButton.addActionListener(
+        e -> {
+          Arrays.stream(jtAreas).forEach(i -> i.setText(""));
+          Arrays.stream(jtFields).forEach(i -> i.setText(""));
+        });
 
     processButton.addActionListener(this::actionPerformed);
 

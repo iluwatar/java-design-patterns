@@ -36,14 +36,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * sometime in the future) or if the location (host and port) of a microservice changes, then every
  * client that makes use of those microservices must be updated.
  *
- * <p>The intent of the API Gateway pattern is to alleviate some of these issues. In the API
- * Gateway pattern, an additional entity (the API Gateway) is placed between the client and the
+ * <p>The intent of the API Gateway pattern is to alleviate some of these issues. In the API Gateway
+ * pattern, an additional entity (the API Gateway) is placed between the client and the
  * microservices. The job of the API Gateway is to aggregate the calls to the microservices. Rather
  * than the client calling each microservice individually, the client calls the API Gateway a single
  * time. The API Gateway then calls each of the microservices that the client needs.
  *
- * <p>This implementation shows what the API Gateway pattern could look like for an e-commerce
- * site. The {@link ApiGateway} makes calls to the Image and Price microservices using the {@link
+ * <p>This implementation shows what the API Gateway pattern could look like for an e-commerce site.
+ * The {@link ApiGateway} makes calls to the Image and Price microservices using the {@link
  * ImageClientImpl} and {@link PriceClientImpl} respectively. Customers viewing the site on a
  * desktop device can see both price information and an image of a product, so the {@link
  * ApiGateway} calls both of the microservices and aggregates the data in the {@link DesktopProduct}

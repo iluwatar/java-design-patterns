@@ -30,9 +30,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Inventory.
- */
+/** Inventory. */
 @Slf4j
 public class Inventory {
 
@@ -40,18 +38,14 @@ public class Inventory {
   private final List<Item> items;
   private final Lock lock;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Inventory(int inventorySize) {
     this.inventorySize = inventorySize;
     this.items = new ArrayList<>(inventorySize);
     this.lock = new ReentrantLock();
   }
 
-  /**
-   * Add item.
-   */
+  /** Add item. */
   public boolean addItem(Item item) {
     if (items.size() < inventorySize) {
       lock.lock();
@@ -77,5 +71,4 @@ public class Inventory {
   public final List<Item> getItems() {
     return List.copyOf(items);
   }
-
 }

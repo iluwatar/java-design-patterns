@@ -24,55 +24,56 @@
  */
 package com.iluwatar.domainmodel;
 
-import org.joda.money.Money;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.sql.SQLException;
-import java.time.LocalDate;
-import java.util.Optional;
-
 import static org.joda.money.CurrencyUnit.USD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.Optional;
+import org.joda.money.Money;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 class ProductTest {
 
-    private ProductDao productDao;
-    private Product product;
+  private ProductDao productDao;
+  private Product product;
 
-    @BeforeEach
-    void setUp() {
-        productDao = mock(ProductDaoImpl.class);
+  @BeforeEach
+  void setUp() {
+    productDao = mock(ProductDaoImpl.class);
 
-        product = Product.builder()
-                .name("product")
-                .price(Money.of(USD, 100.0))
-                .expirationDate(LocalDate.now().plusDays(10))
-                .productDao(productDao)
-                .build();
-    }
+    product =
+        Product.builder()
+            .name("product")
+            .price(Money.of(USD, 100.0))
+            .expirationDate(LocalDate.now().plusDays(10))
+            .productDao(productDao)
+            .build();
+  }
 
-    @Test
-    void shouldSaveProduct() throws SQLException {
-        when(productDao.findByName("product")).thenReturn(Optional.empty());
+  @Test
+  void shouldSaveProduct() throws SQLException {
+    when(productDao.findByName("product")).thenReturn(Optional.empty());
 
-        product.save();
+    product.save();
 
-        verify(productDao, times(1)).save(product);
+    verify(productDao, times(1)).save(product);
 
-        when(productDao.findByName("product")).thenReturn(Optional.of(product));
+    when(productDao.findByName("product")).thenReturn(Optional.of(product));
 
-        product.save();
+    product.save();
 
-        verify(productDao, times(1)).update(product);
-    }
+    verify(productDao, times(1)).update(product);
+  }
 
-    @Test
-    void shouldGetSalePriceOfProduct() {
-        assertEquals(Money.of(USD, 100), product.getSalePrice());
+  @Test
+  void shouldGetSalePriceOfProduct() {
+    assertEquals(Money.of(USD, 100), product.getSalePrice());
 
-        product.setExpirationDate(LocalDate.now().plusDays(2));
+    product.setExpirationDate(LocalDate.now().plusDays(2));
 
-        assertEquals(Money.of(USD, 80), product.getSalePrice());
-    }
+    assertEquals(Money.of(USD, 80), product.getSalePrice());
+  }
 }

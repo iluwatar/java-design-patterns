@@ -24,23 +24,19 @@
  */
 package com.iluwatar.sessionfacade;
 
+import static org.mockito.Mockito.*;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 
-import static org.mockito.Mockito.*;
-
-/**
- * The type Payment service test.
- */
+/** The type Payment service test. */
 class PaymentServiceTest {
   private PaymentService paymentService;
   private OrderService orderService;
   private Logger mockLogger;
 
-  /**
-   * Sets up.
-   */
+  /** Sets up. */
   @BeforeEach
   void setUp() {
     paymentService = new PaymentService();
@@ -48,9 +44,7 @@ class PaymentServiceTest {
     paymentService.LOGGER = mockLogger;
   }
 
-  /**
-   * Test select cash payment method.
-   */
+  /** Test select cash payment method. */
   @Test
   void testSelectCashPaymentMethod() {
     String method = "cash";
@@ -58,9 +52,7 @@ class PaymentServiceTest {
     verify(mockLogger).info("Client have chosen cash payment option");
   }
 
-  /**
-   * Test select credit card payment method.
-   */
+  /** Test select credit card payment method. */
   @Test
   void testSelectCreditCardPaymentMethod() {
     String method = "credit";
@@ -68,9 +60,7 @@ class PaymentServiceTest {
     verify(mockLogger).info("Client have chosen credit card payment option");
   }
 
-  /**
-   * Test select unspecified payment method.
-   */
+  /** Test select unspecified payment method. */
   @Test
   void testSelectUnspecifiedPaymentMethod() {
     String method = "cheque";

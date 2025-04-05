@@ -24,9 +24,9 @@
  */
 package com.iluwatar.domainmodel;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import org.junit.jupiter.api.Test;
 
 /** Tests that Domain Model example runs without errors. */
 final class AppTest {
@@ -35,5 +35,4 @@ final class AppTest {
   void shouldExecuteApplicationWithoutException() {
     assertDoesNotThrow(() -> App.main(new String[] {}));
   }
-
 }

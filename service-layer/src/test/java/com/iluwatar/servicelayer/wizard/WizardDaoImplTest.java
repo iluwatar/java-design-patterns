@@ -30,10 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.iluwatar.servicelayer.common.BaseDaoTest;
 import org.junit.jupiter.api.Test;
 
-/**
- * WizardDaoImplTest
- *
- */
+/** WizardDaoImplTest */
 class WizardDaoImplTest extends BaseDaoTest<Wizard, WizardDaoImpl> {
 
   public WizardDaoImplTest() {
@@ -51,5 +48,4 @@ class WizardDaoImplTest extends BaseDaoTest<Wizard, WizardDaoImpl> {
       assertEquals(spell.getName(), byName.getName());
     }
   }
-
 }

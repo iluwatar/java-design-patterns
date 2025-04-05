@@ -24,9 +24,7 @@
  */
 package com.iluwatar.saga.orchestration;
 
-/**
- * Class representing a service to withdraw a money.
- */
+/** Class representing a service to withdraw a money. */
 public class WithdrawMoneyService extends Service<String> {
   @Override
   public String getName() {
@@ -36,7 +34,8 @@ public class WithdrawMoneyService extends Service<String> {
   @Override
   public ChapterResult<String> process(String value) {
     if (value.equals("bad_order") || value.equals("crashed_order")) {
-      LOGGER.info("The chapter '{}' has been started. But the exception has been raised."
+      LOGGER.info(
+          "The chapter '{}' has been started. But the exception has been raised."
               + "The rollback is about to start",
           getName());
       return ChapterResult.failure(value);

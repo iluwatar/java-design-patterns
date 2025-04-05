@@ -24,9 +24,7 @@
  */
 package com.iluwatar.multiton;
 
-/**
- * enum based multiton implementation.
- */
+/** enum based multiton implementation. */
 public enum NazgulEnum {
   KHAMUL,
   MURAZOR,

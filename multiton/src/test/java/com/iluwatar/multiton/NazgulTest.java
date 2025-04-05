@@ -30,10 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * NazgulTest
- *
- */
+/** NazgulTest */
 class NazgulTest {
 
   /**

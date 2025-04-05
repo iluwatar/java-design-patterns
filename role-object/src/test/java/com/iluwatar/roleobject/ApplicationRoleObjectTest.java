@@ -32,6 +32,6 @@ class ApplicationRoleObjectTest {
 
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> ApplicationRoleObject.main(new String[]{}));
+    assertDoesNotThrow(() -> ApplicationRoleObject.main(new String[] {}));
   }
 }

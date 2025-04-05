@@ -26,16 +26,12 @@ package com.iluwatar.lockableobject;
 
 import java.io.Serial;
 
-/**
- * An exception regarding the locking process of a Lockable object.
- */
+/** An exception regarding the locking process of a Lockable object. */
 public class LockingException extends RuntimeException {
 
-  @Serial
-  private static final long serialVersionUID = 8556381044865867037L;
+  @Serial private static final long serialVersionUID = 8556381044865867037L;
 
   public LockingException(String message) {
     super(message);
   }
-
 }

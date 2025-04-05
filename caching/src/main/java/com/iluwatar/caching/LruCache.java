@@ -30,42 +30,33 @@ import java.util.List;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
-
 /**
- * Data structure/implementation of the application's cache. The data structure
- * consists of a hash table attached with a doubly linked-list. The linked-list
- * helps in capturing and maintaining the LRU data in the cache. When a data is
- * queried (from the cache), added (to the cache), or updated, the data is
- * moved to the front of the list to depict itself as the most-recently-used
- * data. The LRU data is always at the end of the list.
+ * Data structure/implementation of the application's cache. The data structure consists of a hash
+ * table attached with a doubly linked-list. The linked-list helps in capturing and maintaining the
+ * LRU data in the cache. When a data is queried (from the cache), added (to the cache), or updated,
+ * the data is moved to the front of the list to depict itself as the most-recently-used data. The
+ * LRU data is always at the end of the list.
  */
 @Slf4j
 public class LruCache {
-  /**
-   * Static class Node.
-   */
+  /** Static class Node. */
   static class Node {
-    /**
-     * user id.
-     */
+    /** user id. */
     private final String userId;
-    /**
-     * User Account.
-     */
+
+    /** User Account. */
     private UserAccount userAccount;
-    /**
-     * previous.
-     */
+
+    /** previous. */
     private Node previous;
-    /**
-     * next.
-     */
+
+    /** next. */
     private Node next;
 
     /**
      * Node definition.
      *
-     * @param id      String
+     * @param id String
      * @param account {@link UserAccount}
      */
     Node(final String id, final UserAccount account) {
@@ -74,21 +65,16 @@ public class LruCache {
     }
   }
 
-  /**
-   * Capacity of Cache.
-   */
+  /** Capacity of Cache. */
   private int capacity;
-  /**
-   * Cache {@link HashMap}.
-   */
+
+  /** Cache {@link HashMap}. */
   private Map<String, Node> cache = new HashMap<>();
-  /**
-   * Head.
-   */
+
+  /** Head. */
   private Node head;
-  /**
-   * End.
-   */
+
+  /** End. */
   private Node end;
 
   /**
@@ -155,7 +141,7 @@ public class LruCache {
    * Set user account.
    *
    * @param userAccount {@link UserAccount}
-   * @param userId      {@link String}
+   * @param userId {@link String}
    */
   public void set(final String userId, final UserAccount userAccount) {
     if (cache.containsKey(userId)) {
@@ -195,14 +181,14 @@ public class LruCache {
   public void invalidate(final String userId) {
     var toBeRemoved = cache.remove(userId);
     if (toBeRemoved != null) {
-      LOGGER.info("# {} has been updated! "
-              + "Removing older version from cache...", userId);
+      LOGGER.info("# {} has been updated! " + "Removing older version from cache...", userId);
       remove(toBeRemoved);
     }
   }
 
   /**
    * Check if the cache is full.
+   *
    * @return boolean
    */
   public boolean isFull() {
@@ -218,9 +204,7 @@ public class LruCache {
     return end.userAccount;
   }
 
-  /**
-   * Clear cache.
-   */
+  /** Clear cache. */
   public void clear() {
     head = null;
     end = null;

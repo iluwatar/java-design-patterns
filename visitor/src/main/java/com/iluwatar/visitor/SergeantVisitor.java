@@ -26,14 +26,13 @@ package com.iluwatar.visitor;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * SergeantVisitor.
- */
+/** SergeantVisitor. */
 @Slf4j
 public class SergeantVisitor implements UnitVisitor {
 
   /**
    * Soldier Visitor method.
+   *
    * @param soldier Soldier to be visited
    */
   @Override
@@ -43,6 +42,7 @@ public class SergeantVisitor implements UnitVisitor {
 
   /**
    * Sergeant Visitor method.
+   *
    * @param sergeant Sergeant to be visited
    */
   @Override
@@ -52,6 +52,7 @@ public class SergeantVisitor implements UnitVisitor {
 
   /**
    * Commander Visitor method.
+   *
    * @param commander Commander to be visited
    */
   @Override

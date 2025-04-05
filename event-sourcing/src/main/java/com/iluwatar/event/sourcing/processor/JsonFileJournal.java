@@ -53,14 +53,13 @@ public class JsonFileJournal extends EventJournal {
   private final List<String> events = new ArrayList<>();
   private int index = 0;
 
-  /**
-   * Instantiates a new Json file journal.
-   */
+  /** Instantiates a new Json file journal. */
   public JsonFileJournal() {
     file = new File("Journal.json");
     if (file.exists()) {
-      try (var input = new BufferedReader(
-          new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
+      try (var input =
+          new BufferedReader(
+              new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8))) {
         String line;
         while ((line = input.readLine()) != null) {
           events.add(line);
@@ -73,7 +72,6 @@ public class JsonFileJournal extends EventJournal {
     }
   }
 
-
   /**
    * Write.
    *
@@ -82,15 +80,15 @@ public class JsonFileJournal extends EventJournal {
   @Override
   public void write(DomainEvent domainEvent) {
     var mapper = new ObjectMapper();
-    try (var output = new BufferedWriter(
-        new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8))) {
+    try (var output =
+        new BufferedWriter(
+            new OutputStreamWriter(new FileOutputStream(file, true), StandardCharsets.UTF_8))) {
       var eventString = mapper.writeValueAsString(domainEvent);
       output.write(eventString + "\r\n");
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
   }
-
 
   /**
    * Read the next domain event.
@@ -109,12 +107,13 @@ public class JsonFileJournal extends EventJournal {
     try {
       var jsonElement = mapper.readTree(event);
       var eventClassName = jsonElement.get("eventClassName").asText();
-      domainEvent = switch (eventClassName) {
-        case "AccountCreateEvent" -> mapper.treeToValue(jsonElement, AccountCreateEvent.class);
-        case "MoneyDepositEvent" -> mapper.treeToValue(jsonElement, MoneyDepositEvent.class);
-        case "MoneyTransferEvent" -> mapper.treeToValue(jsonElement, MoneyTransferEvent.class);
-        default -> throw new RuntimeException("Journal Event not recognized");
-      };
+      domainEvent =
+          switch (eventClassName) {
+            case "AccountCreateEvent" -> mapper.treeToValue(jsonElement, AccountCreateEvent.class);
+            case "MoneyDepositEvent" -> mapper.treeToValue(jsonElement, MoneyDepositEvent.class);
+            case "MoneyTransferEvent" -> mapper.treeToValue(jsonElement, MoneyTransferEvent.class);
+            default -> throw new RuntimeException("Journal Event not recognized");
+          };
     } catch (JsonProcessingException jsonProcessingException) {
       throw new RuntimeException("Failed to convert JSON");
     }

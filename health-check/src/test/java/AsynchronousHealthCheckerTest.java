@@ -45,10 +45,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Status;
 
-/**
- * Tests for {@link AsynchronousHealthChecker}.
- *
- */
+/** Tests for {@link AsynchronousHealthChecker}. */
 @Slf4j
 class AsynchronousHealthCheckerTest {
 

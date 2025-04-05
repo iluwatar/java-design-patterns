@@ -42,7 +42,7 @@ class ReactorTest {
   /**
    * Test the application using pooled thread dispatcher.
    *
-   * @throws IOException          if any I/O error occurs.
+   * @throws IOException if any I/O error occurs.
    * @throws InterruptedException if interrupted while stopping the application.
    */
   @Test
@@ -74,7 +74,7 @@ class ReactorTest {
   /**
    * Test the application using same thread dispatcher.
    *
-   * @throws IOException          if any I/O error occurs.
+   * @throws IOException if any I/O error occurs.
    * @throws InterruptedException if interrupted while stopping the application.
    */
   @Test

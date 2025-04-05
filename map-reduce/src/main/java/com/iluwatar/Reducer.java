@@ -30,13 +30,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * The Reducer class is responsible for aggregating word counts from the shuffled data.
- */
+/** The Reducer class is responsible for aggregating word counts from the shuffled data. */
 public class Reducer {
   private Reducer() {
-    throw new UnsupportedOperationException("Reducer is a utility class and cannot be instantiated.");
+    throw new UnsupportedOperationException(
+        "Reducer is a utility class and cannot be instantiated.");
   }
+
   /**
    * Sums the occurrences of each word and sorts the results in descending order.
    *

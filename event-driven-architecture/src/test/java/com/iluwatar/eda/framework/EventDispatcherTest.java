@@ -34,9 +34,7 @@ import com.iluwatar.eda.handler.UserUpdatedEventHandler;
 import com.iluwatar.eda.model.User;
 import org.junit.jupiter.api.Test;
 
-/**
- * Event Dispatcher unit tests to assert and verify correct event dispatcher behaviour
- */
+/** Event Dispatcher unit tests to assert and verify correct event dispatcher behaviour */
 class EventDispatcherTest {
 
   /**
@@ -57,15 +55,14 @@ class EventDispatcherTest {
     var userCreatedEvent = new UserCreatedEvent(user);
     var userUpdatedEvent = new UserUpdatedEvent(user);
 
-    //fire a userCreatedEvent and verify that userCreatedEventHandler has been invoked.
+    // fire a userCreatedEvent and verify that userCreatedEventHandler has been invoked.
     dispatcher.dispatch(userCreatedEvent);
     verify(userCreatedEventHandler).onEvent(userCreatedEvent);
     verify(dispatcher).dispatch(userCreatedEvent);
 
-    //fire a userCreatedEvent and verify that userUpdatedEventHandler has been invoked.
+    // fire a userCreatedEvent and verify that userUpdatedEventHandler has been invoked.
     dispatcher.dispatch(userUpdatedEvent);
     verify(userUpdatedEventHandler).onEvent(userUpdatedEvent);
     verify(dispatcher).dispatch(userUpdatedEvent);
   }
-
 }

@@ -30,15 +30,15 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * In this example, we are launching space rockets and deploying lunar rovers.
  *
- * <p>The application demonstrates the async method invocation pattern. The key parts of the
- * pattern are <code>AsyncResult</code> which is an intermediate container for an asynchronously
- * evaluated value, <code>AsyncCallback</code> which can be provided to be executed on task
- * completion and <code>AsyncExecutor</code> that manages the execution of the async tasks.
+ * <p>The application demonstrates the async method invocation pattern. The key parts of the pattern
+ * are <code>AsyncResult</code> which is an intermediate container for an asynchronously evaluated
+ * value, <code>AsyncCallback</code> which can be provided to be executed on task completion and
+ * <code>AsyncExecutor</code> that manages the execution of the async tasks.
  *
- * <p>The main method shows example flow of async invocations. The main thread starts multiple
- * tasks with variable durations and then continues its own work. When the main thread has done it's
- * job it collects the results of the async tasks. Two of the tasks are handled with callbacks,
- * meaning the callbacks are executed immediately when the tasks complete.
+ * <p>The main method shows example flow of async invocations. The main thread starts multiple tasks
+ * with variable durations and then continues its own work. When the main thread has done it's job
+ * it collects the results of the async tasks. Two of the tasks are handled with callbacks, meaning
+ * the callbacks are executed immediately when the tasks complete.
  *
  * <p>Noteworthy difference of thread usage between the async results and callbacks is that the
  * async results are collected in the main thread but the callbacks are executed within the worker
@@ -62,10 +62,7 @@ public class App {
 
   private static final String ROCKET_LAUNCH_LOG_PATTERN = "Space rocket <%s> launched successfully";
 
-  /**
-   * Program entry point.
-   */
-
+  /** Program entry point. */
   public static void main(String[] args) throws Exception {
     // construct a new executor that will run async tasks
     var executor = new ThreadAsyncExecutor();
@@ -74,8 +71,8 @@ public class App {
     final var asyncResult1 = executor.startProcess(lazyval(10, 500));
     final var asyncResult2 = executor.startProcess(lazyval("test", 300));
     final var asyncResult3 = executor.startProcess(lazyval(50L, 700));
-    final var asyncResult4 = executor.startProcess(lazyval(20, 400),
-        callback("Deploying lunar rover"));
+    final var asyncResult4 =
+        executor.startProcess(lazyval(20, 400), callback("Deploying lunar rover"));
     final var asyncResult5 =
         executor.startProcess(lazyval("callback", 600), callback("Deploying lunar rover"));
 
@@ -99,7 +96,7 @@ public class App {
   /**
    * Creates a callable that lazily evaluates to given value with artificial delay.
    *
-   * @param value       value to evaluate
+   * @param value value to evaluate
    * @param delayMillis artificial delay in milliseconds
    * @return new callable for lazy evaluation
    */

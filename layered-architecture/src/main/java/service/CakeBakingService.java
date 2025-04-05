@@ -32,40 +32,26 @@ import exception.CakeBakingException;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
-/**
- * Service for cake baking operations.
- */
+/** Service for cake baking operations. */
 @Service
 public interface CakeBakingService {
 
-  /**
-   * Bakes new cake according to parameters.
-   */
+  /** Bakes new cake according to parameters. */
   void bakeNewCake(CakeInfo cakeInfo) throws CakeBakingException;
 
-  /**
-   * Get all cakes.
-   */
+  /** Get all cakes. */
   List<CakeInfo> getAllCakes();
 
-  /**
-   * Store new cake topping.
-   */
+  /** Store new cake topping. */
   void saveNewTopping(CakeToppingInfo toppingInfo);
 
-  /**
-   * Get available cake toppings.
-   */
+  /** Get available cake toppings. */
   List<CakeToppingInfo> getAvailableToppings();
 
-  /**
-   * Add new cake layer.
-   */
+  /** Add new cake layer. */
   void saveNewLayer(CakeLayerInfo layerInfo);
 
-  /**
-   * Get available cake layers.
-   */
+  /** Get available cake layers. */
   List<CakeLayerInfo> getAvailableLayers();
 
   void deleteAllCakes();
@@ -73,5 +59,4 @@ public interface CakeBakingService {
   void deleteAllLayers();
 
   void deleteAllToppings();
-
 }

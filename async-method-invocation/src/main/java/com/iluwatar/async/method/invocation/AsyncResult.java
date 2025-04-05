@@ -44,7 +44,7 @@ public interface AsyncResult<T> {
    * Gets the value of completed async task.
    *
    * @return evaluated value or throws ExecutionException if execution has failed
-   * @throws ExecutionException    if execution has failed, containing the root cause
+   * @throws ExecutionException if execution has failed, containing the root cause
    * @throws IllegalStateException if execution is not completed
    */
   T getValue() throws ExecutionException;

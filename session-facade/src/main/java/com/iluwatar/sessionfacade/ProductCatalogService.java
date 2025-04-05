@@ -28,10 +28,9 @@ package com.iluwatar.sessionfacade;
 import java.util.Map;
 
 /**
- * The type ProductCatalogService.
- * This class manages a catalog of products. It holds a map of products,
- * where each product is identified by a unique ID. The class
- * provides functionality to access and manage the products in the catalog.
+ * The type ProductCatalogService. This class manages a catalog of products. It holds a map of
+ * products, where each product is identified by a unique ID. The class provides functionality to
+ * access and manage the products in the catalog.
  */
 public class ProductCatalogService {
 

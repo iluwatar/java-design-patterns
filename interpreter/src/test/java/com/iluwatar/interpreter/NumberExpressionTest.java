@@ -31,10 +31,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
-/**
- * NumberExpressionTest
- *
- */
+/** NumberExpressionTest */
 class NumberExpressionTest extends ExpressionTest<NumberExpression> {
 
   /**
@@ -47,9 +44,7 @@ class NumberExpressionTest extends ExpressionTest<NumberExpression> {
     return prepareParameters((f, s) -> f);
   }
 
-  /**
-   * Create a new test instance using the given test parameters and expected result
-   */
+  /** Create a new test instance using the given test parameters and expected result */
   public NumberExpressionTest() {
     super("number", (f, s) -> f);
   }
@@ -65,5 +60,4 @@ class NumberExpressionTest extends ExpressionTest<NumberExpression> {
     final var numberExpression = new NumberExpression(testStringValue);
     assertEquals(expectedValue, numberExpression.interpret());
   }
-
 }

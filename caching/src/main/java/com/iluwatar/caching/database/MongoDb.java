@@ -40,10 +40,7 @@ import com.mongodb.client.model.UpdateOptions;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 
-/**
- * Implementation of DatabaseManager.
- * implements base methods to work with MongoDb.
- */
+/** Implementation of DatabaseManager. implements base methods to work with MongoDb. */
 @Slf4j
 public class MongoDb implements DbManager {
   private static final String DATABASE_NAME = "admin";
@@ -56,14 +53,11 @@ public class MongoDb implements DbManager {
     this.db = db;
   }
 
-  /**
-   * Connect to Db. Check th connection
-   */
+  /** Connect to Db. Check th connection */
   @Override
   public void connect() {
-    MongoCredential mongoCredential = MongoCredential.createCredential(MONGO_USER,
-                    DATABASE_NAME,
-                    MONGO_PASSWORD.toCharArray());
+    MongoCredential mongoCredential =
+        MongoCredential.createCredential(MONGO_USER, DATABASE_NAME, MONGO_PASSWORD.toCharArray());
     MongoClientOptions options = MongoClientOptions.builder().build();
     client = new MongoClient(new ServerAddress(), mongoCredential, options);
     db = client.getDatabase(DATABASE_NAME);
@@ -82,9 +76,8 @@ public class MongoDb implements DbManager {
    */
   @Override
   public UserAccount readFromDb(final String userId) {
-    var iterable = db
-            .getCollection(CachingConstants.USER_ACCOUNT)
-            .find(new Document(USER_ID, userId));
+    var iterable =
+        db.getCollection(CachingConstants.USER_ACCOUNT).find(new Document(USER_ID, userId));
     if (iterable.first() == null) {
       return null;
     }
@@ -106,11 +99,11 @@ public class MongoDb implements DbManager {
    */
   @Override
   public UserAccount writeToDb(final UserAccount userAccount) {
-    db.getCollection(USER_ACCOUNT).insertOne(
+    db.getCollection(USER_ACCOUNT)
+        .insertOne(
             new Document(USER_ID, userAccount.getUserId())
-                    .append(USER_NAME, userAccount.getUserName())
-                    .append(ADD_INFO, userAccount.getAdditionalInfo())
-    );
+                .append(USER_NAME, userAccount.getUserName())
+                .append(ADD_INFO, userAccount.getAdditionalInfo()));
     return userAccount;
   }
 
@@ -123,10 +116,10 @@ public class MongoDb implements DbManager {
   @Override
   public UserAccount updateDb(final UserAccount userAccount) {
     Document id = new Document(USER_ID, userAccount.getUserId());
-    Document dataSet = new Document(USER_NAME, userAccount.getUserName())
+    Document dataSet =
+        new Document(USER_NAME, userAccount.getUserName())
             .append(ADD_INFO, userAccount.getAdditionalInfo());
-    db.getCollection(CachingConstants.USER_ACCOUNT)
-            .updateOne(id, new Document("$set", dataSet));
+    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(id, new Document("$set", dataSet));
     return userAccount;
   }
 
@@ -141,15 +134,15 @@ public class MongoDb implements DbManager {
     String userId = userAccount.getUserId();
     String userName = userAccount.getUserName();
     String additionalInfo = userAccount.getAdditionalInfo();
-    db.getCollection(CachingConstants.USER_ACCOUNT).updateOne(
+    db.getCollection(CachingConstants.USER_ACCOUNT)
+        .updateOne(
             new Document(USER_ID, userId),
-            new Document("$set",
-                    new Document(USER_ID, userId)
-                            .append(USER_NAME, userName)
-                            .append(ADD_INFO, additionalInfo)
-            ),
-            new UpdateOptions().upsert(true)
-    );
+            new Document(
+                "$set",
+                new Document(USER_ID, userId)
+                    .append(USER_NAME, userName)
+                    .append(ADD_INFO, additionalInfo)),
+            new UpdateOptions().upsert(true));
     return userAccount;
   }
 }

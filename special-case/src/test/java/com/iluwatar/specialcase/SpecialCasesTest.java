@@ -26,19 +26,17 @@ package com.iluwatar.specialcase;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.slf4j.LoggerFactory;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import java.util.List;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.slf4j.LoggerFactory;
 
-/**
- * Special cases unit tests. (including the successful scenario {@link ReceiptDto})
- */
+/** Special cases unit tests. (including the successful scenario {@link ReceiptDto}) */
 class SpecialCasesTest {
   private static ApplicationServices applicationServices;
   private static ReceiptViewModel receipt;
@@ -102,8 +100,8 @@ class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Out of stock: tv for user = ignite1771 to buy"
-        , loggingEventList.get(0).getMessage());
+    assertEquals(
+        "Out of stock: tv for user = ignite1771 to buy", loggingEventList.get(0).getMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 
@@ -119,8 +117,9 @@ class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Insufficient funds: 1000.0 of user: ignite1771 for buying item: car"
-        , loggingEventList.get(0).getMessage());
+    assertEquals(
+        "Insufficient funds: 1000.0 of user: ignite1771 for buying item: car",
+        loggingEventList.get(0).getMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 
@@ -136,8 +135,7 @@ class SpecialCasesTest {
     receipt.show();
 
     List<ILoggingEvent> loggingEventList = listAppender.list;
-    assertEquals("Receipt: 800.0 paid"
-        , loggingEventList.get(0).getMessage());
+    assertEquals("Receipt: 800.0 paid", loggingEventList.get(0).getMessage());
     assertEquals(Level.INFO, loggingEventList.get(0).getLevel());
   }
 }

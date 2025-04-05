@@ -27,21 +27,18 @@ package com.iluwatar.monolithic.controller;
 import com.iluwatar.monolithic.model.User;
 import com.iluwatar.monolithic.repository.UserRepository;
 import org.springframework.stereotype.Service;
-/**
- * UserController is a controller class for managing user operations.
- */
+
+/** UserController is a controller class for managing user operations. */
 @Service
 public class UserController {
   private final UserRepository userRepository;
-  /**
- * Linking Controller to DB.
- */
+
+  /** Linking Controller to DB. */
   public UserController(UserRepository userRepository) {
     this.userRepository = userRepository;
   }
-  /**
-  * Adds a user to the DB.
-  */
+
+  /** Adds a user to the DB. */
   public User registerUser(User user) {
     return userRepository.save(user);
   }

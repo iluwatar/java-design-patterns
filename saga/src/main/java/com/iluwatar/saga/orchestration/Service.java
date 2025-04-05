@@ -39,22 +39,23 @@ public abstract class Service<K> implements OrchestrationChapter<K> {
   @Override
   public abstract String getName();
 
-
   @Override
   public ChapterResult<K> process(K value) {
-    LOGGER.info("The chapter '{}' has been started. "
+    LOGGER.info(
+        "The chapter '{}' has been started. "
             + "The data {} has been stored or calculated successfully",
-        getName(), value);
+        getName(),
+        value);
     return ChapterResult.success(value);
   }
 
   @Override
   public ChapterResult<K> rollback(K value) {
-    LOGGER.info("The Rollback for a chapter '{}' has been started. "
+    LOGGER.info(
+        "The Rollback for a chapter '{}' has been started. "
             + "The data {} has been rollbacked successfully",
-        getName(), value);
+        getName(),
+        value);
     return ChapterResult.success(value);
   }
-
-
 }

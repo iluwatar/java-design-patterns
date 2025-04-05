@@ -24,12 +24,11 @@
  */
 package com.iluwatar.specification.property;
 
-/**
- * Movement property.
- */
+/** Movement property. */
 public enum Movement {
-
-  WALKING("walking"), SWIMMING("swimming"), FLYING("flying");
+  WALKING("walking"),
+  SWIMMING("swimming"),
+  FLYING("flying");
 
   private final String title;
 

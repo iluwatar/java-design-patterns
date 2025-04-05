@@ -29,9 +29,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * {@link Product} is a entity class for product entity. This class act as entity in the demo.
- */
+/** {@link Product} is a entity class for product entity. This class act as entity in the demo. */
 @Data
 @Builder
 @NoArgsConstructor
@@ -46,11 +44,18 @@ public final class Product {
   @Override
   public String toString() {
     return "Product{"
-            + "id=" + id
-            + ", name='" + name + '\''
-            + ", price=" + price
-            + ", cost=" + cost
-            + ", supplier='" + supplier + '\''
-            + '}';
+        + "id="
+        + id
+        + ", name='"
+        + name
+        + '\''
+        + ", price="
+        + price
+        + ", cost="
+        + cost
+        + ", supplier='"
+        + supplier
+        + '\''
+        + '}';
   }
 }

@@ -58,9 +58,7 @@ public class App {
    */
   public static void main(String[] args) {
 
-    var vm = new VirtualMachine(
-        new Wizard(45, 7, 11, 0, 0),
-        new Wizard(36, 18, 8, 0, 0));
+    var vm = new VirtualMachine(new Wizard(45, 7, 11, 0, 0), new Wizard(36, 18, 8, 0, 0));
 
     vm.execute(InstructionConverterUtil.convertToByteCode(LITERAL_0));
     vm.execute(InstructionConverterUtil.convertToByteCode(LITERAL_0));

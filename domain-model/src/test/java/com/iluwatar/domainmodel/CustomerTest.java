@@ -24,89 +24,90 @@
  */
 package com.iluwatar.domainmodel;
 
-import org.joda.money.CurrencyUnit;
-import org.joda.money.Money;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.joda.money.CurrencyUnit.USD;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
+
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
-
-import static org.joda.money.CurrencyUnit.USD;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.*;
+import org.joda.money.CurrencyUnit;
+import org.joda.money.Money;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class CustomerTest {
 
-    private CustomerDao customerDao;
-    private Customer customer;
-    private Product product;
+  private CustomerDao customerDao;
+  private Customer customer;
+  private Product product;
 
-    @BeforeEach
-    void setUp() {
-        customerDao = mock(CustomerDao.class);
+  @BeforeEach
+  void setUp() {
+    customerDao = mock(CustomerDao.class);
 
-        customer = Customer.builder()
-                .name("customer")
-                .money(Money.of(CurrencyUnit.USD, 100.0))
-                .customerDao(customerDao)
-                .build();
+    customer =
+        Customer.builder()
+            .name("customer")
+            .money(Money.of(CurrencyUnit.USD, 100.0))
+            .customerDao(customerDao)
+            .build();
 
-        product = Product.builder()
-                .name("product")
-                .price(Money.of(USD, 100.0))
-                .expirationDate(LocalDate.now().plusDays(10))
-                .productDao(mock(ProductDao.class))
-                .build();
-    }
+    product =
+        Product.builder()
+            .name("product")
+            .price(Money.of(USD, 100.0))
+            .expirationDate(LocalDate.now().plusDays(10))
+            .productDao(mock(ProductDao.class))
+            .build();
+  }
 
-    @Test
-    void shouldSaveCustomer() throws SQLException {
-        when(customerDao.findByName("customer")).thenReturn(Optional.empty());
+  @Test
+  void shouldSaveCustomer() throws SQLException {
+    when(customerDao.findByName("customer")).thenReturn(Optional.empty());
 
-        customer.save();
+    customer.save();
 
-        verify(customerDao, times(1)).save(customer);
+    verify(customerDao, times(1)).save(customer);
 
-        when(customerDao.findByName("customer")).thenReturn(Optional.of(customer));
+    when(customerDao.findByName("customer")).thenReturn(Optional.of(customer));
 
-        customer.save();
+    customer.save();
 
-        verify(customerDao, times(1)).update(customer);
-    }
+    verify(customerDao, times(1)).update(customer);
+  }
 
-    @Test
-    void shouldAddProductToPurchases() {
-        product.setPrice(Money.of(USD, 200.0));
+  @Test
+  void shouldAddProductToPurchases() {
+    product.setPrice(Money.of(USD, 200.0));
 
-        customer.buyProduct(product);
+    customer.buyProduct(product);
 
-        assertEquals(customer.getPurchases(), new ArrayList<>());
-        assertEquals(customer.getMoney(), Money.of(USD,100));
+    assertEquals(customer.getPurchases(), new ArrayList<>());
+    assertEquals(customer.getMoney(), Money.of(USD, 100));
 
-        product.setPrice(Money.of(USD, 100.0));
+    product.setPrice(Money.of(USD, 100.0));
 
-        customer.buyProduct(product);
+    customer.buyProduct(product);
 
-        assertEquals(new ArrayList<>(Arrays.asList(product)), customer.getPurchases());
-        assertEquals(Money.zero(USD), customer.getMoney());
-    }
+    assertEquals(new ArrayList<>(Arrays.asList(product)), customer.getPurchases());
+    assertEquals(Money.zero(USD), customer.getMoney());
+  }
 
-    @Test
-    void shouldRemoveProductFromPurchases() {
-        customer.setPurchases(new ArrayList<>(Arrays.asList(product)));
+  @Test
+  void shouldRemoveProductFromPurchases() {
+    customer.setPurchases(new ArrayList<>(Arrays.asList(product)));
 
-        customer.returnProduct(product);
+    customer.returnProduct(product);
 
-        assertEquals(new ArrayList<>(), customer.getPurchases());
-        assertEquals(Money.of(USD, 200), customer.getMoney());
+    assertEquals(new ArrayList<>(), customer.getPurchases());
+    assertEquals(Money.of(USD, 200), customer.getMoney());
 
-        customer.returnProduct(product);
+    customer.returnProduct(product);
 
-        assertEquals(new ArrayList<>(), customer.getPurchases());
-        assertEquals(Money.of(USD, 200), customer.getMoney());
-    }
+    assertEquals(new ArrayList<>(), customer.getPurchases());
+    assertEquals(Money.of(USD, 200), customer.getMoney());
+  }
 }
-

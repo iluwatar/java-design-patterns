@@ -58,9 +58,7 @@ import com.iluwatar.hexagonal.sampledata.SampleData;
  */
 public class App {
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
 
     var injector = Guice.createInjector(new LotteryTestingModule());

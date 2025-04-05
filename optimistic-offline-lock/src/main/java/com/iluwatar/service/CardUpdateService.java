@@ -30,9 +30,7 @@ import com.iluwatar.model.Card;
 import com.iluwatar.repository.JpaRepository;
 import lombok.RequiredArgsConstructor;
 
-/**
- * Service to update {@link Card} entity.
- */
+/** Service to update {@link Card} entity. */
 @RequiredArgsConstructor
 public class CardUpdateService implements UpdateService<Card> {
 
@@ -45,11 +43,10 @@ public class CardUpdateService implements UpdateService<Card> {
     int initialVersion = cardToUpdate.getVersion();
     float resultSum = cardToUpdate.getSum() + additionalSum;
     cardToUpdate.setSum(resultSum);
-    //Maybe more complex business-logic e.g. HTTP-requests and so on
+    // Maybe more complex business-logic e.g. HTTP-requests and so on
 
     if (initialVersion != cardJpaRepository.getEntityVersionById(id)) {
-      String exMessage =
-          String.format("Entity with id %s were updated in another transaction", id);
+      String exMessage = String.format("Entity with id %s were updated in another transaction", id);
       throw new ApplicationException(exMessage);
     }
 

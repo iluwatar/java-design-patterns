@@ -27,26 +27,18 @@ package com.iluwatar.strangler;
 import java.util.Arrays;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Source under development. Replace part of old source and has added some new features.
- */
+/** Source under development. Replace part of old source and has added some new features. */
 @Slf4j
 public class HalfSource {
   private static final String VERSION = "1.5";
 
-  /**
-   * Implement accumulate sum with new technique.
-   * Replace old one in {@link OldSource}
-   */
+  /** Implement accumulate sum with new technique. Replace old one in {@link OldSource} */
   public int accumulateSum(int... nums) {
     LOGGER.info("Source module {}", VERSION);
     return Arrays.stream(nums).reduce(0, Integer::sum);
   }
 
-  /**
-   * Check if all number is not zero.
-   * New feature.
-   */
+  /** Check if all number is not zero. New feature. */
   public boolean ifNonZero(int... nums) {
     LOGGER.info("Source module {}", VERSION);
     return Arrays.stream(nums).allMatch(num -> num != 0);

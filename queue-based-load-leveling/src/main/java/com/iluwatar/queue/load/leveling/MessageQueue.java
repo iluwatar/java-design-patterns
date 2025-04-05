@@ -37,7 +37,7 @@ public class MessageQueue {
 
   private final BlockingQueue<Message> blkQueue;
 
-  // Default constructor when called creates Blocking Queue object. 
+  // Default constructor when called creates Blocking Queue object.
   public MessageQueue() {
     this.blkQueue = new ArrayBlockingQueue<>(1024);
   }

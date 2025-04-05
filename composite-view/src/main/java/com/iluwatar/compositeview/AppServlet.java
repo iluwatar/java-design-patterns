@@ -32,16 +32,14 @@ import java.io.PrintWriter;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * A servlet object that extends HttpServlet.
- * Runs on Tomcat 10 and handles Http requests
- */
+/** A servlet object that extends HttpServlet. Runs on Tomcat 10 and handles Http requests */
 @Slf4j
 @NoArgsConstructor
 public final class AppServlet extends HttpServlet {
   private static final String CONTENT_TYPE = "text/html";
   private String msgPartOne = "<h1>This Server Doesn't Support";
-  private String msgPartTwo = """
+  private String msgPartTwo =
+      """
           Requests</h1>
           <h2>Use a GET request with boolean values for the following parameters<h2>
           <h3>'name'</h3>

@@ -24,9 +24,7 @@
  */
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Class defining Thief.
- */
+/** Class defining Thief. */
 @Slf4j
 public class Thief {
 

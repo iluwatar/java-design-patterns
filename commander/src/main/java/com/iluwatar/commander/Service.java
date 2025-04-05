@@ -38,7 +38,6 @@ import java.util.List;
  * for the transactions/requests, which are then sent back. These could be stored by the {@link
  * Commander} class in a separate database for reference (though we are not doing that here).
  */
-
 public abstract class Service {
 
   protected final Database database;

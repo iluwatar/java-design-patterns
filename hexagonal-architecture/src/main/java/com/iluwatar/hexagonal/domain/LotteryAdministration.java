@@ -33,36 +33,30 @@ import com.iluwatar.hexagonal.database.LotteryTicketRepository;
 import com.iluwatar.hexagonal.eventlog.LotteryEventLog;
 import java.util.Map;
 
-/**
- * Lottery administration implementation.
- */
+/** Lottery administration implementation. */
 public class LotteryAdministration {
 
   private final LotteryTicketRepository repository;
   private final LotteryEventLog notifications;
   private final WireTransfers wireTransfers;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   @Inject
-  public LotteryAdministration(LotteryTicketRepository repository, LotteryEventLog notifications,
-                               WireTransfers wireTransfers) {
+  public LotteryAdministration(
+      LotteryTicketRepository repository,
+      LotteryEventLog notifications,
+      WireTransfers wireTransfers) {
     this.repository = repository;
     this.notifications = notifications;
     this.wireTransfers = wireTransfers;
   }
 
-  /**
-   * Get all the lottery tickets submitted for lottery.
-   */
+  /** Get all the lottery tickets submitted for lottery. */
   public Map<LotteryTicketId, LotteryTicket> getAllSubmittedTickets() {
     return repository.findAll();
   }
 
-  /**
-   * Draw lottery numbers.
-   */
+  /** Draw lottery numbers. */
   public LotteryNumbers performLottery() {
     var numbers = LotteryNumbers.createRandom();
     var tickets = getAllSubmittedTickets();
@@ -84,9 +78,7 @@ public class LotteryAdministration {
     return numbers;
   }
 
-  /**
-   * Begin new lottery round.
-   */
+  /** Begin new lottery round. */
   public void resetLottery() {
     repository.deleteAll();
   }

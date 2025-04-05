@@ -26,9 +26,7 @@ package com.iluwatar.flyweight;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * StrengthPotion.
- */
+/** StrengthPotion. */
 @Slf4j
 public class StrengthPotion implements Potion {
 

@@ -24,12 +24,11 @@
  */
 package com.iluwatar.flux.action;
 
-/**
- * Menu items.
- */
+/** Menu items. */
 public enum MenuItem {
-
-  HOME("Home"), PRODUCTS("Products"), COMPANY("Company");
+  HOME("Home"),
+  PRODUCTS("Products"),
+  COMPANY("Company");
 
   private final String title;
 

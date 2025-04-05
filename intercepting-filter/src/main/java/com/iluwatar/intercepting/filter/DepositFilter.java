@@ -24,10 +24,7 @@
  */
 package com.iluwatar.intercepting.filter;
 
-/**
- * Concrete implementation of filter This checks for the deposit code.
- *
- */
+/** Concrete implementation of filter This checks for the deposit code. */
 public class DepositFilter extends AbstractFilter {
 
   @Override
