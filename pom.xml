@@ -83,6 +83,7 @@
     <module>callback</module>
     <module>chain-of-responsibility</module>
     <module>circuit-breaker</module>
+    <module>clean-architecture</module>
     <module>client-session</module>
     <module>collecting-parameter</module>
     <module>collection-pipeline</module>
@@ -149,8 +150,8 @@
     <module>map-reduce</module>
     <module>marker-interface</module>
     <module>master-worker</module>
-        <module>mediator</module>
-        <module>memento</module>
+    <module>mediator</module>
+    <module>memento</module>
     <module>metadata-mapping</module>
     <module>microservices-aggregrator</module>
     <module>microservices-api-gateway</module>
@@ -164,7 +165,7 @@
     <module>model-view-viewmodel</module>
     <module>monad</module>
     <module>money</module>
-        <module>monitor</module>
+    <module>monitor</module>
     <module>monolithic-architecture</module>
     <module>monostate</module>
     <module>multiton</module>
