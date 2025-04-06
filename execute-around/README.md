@@ -39,6 +39,10 @@ In plain words
 
 > Basically it's the pattern where you write a method to do things which are always required, e.g. resource allocation and clean-up, and make the caller pass in "what we want to do with the resource".
 
+Flowchart
+
+![Execute Around flowchart](./etc/execute-around-flowchart.png)
+
 ## Programmatic Example of Execute Around Pattern in Java
 
 The Execute Around Pattern is a design pattern that is widely used in Java programming to manage resource allocation and deallocation. It ensures that important setup and cleanup operations are performed reliably around a core business operation. This pattern is particularly useful for resource management, such as handling files, databases, or network connections in Java applications.
