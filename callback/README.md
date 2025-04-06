@@ -37,6 +37,11 @@ Wikipedia says
 
 > In computer programming, a callback, also known as a "call-after" function, is any executable code that is passed as an argument to other code; that other code is expected to call back (execute) the argument at a given time.
 
+Sequence diagram
+
+![Callback sequence diagram](./etc/callback-sequence-diagram.png)
+
+
 ## Programmatic Example of Callback Pattern in Java
 
 We need to be notified after the executing task has finished. We pass a callback method for the executor and wait for it to call back on us.
