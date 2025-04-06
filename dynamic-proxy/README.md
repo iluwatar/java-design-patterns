@@ -35,6 +35,10 @@ Wikipedia says
 
 > A dynamic proxy class is a class that implements a list of interfaces specified at runtime such that a method invocation through one of the interfaces on an instance of the class will be encoded and dispatched to another object through a uniform interface. Thus, a dynamic proxy class can be used to create a type-safe proxy object for a list of interfaces without requiring pre-generation of the proxy class, such as with compile-time tools. Method invocations on an instance of a dynamic proxy class are dispatched to a single method in the instance's invocation handler, and they are encoded with a _java.lang.reflect.Method_ object identifying the method that was invoked and an array of type _Object_ containing the arguments.
 
+Sequence diagram
+
+![Dynamic Proxy sequence diagram](./etc/dynamic-proxy-sequence-diagram.png)
+
 ## Programmatic Example of Dynamic Proxy Pattern in Java
 
 This example demonstrates using the Dynamic Proxy pattern in Java to hit the public fake API [JSONPlaceholder](https://jsonplaceholder.typicode.com) for the resource `Album` through an interface. 

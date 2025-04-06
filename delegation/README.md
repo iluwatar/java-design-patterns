@@ -33,6 +33,10 @@ Wikipedia says
 
 > In object-oriented programming, delegation refers to evaluating a member (property or method) of one object (the receiver) in the context of another original object (the sender). Delegation can be done explicitly, by passing the sending object to the receiving object, which can be done in any object-oriented language; or implicitly, by the member lookup rules of the language, which requires language support for the feature.
 
+Sequence diagram
+
+![Delegation sequence diagram](./etc/delegation-sequence-diagram.png)
+
 ## Programmatic Example of Delegation Pattern in Java
 
 Let's consider a printing example.
@@ -113,10 +117,6 @@ HP Printer:hello world
 Canon Printer:hello world
 Epson Printer:hello world
 ```
-
-## Detailed Explanation of Delegation Pattern with Real-World Examples
-
-![Delegate class diagram](./etc/delegation.png "Delegate")
 
 ## When to Use the Delegation Pattern in Java
 
