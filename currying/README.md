@@ -33,6 +33,10 @@ Wikipedia says
 
 > In mathematics and computer science, currying is the technique of translating a function that takes multiple arguments into a sequence of families of functions, each taking a single argument.
 
+Sequence diagram
+
+![Currying sequence diagram](./etc/currying-sequence-diagram.png)
+
 ## Programmatic example of Currying Pattern in Java
 
 Consider a librarian who wants to populate their library with books. The librarian wants functions which can create books corresponding to specific genres and authors. Currying makes this possible by writing a curried book builder function and utilising partial application.

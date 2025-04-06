@@ -41,7 +41,6 @@ Sequence diagram
 
 ![Callback sequence diagram](./etc/callback-sequence-diagram.png)
 
-
 ## Programmatic Example of Callback Pattern in Java
 
 We need to be notified after the executing task has finished. We pass a callback method for the executor and wait for it to call back on us.
