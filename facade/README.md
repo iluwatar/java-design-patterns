@@ -33,6 +33,10 @@ Wikipedia says
 
 > A facade is an object that provides a simplified interface to a larger body of code, such as a class library.
 
+Sequence diagram
+
+![Facade sequence diagram](./etc/facade-sequence-diagram.png)
+
 ## Programmatic Example of Facade Pattern in Java
 
 Here's an example of the Facade Design Pattern in a goldmine scenario, demonstrating how a Java facade can streamline complex operations.

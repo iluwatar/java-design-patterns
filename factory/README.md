@@ -26,6 +26,10 @@ Wikipedia says
 
 > Factory is an object for creating other objects – formally a factory is a function or method that returns objects of a varying prototype or class.
 
+Sequence diagram
+
+![Factory sequence diagram](./etc/factory-sequence-diagram.png)
+
 ## Programmatic Example of Factory Pattern in Java
 
 Imagine an alchemist who is about to manufacture coins. The alchemist must be able to create both gold and copper coins and switching between them must be possible without modifying the existing source code. The factory pattern makes it possible by providing a static construction method which can be called with relevant parameters.
