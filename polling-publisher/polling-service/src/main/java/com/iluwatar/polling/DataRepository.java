@@ -30,18 +30,13 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
-
-/**
- * Data repository to keep or store data.
- */
+/** Data repository to keep or store data. */
 @Repository
 public class DataRepository {
 
   private final Map<Integer, String> dataStorage = new HashMap<>();
 
-  /**
-   * init after map creation ... to put dummy data.
-   */
+  /** init after map creation ... to put dummy data. */
   @PostConstruct
   public void init() {
     // Injecting dummy data at startup
@@ -50,31 +45,22 @@ public class DataRepository {
     dataStorage.put(4, "Initial Dummy Data - four - 4");
   }
 
-
-  /**
-   * Save data to the repository.
-   */
+  /** Save data to the repository. */
   public void save(int id, String value) {
     dataStorage.put(id, value);
   }
 
-  /**
-   * Retrieve data by ID.
-   */
+  /** Retrieve data by ID. */
   public String findById(int id) {
     return dataStorage.getOrDefault(id, "Data not found");
   }
 
-  /**
-   * Delete data by ID.
-   */
+  /** Delete data by ID. */
   public void delete(int id) {
     dataStorage.remove(id);
   }
 
-  /**
-   * Get all data.
-   */
+  /** Get all data. */
   public Map<Integer, String> findAll() {
     return dataStorage;
   }

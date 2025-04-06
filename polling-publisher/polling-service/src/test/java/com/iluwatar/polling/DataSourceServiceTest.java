@@ -25,12 +25,12 @@
 
 package com.iluwatar.polling;
 
-import org.junit.jupiter.api.*;
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class DataSourceServiceTest {
+import java.util.Map;
+import org.junit.jupiter.api.*;
+
+public class DataSourceServiceTest {
 
   private DataRepository repository;
   private DataSourceService service;
@@ -63,8 +63,8 @@ class DataSourceServiceTest {
 
     service.removeData(2);
 
-    assertEquals("Data not found", repository.findById(2), "Deleted data should not be retrievable.");
-
+    assertEquals(
+        "Data not found", repository.findById(2), "Deleted data should not be retrievable.");
   }
 
   @Test

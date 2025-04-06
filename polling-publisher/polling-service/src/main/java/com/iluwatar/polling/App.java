@@ -29,9 +29,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
-/**
- * Polling-Publisher pattern paradigm.
- */
+/** Polling-Publisher pattern paradigm. */
 @SpringBootApplication
 @EnableScheduling
 public class App {

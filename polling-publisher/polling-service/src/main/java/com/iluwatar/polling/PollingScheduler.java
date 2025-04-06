@@ -30,21 +30,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-/**
- * This class is responsible for scheduling polling tasks.
- */
+/** This class is responsible for scheduling polling tasks. */
 @Component
 public class PollingScheduler {
 
-  @Autowired
-  private DataSourceService dataSourceService;
+  @Autowired private DataSourceService dataSourceService;
 
-  @Autowired
-  private KafkaProducer kafkaProducer;
+  @Autowired private KafkaProducer kafkaProducer;
 
-  /**
-   * Scheduler for poll data on each 5 second.
-   * */
+  /** Scheduler for poll data on each 5 second. */
   @Scheduled(fixedRate = 5000) // Poll every 5 seconds
   public void pollDataSource() {
     int id = new Random().nextInt(100); // Pick a random ID

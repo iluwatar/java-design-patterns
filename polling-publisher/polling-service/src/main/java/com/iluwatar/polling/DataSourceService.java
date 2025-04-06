@@ -25,42 +25,38 @@
 
 package com.iluwatar.polling;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import org.springframework.stereotype.Service;
 
-/**
- * This class is responsible for keep the events.
- */
+/** This class is responsible for keep the events. */
 @Service
 public class DataSourceService {
 
   private final DataRepository repository;
 
-  /**
-   * Constructor & Scheduler to push random data.
-   */
+  /** Constructor & Scheduler to push random data. */
   public DataSourceService(DataRepository repository) {
     this.repository = repository;
 
     // Start a separate thread to add data every 3 seconds
-    new Thread(() -> {
-      Random random = new Random();
-      while (true) {
-        try {
-          Thread.sleep(3000); // Add data every 3 seconds
-          int id = random.nextInt(100); // Random ID
-          String value = "Auto-Data-" + id;
-          this.addData(id, value);
-          System.out.println("🔵 Data Added: " + id + " -> " + value);
-        } catch (InterruptedException e) {
-          Thread.currentThread().interrupt();
-          break;
-        }
-      }
-    }).start();
-
+    new Thread(
+            () -> {
+              Random random = new Random();
+              while (true) {
+                try {
+                  Thread.sleep(3000); // Add data every 3 seconds
+                  int id = random.nextInt(100); // Random ID
+                  String value = "Auto-Data-" + id;
+                  this.addData(id, value);
+                  System.out.println("🔵 Data Added: " + id + " -> " + value);
+                } catch (InterruptedException e) {
+                  Thread.currentThread().interrupt();
+                  break;
+                }
+              }
+            })
+        .start();
   }
 
   public void addData(int id, String value) {

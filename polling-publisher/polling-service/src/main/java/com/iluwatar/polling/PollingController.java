@@ -31,9 +31,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * This class is responsible for contolling polling tasks.
- */
+/** This class is responsible for contolling polling tasks. */
 @RestController
 public class PollingController {
 
@@ -42,9 +40,7 @@ public class PollingController {
     return "Polling Service is up and running!";
   }
 
-
-  @Autowired
-  private KafkaProducer kafkaProducer;
+  @Autowired private KafkaProducer kafkaProducer;
 
   @PostMapping("/send")
   public String sendMessage(@RequestParam("message") String message) {

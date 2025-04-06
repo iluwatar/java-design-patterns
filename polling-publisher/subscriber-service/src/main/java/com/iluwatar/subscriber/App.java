@@ -28,13 +28,10 @@ package com.iluwatar.subscriber;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * Polling-Publisher pattern paradigm.
-*/
+/** Polling-Publisher pattern paradigm. */
 @SpringBootApplication
 public class App {
   public static void main(String[] args) {
     SpringApplication.run(App.class, args);
   }
 }
-

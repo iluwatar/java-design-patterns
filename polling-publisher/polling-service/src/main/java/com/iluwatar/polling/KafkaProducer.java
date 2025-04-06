@@ -29,15 +29,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;
 
-
-/**
- * This class is responsible for sending messages to Kafka.
- */
+/** This class is responsible for sending messages to Kafka. */
 @Component
 public class KafkaProducer {
 
-  @Autowired
-  private final KafkaTemplate<String, String> kafkaTemplate;
+  @Autowired private final KafkaTemplate<String, String> kafkaTemplate;
 
   public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
     this.kafkaTemplate = kafkaTemplate;
