@@ -25,18 +25,14 @@
 package com.iluwatar.unitofwork;
 
 import java.util.HashMap;
-import java.util.List;
 
-/**
- * {@link App} Application demonstrating unit of work pattern.
- */
+/** {@link App} Application demonstrating unit of work pattern. */
 public class App {
   /**
    * Program entry point.
    *
    * @param args no argument sent
    */
-
   public static void main(String[] args) {
     // create some weapons
     var enchantedHammer = new Weapon(1, "enchanted hammer");
@@ -44,8 +40,7 @@ public class App {
     var silverTrident = new Weapon(3, "silver trident");
 
     // create repository
-    var weaponRepository = new ArmsDealer(new HashMap<>(),
-            new WeaponDatabase());
+    var weaponRepository = new ArmsDealer(new HashMap<>(), new WeaponDatabase());
 
     // perform operations on the weapons
     weaponRepository.registerNew(enchantedHammer);

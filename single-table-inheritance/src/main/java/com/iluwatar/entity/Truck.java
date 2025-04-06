@@ -30,8 +30,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * A class that extends the PassengerVehicle class
- * and provides the concrete inheritance implementation of the Car.
+ * A class that extends the PassengerVehicle class and provides the concrete inheritance
+ * implementation of the Car.
  *
  * @see TransportVehicle TransportVehicle
  * @see Vehicle Vehicle
@@ -52,11 +52,6 @@ public class Truck extends TransportVehicle {
   // Overridden the toString method to specify the Vehicle object
   @Override
   public String toString() {
-    return "Truck{ "
-            + super.toString()
-            + ", "
-            + "towingCapacity="
-            + towingCapacity
-            + '}';
+    return "Truck{ " + super.toString() + ", " + "towingCapacity=" + towingCapacity + '}';
   }
 }

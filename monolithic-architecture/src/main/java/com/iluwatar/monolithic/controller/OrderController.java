@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.monolithic.controller;
+
 import com.iluwatar.monolithic.exceptions.InsufficientStockException;
 import com.iluwatar.monolithic.exceptions.NonExistentProductException;
 import com.iluwatar.monolithic.exceptions.NonExistentUserException;
@@ -33,30 +34,39 @@ import com.iluwatar.monolithic.repository.OrderRepository;
 import com.iluwatar.monolithic.repository.ProductRepository;
 import com.iluwatar.monolithic.repository.UserRepository;
 import org.springframework.stereotype.Service;
-/**
- * OrderController is a controller class for managing Order operations.
- * */
+
+/** OrderController is a controller class for managing Order operations. */
 @Service
 public class OrderController {
   private final OrderRepository orderRepository;
   private final UserRepository userRepository;
   private final ProductRepository productRepository;
-  /**
-   * This function handles the initializing of the controller.
-   * */
-  public OrderController(OrderRepository orderRepository, UserRepository userRepository, ProductRepository productRepository) {
+
+  /** This function handles the initializing of the controller. */
+  public OrderController(
+      OrderRepository orderRepository,
+      UserRepository userRepository,
+      ProductRepository productRepository) {
     this.orderRepository = orderRepository;
     this.userRepository = userRepository;
     this.productRepository = productRepository;
   }
-  /**
-   * This function handles placing orders with all of its cases.
-   * */
-  public Order placeOrder(Long userId, Long productId, Integer quantity) {
-    final User user = userRepository.findById(userId).orElseThrow(() -> new NonExistentUserException("User with ID " + userId + " not found"));
 
-    final Product product = productRepository.findById(productId).orElseThrow(() -> new NonExistentProductException("Product with ID " + productId + " not found"));
-    
+  /** This function handles placing orders with all of its cases. */
+  public Order placeOrder(Long userId, Long productId, Integer quantity) {
+    final User user =
+        userRepository
+            .findById(userId)
+            .orElseThrow(
+                () -> new NonExistentUserException("User with ID " + userId + " not found"));
+
+    final Product product =
+        productRepository
+            .findById(productId)
+            .orElseThrow(
+                () ->
+                    new NonExistentProductException("Product with ID " + productId + " not found"));
+
     if (product.getStock() < quantity) {
       throw new InsufficientStockException("Not enough stock for product " + productId);
     }

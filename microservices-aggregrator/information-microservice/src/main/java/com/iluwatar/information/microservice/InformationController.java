@@ -27,9 +27,7 @@ package com.iluwatar.information.microservice;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Controller providing endpoints to retrieve information about products.
- */
+/** Controller providing endpoints to retrieve information about products. */
 @RestController
 public class InformationController {
 

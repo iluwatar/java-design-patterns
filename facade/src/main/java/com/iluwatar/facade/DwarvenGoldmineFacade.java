@@ -28,8 +28,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * DwarvenGoldmineFacade provides a single interface through which users can operate the
- * subsystems.
+ * DwarvenGoldmineFacade provides a single interface through which users can operate the subsystems.
  *
  * <p>This makes the goldmine easier to operate and cuts the dependencies from the goldmine user to
  * the subsystems.
@@ -38,14 +37,10 @@ public class DwarvenGoldmineFacade {
 
   private final List<DwarvenMineWorker> workers;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public DwarvenGoldmineFacade() {
-    workers = List.of(
-        new DwarvenGoldDigger(),
-        new DwarvenCartOperator(),
-        new DwarvenTunnelDigger());
+    workers =
+        List.of(new DwarvenGoldDigger(), new DwarvenCartOperator(), new DwarvenTunnelDigger());
   }
 
   public void startNewDay() {
@@ -61,9 +56,7 @@ public class DwarvenGoldmineFacade {
   }
 
   private static void makeActions(
-      Collection<DwarvenMineWorker> workers,
-      DwarvenMineWorker.Action... actions
-  ) {
+      Collection<DwarvenMineWorker> workers, DwarvenMineWorker.Action... actions) {
     workers.forEach(worker -> worker.action(actions));
   }
 }

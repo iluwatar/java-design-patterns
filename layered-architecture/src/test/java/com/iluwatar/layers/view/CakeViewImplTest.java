@@ -45,9 +45,9 @@ import service.CakeBakingService;
 import view.CakeViewImpl;
 
 /**
- * This class contains unit tests for the CakeViewImpl class.
- * It tests the functionality of rendering cakes using the CakeViewImpl class.
- * It also tests the logging functionality of the CakeViewImpl class.
+ * This class contains unit tests for the CakeViewImpl class. It tests the functionality of
+ * rendering cakes using the CakeViewImpl class. It also tests the logging functionality of the
+ * CakeViewImpl class.
  */
 class CakeViewImplTest {
 
@@ -63,14 +63,15 @@ class CakeViewImplTest {
     appender.stop();
   }
 
-  /**
-   * Verify if the cake view renders the expected result.
-   */
+  /** Verify if the cake view renders the expected result. */
   @Test
   void testRender() {
 
-    final var layers = List.of(new CakeLayerInfo("layer1", 1000), new CakeLayerInfo("layer2", 2000),
-        new CakeLayerInfo("layer3", 3000));
+    final var layers =
+        List.of(
+            new CakeLayerInfo("layer1", 1000),
+            new CakeLayerInfo("layer2", 2000),
+            new CakeLayerInfo("layer3", 3000));
 
     final var cake = new CakeInfo(new CakeToppingInfo("topping", 1000), layers);
     final var cakes = List.of(cake);
@@ -84,7 +85,6 @@ class CakeViewImplTest {
 
     cakeView.render();
     assertEquals(cake.toString(), appender.getLastMessage());
-
   }
 
   private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
@@ -109,5 +109,4 @@ class CakeViewImplTest {
       return log.size();
     }
   }
-
 }

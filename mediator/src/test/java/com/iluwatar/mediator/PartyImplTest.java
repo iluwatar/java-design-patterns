@@ -30,10 +30,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * PartyImplTest
- *
- */
+/** PartyImplTest */
 class PartyImplTest {
 
   /**
@@ -58,5 +55,4 @@ class PartyImplTest {
 
     verifyNoMoreInteractions(partyMember1, partyMember2);
   }
-
 }

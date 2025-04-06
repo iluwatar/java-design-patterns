@@ -38,22 +38,17 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-/**
- * LoginHandlerTest.
- */
+/** LoginHandlerTest. */
 public class LoginHandlerTest {
 
   private LoginHandler loginHandler;
-  //private Headers headers;
+  // private Headers headers;
   private Map<String, Integer> sessions;
   private Map<String, Instant> sessionCreationTimes;
 
-  @Mock
-  private HttpExchange exchange;
+  @Mock private HttpExchange exchange;
 
-  /**
-   * Setup tests.
-   */
+  /** Setup tests. */
   @BeforeEach
   public void setUp() {
     MockitoAnnotations.initMocks(this);
@@ -65,17 +60,19 @@ public class LoginHandlerTest {
   @Test
   public void testHandle() {
 
-    //assemble
+    // assemble
     ByteArrayOutputStream outputStream =
-        new ByteArrayOutputStream(); //Exchange object is mocked so OutputStream must be manually created
-    when(exchange.getResponseHeaders()).thenReturn(
-        new Headers()); //Exchange object is mocked so Header object must be manually created
+        new ByteArrayOutputStream(); // Exchange object is mocked so OutputStream must be manually
+    // created
+    when(exchange.getResponseHeaders())
+        .thenReturn(
+            new Headers()); // Exchange object is mocked so Header object must be manually created
     when(exchange.getResponseBody()).thenReturn(outputStream);
 
-    //act
+    // act
     loginHandler.handle(exchange);
 
-    //assert
+    // assert
     String[] response = outputStream.toString().split("Session ID: ");
     assertEquals(sessions.entrySet().toArray()[0].toString().split("=1")[0], response[1]);
   }

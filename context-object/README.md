@@ -36,6 +36,10 @@ In plain words
 
 > Use a Context Object to encapsulate state in a protocol-independent way to be shared throughout your application.
 
+Sequence diagram
+
+![Context Object sequence diagram](./etc/context-object-sequence-diagram.png)
+
 ## Programmatic Example of Context Object in Java
 
 In a multi-layered Java application, different layers such as A, B, and C extract specific information from a shared context. Passing each piece of information individually is inefficient. The Context Object pattern efficiently stores and passes this information, improving the overall performance and maintainability of the Java application.

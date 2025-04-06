@@ -32,7 +32,6 @@ package com.iluwatar.twin;
  * BallThread} class represent the twin objects to coordinate with each other (via the twin
  * reference) like a single class inheriting from {@link GameItem} and {@link Thread}.
  */
-
 public class App {
 
   /**

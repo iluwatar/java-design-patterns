@@ -32,8 +32,7 @@ import lombok.Getter;
  * @param <K> incoming value
  */
 public class ChapterResult<K> {
-  @Getter
-  private final K value;
+  @Getter private final K value;
   private final State state;
 
   ChapterResult(K value, State state) {
@@ -53,10 +52,9 @@ public class ChapterResult<K> {
     return new ChapterResult<>(val, State.FAILURE);
   }
 
-  /**
-   * state for chapter.
-   */
+  /** state for chapter. */
   public enum State {
-    SUCCESS, FAILURE
+    SUCCESS,
+    FAILURE
   }
 }

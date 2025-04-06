@@ -27,9 +27,7 @@ package com.iluwatar.model.view.viewmodel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-/**
- * Book class.
- */
+/** Book class. */
 @AllArgsConstructor
 @Data
 public class Book {
@@ -37,5 +35,4 @@ public class Book {
   private String name;
   private String author;
   private String description;
-
 }

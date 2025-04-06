@@ -37,84 +37,81 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * BallThreadTest
- *
- */
+/** BallThreadTest */
 class BallThreadTest {
 
-  /**
-   * Verify if the {@link BallThread} can be resumed
-   */
+  /** Verify if the {@link BallThread} can be resumed */
   @Test
   void testSuspend() {
-    assertTimeout(ofMillis(5000), () -> {
-      final var ballThread = new BallThread();
+    assertTimeout(
+        ofMillis(5000),
+        () -> {
+          final var ballThread = new BallThread();
 
-      final var ballItem = mock(BallItem.class);
-      ballThread.setTwin(ballItem);
+          final var ballItem = mock(BallItem.class);
+          ballThread.setTwin(ballItem);
 
-      ballThread.start();
-      sleep(200);
-      verify(ballItem, atLeastOnce()).draw();
-      verify(ballItem, atLeastOnce()).move();
-      ballThread.suspendMe();
+          ballThread.start();
+          sleep(200);
+          verify(ballItem, atLeastOnce()).draw();
+          verify(ballItem, atLeastOnce()).move();
+          ballThread.suspendMe();
 
-      sleep(1000);
+          sleep(1000);
 
-      ballThread.stopMe();
-      ballThread.join();
+          ballThread.stopMe();
+          ballThread.join();
 
-      verifyNoMoreInteractions(ballItem);
-    });
+          verifyNoMoreInteractions(ballItem);
+        });
   }
 
-  /**
-   * Verify if the {@link BallThread} can be resumed
-   */
+  /** Verify if the {@link BallThread} can be resumed */
   @Test
   void testResume() {
-    assertTimeout(ofMillis(5000), () -> {
-      final var ballThread = new BallThread();
+    assertTimeout(
+        ofMillis(5000),
+        () -> {
+          final var ballThread = new BallThread();
 
-      final var ballItem = mock(BallItem.class);
-      ballThread.setTwin(ballItem);
+          final var ballItem = mock(BallItem.class);
+          ballThread.setTwin(ballItem);
 
-      ballThread.suspendMe();
-      ballThread.start();
+          ballThread.suspendMe();
+          ballThread.start();
 
-      sleep(1000);
+          sleep(1000);
 
-      verifyNoMoreInteractions(ballItem);
+          verifyNoMoreInteractions(ballItem);
 
-      ballThread.resumeMe();
-      sleep(300);
-      verify(ballItem, atLeastOnce()).draw();
-      verify(ballItem, atLeastOnce()).move();
+          ballThread.resumeMe();
+          sleep(300);
+          verify(ballItem, atLeastOnce()).draw();
+          verify(ballItem, atLeastOnce()).move();
 
-      ballThread.stopMe();
-      ballThread.join();
+          ballThread.stopMe();
+          ballThread.join();
 
-      verifyNoMoreInteractions(ballItem);
-    });
+          verifyNoMoreInteractions(ballItem);
+        });
   }
 
-  /**
-   * Verify if the {@link BallThread} is interruptible
-   */
+  /** Verify if the {@link BallThread} is interruptible */
   @Test
   void testInterrupt() {
-    assertTimeout(ofMillis(5000), () -> {
-      final var ballThread = new BallThread();
-      final var exceptionHandler = mock(UncaughtExceptionHandler.class);
-      ballThread.setUncaughtExceptionHandler(exceptionHandler);
-      ballThread.setTwin(mock(BallItem.class));
-      ballThread.start();
-      ballThread.interrupt();
-      ballThread.join();
+    assertTimeout(
+        ofMillis(5000),
+        () -> {
+          final var ballThread = new BallThread();
+          final var exceptionHandler = mock(UncaughtExceptionHandler.class);
+          ballThread.setUncaughtExceptionHandler(exceptionHandler);
+          ballThread.setTwin(mock(BallItem.class));
+          ballThread.start();
+          ballThread.interrupt();
+          ballThread.join();
 
-      verify(exceptionHandler).uncaughtException(eq(ballThread), any(RuntimeException.class));
-      verifyNoMoreInteractions(exceptionHandler);
-    });
+          verify(exceptionHandler).uncaughtException(eq(ballThread), any(RuntimeException.class));
+          verifyNoMoreInteractions(exceptionHandler);
+        });
   }
 }

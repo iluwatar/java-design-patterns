@@ -26,14 +26,10 @@ package com.iluwatar.lazy.loading;
 
 import java.util.function.Supplier;
 
-/**
- * Java8HolderTest
- *
- */
+/** Java8HolderTest */
 class Java8HolderTest extends AbstractHolderTest {
 
   private final Java8Holder holder = new Java8Holder();
-
 
   @Override
   Heavy getInternalHeavyValue() throws Exception {
@@ -58,5 +54,4 @@ class Java8HolderTest extends AbstractHolderTest {
   Heavy getHeavy() {
     return holder.getHeavy();
   }
-
 }

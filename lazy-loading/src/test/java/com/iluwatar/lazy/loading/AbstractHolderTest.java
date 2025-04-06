@@ -32,10 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * AbstractHolderTest
- *
- */
+/** AbstractHolderTest */
 public abstract class AbstractHolderTest {
 
   /**
@@ -57,12 +54,13 @@ public abstract class AbstractHolderTest {
    */
   @Test
   void testGetHeavy() {
-    assertTimeout(ofMillis(3000), () -> {
-      assertNull(getInternalHeavyValue());
-      assertNotNull(getHeavy());
-      assertNotNull(getInternalHeavyValue());
-      assertSame(getHeavy(), getInternalHeavyValue());
-    });
+    assertTimeout(
+        ofMillis(3000),
+        () -> {
+          assertNull(getInternalHeavyValue());
+          assertNotNull(getHeavy());
+          assertNotNull(getInternalHeavyValue());
+          assertSame(getHeavy(), getInternalHeavyValue());
+        });
   }
-
 }

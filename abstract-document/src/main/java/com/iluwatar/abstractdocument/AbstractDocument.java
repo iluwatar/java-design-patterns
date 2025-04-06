@@ -31,9 +31,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-/**
- * Abstract implementation of Document interface.
- */
+/** Abstract implementation of Document interface. */
 public abstract class AbstractDocument implements Document {
 
   private final Map<String, Object> documentProperties;
@@ -57,12 +55,12 @@ public abstract class AbstractDocument implements Document {
   @Override
   public <T> Stream<T> children(String key, Function<Map<String, Object>, T> childConstructor) {
     return Stream.ofNullable(get(key))
-            .filter(Objects::nonNull)
-            .map(el -> (List<Map<String, Object>>) el)
-            .findAny()
-            .stream()
-            .flatMap(Collection::stream)
-            .map(childConstructor);
+        .filter(Objects::nonNull)
+        .map(el -> (List<Map<String, Object>>) el)
+        .findAny()
+        .stream()
+        .flatMap(Collection::stream)
+        .map(childConstructor);
   }
 
   @Override
@@ -100,5 +98,4 @@ public abstract class AbstractDocument implements Document {
     builder.append("]");
     return builder.toString();
   }
-
 }

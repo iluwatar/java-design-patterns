@@ -27,9 +27,7 @@ package com.iluwatar.prototype;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
-/**
- * OrcWarlord.
- */
+/** OrcWarlord. */
 @EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor
 public class OrcWarlord extends Warlord {
@@ -45,5 +43,4 @@ public class OrcWarlord extends Warlord {
   public String toString() {
     return "Orcish warlord attacks with " + weapon;
   }
-
 }

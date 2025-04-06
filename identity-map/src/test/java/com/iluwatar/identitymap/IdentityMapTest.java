@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 
 class IdentityMapTest {
   @Test
-  void addToMap(){
+  void addToMap() {
     // new instance of an identity map(not connected to any DB here)
     IdentityMap idMap = new IdentityMap();
     // Dummy person instances
@@ -46,10 +46,12 @@ class IdentityMapTest {
     idMap.addPerson(person4);
     idMap.addPerson(person5);
     // Test no duplicate in our Map.
-    Assertions.assertEquals(4,idMap.size(),"Size of the map is incorrect");
+    Assertions.assertEquals(4, idMap.size(), "Size of the map is incorrect");
     // Test record not updated by add method.
-    Assertions.assertEquals(27304159,idMap.getPerson(11).getPhoneNum(),"Incorrect return value for phone number");
+    Assertions.assertEquals(
+        27304159, idMap.getPerson(11).getPhoneNum(), "Incorrect return value for phone number");
   }
+
   @Test
   void testGetFromMap() {
     // new instance of an identity map(not connected to any DB here)
@@ -67,8 +69,8 @@ class IdentityMapTest {
     idMap.addPerson(person4);
     idMap.addPerson(person5);
     // Test for dummy persons in the map
-    Assertions.assertEquals(person1,idMap.getPerson(11),"Incorrect person record returned");
-    Assertions.assertEquals(person4,idMap.getPerson(44),"Incorrect person record returned");
+    Assertions.assertEquals(person1, idMap.getPerson(11), "Incorrect person record returned");
+    Assertions.assertEquals(person4, idMap.getPerson(44), "Incorrect person record returned");
     // Test for person with given id not in map
     Assertions.assertNull(idMap.getPerson(1), "Incorrect person record returned");
   }

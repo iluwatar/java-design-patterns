@@ -36,6 +36,10 @@ Wikipedia says
 
 > Composite entity is a Java EE Software design pattern and it is used to model, represent, and manage a set of interrelated persistent objects rather than representing them as individual fine-grained entity beans, and also a composite entity bean represents a graph of objects.
 
+Flowchart
+
+![Composite Entity flowchart](./etc/composite-entity-flowchart.png)
+
 ## Programmatic Example of Composite Entity in Java
 
 For a console, there may be many interfaces that need to be managed and controlled. Using the composite entity pattern, dependent objects such as messages and signals can be combined and controlled using a single object.

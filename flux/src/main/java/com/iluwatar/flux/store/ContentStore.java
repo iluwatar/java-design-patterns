@@ -30,13 +30,10 @@ import com.iluwatar.flux.action.Content;
 import com.iluwatar.flux.action.ContentAction;
 import lombok.Getter;
 
-/**
- * ContentStore is a concrete store.
- */
+/** ContentStore is a concrete store. */
 public class ContentStore extends Store {
 
-  @Getter
-  private Content content = Content.PRODUCTS;
+  @Getter private Content content = Content.PRODUCTS;
 
   @Override
   public void onAction(Action action) {

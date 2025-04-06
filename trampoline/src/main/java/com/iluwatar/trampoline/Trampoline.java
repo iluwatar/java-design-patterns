@@ -29,18 +29,17 @@ import java.util.stream.Stream;
 /**
  * Trampoline pattern allows to define recursive algorithms by iterative loop.
  *
- * <p>When get is called on the returned Trampoline, internally it will iterate calling ‘jump’
- * on the returned Trampoline as long as the concrete instance returned is {@link
- * #more(Trampoline)}, stopping once the returned instance is {@link #done(Object)}.
+ * <p>When get is called on the returned Trampoline, internally it will iterate calling ‘jump’ on
+ * the returned Trampoline as long as the concrete instance returned is {@link #more(Trampoline)},
+ * stopping once the returned instance is {@link #done(Object)}.
  *
- * <p>Essential we convert looping via recursion into iteration,
- * the key enabling mechanism is the fact that {@link #more(Trampoline)} is a lazy operation.
+ * <p>Essential we convert looping via recursion into iteration, the key enabling mechanism is the
+ * fact that {@link #more(Trampoline)} is a lazy operation.
  *
- * @param <T> is  type for returning result.
+ * @param <T> is type for returning result.
  */
 public interface Trampoline<T> {
   T get();
-
 
   /**
    * Jump to next stage.
@@ -50,7 +49,6 @@ public interface Trampoline<T> {
   default Trampoline<T> jump() {
     return this;
   }
-
 
   default T result() {
     return get();
@@ -74,7 +72,6 @@ public interface Trampoline<T> {
   static <T> Trampoline<T> done(final T result) {
     return () -> result;
   }
-
 
   /**
    * Create a Trampoline that has more work to do.

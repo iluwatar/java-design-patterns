@@ -27,9 +27,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Guard test
- */
+/** Guard test */
 class GuardTest {
 
   @Test

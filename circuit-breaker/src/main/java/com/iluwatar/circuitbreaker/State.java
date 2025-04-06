@@ -24,9 +24,7 @@
  */
 package com.iluwatar.circuitbreaker;
 
-/**
- * Enumeration for states the circuit breaker could be in.
- */
+/** Enumeration for states the circuit breaker could be in. */
 public enum State {
   CLOSED,
   OPEN,

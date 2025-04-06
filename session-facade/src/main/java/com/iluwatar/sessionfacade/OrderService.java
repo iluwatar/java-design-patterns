@@ -29,12 +29,11 @@ import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The OrderService class is responsible for finalizing a customer's order.
- * It includes a method to calculate the total cost of the order, which follows
- * the information expert principle from GRASP by assigning the responsibility
- * of total calculation to this service.
- * Additionally, it provides a method to complete the order, which empties the
- * client's shopping cart once the order is finalized.
+ * The OrderService class is responsible for finalizing a customer's order. It includes a method to
+ * calculate the total cost of the order, which follows the information expert principle from GRASP
+ * by assigning the responsibility of total calculation to this service. Additionally, it provides a
+ * method to complete the order, which empties the client's shopping cart once the order is
+ * finalized.
  */
 @Slf4j
 public class OrderService {
@@ -49,14 +48,12 @@ public class OrderService {
     this.cart = cart;
   }
 
-  /**
-   * Order.
-   */
+  /** Order. */
   public void order() {
     Double total = getTotal();
     if (!this.cart.isEmpty()) {
-      LOGGER.info("Client has chosen to order {} with total {}", cart,
-          String.format("%.2f", total));
+      LOGGER.info(
+          "Client has chosen to order {} with total {}", cart, String.format("%.2f", total));
       this.completeOrder();
     } else {
       LOGGER.info("Client's shopping cart is empty");
@@ -74,9 +71,7 @@ public class OrderService {
     return total[0];
   }
 
-  /**
-   * Complete order.
-   */
+  /** Complete order. */
   public void completeOrder() {
     this.cart.clear();
   }

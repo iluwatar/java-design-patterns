@@ -32,11 +32,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-/**
- * Testing the Audio service of the Queue
- *
- */
+/** Testing the Audio service of the Queue */
 class AudioTest {
 
   private Audio audio;
@@ -48,7 +44,8 @@ class AudioTest {
 
   /**
    * Test here that the playSound method works correctly
-   * @throws UnsupportedAudioFileException when the audio file is not supported 
+   *
+   * @throws UnsupportedAudioFileException when the audio file is not supported
    * @throws IOException when the file is not readable
    * @throws InterruptedException when the test is interrupted externally
    */
@@ -67,7 +64,8 @@ class AudioTest {
 
   /**
    * Test here that the Queue
-   * @throws UnsupportedAudioFileException when the audio file is not supported 
+   *
+   * @throws UnsupportedAudioFileException when the audio file is not supported
    * @throws IOException when the file is not readable
    * @throws InterruptedException when the test is interrupted externally
    */
@@ -86,5 +84,4 @@ class AudioTest {
     // test that service is finished
     assertFalse(audio.isServiceRunning());
   }
-
 }

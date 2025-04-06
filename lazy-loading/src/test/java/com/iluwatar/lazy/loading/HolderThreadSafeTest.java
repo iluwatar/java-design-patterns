@@ -24,10 +24,7 @@
  */
 package com.iluwatar.lazy.loading;
 
-/**
- * HolderThreadSafeTest
- *
- */
+/** HolderThreadSafeTest */
 class HolderThreadSafeTest extends AbstractHolderTest {
 
   private final HolderThreadSafe holder = new HolderThreadSafe();
@@ -43,5 +40,4 @@ class HolderThreadSafeTest extends AbstractHolderTest {
   Heavy getHeavy() {
     return this.holder.getHeavy();
   }
-
 }

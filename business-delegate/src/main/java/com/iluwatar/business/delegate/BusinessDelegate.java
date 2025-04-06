@@ -26,9 +26,7 @@ package com.iluwatar.business.delegate;
 
 import lombok.Setter;
 
-/**
- * BusinessDelegate separates the presentation and business tiers.
- */
+/** BusinessDelegate separates the presentation and business tiers. */
 @Setter
 public class BusinessDelegate {
 

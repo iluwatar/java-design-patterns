@@ -35,7 +35,6 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>In this example we have sentences composed of words composed of letters. All of the objects
  * can be treated through the same interface ({@link LetterComposite}).
- *
  */
 @Slf4j
 public class App {

@@ -24,11 +24,11 @@
  */
 package com.iluwatar.collectingparameter;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
-import java.util.LinkedList;
-import java.util.Queue;
 
 class CollectingParameterTest {
 

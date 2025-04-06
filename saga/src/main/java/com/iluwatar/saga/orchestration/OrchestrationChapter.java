@@ -53,5 +53,4 @@ public interface OrchestrationChapter<K> {
    * @return result {@link ChapterResult}
    */
   ChapterResult<K> rollback(K value);
-
 }

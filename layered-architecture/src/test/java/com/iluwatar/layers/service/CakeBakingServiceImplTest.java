@@ -44,10 +44,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import service.CakeBakingServiceImpl;
 
-/**
- * Constructs a new instance of CakeBakingServiceImplTest.
- *
- */
+/** Constructs a new instance of CakeBakingServiceImplTest. */
 @SpringBootTest(classes = LayersApp.class)
 class CakeBakingServiceImplTest {
 
@@ -64,7 +61,6 @@ class CakeBakingServiceImplTest {
     cakeBakingService.deleteAllLayers();
     cakeBakingService.deleteAllToppings();
   }
-
 
   @Test
   void testLayers() {
@@ -84,7 +80,6 @@ class CakeBakingServiceImplTest {
       assertNotNull(layer.toString());
       assertTrue(layer.calories > 0);
     }
-
   }
 
   @Test
@@ -105,7 +100,6 @@ class CakeBakingServiceImplTest {
       assertNotNull(topping.toString());
       assertTrue(topping.calories > 0);
     }
-
   }
 
   @Test
@@ -141,7 +135,6 @@ class CakeBakingServiceImplTest {
       assertFalse(cakeInfo.cakeLayerInfos.isEmpty());
       assertTrue(cakeInfo.calculateTotalCalories() > 0);
     }
-
   }
 
   @Test
@@ -152,7 +145,8 @@ class CakeBakingServiceImplTest {
     cakeBakingService.saveNewLayer(layer2);
 
     final var missingTopping = new CakeToppingInfo("Topping1", 1000);
-    assertThrows(CakeBakingException.class,
+    assertThrows(
+        CakeBakingException.class,
         () -> cakeBakingService.bakeNewCake(new CakeInfo(missingTopping, List.of(layer1, layer2))));
   }
 
@@ -169,7 +163,8 @@ class CakeBakingServiceImplTest {
     cakeBakingService.saveNewLayer(layer1);
 
     final var missingLayer = new CakeLayerInfo("Layer2", 2000);
-    assertThrows(CakeBakingException.class,
+    assertThrows(
+        CakeBakingException.class,
         () -> cakeBakingService.bakeNewCake(new CakeInfo(topping1, List.of(layer1, missingLayer))));
   }
 
@@ -190,8 +185,10 @@ class CakeBakingServiceImplTest {
     cakeBakingService.saveNewLayer(layer2);
 
     cakeBakingService.bakeNewCake(new CakeInfo(topping1, List.of(layer1, layer2)));
-    assertThrows(CakeBakingException.class, () -> cakeBakingService.bakeNewCake(
-        new CakeInfo(topping2, Collections.singletonList(layer2))));
+    assertThrows(
+        CakeBakingException.class,
+        () ->
+            cakeBakingService.bakeNewCake(
+                new CakeInfo(topping2, Collections.singletonList(layer2))));
   }
-
 }

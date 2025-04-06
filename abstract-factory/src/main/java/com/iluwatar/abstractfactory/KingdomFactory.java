@@ -24,9 +24,7 @@
  */
 package com.iluwatar.abstractfactory;
 
-/**
- * KingdomFactory factory interface.
- */
+/** KingdomFactory factory interface. */
 public interface KingdomFactory {
 
   Castle createCastle();
@@ -34,5 +32,4 @@ public interface KingdomFactory {
   King createKing();
 
   Army createArmy();
-
 }

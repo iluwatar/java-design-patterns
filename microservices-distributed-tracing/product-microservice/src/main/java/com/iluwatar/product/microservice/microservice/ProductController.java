@@ -30,9 +30,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * Controller for handling product validation requests.
- */
+/** Controller for handling product validation requests. */
 @Slf4j
 @RestController
 public class ProductController {

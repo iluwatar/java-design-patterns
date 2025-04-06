@@ -27,16 +27,13 @@ package com.iluwatar.presentationmodel;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The Presentation model pattern is used to divide the presentation and controlling.
- * This demo is a used to information of some albums with GUI.
+ * The Presentation model pattern is used to divide the presentation and controlling. This demo is a
+ * used to information of some albums with GUI.
  */
 @Slf4j
 public final class App {
-  /**
-   * the constructor.
-   */
-  private App() {
-  }
+  /** the constructor. */
+  private App() {}
 
   /**
    * main method.
@@ -48,4 +45,3 @@ public final class App {
     view.createView();
   }
 }
-

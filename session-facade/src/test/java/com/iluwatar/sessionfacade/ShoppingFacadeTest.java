@@ -24,17 +24,14 @@
  */
 package com.iluwatar.sessionfacade;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import java.util.List;
-import java.util.Map;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-/**
- * Unit tests for ShoppingFacade.
- */
+import java.util.Map;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/** Unit tests for ShoppingFacade. */
 class ShoppingFacadeTest {
 
   private ShoppingFacade shoppingFacade;
@@ -48,10 +45,14 @@ class ShoppingFacadeTest {
   void testAddToCart() {
     shoppingFacade.addToCart(1);
     shoppingFacade.addToCart(2);
-    Map<Integer,Product> cart = shoppingFacade.getCart();
+    Map<Integer, Product> cart = shoppingFacade.getCart();
     assertEquals(2, cart.size(), "Cart should contain two items.");
-    assertEquals("Wireless Mouse", cart.get(1).name(), "First item in the cart should be 'Wireless Mouse'.");
-    assertEquals("Gaming Keyboard", cart.get(2).name(), "Second item in the cart should be 'Gaming Keyboard'.");
+    assertEquals(
+        "Wireless Mouse", cart.get(1).name(), "First item in the cart should be 'Wireless Mouse'.");
+    assertEquals(
+        "Gaming Keyboard",
+        cart.get(2).name(),
+        "Second item in the cart should be 'Gaming Keyboard'.");
   }
 
   @Test
@@ -59,9 +60,10 @@ class ShoppingFacadeTest {
     shoppingFacade.addToCart(1);
     shoppingFacade.addToCart(2);
     shoppingFacade.removeFromCart(1);
-    Map<Integer,Product> cart = shoppingFacade.getCart();
+    Map<Integer, Product> cart = shoppingFacade.getCart();
     assertEquals(1, cart.size(), "Cart should contain one item after removal.");
-    assertEquals("Gaming Keyboard", cart.get(2).name(), "Remaining item should be 'Gaming Keyboard'.");
+    assertEquals(
+        "Gaming Keyboard", cart.get(2).name(), "Remaining item should be 'Gaming Keyboard'.");
   }
 
   @Test

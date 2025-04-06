@@ -24,9 +24,7 @@
  */
 package com.iluwatar.specialcase;
 
-/**
- * Implementation of DomainServices for special case.
- */
+/** Implementation of DomainServices for special case. */
 public class DomainServicesImpl implements DomainServices {
 
   /**
@@ -47,9 +45,8 @@ public class DomainServicesImpl implements DomainServices {
   }
 
   /**
-   * Domain purchase with user, account and itemName,
-   * with validation for whether product is out of stock
-   * and whether user has insufficient funds in the account.
+   * Domain purchase with user, account and itemName, with validation for whether product is out of
+   * stock and whether user has insufficient funds in the account.
    *
    * @param user in Db
    * @param account in Db

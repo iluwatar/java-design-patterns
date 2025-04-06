@@ -27,9 +27,7 @@ package com.iluwatar.roleobject;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Borrower role.
- */
+/** Borrower role. */
 @Getter
 @Setter
 public class BorrowerRole extends CustomerRole {
@@ -39,5 +37,4 @@ public class BorrowerRole extends CustomerRole {
   public String borrow() {
     return String.format("Borrower %s wants to get some money.", name);
   }
-
 }

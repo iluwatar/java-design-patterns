@@ -26,9 +26,7 @@ package com.iluwatar.bridge;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * SoulEatingEnchantment.
- */
+/** SoulEatingEnchantment. */
 @Slf4j
 public class SoulEatingEnchantment implements Enchantment {
 

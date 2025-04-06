@@ -26,9 +26,7 @@ package com.iluwatar.proxy;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * The proxy controlling access to the {@link IvoryTower}.
- */
+/** The proxy controlling access to the {@link IvoryTower}. */
 @Slf4j
 public class WizardTowerProxy implements WizardTower {
 

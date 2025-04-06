@@ -29,9 +29,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Represents a service that produces logs.
- * The logs are generated based on certain activities or events within the service.
- * Once a log is generated, it's passed on to the aggregator for further processing.
+ * Represents a service that produces logs. The logs are generated based on certain activities or
+ * events within the service. Once a log is generated, it's passed on to the aggregator for further
+ * processing.
  */
 @AllArgsConstructor
 @Slf4j

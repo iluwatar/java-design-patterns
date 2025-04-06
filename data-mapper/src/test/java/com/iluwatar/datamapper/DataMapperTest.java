@@ -36,13 +36,12 @@ import org.junit.jupiter.api.Test;
  * present; they need no SQL interface code, and certainly no knowledge of the database schema. (The
  * database schema is always ignorant of the objects that use it.) Since it's a form of Mapper ,
  * Data Mapper itself is even unknown to the domain layer.
+ *
  * <p>
  */
 class DataMapperTest {
 
-  /**
-   * This test verify that first data mapper is able to perform all CRUD operations on Student
-   */
+  /** This test verify that first data mapper is able to perform all CRUD operations on Student */
   @Test
   void testFirstDataMapper() {
 

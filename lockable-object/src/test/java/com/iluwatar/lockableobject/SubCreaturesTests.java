@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 class SubCreaturesTests {
 
   @Test
-  void statsTest(){
+  void statsTest() {
     var elf = new Elf("Limbar");
     var orc = new Orc("Dargal");
     var human = new Human("Jerry");

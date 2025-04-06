@@ -32,13 +32,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 /**
- * The main entry point for the idempotent-consumer application.
- * This application demonstrates the use of the Idempotent Consumer
- * pattern which ensures that a message is processed exactly once
- * in scenarios where the same message can be delivered multiple times.
+ * The main entry point for the idempotent-consumer application. This application demonstrates the
+ * use of the Idempotent Consumer pattern which ensures that a message is processed exactly once in
+ * scenarios where the same message can be delivered multiple times.
  *
  * @see <a href="https://en.wikipedia.org/wiki/Idempotence">Idempotence (Wikipedia)</a>
- * @see <a href="https://camel.apache.org/components/latest/eips/idempotentConsumer-eip.html">Idempotent Consumer Pattern (Apache Camel)</a>
+ * @see <a
+ *     href="https://camel.apache.org/components/latest/eips/idempotentConsumer-eip.html">Idempotent
+ *     Consumer Pattern (Apache Camel)</a>
  */
 @SpringBootApplication
 @Slf4j
@@ -46,9 +47,9 @@ public class App {
   public static void main(String[] args) {
     SpringApplication.run(App.class, args);
   }
+
   /**
-   * The starting point of the CommandLineRunner
-   * where the main program is run.
+   * The starting point of the CommandLineRunner where the main program is run.
    *
    * @param requestService idempotent request service
    * @param requestRepository request jpa repository
@@ -59,7 +60,8 @@ public class App {
       Request req = requestService.create(UUID.randomUUID());
       requestService.create(req.getUuid());
       requestService.create(req.getUuid());
-      LOGGER.info("Nb of requests : {}", requestRepository.count()); // 1, processRequest is idempotent
+      LOGGER.info(
+          "Nb of requests : {}", requestRepository.count()); // 1, processRequest is idempotent
       req = requestService.start(req.getUuid());
       try {
         req = requestService.start(req.getUuid());
@@ -71,4 +73,3 @@ public class App {
     };
   }
 }
-

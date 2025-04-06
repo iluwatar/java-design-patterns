@@ -1,0 +1,33 @@
+@startuml
+package com.iluwatar.clientsideuicomposition {
+  class ApiGateway {
+    - routes : Map<String, FrontendComponent>
+    + ApiGateway()
+    + handleRequest(path : String, params : Map<String, String>) : String
+    + registerRoute(path : String, component : FrontendComponent)
+  }
+  class CartFrontend {
+    + CartFrontend()
+    # getData(params : Map<String, String>) : String
+  }
+  class ClientSideIntegrator {
+    - LOGGER : Logger {static}
+    - apiGateway : ApiGateway
+    + ClientSideIntegrator(apiGateway : ApiGateway)
+    + composeUi(path : String, params : Map<String, String>)
+  }
+  abstract class FrontendComponent {
+    + random : Random {static}
+    + FrontendComponent()
+    + fetchData(params : Map<String, String>) : String
+    # getData(Map<String, String>) : String {abstract}
+  }
+  class ProductFrontend {
+    + ProductFrontend()
+    # getData(params : Map<String, String>) : String
+  }
+}
+ClientSideIntegrator -->  "-apiGateway" ApiGateway
+CartFrontend --|> FrontendComponent 
+ProductFrontend --|> FrontendComponent 
+@enduml

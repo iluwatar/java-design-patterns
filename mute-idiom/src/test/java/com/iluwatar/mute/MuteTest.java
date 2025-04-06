@@ -24,17 +24,15 @@
  */
 package com.iluwatar.mute;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-/**
- * Test for the mute-idiom pattern
- */
+/** Test for the mute-idiom pattern */
 class MuteTest {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(MuteTest.class);
@@ -42,7 +40,8 @@ class MuteTest {
   private static final String MESSAGE = "should not occur";
 
   @Test
-  void muteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
+  void
+      muteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
     assertDoesNotThrow(() -> Mute.mute(this::methodNotThrowingAnyException));
   }
 
@@ -52,7 +51,8 @@ class MuteTest {
   }
 
   @Test
-  void loggedMuteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
+  void
+      loggedMuteShouldRunTheCheckedRunnableAndNotThrowAnyExceptionIfCheckedRunnableDoesNotThrowAnyException() {
     assertDoesNotThrow(() -> Mute.mute(this::methodNotThrowingAnyException));
   }
 

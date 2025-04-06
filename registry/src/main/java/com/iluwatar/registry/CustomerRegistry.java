@@ -28,13 +28,10 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import lombok.Getter;
 
-/**
- * CustomerRegistry class used to store/access {@link Customer} objects.
- */
+/** CustomerRegistry class used to store/access {@link Customer} objects. */
 public final class CustomerRegistry {
 
-  @Getter
-  private static final CustomerRegistry instance = new CustomerRegistry();
+  @Getter private static final CustomerRegistry instance = new CustomerRegistry();
 
   private final Map<String, Customer> customerMap;
 
@@ -49,5 +46,4 @@ public final class CustomerRegistry {
   public Customer getCustomer(String id) {
     return customerMap.get(id);
   }
-
 }

@@ -25,16 +25,13 @@
 package com.iluwatar.servicelayer.spellbook;
 
 import com.iluwatar.servicelayer.common.DaoBaseImpl;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Root;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-
-/**
- * SpellbookDao implementation.
- */
+/** SpellbookDao implementation. */
 public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements SpellbookDao {
 
   @Override
@@ -58,5 +55,4 @@ public class SpellbookDaoImpl extends DaoBaseImpl<Spellbook> implements Spellboo
     }
     return result;
   }
-
 }

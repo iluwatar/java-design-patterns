@@ -30,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.iluwatar.typeobject.Candy.Type;
 import org.junit.jupiter.api.Test;
 
-/**
- * The CellTest class tests the methods in the {@link Cell} class.
- */
+/** The CellTest class tests the methods in the {@link Cell} class. */
 class CellTest {
 
   @Test

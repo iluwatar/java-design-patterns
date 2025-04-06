@@ -26,9 +26,13 @@ package com.iluwatar.servicelocator;
 
 /**
  * This is going to be the parent service interface which we will use to create our services. All
- * services will have a <ul><li>service name</li> <li>unique id</li> <li>execution work
- * flow</li></ul>
+ * services will have a
  *
+ * <ul>
+ *   <li>service name
+ *   <li>unique id
+ *   <li>execution work flow
+ * </ul>
  */
 public interface Service {
 

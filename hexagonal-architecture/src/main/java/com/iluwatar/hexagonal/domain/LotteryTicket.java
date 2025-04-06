@@ -24,10 +24,9 @@
  */
 package com.iluwatar.hexagonal.domain;
 
-/**
- * Immutable value object representing lottery ticket.
- */
-public record LotteryTicket(LotteryTicketId id, PlayerDetails playerDetails, LotteryNumbers lotteryNumbers) {
+/** Immutable value object representing lottery ticket. */
+public record LotteryTicket(
+    LotteryTicketId id, PlayerDetails playerDetails, LotteryNumbers lotteryNumbers) {
 
   @Override
   public int hashCode() {

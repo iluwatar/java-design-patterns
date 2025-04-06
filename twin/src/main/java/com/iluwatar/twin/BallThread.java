@@ -31,20 +31,16 @@ import lombok.extern.slf4j.Slf4j;
  * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
  * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
  */
-
 @Slf4j
 public class BallThread extends Thread {
 
-  @Setter
-  private BallItem twin;
+  @Setter private BallItem twin;
 
   private volatile boolean isSuspended;
 
   private volatile boolean isRunning = true;
 
-  /**
-   * Run the thread.
-   */
+  /** Run the thread. */
   public void run() {
 
     while (isRunning) {
@@ -75,4 +71,3 @@ public class BallThread extends Thread {
     this.isSuspended = true;
   }
 }
-

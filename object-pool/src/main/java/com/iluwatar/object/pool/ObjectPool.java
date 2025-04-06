@@ -39,9 +39,7 @@ public abstract class ObjectPool<T> {
 
   protected abstract T create();
 
-  /**
-   * Checkout object from pool.
-   */
+  /** Checkout object from pool. */
   public synchronized T checkOut() {
     if (available.isEmpty()) {
       available.add(create());

@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for lottery ticket id
- */
+/** Tests for lottery ticket id */
 class LotteryTicketIdTest {
 
   @Test

@@ -38,6 +38,10 @@ Wikipedia says
 
 > In software engineering, multitier architecture (often referred to as n-tier architecture) or multilayered architecture is a client–server architecture in which presentation, application processing, and data management functions are physically separated.
 
+Architecture diagram
+
+![Layered Architecture Diagram](./etc/layered-architecture-diagram.png)
+
 ## Programmatic Example of Layered Architecture in Java
 
 On the data layer, we keep our cake building blocks. `Cake` consist of layers and topping.
@@ -85,10 +89,6 @@ public class CakeViewImpl implements View {
   }
 }
 ```
-
-## Layered Architecture Pattern Class Diagram
-
-![Layered Architecture](./etc/layers.png "Layered Architecture")
 
 ## When to Use the Layered Architecture Pattern in Java
 

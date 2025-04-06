@@ -38,13 +38,13 @@ import lombok.extern.slf4j.Slf4j;
  *
  * <p>Expressions can be evaluated using prefix, infix or postfix notations This sample uses
  * postfix, where operator comes after the operands.
- *
  */
 @Slf4j
 public class App {
 
   /**
    * Program entry point.
+   *
    * @param args program arguments
    */
   public static void main(String[] args) {
@@ -64,8 +64,10 @@ public class App {
         // the stack
         var rightExpression = stack.pop();
         var leftExpression = stack.pop();
-        LOGGER.info("popped from stack left: {} right: {}",
-            leftExpression.interpret(), rightExpression.interpret());
+        LOGGER.info(
+            "popped from stack left: {} right: {}",
+            leftExpression.interpret(),
+            rightExpression.interpret());
         var operator = getOperatorInstance(s, leftExpression, rightExpression);
         LOGGER.info("operator: {}", operator);
         var result = operator.interpret();
@@ -86,6 +88,7 @@ public class App {
 
   /**
    * Checks whether the input parameter is an operator.
+   *
    * @param s input string
    * @return true if the input parameter is an operator
    */
@@ -95,6 +98,7 @@ public class App {
 
   /**
    * Returns correct expression based on the parameters.
+   *
    * @param s input string
    * @param left expression
    * @param right expression

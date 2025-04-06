@@ -24,25 +24,22 @@
  */
 package com.iluwatar.business.delegate;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Tests that Business Delegate example runs without errors.
- */
+import org.junit.jupiter.api.Test;
+
+/** Tests that Business Delegate example runs without errors. */
 class AppTest {
 
   /**
    * Issue: Add at least one assertion to this test case.
    *
-   * Solution: Inserted assertion to check whether the execution of the main method in {@link App}
-   * throws an exception.
+   * <p>Solution: Inserted assertion to check whether the execution of the main method in {@link
+   * App} throws an exception.
    */
-
   @Test
   void shouldExecuteApplicationWithoutException() {
 
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

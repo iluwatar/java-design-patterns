@@ -60,9 +60,7 @@ public class AppConfig {
     return basicDataSource;
   }
 
-  /**
-   * Factory to create a specific instance of Entity Manager.
-   */
+  /** Factory to create a specific instance of Entity Manager. */
   @Bean
   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
     var entityManager = new LocalContainerEntityManagerFactoryBean();
@@ -73,9 +71,7 @@ public class AppConfig {
     return entityManager;
   }
 
-  /**
-   * Properties for Jpa.
-   */
+  /** Properties for Jpa. */
   private static Properties jpaProperties() {
     var properties = new Properties();
     properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
@@ -83,9 +79,7 @@ public class AppConfig {
     return properties;
   }
 
-  /**
-   * Get transaction manager.
-   */
+  /** Get transaction manager. */
   @Bean
   public JpaTransactionManager transactionManager() {
     var transactionManager = new JpaTransactionManager();
@@ -145,7 +139,5 @@ public class AppConfig {
     persons.stream().map(Person::toString).forEach(LOGGER::info);
 
     context.close();
-
   }
-
 }

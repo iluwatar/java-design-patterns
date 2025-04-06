@@ -34,8 +34,8 @@ import java.util.List;
 
 /**
  * Every method in this interface is annotated with the necessary metadata to represents an endpoint
- * that we can call to communicate with a host server which is serving a resource by Rest API.
- * This interface is focused in the resource Album.
+ * that we can call to communicate with a host server which is serving a resource by Rest API. This
+ * interface is focused in the resource Album.
  */
 public interface AlbumService {
 
@@ -69,7 +69,7 @@ public interface AlbumService {
    * Updates an existing album.
    *
    * @param albumId Album's id to be modified.
-   * @param album   New album's data.
+   * @param album New album's data.
    * @return Updated album's data.
    */
   @Put("/albums/{albumId}")
@@ -83,5 +83,4 @@ public interface AlbumService {
    */
   @Delete("/albums/{albumId}")
   Album deleteAlbum(@Path("albumId") Integer albumId);
-
 }

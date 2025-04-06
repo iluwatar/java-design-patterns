@@ -30,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests {@link Customer}.
- */
+/** Tests {@link Customer}. */
 class CustomerTest {
 
   private Customer customer;
@@ -89,7 +87,10 @@ class CustomerTest {
 
   @Test
   void testToString() {
-    assertEquals(String.format("Customer(id=%s, firstName=%s, lastName=%s)",
-        customer.getId(), customer.getFirstName(), customer.getLastName()), customer.toString());
+    assertEquals(
+        String.format(
+            "Customer(id=%s, firstName=%s, lastName=%s)",
+            customer.getId(), customer.getFirstName(), customer.getLastName()),
+        customer.toString());
   }
 }

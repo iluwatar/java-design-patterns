@@ -24,11 +24,8 @@
  */
 package com.iluwatar.observer;
 
-/**
- * Observer interface.
- */
+/** Observer interface. */
 public interface WeatherObserver {
 
   void update(WeatherType currentWeather);
-
 }

@@ -26,12 +26,9 @@ package com.iluwatar.flux.action;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Content items.
- */
+/** Content items. */
 @RequiredArgsConstructor
 public enum Content {
-
   PRODUCTS("Products - This page lists the company's products."),
   COMPANY("Company - This page displays information about the company.");
 

@@ -24,11 +24,11 @@
  */
 package com.iluwatar.parameter.object;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParameterObjectTest {
 
@@ -36,29 +36,26 @@ class ParameterObjectTest {
 
   @Test
   void testForDefaultSortBy() {
-    //Creating parameter object with default value for SortBy set
-    ParameterObject params = ParameterObject.newBuilder()
-        .withType("sneakers")
-        .sortOrder(SortOrder.DESC)
-        .build();
+    // Creating parameter object with default value for SortBy set
+    ParameterObject params =
+        ParameterObject.newBuilder().withType("sneakers").sortOrder(SortOrder.DESC).build();
 
-    assertEquals(ParameterObject.DEFAULT_SORT_BY, params.getSortBy(),
-        "Default SortBy is not set.");
-    LOGGER.info("{} Default parameter value is set during object creation as no value is passed."
-        , "SortBy");
+    assertEquals(ParameterObject.DEFAULT_SORT_BY, params.getSortBy(), "Default SortBy is not set.");
+    LOGGER.info(
+        "{} Default parameter value is set during object creation as no value is passed.",
+        "SortBy");
   }
 
   @Test
   void testForDefaultSortOrder() {
-    //Creating parameter object with default value for SortOrder set
-    ParameterObject params = ParameterObject.newBuilder()
-        .withType("sneakers")
-        .sortBy("brand")
-        .build();
+    // Creating parameter object with default value for SortOrder set
+    ParameterObject params =
+        ParameterObject.newBuilder().withType("sneakers").sortBy("brand").build();
 
-    assertEquals(ParameterObject.DEFAULT_SORT_ORDER, params.getSortOrder(),
-        "Default SortOrder is not set.");
-    LOGGER.info("{} Default parameter value is set during object creation as no value is passed."
-        , "SortOrder");
+    assertEquals(
+        ParameterObject.DEFAULT_SORT_ORDER, params.getSortOrder(), "Default SortOrder is not set.");
+    LOGGER.info(
+        "{} Default parameter value is set during object creation as no value is passed.",
+        "SortOrder");
   }
 }

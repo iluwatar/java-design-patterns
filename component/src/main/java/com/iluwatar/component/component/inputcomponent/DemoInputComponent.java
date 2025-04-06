@@ -28,11 +28,11 @@ import com.iluwatar.component.GameObject;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Take this component class to control player or the NPC for demo mode.
- * and implemented the InputComponent interface.
+ * Take this component class to control player or the NPC for demo mode. and implemented the
+ * InputComponent interface.
  *
- * <p>Essentially, the demo mode is utilised during a game if the user become inactive.
- * Please see: http://gameprogrammingpatterns.com/component.html
+ * <p>Essentially, the demo mode is utilised during a game if the user become inactive. Please see:
+ * http://gameprogrammingpatterns.com/component.html
  */
 @Slf4j
 public class DemoInputComponent implements InputComponent {
@@ -42,7 +42,7 @@ public class DemoInputComponent implements InputComponent {
    * Redundant method in the demo mode.
    *
    * @param gameObject the gameObject instance
-   * @param e          key event instance
+   * @param e key event instance
    */
   @Override
   public void update(GameObject gameObject, int e) {

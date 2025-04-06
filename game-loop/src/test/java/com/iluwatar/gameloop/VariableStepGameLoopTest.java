@@ -29,9 +29,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * VariableStepGameLoop unit test class.
- */
+/** VariableStepGameLoop unit test class. */
 class VariableStepGameLoopTest {
 
   private VariableStepGameLoop gameLoop;

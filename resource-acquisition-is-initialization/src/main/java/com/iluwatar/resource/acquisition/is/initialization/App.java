@@ -48,9 +48,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class App {
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
 
     try (var ignored = new SlidingDoor()) {

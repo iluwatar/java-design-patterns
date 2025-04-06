@@ -25,9 +25,7 @@
 
 package com.iluwatar.virtual.proxy;
 
-/**
- * The main application class that sets up and runs the Virtual Proxy pattern demo.
- */
+/** The main application class that sets up and runs the Virtual Proxy pattern demo. */
 public class App {
   /**
    * The entry point of the application.
@@ -36,7 +34,7 @@ public class App {
    */
   public static void main(String[] args) {
     ExpensiveObject videoObject = new VideoObjectProxy();
-    videoObject.process();  // The first call creates and plays the video
-    videoObject.process();  // Subsequent call uses the already created object
+    videoObject.process(); // The first call creates and plays the video
+    videoObject.process(); // Subsequent call uses the already created object
   }
 }

@@ -32,9 +32,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Represents a database of products.
- */
+/** Represents a database of products. */
 @Entity
 @Data
 @NoArgsConstructor
@@ -52,4 +50,3 @@ public class Product {
 
   private Integer stock;
 }
-

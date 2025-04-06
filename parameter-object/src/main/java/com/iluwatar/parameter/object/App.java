@@ -28,19 +28,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The syntax of Java language doesn’t allow you to declare a method with a predefined value
- * for a parameter. Probably the best option to achieve default method parameters in Java is
- * by using the method overloading. Method overloading allows you to declare several methods
- * with the same name but with a different number of parameters. But the main problem with
- * method overloading as a solution for default parameter values reveals itself when a method
- * accepts multiple parameters. Creating an overloaded method for each possible combination of
- * parameters might be cumbersome. To deal with this issue, the Parameter Object pattern is used.
- * The Parameter Object is simply a wrapper object for all parameters of a method.
- * It is nothing more than just a regular POJO. The advantage of the Parameter Object over a
- * regular method parameter list is the fact that class fields can have default values.
- * Once the wrapper class is created for the method parameter list, a corresponding builder class
- * is also created. Usually it's an inner static class. The final step is to use the builder
- * to construct a new parameter object. For those parameters that are skipped,
+ * The syntax of Java language doesn’t allow you to declare a method with a predefined value for a
+ * parameter. Probably the best option to achieve default method parameters in Java is by using the
+ * method overloading. Method overloading allows you to declare several methods with the same name
+ * but with a different number of parameters. But the main problem with method overloading as a
+ * solution for default parameter values reveals itself when a method accepts multiple parameters.
+ * Creating an overloaded method for each possible combination of parameters might be cumbersome. To
+ * deal with this issue, the Parameter Object pattern is used. The Parameter Object is simply a
+ * wrapper object for all parameters of a method. It is nothing more than just a regular POJO. The
+ * advantage of the Parameter Object over a regular method parameter list is the fact that class
+ * fields can have default values. Once the wrapper class is created for the method parameter list,
+ * a corresponding builder class is also created. Usually it's an inner static class. The final step
+ * is to use the builder to construct a new parameter object. For those parameters that are skipped,
  * their default values are going to be used.
  */
 public class App {
@@ -53,10 +52,8 @@ public class App {
    * @param args command line args
    */
   public static void main(String[] args) {
-    ParameterObject params = ParameterObject.newBuilder()
-        .withType("sneakers")
-        .sortBy("brand")
-        .build();
+    ParameterObject params =
+        ParameterObject.newBuilder().withType("sneakers").sortBy("brand").build();
     LOGGER.info(params.toString());
     LOGGER.info(new SearchService().search(params));
   }

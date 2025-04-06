@@ -24,25 +24,22 @@
  */
 package com.iluwatar.servicelayer.app;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import com.iluwatar.servicelayer.hibernate.HibernateUtil;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
-/**
- * Application test
- */
+/** Application test */
 class AppTest {
 
   @Test
   void shouldExecuteWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 
   @AfterEach
   void tearDown() {
     HibernateUtil.dropSession();
   }
-
 }

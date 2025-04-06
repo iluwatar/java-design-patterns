@@ -25,29 +25,24 @@
 
 package com.iluwatar.sessionfacade;
 
-
 import java.util.Map;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The type Cart service.
- * Represents the cart entity, has add to cart and remove from cart methods
+ * The type Cart service. Represents the cart entity, has add to cart and remove from cart methods
  */
 @Slf4j
 public class CartService {
-  /**
-   * -- GETTER --
-   *  Gets cart.
-   */
-  @Getter
-  private final Map<Integer, Product> cart;
+  /** -- GETTER -- Gets cart. */
+  @Getter private final Map<Integer, Product> cart;
+
   private final Map<Integer, Product> productCatalog;
 
   /**
    * Instantiates a new Cart service.
    *
-   * @param cart           the cart
+   * @param cart the cart
    * @param productCatalog the product catalog
    */
   public CartService(Map<Integer, Product> cart, Map<Integer, Product> productCatalog) {
@@ -83,5 +78,4 @@ public class CartService {
       LOGGER.info("No product is found in cart with id {}", productId);
     }
   }
-
 }

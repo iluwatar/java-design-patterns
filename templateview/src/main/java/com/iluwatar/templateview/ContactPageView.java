@@ -27,14 +27,13 @@ package com.iluwatar.templateview;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * ContactPageView implements the TemplateView and provides dynamic content specific to the contact page.
+ * ContactPageView implements the TemplateView and provides dynamic content specific to the contact
+ * page.
  */
 @Slf4j
 public class ContactPageView extends TemplateView {
 
-  /**
-   * Renders dynamic content for the contact page.
-   */
+  /** Renders dynamic content for the contact page. */
   @Override
   protected void renderDynamicContent() {
     LOGGER.info("Contact us at: contact@example.com");

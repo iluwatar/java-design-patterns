@@ -26,9 +26,7 @@ package com.iluwatar.privateclassdata;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Immutable stew class, protected with Private Class Data pattern.
- */
+/** Immutable stew class, protected with Private Class Data pattern. */
 @Slf4j
 public class ImmutableStew {
 
@@ -38,12 +36,13 @@ public class ImmutableStew {
     data = new StewData(numPotatoes, numCarrots, numMeat, numPeppers);
   }
 
-  /**
-   * Mix the stew.
-   */
+  /** Mix the stew. */
   public void mix() {
-    LOGGER
-        .info("Mixing the immutable stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
-            data.numPotatoes(), data.numCarrots(), data.numMeat(), data.numPeppers());
+    LOGGER.info(
+        "Mixing the immutable stew we find: {} potatoes, {} carrots, {} meat and {} peppers",
+        data.numPotatoes(),
+        data.numCarrots(),
+        data.numMeat(),
+        data.numPeppers());
   }
 }

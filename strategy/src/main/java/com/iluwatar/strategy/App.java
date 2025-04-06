@@ -27,17 +27,15 @@ package com.iluwatar.strategy;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * The Strategy pattern (also known as the policy pattern) is a software design pattern that enables
+ * an algorithm's behavior to be selected at runtime.
  *
- * <p>The Strategy pattern (also known as the policy pattern) is a software design pattern that
- * enables an algorithm's behavior to be selected at runtime.</p>
- *
- * <p>Before Java 8 the Strategies needed to be separate classes forcing the developer
- * to write lots of boilerplate code. With modern Java, it is easy to pass behavior
- * with method references and lambdas making the code shorter and more readable.</p>
+ * <p>Before Java 8 the Strategies needed to be separate classes forcing the developer to write lots
+ * of boilerplate code. With modern Java, it is easy to pass behavior with method references and
+ * lambdas making the code shorter and more readable.
  *
  * <p>In this example ({@link DragonSlayingStrategy}) encapsulates an algorithm. The containing
- * object ({@link DragonSlayer}) can alter its behavior by changing its strategy.</p>
- *
+ * object ({@link DragonSlayer}) can alter its behavior by changing its strategy.
  */
 @Slf4j
 public class App {
@@ -65,16 +63,20 @@ public class App {
 
     // Java 8 functional implementation Strategy pattern
     LOGGER.info(GREEN_DRAGON_SPOTTED);
-    dragonSlayer = new DragonSlayer(
-        () -> LOGGER.info("With your Excalibur you sever the dragon's head!"));
+    dragonSlayer =
+        new DragonSlayer(() -> LOGGER.info("With your Excalibur you sever the dragon's head!"));
     dragonSlayer.goToBattle();
     LOGGER.info(RED_DRAGON_EMERGES);
-    dragonSlayer.changeStrategy(() -> LOGGER.info(
-        "You shoot the dragon with the magical crossbow and it falls dead on the ground!"));
+    dragonSlayer.changeStrategy(
+        () ->
+            LOGGER.info(
+                "You shoot the dragon with the magical crossbow and it falls dead on the ground!"));
     dragonSlayer.goToBattle();
     LOGGER.info(BLACK_DRAGON_LANDS);
-    dragonSlayer.changeStrategy(() -> LOGGER.info(
-        "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
+    dragonSlayer.changeStrategy(
+        () ->
+            LOGGER.info(
+                "You cast the spell of disintegration and the dragon vaporizes in a pile of dust!"));
     dragonSlayer.goToBattle();
 
     // Java 8 lambda implementation with enum Strategy pattern

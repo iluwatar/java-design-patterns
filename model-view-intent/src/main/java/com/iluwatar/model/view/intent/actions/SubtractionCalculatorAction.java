@@ -24,18 +24,12 @@
  */
 package com.iluwatar.model.view.intent.actions;
 
-/**
- *  Subtraction {@link CalculatorAction}.
- * */
+/** Subtraction {@link CalculatorAction}. */
 public class SubtractionCalculatorAction implements CalculatorAction {
-  /**
-   * Subclass tag.
-   * */
+  /** Subclass tag. */
   public static final String SUBTRACTION = "SUBTRACTION";
 
-  /**
-   * Makes checking subclass type trivial.
-   * */
+  /** Makes checking subclass type trivial. */
   @Override
   public String tag() {
     return SUBTRACTION;

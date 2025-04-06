@@ -26,13 +26,10 @@ package com.iluwatar.flux.action;
 
 import lombok.Getter;
 
-/**
- * ContentAction is a concrete action.
- */
+/** ContentAction is a concrete action. */
 public class ContentAction extends Action {
 
-  @Getter
-  private final Content content;
+  @Getter private final Content content;
 
   public ContentAction(Content content) {
     super(ActionType.CONTENT_CHANGED);

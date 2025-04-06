@@ -24,17 +24,16 @@
  */
 package com.iluwatar.templateview;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Application test
- */
+import org.junit.jupiter.api.Test;
+
+/** Application test */
 class AppTest {
 
   @Test
   void shouldExecuteWithoutException() {
     // Verify that main() method executes without throwing exceptions
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

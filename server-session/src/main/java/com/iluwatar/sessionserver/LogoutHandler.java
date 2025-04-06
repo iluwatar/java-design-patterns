@@ -32,9 +32,7 @@ import java.time.Instant;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * LogoutHandler.
- */
+/** LogoutHandler. */
 @Slf4j
 public class LogoutHandler implements HttpHandler {
 
@@ -61,7 +59,7 @@ public class LogoutHandler implements HttpHandler {
       response = "Logout successful!\n" + "Session ID: " + currentSessionId;
     }
 
-    //Remove session
+    // Remove session
     if (currentSessionId != null) {
       LOGGER.info("User " + sessions.get(currentSessionId) + " deleted!");
     } else {

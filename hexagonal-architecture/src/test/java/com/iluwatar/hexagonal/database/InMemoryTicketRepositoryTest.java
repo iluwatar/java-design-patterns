@@ -31,9 +31,7 @@ import com.iluwatar.hexagonal.test.LotteryTestUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for {@link LotteryTicketRepository}
- */
+/** Tests for {@link LotteryTicketRepository} */
 class InMemoryTicketRepositoryTest {
 
   private final LotteryTicketRepository repository = new InMemoryTicketRepository();

@@ -27,20 +27,21 @@ package com.iluwatar.function.composition;
 import java.util.function.Function;
 
 /**
- * Class for composing functions using the Function Composition pattern.
- * Provides a static method to compose two functions using the 'andThen' method.
+ * Class for composing functions using the Function Composition pattern. Provides a static method to
+ * compose two functions using the 'andThen' method.
  */
 public class FunctionComposer {
 
   /**
-   * Composes two functions where the output of the first function becomes
-   * the input of the second function.
+   * Composes two functions where the output of the first function becomes the input of the second
+   * function.
    *
    * @param f1 the first function to apply
    * @param f2 the second function to apply after the first
    * @return a composed function that applies f1 and then f2
    */
-  public static Function<Integer, Integer> composeFunctions(Function<Integer, Integer> f1, Function<Integer, Integer> f2) {
+  public static Function<Integer, Integer> composeFunctions(
+      Function<Integer, Integer> f1, Function<Integer, Integer> f2) {
     return f1.andThen(f2);
   }
 }

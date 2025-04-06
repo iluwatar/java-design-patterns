@@ -36,6 +36,10 @@ Wikipedia says
 
 > The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
 
+Class diagram
+
+![Abstract Factory class diagram](./etc/abstract-factory.urm.png "Abstract Factory class diagram")
+
 ## Programmatic Example of Abstract Factory in Java
 
 To create a kingdom using the Abstract Factory pattern in Java, we need objects with a common theme. The elven kingdom needs an elven king, elven castle, and elven army whereas the orcish kingdom needs an orcish king, orcish castle, and orcish army. There is a dependency between the objects in the kingdom.
@@ -164,10 +168,6 @@ The program output:
 07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- This is the orc castle!
 07:35:46.343 [main] INFO com.iluwatar.abstractfactory.App -- This is the orc king!
 ```
-
-## Abstract Factory Pattern Class Diagram
-
-![Abstract Factory](./etc/abstract-factory.urm.png "Abstract Factory class diagram")
 
 ## When to Use the Abstract Factory Pattern in Java
 

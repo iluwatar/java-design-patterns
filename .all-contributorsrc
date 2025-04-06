@@ -3420,6 +3420,79 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "smile-ab",
+      "name": "smile-ab",
+      "avatar_url": "https://avatars.githubusercontent.com/u/202159894?v=4",
+      "profile": "https://github.com/smile-ab",
+      "contributions": [
+        "translation",
+        "code"
+      ]
+    },
+    {
+      "login": "Francisco-G-P",
+      "name": "Francisco-G-P",
+      "avatar_url": "https://avatars.githubusercontent.com/u/186766789?v=4",
+      "profile": "https://github.com/Francisco-G-P",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "Duartegdm",
+      "name": "Gabriel Duarte",
+      "avatar_url": "https://avatars.githubusercontent.com/u/137895372?v=4",
+      "profile": "https://github.com/Duartegdm",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "DenizAltunkapan",
+      "name": "Deniz Altunkapan",
+      "avatar_url": "https://avatars.githubusercontent.com/u/93663085?v=4",
+      "profile": "https://github.com/DenizAltunkapan",
+      "contributions": [
+        "translation"
+      ]
+    },
+    {
+      "login": "johnklint81",
+      "name": "John Klint",
+      "avatar_url": "https://avatars.githubusercontent.com/u/70539458?v=4",
+      "profile": "https://github.com/johnklint81",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "sanurah",
+      "name": "Sanura Hettiarachchi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/16178588?v=4",
+      "profile": "https://github.com/sanurah",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "2897robo",
+      "name": "Kim Gi Uk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/31699375?v=4",
+      "profile": "https://github.com/2897robo",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "Suchismita-Deb",
+      "name": "Suchismita Deb",
+      "avatar_url": "https://avatars.githubusercontent.com/u/68535074?v=4",
+      "profile": "https://github.com/Suchismita-Deb",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,

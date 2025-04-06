@@ -28,8 +28,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * The class represents a shipment in the modern system.
- * The class is used by the modern system to store the data.
+ * The class represents a shipment in the modern system. The class is used by the modern system to
+ * store the data.
  */
 @Data
 @AllArgsConstructor

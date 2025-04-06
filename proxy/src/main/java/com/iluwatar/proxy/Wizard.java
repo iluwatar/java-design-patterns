@@ -26,9 +26,7 @@ package com.iluwatar.proxy;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Wizard.
- */
+/** Wizard. */
 @RequiredArgsConstructor
 public class Wizard {
 
@@ -38,5 +36,4 @@ public class Wizard {
   public String toString() {
     return name;
   }
-
 }

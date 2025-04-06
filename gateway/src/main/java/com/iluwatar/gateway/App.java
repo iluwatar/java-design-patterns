@@ -27,21 +27,21 @@ package com.iluwatar.gateway;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * the Gateway design pattern is a structural design pattern that provides a unified interface to a set of
- * interfaces in a subsystem. It involves creating a Gateway interface that serves as a common entry point for
- * interacting with various services, and concrete implementations of this interface for different external services.
+ * the Gateway design pattern is a structural design pattern that provides a unified interface to a
+ * set of interfaces in a subsystem. It involves creating a Gateway interface that serves as a
+ * common entry point for interacting with various services, and concrete implementations of this
+ * interface for different external services.
  *
- * <p>In this example, GateFactory is the factory class, and it provides a method to create different kinds of external
- * services. ExternalServiceA, B, and C are virtual implementations of the external services. Each service provides its
- * own implementation of the execute() method. The Gateway interface is the common interface for all external services.
- * The App class serves as the main entry point for the application implementing the Gateway design pattern. Through
- * the Gateway interface, the App class could call each service with much less complexity.
+ * <p>In this example, GateFactory is the factory class, and it provides a method to create
+ * different kinds of external services. ExternalServiceA, B, and C are virtual implementations of
+ * the external services. Each service provides its own implementation of the execute() method. The
+ * Gateway interface is the common interface for all external services. The App class serves as the
+ * main entry point for the application implementing the Gateway design pattern. Through the Gateway
+ * interface, the App class could call each service with much less complexity.
  */
 @Slf4j
 public class App {
-  /**
-   * Simulate an application calling external services.
-   */
+  /** Simulate an application calling external services. */
   public static void main(String[] args) throws Exception {
     GatewayFactory gatewayFactory = new GatewayFactory();
 

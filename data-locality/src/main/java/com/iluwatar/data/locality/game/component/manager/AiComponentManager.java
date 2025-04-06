@@ -29,9 +29,7 @@ import com.iluwatar.data.locality.game.component.Component;
 import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * AI component manager for Game.
- */
+/** AI component manager for Game. */
 @Slf4j
 public class AiComponentManager {
 
@@ -45,17 +43,13 @@ public class AiComponentManager {
     this.numEntities = numEntities;
   }
 
-  /**
-   * start AI component of Game.
-   */
+  /** start AI component of Game. */
   public void start() {
     LOGGER.info("Start AI Game Component");
     IntStream.range(0, numEntities).forEach(i -> aiComponents[i] = new AiComponent());
   }
 
-  /**
-   * Update AI component of Game.
-   */
+  /** Update AI component of Game. */
   public void update() {
     LOGGER.info("Update AI Game Component");
     IntStream.range(0, numEntities)

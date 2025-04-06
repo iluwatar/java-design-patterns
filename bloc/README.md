@@ -35,6 +35,10 @@ The Bloc pattern manages the state of an object and allows for dynamically notif
 
 > While not a formalized "Gang of Four" design pattern, Bloc is widely used in state-driven applications. It centralizes state management and propagates state changes to registered observers, following principles of separation of concerns.
 
+### Sequence diagram
+
+![Bloc sequence diagram](./etc/bloc-sequence-diagram.png)
+
 ---
 
 ## Programmatic Example of the Bloc Pattern in Java

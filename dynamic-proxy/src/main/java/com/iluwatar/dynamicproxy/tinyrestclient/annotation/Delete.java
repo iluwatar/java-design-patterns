@@ -29,9 +29,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/**
- * Annotation to mark an interface's method as a DELETE http method.
- */
+/** Annotation to mark an interface's method as a DELETE http method. */
 @Http
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

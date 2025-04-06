@@ -30,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import com.iluwatar.hexagonal.domain.LotteryTicketCheckResult.CheckResult;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for {@link LotteryTicketCheckResult}
- */
+/** Unit tests for {@link LotteryTicketCheckResult} */
 class LotteryTicketCheckResultTest {
 
   @Test

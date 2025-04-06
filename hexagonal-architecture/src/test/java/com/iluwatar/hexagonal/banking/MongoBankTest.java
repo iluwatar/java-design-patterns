@@ -39,9 +39,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for Mongo banking adapter
- */
+/** Tests for Mongo banking adapter */
 class MongoBankTest {
 
   private static final String TEST_DB = "lotteryDBTest";
@@ -55,8 +53,6 @@ class MongoBankTest {
   private static TransitionWalker.ReachedState<RunningMongodProcess> mongodProcess;
 
   private static ServerAddress serverAddress;
-
-
 
   @BeforeAll
   static void setUp() {
@@ -72,7 +68,6 @@ class MongoBankTest {
     mongoClient.close();
     mongodProcess.close();
   }
-
 
   @BeforeEach
   void init() {

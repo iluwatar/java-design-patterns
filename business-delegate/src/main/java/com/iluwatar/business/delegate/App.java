@@ -34,9 +34,9 @@ package com.iluwatar.business.delegate;
  * retrieved through service lookups. The Business Delegate itself may contain business logic too
  * potentially tying together multiple service calls, exception handling, retrying etc.
  *
- * <p>In this example the client ({@link MobileClient}) utilizes a business delegate (
- * {@link BusinessDelegate}) to search for movies in video streaming services. The Business Delegate
- * then selects the appropriate service and makes the service call.
+ * <p>In this example the client ({@link MobileClient}) utilizes a business delegate ( {@link
+ * BusinessDelegate}) to search for movies in video streaming services. The Business Delegate then
+ * selects the appropriate service and makes the service call.
  */
 public class App {
 

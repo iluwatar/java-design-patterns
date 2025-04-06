@@ -24,15 +24,18 @@
  */
 package com.iluwatar.presentationmodel;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.Test;
+
 class ViewTest {
-  String[] albumList = {"HQ", "The Rough Dancer and Cyclical Night", "The Black Light", "Symphony No.5"};
+  String[] albumList = {
+    "HQ", "The Rough Dancer and Cyclical Night", "The Black Light", "Symphony No.5"
+  };
 
   @Test
-  void testSave_setArtistAndTitle(){
+  void testSave_setArtistAndTitle() {
     View view = new View();
     view.createView();
     String testTitle = "testTitle";
@@ -46,7 +49,7 @@ class ViewTest {
   }
 
   @Test
-  void testSave_setClassicalAndComposer(){
+  void testSave_setClassicalAndComposer() {
     View view = new View();
     view.createView();
     boolean isClassical = true;
@@ -60,7 +63,7 @@ class ViewTest {
   }
 
   @Test
-  void testLoad_1(){
+  void testLoad_1() {
     View view = new View();
     view.createView();
     view.getModel().setSelectedAlbumNumber(2);
@@ -69,7 +72,7 @@ class ViewTest {
   }
 
   @Test
-  void testLoad_2(){
+  void testLoad_2() {
     View view = new View();
     view.createView();
     view.getModel().setSelectedAlbumNumber(4);

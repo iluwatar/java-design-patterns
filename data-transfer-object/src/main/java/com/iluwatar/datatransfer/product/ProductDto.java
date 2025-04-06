@@ -25,8 +25,7 @@
 package com.iluwatar.datatransfer.product;
 
 /**
- * {@link ProductDto} is a data transfer object POJO.
- * Instead of sending individual information to
+ * {@link ProductDto} is a data transfer object POJO. Instead of sending individual information to
  * client We can send related information together in POJO.
  *
  * <p>Dto will not have any business logic in it.
@@ -35,15 +34,13 @@ public enum ProductDto {
   ;
 
   /**
-   * This is Request class which consist of Create or any other request DTO's
-   * you might want to use in your API.
+   * This is Request class which consist of Create or any other request DTO's you might want to use
+   * in your API.
    */
   public enum Request {
     ;
 
-    /**
-     * This is Create dto class for requesting create new product.
-     */
+    /** This is Create dto class for requesting create new product. */
     public static final class Create implements Name, Price, Cost, Supplier {
       private String name;
       private Double price;
@@ -93,15 +90,13 @@ public enum ProductDto {
   }
 
   /**
-   * This is Response class which consist of any response DTO's
-   * you might want to provide to your clients.
+   * This is Response class which consist of any response DTO's you might want to provide to your
+   * clients.
    */
   public enum Response {
     ;
 
-    /**
-     * This is Public dto class for API response with the lowest data security.
-     */
+    /** This is Public dto class for API response with the lowest data security. */
     public static final class Public implements Id, Name, Price {
       private Long id;
       private String name;
@@ -139,21 +134,11 @@ public enum ProductDto {
 
       @Override
       public String toString() {
-        return "Public{"
-            + "id="
-            + id
-            + ", name='"
-            + name
-            + '\''
-            + ", price="
-            + price
-            + '}';
+        return "Public{" + "id=" + id + ", name='" + name + '\'' + ", price=" + price + '}';
       }
     }
 
-    /**
-     * This is Private dto class for API response with the highest data security.
-     */
+    /** This is Private dto class for API response with the highest data security. */
     public static final class Private implements Id, Name, Price, Cost {
       private Long id;
       private String name;
@@ -203,28 +188,21 @@ public enum ProductDto {
       @Override
       public String toString() {
         return "Private{"
-            +
-            "id="
+            + "id="
             + id
-            +
-            ", name='"
+            + ", name='"
             + name
             + '\''
-            +
-            ", price="
+            + ", price="
             + price
-            +
-            ", cost="
+            + ", cost="
             + cost
-            +
-            '}';
+            + '}';
       }
     }
   }
 
-  /**
-   * Use this interface whenever you want to provide the product Id in your DTO.
-   */
+  /** Use this interface whenever you want to provide the product Id in your DTO. */
   private interface Id {
     /**
      * Unique identifier of the product.
@@ -234,9 +212,7 @@ public enum ProductDto {
     Long getId();
   }
 
-  /**
-   * Use this interface whenever you want to provide the product Name in your DTO.
-   */
+  /** Use this interface whenever you want to provide the product Name in your DTO. */
   private interface Name {
     /**
      * The name of the product.
@@ -246,40 +222,32 @@ public enum ProductDto {
     String getName();
   }
 
-  /**
-   * Use this interface whenever you want to provide the product Price in your DTO.
-   */
+  /** Use this interface whenever you want to provide the product Price in your DTO. */
   private interface Price {
     /**
-     * The amount we sell a product for.
-     * <b>This data is not confidential</b>
+     * The amount we sell a product for. <b>This data is not confidential</b>
      *
      * @return : price of the product.
      */
     Double getPrice();
   }
 
-  /**
-   * Use this interface whenever you want to provide the product Cost in your DTO.
-   */
+  /** Use this interface whenever you want to provide the product Cost in your DTO. */
   private interface Cost {
     /**
-     * The amount that it costs us to purchase this product
-     * For the amount we sell a product for, see the {@link Price Price} parameter.
-     * <b>This data is confidential</b>
+     * The amount that it costs us to purchase this product For the amount we sell a product for,
+     * see the {@link Price Price} parameter. <b>This data is confidential</b>
      *
      * @return : cost of the product.
      */
     Double getCost();
   }
 
-  /**
-   * Use this interface whenever you want to provide the product Supplier in your DTO.
-   */
+  /** Use this interface whenever you want to provide the product Supplier in your DTO. */
   private interface Supplier {
     /**
-     * The name of supplier of the product or its manufacturer.
-     * <b>This data is highly confidential</b>
+     * The name of supplier of the product or its manufacturer. <b>This data is highly
+     * confidential</b>
      *
      * @return : supplier of the product.
      */

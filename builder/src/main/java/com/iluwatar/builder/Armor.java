@@ -26,12 +26,9 @@ package com.iluwatar.builder;
 
 import lombok.AllArgsConstructor;
 
-/**
- * Armor enumeration.
- */
+/** Armor enumeration. */
 @AllArgsConstructor
 public enum Armor {
-
   CLOTHES("clothes"),
   LEATHER("leather"),
   CHAIN_MAIL("chain mail"),

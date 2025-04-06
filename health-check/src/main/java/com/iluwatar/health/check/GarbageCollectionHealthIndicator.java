@@ -44,7 +44,6 @@ import org.springframework.stereotype.Component;
  * reports the health status accordingly. It gathers information about the collection count,
  * collection time, memory pool name, and garbage collector algorithm for each garbage collector and
  * presents the details in a structured manner.
- *
  */
 @Slf4j
 @Component

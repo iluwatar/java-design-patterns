@@ -97,7 +97,7 @@ class CreatureTest {
   }
 
   @Test
-  void invalidDamageTest(){
+  void invalidDamageTest() {
     Assertions.assertThrows(IllegalArgumentException.class, () -> elf.hit(-50));
   }
 }

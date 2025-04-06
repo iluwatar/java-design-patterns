@@ -29,16 +29,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for HashShardManager class.
- */
+/** Unit tests for HashShardManager class. */
 class HashShardManagerTest {
 
   private HashShardManager hashShardManager;
 
-  /**
-   * Initialize hashShardManager instance.
-   */
+  /** Initialize hashShardManager instance. */
   @BeforeEach
   void setup() {
     hashShardManager = new HashShardManager();
@@ -56,5 +52,4 @@ class HashShardManagerTest {
     hashShardManager.storeData(data);
     assertEquals(data, hashShardManager.getShardById(1).getDataById(1));
   }
-
 }

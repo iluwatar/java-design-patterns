@@ -28,9 +28,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-/**
- * ignup model.
- */
+/** ignup model. */
 @Component
 @Data
 @NoArgsConstructor
@@ -38,5 +36,4 @@ public class SignupModel {
   private String name;
   private String email;
   private String password;
-
 }

@@ -36,16 +36,12 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 import org.slf4j.Logger;
 
-/**
- * Console implementation for lottery console service.
- */
+/** Console implementation for lottery console service. */
 public class LotteryConsoleServiceImpl implements LotteryConsoleService {
 
   private final Logger logger;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public LotteryConsoleServiceImpl(Logger logger) {
     this.logger = logger;
   }
@@ -57,10 +53,11 @@ public class LotteryConsoleServiceImpl implements LotteryConsoleService {
     logger.info("Give the 4 comma separated winning numbers?");
     var numbers = readString(scanner);
     try {
-      var winningNumbers = Arrays.stream(numbers.split(","))
-          .map(Integer::parseInt)
-          .limit(4)
-          .collect(Collectors.toSet());
+      var winningNumbers =
+          Arrays.stream(numbers.split(","))
+              .map(Integer::parseInt)
+              .limit(4)
+              .collect(Collectors.toSet());
 
       final var lotteryTicketId = new LotteryTicketId(Integer.parseInt(id));
       final var lotteryNumbers = LotteryNumbers.create(winningNumbers);
@@ -90,15 +87,15 @@ public class LotteryConsoleServiceImpl implements LotteryConsoleService {
     logger.info("Give 4 comma separated lottery numbers?");
     var numbers = readString(scanner);
     try {
-      var chosen = Arrays.stream(numbers.split(","))
-          .map(Integer::parseInt)
-          .collect(Collectors.toSet());
+      var chosen =
+          Arrays.stream(numbers.split(",")).map(Integer::parseInt).collect(Collectors.toSet());
       var lotteryNumbers = LotteryNumbers.create(chosen);
       var lotteryTicket = new LotteryTicket(new LotteryTicketId(), details, lotteryNumbers);
-      service.submitTicket(lotteryTicket).ifPresentOrElse(
-          (id) -> logger.info("Submitted lottery ticket with id: {}", id),
-          () -> logger.info("Failed submitting lottery ticket - please try again.")
-      );
+      service
+          .submitTicket(lotteryTicket)
+          .ifPresentOrElse(
+              (id) -> logger.info("Submitted lottery ticket with id: {}", id),
+              () -> logger.info("Failed submitting lottery ticket - please try again."));
     } catch (Exception e) {
       logger.info("Failed submitting lottery ticket - please try again.");
     }

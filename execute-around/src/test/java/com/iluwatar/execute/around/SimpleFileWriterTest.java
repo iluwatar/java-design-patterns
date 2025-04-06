@@ -38,15 +38,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
 import org.junit.rules.TemporaryFolder;
 
-/**
- * SimpleFileWriterTest
- *
- */
+/** SimpleFileWriterTest */
 @EnableRuleMigrationSupport
 class SimpleFileWriterTest {
 
-  @Rule
-  public final TemporaryFolder testFolder = new TemporaryFolder();
+  @Rule public final TemporaryFolder testFolder = new TemporaryFolder();
 
   @Test
   void testWriterNotNull() throws Exception {
@@ -74,12 +70,19 @@ class SimpleFileWriterTest {
     assertTrue(Files.lines(temporaryFile.toPath()).allMatch(testMessage::equals));
   }
 
-
   @Test
   @SneakyThrows
   void testRipplesIoExceptionOccurredWhileWriting() {
     var message = "Some error";
     final var temporaryFile = this.testFolder.newFile();
-    assertThrows(IOException.class, () -> new SimpleFileWriter(temporaryFile.getPath(),  writer -> {throw new IOException("error");}), message);
+    assertThrows(
+        IOException.class,
+        () ->
+            new SimpleFileWriter(
+                temporaryFile.getPath(),
+                writer -> {
+                  throw new IOException("error");
+                }),
+        message);
   }
 }

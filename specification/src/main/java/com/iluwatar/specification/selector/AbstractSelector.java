@@ -26,9 +26,7 @@ package com.iluwatar.specification.selector;
 
 import java.util.function.Predicate;
 
-/**
- * Base class for selectors.
- */
+/** Base class for selectors. */
 public abstract class AbstractSelector<T> implements Predicate<T> {
 
   public AbstractSelector<T> and(AbstractSelector<T> other) {

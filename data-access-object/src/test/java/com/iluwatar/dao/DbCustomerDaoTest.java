@@ -44,9 +44,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-/**
- * Tests {@link DbCustomerDao}.
- */
+/** Tests {@link DbCustomerDao}. */
 class DbCustomerDaoTest {
 
   private static final String DB_URL = "jdbc:h2:mem:dao;DB_CLOSE_DELAY=-1";
@@ -61,14 +59,12 @@ class DbCustomerDaoTest {
   @BeforeEach
   void createSchema() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL);
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(CustomerSchemaSql.CREATE_SCHEMA_SQL);
     }
   }
 
-  /**
-   * Represents the scenario where DB connectivity is present.
-   */
+  /** Represents the scenario where DB connectivity is present. */
   @Nested
   class ConnectionSuccess {
 
@@ -160,8 +156,8 @@ class DbCustomerDaoTest {
       }
 
       @Test
-      void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation() throws
-          Exception {
+      void updationShouldBeSuccessAndAccessingTheSameCustomerShouldReturnUpdatedInformation()
+          throws Exception {
         final var newFirstname = "Bernard";
         final var newLastname = "Montgomery";
         final var customer = new Customer(existingCustomer.getId(), newFirstname, newLastname);
@@ -218,7 +214,9 @@ class DbCustomerDaoTest {
     void updatingACustomerFailsWithFeedbackToTheClient() {
       final var newFirstname = "Bernard";
       final var newLastname = "Montgomery";
-      assertThrows(Exception.class, () -> dao.update(new Customer(existingCustomer.getId(), newFirstname, newLastname)));
+      assertThrows(
+          Exception.class,
+          () -> dao.update(new Customer(existingCustomer.getId(), newFirstname, newLastname)));
     }
 
     @Test
@@ -230,7 +228,6 @@ class DbCustomerDaoTest {
     void retrievingAllCustomersFailsWithExceptionAsFeedbackToClient() {
       assertThrows(Exception.class, () -> dao.getAll());
     }
-
   }
 
   /**
@@ -241,7 +238,7 @@ class DbCustomerDaoTest {
   @AfterEach
   void deleteSchema() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL);
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(CustomerSchemaSql.DELETE_SCHEMA_SQL);
     }
   }

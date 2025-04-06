@@ -43,27 +43,18 @@ import org.slf4j.LoggerFactory;
 @Getter
 public class FileLoader implements Serializable {
 
-  /**
-   * Generated serial version UID.
-   */
-  @Serial
-  private static final long serialVersionUID = -4745803872902019069L;
+  /** Generated serial version UID. */
+  @Serial private static final long serialVersionUID = -4745803872902019069L;
 
   private static final Logger LOGGER = LoggerFactory.getLogger(FileLoader.class);
 
-  /**
-   * Indicates if the file is loaded or not.
-   */
+  /** Indicates if the file is loaded or not. */
   private boolean loaded;
 
-  /**
-   * The name of the file that we want to load.
-   */
+  /** The name of the file that we want to load. */
   private String fileName;
 
-  /**
-   * Loads the data of the file specified.
-   */
+  /** Loads the data of the file specified. */
   public String loadData() {
     var dataFileName = this.fileName;
     try (var br = new BufferedReader(new FileReader(dataFileName))) {

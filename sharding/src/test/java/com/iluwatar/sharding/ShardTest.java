@@ -32,10 +32,7 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
-/**
- * Unit tests for Shard class.
- */
+/** Unit tests for Shard class. */
 class ShardTest {
 
   private Data data;
@@ -60,7 +57,6 @@ class ShardTest {
     } catch (NoSuchFieldException | IllegalAccessException e) {
       fail("Fail to modify field access.");
     }
-
   }
 
   @Test

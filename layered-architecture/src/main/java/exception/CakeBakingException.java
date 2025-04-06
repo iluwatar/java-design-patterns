@@ -28,17 +28,13 @@ package exception;
 import java.io.Serial;
 import org.springframework.stereotype.Component;
 
-/**
- * Custom exception used in cake baking.
- */
+/** Custom exception used in cake baking. */
 @Component
 public class CakeBakingException extends Exception {
 
-  @Serial
-  private static final long serialVersionUID = 1L;
+  @Serial private static final long serialVersionUID = 1L;
 
-  public CakeBakingException() {
-  }
+  public CakeBakingException() {}
 
   public CakeBakingException(String message) {
     super(message);

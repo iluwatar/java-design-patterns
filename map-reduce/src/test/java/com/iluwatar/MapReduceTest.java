@@ -24,24 +24,21 @@
  */
 package com.iluwatar;
 
-import org.junit.jupiter.api.Test;
-import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.*;
+import org.junit.jupiter.api.Test;
 
 class MapReduceTest {
 
   @Test
   void testMapReduce() {
-    List<String> inputs = Arrays.asList(
-        "Hello world hello",
-        "MapReduce is fun",
-        "Hello from the other side"
-    );
+    List<String> inputs =
+        Arrays.asList("Hello world hello", "MapReduce is fun", "Hello from the other side");
 
     List<Map.Entry<String, Integer>> result = MapReduce.mapReduce(inputs);
 
-    assertEquals("hello", result.get(0).getKey());  // hello = 3
+    assertEquals("hello", result.get(0).getKey()); // hello = 3
     assertEquals(3, result.get(0).getValue());
     assertEquals(1, result.get(1).getValue());
   }

@@ -33,6 +33,10 @@ In plain words
 
 > The Commander pattern turns a request into a stand-alone object, allowing for the parameterization of commands, queueing of actions, and the implementation of undo operations.
 
+Sequence diagram
+
+![Commander sequence diagram](./etc/commander-sequence-diagram.png)
+
 ## Programmatic Example of Commander Pattern in Java
 
 Managing transactions across different services in a distributed system, such as an e-commerce platform with separate `Payment` and `Shipping` microservices, requires careful coordination. Using the Commander pattern in Java for transaction coordination helps ensure data consistency and reliability, even when services experience partial failures.

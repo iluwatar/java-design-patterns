@@ -24,12 +24,11 @@
  */
 package com.iluwatar.specification.property;
 
-/**
- * Size property.
- */
+/** Size property. */
 public enum Size {
-
-  SMALL("small"), NORMAL("normal"), LARGE("large");
+  SMALL("small"),
+  NORMAL("normal"),
+  LARGE("large");
 
   private final String title;
 

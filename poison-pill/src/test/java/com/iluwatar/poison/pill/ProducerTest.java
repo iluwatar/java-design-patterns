@@ -35,10 +35,7 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 
-/**
- * ProducerTest
- *
- */
+/** ProducerTest */
 class ProducerTest {
 
   @Test
@@ -76,11 +73,11 @@ class ProducerTest {
     } catch (IllegalStateException e) {
       assertNotNull(e);
       assertNotNull(e.getMessage());
-      assertEquals("Producer Hello! was stopped and fail to deliver requested message [producer].",
+      assertEquals(
+          "Producer Hello! was stopped and fail to deliver requested message [producer].",
           e.getMessage());
     }
 
     verifyNoMoreInteractions(publishPoint);
   }
-
 }

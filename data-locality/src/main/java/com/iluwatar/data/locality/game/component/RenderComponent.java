@@ -26,9 +26,7 @@ package com.iluwatar.data.locality.game.component;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Implementation of Render Component of Game.
- */
+/** Implementation of Render Component of Game. */
 @Slf4j
 public class RenderComponent implements Component {
 
@@ -37,9 +35,7 @@ public class RenderComponent implements Component {
     // do nothing
   }
 
-  /**
-   * render.
-   */
+  /** render. */
   @Override
   public void render() {
     LOGGER.info("Render Component");

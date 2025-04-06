@@ -24,12 +24,9 @@
  */
 package com.iluwatar.gateway;
 
-
 import lombok.extern.slf4j.Slf4j;
 
-/**
-* ExternalServiceB is one of external services.
-*/
+/** ExternalServiceB is one of external services. */
 @Slf4j
 class ExternalServiceB implements Gateway {
   @Override
@@ -39,4 +36,3 @@ class ExternalServiceB implements Gateway {
     Thread.sleep(1000);
   }
 }
-

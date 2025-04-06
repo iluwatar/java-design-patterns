@@ -42,6 +42,11 @@ Why use MVC for a Monolithic Application ?
 >* Deploy
 >* Scale
 >
+
+Architecture diagram
+
+![Model-View-Controller Architecture Diagram](./etc/mvc-architecture-diagram.png)
+
 ## We can clearly see that this is a Monolithic application through the main class
 This is a simplified version of the main application that shows the main interaction point with the CLI and how a user is registered
 ```java

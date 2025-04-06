@@ -36,10 +36,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * ClosableTest
- *
- */
+/** ClosableTest */
 class ClosableTest {
 
   private InMemoryAppender appender;
@@ -56,7 +53,8 @@ class ClosableTest {
 
   @Test
   void testOpenClose() {
-    try (final var ignored = new SlidingDoor(); final var ignored1 = new TreasureChest()) {
+    try (final var ignored = new SlidingDoor();
+        final var ignored1 = new TreasureChest()) {
       assertTrue(appender.logContains("Sliding door opens."));
       assertTrue(appender.logContains("Treasure chest opens."));
     }
@@ -64,9 +62,7 @@ class ClosableTest {
     assertTrue(appender.logContains("Sliding door closes."));
   }
 
-  /**
-   * Logging Appender Implementation
-   */
+  /** Logging Appender Implementation */
   static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
     private final List<ILoggingEvent> log = new LinkedList<>();
 

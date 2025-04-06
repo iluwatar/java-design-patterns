@@ -37,10 +37,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * DwarvenGoldmineFacadeTest
- *
- */
+/** DwarvenGoldmineFacadeTest */
 class DwarvenGoldmineFacadeTest {
 
   private InMemoryAppender appender;
@@ -59,8 +56,8 @@ class DwarvenGoldmineFacadeTest {
    * Test a complete day cycle in the gold mine by executing all three different steps: {@link
    * DwarvenGoldmineFacade#startNewDay()}, {@link DwarvenGoldmineFacade#digOutGold()} and {@link
    * DwarvenGoldmineFacade#endDay()}.
-   * <p>
-   * See if the workers are doing what's expected from them on each step.
+   *
+   * <p>See if the workers are doing what's expected from them on each step.
    */
   @Test
   void testFullWorkDay() {
@@ -127,11 +124,7 @@ class DwarvenGoldmineFacadeTest {
     }
 
     public boolean logContains(String message) {
-      return log.stream()
-          .map(ILoggingEvent::getFormattedMessage)
-          .anyMatch(message::equals);
+      return log.stream().map(ILoggingEvent::getFormattedMessage).anyMatch(message::equals);
     }
   }
-
-
 }

@@ -26,9 +26,7 @@ package com.iluwatar.ambassador;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * A simple Client.
- */
+/** A simple Client. */
 @Slf4j
 public class Client {
 

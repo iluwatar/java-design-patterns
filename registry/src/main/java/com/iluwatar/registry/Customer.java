@@ -24,16 +24,11 @@
  */
 package com.iluwatar.registry;
 
-/**
- * Customer entity used in registry pattern example.
- */
+/** Customer entity used in registry pattern example. */
 public record Customer(String id, String name) {
 
   @Override
   public String toString() {
-    return "Customer{"
-        + "id='" + id + '\''
-        + ", name='" + name + '\''
-        + '}';
+    return "Customer{" + "id='" + id + '\'' + ", name='" + name + '\'' + '}';
   }
 }

@@ -30,9 +30,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * Message used to transport data between instances.
- */
+/** Message used to transport data between instances. */
 @Setter
 @Getter
 @EqualsAndHashCode
@@ -42,5 +40,4 @@ public class Message {
 
   private MessageType type;
   private String content;
-
 }

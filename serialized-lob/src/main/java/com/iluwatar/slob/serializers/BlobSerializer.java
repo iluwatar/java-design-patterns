@@ -69,7 +69,7 @@ public class BlobSerializer extends LobSerializer {
    * @param toDeserialize Input Object to De-serialize
    * @return Deserialized Object
    * @throws ClassNotFoundException {@inheritDoc}
-   * @throws IOException            {@inheritDoc}
+   * @throws IOException {@inheritDoc}
    */
   @Override
   public Forest deSerialize(Object toDeserialize) throws IOException, ClassNotFoundException {

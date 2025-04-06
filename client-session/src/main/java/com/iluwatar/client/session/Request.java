@@ -28,9 +28,7 @@ package com.iluwatar.client.session;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-/**
- * The Request class which contains the Session details and data.
- */
+/** The Request class which contains the Session details and data. */
 @Data
 @AllArgsConstructor
 public class Request {
@@ -38,5 +36,4 @@ public class Request {
   private String data;
 
   private Session session;
-
 }

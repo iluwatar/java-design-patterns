@@ -33,7 +33,6 @@ import lombok.extern.slf4j.Slf4j;
  * Bubble class extends Point. In this example, we create several bubbles in the field, let them
  * move and keep track of which ones have popped and which ones remain.
  */
-
 @Slf4j
 public class Bubble extends Point<Bubble> {
   private static final SecureRandom RANDOM = new SecureRandom();
@@ -46,15 +45,15 @@ public class Bubble extends Point<Bubble> {
   }
 
   void move() {
-    //moves by 1 unit in either direction
+    // moves by 1 unit in either direction
     this.coordinateX += RANDOM.nextInt(3) - 1;
     this.coordinateY += RANDOM.nextInt(3) - 1;
   }
 
   boolean touches(Bubble b) {
-    //distance between them is greater than sum of radii (both sides of equation squared)
+    // distance between them is greater than sum of radii (both sides of equation squared)
     return (this.coordinateX - b.coordinateX) * (this.coordinateX - b.coordinateX)
-        + (this.coordinateY - b.coordinateY) * (this.coordinateY - b.coordinateY)
+            + (this.coordinateY - b.coordinateY) * (this.coordinateY - b.coordinateY)
         <= (this.radius + b.radius) * (this.radius + b.radius);
   }
 
@@ -64,12 +63,12 @@ public class Bubble extends Point<Bubble> {
   }
 
   void handleCollision(Collection<? extends Point> toCheck, Map<Integer, Bubble> allBubbles) {
-    var toBePopped = false; //if any other bubble collides with it, made true
+    var toBePopped = false; // if any other bubble collides with it, made true
     for (var point : toCheck) {
       var otherId = point.id;
-      if (allBubbles.get(otherId) != null //the bubble hasn't been popped yet
-          && this.id != otherId  //the two bubbles are not the same
-          && this.touches(allBubbles.get(otherId))) { //the bubbles touch
+      if (allBubbles.get(otherId) != null // the bubble hasn't been popped yet
+          && this.id != otherId // the two bubbles are not the same
+          && this.touches(allBubbles.get(otherId))) { // the bubbles touch
         allBubbles.get(otherId).pop(allBubbles);
         toBePopped = true;
       }

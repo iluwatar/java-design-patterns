@@ -35,18 +35,18 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 import service.CakeBakingService;
 import view.CakeViewImpl;
 
 /**
- * The Runner class is the entry point of the application.
- * It implements CommandLineRunner, which means it will execute the run method after the application context is loaded.
+ * The Runner class is the entry point of the application. It implements CommandLineRunner, which
+ * means it will execute the run method after the application context is loaded.
  *
- * <p>The Runner class is responsible for initializing the cake baking service with sample data and creating a view to render the cakes.
- * It uses the CakeBakingService to save new layers and toppings and to bake new cakes.
- * It also handles exceptions that might occur during the cake baking process.</p>
+ * <p>The Runner class is responsible for initializing the cake baking service with sample data and
+ * creating a view to render the cakes. It uses the CakeBakingService to save new layers and
+ * toppings and to bake new cakes. It also handles exceptions that might occur during the cake
+ * baking process.
  */
 @EntityScan(basePackages = "entity")
 @ComponentScan(basePackages = {"com.iluwatar.layers", "service", "dto", "exception", "view", "dao"})
@@ -63,7 +63,7 @@ public class Runner implements CommandLineRunner {
 
   @Override
   public void run(String... args) {
-    //initialize sample data
+    // initialize sample data
     initializeData();
     // create view and render it
     var cakeView = new CakeViewImpl(cakeBakingService);
@@ -74,9 +74,7 @@ public class Runner implements CommandLineRunner {
     SpringApplication.run(Runner.class, args);
   }
 
-  /**
-   * Initializes the example data.
-   */
+  /** Initializes the example data. */
   private void initializeData() {
     cakeBakingService.saveNewLayer(new CakeLayerInfo("chocolate", 1200));
     cakeBakingService.saveNewLayer(new CakeLayerInfo("banana", 900));
@@ -88,17 +86,25 @@ public class Runner implements CommandLineRunner {
     cakeBakingService.saveNewTopping(new CakeToppingInfo("candies", 350));
     cakeBakingService.saveNewTopping(new CakeToppingInfo("cherry", 350));
 
-    var cake1 = new CakeInfo(new CakeToppingInfo("candies", 0),
-        List.of(new CakeLayerInfo("chocolate", 0), new CakeLayerInfo("banana", 0),
-            new CakeLayerInfo(STRAWBERRY, 0)));
+    var cake1 =
+        new CakeInfo(
+            new CakeToppingInfo("candies", 0),
+            List.of(
+                new CakeLayerInfo("chocolate", 0),
+                new CakeLayerInfo("banana", 0),
+                new CakeLayerInfo(STRAWBERRY, 0)));
     try {
       cakeBakingService.bakeNewCake(cake1);
     } catch (CakeBakingException e) {
       LOGGER.error("Cake baking exception", e);
     }
-    var cake2 = new CakeInfo(new CakeToppingInfo("cherry", 0),
-        List.of(new CakeLayerInfo("vanilla", 0), new CakeLayerInfo("lemon", 0),
-            new CakeLayerInfo(STRAWBERRY, 0)));
+    var cake2 =
+        new CakeInfo(
+            new CakeToppingInfo("cherry", 0),
+            List.of(
+                new CakeLayerInfo("vanilla", 0),
+                new CakeLayerInfo("lemon", 0),
+                new CakeLayerInfo(STRAWBERRY, 0)));
     try {
       cakeBakingService.bakeNewCake(cake2);
     } catch (CakeBakingException e) {

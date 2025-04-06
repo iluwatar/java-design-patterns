@@ -33,9 +33,7 @@ import java.util.Map;
 import java.util.UUID;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * LoginHandler.
- */
+/** LoginHandler. */
 @Slf4j
 public class LoginHandler implements HttpHandler {
 

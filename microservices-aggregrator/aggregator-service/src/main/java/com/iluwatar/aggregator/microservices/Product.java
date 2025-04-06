@@ -27,22 +27,14 @@ package com.iluwatar.aggregator.microservices;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Encapsulates all the data for a Product that clients will request.
- */
+/** Encapsulates all the data for a Product that clients will request. */
 @Getter
 @Setter
 public class Product {
 
-  /**
-   * The title of the product.
-   */
+  /** The title of the product. */
   private String title;
 
-
-  /**
-   * The inventories of the product.
-   */
+  /** The inventories of the product. */
   private int productInventories;
-
 }

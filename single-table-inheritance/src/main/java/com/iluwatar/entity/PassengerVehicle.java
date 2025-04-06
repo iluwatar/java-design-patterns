@@ -29,8 +29,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * An abstract class that extends the Vehicle class
- * and provides properties for the Passenger type of Vehicles.
+ * An abstract class that extends the Vehicle class and provides properties for the Passenger type
+ * of Vehicles.
  *
  * @see Vehicle
  */

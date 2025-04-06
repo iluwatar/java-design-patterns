@@ -37,10 +37,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.stereotype.Component;
 
-/**
- * An asynchronous health checker component that executes health checks in a separate thread.
- *
- */
+/** An asynchronous health checker component that executes health checks in a separate thread. */
 @Slf4j
 @Component
 @RequiredArgsConstructor

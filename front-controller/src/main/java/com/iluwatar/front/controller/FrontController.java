@@ -25,9 +25,9 @@
 package com.iluwatar.front.controller;
 
 /**
- * The FrontController is responsible for handling all incoming requests. It delegates
- * the processing of requests to the Dispatcher, which then determines the appropriate
- * command and view to render the correct response.
+ * The FrontController is responsible for handling all incoming requests. It delegates the
+ * processing of requests to the Dispatcher, which then determines the appropriate command and view
+ * to render the correct response.
  */
 public class FrontController {
 

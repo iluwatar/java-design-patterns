@@ -32,18 +32,14 @@ import com.iluwatar.model.view.controller.Health;
 import com.iluwatar.model.view.controller.Nourishment;
 import org.junit.jupiter.api.Test;
 
-/**
- * The type Dispatcher test.
- */
+/** The type Dispatcher test. */
 class DispatcherTest {
 
-  /**
-   * Test perform action.
-   */
+  /** Test perform action. */
   @Test
   void testPerformAction() {
-    final var model = new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT,
-        Nourishment.SATURATED);
+    final var model =
+        new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
     Action action = new Action(model);
     GiantView giantView = new GiantView();
     Dispatcher dispatcher = new Dispatcher(giantView);
@@ -64,13 +60,10 @@ class DispatcherTest {
 
   @Test
   void testUpdateView() {
-    final var model = new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT,
-        Nourishment.SATURATED);
+    final var model =
+        new GiantModel("giant1", Health.HEALTHY, Fatigue.ALERT, Nourishment.SATURATED);
     GiantView giantView = new GiantView();
     Dispatcher dispatcher = new Dispatcher(giantView);
     assertDoesNotThrow(() -> dispatcher.updateView(model));
   }
 }
-
-
-

@@ -37,5 +37,4 @@ import lombok.Setter;
 public abstract class DependentObject<T> {
 
   T data;
-
 }
