@@ -68,11 +68,18 @@ public class App {
   private static void execute(WorkCenter workCenter, TaskSet taskSet) throws InterruptedException {
     var workers = workCenter.getWorkers();
     var exec = Executors.newFixedThreadPool(workers.size());
-    workers.forEach(exec::submit);
-    Thread.sleep(1000);
-    addTasks(taskSet);
-    exec.awaitTermination(2, TimeUnit.SECONDS);
-    exec.shutdownNow();
+
+    try {
+      workers.forEach(exec::submit);
+      Thread.sleep(1000);
+      addTasks(taskSet);
+      boolean terminated = exec.awaitTermination(2, TimeUnit.SECONDS);
+      if (!terminated) {
+        System.out.println("Executor did not terminate in the given time.");
+      }
+    } finally {
+      exec.shutdownNow();
+    }
   }
 
   /** Add tasks. */
