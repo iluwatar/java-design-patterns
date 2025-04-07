@@ -36,6 +36,10 @@ Wikipedia says
 
 > Business Delegate is a Java EE design pattern. This pattern is directing to reduce the coupling in between business services and the connected presentation tier, and to hide the implementation details of services (including lookup and accessibility of EJB architecture). Business Delegates acts as an adaptor to invoke business objects from the presentation tier.
 
+Sequence diagram
+
+![Business Delegate sequence diagram](./etc/business-delegate-sequence-diagram.png)
+
 ## Programmatic Example of Business Delegate Pattern in Java
 
 The following Java code demonstrates how to implement the Business Delegate pattern. This pattern is particularly useful in applications requiring loose coupling and efficient service interaction.
@@ -144,10 +148,6 @@ Here is the console output.
 21:15:33.790 [main] INFO com.iluwatar.business.delegate.NetflixService - NetflixService is now processing
 21:15:33.794 [main] INFO com.iluwatar.business.delegate.YouTubeService - YouTubeService is now processing
 ```
-
-## Business Delegate Pattern Class Diagram
-
-![Business Delegate](./etc/business-delegate.urm.png "Business Delegate")
 
 ## When to Use the Business Delegate Pattern in Java
 

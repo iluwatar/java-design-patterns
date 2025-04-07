@@ -33,6 +33,10 @@ Wikipedia says
 
 > In object-oriented computer programming, an extension objects pattern is a design pattern added to an object after the original object was compiled. The modified object is often a class, a prototype or a type. Extension object patterns are features of some object-oriented programming languages. There is no syntactic difference between calling an extension method and calling a method declared in the type definition.
 
+Sequence diagram
+
+![Extension Objects sequence diagram](./etc/extension-objects-sequence-diagram.png)
+
 ## Programmatic Example of Extension Objects Pattern in Java
 
 The Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure, by attaching additional objects that can dynamically add new functionality.
@@ -142,10 +146,6 @@ This produces the following console output.
 ```
 
 This example demonstrates how the Extension Objects pattern allows for the flexible extension of an object's behavior without modifying its structure.
-
-## Detailed Explanation of Extension Objects Pattern with Real-World Examples
-
-![Extension_objects](./etc/extension_obj.png "Extension objects")
 
 ## When to Use the Extension Objects Pattern in Java
 

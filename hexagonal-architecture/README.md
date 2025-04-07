@@ -173,10 +173,6 @@ Running the main function of App class produces the following output:
 
 In this example, the `LotteryAdministration` and `LotteryService` classes are the core of the application. They interact with external interfaces like `LotteryTicketRepository`, `LotteryEventLog`, and `WireTransfers` through dependency injection, keeping the core business logic decoupled from external concerns. This is a basic example of the Hexagonal Architecture pattern, where the core application is at the center of input/output systems.
 
-## Detailed Explanation of Hexagonal Architecture Pattern with Real-World Examples
-
-![Hexagonal Architecture class diagram](./etc/hexagonal.png)
-
 ## When to Use the Hexagonal Architecture Pattern in Java
 
 Hexagonal Architecture is particularly beneficial in scenarios:

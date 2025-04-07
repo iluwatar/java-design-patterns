@@ -33,6 +33,10 @@ In plain words
 
 > Filterer pattern is a design pattern that helps container-like objects return filtered versions of themselves.
 
+Flowchart
+
+![Filterer flowchart](./etc/filterer-flowchart.png)
+
 ## Programmatic Example of Filterer Pattern in Java
 
 To illustrate, we use the Filterer design pattern for a malware detection system in Java. This system can filter threats based on various criteria, showcasing the pattern’s flexibility and dynamic nature. In the design we have to take into consideration that new Threat types can be added later. Additionally, there is a requirement that the threat detection system can filter the detected threats based on different criteria (the target system acts as container-like object for threats).

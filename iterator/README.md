@@ -35,6 +35,10 @@ Wikipedia says
 
 > In object-oriented programming, the iterator pattern is a design pattern in which an iterator is used to traverse a container and access the container's elements.
 
+Sequence diagram
+
+![Iterator sequence diagram](./etc/iterator-sequence-diagram.png)
+
 ## Programmatic Example of Iterator Pattern in Java
 
 The main class in our Java Iterator Design Pattern example is the `TreasureChest` that contains items. This demonstrates how to implement and use iterators for efficient collection traversal in Java.

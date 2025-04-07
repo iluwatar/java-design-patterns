@@ -31,6 +31,14 @@ In plain words
 
 > The Data Locality pattern organizes data in memory to reduce access times and improve performance by ensuring that data frequently accessed together is stored close together. This is crucial for high-performance applications like game engines and real-time data processing systems.
 
+Mind map
+
+![Data Locality mind map](./etc/data-locality-mind-map.png)
+
+Flowchart
+
+![Data Locality flowchart](./etc/data-locality-flowchart.png)
+
 ## Programmatic Example of Data Locality Pattern in Java
 
 The Data Locality pattern is a design pattern that aims to improve performance by arranging data in memory to take advantage of spatial locality. This pattern is particularly useful in high-performance computing and game development where access speed is crucial.

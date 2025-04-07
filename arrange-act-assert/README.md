@@ -38,6 +38,10 @@ WikiWikiWeb says
 
 > Arrange/Act/Assert is a pattern for arranging and formatting code in UnitTest methods.
 
+Flowchart
+
+![Arrange/Act/Assert flowchart](./etc/arrange-act-assert-flowchart.png "Arrange/Act/Assert flowchart")
+
 ## Programmatic Example of Arrange/Act/Assert Pattern in Java
 
 We need to write comprehensive and clear unit test suite for a class. Using the Arrange/Act/Assert pattern in Java testing ensures clarity.

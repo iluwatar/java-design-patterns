@@ -36,6 +36,10 @@ Wikipedia says
 
 > In computer software, a data access object (DAO) is a pattern that provides an abstract interface to some type of database or other persistence mechanism.
 
+Sequence diagram
+
+![Data Access Object sequence diagram](./etc/dao-sequence-diagram.png)
+
 ## Programmatic Example of DAO Pattern in Java
 
 There's a set of customers that need to be persisted to database. Additionally, we need the whole set of CRUD (create/read/update/delete) operations, so we can operate on customers easily.
