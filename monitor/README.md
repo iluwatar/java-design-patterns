@@ -36,6 +36,10 @@ Wikipedia says
 
 > In concurrent programming (also known as parallel programming), a monitor is a synchronization construct that allows threads to have both mutual exclusion and the ability to wait (block) for a certain condition to become false. Monitors also have a mechanism for signaling other threads that their condition has been met.
 
+Sequence diagram
+
+![Monitor sequence diagram](./etc/monitor-sequence-diagram.png)
+
 ## Programmatic Example of Monitor Pattern in Java
 
 The Monitor design pattern is a synchronization technique used in concurrent programming to ensure that only one thread can execute a particular section of code at a time. It is a method of wrapping and hiding the synchronization primitives (like semaphores or locks) within the methods of an object. This pattern is useful in situations where race conditions could occur.

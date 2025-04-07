@@ -34,6 +34,10 @@ wiki.c2.com says
 
 > A monostate is a "conceptual singleton" - all data members of a monostate are static, so all instances of the monostate use the same (static) data. Applications using a monostate can create any number of instances that they desire, as each instance uses the same data.
 
+Flowchart
+
+![Monostate flowchart](./etc/monostate-flowchart.png)
+
 ## Programmatic Example of Monostate Pattern in Java
 
 The Monostate pattern in Java ensures that all instances of a class share the same state, making it a great Singleton alternative for maintaining consistent data. This is achieved by using static fields in the class. Any changes to these fields will be reflected across all instances of the class. This pattern is useful when you want to avoid global variables but still need a shared state across multiple instances.

@@ -33,6 +33,10 @@ Wikipedia says
 
 > Master–slave is a model of asymmetric communication or control where one device or process (the master) controls one or more other devices or processes (the slaves) and serves as their communication hub. In some systems, a master is selected from a group of eligible devices, with the other devices acting in the role of slaves.
 
+Sequence diagram
+
+![Master-Worker sequence diagram](./etc/master-worker-sequence-diagram.png)
+
 ## Programmatic Example of Master-Worker Pattern in Java
 
 In the provided code, the `MasterWorker` class initiates the concurrent computation process. The `Master` class divides the work among `Worker` objects, each performing its task in parallel, thus optimizing task processing and enhancing system efficiency.
