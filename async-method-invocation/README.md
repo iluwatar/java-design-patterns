@@ -36,6 +36,10 @@ Wikipedia says
 
 > In multithreaded computer programming, asynchronous method invocation (AMI), also known as asynchronous method calls or the asynchronous pattern is a design pattern in which the call site is not blocked while waiting for the called code to finish. Instead, the calling thread is notified when the reply arrives. Polling for a reply is an undesired option.
 
+Sequence diagram
+
+![Async Method Invocation sequence diagram](./etc/async-method-invocation-sequence-diagram.png "Async Method Invocation sequence diagram")
+
 ## Programmatic Example of Async Method Invocation Pattern in Java
 
 Consider a scenario where multiple tasks need to be executed simultaneously. Using the Async Method Invocation pattern, you can initiate these tasks without waiting for each to complete, thus optimizing resource usage and reducing latency.

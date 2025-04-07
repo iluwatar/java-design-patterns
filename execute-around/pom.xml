@@ -50,7 +50,6 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-migrationsupport</artifactId>
-      <version>5.11.4</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

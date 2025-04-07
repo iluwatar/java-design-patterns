@@ -35,6 +35,10 @@ Wikipedia says
 
 > Message queues (also known as event queues) implement an asynchronous communication pattern between two or more processes/threads whereby the sending and receiving party do not need to interact with the queue at the same time.
 
+Sequence diagram
+
+![Event Queue sequence diagram](./etc/event-queue-sequence-diagram.png)
+
 ## Programmatic Example of Event Queue Pattern in Java
 
 This example demonstrates an application using an event queue system to handle audio playback asynchronously.

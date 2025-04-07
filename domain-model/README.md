@@ -34,6 +34,10 @@ In plain words
 
 > The Domain Model is an object model of the domain that incorporates both behavior and data.
 
+Mind map
+
+![Domain Model mind map](./etc/domain-model-mind-map.png)
+
 ## Programmatic Example of Domain Model Pattern in Java
 
 Let's assume that we need to build an e-commerce web application. While analyzing requirements you will notice that there are few nouns you talk about repeatedly. It’s your Customer, and a Product the customer looks for. These two are your domain-specific classes and each of that classes will include some business logic specific to its domain.
@@ -224,10 +228,6 @@ The program output:
 12:17:23.846 [main] INFO com.iluwatar.domainmodel.Customer -- Tom balance: USD 0.00
 12:17:23.846 [main] INFO com.iluwatar.domainmodel.Customer -- Tom bought: Eggs - $10.00, Cheese - $20.00
 ```
-
-## Detailed Explanation of Domain Model Pattern with Real-World Examples
-
-![Domain Model class diagram](./etc/domain-model.urm.png "Domain Model")
 
 ## When to Use the Domain Model Pattern in Java
 

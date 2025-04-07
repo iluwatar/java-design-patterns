@@ -57,20 +57,30 @@ public class App {
   /** Program execution point. */
   public void run() {
     final var executorService = Executors.newSingleThreadScheduledExecutor();
-    executorService.scheduleAtFixedRate(
-        new Runnable() {
-          final World world = new World();
+    try {
+      executorService.scheduleAtFixedRate(
+          new Runnable() {
+            final World world = new World();
 
-          @Override
-          public void run() {
-            var countries = world.fetch();
-            LOGGER.info("Our world currently has the following countries:-");
-            countries.stream().map(country -> "\t" + country).forEach(LOGGER::info);
-          }
-        },
-        0,
-        15,
-        TimeUnit.SECONDS); // Run at every 15 seconds.
+            @Override
+            public void run() {
+              var countries = world.fetch();
+              LOGGER.info("Our world currently has the following countries:-");
+              countries.stream().map(country -> "\t" + country).forEach(LOGGER::info);
+            }
+          },
+          0,
+          15,
+          TimeUnit.SECONDS);
+
+      // Keep running for 45 seconds before shutdown (for demo purpose)
+      TimeUnit.SECONDS.sleep(45);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      LOGGER.error("Thread was interrupted", e);
+    } finally {
+      executorService.shutdown();
+    }
   }
 
   /**

@@ -35,6 +35,10 @@ Wikipedia says
 
 > In software engineering, a fluent interface is an object-oriented API whose design relies extensively on method chaining. Its goal is to increase code legibility by creating a  domain-specific language (DSL).
 
+Sequence diagram
+
+![Fluent Interface sequence diagram](./etc/fluent-interface-sequence-diagram.png)
+
 ## Programmatic Example of Fluent Interface Pattern in Java
 
 We need to select numbers based on different criteria from the list. It's a great chance to  utilize fluent interface pattern to provide readable easy-to-use developer experience.

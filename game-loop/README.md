@@ -34,6 +34,10 @@ Wikipedia says
 
 > The central component of any game, from a programming standpoint, is the game loop. The game loop allows the game to run smoothly regardless of a user's input, or lack thereof.
 
+Flowchart
+
+![Game Loop flowchart](./etc/game-loop-flowchart.png)
+
 ## Programmatic Example of Game Loop Pattern in Java
 
 In our Java example, we illustrate a simple game loop controlling a bullet's movement, updating its position, ensuring smooth rendering, and responding to user inputs. The Game Loop is the main process driving all game rendering threads, present in all modern games. It handles input processing, internal status updates, rendering, AI, and other processes. Starting with a simple `Bullet` class, we demonstrate the movement of bullets in our game, focusing on their 1-dimensional position for demonstration purposes.
