@@ -35,6 +35,10 @@ Wikipedia says
 
 > The prototype pattern is a creational design pattern in software development. It is used when the type of objects to create is determined by a prototypical instance, which is cloned to produce new objects.
 
+Sequence diagram
+
+![Prototype sequence diagram](./etc/prototype-sequence-diagram.png)
+
 ## Programmatic Example of Prototype Pattern in Java
 
 In Java, the prototype pattern is recommended to be implemented as follows. First, create an interface with a method for cloning objects. In this example, `Prototype` interface accomplishes this with its `copy` method.
