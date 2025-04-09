@@ -38,6 +38,10 @@ Wikipedia says
 
 > API Gateway is a server that acts as an API front-end, receives API requests, enforces throttling and security policies, passes requests to the back-end service and then passes the response back to the requester. A gateway often includes a transformation engine to orchestrate and modify the requests and responses on the fly. A gateway can also provide functionality such as collecting analytics data and providing caching. The gateway can provide functionality to support authentication, authorization, security, audit and regulatory compliance.
 
+Sequence diagram
+
+![Microservices API Gateway sequence diagram](./etc/microservices-api-gateway-sequence-diagram.png)
+
 ## Programmatic Example of Microservice API Gateway in Java
 
 This implementation shows what the API Gateway pattern could look like for an e-commerce site. The`ApiGateway` makes calls to the Image and Price microservices using the `ImageClientImpl` and `PriceClientImpl` respectively. Customers viewing the site on a desktop device can see both price information and an image of a product, so the `ApiGateway` calls both of the microservices and aggregates the data in the `DesktopProduct` model. However, mobile users only see price information; they do not see a product image. For mobile users, the `ApiGateway` only retrieves price information, which it uses to populate the `MobileProduct`.

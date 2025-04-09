@@ -52,7 +52,7 @@
     <gson.version>2.11.0</gson.version>
     <guice.version>6.0.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
-    <lombok.version>1.18.36</lombok.version>
+    <lombok.version>1.18.38</lombok.version>
     <mongo.version>5.4.0</mongo.version>
     <bson.version>5.4.0</bson.version>
     <h2.version>2.3.232</h2.version>
