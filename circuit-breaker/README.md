@@ -33,6 +33,10 @@ Wikipedia says
 
 > Circuit breaker is a design pattern used in modern software development. It is used to detect failures and encapsulates the logic of preventing a failure from constantly recurring, during maintenance, temporary external system failure or unexpected system difficulties.
 
+Flowchart
+
+![Circuit Breaker flowchart](./etc/circuit-breaker-flowchart.png)
+
 ## Programmatic Example of Circuit Breaker Pattern in Java
 
 This Java example demonstrates how the Circuit Breaker pattern can manage remote service failures and maintain system stability.

@@ -33,6 +33,14 @@ Wikipedia says
 
 > Private class data is a design pattern in computer programming used to encapsulate class attributes and their manipulation.
 
+Mind map
+
+![Private Class Data mind map](./etc/private-class-data-mind-map.png)
+
+Flowchart
+
+![Private Class Data flowchart](./etc/private-class-data-flowchart.png)
+
 ## Programmatic Example of Private Class Data Pattern in Java
 
 Imagine you are cooking a stew for your family dinner. You want to stop your family members from tasting the stew while you're still preparing it. If they do, there might not be enough stew left for dinner.

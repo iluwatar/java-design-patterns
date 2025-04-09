@@ -38,7 +38,6 @@ Architecture diagram
 
 ![Front Controller Architecture Diagram](./etc/front-controller-architecture-diagram.png)
 
-
 ## Programmatic Example of Front Controller Pattern in Java
 
 The Front Controller design pattern is a pattern that provides a centralized entry point for handling all requests in a web application. It ensures that request handling is managed consistently and efficiently across an application.

@@ -35,6 +35,10 @@ Wikipedia says
 
 > The object pool pattern is a software creational design pattern that uses a set of initialized objects kept ready to use – a "pool" – rather than allocating and destroying them on demand.
 
+Sequence diagram
+
+![Object Pool sequence diagram](./etc/object-pool-sequence-diagram.png)
+
 ## Programmatic Example of Object Pool Pattern in Java
 
 In our war game we need to use oliphaunts, massive and mythic beasts, but the problem is that they are extremely expensive to create. The solution is to create a pool of them, track which ones are in-use, and instead of disposing them re-use the instances.

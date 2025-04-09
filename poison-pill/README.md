@@ -29,6 +29,10 @@ In plain words
 
 > Poison Pill is a known message structure that ends the message exchange.   
 
+Sequence diagram
+
+![Poison Pill sequence diagram](./etc/poison-pill-sequence-diagram.png)
+
 ## Programmatic Example of Poison Pill Pattern in Java
 
 In this Java example, the Poison Pill serves as a shutdown signal within message queues, demonstrating effective thread management and consumer communication.
@@ -209,10 +213,6 @@ Program output:
 07:43:01.520 [Thread-0] INFO com.iluwatar.poison.pill.Consumer -- Message [bye!] from [PRODUCER_1] received by [CONSUMER_1]
 07:43:01.520 [Thread-0] INFO com.iluwatar.poison.pill.Consumer -- Consumer CONSUMER_1 receive request to terminate.
 ```
-
-## Detailed Explanation of Poison Pill Pattern with Real-World Examples
-
-![Poison Pill](./etc/poison-pill.png "Poison Pill")
 
 ## When to Use the Poison Pill Pattern in Java
 

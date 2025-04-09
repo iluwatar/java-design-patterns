@@ -33,6 +33,10 @@ Wikipedia says
 
 > In software engineering, double dispatch is a special form of multiple dispatch, and a mechanism that dispatches a function call to different concrete functions depending on the runtime types of two objects involved in the call. In most object-oriented systems, the concrete function that is called from a function call in the code depends on the dynamic type of a single object and therefore they are known as single dispatch calls, or simply virtual function calls.
 
+Sequence diagram
+
+![Double Dispatch sequence diagram](./etc/double-dispatch-sequence-diagram.png)
+
 ## Programmatic Example of Double Dispatch Pattern in Java
 
 The Double Dispatch pattern in Java is used to handle collisions between different types of game objects. Each game object is an instance of a class that extends the `GameObject` abstract class. The `GameObject` class has a `collision(GameObject)` method, which is overridden in each subclass to define the behavior when a collision occurs with another game object. Here is a simplified version of the `GameObject` class and its subclasses:
@@ -112,10 +116,6 @@ Here is the program output:
 15:47:23.773 [main] INFO com.iluwatar.doubledispatch.App -- Meteoroid at [10,10,15,15] damaged=false onFire=false
 15:47:23.773 [main] INFO com.iluwatar.doubledispatch.App -- SpaceStationIss at [12,12,14,14] damaged=true onFire=false
 ```
-
-## Detailed Explanation of Double Dispatch Pattern with Real-World Examples
-
-![Double Dispatch](./etc/double-dispatch.png "Double Dispatch")
 
 ## When to Use the Double Dispatch Pattern in Java
 

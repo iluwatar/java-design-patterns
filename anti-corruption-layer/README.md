@@ -44,6 +44,10 @@ In plain words
 
 > Implement a façade or adapter layer between different subsystems that don't share the same semantics. This layer translates requests that one subsystem makes to the other subsystem. Use this pattern to ensure that an application's design is not limited by dependencies on outside subsystems. This pattern was first described by Eric Evans in Domain-Driven Design.
 
+Sequence diagram
+
+![Anti-Corruption Layer sequence diagram](./etc/anti-corruption-layer-sequence-diagram.png "Anti-Corruption Layer sequence diagram")
+
 ## Programmatic Example of Anti-Corruption Layer Pattern in Java
 
 The ACL design pattern in Java provides an intermediary layer that translates data formats, ensuring that integration between different systems does not lead to data corruption.
