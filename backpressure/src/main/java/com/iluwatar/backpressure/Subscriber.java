@@ -17,7 +17,6 @@ public class Subscriber extends BaseSubscriber<Integer> {
 
   @Override
   protected void hookOnSubscribe(@NonNull Subscription subscription) {
-    logger.info("subscribe()");
     request(10); //request 10 items initially
   }
 
