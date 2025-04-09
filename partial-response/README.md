@@ -33,6 +33,10 @@ In plain words
 
 > The Partial Response design pattern allows a system to send portions of data to the client as they become available, enabling the client to start processing the data before the complete response is received.
 
+Sequence diagram
+
+![Partial Response sequence diagram](./etc/partial-response-sequence-diagram.png)
+
 ## Programmatic Example of Partial Response Pattern in Java
 
 The Partial Response design pattern allows clients to specify which fields of a resource they need. This pattern is useful for reducing the amount of data transferred over the network and allowing clients to start processing data sooner.
