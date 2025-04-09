@@ -31,6 +31,10 @@ In plain words
 
 > Data Bus is a design pattern that connects components of an application for communication based on the type of message or event being transferred. This pattern promotes decoupling, making it easier to scale and maintain the system by allowing components to communicate without direct dependencies.
 
+Sequence diagram
+
+![Data Bus Sequence Diagram](./etc/data-bus-sequence-diagram.png)
+
 ## Programmatic Example of Data Bus Pattern in Java
 
 Say you have an app that enables online bookings and participation in events. You want the app to send notifications, such as event advertisements, to all ordinary members of the community or organization holding the events. However, you do not want to send such advertisements to event administrators or organizers. Instead, you want to send them notifications about the timing of new advertisements sent to all members. The Data Bus enables you to selectively notify community members by type (ordinary members or event administrators) by making their classes or components only accept messages of a certain type. Thus, ordinary members and administrators do not need to know about each other or the specific classes or components used to notify the entire community, except for knowing the type of messages being sent.

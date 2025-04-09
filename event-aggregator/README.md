@@ -36,6 +36,10 @@ In Plain Words
 
 > Event Aggregator is a design pattern that allows multiple event sources to communicate with event handlers through a central point, rather than having each event source communicate directly with each handler.
 
+Sequence diagram
+
+![Event Aggregator sequence diagram](./etc/event-aggregator-sequence-diagram.png)
+
 ## Programmatic Example of Event Aggregator Pattern in Java
 
 Consider the following example where we use the Event Aggregator to handle multiple events.
@@ -160,10 +164,6 @@ The console output after running the example.
 21:37:38.739 [main] INFO com.iluwatar.event.aggregator.KingJoffrey -- Received event from the King's Hand: Stark sighted
 21:37:38.739 [main] INFO com.iluwatar.event.aggregator.KingJoffrey -- Received event from the King's Hand: Traitor detected
 ```
-
-## Detailed Explanation of Event Aggregator Pattern with Real-World Examples
-
-![Event Aggregator](./etc/classes.png "Event Aggregator")
 
 ## When to Use the Event Aggregator Pattern in Java
 
