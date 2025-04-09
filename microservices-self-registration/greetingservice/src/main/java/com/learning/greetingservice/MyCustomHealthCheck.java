@@ -1,14 +1,16 @@
 package com.learning.greetingservice;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component("myCustomHealthCheck")
-@Slf4j
 public class MyCustomHealthCheck implements HealthIndicator {
+
+  private static final Logger log = LoggerFactory.getLogger(MyCustomHealthCheck.class);
 
   private volatile boolean isHealthy = true;
 
@@ -16,15 +18,12 @@ public class MyCustomHealthCheck implements HealthIndicator {
   public void updateHealthStatus() {
     // Perform checks here to determine the current health
     // For example, check database connectivity, external service availability, etc.
-    boolean currentHealth = performHealthCheck();
-    isHealthy = currentHealth;
-    log.info("Updated health status : {}", isHealthy);
+    isHealthy = performHealthCheck();
+    log.info("Update health status : {}", isHealthy);
   }
 
   private boolean performHealthCheck() {
-    // Replace this with your actual health check logic
-    // For demonstration, let's toggle the status every few runs
-    boolean current = System.currentTimeMillis() % 10000 < 5000;
+    boolean current = System.currentTimeMillis() % 10000 < 5000; // Simulate fluctuating health
     log.debug("Performing health check, current status: {}", current);
     return current; // Simulate fluctuating health
   }
