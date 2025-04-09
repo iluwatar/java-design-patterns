@@ -33,6 +33,10 @@ Wikipedia says
 
 > Resource acquisition is initialization (RAII) is a programming idiom used in several object-oriented, statically typed programming languages to describe a particular language behavior. Resource allocation (or acquisition) is done during object creation (specifically initialization), by the constructor, while resource deallocation (release) is done during object destruction (specifically finalization), by the destructor.
 
+Sequence diagram
+
+![Resource Acquisition Is Initialization sequence diagram](./etc/raii-sequence-diagram.png)
+
 ## Programmatic Example of RAII Pattern in Java
 
 The RAII pattern is a common idiom used in software design where the acquisition of a resource is done during object creation (initialization), and the release of the resource is done during object destruction. This pattern is particularly useful in dealing with resource leaks and is critical in writing exception-safe code in C++. In Java, RAII is achieved with try-with-resources statement and interfaces `java.io.Closeable` and `AutoCloseable`.
