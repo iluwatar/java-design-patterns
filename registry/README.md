@@ -38,6 +38,10 @@ wiki.c2.com says
 
 > A registry is a global association from keys to objects, allowing the objects to be reached from anywhere. It involves two methods: one that takes a key and an object and add objects to the registry and one that takes a key and returns the object for the key. It's similar to the MultitonPattern, but doesn't restrict instances to only those in the registry.
 
+Flowchart
+
+![Registry flowchart](./etc/registry-flowchart.png)
+
 ## Programmatic Example of Registry Pattern in Java
 
 The Registry design pattern is a well-known pattern used in software design where objects are stored and provide a global point of access to them. This pattern is particularly useful when you need to manage a global collection of objects, decouple the creation of objects from their usage, ensure a controlled lifecycle for objects, and avoid redundant creation of objects.
