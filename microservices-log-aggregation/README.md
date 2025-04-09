@@ -38,6 +38,10 @@ Wikipedia says
 
 > You have applied the Microservice architecture pattern. The application consists of multiple services and service instances that are running on multiple machines. Requests often span multiple service instances. Each service instance generates writes information about what it is doing to a log file in a standardized format. The log file contains errors, warnings, information and debug messages.
 
+Flowchart
+
+![Microservices Log Aggregration flowchart](./etc/microservices-log-aggregation-flowchart.png)
+
 ## Programmatic Example of Microservices Log Aggregation Pattern in Java
 
 Log Aggregation is a pattern that centralizes the collection, storage, and analysis of logs from multiple sources to facilitate monitoring, debugging, and operational intelligence. It is particularly useful in distributed systems where logs from various components need to be centralized for better management and analysis.
