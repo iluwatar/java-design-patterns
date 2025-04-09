@@ -4,12 +4,9 @@ import java.security.SecureRandom;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Slf4j
 public class App {
-  private static final Logger log = LoggerFactory.getLogger(App.class);
 
   public static void main(String[] args) throws InterruptedException {
     var taskSet = new TaskSet();
@@ -29,7 +26,7 @@ public class App {
       addTasks(taskSet);
       boolean terminated = exec.awaitTermination(2, TimeUnit.SECONDS);
       if (!terminated) {
-        log.warn("Executor did not terminate in the given time.");
+        LOGGER.warn("Executor did not terminate in the given time.");
       }
     } finally {
       exec.shutdownNow();
