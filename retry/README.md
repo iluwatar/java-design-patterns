@@ -34,6 +34,10 @@ In plain words
 
 > Enable an application to handle transient failures when it tries to connect to a service or network resource, by transparently retrying a failed operation. This can improve the stability of the application.
 
+Flowchart
+
+![Retry flowchart](./etc/retry-flowchart.png)
+
 ## Programmatic Example of Retry Pattern in Java
 
 The Retry design pattern is a resilience pattern that allows an application to transparently attempt to execute operations multiple times in the expectation that it'll succeed. This pattern is particularly useful when the application is connecting to a network service or a remote resource, where temporary failures are common.
