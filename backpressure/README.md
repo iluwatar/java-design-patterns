@@ -58,246 +58,164 @@ In distributed systems in particular event-driven architecture, back pressure is
 
 ## Programmatic Example of Backpressure Pattern in Java
 
-First we need to identify the Event on which we need the pub-sub methods to trigger.
-For example:
-
-- Sending alerts based on the weather events such as earthquakes, floods and tornadoes
-- Sending alerts based on the temperature
-- Sending an email to different customer support emails when a support ticket is created.
-
-The Message class below will hold the content of the message we need to pass between the publisher and the subscribers.
+First we will create a publisher that generates a data stream.
+This publisher can generate a stream of integers.
 
 ```java
-public record Message(Object content) {
-}
-
-```
-
-The Topic class will have the topic **name** based on the event
-
-- Weather events TopicName WEATHER
-- Weather events TopicName TEMPERATURE
-- Support ticket created TopicName CUSTOMER_SUPPORT
-- Any other custom topic depending on use case
-- Also, the Topic contains a list of subscribers that will listen to that topic
-
-We can add or remove subscribers from the subscription to the topic
-
-```java
-public class Topic {
-
-    private final TopicName name;
-    private final Set<Subscriber> subscribers = new CopyOnWriteArraySet<>();
-    //...//
+public class Publisher {
+    public static Flux<Integer> publish(int start, int count, int delay) {
+        return Flux.range(start, count).delayElements(Duration.ofMillis(delay)).log();
+    }
 }
 ```
 
-Then we can create the publisher. The publisher class has a set of topics.
-
-- Each new topic has to be registered in the publisher.
-- Publish method will publish the _Message_ to the corresponding _Topic_.
+Then we can create a custom subscriber based on reactor BaseSubscriber.
+It will take 500ms to process one item to simulate slow processing.
+This subscriber will override following methods to apply backpressure on the publisher.
+- hookOnSubscribe method and initially request for 10 items
+- hookOnNext method which will process 5 items and request for 5 more items
 
 ```java
-public class PublisherImpl implements Publisher {
+public class Subscriber extends BaseSubscriber<Integer> {
 
-    private static final Logger logger = LoggerFactory.getLogger(PublisherImpl.class);
-    private final Set<Topic> topics = new HashSet<>();
+    private static final Logger logger = LoggerFactory.getLogger(Subscriber.class);
 
     @Override
-    public void registerTopic(Topic topic) {
-        topics.add(topic);
+    protected void hookOnSubscribe(@NonNull Subscription subscription) {
+        logger.info("subscribe()");
+        request(10); //request 10 items initially
     }
 
     @Override
-    public void publish(Topic topic, Message message) {
-        if (!topics.contains(topic)) {
-            logger.error("This topic is not registered: {}", topic.getName());
-            return;
+    protected void hookOnNext(@NonNull Integer value) {
+        processItem();
+        logger.info("process({})", value);
+        if (value % 5 == 0) {
+            // request for the next 5 items after processing first 5
+            request(5);
         }
-        topic.publish(message);
+    }
+
+    @Override
+    protected void hookOnComplete() {
+        //completed processing.
+    }
+
+    private void processItem() {
+        try {
+            Thread.sleep(500); // simulate slow processing
+        } catch (InterruptedException e) {
+            logger.error(e.getMessage(), e);
+        }
     }
 }
 ```
 
-Finally, we can Subscribers to the Topics we want to listen to.
-
-- For WEATHER topic we will create _WeatherSubscriber_
-- _WeatherSubscriber_ can also subscribe to TEMPERATURE topic
-- For CUSTOMER_SUPPORT topic we will create _CustomerSupportSubscribe_
-- Also to demonstrate the async behavior we will create a _DelayedWeatherSubscriber_ who has a 0.2 sec processing deplay
-
-All classes will have a _onMessage_ method which will take a Message input.
-
-- On message method will verify the content of the message is as expected
-- After content is verified it will perform the operation based on the message
-    - _WeatherSubscriber_ will send a weather or temperature alert based on the _Message_
-    - _CustomerSupportSubscribe_will send an email based on the _Message_
-    - _DelayedWeatherSubscriber_ will send a weather alert based on the _Message_ after a delay
-
-```java
-public interface Subscriber {
-    void onMessage(Message message);
-}
-```
-
-And here is the invocation of the publisher and subscribers.
+Then we can create the stream using the publisher and subscribe to that stream.
 
 ```java
 public static void main(String[] args) throws InterruptedException {
-
-    final String topicWeather = "WEATHER";
-    final String topicTemperature = "TEMPERATURE";
-    final String topicCustomerSupport = "CUSTOMER_SUPPORT";
-
-    // 1. create the publisher.
-    Publisher publisher = new PublisherImpl();
-
-    // 2. define the topics and register on publisher
-    Topic weatherTopic = new Topic(topicWeather);
-    publisher.registerTopic(weatherTopic);
-
-    Topic temperatureTopic = new Topic(topicTemperature);
-    publisher.registerTopic(temperatureTopic);
-
-    Topic supportTopic = new Topic(topicCustomerSupport);
-    publisher.registerTopic(supportTopic);
-
-    // 3. Create the subscribers and subscribe to the relevant topics
-    // weatherSub1 will subscribe to two topics WEATHER and TEMPERATURE.
-    Subscriber weatherSub1 = new WeatherSubscriber();
-    weatherTopic.addSubscriber(weatherSub1);
-    temperatureTopic.addSubscriber(weatherSub1);
-
-    // weatherSub2 will subscribe to WEATHER topic
-    Subscriber weatherSub2 = new WeatherSubscriber();
-    weatherTopic.addSubscriber(weatherSub2);
-
-    // delayedWeatherSub will subscribe to WEATHER topic
-    // NOTE :: DelayedWeatherSubscriber has a 0.2 sec delay of processing message.
-    Subscriber delayedWeatherSub = new DelayedWeatherSubscriber();
-    weatherTopic.addSubscriber(delayedWeatherSub);
-
-    // subscribe the customer support subscribers to the CUSTOMER_SUPPORT topic.
-    Subscriber supportSub1 = new CustomerSupportSubscriber();
-    supportTopic.addSubscriber(supportSub1);
-    Subscriber supportSub2 = new CustomerSupportSubscriber();
-    supportTopic.addSubscriber(supportSub2);
-
-    // 4. publish message from each topic
-    publisher.publish(weatherTopic, new Message("earthquake"));
-    publisher.publish(temperatureTopic, new Message("23C"));
-    publisher.publish(supportTopic, new Message("support@test.de"));
-
-    // 5. unregister subscriber from TEMPERATURE topic
-    temperatureTopic.removeSubscriber(weatherSub1);
-
-    // 6. publish message under TEMPERATURE topic
-    publisher.publish(temperatureTopic, new Message("0C"));
-
-    /*
-     * Finally, we wait for the subscribers to consume messages to check the output.
-     * The output can change on each run, depending on how long the execution on each
-     * subscriber would take
-     * Expected behavior:
-     * - weatherSub1 will consume earthquake and 23C
-     * - weatherSub2 will consume earthquake
-     * - delayedWeatherSub will take longer and consume earthquake
-     * - supportSub1, supportSub2 will consume support@test.de
-     * - the message 0C will not be consumed because weatherSub1 unsubscribed from TEMPERATURE topic
-     */
-    TimeUnit.SECONDS.sleep(2);
+    Subscriber sub = new Subscriber();
+    Publisher.publish(1, 8, 200).subscribe(sub);
+    Thread.sleep(5000); //wait for execution
+    
 }
 ```
 
 Program output:
 
-Note that the order of output could change everytime you run the program.
-The subscribers could take different time to consume the message.
-
 ```
-14:01:45.599 [ForkJoinPool.commonPool-worker-6] INFO com.iluwatar.publish.subscribe.subscriber.CustomerSupportSubscriber -- Customer Support Subscriber: 1416331388 sent the email to: support@test.de
-14:01:45.599 [ForkJoinPool.commonPool-worker-4] INFO com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber -- Weather Subscriber: 1949521124 issued message: 23C
-14:01:45.599 [ForkJoinPool.commonPool-worker-2] INFO com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber -- Weather Subscriber: 60629172 issued message: earthquake
-14:01:45.599 [ForkJoinPool.commonPool-worker-5] INFO com.iluwatar.publish.subscribe.subscriber.CustomerSupportSubscriber -- Customer Support Subscriber: 1807508804 sent the email to: support@test.de
-14:01:45.599 [ForkJoinPool.commonPool-worker-1] INFO com.iluwatar.publish.subscribe.subscriber.WeatherSubscriber -- Weather Subscriber: 1949521124 issued message: earthquake
-14:01:47.600 [ForkJoinPool.commonPool-worker-3] INFO com.iluwatar.publish.subscribe.subscriber.DelayedWeatherSubscriber -- Delayed Weather Subscriber: 2085808749 issued message: earthquake
+23:09:55.746 [main] DEBUG reactor.util.Loggers -- Using Slf4j logging framework
+23:09:55.762 [main] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- onSubscribe(FluxConcatMapNoPrefetch.FluxConcatMapNoPrefetchSubscriber)
+23:09:55.762 [main] INFO com.iluwatar.backpressure.Subscriber -- subscribe()
+23:09:55.763 [main] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- request(10)
+23:09:55.969 [parallel-1] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- onNext(1)
+23:09:56.475 [parallel-1] INFO com.iluwatar.backpressure.Subscriber -- process(1)
+23:09:56.680 [parallel-2] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- onNext(2)
+23:09:57.185 [parallel-2] INFO com.iluwatar.backpressure.Subscriber -- process(2)
+23:09:57.389 [parallel-3] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- onNext(3)
+23:09:57.894 [parallel-3] INFO com.iluwatar.backpressure.Subscriber -- process(3)
+23:09:58.099 [parallel-4] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- onNext(4)
+23:09:58.599 [parallel-4] INFO com.iluwatar.backpressure.Subscriber -- process(4)
+23:09:58.805 [parallel-5] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- onNext(5)
+23:09:59.311 [parallel-5] INFO com.iluwatar.backpressure.Subscriber -- process(5)
+23:09:59.311 [parallel-5] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- request(5)
+23:09:59.516 [parallel-6] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- onNext(6)
+23:10:00.018 [parallel-6] INFO com.iluwatar.backpressure.Subscriber -- process(6)
+23:10:00.223 [parallel-7] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- onNext(7)
+23:10:00.729 [parallel-7] INFO com.iluwatar.backpressure.Subscriber -- process(7)
+23:10:00.930 [parallel-8] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- onNext(8)
+23:10:01.436 [parallel-8] INFO com.iluwatar.backpressure.Subscriber -- process(8)
+23:10:01.437 [parallel-8] INFO reactor.Flux.ConcatMapNoPrefetch.1 -- onComplete()
 ```
 
 ## When to Use the Backpressure Pattern
 
-- Event-Driven Systems
-    - Use Pub/Sub when your system relies on events (e.g., user registration, payment completion).
-    - Example: After a user registers, send a welcome email and log the action simultaneously.
+- Producers Are Faster Than Consumers
+    - If a producer generates data at a much faster rate than the consumer can handle, backpressure prevents resource overload.
+    - Example: A server emitting events 10x faster than the client can process.
 
-- Asynchronous Communication
-    - When tasks can be performed without waiting for immediate responses.
-    - Example: In an e-commerce app, notify the warehouse and the user after a successful order.
+- There’s Limited Memory or Resource Capacity
+    - Without flow control, queues or buffers can grow indefinitely, leading to out-of-memory errors or system crashes.
+    - Example: Streaming large datasets into a low-memory microservice.
 
-- Decoupling Components
-    - Ideal for systems where producers and consumers should not depend on each other.
-    - Example: A logging service listens for logs from multiple microservices.
+- Building Reactive or Event-Driven Architectures
+    - Reactive systems thrive on non-blocking, asynchronous flows—and backpressure is a core component of the Reactive Streams specification.
+    - Example: Using RxJava, Project Reactor, Akka Streams, or Node.js streams.
 
-- Scaling Systems
-    - Useful when you need to scale services without changing the core application logic.
-    - Example: Broadcasting messages to thousands of clients (chat applications, IoT).
+- Unpredictable Workloads
+    - If the rate of data production or consumption can vary, backpressure helps adapt dynamically.
+    - Example: APIs receiving unpredictable spikes in traffic.
 
-- Broadcasting Notifications
-    - When a message should be delivered to multiple receivers.
-    - Example: Sending promotional offers to multiple user devices.
-
-- Microservices Communication
-    - Allow independent services to communicate without direct coupling.
-    - Example: An order service publishes an event, and both the billing and shipping services process it.
+- Need to Avoid Data Loss or Overflow
+    - Instead of dropping data arbitrarily, backpressure lets you control flow intentionally.
+    - Example: Video or audio processing pipelines where dropping frames is costly.
 
 ## When to avoid the Backpressure Pattern
 
-- Simple applications where direct calls suffice.
-- Strong consistency requirements (e.g., banking transactions).
-- Low-latency synchronous communication needed.
+- For batch processing or simple linear flows with well-matched speeds.
+- If data loss is acceptable and simpler strategies like buffering or throttling are easier to manage.
+- When using fire-and-forget patterns (e.g., log shipping with retries instead of slowing the producer).
 
 ## Benefits and Trade-offs of Backpressure Pattern
 
 ### Benefits:
 
-- Decoupling
-    - Publishers and subscribers are independent of each other.
-    - Publishers don’t need to know who the subscribers are, and vice versa.
-    - Changes in one component don’t affect the other.
-- Scalability
-    - New subscribers can be added without modifying publishers.
-    - Supports distributed systems where multiple services consume the same events.
-- Dynamic Subscription
-    - Subscribers can subscribe/unsubscribe at runtime.
-    - Enables flexible event-driven architectures.
-- Asynchronous Communication
-    - Publishers and subscribers operate independently, improving performance.
-    - Useful for background processing (e.g., notifications, logging).
-- Broadcast Communication
-    - A single event can be consumed by multiple subscribers.
-    - Useful for fan-out scenarios (e.g., notifications, analytics).
-- Resilience & Fault Tolerance
-    - If a subscriber fails, others can still process messages.
-    - Message brokers (e.g., Kafka, RabbitMQ) can retry or persist undelivered messages.
+-  Improved System Stability
+    - Prevents overload by controlling data flow.
+    - Reduces chances of out-of-memory errors, thread exhaustion, or service crashes.
+- Efficient Resource Usage
+    - Avoids excessive buffering and unnecessary computation.
+    - Enables systems to do only the work they can handle.
+- Better Responsiveness
+    - Keeps queues short, which improves latency and throughput.
+    - More consistent performance under load.
+- Graceful Degradation
+    - If the system can't keep up, it slows down cleanly rather than failing unpredictably.
+    - Consumers get a chance to control the pace, leading to predictable behavior.
+- Fits Reactive Programming
+    - It's essential in Reactive Streams, RxJava, Project Reactor, and Akka Streams.
+    - Enables composing async streams safely and effectively.
 
 ### Trade-offs:
 
 - Complexity in Debugging
-    - Since publishers and subscribers are decoupled, tracing event flow can be difficult.
-    - Requires proper logging and monitoring tools.
-- Message Ordering & Consistency
-    - Ensuring message order across subscribers can be challenging (e.g., Kafka vs. RabbitMQ).
-    - Some systems may process events out of order.
-- Potential Latency
-    - Asynchronous processing introduces delays compared to direct calls.
-    - Not ideal for real-time synchronous requirements.
+    - Adds logic for flow control, demand signaling, and failure handling.
+    - More state to manage (e.g., request counts, pause/resume, buffer sizes).
+- Harder Debugging & Testing
+    - Asynchronous flow + demand coordination = trickier to test and debug.
+    - Race conditions or deadlocks may occur if not handled carefully.
+- Potential for Bottlenecks
+    - A slow consumer can throttle the entire system, even if other parts are fast.
+    - Needs smart handling (e.g., buffer + drop + retry strategies).
 
 ## Related Java Design Patterns
-
+* [Publish-Subscribe Pattern](https://github.com/sanurah/java-design-patterns/blob/master/publish-subscribe/): Pub-Sub pattern decouples producers from consumers so they can communicate without knowing about each other. Backpressure manages flow control between producer and consumer to avoid overwhelming the consumer.
 * [Observer Pattern](https://github.com/sanurah/java-design-patterns/blob/master/observer/): Both involve a producer (subject/publisher) notifying consumers (observers/subscribers). Observer is synchronous & tightly coupled (observers know the subject). Pub-Sub is asynchronous & decoupled (via a message broker).
 * [Mediator Pattern](https://github.com/sanurah/java-design-patterns/blob/master/mediator/): A mediator centralizes communication between components (like a message broker in Pub-Sub). Mediator focuses on reducing direct dependencies between objects. Pub-Sub focuses on broadcasting events to unknown subscribers.
 
 ## References and Credits
 
-* [Apache Kafka – Pub-Sub Model](https://kafka.apache.org/documentation/#design_pubsub)
-* [Microsoft – Backpressure Pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/publisher-subscriber)
-* [Martin Fowler – Event-Driven Architecture](https://martinfowler.com/articles/201701-event-driven.html)
+* [Reactive Streams Specification](https://www.reactive-streams.org/)
+* [Reactive Programming with RxJava by Tomasz Nurkiewicz & Ben Christensen](https://www.oreilly.com/library/view/reactive-programming-with/9781491931646/)
+* [RedHat Developers Blog](https://developers.redhat.com/articles/backpressure-explained)
