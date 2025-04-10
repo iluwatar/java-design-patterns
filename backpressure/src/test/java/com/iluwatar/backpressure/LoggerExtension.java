@@ -40,25 +40,21 @@ public class LoggerExtension implements BeforeEachCallback, AfterEachCallback {
   private final Logger logger = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
 
   @Override
-  public void afterEach(ExtensionContext extensionContext) throws Exception {
+  public void afterEach(ExtensionContext extensionContext) {
     listAppender.stop();
     listAppender.list.clear();
     logger.detachAppender(listAppender);
   }
 
   @Override
-  public void beforeEach(ExtensionContext extensionContext) throws Exception {
+  public void beforeEach(ExtensionContext extensionContext) {
     logger.addAppender(listAppender);
     listAppender.start();
   }
 
-  public List<String> getMessages() {
-    return listAppender.list.stream().map(e -> e.getMessage()).collect(Collectors.toList());
-  }
-
   public List<String> getFormattedMessages() {
     return listAppender.list.stream()
-        .map(e -> e.getFormattedMessage())
+        .map(ILoggingEvent::getFormattedMessage)
         .collect(Collectors.toList());
   }
 }
