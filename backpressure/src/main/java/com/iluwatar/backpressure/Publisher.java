@@ -3,9 +3,7 @@ package com.iluwatar.backpressure;
 import java.time.Duration;
 import reactor.core.publisher.Flux;
 
-/**
- * This class is the publisher that generates the data stream.
- */
+/** This class is the publisher that generates the data stream. */
 public class Publisher {
 
   /**

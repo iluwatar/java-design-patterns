@@ -12,7 +12,7 @@ public class PublisherTest {
   @Test
   public void testPublish() {
 
-    Flux<Integer>  flux = publish(1, 3, 200);
+    Flux<Integer> flux = publish(1, 3, 200);
 
     StepVerifier.withVirtualTime(() -> flux)
         .expectSubscription()

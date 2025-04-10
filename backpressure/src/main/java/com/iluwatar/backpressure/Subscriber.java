@@ -7,9 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import reactor.core.publisher.BaseSubscriber;
 
-/**
- * This class is the custom subscriber that subscribes to the data stream.
- */
+/** This class is the custom subscriber that subscribes to the data stream. */
 @Slf4j
 public class Subscriber extends BaseSubscriber<Integer> {
 
@@ -17,7 +15,7 @@ public class Subscriber extends BaseSubscriber<Integer> {
 
   @Override
   protected void hookOnSubscribe(@NonNull Subscription subscription) {
-    request(10); //request 10 items initially
+    request(10); // request 10 items initially
   }
 
   @Override

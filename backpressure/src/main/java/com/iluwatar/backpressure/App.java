@@ -8,17 +8,16 @@ import lombok.extern.slf4j.Slf4j;
  * producer to slow down or stop sending data when it's overwhelmed.
  * <li>Prevents memory overflow, CPU thrashing, and resource exhaustion.
  * <li>Ensures fair usage of resources in distributed systems.
- * <li>Avoids buffer bloat and latency spikes.
- * Key concepts of this design paradigm involves
+ * <li>Avoids buffer bloat and latency spikes. Key concepts of this design paradigm involves
  * <li>Publisher/Producer: Generates data.
  * <li>Subscriber/Consumer: Receives and processes data.
  *
- * <p>In this example we will create a {@link Publisher} and a {@link Subscriber}. Publisher will
- * emit a stream of integer values with a predefined delay. Subscriber takes 500 ms to process one
- * integer. Since the subscriber can't process the items fast enough we apply backpressure to the
- * publisher so that it will request 10 items first, process 5 items and request for the next 5
- * again. After processing 5 items subscriber will keep requesting for another 5 until the stream
- * ends.
+ *     <p>In this example we will create a {@link Publisher} and a {@link Subscriber}. Publisher
+ *     will emit a stream of integer values with a predefined delay. Subscriber takes 500 ms to
+ *     process one integer. Since the subscriber can't process the items fast enough we apply
+ *     backpressure to the publisher so that it will request 10 items first, process 5 items and
+ *     request for the next 5 again. After processing 5 items subscriber will keep requesting for
+ *     another 5 until the stream ends.
  */
 @Slf4j
 public class App {
