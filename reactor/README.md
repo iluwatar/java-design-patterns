@@ -38,6 +38,10 @@ Wikipedia says
 
 > The reactor software design pattern is an event handling strategy that can respond to many potential service requests concurrently. The pattern's key component is an event loop, running in a single thread or process, which demultiplexes incoming requests and dispatches them to the correct request handler.
 
+Sequence diagram
+
+![Reactor Sequence diagram](./etc/reactor-sequence-diagram.png)
+
 ## Programmatic Example of Reactor Pattern in Java
 
 The Reactor design pattern is a concurrency model that efficiently handles multiple simultaneous I/O operations using a single or a limited number of threads. It is particularly useful in scenarios where an application needs to handle multiple clients sending service requests concurrently.
@@ -156,10 +160,6 @@ Running the code produces the following output:
 ```
 
 This concludes our detailed explanation of the Reactor design pattern. The Reactor pattern allows us to handle multiple simultaneous I/O operations efficiently using a single or a limited number of threads.
-
-## Detailed Explanation of Reactor Pattern with Real-World Examples
-
-![Reactor](./etc/reactor.png "Reactor")
 
 ## When to Use the Reactor Pattern in Java
 

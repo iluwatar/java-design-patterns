@@ -32,6 +32,10 @@ wiki.c2.com says
 
 > Adapt an object to different client’s needs through transparently attached role objects, each one representing a role the object has to play in that client’s context. The object manages its role set dynamically. By representing roles as individual objects, different contexts are kept separate and system configuration is simplified.
 
+Sequence diagram
+
+![Role Object sequence diagram](./etc/role-object-sequence-diagram.png)
+
 ## Programmatic Example of Role Object Pattern in Java
 
 The Role Object design pattern is a pattern that suggests modeling context-specific views of an object as separate role objects. These role objects are dynamically attached to and removed from the core object. The resulting composite object structure, consisting of the core and its role objects, is called a subject. A subject often plays several roles and the same role is likely to be played by different subjects.

@@ -36,6 +36,10 @@ Wikipedia says
 
 > Dijkstra wrote about the case: "We consider two processes, which are called the 'producer' and the 'consumer' respectively. The producer is a cyclic process that produces a certain portion of information, that has to be processed by the consumer. The consumer is also a cyclic process that needs to process the next portion of information, as has been produced by the producer. We assume the two processes to be connected for this purpose via a buffer with unbounded capacity."
 
+Sequence diagram
+
+![Producer-Consumer sequence diagram](./etc/producer-consumer-sequence-diagram.png)
+
 ## Programmatic Example of Producer-Consumer Pattern in Java
 
 Consider a manufacturing process of item, the producer will need to pause the production when manufacturing pipeline is full and the consumer will need to pause the consumption of item when the manufacturing pipeline is empty. We can separate the process of production and consumption which work together and pause at separate times.
