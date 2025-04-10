@@ -36,6 +36,10 @@ Wikipedia says
 
 > Single table inheritance is a way to emulate object-oriented inheritance in a relational database. When mapping from a database table to an object in an object-oriented language, a field in the database identifies what class in the hierarchy the object belongs to. All fields of all the classes are stored in the same table, hence the name "Single Table Inheritance".
 
+Flowchart
+
+![Single Table Inheritance flowchart](./etc/single-table-inheritance-flowchart.png)
+
 ## Programmatic Example of Single Table Inheritance Pattern in Java
 
 Single Table Inheritance is a design pattern that maps an inheritance hierarchy of classes to a single database table. Each row in the table represents an instance of a class in the hierarchy. A special discriminator column is used to identify the class to which each row belongs.
