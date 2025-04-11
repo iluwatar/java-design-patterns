@@ -37,6 +37,10 @@ In [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR) Ma
 
 > If you’ll pardon the unresistable pun, I see [Null Object](https://java-design-patterns.com/patterns/null-object/) as special case of Special Case.
 
+Sequnce diagram
+
+![Special Case sequence diagram](./etc/special-case-sequence-diagram.png)
+
 ## Programmatic Example of Special Case Pattern in Java
 
 The Special Case Pattern is a software design pattern that is used to handle a specific, often uncommon, case separately from the general case in the code. This pattern is useful when a class has behavior that requires conditional logic based on its state. Instead of cluttering the class with conditional logic, we can encapsulate the special behavior in a subclass.

@@ -37,6 +37,10 @@ Wikipedia says
 
 > In computer programming, the specification pattern is a particular software design pattern, whereby business rules can be recombined by chaining the business rules together using boolean logic.
 
+Flowchart
+
+![Specification Pattern flowchart](./etc/specification-flowchart.png)
+
 ## Programmatic Example of Specification Pattern in Java
 
 Let's consider a creature pool example. We have a collection of creatures with specific properties. These properties might belong to a predefined, limited set (represented by enums like `Size`, `Movement`, and `Color`) or they might be continuous values (e.g., the mass of a `Creature`). In cases with continuous values, it's better to use a "parameterized specification," where the property value is provided as an argument when the `Creature` is instantiated, allowing for greater flexibility. Additionally, predefined and/or parameterized properties can be combined using boolean logic, offering almost limitless selection possibilities (this is known as a "composite specification," explained further below). The advantages and disadvantages of each approach are detailed in the table at the end of this document.

@@ -35,6 +35,10 @@ Wikipedia says
 >
 > There are numerous advantages to the horizontal partitioning approach. Since the tables are divided and distributed into multiple servers, the total number of rows in each table in each database is reduced. This reduces index size, which generally improves search performance. A database shard can be placed on separate hardware, and multiple shards can be placed on multiple machines. This enables a distribution of the database over a large number of machines, greatly improving performance. In addition, if the database shard is based on some real-world segmentation of the data (e.g., European customers v. American customers) then it may be possible to infer the appropriate shard membership easily and automatically, and query only the relevant shard.
 
+Flowchart
+
+![Sharding flowchart](./etc/sharding-flowchart.png)
+
 ## Programmatic Example of Sharding Pattern in Java
 
 Sharding is a type of database partitioning that separates very large databases into smaller, faster, more easily managed parts called data shards. The word shard means a small part of a whole. In software architecture, it refers to a horizontal partition in a database or search engine. Each individual partition is referred to as a shard or database shard.

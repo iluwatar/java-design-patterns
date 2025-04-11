@@ -35,6 +35,10 @@ Wikipedia says
 
 > The Step Builder pattern is a variation of the Builder design pattern, designed to provide a flexible solution for constructing complex objects step-by-step. This pattern is particularly useful when an object requires multiple initialization steps, which can be done incrementally to ensure clarity and flexibility in the creation process.
 
+Sequence diagram
+
+![Step Builder sequence diagram](./etc/step-builder-sequence-diagram.png)
+
 ## Programmatic Example of Step Builder Pattern in Java
 
 The Step Builder pattern in Java is an extension of the Builder pattern that guides the user through the creation of an object in a step-by-step manner. This pattern improves the user experience by only showing the next step methods available, and not showing the build method until it's the right time to build the object.
@@ -161,10 +165,6 @@ Console output:
 12:58:13.889 [main] INFO com.iluwatar.stepbuilder.App -- This is a Sorcerer named Riobard armed with a Fireball and wielding [Fire Aura, Teleport] abilities.
 12:58:13.889 [main] INFO com.iluwatar.stepbuilder.App -- This is a Rogue named Desmond armed with a with nothing.
 ```
-
-## Detailed Explanation of Step Builder Pattern with Real-World Examples
-
-![Step Builder](./etc/step-builder.png "Step Builder")
 
 ## When to Use the Step Builder Pattern in Java
 
