@@ -6,7 +6,7 @@ import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import java.time.Clock;
+
 
 @Component("myCustomHealthCheck")
 public class MyCustomHealthCheck implements HealthIndicator {

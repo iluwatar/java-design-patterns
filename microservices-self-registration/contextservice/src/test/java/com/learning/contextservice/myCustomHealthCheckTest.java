@@ -1,22 +1,12 @@
 package com.learning.contextservice;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.boot.actuate.health.Status;
-
-import java.time.Clock;
-import java.time.Instant;
-import java.time.ZoneId;
-import java.util.function.BooleanSupplier;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doReturn;
 
 class MyCustomHealthCheckTest {
-
-  MyCustomHealthCheck healthCheck = new MyCustomHealthCheck();
 
   @Test
   void testHealthUp() {
