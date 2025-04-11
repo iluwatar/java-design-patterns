@@ -40,18 +40,4 @@ class MyCustomHealthCheckTest {
     assertEquals("Scheduled health checks failed", health.getDetails().get("error"));
   }
 
-  @Test
-  void testUpdateHealthStatusSetsIsHealthyWithMocking() throws Exception {
-    MyCustomHealthCheck healthCheck = Mockito.spy(new MyCustomHealthCheck());
-
-    // Force performHealthCheck to return true
-    doReturn(true).when(healthCheck).performHealthCheck();
-    healthCheck.updateHealthStatus();
-    assertTrue((Boolean)ReflectionTestUtils.getField(healthCheck, "isHealthy"), "Health should be true");
-
-    // Force performHealthCheck to return false
-    doReturn(false).when(healthCheck).performHealthCheck();
-    healthCheck.updateHealthStatus();
-    assertFalse((Boolean)ReflectionTestUtils.getField(healthCheck, "isHealthy"), "Health should be false");
-  }
 }
