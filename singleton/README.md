@@ -33,6 +33,10 @@ Wikipedia says
 
 > In software engineering, the singleton pattern is a software design pattern that restricts the instantiation of a class to one object. This is useful when exactly one object is needed to coordinate actions across the system.
 
+Sequence diagram
+
+![Singleton Pattern sequence diagram](./etc/singleton-sequence-diagram.png)
+
 ## Programmatic Example of Singleton Pattern in Java
 
 Joshua Bloch, Effective Java 2nd Edition p.18
