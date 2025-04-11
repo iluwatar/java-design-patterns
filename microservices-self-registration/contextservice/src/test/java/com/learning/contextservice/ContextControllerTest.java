@@ -2,15 +2,11 @@ package com.learning.contextservice;
 
 import com.learning.contextservice.client.GreetingServiceClient;
 import com.learning.contextservice.controller.ContextController;
-import com.netflix.discovery.converters.Auto;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.cloud.openfeign.FeignAutoConfiguration;
-import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
@@ -18,7 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 @WebMvcTest(ContextController.class)
-public class ContextControllerTest {
+class ContextControllerTest {
 
   @Autowired
   private MockMvc mockMvc;

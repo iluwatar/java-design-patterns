@@ -9,11 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ContextController {
 
-  @Autowired
-  private GreetingServiceClient greetingServiceClient;
+  private final GreetingServiceClient greetingServiceClient;
+  private final String userRegion;
 
-  @Value("${user.region}")
-  private String userRegion;
+  @Autowired
+  public ContextController(GreetingServiceClient greetingServiceClient, @Value("${user.region}") String userRegion) {
+    this.greetingServiceClient = greetingServiceClient;
+    this.userRegion = userRegion;
+  }
 
   @GetMapping("/context")
   public String getContext() {
