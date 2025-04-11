@@ -166,7 +166,7 @@
     <module>microservices-distributed-tracing</module>
     <module>microservices-idempotent-consumer</module>
     <module>microservices-log-aggregation</module>
-    <module>microservices-self-registration-registration</module>
+    <module>microservices-self-registration</module>
     <module>model-view-controller</module>
     <module>model-view-intent</module>
     <module>model-view-presenter</module>
