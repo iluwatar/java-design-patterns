@@ -34,6 +34,10 @@ Wikipedia says
 
 > A test stub is a dummy component used during testing to isolate behavior.
 
+Sequence diagram
+
+![Service Stub sequence diagram](./etc/service-stub-sequence-diagram.png)
+
 ## Programmatic Example of Service Stub Pattern in Java
 
 We define a `SentimentAnalysisService` interface and provide two implementations:

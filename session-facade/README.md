@@ -34,6 +34,10 @@ In plain words
 
 > The Session Facade design pattern is an excellent choice for decoupling complex components of the system that need to be interacting frequently. 
 
+Sequence diagram
+
+![Session Facade sequence diagram](./etc/session-facade-sequence-diagram.png)
+
 ## Programmatic Example of Session Facade Pattern in Java
 
 The Session Facade design pattern is a structural design pattern that provides a simplified interface to a set of complex subsystems, reducing the complexity for the client. This pattern is particularly useful in situations where the client needs to interact with multiple services or systems but doesn’t need to know the internal workings of each service.
