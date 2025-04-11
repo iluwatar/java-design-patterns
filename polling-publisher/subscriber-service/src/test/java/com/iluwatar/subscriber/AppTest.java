@@ -22,32 +22,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cleanarchitecture;
 
-import lombok.Getter;
+package com.iluwatar.subscriber;
 
-/** Represents a product in the system. */
-@Getter
-public class Product {
-  /** The unique identifier for the product. */
-  private final String id;
+import static org.junit.jupiter.api.Assertions.*;
 
-  /** The name of the product. */
-  private final String name;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-  /** The price of the product. */
-  private final double price;
+@SpringBootTest
+public class AppTest {
 
-  /**
-   * Constructs a new Product with the given details.
-   *
-   * @param pdtId The unique identifier of the product.
-   * @param firstName The name of the product.
-   * @param p The price of the product.
-   */
-  public Product(final String pdtId, final String firstName, final double p) {
-    this.id = pdtId;
-    this.name = firstName;
-    this.price = p;
+  @Test
+  void subscriber() {
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

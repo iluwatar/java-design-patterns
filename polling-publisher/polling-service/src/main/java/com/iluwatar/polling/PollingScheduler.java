@@ -22,32 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cleanarchitecture;
 
-import lombok.Getter;
+package com.iluwatar.polling;
 
-/** Represents a product in the system. */
-@Getter
-public class Product {
-  /** The unique identifier for the product. */
-  private final String id;
+import java.util.Random;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
-  /** The name of the product. */
-  private final String name;
+/** This class is responsible for scheduling polling tasks. */
+@Component
+public class PollingScheduler {
 
-  /** The price of the product. */
-  private final double price;
+  @Autowired private DataSourceService dataSourceService;
 
-  /**
-   * Constructs a new Product with the given details.
-   *
-   * @param pdtId The unique identifier of the product.
-   * @param firstName The name of the product.
-   * @param p The price of the product.
-   */
-  public Product(final String pdtId, final String firstName, final double p) {
-    this.id = pdtId;
-    this.name = firstName;
-    this.price = p;
+  @Autowired private KafkaProducer kafkaProducer;
+
+  /** Scheduler for poll data on each 5 second. */
+  @Scheduled(fixedRate = 5000) // Poll every 5 seconds
+  public void pollDataSource() {
+    int id = new Random().nextInt(100); // Pick a random ID
+    String data = dataSourceService.getData(id); // Get data from service
+
+    if (data != null) {
+      System.out.println("🟢 Publishing Data: " + data);
+      kafkaProducer.sendMessage("updates", data);
+    } else {
+      System.out.println("🔴 No Data Found for ID: " + id);
+    }
   }
 }

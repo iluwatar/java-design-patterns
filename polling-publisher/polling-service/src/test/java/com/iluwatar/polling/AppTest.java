@@ -22,32 +22,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cleanarchitecture;
+package com.iluwatar.polling;
 
-import lombok.Getter;
+import static org.junit.jupiter.api.Assertions.*;
 
-/** Represents a product in the system. */
-@Getter
-public class Product {
-  /** The unique identifier for the product. */
-  private final String id;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
-  /** The name of the product. */
-  private final String name;
+@SpringBootTest
+public class AppTest {
 
-  /** The price of the product. */
-  private final double price;
-
-  /**
-   * Constructs a new Product with the given details.
-   *
-   * @param pdtId The unique identifier of the product.
-   * @param firstName The name of the product.
-   * @param p The price of the product.
-   */
-  public Product(final String pdtId, final String firstName, final double p) {
-    this.id = pdtId;
-    this.name = firstName;
-    this.price = p;
+  @Test
+  void polling() {
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

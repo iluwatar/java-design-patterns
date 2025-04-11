@@ -22,32 +22,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cleanarchitecture;
 
-import lombok.Getter;
+package com.iluwatar.polling;
 
-/** Represents a product in the system. */
-@Getter
-public class Product {
-  /** The unique identifier for the product. */
-  private final String id;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-  /** The name of the product. */
-  private final String name;
+/** This class is responsible for contolling polling tasks. */
+@RestController
+public class PollingController {
 
-  /** The price of the product. */
-  private final double price;
+  @GetMapping("/health")
+  public String healthCheck() {
+    return "Polling Service is up and running!";
+  }
 
-  /**
-   * Constructs a new Product with the given details.
-   *
-   * @param pdtId The unique identifier of the product.
-   * @param firstName The name of the product.
-   * @param p The price of the product.
-   */
-  public Product(final String pdtId, final String firstName, final double p) {
-    this.id = pdtId;
-    this.name = firstName;
-    this.price = p;
+  @Autowired private KafkaProducer kafkaProducer;
+
+  @PostMapping("/send")
+  public String sendMessage(@RequestParam("message") String message) {
+    kafkaProducer.sendMessage("API", message);
+    return "Message sent: " + message;
   }
 }

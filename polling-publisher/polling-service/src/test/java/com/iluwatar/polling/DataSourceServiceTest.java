@@ -22,45 +22,60 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cleanarchitecture;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+package com.iluwatar.polling;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class CartControllerTest {
+import java.util.Map;
+import org.junit.jupiter.api.*;
 
-  private ShoppingCartService shoppingCartUseCase;
-  private CartController cartController;
+public class DataSourceServiceTest {
+
+  private DataRepository repository;
+  private DataSourceService service;
 
   @BeforeEach
-  public void setUp() {
-    ProductRepository productRepository = new InMemoryProductRepository();
-    CartRepository cartRepository = new InMemoryCartRepository();
-    OrderRepository orderRepository = new InMemoryOrderRepository();
-    shoppingCartUseCase =
-        new ShoppingCartService(productRepository, cartRepository, orderRepository);
-    cartController = new CartController(shoppingCartUseCase);
+  void setUp() {
+    repository = new DataRepository();
+    service = new DataSourceService(repository);
   }
 
   @Test
-  void testRemoveItemFromCart() {
-    cartController.addItemToCart("user123", "1", 1);
-    cartController.addItemToCart("user123", "2", 2);
+  void testAddData() {
+    service.addData(1, "Test Data");
 
-    assertEquals(2000.0, cartController.calculateTotal("user123"));
-
-    cartController.removeItemFromCart("user123", "1");
-
-    assertEquals(1000.0, cartController.calculateTotal("user123"));
+    assertEquals("Test Data", repository.findById(1));
   }
 
   @Test
-  void testRemoveNonExistentItem() {
-    cartController.addItemToCart("user123", "2", 2);
-    cartController.removeItemFromCart("user123", "999");
+  void testGetData() {
+    repository.save(1, "Test Data");
 
-    assertEquals(1000.0, cartController.calculateTotal("user123"));
+    String result = service.getData(1);
+
+    assertEquals("Test Data", result, "The retrieved data should match.");
+  }
+
+  @Test
+  void testRemoveData() {
+    repository.save(2, "Some Data");
+
+    service.removeData(2);
+
+    assertEquals(
+        "Data not found", repository.findById(2), "Deleted data should not be retrievable.");
+  }
+
+  @Test
+  void testGetAllData() {
+    repository.save(1, "First");
+    repository.save(2, "Second");
+
+    Map<Integer, String> result = service.getAllData();
+
+    assertEquals(2, result.size(), "Should return all stored data.");
+    assertEquals("First", result.get(1), "Value for key 1 should be 'First'.");
+    assertEquals("Second", result.get(2), "Value for key 2 should be 'Second'.");
   }
 }

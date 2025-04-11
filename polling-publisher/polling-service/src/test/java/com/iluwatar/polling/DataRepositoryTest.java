@@ -22,45 +22,57 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cleanarchitecture;
+package com.iluwatar.polling;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class CartControllerTest {
+public class DataRepositoryTest {
 
-  private ShoppingCartService shoppingCartUseCase;
-  private CartController cartController;
+  private DataRepository repository;
 
   @BeforeEach
-  public void setUp() {
-    ProductRepository productRepository = new InMemoryProductRepository();
-    CartRepository cartRepository = new InMemoryCartRepository();
-    OrderRepository orderRepository = new InMemoryOrderRepository();
-    shoppingCartUseCase =
-        new ShoppingCartService(productRepository, cartRepository, orderRepository);
-    cartController = new CartController(shoppingCartUseCase);
+  void setUp() {
+    repository = new DataRepository(); // Initialize before each test
   }
 
   @Test
-  void testRemoveItemFromCart() {
-    cartController.addItemToCart("user123", "1", 1);
-    cartController.addItemToCart("user123", "2", 2);
+  void testSaveAndFindById() {
+    repository.save(1, "Test Data");
 
-    assertEquals(2000.0, cartController.calculateTotal("user123"));
+    String result = repository.findById(1);
 
-    cartController.removeItemFromCart("user123", "1");
-
-    assertEquals(1000.0, cartController.calculateTotal("user123"));
+    assertEquals("Test Data", result, "The retrieved data should match the stored value.");
   }
 
   @Test
-  void testRemoveNonExistentItem() {
-    cartController.addItemToCart("user123", "2", 2);
-    cartController.removeItemFromCart("user123", "999");
+  void testFindById_NotFound() {
+    String result = repository.findById(99);
 
-    assertEquals(1000.0, cartController.calculateTotal("user123"));
+    assertEquals("Data not found", result, "Should return 'Data not found' for missing entries.");
+  }
+
+  @Test
+  void testDelete() {
+    repository.save(2, "To be deleted");
+    repository.delete(2);
+
+    String result = repository.findById(2);
+
+    assertEquals("Data not found", result, "Deleted data should not be retrievable.");
+  }
+
+  @Test
+  void testFindAll() {
+    repository.save(1, "First");
+    repository.save(2, "Second");
+
+    Map<Integer, String> allData = repository.findAll();
+
+    assertEquals(2, allData.size(), "The repository should contain two items.");
+    assertTrue(allData.containsKey(1) && allData.containsKey(2), "Both keys should exist.");
   }
 }

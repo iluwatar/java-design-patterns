@@ -22,32 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cleanarchitecture;
 
-import lombok.Getter;
+package com.iluwatar.polling;
 
-/** Represents a product in the system. */
-@Getter
-public class Product {
-  /** The unique identifier for the product. */
-  private final String id;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
-  /** The name of the product. */
-  private final String name;
-
-  /** The price of the product. */
-  private final double price;
+/** Polling-Publisher pattern paradigm. */
+@SpringBootApplication
+@EnableScheduling
+public class App {
 
   /**
-   * Constructs a new Product with the given details.
+   * Program entry point.
    *
-   * @param pdtId The unique identifier of the product.
-   * @param firstName The name of the product.
-   * @param p The price of the product.
+   * @param args command line args.
    */
-  public Product(final String pdtId, final String firstName, final double p) {
-    this.id = pdtId;
-    this.name = firstName;
-    this.price = p;
+  public static void main(String[] args) {
+    SpringApplication.run(App.class, args);
   }
 }

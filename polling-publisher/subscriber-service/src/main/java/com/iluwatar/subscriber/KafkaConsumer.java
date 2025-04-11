@@ -22,32 +22,23 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cleanarchitecture;
 
-import lombok.Getter;
+package com.iluwatar.subscriber;
 
-/** Represents a product in the system. */
-@Getter
-public class Product {
-  /** The unique identifier for the product. */
-  private final String id;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Service;
 
-  /** The name of the product. */
-  private final String name;
+/** Kafka consumer service to consume messages / updates. */
+@Service
+public class KafkaConsumer {
 
-  /** The price of the product. */
-  private final double price;
+  @KafkaListener(topics = "updates", groupId = "subscriber-group")
+  public void listenUpdates(String message) {
+    System.out.println("[updates]: Received message: " + message);
+  }
 
-  /**
-   * Constructs a new Product with the given details.
-   *
-   * @param pdtId The unique identifier of the product.
-   * @param firstName The name of the product.
-   * @param p The price of the product.
-   */
-  public Product(final String pdtId, final String firstName, final double p) {
-    this.id = pdtId;
-    this.name = firstName;
-    this.price = p;
+  @KafkaListener(topics = "API", groupId = "subscriber-group")
+  public void listenApi(String message) {
+    System.out.println("[API]: Received message from /send : " + message);
   }
 }

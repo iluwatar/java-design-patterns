@@ -22,32 +22,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.cleanarchitecture;
 
-import lombok.Getter;
+package com.iluwatar.polling;
 
-/** Represents a product in the system. */
-@Getter
-public class Product {
-  /** The unique identifier for the product. */
-  private final String id;
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.PostConstruct;
+import org.springframework.stereotype.Repository;
 
-  /** The name of the product. */
-  private final String name;
+/** Data repository to keep or store data. */
+@Repository
+public class DataRepository {
 
-  /** The price of the product. */
-  private final double price;
+  private final Map<Integer, String> dataStorage = new HashMap<>();
 
-  /**
-   * Constructs a new Product with the given details.
-   *
-   * @param pdtId The unique identifier of the product.
-   * @param firstName The name of the product.
-   * @param p The price of the product.
-   */
-  public Product(final String pdtId, final String firstName, final double p) {
-    this.id = pdtId;
-    this.name = firstName;
-    this.price = p;
+  /** init after map creation ... to put dummy data. */
+  @PostConstruct
+  public void init() {
+    // Injecting dummy data at startup
+    dataStorage.put(2, "Initial Dummy Data - two - 2");
+    dataStorage.put(3, "Initial Dummy Data - three - 3");
+    dataStorage.put(4, "Initial Dummy Data - four - 4");
+  }
+
+  /** Save data to the repository. */
+  public void save(int id, String value) {
+    dataStorage.put(id, value);
+  }
+
+  /** Retrieve data by ID. */
+  public String findById(int id) {
+    return dataStorage.getOrDefault(id, "Data not found");
+  }
+
+  /** Delete data by ID. */
+  public void delete(int id) {
+    dataStorage.remove(id);
+  }
+
+  /** Get all data. */
+  public Map<Integer, String> findAll() {
+    return dataStorage;
   }
 }
