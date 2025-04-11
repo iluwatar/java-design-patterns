@@ -1,15 +1,22 @@
 package com.learning.contextservice;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.boot.actuate.health.Status;
 
+import java.time.Clock;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.function.BooleanSupplier;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.doReturn;
 
 class MyCustomHealthCheckTest {
+
+  MyCustomHealthCheck healthCheck = new MyCustomHealthCheck();
 
   @Test
   void testHealthUp() {
@@ -34,33 +41,17 @@ class MyCustomHealthCheckTest {
   }
 
   @Test
-  void testUpdateHealthStatusSetsIsHealthy() throws Exception {
-    MyCustomHealthCheck healthCheck = new MyCustomHealthCheck();
+  void testUpdateHealthStatusSetsIsHealthyWithMocking() throws Exception {
+    MyCustomHealthCheck healthCheck = Mockito.spy(new MyCustomHealthCheck());
 
-    // Force performHealthCheck to return true (by time simulation - might be flaky)
-    long currentTimeForTrue = System.currentTimeMillis();
-    while (currentTimeForTrue % 10000 >= 5000) {
-      Thread.sleep(10); // Wait until time is in the "true" range
-      currentTimeForTrue = System.currentTimeMillis();
-    }
-    ReflectionTestUtils.invokeMethod(healthCheck, "performHealthCheck");
+    // Force performHealthCheck to return true
+    doReturn(true).when(healthCheck).performHealthCheck();
     healthCheck.updateHealthStatus();
-    assertTrue((Boolean) ReflectionTestUtils.getField(healthCheck, "isHealthy"), "Health should be true");
+    assertTrue((Boolean)ReflectionTestUtils.getField(healthCheck, "isHealthy"), "Health should be true");
 
-    // Force performHealthCheck to return false (by time simulation - might be flaky)
-    long currentTimeForFalse = System.currentTimeMillis();
-    while (currentTimeForFalse % 10000 < 5000) {
-      Thread.sleep(10); // Wait until time is in the "false" range
-      currentTimeForFalse = System.currentTimeMillis();
-    }
-    ReflectionTestUtils.invokeMethod(healthCheck, "performHealthCheck");
+    // Force performHealthCheck to return false
+    doReturn(false).when(healthCheck).performHealthCheck();
     healthCheck.updateHealthStatus();
-    assertFalse((Boolean) ReflectionTestUtils.getField(healthCheck, "isHealthy"), "Health should be false");
+    assertFalse((Boolean)ReflectionTestUtils.getField(healthCheck, "isHealthy"), "Health should be false");
   }
-
-  // Note: Directly testing performHealthCheck (the private method) based on time is inherently
-  // difficult and can lead to flaky tests. The testUpdateHealthStatus attempts to indirectly
-  // verify its behavior. For more robust testing of performHealthCheck in isolation,
-  // you might consider refactoring the class to make the time dependency injectable
-  // or making the method protected for testing purposes.
 }

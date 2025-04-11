@@ -6,6 +6,7 @@ import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import java.time.Clock;
 
 @Component("myCustomHealthCheck")
 public class MyCustomHealthCheck implements HealthIndicator {
@@ -22,7 +23,7 @@ public class MyCustomHealthCheck implements HealthIndicator {
     log.info("Update health status : {}", isHealthy);
   }
 
-  private boolean performHealthCheck() {
+  boolean performHealthCheck() {
     boolean current = System.currentTimeMillis() % 10000 < 5000; // Simulate fluctuating health
     log.debug("Performing health check, current status: {}", current);
     return current; // Simulate fluctuating health
