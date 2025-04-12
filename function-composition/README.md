@@ -5,18 +5,20 @@ description: "Learn about the Function Composition design pattern in Java. Disco
 category: Functional
 language: en
 tag:
+  - Code simplification
   - Composition
+  - Functional decomposition
+  - Reusability
 ---
 
 ## Also known as
 
 * Function Chaining
-* Function Pipelining
-* Functional Composition
+* Higher-Order Function Wrapping
 
 ## Intent of Function Composition Design Pattern
 
-The Function Composition design pattern in Java enables the creation of complex functions by combining simpler ones. This enhances modular code and reusability, crucial for maintainable software development.
+Combine multiple small functions into a single operation that executes them in a sequence, producing a new function as the result.
 
 ## Detailed Explanation of Function Composition Pattern with Real-World Examples
 
@@ -40,24 +42,24 @@ Sequence diagram
 
 ## Programmatic Example of Function Composition Pattern in Java
 
-In the functional programming paradigm, function composition is a powerful technique. For instance, in Java, you can use higher-order functions to compose operations like multiplying and squaring numbers.
+In the functional programming paradigm, function composition is a powerful technique. For instance, in Java, you can use higher-order functions to combine operations like multiplying and squaring numbers.
 
 Using Java's functional interfaces, we can define simple functions and compose them. Here's how function composition works in Java.
 
-Let's start with defining two simple functions. In this case, we have a function `timesTwo` that multiplies its input by 2, and a function `square` that squares its input.
+Let's start with defining two simple functions. In this case, we have a function `timesTwo` that multiplies its input by 2, and a function `square` that squares its input:
 
 ```java
 Function<Integer, Integer> timesTwo = x -> x * 2;
 Function<Integer, Integer> square = x -> x * x;
 ```
 
-Next, we use the `FunctionComposer` class to compose these two functions into a new function. The `composeFunctions` method takes two functions as arguments and returns a new function that is the composition of the input functions.
+Next, we use the `FunctionComposer` class to compose these two functions into a new function. The `composeFunctions` method takes two functions as arguments and returns a new function that is the composition of the input functions:
 
 ```java
 Function<Integer, Integer> composedFunction = FunctionComposer.composeFunctions(timesTwo, square);
 ```
 
-Finally, we apply the composed function to an input value. In this case, we apply it to the number 3. The result is the square of the number 3 multiplied by 2, which is 36.
+Finally, we apply the composed function to an input value. In this case, we apply it to the number 3. The result is the square of the number 3 multiplied by 2, which is 36:
 
 ```java
 public static void main(String[] args) {
@@ -84,10 +86,9 @@ This example demonstrates how the Function Composition pattern can be used to cr
 
 Use the Function Composition pattern when:
 
-* You want to create a pipeline of operations in Java. This enhances code clarity and quality by structuring complex logic into simpler, reusable components.
-* You are working in a functional programming environment or a language that supports higher-order functions.
-* When you want to avoid deep nesting of function calls and instead build a pipeline of operations.
-* When aiming to promote immutability and side-effect-free functions in your design.
+* When you want to build complex transformations by chaining smaller, reusable functions in Java.
+* When the logic is best expressed through a series of operations that naturally feed one into another.
+* When you want to reduce code duplication and improve readability by isolating each operation in its own function.
 
 ## Function Composition Pattern Java Tutorials
 
@@ -96,31 +97,28 @@ Use the Function Composition pattern when:
 
 ## Real-World Applications of Function Composition Pattern in Java
 
-* Stream processing in Java 8 and above
-* Query builders in ORM libraries
-* Middleware composition in web frameworks
+* Java’s Stream API, where map and filter are composed for data transformations.
+* Google Guava’s Function utilities.
+* Apache Commons libraries that provide utilities for chaining functions.
 
 ## Benefits and Trade-offs of Function Composition Pattern
 
 Benefits:
 
-* High reusability of composed functions.
-* Increased modularity, making complex functions easier to understand and maintain.
-* Flexible and dynamic creation of function pipelines at runtime.
-* Enhances readability by structuring code in a linear, declarative manner.
-* Facilitates easier testing of individual functions.
+* Encourages highly modular and reusable code.
+* Simplifies complex logic by breaking it down into smaller, testable units.
+* Makes the code more expressive and easier to maintain.
 
 Trade-offs:
 
-* Potentially higher complexity when debugging composed functions. 
-* Overhead from creating and managing multiple function objects in memory-intensive scenarios.
-* May require a paradigm shift for developers unfamiliar with functional programming concepts.
+* Excessive chaining can reduce readability if taken too far.
+* May introduce performance overhead due to multiple function calls.
+* Errors can be harder to trace in a deeply composed function pipeline.
 
 ## Related Java Design Patterns
 
 * [Chain of Responsibility](https://java-design-patterns.com/patterns/chain-of-responsibility/) - Both patterns allow processing to be broken down into a series of steps, but Functional Composition focuses on function composition rather than responsibility delegation.
-* [Decorator](https://java-design-patterns.com/patterns/decorator/) - Similar in combining behaviors, but Decorator applies additional behavior to objects, while Functional Composition builds new functions.
-* [Strategy](https://java-design-patterns.com/patterns/strategy/) - Provides interchangeable functions (strategies), which can be composed in Functional Composition.
+* [Composite](https://java-design-patterns.com/patterns/composite/): Also deals with combining smaller components, though it is typically about object structure rather than function operations.
 
 ## References and Credits
 

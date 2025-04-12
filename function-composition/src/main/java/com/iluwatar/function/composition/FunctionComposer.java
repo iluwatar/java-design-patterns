@@ -32,6 +32,8 @@ import java.util.function.Function;
  */
 public class FunctionComposer {
 
+  private FunctionComposer() {}
+
   /**
    * Composes two functions where the output of the first function becomes the input of the second
    * function.
