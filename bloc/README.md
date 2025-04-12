@@ -2,16 +2,23 @@
 title: "Bloc Pattern in Java: State Management Simplified"
 shortTitle: Bloc
 description: "Learn how the Bloc pattern helps manage state changes in Java applications. This guide covers dynamic listener management, real-world examples, and clean code practices for state management."
-category: Structural
+category: Architectural
 language: en
 tag:
-  - Event-driven
+    - Abstraction
+    - Data binding
+    - Decoupling
+    - Event-driven
+    - Presentation
+    - Reactive
+    - Reusability
+    - State tracking
 ---
 
 ## Also known as
 
-* Event-driven State Management
-* State Listener Pattern
+* Business Logic Component
+* Business Logic Controller
 
 ## Intent of the Bloc Pattern
 
@@ -19,128 +26,122 @@ The Bloc pattern manages the state of an object and allows for dynamically notif
 
 ## Detailed explanation of the Bloc pattern with real-World examples
 
-### Real-world example
+Real-world example
 
 > Consider a digital counter application where multiple parts of the UI need to be updated whenever the counter changes. For example, a label displaying the counter value and an activity log showing changes. Instead of directly modifying these UI components, the Bloc pattern manages the counter state and notifies all registered listeners about the state change. Listeners can dynamically subscribe or unsubscribe from receiving updates.
 
-### In plain words
+In plain words
 
 > The Bloc pattern manages a single state object and dynamically notifies registered listeners whenever the state changes.
 
-### Wikipedia says
+Wikipedia says
 
 > While not a formalized "Gang of Four" design pattern, Bloc is widely used in state-driven applications. It centralizes state management and propagates state changes to registered observers, following principles of separation of concerns.
 
-### Sequence diagram
+Sequence diagram
 
 ![Bloc sequence diagram](./etc/bloc-sequence-diagram.png)
 
----
-
 ## Programmatic Example of the Bloc Pattern in Java
 
-### **Core Components of the Bloc Pattern**
+This example demonstrates how to implement the Bloc pattern using Java and Swing. The pattern separates the state of the application from UI components, and provides a reactive, event-driven approach to managing updates.
 
-#### **1. State Object**
+Core components of the Bloc Pattern include a `State` object, a `Bloc` class responsible for managing and updating that state, and interfaces (`StateListener` and `ListenerManager`) for subscribing to changes.
 
-The `State` class holds the representation of the state of the application that will be passed to listeners whenever there is a change to do but in this example it's simplified to be a single value.
+The `State` class represents the application's data at any given time.
 
 ```java
-package com.iluwatar.bloc;
-
-import lombok.Getter;
-
-@Getter
-public class State {
-    private final int value;
-
-    public State(int value) {
-        this.value = value;
-    }
-
-}
+public record State(int value) {}
 ```
-The `ListenerManager` interface manages the basic operations for the listeners and is implemented by bloc class
-```java
-import java.util.List;
 
+The `ListenerManager` interface declares methods to add and remove listeners, as well as retrieve them.
+
+```java
 public interface ListenerManager<T> {
-    void addListener(StateListener<T> listener);
-    void removeListener(StateListener<T> listener);
-    List<StateListener<T>> getListeners();
+  void addListener(StateListener<T> listener);
+  void removeListener(StateListener<T> listener);
+  List<StateListener<T>> getListeners();
 }
 ```
-The `StateListener` interface has a method that the listener needs to react to changes in the state and is used by bloC to notify listeners whenever there is an update to state.
+
+The `StateListener` interface defines how a listener reacts to state changes.
+
 ```java
 public interface StateListener<T> {
-void onStateChange(T state);
+  void onStateChange(T state);
 }
 ```
 
-The `Bloc` class holds the current state and manages logic of states and  notifies the list of listeners when states changes.
-The `Bloc` class contains methods for listeners and states like emitstate which updates the currentstate and notifies listeners addlistener which adds new listener to the listeners list and notifies it with the currentstate removelistener which removes listener from the listeners list and increment which increases the state value by 1 which is like an update to the current state and notifies the listeners in listeners list with the new state which holds a value incremented by 1 and decrement functions which does the opposite of increment function and notifies listeners in listeners list.
-```java
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+The `Bloc` class maintains the current state and notifies listeners of updates. It provides `increment` and `decrement` methods to update state and automatically notify registered listeners.
 
+```java
 public class Bloc implements ListenerManager<State> {
-private State currentState;
-private final List<StateListener<State>> listeners = new ArrayList<>();
 
-public Bloc() {
-this.currentState = new State(0);
-}
+  private State currentState;
+  private final List<StateListener<State>> listeners = new ArrayList<>();
 
-@Override
-public void addListener(StateListener<State> listener) {
-listeners.add(listener);
-listener.onStateChange(currentState);
-}
+  public Bloc() {
+    this.currentState = new State(0);
+  }
 
-@Override
-public void removeListener(StateListener<State> listener) {
-listeners.remove(listener);
-}
+  @Override
+  public void addListener(StateListener<State> listener) {
+    listeners.add(listener);
+    listener.onStateChange(currentState);
+  }
 
-@Override
-public List<StateListener<State>> getListeners() {
-return Collections.unmodifiableList(listeners);
-}
+  @Override
+  public void removeListener(StateListener<State> listener) {
+    listeners.remove(listener);
+  }
 
-private void emitState(State newState) {
-currentState = newState;
-for (StateListener<State> listener : listeners) {
-listener.onStateChange(currentState);
-}
-}
+  @Override
+  public List<StateListener<State>> getListeners() {
+    return Collections.unmodifiableList(listeners);
+  }
 
-public void increment() {
-emitState(new State(currentState.getValue() + 1));
-}
+  private void emitState(State newState) {
+    currentState = newState;
+    for (StateListener<State> listener : listeners) {
+      listener.onStateChange(currentState);
+    }
+  }
 
-public void decrement() {
-emitState(new State(currentState.getValue() - 1));
-}
+  public void increment() {
+    emitState(new State(currentState.value() + 1));
+  }
+
+  public void decrement() {
+    emitState(new State(currentState.value() - 1));
+  }
 }
 ```
-The `main` class have a simple gui to try and test the bloc pattern components separately from the ui components.
-the `main` class creates an instance of bloc then adds a listener to update the ui which resembles the counter and some buttons to change the states and toggle the listener dynamically 
-```java
-import javax.swing.*;
-import java.awt.*;
 
+This class demonstrates how to integrate the Bloc pattern with a simple Swing GUI. It sets up a counter, buttons to change the state, and a toggle to enable or disable the listener dynamically.
+
+```java
 public class Main {
-public static void main(String[] args) {
-Bloc bloc = new Bloc();
-JFrame frame = new JFrame("Bloc Example");
-frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-frame.setSize(400, 300);
-JLabel counterLabel = new JLabel("Counter: 0", SwingConstants.CENTER);
-counterLabel.setFont(new Font("Arial", Font.BOLD, 20));
-JButton incrementButton = new JButton("Increment");
-JButton decrementButton = new JButton("Decrement");
-JButton toggleListenerButton = new JButton("Disable Listener");
+  public static void main(String[] args) {
+    BlocUi blocUi = new BlocUi();
+    blocUi.createAndShowUi();
+  }
+}
+
+public class BlocUi {
+
+  public void createAndShowUi() {
+    final Bloc bloc = new Bloc();
+
+    JFrame frame = new JFrame("BloC example");
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    frame.setSize(400, 300);
+
+    JLabel counterLabel = new JLabel("Counter: 0", SwingConstants.CENTER);
+    counterLabel.setFont(new Font("Arial", Font.BOLD, 20));
+
+    JButton decrementButton = new JButton("Decrement");
+    JButton toggleListenerButton = new JButton("Disable Listener");
+    JButton incrementButton = new JButton("Increment");
 
     frame.setLayout(new BorderLayout());
     frame.add(counterLabel, BorderLayout.CENTER);
@@ -148,28 +149,30 @@ JButton toggleListenerButton = new JButton("Disable Listener");
     frame.add(decrementButton, BorderLayout.SOUTH);
     frame.add(toggleListenerButton, BorderLayout.EAST);
 
-    StateListener<State> stateListener = state -> counterLabel.setText("Counter: " + state.getValue());
+    StateListener<State> stateListener = state -> counterLabel.setText("Counter: " + state.value());
 
     bloc.addListener(stateListener);
 
-    toggleListenerButton.addActionListener(e -> {
-      if (bloc.getListeners().contains(stateListener)) {
-        bloc.removeListener(stateListener);
-        toggleListenerButton.setText("Enable Listener");
-      } else {
-        bloc.addListener(stateListener);
-        toggleListenerButton.setText("Disable Listener");
-      }
-    });
+    toggleListenerButton.addActionListener(
+            e -> {
+              if (bloc.getListeners().contains(stateListener)) {
+                bloc.removeListener(stateListener);
+                toggleListenerButton.setText("Enable Listener");
+              } else {
+                bloc.addListener(stateListener);
+                toggleListenerButton.setText("Disable Listener");
+              }
+            });
 
     incrementButton.addActionListener(e -> bloc.increment());
     decrementButton.addActionListener(e -> bloc.decrement());
 
     frame.setVisible(true);
-}
+  }
 }
 ```
-## Program Output
+
+### Program Output
 
 - **On Increment**  
   `Counter: 1`
@@ -181,48 +184,47 @@ JButton toggleListenerButton = new JButton("Disable Listener");
   - Listener disabled: Counter stops updating.  
   - Listener enabled: Counter updates again.
 
----
-
 ## When to Use the Bloc Pattern
 
 Use the Bloc pattern when:
 
-- You need a centralized system to manage state updates.
-- You want to dynamically add/remove listeners without tight coupling.
-- You are building an event-driven or state-driven system, such as UI frameworks.
----
+* When you want a clean separation of business logic and UI in Java applications
+* When you need a reactive approach to updating UI based on state changes
+* When you want to avoid coupling controllers or presenters directly to data manipulation
+* When multiple UI elements need access to the same business logic
 
 ## Real-World Applications of Bloc Pattern
 
-- **UI State Management**: Reacting to button clicks, updating labels, and toggling views.
-- **Event-driven Systems**: Handling multiple subscribers efficiently for state updates.
----
+* Java-based desktop applications that require real-time UI updates
+* Backend-driven Java frameworks that separate service layers from presentation
+* Cross-platform applications where the logic must remain consistent regardless of the UI technology
 
 ## Benefits and Trade-offs of Bloc Pattern
 
-### Benefits:
-- Clean separation of state management and UI logic.
-- Flexibility to dynamically add/remove listeners.
-- Centralized state propagation.
+Benefits:
 
-### Trade-offs:
-- Adds some complexity with the listener management mechanism.
-- May introduce performance concerns with excessive listeners.
-- the bloc class handles too many methods which violates the single responsbility principle
----
+* Simplifies UI components by removing direct business logic
+* Improves testability by isolating state and behavior
+* Encourages code reuse by centralizing data flows
+* Enhances maintainability through clear separation of concerns
+
+Trade-offs:
+
+* May introduce additional boilerplate code for managing streams or observers
+* Requires careful design to avoid a monolithic “god” component
+* Demands consistent reactive programming practices to be effective
 
 ## Related Patterns
 
-- **Observer**: Bloc is a specialized implementation of the Observer pattern.
-- **Mediator**: Bloc centralizes communication and state propagation.
-- **cubit**: bloC is more general implementation than cubit
----
+- [Observer](https://java-design-patterns.com/patterns/observer/): Bloc is a specialized implementation of the Observer pattern.
+- [Mediator](https://java-design-patterns.com/patterns/mediator/): Orchestrates interactions among multiple objects through a central component
+- [MVC](https://java-design-patterns.com/patterns/model-view-controller/): Shares the idea of separating concerns between layers
 
 ## References and Credits
 
-- [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
-- [Java Swing Documentation](https://docs.oracle.com/javase/tutorial/uiswing/)
-- [Event-Driven Programming in Java](https://www.oracle.com/java/)
-- [bloC archetecture](https://bloclibrary.dev/architecture/)
-- [flutter bloC package](https://pub.dev/documentation/flutter_bloc/latest/)
-
+* [Bloc architecture(bloclibrary.dev)](https://bloclibrary.dev/architecture/)
+* [Clean Architecture: A Craftsman's Guide to Software Structure and Design](https://amzn.to/3UoKkaR)
+* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
+* [Effective Java](https://amzn.to/4cGk2Jz)
+* [Event-Driven Programming in Java (Oracle)](https://www.oracle.com/java/)
+* [Java Swing Documentation (Oracle)](https://docs.oracle.com/javase/tutorial/uiswing/)
