@@ -45,6 +45,7 @@ public class ImageClientImpl implements ImageClient {
    */
   @Override
   public String getImagePath() {
+
     var httpClient = HttpClient.newHttpClient();
     var httpGet =
         HttpRequest.newBuilder().GET().uri(URI.create("http://localhost:50005/image-path")).build();

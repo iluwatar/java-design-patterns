@@ -1,6 +1,6 @@
 ---
 title: "Microservices API Gateway Pattern in Java: Simplifying Service Access with a Unified Endpoint"
-shortTitle: Microservice API Gateway
+shortTitle: Microservices API Gateway
 description: "Learn how the API Gateway pattern simplifies client-side development, enhances security, and optimizes communication in microservices architecture. Explore examples, benefits, and best practices."
 category: Integration
 language: en
