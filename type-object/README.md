@@ -32,11 +32,15 @@ Real-world example
 
 In plain words
 
-> Explore how the Java Type Object pattern enables dynamic creation and management of flexible and extensible sets of related classes, ideal for Java developers seeking modularity without modifying existing codebase.
+> Type Object pattern enables dynamic creation and management of flexible and extensible sets of related classes, ideal for Java developers seeking modularity without modifying existing codebase.
 
 gameprogrammingpatterns.com says
 
 > Define a type object class and a typed object class. Each type object instance represents a different logical type. Each typed object stores a reference to the type object that describes its type.
+
+Flowchart
+
+![Type Object Pattern Flowchart](./etc/type-object-flowchart.png)
 
 ## Programmatic Example of Type Object Pattern in Java
 
