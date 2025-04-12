@@ -6,9 +6,6 @@ category: Behavioral
 language: en
 tag:
     - Decoupling
-    - Event-driven
-    - Gang Of Four
-    - Publish/subscribe
 ---
 
 ## Intent of the Publish-Subscribe Design Pattern

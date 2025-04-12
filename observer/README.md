@@ -7,7 +7,7 @@ language: en
 tag:
   - Decoupling
   - Event-driven
-  - Gang Of Four
+  - Gang of Four
   - Publish/subscribe
 ---
 

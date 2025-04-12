@@ -5,11 +5,7 @@ description: "Learn how the Bloc pattern helps manage state changes in Java appl
 category: Structural
 language: en
 tag:
-  - State Management
   - Event-driven
-  - Listener Management
-  - Object Composition
-  - Dynamic Behavior
 ---
 
 ## Also known as

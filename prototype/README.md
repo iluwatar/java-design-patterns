@@ -5,7 +5,7 @@ description: "Explore the Prototype design pattern in Java with a comprehensive 
 category: Creational
 language: en
 tag: 
-  - Gang Of Four
+  - Gang of Four
   - Instantiation
   - Object composition
   - Polymorphism

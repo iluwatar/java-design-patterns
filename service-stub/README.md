@@ -5,10 +5,7 @@ description: "Explore the Service Stub design pattern in Java using a Sentiment 
 category: Structural
 language: en
 tag:
-    - Testing
     - Decoupling
-    - Dummy Services
-    - Dependency Injection
 ---
 
 ## Also known as

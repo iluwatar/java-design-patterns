@@ -10,7 +10,7 @@ tag:
   - Code simplification
   - Decoupling
   - Encapsulation
-  - Gang Of Four
+  - Gang of Four
   - Interface
   - Object composition
 ---

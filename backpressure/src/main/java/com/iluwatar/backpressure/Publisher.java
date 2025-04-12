@@ -30,6 +30,8 @@ import reactor.core.publisher.Flux;
 /** This class is the publisher that generates the data stream. */
 public class Publisher {
 
+  private Publisher() {}
+
   /**
    * On message method will trigger when the subscribed event is published.
    *

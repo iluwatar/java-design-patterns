@@ -6,14 +6,6 @@ category: Behavioral
 language: en
 tag:
   - Encapsulation
-  - Precision handling
-  - Currency safety
-  - Value Object
-  - Financial operations
-  - Currency
-  - Financial
-  - Immutable
-  - Value Object
 ---
 
 ## Also known as

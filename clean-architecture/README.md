@@ -6,7 +6,6 @@ category: Behavioral
 language: en
 tag:
   - Decoupling
-  - Architectural Style
 ---
 
 ## Also known as

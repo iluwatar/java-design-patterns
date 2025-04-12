@@ -2,15 +2,10 @@
 title: "Client-Side UI Composition Pattern: Assembling Modular UIs in Microservices Architecture"
 shortTitle: Client-Side UI Composition Pattern
 description: "Learn how the Client-Side UI Composition pattern allows the assembly of modular UIs on the client side, enabling independent teams to develop, deploy, and scale UI components in a microservices architecture. Discover the benefits, implementation examples, and best practices."
-category: User Interface
+category: Structural
 language: en
 tag:
-  - Micro Frontends
-  - API Gateway
-  - Asynchronous Data Fetching
-  - UI Integration
-  - Microservices Architecture
-  - Scalability
+  - Asynchronous
 ---
 
 ## **Intent of Client-Side UI Composition Design Pattern**

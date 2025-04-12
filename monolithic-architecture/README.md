@@ -6,10 +6,6 @@ category: Architectural
 language: en
 tag:
   - Cohesion
-  - Simplicity
-  - Scalability
-  - Deployment
-  - Maintainability
 ---
 
 ## Monolithic-Ecommerce App

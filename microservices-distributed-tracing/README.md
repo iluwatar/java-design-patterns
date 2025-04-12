@@ -2,15 +2,10 @@
 title: "Microservices Distributed Tracing Pattern: Enhancing Visibility in Service Communication"
 shortTitle: Distributed Tracing in Microservices
 description: "Learn how the Distributed Tracing pattern enhances visibility into service communication across microservices. Discover its benefits, implementation examples, and best practices."
-category: Integration
+category: Structural
 language: en
 tag:
-  - Distributed tracing
-  - Microservices architecture
-  - Service communication
-  - Performance monitoring
   - Scalability
-  - Observability
 ---
 
 ## Intent of Microservices Distributed Tracing Design Pattern

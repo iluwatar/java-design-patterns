@@ -6,7 +6,7 @@ category: Behavioral
 language: en
 tag:
   - Decoupling
-  - Gang Of Four
+  - Gang of Four
   - Messaging
   - Object composition
 ---

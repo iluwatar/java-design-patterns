@@ -6,12 +6,6 @@ category: Structural
 language: en
 tag:
   - Abstraction
-  - API design
-  - Code simplification
-  - Decoupling
-  - Encapsulation
-  - Gang Of Four
-  - Interface
 ---
 
 ## Also known as

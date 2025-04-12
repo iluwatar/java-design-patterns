@@ -2,13 +2,10 @@
 title: "Idempotent Consumer Pattern in Java: Ensuring Reliable Message Processing"
 shortTitle: Idempotent Consumer
 description: "Learn about the Idempotent Consumer pattern in Java. Discover how it ensures reliable and consistent message processing, even in cases of duplicate messages."
-category: Messaging
+category: Structural
 language: en
 tag:
-    - Messaging
-    - Fault tolerance
     - Event-driven
-    - Reliability
 ---
 
 ## Also known as

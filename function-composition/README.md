@@ -5,12 +5,7 @@ description: "Learn about the Function Composition design pattern in Java. Disco
 category: Functional
 language: en
 tag:
-  - Code simplification
   - Composition
-  - Decoupling
-  - Functional decomposition
-  - Lambda
-  - Reusability
 ---
 
 ## Also known as

@@ -2,19 +2,10 @@
 title: "Table Inheritance Pattern in Java: Modeling Hierarchical Data in Relational Databases"
 shortTitle: Table Inheritance
 description: "Explore the Table Inheritance pattern in Java with real-world examples, database schema, and tutorials. Learn how to model class hierarchies elegantly in relational databases."
-category: Data Access Pattern, Structural Pattern
+category: Structural
 language: en
 tag:
-- Decoupling
-- Inheritance
-- Polymorphism
-- Object Mapping
-- Persistence
-- Data Transformation
----
-
-## Also Known As
-- Class Table Inheritance
+   - Decoupling
 ---
 
 ## Intent of Table Inheritance Pattern

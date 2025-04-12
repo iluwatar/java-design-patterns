@@ -7,7 +7,7 @@ language: en
 tag:
   - Decoupling
   - Encapsulation
-  - Gang Of Four
+  - Gang of Four
   - Lazy initialization
   - Proxy
   - Security

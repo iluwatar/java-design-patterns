@@ -2,13 +2,10 @@
 title: "MapReduce Pattern in Java"
 shortTitle: MapReduce
 description: "Learn the MapReduce pattern in Java with real-world examples, class diagrams, and tutorials. Understand its intent, applicability, benefits, and known uses to enhance your design pattern knowledge."
-category: Performance optimization
+category: Structural
 language: en
 tag:
-    - Data processing
-    - Code simplification
     - Delegation
-    - Performance
 ---
 
 ## Also known as
