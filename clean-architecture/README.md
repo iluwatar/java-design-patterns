@@ -2,54 +2,48 @@
 title: "Clean Architecture - A Software Maintainable Architectural style."
 shortTitle: Clean Architecture
 description: "Learn the Clean Architecture Style in Java with real-world examples, code snippets, and class diagrams. Enhance your coding skills with our detailed explanations."
-category: Behavioral
+category: Architectural
 language: en
 tag:
-  - Decoupling
+    - Architecture
+    - Decoupling
+    - Domain
+    - Inversion of control
+    - Layered architecture
+    - Modularity
+    - Testing
 ---
-
-## Also known as
-
-* Hexagonal Architecture.
 
 ## Intent of Clean Architecture.
 
-The clean architecture is a software design architectural style which ensures the software application is easy to understand, maintainable and can be extend easily as per business requirement.
+To organize the system so that the core business logic remains independent from external concerns and frameworks.
 
 ## Detailed Explanation of Clean Architecture Pattern with Real-World Examples
 
-Real World.
+Real-world example
 
-A real world example of clean architecture is like teh shopping mall example. There some employee is assigned to work on the filling of the products in the counter, one person is responsible for the billing purpose, one person is taking care of the security, one person is taking care of the product they have in storage. The work of every individual is separate and they are focussed on the specific task. Clean architecture also suggests to make the component separate and each component should perform some task. Clean Architecture proposes a layered architecture with clear boundaries between different system components to achieve independence of frameworks, UI, databases, and delivery mechanisms and the possibility to test in isolation.
+> Imagine a large pizza chain with multiple ordering channels—web, mobile app, phone calls, and in-store kiosks. The core “pizza domain” logic (calculating prices, preparing orders, managing loyalty points) is kept entirely separate from the user interfaces and storage mechanisms. As a result, the chain can add or change the ordering channel (for example, introducing a chatbot or swapping out the database) without altering the fundamental pizza-ordering rules, thanks to the layered boundaries and strict dependency rules of Clean Architecture.
 
-In plain word
+In plain words
 
-It helps to make the system more maintainable and easy to extend.
+> Clean Architecture is a software design approach that isolates the core business logic from external concerns (like databases, frameworks, or UI) through strict layering and clear boundaries, ensuring that changes in one layer don't ripple through the entire system.
 
 Wikipedia says
 
-> The clean architecture proposed by Robert C. Martin in 2012 combines the principles of the hexagonal architecture, the onion architecture and several other variants. It provides additional levels of detail of the component, which are presented as concentric rings. It isolates adapters and interfaces (user interface, databases, external systems, devices) in the outer rings of the architecture and leaves the inner rings for use cases and entities.
-> 
-> The clean architecture uses the principle of dependency inversion with the strict rule that dependencies shall only exist between an outer ring to an inner ring and never the contrary.
+> The clean architecture proposed by Robert C. Martin in 2012 combines the principles of the hexagonal architecture, the onion architecture and several other variants. It provides additional levels of detail of the component, which are presented as concentric rings. It isolates adapters and interfaces (user interface, databases, external systems, devices) in the outer rings of the architecture and leaves the inner rings for use cases and entities. The clean architecture uses the principle of dependency inversion with the strict rule that dependencies shall only exist between an outer ring to an inner ring and never the contrary.
 
+Mind map
 
-## Clean architecture Class Diagram
+![Clean Architecture Mind Map](./etc/clean-architecture-mind-map.png)
 
-![Clean Architecture](./etc/cleanArchitectureUMLDiagram.png "Clean Architecture class diagram")
+Flowchart
 
-## When to Use the Clean Architecture Pattern in Java
-
-In all application we can use the clean architecture style and make the component separate and business logic separate from the UI and database.
-
-## Real-World Applications of Chain of Responsibility Pattern in Java.
-
-In the application say Ecommerce application user gives teh order and the application is represented using teh clean architecture pattern.
-
-There are facility like the **product** where user can see the product details like the price and the features, **Cart** user can add the product they have selected and the **Order** where user can see the total order and calculate the price of the order. Learn how to implement this design pattern in Java with the following code snippet.  
+![Clean Architecture Flowchart](./etc/clean-architecture-flowchart.png)
 
 ## Programmatic Example of Clean Architecture Pattern
 
-First we have the entity class like the `Product`, `Order` and teh `Cart`
+First, we define the core domain entities: `Product`, `Order`, and `Cart`. These classes capture the fundamental business logic and state.
+
 ```java
 public class Product {
     private String id;
@@ -93,7 +87,9 @@ public class Order {
     }
 }
 ```
-The repository interfaces are created.
+
+The repository interfaces are created to abstract data operations for each domain object, allowing us to switch out storage or persistence mechanisms without changing higher-level logic.
+
 ```java
 public interface CartRepository {
     void addItemToCart(String userId, Product product, int quantity);
@@ -114,8 +110,8 @@ public interface OrderRepository {
 }
 ```
 
+The in-memory data store implementations use simple collections to hold state. They demonstrate how easily we can replace or extend the data layer (e.g., swapping in a database) without affecting the domain logic.
 
-The in memory data store in the cart and order.
 ```java
 public class InMemoryCartRepository implements CartRepository {
   private final Map<String, List<Cart>> userCarts = new HashMap<>();
@@ -181,7 +177,8 @@ public class InMemoryProductRepository implements ProductRepository {
 }
 ```
 
-The order controller. 
+The order controller coordinates the checkout process by using the use-case or service layer (`ShoppingCartService`).
+
 ```java
 public class OrderController{
   private final ShoppingCartService shoppingCartUseCase;
@@ -195,7 +192,10 @@ public class OrderController{
   }
 }
 ```
-The cart controller.
+
+The cart controller focuses on cart-related actions like adding or removing items and calculating totals.
+
+
 ```java
 public class CartController {
   private final ShoppingCartService shoppingCartUseCase;
@@ -218,7 +218,8 @@ public class CartController {
 }
 ```
 
-The clean architecture in action.
+The clean architecture in action. In the `main` method, we wire up everything, simulating a typical user flow: items are added to the cart, the total is calculated, and finally an order is placed.
+
 ```java
 public static void main(String[] args) {
 
@@ -245,33 +246,46 @@ public static void main(String[] args) {
 ```
 
 The output of the code.
+
 ```md
 Total: $2000.0
 Order placed! Order ID: ORDER-1743349969254, Total: $2000.0
 ```
 
-## Benefits and Trade-offs of Clean Architecture Pattern.
+## When to Use the Clean Architecture Pattern in Java
+
+* When you want to keep business rules independent of UI, database, or any other external agency
+* When you need a high level of maintainability and testability in large Java applications
+* When you aim to enforce clear boundaries among application layers
+
+## Real-World Applications of Clean Architecture Pattern in Java
+
+* Large-scale enterprise systems in finance and insurance domains
+* Microservices-based architectures that prioritize decoupling and modular design
+* Java systems requiring stringent separation of concerns and domain-centered design
+
+## Benefits and Trade-offs of Clean Architecture Pattern
 
 Benefits: 
 
-The main benefits of the Clean Architecture involves -   
-**Scalability** - It allows to add new features without any issue.  
-**Modularity** - It makes the code loosely coupled and making the change in any component becomes easier.  
-**Testability** - The architecture promotes unit testing, integration testing, and acceptance testing of different layers independently.
+* High maintainability by isolating core logic from infrastructure details
+* Enhanced testability through clear boundaries around the domain model
+* Flexibility in replacing or upgrading external components without affecting core logic
 
 Trade-Offs:
 
-Initially the design needs to be done with high precision and the UML diagram should cover all the architectural structure. It will in return help to make it more channelised and the code extensibility will increase.
+* Initial complexity from enforcing strict layers and boundaries
+* Potential overhead in smaller projects not requiring such rigid separation
+* Requires disciplined team adherence to architecture rules
 
 ## Related Java Design Patterns
 
-* Dependency Injection - Dependency Injection (DI) is a key concept in Clean Architecture. It promotes loose coupling between classes by allowing dependencies to be injected rather than directly created by the class itself.
-* Singleton Pattern - The Singleton pattern ensures that a class has only one instance and provides a global point of access to that instance. This is often used for shared services or resources, such as a configuration manager, logging service, or database connection pool.
+* [Dependency Injection](https://java-design-patterns.com/patterns/dependency-injection/): Facilitates decoupling layers by injecting dependencies rather than hard-coding them
+* [Layered Architecture](https://java-design-patterns.com/patterns/layered-architecture/): Both separate concerns into distinct tiers but Clean Architecture emphasizes strict dependency rules
+* [Hexagonal Architecture](https://java-design-patterns.com/patterns/hexagonal-architecture/): Similar focus on isolating core logic with ports and adapters
 
 ## References and Credits
 
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
-* [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
-* [Pattern-Oriented Software Architecture, Volume 1: A System of Patterns](https://amzn.to/3PAJUg5)
-* [Refactoring to Patterns](https://amzn.to/3VOO4F5)
-* [Pattern languages of program design 3](https://amzn.to/4a4NxTH)
+* [Clean Architecture: A Craftsman's Guide to Software Structure and Design](https://amzn.to/3UoKkaR)
+* [Clean Code: A Handbook of Agile Software Craftsmanship](https://amzn.to/3wRnjp5)
+* [Domain-Driven Design: Tackling Complexity in the Heart of Software](https://amzn.to/3wlDrze)
