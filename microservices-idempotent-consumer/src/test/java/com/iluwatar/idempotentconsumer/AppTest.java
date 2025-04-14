@@ -39,12 +39,12 @@ import org.springframework.boot.CommandLineRunner;
 class AppTest {
 
   @Test
-  void main() {
+  void testMain() {
     assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 
   @Test
-  void run() throws Exception {
+  void testRun() throws Exception {
     RequestService requestService = Mockito.mock(RequestService.class);
     RequestRepository requestRepository = Mockito.mock(RequestRepository.class);
     UUID uuid = UUID.randomUUID();

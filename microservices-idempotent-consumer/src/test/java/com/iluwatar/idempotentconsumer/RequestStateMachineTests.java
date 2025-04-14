@@ -35,7 +35,7 @@ class RequestStateMachineTests {
   private RequestStateMachine requestStateMachine;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     requestStateMachine = new RequestStateMachine();
   }
 
