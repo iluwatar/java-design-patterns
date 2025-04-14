@@ -61,9 +61,7 @@ class MoneyTest {
 
     assertThrows(
         CannotAddTwoCurrienciesException.class,
-        () -> {
-          money1.addMoney(money2);
-        });
+        () -> money1.addMoney(money2));
   }
 
   @Test
@@ -85,9 +83,7 @@ class MoneyTest {
 
     assertThrows(
         CannotSubtractException.class,
-        () -> {
-          money1.subtractMoney(money2);
-        });
+        () -> money1.subtractMoney(money2));
   }
 
   @Test
@@ -98,9 +94,7 @@ class MoneyTest {
 
     assertThrows(
         CannotSubtractException.class,
-        () -> {
-          money1.subtractMoney(money2);
-        });
+        () -> money1.subtractMoney(money2));
   }
 
   @Test
@@ -120,9 +114,7 @@ class MoneyTest {
 
     assertThrows(
         IllegalArgumentException.class,
-        () -> {
-          money.multiply(-2);
-        });
+        () -> money.multiply(-2));
   }
 
   @Test
@@ -143,17 +135,13 @@ class MoneyTest {
 
     assertThrows(
         IllegalArgumentException.class,
-        () -> {
-          money.exchangeCurrency("EUR", -0.85);
-        });
+        () -> money.exchangeCurrency("EUR", -0.85));
   }
 
   @Test
   void testAppExecution() {
     assertDoesNotThrow(
-        () -> {
-          App.main(new String[] {});
-        },
+        () -> App.main(new String[] {}),
         "App execution should not throw any exceptions");
   }
 }
