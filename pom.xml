@@ -46,7 +46,7 @@
     <slf4j.version>2.0.17</slf4j.version>
 
     <!-- Other dependencies -->
-    <jacoco.version>0.8.12</jacoco.version>
+    <jacoco.version>0.8.13</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
     <htmlunit.version>4.7.0</htmlunit.version>
     <gson.version>2.11.0</gson.version>
