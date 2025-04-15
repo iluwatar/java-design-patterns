@@ -27,21 +27,21 @@ package com.iluwatar.actormodel;
 import java.util.logging.Logger;
 
 public class ExampleActor extends Actor {
-  private  final ActorSystem actorSystem;
+  private final ActorSystem actorSystem;
 
   public ExampleActor(ActorSystem actorSystem) {
     this.actorSystem = actorSystem;
   }
+
   Logger logger = Logger.getLogger(getClass().getName());
 
   @Override
   protected void onReceive(Message message) {
-    logger.info("[" +getActorId()+ "]" + "Received : " + message.getContent());
+    logger.info("[" + getActorId() + "]" + "Received : " + message.getContent());
 
-    Actor sender = actorSystem.getActorById(message.getSenderId());// sender actor id
-    if(sender!=null && !message.getSenderId().equals(getActorId())) {
+    Actor sender = actorSystem.getActorById(message.getSenderId()); // sender actor id
+    if (sender != null && !message.getSenderId().equals(getActorId())) {
       sender.send(new Message("I got your message ", getActorId()));
     }
-
   }
 }

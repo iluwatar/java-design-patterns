@@ -24,16 +24,14 @@
  */
 package com.iluwatar.actormodel;
 
-import lombok.Getter;
-import lombok.Setter;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import lombok.Getter;
+import lombok.Setter;
 
 public abstract class Actor implements Runnable {
 
-  @Setter
-  @Getter
-  private String actorId;
+  @Setter @Getter private String actorId;
   private final BlockingQueue<Message> mailbox = new LinkedBlockingQueue<>();
   private volatile boolean active =
       true; // always read from main memory and written back to main memory,
@@ -50,7 +48,7 @@ public abstract class Actor implements Runnable {
 
   @Override
   public void run() {
-    while ( active ) {
+    while (active) {
       try {
         Message message = mailbox.take(); // Wait for a message
         onReceive(message); // Process it

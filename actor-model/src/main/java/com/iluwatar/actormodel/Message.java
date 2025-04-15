@@ -33,7 +33,9 @@ public class Message {
     this.senderId = senderId;
   }
 
-  public String getContent() { return content; }
+  public String getContent() {
+    return content;
+  }
 
   public String getSenderId() {
     return senderId;

@@ -31,7 +31,7 @@ public class App {
     system.startActor(srijan);
     Actor ansh = new ExampleActor2(system);
     system.startActor(ansh);
-    ansh.send(new Message("Hello Srijan" , srijan.getActorId()));
+    ansh.send(new Message("Hello Srijan", srijan.getActorId()));
     srijan.send(new Message("Hello ansh!", srijan.getActorId()));
 
     Thread.sleep(1000); // Give time for messages to process
