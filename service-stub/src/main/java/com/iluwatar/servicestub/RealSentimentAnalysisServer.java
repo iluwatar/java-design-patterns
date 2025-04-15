@@ -36,10 +36,8 @@ public class RealSentimentAnalysisServer implements SentimentAnalysisServer {
    * A real sentiment analysis implementation would analyze the input string using, e.g., NLP and
    * determine whether the sentiment is positive, negative or neutral. Here we simply choose a
    * random number to simulate this. The "model" may take some time to process the input and we
-   * simulate this by delaying the execution 5 seconds.
-   *
-   * @param text the input string to analyze
-   * @return sentiment classification result (Positive, Negative, or Neutral)
+   * simulate this by delaying the execution 5 seconds. Analyzes the sentiment of the given input
+   * string and returns the classification result (Positive, Negative, or Neutral).
    */
   private final Supplier<Integer> sentimentSupplier;
 
@@ -61,6 +59,11 @@ public class RealSentimentAnalysisServer implements SentimentAnalysisServer {
     } catch (InterruptedException e) {
       Thread.currentThread().interrupt();
     }
-    return sentiment == 0 ? "Positive" : sentiment == 1 ? "Negative" : "Neutral";
+
+    return switch (sentiment) {
+      case 0 -> "Positive";
+      case 1 -> "Negative";
+      default -> "Neutral";
+    };
   }
 }
