@@ -27,18 +27,17 @@ package com.iluwatar.actormodel;
 public class App {
   public static void main(String[] args) throws InterruptedException {
     ActorSystem system = new ActorSystem();
-    Actor Srijan = system.actorOf(new ExampleActor());
-
-    /* Actor Srijan = new ExampleActor() ;
-      system.actorOf(Srijan);  this is also acceptable
-    */
-
-    Srijan.send(new Message("Hello Actor!", Srijan));
-    Srijan.send(new Message("Another message", Srijan));
+    Actor srijan = new ExampleActor(system);
+    system.startActor(srijan);
+    Actor ansh = new ExampleActor2(system);
+    system.startActor(ansh);
+    ansh.send(new Message("Hello Srijan" , srijan.getActorId()));
+    srijan.send(new Message("Hello ansh!", srijan.getActorId()));
 
     Thread.sleep(1000); // Give time for messages to process
 
-    Srijan.stop(); // Stop the actor gracefully
+    srijan.stop(); // Stop the actor gracefully
+    ansh.stop();
     system.shutdown(); // Stop the actor system
   }
 }

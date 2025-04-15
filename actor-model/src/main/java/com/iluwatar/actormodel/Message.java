@@ -26,18 +26,16 @@ package com.iluwatar.actormodel;
 
 public class Message {
   private final String content;
-  private final Actor sender;
+  private final String senderId;
 
-  public Message(String content, Actor sender) {
+  public Message(String content, String senderId) {
     this.content = content;
-    this.sender = sender;
+    this.senderId = senderId;
   }
 
-  public String getContent() {
-    return content;
-  }
+  public String getContent() { return content; }
 
-  public Actor getSender() {
-    return sender;
+  public String getSenderId() {
+    return senderId;
   }
 }
