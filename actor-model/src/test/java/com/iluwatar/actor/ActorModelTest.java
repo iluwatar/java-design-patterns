@@ -28,12 +28,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import com.iluwatar.actormodel.Actor;
 import com.iluwatar.actormodel.ActorSystem;
+import com.iluwatar.actormodel.App;
 import com.iluwatar.actormodel.ExampleActor;
 import com.iluwatar.actormodel.ExampleActor2;
 import com.iluwatar.actormodel.Message;
 import org.junit.jupiter.api.Test;
 
 public class ActorModelTest {
+  @Test
+  void testMainMethod() throws InterruptedException {
+    App.main(new String[] {});
+  }
 
   @Test
   public void testMessagePassing() {
