@@ -27,7 +27,7 @@ package com.iluwatar.sessionfacade;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 /** The type App test. */
-public class AppTest {
+class AppTest {
 
   /** Should execute application without exception. */
   @org.junit.jupiter.api.Test

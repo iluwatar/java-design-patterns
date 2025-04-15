@@ -5,28 +5,34 @@ description: "Learn how to implement the Session Facade Design Pattern in Java t
 category: Structural
 language: en
 tag:
-  - Abstraction
+    - API design
+    - Abstraction
+    - Architecture
+    - Business
+    - Decoupling
+    - Enterprise patterns
+    - Facade
+    - Layered architecture
+    - Session management
 ---
 
 ## Also known as
 
-* Session Facade 
+* Remote Facade
 
 ## Intent of Session Facade Design Pattern
 
-Abstracting the underlying business object interactions by providing a service layer that exposes only the required interfaces  
+Provide a simplified interface to a complex subsystem, reducing complexity and coupling between client and business logic in enterprise Java applications.
 
 ## Detailed Explanation of Session Facade Pattern with Real-World Examples
 
 Real-world example
 
-> In an e-commerce website, users interact with several subsystems like product catalogs, shopping carts, 
-> payment services, and order management. The Session Facade pattern provides a simplified, centralized interface for these subsystems, 
-> allowing the client to interact with just a few high-level methods (e.g., addToCart(), placeOrder(), selectPaymentMethod()), instead of directly communicating with each subsystem, using a facade supports low coupling between classes and high cohesion within each service, allowing them to focus on their specific responsibilities.
+> A real-world analogy for the Session Facade pattern is a hotel concierge service. Guests (clients) don't directly interact with various departments like housekeeping, kitchen, transport services, or maintenance. Instead, they interact with the concierge (the facade), who simplifies these interactions. When a guest requests services like room cleaning, dinner reservations, or taxi bookings, the concierge handles communication with multiple hotel departments behind the scenes, providing a simplified and unified interface to the guest, reducing complexity and enhancing guest satisfaction.
 
 In plain words
 
-> The Session Facade design pattern is an excellent choice for decoupling complex components of the system that need to be interacting frequently. 
+> Session Facade provides a simplified interface to complex business logic in Java applications, reducing client complexity and minimizing network overhead by encapsulating interactions within a single session component.
 
 Sequence diagram
 
@@ -34,14 +40,16 @@ Sequence diagram
 
 ## Programmatic Example of Session Facade Pattern in Java
 
-The Session Facade design pattern is a structural design pattern that provides a simplified interface to a set of complex subsystems, reducing the complexity for the client. This pattern is particularly useful in situations where the client needs to interact with multiple services or systems but doesn’t need to know the internal workings of each service.
+The Session Facade pattern is a structural design pattern that provides a simplified interface to complex subsystems, making the system easier for clients to interact with. It is especially useful when a client needs access to multiple underlying services without needing to understand their internal complexities.
 
-In the context of an e-commerce website, imagine a system where users can browse products, add items to the shopping cart, process payments, and place orders. Instead of the client directly interacting with each individual service (cart, order, payment), the Session Facade provides a single, unified interface for these operations.
+In the context of an e-commerce website, consider a scenario where users browse products, manage their shopping carts, place orders, and process payments. Rather than directly interacting with each subsystem individually (such as the cart, order, and payment systems), a client can communicate through a single unified Session Facade interface.
 
-Example Scenario:
-In this example, the ShoppingFacade class manages interactions with three subsystems: the `CartService`, `OrderService`, and `PaymentService`. The client interacts with the facade to perform high-level operations like adding items to the cart, placing an order, and selecting a payment method.
+### Example Scenario:
 
-Here’s a simplified programmatic example:
+In this example, the `ShoppingFacade` class simplifies client interactions with three services: the `CartService`, `OrderService`, and `PaymentService`. The client uses the facade to perform high-level operations like adding products to the cart, placing an order, and choosing a payment method, without needing to know the underlying details.
+
+Here's a simplified Java program demonstrating this pattern:
+
 ```java
 public class App {
     public static void main(String[] args) {
@@ -53,14 +61,15 @@ public class App {
 }
 ```
 
-The `ShoppingFacade` acts as an intermediary that facilitates interaction between different services promoting low coupling between these services. 
+The `ShoppingFacade` serves as a centralized point of interaction for various shopping-related operations, thereby reducing direct coupling between client code and individual subsystem services:
+
 ```java
 public class ShoppingFacade {
-    
+
     private final CartService cartService;
     private final OrderService orderService;
     private final PaymentService paymentService;
-    
+
     public ShoppingFacade() {
         Map<Integer, Product> productCatalog = new HashMap<>();
         productCatalog.put(1, new Product(1, "Wireless Mouse", 25.99, "Ergonomic wireless mouse with USB receiver."));
@@ -70,42 +79,45 @@ public class ShoppingFacade {
         orderService = new OrderService(cart);
         paymentService = new PaymentService();
     }
-    
+
     public Map<Integer, Product> getCart() {
         return this.cartService.getCart();
     }
-    
+
     public void addToCart(int productId) {
         this.cartService.addToCart(productId);
     }
 
-   
+
     public void removeFromCart(int productId) {
         this.cartService.removeFromCart(productId);
     }
-    
+
     public void order() {
         this.orderService.order();
     }
-    
+
     public Boolean isPaymentRequired() {
         double total = this.orderService.getTotal();
-        if (total == 0.0) {
+        if (total==0.0) {
             LOGGER.info("No payment required");
             return false;
         }
         return true;
     }
-    
+
     public void processPayment(String method) {
         Boolean isPaymentRequired = isPaymentRequired();
         if (Boolean.TRUE.equals(isPaymentRequired)) {
             paymentService.selectPaymentMethod(method);
         }
     }
+}
 ```
 
-Console output for starting the `App` class's `main` method:
+### Console Output
+
+When running the provided example (App.main()), the output might look similar to:
 
 ```
 19:43:17.883 [main] INFO com.iluwatar.sessionfacade.CartService -- ID: 1
@@ -115,41 +127,40 @@ Description: Ergonomic wireless mouse with USB receiver. successfully added to t
 19:43:17.910 [main] INFO com.iluwatar.sessionfacade.OrderService -- Client has chosen to order [ID: 1
 ```
 
-This is a basic example of the Session Facade design pattern. The actual implementation would depend on specific requirements of your application.
+This simplified example demonstrates the essence of the Session Facade pattern. Your actual implementation may vary based on the specific needs of your application.
 
 ## When to Use the Session Facade Pattern in Java
 
-* Use when building complex applications with multiple interacting services, where you want to simplify the interaction between various subsystems.
-* Ideal for decoupling complex systems that need to interact but should not be tightly coupled.
-* Suitable for applications where you need a single point of entry to interact with multiple backend services, like ecommerce platforms, booking systems, or order management systems.
+* When dealing with complex enterprise applications containing multiple business objects.
+* To provide simplified API calls to clients, hiding the underlying complexity.
+* When seeking improved performance and reduced network calls between clients and servers.
 
 ## Real-World Applications of Server Session Pattern in Java
 
-* Enterprise JavaBeans (EJB)
-* Java EE (Jakarta EE) Applications
+* Java EE applications utilizing Enterprise JavaBeans (EJB) as session facades to encapsulate business logic.
+* Spring-based applications using services as session facades to simplify interactions between controllers and repositories.
 
 ## Benefits and Trade-offs of Server Session Pattern
 
+Benefits:
 
-* Simplifies client-side logic by providing a single entry point for complex operations across multiple services.
-* Decouples components of the application, making them easier to maintain, test, and modify without affecting other parts of the system.
-* Improves modularity by isolating the implementation details of subsystems from the client.
-* Centralizes business logic in one place, making the code easier to manage and update.
+* Reduces complexity by providing a simpler interface to a subsystem.
+* Improves performance by minimizing network traffic and reducing remote calls.
+* Enhances modularity and maintainability by clearly separating business logic and client interactions.
 
-## Trade-offs:
+Trade-offs:
 
-* Potential performance bottleneck: Since all requests pass through the facade, it can become a bottleneck if not optimized.
-* Increased complexity: If the facade becomes too large or complex, it could counteract the modularity it aims to achieve.
-* Single point of failure: If the facade encounters issues, it could affect the entire system's operation, making it crucial to handle errors and exceptions properly.
+* Can introduce additional layers that might increase initial complexity.
+* Risk of creating overly broad facades that violate single responsibility principles.
 
 ## Related Java Design Patterns
 
-* [Facade](https://java-design-patterns.com/patterns/facade/): The Session Facade pattern is a specific application of the more general Facade pattern, which simplifies access to complex subsystems.
-* [Command](https://java-design-patterns.com/patterns/command/): Useful for encapsulating requests and passing them to the session facade, which could then manage the execution order.
-* [Singleton](https://java-design-patterns.com/patterns/singleton/):  Often used to create a single instance of the session facade for managing the entire workflow of a subsystem.
+* [Data Transfer Object (DTO)](https://java-design-patterns.com/patterns/data-transfer-object/): Often used together, Session Facade simplifies data transfer by utilizing DTOs to encapsulate data passed between client and server.
+* [Facade](https://java-design-patterns.com/patterns/facade/): Session Facade is a specialized version of the Facade pattern, applied specifically in enterprise systems to manage business logic and remote interactions.
 
 ## References and Credits
 
 * [Core J2EE Patterns: Best Practices and Design Strategies](https://amzn.to/4cAbDap)
-* [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 * [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Real World Java EE Patterns-Rethinking Best Practices](https://amzn.to/3EvkzS8)
+* [Remote Facade (Martin Fowler)](https://martinfowler.com/eaaCatalog/remoteFacade.html)
