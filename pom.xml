@@ -481,7 +481,7 @@
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
-        <version>2.44.3</version> <!-- Use latest version -->
+        <version>2.44.4</version> <!-- Use latest version -->
         <executions>
           <execution>
             <goals>
