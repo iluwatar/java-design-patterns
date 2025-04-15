@@ -44,7 +44,7 @@ public class RequestService {
   }
 
   /**
-   * Creates a new Request or returns an existing one by it's UUID. This operation is idempotent:
+   * Creates a new Request or returns an existing one by its UUID. This operation is idempotent:
    * performing it once or several times successively leads to an equivalent result.
    *
    * @param uuid The unique identifier for the Request.
@@ -52,10 +52,7 @@ public class RequestService {
    */
   public Request create(UUID uuid) {
     Optional<Request> optReq = requestRepository.findById(uuid);
-    if (!optReq.isEmpty()) {
-      return optReq.get();
-    }
-    return requestRepository.save(new Request(uuid));
+    return optReq.orElseGet(() -> requestRepository.save(new Request(uuid)));
   }
 
   /**
