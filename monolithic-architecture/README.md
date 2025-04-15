@@ -1,50 +1,52 @@
 ---
-title: "Monolithic Ecommerce App: A Cohesive Application Model"
-shortTitle: Monolithic Ecommerce
-description: "Explore the Monolithic Ecommerce application structure, its design intent, benefits, limitations, and real-world applications. Understand its simplicity and practical use cases."
+title: "Monolithic Architecture in Java: A Cohesive Application Model"
+shortTitle: Monolithic Architecture
+description: "Explore the Monolithic Architecture application structure, its design intent, benefits, limitations, and real-world applications. Understand its simplicity and practical use cases."
 category: Architectural
 language: en
 tag:
-  - Cohesion
+    - Architecture
+    - Cohesion
+    - Encapsulation
+    - Layered architecture
+    - Modularity
 ---
 
-## Monolithic-Ecommerce App
-* A Monolithic Ecommerce example to showcase Monolithic Architecture
+## Also known as
+
+* Single-tier architecture
+* Monolith
 
 ## The Intent of Monolithic Design pattern
-> the Monolithic Design Pattern structures an application as a single, cohesive unit where all components—such as business logic, user interface, and data access are tightly integrated and operate as part of a single executable.
+
+Encapsulate all the functionality of an application within a single, cohesive codebase.
 
 ## Detailed Explanation of the Monolithic Architecture
-Real-world Example
-> A traditional E-commerce website is the most straightforward example for a monolithic application as it is comprised of a catalogue of products, orders to be made, shopping carts, and payment processes that are all inseperable of each other.
 
-In Plain words
->The monolithic design pattern structures an application as a single unified unit, where all components are tightly coupled and run within a single process.
+Real-world example
 
-GeeksforGeeks states
-> Monolithic architecture, a traditional approach in system design, which contains all application components into a single codebase. This unified structure simplifies development and deployment processes, offering ease of management and tight integration. However, because of its rigidity, it is difficult to scale and maintain, which makes it difficult to adjust to changing needs.
+> An analogous real-world example of the Monolithic Architecture pattern is a department store. Just like a monolithic Java application, a department store hosts all product categories, sales, storage, and customer services within a single, large building. It simplifies shopping by consolidating everything under one roof, making operations straightforward and easy to manage. However, expanding or rearranging specific departments becomes increasingly challenging over time, similar to how scaling individual functionalities within a monolithic system can become complex and cumbersome.
 
-Why use MVC for a Monolithic Application ?
->The Model-View-Controller (MVC) pattern is not inherently tied to microservices or distributed systems. It's a software design pattern that organizes the codebase by separating concerns into three distinct layers:
->* Model
->* View
->* Controller
->
-> this also helps maintain the principles of a Monolithic Architecture which are:
-> 
-> Simple to
->* Develop
->* Test
->* Deploy
->* Scale
->
+In plain words
 
-Architecture diagram
+> The monolithic design pattern structures an application as a single unified unit, where all components are tightly coupled and run within a single process.
 
-![Model-View-Controller Architecture Diagram](./etc/mvc-architecture-diagram.png)
+Wikipedia says
 
-## We can clearly see that this is a Monolithic application through the main class
-This is a simplified version of the main application that shows the main interaction point with the CLI and how a user is registered
+> In software engineering, a monolithic application is a single unified software application that is self-contained and independent of other applications, but typically lacks flexibility. There are advantages and disadvantages of building applications in a monolithic style of software architecture, depending on requirements. Monolith applications are relatively simple and have a low cost but their shortcomings are lack of elasticity, fault tolerance and scalability.
+
+Mind map
+
+![Monolithic Architecture Mind Map](./etc/monolithic-architecture-mind-map.png)
+
+Flowchart
+
+![Monolithic Architecture Flowchart](./etc/monolithic-architecture-flowchart.png)
+
+## Programmatic Example of Monolithic Architecture in Java
+
+This is a simplified version of the main application, demonstrating how a monolithic architecture can be implemented. Here, all the essential services—such as user management (`UserCon`), product management (`ProductCon`), and order processing (`OrderCon`) — are tightly integrated within a single executable Java application. The CLI provides a straightforward user interaction point where operations like user registration, adding products, and placing orders are handled.
+
 ```java
 @SpringBootApplication
 public class EcommerceApp implements CommandLineRunner {
@@ -105,47 +107,46 @@ public class EcommerceApp implements CommandLineRunner {
 
 }
 ```
-### We can clearly reach the conclusion that all of these classes reside under the same module and are essential for each other's functionality, this is supported by the presence of all relevant classes as parts of the main application class.
 
-## When should you resort to a Monolithic Architecture ?
->* An enterprise Starting off with a relatively small team
->* Simplicity is the most important factor of the project
->* Maintaining less entry points to the system is cruical
->* Prototyping ideas
->
-## Pros & Cons of using Monolithic Architecture
->### Pros:
->* Simple Development: Easy to develop and deploy.
->* Unified Codebase: All code in one place, simplifying debugging.
->* Better Performance: No inter-service communication overhead.
->* Lower Costs: Minimal infrastructure and tooling requirements.
->* Ease of Testing: Single application makes end-to-end testing straightforward.
->   * This is also assisted by the MVC structure employed in this example.
->### Cons:
->* Scalability Issues: Cannot scale individual components.
->* Tight Coupling: Changes in one area may impact the whole system.
->* Deployment Risks: A single failure can crash the entire application.
->* Complex Maintenance: Harder to manage as the codebase grows.
->* Limited Flexibility: Difficult to adopt new technologies for specific parts.
+In this example, the core business functionalities are closely interconnected, sharing common resources and residing within the same codebase. This approach simplifies initial application development, testing, and deployment, as each component can easily access the others directly without the overhead of inter-service communication. However, as the application grows, scaling individual components independently becomes more challenging, highlighting the key trade-off inherent in the monolithic architecture.
 
-## Real-World Applications of Monolithic architecture Pattern in Java
->* E-Commerce Platforms
->* Content Management Systems (CMS)
->* Banking and Financial Systems
->* Enterprise Resource Planning (ERP) Systems
->* Retail Point of Sale (POS) Systems
+## When to Use the Monolithic Architecture in Java
+
+* Suitable for small to medium-sized applications where simplicity, cohesive development, and ease of deployment outweigh scalability and flexibility requirements.
+* Applicable in contexts where initial rapid development and ease of testing are prioritized.
+
+## Real-World Applications of Monolithic Architecture in Java
+
+* Early-stage Java web applications developed using frameworks like Spring MVC, Java EE (Servlets/JSP), or frameworks like Play.
+* Traditional Java enterprise applications packaged and deployed as WAR or EAR files on application servers such as Apache Tomcat, Jetty, or WildFly.
+* Standalone Java applications and desktop applications packaged as single executable JAR files.
+
+## Benefits and Trade-offs of Monolithic Architecture
+
+Benefits:
+
+* Simpler to develop, test, and deploy as the application is a single unit.
+* Easier debugging and performance monitoring due to the single unified runtime.
+* Typically faster initial development and straightforward management of dependencies.
+
+Trade-offs:
+
+* Poor scalability and potential performance bottlenecks as the application grows.
+* Limited modularity, leading to increased complexity and harder maintainability over time.
+* Slow deployments and updates due to a single large codebase.
+* Difficult to scale individual functionalities independently.
+
+## Related Patterns
+
+* Microservices Architecture: Breaks down a monolithic application into independently deployable services, directly addressing the scalability and maintainability limitations of monoliths.
+* [Layered Architecture](https://java-design-patterns.com/patterns/layered-architecture/): Often used internally within monoliths to provide clear separation between presentation, business logic, and persistence layers.
 
 ## References
->* [GeeksforGeeks](https://www.geeksforgeeks.org/monolithic-architecture-system-design/)
->* [Wikipedia](https://en.wikipedia.org/wiki/Monolithic_application)
->* [vFunction](https://vfunction.com/blog/what-is-monolithic-application/#:~:text=A%20traditional%20e%2Dcommerce%20platform,inseparable%20components%20of%20the%20system.) Blog post
->* [Microservices.io](https://microservices.io/patterns/monolithic.html)
->* [IBM](https://www.ibm.com/think/topics/monolithic-architecture)
->#### References used to create the code
->* [Mockito](https://site.mockito.org/) -Testing
->* [Junit](https://junit.org/junit5/docs/current/user-guide/) -Testing 
->* [Springboot](https://docs.spring.io/spring-boot/index.html) -Web Application Initiation (implemented but not utilized in this example)
->* [Sprint Data Jpa](https://docs.spring.io/spring-data/jpa/reference/index.html) -Database connection
->* [Lombok](https://projectlombok.org/) -Simplifying Classes
->* [Log4j](https://logging.apache.org/log4j/2.x/index.html) -Capturing Logs
->* [H2 Databse](https://www.h2database.com/html/tutorial.html) -Efficient, Simple, Dynamic Databse
+
+* [Building Microservices](https://amzn.to/3UACtrU)
+* [Fundamentals of Software Architecture: An Engineering Approach](https://amzn.to/4cx4A2N)
+* [Monolithic Architecture - System Design (GeeksforGeeks)](https://www.geeksforgeeks.org/monolithic-architecture-system-design/)
+* [Monolithic Application (Wikipedia)](https://en.wikipedia.org/wiki/Monolithic_application)
+* [Pattern: Monolithic Architecture (Microservices.io)](https://microservices.io/patterns/monolithic.html)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [What Is Monolithic Architecture? (IBM)](https://www.ibm.com/think/topics/monolithic-architecture)
