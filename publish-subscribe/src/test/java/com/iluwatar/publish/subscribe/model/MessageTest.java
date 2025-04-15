@@ -29,10 +29,10 @@ import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
 import org.junit.jupiter.api.Test;
 
-public class MessageTest {
+class MessageTest {
 
   @Test
-  public void testMessage() {
+  void testMessage() {
     final String content = "some content";
     Message message = new Message(content);
     assertInstanceOf(String.class, message.content());

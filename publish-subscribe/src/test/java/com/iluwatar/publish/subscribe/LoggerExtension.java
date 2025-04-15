@@ -28,7 +28,6 @@ import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.read.ListAppender;
 import java.util.List;
-import java.util.stream.Collectors;
 import org.junit.jupiter.api.extension.AfterEachCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -53,12 +52,10 @@ public class LoggerExtension implements BeforeEachCallback, AfterEachCallback {
   }
 
   public List<String> getMessages() {
-    return listAppender.list.stream().map(e -> e.getMessage()).collect(Collectors.toList());
+    return listAppender.list.stream().map(e -> e.getMessage()).toList();
   }
 
   public List<String> getFormattedMessages() {
-    return listAppender.list.stream()
-        .map(e -> e.getFormattedMessage())
-        .collect(Collectors.toList());
+    return listAppender.list.stream().map(e -> e.getFormattedMessage()).toList();
   }
 }
