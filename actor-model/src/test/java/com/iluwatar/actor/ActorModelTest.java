@@ -26,7 +26,6 @@ package com.iluwatar.actor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import com.iluwatar.actormodel.Actor;
 import com.iluwatar.actormodel.ActorSystem;
 import com.iluwatar.actormodel.App;
 import com.iluwatar.actormodel.ExampleActor;
@@ -41,18 +40,24 @@ public class ActorModelTest {
   }
 
   @Test
-  public void testMessagePassing() {
+  public void testMessagePassing() throws InterruptedException {
     ActorSystem system = new ActorSystem();
 
-    Actor srijan = new ExampleActor(system);
-    Actor ansh = new ExampleActor2(system);
+    ExampleActor srijan = new ExampleActor(system);
+    ExampleActor2 ansh = new ExampleActor2(system);
 
     system.startActor(srijan);
     system.startActor(ansh);
 
-    ansh.send(new Message("Hello Srijan", srijan.getActorId()));
+    // Ansh recieves a message from Srijan
+    ansh.send(new Message("Hello ansh", srijan.getActorId()));
 
-    // You can improve this later by capturing output or using mocks
-    assertNotNull(srijan.getActorId());
+    // Wait briefly to allow async processing
+    Thread.sleep(200);
+
+    // Check that Srijan received the message
+    assertTrue(
+        ansh.getReceivedMessages().contains("Hello ansh"),
+        "ansh should receive the message from Srijan");
   }
 }

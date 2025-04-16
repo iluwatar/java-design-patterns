@@ -24,19 +24,23 @@
  */
 package com.iluwatar.actormodel;
 
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class ExampleActor2 extends Actor {
   private final ActorSystem actorSystem;
+  @Getter private final List<String> receivedMessages = new ArrayList<>();
 
   public ExampleActor2(ActorSystem actorSystem) {
     this.actorSystem = actorSystem;
   }
 
-  Logger logger = Logger.getLogger(getClass().getName());
-
   @Override
   protected void onReceive(Message message) {
-    logger.info("[" + getActorId() + "]" + "Received : " + message.getContent());
+    receivedMessages.add(message.getContent());
+    LOGGER.info("[{}]Received : {}", getActorId(), message.getContent());
   }
 }

@@ -22,17 +22,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+/**
+ * The Actor Model is a design pattern used to handle concurrency in a safe, scalable, and
+ * message-driven way.
+ *
+ * <p>In the Actor Model: - An **Actor** is an independent unit that has its own state and behavior.
+ * - Actors **communicate only through messages** — they do not share memory. - An **ActorSystem**
+ * is responsible for creating, starting, and managing the lifecycle of actors. - Messages are
+ * delivered asynchronously, and each actor processes them one at a time.
+ *
+ * <p>💡 Key benefits: - No shared memory = no need for complex thread-safety - Easy to scale with
+ * many actors - Suitable for highly concurrent or distributed systems
+ *
+ * <p>🔍 This example demonstrates the Actor Model: - `ActorSystem` starts two actors: `srijan` and
+ * `ansh`. - `ExampleActor` and `ExampleActor2` extend the `Actor` class and override the
+ * `onReceive()` method to handle messages. - Actors communicate using `send()` to pass `Message`
+ * objects that include the message content and sender's ID. - The actors process messages
+ * **asynchronously in separate threads**, and we allow a short delay (`Thread.sleep`) to let them
+ * run. - The system is shut down gracefully at the end.
+ */
 package com.iluwatar.actormodel;
 
 public class App {
   public static void main(String[] args) throws InterruptedException {
     ActorSystem system = new ActorSystem();
     Actor srijan = new ExampleActor(system);
-    system.startActor(srijan);
     Actor ansh = new ExampleActor2(system);
+
+    system.startActor(srijan);
     system.startActor(ansh);
-    ansh.send(new Message("Hello Srijan", srijan.getActorId()));
-    srijan.send(new Message("Hello ansh!", srijan.getActorId()));
+    ansh.send(new Message("Hello ansh", srijan.getActorId()));
+    srijan.send(new Message("Hello srijan!", ansh.getActorId()));
 
     Thread.sleep(1000); // Give time for messages to process
 
