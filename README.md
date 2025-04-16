@@ -45,7 +45,7 @@ If you are willing to contribute to the project you will find the relevant infor
 
 # The Book
 
-The design patterns are now available as an e-book. Find out more about "Open Source Java Design Patterns" here: https://payhip.com/b/kcaF9
+The design patterns are now available as an e-book. Find out more about "Open Source Java Design Patterns" here: https://payhip.com/b/bNQFX
 
 The project contributors can get the book for free. Contact the maintainer via [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns) or email (iluwatar (at) gmail (dot) com ). Send a message that contains your email address, Github username, and a link to an accepted pull request.
 
