@@ -1,0 +1,35 @@
+@startuml actor-model
+
+title Actor Model - UML Class Diagram
+
+class ActorSystem {
+  +actorOf(actor: Actor): Actor
+  +shutdown(): void
+}
+
+class Actor {
+  -mailbox: BlockingQueue<Message>
+  -active: boolean
+  +send(message: Message): void
+  +stop(): void
+  +run(): void
+  #onReceive(message: Message): void
+}
+
+class ExampleActor {
+  +onReceive(message: Message): void
+}
+
+class Message {
+  -content: String
+  -sender: Actor
+  +getContent(): String
+  +getSender(): Actor
+}
+
+ActorSystem --> Actor : creates
+Actor <|-- ExampleActor : extends
+Actor --> Message : processes
+ExampleActor --> Message : uses
+
+@enduml
