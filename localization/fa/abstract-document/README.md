@@ -229,14 +229,14 @@ public class Car extends AbstractDocument implements HasModel, HasPrice, HasPart
 
 منابع و اعتبارها
 
-*    Design Patterns: Elements of Reusable Object-Oriented Software
+*    [Design Patterns: Elements of Reusable Object-Oriented Software](https://amzn.to/3w0pvKI)
 
-*    Java Design Patterns: A Hands-On Experience with Real-World Examples
+*    [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
 
-*    Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing (v. 4)
+*    [Pattern-Oriented Software Architecture Volume 4: A Pattern Language for Distributed Computing (v. 4)] (https://amzn.to/49zRP4R)
 
-*    Patterns of Enterprise Application Architecture
+*    [Patterns of Enterprise Application Architecture] (https://amzn.to/3WfKBPR)
 
-*    Abstract Document Pattern (Wikipedia)
+*    [Abstract Document Pattern (Wikipedia)] (https://en.wikipedia.org/wiki/Abstract_Document_Pattern)
 
-*    Dealing with Properties (Martin Fowler)
+*    [Dealing with Properties (Martin Fowler)] (http://martinfowler.com/apsupp/properties.pdf)
