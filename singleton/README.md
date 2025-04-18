@@ -37,6 +37,10 @@ Sequence diagram
 
 ![Singleton Pattern sequence diagram](./etc/singleton-sequence-diagram.png)
 
+## Easy analogy
+
+    Imagine a singleton like a company's Leader. There can be only one Leader for a company. All employees interact with this single leader instance. No matter how many teams they have in their company, everyone has to refer to that same leader. Similarly, in the Singleton class, there can be only one instance of the class. 
+
 ## Programmatic Example of Singleton Pattern in Java
 
 Joshua Bloch, Effective Java 2nd Edition p.18
