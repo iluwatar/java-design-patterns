@@ -172,26 +172,20 @@ public class App implements Runnable {
 چه زمانی از الگوی Active Object در جاوا استفاده کنیم؟
 
 از الگوی Active Object در جاوا استفاده کنید زمانی که:
-
-نیاز دارید وظایف ناهمگام را بدون مسدود کردن thread اصلی مدیریت کنید تا عملکرد و پاسخ‌گویی بهتری داشته باشید.
-
-نیاز به تعامل ناهمگام با منابع خارجی دارید.
-
-می‌خواهید پاسخ‌گویی برنامه را افزایش دهید.
-
-نیاز به مدیریت وظایف هم‌زمان به‌صورت ماژولار و قابل نگهداری دارید.
+> * نیاز دارید وظایف ناهمگام را بدون مسدود کردن thread اصلی مدیریت کنید تا عملکرد و پاسخ‌گویی بهتری داشته باشید.
+> * نیاز به تعامل ناهمگام با منابع خارجی دارید.
+> * می‌خواهید پاسخ‌گویی برنامه را افزایش دهید.
+> * نیاز به مدیریت وظایف هم‌زمان به‌صورت ماژولار و قابل نگهداری دارید.
 
 آموزش‌های Java برای الگوی Active Object
-
-    [Android and Java Concurrency: The Active Object Pattern (Douglas Schmidt)]((https://www.youtube.com/watch?v=Cd8t2u5Qmvc))
+> [Android and Java Concurrency: The Active Object Pattern (Douglas Schmidt)]((https://www.youtube.com/watch?v=Cd8t2u5Qmvc))
 
 کاربردهای دنیای واقعی الگوی Active Object در جاوا
 
-    سیستم‌های معاملات بلادرنگ که درخواست‌ها به‌صورت ناهمگام پردازش می‌شوند.
-
-    رابط‌های کاربری گرافیکی (GUI) که در آن وظایف طولانی در پس‌زمینه اجرا می‌شوند بدون آنکه رابط کاربری را متوقف کنند.
-
-    برنامه‌نویسی بازی‌ها برای مدیریت به‌روزرسانی‌های هم‌زمان وضعیت بازی یا محاسبات هوش مصنوعی.
+>    سیستم‌های معاملات بلادرنگ که درخواست‌ها به‌صورت ناهمگام پردازش می‌شوند.
+> که در آن وظایف طولانی در پس‌زمینه اجرا می‌شوند بدون آنکه رابط کاربری را متوقف کنند. 
+> رابط‌های کاربری گرافیکی (GUI) 
+>     برنامه‌نویسی بازی‌ها برای مدیریت به‌روزرسانی‌های هم‌زمان وضعیت بازی یا محاسبات هوش مصنوعی. 
 
 مزایا و ملاحظات الگوی Active Object
 
@@ -212,22 +206,15 @@ public class App implements Runnable {
 الگوهای طراحی مرتبط در جاوا
 
 >    * [Command](https://java-design-patterns.com/patterns/command/): درخواست را به‌عنوان یک شیء کپسوله می‌کند، مشابه روشی که Active Object فراخوانی متد را کپسوله می‌کند.
-
 >    * [Promise](https://java-design-patterns.com/patterns/promise/): راهی برای دریافت نتیجه یک فراخوانی متد ناهمگام فراهم می‌کند؛ اغلب همراه با Active Object استفاده می‌شود.
-
 >    * [Proxy](https://java-design-patterns.com/patterns/proxy/): الگوی Active Object می‌تواند از proxy برای مدیریت فراخوانی‌های متد به‌صورت ناهمگام استفاده کند.
 
 منابع و مراجع
 
 >    * [Design Patterns: Elements of Reusable Object Software](https://amzn.to/3HYqrBE)
-
 >    * [Concurrent Programming in Java: Design Principles and Patterns](https://amzn.to/498SRVq)
-
 >    * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
-
 >    * [Learning Concurrent Programming in Scala](https://amzn.to/3UE07nV)
-
 >    * [Pattern Languages of Program Design 3](https://amzn.to/3OI1j61)
-
 >    * [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)
 
