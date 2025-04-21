@@ -5,11 +5,11 @@ description: "الگوی طراحی factory در جاوا را با مثال‌�
 category: structural
 language: fa
 tag:
-    - انتزاع
-    - کپسوله‌سازی
-    - گروه چهار نفره
-    - نمونه‌سازی
-    - چندریختی
+    - Abstraction
+    - Encapsulation
+    - Gang of Four
+    - Instantiation
+    - Polymorphism
 ---
 
 ## هدف از الگوی طراحی factory
