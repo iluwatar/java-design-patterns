@@ -204,31 +204,30 @@ public class App implements Runnable {
 > *   بهبود سازمان‌دهی کد و قابلیت نگهداری.
 > * فراهم‌سازی ایمنی در برابر شرایط بحرانی (thread safety) و جلوگیری از مشکلات وضعیت مشترک.
 
-معایب:
-
-    سربار اضافی به دلیل ارسال پیام و مدیریت threadها.
-
-    برای تمام سناریوهای هم‌زمانی مناسب نیست.
+> معایب:
+> 
+> * سربار اضافی به دلیل ارسال پیام و مدیریت threadها.
+> * برای تمام سناریوهای هم‌زمانی مناسب نیست.
 
 الگوهای طراحی مرتبط در جاوا
 
-    * [Command](https://java-design-patterns.com/patterns/command/): درخواست را به‌عنوان یک شیء کپسوله می‌کند، مشابه روشی که Active Object فراخوانی متد را کپسوله می‌کند.
+>    * [Command](https://java-design-patterns.com/patterns/command/): درخواست را به‌عنوان یک شیء کپسوله می‌کند، مشابه روشی که Active Object فراخوانی متد را کپسوله می‌کند.
 
-    * [Promise](https://java-design-patterns.com/patterns/promise/): راهی برای دریافت نتیجه یک فراخوانی متد ناهمگام فراهم می‌کند؛ اغلب همراه با Active Object استفاده می‌شود.
+>    * [Promise](https://java-design-patterns.com/patterns/promise/): راهی برای دریافت نتیجه یک فراخوانی متد ناهمگام فراهم می‌کند؛ اغلب همراه با Active Object استفاده می‌شود.
 
-    * [Proxy](https://java-design-patterns.com/patterns/proxy/): الگوی Active Object می‌تواند از proxy برای مدیریت فراخوانی‌های متد به‌صورت ناهمگام استفاده کند.
+>    * [Proxy](https://java-design-patterns.com/patterns/proxy/): الگوی Active Object می‌تواند از proxy برای مدیریت فراخوانی‌های متد به‌صورت ناهمگام استفاده کند.
 
 منابع و مراجع
 
-    * [Design Patterns: Elements of Reusable Object Software](https://amzn.to/3HYqrBE)
+>    * [Design Patterns: Elements of Reusable Object Software](https://amzn.to/3HYqrBE)
 
-    * [Concurrent Programming in Java: Design Principles and Patterns](https://amzn.to/498SRVq)
+>    * [Concurrent Programming in Java: Design Principles and Patterns](https://amzn.to/498SRVq)
 
-    * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
+>    * [Java Concurrency in Practice](https://amzn.to/4aRMruW)
 
-    * [Learning Concurrent Programming in Scala](https://amzn.to/3UE07nV)
+>    * [Learning Concurrent Programming in Scala](https://amzn.to/3UE07nV)
 
-    * [Pattern Languages of Program Design 3](https://amzn.to/3OI1j61)
+>    * [Pattern Languages of Program Design 3](https://amzn.to/3OI1j61)
 
-    * [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)
+>    * [Pattern-Oriented Software Architecture Volume 2: Patterns for Concurrent and Networked Objects](https://amzn.to/3UgC24V)
 
