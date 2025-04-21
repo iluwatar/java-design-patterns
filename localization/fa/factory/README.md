@@ -119,21 +119,21 @@ public static void main(String[] args) {
 
 ## کاربردهای دنیای واقعی الگوی factory در جاوا
 
-* [java.util.Calendar#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
-* [java.util.ResourceBundle#getBundle()](https://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
-* [java.text.NumberFormat#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html#getInstance--)
-* [java.nio.charset.Charset#forName()](https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html#forName-java.lang.String-)
-* [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)](https://docs.oracle.com/javase/8/docs/api/java/net/URLStreamHandlerFactory.html) (اشیاء singleton مختلف را بر اساس یک پروتکل بازمی‌گرداند)
-* [java.util.EnumSet#of()](https://docs.oracle.com/javase/8/docs/api/java/util/EnumSet.html#of(E))
-* [javax.xml.bind.JAXBContext#createMarshaller()](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/JAXBContext.html#createMarshaller--) و متدهای مشابه دیگر.
-* JavaFX از الگوهای factory برای ایجاد کنترل‌های مختلف رابط کاربری متناسب با نیازهای محیط کاربر استفاده می‌کند.
+> * [java.util.Calendar#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/util/Calendar.html#getInstance--)
+> * [java.util.ResourceBundle#getBundle()](https://docs.oracle.com/javase/8/docs/api/java/util/ResourceBundle.html#getBundle-java.lang.String-)
+> * [java.text.NumberFormat#getInstance()](https://docs.oracle.com/javase/8/docs/api/java/text/NumberFormat.html#getInstance--)
+> * [java.nio.charset.Charset#forName()](https://docs.oracle.com/javase/8/docs/api/java/nio/charset/Charset.html#forName-java.lang.String-)
+> * [java.net.URLStreamHandlerFactory#createURLStreamHandler(String)](https://docs.oracle.com/javase/8/docs/api/java/net/URLStreamHandlerFactory.html) (اشیاء singleton مختلف را بر اساس یک پروتکل بازمی‌گرداند)
+> * [java.util.EnumSet#of()](https://docs.oracle.com/javase/8/docs/api/java/util/EnumSet.html#of(E))
+> * [javax.xml.bind.JAXBContext#createMarshaller()](https://docs.oracle.com/javase/8/docs/api/javax/xml/bind/JAXBContext.html#createMarshaller--) و متدهای مشابه دیگر.
+> * JavaFX از الگوهای factory برای ایجاد کنترل‌های مختلف رابط کاربری متناسب با نیازهای محیط کاربر استفاده می‌کند.
 
 ## مزایا و معایب الگوی factory
 
 ### مزایا:
 
-* پیاده‌سازی الگوی factory در برنامه جاوای شما، وابستگی بین پیاده‌سازی و کلاس‌هایی که استفاده می‌کند را کاهش می‌دهد.
-* از [اصل Open/Closed](https://java-design-patterns.com/principles/#open-closed-principle) پشتیبانی می‌کند، زیرا سیستم می‌تواند انواع جدیدی را بدون تغییر کد موجود معرفی کند.
+> * پیاده‌سازی الگوی factory در برنامه جاوای شما، وابستگی بین پیاده‌سازی و کلاس‌هایی که استفاده می‌کند را کاهش می‌دهد.
+> * از [اصل Open/Closed](https://java-design-patterns.com/principles/#open-closed-principle) پشتیبانی می‌کند، زیرا سیستم می‌تواند انواع جدیدی را بدون تغییر کد موجود معرفی کند.
 
 ### معایب:
 
@@ -142,10 +142,10 @@ public static void main(String[] args) {
 
 ## الگوهای طراحی مرتبط با جاوا
 
-* [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): می‌توان آن را نوعی factory در نظر گرفت که با گروهی از محصولات کار می‌کند.
-* [Singleton](https://java-design-patterns.com/patterns/singleton/): اغلب همراه با factory استفاده می‌شود تا اطمینان حاصل شود که یک کلاس تنها یک نمونه دارد.
-* [Builder](https://java-design-patterns.com/patterns/builder/): ساخت یک شیء پیچیده را از نمایش آن جدا می‌کند، مشابه نحوه‌ای که factoryها مدیریت نمونه‌سازی را انجام می‌دهند.
-* [Factory Kit](https://java-design-patterns.com/patterns/factory-kit/): یک factory از محتوای غیرقابل تغییر با رابط‌های builder و factory جداگانه است.
+> * [Abstract Factory](https://java-design-patterns.com/patterns/abstract-factory/): می‌توان آن را نوعی factory در نظر گرفت که با گروهی از محصولات کار می‌کند.
+> * [Singleton](https://java-design-patterns.com/patterns/singleton/): اغلب همراه با factory استفاده می‌شود تا اطمینان حاصل شود که یک کلاس تنها یک نمونه دارد.
+> * [Builder](https://java-design-patterns.com/patterns/builder/): ساخت یک شیء پیچیده را از نمایش آن جدا می‌کند، مشابه نحوه‌ای که factoryها مدیریت نمونه‌سازی را انجام می‌دهند.
+> * [Factory Kit](https://java-design-patterns.com/patterns/factory-kit/): یک factory از محتوای غیرقابل تغییر با رابط‌های builder و factory جداگانه است.
 
 ## منابع و اعتبارات
 
