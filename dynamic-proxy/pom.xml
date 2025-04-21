@@ -56,7 +56,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>7.0.0-M3</version>
+      <version>7.0.0-M4</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
