@@ -3511,6 +3511,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "maziyar-gerami",
+      "name": "Maziyar Gerami",
+      "avatar_url": "https://avatars.githubusercontent.com/u/122622721?v=4",
+      "profile": "http://maziyar-gerami.github.io/portfolio/",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
