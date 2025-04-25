@@ -6,5 +6,6 @@ package com.iluwatar.daofactory;
  * Date      : 21/04/2025
  * Time      : 01:05
  * Filename  : FlatFileCustomerDAOTest
- */public class FlatFileCustomerDAOTest {
+ */
+public class FlatFileCustomerDAOTest {
 }

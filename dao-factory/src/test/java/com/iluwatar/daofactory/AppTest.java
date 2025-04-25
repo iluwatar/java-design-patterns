@@ -6,5 +6,6 @@ package com.iluwatar.daofactory;
  * Date      : 21/04/2025
  * Time      : 01:02
  * Filename  : AppTest
- */public class AppTest {
+ */
+public class AppTest {
 }

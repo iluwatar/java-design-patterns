@@ -7,5 +7,8 @@ package com.iluwatar.daofactory;
  * Time      : 00:21
  * Filename  : DataSourceEnum
  */
-public class DataSourceEnum {
+public enum DataSourceEnum {
+  H2,
+  Mongo,
+  FlatFile
 }

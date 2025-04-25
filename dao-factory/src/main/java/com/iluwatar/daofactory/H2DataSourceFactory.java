@@ -6,5 +6,10 @@ package com.iluwatar.daofactory;
  * Date      : 16/04/2025
  * Time      : 23:18
  * Filename  : H2DataSourceFactory
- */public class H2DataSourceFactory {
+ */
+public class H2DataSourceFactory extends DAOFactory {
+  @Override
+  public CustomerDAO getCustomerDAO() {
+    return new H2CustomerDAO();
+  }
 }
