@@ -1,3 +1,6 @@
+
+import com.iluwatar.datamapper.Student;
+
 /*
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
@@ -22,32 +25,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.datamapper;
+public class Main {
 
-import java.io.Serial;
-import java.io.Serializable;
+    public static void main(String[] args) {
+        Student student1 = University.getStudent("Rob");
+        Student student2 = University.getStudent("Bob");
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-/** Class defining Student. */
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
-@Getter
-@Setter
-@AllArgsConstructor
-public final class Student implements Serializable {
-
-  @Serial private static final long serialVersionUID = 1L;
-
-  @EqualsAndHashCode.Include private int studentId;
-  private String name;
-  private char grade;
-
-    public Student(String name) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        System.out.println(student1.getName());
+        System.out.println(student2.getName());
     }
 }
+
+class University {
+    public static Student getStudent(String name) {
+        return new Student(1, name, 'A');
+    }
+}
+

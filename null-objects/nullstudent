@@ -1,0 +1,7 @@
+public class NullStudent implements Student {
+
+    @Override
+    public String getName() {
+        return "Not Enrolled in Student Database";
+    }
+}

@@ -22,32 +22,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.datamapper;
-
-import java.io.Serial;
-import java.io.Serializable;
-
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-/** Class defining Student. */
-@EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString
-@Getter
-@Setter
-@AllArgsConstructor
-public final class Student implements Serializable {
-
-  @Serial private static final long serialVersionUID = 1L;
-
-  @EqualsAndHashCode.Include private int studentId;
-  private String name;
-  private char grade;
-
-    public Student(String name) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
+public class Student {
+    
 }
