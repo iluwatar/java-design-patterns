@@ -231,6 +231,7 @@
     <module>table-module</module>
     <module>template-method</module>
     <module>templateview</module>
+      <module>thread-pool-executor</module>
     <module>throttling</module>
     <module>tolerant-reader</module>
     <module>trampoline</module>
