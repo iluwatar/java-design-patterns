@@ -42,6 +42,7 @@
     <spring-boot.version>3.4.4</spring-boot.version>
     <junit.version>5.12.2</junit.version>
     <mockito.version>5.14.2</mockito.version>
+    <mockito-junit-jupiter.version>5.17.0</mockito-junit-jupiter.version>
     <logback.version>1.5.18</logback.version>
     <slf4j.version>2.0.17</slf4j.version>
 
@@ -327,6 +328,18 @@
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
         <version>${mockito.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.mockito</groupId>
+        <artifactId>mockito-junit-jupiter</artifactId>
+        <version>${mockito-junit-jupiter.version}</version>
+        <scope>test</scope>
+        <exclusions>
+          <exclusion>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
       <dependency>
         <groupId>org.mongodb</groupId>
