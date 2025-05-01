@@ -59,7 +59,7 @@
 
     <!-- Plugins -->
     <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
-    <license-maven-plugin.version>4.6</license-maven-plugin.version>
+    <license-maven-plugin.version>5.0.0</license-maven-plugin.version>
     <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
 
     <!-- SonarCloud -->
