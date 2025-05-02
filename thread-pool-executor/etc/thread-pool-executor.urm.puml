@@ -1,0 +1,66 @@
+@startuml
+
+interface Runnable {
+  +run(): void
+}
+
+interface Callable<T> {
+  +call(): T
+}
+
+interface ExecutorService {
+  +submit(task: Runnable): Future<?>
+  +submit(task: Callable<T>): Future<T>
+  +shutdown(): void
+  +awaitTermination(timeout: long, unit: TimeUnit): boolean
+}
+
+class ThreadPoolExecutor {
+  -corePoolSize: int
+  -maximumPoolSize: int
+  -keepAliveTime: long
+  -workQueue: BlockingQueue<Runnable>
+  +execute(task: Runnable): void
+  +submit(task: Callable<T>): Future<T>
+}
+
+class ThreadPoolManager {
+  -executorService: ExecutorService
+  +ThreadPoolManager(numThreads: int)
+  +submitTask(task: Runnable): void
+  +submitCallable(task: Callable<T>): Future<T>
+  +shutdown(): void
+  +awaitTermination(timeout: long, unit: TimeUnit): boolean
+}
+
+class Task {
+  -id: int
+  -name: String
+  -processingTime: long
+  +Task(id: int, name: String, processingTime: long)
+  +run(): void
+  +call(): TaskResult
+}
+
+class TaskResult {
+  -taskId: int
+  -taskName: String
+  -executionTime: long
+  +TaskResult(taskId: int, taskName: String, executionTime: long)
+}
+
+class App {
+  +main(args: String[]): void
+  -executeRunnableTasks(poolManager: ThreadPoolManager): void
+  -executeCallableTasks(poolManager: ThreadPoolManager): void
+}
+
+ExecutorService <|-- ThreadPoolExecutor : implements
+Task ..|> Runnable : implements
+Task ..|> Callable : implements
+Task --> TaskResult : produces
+ThreadPoolManager --> ExecutorService : wraps
+App --> ThreadPoolManager : uses
+App --> Task : creates
+
+@enduml
