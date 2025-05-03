@@ -37,8 +37,9 @@ public final class App {
   private App() {}
 
   /** Program entry point. */
-  public static void main(final String[] args) {
+  public static void main(final String[] args) throws InterruptedException {
     var task = new SimpleTask();
     task.executeWith(() -> LOGGER.info("I'm done now."));
+    Thread.sleep(3000);
   }
 }

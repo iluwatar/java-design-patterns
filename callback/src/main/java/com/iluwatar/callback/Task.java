@@ -24,15 +24,19 @@
  */
 package com.iluwatar.callback;
 
-import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /** Template-method class for callback hook execution. */
 public abstract class Task {
 
-  /** Execute with callback. */
+  /** Execute the task and asynchronously call the callback method upon completion.*/
   final void executeWith(Callback callback) {
-    execute();
-    Optional.ofNullable(callback).ifPresent(Callback::call);
+    CompletableFuture.runAsync(() -> {
+      execute();
+      if (callback != null) {
+        callback.call();
+      }
+    });
   }
 
   public abstract void execute();
