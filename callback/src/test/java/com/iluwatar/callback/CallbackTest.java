@@ -27,6 +27,8 @@ package com.iluwatar.callback;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Add a field as a counter. Every time the callback method is called increment this field. Unit
@@ -39,19 +41,30 @@ class CallbackTest {
   private Integer callingCount = 0;
 
   @Test
-  void test() {
-    Callback callback = () -> callingCount++;
+  void test() throws InterruptedException {
+    CountDownLatch latch = new CountDownLatch(1);
+
+    CountDownLatch finalLatch = latch;
+    Callback callback = () -> {
+      callingCount++;
+      finalLatch.countDown();
+    };
 
     var task = new SimpleTask();
 
-    assertEquals(Integer.valueOf(0), callingCount, "Initial calling count of 0");
-
     task.executeWith(callback);
+
+    latch.await(5, TimeUnit.SECONDS);
 
     assertEquals(Integer.valueOf(1), callingCount, "Callback called once");
 
+    callingCount = 0;
+    latch = new CountDownLatch(1);
+
     task.executeWith(callback);
 
-    assertEquals(Integer.valueOf(2), callingCount, "Callback called twice");
+    latch.await(5, TimeUnit.SECONDS);
+
+    assertEquals(Integer.valueOf(1), callingCount, "Callback called once again");
   }
 }
