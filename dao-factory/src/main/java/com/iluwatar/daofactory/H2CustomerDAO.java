@@ -1,199 +1,161 @@
 package com.iluwatar.daofactory;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import javax.sql.DataSource;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Created by: IntelliJ IDEA
- * User      : dthanh
- * Date      : 16/04/2025
- * Time      : 23:26
- * Filename  : H2CustomerDAO
+ * An implementation of {@link CustomerDAO} that uses H2 database (http://www.h2database.com/)
+ * which is an in-memory database and data will lost after application exits.
  */
 @Slf4j
+@RequiredArgsConstructor
 public class H2CustomerDAO implements CustomerDAO<Long> {
-  static final String JDBC_DRIVER = "org.h2.Driver";
-  static final String DB_URL = "jdbc:h2:~/test";
+  private final DataSource dataSource;
+  private final String INSERT_CUSTOMER = "INSERT INTO customer(id, name) VALUES (?, ?)";
+  private final String UPDATE_CUSTOMER = "UPDATE customer SET name = ? WHERE id = ?";
+  private final String DELETE_CUSTOMER = "DELETE FROM customer WHERE id = ?";
+  private final String SELECT_CUSTOMER_BY_ID = "SELECT * FROM customer WHERE id= ?";
+  private final String SELECT_ALL_CUSTOMERS = "SELECT * FROM customer";
+  private final String CREATE_SCHEMA =
+      "CREATE TABLE IF NOT EXISTS customer (id BIGINT PRIMARY KEY, name VARCHAR(255))";
+  private final String DROP_SCHEMA = "DROP TABLE IF EXISTS customer";
 
-  //  Database credentials
-  static final String USER = "sa";
-  static final String PASS = "";
-
-  private static final String INSERT_CUSTOMER = "INSERT INTO customer(id, name) VALUES (?, ?)";
-  private static final String UPDATE_CUSTOMER = "UPDATE customer SET name = ? WHERE id = ?";
-  private static final String DELETE_CUSTOMER = "DELETE FROM customer WHERE id = ?";
-  private static final String SELECT_CUSTOMER_BY_ID = "SELECT * FROM customer WHERE id= ?";
-  private static final String SELECT_ALL_CUSTOMERS = "SELECT * FROM customer";
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void save(Customer<Long> customer) {
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    try {
-      Class.forName(JDBC_DRIVER);
-      connection = DriverManager.getConnection(DB_URL, USER, PASS);
-      preparedStatement = connection.prepareStatement(
-          "CREATE TABLE IF NOT EXISTS customer (id BIGINT PRIMARY KEY, name VARCHAR(255))");
-      preparedStatement.execute();
-      preparedStatement = connection.prepareStatement(INSERT_CUSTOMER);
-      preparedStatement.setLong(1, customer.getId());
-      preparedStatement.setString(2, customer.getName());
-      preparedStatement.execute();
-      connection.commit();
-    } catch (SQLException | ClassNotFoundException e) {
-      try {
-        connection.rollback();
-      } catch (SQLException ex) {
-        LOGGER.error("Exception occurred: " + e);
-      }
-    } finally {
-      try {
-        if (preparedStatement != null) {
-          preparedStatement.close();
-        }
-        if (connection != null) {
-          connection.close();
-        }
-      } catch (SQLException e) {
-        LOGGER.error("Exception occurred: " + e);
-      }
+    try (Connection connection = dataSource.getConnection();
+         PreparedStatement saveStatement = connection.prepareStatement(INSERT_CUSTOMER)) {
+      saveStatement.setLong(1, customer.getId());
+      saveStatement.setString(2, customer.getName());
+      saveStatement.execute();
+    } catch (SQLException e) {
+      throw new RuntimeException(e.getMessage(), e);
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void update(Customer<Long> customer) {
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    try {
-      Class.forName(JDBC_DRIVER);
-      connection = DriverManager.getConnection(DB_URL, USER, PASS);
-      preparedStatement = connection.prepareStatement(UPDATE_CUSTOMER);
-      preparedStatement.setString(1, customer.getName());
-      preparedStatement.setLong(2, customer.getId());
-      preparedStatement.execute();
-    } catch (SQLException | ClassNotFoundException e) {
-      LOGGER.error("Exception occurred: " + e.getMessage());
-    } finally {
-      try {
-        if (preparedStatement != null) {
-          preparedStatement.close();
+    try (Connection connection = dataSource.getConnection();
+         PreparedStatement selectStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
+         PreparedStatement updateStatement = connection.prepareStatement(UPDATE_CUSTOMER)) {
+      selectStatement.setLong(1, customer.getId());
+      try (ResultSet resultSet = selectStatement.executeQuery()) {
+        if (!resultSet.next()) {
+          throw new RuntimeException("Customer not found with id: " + customer.getId());
         }
-        if (connection != null) {
-          connection.close();
-        }
-      } catch (SQLException e) {
-        LOGGER.error("Exception occurred: " + e.getMessage());
       }
+      updateStatement.setString(1, customer.getName());
+      updateStatement.setLong(2, customer.getId());
+      updateStatement.executeUpdate();
+    } catch (SQLException e) {
+      throw new RuntimeException(e.getMessage(), e);
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void delete(Long id) {
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
-    try {
-      Class.forName(JDBC_DRIVER);
-      connection = DriverManager.getConnection(DB_URL, USER, PASS);
-      preparedStatement = connection.prepareStatement(DELETE_CUSTOMER);
-      preparedStatement.setLong(1, id);
-      preparedStatement.execute();
-    } catch (SQLException | ClassNotFoundException e) {
-      LOGGER.error("Exception occurred: " + e.getMessage());
-    } finally {
-      try {
-        if (preparedStatement != null) {
-          preparedStatement.close();
+    try (Connection connection = dataSource.getConnection();
+         PreparedStatement selectStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
+         PreparedStatement deleteStatement = connection.prepareStatement(DELETE_CUSTOMER)
+    ) {
+      selectStatement.setLong(1, id);
+      try (ResultSet resultSet = selectStatement.executeQuery()) {
+        if (!resultSet.next()) {
+          throw new RuntimeException("Customer not found with id: " + id);
         }
-        if (connection != null) {
-          connection.close();
-        }
-      } catch (SQLException e) {
-        LOGGER.error("Exception occurred: " + e.getMessage());
       }
+      deleteStatement.setLong(1, id);
+      deleteStatement.execute();
+    } catch (SQLException e) {
+      throw new RuntimeException(e.getMessage(), e);
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public List<Customer<Long>> findAll() {
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
     List<Customer<Long>> customers = new LinkedList<>();
-    try {
-      Class.forName(JDBC_DRIVER);
-      connection = DriverManager.getConnection(DB_URL, USER, PASS);
-      preparedStatement = connection.prepareStatement(SELECT_ALL_CUSTOMERS);
-      ResultSet resultSet = preparedStatement.executeQuery();
-      while (resultSet.next()) {
-        Long idCustomer = resultSet.getLong("id");
-        String nameCustomer = resultSet.getString("name");
-        customers.add(new Customer<>(idCustomer, nameCustomer));
-      }
-      resultSet.close();
-    } catch (SQLException | ClassNotFoundException e) {
-      LOGGER.error("Exception occurred: " + e.getMessage());
-    } finally {
-      try {
-        if (preparedStatement != null) {
-          preparedStatement.close();
+    try (Connection connection = dataSource.getConnection();
+         PreparedStatement selectStatement = connection.prepareStatement(SELECT_ALL_CUSTOMERS)) {
+      try (ResultSet resultSet = selectStatement.executeQuery()) {
+        while (resultSet.next()) {
+          Long idCustomer = resultSet.getLong("id");
+          String nameCustomer = resultSet.getString("name");
+          customers.add(new Customer<>(idCustomer, nameCustomer));
         }
-        if (connection != null) {
-          connection.close();
-        }
-      } catch (SQLException e) {
-        LOGGER.error("Exception occurred: " + e.getMessage());
       }
+    } catch (SQLException e) {
+      throw new RuntimeException(e.getMessage(), e);
     }
     return customers;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Optional<Customer<Long>> findById(Long id) {
-    Connection connection = null;
-    PreparedStatement preparedStatement = null;
     Customer<Long> customer = null;
-    try {
-      Class.forName(JDBC_DRIVER);
-      connection = DriverManager.getConnection(DB_URL, USER, PASS);
-      preparedStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
-      preparedStatement.setLong(1, id);
-      ResultSet resultSet = preparedStatement.executeQuery();
-      while (resultSet.next()) {
-        Long idCustomer = resultSet.getLong("id");
-        String nameCustomer = resultSet.getString("name");
-        customer = new Customer<>(idCustomer, nameCustomer);
-      }
-      resultSet.close();
-    } catch (SQLException | ClassNotFoundException e) {
-      LOGGER.error("Exception occurred: " + e.getMessage());
-    } finally {
-      try {
-        if (preparedStatement != null) {
-          preparedStatement.close();
+    try (Connection connection = dataSource.getConnection();
+         PreparedStatement selectByIdStatement = connection.prepareStatement(
+             SELECT_CUSTOMER_BY_ID)) {
+      selectByIdStatement.setLong(1, id);
+      try (ResultSet resultSet = selectByIdStatement.executeQuery()) {
+        while (resultSet.next()) {
+          Long idCustomer = resultSet.getLong("id");
+          String nameCustomer = resultSet.getString("name");
+          customer = new Customer<>(idCustomer, nameCustomer);
         }
-        if (connection != null) {
-          connection.close();
-        }
-      } catch (SQLException e) {
-        LOGGER.error("Exception occurred: " + e.getMessage());
       }
+    } catch (SQLException e) {
+      throw new RuntimeException(e.getMessage(), e);
     }
     return Optional.ofNullable(customer);
   }
 
+  /**
+   * Create customer schema.
+   */
+  public void createSchema() {
+    try (Connection connection = dataSource.getConnection();
+         Statement statement = connection.createStatement()) {
+      statement.execute(CREATE_SCHEMA);
+    } catch (SQLException e) {
+      throw new RuntimeException(e.getMessage(), e);
+    }
+  }
+
+  /**
+   * {@inheritDoc}}
+   */
   @Override
   public void deleteSchema() {
-    try (var connection = DriverManager.getConnection(DB_URL, USER, PASS)) {
-      var statement = connection.createStatement();
-      statement.execute("DROP TABLE customer");
+    try (Connection connection = dataSource.getConnection();
+         Statement statement = connection.createStatement();) {
+      statement.execute(DROP_SCHEMA);
     } catch (SQLException e) {
-      throw new RuntimeException("Error while deleting schema", e);
+      throw new RuntimeException(e.getMessage(), e);
     }
   }
 }

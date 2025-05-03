@@ -31,10 +31,10 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>bson</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.mongodb</groupId>-->
+<!--            <artifactId>bson</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.mongodb</groupId>
             <artifactId>mongodb-driver-legacy</artifactId>
@@ -42,6 +42,18 @@
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

@@ -1,11 +1,13 @@
 package com.iluwatar.daofactory;
 
-/**
- * Created by: IntelliJ IDEA
- * User      : dthanh
- * Date      : 21/04/2025
- * Time      : 01:02
- * Filename  : AppTest
- */
-public class AppTest {
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+
+class AppTest {
+  @Test
+  void shouldExecuteDaoWithoutException() {
+    assertDoesNotThrow(() -> App.main(new String[] {}));
+  }
 }

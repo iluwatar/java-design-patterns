@@ -1,51 +1,39 @@
 package com.iluwatar.daofactory;
 
-import java.sql.SQLException;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-/**
- * Created by: IntelliJ IDEA
- * User      : dthanh
- * Date      : 16/04/2025
- * Time      : 23:08
- * Filename  : ${NAME}
- */
 @Slf4j
 public class App {
 
-  private static final Logger logger = LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME);
 
-
-
-  public static void main(String[] args) throws SQLException {
-    final var h2DAO = DAOFactory.getDataSource(DataSourceEnum.H2);
-    final var mongoDAO = DAOFactory.getDataSource(DataSourceEnum.Mongo);
-    final var flatFileDAO = DAOFactory.getDataSource(DataSourceEnum.FlatFile);
-
-    final var h2CustomerDAO = h2DAO.getCustomerDAO();
-    final var mongoCustomerDAO = mongoDAO.getCustomerDAO();
-    final var flatFileCustomerDAO = flatFileDAO.getCustomerDAO();
+  public static void main(String[] args) {
+    var daoFactory = DAOFactory.getDataSource(DataSourceType.H2);
+    var customerDAO = daoFactory.createCustomerDAO();
 
     // Perform CRUD H2 Database
+    if (customerDAO instanceof H2CustomerDAO h2CustomerDAO) {
+      h2CustomerDAO.deleteSchema();
+      h2CustomerDAO.createSchema();
+    }
     Customer<Long> customerInmemory1 = new Customer<>(1L, "Green");
     Customer<Long> customerInmemory2 = new Customer<>(2L, "Red");
     Customer<Long> customerInmemory3 = new Customer<>(3L, "Blue");
     Customer<Long> customerUpdateInmemory = new Customer<>(1L, "Yellow");
 
     LOGGER.debug("H2 - Create customer");
-    performCreateCustomer(h2CustomerDAO,
+    performCreateCustomer(customerDAO,
         List.of(customerInmemory1, customerInmemory2, customerInmemory3));
     LOGGER.debug("H2 - Update customer");
-    performUpdateCustomer(h2CustomerDAO, customerUpdateInmemory);
+    performUpdateCustomer(customerDAO, customerUpdateInmemory);
     LOGGER.debug("H2 - Delete customer");
-    performDeleteCustomer(h2CustomerDAO, 3L);
-    deleteSchema(h2CustomerDAO);
+    performDeleteCustomer(customerDAO, 3L);
+    deleteSchema(customerDAO);
 
     // Perform CRUD MongoDb
+    daoFactory = DAOFactory.getDataSource(DataSourceType.Mongo);
+    customerDAO = daoFactory.createCustomerDAO();
     ObjectId idCustomerMongo1 = new ObjectId();
     ObjectId idCustomerMongo2 = new ObjectId();
     Customer<ObjectId> customer4 = new Customer<>(idCustomerMongo1, "Masca");
@@ -53,57 +41,59 @@ public class App {
     Customer<ObjectId> customerUpdateMongo = new Customer<>(idCustomerMongo2, "Henry");
 
     LOGGER.debug("Mongo - Create customer");
-    performCreateCustomer(mongoCustomerDAO, List.of(customer4, customer5));
+    performCreateCustomer(customerDAO, List.of(customer4, customer5));
     LOGGER.debug("Mongo - Update customer");
-    performUpdateCustomer(mongoCustomerDAO, customerUpdateMongo);
+    performUpdateCustomer(customerDAO, customerUpdateMongo);
     LOGGER.debug("Mongo - Delete customer");
-    performDeleteCustomer(mongoCustomerDAO, idCustomerMongo2);
-    deleteSchema(mongoCustomerDAO);
+    performDeleteCustomer(customerDAO, idCustomerMongo2);
+    deleteSchema(customerDAO);
 
     // Perform CRUD Flat file
+    daoFactory = DAOFactory.getDataSource(DataSourceType.FlatFile);
+    customerDAO = daoFactory.createCustomerDAO();
     Customer<Long> customerFlatFile1 = new Customer<>(1L, "Duc");
     Customer<Long> customerFlatFile2 = new Customer<>(2L, "Quang");
     Customer<Long> customerFlatFile3 = new Customer<>(3L, "Nhat");
     Customer<Long> customerUpdateFlatFile = new Customer<>(1L, "Thanh");
     LOGGER.debug("Flat file - Create customer");
-    performCreateCustomer(flatFileCustomerDAO,
+    performCreateCustomer(customerDAO,
         List.of(customerFlatFile1, customerFlatFile2, customerFlatFile3));
     LOGGER.debug("Flat file - Update customer");
-    performUpdateCustomer(flatFileCustomerDAO, customerUpdateFlatFile);
+    performUpdateCustomer(customerDAO, customerUpdateFlatFile);
     LOGGER.debug("Flat file - Delete customer");
-    performDeleteCustomer(flatFileCustomerDAO, 3L);
-    deleteSchema(flatFileCustomerDAO);
+    performDeleteCustomer(customerDAO, 3L);
+    deleteSchema(customerDAO);
   }
 
   public static void deleteSchema(CustomerDAO<?> customerDAO) {
     customerDAO.deleteSchema();
   }
 
-  public static <ID> void performCreateCustomer(CustomerDAO<ID> customerDAO,
-                                                List<Customer<ID>> customerList) {
-    for (Customer<ID> customer : customerList) {
+  public static <T> void performCreateCustomer(CustomerDAO<T> customerDAO,
+                                               List<Customer<T>> customerList) {
+    for (Customer<T> customer : customerList) {
       customerDAO.save(customer);
     }
-    List<Customer<ID>> customers = customerDAO.findAll();
-    for (Customer<ID> customer : customers) {
+    List<Customer<T>> customers = customerDAO.findAll();
+    for (Customer<T> customer : customers) {
       LOGGER.debug(customer.toString());
     }
   }
 
-  public static <ID> void performUpdateCustomer(CustomerDAO<ID> customerDAO,
-                                                Customer<ID> customerUpdate) {
+  public static <T> void performUpdateCustomer(CustomerDAO<T> customerDAO,
+                                               Customer<T> customerUpdate) {
     customerDAO.update(customerUpdate);
-    List<Customer<ID>> customers = customerDAO.findAll();
-    for (Customer<ID> customer : customers) {
-      LOGGER.error(customer.toString());
+    List<Customer<T>> customers = customerDAO.findAll();
+    for (Customer<T> customer : customers) {
+      LOGGER.debug(customer.toString());
     }
   }
 
-  public static <ID> void performDeleteCustomer(CustomerDAO<ID> customerDAO,
-                                                ID customerId) {
+  public static <T> void performDeleteCustomer(CustomerDAO<T> customerDAO,
+                                               T customerId) {
     customerDAO.delete(customerId);
-    List<Customer<ID>> customers = customerDAO.findAll();
-    for (Customer<ID> customer : customers) {
+    List<Customer<T>> customers = customerDAO.findAll();
+    for (Customer<T> customer : customers) {
       LOGGER.debug(customer.toString());
     }
   }

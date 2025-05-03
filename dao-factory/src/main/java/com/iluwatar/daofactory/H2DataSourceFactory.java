@@ -1,15 +1,26 @@
 package com.iluwatar.daofactory;
 
+import javax.sql.DataSource;
+import org.h2.jdbcx.JdbcDataSource;
+
 /**
- * Created by: IntelliJ IDEA
- * User      : dthanh
- * Date      : 16/04/2025
- * Time      : 23:18
- * Filename  : H2DataSourceFactory
+ * H2DataSourceFactory concrete factory.
  */
 public class H2DataSourceFactory extends DAOFactory {
+  private final String DB_URL = "jdbc:h2:~/test";
+  private final String USER = "sa";
+  private final String PASS = "";
+
   @Override
-  public CustomerDAO getCustomerDAO() {
-    return new H2CustomerDAO();
+  public CustomerDAO createCustomerDAO() {
+    return new H2CustomerDAO(createDataSource());
+  }
+
+  private DataSource createDataSource() {
+    var dataSource = new JdbcDataSource();
+    dataSource.setURL(DB_URL);
+    dataSource.setUser(USER);
+    dataSource.setPassword(PASS);
+    return dataSource;
   }
 }

@@ -8,11 +8,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * Created by: IntelliJ IDEA
- * User      : dthanh
- * Date      : 16/04/2025
- * Time      : 23:22
- * Filename  : Customer
+ * A customer generic POJO that represents the data that can be stored in any supported data source.
+ * This class is designed t work with various ID types (e.g., Long, String, or ObjectId) through generic,
+ * making it adaptable to different persistence system.
  */
 @Getter
 @Setter

@@ -1,46 +1,30 @@
 package com.iluwatar.daofactory;
 
 import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import com.mongodb.client.result.DeleteResult;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 /**
- * Created by: IntelliJ IDEA
- * User      : dthanh
- * Date      : 16/04/2025
- * Time      : 23:26
- * Filename  : NitriteCustomerDAO
+ * An implementation of {@link CustomerDAO} that uses MongoDB (https://www.mongodb.com/)
  */
 @Slf4j
+@RequiredArgsConstructor
 public class MongoCustomerDAO implements CustomerDAO<ObjectId> {
-  static String connString = "mongodb://localhost:27017/";
-  static MongoClient mongoClient = null;
-  static MongoDatabase database = null;
-  static MongoCollection<Document> customerCollection = null;
+  private final MongoCollection<Document> customerCollection;
 
-  static {
-    try {
-      mongoClient = MongoClients.create(connString);
-      database = mongoClient.getDatabase("dao_factory");
-      customerCollection = database.getCollection("customer");
-    } catch (RuntimeException e) {
-      LOGGER.error("Error: %s", e);
-    }
-
-  }
-
-
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void save(Customer<ObjectId> customer) {
     Document customerDocument = new Document("_id", customer.getId());
@@ -48,6 +32,9 @@ public class MongoCustomerDAO implements CustomerDAO<ObjectId> {
     customerCollection.insertOne(customerDocument);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void update(Customer<ObjectId> customer) {
     Document updateQuery = new Document("_id", customer.getId());
@@ -55,12 +42,21 @@ public class MongoCustomerDAO implements CustomerDAO<ObjectId> {
     customerCollection.updateOne(updateQuery, update);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void delete(ObjectId objectId) {
     Bson deleteQuery = Filters.eq("_id", objectId);
-    customerCollection.deleteOne(deleteQuery);
+    DeleteResult deleteResult = customerCollection.deleteOne(deleteQuery);
+    if (deleteResult.getDeletedCount() == 0) {
+      throw new RuntimeException("Delete failed: No document found with id: " + objectId);
+    }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public List<Customer<ObjectId>> findAll() {
     List<Customer<ObjectId>> customers = new LinkedList<>();
@@ -73,6 +69,9 @@ public class MongoCustomerDAO implements CustomerDAO<ObjectId> {
     return customers;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Optional<Customer<ObjectId>> findById(ObjectId objectId) {
     Bson filter = Filters.eq("_id", objectId);
@@ -87,8 +86,11 @@ public class MongoCustomerDAO implements CustomerDAO<ObjectId> {
     return Optional.ofNullable(customerResult);
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void deleteSchema() {
-    database.drop();
+    customerCollection.drop();
   }
 }

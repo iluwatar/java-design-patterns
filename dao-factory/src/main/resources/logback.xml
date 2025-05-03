@@ -4,7 +4,9 @@
             <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{15}) %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
-    <root level="debug">
+
+    <logger name="com.iluwatar.daofactory" level="DEBUG"/>
+    <root level="ERROR">
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
