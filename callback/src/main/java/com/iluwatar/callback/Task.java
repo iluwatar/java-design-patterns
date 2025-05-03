@@ -29,14 +29,15 @@ import java.util.concurrent.CompletableFuture;
 /** Template-method class for callback hook execution. */
 public abstract class Task {
 
-  /** Execute the task and asynchronously call the callback method upon completion.*/
+  /** Execute the task and asynchronously call the callback method upon completion. */
   final void executeWith(Callback callback) {
-    CompletableFuture.runAsync(() -> {
-      execute();
-      if (callback != null) {
-        callback.call();
-      }
-    });
+    CompletableFuture.runAsync(
+        () -> {
+          execute();
+          if (callback != null) {
+            callback.call();
+          }
+        });
   }
 
   public abstract void execute();
