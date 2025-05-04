@@ -20,9 +20,7 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-/**
- * Tests {@link H2CustomerDAO}
- */
+/** Tests {@link H2CustomerDAO} */
 public class H2CustomerDAOTest {
   private final String DB_URL = "jdbc:h2:~/test";
   private final String USER = "sa";
@@ -36,7 +34,7 @@ public class H2CustomerDAOTest {
   @BeforeEach
   void createSchema() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL, USER, PASS);
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(CREATE_SCHEMA);
     }
   }
@@ -44,11 +42,12 @@ public class H2CustomerDAOTest {
   @AfterEach
   void deleteSchema() throws SQLException {
     try (var connection = DriverManager.getConnection(DB_URL, USER, PASS);
-         var statement = connection.createStatement()) {
+        var statement = connection.createStatement()) {
       statement.execute(DROP_SCHEMA);
     }
   }
 
+  /** Class test for scenario connect with datasource succeed */
   @Nested
   class ConnectionSucceed {
 
@@ -59,7 +58,6 @@ public class H2CustomerDAOTest {
       dataSource.setUser(USER);
       dataSource.setPassword(PASS);
       h2CustomerDAO = new H2CustomerDAO(dataSource);
-//      h2CustomerDAO.setDataSource(dataSource);
       assertDoesNotThrow(() -> h2CustomerDAO.save(existingCustomer));
       var customer = h2CustomerDAO.findById(existingCustomer.getId());
       assertTrue(customer.isPresent());
@@ -205,6 +203,7 @@ public class H2CustomerDAOTest {
     }
   }
 
+  /** Class test with scenario connect with data source failed */
   @Nested
   class ConnectionFailed {
     private final String EXCEPTION_CAUSE = "Connection not available";
@@ -212,15 +211,13 @@ public class H2CustomerDAOTest {
     @BeforeEach
     void setUp() throws SQLException {
       h2CustomerDAO = new H2CustomerDAO(mockedDataSource());
-//      h2CustomerDAO.setDataSource(mockedDataSource());
     }
 
     private DataSource mockedDataSource() throws SQLException {
       var mockedDataSource = mock(DataSource.class);
       var mockedConnection = mock(Connection.class);
       var exception = new SQLException(EXCEPTION_CAUSE);
-      doThrow(exception).when(mockedConnection)
-          .prepareStatement(Mockito.anyString());
+      doThrow(exception).when(mockedConnection).prepareStatement(Mockito.anyString());
       doThrow(exception).when(mockedConnection).createStatement();
       doReturn(mockedConnection).when(mockedDataSource).getConnection();
       return mockedDataSource;
@@ -245,8 +242,8 @@ public class H2CustomerDAOTest {
     @Test
     void givenValidId_whenDeleteCustomer_thenThrowException() {
       RuntimeException exception =
-          assertThrows(RuntimeException.class,
-              () -> h2CustomerDAO.delete(existingCustomer.getId()));
+          assertThrows(
+              RuntimeException.class, () -> h2CustomerDAO.delete(existingCustomer.getId()));
       assertEquals(EXCEPTION_CAUSE, exception.getMessage());
     }
 
@@ -259,8 +256,8 @@ public class H2CustomerDAOTest {
     @Test
     void whenFindById_thenThrowException() {
       RuntimeException exception =
-          assertThrows(RuntimeException.class,
-              () -> h2CustomerDAO.findById(existingCustomer.getId()));
+          assertThrows(
+              RuntimeException.class, () -> h2CustomerDAO.findById(existingCustomer.getId()));
       assertEquals(EXCEPTION_CAUSE, exception.getMessage());
     }
 

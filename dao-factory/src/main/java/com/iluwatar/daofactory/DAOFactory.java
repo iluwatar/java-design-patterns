@@ -3,10 +3,9 @@ package com.iluwatar.daofactory;
 /**
  * An abstract factory class that provides a way to create concrete DAO (Data Access Object)
  * factories for different data sources types (e.g., H2, Mongo, FlatFile).
- * <p>
- * This class follows the Abstract Factory design pattern, allowing applications to retrieve
- * the approriate DAO implementation without being tightly coupled to a specific data source.
- * </p>
+ *
+ * <p>This class follows the Abstract Factory design pattern, allowing applications to retrieve the
+ * approriate DAO implementation without being tightly coupled to a specific data source.
  *
  * @see H2DataSourceFactory
  * @see MongoDataSourceFactory
@@ -16,8 +15,8 @@ public abstract class DAOFactory {
   /**
    * Returns a concrete {@link DAOFactory} intance based on the specified data source type.
    *
-   * @param dataSourceType The type of data source for which a factory is needed.
-   *                       Supported values: {@code H2}, {@code Mongo}, {@code FlatFile}
+   * @param dataSourceType The type of data source for which a factory is needed. Supported values:
+   *     {@code H2}, {@code Mongo}, {@code FlatFile}
    * @return A {@link DAOFactory} implementation corresponding to the given data source type.
    * @throws IllegalArgumentException if the given data source type is not supported.
    */

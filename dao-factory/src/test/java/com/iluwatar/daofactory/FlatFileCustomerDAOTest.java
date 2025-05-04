@@ -1,6 +1,5 @@
 package com.iluwatar.daofactory;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -29,13 +28,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+/** {@link FlatFileCustomerDAO} */
 public class FlatFileCustomerDAOTest {
   private Path filePath;
   private File file;
   private Gson gson;
 
-  private final Type customerListType = new TypeToken<List<Customer<Long>>>() {
-  }.getType();
+  private final Type customerListType = new TypeToken<List<Customer<Long>>>() {}.getType();
   private final Customer<Long> existingCustomer = new Customer<>(1L, "Thanh");
   private FlatFileCustomerDAO flatFileCustomerDAO;
   private FileReader fileReader;
@@ -48,20 +47,22 @@ public class FlatFileCustomerDAOTest {
     gson = mock(Gson.class);
     fileReader = mock(FileReader.class);
     fileWriter = mock(FileWriter.class);
-    flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-      @Override
-      protected Reader createReader(Path filePath) throws IOException {
-        return fileReader;
-      }
+    flatFileCustomerDAO =
+        new FlatFileCustomerDAO(filePath, gson) {
+          @Override
+          protected Reader createReader(Path filePath) throws IOException {
+            return fileReader;
+          }
 
-      @Override
-      protected Writer createWriter(Path filePath) throws IOException {
-        return fileWriter;
-      }
-    };
+          @Override
+          protected Writer createWriter(Path filePath) throws IOException {
+            return fileWriter;
+          }
+        };
     when(filePath.toFile()).thenReturn(file);
   }
 
+  /** Class test with scenario Save Customer */
   @Nested
   class Save {
     @Test
@@ -69,10 +70,12 @@ public class FlatFileCustomerDAOTest {
       when(file.exists()).thenReturn(false);
       flatFileCustomerDAO.save(existingCustomer);
 
-      verify(gson).toJson(argThat(
-              (List<Customer<Long>> list) -> list.size() == 1 &&
-                  list.getFirst().equals(existingCustomer)),
-          eq(fileWriter));
+      verify(gson)
+          .toJson(
+              argThat(
+                  (List<Customer<Long>> list) ->
+                      list.size() == 1 && list.getFirst().equals(existingCustomer)),
+              eq(fileWriter));
     }
 
     @Test
@@ -82,8 +85,12 @@ public class FlatFileCustomerDAOTest {
       flatFileCustomerDAO.save(existingCustomer);
 
       verify(gson).fromJson(fileReader, customerListType);
-      verify(gson).toJson(argThat((List<Customer<Long>> list) -> list.size() == 1 &&
-          list.getFirst().equals(existingCustomer)), eq(fileWriter));
+      verify(gson)
+          .toJson(
+              argThat(
+                  (List<Customer<Long>> list) ->
+                      list.size() == 1 && list.getFirst().equals(existingCustomer)),
+              eq(fileWriter));
     }
 
     @Test
@@ -97,24 +104,23 @@ public class FlatFileCustomerDAOTest {
       flatFileCustomerDAO.save(existingCustomer);
 
       verify(gson).fromJson(fileReader, customerListType);
-      verify(gson).toJson(argThat((List<Customer<Long>> list) -> list.size() == 3),
-          eq(fileWriter));
+      verify(gson).toJson(argThat((List<Customer<Long>> list) -> list.size() == 3), eq(fileWriter));
     }
-
 
     @Test
     void whenReadFails_thenThrowException() {
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) throws IOException {
-          throw new IOException("Failed to read file");
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) throws IOException {
+              throw new IOException("Failed to read file");
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) {
-          return fileWriter;
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) {
+              return fileWriter;
+            }
+          };
       when(file.exists()).thenReturn(true);
       assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.save(existingCustomer));
     }
@@ -122,23 +128,24 @@ public class FlatFileCustomerDAOTest {
     @Test
     void whenWriteFails_thenThrowException() {
       when(gson.fromJson(any(Reader.class), eq(customerListType))).thenReturn(new LinkedList<>());
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) {
-          return fileReader;
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) {
+              return fileReader;
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) throws IOException {
-          throw new IOException("Failed to write file");
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) throws IOException {
+              throw new IOException("Failed to write file");
+            }
+          };
       when(file.exists()).thenReturn(true);
       assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.save(existingCustomer));
     }
   }
 
-
+  /** Class test with scenario Update Customer */
   @Nested
   class Update {
     @Test
@@ -150,39 +157,43 @@ public class FlatFileCustomerDAOTest {
     @Test
     void whenReadFails_thenThrowException() {
       when(file.exists()).thenReturn(true);
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) throws IOException {
-          throw new IOException("Failed to read file");
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) throws IOException {
+              throw new IOException("Failed to read file");
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) throws IOException {
-          return fileWriter;
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) throws IOException {
+              return fileWriter;
+            }
+          };
       assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.update(existingCustomer));
     }
 
     @Test
     void whenWriteFails_thenThrowException() {
       when(file.exists()).thenReturn(true);
-      when(gson.fromJson(any(Reader.class), eq(customerListType))).thenReturn(new LinkedList<>() {
-        {
-          add(new Customer<>(1L, "Quang"));
-        }
-      });
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) {
-          return fileReader;
-        }
+      when(gson.fromJson(any(Reader.class), eq(customerListType)))
+          .thenReturn(
+              new LinkedList<>() {
+                {
+                  add(new Customer<>(1L, "Quang"));
+                }
+              });
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) {
+              return fileReader;
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) throws IOException {
-          throw new IOException("Failed to write file");
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) throws IOException {
+              throw new IOException("Failed to write file");
+            }
+          };
       assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.update(existingCustomer));
     }
 
@@ -192,23 +203,27 @@ public class FlatFileCustomerDAOTest {
       List<Customer<Long>> existingListCustomer = new LinkedList<>();
       existingListCustomer.add(new Customer<>(1L, "Quang"));
       when(gson.fromJson(any(Reader.class), eq(customerListType))).thenReturn(existingListCustomer);
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) {
-          return fileReader;
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) {
+              return fileReader;
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) throws IOException {
-          return fileWriter;
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) throws IOException {
+              return fileWriter;
+            }
+          };
       flatFileCustomerDAO.update(existingCustomer);
-      verify(gson).toJson(argThat((List<Customer<Long>> customers) ->
-              customers.size() == 1 && customers.stream()
-                  .anyMatch(c -> c.getId().equals(1L) && c.getName().equals("Thanh"))
-          )
-          , eq(fileWriter));
+      verify(gson)
+          .toJson(
+              argThat(
+                  (List<Customer<Long>> customers) ->
+                      customers.size() == 1
+                          && customers.stream()
+                              .anyMatch(c -> c.getId().equals(1L) && c.getName().equals("Thanh"))),
+              eq(fileWriter));
     }
 
     @Test
@@ -217,21 +232,23 @@ public class FlatFileCustomerDAOTest {
       List<Customer<Long>> existingListCustomer = new LinkedList<>();
       existingListCustomer.add(new Customer<>(2L, "Quang"));
       when(gson.fromJson(any(Reader.class), eq(customerListType))).thenReturn(existingListCustomer);
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) {
-          return fileReader;
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) {
+              return fileReader;
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) {
-          return fileWriter;
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) {
+              return fileWriter;
+            }
+          };
       assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.update(existingCustomer));
     }
   }
 
+  /** Class test with scenario Delete Customer */
   @Nested
   class Delete {
     @Test
@@ -243,17 +260,18 @@ public class FlatFileCustomerDAOTest {
     @Test
     void whenReadFails_thenThrowException() {
       when(file.exists()).thenReturn(true);
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) throws IOException {
-          throw new IOException("Failed to read file");
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) throws IOException {
+              throw new IOException("Failed to read file");
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) {
-          return fileWriter;
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) {
+              return fileWriter;
+            }
+          };
       assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.delete(1L));
     }
 
@@ -263,17 +281,18 @@ public class FlatFileCustomerDAOTest {
       List<Customer<Long>> existingListCustomer = new LinkedList<>();
       existingListCustomer.add(new Customer<>(1L, "Quang"));
       when(gson.fromJson(any(Reader.class), eq(customerListType))).thenReturn(existingListCustomer);
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) {
-          return fileReader;
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) {
+              return fileReader;
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) throws IOException {
-          throw new IOException("Failed to write file");
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) throws IOException {
+              throw new IOException("Failed to write file");
+            }
+          };
       assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.delete(1L));
     }
 
@@ -284,24 +303,28 @@ public class FlatFileCustomerDAOTest {
       existingListCustomer.add(new Customer<>(1L, "Quang"));
       existingListCustomer.add(new Customer<>(2L, "Thanh"));
       when(gson.fromJson(any(Reader.class), eq(customerListType))).thenReturn(existingListCustomer);
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) {
-          return fileReader;
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) {
+              return fileReader;
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) {
-          return fileWriter;
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) {
+              return fileWriter;
+            }
+          };
 
       flatFileCustomerDAO.delete(1L);
       assertEquals(1, existingListCustomer.size());
-      verify(gson).toJson(argThat((List<Customer<Long>> customers) ->
-              customers.stream().noneMatch(c -> c.getId().equals(1L) &&
-                  c.getName().equals("Quang"))),
-          eq(fileWriter));
+      verify(gson)
+          .toJson(
+              argThat(
+                  (List<Customer<Long>> customers) ->
+                      customers.stream()
+                          .noneMatch(c -> c.getId().equals(1L) && c.getName().equals("Quang"))),
+              eq(fileWriter));
     }
 
     @Test
@@ -311,21 +334,23 @@ public class FlatFileCustomerDAOTest {
       existingListCustomer.add(new Customer<>(1L, "Quang"));
       existingListCustomer.add(new Customer<>(2L, "Thanh"));
       when(gson.fromJson(any(Reader.class), eq(customerListType))).thenReturn(existingListCustomer);
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) {
-          return fileReader;
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) {
+              return fileReader;
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) {
-          return fileWriter;
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) {
+              return fileWriter;
+            }
+          };
       assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.delete(3L));
     }
   }
 
+  /** Class test with scenario Find All Customer */
   @Nested
   class FindAll {
     @Test
@@ -337,17 +362,18 @@ public class FlatFileCustomerDAOTest {
     @Test
     void whenReadFails_thenThrowException() {
       when(file.exists()).thenReturn(true);
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) throws IOException {
-          throw new IOException("Failed to read file");
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) throws IOException {
+              throw new IOException("Failed to read file");
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) {
-          return fileWriter;
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) {
+              return fileWriter;
+            }
+          };
       assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.findAll());
     }
 
@@ -372,6 +398,7 @@ public class FlatFileCustomerDAOTest {
     }
   }
 
+  /** Class test with scenario Find By Id Customer */
   @Nested
   class FindById {
 
@@ -384,17 +411,18 @@ public class FlatFileCustomerDAOTest {
     @Test
     void whenReadFails_thenThrowException() {
       when(file.exists()).thenReturn(true);
-      flatFileCustomerDAO = new FlatFileCustomerDAO(filePath, gson) {
-        @Override
-        protected Reader createReader(Path filePath) throws IOException {
-          throw new IOException("Failed to read file");
-        }
+      flatFileCustomerDAO =
+          new FlatFileCustomerDAO(filePath, gson) {
+            @Override
+            protected Reader createReader(Path filePath) throws IOException {
+              throw new IOException("Failed to read file");
+            }
 
-        @Override
-        protected Writer createWriter(Path filePath) {
-          return fileWriter;
-        }
-      };
+            @Override
+            protected Writer createWriter(Path filePath) {
+              return fileWriter;
+            }
+          };
       assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.findById(1L));
     }
 
@@ -419,6 +447,7 @@ public class FlatFileCustomerDAOTest {
     }
   }
 
+  /** Clas test with scenario Delete schema */
   @Nested
   class DeleteSchema {
     @Test
@@ -436,5 +465,3 @@ public class FlatFileCustomerDAOTest {
     }
   }
 }
-
-

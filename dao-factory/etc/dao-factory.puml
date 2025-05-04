@@ -2,10 +2,6 @@
 package com.iluwatar.daofactory {
     class App {
         {static} void main(String[] args)
-        {static} <T> void performCreateCustomer(CustomerDAO<T> customerDAO, \n                                                              List<Customer<T>> customerList)
-        {static} <T> void performUpdateCustomer(CustomerDAO<T> customerDAO, \n                                                               Customer<T> customerUpdate)
-        {static} <T> void performDeleteCustomer(CustomerDAO<T> customerDAO, \n                                                              T id)
-        {static} void deleteSchema(CustomerDAO customerDAO)
     }
 
     class Customer<T> {

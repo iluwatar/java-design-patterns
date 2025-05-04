@@ -9,14 +9,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import javax.sql.DataSource;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * An implementation of {@link CustomerDAO} that uses H2 database (http://www.h2database.com/)
- * which is an in-memory database and data will lost after application exits.
+ * An implementation of {@link CustomerDAO} that uses H2 database (http://www.h2database.com/) which
+ * is an in-memory database and data will lost after application exits.
  */
 @Slf4j
 @RequiredArgsConstructor
@@ -31,13 +29,11 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
       "CREATE TABLE IF NOT EXISTS customer (id BIGINT PRIMARY KEY, name VARCHAR(255))";
   private final String DROP_SCHEMA = "DROP TABLE IF EXISTS customer";
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void save(Customer<Long> customer) {
     try (Connection connection = dataSource.getConnection();
-         PreparedStatement saveStatement = connection.prepareStatement(INSERT_CUSTOMER)) {
+        PreparedStatement saveStatement = connection.prepareStatement(INSERT_CUSTOMER)) {
       saveStatement.setLong(1, customer.getId());
       saveStatement.setString(2, customer.getName());
       saveStatement.execute();
@@ -46,14 +42,12 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void update(Customer<Long> customer) {
     try (Connection connection = dataSource.getConnection();
-         PreparedStatement selectStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
-         PreparedStatement updateStatement = connection.prepareStatement(UPDATE_CUSTOMER)) {
+        PreparedStatement selectStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
+        PreparedStatement updateStatement = connection.prepareStatement(UPDATE_CUSTOMER)) {
       selectStatement.setLong(1, customer.getId());
       try (ResultSet resultSet = selectStatement.executeQuery()) {
         if (!resultSet.next()) {
@@ -68,15 +62,12 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void delete(Long id) {
     try (Connection connection = dataSource.getConnection();
-         PreparedStatement selectStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
-         PreparedStatement deleteStatement = connection.prepareStatement(DELETE_CUSTOMER)
-    ) {
+        PreparedStatement selectStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
+        PreparedStatement deleteStatement = connection.prepareStatement(DELETE_CUSTOMER)) {
       selectStatement.setLong(1, id);
       try (ResultSet resultSet = selectStatement.executeQuery()) {
         if (!resultSet.next()) {
@@ -90,14 +81,12 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public List<Customer<Long>> findAll() {
     List<Customer<Long>> customers = new LinkedList<>();
     try (Connection connection = dataSource.getConnection();
-         PreparedStatement selectStatement = connection.prepareStatement(SELECT_ALL_CUSTOMERS)) {
+        PreparedStatement selectStatement = connection.prepareStatement(SELECT_ALL_CUSTOMERS)) {
       try (ResultSet resultSet = selectStatement.executeQuery()) {
         while (resultSet.next()) {
           Long idCustomer = resultSet.getLong("id");
@@ -111,15 +100,13 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
     return customers;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public Optional<Customer<Long>> findById(Long id) {
     Customer<Long> customer = null;
     try (Connection connection = dataSource.getConnection();
-         PreparedStatement selectByIdStatement = connection.prepareStatement(
-             SELECT_CUSTOMER_BY_ID)) {
+        PreparedStatement selectByIdStatement =
+            connection.prepareStatement(SELECT_CUSTOMER_BY_ID)) {
       selectByIdStatement.setLong(1, id);
       try (ResultSet resultSet = selectByIdStatement.executeQuery()) {
         while (resultSet.next()) {
@@ -134,25 +121,21 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
     return Optional.ofNullable(customer);
   }
 
-  /**
-   * Create customer schema.
-   */
+  /** Create customer schema. */
   public void createSchema() {
     try (Connection connection = dataSource.getConnection();
-         Statement statement = connection.createStatement()) {
+        Statement statement = connection.createStatement()) {
       statement.execute(CREATE_SCHEMA);
     } catch (SQLException e) {
       throw new RuntimeException(e.getMessage(), e);
     }
   }
 
-  /**
-   * {@inheritDoc}}
-   */
+  /** {@inheritDoc}} */
   @Override
   public void deleteSchema() {
     try (Connection connection = dataSource.getConnection();
-         Statement statement = connection.createStatement();) {
+        Statement statement = connection.createStatement(); ) {
       statement.execute(DROP_SCHEMA);
     } catch (SQLException e) {
       throw new RuntimeException(e.getMessage(), e);

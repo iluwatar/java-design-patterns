@@ -14,17 +14,13 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
-/**
- * An implementation of {@link CustomerDAO} that uses MongoDB (https://www.mongodb.com/)
- */
+/** An implementation of {@link CustomerDAO} that uses MongoDB (https://www.mongodb.com/) */
 @Slf4j
 @RequiredArgsConstructor
 public class MongoCustomerDAO implements CustomerDAO<ObjectId> {
   private final MongoCollection<Document> customerCollection;
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void save(Customer<ObjectId> customer) {
     Document customerDocument = new Document("_id", customer.getId());
@@ -32,9 +28,7 @@ public class MongoCustomerDAO implements CustomerDAO<ObjectId> {
     customerCollection.insertOne(customerDocument);
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void update(Customer<ObjectId> customer) {
     Document updateQuery = new Document("_id", customer.getId());
@@ -42,9 +36,7 @@ public class MongoCustomerDAO implements CustomerDAO<ObjectId> {
     customerCollection.updateOne(updateQuery, update);
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void delete(ObjectId objectId) {
     Bson deleteQuery = Filters.eq("_id", objectId);
@@ -54,41 +46,35 @@ public class MongoCustomerDAO implements CustomerDAO<ObjectId> {
     }
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public List<Customer<ObjectId>> findAll() {
     List<Customer<ObjectId>> customers = new LinkedList<>();
     FindIterable<Document> customerDocuments = customerCollection.find();
     for (Document customerDocument : customerDocuments) {
-      Customer<ObjectId> customer = new Customer<>((ObjectId) customerDocument.get("_id"),
-          customerDocument.getString("name"));
+      Customer<ObjectId> customer =
+          new Customer<>(
+              (ObjectId) customerDocument.get("_id"), customerDocument.getString("name"));
       customers.add(customer);
     }
     return customers;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public Optional<Customer<ObjectId>> findById(ObjectId objectId) {
     Bson filter = Filters.eq("_id", objectId);
-    Document customerDocument = customerCollection.find(filter)
-        .first();
+    Document customerDocument = customerCollection.find(filter).first();
     Customer<ObjectId> customerResult = null;
     if (customerDocument != null) {
       customerResult =
-          new Customer<>((ObjectId) customerDocument.get("_id"),
-              customerDocument.getString("name"));
+          new Customer<>(
+              (ObjectId) customerDocument.get("_id"), customerDocument.getString("name"));
     }
     return Optional.ofNullable(customerResult);
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public void deleteSchema() {
     customerCollection.drop();

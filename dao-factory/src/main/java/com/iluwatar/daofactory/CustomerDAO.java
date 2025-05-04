@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * The Data Access Object (DAO) pattern provides an abstraction layer between the application
- * and the database. It encapsulates data access logic, allowing the application to work
- * with domain objects instead of direct database operations.
+ * The Data Access Object (DAO) pattern provides an abstraction layer between the application and
+ * the database. It encapsulates data access logic, allowing the application to work with domain
+ * objects instead of direct database operations.
  *
- * <p>Implementations handle specific storage mechanisms (e.g., in-memory, databases)
- * while keeping client code unchanged.
+ * <p>Implementations handle specific storage mechanisms (e.g., in-memory, databases) while keeping
+ * client code unchanged.
  *
  * @see H2CustomerDAO
  * @see MongoCustomerDAO
@@ -53,8 +53,8 @@ public interface CustomerDAO<T> {
   Optional<Customer<T>> findById(T id);
 
   /**
-   * Delete the customer schema. After executing the statements,
-   * this function will be called to clean up the data and delete the records.
+   * Delete the customer schema. After executing the statements, this function will be called to
+   * clean up the data and delete the records.
    */
   void deleteSchema();
 }

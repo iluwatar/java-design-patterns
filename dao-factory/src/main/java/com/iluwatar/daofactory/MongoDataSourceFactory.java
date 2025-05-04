@@ -6,9 +6,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
-/**
- * MongoDataSourceFactory concrete factory.
- */
+/** MongoDataSourceFactory concrete factory. */
 public class MongoDataSourceFactory extends DAOFactory {
   private final String CONN_STR = "mongodb://localhost:27017/";
   private final String DB_NAME = "dao_factory";

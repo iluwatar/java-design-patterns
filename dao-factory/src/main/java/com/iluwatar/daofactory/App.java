@@ -7,7 +7,6 @@ import org.bson.types.ObjectId;
 @Slf4j
 public class App {
 
-
   public static void main(String[] args) {
     var daoFactory = DAOFactory.getDataSource(DataSourceType.H2);
     var customerDAO = daoFactory.createCustomerDAO();
@@ -23,8 +22,8 @@ public class App {
     Customer<Long> customerUpdateInmemory = new Customer<>(1L, "Yellow");
 
     LOGGER.debug("H2 - Create customer");
-    performCreateCustomer(customerDAO,
-        List.of(customerInmemory1, customerInmemory2, customerInmemory3));
+    performCreateCustomer(
+        customerDAO, List.of(customerInmemory1, customerInmemory2, customerInmemory3));
     LOGGER.debug("H2 - Update customer");
     performUpdateCustomer(customerDAO, customerUpdateInmemory);
     LOGGER.debug("H2 - Delete customer");
@@ -56,8 +55,8 @@ public class App {
     Customer<Long> customerFlatFile3 = new Customer<>(3L, "Nhat");
     Customer<Long> customerUpdateFlatFile = new Customer<>(1L, "Thanh");
     LOGGER.debug("Flat file - Create customer");
-    performCreateCustomer(customerDAO,
-        List.of(customerFlatFile1, customerFlatFile2, customerFlatFile3));
+    performCreateCustomer(
+        customerDAO, List.of(customerFlatFile1, customerFlatFile2, customerFlatFile3));
     LOGGER.debug("Flat file - Update customer");
     performUpdateCustomer(customerDAO, customerUpdateFlatFile);
     LOGGER.debug("Flat file - Delete customer");
@@ -69,8 +68,8 @@ public class App {
     customerDAO.deleteSchema();
   }
 
-  public static <T> void performCreateCustomer(CustomerDAO<T> customerDAO,
-                                               List<Customer<T>> customerList) {
+  public static <T> void performCreateCustomer(
+      CustomerDAO<T> customerDAO, List<Customer<T>> customerList) {
     for (Customer<T> customer : customerList) {
       customerDAO.save(customer);
     }
@@ -80,8 +79,8 @@ public class App {
     }
   }
 
-  public static <T> void performUpdateCustomer(CustomerDAO<T> customerDAO,
-                                               Customer<T> customerUpdate) {
+  public static <T> void performUpdateCustomer(
+      CustomerDAO<T> customerDAO, Customer<T> customerUpdate) {
     customerDAO.update(customerUpdate);
     List<Customer<T>> customers = customerDAO.findAll();
     for (Customer<T> customer : customers) {
@@ -89,8 +88,7 @@ public class App {
     }
   }
 
-  public static <T> void performDeleteCustomer(CustomerDAO<T> customerDAO,
-                                               T customerId) {
+  public static <T> void performDeleteCustomer(CustomerDAO<T> customerDAO, T customerId) {
     customerDAO.delete(customerId);
     List<Customer<T>> customers = customerDAO.findAll();
     for (Customer<T> customer : customers) {
