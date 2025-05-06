@@ -5,7 +5,7 @@ import org.h2.jdbcx.JdbcDataSource;
 
 /** H2DataSourceFactory concrete factory. */
 public class H2DataSourceFactory extends DAOFactory {
-  private final String DB_URL = "jdbc:h2:~/test";
+  private final String DB_URL = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
   private final String USER = "sa";
   private final String PASS = "";
 

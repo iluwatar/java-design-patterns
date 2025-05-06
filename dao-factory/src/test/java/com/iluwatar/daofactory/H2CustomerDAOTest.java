@@ -22,7 +22,7 @@ import org.mockito.Mockito;
 
 /** Tests {@link H2CustomerDAO} */
 public class H2CustomerDAOTest {
-  private final String DB_URL = "jdbc:h2:~/test";
+  private final String DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
   private final String USER = "sa";
   private final String PASS = "";
   private final String CREATE_SCHEMA =
