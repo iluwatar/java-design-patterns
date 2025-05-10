@@ -24,25 +24,31 @@
  */
 package com.iluwatar.daofactory;
 
-import javax.sql.DataSource;
-import org.h2.jdbcx.JdbcDataSource;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
-/** H2DataSourceFactory concrete factory. */
-public class H2DataSourceFactory extends DAOFactory {
-  private final String DB_URL = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
-  private final String USER = "sa";
-  private final String PASS = "";
+import org.junit.jupiter.api.Test;
 
-  @Override
-  public CustomerDAO createCustomerDAO() {
-    return new H2CustomerDAO(createDataSource());
+/** {@link DAOFactory} */
+class DAOFactoryTest {
+
+  @Test
+  void verifyH2CustomerDAOCreation() {
+    var daoFactory = DAOFactory.getDataSource(DataSourceType.H2);
+    var customerDAO = daoFactory.createCustomerDAO();
+    assertInstanceOf(H2CustomerDAO.class, customerDAO);
   }
 
-  private DataSource createDataSource() {
-    var dataSource = new JdbcDataSource();
-    dataSource.setURL(DB_URL);
-    dataSource.setUser(USER);
-    dataSource.setPassword(PASS);
-    return dataSource;
+  @Test
+  void verifyMongoCustomerDAOCreation() {
+    var daoFactory = DAOFactory.getDataSource(DataSourceType.Mongo);
+    var customerDAO = daoFactory.createCustomerDAO();
+    assertInstanceOf(MongoCustomerDAO.class, customerDAO);
+  }
+
+  @Test
+  void verifyFlatFileCustomerDAOCreation() {
+    var daoFactory = DAOFactory.getDataSource(DataSourceType.FlatFile);
+    var customerDAO = daoFactory.createCustomerDAO();
+    assertInstanceOf(FlatFileCustomerDAO.class, customerDAO);
   }
 }

@@ -24,25 +24,19 @@
  */
 package com.iluwatar.daofactory;
 
-import javax.sql.DataSource;
-import org.h2.jdbcx.JdbcDataSource;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-/** H2DataSourceFactory concrete factory. */
-public class H2DataSourceFactory extends DAOFactory {
-  private final String DB_URL = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
-  private final String USER = "sa";
-  private final String PASS = "";
+/** FlatFileDataSourceFactory concrete factory. */
+public class FlatFileDataSourceFactory extends DAOFactory {
+  private final String FILE_PATH = System.getProperty("user.home") + "/Desktop/customer.json";
 
   @Override
   public CustomerDAO createCustomerDAO() {
-    return new H2CustomerDAO(createDataSource());
-  }
-
-  private DataSource createDataSource() {
-    var dataSource = new JdbcDataSource();
-    dataSource.setURL(DB_URL);
-    dataSource.setUser(USER);
-    dataSource.setPassword(PASS);
-    return dataSource;
+    Path filePath = Paths.get(FILE_PATH);
+    Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+    return new FlatFileCustomerDAO(filePath, gson);
   }
 }

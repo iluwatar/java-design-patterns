@@ -24,25 +24,24 @@
  */
 package com.iluwatar.daofactory;
 
-import javax.sql.DataSource;
-import org.h2.jdbcx.JdbcDataSource;
+import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-/** H2DataSourceFactory concrete factory. */
-public class H2DataSourceFactory extends DAOFactory {
-  private final String DB_URL = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
-  private final String USER = "sa";
-  private final String PASS = "";
-
-  @Override
-  public CustomerDAO createCustomerDAO() {
-    return new H2CustomerDAO(createDataSource());
-  }
-
-  private DataSource createDataSource() {
-    var dataSource = new JdbcDataSource();
-    dataSource.setURL(DB_URL);
-    dataSource.setUser(USER);
-    dataSource.setPassword(PASS);
-    return dataSource;
-  }
+/**
+ * A customer generic POJO that represents the data that can be stored in any supported data source.
+ * This class is designed t work with various ID types (e.g., Long, String, or ObjectId) through
+ * generic, making it adaptable to different persistence system.
+ */
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Customer<T> implements Serializable {
+  private T id;
+  private String name;
 }

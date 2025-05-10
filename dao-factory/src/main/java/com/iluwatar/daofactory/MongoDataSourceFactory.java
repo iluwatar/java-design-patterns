@@ -24,25 +24,27 @@
  */
 package com.iluwatar.daofactory;
 
-import javax.sql.DataSource;
-import org.h2.jdbcx.JdbcDataSource;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
 
-/** H2DataSourceFactory concrete factory. */
-public class H2DataSourceFactory extends DAOFactory {
-  private final String DB_URL = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
-  private final String USER = "sa";
-  private final String PASS = "";
+/** MongoDataSourceFactory concrete factory. */
+public class MongoDataSourceFactory extends DAOFactory {
+  private final String CONN_STR = "mongodb://localhost:27017/";
+  private final String DB_NAME = "dao_factory";
+  private final String COLLECTION_NAME = "customer";
 
   @Override
   public CustomerDAO createCustomerDAO() {
-    return new H2CustomerDAO(createDataSource());
-  }
-
-  private DataSource createDataSource() {
-    var dataSource = new JdbcDataSource();
-    dataSource.setURL(DB_URL);
-    dataSource.setUser(USER);
-    dataSource.setPassword(PASS);
-    return dataSource;
+    try {
+      MongoClient mongoClient = MongoClients.create(CONN_STR);
+      MongoDatabase database = mongoClient.getDatabase(DB_NAME);
+      MongoCollection<Document> customerCollection = database.getCollection(COLLECTION_NAME);
+      return new MongoCustomerDAO(customerCollection);
+    } catch (RuntimeException e) {
+      throw new RuntimeException("Error: " + e);
+    }
   }
 }
