@@ -41,7 +41,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class Customer<T> implements Serializable {
+public class Customer<T extends Serializable> implements Serializable {
   private T id;
   private String name;
 }

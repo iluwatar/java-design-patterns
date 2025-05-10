@@ -37,22 +37,6 @@ package com.iluwatar.daofactory;
  */
 public abstract class DAOFactory {
   /**
-   * Returns a concrete {@link DAOFactory} intance based on the specified data source type.
-   *
-   * @param dataSourceType The type of data source for which a factory is needed. Supported values:
-   *     {@code H2}, {@code Mongo}, {@code FlatFile}
-   * @return A {@link DAOFactory} implementation corresponding to the given data source type.
-   * @throws IllegalArgumentException if the given data source type is not supported.
-   */
-  public static DAOFactory getDataSource(DataSourceType dataSourceType) {
-    return switch (dataSourceType) {
-      case H2 -> new H2DataSourceFactory();
-      case Mongo -> new MongoDataSourceFactory();
-      case FlatFile -> new FlatFileDataSourceFactory();
-    };
-  }
-
-  /**
    * Retrieves a {@link CustomerDAO} implementation specific to the underlying data source..
    *
    * @return A data source-specific implementation of {@link CustomerDAO}

@@ -33,21 +33,21 @@ class DAOFactoryTest {
 
   @Test
   void verifyH2CustomerDAOCreation() {
-    var daoFactory = DAOFactory.getDataSource(DataSourceType.H2);
+    var daoFactory = DAOFactoryProvider.getDataSource(DataSourceType.H2);
     var customerDAO = daoFactory.createCustomerDAO();
     assertInstanceOf(H2CustomerDAO.class, customerDAO);
   }
 
   @Test
   void verifyMongoCustomerDAOCreation() {
-    var daoFactory = DAOFactory.getDataSource(DataSourceType.Mongo);
+    var daoFactory = DAOFactoryProvider.getDataSource(DataSourceType.MONGO);
     var customerDAO = daoFactory.createCustomerDAO();
     assertInstanceOf(MongoCustomerDAO.class, customerDAO);
   }
 
   @Test
   void verifyFlatFileCustomerDAOCreation() {
-    var daoFactory = DAOFactory.getDataSource(DataSourceType.FlatFile);
+    var daoFactory = DAOFactoryProvider.getDataSource(DataSourceType.FLAT_FILE);
     var customerDAO = daoFactory.createCustomerDAO();
     assertInstanceOf(FlatFileCustomerDAO.class, customerDAO);
   }

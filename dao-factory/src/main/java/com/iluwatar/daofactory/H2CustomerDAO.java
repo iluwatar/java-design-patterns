@@ -31,6 +31,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import javax.sql.DataSource;
 import lombok.RequiredArgsConstructor;
@@ -44,14 +45,15 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class H2CustomerDAO implements CustomerDAO<Long> {
   private final DataSource dataSource;
-  private final String INSERT_CUSTOMER = "INSERT INTO customer(id, name) VALUES (?, ?)";
-  private final String UPDATE_CUSTOMER = "UPDATE customer SET name = ? WHERE id = ?";
-  private final String DELETE_CUSTOMER = "DELETE FROM customer WHERE id = ?";
-  private final String SELECT_CUSTOMER_BY_ID = "SELECT * FROM customer WHERE id= ?";
-  private final String SELECT_ALL_CUSTOMERS = "SELECT * FROM customer";
-  private final String CREATE_SCHEMA =
+  private static final String INSERT_CUSTOMER = "INSERT INTO customer(id, name) VALUES (?, ?)";
+  private static final String UPDATE_CUSTOMER = "UPDATE customer SET name = ? WHERE id = ?";
+  private static final String DELETE_CUSTOMER = "DELETE FROM customer WHERE id = ?";
+  private static final String SELECT_CUSTOMER_BY_ID =
+      "SELECT customer.id, customer.name FROM customer WHERE id= ?";
+  private static final String SELECT_ALL_CUSTOMERS = "SELECT customer.* FROM customer";
+  private static final String CREATE_SCHEMA =
       "CREATE TABLE IF NOT EXISTS customer (id BIGINT PRIMARY KEY, name VARCHAR(255))";
-  private final String DROP_SCHEMA = "DROP TABLE IF EXISTS customer";
+  private static final String DROP_SCHEMA = "DROP TABLE IF EXISTS customer";
 
   /** {@inheritDoc} */
   @Override
@@ -62,46 +64,52 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
       saveStatement.setString(2, customer.getName());
       saveStatement.execute();
     } catch (SQLException e) {
-      throw new RuntimeException(e.getMessage(), e);
+      throw new CustomException(e.getMessage(), e);
     }
   }
 
   /** {@inheritDoc} */
   @Override
   public void update(Customer<Long> customer) {
+    if (Objects.isNull(customer) || Objects.isNull(customer.getId())) {
+      throw new CustomException("Custome null or customer id null");
+    }
     try (Connection connection = dataSource.getConnection();
         PreparedStatement selectStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
         PreparedStatement updateStatement = connection.prepareStatement(UPDATE_CUSTOMER)) {
       selectStatement.setLong(1, customer.getId());
       try (ResultSet resultSet = selectStatement.executeQuery()) {
         if (!resultSet.next()) {
-          throw new RuntimeException("Customer not found with id: " + customer.getId());
+          throw new CustomException("Customer not found with id: " + customer.getId());
         }
       }
       updateStatement.setString(1, customer.getName());
       updateStatement.setLong(2, customer.getId());
       updateStatement.executeUpdate();
     } catch (SQLException e) {
-      throw new RuntimeException(e.getMessage(), e);
+      throw new CustomException(e.getMessage(), e);
     }
   }
 
   /** {@inheritDoc} */
   @Override
   public void delete(Long id) {
+    if (Objects.isNull(id)) {
+      throw new CustomException("Customer id null");
+    }
     try (Connection connection = dataSource.getConnection();
         PreparedStatement selectStatement = connection.prepareStatement(SELECT_CUSTOMER_BY_ID);
         PreparedStatement deleteStatement = connection.prepareStatement(DELETE_CUSTOMER)) {
       selectStatement.setLong(1, id);
       try (ResultSet resultSet = selectStatement.executeQuery()) {
         if (!resultSet.next()) {
-          throw new RuntimeException("Customer not found with id: " + id);
+          throw new CustomException("Customer not found with id: " + id);
         }
       }
       deleteStatement.setLong(1, id);
       deleteStatement.execute();
     } catch (SQLException e) {
-      throw new RuntimeException(e.getMessage(), e);
+      throw new CustomException(e.getMessage(), e);
     }
   }
 
@@ -119,7 +127,7 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
         }
       }
     } catch (SQLException e) {
-      throw new RuntimeException(e.getMessage(), e);
+      throw new CustomException(e.getMessage(), e);
     }
     return customers;
   }
@@ -127,6 +135,9 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
   /** {@inheritDoc} */
   @Override
   public Optional<Customer<Long>> findById(Long id) {
+    if (Objects.isNull(id)) {
+      throw new CustomException("Customer id null");
+    }
     Customer<Long> customer = null;
     try (Connection connection = dataSource.getConnection();
         PreparedStatement selectByIdStatement =
@@ -140,7 +151,7 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
         }
       }
     } catch (SQLException e) {
-      throw new RuntimeException(e.getMessage(), e);
+      throw new CustomException(e.getMessage(), e);
     }
     return Optional.ofNullable(customer);
   }
@@ -151,7 +162,7 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
         Statement statement = connection.createStatement()) {
       statement.execute(CREATE_SCHEMA);
     } catch (SQLException e) {
-      throw new RuntimeException(e.getMessage(), e);
+      throw new CustomException(e.getMessage(), e);
     }
   }
 
@@ -162,7 +173,7 @@ public class H2CustomerDAO implements CustomerDAO<Long> {
         Statement statement = connection.createStatement(); ) {
       statement.execute(DROP_SCHEMA);
     } catch (SQLException e) {
-      throw new RuntimeException(e.getMessage(), e);
+      throw new CustomException(e.getMessage(), e);
     }
   }
 }
