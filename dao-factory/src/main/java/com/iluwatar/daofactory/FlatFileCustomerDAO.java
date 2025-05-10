@@ -67,14 +67,14 @@ public class FlatFileCustomerDAO implements CustomerDAO<Long> {
       try (Reader reader = createReader(filePath)) {
         customers = gson.fromJson(reader, customerListType);
       } catch (IOException ex) {
-        throw new RuntimeException("Failed to read customer data", ex);
+        throw new CustomException("Failed to read customer data", ex);
       }
     }
     customers.add(customer);
     try (Writer writer = createWriter(filePath)) {
       gson.toJson(customers, writer);
     } catch (IOException ex) {
-      throw new RuntimeException("Failed to write customer data", ex);
+      throw new CustomException("Failed to write customer data", ex);
     }
   }
 
@@ -82,13 +82,13 @@ public class FlatFileCustomerDAO implements CustomerDAO<Long> {
   @Override
   public void update(Customer<Long> customer) {
     if (!filePath.toFile().exists()) {
-      throw new RuntimeException("File not found");
+      throw new CustomException("File not found");
     }
     List<Customer<Long>> customers;
     try (Reader reader = createReader(filePath)) {
       customers = gson.fromJson(reader, customerListType);
     } catch (IOException ex) {
-      throw new RuntimeException("Failed to read customer data", ex);
+      throw new CustomException("Failed to read customer data", ex);
     }
     customers.stream()
         .filter(c -> c.getId().equals(customer.getId()))
@@ -96,12 +96,12 @@ public class FlatFileCustomerDAO implements CustomerDAO<Long> {
         .ifPresentOrElse(
             c -> c.setName(customer.getName()),
             () -> {
-              throw new RuntimeException("Customer not found with id: " + customer.getId());
+              throw new CustomException("Customer not found with id: " + customer.getId());
             });
     try (Writer writer = createWriter(filePath)) {
       gson.toJson(customers, writer);
     } catch (IOException ex) {
-      throw new RuntimeException("Failed to write customer data", ex);
+      throw new CustomException("Failed to write customer data", ex);
     }
   }
 
@@ -109,24 +109,24 @@ public class FlatFileCustomerDAO implements CustomerDAO<Long> {
   @Override
   public void delete(Long id) {
     if (!filePath.toFile().exists()) {
-      throw new RuntimeException("File not found");
+      throw new CustomException("File not found");
     }
     List<Customer<Long>> customers;
     try (Reader reader = createReader(filePath)) {
       customers = gson.fromJson(reader, customerListType);
     } catch (IOException ex) {
-      throw new RuntimeException("Failed to read customer data", ex);
+      throw new CustomException("Failed to read customer data", ex);
     }
     Customer<Long> customerToRemove =
         customers.stream()
             .filter(c -> c.getId().equals(id))
             .findFirst()
-            .orElseThrow(() -> new RuntimeException("Customer not found with id: " + id));
+            .orElseThrow(() -> new CustomException("Customer not found with id: " + id));
     customers.remove(customerToRemove);
     try (Writer writer = createWriter(filePath)) {
       gson.toJson(customers, writer);
     } catch (IOException ex) {
-      throw new RuntimeException("Failed to write customer data", ex);
+      throw new CustomException("Failed to write customer data", ex);
     }
   }
 
@@ -134,13 +134,13 @@ public class FlatFileCustomerDAO implements CustomerDAO<Long> {
   @Override
   public List<Customer<Long>> findAll() {
     if (!filePath.toFile().exists()) {
-      throw new RuntimeException("File not found");
+      throw new CustomException("File not found");
     }
     List<Customer<Long>> customers;
     try (Reader reader = createReader(filePath)) {
       customers = gson.fromJson(reader, customerListType);
     } catch (IOException ex) {
-      throw new RuntimeException("Failed to read customer data", ex);
+      throw new CustomException("Failed to read customer data", ex);
     }
     return customers;
   }
@@ -149,13 +149,13 @@ public class FlatFileCustomerDAO implements CustomerDAO<Long> {
   @Override
   public Optional<Customer<Long>> findById(Long id) {
     if (!filePath.toFile().exists()) {
-      throw new RuntimeException("File not found");
+      throw new CustomException("File not found");
     }
     List<Customer<Long>> customers = null;
     try (Reader reader = createReader(filePath)) {
       customers = gson.fromJson(reader, customerListType);
     } catch (IOException ex) {
-      throw new RuntimeException("Failed to read customer data", ex);
+      throw new CustomException("Failed to read customer data", ex);
     }
     return customers.stream().filter(c -> c.getId().equals(id)).findFirst();
   }
@@ -164,12 +164,12 @@ public class FlatFileCustomerDAO implements CustomerDAO<Long> {
   @Override
   public void deleteSchema() {
     if (!filePath.toFile().exists()) {
-      throw new RuntimeException("File not found");
+      throw new CustomException("File not found");
     }
     try {
       Files.delete(filePath);
     } catch (IOException ex) {
-      throw new RuntimeException("Failed to delete customer data");
+      throw new CustomException("Failed to delete customer data");
     }
   }
 }

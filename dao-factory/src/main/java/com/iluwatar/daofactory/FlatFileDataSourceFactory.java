@@ -31,10 +31,11 @@ import java.nio.file.Paths;
 
 /** FlatFileDataSourceFactory concrete factory. */
 public class FlatFileDataSourceFactory extends DAOFactory {
-  private final String FILE_PATH = System.getProperty("user.home") + "/Desktop/customer.json";
+  private static final String FILE_PATH =
+      System.getProperty("user.home") + "/Desktop/customer.json";
 
   @Override
-  public CustomerDAO createCustomerDAO() {
+  public CustomerDAO<Long> createCustomerDAO() {
     Path filePath = Paths.get(FILE_PATH);
     Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
     return new FlatFileCustomerDAO(filePath, gson);

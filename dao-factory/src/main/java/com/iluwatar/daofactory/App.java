@@ -24,6 +24,7 @@
  */
 package com.iluwatar.daofactory;
 
+import java.io.Serializable;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 import org.bson.types.ObjectId;
@@ -32,8 +33,8 @@ import org.bson.types.ObjectId;
 public class App {
 
   public static void main(String[] args) {
-    var daoFactory = DAOFactory.getDataSource(DataSourceType.H2);
-    var customerDAO = daoFactory.createCustomerDAO();
+    var daoFactory = DAOFactoryProvider.getDataSource(DataSourceType.H2);
+    CustomerDAO customerDAO = daoFactory.createCustomerDAO();
 
     // Perform CRUD H2 Database
     if (customerDAO instanceof H2CustomerDAO h2CustomerDAO) {
@@ -55,7 +56,7 @@ public class App {
     deleteSchema(customerDAO);
 
     // Perform CRUD MongoDb
-    daoFactory = DAOFactory.getDataSource(DataSourceType.Mongo);
+    daoFactory = DAOFactoryProvider.getDataSource(DataSourceType.MONGO);
     customerDAO = daoFactory.createCustomerDAO();
     ObjectId idCustomerMongo1 = new ObjectId();
     ObjectId idCustomerMongo2 = new ObjectId();
@@ -72,7 +73,7 @@ public class App {
     deleteSchema(customerDAO);
 
     // Perform CRUD Flat file
-    daoFactory = DAOFactory.getDataSource(DataSourceType.FlatFile);
+    daoFactory = DAOFactoryProvider.getDataSource(DataSourceType.FLAT_FILE);
     customerDAO = daoFactory.createCustomerDAO();
     Customer<Long> customerFlatFile1 = new Customer<>(1L, "Duc");
     Customer<Long> customerFlatFile2 = new Customer<>(2L, "Quang");
@@ -88,11 +89,11 @@ public class App {
     deleteSchema(customerDAO);
   }
 
-  public static void deleteSchema(CustomerDAO<?> customerDAO) {
+  public static void deleteSchema(CustomerDAO customerDAO) {
     customerDAO.deleteSchema();
   }
 
-  public static <T> void performCreateCustomer(
+  public static <T extends Serializable> void performCreateCustomer(
       CustomerDAO<T> customerDAO, List<Customer<T>> customerList) {
     for (Customer<T> customer : customerList) {
       customerDAO.save(customer);
@@ -103,7 +104,7 @@ public class App {
     }
   }
 
-  public static <T> void performUpdateCustomer(
+  public static <T extends Serializable> void performUpdateCustomer(
       CustomerDAO<T> customerDAO, Customer<T> customerUpdate) {
     customerDAO.update(customerUpdate);
     List<Customer<T>> customers = customerDAO.findAll();
@@ -112,7 +113,8 @@ public class App {
     }
   }
 
-  public static <T> void performDeleteCustomer(CustomerDAO<T> customerDAO, T customerId) {
+  public static <T extends Serializable> void performDeleteCustomer(
+      CustomerDAO<T> customerDAO, T customerId) {
     customerDAO.delete(customerId);
     List<Customer<T>> customers = customerDAO.findAll();
     for (Customer<T> customer : customers) {

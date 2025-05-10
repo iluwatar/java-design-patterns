@@ -66,7 +66,7 @@ public class MongoCustomerDAO implements CustomerDAO<ObjectId> {
     Bson deleteQuery = Filters.eq("_id", objectId);
     DeleteResult deleteResult = customerCollection.deleteOne(deleteQuery);
     if (deleteResult.getDeletedCount() == 0) {
-      throw new RuntimeException("Delete failed: No document found with id: " + objectId);
+      throw new CustomException("Delete failed: No document found with id: " + objectId);
     }
   }
 

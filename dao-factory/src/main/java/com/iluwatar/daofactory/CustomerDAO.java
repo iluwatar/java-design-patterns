@@ -24,6 +24,7 @@
  */
 package com.iluwatar.daofactory;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +40,7 @@ import java.util.Optional;
  * @see MongoCustomerDAO
  * @see FlatFileCustomerDAO
  */
-public interface CustomerDAO<T> {
+public interface CustomerDAO<T extends Serializable> {
   /**
    * Persist the given customer
    *

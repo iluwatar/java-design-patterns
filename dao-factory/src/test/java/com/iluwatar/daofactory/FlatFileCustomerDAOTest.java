@@ -56,7 +56,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
 /** {@link FlatFileCustomerDAO} */
-public class FlatFileCustomerDAOTest {
+class FlatFileCustomerDAOTest {
   private Path filePath;
   private File file;
   private Gson gson;
@@ -149,7 +149,7 @@ public class FlatFileCustomerDAOTest {
             }
           };
       when(file.exists()).thenReturn(true);
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.save(existingCustomer));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.save(existingCustomer));
     }
 
     @Test
@@ -168,7 +168,7 @@ public class FlatFileCustomerDAOTest {
             }
           };
       when(file.exists()).thenReturn(true);
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.save(existingCustomer));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.save(existingCustomer));
     }
   }
 
@@ -178,7 +178,7 @@ public class FlatFileCustomerDAOTest {
     @Test
     void givenFilePathNotExist_whenUpdateCustomer_thenThrowException() {
       when(file.exists()).thenReturn(false);
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.update(existingCustomer));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.update(existingCustomer));
     }
 
     @Test
@@ -196,7 +196,7 @@ public class FlatFileCustomerDAOTest {
               return fileWriter;
             }
           };
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.update(existingCustomer));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.update(existingCustomer));
     }
 
     @Test
@@ -221,7 +221,7 @@ public class FlatFileCustomerDAOTest {
               throw new IOException("Failed to write file");
             }
           };
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.update(existingCustomer));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.update(existingCustomer));
     }
 
     @Test
@@ -271,7 +271,7 @@ public class FlatFileCustomerDAOTest {
               return fileWriter;
             }
           };
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.update(existingCustomer));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.update(existingCustomer));
     }
   }
 
@@ -281,7 +281,7 @@ public class FlatFileCustomerDAOTest {
     @Test
     void givenFilePathNotExist_whenDeleteCustomer_thenThrowException() {
       when(file.exists()).thenReturn(false);
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.delete(1L));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.delete(1L));
     }
 
     @Test
@@ -299,7 +299,7 @@ public class FlatFileCustomerDAOTest {
               return fileWriter;
             }
           };
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.delete(1L));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.delete(1L));
     }
 
     @Test
@@ -320,7 +320,7 @@ public class FlatFileCustomerDAOTest {
               throw new IOException("Failed to write file");
             }
           };
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.delete(1L));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.delete(1L));
     }
 
     @Test
@@ -373,7 +373,7 @@ public class FlatFileCustomerDAOTest {
               return fileWriter;
             }
           };
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.delete(3L));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.delete(3L));
     }
   }
 
@@ -383,7 +383,7 @@ public class FlatFileCustomerDAOTest {
     @Test
     void givenFileNotExist_thenThrowException() {
       when(file.exists()).thenReturn(false);
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.findAll());
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.findAll());
     }
 
     @Test
@@ -401,7 +401,7 @@ public class FlatFileCustomerDAOTest {
               return fileWriter;
             }
           };
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.findAll());
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.findAll());
     }
 
     @Test
@@ -432,7 +432,7 @@ public class FlatFileCustomerDAOTest {
     @Test
     void givenFilePathNotExist_whenFindById_thenThrowException() {
       when(file.exists()).thenReturn(false);
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.findById(1L));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.findById(1L));
     }
 
     @Test
@@ -450,7 +450,7 @@ public class FlatFileCustomerDAOTest {
               return fileWriter;
             }
           };
-      assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.findById(1L));
+      assertThrows(CustomException.class, () -> flatFileCustomerDAO.findById(1L));
     }
 
     @Test
@@ -492,7 +492,7 @@ public class FlatFileCustomerDAOTest {
       when(file.exists()).thenReturn(false);
 
       try (MockedStatic<Files> mockedFiles = mockStatic(Files.class)) {
-        assertThrows(RuntimeException.class, () -> flatFileCustomerDAO.deleteSchema());
+        assertThrows(CustomException.class, () -> flatFileCustomerDAO.deleteSchema());
         mockedFiles.verify(() -> Files.delete(filePath), times(0));
       }
     }

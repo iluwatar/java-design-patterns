@@ -46,12 +46,9 @@ import org.bson.Document;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /** Tests {@link MongoCustomerDAO} */
-public class MongoCustomerDAOTest {
-  private static final Logger log = LoggerFactory.getLogger(MongoCustomerDAOTest.class);
+class MongoCustomerDAOTest {
   MongoCollection<Document> customerCollection = mock(MongoCollection.class);
   MongoCustomerDAO mongoCustomerDAO = new MongoCustomerDAO(customerCollection);
 
@@ -107,7 +104,7 @@ public class MongoCustomerDAOTest {
   void givenIdNotExist_whenDeleteCustomer_thenThrowException() {
     ObjectId customerId = new ObjectId();
     when(customerCollection.deleteOne(any(Bson.class))).thenReturn(DeleteResult.acknowledged(0));
-    assertThrows(RuntimeException.class, () -> mongoCustomerDAO.delete(customerId));
+    assertThrows(CustomException.class, () -> mongoCustomerDAO.delete(customerId));
     verify(customerCollection)
         .deleteOne(
             argThat(

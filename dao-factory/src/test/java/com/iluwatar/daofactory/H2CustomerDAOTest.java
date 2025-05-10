@@ -45,13 +45,13 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 /** Tests {@link H2CustomerDAO} */
-public class H2CustomerDAOTest {
-  private final String DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
-  private final String USER = "sa";
-  private final String PASS = "";
-  private final String CREATE_SCHEMA =
+class H2CustomerDAOTest {
+  private static final String DB_URL = "jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1";
+  private static final String USER = "sa";
+  private static final String PASS = "";
+  private static final String CREATE_SCHEMA =
       "CREATE TABLE IF NOT EXISTS customer (id BIGINT PRIMARY KEY, name VARCHAR(255))";
-  private final String DROP_SCHEMA = "DROP TABLE IF EXISTS customer";
+  private static final String DROP_SCHEMA = "DROP TABLE IF EXISTS customer";
   private final Customer<Long> existingCustomer = new Customer<>(1L, "Nguyen");
   private H2CustomerDAO h2CustomerDAO;
 
@@ -106,7 +106,7 @@ public class H2CustomerDAOTest {
       @Test
       void givenIdCustomerDuplicated_whenSaveCustomer_thenThrowException() {
         var customer = new Customer<>(existingCustomer.getId(), "Duc");
-        assertThrows(RuntimeException.class, () -> h2CustomerDAO.save(customer));
+        assertThrows(CustomException.class, () -> h2CustomerDAO.save(customer));
         List<Customer<Long>> customers = h2CustomerDAO.findAll();
         assertEquals(1, customers.size());
       }
@@ -128,12 +128,12 @@ public class H2CustomerDAOTest {
         var customerUpdate = new Customer<>(100L, "Duc");
         var customerInDb = h2CustomerDAO.findById(customerUpdate.getId());
         assertTrue(customerInDb.isEmpty());
-        assertThrows(RuntimeException.class, () -> h2CustomerDAO.update(customerUpdate));
+        assertThrows(CustomException.class, () -> h2CustomerDAO.update(customerUpdate));
       }
 
       @Test
       void givenNull_whenUpdateCustomer_thenThrowException() {
-        assertThrows(RuntimeException.class, () -> h2CustomerDAO.update(null));
+        assertThrows(CustomException.class, () -> h2CustomerDAO.update(null));
         List<Customer<Long>> customers = h2CustomerDAO.findAll();
         assertEquals(1, customers.size());
       }
@@ -154,7 +154,7 @@ public class H2CustomerDAOTest {
       void givenIdCustomerNotExist_whenDeleteCustomer_thenThrowException() {
         var customerInDb = h2CustomerDAO.findById(100L);
         assertTrue(customerInDb.isEmpty());
-        assertThrows(RuntimeException.class, () -> h2CustomerDAO.delete(100L));
+        assertThrows(CustomException.class, () -> h2CustomerDAO.delete(100L));
         List<Customer<Long>> customers = h2CustomerDAO.findAll();
         assertEquals(1, customers.size());
         assertEquals(existingCustomer.getName(), customers.get(0).getName());
@@ -163,7 +163,7 @@ public class H2CustomerDAOTest {
 
       @Test
       void givenNull_whenDeleteCustomer_thenThrowException() {
-        assertThrows(RuntimeException.class, () -> h2CustomerDAO.delete(null));
+        assertThrows(CustomException.class, () -> h2CustomerDAO.delete(null));
         List<Customer<Long>> customers = h2CustomerDAO.findAll();
         assertEquals(1, customers.size());
         assertEquals(existingCustomer.getName(), customers.get(0).getName());
@@ -206,7 +206,7 @@ public class H2CustomerDAOTest {
 
       @Test
       void givenNull_whenFindById_thenThrowException() {
-        assertThrows(RuntimeException.class, () -> h2CustomerDAO.findById(null));
+        assertThrows(CustomException.class, () -> h2CustomerDAO.findById(null));
       }
     }
 
@@ -230,7 +230,7 @@ public class H2CustomerDAOTest {
   /** Class test with scenario connect with data source failed */
   @Nested
   class ConnectionFailed {
-    private final String EXCEPTION_CAUSE = "Connection not available";
+    private static final String EXCEPTION_CAUSE = "Connection not available";
 
     @BeforeEach
     void setUp() throws SQLException {
@@ -250,52 +250,50 @@ public class H2CustomerDAOTest {
     @Test
     void givenValidCustomer_whenSaveCustomer_thenThrowException() {
       var customer = new Customer<>(2L, "Duc");
-      RuntimeException exception =
-          assertThrows(RuntimeException.class, () -> h2CustomerDAO.save(customer));
+      CustomException exception =
+          assertThrows(CustomException.class, () -> h2CustomerDAO.save(customer));
       assertEquals(EXCEPTION_CAUSE, exception.getMessage());
     }
 
     @Test
     void givenValidCustomer_whenUpdateCustomer_thenThrowException() {
       var customerUpdate = new Customer<>(existingCustomer.getId(), "Duc");
-      RuntimeException exception =
-          assertThrows(RuntimeException.class, () -> h2CustomerDAO.update(customerUpdate));
+      CustomException exception =
+          assertThrows(CustomException.class, () -> h2CustomerDAO.update(customerUpdate));
       assertEquals(EXCEPTION_CAUSE, exception.getMessage());
     }
 
     @Test
     void givenValidId_whenDeleteCustomer_thenThrowException() {
-      RuntimeException exception =
-          assertThrows(
-              RuntimeException.class, () -> h2CustomerDAO.delete(existingCustomer.getId()));
+      Long idCustomer = existingCustomer.getId();
+      CustomException exception =
+          assertThrows(CustomException.class, () -> h2CustomerDAO.delete(idCustomer));
       assertEquals(EXCEPTION_CAUSE, exception.getMessage());
     }
 
     @Test
     void whenFindAll_thenThrowException() {
-      RuntimeException exception = assertThrows(RuntimeException.class, h2CustomerDAO::findAll);
+      CustomException exception = assertThrows(CustomException.class, h2CustomerDAO::findAll);
       assertEquals(EXCEPTION_CAUSE, exception.getMessage());
     }
 
     @Test
     void whenFindById_thenThrowException() {
-      RuntimeException exception =
-          assertThrows(
-              RuntimeException.class, () -> h2CustomerDAO.findById(existingCustomer.getId()));
+      Long idCustomer = existingCustomer.getId();
+      CustomException exception =
+          assertThrows(CustomException.class, () -> h2CustomerDAO.findById(idCustomer));
       assertEquals(EXCEPTION_CAUSE, exception.getMessage());
     }
 
     @Test
     void whenCreateSchema_thenThrowException() {
-      RuntimeException exception =
-          assertThrows(RuntimeException.class, h2CustomerDAO::createSchema);
+      CustomException exception = assertThrows(CustomException.class, h2CustomerDAO::createSchema);
       assertEquals(EXCEPTION_CAUSE, exception.getMessage());
     }
 
     @Test
     void whenDeleteSchema_thenThrowException() {
-      RuntimeException exception =
-          assertThrows(RuntimeException.class, h2CustomerDAO::deleteSchema);
+      CustomException exception = assertThrows(CustomException.class, h2CustomerDAO::deleteSchema);
       assertEquals(EXCEPTION_CAUSE, exception.getMessage());
     }
   }
