@@ -182,6 +182,7 @@
     <module>object-mother</module>
     <module>object-pool</module>
     <module>observer</module>
+    <module>onion-architecture</module>
     <module>optimistic-offline-lock</module>
     <module>page-controller</module>
     <module>page-object</module>
