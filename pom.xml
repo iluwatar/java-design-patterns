@@ -240,10 +240,10 @@
     <module>update-method</module>
     <module>value-object</module>
     <module>version-number</module>
+    <module>view-helper</module>
     <module>virtual-proxy</module>
     <module>visitor</module>
     <module>backpressure</module>
-    <module>view-helper</module>
   </modules>
   <repositories>
     <repository>
