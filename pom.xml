@@ -242,7 +242,8 @@
     <module>version-number</module>
     <module>virtual-proxy</module>
     <module>visitor</module>
-      <module>backpressure</module>
+    <module>backpressure</module>
+    <module>view-helper</module>
   </modules>
   <repositories>
     <repository>
