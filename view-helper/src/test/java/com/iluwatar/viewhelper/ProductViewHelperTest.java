@@ -55,6 +55,6 @@ class ProductViewHelperTest {
     var product = new Product("X", new BigDecimal("10.00"), LocalDate.of(2025, 1, 1), true);
     ProductViewModel viewModel = helper.prepare(product);
 
-    assertEquals("X ON SALE", viewModel.name());       // locale follows JVM default
+    assertEquals("X ON SALE", viewModel.name()); // locale follows JVM default
   }
 }

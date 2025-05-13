@@ -29,9 +29,7 @@ import static java.util.Locale.US;
 
 import java.text.NumberFormat;
 
-/**
- * Formats a {@link Product} into a {@link ProductViewModel}.
- */
+/** Formats a {@link Product} into a {@link ProductViewModel}. */
 public class ProductViewHelper implements ViewHelper<Product, ProductViewModel> {
 
   private static final String DISCOUNT_TAG = " ON SALE";
