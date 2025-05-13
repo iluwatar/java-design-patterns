@@ -59,11 +59,11 @@
 
     <!-- Plugins -->
     <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
-    <license-maven-plugin.version>4.6</license-maven-plugin.version>
+    <license-maven-plugin.version>5.0.0</license-maven-plugin.version>
     <maven-compiler-plugin.version>3.14.0</maven-compiler-plugin.version>
 
     <!-- SonarCloud -->
-    <sonar-maven-plugin.version>5.0.0.4389</sonar-maven-plugin.version>
+    <sonar-maven-plugin.version>5.1.0.4751</sonar-maven-plugin.version>
     <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     <sonar.organization>iluwatar</sonar.organization>
     <sonar.projectKey>iluwatar_java-design-patterns</sonar.projectKey>
@@ -244,6 +244,7 @@
     <module>virtual-proxy</module>
     <module>visitor</module>
     <module>backpressure</module>
+    <module>actor-model</module>
   </modules>
   <repositories>
     <repository>
@@ -308,12 +309,6 @@
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
-        <version>${junit.version}</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.junit.jupiter</groupId>
-        <artifactId>junit-jupiter-params</artifactId>
         <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>

@@ -181,10 +181,6 @@ Program output:
 08:10:17.483 [pool-1-thread-5] INFO com.iluwatar.producer.consumer.Consumer -- Consumer [Consumer_2] consume item [10] produced by [Producer_1]
 ```
 
-## Detailed Explanation of Producer-Consumer Pattern with Real-World Examples
-
-![Producer-Consumer](./etc/producer-consumer.png "Producer-Consumer")
-
 ## When to Use the Producer-Consumer Pattern in Java
 
 * When you need to manage a buffer or queue where producers add data and consumers take data, often in a multithreaded environment.
