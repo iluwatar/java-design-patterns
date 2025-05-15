@@ -3520,6 +3520,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "yybmion",
+      "name": "yoobin_mion",
+      "avatar_url": "https://avatars.githubusercontent.com/u/113106136?v=4",
+      "profile": "https://github.com/yybmion",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
