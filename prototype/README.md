@@ -156,10 +156,6 @@ Here's the console output from running the example.
 08:36:19.014 [main] INFO com.iluwatar.prototype.App -- Orcish wolf attacks with laser
 ```
 
-## Detailed Explanation of Prototype Pattern with Real-World Examples
-
-![alt text](./etc/prototype.urm.png "Prototype pattern class diagram")
-
 ## When to Use the Prototype Pattern in Java
 
 * When the classes to instantiate are specified at run-time, for example, by dynamic loading.
