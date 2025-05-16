@@ -118,10 +118,6 @@ The program output:
 11:54:05.308 [main] INFO com.iluwatar.dependency.injection.Tobacco -- GuiceWizard smoking RivendellTobacco
 ```
 
-## Detailed Explanation of Dependency Injection Pattern with Real-World Examples
-
-![Dependency Injection](./etc/dependency-injection.png "Dependency Injection")
-
 ## When to Use the Dependency Injection Pattern in Java
 
 * When aiming to reduce the coupling between classes and increase the modularity of the application.

@@ -128,10 +128,6 @@ The console output:
 
 In this way, the data-locality module demonstrates the Data Locality pattern. By updating all components of the same type together, it increases the likelihood that the data needed for the update is already in the cache, thereby improving performance.
 
-## Detailed Explanation of Data Locality Pattern with Real-World Examples
-
-![Data Locality](./etc/data-locality.urm.png "Data Locality pattern class diagram")
-
 ## When to Use the Data Locality Pattern in Java
 
 This pattern is applicable in scenarios where large datasets are processed and performance is critical. It's particularly useful in:
