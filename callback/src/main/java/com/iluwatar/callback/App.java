@@ -37,9 +37,13 @@ public final class App {
   private App() {}
 
   /** Program entry point. */
-  public static void main(final String[] args) throws InterruptedException {
+  public static void main(final String[] args) {
     var task = new SimpleTask();
-    task.executeWith(() -> LOGGER.info("I'm done now."));
-    Thread.sleep(3000);
+
+    LOGGER.info("=== Synchronous callback ===");
+    task.executeWith(() -> LOGGER.info("Sync callback executed."));
+
+    LOGGER.info("=== Asynchronous callback ===");
+    task.executeAsyncWith(() -> LOGGER.info("Async callback executed.")).join();
   }
 }
