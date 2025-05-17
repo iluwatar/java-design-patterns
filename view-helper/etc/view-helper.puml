@@ -1,0 +1,45 @@
+@startuml
+package com.iluwatar.viewhelper {
+    interface View<T> {
+        +render(T model)
+    }
+
+    interface ViewHelper<S, T> {
+        +prepare(S source): T
+    }
+
+    class Product {
+        -name: String
+        -price: BigDecimal
+        -releaseDate: LocalDate
+        -discounted: boolean
+    }
+
+    class ProductViewModel {
+        -name: String
+        -price: String
+        -releasedDate: String
+    }
+
+    class ProductViewHelper {
+        +prepare(Product): ProductViewModel
+    }
+
+    class ConsoleProductView {
+        +render(ProductViewModel)
+    }
+
+    class ProductController {
+        -helper: ViewHelper<Product, ProductViewModel>
+        -view: View<ProductViewModel>
+        +handle(Product)
+    }
+}
+Product --> ProductViewHelper
+ProductViewHelper ..|> ViewHelper
+ConsoleProductView ..|> View
+ProductViewHelper --> ProductViewModel
+ProductController --> ProductViewHelper
+ProductController --> ConsoleProductView
+
+@enduml
