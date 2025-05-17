@@ -22,46 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.leaderfollowers;
+package com.iluwatar.threadpoolexecutor;
 
-import java.security.SecureRandom;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import lombok.extern.slf4j.Slf4j;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@Slf4j
-public class App {
+import org.junit.jupiter.api.Test;
 
-  public static void main(String[] args) throws InterruptedException {
-    var taskSet = new TaskSet();
-    var taskHandler = new TaskHandler();
-    var workCenter = new WorkCenter();
-    workCenter.createWorkers(4, taskSet, taskHandler);
-    execute(workCenter, taskSet);
-  }
+class VipGuestCheckInTaskTest {
 
-  private static void execute(WorkCenter workCenter, TaskSet taskSet) throws InterruptedException {
-    var workers = workCenter.getWorkers();
-    var exec = Executors.newFixedThreadPool(workers.size());
+  /**
+   * Tests that the call method returns the expected result string. This verifies that the VIP
+   * check-in task correctly formats its result message.
+   */
+  @Test
+  void testCallReturnsExpectedResult() throws Exception {
+    String vipGuestName = "TestVipGuest";
+    VipGuestCheckInTask task = new VipGuestCheckInTask(vipGuestName);
 
-    try {
-      workers.forEach(exec::submit);
-      Thread.sleep(1000);
-      addTasks(taskSet);
-      boolean terminated = exec.awaitTermination(2, TimeUnit.SECONDS);
-      if (!terminated) {
-        LOGGER.warn("Executor did not terminate in the given time.");
-      }
-    } finally {
-      exec.shutdownNow();
-    }
-  }
+    String result = task.call();
 
-  private static void addTasks(TaskSet taskSet) throws InterruptedException {
-    var rand = new SecureRandom();
-    for (var i = 0; i < 5; i++) {
-      var time = Math.abs(rand.nextInt(1000));
-      taskSet.addTask(new Task(time));
-    }
+    assertNotNull(result);
+    assertEquals("TestVipGuest has been successfully checked in!", result);
   }
 }

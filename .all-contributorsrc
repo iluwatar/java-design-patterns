@@ -3509,7 +3509,8 @@
       "avatar_url": "https://avatars.githubusercontent.com/u/208197507?v=4",
       "profile": "https://github.com/e5LA",
       "contributions": [
-        "code"
+        "code",
+        "doc"
       ]
     },
     {
@@ -3519,6 +3520,15 @@
       "profile": "http://maziyar-gerami.github.io/portfolio/",
       "contributions": [
         "translation"
+      ]
+    },
+    {
+      "login": "yybmion",
+      "name": "yoobin_mion",
+      "avatar_url": "https://avatars.githubusercontent.com/u/113106136?v=4",
+      "profile": "https://github.com/yybmion",
+      "contributions": [
+        "code"
       ]
     }
   ],

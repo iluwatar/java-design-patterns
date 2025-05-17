@@ -22,46 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.leaderfollowers;
+package com.iluwatar.threadpoolexecutor;
 
-import java.security.SecureRandom;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Callable;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * VipGuestCheckInTask represents a VIP guest check-in process. Implements Callable because it
+ * returns a result (check-in confirmation).
+ */
 @Slf4j
-public class App {
+@AllArgsConstructor
+public class VipGuestCheckInTask implements Callable<String> {
 
-  public static void main(String[] args) throws InterruptedException {
-    var taskSet = new TaskSet();
-    var taskHandler = new TaskHandler();
-    var workCenter = new WorkCenter();
-    workCenter.createWorkers(4, taskSet, taskHandler);
-    execute(workCenter, taskSet);
-  }
+  private final String vipGuestName;
 
-  private static void execute(WorkCenter workCenter, TaskSet taskSet) throws InterruptedException {
-    var workers = workCenter.getWorkers();
-    var exec = Executors.newFixedThreadPool(workers.size());
+  @Override
+  public String call() throws Exception {
+    String employeeName = Thread.currentThread().getName();
+    LOGGER.info("{} is checking in VIP guest {}...", employeeName, vipGuestName);
 
-    try {
-      workers.forEach(exec::submit);
-      Thread.sleep(1000);
-      addTasks(taskSet);
-      boolean terminated = exec.awaitTermination(2, TimeUnit.SECONDS);
-      if (!terminated) {
-        LOGGER.warn("Executor did not terminate in the given time.");
-      }
-    } finally {
-      exec.shutdownNow();
-    }
-  }
+    Thread.sleep(1000);
 
-  private static void addTasks(TaskSet taskSet) throws InterruptedException {
-    var rand = new SecureRandom();
-    for (var i = 0; i < 5; i++) {
-      var time = Math.abs(rand.nextInt(1000));
-      taskSet.addTask(new Task(time));
-    }
+    String result = vipGuestName + " has been successfully checked in!";
+    LOGGER.info("VIP check-in completed: {}", result);
+    return result;
   }
 }

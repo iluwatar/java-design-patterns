@@ -22,46 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.leaderfollowers;
+package com.iluwatar.threadpoolexecutor;
 
-import java.security.SecureRandom;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * GuestCheckInTask represents a regular guest check-in process. Implements Runnable because it
+ * performs an action without returning a result.
+ */
 @Slf4j
-public class App {
+@AllArgsConstructor
+public class GuestCheckInTask implements Runnable {
 
-  public static void main(String[] args) throws InterruptedException {
-    var taskSet = new TaskSet();
-    var taskHandler = new TaskHandler();
-    var workCenter = new WorkCenter();
-    workCenter.createWorkers(4, taskSet, taskHandler);
-    execute(workCenter, taskSet);
-  }
+  private final String guestName;
 
-  private static void execute(WorkCenter workCenter, TaskSet taskSet) throws InterruptedException {
-    var workers = workCenter.getWorkers();
-    var exec = Executors.newFixedThreadPool(workers.size());
-
+  @Override
+  public void run() {
+    String employeeName = Thread.currentThread().getName();
+    LOGGER.info("{} is checking in {}...", employeeName, guestName);
     try {
-      workers.forEach(exec::submit);
-      Thread.sleep(1000);
-      addTasks(taskSet);
-      boolean terminated = exec.awaitTermination(2, TimeUnit.SECONDS);
-      if (!terminated) {
-        LOGGER.warn("Executor did not terminate in the given time.");
-      }
-    } finally {
-      exec.shutdownNow();
+      Thread.sleep(2000);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      LOGGER.error("Check-in for {} was interrupted", guestName);
     }
-  }
-
-  private static void addTasks(TaskSet taskSet) throws InterruptedException {
-    var rand = new SecureRandom();
-    for (var i = 0; i < 5; i++) {
-      var time = Math.abs(rand.nextInt(1000));
-      taskSet.addTask(new Task(time));
-    }
+    LOGGER.info("{} has been successfully checked in!", guestName);
   }
 }
