@@ -246,7 +246,7 @@
     <module>visitor</module>
       <module>backpressure</module>
       <module>actor-model</module>
-
+      <module>dao-factory</module>
   </modules>
   <repositories>
     <repository>
