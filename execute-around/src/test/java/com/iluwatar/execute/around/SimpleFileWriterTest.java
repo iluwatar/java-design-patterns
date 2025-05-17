@@ -28,58 +28,55 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import lombok.SneakyThrows;
-import org.junit.Rule;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.migrationsupport.rules.EnableRuleMigrationSupport;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.io.TempDir;
 
 /** SimpleFileWriterTest */
-@EnableRuleMigrationSupport
 class SimpleFileWriterTest {
 
-  @Rule public final TemporaryFolder testFolder = new TemporaryFolder();
+  @TempDir private Path testFolder;
 
   @Test
   void testWriterNotNull() throws Exception {
-    final var temporaryFile = this.testFolder.newFile();
-    new SimpleFileWriter(temporaryFile.getPath(), Assertions::assertNotNull);
+    final var temporaryFilePath = Files.createFile(testFolder.resolve("testfile.txt"));
+    new SimpleFileWriter(temporaryFilePath.toString(), Assertions::assertNotNull);
   }
 
   @Test
   void testCreatesNonExistentFile() throws Exception {
-    final var nonExistingFile = new File(this.testFolder.getRoot(), "non-existing-file");
-    assertFalse(nonExistingFile.exists());
+    final var nonExistingFilePath = testFolder.resolve("non-existing-file.txt");
+    assertFalse(nonExistingFilePath.toFile().exists());
 
-    new SimpleFileWriter(nonExistingFile.getPath(), Assertions::assertNotNull);
-    assertTrue(nonExistingFile.exists());
+    new SimpleFileWriter(nonExistingFilePath.toString(), Assertions::assertNotNull);
+    assertTrue(nonExistingFilePath.toFile().exists());
   }
 
   @Test
   void testContentsAreWrittenToFile() throws Exception {
     final var testMessage = "Test message";
 
-    final var temporaryFile = this.testFolder.newFile();
-    assertTrue(temporaryFile.exists());
+    final var temporaryFilePath = Files.createFile(testFolder.resolve("testfile.txt"));
+    assertTrue(temporaryFilePath.toFile().exists());
 
-    new SimpleFileWriter(temporaryFile.getPath(), writer -> writer.write(testMessage));
-    assertTrue(Files.lines(temporaryFile.toPath()).allMatch(testMessage::equals));
+    new SimpleFileWriter(temporaryFilePath.toFile().getPath(), writer -> writer.write(testMessage));
+    assertTrue(Files.lines(temporaryFilePath.toFile().toPath()).allMatch(testMessage::equals));
   }
 
   @Test
   @SneakyThrows
-  void testRipplesIoExceptionOccurredWhileWriting() {
+  void testRipplesIoExceptionOccurredWhileWriting() throws Exception {
     var message = "Some error";
-    final var temporaryFile = this.testFolder.newFile();
+    final var temporaryFilePath = Files.createFile(testFolder.resolve("testfile.txt"));
     assertThrows(
         IOException.class,
         () ->
             new SimpleFileWriter(
-                temporaryFile.getPath(),
+                temporaryFilePath.toString(),
                 writer -> {
                   throw new IOException("error");
                 }),
