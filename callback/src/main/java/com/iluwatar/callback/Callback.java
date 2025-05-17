@@ -25,6 +25,7 @@
 package com.iluwatar.callback;
 
 /** Callback interface. */
+@FunctionalInterface
 public interface Callback {
 
   void call();

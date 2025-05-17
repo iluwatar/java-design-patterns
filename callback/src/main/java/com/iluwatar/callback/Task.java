@@ -25,15 +25,30 @@
 package com.iluwatar.callback;
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
-/** Template-method class for callback hook execution. */
+/**
+ * Template-method class for callback hook execution.
+ *
+ * <p>Provides both synchronous and asynchronous execution with callback support.
+ */
 public abstract class Task {
 
-  /** Execute with callback. */
+  /** Execute the task and call the callback method synchronously upon completion. */
   final void executeWith(Callback callback) {
     execute();
     Optional.ofNullable(callback).ifPresent(Callback::call);
   }
 
+  /** Execute the task and asynchronously call the callback method upon completion. */
+  final CompletableFuture<Void> executeAsyncWith(Callback callback) {
+    return CompletableFuture.runAsync(
+        () -> {
+          execute();
+          Optional.ofNullable(callback).ifPresent(Callback::call);
+        });
+  }
+
+  /** Actual work to be implemented by subclasses. */
   public abstract void execute();
 }
