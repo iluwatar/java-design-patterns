@@ -107,6 +107,7 @@
     <module>converter</module>
     <module>curiously-recurring-template-pattern</module>
     <module>currying</module>
+      <module>dao-factory</module>
     <module>data-access-object</module>
     <module>data-bus</module>
     <module>data-locality</module>
@@ -246,7 +247,7 @@
     <module>visitor</module>
       <module>backpressure</module>
       <module>actor-model</module>
-      <module>dao-factory</module>
+
   </modules>
   <repositories>
     <repository>
