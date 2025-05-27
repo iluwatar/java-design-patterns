@@ -18,13 +18,13 @@ tag:
 
 ## Intent of Strategy Design Pattern
 
-Define a family of algorithms in Java, encapsulate each one, and make them interchangeable to enhance software development using the Strategy design pattern. Strategy lets the algorithm vary independently of the clients that use it.
+Encapsulate a family of related algorithms in Java and make them interchangeable without modifying the clients that use them.
 
 ## Detailed Explanation of Strategy Pattern with Real-World Examples
 
 Real-world example
 
-> A practical real-world example of the Strategy design pattern in Java is evident in car navigation systems, where algorithm flexibility is paramount. Different navigation algorithms (such as shortest route, fastest route, and scenic route) can be used to determine the best path from one location to another. Each algorithm encapsulates a specific strategy for calculating the route. The user (client) can switch between these algorithms based on their preferences without changing the navigation system itself. This allows for flexible and interchangeable navigation strategies within the same system. 
+> A practical real-world example of the Strategy design pattern in Java can be seen in car navigation systems, where algorithm flexibility is paramount. Different navigation algorithms (such as shortest route, fastest route, and scenic route) can be used to determine the best path from one location to another. Each algorithm encapsulates a specific strategy for calculating the route. The user (client) can switch between these algorithms based on their preferences without changing the navigation system itself. This allows for flexible and interchangeable navigation strategies within the same system. 
 
 In plain words
 
