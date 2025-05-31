@@ -246,6 +246,8 @@
     <module>visitor</module>
       <module>backpressure</module>
       <module>actor-model</module>
+      <module>rate-limiting-pattern</module>
+      <module>rate-limiting-pattern</module>
 
   </modules>
   <repositories>
