@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 /**
  * Unit tests for {@link App}.
+ *
  */
 class AppTest {
 
