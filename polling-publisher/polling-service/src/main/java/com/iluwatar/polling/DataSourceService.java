@@ -27,36 +27,40 @@ package com.iluwatar.polling;
 
 import java.util.Map;
 import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-/** This class is responsible for keep the events. */
+/** This class is responsible for keeping the events. */
 @Service
 public class DataSourceService {
 
+  private static final Logger log = LoggerFactory.getLogger(DataSourceService.class);
+
   private final DataRepository repository;
+  private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
   /** Constructor & Scheduler to push random data. */
   public DataSourceService(DataRepository repository) {
     this.repository = repository;
+    scheduleDataGeneration();
+  }
 
-    // Start a separate thread to add data every 3 seconds
-    new Thread(
-            () -> {
-              Random random = new Random();
-              while (true) {
-                try {
-                  Thread.sleep(3000); // Add data every 3 seconds
-                  int id = random.nextInt(100); // Random ID
-                  String value = "Auto-Data-" + id;
-                  this.addData(id, value);
-                  System.out.println("🔵 Data Added: " + id + " -> " + value);
-                } catch (InterruptedException e) {
-                  Thread.currentThread().interrupt();
-                  break;
-                }
-              }
-            })
-        .start();
+  private void scheduleDataGeneration() {
+    Random random = new Random();
+    scheduler.scheduleAtFixedRate(
+        () -> {
+          int id = random.nextInt(100); // Random ID
+          String value = "Auto-Data-" + id;
+          this.addData(id, value);
+          log.info("🔵 Data Added: {} -> {}", id, value);
+        },
+        0,
+        3,
+        TimeUnit.SECONDS);
   }
 
   public void addData(int id, String value) {

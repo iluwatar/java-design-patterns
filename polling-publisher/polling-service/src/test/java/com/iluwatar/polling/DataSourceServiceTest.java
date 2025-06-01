@@ -69,12 +69,15 @@ public class DataSourceServiceTest {
 
   @Test
   void testGetAllData() {
+    Map<Integer, String> result = service.getAllData();
+
+    int size = result.size();
     repository.save(1, "First");
     repository.save(2, "Second");
 
-    Map<Integer, String> result = service.getAllData();
+    Map<Integer, String> result1 = service.getAllData();
 
-    assertEquals(2, result.size(), "Should return all stored data.");
+    assertEquals(size + 2, result.size(), "Should return all stored data.");
     assertEquals("First", result.get(1), "Value for key 1 should be 'First'.");
     assertEquals("Second", result.get(2), "Value for key 2 should be 'Second'.");
   }
