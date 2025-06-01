@@ -43,4 +43,19 @@ class FindCustomerRequestTest implements RateLimitOperationTest<String> {
     RateLimiter limiter = new TokenBucketRateLimiter(5, 5);
     shouldExecuteWhenUnderLimit(createOperation(limiter));
   }
+
+  @Test
+  void shouldThrowServiceUnavailableOnInterruptedException() {
+    RateLimiter noOpLimiter = (service, operation) -> {}; // no throttling
+
+    FindCustomerRequest request = new FindCustomerRequest("999", noOpLimiter) {
+      @Override
+      public String execute() throws RateLimitException {
+        Thread.currentThread().interrupt(); // Simulate thread interruption
+        return super.execute(); // Should throw ServiceUnavailableException
+      }
+    };
+
+    assertThrows(ServiceUnavailableException.class, request::execute);
+  }
 }
