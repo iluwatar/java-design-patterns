@@ -13,7 +13,8 @@ class FixedWindowRateLimiterTest extends RateLimiterTest {
 
   @Test
   void shouldResetCounterAfterWindow() throws Exception {
-    FixedWindowRateLimiter limiter = new FixedWindowRateLimiter(1, 1); // 1 request per 1 second window
+    FixedWindowRateLimiter limiter =
+        new FixedWindowRateLimiter(1, 1); // 1 request per 1 second window
 
     // First request should pass
     limiter.check("test", "op");
