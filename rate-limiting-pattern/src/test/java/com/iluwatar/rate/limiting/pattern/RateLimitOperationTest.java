@@ -1,7 +1,8 @@
 package com.iluwatar.rate.limiting.pattern;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 interface RateLimitOperationTest<T> {
 

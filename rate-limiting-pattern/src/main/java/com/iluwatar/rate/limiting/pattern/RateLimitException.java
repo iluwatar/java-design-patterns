@@ -1,8 +1,6 @@
 package com.iluwatar.rate.limiting.pattern;
 
-/**
- * Base exception for rate limiting errors.
- */
+/** Base exception for rate limiting errors. */
 public class RateLimitException extends Exception {
   private final long retryAfterMillis;
 

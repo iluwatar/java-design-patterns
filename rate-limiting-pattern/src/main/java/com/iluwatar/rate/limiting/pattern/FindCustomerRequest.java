@@ -1,7 +1,8 @@
 package com.iluwatar.rate.limiting.pattern;
 
 /**
- * Example operation implementation for finding customers.
+ * A rate-limited customer lookup operation. This class wraps the rate limiting logic and represents
+ * an executable business request.
  */
 public class FindCustomerRequest implements RateLimitOperation<String> {
   private final String customerId;
@@ -24,6 +25,7 @@ public class FindCustomerRequest implements RateLimitOperation<String> {
 
   @Override
   public String execute() throws RateLimitException {
+    // Ensure the operation respects the assigned rate limiter
     rateLimiter.check(getServiceName(), getOperationName());
 
     // Simulate actual operation

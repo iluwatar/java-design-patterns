@@ -1,8 +1,6 @@
 package com.iluwatar.rate.limiting.pattern;
 
-/**
- * Exception thrown when AWS-style throttling occurs.
- */
+/** Exception thrown when AWS-style throttling occurs. */
 public class ThrottlingException extends RateLimitException {
   private final String serviceName;
   private final String errorCode;

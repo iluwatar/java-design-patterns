@@ -199,6 +199,7 @@
     <module>proxy</module>
     <module>publish-subscribe</module>
     <module>queue-based-load-leveling</module>
+      <module>rate-limiting-pattern</module>
     <module>reactor</module>
     <module>registry</module>
     <module>repository</module>

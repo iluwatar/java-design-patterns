@@ -4,7 +4,8 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Token bucket rate limiter implementation.
+ * Token Bucket rate limiter implementation. Allows requests to proceed as long as there are tokens
+ * available in the bucket. Tokens are added at a fixed interval up to a defined capacity.
  */
 public class TokenBucketRateLimiter implements RateLimiter {
   private final int capacity;
@@ -15,6 +16,7 @@ public class TokenBucketRateLimiter implements RateLimiter {
   public TokenBucketRateLimiter(int capacity, int refillRate) {
     this.capacity = capacity;
     this.refillRate = refillRate;
+    // Refill tokens in all buckets every second
     scheduler.scheduleAtFixedRate(this::refillBuckets, 1, 1, TimeUnit.SECONDS);
   }
 
@@ -24,18 +26,20 @@ public class TokenBucketRateLimiter implements RateLimiter {
     TokenBucket bucket = buckets.computeIfAbsent(key, k -> new TokenBucket(capacity));
 
     if (!bucket.tryConsume()) {
-      System.out.printf("[TokenBucket] Throttled %s.%s - No tokens available%n", serviceName, operationName);
+      System.out.printf(
+          "[TokenBucket] Throttled %s.%s - No tokens available%n", serviceName, operationName);
       throw new ThrottlingException(serviceName, operationName, 1000);
     } else {
-      System.out.printf("[TokenBucket] Allowed %s.%s - Tokens remaining%n", serviceName, operationName);
+      System.out.printf(
+          "[TokenBucket] Allowed %s.%s - Tokens remaining%n", serviceName, operationName);
     }
   }
-
 
   private void refillBuckets() {
     buckets.forEach((k, b) -> b.refill(refillRate));
   }
 
+  /** Inner class that represents the bucket holding tokens for each service-operation. */
   private static class TokenBucket {
     private final int capacity;
     private final AtomicInteger tokens;

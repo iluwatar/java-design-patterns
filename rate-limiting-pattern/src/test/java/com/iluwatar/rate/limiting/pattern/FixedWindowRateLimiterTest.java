@@ -1,8 +1,9 @@
 package com.iluwatar.rate.limiting.pattern;
 
-import org.junit.jupiter.api.Test;
-import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.concurrent.TimeUnit;
+import org.junit.jupiter.api.Test;
 
 class FixedWindowRateLimiterTest extends RateLimiterTest {
   @Override

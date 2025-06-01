@@ -6,40 +6,42 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * The <em>Rate Limiter</em> pattern is a key defensive strategy used to prevent system overload
- * and ensure fair usage of shared services. This demo showcases how different rate limiting techniques
+ * The <em>Rate Limiter</em> pattern is a key defensive strategy used to prevent system overload and
+ * ensure fair usage of shared services. This demo showcases how different rate limiting techniques
  * can regulate traffic in distributed systems.
  *
  * <p>Specifically, this simulation implements three rate limiter strategies:
  *
  * <ul>
- *   <li><b>Token Bucket</b> – Allows short bursts followed by steady request rates.</li>
- *   <li><b>Fixed Window</b> – Enforces a strict limit per discrete time window (e.g., 3 requests/sec).</li>
- *   <li><b>Adaptive</b> – Dynamically scales limits based on system health, simulating elastic backoff.</li>
+ *   <li><b>Token Bucket</b> – Allows short bursts followed by steady request rates.
+ *   <li><b>Fixed Window</b> – Enforces a strict limit per discrete time window (e.g., 3
+ *       requests/sec).
+ *   <li><b>Adaptive</b> – Dynamically scales limits based on system health, simulating elastic
+ *       backoff.
  * </ul>
  *
- * <p>Each simulated service (e.g., S3, DynamoDB, Lambda) is governed by one of these limiters. Multiple
- * concurrent client threads issue randomized requests to these services over a fixed duration. Each
- * request is either:
+ * <p>Each simulated service (e.g., S3, DynamoDB, Lambda) is governed by one of these limiters.
+ * Multiple concurrent client threads issue randomized requests to these services over a fixed
+ * duration. Each request is either:
  *
  * <ul>
- *   <li><b>ALLOWED</b> – Permitted under the current rate limit</li>
- *   <li><b>THROTTLED</b> – Rejected due to quota exhaustion</li>
- *   <li><b>FAILED</b> – Dropped due to transient service failure</li>
+ *   <li><b>ALLOWED</b> – Permitted under the current rate limit
+ *   <li><b>THROTTLED</b> – Rejected due to quota exhaustion
+ *   <li><b>FAILED</b> – Dropped due to transient service failure
  * </ul>
  *
- * <p>Statistics are printed every few seconds, and the simulation exits gracefully after a fixed runtime,
- * offering a clear view into how each limiter behaves under pressure.
+ * <p>Statistics are printed every few seconds, and the simulation exits gracefully after a fixed
+ * runtime, offering a clear view into how each limiter behaves under pressure.
  *
  * <p><b>Relation to AWS API Gateway:</b><br>
- * This implementation mirrors the throttling behavior described in the
- * <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html">
- * AWS API Gateway Request Throttling documentation</a>, where limits are applied per second and over
- * longer durations (burst and rate limits). The <code>TokenBucketRateLimiter</code> mimics burst capacity,
- * the <code>FixedWindowRateLimiter</code> models steady rate enforcement, and the <code>AdaptiveRateLimiter</code>
- * reflects elasticity in real-world systems like AWS Lambda under variable load.
- *
- * */
+ * This implementation mirrors the throttling behavior described in the <a
+ * href="https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-request-throttling.html">
+ * AWS API Gateway Request Throttling documentation</a>, where limits are applied per second and
+ * over longer durations (burst and rate limits). The <code>TokenBucketRateLimiter</code> mimics
+ * burst capacity, the <code>FixedWindowRateLimiter</code> models steady rate enforcement, and the
+ * <code>AdaptiveRateLimiter</code> reflects elasticity in real-world systems like AWS Lambda under
+ * variable load.
+ */
 public final class App {
   private static final int RUN_DURATION_SECONDS = 10;
   private static final int SHUTDOWN_TIMEOUT_SECONDS = 5;
@@ -60,7 +62,7 @@ public final class App {
       // Explicit limiter setup for demonstration clarity
       TokenBucketRateLimiter tb = new TokenBucketRateLimiter(2, 1); // capacity 2, refill 1/sec
       FixedWindowRateLimiter fw = new FixedWindowRateLimiter(3, 1); // max 3 req/sec
-      AdaptiveRateLimiter ar = new AdaptiveRateLimiter(2, 6);       // adaptive from 2 to 6 req/sec
+      AdaptiveRateLimiter ar = new AdaptiveRateLimiter(2, 6); // adaptive from 2 to 6 req/sec
 
       // Print statistics every 2 seconds
       statsPrinter.scheduleAtFixedRate(App::printStats, 2, 2, TimeUnit.SECONDS);
@@ -93,14 +95,12 @@ public final class App {
     }
   }
 
-  private static Runnable createClientTask(int clientId,
-                                           RateLimiter s3Limiter,
-                                           RateLimiter dynamoDbLimiter,
-                                           RateLimiter lambdaLimiter) {
+  private static Runnable createClientTask(
+      int clientId, RateLimiter s3Limiter, RateLimiter dynamoDbLimiter, RateLimiter lambdaLimiter) {
     return () -> {
       String[] services = {"s3", "dynamodb", "lambda"};
       String[] operations = {
-          "GetObject", "PutObject", "Query", "Scan", "PutItem", "Invoke", "ListFunctions"
+        "GetObject", "PutObject", "Query", "Scan", "PutItem", "Invoke", "ListFunctions"
       };
       Random random = new Random();
 
@@ -123,24 +123,24 @@ public final class App {
     };
   }
 
-  private static void makeRequest(int clientId, RateLimiter limiter,
-                                  String service, String operation) {
+  private static void makeRequest(
+      int clientId, RateLimiter limiter, String service, String operation) {
     try {
       limiter.check(service, operation);
       successfulRequests.incrementAndGet();
       System.out.printf("Client %d: %s.%s - ALLOWED%n", clientId, service, operation);
     } catch (ThrottlingException e) {
       throttledRequests.incrementAndGet();
-      System.out.printf("Client %d: %s.%s - THROTTLED (Retry in %dms)%n",
+      System.out.printf(
+          "Client %d: %s.%s - THROTTLED (Retry in %dms)%n",
           clientId, service, operation, e.getRetryAfterMillis());
     } catch (ServiceUnavailableException e) {
       failedRequests.incrementAndGet();
-      System.out.printf("Client %d: %s.%s - SERVICE UNAVAILABLE%n",
-          clientId, service, operation);
+      System.out.printf("Client %d: %s.%s - SERVICE UNAVAILABLE%n", clientId, service, operation);
     } catch (Exception e) {
       failedRequests.incrementAndGet();
-      System.out.printf("Client %d: %s.%s - ERROR: %s%n",
-          clientId, service, operation, e.getMessage());
+      System.out.printf(
+          "Client %d: %s.%s - ERROR: %s%n", clientId, service, operation, e.getMessage());
     }
   }
 

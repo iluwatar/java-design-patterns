@@ -1,10 +1,10 @@
 package com.iluwatar.rate.limiting.pattern;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
-
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 class ConcurrencyTests {
   @Test
@@ -19,15 +19,16 @@ class ConcurrencyTests {
     AtomicInteger failureCount = new AtomicInteger();
 
     for (int i = 0; i < threadCount; i++) {
-      executor.submit(() -> {
-        try {
-          limiter.check("test", "op");
-          successCount.incrementAndGet();
-        } catch (RateLimitException e) {
-          failureCount.incrementAndGet();
-        }
-        latch.countDown();
-      });
+      executor.submit(
+          () -> {
+            try {
+              limiter.check("test", "op");
+              successCount.incrementAndGet();
+            } catch (RateLimitException e) {
+              failureCount.incrementAndGet();
+            }
+            latch.countDown();
+          });
     }
 
     latch.await();
@@ -42,11 +43,13 @@ class ConcurrencyTests {
 
     // Flood with requests to trigger throttling
     for (int i = 0; i < 30; i++) {
-      executor.submit(() -> {
-        try {
-          limiter.check("test", "op");
-        } catch (RateLimitException ignored) {}
-      });
+      executor.submit(
+          () -> {
+            try {
+              limiter.check("test", "op");
+            } catch (RateLimitException ignored) {
+            }
+          });
     }
 
     Thread.sleep(15000); // Wait for adjustment
@@ -57,7 +60,8 @@ class ConcurrencyTests {
       try {
         limiter.check("test", "op");
         allowed++;
-      } catch (RateLimitException ignored) {}
+      } catch (RateLimitException ignored) {
+      }
     }
 
     assertTrue(allowed > 5 && allowed < 15); // Should be between initial and max

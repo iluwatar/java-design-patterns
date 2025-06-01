@@ -1,13 +1,14 @@
 package com.iluwatar.rate.limiting.pattern;
 
-import org.junit.jupiter.api.Test;
-import java.util.concurrent.TimeUnit;
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.concurrent.TimeUnit;
+import org.junit.jupiter.api.Test;
 
 class TokenBucketRateLimiterTest extends RateLimiterTest {
   @Override
   protected RateLimiter createRateLimiter(int limit, long windowMillis) {
-    return new TokenBucketRateLimiter(limit, (int)(limit * 1000 / windowMillis));
+    return new TokenBucketRateLimiter(limit, (int) (limit * 1000 / windowMillis));
   }
 
   @Test
