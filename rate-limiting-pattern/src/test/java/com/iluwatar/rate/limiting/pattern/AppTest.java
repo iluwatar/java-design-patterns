@@ -45,7 +45,6 @@ class AppTest {
     assertEquals(1, AppTestUtils.getFailedRequests().get());
   }
 
-
   @Test
   void shouldHandleGenericException() throws Exception {
     doThrow(new RuntimeException("Unexpected")).when(mockLimiter).check(any(), any());
