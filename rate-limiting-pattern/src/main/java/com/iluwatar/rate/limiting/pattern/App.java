@@ -106,6 +106,7 @@ public final class App {
       String[] operations = {
         "GetObject", "PutObject", "Query", "Scan", "PutItem", "Invoke", "ListFunctions"
       };
+      // Safe: ThreadLocalRandom is used per-thread for concurrent simulation
       ThreadLocalRandom random = ThreadLocalRandom.current();
 
       while (running.get() && !Thread.currentThread().isInterrupted()) {
