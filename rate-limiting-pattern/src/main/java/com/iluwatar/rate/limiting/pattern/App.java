@@ -1,5 +1,6 @@
 package com.iluwatar.rate.limiting.pattern;
 
+import java.security.SecureRandom;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -101,13 +102,13 @@ public final class App {
 
   static Runnable createClientTask(
       int clientId, RateLimiter s3Limiter, RateLimiter dynamoDbLimiter, RateLimiter lambdaLimiter) {
+
     return () -> {
       String[] services = {"s3", "dynamodb", "lambda"};
       String[] operations = {
-        "GetObject", "PutObject", "Query", "Scan", "PutItem", "Invoke", "ListFunctions"
+          "GetObject", "PutObject", "Query", "Scan", "PutItem", "Invoke", "ListFunctions"
       };
-      // Safe: ThreadLocalRandom is used per-thread for concurrent simulation
-      ThreadLocalRandom random = ThreadLocalRandom.current();
+      SecureRandom random = new SecureRandom(); // ✅ Safe & compliant for SonarCloud
 
       while (running.get() && !Thread.currentThread().isInterrupted()) {
         try {
@@ -138,10 +139,7 @@ public final class App {
       throttledRequests.incrementAndGet();
       LOGGER.warn(
           "Client {}: {}.{} - THROTTLED (Retry in {}ms)",
-          clientId,
-          service,
-          operation,
-          e.getRetryAfterMillis());
+          clientId, service, operation, e.getRetryAfterMillis());
     } catch (ServiceUnavailableException e) {
       failedRequests.incrementAndGet();
       LOGGER.warn("Client {}: {}.{} - SERVICE UNAVAILABLE", clientId, service, operation);
