@@ -40,7 +40,6 @@ Architecture diagram
 
 ![Service Layer Architecture Diagram](./etc/service-layer-architecture-diagram.png)
 
-
 ## Programmatic Example of Service Layer Pattern in Java
 
 Our Java implementation uses the Service Layer pattern to streamline interactions between data access objects (DAOs) and the business logic, ensuring a clean separation of concerns.
@@ -357,10 +356,6 @@ INFO  [2024-05-27 09:16:40,680] com.iluwatar.servicelayer.app.App: Xuban Munoa h
 INFO  [2024-05-27 09:16:40,681] com.iluwatar.servicelayer.app.App: Find wizards with spell 'Fireball'
 INFO  [2024-05-27 09:16:40,683] com.iluwatar.servicelayer.app.App: Aderlard Boud has 'Fireball'
 ```
-
-## Detailed Explanation of Service Layer Pattern with Real-World Examples
-
-![Service Layer](./etc/service-layer.png "Service Layer")
 
 ## When to Use the Service Layer Pattern in Java
 

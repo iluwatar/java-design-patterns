@@ -21,17 +21,21 @@ Separate the structure and static parts of a webpage (or view) from its dynamic 
 
 ## Detailed Explanation of Template View Pattern with Real-World Examples
 
-### Real-World Example
+Real-World Example
 
 > Think of a blog website where each post page follows the same layout with a header, footer, and main content area. While the header and footer remain consistent, the main content differs for each blog post. The Template View pattern encapsulates the shared layout (header and footer) in a base class while delegating the rendering of the main content to subclasses.
 
-### In Plain Words
+In Plain Words
 
 > The Template View pattern provides a way to define a consistent layout in a base class while letting subclasses implement the specific, dynamic content for different views.
 
-### Wikipedia Says
+Wikipedia Says
 
 > While not a classic Gang of Four pattern, Template View aligns closely with the Template Method pattern, applied specifically to rendering webpages or views. It defines a skeleton for rendering, delegating dynamic parts to subclasses while keeping the structure consistent.
+
+Flowchart
+
+![Template View Pattern Flowchart](./etc/template-view-flowchart.png)
 
 ## Programmatic Example of Template View Pattern in Java
 

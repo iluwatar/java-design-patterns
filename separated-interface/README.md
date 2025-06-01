@@ -31,6 +31,10 @@ In plain words
 
 > Defines a client interface separate from its implementation to allow for flexible and interchangeable components.
 
+Sequence diagram
+
+![Separated Interface sequence diagram](./etc/separated-interface-sequence-diagram.png)
+
 ## Programmatic Example of Separated Interface Pattern in Java
 
 The Java Separated Interface design pattern is a crucial software architecture strategy that promotes separating the interface definition from its implementation, crucial for enhancing system flexibility and scalability. This allows the client to be completely unaware of the implementation, promoting loose coupling and enhancing flexibility.

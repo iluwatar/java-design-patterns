@@ -43,11 +43,10 @@ import org.mockito.junit.jupiter.MockitoExtension;
 class RequestServiceTests {
   private RequestService requestService;
   @Mock private RequestRepository requestRepository;
-  private RequestStateMachine requestStateMachine;
 
   @BeforeEach
   void setUp() {
-    requestStateMachine = new RequestStateMachine();
+    RequestStateMachine requestStateMachine = new RequestStateMachine();
     requestService = new RequestService(requestRepository, requestStateMachine);
   }
 

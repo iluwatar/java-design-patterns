@@ -22,47 +22,30 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import static org.junit.jupiter.api.Assertions.assertTrue;
+package com.iluwatar.backpressure;
 
-import com.iluwatar.table.inheritance.App;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Handler;
-import java.util.logging.Logger;
+import static com.iluwatar.backpressure.Publisher.publish;
+
+import java.time.Duration;
 import org.junit.jupiter.api.Test;
+import reactor.core.publisher.Flux;
+import reactor.test.StepVerifier;
 
-/** Tests if the main method runs without throwing exceptions and prints expected output. */
-class AppTest {
+public class PublisherTest {
 
   @Test
-  void testAppMainMethod() {
+  public void testPublish() {
 
-    ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    PrintStream printStream = new PrintStream(outContent);
+    Flux<Integer> flux = publish(1, 3, 200);
 
-    System.setOut(printStream);
-
-    Logger logger = Logger.getLogger(App.class.getName());
-
-    Handler handler =
-        new ConsoleHandler() {
-          @Override
-          public void publish(java.util.logging.LogRecord recordObj) {
-            printStream.println(getFormatter().format(recordObj));
-          }
-        };
-    handler.setLevel(java.util.logging.Level.ALL);
-    logger.addHandler(handler);
-
-    App.main(new String[] {});
-
-    String output = outContent.toString();
-
-    assertTrue(output.contains("Retrieved Vehicle:"));
-    assertTrue(output.contains("Toyota")); // Car make
-    assertTrue(output.contains("Ford")); // Truck make
-    assertTrue(output.contains("Retrieved Car:"));
-    assertTrue(output.contains("Retrieved Truck:"));
+    StepVerifier.withVirtualTime(() -> flux)
+        .expectSubscription()
+        .expectNoEvent(Duration.ofMillis(200))
+        .expectNext(1)
+        .expectNoEvent(Duration.ofSeconds(200))
+        .expectNext(2)
+        .expectNoEvent(Duration.ofSeconds(200))
+        .expectNext(3)
+        .verifyComplete();
   }
 }

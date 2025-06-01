@@ -1,6 +1,6 @@
 ---
 title: "Microservices API Gateway Pattern in Java: Simplifying Service Access with a Unified Endpoint"
-shortTitle: Microservice API Gateway
+shortTitle: Microservices API Gateway
 description: "Learn how the API Gateway pattern simplifies client-side development, enhances security, and optimizes communication in microservices architecture. Explore examples, benefits, and best practices."
 category: Integration
 language: en
@@ -37,6 +37,10 @@ In plain words
 Wikipedia says
 
 > API Gateway is a server that acts as an API front-end, receives API requests, enforces throttling and security policies, passes requests to the back-end service and then passes the response back to the requester. A gateway often includes a transformation engine to orchestrate and modify the requests and responses on the fly. A gateway can also provide functionality such as collecting analytics data and providing caching. The gateway can provide functionality to support authentication, authorization, security, audit and regulatory compliance.
+
+Sequence diagram
+
+![Microservices API Gateway sequence diagram](./etc/microservices-api-gateway-sequence-diagram.png)
 
 ## Programmatic Example of Microservice API Gateway in Java
 

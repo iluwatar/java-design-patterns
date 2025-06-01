@@ -46,7 +46,7 @@
     <dependency>
         <groupId>com.fasterxml.jackson.core</groupId>
         <artifactId>jackson-core</artifactId>
-        <version>2.18.2</version>
+        <version>2.19.0</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
@@ -56,7 +56,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-web</artifactId>
-      <version>7.0.0-M3</version>
+      <version>7.0.0-M4</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>

@@ -1,56 +1,56 @@
 ---
-title: "Idempotent Consumer Pattern in Java: Ensuring Reliable Message Processing"
-shortTitle: Idempotent Consumer
+title: "Microservices Idempotent Consumer Pattern in Java: Ensuring Reliable Message Processing"
+shortTitle: Microservices Idempotent Consumer
 description: "Learn about the Idempotent Consumer pattern in Java. Discover how it ensures reliable and consistent message processing, even in cases of duplicate messages."
 category: Messaging
 language: en
 tag:
-    - Messaging
-    - Fault tolerance
+    - Asynchronous
+    - Decoupling
     - Event-driven
-    - Reliability
+    - Messaging
+    - Microservices
+    - Resilience
+    - Retry
 ---
 
 ## Also known as
 
-* Idempotency Pattern
+* Idempotent Subscriber
+* Repeatable Message Consumer
+* Safe Consumer
 
 ## Intent of Idempotent Consumer Pattern
 
-The Idempotent Consumer pattern is used to handle duplicate messages in distributed systems, ensuring that multiple processing of the same message does not cause undesired side effects. This pattern guarantees that the same message can be processed repeatedly with the same outcome, which is critical in ensuring reliable communication and data consistency in systems where message duplicates are possible.
+Ensure that consuming the same message multiple times does not cause unintended side effects in a microservices-based architecture.
 
 ## Detailed Explanation of Idempotent Consumer Pattern with Real-World Examples
 
-### Real-world Example
+Real-world example
 
 > In a payment processing system, ensuring that payment messages are idempotent prevents duplicate transactions. For example, if a user’s payment message is accidentally processed twice, the system should recognize the second message as a duplicate and prevent it from executing a second time. By storing unique identifiers for each processed message, such as a transaction ID, the system can skip any duplicate messages. This ensures that a user is not charged twice for the same transaction, maintaining system integrity and customer satisfaction.
 
-### In Plain Words
+In plain words
 
 > The Idempotent Consumer pattern prevents duplicate messages from causing unintended side effects by ensuring that processing the same message multiple times results in the same outcome. This makes message processing safe in distributed systems where duplicates may occur.
 
-### Wikipedia says
+
+Wikipedia says
 
 > In computing, idempotence is the property of certain operations in mathematics and computer science whereby they can be applied multiple times without changing the result beyond the initial application.
 
-## When to Use the Idempotent Consumer Pattern
+Flowchart
 
-The Idempotent Consumer pattern is particularly useful in scenarios:
-
-* When messages can be duplicated due to network retries or communication issues.
-* In distributed systems where message ordering is not guaranteed, making deduplication necessary to avoid repeated processing.
-* In financial or critical systems, where duplicate processing would have significant side effects.
-
-## Real-World Applications of Idempotent Consumer Pattern
-
-* Payment processing systems that avoid duplicate transactions.
-* E-commerce systems to prevent multiple entries of the same order.
-* Inventory management systems to prevent multiple entries when updating stock levels.
+![Microservices Idempotent Consumer flowchart](./etc/microservices-idempotent-consumer-flowchart.png)
 
 ## Programmatic example of Idempotent Consumer Pattern
-In this Java example, we have an idempotent service that offers functionality to create and update (start, complete, etc.) orders. The service ensures that the **create order** operation is idempotent, meaning that performing it multiple times with the same order ID will lead to the same result without creating duplicates. For state transitions (such as starting or completing an order), the service enforces valid state changes and throws exceptions if an invalid transition is attempted. The state machine governs the valid order status transitions, ensuring that statuses progress in a defined and consistent sequence.
+
+In this Java example, we have an idempotent service that creates and updates orders. The `create` method is idempotent, meaning multiple calls with the same order ID return the same result without duplicates. For state changes (like starting or completing an order), the service checks whether the transition is valid and throws an exception if it’s not allowed. The `RequestStateMachine` ensures that order statuses move forward in a valid sequence (e.g., PENDING → STARTED → COMPLETED).
+
 ### RequestService - Managing Idempotent Order Operations
-The `RequestService` class is responsible for handling the creation and state transitions of orders. The `create` method is designed to be idempotent, ensuring that it either returns an existing order or creates a new one without any side effects if invoked multiple times with the same order ID.
+
+The `RequestService` class provides methods to create and transition an order. The `create` method returns an existing order if it already exists, making it idempotent.
+
 ```java
 public class RequestService {
     // Idempotent: ensures that the same request is returned if it already exists
@@ -79,8 +79,11 @@ public class RequestService {
     }
 }
 ```
+
 ### RequestStateMachine - Managing Order Transitions
-The `RequestStateMachine` ensures that state transitions occur in a valid order. It handles the progression of an order's status, ensuring the correct sequence (e.g., from `PENDING` to `STARTED` to `COMPLETED`).
+
+The `RequestStateMachine` enforces valid state changes. If a requested transition is not allowed based on the current status, an exception is thrown.
+
 ```java
 public class RequestStateMachine {
 
@@ -105,9 +108,10 @@ public class RequestStateMachine {
   }
 }
 ```
+
 ### Main Application - Running the Idempotent Consumer Example
 
-In the main application, we demonstrate how the `RequestService` can be used to perform idempotent operations. Whether the order creation or state transition is invoked once or multiple times, the result is consistent and does not produce unexpected side effects.
+Here, we demonstrate how `RequestService` can be called multiple times without creating duplicate orders. We also show how invalid transitions (like trying to start an order twice) result in exceptions, while valid transitions proceed normally.
 
 ```java
 Request req = requestService.create(UUID.randomUUID());
@@ -130,32 +134,49 @@ req = requestService.complete(req.getUuid());
 // Log the final status of the Request to confirm it's been completed
 LOGGER.info("Request: {}", req);
 ```
+
 Program output:
+
 ```
 19:01:54.382  INFO [main] com.iluwatar.idempotentconsumer.App      : Nb of requests : 1
 19:01:54.395 ERROR [main] com.iluwatar.idempotentconsumer.App      : Cannot start request twice!
 19:01:54.399  INFO [main] com.iluwatar.idempotentconsumer.App      : Request: Request(uuid=2d5521ef-6b6b-4003-9ade-81e381fe9a63, status=COMPLETED)
 ```
+
+## When to Use the Idempotent Consumer Pattern
+
+* When messages can arrive more than once due to network glitches or retries
+* When microservices must guarantee consistent state changes regardless of duplicates
+* When fault-tolerant event-driven communication is critical to system reliability
+* When horizontal scaling requires stateless consumer operations
+
+## Real-World Applications of Idempotent Consumer Pattern
+
+* Payment processing systems that receive duplicate charge events
+* E-commerce order services that handle duplicate purchase requests
+* Notification services that retry failed message deliveries
+* Distributed transaction systems where duplicated events are common
+
 ## Benefits and Trade-offs of the Idempotent Consumer Pattern
 
-### Benefits
+Benefits
 
-* **Reliability**: Ensures that messages can be processed without unwanted side effects from duplicates.
-* **Consistency**: Maintains data integrity by ensuring that duplicate messages do not cause redundant updates or actions.
-* **Fault Tolerance**: Handles message retries gracefully, preventing them from causing errors.
+* Prevents duplicate side effects
+* Increases reliability under repeated or delayed messages
+* Simplifies error handling and retry logic
 
-### Trade-offs
+Trade-offs
 
-* **State Management**: Requires storing processed message IDs, which can add memory overhead.
-* **Complexity**: Implementing deduplication mechanisms can increase the complexity of the system.
-* **Scalability**: In high-throughput systems, maintaining a large set of processed messages can impact performance and resource usage.
+* Requires careful design to track processed messages
+* Can add overhead for maintaining idempotency tokens or state
+* May require additional storage or database transactions
 
 ## Related Patterns in Java
 
-* [Retry Pattern](https://java-design-patterns.com/patterns/retry/): Works well with the Idempotent Consumer pattern to handle failed messages.
-* [Circuit Breaker Pattern](https://java-design-patterns.com/patterns/circuitbreaker/): Often used alongside idempotent consumers to prevent repeated failures from causing overload.
+* Outbox Pattern: Uses a dedicated table or storage to reliably publish events and handle deduplication at the source.
 
 ## References and Credits
 
+* [Building Microservices](https://amzn.to/3UACtrU)
 * [Enterprise Integration Patterns: Designing, Building, and Deploying Messaging Solutions](https://amzn.to/4dznP2Y)
-* [Designing Data-Intensive Applications](https://amzn.to/3UADv7Q)
+* [Microservices Patterns: With examples in Java](https://amzn.to/3UyWD5O)

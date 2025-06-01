@@ -32,7 +32,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class BlocUiTest {
+class BlocUiTest {
 
   private JFrame frame;
   private JLabel counterLabel;
@@ -43,7 +43,7 @@ public class BlocUiTest {
   private StateListener<State> stateListener;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     bloc = new Bloc(); // Re-initialize the Bloc for each test
 
     frame = new JFrame("BloC example");
@@ -83,25 +83,25 @@ public class BlocUiTest {
   }
 
   @AfterEach
-  public void tearDown() {
+  void tearDown() {
     frame.dispose();
     bloc = new Bloc(); // Reset Bloc state after each test to avoid state carryover
   }
 
   @Test
-  public void testIncrementButton() {
+  void testIncrementButton() {
     simulateButtonClick(incrementButton);
     assertEquals("Counter: 1", counterLabel.getText());
   }
 
   @Test
-  public void testDecrementButton() {
+  void testDecrementButton() {
     simulateButtonClick(decrementButton);
     assertEquals("Counter: -1", counterLabel.getText());
   }
 
   @Test
-  public void testToggleListenerButton() {
+  void testToggleListenerButton() {
     // Disable listener
     simulateButtonClick(toggleListenerButton);
     simulateButtonClick(incrementButton);

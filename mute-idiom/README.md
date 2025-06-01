@@ -34,6 +34,10 @@ In plain words
 
 > The Mute Idiom design pattern suppresses the handling of trivial or non-critical exceptions to simplify code.
 
+Flowchart
+
+![Mute Idiom flowchart](./etc/mute-idiom-flowchart.png)
+
 ## Programmatic Example of Mute Idiom Pattern in Java
 
 In the following Java code example, we demonstrate the Mute Idiom by muting non-critical exceptions during the resource management process. This approach ensures error handling does not interrupt the main logic.

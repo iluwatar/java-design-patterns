@@ -59,11 +59,7 @@ class MoneyTest {
     Money money1 = new Money(100.00, "USD");
     Money money2 = new Money(50.25, "EUR");
 
-    assertThrows(
-        CannotAddTwoCurrienciesException.class,
-        () -> {
-          money1.addMoney(money2);
-        });
+    assertThrows(CannotAddTwoCurrienciesException.class, () -> money1.addMoney(money2));
   }
 
   @Test
@@ -83,11 +79,7 @@ class MoneyTest {
     Money money1 = new Money(100.00, "USD");
     Money money2 = new Money(50.25, "EUR");
 
-    assertThrows(
-        CannotSubtractException.class,
-        () -> {
-          money1.subtractMoney(money2);
-        });
+    assertThrows(CannotSubtractException.class, () -> money1.subtractMoney(money2));
   }
 
   @Test
@@ -96,11 +88,7 @@ class MoneyTest {
     Money money1 = new Money(50.00, "USD");
     Money money2 = new Money(60.00, "USD");
 
-    assertThrows(
-        CannotSubtractException.class,
-        () -> {
-          money1.subtractMoney(money2);
-        });
+    assertThrows(CannotSubtractException.class, () -> money1.subtractMoney(money2));
   }
 
   @Test
@@ -118,11 +106,7 @@ class MoneyTest {
     // Test multiplying by a negative factor
     Money money = new Money(100.00, "USD");
 
-    assertThrows(
-        IllegalArgumentException.class,
-        () -> {
-          money.multiply(-2);
-        });
+    assertThrows(IllegalArgumentException.class, () -> money.multiply(-2));
   }
 
   @Test
@@ -141,19 +125,12 @@ class MoneyTest {
     // Test converting currency with a negative exchange rate
     Money money = new Money(100.00, "USD");
 
-    assertThrows(
-        IllegalArgumentException.class,
-        () -> {
-          money.exchangeCurrency("EUR", -0.85);
-        });
+    assertThrows(IllegalArgumentException.class, () -> money.exchangeCurrency("EUR", -0.85));
   }
 
   @Test
   void testAppExecution() {
     assertDoesNotThrow(
-        () -> {
-          App.main(new String[] {});
-        },
-        "App execution should not throw any exceptions");
+        () -> App.main(new String[] {}), "App execution should not throw any exceptions");
   }
 }

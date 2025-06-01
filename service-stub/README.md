@@ -2,29 +2,30 @@
 title: "Service Stub Pattern in Java: Simplifying Testing with Stub Implementations"
 shortTitle: Service Stub
 description: "Explore the Service Stub design pattern in Java using a Sentiment Analysis example. Learn how stub implementations provide dummy services to facilitate testing and development."
-category: Structural
+category: Testing
 language: en
 tag:
-    - Testing
+    - API design
     - Decoupling
-    - Dummy Services
-    - Dependency Injection
+    - Integration
+    - Microservices
+    - Testing
 ---
 
 ## Also known as
 
-* Dummy Service
-* Fake Service
+* Service Mock
+* Test Double
 
 ## Intent of Service Stub Pattern
 
-The Service Stub pattern provides a lightweight, dummy implementation of an external service to allow testing or development without relying on the real service, which may be unavailable, slow, or resource-intensive.
+Provide a lightweight, simplified implementation of a remote or external service to facilitate testing in isolation.
 
 ## Detailed Explanation of Service Stub Pattern with Real-World Example
 
 Real-world example
 
-> In this example, we simulate a **Sentiment Analysis Service**. The real implementation delays execution and randomly decides the sentiment. The stub implementation, on the other hand, quickly returns predefined responses based on input text ("good", "bad", or neutral), making it ideal for testing.
+> A real-world analogy for the Service Stub pattern could be a flight simulator used to train pilots. Instead of learning to fly directly using a real airplane—which would be costly, dangerous, and often impractical—pilots initially practice within a simulator. This simulator provides predefined, realistic scenarios and reactions, enabling pilots to train safely, repeatedly, and predictably without the complexities and risks associated with actual flight operations. Similarly, a Service Stub provides controlled, predictable responses for external services during testing, simplifying and accelerating software development and testing processes.
 
 In plain words
 
@@ -34,23 +35,30 @@ Wikipedia says
 
 > A test stub is a dummy component used during testing to isolate behavior.
 
+Sequence diagram
+
+![Service Stub sequence diagram](./etc/service-stub-sequence-diagram.png)
+
 ## Programmatic Example of Service Stub Pattern in Java
 
-We define a `SentimentAnalysisService` interface and provide two implementations:
+We demonstrate the Service Stub pattern using a simple sentiment analysis example. To illustrate this clearly, we define a common interface `SentimentAnalysisServer` and create two separate implementations:
 
-1. **RealSentimentAnalysisServer**: Simulates a slow, random sentiment analysis system.
-2. **StubSentimentAnalysisServer**: Returns a deterministic result based on input keywords.
+**RealSentimentAnalysisServer**: Represents a slow, realistic sentiment analysis service, returning random sentiment results to simulate external complexity and latency.
 
-### Example Implementation
-Both the real service and the stub implement the interface below.
+**StubSentimentAnalysisServer**: Provides fast, deterministic results based on simple keyword matching, suitable for isolated testing without external dependencies.
+
+### Step-by-step Example Implementation
+
+First, define a common interface that both implementations will use:
+
 ```java
 public interface SentimentAnalysisServer {
     String analyzeSentiment(String text);
 }
 ```
-The real sentiment analysis class returns a random response for a given input and simulates the runtime by sleeping 
-the Thread for 5 seconds. The Supplier\<Integer\> allows injecting controlled sentiment values during testing, ensuring
-deterministic outputs.
+
+Next, we create a realistic implementation that simulates a slow, external service. It introduces a delay of 5 seconds and returns random sentiment results (`Positive`, `Negative`, or `Neutral`). For flexibility and easier testing, it allows injecting a custom sentiment supplier:
+
 ```java
 public class RealSentimentAnalysisServer implements SentimentAnalysisServer {
     
@@ -76,8 +84,9 @@ public class RealSentimentAnalysisServer implements SentimentAnalysisServer {
     }
 }
 ```
-The stub implementation simulates the real sentiment analysis class and provides a deterministic output
-for a given input. Additionally, its runtime is almost zero.
+
+Then, we provide a simplified stub implementation designed specifically for testing purposes. It returns immediate and predictable results based on simple keyword detection. This enables tests to run quickly and consistently without relying on external factors:
+
 ```java
 public class StubSentimentAnalysisServer implements SentimentAnalysisServer {
 
@@ -94,9 +103,10 @@ public class StubSentimentAnalysisServer implements SentimentAnalysisServer {
     }
   }
 }
-
 ```
-Here is the main function of the App class (entry point to the program)
+
+Finally, here's the main application logic illustrating how to use both implementations in practice. Notice the significant performance difference between the real and stub implementations:
+
 ```java
 @Slf4j
   public static void main(String[] args) {
@@ -115,39 +125,46 @@ Here is the main function of the App class (entry point to the program)
     LOGGER.info("The sentiment is: {}", sentiment);
   }
 ```
+
+In summary, implementing a Service Stub involves creating a simplified substitute (`StubSentimentAnalysisServer`) for an actual external service (`RealSentimentAnalysisServer`). This approach allows your tests to run quickly and consistently by isolating them from external complexity and unpredictability.
+
 ## When to Use the Service Stub Pattern in Java
 
-Use the Service Stub pattern when:
-
-* Testing components that depend on external services.
-* The real service is slow, unreliable, or unavailable.
-* You need predictable, predefined responses.
-* Developing offline without real service access.
+* When testing systems with external or third-party service dependencies.
+* In integration tests to isolate the service being tested from network or external dependencies.
+* During development when the actual services are unavailable or unreliable.
+* To speed up tests by avoiding calls to slower external systems.
 
 ## Real-World Applications of Service Stub Pattern in Java
 
-* Simulating APIs (payments, recommendation systems) during testing.
-* Bypassing external AI/ML models in tests.
-* Simplifying integration testing.
+* WireMock: Widely used in Java testing to stub HTTP-based external services.
+* Mockito: Allows creating lightweight stubs for dependencies in unit testing.
+* Spring Cloud Contract: Provides contracts and stub servers for services in microservices architectures.
 
 ## Benefits and Trade-offs of Service Stub Pattern
 
 Benefits:
 
-* Reduces dependencies.
-* Provides predictable behavior.
-* Speeds up testing.
+* Simplifies testing by eliminating dependencies on external systems.
+* Speeds up testing processes by removing latency from external network calls.
+* Allows consistent, repeatable, and predictable testing scenarios.
+* Enables parallel test execution, improving overall development productivity.
 
 Trade-offs:
 
-* Requires maintaining stub logic.
-* May not fully represent real service behavior.
+* Stubs need to be regularly updated to reflect changes in the actual external services.
+* May introduce false confidence if stubs do not accurately represent external system behavior.
+* Can lead to additional overhead and maintenance of stub configurations.
 
 ## Related Java Design Patterns
 
-* [Proxy](https://java-design-patterns.com/patterns/proxy/)
-* [Strategy](https://java-design-patterns.com/patterns/strategy/)
+* [Adapter](https://java-design-patterns.com/patterns/adapter/): Service Stub may sometimes implement Adapter interfaces to mimic external dependencies in a test environment.
+* Mock Object: Similar to Service Stub, but Mock Objects usually verify interactions explicitly, while Service Stubs primarily provide predefined responses without verification.
+* [Proxy](https://java-design-patterns.com/patterns/proxy/): Both Service Stub and Proxy introduce intermediate objects to control access or communication with actual components, though Proxy typically manages access control and communication, while Service Stub specifically aims to isolate for testing.
 
 ## References and Credits
 
-* [Martin Fowler: Test Stubs](https://martinfowler.com/articles/mocksArentStubs.html)
+* [Continuous Delivery: Reliable Software Releases through Build, Test, and Deployment Automation](https://amzn.to/4bjhTSK)
+* [Growing Object-Oriented Software, Guided by Tests](https://amzn.to/4dGfIuk)
+* [Mocks Aren't Stubs (Martin Fowler)](https://martinfowler.com/articles/mocksArentStubs.html)
+* [xUnit Test Patterns: Refactoring Test Code](https://amzn.to/4dHGDpm)

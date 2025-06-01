@@ -35,6 +35,10 @@ Wikipedia says
 
 > A proxy that controls access to a resource that is expensive to create.
 
+Sequence diagram
+
+![Virtual Proxy Sequence Diagram](./etc/virtual-proxy-sequence-diagram.png)
+
 ## Programmatic Example of Virtual Proxy Pattern in Java
 
 The Virtual Proxy design pattern in Java can optimize resource utilization and system performance.

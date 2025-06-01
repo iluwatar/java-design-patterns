@@ -24,6 +24,7 @@
  */
 package com.iluwatar;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
@@ -31,21 +32,11 @@ import lombok.Getter;
  * (addition, subtraction, multiplication), as well as currency conversion while ensuring proper
  * rounding.
  */
+@AllArgsConstructor
 @Getter
 public class Money {
-  private @Getter double amount;
-  private @Getter String currency;
-
-  /**
-   * Constructs a Money object with the specified amount and currency.
-   *
-   * @param amnt the amount of money (as a double).
-   * @param curr the currency code (e.g., "USD", "EUR").
-   */
-  public Money(double amnt, String curr) {
-    this.amount = amnt;
-    this.currency = curr;
-  }
+  private double amount;
+  private String currency;
 
   /**
    * Rounds the given value to two decimal places.
