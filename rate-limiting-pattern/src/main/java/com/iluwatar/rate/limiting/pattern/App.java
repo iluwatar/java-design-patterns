@@ -106,7 +106,7 @@ public final class App {
     return () -> {
       String[] services = {"s3", "dynamodb", "lambda"};
       String[] operations = {
-          "GetObject", "PutObject", "Query", "Scan", "PutItem", "Invoke", "ListFunctions"
+        "GetObject", "PutObject", "Query", "Scan", "PutItem", "Invoke", "ListFunctions"
       };
       SecureRandom random = new SecureRandom(); // ✅ Safe & compliant for SonarCloud
 
@@ -139,7 +139,10 @@ public final class App {
       throttledRequests.incrementAndGet();
       LOGGER.warn(
           "Client {}: {}.{} - THROTTLED (Retry in {}ms)",
-          clientId, service, operation, e.getRetryAfterMillis());
+          clientId,
+          service,
+          operation,
+          e.getRetryAfterMillis());
     } catch (ServiceUnavailableException e) {
       failedRequests.incrementAndGet();
       LOGGER.warn("Client {}: {}.{} - SERVICE UNAVAILABLE", clientId, service, operation);
