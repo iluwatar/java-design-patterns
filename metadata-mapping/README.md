@@ -29,6 +29,10 @@ Wikipedia says
 
 > Create a "virtual [object database](https://en.wikipedia.org/wiki/Object_database)" that can be used from within the programming language.
 
+Flowchart
+
+![Metadata Mapping flowchart](./etc/metadata-mapping-flowchart.png)
+
 ## Programmatic Example of Metadata Mapping Pattern in Java
 
 Hibernate ORM Tool uses Metadata Mapping Pattern to specify the mapping between classes and tables either using XML or annotations in code.

@@ -2,200 +2,255 @@
 title: "Table Inheritance Pattern in Java: Modeling Hierarchical Data in Relational Databases"
 shortTitle: Table Inheritance
 description: "Explore the Table Inheritance pattern in Java with real-world examples, database schema, and tutorials. Learn how to model class hierarchies elegantly in relational databases."
-category: Data Access Pattern, Structural Pattern
+category: Data access
 language: en
 tag:
-- Decoupling
-- Inheritance
-- Polymorphism
-- Object Mapping
-- Persistence
-- Data Transformation
+    - Data access
+    - Database
+    - Inheritance
+    - Persistence
+    - Polymorphism
 ---
 
-## Also Known As
-- Class Table Inheritance
----
+## Also known as
+
+* Class Table Inheritance
+* Joined Table Inheritance
 
 ## Intent of Table Inheritance Pattern
-The Table Inheritance pattern models a class hierarchy in a relational database by creating 
-separate tables for each class in the hierarchy. These tables share a common primary key, which in
-subclass tables also serves as a foreign key referencing the primary key of the base class table. 
-This linkage maintains relationships and effectively represents the inheritance structure. This pattern 
-enables the organization of complex data models, particularly when subclasses have unique properties 
-that must be stored in distinct tables.
 
----
+Represent inheritance hierarchies in relational databases by mapping each class in a hierarchy to a database table.
 
 ## Detailed Explanation of Table Inheritance Pattern with Real-World Examples
 
-### Real-World Example
-Consider a **Vehicle Management System** with a `Vehicle` superclass and subclasses like `Car` and `Truck`.
+Real-world example
 
-- The **Vehicle Table** stores attributes common to all vehicles, such as `make`, `model`, and `year`. Its primary key (`id`) uniquely identifies each vehicle.
-- The **Car Table** and **Truck Table** store attributes specific to their respective types, such as `numberOfDoors` for cars and `payloadCapacity` for trucks.
-- The `id` column in the **Car Table** and **Truck Table** serves as both the primary key for those tables and a foreign key referencing the `id` in the **Vehicle Table**.
+> A classic real-world analogy for the Table Inheritance (Joined Table) pattern is managing employee records in an organization: 
+> Imagine a company's database storing information about employees. All employees have common attributes (name, employee ID, hire date), stored in a general "Employee" table. However, the company also has different types of employees: Full-time Employees (with a salary and benefits) and Contractors (hourly rate, contract duration). Each employee type has distinct data stored in separate specialized tables ("FullTimeEmployee" and "Contractor"), which reference the main "Employee" table. 
+> This structure mirrors the Table Inheritance pattern—shared fields in a common table and unique fields split into subclass-specific tables.
 
-This setup ensures each subclass entry corresponds to a base class entry, maintaining the inheritance relationship while keeping subclass-specific data in their own tables.
+In plain words
 
-### In Plain Words
-In table inheritance, each class in the hierarchy is represented by a separate table, which 
-allows for a clear distinction between shared attributes (stored in the base class table) and 
-specific attributes (stored in subclass tables).
+> The Table Inheritance pattern maps each class within an inheritance hierarchy to its own database table, storing common attributes in a base table and subclass-specific attributes in separate joined tables.
 
-### Martin Fowler Says
+Martin Fowler says
 
-Relational databases don't support inheritance, which creates a mismatch when mapping objects. 
-To fix this, Table Inheritance uses a separate table for each class in the hierarchy while maintaining 
-relationships through foreign keys, making it easier to link the classes together in the database.
+> Relational databases don't support inheritance, which creates a mismatch when mapping objects. To fix this, Table Inheritance uses a separate table for each class in the hierarchy while maintaining relationships through foreign keys, making it easier to link the classes together in the database.
 
-For more detailed information, refer to Martin Fowler's article on [Class Table Inheritance](https://martinfowler.com/eaaCatalog/classTableInheritance.html).
+Mind map
 
+![Table Inheritance Pattern Mind Map](./etc/table-inheritance-mind-map.png)
 
 ## Programmatic Example of Table Inheritance Pattern in Java
 
-
-The `Vehicle` class will be the superclass, and we will have `Car` and `Truck` as subclasses that extend 
-`Vehicle`. The `Vehicle` class will store common attributes, while `Car` and `Truck` will store 
-attributes specific to those subclasses.
+The `Vehicle` class will be the superclass, and we will have subclasses `Car` and `Truck` that extend `Vehicle`. The superclass `Vehicle` stores common attributes, while subclasses store their own specific attributes.
 
 ### Key Aspects of the Pattern:
 
-1. **Superclass (`Vehicle`)**:  
-   The `Vehicle` class stores attributes shared by all vehicle types, such as:
-    - `make`: The manufacturer of the vehicle.
-    - `model`: The model of the vehicle.
-    - `year`: The year the vehicle was manufactured.
-    - `id`: A unique identifier for the vehicle.
+**Superclass (`Vehicle`):**
 
-   These attributes are stored in the **`Vehicle` table** in the database.
+The superclass stores shared attributes:
 
-2. **Subclass (`Car` and `Truck`)**:  
-   Each subclass (`Car` and `Truck`) stores attributes specific to that vehicle type:
-    - `Car`: Has an additional attribute `numberOfDoors` representing the number of doors the car has.
-    - `Truck`: Has an additional attribute `payloadCapacity` representing the payload capacity of the truck.
+* `make`: Manufacturer of the vehicle.
+* `model`: Model of the vehicle.
+* `year`: Year of manufacture.
+* `id`: Unique identifier for the vehicle.
 
-   These subclass-specific attributes are stored in the **`Car` and `Truck` tables**.
+These common attributes will reside in a dedicated database table (`Vehicle` table).
 
-3. **Foreign Key Relationship**:  
-   Each subclass (`Car` and `Truck`) contains the `id` field which acts as a **foreign key** that 
-references the primary key (`id`) of the superclass (`Vehicle`). This foreign key ensures the 
-relationship between the common attributes in the `Vehicle` table and the specific attributes in the
-subclass tables (`Car` and `Truck`).
+**Subclasses (`Car` and `Truck`):**
 
+Each subclass adds attributes specific to its type:
+
+* `Car`: `numberOfDoors`, indicating how many doors the car has.
+* `Truck`: `payloadCapacity`, representing how much payload the truck can carry.
+
+Each subclass stores these specific attributes in their respective tables (`Car` and `Truck` tables).
+
+**Foreign Key Relationship:**
+
+Each subclass table references the superclass table via a foreign key. The subclass's `id` links to the primary key of the superclass, thus connecting common and subclass-specific data.
+
+### Java Implementation Using JPA Annotations:
 
 ```java
-/**
- * Superclass
- * Represents a generic vehicle with basic attributes like make, model, year, and ID.
- */
+@Setter
+@Getter
 public class Vehicle {
-    private String make;
-    private String model;
-    private int year;
-    private int id;
 
-    // Constructor, getters, and setters...
+   private String make;
+   private String model;
+   private int year;
+   private int id;
+
+   public Vehicle(int year, String make, String model, int id) {
+      this.make = make;
+      this.model = model;
+      this.year = year;
+      this.id = id;
+   }
+
+   @Override
+   public String toString() {
+      return "Vehicle{"
+              + "id="
+              + id
+              + ", make='"
+              + make
+              + '\''
+              + ", model='"
+              + model
+              + '\''
+              + ", year="
+              + year
+              + '}';
+   }
 }
 
-/**
- * Represents a car, which is a subclass of Vehicle.
- */
+@Getter
 public class Car extends Vehicle {
-    private int numberOfDoors;
+   private int numDoors;
 
-    // Constructor, getters, and setters...
+   public Car(int year, String make, String model, int numDoors, int id) {
+      super(year, make, model, id);
+      if (numDoors <= 0) {
+         throw new IllegalArgumentException("Number of doors must be positive.");
+      }
+      this.numDoors = numDoors;
+   }
+
+   public void setNumDoors(int doors) {
+      if (doors <= 0) {
+         throw new IllegalArgumentException("Number of doors must be positive.");
+      }
+      this.numDoors = doors;
+   }
+
+   @Override
+   public String toString() {
+      return "Car{"
+              + "id="
+              + getId()
+              + ", make='"
+              + getMake()
+              + '\''
+              + ", model='"
+              + getModel()
+              + '\''
+              + ", year="
+              + getYear()
+              + ", numberOfDoors="
+              + getNumDoors()
+              + '}';
+   }
 }
 
-/**
- * Represents a truck, which is a subclass of Vehicle.
- */
+@Getter
 public class Truck extends Vehicle {
-    private int payloadCapacity;
+   private double loadCapacity;
 
-    // Constructor, getters, and setters...
+   public Truck(int year, String make, String model, double loadCapacity, int id) {
+      super(year, make, model, id);
+      if (loadCapacity <= 0) {
+         throw new IllegalArgumentException("Load capacity must be positive.");
+      }
+      this.loadCapacity = loadCapacity;
+   }
+
+   public void setLoadCapacity(double capacity) {
+      if (capacity <= 0) {
+         throw new IllegalArgumentException("Load capacity must be positive.");
+      }
+      this.loadCapacity = capacity;
+   }
+
+   @Override
+   public String toString() {
+      return "Truck{"
+              + "id="
+              + getId()
+              + ", make='"
+              + getMake()
+              + '\''
+              + ", model='"
+              + getModel()
+              + '\''
+              + ", year="
+              + getYear()
+              + ", payloadCapacity="
+              + getLoadCapacity()
+              + '}';
+   }
 }
 ```
 
+### Explanation of the JPA annotations used above:
 
+* `@Entity`: Indicates that the class is a JPA entity mapped to a database table.
+* `@Inheritance(strategy = InheritanceType.JOINED)`: Configures joined table inheritance, meaning each class (superclass and subclasses) maps to its own table.
+* `@Table(name = "XYZ")`: Explicitly specifies the database table name for clarity.
+* `@Id`: Marks the primary key of the entity.
+* `@GeneratedValue(strategy = GenerationType.IDENTITY)`: Specifies auto-generation of primary key values by the database.
 
-## Table Inheritance Pattern Class Diagram
+### Database Structure Result:
 
+Applying this code will result in three database tables structured as follows:
 
-<img src="etc/class-diagram.png" width="400" height="500" />
+**Vehicle table**
+* id
+* make
+* model
+* year
 
+**Car table**
+* id (FK to Vehicle)
+* numberOfDoors
 
+**Truck table**
+* id (FK to Vehicle)
+* payloadCapacity
 
-
-
-
-## Table Inheritance Pattern Database Schema
-
-### Vehicle Table
-| Column | Description                         |
-|--------|-------------------------------------|
-| id     | Primary key                        |
-| make   | The make of the vehicle            |
-| model  | The model of the vehicle           |
-| year   | The manufacturing year of the vehicle |
-
-### Car Table
-| Column          | Description                         |
-|------------------|-------------------------------------|
-| id              | Foreign key referencing `Vehicle(id)` |
-| numberOfDoors   | Number of doors in the car          |
-
-### Truck Table
-| Column           | Description                         |
-|-------------------|-------------------------------------|
-| id               | Foreign key referencing `Vehicle(id)` |
-| payloadCapacity  | Payload capacity of the truck       |
-
----
+This approach clearly represents the Table Inheritance (Joined Table) pattern, with common attributes centrally managed in the superclass table and subclass-specific attributes cleanly separated in their own tables.
 
 ## When to Use the Table Inheritance Pattern in Java
 
-- When your application requires a clear mapping of an object-oriented class hierarchy to relational tables.
-- When subclasses have unique attributes that do not fit into a single base table.
-- When scalability and normalization of data are important considerations.
-- When you need to separate concerns and organize data in a way that each subclass has its own 
-table but maintains relationships with the superclass.
+* When persisting an inheritance hierarchy of Java classes in a relational database.
+* Suitable when classes share common attributes but also have distinct fields.
+* Beneficial when polymorphic queries across subclasses are frequent.
 
 ## Table Inheritance Pattern Java Tutorials
 
 - [Software Patterns Lexicon: Class Table Inheritance](https://softwarepatternslexicon.com/patterns-sql/4/4/2/)
 - [Martin Fowler: Class Table Inheritance](http://thierryroussel.free.fr/java/books/martinfowler/www.martinfowler.com/isa/classTableInheritance.html)
 
----
-
 ## Real-World Applications of Table Inheritance Pattern in Java
 
-- **Vehicle Management System**: Used to store different types of vehicles like Car and Truck in separate tables but maintain a relationship through a common superclass `Vehicle`.
-- **E-Commerce Platforms**: Where different product types, such as Clothing, Electronics, and Furniture, are stored in separate tables with shared attributes in a superclass `Product`.
+* Hibernate ORM (`@Inheritance(strategy = InheritanceType.JOINED)` in Java)
+* EclipseLink (Joined Inheritance strategy in JPA)
+* Spring Data JPA applications modeling complex domain hierarchies.
 
 ## Benefits and Trade-offs of Table Inheritance Pattern
 
-### Benefits
+Benefits:
 
-- **Clear Structure**: Each class has its own table, making the data model easier to maintain and understand.
-- **Scalability**: Each subclass can be extended independently without affecting the other tables, making the system more scalable.
-- **Data Normalization**: Helps avoid data redundancy and keeps the schema normalized.
+ * Normalized database schema reduces redundancy.
+ * Clearly models class hierarchies at the database level.
+ * Easier to implement polymorphic queries due to clear class distinctions.
 
-### Trade-offs
+Trade-offs:
 
-- **Multiple Joins**: Retrieving data that spans multiple subclasses may require joining multiple tables, which could lead to performance issues.
-- **Increased Complexity**: Managing relationships between tables and maintaining integrity can become more complex.
-- **Potential for Sparse Tables**: Subclasses with fewer attributes may end up with tables that have many null fields.
+ * Increased complexity in database queries involving multiple joins.
+ * Reduced performance for deep inheritance hierarchies due to costly joins.
+ * Maintenance overhead increases with the complexity of inheritance structures.
 
 ## Related Java Design Patterns
 
-- **Single Table Inheritance** – A strategy where a single table is used to store all classes in an 
-inheritance hierarchy. It stores all attributes of the class and its subclasses in one table.
-- **Singleton Pattern** – Used when a class needs to have only one instance.
-
+* [Single Table Inheritance](https://java-design-patterns.com/patterns/single-table-inheritance/): Alternative strategy mapping an entire class hierarchy into a single database table, useful when fewer joins are preferred at the cost of nullable columns.
+* Concrete Table Inheritance – Each subclass has its own standalone table; related in providing an alternate approach to storing inheritance hierarchies.
 
 ## References and Credits
 
-- **Martin Fowler** - [*Patterns of Enterprise Application Architecture*](https://www.amazon.com/Patterns-Enterprise-Application-Architecture-Martin/dp/0321127420)
-- **Java Persistence with Hibernate** - [Link to book](https://www.amazon.com/Java-Persistence-Hibernate-Christian-Bauer/dp/193239469X)
-- **Object-Relational Mapping on Wikipedia** - [Link to article](https://en.wikipedia.org/wiki/Object-relational_mapping)
+* [Java Persistence with Hibernate](https://amzn.to/44tP1ox)
+* [Object-Relational Mapping (Wikipedia)](https://en.wikipedia.org/wiki/Object-relational_mapping)
+* [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR)
+* [Pro JPA 2: Mastering the Java Persistence API](https://amzn.to/4b7UoMC)

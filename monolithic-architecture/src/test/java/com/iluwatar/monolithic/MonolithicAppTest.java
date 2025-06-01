@@ -95,11 +95,7 @@ class MonolithicAppTest {
         new OrderController(mockOrderRepo, mockUserRepository, mockProductRepository);
 
     Exception exception =
-        assertThrows(
-            NonExistentUserException.class,
-            () -> {
-              orderCon.placeOrder(1L, 1L, 5);
-            });
+        assertThrows(NonExistentUserException.class, () -> orderCon.placeOrder(1L, 1L, 5));
 
     assertEquals("User with ID 1 not found", exception.getMessage());
   }
@@ -119,11 +115,7 @@ class MonolithicAppTest {
         new OrderController(mockOrderRepository, mockUserRepository, mockProductRepository);
 
     Exception exception =
-        assertThrows(
-            NonExistentProductException.class,
-            () -> {
-              orderCon.placeOrder(1L, 1L, 5);
-            });
+        assertThrows(NonExistentProductException.class, () -> orderCon.placeOrder(1L, 1L, 5));
 
     assertEquals("Product with ID 1 not found", exception.getMessage());
   }
@@ -196,11 +188,7 @@ class MonolithicAppTest {
         new OrderController(mockOrderRepository, mockUserRepository, mockProductRepository);
 
     Exception exception =
-        assertThrows(
-            InsufficientStockException.class,
-            () -> {
-              orderCon.placeOrder(1L, 1L, 5);
-            });
+        assertThrows(InsufficientStockException.class, () -> orderCon.placeOrder(1L, 1L, 5));
     assertEquals("Not enough stock for product 1", exception.getMessage());
   }
 

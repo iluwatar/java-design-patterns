@@ -33,7 +33,7 @@ import java.lang.reflect.Field;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
 
-public class TopicTest {
+class TopicTest {
 
   private static final String TOPIC_WEATHER = "WEATHER";
 

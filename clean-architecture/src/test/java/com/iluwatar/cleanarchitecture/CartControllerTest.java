@@ -29,17 +29,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class CartControllerTest {
+class CartControllerTest {
 
-  private ShoppingCartService shoppingCartUseCase;
   private CartController cartController;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     ProductRepository productRepository = new InMemoryProductRepository();
     CartRepository cartRepository = new InMemoryCartRepository();
     OrderRepository orderRepository = new InMemoryOrderRepository();
-    shoppingCartUseCase =
+    ShoppingCartService shoppingCartUseCase =
         new ShoppingCartService(productRepository, cartRepository, orderRepository);
     cartController = new CartController(shoppingCartUseCase);
   }

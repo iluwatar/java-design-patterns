@@ -36,7 +36,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 
-public class PublisherTest {
+class PublisherTest {
 
   @RegisterExtension public LoggerExtension loggerExtension = new LoggerExtension();
 

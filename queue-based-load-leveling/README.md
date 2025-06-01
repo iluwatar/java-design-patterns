@@ -40,6 +40,10 @@ Wikipedia says
 
 > Message Queues are essential components for inter-process communication (IPC) and inter-thread communication, using queues to manage the passing of messages. They help in decoupling producers and consumers, allowing asynchronous processing, which is a key aspect of the Queue-Based Load Leveling pattern.
 
+Flowchart
+
+![Queue-Based Load Leveling flowchart](./etc/queue-based-load-leveling-flowchart.png)
+
 ## Programmatic Example of Queue-Based Load Leveling Pattern in Java
 
 The Queue-Based Load Leveling pattern helps to manage high-volume, sporadic bursts of tasks that can overwhelm a system. It uses a queue as a buffer to hold tasks, decoupling the task generation from task processing. Tasks are processed at a controlled rate, ensuring optimal load management and fault tolerance, crucial for maintaining robust system architecture.

@@ -34,6 +34,10 @@ Wikipedia says
 
 > The Transaction Script design pattern is a straightforward way to organize business logic in applications, particularly suitable for scenarios where each request from the presentation layer can be handled by a single procedure. This pattern is often used in simple applications or in systems where rapid development and ease of understanding are crucial. Each transaction script is responsible for a particular task, such as processing an order or calculating a result, and typically interacts directly with the database.
 
+Flowchart
+
+![Transaction Script Pattern Flowchart](./etc/transaction-script-flowchart.png)
+
 ## Programmatic Example of Transaction Script Pattern in Java
 
 Our Transaction Script pattern in Java example is about booking hotel rooms.

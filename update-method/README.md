@@ -35,6 +35,10 @@ gameprogrammingpatterns.com says
 
 > The game world maintains a collection of objects. Each object implements an update method that simulates one frame of the object’s behavior. Each frame, the game updates every object in the collection.
 
+Sequence diagram
+
+![Update Method Sequence Diagram](./etc/update-method-sequence-diagram.png)
+
 ## Programmatic Example of Update Method Pattern in Java
 
 The Update Method design pattern is a behavioral pattern that simulates a collection of independent game or application objects by telling each to process one frame of behavior at a time. This pattern is commonly used in game development, where each object in the game world needs to be updated once per frame.

@@ -10,7 +10,7 @@ tag:
   - Code simplification
   - Decoupling
   - Encapsulation
-  - Gang Of Four
+  - Gang of Four
   - Interface
   - Object composition
 ---
@@ -32,6 +32,10 @@ In plain words
 Wikipedia says
 
 > A facade is an object that provides a simplified interface to a larger body of code, such as a class library.
+
+Sequence diagram
+
+![Facade sequence diagram](./etc/facade-sequence-diagram.png)
 
 ## Programmatic Example of Facade Pattern in Java
 

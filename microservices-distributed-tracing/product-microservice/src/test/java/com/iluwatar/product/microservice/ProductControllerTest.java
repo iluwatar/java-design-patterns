@@ -36,7 +36,7 @@ class ProductControllerTest {
   private ProductController productController;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     productController = new ProductController();
   }
 

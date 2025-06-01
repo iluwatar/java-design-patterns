@@ -199,10 +199,6 @@ The program output:
 10:02:09.898 [main] INFO com.iluwatar.dao.App -- customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@f2f2cc1
 ```
 
-## Detailed Explanation of Data Access Object Pattern with Real-World Examples
-
-![Data Access Object](./etc/dao.png "Data Access Object")
-
 ## When to Use the Data Access Object Pattern in Java
 
 Use the Data Access Object in any of the following situations:

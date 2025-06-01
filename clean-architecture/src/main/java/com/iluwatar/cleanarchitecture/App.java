@@ -63,7 +63,7 @@ public final class App {
     cartController.addItemToCart(userId, "2", 2);
 
     Order order = orderController.checkout(userId);
-    LOGGER.info("Total: ${}" + cartController.calculateTotal(userId));
+    LOGGER.info("Total: ${}", cartController.calculateTotal(userId));
 
     LOGGER.info(
         "Order placed! Order ID: {}, Total: ${}", order.getOrderId(), order.getTotalPrice());

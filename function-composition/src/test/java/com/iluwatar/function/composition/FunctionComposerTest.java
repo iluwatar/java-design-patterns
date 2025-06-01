@@ -30,7 +30,7 @@ import java.util.function.Function;
 import org.junit.jupiter.api.Test;
 
 /** Test class for FunctionComposer. */
-public class FunctionComposerTest {
+class FunctionComposerTest {
 
   /** Tests the composition of two functions. */
   @Test
