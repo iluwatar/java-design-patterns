@@ -1,90 +1,119 @@
-## Polling-publisher
-
 ---
-**Title:** "Polling Publisher-Subscriber Microservice Pattern in Java: Mastering Asynchronous Messaging Elegantly"
-**ShortTitle:** Polling Pub/Sub  
-**description:** "This project shows how to build a Polling Publisher-Subscriber system using Spring Boot and Apache Kafka. The Publisher Service polls data at regular intervals and sends updates to Kafka. The Subscriber Service listens to Kafka and processes the updates. It helps to separate data producers from consumers and is useful when real-time push is not possible."
-
-**Category:** Architectural  
-**Language:** en
-
-**Tags:**
-- Spring Boot
-- Kafka
-- Microservices
-- Asynchronous Messaging
-- Decoupling
+title: "Polling Publisher-Subscriber Pattern in Java: Mastering Asynchronous Messaging Elegantly"
+shortTitle: Polling Pub/Sub
+description: "Learn how to implement a Polling Publisher-Subscriber system in Java using Spring Boot and Kafka. Explore the architecture, real-world analogies, and benefits of asynchronous communication with clean code examples."
+category: Architectural
+language: en
+tag:
+  - Spring Boot
+  - Kafka
+  - Microservices
+  - Asynchronous Messaging
+  - Decoupling
 ---
 
+## Also known as
 
-
-## Also Known As
-- Event-Driven Architecture
-- Asynchronous Pub/Sub Pattern
-- Message Queue-Based Polling System
+* Event-Driven Architecture
+* Asynchronous Pub/Sub Pattern
+* Message Queue-Based Polling System
 
 ## Intent of Polling Publisher-Subscriber Pattern
-To decouple data producers and consumers in a distributed system, enabling asynchronous message-driven communication by polling a data source and transmitting updates via a message broker like Kafka.
 
-## Detailed Explanation of the Pattern
+The Polling Publisher-Subscriber pattern decouples data producers from consumers by enabling asynchronous, message-driven communication. A service polls a data source and publishes messages to a message broker (e.g., Kafka), which are then consumed by one or more subscriber services.
 
-### Real-World Analogy
-A news agency polls for latest updates and broadcasts them to newspapers and channels, which are then read by people independently.
+## Detailed Explanation of the Pattern with Real-World Examples
 
-### In Plain Words
-One service polls for data and publishes messages to Kafka. Another service consumes and processes these messages asynchronously.
+### Real-world analogy
 
-### Wikipedia Says
-This pattern closely resembles the Publish–subscribe model. See: https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern
+> A news agency constantly polls for the latest news updates. Once it receives new information, it publishes them to different news outlets (TV, newspapers, apps). Each outlet consumes and displays the updates independently.
 
-### Architecture
-Publisher → Kafka → Subscriber
+### In plain words
 
-## Algorithm Logic (Spring Boot + Kafka)
+> One service regularly checks for updates (polls) and sends messages to Kafka. Another service listens to Kafka and processes the messages asynchronously.
+
+### Wikipedia says
+
+> This pattern closely resembles the [Publish–subscribe model](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern), where messages are sent by publishers and received by subscribers without them knowing each other.
+
+### Architecture Flow
+
+```
++------------+      +--------+      +-------------+
+|  Publisher | ---> | Kafka  | ---> | Subscriber  |
++------------+      +--------+      +-------------+
+```
+
+## Programmatic Example (Spring Boot + Kafka)
 
 ### Publisher Service
-- Polls data periodically using Spring Scheduler.
-- Publishes data to Kafka.
-- Exposes REST API for manual triggering.
+
+- Uses Spring's `@Scheduled` to poll data periodically.
+- Publishes data to a Kafka topic.
+- Optionally exposes a REST API for manual data publishing.
+
+```java
+@Scheduled(fixedRate = 5000)
+public void pollAndPublish() {
+    String data = pollingService.getLatestData();
+    kafkaTemplate.send("updates-topic", data);
+}
+```
 
 ### Subscriber Service
-- Listens to Kafka topic using Spring Kafka.
+
+- Listens to Kafka topic using `@KafkaListener`.
 - Processes messages asynchronously.
 
-## When to Use This Pattern
-- When producer and consumer need decoupling.
-- When real-time push is unavailable, requiring polling.
-- When building event-driven microservices.
+```java
+@KafkaListener(topics = "updates-topic")
+public void processUpdate(String message) {
+    log.info("Received update: {}", message);
+    updateProcessor.handle(message);
+}
+```
 
-## Java Tutorials
-- https://www.baeldung.com/spring-kafka
-- https://www.baeldung.com/spring-scheduled-tasks
+## When to Use the Polling Publisher-Subscriber Pattern
+
+Use this pattern when:
+
+* Real-time push from the producer is not possible.
+* Loose coupling between producers and consumers is desired.
+* You need asynchronous, scalable event processing.
+* You are building an event-driven microservices architecture.
 
 ## Real-World Applications
-- Real-time reporting dashboards
-- System health check aggregators
-- IoT telemetry processing
-- Notification/event services
 
-## Benefits and Trade-offs
+* Real-time reporting dashboards
+* Health check aggregators for distributed systems
+* IoT telemetry processing
+* Notification and alerting systems
+
+## Benefits and Trade-offs of Polling Pub/Sub Pattern
 
 ### Benefits
-- Loose coupling between services
-- Scalable and asynchronous
-- Durable and fault-tolerant via Kafka
-- Extendable and modular
 
-### Trade-offs
-- Polling introduces a delay
-- Requires message broker setup
-- Increases deployment complexity
+* Loose coupling between services
+* Asynchronous and scalable architecture
+* Fault-tolerant with message persistence in Kafka
+* Easy to extend with new consumers or publishers
 
-## Related Design Patterns
-- Observer Pattern
-- Mediator Pattern
-- Message Queue Pattern
+### Trade-Offs
+
+* Polling introduces latency between data generation and consumption
+* Requires managing and configuring Kafka (or other brokers)
+* Slightly more complex deployment and infrastructure setup
+
+## Related Java Design Patterns
+
+* [Observer Pattern](https://java-design-patterns.com/patterns/observer/)
+* [Mediator Pattern](https://java-design-patterns.com/patterns/mediator/)
+* [Message Queue Pattern](https://java-design-patterns.com/patterns/event-queue/)
 
 ## References and Credits
-- Apache Kafka Docs: https://kafka.apache.org/documentation/
-- Spring Kafka Docs: https://docs.spring.io/spring-kafka
-- iluwatar/java-design-patterns
+
+* [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
+* [Spring Kafka Documentation](https://docs.spring.io/spring-kafka)
+* [Spring Scheduled Tasks](https://www.baeldung.com/spring-scheduled-tasks)
+* [Spring Kafka Tutorial – Baeldung](https://www.baeldung.com/spring-kafka)
+* Inspired by: [iluwatar/java-design-patterns](https://github.com/iluwatar/java-design-patterns)
