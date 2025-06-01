@@ -1,10 +1,10 @@
 package com.iluwatar.rate.limiting.pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The <em>Rate Limiter</em> pattern is a key defensive strategy used to prevent system overload and
@@ -99,10 +99,13 @@ public final class App {
     }
   }
 
-  static Runnable createClientTask(int clientId, RateLimiter s3Limiter, RateLimiter dynamoDbLimiter, RateLimiter lambdaLimiter) {
+  static Runnable createClientTask(
+      int clientId, RateLimiter s3Limiter, RateLimiter dynamoDbLimiter, RateLimiter lambdaLimiter) {
     return () -> {
       String[] services = {"s3", "dynamodb", "lambda"};
-      String[] operations = {"GetObject", "PutObject", "Query", "Scan", "PutItem", "Invoke", "ListFunctions"};
+      String[] operations = {
+        "GetObject", "PutObject", "Query", "Scan", "PutItem", "Invoke", "ListFunctions"
+      };
       ThreadLocalRandom random = ThreadLocalRandom.current();
 
       while (running.get() && !Thread.currentThread().isInterrupted()) {
@@ -132,7 +135,12 @@ public final class App {
       LOGGER.info("Client {}: {}.{} - ALLOWED", clientId, service, operation);
     } catch (ThrottlingException e) {
       throttledRequests.incrementAndGet();
-      LOGGER.warn("Client {}: {}.{} - THROTTLED (Retry in {}ms)", clientId, service, operation, e.getRetryAfterMillis());
+      LOGGER.warn(
+          "Client {}: {}.{} - THROTTLED (Retry in {}ms)",
+          clientId,
+          service,
+          operation,
+          e.getRetryAfterMillis());
     } catch (ServiceUnavailableException e) {
       failedRequests.incrementAndGet();
       LOGGER.warn("Client {}: {}.{} - SERVICE UNAVAILABLE", clientId, service, operation);

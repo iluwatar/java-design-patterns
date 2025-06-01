@@ -6,9 +6,7 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for {@link App}.
- */
+/** Unit tests for {@link App}. */
 class AppTest {
 
   private RateLimiter mockLimiter;

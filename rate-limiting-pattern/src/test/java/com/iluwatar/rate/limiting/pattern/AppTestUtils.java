@@ -4,7 +4,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class AppTestUtils {
 
-  public static void invokeMakeRequest(int clientId, RateLimiter limiter, String service, String operation) {
+  public static void invokeMakeRequest(
+      int clientId, RateLimiter limiter, String service, String operation) {
     App.makeRequest(clientId, limiter, service, operation);
   }
 
