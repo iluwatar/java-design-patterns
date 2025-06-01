@@ -67,12 +67,7 @@ public class App {
 
     var baelish = new LordBaelish(kingsHand, Event.STARK_SIGHTED);
 
-    var emitters = List.of(
-        kingsHand,
-        baelish,
-        varys,
-        scout
-    );
+    var emitters = List.of(kingsHand, baelish, varys, scout);
 
     Arrays.stream(Weekday.values())
         .<Consumer<? super EventEmitter>>map(day -> emitter -> emitter.timePasses(day))

@@ -25,8 +25,5 @@
 
 package com.iluwatar.collectionpipeline;
 
-/**
- * A Car class that has the properties of make, model, year and category.
- */
-public record Car(String make, String model, int year, Category category) {
-}
+/** A Car class that has the properties of make, model, year and category. */
+public record Car(String make, String model, int year, Category category) {}

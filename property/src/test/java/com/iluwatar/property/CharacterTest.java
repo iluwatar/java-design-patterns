@@ -33,10 +33,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-/**
- * CharacterTest
- *
- */
+/** CharacterTest */
 class CharacterTest {
 
   @Test
@@ -56,7 +53,6 @@ class CharacterTest {
       assertFalse(prototype.has(stat));
       assertNull(prototype.get(stat));
     }
-
   }
 
   @Test
@@ -78,7 +74,8 @@ class CharacterTest {
     prototype.set(Stats.ARMOR, 1);
     prototype.set(Stats.AGILITY, 2);
     prototype.set(Stats.INTELLECT, 3);
-    var message = """
+    var message =
+        """
             Stats:
              - AGILITY:2
              - ARMOR:1
@@ -88,7 +85,8 @@ class CharacterTest {
 
     final var stupid = new Character(Type.ROGUE, prototype);
     stupid.remove(Stats.INTELLECT);
-    String expectedStupidString = """
+    String expectedStupidString =
+        """
             Character type: ROGUE
             Stats:
              - AGILITY:2
@@ -98,14 +96,14 @@ class CharacterTest {
 
     final var weak = new Character("weak", prototype);
     weak.remove(Stats.ARMOR);
-    String expectedWeakString = """
+    String expectedWeakString =
+        """
             Player: weak
             Stats:
              - AGILITY:2
              - INTELLECT:3
             """;
     assertEquals(expectedWeakString, weak.toString());
-
   }
 
   @Test
@@ -139,5 +137,4 @@ class CharacterTest {
     weak.remove(Stats.ARMOR);
     assertNull(weak.type());
   }
-
 }

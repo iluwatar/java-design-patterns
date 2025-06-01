@@ -46,15 +46,17 @@ public class AccountCreateEvent extends DomainEvent {
   /**
    * Instantiates a new Account created event.
    *
-   * @param sequenceId  the sequence id
+   * @param sequenceId the sequence id
    * @param createdTime the created time
-   * @param accountNo   the account no
-   * @param owner       the owner
+   * @param accountNo the account no
+   * @param owner the owner
    */
   @JsonCreator
-  public AccountCreateEvent(@JsonProperty("sequenceId") long sequenceId,
+  public AccountCreateEvent(
+      @JsonProperty("sequenceId") long sequenceId,
       @JsonProperty("createdTime") long createdTime,
-      @JsonProperty("accountNo") int accountNo, @JsonProperty("owner") String owner) {
+      @JsonProperty("accountNo") int accountNo,
+      @JsonProperty("owner") String owner) {
     super(sequenceId, createdTime, "AccountCreateEvent");
     this.accountNo = accountNo;
     this.owner = owner;

@@ -24,14 +24,10 @@
  */
 package com.iluwatar.activeobject;
 
-/**
- * An implementation of the ActiveCreature class.
- *
- */
+/** An implementation of the ActiveCreature class. */
 public class Orc extends ActiveCreature {
 
   public Orc(String name) {
     super(name);
   }
-
 }

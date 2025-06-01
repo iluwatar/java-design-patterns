@@ -27,10 +27,9 @@ package com.iluwatar.sharding;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * ShardManager with hash strategy. The purpose of this strategy is to reduce the
- * chance of hot-spots in the data. It aims to distribute the data across the shards
- * in a way that achieves a balance between the size of each shard and the average
- * load that each shard will encounter.
+ * ShardManager with hash strategy. The purpose of this strategy is to reduce the chance of
+ * hot-spots in the data. It aims to distribute the data across the shards in a way that achieves a
+ * balance between the size of each shard and the average load that each shard will encounter.
  */
 @Slf4j
 public class HashShardManager extends ShardManager {
@@ -50,5 +49,4 @@ public class HashShardManager extends ShardManager {
     var hash = data.getKey() % shardCount;
     return hash == 0 ? hash + shardCount : hash;
   }
-
 }

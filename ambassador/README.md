@@ -33,6 +33,10 @@ Microsoft documentation states
 
 > An ambassador service can be thought of as an out-of-process proxy which is co-located with the client. This pattern can be useful for offloading common client connectivity tasks such as monitoring, logging, routing, security (such as TLS), and resiliency patterns in a language agnostic way. It is often used with legacy applications, or other applications that are difficult to modify, in order to extend their networking capabilities. It can also enable a specialized team to implement those features.
 
+Sequence diagram
+
+![Ambassador sequence diagram](./etc/ambassador-sequence-diagram.png "Ambassador sequence diagram")
+
 ## Programmatic Example of Ambassador Pattern in Java
 
 In this example of the Ambassador Pattern in Java, we demonstrate how to implement latency checks, logging, and retry mechanisms to improve system reliability.

@@ -24,10 +24,7 @@
  */
 package com.iluwatar.saga.choreography;
 
-
-/**
- * Class representing a service to book a hotel.
- */
+/** Class representing a service to book a hotel. */
 public class HotelBookingService extends Service {
   public HotelBookingService(ServiceDiscoveryService service) {
     super(service);
@@ -37,6 +34,4 @@ public class HotelBookingService extends Service {
   public String getName() {
     return "booking a Hotel";
   }
-
-
 }

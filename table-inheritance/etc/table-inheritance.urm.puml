@@ -1,0 +1,52 @@
+@startuml
+package com.iluwatar.table.inheritance {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Car {
+    - numDoors : int
+    + Car(year : int, make : String, model : String, numDoors : int, id : int)
+    + getNumDoors() : int
+    + setNumDoors(doors : int)
+    + toString() : String
+  }
+  class Truck {
+    - loadCapacity : double
+    + Truck(year : int, make : String, model : String, loadCapacity : double, id : int)
+    + getLoadCapacity() : double
+    + setLoadCapacity(capacity : double)
+    + toString() : String
+  }
+  class Vehicle {
+    - id : int
+    - make : String
+    - model : String
+    - year : int
+    + Vehicle(year : int, make : String, model : String, id : int)
+    + getId() : int
+    + getMake() : String
+    + getModel() : String
+    + getYear() : int
+    + setId(id : int)
+    + setMake(make : String)
+    + setModel(model : String)
+    + setYear(year : int)
+    + toString() : String
+  }
+  class VehicleDatabase {
+    - carTable : Map<Integer, Car>
+    ~ logger : Logger
+    - truckTable : Map<Integer, Truck>
+    - vehicleTable : Map<Integer, Vehicle>
+    + VehicleDatabase()
+    + getCar(id : int) : Car
+    + getTruck(id : int) : Truck
+    + getVehicle(id : int) : Vehicle
+    + printAllVehicles()
+    + saveVehicle(vehicle : Vehicle)
+  }
+}
+Car --|> Vehicle 
+Truck --|> Vehicle 
+@enduml

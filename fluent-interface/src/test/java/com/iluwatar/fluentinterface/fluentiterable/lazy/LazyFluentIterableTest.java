@@ -27,15 +27,11 @@ package com.iluwatar.fluentinterface.fluentiterable.lazy;
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterable;
 import com.iluwatar.fluentinterface.fluentiterable.FluentIterableTest;
 
-/**
- * LazyFluentIterableTest
- *
- */
+/** LazyFluentIterableTest */
 class LazyFluentIterableTest extends FluentIterableTest {
 
   @Override
   protected FluentIterable<Integer> createFluentIterable(Iterable<Integer> integers) {
     return LazyFluentIterable.from(integers);
   }
-
 }

@@ -36,7 +36,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * their availability and responsiveness. For more information about health checks and their role in
  * microservice architectures, please refer to: [Microservices Health Checks
  * API]('https://microservices.io/patterns/observability/health-check-api.html').
- *
  */
 @EnableCaching
 @EnableScheduling

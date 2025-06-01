@@ -25,7 +25,6 @@
 
 package entity;
 
-
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -38,9 +37,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-/**
- * CakeTopping entity.
- */
+/** CakeTopping entity. */
 @Entity
 @Getter
 @Setter
@@ -50,9 +47,7 @@ import lombok.Setter;
 @EqualsAndHashCode
 public class CakeTopping {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Id @GeneratedValue private Long id;
 
   private String name;
 
@@ -70,5 +65,4 @@ public class CakeTopping {
   public String toString() {
     return String.format("id=%s name=%s calories=%d", id, name, calories);
   }
-
 }

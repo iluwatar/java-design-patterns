@@ -37,7 +37,7 @@ public interface BusinessOperation<T> {
    *
    * @return the return value
    * @throws BusinessException if the operation fails. Implementations are allowed to throw more
-   *                           specific subtypes depending on the error conditions
+   *     specific subtypes depending on the error conditions
    */
   T perform() throws BusinessException;
 }

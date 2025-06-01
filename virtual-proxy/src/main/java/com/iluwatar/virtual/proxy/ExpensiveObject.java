@@ -24,9 +24,7 @@
  */
 package com.iluwatar.virtual.proxy;
 
-/**
- * Interface for expensive object and proxy object.
- */
+/** Interface for expensive object and proxy object. */
 public interface ExpensiveObject {
   void process();
 }

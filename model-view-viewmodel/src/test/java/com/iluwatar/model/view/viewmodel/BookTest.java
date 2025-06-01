@@ -30,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -41,27 +42,33 @@ class BookTest {
   List<Book> testBookList;
   Book testBookTwo;
   Book testBookThree;
-  
+
   @BeforeEach
   void setUp() {
     bvm = new BookViewModel();
-    testBook = new Book("Head First Design Patterns: A Brain-Friendly Guide",
-    		"Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
-    		"Head First Design Patterns Description");
+    testBook =
+        new Book(
+            "Head First Design Patterns: A Brain-Friendly Guide",
+            "Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
+            "Head First Design Patterns Description");
     testBookList = bvm.getBookList();
-    testBookTwo = new Book("Head First Design Patterns: A Brain-Friendly Guide",
-	  		"Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
-	  		"Head First Design Patterns Description");
-    testBookThree = new Book("Design Patterns: Elements of Reusable Object-Oriented Software",
+    testBookTwo =
+        new Book(
+            "Head First Design Patterns: A Brain-Friendly Guide",
+            "Eric Freeman, Bert Bates, Kathy Sierra, Elisabeth Robson",
+            "Head First Design Patterns Description");
+    testBookThree =
+        new Book(
+            "Design Patterns: Elements of Reusable Object-Oriented Software",
             "Erich Gamma, Richard Helm, Ralph Johnson, and John Vlissides",
             "Design Patterns Description");
   }
 
   @Test
   void testBookModel() {
-	assertNotNull(testBook);
+    assertNotNull(testBook);
   }
-  
+
   @Test
   void testEquals() {
     assertEquals(testBook, testBookTwo);
@@ -72,13 +79,13 @@ class BookTest {
     assertEquals(testBook.toString(), testBookTwo.toString());
     assertNotEquals(testBook.toString(), testBookThree.toString());
   }
-  
+
   @Test
   void testHashCode() {
     assertTrue(testBook.equals(testBookTwo) && testBookTwo.equals(testBook));
     assertEquals(testBook.hashCode(), testBookTwo.hashCode());
   }
-  
+
   @Test
   void testLoadData() {
     assertNotNull(testBookList);
@@ -87,7 +94,7 @@ class BookTest {
 
   @Test
   void testSelectedData() {
-	bvm.setSelectedBook(testBook);
+    bvm.setSelectedBook(testBook);
     assertNotNull(bvm.getSelectedBook());
     assertEquals(testBook.toString(), bvm.getSelectedBook().toString());
     assertTrue(true, bvm.getSelectedBook().toString());
@@ -102,5 +109,4 @@ class BookTest {
     assertNull(bvm.getSelectedBook());
     assertFalse(testBookList.get(0).toString().contains("Head First Design Patterns"));
   }
-
 }

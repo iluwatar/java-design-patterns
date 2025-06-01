@@ -23,15 +23,14 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.virtual.proxy;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests for RealVideoObject.
- */
+/** Tests for RealVideoObject. */
 class RealVideoObjectTest {
 
   @Test

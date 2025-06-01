@@ -29,14 +29,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * The Shuffler class is responsible for grouping word occurrences from multiple mappers.
- */
+/** The Shuffler class is responsible for grouping word occurrences from multiple mappers. */
 public class Shuffler {
 
   private Shuffler() {
-    throw new UnsupportedOperationException("Shuffler is a utility class and cannot be instantiated.");
+    throw new UnsupportedOperationException(
+        "Shuffler is a utility class and cannot be instantiated.");
   }
+
   /**
    * Merges multiple word count maps into a single grouped map.
    *

@@ -24,9 +24,7 @@
  */
 package com.iluwatar.converter;
 
-/**
- * Example implementation of the simple User converter.
- */
+/** Example implementation of the simple User converter. */
 public class UserConverter extends Converter<UserDto, User> {
 
   public UserConverter() {

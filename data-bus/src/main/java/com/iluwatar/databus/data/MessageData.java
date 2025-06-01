@@ -29,10 +29,7 @@ import com.iluwatar.databus.DataType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-/**
- * An event raised when a string message is sent.
- *
- */
+/** An event raised when a string message is sent. */
 @Getter
 @AllArgsConstructor
 public class MessageData extends AbstractDataType {

@@ -31,9 +31,7 @@ import com.mongodb.client.MongoDatabase;
 import lombok.Getter;
 import org.bson.Document;
 
-/**
- * Mongo based event log.
- */
+/** Mongo based event log. */
 public class MongoEventLog implements LotteryEventLog {
 
   private static final String DEFAULT_DB = "lotteryDB";
@@ -42,45 +40,35 @@ public class MongoEventLog implements LotteryEventLog {
   private static final String PHONE = "phone";
   public static final String MESSAGE = "message";
 
-  @Getter
-  private MongoClient mongoClient;
-  @Getter
-  private MongoDatabase database;
-  @Getter
-  private MongoCollection<Document> eventsCollection;
+  @Getter private MongoClient mongoClient;
+  @Getter private MongoDatabase database;
+  @Getter private MongoCollection<Document> eventsCollection;
 
   private final StdOutEventLog stdOutEventLog = new StdOutEventLog();
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public MongoEventLog() {
     connect();
   }
 
-  /**
-   * Constructor accepting parameters.
-   */
+  /** Constructor accepting parameters. */
   public MongoEventLog(String dbName, String eventsCollectionName) {
     connect(dbName, eventsCollectionName);
   }
 
-  /**
-   * Connect to database with default parameters.
-   */
+  /** Connect to database with default parameters. */
   public void connect() {
     connect(DEFAULT_DB, DEFAULT_EVENTS_COLLECTION);
   }
 
-  /**
-   * Connect to database with given parameters.
-   */
+  /** Connect to database with given parameters. */
   public void connect(String dbName, String eventsCollectionName) {
     if (mongoClient != null) {
       mongoClient.close();
     }
-    mongoClient = new MongoClient(System.getProperty("mongo-host"),
-        Integer.parseInt(System.getProperty("mongo-port")));
+    mongoClient =
+        new MongoClient(
+            System.getProperty("mongo-host"), Integer.parseInt(System.getProperty("mongo-port")));
     database = mongoClient.getDatabase(dbName);
     eventsCollection = database.getCollection(eventsCollectionName);
   }
@@ -90,8 +78,8 @@ public class MongoEventLog implements LotteryEventLog {
     var document = new Document(EMAIL, details.email());
     document.put(PHONE, details.phoneNumber());
     document.put("bank", details.bankAccount());
-    document
-        .put(MESSAGE, "Lottery ticket was submitted and bank account was charged for 3 credits.");
+    document.put(
+        MESSAGE, "Lottery ticket was submitted and bank account was charged for 3 credits.");
     eventsCollection.insertOne(document);
     stdOutEventLog.ticketSubmitted(details);
   }
@@ -121,9 +109,10 @@ public class MongoEventLog implements LotteryEventLog {
     var document = new Document(EMAIL, details.email());
     document.put(PHONE, details.phoneNumber());
     document.put("bank", details.bankAccount());
-    document.put(MESSAGE, String
-        .format("Lottery ticket won! The bank account was deposited with %d credits.",
-            prizeAmount));
+    document.put(
+        MESSAGE,
+        String.format(
+            "Lottery ticket won! The bank account was deposited with %d credits.", prizeAmount));
     eventsCollection.insertOne(document);
     stdOutEventLog.ticketWon(details, prizeAmount);
   }
@@ -133,8 +122,10 @@ public class MongoEventLog implements LotteryEventLog {
     var document = new Document(EMAIL, details.email());
     document.put(PHONE, details.phoneNumber());
     document.put("bank", details.bankAccount());
-    document.put(MESSAGE, String
-        .format("Lottery ticket won! Unfortunately the bank credit transfer of %d failed.",
+    document.put(
+        MESSAGE,
+        String.format(
+            "Lottery ticket won! Unfortunately the bank credit transfer of %d failed.",
             prizeAmount));
     eventsCollection.insertOne(document);
     stdOutEventLog.prizeError(details, prizeAmount);

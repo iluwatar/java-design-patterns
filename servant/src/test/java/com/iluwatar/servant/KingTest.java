@@ -29,10 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * KingTest
- *
- */
+/** KingTest */
 class KingTest {
 
   @Test
@@ -102,5 +99,4 @@ class KingTest {
     king.changeMood();
     assertFalse(king.getMood());
   }
-
 }

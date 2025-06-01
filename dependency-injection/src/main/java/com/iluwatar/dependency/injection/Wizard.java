@@ -24,11 +24,8 @@
  */
 package com.iluwatar.dependency.injection;
 
-/**
- * Wizard interface.
- */
+/** Wizard interface. */
 public interface Wizard {
 
   void smoke();
-
 }

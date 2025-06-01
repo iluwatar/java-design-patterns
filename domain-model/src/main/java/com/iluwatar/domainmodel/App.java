@@ -32,7 +32,6 @@ import javax.sql.DataSource;
 import org.h2.jdbcx.JdbcDataSource;
 import org.joda.money.Money;
 
-
 /**
  * Domain Model pattern is a more complex solution for organizing domain logic than Transaction
  * Script and Table Module. It provides an object-oriented way of dealing with complicated logic.
@@ -42,10 +41,10 @@ import org.joda.money.Money;
  * is that in Table Module a single class encapsulates all the domain logic for all records stored
  * in table when in Domain Model every single class represents only one record in underlying table.
  *
- * <p>In this example, we will use the Domain Model pattern to implement buying of products
- * by customers in a Shop. The main method will create a customer and a few products.
- * Customer will do a few purchases, try to buy product which are too expensive for him,
- * return product which he bought to return money.</p>
+ * <p>In this example, we will use the Domain Model pattern to implement buying of products by
+ * customers in a Shop. The main method will create a customer and a few products. Customer will do
+ * a few purchases, try to buy product which are too expensive for him, return product which he
+ * bought to return money.
  */
 public class App {
 
@@ -80,11 +79,7 @@ public class App {
     var customerDao = new CustomerDaoImpl(dataSource);
 
     var tom =
-        Customer.builder()
-            .name("Tom")
-            .money(Money.of(USD, 30))
-            .customerDao(customerDao)
-            .build();
+        Customer.builder().name("Tom").money(Money.of(USD, 30)).customerDao(customerDao).build();
 
     tom.save();
 

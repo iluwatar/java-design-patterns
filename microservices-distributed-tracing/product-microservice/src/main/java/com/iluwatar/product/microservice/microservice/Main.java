@@ -41,10 +41,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * journey.
  *
  * <p>This implementation demonstrates distributed tracing in a microservices architecture for an
- * e-commerce platform. When a customer places an order, the OrderService interacts with
- * both the PaymentService to process the payment and the ProductService to check the
- * product inventory. Tracing logs are generated for each interaction, and these logs can be
- * visualized using Zipkin.
+ * e-commerce platform. When a customer places an order, the OrderService interacts with both the
+ * PaymentService to process the payment and the ProductService to check the product inventory.
+ * Tracing logs are generated for each interaction, and these logs can be visualized using Zipkin.
  *
  * <p>To run Zipkin and view the tracing logs, you can use the following Docker command:
  *
@@ -52,9 +51,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * {@code docker run -d -p 9411:9411 --name zipkin openzipkin/zipkin }
  * </pre>
  *
- * <p>Start Zipkin with the command above. Once Zipkin is running, you can
- * access the Zipkin UI at <a href="http://localhost:9411">http://localhost:9411</a>
- * to view the tracing logs and analyze the request flows across your microservices.
+ * <p>Start Zipkin with the command above. Once Zipkin is running, you can access the Zipkin UI at
+ * <a href="http://localhost:9411">http://localhost:9411</a> to view the tracing logs and analyze
+ * the request flows across your microservices.
  *
  * <p>To place an order and generate tracing data, you can use the following curl command:
  *
@@ -64,7 +63,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * <p>This command sends a POST request to create an order, which will trigger interactions with the
  * payment and product microservices, generating tracing logs that can be viewed in Zipkin.
- *
  */
 @SpringBootApplication
 public class Main {

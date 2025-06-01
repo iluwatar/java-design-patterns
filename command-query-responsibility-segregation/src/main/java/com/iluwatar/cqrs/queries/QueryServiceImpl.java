@@ -45,9 +45,10 @@ public class QueryServiceImpl implements QueryService {
   public Author getAuthorByUsername(String username) {
     Author authorDto;
     try (var session = sessionFactory.openSession()) {
-      Query<Author> sqlQuery = session.createQuery(
+      Query<Author> sqlQuery =
+          session.createQuery(
               "select new com.iluwatar.cqrs.dto.Author(a.name, a.email, a.username)"
-                      + " from com.iluwatar.cqrs.domain.model.Author a where a.username=:username");
+                  + " from com.iluwatar.cqrs.domain.model.Author a where a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
       authorDto = sqlQuery.uniqueResult();
     }
@@ -58,9 +59,10 @@ public class QueryServiceImpl implements QueryService {
   public Book getBook(String title) {
     Book bookDto;
     try (var session = sessionFactory.openSession()) {
-      Query<Book> sqlQuery = session.createQuery(
+      Query<Book> sqlQuery =
+          session.createQuery(
               "select new com.iluwatar.cqrs.dto.Book(b.title, b.price)"
-                      + " from com.iluwatar.cqrs.domain.model.Book b where b.title=:title");
+                  + " from com.iluwatar.cqrs.domain.model.Book b where b.title=:title");
       sqlQuery.setParameter("title", title);
       bookDto = sqlQuery.uniqueResult();
     }
@@ -71,10 +73,11 @@ public class QueryServiceImpl implements QueryService {
   public List<Book> getAuthorBooks(String username) {
     List<Book> bookDtos;
     try (var session = sessionFactory.openSession()) {
-      Query<Book> sqlQuery = session.createQuery(
+      Query<Book> sqlQuery =
+          session.createQuery(
               "select new com.iluwatar.cqrs.dto.Book(b.title, b.price)"
-                      + " from com.iluwatar.cqrs.domain.model.Author a, com.iluwatar.cqrs.domain.model.Book b "
-                      + "where b.author.id = a.id and a.username=:username");
+                  + " from com.iluwatar.cqrs.domain.model.Author a, com.iluwatar.cqrs.domain.model.Book b "
+                  + "where b.author.id = a.id and a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
       bookDtos = sqlQuery.list();
     }
@@ -85,9 +88,11 @@ public class QueryServiceImpl implements QueryService {
   public BigInteger getAuthorBooksCount(String username) {
     BigInteger bookcount;
     try (var session = sessionFactory.openSession()) {
-      var sqlQuery = session.createNativeQuery(
-              "SELECT count(b.title)" + " FROM  Book b, Author a"
-                      + " where b.author_id = a.id and a.username=:username");
+      var sqlQuery =
+          session.createNativeQuery(
+              "SELECT count(b.title)"
+                  + " FROM  Book b, Author a"
+                  + " where b.author_id = a.id and a.username=:username");
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
       bookcount = (BigInteger) sqlQuery.uniqueResult();
     }
@@ -103,5 +108,4 @@ public class QueryServiceImpl implements QueryService {
     }
     return authorcount;
   }
-
 }

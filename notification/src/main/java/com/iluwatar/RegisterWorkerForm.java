@@ -28,9 +28,8 @@ import java.time.LocalDate;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The form submitted by the user, part of the presentation layer,
- * linked to the domain layer through a data transfer object and
- * linked to the service layer directly.
+ * The form submitted by the user, part of the presentation layer, linked to the domain layer
+ * through a data transfer object and linked to the service layer directly.
  */
 @Slf4j
 public class RegisterWorkerForm {
@@ -41,10 +40,10 @@ public class RegisterWorkerForm {
   RegisterWorkerService service = new RegisterWorkerService();
 
   /**
-   *  Constructor.
+   * Constructor.
    *
-   * @param name        Name of the worker
-   * @param occupation  occupation of the worker
+   * @param name Name of the worker
+   * @param occupation occupation of the worker
    * @param dateOfBirth Date of Birth of the worker
    */
   public RegisterWorkerForm(String name, String occupation, LocalDate dateOfBirth) {
@@ -53,16 +52,14 @@ public class RegisterWorkerForm {
     this.dateOfBirth = dateOfBirth;
   }
 
-  /**
-   * Attempts to submit the form for registering a worker.
-   */
+  /** Attempts to submit the form for registering a worker. */
   public void submit() {
-    //Transmit information to our transfer object to communicate between layers
+    // Transmit information to our transfer object to communicate between layers
     saveToWorker();
-    //call the service layer to register our worker
+    // call the service layer to register our worker
     service.registerWorker(worker);
 
-    //check for any errors
+    // check for any errors
     if (worker.getNotification().hasErrors()) {
       indicateErrors();
       LOGGER.info("Not registered, see errors");
@@ -71,9 +68,7 @@ public class RegisterWorkerForm {
     }
   }
 
-  /**
-   * Saves worker information to the data transfer object.
-   */
+  /** Saves worker information to the data transfer object. */
   private void saveToWorker() {
     worker = new RegisterWorkerDto();
     worker.setName(name);
@@ -81,9 +76,7 @@ public class RegisterWorkerForm {
     worker.setDateOfBirth(dateOfBirth);
   }
 
-  /**
-   * Check for any errors with form submission and show them to the user.
-   */
+  /** Check for any errors with form submission and show them to the user. */
   public void indicateErrors() {
     worker.getNotification().getErrors().forEach(error -> LOGGER.error(error.toString()));
   }

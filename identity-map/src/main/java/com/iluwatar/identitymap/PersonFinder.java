@@ -29,11 +29,11 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Any object of this class stores a DataBase and an Identity Map. When we try to look for a key we first check if
- * it has been cached in the Identity Map and return it if it is indeed in the map.
- * If that is not the case then go to the DataBase, get the record, store it in the
- * Identity Map and then return the record. Now if we look for the record again we will find it in the table itself which
- * will make lookup faster.
+ * Any object of this class stores a DataBase and an Identity Map. When we try to look for a key we
+ * first check if it has been cached in the Identity Map and return it if it is indeed in the map.
+ * If that is not the case then go to the DataBase, get the record, store it in the Identity Map and
+ * then return the record. Now if we look for the record again we will find it in the table itself
+ * which will make lookup faster.
  */
 @Slf4j
 @Getter
@@ -43,6 +43,7 @@ public class PersonFinder {
   //  Access to the Identity Map
   private IdentityMap identityMap = new IdentityMap();
   private PersonDbSimulatorImplementation db = new PersonDbSimulatorImplementation();
+
   /**
    * get person corresponding to input ID.
    *

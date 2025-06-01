@@ -24,9 +24,7 @@
  */
 package com.iluwatar.visitor;
 
-/**
- * Soldier.
- */
+/** Soldier. */
 public class Soldier extends Unit {
 
   public Soldier(Unit... children) {
@@ -35,6 +33,7 @@ public class Soldier extends Unit {
 
   /**
    * Accept a Visitor.
+   *
    * @param visitor UnitVisitor to be accepted
    */
   @Override

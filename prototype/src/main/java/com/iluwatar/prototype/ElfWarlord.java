@@ -27,9 +27,7 @@ package com.iluwatar.prototype;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
-/**
- * ElfWarlord.
- */
+/** ElfWarlord. */
 @EqualsAndHashCode(callSuper = true)
 @RequiredArgsConstructor
 public class ElfWarlord extends Warlord {

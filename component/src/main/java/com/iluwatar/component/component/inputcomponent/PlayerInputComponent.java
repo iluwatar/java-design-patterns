@@ -29,8 +29,8 @@ import java.awt.event.KeyEvent;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * PlayerInputComponent is used to handle user key event inputs,
- * and thus it implements the InputComponent interface.
+ * PlayerInputComponent is used to handle user key event inputs, and thus it implements the
+ * InputComponent interface.
  */
 @Slf4j
 public class PlayerInputComponent implements InputComponent {
@@ -40,7 +40,7 @@ public class PlayerInputComponent implements InputComponent {
    * The update method to change the velocity based on the input key event.
    *
    * @param gameObject the gameObject instance
-   * @param e          key event instance
+   * @param e key event instance
    */
   @Override
   public void update(GameObject gameObject, int e) {

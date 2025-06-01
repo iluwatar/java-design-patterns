@@ -37,10 +37,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * MammothTest
- *
- */
+/** MammothTest */
 class MammothTest {
 
   private InMemoryAppender appender;
@@ -82,12 +79,9 @@ class MammothTest {
     mammoth.observe();
     assertEquals("The mammoth is calm and peaceful.", appender.getLastMessage());
     assertEquals(5, appender.getLogSize());
-
   }
 
-  /**
-   * Verify if {@link Mammoth#toString()} gives the expected value
-   */
+  /** Verify if {@link Mammoth#toString()} gives the expected value */
   @Test
   void testToString() {
     final var toString = new Mammoth().toString();
@@ -116,5 +110,4 @@ class MammothTest {
       return log.get(log.size() - 1).getFormattedMessage();
     }
   }
-
 }

@@ -36,6 +36,10 @@ Wikipedia says
 
 > Service layer is an architectural pattern, applied within the service-orientation design paradigm, which aims to organize the services, within a service inventory, into a set of logical layers. Services that are categorized into a particular layer share functionality. This helps to reduce the conceptual overhead related to managing the service inventory, as the services belonging to the same layer address a smaller set of activities.
 
+Architecture diagram
+
+![Service Layer Architecture Diagram](./etc/service-layer-architecture-diagram.png)
+
 ## Programmatic Example of Service Layer Pattern in Java
 
 Our Java implementation uses the Service Layer pattern to streamline interactions between data access objects (DAOs) and the business logic, ensuring a clean separation of concerns.
@@ -352,10 +356,6 @@ INFO  [2024-05-27 09:16:40,680] com.iluwatar.servicelayer.app.App: Xuban Munoa h
 INFO  [2024-05-27 09:16:40,681] com.iluwatar.servicelayer.app.App: Find wizards with spell 'Fireball'
 INFO  [2024-05-27 09:16:40,683] com.iluwatar.servicelayer.app.App: Aderlard Boud has 'Fireball'
 ```
-
-## Detailed Explanation of Service Layer Pattern with Real-World Examples
-
-![Service Layer](./etc/service-layer.png "Service Layer")
 
 ## When to Use the Service Layer Pattern in Java
 

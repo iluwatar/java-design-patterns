@@ -27,8 +27,8 @@ package com.iluwatar.idempotentconsumer;
 import org.springframework.stereotype.Component;
 
 /**
- * This class represents a state machine for managing request transitions.
- * It supports transitions to the statuses: PENDING, STARTED, and COMPLETED.
+ * This class represents a state machine for managing request transitions. It supports transitions
+ * to the statuses: PENDING, STARTED, and COMPLETED.
  */
 @Component
 public class RequestStateMachine {
@@ -36,8 +36,10 @@ public class RequestStateMachine {
   /**
    * Provides the next possible state of the request based on the current and next status.
    *
-   * @param req        The actual request object. This object MUST NOT be null and SHOULD have a valid status.
-   * @param nextStatus Represents the next status that the request could transition to. MUST NOT be null.
+   * @param req The actual request object. This object MUST NOT be null and SHOULD have a valid
+   *     status.
+   * @param nextStatus Represents the next status that the request could transition to. MUST NOT be
+   *     null.
    * @return A new Request object with updated status if the transition is valid.
    * @throws InvalidNextStateException If an invalid state transition is attempted.
    */

@@ -23,86 +23,70 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.serializedentity;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
-
-import java.io.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class CountryTest {
 
   @Test
   void testGetMethod() {
-      Country China = new Country(
-              86,
-              "China",
-              "Asia",
-              "Chinese"
-      );
+    Country China = new Country(86, "China", "Asia", "Chinese");
 
-      assertEquals(86, China.getCode());
-      assertEquals("China", China.getName());
-      assertEquals("Asia", China.getContinents());
-      assertEquals("Chinese", China.getLanguage());
+    assertEquals(86, China.getCode());
+    assertEquals("China", China.getName());
+    assertEquals("Asia", China.getContinents());
+    assertEquals("Chinese", China.getLanguage());
   }
 
   @Test
   void testSetMethod() {
-      Country country = new Country(
-              86,
-              "China",
-              "Asia",
-              "Chinese"
-      );
+    Country country = new Country(86, "China", "Asia", "Chinese");
 
-      country.setCode(971);
-      country.setName("UAE");
-      country.setContinents("West-Asia");
-      country.setLanguage("Arabic");
+    country.setCode(971);
+    country.setName("UAE");
+    country.setContinents("West-Asia");
+    country.setLanguage("Arabic");
 
-      assertEquals(971, country.getCode());
-      assertEquals("UAE", country.getName());
-      assertEquals("West-Asia", country.getContinents());
-      assertEquals("Arabic", country.getLanguage());
+    assertEquals(971, country.getCode());
+    assertEquals("UAE", country.getName());
+    assertEquals("West-Asia", country.getContinents());
+    assertEquals("Arabic", country.getLanguage());
   }
 
   @Test
-  void testSerializable(){
-      // Serializing Country
-      try {
-          Country country = new Country(
-                  86,
-                  "China",
-                  "Asia",
-                  "Chinese");
-          ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("output.txt"));
-          objectOutputStream.writeObject(country);
-          objectOutputStream.close();
-      } catch (IOException e) {
-          LOGGER.error("Error occurred: ", e);
-      }
+  void testSerializable() {
+    // Serializing Country
+    try {
+      Country country = new Country(86, "China", "Asia", "Chinese");
+      ObjectOutputStream objectOutputStream =
+          new ObjectOutputStream(new FileOutputStream("output.txt"));
+      objectOutputStream.writeObject(country);
+      objectOutputStream.close();
+    } catch (IOException e) {
+      LOGGER.error("Error occurred: ", e);
+    }
 
-      // De-serialize Country
-      try {
-          ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream("output.txt"));
-          Country country = (Country) objectInputStream.readObject();
-          objectInputStream.close();
-          System.out.println(country);
+    // De-serialize Country
+    try {
+      ObjectInputStream objectInputStream =
+          new ObjectInputStream(new FileInputStream("output.txt"));
+      Country country = (Country) objectInputStream.readObject();
+      objectInputStream.close();
+      System.out.println(country);
 
-          Country China = new Country(
-                  86,
-                  "China",
-                  "Asia",
-                  "Chinese");
+      Country China = new Country(86, "China", "Asia", "Chinese");
 
-          assertEquals(China, country);
-      } catch (Exception e) {
-        LOGGER.error("Error occurred: ", e);
-      }
+      assertEquals(China, country);
+    } catch (Exception e) {
+      LOGGER.error("Error occurred: ", e);
+    }
     try {
       Files.deleteIfExists(Paths.get("output.txt"));
     } catch (IOException e) {

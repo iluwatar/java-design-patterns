@@ -24,9 +24,7 @@
  */
 package com.iluwatar.circuitbreaker;
 
-/**
- * The Circuit breaker interface.
- */
+/** The Circuit breaker interface. */
 public interface CircuitBreaker {
 
   // Success response. Reset everything to defaults

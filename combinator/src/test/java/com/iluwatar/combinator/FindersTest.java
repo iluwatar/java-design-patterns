@@ -65,7 +65,6 @@ class FindersTest {
     assertEquals("In this kingdom by the sea;", res.get(2));
   }
 
-
   private String text() {
     return """
         It was many and many a year ago,
@@ -81,5 +80,4 @@ class FindersTest {
         With a love that the winged seraphs of heaven
         Coveted her and me.""";
   }
-
 }

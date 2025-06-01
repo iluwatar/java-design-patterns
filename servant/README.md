@@ -34,6 +34,10 @@ Wikipedia says
 
 > In software engineering, the servant pattern defines an object used to offer some functionality to a group of classes without defining that functionality in each of them. A Servant is a class whose instance (or even just class) provides methods that take care of a desired service, while objects for which (or with whom) the servant does something, are taken as parameters.
 
+Sequence diagram
+
+![Servant sequence diagram](./etc/servant-sequence-diagram.png)
+
 ## Programmatic Example of Servant Pattern in Java
 
 The Servant design pattern is a behavioral design pattern that defines a class that provides some sort of service to a group of classes. This pattern is particularly useful when these classes lack some common functionality that can't be added to the superclass. The Servant class brings this common functionality to a group of classes.

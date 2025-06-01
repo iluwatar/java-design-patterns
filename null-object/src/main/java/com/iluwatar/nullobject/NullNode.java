@@ -33,8 +33,7 @@ public final class NullNode implements Node {
 
   private static final NullNode instance = new NullNode();
 
-  private NullNode() {
-  }
+  private NullNode() {}
 
   public static NullNode getInstance() {
     return instance;

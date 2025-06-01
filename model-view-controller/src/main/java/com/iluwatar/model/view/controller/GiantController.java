@@ -24,9 +24,7 @@
  */
 package com.iluwatar.model.view.controller;
 
-/**
- * GiantController can update the giant data and redraw it using the view.
- */
+/** GiantController can update the giant data and redraw it using the view. */
 public class GiantController {
 
   private final GiantModel giant;

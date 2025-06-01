@@ -24,17 +24,15 @@
  */
 package com.iluwatar.product.microservice;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
 import com.iluwatar.product.microservice.microservice.Main;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-
-/**
- * Application test
- */
+/** Application test */
 class MainTest {
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> Main.main(new String[]{}));
+    assertDoesNotThrow(() -> Main.main(new String[] {}));
   }
 }

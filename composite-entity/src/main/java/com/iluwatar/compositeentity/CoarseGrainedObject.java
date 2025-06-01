@@ -32,7 +32,6 @@ import java.util.stream.IntStream;
  * other objects. It can be an object contained in the composite entity, or, composite entity itself
  * can be the coarse-grained object which holds dependent objects.
  */
-
 public abstract class CoarseGrainedObject<T> {
 
   DependentObject<T>[] dependentObjects;

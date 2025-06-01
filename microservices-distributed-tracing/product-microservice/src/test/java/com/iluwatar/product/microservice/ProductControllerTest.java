@@ -24,26 +24,23 @@
  */
 package com.iluwatar.product.microservice;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.iluwatar.product.microservice.microservice.ProductController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.ResponseEntity;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 
 class ProductControllerTest {
 
   private ProductController productController;
 
   @BeforeEach
-  public void setUp() {
+  void setUp() {
     productController = new ProductController();
   }
 
-  /**
-   * Test to validate the product.
-   */
+  /** Test to validate the product. */
   @Test
   void testValidateProduct() {
     // Arrange
@@ -54,9 +51,7 @@ class ProductControllerTest {
     assertEquals(ResponseEntity.ok(true), response);
   }
 
-  /**
-   * Test to validate the product with null request.
-   */
+  /** Test to validate the product with null request. */
   @Test
   void testValidateProductWithNullRequest() {
     // Arrange

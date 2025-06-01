@@ -24,16 +24,10 @@
  */
 package dao;
 
-
-
 import entity.CakeTopping;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-/**
- * CRUD repository cake toppings.
- */
+/** CRUD repository cake toppings. */
 @Repository
-public interface CakeToppingDao extends JpaRepository<CakeTopping, Long> {
-
-}
+public interface CakeToppingDao extends JpaRepository<CakeTopping, Long> {}

@@ -22,8 +22,5 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/**
- * Interface without any methods Marker interface is based on that assumption.
- */
-public interface Permission {
-}
+/** Interface without any methods Marker interface is based on that assumption. */
+public interface Permission {}

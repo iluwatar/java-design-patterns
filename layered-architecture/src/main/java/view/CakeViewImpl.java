@@ -29,9 +29,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import service.CakeBakingService;
 
-/**
- * View implementation for displaying cakes.
- */
+/** View implementation for displaying cakes. */
 public class CakeViewImpl implements View {
 
   private final CakeBakingService cakeBakingService;

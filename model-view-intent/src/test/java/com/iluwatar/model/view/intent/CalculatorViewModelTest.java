@@ -24,12 +24,12 @@
  */
 package com.iluwatar.model.view.intent;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.iluwatar.model.view.intent.actions.*;
-import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 class CalculatorViewModelTest {
 
@@ -50,9 +50,7 @@ class CalculatorViewModelTest {
 
   @Test
   void testSetVariable() {
-    List<CalculatorAction> actions = List.of(
-        new SetVariableCalculatorAction(10.0)
-    );
+    List<CalculatorAction> actions = List.of(new SetVariableCalculatorAction(10.0));
     CalculatorModel model = modelAfterExecutingActions(actions);
     assertEquals(10.0, model.getVariable());
     assertEquals(0, model.getOutput());
@@ -60,13 +58,13 @@ class CalculatorViewModelTest {
 
   @Test
   void testAddition() {
-    List<CalculatorAction> actions = List.of(
-        new SetVariableCalculatorAction(2.0),
-        new AdditionCalculatorAction(),
-        new AdditionCalculatorAction(),
-        new SetVariableCalculatorAction(7.0),
-        new AdditionCalculatorAction()
-    );
+    List<CalculatorAction> actions =
+        List.of(
+            new SetVariableCalculatorAction(2.0),
+            new AdditionCalculatorAction(),
+            new AdditionCalculatorAction(),
+            new SetVariableCalculatorAction(7.0),
+            new AdditionCalculatorAction());
     CalculatorModel model = modelAfterExecutingActions(actions);
     assertEquals(7.0, model.getVariable());
     assertEquals(11.0, model.getOutput());
@@ -74,12 +72,12 @@ class CalculatorViewModelTest {
 
   @Test
   void testSubtraction() {
-    List<CalculatorAction> actions = List.of(
-        new SetVariableCalculatorAction(2.0),
-        new AdditionCalculatorAction(),
-        new AdditionCalculatorAction(),
-        new SubtractionCalculatorAction()
-    );
+    List<CalculatorAction> actions =
+        List.of(
+            new SetVariableCalculatorAction(2.0),
+            new AdditionCalculatorAction(),
+            new AdditionCalculatorAction(),
+            new SubtractionCalculatorAction());
     CalculatorModel model = modelAfterExecutingActions(actions);
     assertEquals(2.0, model.getVariable());
     assertEquals(2.0, model.getOutput());
@@ -87,12 +85,12 @@ class CalculatorViewModelTest {
 
   @Test
   void testMultiplication() {
-    List<CalculatorAction> actions = List.of(
-        new SetVariableCalculatorAction(2.0),
-        new AdditionCalculatorAction(),
-        new AdditionCalculatorAction(),
-        new MultiplicationCalculatorAction()
-    );
+    List<CalculatorAction> actions =
+        List.of(
+            new SetVariableCalculatorAction(2.0),
+            new AdditionCalculatorAction(),
+            new AdditionCalculatorAction(),
+            new MultiplicationCalculatorAction());
     CalculatorModel model = modelAfterExecutingActions(actions);
     assertEquals(2.0, model.getVariable());
     assertEquals(8.0, model.getOutput());
@@ -100,13 +98,13 @@ class CalculatorViewModelTest {
 
   @Test
   void testDivision() {
-    List<CalculatorAction> actions = List.of(
-        new SetVariableCalculatorAction(2.0),
-        new AdditionCalculatorAction(),
-        new AdditionCalculatorAction(),
-        new SetVariableCalculatorAction(2.0),
-        new DivisionCalculatorAction()
-    );
+    List<CalculatorAction> actions =
+        List.of(
+            new SetVariableCalculatorAction(2.0),
+            new AdditionCalculatorAction(),
+            new AdditionCalculatorAction(),
+            new SetVariableCalculatorAction(2.0),
+            new DivisionCalculatorAction());
     CalculatorModel model = modelAfterExecutingActions(actions);
     assertEquals(2.0, model.getVariable());
     assertEquals(2.0, model.getOutput());

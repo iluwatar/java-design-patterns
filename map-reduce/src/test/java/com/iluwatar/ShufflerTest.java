@@ -24,19 +24,17 @@
  */
 package com.iluwatar;
 
-import org.junit.jupiter.api.Test;
-import java.util.*;
-
 import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.*;
+import org.junit.jupiter.api.Test;
 
 class ShufflerTest {
 
   @Test
   void testShuffleAndSort() {
-    List<Map<String, Integer>> mappedData = Arrays.asList(
-        Map.of("hello", 1, "world", 2),
-        Map.of("hello", 2, "java", 1)
-    );
+    List<Map<String, Integer>> mappedData =
+        Arrays.asList(Map.of("hello", 1, "world", 2), Map.of("hello", 2, "java", 1));
 
     Map<String, List<Integer>> grouped = Shuffler.shuffleAndSort(mappedData);
 

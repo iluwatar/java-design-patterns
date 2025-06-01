@@ -26,9 +26,7 @@ package com.iluwatar.specialcase;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Represents the money transaction taking place at a given moment.
- */
+/** Represents the money transaction taking place at a given moment. */
 @RequiredArgsConstructor
 public class MoneyTransaction {
 

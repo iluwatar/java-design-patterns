@@ -27,9 +27,7 @@ package com.iluwatar.doubledispatch;
 import com.iluwatar.doubledispatch.constants.AppConstants;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Space station Mir game object.
- */
+/** Space station Mir game object. */
 @Slf4j
 public class SpaceStationMir extends GameObject {
 
@@ -44,10 +42,12 @@ public class SpaceStationMir extends GameObject {
 
   @Override
   public void collisionResolve(FlamingAsteroid asteroid) {
-    LOGGER.info(AppConstants.HITS + " {} is damaged! {} is set on fire!", asteroid.getClass()
-            .getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName(), this.getClass()
-            .getSimpleName());
+    LOGGER.info(
+        AppConstants.HITS + " {} is damaged! {} is set on fire!",
+        asteroid.getClass().getSimpleName(),
+        this.getClass().getSimpleName(),
+        this.getClass().getSimpleName(),
+        this.getClass().getSimpleName());
     setDamaged(true);
     setOnFire(true);
   }
@@ -71,7 +71,11 @@ public class SpaceStationMir extends GameObject {
   }
 
   private void logHits(GameObject gameObject) {
-    LOGGER.info(AppConstants.HITS, " {} is damaged!", gameObject.getClass().getSimpleName(),
-        this.getClass().getSimpleName(), this.getClass().getSimpleName());
+    LOGGER.info(
+        AppConstants.HITS,
+        " {} is damaged!",
+        gameObject.getClass().getSimpleName(),
+        this.getClass().getSimpleName(),
+        this.getClass().getSimpleName());
   }
 }

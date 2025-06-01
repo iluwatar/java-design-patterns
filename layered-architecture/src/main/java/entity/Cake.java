@@ -37,17 +37,13 @@ import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Cake entity.
- */
+/** Cake entity. */
 @Entity
 @Getter
 @Setter
 public class Cake {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Id @GeneratedValue private Long id;
 
   @OneToOne(cascade = CascadeType.REMOVE)
   private CakeTopping topping;

@@ -40,6 +40,10 @@ public Hero(Profession profession,String name,HairType hairType,HairColor hairCo
 
 As you can see, the number of constructor parameters can quickly become overwhelming, making it difficult to understand their arrangement. Additionally, this list of parameters might continue to grow if you decide to add more options in the future. This is known as the telescoping constructor antipattern.
 
+Sequence diagram
+
+![Builder sequence diagram](./etc/builder-sequence-diagram.png)
+
 ## Programmatic Example of Builder Pattern in Java
 
 In this Java Builder pattern example, we construct different types of `Hero` objects with varying attributes.
@@ -145,10 +149,6 @@ Program output:
 16:28:06.060 [main] INFO com.iluwatar.builder.App -- This is a warrior named Amberjill with blond long curly hair wearing chain mail and wielding a sword.
 16:28:06.060 [main] INFO com.iluwatar.builder.App -- This is a thief named Desmond with bald head and wielding a bow.
 ```
-
-## Builder Pattern Class Diagram
-
-![Builder](./etc/builder.urm.png "Builder class diagram")
 
 ## When to Use the Builder Pattern in Java
 

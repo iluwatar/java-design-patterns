@@ -28,9 +28,7 @@ import java.util.Arrays;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Stage handler that converts an input String to its char[] array counterpart.
- */
+/** Stage handler that converts an input String to its char[] array counterpart. */
 class ConvertToCharArrayHandler implements Handler<String, char[]> {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(ConvertToCharArrayHandler.class);
@@ -40,9 +38,9 @@ class ConvertToCharArrayHandler implements Handler<String, char[]> {
     var characters = input.toCharArray();
     var string = Arrays.toString(characters);
     LOGGER.info(
-        String.format("Current handler: %s, input is %s of type %s, output is %s, of type %s",
-            ConvertToCharArrayHandler.class, input, String.class, string, Character[].class)
-    );
+        String.format(
+            "Current handler: %s, input is %s of type %s, output is %s, of type %s",
+            ConvertToCharArrayHandler.class, input, String.class, string, Character[].class));
 
     return characters;
   }

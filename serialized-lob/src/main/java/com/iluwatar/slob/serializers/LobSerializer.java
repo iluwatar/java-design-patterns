@@ -60,8 +60,8 @@ public abstract class LobSerializer implements Serializable, Closeable {
    * @param toSerialize Input Object to serialize
    * @return Serialized Object
    * @throws ParserConfigurationException if any issue occurs during parsing of input object
-   * @throws TransformerException         if any issue occurs during Transformation
-   * @throws IOException                  if any issues occur during reading object
+   * @throws TransformerException if any issue occurs during Transformation
+   * @throws IOException if any issues occur during reading object
    */
   public abstract Object serialize(Forest toSerialize)
       throws ParserConfigurationException, TransformerException, IOException;
@@ -69,8 +69,8 @@ public abstract class LobSerializer implements Serializable, Closeable {
   /**
    * Saves the object to DB with the provided ID.
    *
-   * @param id     key to be sent to DB service
-   * @param name   Object name to store in DB
+   * @param id key to be sent to DB service
+   * @param name Object name to store in DB
    * @param object Object to store in DB
    * @return ID with which the object is stored in DB
    * @throws SQLException if any issue occurs while saving to DB
@@ -83,7 +83,7 @@ public abstract class LobSerializer implements Serializable, Closeable {
   /**
    * Loads the object from db using the ID and column name.
    *
-   * @param id         to query the DB
+   * @param id to query the DB
    * @param columnName column from which object is to be extracted
    * @return Object from DB
    * @throws SQLException if any issue occurs while loading from DB
@@ -98,8 +98,8 @@ public abstract class LobSerializer implements Serializable, Closeable {
    * @param toDeserialize object to deserialize
    * @return Deserialized Object
    * @throws ParserConfigurationException If issue occurs during parsing of input object
-   * @throws IOException                  if any issues occur during reading object
-   * @throws SAXException                 if any issues occur during reading object for XML parsing
+   * @throws IOException if any issues occur during reading object
+   * @throws SAXException if any issues occur during reading object for XML parsing
    */
   public abstract Forest deSerialize(Object toDeserialize)
       throws ParserConfigurationException, IOException, SAXException, ClassNotFoundException;

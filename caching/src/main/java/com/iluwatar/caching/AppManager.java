@@ -29,26 +29,21 @@ import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * AppManager helps to bridge the gap in communication between the main class
- * and the application's back-end. DB connection is initialized through this
- * class. The chosen  caching strategy/policy is also initialized here.
- * Before the cache can be used, the size of the  cache has to be set.
- * Depending on the chosen caching policy, AppManager will call the
- * appropriate function in the CacheStore class.
+ * AppManager helps to bridge the gap in communication between the main class and the application's
+ * back-end. DB connection is initialized through this class. The chosen caching strategy/policy is
+ * also initialized here. Before the cache can be used, the size of the cache has to be set.
+ * Depending on the chosen caching policy, AppManager will call the appropriate function in the
+ * CacheStore class.
  */
 @Slf4j
 public class AppManager {
-  /**
-   * Caching Policy.
-   */
+  /** Caching Policy. */
   private CachingPolicy cachingPolicy;
-  /**
-   * Database Manager.
-   */
+
+  /** Database Manager. */
   private final DbManager dbManager;
-  /**
-   * Cache Store.
-   */
+
+  /** Cache Store. */
   private final CacheStore cacheStore;
 
   /**
@@ -62,9 +57,9 @@ public class AppManager {
   }
 
   /**
-   * Developer/Tester is able to choose whether the application should use
-   * MongoDB as its underlying data storage or a simple Java data structure
-   * to (temporarily) store the data/objects during runtime.
+   * Developer/Tester is able to choose whether the application should use MongoDB as its underlying
+   * data storage or a simple Java data structure to (temporarily) store the data/objects during
+   * runtime.
    */
   public void initDb() {
     dbManager.connect();
@@ -91,8 +86,7 @@ public class AppManager {
    */
   public UserAccount find(final String userId) {
     LOGGER.info("Trying to find {} in cache", userId);
-    if (cachingPolicy == CachingPolicy.THROUGH
-            || cachingPolicy == CachingPolicy.AROUND) {
+    if (cachingPolicy == CachingPolicy.THROUGH || cachingPolicy == CachingPolicy.AROUND) {
       return cacheStore.readThrough(userId);
     } else if (cachingPolicy == CachingPolicy.BEHIND) {
       return cacheStore.readThroughWithWriteBackPolicy(userId);
@@ -147,12 +141,12 @@ public class AppManager {
    */
   private UserAccount findAside(final String userId) {
     return Optional.ofNullable(cacheStore.get(userId))
-            .or(() -> {
-              Optional<UserAccount> userAccount =
-                      Optional.ofNullable(dbManager.readFromDb(userId));
+        .or(
+            () -> {
+              Optional<UserAccount> userAccount = Optional.ofNullable(dbManager.readFromDb(userId));
               userAccount.ifPresent(account -> cacheStore.set(userId, account));
               return userAccount;
             })
-            .orElse(null);
+        .orElse(null);
   }
 }

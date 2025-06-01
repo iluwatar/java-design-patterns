@@ -43,6 +43,11 @@ Wikipedia says
 
 > Model–view–presenter (MVP) is a derivation of the model–view–controller (MVC) architectural pattern, and is used mostly for building user interfaces. In MVP, the presenter assumes the functionality of the "middle-man". In MVP, all presentation logic is pushed to the presenter.
 
+Architecture diagram
+
+![Model-View-Presenter Architecture Diagram](./etc/mvp-architecture-diagram.png)
+
+
 ## Programmatic Example of Model-View-Presenter Pattern in Java
 
 The Model-View-Presenter (MVP) design pattern is a derivative of the well-known Model-View-Controller (MVC) pattern. It aims to separate the application's logic (Model), GUIs (View), and the way that the user's actions update the application's logic (Presenter). This separation of concerns makes the application easier to manage, extend, and test.

@@ -28,16 +28,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * The Version Number pattern helps to resolve concurrency conflicts in applications.
- * Usually these conflicts arise in database operations, when multiple clients are trying
- * to update the same record simultaneously.
- * Resolving such conflicts requires determining whether an object has changed.
- * For this reason we need a version number that is incremented with each change
- * to the underlying data, e.g. database. The version number can be used by repositories
- * to check for external changes and to report concurrency issues to the users.
+ * The Version Number pattern helps to resolve concurrency conflicts in applications. Usually these
+ * conflicts arise in database operations, when multiple clients are trying to update the same
+ * record simultaneously. Resolving such conflicts requires determining whether an object has
+ * changed. For this reason we need a version number that is incremented with each change to the
+ * underlying data, e.g. database. The version number can be used by repositories to check for
+ * external changes and to report concurrency issues to the users.
  *
- * <p>In this example we show how Alice and Bob will try to update the {@link Book}
- * and save it simultaneously to {@link BookRepository}, which represents a typical database.
+ * <p>In this example we show how Alice and Bob will try to update the {@link Book} and save it
+ * simultaneously to {@link BookRepository}, which represents a typical database.
  *
  * <p>As in real databases, each client operates with copy of the data instead of original data
  * passed by reference, that's why we are using {@link Book} copy-constructor here.
@@ -50,10 +49,8 @@ public class App {
    *
    * @param args command line args
    */
-  public static void main(String[] args) throws
-      BookDuplicateException,
-      BookNotFoundException,
-      VersionMismatchException {
+  public static void main(String[] args)
+      throws BookDuplicateException, BookNotFoundException, VersionMismatchException {
     var bookId = 1;
 
     var bookRepository = new BookRepository();

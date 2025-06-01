@@ -28,9 +28,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * User Entity.
- */
+/** User Entity. */
 @Setter
 @Getter
 @ToString
@@ -43,6 +41,7 @@ public class User {
 
   /**
    * Get a user.
+   *
    * @param username user name
    * @param password user password
    */

@@ -27,9 +27,7 @@ package com.iluwatar.composite;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Composite interface.
- */
+/** Composite interface. */
 public abstract class LetterComposite {
 
   private final List<LetterComposite> children = new ArrayList<>();
@@ -42,15 +40,11 @@ public abstract class LetterComposite {
     return children.size();
   }
 
-  protected void printThisBefore() {
-  }
+  protected void printThisBefore() {}
 
-  protected void printThisAfter() {
-  }
+  protected void printThisAfter() {}
 
-  /**
-   * Print.
-   */
+  /** Print. */
   public void print() {
     printThisBefore();
     children.forEach(LetterComposite::print);

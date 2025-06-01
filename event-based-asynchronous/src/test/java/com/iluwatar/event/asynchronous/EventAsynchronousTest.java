@@ -31,13 +31,11 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.Duration;
 import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
-import java.time.Duration;
 
-/**
- * Application test
- */
+/** Application test */
 class EventAsynchronousTest {
 
   @Test
@@ -46,7 +44,7 @@ class EventAsynchronousTest {
     var eventManager = new EventManager();
     var aEventId = eventManager.createAsync(Duration.ofSeconds(60));
 
-    assertDoesNotThrow(() ->eventManager.start(aEventId));
+    assertDoesNotThrow(() -> eventManager.start(aEventId));
 
     assertEquals(1, eventManager.getEventPool().size());
     assertTrue(eventManager.getEventPool().size() < EventManager.MAX_RUNNING_EVENTS);
@@ -54,7 +52,6 @@ class EventAsynchronousTest {
 
     assertDoesNotThrow(() -> eventManager.cancel(aEventId));
     assertTrue(eventManager.getEventPool().isEmpty());
-
   }
 
   @Test
@@ -70,7 +67,6 @@ class EventAsynchronousTest {
 
     assertDoesNotThrow(() -> eventManager.cancel(sEventId));
     assertTrue(eventManager.getEventPool().isEmpty());
-
   }
 
   @Test
@@ -86,21 +82,21 @@ class EventAsynchronousTest {
     eventManager.start(sEventId);
 
     await().until(() -> eventManager.getEventPool().isEmpty());
-
   }
 
   @Test
   @SneakyThrows
   void testUnsuccessfulSynchronousEvent() {
-    assertThrows(InvalidOperationException.class, () -> {
-      var eventManager = new EventManager();
+    assertThrows(
+        InvalidOperationException.class,
+        () -> {
+          var eventManager = new EventManager();
 
-      var sEventId = assertDoesNotThrow(() -> eventManager.create(Duration.ofSeconds(60)));
-      eventManager.start(sEventId);
-      sEventId = eventManager.create(Duration.ofSeconds(60));
-      eventManager.start(sEventId);
-
-    });
+          var sEventId = assertDoesNotThrow(() -> eventManager.create(Duration.ofSeconds(60)));
+          eventManager.start(sEventId);
+          sEventId = eventManager.create(Duration.ofSeconds(60));
+          eventManager.start(sEventId);
+        });
   }
 
   @Test
@@ -119,28 +115,27 @@ class EventAsynchronousTest {
     eventManager.start(aEventId3);
 
     await().until(() -> eventManager.getEventPool().isEmpty());
-
   }
 
   @Test
-  void testLongRunningEventException(){
-    assertThrows(LongRunningEventException.class, () -> {
-      var eventManager = new EventManager();
-      eventManager.createAsync(Duration.ofMinutes(31));
-    });
+  void testLongRunningEventException() {
+    assertThrows(
+        LongRunningEventException.class,
+        () -> {
+          var eventManager = new EventManager();
+          eventManager.createAsync(Duration.ofMinutes(31));
+        });
   }
-
 
   @Test
-  void testMaxNumOfEventsAllowedException(){
-    assertThrows(MaxNumOfEventsAllowedException.class, () -> {
-      final var eventManager = new EventManager();
-      for(int i=0;i<1100;i++){
-        eventManager.createAsync(Duration.ofSeconds(i));
-      }
-    });
+  void testMaxNumOfEventsAllowedException() {
+    assertThrows(
+        MaxNumOfEventsAllowedException.class,
+        () -> {
+          final var eventManager = new EventManager();
+          for (int i = 0; i < 1100; i++) {
+            eventManager.createAsync(Duration.ofSeconds(i));
+          }
+        });
   }
-
-
-
 }

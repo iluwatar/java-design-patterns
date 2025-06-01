@@ -24,13 +24,13 @@
  */
 package com.iluwatar.domainmodel;
 
-import org.h2.jdbcx.JdbcDataSource;
-import javax.sql.DataSource;
 import java.sql.SQLException;
+import javax.sql.DataSource;
+import org.h2.jdbcx.JdbcDataSource;
 
 public class TestUtils {
 
-  public static void executeSQL( String sql, DataSource dataSource) throws SQLException {
+  public static void executeSQL(String sql, DataSource dataSource) throws SQLException {
     try (var connection = dataSource.getConnection();
         var statement = connection.createStatement()) {
       statement.executeUpdate(sql);

@@ -29,6 +29,10 @@ In plain words
 
 > The Presentation Model design pattern separates the UI logic from the business logic by creating an intermediate model that represents the data and behavior of the UI independently, enhancing testability, maintainability, and flexibility.
 
+Architecture diagram
+
+![Presentation Model Architecture Diagram](./etc/presentation-model-architecture-diagram.png)
+
 ## Programmatic Example of Presentation Model Pattern in Java
 
 The Presentation Model design pattern is a pattern that separates the responsibility of managing the state and behavior of the GUI in a separate model class. This model class is not tied to the view and can be used to test the GUI behavior independently of the GUI itself.

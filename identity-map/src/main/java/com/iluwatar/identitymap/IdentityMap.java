@@ -30,20 +30,20 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * This class stores the map into which we will be caching records after loading them from a DataBase.
- * Stores the records as a Hash Map with the personNationalIDs as keys.
+ * This class stores the map into which we will be caching records after loading them from a
+ * DataBase. Stores the records as a Hash Map with the personNationalIDs as keys.
  */
 @Slf4j
 @Getter
 public class IdentityMap {
   private Map<Integer, Person> personMap = new HashMap<>();
-  /**
-   * Add person to the map.
-   */
+
+  /** Add person to the map. */
   public void addPerson(Person person) {
     if (!personMap.containsKey(person.getPersonNationalId())) {
       personMap.put(person.getPersonNationalId(), person);
-    } else { // Ensure that addPerson does not update a record. This situation will never arise in our implementation. Added only for testing purposes.
+    } else { // Ensure that addPerson does not update a record. This situation will never arise in
+      // our implementation. Added only for testing purposes.
       LOGGER.info("Key already in Map");
     }
   }
@@ -63,14 +63,11 @@ public class IdentityMap {
     return person;
   }
 
-  /**
-   * Get the size of the map.
-   */
+  /** Get the size of the map. */
   public int size() {
     if (personMap == null) {
       return 0;
     }
     return personMap.size();
   }
-
 }

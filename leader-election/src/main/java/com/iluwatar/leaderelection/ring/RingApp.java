@@ -37,9 +37,7 @@ import java.util.Map;
  */
 public class RingApp {
 
-  /**
-   * Program entry point.
-   */
+  /** Program entry point. */
   public static void main(String[] args) {
 
     Map<Integer, Instance> instanceMap = new HashMap<>();

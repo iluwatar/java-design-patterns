@@ -33,9 +33,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-/**
- * Person entity.
- */
+/** Person entity. */
 @ToString
 @EqualsAndHashCode
 @Setter
@@ -44,20 +42,15 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Person {
 
-  @Id
-  @GeneratedValue
-  private Long id;
+  @Id @GeneratedValue private Long id;
   private String name;
   private String surname;
   private int age;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public Person(String name, String surname, int age) {
     this.name = name;
     this.surname = surname;
     this.age = age;
   }
-
 }

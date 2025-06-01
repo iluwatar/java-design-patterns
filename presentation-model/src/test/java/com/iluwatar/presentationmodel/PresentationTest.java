@@ -24,15 +24,16 @@
  */
 package com.iluwatar.presentationmodel;
 
-import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
+import org.junit.jupiter.api.Test;
+
 class PresentationTest {
-  String[] albumList = {"HQ", "The Rough Dancer and Cyclical Night", "The Black Light", "Symphony No.5"};
+  String[] albumList = {
+    "HQ", "The Rough Dancer and Cyclical Night", "The Black Light", "Symphony No.5"
+  };
 
   @Test
   void testCreateAlbumList() {

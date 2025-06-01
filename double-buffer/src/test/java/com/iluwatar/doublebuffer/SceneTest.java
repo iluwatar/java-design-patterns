@@ -30,9 +30,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
-/**
- * Scene unit tests.
- */
+/** Scene unit tests. */
 class SceneTest {
 
   @Test

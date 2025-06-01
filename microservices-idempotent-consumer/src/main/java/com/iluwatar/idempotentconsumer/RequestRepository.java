@@ -29,12 +29,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * This is a repository interface for the "Request" entity. It extends the JpaRepository interface from Spring Data JPA.
- * JpaRepository comes with many operations out of the box, including standard CRUD operations.
- * With JpaRepository, we are also able to leverage the power of Spring Data's query methods.
- * The UUID parameter in JpaRepository refers to the type of the ID in the "Request" entity.
- *
+ * This is a repository interface for the "Request" entity. It extends the JpaRepository interface
+ * from Spring Data JPA. JpaRepository comes with many operations out of the box, including standard
+ * CRUD operations. With JpaRepository, we are also able to leverage the power of Spring Data's
+ * query methods. The UUID parameter in JpaRepository refers to the type of the ID in the "Request"
+ * entity.
  */
 @Repository
-public interface RequestRepository extends JpaRepository<Request, UUID> {
-}
+public interface RequestRepository extends JpaRepository<Request, UUID> {}

@@ -29,9 +29,7 @@ import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Receipt view representing the transaction recceipt.
- */
+/** Receipt view representing the transaction recceipt. */
 @RequiredArgsConstructor
 @Getter
 public class ReceiptDto implements ReceiptViewModel {

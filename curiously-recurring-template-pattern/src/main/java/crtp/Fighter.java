@@ -32,5 +32,4 @@ package crtp;
 public interface Fighter<T> {
 
   void fight(T t);
-
 }

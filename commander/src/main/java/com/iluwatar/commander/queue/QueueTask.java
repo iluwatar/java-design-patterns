@@ -29,15 +29,11 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-/**
- * QueueTask object is the object enqueued in queue.
- */
+/** QueueTask object is the object enqueued in queue. */
 @RequiredArgsConstructor
 public class QueueTask {
 
-  /**
-   * TaskType is the type of task to be done.
-   */
+  /** TaskType is the type of task to be done. */
   public enum TaskType {
     MESSAGING,
     PAYMENT,
@@ -46,13 +42,11 @@ public class QueueTask {
 
   public final Order order;
   public final TaskType taskType;
-  public final int messageType; //0-fail, 1-error, 2-success
-  
+  public final int messageType; // 0-fail, 1-error, 2-success
+
   /*we could have varargs Object instead to pass in any parameter instead of just message type
   but keeping it simple here*/
-  @Getter
-  @Setter
-  private long firstAttemptTime = -1L; //when first time attempt made to do task
+  @Getter @Setter private long firstAttemptTime = -1L; // when first time attempt made to do task
 
   /**
    * getType method.

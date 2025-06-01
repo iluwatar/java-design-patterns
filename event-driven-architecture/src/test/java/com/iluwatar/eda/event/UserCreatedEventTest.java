@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import com.iluwatar.eda.model.User;
 import org.junit.jupiter.api.Test;
 
-/**
- * {@link UserCreatedEventTest} tests and verifies {@link AbstractEvent} behaviour.
- */
+/** {@link UserCreatedEventTest} tests and verifies {@link AbstractEvent} behaviour. */
 class UserCreatedEventTest {
 
   /**

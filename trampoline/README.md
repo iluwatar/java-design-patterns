@@ -36,6 +36,10 @@ Wikipedia says
 
 > In Java, trampoline refers to using reflection to avoid using inner classes, for example in event listeners. The time overhead of a reflection call is traded for the space overhead of an inner class. Trampolines in Java usually involve the creation of a GenericListener to pass events to an outer class.
 
+Flowchart
+
+![Trampoline Pattern Flowchart](./etc/trampoline-flowchart.png)
+
 ## Programmatic Example of Trampoline Pattern in Java
 
 Here's the `Trampoline` implementation in Java.

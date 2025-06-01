@@ -29,9 +29,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Test methods in NewSource
- */
+/** Test methods in NewSource */
 class NewSourceTest {
   private static final NewSource source = new NewSource();
 

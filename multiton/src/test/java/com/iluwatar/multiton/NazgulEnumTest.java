@@ -29,15 +29,12 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
-/**
- * NazgulEnumTest
- *
- */
+/** NazgulEnumTest */
 class NazgulEnumTest {
 
   /**
-   * Check that multiple calls to any one of the instances in the multiton returns
-   * only that one particular instance, and do that for all instances in multiton
+   * Check that multiple calls to any one of the instances in the multiton returns only that one
+   * particular instance, and do that for all instances in multiton
    */
   @ParameterizedTest
   @EnumSource

@@ -32,6 +32,10 @@ In plain words
 
 > The Converter Pattern simplifies mapping instances of one class to instances of another class, ensuring consistent and clean data transformation.
 
+Sequence diagram
+
+![Converter sequence diagram](./etc/converter-sequence-diagram.png)
+
 ## Programmatic Example of Converter Pattern in Java
 
 In applications, it's common for the database layer to have entities that need mapping to DTOs (Data Transfer Objects) for business logic. This mapping often involves many classes, necessitating a generic solution.

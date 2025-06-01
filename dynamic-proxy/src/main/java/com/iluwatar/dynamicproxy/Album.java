@@ -30,8 +30,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * This class represents an endpoint resource that
- * we are going to interchange with a Rest API server.
+ * This class represents an endpoint resource that we are going to interchange with a Rest API
+ * server.
  */
 @Data
 @AllArgsConstructor
@@ -42,5 +42,4 @@ public class Album {
   private Integer id;
   private String title;
   private Integer userId;
-
 }

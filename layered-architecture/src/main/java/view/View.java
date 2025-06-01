@@ -25,11 +25,8 @@
 
 package view;
 
-/**
- * View interface.
- */
+/** View interface. */
 public interface View {
 
   void render();
-
 }

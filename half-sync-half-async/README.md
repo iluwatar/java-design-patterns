@@ -34,6 +34,10 @@ Wikipedia says
 
 > The Half-Sync/Half-Async design pattern is used to solve situations where one part of the application runs synchronously while another runs asynchronously, and the two modules need to communicate with each other.
 
+Sequence diagram
+
+![Half-Sync/Half-Async sequence diagram](./etc/half-sync-half-async-sequence-diagram.png)
+
 ## Programmatic Example of Half-Sync/Half-Async Pattern in Java
 
 The Half-Sync/Half-Async design pattern is a concurrency pattern that separates synchronous and asynchronous processing in a system, simplifying the programming model without affecting performance. It's particularly useful in scenarios where you have a mix of short, mid, and long duration tasks.

@@ -30,7 +30,6 @@ import lombok.extern.slf4j.Slf4j;
  * This is a single service implementation of a sample service. This is the actual service that will
  * process the request. The reference for this service is to be looked upon in the JNDI server that
  * can be set in the web.xml deployment descriptor
- *
  */
 @Slf4j
 public class ServiceImpl implements Service {
@@ -38,9 +37,7 @@ public class ServiceImpl implements Service {
   private final String serviceName;
   private final int id;
 
-  /**
-   * Constructor.
-   */
+  /** Constructor. */
   public ServiceImpl(String serviceName) {
     // set the service name
     this.serviceName = serviceName;

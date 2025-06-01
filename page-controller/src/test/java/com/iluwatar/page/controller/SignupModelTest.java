@@ -24,16 +24,13 @@
  */
 package com.iluwatar.page.controller;
 
-import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
- * Test for Signup Model
- */
+import org.junit.jupiter.api.Test;
+
+/** Test for Signup Model */
 public class SignupModelTest {
-  /**
-   * Verify if a user can set a name properly
-   */
+  /** Verify if a user can set a name properly */
   @Test
   void testSetName() {
     SignupModel model = new SignupModel();
@@ -41,9 +38,7 @@ public class SignupModelTest {
     assertEquals("Lily", model.getName());
   }
 
-  /**
-   * Verify if a user can set an email properly
-   */
+  /** Verify if a user can set an email properly */
   @Test
   void testSetEmail() {
     SignupModel model = new SignupModel();
@@ -51,9 +46,7 @@ public class SignupModelTest {
     assertEquals("Lily@email", model.getEmail());
   }
 
-  /**
-   * Verify if a user can set a password properly
-   */
+  /** Verify if a user can set a password properly */
   @Test
   void testSetPassword() {
     SignupModel model = new SignupModel();

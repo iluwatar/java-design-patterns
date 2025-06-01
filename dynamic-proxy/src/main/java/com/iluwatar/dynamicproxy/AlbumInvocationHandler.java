@@ -31,8 +31,8 @@ import java.net.http.HttpClient;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Class whose method 'invoke' will be called every time that an interface's method is called.
- * That interface is linked to this class by the Proxy class.
+ * Class whose method 'invoke' will be called every time that an interface's method is called. That
+ * interface is linked to this class by the Proxy class.
  */
 @Slf4j
 public class AlbumInvocationHandler implements InvocationHandler {
@@ -42,7 +42,7 @@ public class AlbumInvocationHandler implements InvocationHandler {
   /**
    * Class constructor. It instantiates a TinyRestClient object.
    *
-   * @param baseUrl    Root url for endpoints.
+   * @param baseUrl Root url for endpoints.
    * @param httpClient Handle the http communication.
    */
   public AlbumInvocationHandler(String baseUrl, HttpClient httpClient) {
@@ -52,10 +52,11 @@ public class AlbumInvocationHandler implements InvocationHandler {
   @Override
   public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
-    LOGGER.info("===== Calling the method {}.{}()",
-        method.getDeclaringClass().getSimpleName(), method.getName());
+    LOGGER.info(
+        "===== Calling the method {}.{}()",
+        method.getDeclaringClass().getSimpleName(),
+        method.getName());
 
     return restClient.send(method, args);
   }
-
 }

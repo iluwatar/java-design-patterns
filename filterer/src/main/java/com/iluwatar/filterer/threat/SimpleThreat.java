@@ -28,9 +28,7 @@ import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 
-/**
- * Represents a simple threat.
- */
+/** Represents a simple threat. */
 @ToString
 @EqualsAndHashCode
 @RequiredArgsConstructor
@@ -40,28 +38,21 @@ public class SimpleThreat implements Threat {
   private final int id;
   private final String name;
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public String name() {
     return name;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public int id() {
     return id;
   }
 
-  /**
-   * {@inheritDoc}
-   */
+  /** {@inheritDoc} */
   @Override
   public ThreatType type() {
     return threatType;
   }
-
 }

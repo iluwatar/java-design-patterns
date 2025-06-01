@@ -28,9 +28,7 @@ import java.util.HashMap;
 import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Abstract class for ShardManager.
- */
+/** Abstract class for ShardManager. */
 @Slf4j
 public abstract class ShardManager {
 
@@ -44,8 +42,8 @@ public abstract class ShardManager {
    * Add a provided shard instance to shardMap.
    *
    * @param shard new shard instance.
-   * @return {@code true} if succeed to add the new instance.
-   *         {@code false} if the shardId is already existed.
+   * @return {@code true} if succeed to add the new instance. {@code false} if the shardId is
+   *     already existed.
    */
   public boolean addNewShard(final Shard shard) {
     var shardId = shard.getId();
@@ -97,5 +95,4 @@ public abstract class ShardManager {
    * @return id of shard that the data should be stored
    */
   protected abstract int allocateShard(final Data data);
-
 }

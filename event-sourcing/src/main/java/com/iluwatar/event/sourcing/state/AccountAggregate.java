@@ -38,8 +38,7 @@ public class AccountAggregate {
 
   private static Map<Integer, Account> accounts = new HashMap<>();
 
-  private AccountAggregate() {
-  }
+  private AccountAggregate() {}
 
   /**
    * Put account.
@@ -57,15 +56,10 @@ public class AccountAggregate {
    * @return the copy of the account or null if not found
    */
   public static Account getAccount(int accountNo) {
-    return Optional.of(accountNo)
-        .map(accounts::get)
-        .map(Account::copy)
-        .orElse(null);
+    return Optional.of(accountNo).map(accounts::get).map(Account::copy).orElse(null);
   }
 
-  /**
-   * Reset state.
-   */
+  /** Reset state. */
   public static void resetState() {
     accounts = new HashMap<>();
   }

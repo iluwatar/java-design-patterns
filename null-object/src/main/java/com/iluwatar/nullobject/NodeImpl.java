@@ -26,10 +26,7 @@ package com.iluwatar.nullobject;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Implementation for binary tree's normal nodes.
- */
-
+/** Implementation for binary tree's normal nodes. */
 @Slf4j
 public record NodeImpl(String name, Node left, Node right) implements Node {
   @Override
@@ -46,10 +43,12 @@ public record NodeImpl(String name, Node left, Node right) implements Node {
   public String getName() {
     return name;
   }
+
   @Override
   public int getTreeSize() {
     return 1 + left.getTreeSize() + right.getTreeSize();
   }
+
   @Override
   public void walk() {
     LOGGER.info(name);

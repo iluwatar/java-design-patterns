@@ -33,15 +33,10 @@ import static org.mockito.Mockito.verifyNoMoreInteractions;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-/**
- * KingsHandTest
- *
- */
+/** KingsHandTest */
 class KingsHandTest extends EventEmitterTest<KingsHand> {
 
-  /**
-   * Create a new test instance, using the correct object factory
-   */
+  /** Create a new test instance, using the correct object factory */
   public KingsHandTest() {
     super(null, null, KingsHand::new, KingsHand::new);
   }
@@ -64,12 +59,12 @@ class KingsHandTest extends EventEmitterTest<KingsHand> {
     verifyNoMoreInteractions(observer);
 
     // Verify if each event is passed on to the observer, nothing less, nothing more.
-    Arrays.stream(Event.values()).forEach(event -> {
-      kingsHand.onEvent(event);
-      verify(observer, times(1)).onEvent(eq(event));
-      verifyNoMoreInteractions(observer);
-    });
-
+    Arrays.stream(Event.values())
+        .forEach(
+            event -> {
+              kingsHand.onEvent(event);
+              verify(observer, times(1)).onEvent(eq(event));
+              verifyNoMoreInteractions(observer);
+            });
   }
-
 }

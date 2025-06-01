@@ -24,17 +24,15 @@
  */
 package com.iluwatar.transactionscript;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Tests that Transaction script example runs without errors.
- */
+import org.junit.jupiter.api.Test;
+
+/** Tests that Transaction script example runs without errors. */
 class AppTest {
 
   @Test
   void shouldExecuteWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[]{}));
+    assertDoesNotThrow(() -> App.main(new String[] {}));
   }
 }

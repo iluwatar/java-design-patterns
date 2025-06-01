@@ -25,23 +25,17 @@
 package com.iluwatar.model.view.intent;
 
 /**
- * Model-View-Intent is a pattern for implementing user interfaces.
- * Its main advantage over MVVM  which it closely mirrors is a
- * minimal public api with which user events can be exposed to the ViewModel.
- * In case of the MVI every event is exposed by using a single method
- * with 1 argument which implements UserEvent interface.
- * Specific parameters can be expressed as its parameters. In this case,
- * we'll be using MVI to implement a simple calculator
- * with +, -, /, * operations and the ability to set the variable.
- * It's important to note, that every user action happens through the
+ * Model-View-Intent is a pattern for implementing user interfaces. Its main advantage over MVVM
+ * which it closely mirrors is a minimal public api with which user events can be exposed to the
+ * ViewModel. In case of the MVI every event is exposed by using a single method with 1 argument
+ * which implements UserEvent interface. Specific parameters can be expressed as its parameters. In
+ * this case, we'll be using MVI to implement a simple calculator with +, -, /, * operations and the
+ * ability to set the variable. It's important to note, that every user action happens through the
  * view, we never interact with the ViewModel directly.
  */
 public final class App {
 
-
-  /**
-   * To avoid magic value lint error.
-   */
+  /** To avoid magic value lint error. */
   private static final double RANDOM_VARIABLE = 10.0;
 
   /**
@@ -61,10 +55,10 @@ public final class App {
 
     // add calculator variable to output -> calculator output = 10.0
     view.add();
-    view.displayTotal();  // display output
+    view.displayTotal(); // display output
 
     variable1 = 2.0;
-    view.setVariable(variable1);  // calculator variable = 2.0
+    view.setVariable(variable1); // calculator variable = 2.0
 
     // subtract calculator variable from output -> calculator output = 8
     view.subtract();
@@ -77,9 +71,6 @@ public final class App {
     view.displayTotal();
   }
 
-  /**
-   * Avoid default constructor lint error.
-   */
-  private App() {
-  }
+  /** Avoid default constructor lint error. */
+  private App() {}
 }

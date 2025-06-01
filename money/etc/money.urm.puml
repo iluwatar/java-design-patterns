@@ -1,0 +1,21 @@
+@startuml
+package com.iluwatar {
+  class App {
+    - logger : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class Money {
+    - amount : double
+    - currency : String
+    + Money(amnt : double, curr : String)
+    + addMoney(moneyToBeAdded : Money)
+    + exchangeCurrency(currencyToChangeTo : String, exchangeRate : double)
+    + getAmount() : double
+    + getCurrency() : String
+    + multiply(factor : int)
+    - roundToTwoDecimals(value : double) : double
+    + subtractMoney(moneyToBeSubtracted : Money)
+  }
+}
+@enduml

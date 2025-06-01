@@ -35,6 +35,10 @@ Wikipedia says
 
 > In software engineering, dependency injection is a technique in which an object receives other objects that it depends on. These other objects are called dependencies.
 
+Sequence diagram
+
+![Dependency Injection sequence diagram](./etc/dependency-injection-sequence-diagram.png)
+
 ## Programmatic Example of Dependency Injection Pattern in Java
 
 The old wizard likes to fill his pipe and smoke tobacco once in a while. However, he doesn't want to depend on a single tobacco brand only but likes to be able to enjoy them all interchangeably.
@@ -113,10 +117,6 @@ The program output:
 11:54:05.207 [main] INFO com.iluwatar.dependency.injection.Tobacco -- AdvancedSorceress smoking SecondBreakfastTobacco
 11:54:05.308 [main] INFO com.iluwatar.dependency.injection.Tobacco -- GuiceWizard smoking RivendellTobacco
 ```
-
-## Detailed Explanation of Dependency Injection Pattern with Real-World Examples
-
-![Dependency Injection](./etc/dependency-injection.png "Dependency Injection")
 
 ## When to Use the Dependency Injection Pattern in Java
 

@@ -33,9 +33,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/**
- * Represents a Database in which Order are stored.
- */
+/** Represents a Database in which Order are stored. */
 @Entity
 @Data
 @NoArgsConstructor
@@ -45,11 +43,9 @@ public class Order {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  @ManyToOne
-  private User user;
+  @ManyToOne private User user;
 
-  @ManyToOne
-  private Product product;
+  @ManyToOne private Product product;
 
   private Integer quantity;
 

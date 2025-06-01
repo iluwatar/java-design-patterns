@@ -43,31 +43,23 @@ import org.junit.jupiter.api.Test;
  */
 public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>> {
 
-  /**
-   * The number of entities stored before each test
-   */
+  /** The number of entities stored before each test */
   private static final int INITIAL_COUNT = 5;
 
-  /**
-   * The unique id generator, shared between all entities
-   */
+  /** The unique id generator, shared between all entities */
   private static final AtomicInteger ID_GENERATOR = new AtomicInteger();
 
-  /**
-   * Factory, used to create new entity instances with the given name
-   */
+  /** Factory, used to create new entity instances with the given name */
   private final Function<String, E> factory;
 
-  /**
-   * The tested data access object
-   */
+  /** The tested data access object */
   private final D dao;
 
   /**
    * Create a new test using the given factory and dao
    *
    * @param factory The factory, used to create new entity instances with the given name
-   * @param dao     The tested data access object
+   * @param dao The tested data access object
    */
   public BaseDaoTest(final Function<String, E> factory, final D dao) {
     this.factory = factory;
@@ -141,5 +133,4 @@ public abstract class BaseDaoTest<E extends BaseEntity, D extends DaoBaseImpl<E>
     assertEquals(expectedName, entity.getName());
     assertEquals(expectedName, entity.toString());
   }
-
 }

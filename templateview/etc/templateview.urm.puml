@@ -1,0 +1,29 @@
+@startuml
+package com.iluwatar.templateview {
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+  class ContactPageView {
+    - LOGGER : Logger {static}
+    + ContactPageView()
+    # renderDynamicContent()
+  }
+  class HomePageView {
+    - LOGGER : Logger {static}
+    + HomePageView()
+    # renderDynamicContent()
+  }
+  abstract class TemplateView {
+    - LOGGER : Logger {static}
+    + TemplateView()
+    # printFooter()
+    # printHeader()
+    + render()
+    # renderDynamicContent() {abstract}
+  }
+}
+ContactPageView --|> TemplateView 
+HomePageView --|> TemplateView 
+@enduml

@@ -26,9 +26,7 @@ package com.iluwatar.templatemethod;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * SubtleMethod implementation of {@link StealingMethod}.
- */
+/** SubtleMethod implementation of {@link StealingMethod}. */
 @Slf4j
 public class SubtleMethod extends StealingMethod {
 

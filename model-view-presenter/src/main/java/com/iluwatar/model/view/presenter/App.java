@@ -34,8 +34,8 @@ package com.iluwatar.model.view.presenter;
  * FileSelectorJframe} is the GUI and the {@link FileSelectorPresenter} is responsible to respond to
  * users' actions.
  *
- * <p>Finally, please notice the wiring between the Presenter and the View and between the
- * Presenter and the Model.
+ * <p>Finally, please notice the wiring between the Presenter and the View and between the Presenter
+ * and the Model.
  */
 public class App {
 

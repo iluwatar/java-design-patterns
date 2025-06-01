@@ -26,9 +26,7 @@ package com.iluwatar.mediator;
 
 import lombok.extern.slf4j.Slf4j;
 
-/**
- * Abstract base class for party members.
- */
+/** Abstract base class for party members. */
 @Slf4j
 public abstract class PartyMemberBase implements PartyMember {
 
@@ -55,5 +53,4 @@ public abstract class PartyMemberBase implements PartyMember {
 
   @Override
   public abstract String toString();
-
 }

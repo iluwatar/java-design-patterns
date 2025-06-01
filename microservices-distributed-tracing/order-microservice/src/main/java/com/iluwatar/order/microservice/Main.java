@@ -52,10 +52,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * {@code docker run -d -p 9411:9411 --name zipkin openzipkin/zipkin }
  * </pre>
  *
- * <p>Start Zipkin with the command above. Once Zipkin is running, you can
- * access the Zipkin UI at `<a href="http://localhost:9411">...</a>`
- * to view the tracing logs and analyze the request flows across your microservices.
- *
+ * <p>Start Zipkin with the command above. Once Zipkin is running, you can access the Zipkin UI at
+ * `<a href="http://localhost:9411">...</a>` to view the tracing logs and analyze the request flows
+ * across your microservices.
  *
  * <p>To place an order and generate tracing data, you can use the following curl command:
  *
@@ -65,7 +64,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * <p>This command sends a POST request to create an order, which will trigger interactions with the
  * payment and product microservices, generating tracing logs that can be viewed in Zipkin.
- *
  */
 @SpringBootApplication
 public class Main {

@@ -28,9 +28,8 @@ import java.util.UUID;
 
 /**
  * This class extends the RuntimeException class to handle scenarios where a Request is not found.
- * It is intended to be used where you would like to have a custom exception that signals that a requested object or action
- * was not found in the system, based on the UUID of the request.
- *
+ * It is intended to be used where you would like to have a custom exception that signals that a
+ * requested object or action was not found in the system, based on the UUID of the request.
  */
 public class RequestNotFoundException extends RuntimeException {
   RequestNotFoundException(UUID uuid) {

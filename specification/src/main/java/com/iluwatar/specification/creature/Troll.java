@@ -29,9 +29,7 @@ import com.iluwatar.specification.property.Mass;
 import com.iluwatar.specification.property.Movement;
 import com.iluwatar.specification.property.Size;
 
-/**
- * Troll creature.
- */
+/** Troll creature. */
 public class Troll extends AbstractCreature {
 
   public Troll() {

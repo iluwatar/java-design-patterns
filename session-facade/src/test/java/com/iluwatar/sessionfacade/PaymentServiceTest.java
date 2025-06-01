@@ -24,23 +24,19 @@
  */
 package com.iluwatar.sessionfacade;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.slf4j.Logger;
-
 import static org.mockito.Mockito.*;
 
-/**
- * The type Payment service test.
- */
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+import org.slf4j.Logger;
+
+/** The type Payment service test. */
 class PaymentServiceTest {
   private PaymentService paymentService;
-  private OrderService orderService;
   private Logger mockLogger;
 
-  /**
-   * Sets up.
-   */
+  /** Sets up. */
   @BeforeEach
   void setUp() {
     paymentService = new PaymentService();
@@ -48,33 +44,14 @@ class PaymentServiceTest {
     paymentService.LOGGER = mockLogger;
   }
 
-  /**
-   * Test select cash payment method.
-   */
-  @Test
-  void testSelectCashPaymentMethod() {
-    String method = "cash";
+  @ParameterizedTest
+  @CsvSource({
+    "cash, Client have chosen cash payment option",
+    "credit, Client have chosen credit card payment option",
+    "cheque, Unspecified payment method type"
+  })
+  void testSelectPaymentMethod(String method, String expectedLogMessage) {
     paymentService.selectPaymentMethod(method);
-    verify(mockLogger).info("Client have chosen cash payment option");
-  }
-
-  /**
-   * Test select credit card payment method.
-   */
-  @Test
-  void testSelectCreditCardPaymentMethod() {
-    String method = "credit";
-    paymentService.selectPaymentMethod(method);
-    verify(mockLogger).info("Client have chosen credit card payment option");
-  }
-
-  /**
-   * Test select unspecified payment method.
-   */
-  @Test
-  void testSelectUnspecifiedPaymentMethod() {
-    String method = "cheque";
-    paymentService.selectPaymentMethod(method);
-    verify(mockLogger).info("Unspecified payment method type");
+    verify(mockLogger).info(expectedLogMessage);
   }
 }

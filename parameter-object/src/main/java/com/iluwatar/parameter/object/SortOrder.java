@@ -26,15 +26,12 @@ package com.iluwatar.parameter.object;
 
 import lombok.Getter;
 
-/**
- * enum for sort order types.
- */
+/** enum for sort order types. */
 public enum SortOrder {
   ASC("asc"),
   DESC("desc");
 
-  @Getter
-  private String value;
+  @Getter private String value;
 
   SortOrder(String value) {
     this.value = value;

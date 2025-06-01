@@ -26,12 +26,9 @@ package com.iluwatar.event.aggregator;
 
 import lombok.RequiredArgsConstructor;
 
-/**
- * Weekday enumeration.
- */
+/** Weekday enumeration. */
 @RequiredArgsConstructor
 public enum Weekday {
-
   MONDAY("Monday"),
   TUESDAY("Tuesday"),
   WEDNESDAY("Wednesday"),

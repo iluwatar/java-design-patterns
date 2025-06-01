@@ -29,9 +29,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import lombok.AllArgsConstructor;
 
-/**
- * Book class.
- */
+/** Book class. */
 @AllArgsConstructor
 public class Book {
   private final Genre genre;
@@ -49,9 +47,9 @@ public class Book {
     }
     Book book = (Book) o;
     return Objects.equals(author, book.author)
-            && Objects.equals(genre, book.genre)
-            && Objects.equals(title, book.title)
-            && Objects.equals(publicationDate, book.publicationDate);
+        && Objects.equals(genre, book.genre)
+        && Objects.equals(title, book.title)
+        && Objects.equals(publicationDate, book.publicationDate);
   }
 
   @Override
@@ -61,56 +59,54 @@ public class Book {
 
   @Override
   public String toString() {
-    return "Book{" + "genre=" + genre + ", author='" + author + '\''
-            + ", title='" + title + '\'' + ", publicationDate=" + publicationDate + '}';
+    return "Book{"
+        + "genre="
+        + genre
+        + ", author='"
+        + author
+        + '\''
+        + ", title='"
+        + title
+        + '\''
+        + ", publicationDate="
+        + publicationDate
+        + '}';
   }
 
-  /**
-   * Curried book builder/creator function.
-   */
-  static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>> book_creator
-      = bookGenre
-          -> bookAuthor
-              -> bookTitle
-                  -> bookPublicationDate
-                      -> new Book(bookGenre, bookAuthor, bookTitle, bookPublicationDate);
+  /** Curried book builder/creator function. */
+  static Function<Genre, Function<String, Function<String, Function<LocalDate, Book>>>>
+      book_creator =
+          bookGenre ->
+              bookAuthor ->
+                  bookTitle ->
+                      bookPublicationDate ->
+                          new Book(bookGenre, bookAuthor, bookTitle, bookPublicationDate);
 
   /**
    * Implements the builder pattern using functional interfaces to create a more readable book
    * creator function. This function is equivalent to the BOOK_CREATOR function.
    */
   public static AddGenre builder() {
-    return genre
-        -> author
-            -> title
-                -> publicationDate
-                    -> new Book(genre, author, title, publicationDate);
+    return genre ->
+        author -> title -> publicationDate -> new Book(genre, author, title, publicationDate);
   }
 
-  /**
-   * Functional interface which adds the genre to a book.
-   */
+  /** Functional interface which adds the genre to a book. */
   public interface AddGenre {
     Book.AddAuthor withGenre(Genre genre);
   }
 
-  /**
-   * Functional interface which adds the author to a book.
-   */
+  /** Functional interface which adds the author to a book. */
   public interface AddAuthor {
     Book.AddTitle withAuthor(String author);
   }
 
-  /**
-   * Functional interface which adds the title to a book.
-   */
+  /** Functional interface which adds the title to a book. */
   public interface AddTitle {
     Book.AddPublicationDate withTitle(String title);
   }
 
-  /**
-   * Functional interface which adds the publication date to a book.
-   */
+  /** Functional interface which adds the publication date to a book. */
   public interface AddPublicationDate {
     Book withPublicationDate(LocalDate publicationDate);
   }

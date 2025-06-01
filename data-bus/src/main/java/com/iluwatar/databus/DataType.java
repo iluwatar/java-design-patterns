@@ -48,11 +48,7 @@ SOFTWARE.
 
 package com.iluwatar.databus;
 
-/**
- * Events are sent via the Data-Bus.
- *
- */
-
+/** Events are sent via the Data-Bus. */
 public interface DataType {
 
   /**

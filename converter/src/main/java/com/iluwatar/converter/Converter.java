@@ -86,5 +86,4 @@ public class Converter<T, U> {
   public final List<T> createFromEntities(final Collection<U> entities) {
     return entities.stream().map(this::convertFromEntity).toList();
   }
-
 }

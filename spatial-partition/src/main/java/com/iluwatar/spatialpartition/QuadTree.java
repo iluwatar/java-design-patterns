@@ -33,7 +33,6 @@ import java.util.Map;
  * insert(Point) and query(range) methods to insert a new object and find the objects within a
  * certain (rectangular) range respectively.
  */
-
 public class QuadTree {
   Rect boundary;
   int capacity;
@@ -93,13 +92,9 @@ public class QuadTree {
   }
 
   Collection<Point> query(Rect r, Collection<Point> relevantPoints) {
-    //could also be a circle instead of a rectangle
+    // could also be a circle instead of a rectangle
     if (this.boundary.intersects(r)) {
-      this.points
-          .values()
-          .stream()
-          .filter(r::contains)
-          .forEach(relevantPoints::add);
+      this.points.values().stream().filter(r::contains).forEach(relevantPoints::add);
       if (this.divided) {
         this.northwest.query(r, relevantPoints);
         this.northeast.query(r, relevantPoints);

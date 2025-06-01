@@ -31,6 +31,10 @@ Wikipedia says
 
 > Intercepting Filter is a Java pattern which creates pluggable filters to process common services in a standard manner without requiring changes to core request processing code.
 
+Architecture diagram
+
+![Intercepting Filter Architecture Diagram](./etc/intercepting-filter-architecture-diagram.png)
+
 ## Programmatic Example of Intercepting Filter Pattern in Java
 
 In this article, we delve into the Intercepting Filter Pattern and provide a Java example to illustrate its use. This pattern is essential for Java web development, offering a modular approach to handling common services such as logging, authentication, and data compression.

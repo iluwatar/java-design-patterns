@@ -39,9 +39,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 
-/**
- * Test for Delegation Pattern
- */
+/** Test for Delegation Pattern */
 class DelegateTest {
 
   private InMemoryAppender appender;
@@ -82,9 +80,7 @@ class DelegateTest {
     assertEquals("Epson Printer : Test Message Printed", appender.getLastMessage());
   }
 
-  /**
-   * Logging Appender
-   */
+  /** Logging Appender */
   private static class InMemoryAppender extends AppenderBase<ILoggingEvent> {
 
     private final List<ILoggingEvent> log = new LinkedList<>();
@@ -107,5 +103,4 @@ class DelegateTest {
       return log.size();
     }
   }
-
 }

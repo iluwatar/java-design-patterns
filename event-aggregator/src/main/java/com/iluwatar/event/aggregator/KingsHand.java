@@ -24,13 +24,10 @@
  */
 package com.iluwatar.event.aggregator;
 
-/**
- * KingsHand observes events from multiple sources and delivers them to listeners.
- */
+/** KingsHand observes events from multiple sources and delivers them to listeners. */
 public class KingsHand extends EventEmitter implements EventObserver {
 
-  public KingsHand() {
-  }
+  public KingsHand() {}
 
   public KingsHand(EventObserver obs, Event e) {
     super(obs, e);
@@ -43,7 +40,8 @@ public class KingsHand extends EventEmitter implements EventObserver {
 
   @Override
   public void timePasses(Weekday day) {
-    // This method is intentionally left empty because KingsHand does not handle time-based events directly.
+    // This method is intentionally left empty because KingsHand does not handle time-based events
+    // directly.
     // It serves as a placeholder to fulfill the EventObserver interface contract.
   }
 }

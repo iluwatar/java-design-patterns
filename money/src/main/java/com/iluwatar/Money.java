@@ -1,27 +1,42 @@
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Represents a monetary value with an associated currency.
- * Provides operations for basic arithmetic (addition, subtraction, multiplication),
- * as well as currency conversion while ensuring proper rounding.
+ * Represents a monetary value with an associated currency. Provides operations for basic arithmetic
+ * (addition, subtraction, multiplication), as well as currency conversion while ensuring proper
+ * rounding.
  */
+@AllArgsConstructor
 @Getter
 public class Money {
-  private @Getter double amount;
-  private @Getter String currency;
-
-  /**
-   * Constructs a Money object with the specified amount and currency.
-   *
-   * @param amnt the amount of money (as a double).
-   * @param curr the currency code (e.g., "USD", "EUR").
-   */
-  public Money(double amnt, String curr) {
-    this.amount = amnt;
-    this.currency = curr;
-  }
+  private double amount;
+  private String currency;
 
   /**
    * Rounds the given value to two decimal places.
@@ -50,13 +65,15 @@ public class Money {
    * Subtracts another Money object from the current instance.
    *
    * @param moneyToBeSubtracted the Money object to subtract.
-   * @throws CannotSubtractException if the currencies do not match or if the amount to subtract is larger than the current amount.
+   * @throws CannotSubtractException if the currencies do not match or if the amount to subtract is
+   *     larger than the current amount.
    */
   public void subtractMoney(Money moneyToBeSubtracted) throws CannotSubtractException {
     if (!moneyToBeSubtracted.getCurrency().equals(this.currency)) {
       throw new CannotSubtractException("You are trying to subtract two different currencies");
     } else if (moneyToBeSubtracted.getAmount() > this.amount) {
-      throw new CannotSubtractException("The amount you are trying to subtract is larger than the amount you have");
+      throw new CannotSubtractException(
+          "The amount you are trying to subtract is larger than the amount you have");
     }
     this.amount = roundToTwoDecimals(this.amount - moneyToBeSubtracted.getAmount());
   }

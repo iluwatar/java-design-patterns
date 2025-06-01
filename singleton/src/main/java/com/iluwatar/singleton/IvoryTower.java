@@ -24,20 +24,18 @@
  */
 package com.iluwatar.singleton;
 
-/**
- * Singleton class. Eagerly initialized static instance guarantees thread safety.
- */
+/** Singleton class. Eagerly initialized static instance guarantees thread safety. */
 public final class IvoryTower {
 
-  /**
-   * Private constructor so nobody can instantiate the class.
-   */
+  /** Private constructor so nobody can instantiate the class. */
   private IvoryTower() {
+    // to prevent instantiating by Reflection call
+    if (INSTANCE != null) {
+      throw new IllegalStateException("Already initialized.");
+    }
   }
 
-  /**
-   * Static to class instance of the class.
-   */
+  /** Static to class instance of the class. */
   private static final IvoryTower INSTANCE = new IvoryTower();
 
   /**

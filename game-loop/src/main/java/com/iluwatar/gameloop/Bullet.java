@@ -27,14 +27,10 @@ package com.iluwatar.gameloop;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * Bullet object class.
- */
+/** Bullet object class. */
 public class Bullet {
 
-  @Getter
-  @Setter
-  private float position;
+  @Getter @Setter private float position;
 
   public Bullet() {
     position = 0.0f;

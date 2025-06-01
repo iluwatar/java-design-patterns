@@ -24,9 +24,7 @@
  */
 package com.iluwatar.abstractfactory;
 
-/**
- * ElfKingdomFactory concrete factory.
- */
+/** ElfKingdomFactory concrete factory. */
 public class ElfKingdomFactory implements KingdomFactory {
 
   @Override
@@ -43,5 +41,4 @@ public class ElfKingdomFactory implements KingdomFactory {
   public Army createArmy() {
     return new ElfArmy();
   }
-
 }

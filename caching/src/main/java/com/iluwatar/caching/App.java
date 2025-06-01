@@ -29,59 +29,44 @@ import com.iluwatar.caching.database.DbManagerFactory;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * The Caching pattern describes how to avoid expensive re-acquisition of
- * resources by not releasing the resources immediately after their use.
- * The resources retain their identity, are kept in some fast-access storage,
- * and are re-used to avoid having to acquire them again. There are four main
- * caching strategies/techniques in this pattern; each with their own pros and
- * cons. They are <code>write-through</code> which writes data to the cache and
- * DB in a single transaction, <code>write-around</code> which writes data
- * immediately into the DB instead of the cache, <code>write-behind</code>
- * which writes data into the cache initially whilst the data is only
- * written into the DB when the cache is full, and <code>cache-aside</code>
- * which pushes the responsibility of keeping the data synchronized in both
- * data sources to the application itself. The <code>read-through</code>
- * strategy is also included in the mentioned four strategies --
- * returns data from the cache to the caller <b>if</b> it exists <b>else</b>
- * queries from DB and stores it into the cache for future use. These strategies
- * determine when the data in the cache should be written back to the backing
- * store (i.e. Database) and help keep both data sources
- * synchronized/up-to-date. This pattern can improve performance and also helps
- * to maintainconsistency between data held in the cache and the data in
- * the underlying data store.
+ * The Caching pattern describes how to avoid expensive re-acquisition of resources by not releasing
+ * the resources immediately after their use. The resources retain their identity, are kept in some
+ * fast-access storage, and are re-used to avoid having to acquire them again. There are four main
+ * caching strategies/techniques in this pattern; each with their own pros and cons. They are <code>
+ * write-through</code> which writes data to the cache and DB in a single transaction, <code>
+ * write-around</code> which writes data immediately into the DB instead of the cache, <code>
+ * write-behind</code> which writes data into the cache initially whilst the data is only written
+ * into the DB when the cache is full, and <code>cache-aside</code> which pushes the responsibility
+ * of keeping the data synchronized in both data sources to the application itself. The <code>
+ * read-through</code> strategy is also included in the mentioned four strategies -- returns data
+ * from the cache to the caller <b>if</b> it exists <b>else</b> queries from DB and stores it into
+ * the cache for future use. These strategies determine when the data in the cache should be written
+ * back to the backing store (i.e. Database) and help keep both data sources
+ * synchronized/up-to-date. This pattern can improve performance and also helps to
+ * maintainconsistency between data held in the cache and the data in the underlying data store.
  *
- * <p>In this example, the user account ({@link UserAccount}) entity is used
- * as the underlying application data. The cache itself is implemented as an
- * internal (Java) data structure. It adopts a Least-Recently-Used (LRU)
- * strategy for evicting data from itself when its full. The four
- * strategies are individually tested. The testing of the cache is restricted
- * towards saving and querying of user accounts from the
- * underlying data store( {@link DbManager}). The main class ( {@link App}
- * is not aware of the underlying mechanics of the application
- * (i.e. save and query) and whether the data is coming from the cache or the
- * DB (i.e. separation of concern). The AppManager ({@link AppManager}) handles
- * the transaction of data to-and-from the underlying data store (depending on
- * the preferred caching policy/strategy).
- * <p>
- * <i>{@literal App --> AppManager --> CacheStore/LRUCache/CachingPolicy -->
- * DBManager} </i>
- * </p>
+ * <p>In this example, the user account ({@link UserAccount}) entity is used as the underlying
+ * application data. The cache itself is implemented as an internal (Java) data structure. It adopts
+ * a Least-Recently-Used (LRU) strategy for evicting data from itself when its full. The four
+ * strategies are individually tested. The testing of the cache is restricted towards saving and
+ * querying of user accounts from the underlying data store( {@link DbManager}). The main class (
+ * {@link App} is not aware of the underlying mechanics of the application (i.e. save and query) and
+ * whether the data is coming from the cache or the DB (i.e. separation of concern). The AppManager
+ * ({@link AppManager}) handles the transaction of data to-and-from the underlying data store
+ * (depending on the preferred caching policy/strategy).
  *
- * <p>
- * There are 2 ways to launch the application.
- *  - to use "in Memory" database.
- *  - to use the MongoDb as a database
+ * <p><i>{@literal App --> AppManager --> CacheStore/LRUCache/CachingPolicy --> DBManager} </i>
  *
- * To run the application with "in Memory" database, just launch it without parameters
- * Example: 'java -jar app.jar'
+ * <p>There are 2 ways to launch the application. - to use "in Memory" database. - to use the
+ * MongoDb as a database
  *
- * To run the application with MongoDb you need to be installed the MongoDb
- * in your system, or to launch it in the docker container.
- * You may launch docker container from the root of current module with command:
- * 'docker-compose up'
- * Then you can start the application with parameter --mongo
- * Example: 'java -jar app.jar --mongo'
- * </p>
+ * <p>To run the application with "in Memory" database, just launch it without parameters Example:
+ * 'java -jar app.jar'
+ *
+ * <p>To run the application with MongoDb you need to be installed the MongoDb in your system, or to
+ * launch it in the docker container. You may launch docker container from the root of current
+ * module with command: 'docker-compose up' Then you can start the application with parameter
+ * --mongo Example: 'java -jar app.jar --mongo'
  *
  * @see CacheStore
  * @see LruCache
@@ -89,13 +74,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class App {
-  /**
-   * Constant parameter name to use mongoDB.
-   */
+  /** Constant parameter name to use mongoDB. */
   private static final String USE_MONGO_DB = "--mongo";
-  /**
-   * Application manager.
-   */
+
+  /** Application manager. */
   private final AppManager appManager;
 
   /**
@@ -152,9 +134,7 @@ public class App {
     return false;
   }
 
-  /**
-   * Read-through and write-through.
-   */
+  /** Read-through and write-through. */
   public void useReadAndWriteThroughStrategy() {
     LOGGER.info("# CachingPolicy.THROUGH");
     appManager.initCachingPolicy(CachingPolicy.THROUGH);
@@ -167,9 +147,7 @@ public class App {
     appManager.find("001");
   }
 
-  /**
-   * Read-through and write-around.
-   */
+  /** Read-through and write-around. */
   public void useReadThroughAndWriteAroundStrategy() {
     LOGGER.info("# CachingPolicy.AROUND");
     appManager.initCachingPolicy(CachingPolicy.AROUND);
@@ -189,22 +167,14 @@ public class App {
     appManager.find("002");
   }
 
-  /**
-   * Read-through and write-behind.
-   */
+  /** Read-through and write-behind. */
   public void useReadThroughAndWriteBehindStrategy() {
     LOGGER.info("# CachingPolicy.BEHIND");
     appManager.initCachingPolicy(CachingPolicy.BEHIND);
 
-    var userAccount3 = new UserAccount("003",
-            "Adam",
-            "He likes food.");
-    var userAccount4 = new UserAccount("004",
-            "Rita",
-            "She hates cats.");
-    var userAccount5 = new UserAccount("005",
-            "Isaac",
-            "He is allergic to mustard.");
+    var userAccount3 = new UserAccount("003", "Adam", "He likes food.");
+    var userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
+    var userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
 
     appManager.save(userAccount3);
     appManager.save(userAccount4);
@@ -212,32 +182,22 @@ public class App {
     LOGGER.info(appManager.printCacheContent());
     appManager.find("003");
     LOGGER.info(appManager.printCacheContent());
-    UserAccount userAccount6 = new UserAccount("006",
-            "Yasha",
-            "She is an only child.");
+    UserAccount userAccount6 = new UserAccount("006", "Yasha", "She is an only child.");
     appManager.save(userAccount6);
     LOGGER.info(appManager.printCacheContent());
     appManager.find("004");
     LOGGER.info(appManager.printCacheContent());
   }
 
-  /**
-   * Cache-Aside.
-   */
+  /** Cache-Aside. */
   public void useCacheAsideStrategy() {
     LOGGER.info("# CachingPolicy.ASIDE");
     appManager.initCachingPolicy(CachingPolicy.ASIDE);
     LOGGER.info(appManager.printCacheContent());
 
-    var userAccount3 = new UserAccount("003",
-            "Adam",
-            "He likes food.");
-    var userAccount4 = new UserAccount("004",
-            "Rita",
-            "She hates cats.");
-    var userAccount5 = new UserAccount("005",
-            "Isaac",
-            "He is allergic to mustard.");
+    var userAccount3 = new UserAccount("003", "Adam", "He likes food.");
+    var userAccount4 = new UserAccount("004", "Rita", "She hates cats.");
+    var userAccount5 = new UserAccount("005", "Isaac", "He is allergic to mustard.");
     appManager.save(userAccount3);
     appManager.save(userAccount4);
     appManager.save(userAccount5);

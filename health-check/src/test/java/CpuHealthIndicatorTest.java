@@ -34,10 +34,7 @@ import org.mockito.Mockito;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.Status;
 
-/**
- * Test class for the {@link CpuHealthIndicator} class.
- *
- */
+/** Test class for the {@link CpuHealthIndicator} class. */
 class CpuHealthIndicatorTest {
 
   /** The CPU health indicator to be tested. */

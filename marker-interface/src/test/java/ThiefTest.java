@@ -28,9 +28,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-/**
- * Thief test
- */
+/** Thief test */
 class ThiefTest {
   @Test
   void testThief() {

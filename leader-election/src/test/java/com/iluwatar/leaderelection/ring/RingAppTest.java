@@ -24,18 +24,15 @@
  */
 package com.iluwatar.leaderelection.ring;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * RingApp unit test.
- */
+import org.junit.jupiter.api.Test;
+
+/** RingApp unit test. */
 class RingAppTest {
 
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> RingApp.main(new String[]{}));
+    assertDoesNotThrow(() -> RingApp.main(new String[] {}));
   }
-
 }

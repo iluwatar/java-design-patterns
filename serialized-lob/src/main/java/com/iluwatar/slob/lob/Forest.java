@@ -37,12 +37,11 @@ import lombok.NoArgsConstructor;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
 /**
  * Creates an object Forest which contains animals and plants as its constituents. Animals may eat
  * plants or other animals in the forest.
  */
-
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

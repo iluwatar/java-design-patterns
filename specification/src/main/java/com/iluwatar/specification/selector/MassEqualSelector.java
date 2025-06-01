@@ -27,16 +27,12 @@ package com.iluwatar.specification.selector;
 import com.iluwatar.specification.creature.Creature;
 import com.iluwatar.specification.property.Mass;
 
-/**
- * Mass selector for values exactly equal than the parameter.
- */
+/** Mass selector for values exactly equal than the parameter. */
 public class MassEqualSelector extends AbstractSelector<Creature> {
 
   private final Mass mass;
 
-  /**
-   * The use of a double as a parameter will spare some typing when instantiating this class.
-   */
+  /** The use of a double as a parameter will spare some typing when instantiating this class. */
   public MassEqualSelector(double mass) {
     this.mass = new Mass(mass);
   }
