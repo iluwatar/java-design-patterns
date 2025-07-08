@@ -130,6 +130,7 @@
     <module>extension-objects</module>
     <module>facade</module>
     <module>factory</module>
+    <module>factory-enum</module>
     <module>factory-kit</module>
     <module>factory-method</module>
     <module>fanout-fanin</module>
