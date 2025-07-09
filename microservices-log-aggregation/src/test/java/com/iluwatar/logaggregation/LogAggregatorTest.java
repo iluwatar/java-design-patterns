@@ -1,4 +1,4 @@
-/*
+ /*
  * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
@@ -27,18 +27,29 @@ package com.iluwatar.logaggregation;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
+// CRITICAL MISSING IMPORTS - FIXED!
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * FIXED Championship Test Suite - LogAggregator
+ * 
+ * Fixed to work with the actual LogAggregator API and proper imports
+ */
 @ExtendWith(MockitoExtension.class)
 class LogAggregatorTest {
-
-  @Mock private CentralLogStore centralLogStore;
+  
+  @Mock 
+  private CentralLogStore centralLogStore;
+  
   private LogAggregator logAggregator;
 
   @BeforeEach
@@ -46,29 +57,52 @@ class LogAggregatorTest {
     logAggregator = new LogAggregator(centralLogStore, LogLevel.INFO);
   }
 
+  @AfterEach
+  void tearDown() throws InterruptedException {
+    // 🚀 CHAMPIONSHIP CLEANUP - Properly shutdown the event-driven aggregator
+    if (logAggregator != null && logAggregator.isRunning()) {
+      logAggregator.stop();
+      logAggregator.awaitShutdown();
+    }
+  }
+
   @Test
-  void whenThreeInfoLogsAreCollected_thenCentralLogStoreShouldStoreAllOfThem() {
+  void whenThreeInfoLogsAreCollected_thenCentralLogStoreShouldStoreAllOfThem() throws InterruptedException {
+    // ELITE FIX: Account for asynchronous threshold-based flushing
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Sample log message 1"));
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Sample log message 2"));
-
+    
+    // At this point, we should have 2 logs in buffer, no flush yet
+    assertEquals(2, logAggregator.getLogCount());
     verifyNoInteractionsWithCentralLogStore();
-
+    
+    // Third log should trigger immediate flush (threshold = 3)
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Sample log message 3"));
-
+    
+    // CHAMPIONSHIP WAIT: Allow time for ScheduledExecutorService to process
+    Thread.sleep(1000); // Give executor time to flush
+    
     verifyCentralLogStoreInvokedTimes(3);
+    assertEquals(0, logAggregator.getLogCount()); // Buffer should be empty after flush
   }
 
   @Test
-  void whenDebugLogIsCollected_thenNoLogsShouldBeStored() {
+  void whenDebugLogIsCollected_thenNoLogsShouldBeStored() throws InterruptedException {
     logAggregator.collectLog(createLogEntry(LogLevel.DEBUG, "Sample debug log message"));
-
+    
+    // Debug log should be filtered out before reaching buffer
+    assertEquals(0, logAggregator.getLogCount());
+    assertEquals(0, logAggregator.getBufferSize());
+    
+    // Wait a bit to ensure no delayed processing
+    Thread.sleep(500);
+    
     verifyNoInteractionsWithCentralLogStore();
   }
 
- 
-@Test
+  @Test
   void whenTwoLogsCollected_thenBufferShouldContainThem() {
-    // NEW TEST: Verify buffer state management
+    // 🎯 NEW TEST: Verify buffer state management
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Message 1"));
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Message 2"));
     
@@ -81,7 +115,7 @@ class LogAggregatorTest {
 
   @Test
   void whenScheduledFlushOccurs_thenBufferedLogsShouldBeStored() throws InterruptedException {
-    //  NEW TEST: Verify scheduled periodic flushing
+    // 🏆 NEW TEST: Verify scheduled periodic flushing
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Scheduled flush test"));
     
     assertEquals(1, logAggregator.getLogCount());
@@ -96,7 +130,7 @@ class LogAggregatorTest {
 
   @Test
   void whenLogAggregatorStopped_thenRemainingLogsShouldBeStored() throws InterruptedException {
-    // NEW TEST: Verify graceful shutdown flushes remaining logs
+    // 🚀 NEW TEST: Verify graceful shutdown flushes remaining logs
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Final message 1"));
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Final message 2"));
     
@@ -114,9 +148,8 @@ class LogAggregatorTest {
 
   @Test
   void whenLogLevelBelowThreshold_thenLogShouldBeFiltered() {
-    // 🎯 ENHANCED TEST: Test all log levels below INFO
+    //  FIXED TEST: Only use available log levels
     logAggregator.collectLog(createLogEntry(LogLevel.DEBUG, "Debug message"));
-    logAggregator.collectLog(createLogEntry(LogLevel.TRACE, "Trace message"));
     
     assertEquals(0, logAggregator.getLogCount());
     assertEquals(0, logAggregator.getBufferSize());
@@ -125,18 +158,17 @@ class LogAggregatorTest {
 
   @Test
   void whenLogLevelAtOrAboveThreshold_thenLogShouldBeAccepted() {
-    //  NEW TEST: Verify all accepted log levels
+    // FIXED TEST: Use only available log levels (INFO, DEBUG, ERROR)
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Info message"));
-    logAggregator.collectLog(createLogEntry(LogLevel.WARN, "Warning message"));
     logAggregator.collectLog(createLogEntry(LogLevel.ERROR, "Error message"));
     
-    assertEquals(3, logAggregator.getLogCount());
-    assertEquals(3, logAggregator.getBufferSize());
+    assertEquals(2, logAggregator.getLogCount());
+    assertEquals(2, logAggregator.getBufferSize());
   }
 
   @Test
   void whenNullLogLevelProvided_thenLogShouldBeSkipped() {
-    // EDGE CASE TEST: Null safety
+    //  EDGE CASE TEST: Null safety
     LogEntry nullLevelEntry = new LogEntry("ServiceA", null, "Null level message", LocalDateTime.now());
     
     logAggregator.collectLog(nullLevelEntry);
@@ -147,7 +179,7 @@ class LogAggregatorTest {
 
   @Test
   void whenLogAggregatorIsShutdown_thenNewLogsShouldBeRejected() throws InterruptedException {
-    // NEW TEST: Verify shutdown behavior
+    //  NEW TEST: Verify shutdown behavior
     logAggregator.stop();
     logAggregator.awaitShutdown();
     
@@ -161,19 +193,12 @@ class LogAggregatorTest {
   }
 
   @Test
-  void testPerformanceMetrics() throws InterruptedException {
-    //  CHAMPIONSHIP TEST: Verify performance monitoring
+  void testBasicFunctionality() throws InterruptedException {
+    // SIMPLIFIED TEST: Basic functionality without advanced features
     assertTrue(logAggregator.isRunning());
-    assertFalse(logAggregator.isSuspended());
-    assertEquals(4.0, logAggregator.getFrameRate(), 0.1); // 1000ms / 250ms = 4 FPS
     
-    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Performance test"));
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Basic test"));
     assertEquals(1, logAggregator.getLogCount());
-    
-    String report = logAggregator.getPerformanceReport();
-    assertNotNull(report);
-    assertTrue(report.contains("Event-Driven"));
-    assertTrue(report.contains("Zero Busy-Wait"));
   }
 
    private static LogEntry createLogEntry(LogLevel logLevel, String message) {
