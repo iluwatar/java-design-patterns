@@ -39,7 +39,12 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
+/**
+ * Unit tests for LogAggregator class.
+ *
+ * <p>Tests the event-driven log aggregation functionality including threshold-based flushing,
+ * scheduled periodic flushing, and graceful shutdown behavior.
+ */
 @ExtendWith(MockitoExtension.class)
 class LogAggregatorTest {
 
