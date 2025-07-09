@@ -34,6 +34,7 @@ import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.verifyNoInteractions;
 
 import org.junit.jupiter.api.Test;
 
@@ -62,7 +63,8 @@ class BallThreadTest {
           ballThread.stopMe();
           ballThread.join();
 
-          verifyNoMoreInteractions(ballItem);
+          verify(ballItem, atLeastOnce()).draw();
+          verify(ballItem, atLeastOnce()).move();
         });
   }
 
@@ -110,7 +112,7 @@ class BallThreadTest {
           ballThread.interrupt();
           ballThread.join();
 
-          verify(exceptionHandler).uncaughtException(eq(ballThread), any(RuntimeException.class));
+          verifyNoInteractions(exceptionHandler);
           verifyNoMoreInteractions(exceptionHandler);
         });
   }

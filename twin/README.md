@@ -86,40 +86,63 @@ public class BallItem extends GameItem {
 ```java
 @Slf4j
 public class BallThread extends Thread {
-  @Setter
-  private BallItem twin;
-  private volatile boolean isSuspended;
-  private volatile boolean isRunning = true;
 
-  public void run() {
-    while (isRunning) {
-      if (!isSuspended) {
-        twin.draw();
-        twin.move();
-      }
-      try {
-        Thread.sleep(250);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
+    @Setter private BallItem twin;
+
+    private volatile boolean isSuspended;
+    private volatile boolean isRunning = true;
+    private final Object lock = new Object();
+
+    /** Run the thread. */
+    @Override
+    public void run() {
+        while (isRunning) {
+            synchronized (lock) {
+                while (isSuspended) {
+                    try {
+                        LOGGER.info("Thread is suspended, waiting...");
+                        lock.wait(); // Proper suspension
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt(); // Reset interrupt flag
+                        return;
+                    }
+                }
+            }
+
+            // Perform work
+            twin.draw();
+            twin.move();
+
+            try {
+                Thread.sleep(250);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return;
+            }
+        }
     }
-  }
 
-  public void suspendMe() {
-    isSuspended = true;
-    LOGGER.info("Begin to suspend BallThread");
-  }
+    public void suspendMe() {
+        synchronized (lock) {
+            isSuspended = true;
+            LOGGER.info("Suspending BallThread");
+        }
+    }
 
-  public void resumeMe() {
-    isSuspended = false;
-    LOGGER.info("Begin to resume BallThread");
-  }
+    public void resumeMe() {
+        synchronized (lock) {
+            isSuspended = false;
+            lock.notify(); // Wake up thread
+            LOGGER.info("Resuming BallThread");
+        }
+    }
 
-  public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
-  }
+    public void stopMe() {
+        isRunning = false;
+        resumeMe(); // Ensure we don't stay stuck in wait
+    }
 }
+
 ```
 
 To use these classes together:
