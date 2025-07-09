@@ -39,11 +39,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-/**
- * FIXED Championship Test Suite - LogAggregator.
- *
- * Fixed to work with the actual LogAggregator API and proper imports
- */
+
 @ExtendWith(MockitoExtension.class)
 class LogAggregatorTest {
 

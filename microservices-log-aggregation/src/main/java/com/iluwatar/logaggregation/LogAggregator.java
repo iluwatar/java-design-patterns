@@ -191,7 +191,7 @@ public void awaitShutdown() throws InterruptedException {
    * Starts the periodic buffer flusher using ScheduledExecutorService.
    * This eliminates the busy-waiting loop with Thread.sleep().
    */
-  private void startPeriodicFlusher() {
+   private void startPeriodicFlusher() {
     scheduledExecutor.scheduleAtFixedRate(
         () -> {
           if (running) {
@@ -209,7 +209,7 @@ public void awaitShutdown() throws InterruptedException {
     
     LOGGER.info("Periodic log flusher started with interval of {} seconds", FLUSH_INTERVAL_SECONDS);
   }
-   /**
+  /**
    * Gets the current number of buffered log entries.
    * Useful for monitoring and testing.
    *
