@@ -24,7 +24,6 @@
  */
 package com.iluwatar.logaggregation;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.Executors;
@@ -34,7 +33,6 @@ import java.util.concurrent.CountDownLatch;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
-
 /**
  * Responsible for collecting and buffering logs from different services. Once the logs reach a
  * certain threshold or after a certain time interval, they are flushed to the central log store.
@@ -47,16 +45,14 @@ public class LogAggregator {
   private static final int BUFFER_THRESHOLD = 3;
   private static final int FLUSH_INTERVAL_SECONDS = 5;
   private static final int SHUTDOWN_TIMEOUT_SECONDS = 10;
-
+  
   private final CentralLogStore centralLogStore;
-  private final ConcurrentLinkedQueue<LogEntry> buffer = new ConcurrentLinkedQueue<>();
+  private final BlockingQueue<LogEntry> buffer = new LinkedBlockingQueue<>();
   private final LogLevel minLogLevel;
-  private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+  private final ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(1);
   private final AtomicInteger logCount = new AtomicInteger(0);
-   private final ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(1);
   private final CountDownLatch shutdownLatch = new CountDownLatch(1);
   private volatile boolean running = true;
-
   /**
    * constructor of LogAggregator.
    *
@@ -64,9 +60,10 @@ public class LogAggregator {
    * @param minLogLevel min log level to store log
    */
   public LogAggregator(CentralLogStore centralLogStore, LogLevel minLogLevel) {
-    this.centralLogStore = centralLogStore;
+   this.centralLogStore = centralLogStore;
     this.minLogLevel = minLogLevel;
-    startBufferFlusher();
+    startPeriodicFlusher();
+    
     // Add shutdown hook for graceful termination
     Runtime.getRuntime().addShutdownHook(new Thread(() -> {
       try {
@@ -83,7 +80,7 @@ public class LogAggregator {
    *
    * @param logEntry The log entry to collect.
    */
-  public void collectLog(LogEntry logEntry) {
+   public void collectLog(LogEntry logEntry) {
     if (!running) {
       LOGGER.warn("LogAggregator is shutting down. Skipping log entry.");
       return;
@@ -118,7 +115,7 @@ public class LogAggregator {
    *
    * @throws InterruptedException If any thread has interrupted the current thread.
    */
-  public void stop() throws InterruptedException {
+ public void stop() throws InterruptedException {
     LOGGER.info("Stopping LogAggregator...");
     running = false;
     
@@ -145,19 +142,20 @@ public class LogAggregator {
   }
 
 
+
   /**
    * Waits for the LogAggregator to complete shutdown.
    * Useful for testing or controlled shutdown scenarios.
    *
    * @throws InterruptedException If any thread has interrupted the current thread.
    */
-  public void awaitShutdown() throws InterruptedException {
+public void awaitShutdown() throws InterruptedException {
     shutdownLatch.await();
   }
 
 
   private void flushBuffer() {
-   if (!running && buffer.isEmpty()) {
+    if (!running && buffer.isEmpty()) {
       return;
     }
     
@@ -187,6 +185,7 @@ public class LogAggregator {
       LOGGER.error("Error occurred while flushing buffer", e);
     }
   }
+
 
   /**
    * Starts the periodic buffer flusher using ScheduledExecutorService.
