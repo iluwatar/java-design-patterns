@@ -27,6 +27,7 @@ package com.iluwatar.twin;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
+
 /**
  * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
  * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
@@ -37,37 +38,55 @@ public class BallThread extends Thread {
   @Setter private BallItem twin;
 
   private volatile boolean isSuspended;
-
   private volatile boolean isRunning = true;
+  private final Object lock = new Object();
 
   /** Run the thread. */
+  @Override
   public void run() {
-
     while (isRunning) {
-      if (!isSuspended) {
-        twin.draw();
-        twin.move();
+      synchronized (lock) {
+        while (isSuspended) {
+          try {
+            LOGGER.info("Thread is suspended, waiting...");
+            lock.wait(); // Proper suspension
+          } catch (InterruptedException e) {
+            Thread.currentThread().interrupt(); // Reset interrupt flag
+            return;
+          }
+        }
       }
+
+      // Perform work
+      twin.draw();
+      twin.move();
+
       try {
         Thread.sleep(250);
       } catch (InterruptedException e) {
-        throw new RuntimeException(e);
+        Thread.currentThread().interrupt();
+        return;
       }
     }
   }
 
   public void suspendMe() {
-    isSuspended = true;
-    LOGGER.info("Begin to suspend BallThread");
+    synchronized (lock) {
+      isSuspended = true;
+      LOGGER.info("Suspending BallThread");
+    }
   }
 
   public void resumeMe() {
-    isSuspended = false;
-    LOGGER.info("Begin to resume BallThread");
+    synchronized (lock) {
+      isSuspended = false;
+      lock.notify(); // Wake up thread
+      LOGGER.info("Resuming BallThread");
+    }
   }
 
   public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
+    isRunning = false;
+    resumeMe(); // Ensure we don't stay stuck in wait
   }
 }
