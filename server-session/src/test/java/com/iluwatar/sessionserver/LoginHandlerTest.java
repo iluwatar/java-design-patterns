@@ -22,23 +22,20 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.sessionserver;
+package com.iluwatar.logaggregation;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
-import com.sun.net.httpserver.Headers;
-import com.sun.net.httpserver.HttpExchange;
-import java.io.ByteArrayOutputStream;
-import java.time.Instant;
-import java.util.HashMap;
-import java.util.Map;
+import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-/** LoginHandlerTest. */
+@ExtendWith(MockitoExtension.class)
 public class LoginHandlerTest {
 
   private LoginHandler loginHandler;
@@ -47,7 +44,6 @@ public class LoginHandlerTest {
   private Map<String, Instant> sessionCreationTimes;
 
   @Mock private HttpExchange exchange;
-
   /** Setup tests. */
   @BeforeEach
   public void setUp() {
