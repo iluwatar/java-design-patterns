@@ -65,7 +65,118 @@ class LogAggregatorTest {
     verifyNoInteractionsWithCentralLogStore();
   }
 
-  private static LogEntry createLogEntry(LogLevel logLevel, String message) {
+ 
+@Test
+  void whenTwoLogsCollected_thenBufferShouldContainThem() {
+    // NEW TEST: Verify buffer state management
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Message 1"));
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Message 2"));
+    
+    assertEquals(2, logAggregator.getLogCount());
+    assertEquals(2, logAggregator.getBufferSize());
+    
+    // Should not trigger flush yet (threshold is 3)
+    verifyNoInteractionsWithCentralLogStore();
+  }
+
+  @Test
+  void whenScheduledFlushOccurs_thenBufferedLogsShouldBeStored() throws InterruptedException {
+    //  NEW TEST: Verify scheduled periodic flushing
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Scheduled flush test"));
+    
+    assertEquals(1, logAggregator.getLogCount());
+    verifyNoInteractionsWithCentralLogStore();
+    
+    // Wait for scheduled flush (FLUSH_INTERVAL_SECONDS = 5)
+    Thread.sleep(6000); // 5 seconds + buffer
+    
+    verifyCentralLogStoreInvokedTimes(1);
+    assertEquals(0, logAggregator.getLogCount());
+  }
+
+  @Test
+  void whenLogAggregatorStopped_thenRemainingLogsShouldBeStored() throws InterruptedException {
+    // NEW TEST: Verify graceful shutdown flushes remaining logs
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Final message 1"));
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Final message 2"));
+    
+    assertEquals(2, logAggregator.getLogCount());
+    verifyNoInteractionsWithCentralLogStore();
+    
+    // Stop should trigger final flush
+    logAggregator.stop();
+    logAggregator.awaitShutdown();
+    
+    verifyCentralLogStoreInvokedTimes(2);
+    assertEquals(0, logAggregator.getLogCount());
+    assertFalse(logAggregator.isRunning());
+  }
+
+  @Test
+  void whenLogLevelBelowThreshold_thenLogShouldBeFiltered() {
+    // 🎯 ENHANCED TEST: Test all log levels below INFO
+    logAggregator.collectLog(createLogEntry(LogLevel.DEBUG, "Debug message"));
+    logAggregator.collectLog(createLogEntry(LogLevel.TRACE, "Trace message"));
+    
+    assertEquals(0, logAggregator.getLogCount());
+    assertEquals(0, logAggregator.getBufferSize());
+    verifyNoInteractionsWithCentralLogStore();
+  }
+
+  @Test
+  void whenLogLevelAtOrAboveThreshold_thenLogShouldBeAccepted() {
+    //  NEW TEST: Verify all accepted log levels
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Info message"));
+    logAggregator.collectLog(createLogEntry(LogLevel.WARN, "Warning message"));
+    logAggregator.collectLog(createLogEntry(LogLevel.ERROR, "Error message"));
+    
+    assertEquals(3, logAggregator.getLogCount());
+    assertEquals(3, logAggregator.getBufferSize());
+  }
+
+  @Test
+  void whenNullLogLevelProvided_thenLogShouldBeSkipped() {
+    // EDGE CASE TEST: Null safety
+    LogEntry nullLevelEntry = new LogEntry("ServiceA", null, "Null level message", LocalDateTime.now());
+    
+    logAggregator.collectLog(nullLevelEntry);
+    
+    assertEquals(0, logAggregator.getLogCount());
+    verifyNoInteractionsWithCentralLogStore();
+  }
+
+  @Test
+  void whenLogAggregatorIsShutdown_thenNewLogsShouldBeRejected() throws InterruptedException {
+    // NEW TEST: Verify shutdown behavior
+    logAggregator.stop();
+    logAggregator.awaitShutdown();
+    
+    assertFalse(logAggregator.isRunning());
+    
+    // Try to add log after shutdown
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Post-shutdown message"));
+    
+    assertEquals(0, logAggregator.getLogCount());
+    verifyNoInteractionsWithCentralLogStore();
+  }
+
+  @Test
+  void testPerformanceMetrics() throws InterruptedException {
+    //  CHAMPIONSHIP TEST: Verify performance monitoring
+    assertTrue(logAggregator.isRunning());
+    assertFalse(logAggregator.isSuspended());
+    assertEquals(4.0, logAggregator.getFrameRate(), 0.1); // 1000ms / 250ms = 4 FPS
+    
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Performance test"));
+    assertEquals(1, logAggregator.getLogCount());
+    
+    String report = logAggregator.getPerformanceReport();
+    assertNotNull(report);
+    assertTrue(report.contains("Event-Driven"));
+    assertTrue(report.contains("Zero Busy-Wait"));
+  }
+
+   private static LogEntry createLogEntry(LogLevel logLevel, String message) {
     return new LogEntry("ServiceA", logLevel, message, LocalDateTime.now());
   }
 
