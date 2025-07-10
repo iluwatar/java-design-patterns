@@ -23,6 +23,7 @@
  * THE SOFTWARE.
  */
 package com.iluwatar.logaggregation;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
@@ -33,6 +34,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.extern.slf4j.Slf4j;
+
 /**
  * Responsible for collecting and buffering logs from different services. Once the logs reach a
  * certain threshold or after a certain time interval, they are flushed to the central log store.
@@ -206,8 +208,7 @@ public class LogAggregator {
         FLUSH_INTERVAL_SECONDS, // Period
         TimeUnit.SECONDS);
 
-    LOGGER.info(
-        "Periodic log flusher started with interval of {} seconds", FLUSH_INTERVAL_SECONDS);
+    LOGGER.info("Periodic log flusher started with interval of {} seconds", FLUSH_INTERVAL_SECONDS);
   }
 
   /**

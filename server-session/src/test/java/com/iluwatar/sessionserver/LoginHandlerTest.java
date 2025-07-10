@@ -24,11 +24,6 @@
  */
 package com.iluwatar.logaggregation;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-import java.time.LocalDateTime;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -44,6 +39,7 @@ public class LoginHandlerTest {
   private Map<String, Instant> sessionCreationTimes;
 
   @Mock private HttpExchange exchange;
+
   /** Setup tests. */
   @BeforeEach
   public void setUp() {

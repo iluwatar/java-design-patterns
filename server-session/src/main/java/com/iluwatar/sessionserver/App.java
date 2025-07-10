@@ -24,19 +24,16 @@
  */
 package com.iluwatar.sessionserver;
 
-
-import java.util.HashMap;
 import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.Iterator;
 import java.time.Instant;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.CountDownLatch;
-import java.util.Map;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -67,7 +64,6 @@ public class App {
   private static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
   private static volatile boolean running = true;
   private static final CountDownLatch shutdownLatch = new CountDownLatch(1);
-
 
   /**
    * Main entry point.
@@ -106,33 +102,36 @@ public class App {
     try {
       LOGGER.info("Session expiration checker started...");
       Instant currentTime = Instant.now();
-      
+
       // Use removeIf for efficient removal without explicit synchronization
       // ConcurrentHashMap handles thread safety internally
-      sessionCreationTimes.entrySet().removeIf(entry -> {
-        if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
-          sessions.remove(entry.getKey());
-          LOGGER.debug("Expired session: {}", entry.getKey());
-          return true;
-        }
-        return false;
-      });
-      
+      sessionCreationTimes
+          .entrySet()
+          .removeIf(
+              entry -> {
+                if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
+                  sessions.remove(entry.getKey());
+                  LOGGER.debug("Expired session: {}", entry.getKey());
+                  return true;
+                }
+                return false;
+              });
+
       LOGGER.info("Session expiration checker finished! Active sessions: {}", sessions.size());
     } catch (Exception e) {
       LOGGER.error("An error occurred during session expiration check: ", e);
     }
   }
 
-   /**
-   * Gracefully shuts down the session expiration scheduler.
-   * This method is called by the shutdown hook.
+  /**
+   * Gracefully shuts down the session expiration scheduler. This method is called by the shutdown
+   * hook.
    */
   private static void shutdown() {
     LOGGER.info("Shutting down session expiration scheduler...");
     running = false;
     scheduler.shutdown();
-    
+
     try {
       if (!scheduler.awaitTermination(5, TimeUnit.SECONDS)) {
         LOGGER.warn("Scheduler did not terminate gracefully, forcing shutdown");
@@ -143,7 +142,7 @@ public class App {
       scheduler.shutdownNow();
       Thread.currentThread().interrupt();
     }
-    
+
     shutdownLatch.countDown();
     LOGGER.info("Session expiration scheduler shut down complete");
   }
