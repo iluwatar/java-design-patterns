@@ -1,0 +1,38 @@
+@startuml
+package com.iluwatar.factory {
+
+  class App {
+    - LOGGER : Logger {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+
+  interface FileProcessor {
+    + getDescription() : String {abstract}
+  }
+
+  enum FileProcessorType {
+    + EXCEL {static}
+    + PDF   {static}
+    - instance : FileProcessor
+    + getInstance() : FileProcessor
+    + valueOf(name : String) : FileProcessorType {static}
+    + values() : FileProcessorType[] {static}
+  }
+
+  class ExcelProcessor {
+    ~ DESCRIPTION : String {static}
+    + ExcelProcessor()
+    + getDescription() : String
+  }
+
+  class PDFProcessor {
+    ~ DESCRIPTION : String {static}
+    + PDFProcessor()
+    + getDescription() : String
+  }
+}
+
+ExcelProcessor ..|> FileProcessor
+PDFProcessor  ..|> FileProcessor
+@enduml
