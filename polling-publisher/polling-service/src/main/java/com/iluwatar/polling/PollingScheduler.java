@@ -38,20 +38,24 @@ public class PollingScheduler {
 
   private static final Logger log = LoggerFactory.getLogger(PollingScheduler.class);
   @Autowired private DataSourceService dataSourceService;
-
   @Autowired private KafkaProducer kafkaProducer;
 
   /** Scheduler for poll data on each 5 second. */
   @Scheduled(fixedRate = 5000) // Poll every 5 seconds
   public void pollDataSource() {
-    int id = new Random().nextInt(100); // Pick a random ID
-    String data = dataSourceService.getData(id); // Get data from service
+    try {
+      int id = new Random().nextInt(100); // Pick a random ID
+      String data = dataSourceService.getData(id); // Get data from service
 
-    if (data != null) {
-      log.info("🟢 Publishing Data: {}", data);
-      kafkaProducer.sendMessage("updates", data);
-    } else {
-      log.info("🔴 No Data Found for ID: {}", id);
+      if (data != null) {
+        log.info("🟢 Publishing Data: {}", data);
+        kafkaProducer.sendMessage("updates", data);
+      } else {
+        log.info("🔴 No Data Found for ID: {}", id);
+      }
+    } catch (Exception e) {
+      log.error("Error while publishing data {}", e.getMessage());
+      throw new RuntimeException(e);
     }
   }
 }

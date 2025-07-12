@@ -35,12 +35,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class PollingController {
 
+  @Autowired private KafkaProducer kafkaProducer;
+
   @GetMapping("/health")
   public String healthCheck() {
     return "Polling Service is up and running!";
   }
-
-  @Autowired private KafkaProducer kafkaProducer;
 
   @PostMapping("/send")
   public String sendMessage(@RequestParam("message") String message) {
