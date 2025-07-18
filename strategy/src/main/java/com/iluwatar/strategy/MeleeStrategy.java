@@ -28,6 +28,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /** Melee strategy. */
 @Slf4j
+/**
+ * A strategy where the dragon is slain using a melee weapon (sword).
+ */
 public class MeleeStrategy implements DragonSlayingStrategy {
 
   @Override
