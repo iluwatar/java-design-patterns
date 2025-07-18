@@ -40,6 +40,7 @@ public class CakeViewImpl implements View {
     this.cakeBakingService = cakeBakingService;
   }
 
+  @Override
   public void render() {
     cakeBakingService.getAllCakes().forEach(cake -> LOGGER.info(cake.toString()));
   }
