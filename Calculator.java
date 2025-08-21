@@ -9,5 +9,7 @@ public class Calculator {
     public double squareRoot(double number) {
         if (number < 0) throw new IllegalArgumentException("Cannot calculate square root of negative number");
         return Math.sqrt(number);
+    public double power(double base, double exponent) {
+        return Math.pow(base, exponent);
     }
 }
