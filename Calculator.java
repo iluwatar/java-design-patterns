@@ -6,4 +6,7 @@ public class Calculator {
         if (b == 0) throw new ArithmeticException("Divide by zero");
         return (double) a / b;
     }
+    public double power(double base, double exponent) {
+        return Math.pow(base, exponent);
+    }
 }
