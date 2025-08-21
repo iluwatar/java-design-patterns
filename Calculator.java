@@ -6,4 +6,8 @@ public class Calculator {
         if (b == 0) throw new ArithmeticException("Divide by zero");
         return (double) a / b;
     }
+    public double squareRoot(double number) {
+        if (number < 0) throw new IllegalArgumentException("Cannot calculate square root of negative number");
+        return Math.sqrt(number);
+    }
 }
