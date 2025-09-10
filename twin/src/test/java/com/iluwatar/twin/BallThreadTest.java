@@ -39,7 +39,6 @@ import org.junit.jupiter.api.Test;
 
 /** BallThreadTest */
 class BallThreadTest {
-
   /** Verify if the {@link BallThread} can be resumed */
   @Test
   void testSuspend() {
@@ -47,21 +46,16 @@ class BallThreadTest {
         ofMillis(5000),
         () -> {
           final var ballThread = new BallThread();
-
           final var ballItem = mock(BallItem.class);
           ballThread.setTwin(ballItem);
-
           ballThread.start();
           sleep(200);
           verify(ballItem, atLeastOnce()).draw();
           verify(ballItem, atLeastOnce()).move();
           ballThread.suspendMe();
-
           sleep(1000);
-
           ballThread.stopMe();
           ballThread.join();
-
           verifyNoMoreInteractions(ballItem);
         });
   }
@@ -73,25 +67,18 @@ class BallThreadTest {
         ofMillis(5000),
         () -> {
           final var ballThread = new BallThread();
-
           final var ballItem = mock(BallItem.class);
           ballThread.setTwin(ballItem);
-
           ballThread.suspendMe();
           ballThread.start();
-
           sleep(1000);
-
           verifyNoMoreInteractions(ballItem);
-
           ballThread.resumeMe();
           sleep(300);
           verify(ballItem, atLeastOnce()).draw();
           verify(ballItem, atLeastOnce()).move();
-
           ballThread.stopMe();
           ballThread.join();
-
           verifyNoMoreInteractions(ballItem);
         });
   }
@@ -109,7 +96,6 @@ class BallThreadTest {
           ballThread.start();
           ballThread.interrupt();
           ballThread.join();
-
           verify(exceptionHandler).uncaughtException(eq(ballThread), any(RuntimeException.class));
           verifyNoMoreInteractions(exceptionHandler);
         });
