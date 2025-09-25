@@ -24,7 +24,7 @@
 
 熟悉了這些概念，就可以透過以下任一種方式深入研究可用的設計模式：
 
-- 依名稱搜尋特定模式。找不到的話？请[在這裡](https://github.com/iluwatar/java-design-patterns/issues)回報新模式。
+- 依名稱搜尋特定模式。找不到的話？請[在這裡](https://github.com/iluwatar/java-design-patterns/issues)回報新模式。
 - 使用難度標籤： `Performance（效能）` ， `Gang of Four（四人幫）`和`Data access（資料存取）` 。
 - 使用模式分類`Creational（建立型）` ，`Behavioral（行為型）`和其他类别。
 
