@@ -51,19 +51,20 @@ public abstract class AbstractDocument implements Document {
     return documentProperties.get(key);
   }
 
-@SuppressWarnings("unchecked")
-@Override
-public <T> Stream<T> children(String key, Function<Map<String, Object>, T> childConstructor) {
-  Object value = get(key);
-  if (value instanceof List<?>) {
-    return ((List<?>) value).stream()
-        .filter(e -> e instanceof Map) // Only keeping items that are actually maps before casting
-        .map(e -> (Map<String, Object>) e)
-        .map(childConstructor);
+  @SuppressWarnings("unchecked")
+  @Override
+  public <T> Stream<T> children(String key, Function<Map<String, Object>, T> childConstructor) {
+    Object value = get(key);
+    if (value instanceof List<?>) {
+      return ((List<?>) value)
+          .stream()
+              .filter(
+                  e -> e instanceof Map) // Only keeping items that are actually maps before casting
+              .map(e -> (Map<String, Object>) e)
+              .map(childConstructor);
+    }
+    return Stream.empty();
   }
-  return Stream.empty();
-}
-
 
   @Override
   public String toString() {

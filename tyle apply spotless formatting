@@ -1,0 +1,37 @@
+[1mdiff --git a/abstract-document/src/main/java/com/iluwatar/abstractdocument/AbstractDocument.java b/abstract-document/src/main/java/com/iluwatar/abstractdocument/AbstractDocument.java[m
+[1mindex 41bfb2353..55584d94d 100644[m
+[1m--- a/abstract-document/src/main/java/com/iluwatar/abstractdocument/AbstractDocument.java[m
+[1m+++ b/abstract-document/src/main/java/com/iluwatar/abstractdocument/AbstractDocument.java[m
+[36m@@ -51,19 +51,20 @@[m [mpublic abstract class AbstractDocument implements Document {[m
+     return documentProperties.get(key);[m
+   }[m
+ [m
+[31m-@SuppressWarnings("unchecked")[m
+[31m-@Override[m
+[31m-public <T> Stream<T> children(String key, Function<Map<String, Object>, T> childConstructor) {[m
+[31m-  Object value = get(key);[m
+[31m-  if (value instanceof List<?>) {[m
+[31m-    return ((List<?>) value).stream()[m
+[31m-        .filter(e -> e instanceof Map) // Only keeping items that are actually maps before casting[m
+[31m-        .map(e -> (Map<String, Object>) e)[m
+[31m-        .map(childConstructor);[m
+[32m+[m[32m  @SuppressWarnings("unchecked")[m
+[32m+[m[32m  @Override[m
+[32m+[m[32m  public <T> Stream<T> children(String key, Function<Map<String, Object>, T> childConstructor) {[m
+[32m+[m[32m    Object value = get(key);[m
+[32m+[m[32m    if (value instanceof List<?>) {[m
+[32m+[m[32m      return ((List<?>) value)[m
+[32m+[m[32m          .stream()[m
+[32m+[m[32m              .filter([m
+[32m+[m[32m                  e -> e instanceof Map) // Only keeping items that are actually maps before casting[m
+[32m+[m[32m              .map(e -> (Map<String, Object>) e)[m
+[32m+[m[32m              .map(childConstructor);[m
+[32m+[m[32m    }[m
+[32m+[m[32m    return Stream.empty();[m
+   }[m
+[31m-  return Stream.empty();[m
+[31m-}[m
+[31m-[m
+ [m
+   @Override[m
+   public String toString() {[m
