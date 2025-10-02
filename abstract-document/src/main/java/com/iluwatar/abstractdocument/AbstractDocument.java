@@ -38,7 +38,7 @@ public abstract class AbstractDocument implements Document {
   protected AbstractDocument(Map<String, Object> properties) {
     Objects.requireNonNull(properties, "properties map is required");
     this.documentProperties = properties;
-  }
+  } // indentation fixed
 
   @Override
   public Void put(String key, Object value) {
