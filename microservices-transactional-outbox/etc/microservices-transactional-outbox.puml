@@ -1,0 +1,69 @@
+@startuml
+title Transactional Outbox Pattern Class Diagram
+
+package com.iluwatar.transactionaloutbox {
+
+  class App {
+    + {static} main(args: String[]): void
+  }
+
+  class Customer {
+    - id: Integer
+    - username: String
+    + Customer(username: String)
+  }
+
+  class OutboxEvent {
+    - id: Integer
+    - eventType: String
+    - payload: String
+    - processed: boolean
+    + OutboxEvent(eventType: String, payload: String)
+  }
+
+  class CustomerService {
+    - entityManager: EntityManager
+    - outboxRepository: OutboxRepository
+    + CustomerService(entityManager: EntityManager)
+    + createCustomer(username: String): void
+  }
+
+  class OutboxRepository {
+    - entityManager: EntityManager
+    + OutboxRepository(entityManager: EntityManager)
+    + save(event: OutboxEvent): void
+    + markAsProcessed(event: OutboxEvent): void
+    + findUnprocessedEvents(): List<OutboxEvent>
+  }
+
+  class EventPoller {
+    - outboxRepository: OutboxRepository
+    - messageBroker: MessageBroker
+    + EventPoller(entityManager: EntityManager, messageBroker: MessageBroker)
+    + start(): void
+    + stop(): void
+    - processOutboxEvents(): void
+  }
+
+  class MessageBroker {
+    + sendMessage(event: OutboxEvent): void
+  }
+}
+
+' --- Relationships ---
+
+App ..> CustomerService : creates >
+App ..> EventPoller : creates >
+App ..> MessageBroker : creates >
+
+CustomerService --> "-outboxRepository" OutboxRepository
+CustomerService ..> Customer : <<creates>>
+CustomerService ..> OutboxEvent : <<creates>>
+
+EventPoller --> "-outboxRepository" OutboxRepository
+EventPoller --> "-messageBroker" MessageBroker
+
+OutboxRepository ..> OutboxEvent : <<manages>>
+MessageBroker ..> OutboxEvent : <<sends>>
+
+@enduml
