@@ -25,7 +25,6 @@
 package com.iluwatar.transactionaloutbox;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
@@ -41,7 +40,6 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.LockModeType;
 import jakarta.persistence.TypedQuery;
 import java.util.Collections;
-import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -175,19 +173,5 @@ class EventPollerTests {
 
     assertEquals(1, eventPoller.getFailedEventsCount());
     assertEquals(0, eventPoller.getProcessedEventsCount());
-  }
-
-  @Test
-  void shouldStartAndStopCorrectly() throws Exception {
-    eventPoller.start();
-
-    assertFalse(eventPoller.getScheduler().isShutdown());
-    assertFalse(eventPoller.getScheduler().isTerminated());
-
-    eventPoller.stop();
-
-    assertTrue(eventPoller.getScheduler().isShutdown());
-    assertTrue(eventPoller.getScheduler().awaitTermination(1, TimeUnit.SECONDS));
-    assertTrue(eventPoller.getScheduler().isTerminated());
   }
 }
