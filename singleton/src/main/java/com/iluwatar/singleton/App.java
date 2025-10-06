@@ -72,6 +72,22 @@ public class App {
    */
   public static void main(String[] args) {
 
+    // Eager Initialization - Simple and clear example
+    LOGGER.info("=== Eager Initialization ===");
+    var eager1 = EagerInitializedSingleton.getInstance();
+    var eager2 = EagerInitializedSingleton.getInstance();
+    LOGGER.info("eager1={}", eager1);
+    LOGGER.info("eager2={}", eager2);
+    LOGGER.info("Same instance: {}", eager1 == eager2);
+
+    // Lazy Initialization - Simple and clear example
+    LOGGER.info("=== Lazy Initialization ===");
+    var lazy1 = LazyInitializedSingleton.getInstance();
+    var lazy2 = LazyInitializedSingleton.getInstance();
+    LOGGER.info("lazy1={}", lazy1);
+    LOGGER.info("lazy2={}", lazy2);
+    LOGGER.info("Same instance: {}", lazy1 == lazy2);
+
     // eagerly initialized singleton
     var ivoryTower1 = IvoryTower.getInstance();
     var ivoryTower2 = IvoryTower.getInstance();
