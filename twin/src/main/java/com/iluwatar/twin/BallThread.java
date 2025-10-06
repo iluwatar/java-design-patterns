@@ -1,26 +1,5 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
- * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
+ * This project is licensed under the MIT license. For more information see the LICENSE.md file.
  */
 package com.iluwatar.twin;
 
@@ -28,46 +7,82 @@ import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
- * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
+ * This class is a UI thread for drawing the {@link BallItem}, and provides methods for suspension
+ * and resumption. It holds a reference to a {@link BallItem} to delegate the drawing task.
+ * This implementation uses wait/notify to avoid busy-waiting.
  */
 @Slf4j
 public class BallThread extends Thread {
 
-  @Setter private BallItem twin;
+  @Setter
+  private BallItem twin;
 
+  private final Object lock = new Object();
   private volatile boolean isSuspended;
-
   private volatile boolean isRunning = true;
 
-  /** Run the thread. */
+  /**
+   * The main execution method for the thread. It continuously draws and moves the twin object
+   * unless suspended or stopped.
+   */
+  @Override
   public void run() {
-
     while (isRunning) {
-      if (!isSuspended) {
+      try {
+        synchronized (lock) {
+          // Wait while the thread is suspended.
+          while (isSuspended) {
+            lock.wait();
+          }
+        }
+
+        // Check if the thread should terminate after being woken up.
+        if (!isRunning) {
+          break;
+        }
+
+        // Perform the work.
         twin.draw();
         twin.move();
-      }
-      try {
+
+        // Control the animation speed.
         Thread.sleep(250);
       } catch (InterruptedException e) {
-        throw new RuntimeException(e);
+        // Restore the interrupted status and exit gracefully.
+        Thread.currentThread().interrupt();
+        LOGGER.error("BallThread was interrupted", e);
+        isRunning = false;
       }
     }
   }
 
+  /**
+   * Suspends the thread's execution. The thread will pause its work and wait until resumed.
+   */
   public void suspendMe() {
     isSuspended = true;
-    LOGGER.info("Begin to suspend BallThread");
+    LOGGER.info("Suspending BallThread.");
   }
 
+  /**
+   * Resumes the thread's execution. It notifies the waiting thread to continue its work.
+   */
   public void resumeMe() {
-    isSuspended = false;
-    LOGGER.info("Begin to resume BallThread");
+    synchronized (lock) {
+      isSuspended = false;
+      // Wake up the waiting thread.
+      lock.notifyAll();
+    }
+    LOGGER.info("Resuming BallThread.");
   }
 
+  /**
+   * Stops the thread's execution permanently. It ensures that if the thread is suspended,
+   * it will be woken up to terminate gracefully.
+   */
   public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
+    isRunning = false;
+    // Wake up the thread if it is suspended so it can terminate.
+    resumeMe();
   }
 }
