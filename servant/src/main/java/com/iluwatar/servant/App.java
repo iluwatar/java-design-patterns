@@ -67,9 +67,9 @@ public class App {
 
     // check your luck
     if (servant.checkIfYouWillBeHanged(guests)) {
-      LOGGER.info("{} will live another day", servant.name);
+      log.info("{} will live another day", servant.getName());
     } else {
-      LOGGER.info("Poor {}. His days are numbered", servant.name);
+      log.info("Poor {}. His days are numbered", servant.getName());
     }
   }
 }
