@@ -39,9 +39,13 @@ Once you are familiar with these concepts you can start drilling down into the [
 
 Hopefully, you find the object-oriented solutions presented on this site useful in your architectures and have as much fun learning them as we had while developing them.
 
-# How to Contribute
-
-If you are willing to contribute to the project you will find the relevant information in our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
+## How to Contribute
+1. Fork this repository.
+2. Clone your fork to your local machine.
+3. Create a new branch for your feature or fix.
+4. Make your changes.
+5. Commit and push your branch.
+6. Open a Pull Request explaining your changes.
 
 # The Book
 
@@ -579,7 +583,7 @@ This project is licensed under the terms of the MIT license.
     </tr>
   </tbody>
 </table>
-
+ 
 <!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
 
