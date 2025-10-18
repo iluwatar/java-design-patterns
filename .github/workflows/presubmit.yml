@@ -15,21 +15,33 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - name: Check required secrets
-        run: |
-          if [ -z "${{ secrets.LLM_API_KEY }}" ]; then
-            echo "Error: LLM_API_KEY secret is not configured"
-            exit 1
-          fi
-
       - name: Check out PR code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.sha }}
 
+      - name: Check API key availability
+        id: check_api_key
+        run: |
+          if [ -z "${{ secrets.LLM_API_KEY }}" ]; then
+            echo "api_key_available=false" >> $GITHUB_OUTPUT
+            echo "Warning: LLM_API_KEY secret is not configured. AI review will be skipped."
+          else
+            echo "api_key_available=true" >> $GITHUB_OUTPUT
+            echo "LLM_API_KEY is configured. AI review will run."
+          fi
+
       - name: Run AI Reviewer
+        if: steps.check_api_key.outputs.api_key_available == 'true'
         uses: presubmit/ai-reviewer@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
           LLM_MODEL: "gemini-1.5-flash"
+        continue-on-error: true
+
+      - name: AI Review Skipped Notice
+        if: steps.check_api_key.outputs.api_key_available == 'false'
+        run: |
+          echo "::notice::AI review was skipped because LLM_API_KEY secret is not configured."
+          echo "To enable AI review, please configure the LLM_API_KEY secret in repository settings."
