@@ -32,10 +32,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Footer microservice responsible for managing footer fragments.
- * 
- * <p>This service represents an independent microservice that handles
- * footer content, including dynamic elements like current time, links,
- * and promotional content that might change frequently.
+ *
+ * <p>This service represents an independent microservice that handles footer content, including
+ * dynamic elements like current time, links, and promotional content that might change frequently.
  */
 @Slf4j
 public class FooterService {
@@ -44,64 +43,65 @@ public class FooterService {
 
   /**
    * Generates footer fragment for the given context.
-   * 
-   * <p>This method simulates a microservice endpoint that might include
-   * dynamic footer content, promotional banners, social media feeds,
-   * or real-time information.
+   *
+   * <p>This method simulates a microservice endpoint that might include dynamic footer content,
+   * promotional banners, social media feeds, or real-time information.
    *
    * @param context page context containing rendering information
    * @return rendered footer fragment as HTML string
    */
   public String generateFragment(PageContext context) {
-    LOGGER.info("FooterService: Processing footer request for page {} (User: {})", 
-        context.getPageId(), 
+    LOGGER.info(
+        "FooterService: Processing footer request for page {} (User: {})",
+        context.getPageId(),
         context.getUserId() != null ? context.getUserId() : "anonymous");
-    
+
     // Simulate footer-specific processing
     simulateFooterProcessing();
-    
+
     // Add footer-specific metadata
     context.setAttribute("footerService.version", "1.3.0");
     context.setAttribute("footerService.timestamp", System.currentTimeMillis());
     context.setAttribute("footerService.dynamicContent", true);
-    
+
     // Add promotional content if applicable
     addPromotionalContent(context);
-    
+
     var renderedFragment = footerFragment.render(context);
-    
-    LOGGER.debug("FooterService: Generated footer fragment of length {} characters", 
+
+    LOGGER.debug(
+        "FooterService: Generated footer fragment of length {} characters",
         renderedFragment.length());
-    
+
     return renderedFragment;
   }
 
   /**
    * Adds promotional or dynamic content to the footer context.
-   * 
-   * <p>This simulates how a footer service might inject promotional
-   * banners, announcements, or other dynamic content.
+   *
+   * <p>This simulates how a footer service might inject promotional banners, announcements, or
+   * other dynamic content.
    *
    * @param context page context to enhance with promotional content
    */
   private void addPromotionalContent(PageContext context) {
     // Simulate checking for active promotions
     var hasActivePromotion = System.currentTimeMillis() % 2 == 0; // Random for demo
-    
+
     if (hasActivePromotion) {
-      context.setAttribute("footer.promotion", "🎉 Special offer: 20% off all design pattern books!");
+      context.setAttribute(
+          "footer.promotion", "🎉 Special offer: 20% off all design pattern books!");
       context.setAttribute("footer.promotionLink", "/promotions/books");
       LOGGER.debug("FooterService: Added promotional content to footer");
     }
-    
+
     // Add social media feed timestamp (simulated)
     context.setAttribute("footer.socialFeedUpdate", System.currentTimeMillis());
   }
 
   /**
-   * Simulates footer-specific processing.
-   * This might include retrieving social media feeds, checking for announcements,
-   * or updating promotional content.
+   * Simulates footer-specific processing. This might include retrieving social media feeds,
+   * checking for announcements, or updating promotional content.
    */
   private void simulateFooterProcessing() {
     try {
@@ -120,7 +120,7 @@ public class FooterService {
   public String getServiceInfo() {
     return "Footer Service v1.3.0 - Manages website footer and dynamic promotional content";
   }
-  
+
   /**
    * Health check endpoint for service monitoring.
    *
@@ -129,7 +129,7 @@ public class FooterService {
   public boolean isHealthy() {
     return true; // In real implementation, this would check external dependencies
   }
-  
+
   /**
    * Gets the fragment type this service handles.
    *
@@ -138,14 +138,14 @@ public class FooterService {
   public String getFragmentType() {
     return footerFragment.getType();
   }
-  
+
   /**
    * Gets current promotional status for monitoring.
    *
    * @return promotional content status
    */
   public String getPromotionalStatus() {
-    return "Active promotions: 2, Social feed updates: enabled, Last update: " + 
-           System.currentTimeMillis();
+    return "Active promotions: 2, Social feed updates: enabled, Last update: "
+        + System.currentTimeMillis();
   }
 }

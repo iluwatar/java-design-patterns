@@ -29,12 +29,12 @@ import com.iluwatar.serverfragment.types.PageContext;
 
 /**
  * Base interface for page fragments in Server-Side Page Fragment Composition pattern.
- * 
- * <p>Each fragment represents a portion of a web page that can be independently
- * developed, deployed, and managed by different microservices.
+ *
+ * <p>Each fragment represents a portion of a web page that can be independently developed,
+ * deployed, and managed by different microservices.
  */
 public interface Fragment {
-  
+
   /**
    * Renders the fragment content based on the provided context.
    *
@@ -42,22 +42,21 @@ public interface Fragment {
    * @return rendered HTML content as string
    */
   String render(PageContext context);
-  
+
   /**
    * Gets the fragment type identifier.
    *
    * @return fragment type as string
    */
   String getType();
-  
+
   /**
-   * Gets the fragment priority for rendering order.
-   * Lower values indicate higher priority.
+   * Gets the fragment priority for rendering order. Lower values indicate higher priority.
    *
    * @return priority value as integer
    */
   int getPriority();
-  
+
   /**
    * Checks if the fragment is cacheable.
    *
@@ -66,7 +65,7 @@ public interface Fragment {
   default boolean isCacheable() {
     return true;
   }
-  
+
   /**
    * Gets the cache timeout in seconds.
    *

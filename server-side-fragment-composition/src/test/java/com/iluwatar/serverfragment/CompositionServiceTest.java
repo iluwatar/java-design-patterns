@@ -26,7 +26,6 @@
 package com.iluwatar.serverfragment;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -41,9 +40,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 
-/**
- * Unit tests for CompositionService demonstrating Server-Side Page Fragment Composition.
- */
+/** Unit tests for CompositionService demonstrating Server-Side Page Fragment Composition. */
 class CompositionServiceTest {
 
   private CompositionService compositionService;
@@ -57,7 +54,7 @@ class CompositionServiceTest {
     headerService = new HeaderService();
     contentService = new ContentService();
     footerService = new FooterService();
-    
+
     // Register all services
     compositionService.registerService("header", headerService);
     compositionService.registerService("content", contentService);
@@ -67,7 +64,7 @@ class CompositionServiceTest {
   @Test
   void testPageComposition() {
     var result = compositionService.composePage("home");
-    
+
     assertNotNull(result);
     assertTrue(result.contains("<header"));
     assertTrue(result.contains("<main"));
@@ -81,11 +78,11 @@ class CompositionServiceTest {
     var homePage = compositionService.composePage("home");
     var aboutPage = compositionService.composePage("about");
     var contactPage = compositionService.composePage("contact");
-    
+
     assertNotEquals(homePage, aboutPage);
     assertNotEquals(aboutPage, contactPage);
     assertNotEquals(homePage, contactPage);
-    
+
     assertTrue(homePage.contains("Welcome Home"));
     assertTrue(aboutPage.contains("About Us"));
     assertTrue(contactPage.contains("Contact Us"));
@@ -94,24 +91,25 @@ class CompositionServiceTest {
   @Test
   void testServiceRegistration() {
     var newCompositionService = new CompositionService();
-    
+
     assertDoesNotThrow(() -> newCompositionService.registerService("header", new HeaderService()));
-    assertDoesNotThrow(() -> newCompositionService.registerService("content", new ContentService()));
+    assertDoesNotThrow(
+        () -> newCompositionService.registerService("content", new ContentService()));
     assertDoesNotThrow(() -> newCompositionService.registerService("footer", new FooterService()));
   }
 
   @Test
   void testInvalidServiceRegistration() {
-    assertThrows(IllegalArgumentException.class, 
+    assertThrows(
+        IllegalArgumentException.class,
         () -> compositionService.registerService("invalid", new Object()));
   }
 
   @Test
   void testCompositionWithoutRequiredServices() {
     var emptyCompositionService = new CompositionService();
-    
-    assertThrows(IllegalStateException.class, 
-        () -> emptyCompositionService.composePage("home"));
+
+    assertThrows(IllegalStateException.class, () -> emptyCompositionService.composePage("home"));
   }
 
   @Test
@@ -119,29 +117,29 @@ class CompositionServiceTest {
     var partialCompositionService = new CompositionService();
     partialCompositionService.registerService("header", new HeaderService());
     // Missing content and footer services
-    
-    assertThrows(IllegalStateException.class, 
-        () -> partialCompositionService.composePage("home"));
+
+    assertThrows(IllegalStateException.class, () -> partialCompositionService.composePage("home"));
   }
 
   @Test
   @Timeout(value = 5, unit = TimeUnit.SECONDS)
   void testAsynchronousPageComposition() {
-    assertDoesNotThrow(() -> {
-      var future = compositionService.composePageAsync("home");
-      var result = future.get(3, TimeUnit.SECONDS);
-      
-      assertNotNull(result);
-      assertTrue(result.contains("<header"));
-      assertTrue(result.contains("<main"));
-      assertTrue(result.contains("<footer"));
-    });
+    assertDoesNotThrow(
+        () -> {
+          var future = compositionService.composePageAsync("home");
+          var result = future.get(3, TimeUnit.SECONDS);
+
+          assertNotNull(result);
+          assertTrue(result.contains("<header"));
+          assertTrue(result.contains("<main"));
+          assertTrue(result.contains("<footer"));
+        });
   }
 
   @Test
   void testHealthStatus() {
     var healthStatus = compositionService.getHealthStatus();
-    
+
     assertNotNull(healthStatus);
     assertTrue(healthStatus.contains("Header=true"));
     assertTrue(healthStatus.contains("Content=true"));
@@ -150,11 +148,11 @@ class CompositionServiceTest {
 
   @Test
   void testPageContentVariations() {
-    var pages = new String[]{"home", "about", "contact", "products", "unknown"};
-    
+    var pages = new String[] {"home", "about", "contact", "products", "unknown"};
+
     for (var pageId : pages) {
       var result = compositionService.composePage(pageId);
-      
+
       assertNotNull(result);
       assertTrue(result.contains("DOCTYPE html"));
       assertTrue(result.length() > 1000); // Ensure substantial content
@@ -164,15 +162,15 @@ class CompositionServiceTest {
   @Test
   void testCompositionPerformance() {
     var startTime = System.currentTimeMillis();
-    
+
     // Compose multiple pages to test performance
     for (int i = 0; i < 10; i++) {
       compositionService.composePage("home");
     }
-    
+
     var endTime = System.currentTimeMillis();
     var totalTime = endTime - startTime;
-    
+
     // Should complete 10 compositions in reasonable time (less than 5 seconds)
     assertTrue(totalTime < 5000, "Composition should be reasonably fast");
   }

@@ -32,9 +32,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Footer fragment implementation for Server-Side Page Fragment Composition.
- * 
- * <p>This fragment is responsible for rendering the footer section of web pages,
- * typically containing copyright information, links, and dynamic footer content.
+ *
+ * <p>This fragment is responsible for rendering the footer section of web pages, typically
+ * containing copyright information, links, and dynamic footer content.
  */
 @Slf4j
 public class FooterFragment implements Fragment {
@@ -42,11 +42,13 @@ public class FooterFragment implements Fragment {
   @Override
   public String render(PageContext context) {
     LOGGER.info("Rendering footer fragment for page: {}", context.getPageId());
-    
-    var currentTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+
+    var currentTime =
+        LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
     var currentYear = LocalDateTime.now().getYear();
-    
-    return String.format("""
+
+    return String.format(
+        """
         <footer class="site-footer">
           <div class="footer-content">
             <div class="footer-section">
@@ -82,7 +84,8 @@ public class FooterFragment implements Fragment {
             <p>Page generated at: %s | Rendered by Footer Service</p>
           </div>
         </footer>
-        """, currentYear, currentTime);
+        """,
+        currentYear, currentTime);
   }
 
   @Override
@@ -94,7 +97,7 @@ public class FooterFragment implements Fragment {
   public int getPriority() {
     return 3; // Lowest priority - rendered last
   }
-  
+
   @Override
   public boolean isCacheable() {
     return false; // Footer contains timestamp, so shouldn't be cached

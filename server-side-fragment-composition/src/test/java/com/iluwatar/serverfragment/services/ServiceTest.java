@@ -33,34 +33,28 @@ import com.iluwatar.serverfragment.types.PageContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for microservices in Server-Side Page Fragment Composition pattern.
- */
+/** Unit tests for microservices in Server-Side Page Fragment Composition pattern. */
 class ServiceTest {
 
   private PageContext context;
 
   @BeforeEach
   void setUp() {
-    context = PageContext.builder()
-        .pageId("test")
-        .title("Test Page")
-        .userId("testUser")
-        .build();
+    context = PageContext.builder().pageId("test").title("Test Page").userId("testUser").build();
   }
 
   @Test
   void testHeaderService() {
     var headerService = new HeaderService();
-    
+
     var fragment = headerService.generateFragment(context);
-    
+
     assertNotNull(fragment);
     assertTrue(fragment.contains("<header"));
     assertTrue(fragment.contains("Test Page"));
     assertTrue(fragment.contains("Welcome, testUser!"));
     assertTrue(fragment.contains("nav"));
-    
+
     assertEquals("header", headerService.getFragmentType());
     assertTrue(headerService.isHealthy());
     assertNotNull(headerService.getServiceInfo());
@@ -68,14 +62,12 @@ class ServiceTest {
 
   @Test
   void testHeaderServiceWithAnonymousUser() {
-    var anonymousContext = PageContext.builder()
-        .pageId("test")
-        .title("Test Page")
-        .build(); // No userId
-    
+    var anonymousContext =
+        PageContext.builder().pageId("test").title("Test Page").build(); // No userId
+
     var headerService = new HeaderService();
     var fragment = headerService.generateFragment(anonymousContext);
-    
+
     assertNotNull(fragment);
     assertTrue(fragment.contains("Welcome, Guest!"));
   }
@@ -83,13 +75,13 @@ class ServiceTest {
   @Test
   void testContentService() {
     var contentService = new ContentService();
-    
+
     var fragment = contentService.generateFragment(context);
-    
+
     assertNotNull(fragment);
     assertTrue(fragment.contains("<main"));
     assertTrue(fragment.contains("Test Page"));
-    
+
     assertEquals("content", contentService.getFragmentType());
     assertTrue(contentService.isHealthy());
     assertNotNull(contentService.getServiceInfo());
@@ -99,28 +91,19 @@ class ServiceTest {
   @Test
   void testContentServiceDifferentPages() {
     var contentService = new ContentService();
-    
+
     // Test home page content
-    var homeContext = PageContext.builder()
-        .pageId("home")
-        .title("Home")
-        .build();
+    var homeContext = PageContext.builder().pageId("home").title("Home").build();
     var homeFragment = contentService.generateFragment(homeContext);
     assertTrue(homeFragment.contains("Welcome to our Server-Side Fragment"));
-    
+
     // Test about page content
-    var aboutContext = PageContext.builder()
-        .pageId("about")
-        .title("About")
-        .build();
+    var aboutContext = PageContext.builder().pageId("about").title("About").build();
     var aboutFragment = contentService.generateFragment(aboutContext);
     assertTrue(aboutFragment.contains("About Server-Side Page Fragment"));
-    
+
     // Test contact page content
-    var contactContext = PageContext.builder()
-        .pageId("contact")
-        .title("Contact")
-        .build();
+    var contactContext = PageContext.builder().pageId("contact").title("Contact").build();
     var contactFragment = contentService.generateFragment(contactContext);
     assertTrue(contactFragment.contains("Contact Information"));
   }
@@ -128,15 +111,15 @@ class ServiceTest {
   @Test
   void testFooterService() {
     var footerService = new FooterService();
-    
+
     var fragment = footerService.generateFragment(context);
-    
+
     assertNotNull(fragment);
     assertTrue(fragment.contains("<footer"));
     assertTrue(fragment.contains("Design Patterns"));
     assertTrue(fragment.contains("All rights reserved"));
     assertTrue(fragment.contains("Footer Service"));
-    
+
     assertEquals("footer", footerService.getFragmentType());
     assertTrue(footerService.isHealthy());
     assertNotNull(footerService.getServiceInfo());
@@ -146,10 +129,10 @@ class ServiceTest {
   @Test
   void testPageContextAttributes() {
     context.setAttribute("test.attribute", "test.value");
-    
+
     assertTrue(context.hasAttribute("test.attribute"));
     assertEquals("test.value", context.getAttribute("test.attribute"));
-    
+
     context.setAttribute("test.number", 42);
     assertEquals(42, context.getAttribute("test.number"));
   }
@@ -159,20 +142,20 @@ class ServiceTest {
     var headerService = new HeaderService();
     var contentService = new ContentService();
     var footerService = new FooterService();
-    
+
     // Measure processing time for each service
     var startTime = System.currentTimeMillis();
     headerService.generateFragment(context);
     var headerTime = System.currentTimeMillis() - startTime;
-    
+
     startTime = System.currentTimeMillis();
     contentService.generateFragment(context);
     var contentTime = System.currentTimeMillis() - startTime;
-    
+
     startTime = System.currentTimeMillis();
     footerService.generateFragment(context);
     var footerTime = System.currentTimeMillis() - startTime;
-    
+
     // All services should complete within reasonable time
     assertTrue(headerTime < 1000, "Header service should complete quickly");
     assertTrue(contentTime < 1000, "Content service should complete quickly");

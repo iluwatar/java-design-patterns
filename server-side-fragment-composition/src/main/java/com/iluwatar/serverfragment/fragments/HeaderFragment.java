@@ -30,9 +30,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Header fragment implementation for Server-Side Page Fragment Composition.
- * 
- * <p>This fragment is responsible for rendering the header section of web pages,
- * typically containing navigation, branding, and user-specific information.
+ *
+ * <p>This fragment is responsible for rendering the header section of web pages, typically
+ * containing navigation, branding, and user-specific information.
  */
 @Slf4j
 public class HeaderFragment implements Fragment {
@@ -40,12 +40,14 @@ public class HeaderFragment implements Fragment {
   @Override
   public String render(PageContext context) {
     LOGGER.info("Rendering header fragment for page: {}", context.getPageId());
-    
-    var userInfo = context.getUserId() != null 
-        ? String.format("Welcome, %s!", context.getUserId()) 
-        : "Welcome, Guest!";
-    
-    return String.format("""
+
+    var userInfo =
+        context.getUserId() != null
+            ? String.format("Welcome, %s!", context.getUserId())
+            : "Welcome, Guest!";
+
+    return String.format(
+        """
         <header class="site-header">
           <div class="header-content">
             <h1 class="site-title">%s</h1>
@@ -60,7 +62,8 @@ public class HeaderFragment implements Fragment {
             <div class="user-info">%s</div>
           </div>
         </header>
-        """, context.getTitle(), userInfo);
+        """,
+        context.getTitle(), userInfo);
   }
 
   @Override
@@ -72,12 +75,12 @@ public class HeaderFragment implements Fragment {
   public int getPriority() {
     return 1; // Highest priority - rendered first
   }
-  
+
   @Override
   public boolean isCacheable() {
     return true; // Header can be cached as it's relatively static
   }
-  
+
   @Override
   public int getCacheTimeout() {
     return 600; // 10 minutes cache timeout

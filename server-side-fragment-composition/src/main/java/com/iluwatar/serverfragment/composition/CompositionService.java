@@ -29,18 +29,18 @@ import com.iluwatar.serverfragment.services.ContentService;
 import com.iluwatar.serverfragment.services.FooterService;
 import com.iluwatar.serverfragment.services.HeaderService;
 import com.iluwatar.serverfragment.types.PageContext;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 
 /**
  * Main composition service that orchestrates fragment assembly from microservices.
- * 
- * <p>This service acts as the central coordinator for the Server-Side Page Fragment
- * Composition pattern. It manages microservice registration, handles fragment requests,
- * and coordinates the final page assembly process.
+ *
+ * <p>This service acts as the central coordinator for the Server-Side Page Fragment Composition
+ * pattern. It manages microservice registration, handles fragment requests, and coordinates the
+ * final page assembly process.
  */
 @Slf4j
 public class CompositionService {
@@ -52,10 +52,9 @@ public class CompositionService {
 
   /**
    * Registers a microservice for fragment composition.
-   * 
-   * <p>This method allows different microservices to be registered with the
-   * composition service. In a real distributed system, this would involve
-   * service discovery and registration mechanisms.
+   *
+   * <p>This method allows different microservices to be registered with the composition service. In
+   * a real distributed system, this would involve service discovery and registration mechanisms.
    *
    * @param type the type of service (header, content, footer)
    * @param service the service instance to register
@@ -65,17 +64,20 @@ public class CompositionService {
     switch (type.toLowerCase()) {
       case "header" -> {
         headerServices.put(type, (HeaderService) service);
-        LOGGER.info("CompositionService: Registered HeaderService - {}", 
+        LOGGER.info(
+            "CompositionService: Registered HeaderService - {}",
             ((HeaderService) service).getServiceInfo());
       }
       case "content" -> {
         contentServices.put(type, (ContentService) service);
-        LOGGER.info("CompositionService: Registered ContentService - {}", 
+        LOGGER.info(
+            "CompositionService: Registered ContentService - {}",
             ((ContentService) service).getServiceInfo());
       }
       case "footer" -> {
         footerServices.put(type, (FooterService) service);
-        LOGGER.info("CompositionService: Registered FooterService - {}", 
+        LOGGER.info(
+            "CompositionService: Registered FooterService - {}",
             ((FooterService) service).getServiceInfo());
       }
       default -> {
@@ -88,9 +90,9 @@ public class CompositionService {
 
   /**
    * Composes a complete page from registered microservices.
-   * 
-   * <p>This method orchestrates the entire page composition process,
-   * including context creation, fragment generation, and final assembly.
+   *
+   * <p>This method orchestrates the entire page composition process, including context creation,
+   * fragment generation, and final assembly.
    *
    * @param pageId the identifier for the page to compose
    * @return complete HTML page as a string
@@ -98,64 +100,65 @@ public class CompositionService {
    */
   public String composePage(String pageId) {
     LOGGER.info("CompositionService: Starting page composition for pageId: {}", pageId);
-    
+
     var startTime = System.currentTimeMillis();
-    
+
     // Validate that required services are registered
     validateRequiredServices();
-    
+
     // Create page context
     var context = createPageContext(pageId);
-    
+
     // Generate fragments from microservices (sequentially for this demo)
     var headerContent = generateHeaderFragment(context);
     var mainContent = generateContentFragment(context);
     var footerContent = generateFooterFragment(context);
-    
+
     // Compose final page
     var completePage = pageComposer.composePage(headerContent, mainContent, footerContent);
-    
+
     var totalTime = System.currentTimeMillis() - startTime;
-    LOGGER.info("CompositionService: Page composition completed in {}ms for pageId: {}", 
-        totalTime, pageId);
-    
+    LOGGER.info(
+        "CompositionService: Page composition completed in {}ms for pageId: {}", totalTime, pageId);
+
     return completePage;
   }
 
   /**
    * Composes a page asynchronously using parallel fragment generation.
-   * 
-   * <p>This method demonstrates how fragment generation can be parallelized
-   * to improve performance in a real microservice environment.
+   *
+   * <p>This method demonstrates how fragment generation can be parallelized to improve performance
+   * in a real microservice environment.
    *
    * @param pageId the identifier for the page to compose
    * @return CompletableFuture with the complete HTML page
    */
   public CompletableFuture<String> composePageAsync(String pageId) {
     LOGGER.info("CompositionService: Starting async page composition for pageId: {}", pageId);
-    
+
     validateRequiredServices();
     var context = createPageContext(pageId);
-    
+
     // Generate fragments in parallel
     var headerFuture = CompletableFuture.supplyAsync(() -> generateHeaderFragment(context));
     var contentFuture = CompletableFuture.supplyAsync(() -> generateContentFragment(context));
     var footerFuture = CompletableFuture.supplyAsync(() -> generateFooterFragment(context));
-    
+
     // Combine results and compose page
     return CompletableFuture.allOf(headerFuture, contentFuture, footerFuture)
-        .thenApply(v -> {
-          try {
-            var headerContent = headerFuture.get(5, TimeUnit.SECONDS);
-            var mainContent = contentFuture.get(5, TimeUnit.SECONDS);
-            var footerContent = footerFuture.get(5, TimeUnit.SECONDS);
-            
-            return pageComposer.composePage(headerContent, mainContent, footerContent);
-          } catch (Exception e) {
-            LOGGER.error("CompositionService: Error in async page composition", e);
-            throw new RuntimeException("Page composition failed", e);
-          }
-        });
+        .thenApply(
+            v -> {
+              try {
+                var headerContent = headerFuture.get(5, TimeUnit.SECONDS);
+                var mainContent = contentFuture.get(5, TimeUnit.SECONDS);
+                var footerContent = footerFuture.get(5, TimeUnit.SECONDS);
+
+                return pageComposer.composePage(headerContent, mainContent, footerContent);
+              } catch (Exception e) {
+                LOGGER.error("CompositionService: Error in async page composition", e);
+                throw new RuntimeException("Page composition failed", e);
+              }
+            });
   }
 
   /**
@@ -215,23 +218,17 @@ public class CompositionService {
     return System.currentTimeMillis() % 2 == 0 ? "user123" : null;
   }
 
-  /**
-   * Generates header fragment from the header service.
-   */
+  /** Generates header fragment from the header service. */
   private String generateHeaderFragment(PageContext context) {
     return headerServices.get("header").generateFragment(context);
   }
 
-  /**
-   * Generates content fragment from the content service.
-   */
+  /** Generates content fragment from the content service. */
   private String generateContentFragment(PageContext context) {
     return contentServices.get("content").generateFragment(context);
   }
 
-  /**
-   * Generates footer fragment from the footer service.
-   */
+  /** Generates footer fragment from the footer service. */
   private String generateFooterFragment(PageContext context) {
     return footerServices.get("footer").generateFragment(context);
   }
@@ -245,8 +242,9 @@ public class CompositionService {
     var headerHealthy = headerServices.values().stream().allMatch(HeaderService::isHealthy);
     var contentHealthy = contentServices.values().stream().allMatch(ContentService::isHealthy);
     var footerHealthy = footerServices.values().stream().allMatch(FooterService::isHealthy);
-    
-    return String.format("CompositionService Health: Header=%s, Content=%s, Footer=%s", 
+
+    return String.format(
+        "CompositionService Health: Header=%s, Content=%s, Footer=%s",
         headerHealthy, contentHealthy, footerHealthy);
   }
 }

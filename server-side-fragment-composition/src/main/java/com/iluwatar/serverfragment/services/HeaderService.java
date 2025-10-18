@@ -32,10 +32,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Header microservice responsible for managing header fragments.
- * 
- * <p>This service represents an independent microservice that can be developed,
- * deployed, and scaled separately from other services. It encapsulates all
- * header-related logic and rendering.
+ *
+ * <p>This service represents an independent microservice that can be developed, deployed, and
+ * scaled separately from other services. It encapsulates all header-related logic and rendering.
  */
 @Slf4j
 public class HeaderService {
@@ -44,36 +43,37 @@ public class HeaderService {
 
   /**
    * Generates header fragment for the given context.
-   * 
-   * <p>This method simulates a microservice endpoint that would be called
-   * over HTTP in a real distributed system.
+   *
+   * <p>This method simulates a microservice endpoint that would be called over HTTP in a real
+   * distributed system.
    *
    * @param context page context containing rendering information
    * @return rendered header fragment as HTML string
    */
   public String generateFragment(PageContext context) {
-    LOGGER.info("HeaderService: Processing request for page {} (User: {})", 
-        context.getPageId(), 
+    LOGGER.info(
+        "HeaderService: Processing request for page {} (User: {})",
+        context.getPageId(),
         context.getUserId() != null ? context.getUserId() : "anonymous");
-    
+
     // Simulate some processing time that might occur in a real microservice
     simulateProcessing();
-    
+
     // Add service-specific context attributes
     context.setAttribute("headerService.version", "1.2.0");
     context.setAttribute("headerService.timestamp", System.currentTimeMillis());
-    
+
     var renderedFragment = headerFragment.render(context);
-    
-    LOGGER.debug("HeaderService: Generated fragment of length {} characters", 
-        renderedFragment.length());
-    
+
+    LOGGER.debug(
+        "HeaderService: Generated fragment of length {} characters", renderedFragment.length());
+
     return renderedFragment;
   }
 
   /**
-   * Simulates processing time that would occur in a real microservice.
-   * This might include database queries, external API calls, etc.
+   * Simulates processing time that would occur in a real microservice. This might include database
+   * queries, external API calls, etc.
    */
   private void simulateProcessing() {
     try {
@@ -92,7 +92,7 @@ public class HeaderService {
   public String getServiceInfo() {
     return "Header Service v1.2.0 - Manages website header and navigation";
   }
-  
+
   /**
    * Health check endpoint for service monitoring.
    *
@@ -101,7 +101,7 @@ public class HeaderService {
   public boolean isHealthy() {
     return true; // In real implementation, this would check dependencies
   }
-  
+
   /**
    * Gets the fragment type this service handles.
    *

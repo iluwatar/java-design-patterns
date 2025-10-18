@@ -32,10 +32,9 @@ import lombok.extern.slf4j.Slf4j;
 
 /**
  * Content microservice responsible for managing main content fragments.
- * 
- * <p>This service represents an independent microservice that handles
- * the main content area of web pages. It can manage complex business logic,
- * data retrieval, and content personalization.
+ *
+ * <p>This service represents an independent microservice that handles the main content area of web
+ * pages. It can manage complex business logic, data retrieval, and content personalization.
  */
 @Slf4j
 public class ContentService {
@@ -44,37 +43,39 @@ public class ContentService {
 
   /**
    * Generates content fragment for the given context.
-   * 
-   * <p>This method simulates a microservice endpoint that would handle
-   * complex content generation, possibly including database queries,
-   * content management system integration, and personalization logic.
+   *
+   * <p>This method simulates a microservice endpoint that would handle complex content generation,
+   * possibly including database queries, content management system integration, and personalization
+   * logic.
    *
    * @param context page context containing rendering information
    * @return rendered content fragment as HTML string
    */
   public String generateFragment(PageContext context) {
-    LOGGER.info("ContentService: Processing content request for page {} (User: {})", 
-        context.getPageId(), 
+    LOGGER.info(
+        "ContentService: Processing content request for page {} (User: {})",
+        context.getPageId(),
         context.getUserId() != null ? context.getUserId() : "anonymous");
-    
+
     // Simulate more complex processing for content generation
     simulateContentProcessing();
-    
+
     // Add content-specific metadata
     context.setAttribute("contentService.version", "2.1.0");
     context.setAttribute("contentService.generatedAt", System.currentTimeMillis());
     context.setAttribute("contentService.personalized", context.getUserId() != null);
-    
+
     // Apply personalization if user is identified
     if (context.getUserId() != null) {
       applyPersonalization(context);
     }
-    
+
     var renderedFragment = contentFragment.render(context);
-    
-    LOGGER.debug("ContentService: Generated content fragment of length {} characters", 
+
+    LOGGER.debug(
+        "ContentService: Generated content fragment of length {} characters",
         renderedFragment.length());
-    
+
     return renderedFragment;
   }
 
@@ -85,11 +86,11 @@ public class ContentService {
    */
   private void applyPersonalization(PageContext context) {
     LOGGER.debug("ContentService: Applying personalization for user {}", context.getUserId());
-    
+
     // Simulate personalization logic
     context.setAttribute("personalization.applied", true);
     context.setAttribute("personalization.userId", context.getUserId());
-    
+
     // In a real system, this might involve:
     // - Retrieving user preferences
     // - Customizing content based on user history
@@ -98,8 +99,8 @@ public class ContentService {
   }
 
   /**
-   * Simulates complex content processing that might occur in a real microservice.
-   * This could include database queries, external API calls, content transformation, etc.
+   * Simulates complex content processing that might occur in a real microservice. This could
+   * include database queries, external API calls, content transformation, etc.
    */
   private void simulateContentProcessing() {
     try {
@@ -118,7 +119,7 @@ public class ContentService {
   public String getServiceInfo() {
     return "Content Service v2.1.0 - Manages dynamic page content and personalization";
   }
-  
+
   /**
    * Health check endpoint for service monitoring.
    *
@@ -127,7 +128,7 @@ public class ContentService {
   public boolean isHealthy() {
     return true; // In real implementation, this would check database connections, etc.
   }
-  
+
   /**
    * Gets the fragment type this service handles.
    *
@@ -136,7 +137,7 @@ public class ContentService {
   public String getFragmentType() {
     return contentFragment.getType();
   }
-  
+
   /**
    * Gets content statistics for monitoring purposes.
    *

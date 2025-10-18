@@ -32,35 +32,26 @@ import lombok.Data;
 
 /**
  * Context object containing page-specific information for fragment rendering.
- * 
- * <p>This class encapsulates all the data that fragments need to render
- * themselves appropriately for the specific page and user context.
+ *
+ * <p>This class encapsulates all the data that fragments need to render themselves appropriately
+ * for the specific page and user context.
  */
 @Data
 @Builder
 public class PageContext {
-  
-  /**
-   * Unique identifier for the page being rendered.
-   */
+
+  /** Unique identifier for the page being rendered. */
   private String pageId;
-  
-  /**
-   * Title of the page to be displayed.
-   */
+
+  /** Title of the page to be displayed. */
   private String title;
-  
-  /**
-   * User identifier for personalization.
-   */
+
+  /** User identifier for personalization. */
   private String userId;
-  
-  /**
-   * Additional attributes that can be used by fragments.
-   */
-  @Builder.Default
-  private Map<String, Object> attributes = new HashMap<>();
-  
+
+  /** Additional attributes that can be used by fragments. */
+  @Builder.Default private Map<String, Object> attributes = new HashMap<>();
+
   /**
    * Gets an attribute value by key.
    *
@@ -70,7 +61,7 @@ public class PageContext {
   public Object getAttribute(String key) {
     return attributes.get(key);
   }
-  
+
   /**
    * Sets an attribute value.
    *
@@ -80,7 +71,7 @@ public class PageContext {
   public void setAttribute(String key, Object value) {
     attributes.put(key, value);
   }
-  
+
   /**
    * Checks if an attribute exists.
    *
