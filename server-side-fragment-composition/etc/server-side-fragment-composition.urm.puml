@@ -1,0 +1,149 @@
+@startuml
+!theme plain
+
+package "Server-Side Fragment Composition Pattern" {
+  
+  interface Fragment {
+    +render(context: PageContext): String
+    +getType(): String
+    +getPriority(): int
+    +isCacheable(): boolean
+    +getCacheTimeout(): int
+  }
+  
+  class HeaderFragment implements Fragment {
+    +render(context: PageContext): String
+    +getType(): String
+    +getPriority(): int
+    +isCacheable(): boolean
+    +getCacheTimeout(): int
+  }
+  
+  class ContentFragment implements Fragment {
+    +render(context: PageContext): String
+    +getType(): String  
+    +getPriority(): int
+    +isCacheable(): boolean
+    -generateContentByPageType(pageId: String): String
+  }
+  
+  class FooterFragment implements Fragment {
+    +render(context: PageContext): String
+    +getType(): String
+    +getPriority(): int
+    +isCacheable(): boolean
+  }
+  
+  class HeaderService {
+    -headerFragment: Fragment
+    +generateFragment(context: PageContext): String
+    +getServiceInfo(): String
+    +isHealthy(): boolean
+    +getFragmentType(): String
+    -simulateProcessing(): void
+  }
+  
+  class ContentService {
+    -contentFragment: Fragment
+    +generateFragment(context: PageContext): String
+    +getServiceInfo(): String
+    +isHealthy(): boolean
+    +getFragmentType(): String
+    +getContentStats(): String
+    -simulateContentProcessing(): void
+    -applyPersonalization(context: PageContext): void
+  }
+  
+  class FooterService {
+    -footerFragment: Fragment
+    +generateFragment(context: PageContext): String
+    +getServiceInfo(): String
+    +isHealthy(): boolean
+    +getFragmentType(): String
+    +getPromotionalStatus(): String
+    -simulateFooterProcessing(): void
+    -addPromotionalContent(context: PageContext): void
+  }
+  
+  class CompositionService {
+    -headerServices: Map<String, HeaderService>
+    -contentServices: Map<String, ContentService>
+    -footerServices: Map<String, FooterService>
+    -pageComposer: PageComposer
+    +registerService(type: String, service: Object): void
+    +composePage(pageId: String): String
+    +composePageAsync(pageId: String): CompletableFuture<String>
+    +getHealthStatus(): String
+    -validateRequiredServices(): void
+    -createPageContext(pageId: String): PageContext
+    -getPageTitle(pageId: String): String
+    -getCurrentUserId(): String
+    -generateHeaderFragment(context: PageContext): String
+    -generateContentFragment(context: PageContext): String
+    -generateFooterFragment(context: PageContext): String
+  }
+  
+  class PageComposer {
+    +composePage(header: String, content: String, footer: String): String
+    +composePageWithCustomStyling(header: String, content: String, footer: String, css: String): String
+    -buildHtmlPage(header: String, content: String, footer: String): String
+    -validateFragment(name: String, content: String): void
+  }
+  
+  class PageContext {
+    -pageId: String
+    -title: String
+    -userId: String
+    -attributes: Map<String, Object>
+    +getAttribute(key: String): Object
+    +setAttribute(key: String, value: Object): void
+    +hasAttribute(key: String): boolean
+  }
+  
+  class App {
+    +main(args: String[]): void
+    -runDemo(): void
+    -demonstrateSynchronousComposition(service: CompositionService): void
+    -demonstrateAsynchronousComposition(service: CompositionService): void
+    -demonstrateErrorHandling(): void
+    -getPagePreview(page: String): String
+  }
+}
+
+' Relationships
+CompositionService --> PageComposer
+CompositionService --> HeaderService
+CompositionService --> ContentService
+CompositionService --> FooterService
+CompositionService --> PageContext
+
+HeaderService --> HeaderFragment
+ContentService --> ContentFragment
+FooterService --> FooterFragment
+
+Fragment --> PageContext
+
+App --> CompositionService
+App --> HeaderService
+App --> ContentService
+App --> FooterService
+
+PageContext ..> "uses" PageContext
+
+note right of CompositionService
+  Central orchestrator that coordinates
+  fragment generation from different
+  microservices and assembles final pages
+end note
+
+note right of Fragment
+  Common interface for all page fragments
+  enabling consistent composition process
+end note
+
+note bottom of PageContext
+  Carries page-specific data and user
+  context for fragment personalization
+end note
+
+@enduml

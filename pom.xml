@@ -211,6 +211,7 @@
     <module>serialized-lob</module>
     <module>servant</module>
     <module>server-session</module>
+    <module>server-side-fragment-composition</module>
     <module>service-layer</module>
     <module>service-locator</module>
     <module>service-stub</module>
