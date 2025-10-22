@@ -29,7 +29,6 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -68,7 +67,7 @@ public class App {
     }
 
     LOGGER.info("Processing 3 VIP guest check-ins...");
-    List<Future<String>> vipResults = new ArrayList<>() ;
+    List<Future<String>> vipResults = new ArrayList<>();
 
     for (int i = 1; i <= 3; i++) {
       Future<String> result =
