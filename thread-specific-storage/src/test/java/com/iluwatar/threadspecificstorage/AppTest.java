@@ -27,14 +27,13 @@ package com.iluwatar.threadspecificstorage;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.jupiter.api.Test;
 
 class AppTest {
 
   @Test
   void appStartsWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[] {}));
+    assertDoesNotThrow(() -> App.main(new String[] {})) ;
   }
 
   @Test
