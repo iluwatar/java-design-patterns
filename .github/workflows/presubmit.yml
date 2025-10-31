@@ -1,8 +1,13 @@
 name: Presubmit.ai
 
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, synchronize]
 
 jobs:
   review:
@@ -15,10 +20,15 @@ jobs:
             exit 1
           fi
 
+      - name: Check out PR code
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
       - name: Run AI Reviewer
         uses: presubmit/ai-reviewer@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          LLM_PROVIDER: "openai"
-          LLM_MODEL: "gpt-4-turbo"
+          LLM_PROVIDER: openai
+          LLM_MODEL: gpt-4-turbo
