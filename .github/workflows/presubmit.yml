@@ -6,10 +6,9 @@ permissions:
   issues: write
 
 on:
-  pull_request_target: # Handle forked repository PRs in the base repository context
-    types: [opened, synchronize]
-  pull_request_review_comment: # Handle review comments
-    types: [created]
+  pull_request:
+    types: [opened, synchronize, reopened]
+
 
 jobs:
   review:
