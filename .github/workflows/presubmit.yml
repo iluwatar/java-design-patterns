@@ -6,10 +6,8 @@ permissions:
   issues: write
 
 on:
-  pull_request_target: # Handle forked repository PRs in the base repository context
+  pull_request:
     types: [opened, synchronize]
-  pull_request_review_comment: # Handle review comments
-    types: [created]
 
 jobs:
   review:
@@ -32,4 +30,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          LLM_MODEL: "gemini-1.5-flash"
+          LLM_PROVIDER: openai
+          LLM_MODEL: gpt-4-turbo
