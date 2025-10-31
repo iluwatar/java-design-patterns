@@ -32,4 +32,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          LLM_MODEL: "gemini-1.0-pro"
+          LLM_MODEL: "gemini-1.5-flash"
+
