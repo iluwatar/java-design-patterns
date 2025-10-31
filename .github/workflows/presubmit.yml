@@ -28,9 +28,10 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Run AI Reviewer
-        uses: presubmit/ai-reviewer@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          LLM_MODEL: "gemini-1.5-flash"
+  uses: presubmit/ai-reviewer@latest
+  env:
+    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+    LLM_PROVIDER: "openai"
+    LLM_MODEL: "gpt-4-turbo"
 
