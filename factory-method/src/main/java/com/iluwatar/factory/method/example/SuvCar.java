@@ -6,4 +6,3 @@ public class SuvCar implements Car {
     System.out.println("Driving a comfortable SUV!");
   }
 }
-
