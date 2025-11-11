@@ -15,13 +15,6 @@ jobs:
   review:
     runs-on: ubuntu-latest
     steps:
-      - name: Check required secrets
-        run: |
-          if [ -z "${{ secrets.LLM_API_KEY }}" ]; then
-            echo "Error: LLM_API_KEY secret is not configured"
-            exit 1
-          fi
-
       - name: Check out PR code
         uses: actions/checkout@v3
         with:
@@ -29,7 +22,27 @@ jobs:
 
       - name: Run AI Reviewer
         uses: presubmit/ai-reviewer@latest
+        if: ${{ !github.event.pull_request.head.repo.fork && (secrets.LLM_API_KEY != '' || secrets.OPENAI_API_KEY != '') }}
+        continue-on-error: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          LLM_MODEL: "gemini-1.5-flash"
+          # Prefer OpenAI if available, else fall back to generic LLM_API_KEY (e.g., Gemini)
+          LLM_API_KEY: ${{ secrets.OPENAI_API_KEY != '' && secrets.OPENAI_API_KEY || secrets.LLM_API_KEY }}
+          # Allow override via secret LLM_MODEL; fallback to a default
+          # Note: Some models may not be supported by the action's underlying API client.
+          # Set repository secret LLM_MODEL to a model known to work in your account.
+          # Default to a broadly available model per provider:
+          # - If OPENAI_API_KEY is present: gpt-4o-mini
+          # - Else: gemini-1.0-pro
+          LLM_MODEL: ${{ secrets.LLM_MODEL != '' && secrets.LLM_MODEL || (secrets.OPENAI_API_KEY != '' && 'gpt-4o-mini' || 'gemini-1.0-pro') }}
+      - name: Skip reason (forks or missing secret)
+        if: ${{ github.event.pull_request.head.repo.fork || (secrets.LLM_API_KEY == '' && secrets.OPENAI_API_KEY == '') }}
+        run: |
+          echo "AI review skipped."
+          if [ "${{ github.event.pull_request.head.repo.fork }}" = "true" ]; then
+            echo "Reason: PR comes from a fork; skipping AI review to avoid secret/model issues."
+          fi
+          if [ -z "${{ secrets.LLM_API_KEY }}" ] && [ -z "${{ secrets.OPENAI_API_KEY }}" ]; then
+            echo "Reason: Neither LLM_API_KEY (Gemini) nor OPENAI_API_KEY (OpenAI) is configured."
+            echo "Set one of these secrets and optionally LLM_MODEL to enable AI review."
+          fi
