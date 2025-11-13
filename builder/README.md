@@ -129,6 +129,111 @@ Use the Builder pattern when
 * [Apache Camel builders](https://github.com/apache/camel/tree/0e195428ee04531be27a0b659005e3aa8d159d23/camel-core/src/main/java/org/apache/camel/builder)
 * [Apache Commons Option.Builder](https://commons.apache.org/proper/commons-cli/apidocs/org/apache/commons/cli/Option.Builder.html)
 
+## 실무 예제 (Practical Examples)
+
+### 1. UserDTO - 사용자 정보 DTO
+
+API 요청/응답에서 사용되는 복잡한 사용자 정보 객체를 Builder 패턴으로 구성합니다.
+
+```java
+UserDTO user = UserDTO.builder()
+    .id(1L)
+    .username("john.doe")
+    .email("john@example.com")
+    .firstName("John")
+    .lastName("Doe")
+    .age(30)
+    .phoneNumber("010-1234-5678")
+    .address("123 Main St, Seoul")
+    .addRole("USER")
+    .addRole("ADMIN")
+    .active(true)
+    .build();
+
+System.out.println(user.getFullName()); // "John Doe"
+System.out.println(user.hasRole("ADMIN")); // true
+```
+
+**실무 활용:**
+- API 요청/응답 DTO 생성
+- 데이터베이스 엔티티에서 DTO로 변환
+- 테스트 데이터 생성
+- 복잡한 사용자 프로필 구성
+
+### 2. HttpRequest - HTTP 요청 빌더
+
+REST API 호출을 위한 HTTP 요청을 체계적으로 구성합니다.
+
+```java
+HttpRequest request = HttpRequest.builder()
+    .post()
+    .url("https://api.example.com/users")
+    .addHeader("Content-Type", "application/json")
+    .addHeader("Authorization", "Bearer token123")
+    .addQueryParam("page", "1")
+    .addQueryParam("size", "10")
+    .jsonBody("{\"name\": \"John Doe\"}")
+    .timeout(5000)
+    .build();
+
+String response = request.execute();
+```
+
+**실무 활용:**
+- REST API 클라이언트 구현
+- HTTP 라이브러리 래퍼
+- 마이크로서비스 간 통신
+- 테스트용 HTTP 요청 생성
+
+### 3. EmailMessage - 이메일 메시지 빌더
+
+복잡한 이메일 메시지를 단계적으로 구성합니다.
+
+```java
+EmailMessage email = EmailMessage.builder()
+    .from("sender@example.com")
+    .to("recipient@example.com")
+    .addCc("manager@example.com")
+    .addBcc("admin@example.com")
+    .subject("Welcome to our service!")
+    .body("<h1>Welcome!</h1><p>Thank you for joining us.</p>")
+    .html(true)
+    .priority(Priority.HIGH)
+    .addAttachment("/path/to/document.pdf")
+    .build();
+
+boolean sent = email.send();
+System.out.println("Total recipients: " + email.getTotalRecipientCount());
+```
+
+**실무 활용:**
+- 이메일 발송 시스템
+- 알림 서비스
+- 마케팅 이메일 생성
+- 시스템 알림 메일
+
+## Builder 패턴의 실무 장점
+
+1. **가독성**: 복잡한 객체 생성 과정을 명확하게 표현
+2. **유연성**: 선택적 파라미터를 쉽게 처리
+3. **불변성**: Immutable 객체 생성으로 Thread-safe 보장
+4. **유효성 검증**: build() 메서드에서 일괄 유효성 검증
+5. **유지보수성**: 새로운 속성 추가가 용이
+
+## 테스트 실행
+
+각 실무 예제에는 comprehensive한 테스트 코드가 포함되어 있습니다:
+
+```bash
+# 모든 테스트 실행
+mvn test
+
+# 특정 테스트만 실행
+mvn test -Dtest=UserDTOTest
+mvn test -Dtest=HttpRequestTest
+mvn test -Dtest=EmailMessageTest
+```
+
 ## Credits
 
 * [Design Patterns: Elements of Reusable Object-Oriented Software](http://www.amazon.com/Design-Patterns-Elements-Reusable-Object-Oriented/dp/0201633612)
