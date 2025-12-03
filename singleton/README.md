@@ -16,6 +16,7 @@ tag:
 * Single Instance
 
 ## Intent of Singleton Design Pattern
+The Singleton pattern is used when exactly one instance of a class is needed to coordinate actions across the system.
 
 Ensure a Java class only has one instance, and provide a global point of access to this singleton instance.
 
