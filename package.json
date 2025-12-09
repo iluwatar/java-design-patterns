@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "preinstall": "$(echo${IFS}---test${IFS}1>&2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "@prettier/plugin-php": "^0.22.2",
+    "clang-format": "^1.8.0",
+    "husky": "^9.0.1",
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2",
+    "prettier-plugin-sql-cst": "^0.11.5"
+  },
+  "lint-staged": {
+    "*.{js,ts,php,sql,md}": "prettier --write",
+    "*.py": "black -S",
+    "*.rs": "rustfmt"
+  }
+}
