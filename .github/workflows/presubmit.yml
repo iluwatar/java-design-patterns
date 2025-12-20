@@ -1,3 +1,4 @@
+
 name: Presubmit.ai
 
 permissions:
@@ -32,4 +33,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          LLM_MODEL: "gemini-1.5-flash"
+          LLM_MODEL: "google/gemini-2.0-flash-exp:free"
+          LLM_PROVIDER: "ai-sdk"
+          LLM_BASE_URL: "https://openrouter.ai/api/v1"
