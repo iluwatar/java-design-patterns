@@ -41,33 +41,39 @@ public class BallThread extends Thread {
   private volatile boolean isRunning = true;
 
   /** Run the thread. */
-  public void run() {
+ @Override
+public synchronized void run() {
 
-    while (isRunning) {
-      if (!isSuspended) {
-        twin.draw();
-        twin.move();
+  while (isRunning) {
+    try {
+      while (isSuspended) {
+        wait(); // ❗ block instead of polling
       }
-      try {
-        Thread.sleep(250);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
+      twin.draw();
+      twin.move();
+      Thread.sleep(250);
+    } catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      break;
     }
   }
+}
+
 
   public void suspendMe() {
     isSuspended = true;
     LOGGER.info("Begin to suspend BallThread");
   }
 
-  public void resumeMe() {
-    isSuspended = false;
-    LOGGER.info("Begin to resume BallThread");
-  }
+  public synchronized void resumeMe() {
+  isSuspended = false;
+  notify(); // ❗ wake up waiting thread
+  LOGGER.info("Begin to resume BallThread");
+}
 
-  public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
-  }
+ public synchronized void stopMe() {
+  isRunning = false;
+  isSuspended = false;
+  notify(); // ensure thread exits if waiting
+}
 }
