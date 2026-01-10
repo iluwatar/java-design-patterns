@@ -30,6 +30,8 @@ Real-world example
 In plain words
 
 > Adapter pattern lets you wrap an otherwise incompatible object in an adapter to make it compatible with another class.
+> This pattern is especially useful when integrating legacy systems with modern code.
+
 
 Wikipedia says
 
