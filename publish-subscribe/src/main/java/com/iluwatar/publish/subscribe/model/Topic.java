@@ -51,7 +51,7 @@ public class Topic {
   }
 
   /**
-   * Remove a subscriber to the list of subscribers.
+   * Remove a subscriber from the list of subscribers.
    *
    * @param subscriber subscriber to remove
    */
