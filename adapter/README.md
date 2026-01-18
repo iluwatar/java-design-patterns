@@ -31,6 +31,7 @@ In plain words
 
 > Adapter pattern lets you wrap an otherwise incompatible object in an adapter to make it compatible with another class.
 
+
 Wikipedia says
 
 > In software engineering, the adapter pattern is a software design pattern that allows the interface of an existing class to be used as another interface. It is often used to make existing classes work with others without modifying their source code.
