@@ -81,7 +81,7 @@ public record Hero(
     /** Constructor. */
     public Builder(Profession profession, String name) {
       if (profession == null || name == null) {
-        throw new IllegalArgumentException("profession and name can not be null");
+        throw new IllegalArgumentException("profession or name can not be null");
       }
       this.profession = profession;
       this.name = name;
