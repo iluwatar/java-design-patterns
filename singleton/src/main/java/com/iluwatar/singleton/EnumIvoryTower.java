@@ -37,6 +37,6 @@ public enum EnumIvoryTower {
 
   @Override
   public String toString() {
-    return getDeclaringClass().getCanonicalName() + "@" + hashCode();
+    return getClass().getName() + "@" + Integer.toHexString(hashCode());
   }
 }
