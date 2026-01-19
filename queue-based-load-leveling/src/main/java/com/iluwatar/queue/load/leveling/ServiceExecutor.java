@@ -40,21 +40,17 @@ public class ServiceExecutor implements Runnable {
   }
 
   /** The ServiceExecutor thread will retrieve each message and process it. */
+  @Override
+
   public void run() {
     try {
       while (!Thread.currentThread().isInterrupted()) {
-        var msg = msgQueue.retrieveMsg();
-
-        if (null != msg) {
-          LOGGER.info(msg + " is served.");
-        } else {
-          LOGGER.info("Service Executor: Waiting for Messages to serve .. ");
-        }
-
-        Thread.sleep(1000);
+        var msg = msgQueue.retrieveMsg(); // blocks internally
+        LOGGER.info(msg + " is served.");
       }
     } catch (Exception e) {
-      LOGGER.error(e.getMessage());
+      Thread.currentThread().interrupt();
+      LOGGER.error("Error while processing message", e);
     }
   }
 }
