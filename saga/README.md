@@ -193,7 +193,7 @@ Trade-offs:
 ## Related Java Design Patterns
 
 * [Event Sourcing](https://java-design-patterns.com/patterns/event-sourcing/): Used to capture state changes as a sequence of events, which can complement the Saga pattern by providing a history of state changes.
-* [Command Query Responsibility Segregation (CQRS)](https://java-design-patterns.com/patterns/cqrs/): Can be used in conjunction with the Saga pattern to separate command and query responsibilities, improving scalability and fault tolerance.
+* [Command Query Responsibility Segregation (CQRS)](https://java-design-patterns.com/patterns/command-query-responsibility-segregation/): Can be used in conjunction with the Saga pattern to separate command and query responsibilities, improving scalability and fault tolerance.
 
 ## References and Credits
 
