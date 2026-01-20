@@ -24,13 +24,48 @@ import org.slf4j.LoggerFactory;
  */
 public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
-
+  
   /**
    * Program entry point.
    *
    * @param args command line arguments
    */
-  public static void main(String[] args){
+  public static void main(String[] args) throws InterruptedException {
+    LOGGER.info("Starting Microservices Messaging Pattern demonstration");
 
+    // Create the message broker
+    final MessageBroker broker = new MessageBroker();
+
+    // Create consumer services
+    final InventoryService inventoryService = new InventoryService();
+    final PaymentService paymentService = new PaymentService();
+    final NotificationService notificationService = new NotificationService();
+
+    // Subscribe consumers to the order topic
+    broker.subscribe("order-topic", inventoryService::handleMessage);
+    broker.subscribe("order-topic", paymentService::handleMessage);
+    broker.subscribe("order-topic", notificationService::handleMessage);
+
+    // Create producer service
+    final OrderService orderService = new OrderService(broker);
+
+    // Demonstrate the messaging pattern
+    LOGGER.info("=== Creating Order ===");
+    orderService.createOrder("ORDER-001");
+
+    // Allow time for asynchronous processing
+    Thread.sleep(500);
+
+    LOGGER.info("\n=== Updating Order ===");
+    orderService.updateOrder("ORDER-001");
+
+    Thread.sleep(500);
+
+    LOGGER.info("\n=== Cancelling Order ===");
+    orderService.cancelOrder("ORDER-001");
+
+    Thread.sleep(500);
+
+    LOGGER.info("\nMicroservices Messaging Pattern demonstration completed");
   }
 }
