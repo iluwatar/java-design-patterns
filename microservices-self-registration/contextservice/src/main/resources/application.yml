@@ -1,0 +1,25 @@
+server:
+    port: 8082
+
+spring:
+    application:
+        name: contextservice
+
+eureka:
+    client:
+        service-url.defaultZone: http://localhost:8761/eureka
+
+user:
+    region: Chennai, Tamil Nadu, India
+
+management:
+  endpoint:
+      health:
+          show-details: always
+      web:
+        exposure:
+            include: health
+
+logging:
+    file:
+        name: application.log
