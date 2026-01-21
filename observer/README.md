@@ -209,3 +209,10 @@ Trade-offs:
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
 * [Pattern-Oriented Software Architecture Volume 1: A System of Patterns](https://amzn.to/3xZ1ELU)
 * [Refactoring to Patterns](https://amzn.to/3VOO4F5)
+
+## Real-World Example
+
+The Observer pattern is widely used in event-driven architectures.
+For instance, in Java Swing or JavaFX applications, UI components can register listeners
+to react to user actions without tightly coupling the business logic to the interface.
+This makes the system more modular and easier to extend.
