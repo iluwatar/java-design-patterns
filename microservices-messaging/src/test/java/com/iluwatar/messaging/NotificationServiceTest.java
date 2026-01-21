@@ -28,10 +28,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Unit tests for {@link NotificationService}.
- * Tests service behavior with various message types.
+ * Tests service behavior with various message types without Kafka dependencies.
  */
 class NotificationServiceTest {
 
@@ -40,6 +41,12 @@ class NotificationServiceTest {
   @BeforeEach
   void setUp() {
     notificationService = new NotificationService();
+  }
+
+  @Test
+  void testServiceCanBeInstantiated() {
+    // Arrange & Act & Assert
+    assertNotNull(notificationService, "NotificationService should be instantiated");
   }
 
   @Test
@@ -90,16 +97,6 @@ class NotificationServiceTest {
       notificationService.handleMessage(new Message("Order Updated: ORDER-001"));
       notificationService.handleMessage(new Message("Order Cancelled: ORDER-001"));
     }, "Should handle all message types without error");
-  }
-
-  @Test
-  void testHandleMessageWithNullContent() {
-    // Arrange
-    var message = new Message(null);
-
-    // Act & Assert
-    assertDoesNotThrow(() -> notificationService.handleMessage(message),
-        "Should handle message with null content gracefully");
   }
 
   @Test

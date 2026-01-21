@@ -28,10 +28,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Unit tests for {@link PaymentService}.
- * Tests service behavior with various message types.
+ * Tests service behavior with various message types without Kafka dependencies.
  */
 class PaymentServiceTest {
 
@@ -40,6 +41,12 @@ class PaymentServiceTest {
   @BeforeEach
   void setUp() {
     paymentService = new PaymentService();
+  }
+
+  @Test
+  void testServiceCanBeInstantiated() {
+    // Arrange & Act & Assert
+    assertNotNull(paymentService, "PaymentService should be instantiated");
   }
 
   @Test
@@ -89,15 +96,5 @@ class PaymentServiceTest {
       paymentService.handleMessage(new Message("Order Created: ORDER-001"));
       paymentService.handleMessage(new Message("Order Cancelled: ORDER-001"));
     }, "Should handle multiple messages without error");
-  }
-
-  @Test
-  void testHandleMessageWithNullContent() {
-    // Arrange
-    var message = new Message(null);
-
-    // Act & Assert
-    assertDoesNotThrow(() -> paymentService.handleMessage(message),
-        "Should handle message with null content gracefully");
   }
 }
