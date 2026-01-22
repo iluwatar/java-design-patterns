@@ -1,11 +1,14 @@
 package com.iluwatar.threadspecificstorage;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Application entry point demonstrating the Thread-Specific Storage pattern.
  *
  * <p>This example simulates concurrent request processing for multiple users. Each request carries
  * a user token, and user-specific context is managed transparently using thread-specific storage.
  */
+@Slf4j
 public class App {
 
   /**
@@ -34,7 +37,7 @@ public class App {
       try {
         Thread.sleep(50);
       } catch (InterruptedException e) {
-        e.printStackTrace();
+        LOGGER.warn("Sleep interrupted", e);
       }
     }
   }

@@ -1,5 +1,6 @@
 package com.iluwatar.threadspecificstorage;
 
+import java.security.SecureRandom;
 import java.util.Random;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -36,7 +37,7 @@ public class RequestHandler {
 
       // Step 3: Retrieve userId later in the request flow
       Long retrievedId = contextProxy.get().getUserId();
-      Random random = new Random();
+      SecureRandom random = new SecureRandom();
       String accountInfo = retrievedId + "'s account: " + random.nextInt(400);
       LOGGER.info(accountInfo);
 
