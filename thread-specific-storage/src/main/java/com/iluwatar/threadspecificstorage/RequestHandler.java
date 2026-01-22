@@ -1,7 +1,6 @@
 package com.iluwatar.threadspecificstorage;
 
 import java.security.SecureRandom;
-import java.util.Random;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
