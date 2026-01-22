@@ -7,8 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 /**
  * Application Thread
  *
- * <p>Each instance simulates a request-processing thread that uses
- * the Thread-Specific Object Proxy to access Thread-Specific Object.
+ * <p>Each instance simulates a request-processing thread that uses the Thread-Specific Object Proxy
+ * to access Thread-Specific Object.
  */
 @AllArgsConstructor
 @Slf4j
@@ -17,11 +17,9 @@ public class RequestHandler {
   private final String token;
 
   /**
-   * Simulated business process:
-   * 1. Parse userId from token ("Token::userId").
-   * 2. Store userId in thread-local storage.
-   * 3. Later, retrieve userId and use it for business logic.
-   * 4. Finally, clear thread-local to prevent memory leak.
+   * Simulated business process: 1. Parse userId from token ("Token::userId"). 2. Store userId in
+   * thread-local storage. 3. Later, retrieve userId and use it for business logic. 4. Finally,
+   * clear thread-local to prevent memory leak.
    */
   public void process() {
     LOGGER.info("Start handling request with token: {}", token);

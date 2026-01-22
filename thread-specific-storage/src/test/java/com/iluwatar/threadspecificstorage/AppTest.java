@@ -1,15 +1,12 @@
 package com.iluwatar.threadspecificstorage;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-/**
- * Tests for APP class
- */
+/** Tests for APP class */
 class AppTest {
   @Test
   void testMainMethod() {
@@ -18,7 +15,7 @@ class AppTest {
     System.setOut(new PrintStream(outContent));
 
     // Run the main method
-    App.main(new String[]{});
+    App.main(new String[] {});
 
     // Give some time for threads to execute
     try {
@@ -29,7 +26,8 @@ class AppTest {
 
     // Verify output contains expected log messages
     String output = outContent.toString();
-    assertTrue(output.contains("Start handling request with token"),
+    assertTrue(
+        output.contains("Start handling request with token"),
         "Should contain request handling start messages");
 
     // Restore system output

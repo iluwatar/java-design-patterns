@@ -1,14 +1,12 @@
 package com.iluwatar.threadspecificstorage;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-/**
- * Tests for UserContextProxy class
- */
+/** Tests for UserContextProxy class */
 class UserContextProxyTest {
 
   private UserContext userContext;
@@ -28,7 +26,9 @@ class UserContextProxyTest {
     UserContextProxy.set(userContext);
     UserContext retrievedContext = UserContextProxy.get();
     assertNotNull(retrievedContext, "Retrieved context should not be null");
-    assertEquals(userContext.getUserId(), retrievedContext.getUserId(),
+    assertEquals(
+        userContext.getUserId(),
+        retrievedContext.getUserId(),
         "Retrieved context should have the same userId");
   }
 
@@ -52,12 +52,14 @@ class UserContextProxyTest {
     UserContext context2 = new UserContext(456L);
     UserContextProxy.set(context1);
     // Create another thread to set different context
-    Thread thread = new Thread(() -> {
-      UserContextProxy.set(context2);
-      UserContext threadContext = UserContextProxy.get();
-      assertNotNull(threadContext);
-      assertEquals(456L, threadContext.getUserId());
-    });
+    Thread thread =
+        new Thread(
+            () -> {
+              UserContextProxy.set(context2);
+              UserContext threadContext = UserContextProxy.get();
+              assertNotNull(threadContext);
+              assertEquals(456L, threadContext.getUserId());
+            });
     thread.start();
     thread.join();
     // Main thread context should remain unchanged
