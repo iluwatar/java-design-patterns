@@ -3530,6 +3530,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ronodhirSoumik",
+      "name": "Soumik Sarker",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46843689?v=4",
+      "profile": "https://ronodhirsoumik.github.io",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 6,
