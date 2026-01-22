@@ -1,0 +1,37 @@
+@startuml
+!theme plain
+top to bottom direction
+class UserContext {
+  - userId : Long
+  + UserContext(userId : Long)
+  + getUserId() : Long
+  + setUserId(userId : Long) : void
+}
+class UserContextProxy {
+  - {static} userContextHolder : ThreadLocal<UserContext>
+  + {static} set(context : UserContext) : void
+  + {static} get() : UserContext
+  + {static} clear() : void
+}
+class RequestHandler {
+  - contextProxy : UserContextProxy
+  - token : String
+  + RequestHandler(contextProxy : UserContextProxy, token : String)
+  + process() : void
+  - parseToken(token : String) : Long
+}
+class APP {
+  + {static} main(args : String[]) : void
+}
+class Thread {
+  + start() : void
+}
+
+UserContextProxy ..> UserContext : manages
+RequestHandler ..> UserContextProxy : uses
+RequestHandler ..> UserContext : creates
+APP ..> UserContextProxy : creates
+APP ..> RequestHandler : creates
+APP ..> Thread : starts
+Thread ..> RequestHandler : executes
+@enduml
