@@ -1,5 +1,6 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license. 
+ * Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -16,8 +17,8 @@
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+ * IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
@@ -28,10 +29,16 @@ import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import lombok.extern.slf4j.Slf4j;
 
-/** Abstract class of all the instance implementation classes. */
+/**
+ * Abstract base class for all instance implementations in the leader election system.
+ * 
+ * Each instance runs on its own thread and processes incoming messages asynchronously.
+ * This version fixes the busy loop problem by adding a short sleep when no messages are present.
+ */
 @Slf4j
 public abstract class AbstractInstance implements Instance, Runnable {
 
+  // Interval between heartbeats in milliseconds.
   protected static final int HEARTBEAT_INTERVAL = 5000;
   private static final String INSTANCE = "Instance ";
 
@@ -41,7 +48,13 @@ public abstract class AbstractInstance implements Instance, Runnable {
   protected int leaderId;
   protected boolean alive;
 
-  /** Constructor of BullyInstance. */
+  /**
+   * Constructor initializing the instance.
+   *
+   * @param messageManager manager to send/receive messages
+   * @param localId ID of this instance
+   * @param leaderId current leader ID
+   */
   public AbstractInstance(MessageManager messageManager, int localId, int leaderId) {
     this.messageManager = messageManager;
     this.messageQueue = new ConcurrentLinkedQueue<>();
@@ -50,20 +63,31 @@ public abstract class AbstractInstance implements Instance, Runnable {
     this.alive = true;
   }
 
-  /** The instance will execute the message in its message queue periodically once it is alive. */
+  /**
+   * Thread run loop — continuously processes messages while instance is alive.
+   * 
+   * 🟢 FIXED: Added small sleep when queue is empty to avoid busy looping.
+   */
   @Override
-  @SuppressWarnings("squid:S2189")
   public void run() {
-    while (true) {
+    while (alive) {
       if (!this.messageQueue.isEmpty()) {
-        this.processMessage(this.messageQueue.remove());
+        processMessage(this.messageQueue.poll());
+      } else {
+        try {
+          Thread.sleep(100); // 🔸 Prevents busy loop CPU overuse
+        } catch (InterruptedException e) {
+          Thread.currentThread().interrupt();
+          LOGGER.warn(INSTANCE + localId + " thread interrupted.");
+          break;
+        }
       }
     }
+    LOGGER.info(INSTANCE + localId + " stopped running.");
   }
 
   /**
-   * Once messages are sent to the certain instance, it will firstly be added to the queue and wait
-   * to be executed.
+   * Add a new message to the queue to be processed.
    *
    * @param message Message sent by other instances
    */
@@ -72,74 +96,58 @@ public abstract class AbstractInstance implements Instance, Runnable {
     messageQueue.offer(message);
   }
 
-  /**
-   * Check if the instance is alive or not.
-   *
-   * @return {@code true} if the instance is alive.
-   */
+  /** Check if this instance is alive. */
   @Override
   public boolean isAlive() {
     return alive;
   }
 
-  /**
-   * Set the health status of the certain instance.
-   *
-   * @param alive {@code true} for alive.
-   */
+  /** Update the alive status of this instance. */
   @Override
   public void setAlive(boolean alive) {
     this.alive = alive;
   }
 
   /**
-   * Process the message according to its type.
+   * Process the given message according to its type.
    *
-   * @param message Message polled from queue.
+   * @param message message to process
    */
   private void processMessage(Message message) {
     switch (message.getType()) {
       case ELECTION -> {
-        LOGGER.info(INSTANCE + localId + " - Election Message handling...");
+        LOGGER.info("{}{} - Handling Election Message...", INSTANCE, localId);
         handleElectionMessage(message);
       }
       case LEADER -> {
-        LOGGER.info(INSTANCE + localId + " - Leader Message handling...");
+        LOGGER.info("{}{} - Handling Leader Message...", INSTANCE, localId);
         handleLeaderMessage(message);
       }
       case HEARTBEAT -> {
-        LOGGER.info(INSTANCE + localId + " - Heartbeat Message handling...");
+        LOGGER.info("{}{} - Handling Heartbeat Message...", INSTANCE, localId);
         handleHeartbeatMessage(message);
       }
       case ELECTION_INVOKE -> {
-        LOGGER.info(INSTANCE + localId + " - Election Invoke Message handling...");
+        LOGGER.info("{}{} - Handling Election Invoke...", INSTANCE, localId);
         handleElectionInvokeMessage();
       }
       case LEADER_INVOKE -> {
-        LOGGER.info(INSTANCE + localId + " - Leader Invoke Message handling...");
+        LOGGER.info("{}{} - Handling Leader Invoke...", INSTANCE, localId);
         handleLeaderInvokeMessage();
       }
       case HEARTBEAT_INVOKE -> {
-        LOGGER.info(INSTANCE + localId + " - Heartbeat Invoke Message handling...");
+        LOGGER.info("{}{} - Handling Heartbeat Invoke...", INSTANCE, localId);
         handleHeartbeatInvokeMessage();
       }
-      default -> {}
+      default -> LOGGER.warn("{}{} - Unknown message type received.", INSTANCE, localId);
     }
   }
 
-  /**
-   * Abstract methods to handle different types of message. These methods need to be implemented in
-   * concrete instance class to implement corresponding leader-selection pattern.
-   */
+  // Abstract methods for handling various message types — to be implemented by subclasses.
   protected abstract void handleElectionMessage(Message message);
-
   protected abstract void handleElectionInvokeMessage();
-
   protected abstract void handleLeaderMessage(Message message);
-
   protected abstract void handleLeaderInvokeMessage();
-
   protected abstract void handleHeartbeatMessage(Message message);
-
   protected abstract void handleHeartbeatInvokeMessage();
 }
