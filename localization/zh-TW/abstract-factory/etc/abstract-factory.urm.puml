@@ -1,0 +1,101 @@
+@startuml
+package com.iluwatar.abstractfactory {
+  class App {
+    - LOGGER : Logger {static}
+    - army : Army
+    - castle : Castle
+    - king : King
+    + App()
+    + createKingdom(factory : KingdomFactory)
+    + getArmy() : Army
+    ~ getArmy(factory : KingdomFactory) : Army
+    + getCastle() : Castle
+    ~ getCastle(factory : KingdomFactory) : Castle
+    + getKing() : King
+    ~ getKing(factory : KingdomFactory) : King
+    + main(args : String[]) {static}
+    - setArmy(army : Army)
+    - setCastle(castle : Castle)
+    - setKing(king : King)
+  }
+  class FactoryMaker {
+    + FactoryMaker()
+    + makeFactory(type : KingdomType) : KingdomFactory {static}
+  }
+  enum KingdomType {
+    + ELF {static}
+    + ORC {static}
+    + valueOf(name : String) : KingdomType {static}
+    + values() : KingdomType[] {static}
+  }
+  interface Army {
+    + getDescription() : String {abstract}
+  }
+  interface Castle {
+    + getDescription() : String {abstract}
+  }
+  class ElfArmy {
+    ~ DESCRIPTION : String {static}
+    + ElfArmy()
+    + getDescription() : String
+  }
+  class ElfCastle {
+    ~ DESCRIPTION : String {static}
+    + ElfCastle()
+    + getDescription() : String
+  }
+  class ElfKing {
+    ~ DESCRIPTION : String {static}
+    + ElfKing()
+    + getDescription() : String
+  }
+  class ElfKingdomFactory {
+    + ElfKingdomFactory()
+    + createArmy() : Army
+    + createCastle() : Castle
+    + createKing() : King
+  }
+  interface King {
+    + getDescription() : String {abstract}
+  }
+  interface KingdomFactory {
+    + createArmy() : Army {abstract}
+    + createCastle() : Castle {abstract}
+    + createKing() : King {abstract}
+  }
+  class OrcArmy {
+    ~ DESCRIPTION : String {static}
+    + OrcArmy()
+    + getDescription() : String
+  }
+  class OrcCastle {
+    ~ DESCRIPTION : String {static}
+    + OrcCastle()
+    + getDescription() : String
+  }
+  class OrcKing {
+    ~ DESCRIPTION : String {static}
+    + OrcKing()
+    + getDescription() : String
+  }
+  class OrcKingdomFactory {
+    + OrcKingdomFactory()
+    + createArmy() : Army
+    + createCastle() : Castle
+    + createKing() : King
+  }
+}
+KingdomType ..+ FactoryMaker
+App -->  "-castle" Castle
+FactoryMaker ..+ App
+App -->  "-king" King
+App -->  "-army" Army
+ElfArmy ..|> Army 
+ElfCastle ..|> Castle 
+ElfKing ..|> King 
+ElfKingdomFactory ..|> KingdomFactory 
+OrcArmy ..|> Army 
+OrcCastle ..|> Castle 
+OrcKing ..|> King 
+OrcKingdomFactory ..|> KingdomFactory 
+@enduml

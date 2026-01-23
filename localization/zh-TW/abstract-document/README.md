@@ -2,34 +2,34 @@
 title: Abstract Document
 shortTitle: Abstract Document
 category: Structural
-language: zh
+language: zh-TW
 tag: 
  - Extensibility
 ---
 
 ## 目的
 
-使用动态属性，并在保持类型安全的同时实现非类型化语言的灵活性。
+使用動態屬性，並在保持型別安全的同時實現非型別化語言的靈活性。
 
-## 解释
+## 解釋
 
-抽象文档模式使您能够处理其他非静态属性。 此模式使用特征的概念来实现类型安全，并将不同类的属性分离为一组接口。
+抽象文件模式 (Abstract Document Pattern) 使您能夠處理其他非靜態屬性。此模式使用特性 (trait) 的概念來實現型別安全，並將不同類別的屬性分離為一組介面。
 
-真实世界例子
+真實世界範例
 
->  考虑由多个部分组成的汽车。 但是，我们不知道特定汽车是否真的拥有所有零件，或者仅仅是零件中的一部分。 我们的汽车是动态而且非常灵活的。
+>  考慮由多個部分組成的汽車。但是，我們不知道特定汽車是否真的擁有所有零件，或者僅僅是零件中的一部分。我們的汽車是動態而且非常靈活的。
 
-通俗的说
+簡單的說
 
-> 抽象文档模式允许在对象不知道的情况下将属性附加到对象。
+> 抽象文件模式允許在物件不知道的情況下將屬性附加到物件上。
 
-维基百科说
+維基百科說
 
-> 面向对象的结构设计模式，用于组织松散类型的键值存储中的对象并使用类型化的视图公开数据。 该模式的目的是在强类型语言中实现组件之间的高度灵活性，在这种语言中，可以在不丢失类型安全支持的情况下，将新属性动态地添加到对象树中。 该模式利用特征将类的不同属性分成不同的接口。
+> 物件導向的結構設計模式，用於組織鬆散型別的鍵值儲存中的物件，並使用型別化的視圖公開資料。該模式的目的是在強型別語言中實現元件之間的高度靈活性，在這種語言中，可以在不遺失型別安全支援的情況下，將新屬性動態地新增到物件樹中。該模式利用特性 (trait) 將類別的不同屬性分成不同的介面。
 
-**程序示例**
+**程式碼範例**
 
-让我们首先定义基类`Document`和`AbstractDocument`。 它们基本上使对象拥有属性映射和任意数量的子对象。
+讓我們先定義基礎類別`Document`和`AbstractDocument`。 它們基本上使物件擁有屬性對映 (map) 和任意數量的子物件。
 
 ```java
 public interface Document {
@@ -74,7 +74,7 @@ public abstract class AbstractDocument implements Document {
   ...
 }
 ```
-接下来，我们定义一个枚举“属性”和一组类型，价格，模型和零件的接口。 这使我们能够为Car类创建静态外观的界面。
+接下來，我們定義一個列舉 `Property` 和一組關於型別、價格、模型和零件的介面。這使我們能夠為 `Car` 類別創建靜態外觀的介面。
 
 ```java
 public enum Property {
@@ -110,7 +110,7 @@ public interface HasParts extends Document {
 }
 ```
 
-现在我们准备介绍`Car`。
+現在我們準備介紹`Car`。
 
 ```java
 public class Car extends AbstractDocument implements HasModel, HasPrice, HasParts {
@@ -121,7 +121,7 @@ public class Car extends AbstractDocument implements HasModel, HasPrice, HasPart
 }
 ```
 
-最后是完整示例中的`Car`构造和使用方式。
+最後是完整範例中 `Car`的建構和使用方式。。
 
 ```java
     LOGGER.info("Constructing parts and car");
@@ -162,19 +162,21 @@ public class Car extends AbstractDocument implements HasModel, HasPrice, HasPart
     // door/Lambo/300
 ```
 
-## 类图
+## 類別圖
 
 ![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
-## 适用性
+## 適用性
 
-使用抽象文档模式当
+在以下情況使用抽象文件模式：
 
-* 需要即时添加新属性
-* 你想要一种灵活的方式来以树状结构组织域
-* 你想要更宽松的耦合系统
+* 需要即時新增新屬性時
 
-## 鸣谢
+* 想要一種靈活的方式以樹狀結構組織領域 (domain) 時
+
+* 想要一個更鬆散耦合的系統時
+
+## 參考資料和來源
 
 * [Wikipedia: Abstract Document Pattern](https://en.wikipedia.org/wiki/Abstract_Document_Pattern)
 * [Martin Fowler: Dealing with properties](http://martinfowler.com/apsupp/properties.pdf)
