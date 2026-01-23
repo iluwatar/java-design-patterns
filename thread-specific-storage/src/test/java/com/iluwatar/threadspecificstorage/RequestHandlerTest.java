@@ -8,27 +8,25 @@ class RequestHandlerTest {
 
   @Test
   void process_shouldStoreAndClearUserContext() {
-    // Given - a real UserContextProxy
-    UserContextProxy proxy = new UserContextProxy();
-    RequestHandler handler = new RequestHandler(proxy, "token::123");
+    // Given - a request handler without proxy parameter
+    RequestHandler handler = new RequestHandler("token::123");
 
     // When - process the request
     handler.process();
 
     // Then - after processing, ThreadLocal should be cleared
-    assertNull(proxy.get(), "ThreadLocal should be cleared after process()");
+    assertNull(UserContextProxy.get(), "ThreadLocal should be cleared after process()");
   }
 
   @Test
   void process_withInvalidToken_shouldSetUserIdToMinusOne() {
-    // Given - a real UserContextProxy
-    UserContextProxy proxy = new UserContextProxy();
-    RequestHandler handler = new RequestHandler(proxy, "invalid-token");
+    // Given - a request handler without proxy parameter
+    RequestHandler handler = new RequestHandler("invalid-token");
 
     // When - process the request
     handler.process();
 
     // Then - after processing, ThreadLocal should be cleared
-    assertNull(proxy.get(), "ThreadLocal should be cleared even for invalid token");
+    assertNull(UserContextProxy.get(), "ThreadLocal should be cleared even for invalid token");
   }
 }

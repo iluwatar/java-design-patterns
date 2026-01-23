@@ -17,9 +17,6 @@ public class App {
    * @param args command-line arguments (not used)
    */
   public static void main(String[] args) {
-    // Initialize components
-    UserContextProxy proxy = new UserContextProxy();
-
     // Simulate concurrent requests from multiple users
     for (int i = 1; i <= 5; i++) {
       // Simulate tokens for different users
@@ -28,7 +25,7 @@ public class App {
       new Thread(
               () -> {
                 // Simulate request processing flow
-                RequestHandler handler = new RequestHandler(proxy, token);
+                RequestHandler handler = new RequestHandler(token);
                 handler.process();
               })
           .start();
@@ -37,6 +34,7 @@ public class App {
       try {
         Thread.sleep(50);
       } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
         LOGGER.warn("Sleep interrupted", e);
       }
     }

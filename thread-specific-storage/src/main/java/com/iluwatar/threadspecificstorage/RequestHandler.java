@@ -1,7 +1,6 @@
 package com.iluwatar.threadspecificstorage;
 
 import java.security.SecureRandom;
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -10,11 +9,13 @@ import lombok.extern.slf4j.Slf4j;
  * <p>Each instance simulates a request-processing thread that uses the Thread-Specific Object Proxy
  * to access Thread-Specific Object.
  */
-@AllArgsConstructor
 @Slf4j
 public class RequestHandler {
-  private final UserContextProxy contextProxy;
   private final String token;
+
+  public RequestHandler(String token) {
+    this.token = token;
+  }
 
   /**
    * Simulated business process: 1. Parse userId from token ("Token::userId"). 2. Store userId in
@@ -29,13 +30,13 @@ public class RequestHandler {
       Long userId = parseToken(token);
 
       // Step 2: Save userId in ThreadLocal storage
-      contextProxy.set(new UserContext(userId));
+      UserContextProxy.set(new UserContext(userId));
 
       // Simulate delay between stages of request handling
       Thread.sleep(200);
 
       // Step 3: Retrieve userId later in the request flow
-      Long retrievedId = contextProxy.get().getUserId();
+      Long retrievedId = UserContextProxy.get().getUserId();
       SecureRandom random = new SecureRandom();
       String accountInfo = retrievedId + "'s account: " + random.nextInt(400);
       LOGGER.info(accountInfo);
@@ -44,7 +45,7 @@ public class RequestHandler {
       Thread.currentThread().interrupt();
     } finally {
       // Step 4: Clear ThreadLocal to avoid potential memory leaks
-      contextProxy.clear();
+      UserContextProxy.clear();
     }
   }
 

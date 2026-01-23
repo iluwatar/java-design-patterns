@@ -11,7 +11,10 @@ public class UserContextProxy {
    * Underlying TSObjectCollection (ThreadLocalMap) managed by JVM.This ThreadLocal acts as the Key
    * for the map.So That there is also no key factory.
    */
-  private static final ThreadLocal<UserContext> userContextHolder = new ThreadLocal<UserContext>();
+  private static final ThreadLocal<UserContext> userContextHolder = new ThreadLocal<>();
+
+  /** Private constructor to prevent instantiation of this utility class. */
+  private UserContextProxy() {}
 
   /** Set UserContext for the current thread. */
   public static void set(UserContext context) {

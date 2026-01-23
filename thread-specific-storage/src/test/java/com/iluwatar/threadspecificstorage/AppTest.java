@@ -1,5 +1,8 @@
 package com.iluwatar.threadspecificstorage;
 
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.awaitility.Awaitility.await;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.ByteArrayOutputStream;
@@ -18,11 +21,10 @@ class AppTest {
     App.main(new String[] {});
 
     // Give some time for threads to execute
-    try {
-      Thread.sleep(2000);
-    } catch (InterruptedException e) {
-      Thread.currentThread().interrupt();
-    }
+    await()
+        .atMost(5, SECONDS)
+        .pollInterval(100, MILLISECONDS)
+        .until(() -> outContent.toString().contains("Start handling request with token"));
 
     // Verify output contains expected log messages
     String output = outContent.toString();
