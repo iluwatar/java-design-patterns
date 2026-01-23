@@ -63,9 +63,6 @@ of the user context data.
 @Slf4j
 public class APP {
   public static void main(String[] args) {
-    // Initialize components
-    UserContextProxy proxy = new UserContextProxy();
-
     // Simulate concurrent requests from multiple users
     for (int i = 1; i <= 5; i++) {
       // Simulate tokens for different users
@@ -73,7 +70,7 @@ public class APP {
 
       new Thread(() -> {
         // Simulate request processing flow
-        RequestHandler handler = new RequestHandler(proxy, token);
+        RequestHandler handler = new RequestHandler(token);
         handler.process();
       }).start();
 
@@ -93,8 +90,11 @@ Here's how the request handler processes each request:
 ```java
 @Slf4j
 public class RequestHandler {
-  private final UserContextProxy contextProxy;
   private final String token;
+
+  public RequestHandler(String token) {
+    this.token = token;
+  }
 
   public void process() {
     LOGGER.info("Start handling request with token: {}", token);
@@ -104,13 +104,13 @@ public class RequestHandler {
       Long userId = parseToken(token);
 
       // Step 2: Save userId in ThreadLocal storage
-      contextProxy.set(new UserContext(userId));
+      UserContextProxy.set(new UserContext(userId));
 
       // Simulate delay between stages of request handling
       Thread.sleep(200);
 
       // Step 3: Retrieve userId later in the request flow
-      Long retrievedId = contextProxy.get().getUserId();
+      Long retrievedId = UserContextProxy.get().getUserId();
       Random random = new Random();
       String accountInfo = retrievedId + "'s account: " + random.nextInt(400);
       LOGGER.info(accountInfo);
@@ -119,7 +119,7 @@ public class RequestHandler {
       Thread.currentThread().interrupt();
     } finally {
       // Step 4: Clear ThreadLocal to avoid potential memory leaks
-      contextProxy.clear();
+      UserContextProxy.clear();
     }
   }
   
@@ -133,7 +133,12 @@ The UserContextProxy acts as a thread-safe accessor to the ThreadLocal storage:
 public class UserContextProxy {
   // Underlying TSObjectCollection (ThreadLocalMap) managed by JVM.
   // This ThreadLocal acts as the Key for the map.
-  private static final ThreadLocal<UserContext> userContextHolder = new ThreadLocal<UserContext>();
+  private static final ThreadLocal<UserContext> userContextHolder = new ThreadLocal<>();
+
+  /**
+   * Private constructor to prevent instantiation of this utility class.
+   */
+  private UserContextProxy() {}
 
   /** Set UserContext for the current thread */
   public static void set(UserContext context) {
