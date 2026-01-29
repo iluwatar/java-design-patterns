@@ -1,0 +1,51 @@
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+// ABOUTME: Example actor implementation that logs received messages and replies to sender.
+// ABOUTME: Demonstrates actor communication pattern with message acknowledgment.
+package com.iluwatar.actormodel
+
+import io.github.oshai.kotlinlogging.KotlinLogging
+
+private val logger = KotlinLogging.logger {}
+
+/**
+ * Example actor that logs received messages and sends a reply to the sender.
+ *
+ * @property actorSystem The actor system this actor belongs to
+ */
+class ExampleActor(private val actorSystem: ActorSystem) : Actor() {
+
+    val receivedMessages: MutableList<String> = mutableListOf()
+
+    override fun onReceive(message: Message) {
+        logger.info { "[${actorId}]Received : ${message.content} from : [${message.senderId}]" }
+        val sender = actorSystem.getActorById(message.senderId)
+        // Reply of the message
+        if (sender != null && message.senderId != actorId) {
+            sender.send(Message("I got your message ", actorId))
+        }
+    }
+}

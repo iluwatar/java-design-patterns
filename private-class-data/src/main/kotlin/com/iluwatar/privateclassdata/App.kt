@@ -1,0 +1,54 @@
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package com.iluwatar.privateclassdata
+
+// ABOUTME: Entry point demonstrating the Private Class Data design pattern.
+// ABOUTME: Shows the contrast between a mutable Stew and an ImmutableStew protected by StewData.
+
+/**
+ * The Private Class Data design pattern seeks to reduce exposure of attributes by limiting their
+ * visibility. It reduces the number of class attributes by encapsulating them in single data
+ * object. It allows the class designer to remove write privilege of attributes that are intended to
+ * be set only during construction, even from methods of the target class.
+ *
+ * In the example we have normal [Stew] class with some ingredients given in constructor.
+ * Then we have methods to enumerate the ingredients and to taste the stew. The method for tasting
+ * the stew alters the private members of the [Stew] class.
+ *
+ * The problem is solved with the Private Class Data pattern. We introduce [ImmutableStew]
+ * class that contains [StewData]. The private data members of [Stew] are now in
+ * [StewData] and cannot be altered by [ImmutableStew] methods.
+ */
+fun main() {
+    // stew is mutable
+    val stew = Stew(1, 2, 3, 4)
+    stew.mix()
+    stew.taste()
+    stew.mix()
+
+    // immutable stew protected with Private Class Data pattern
+    val immutableStew = ImmutableStew(2, 4, 3, 6)
+    immutableStew.mix()
+}

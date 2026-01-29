@@ -35,8 +35,8 @@
   <artifactId>chain-of-responsibility</artifactId>
   <dependencies>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
+      <groupId>io.github.oshai</groupId>
+      <artifactId>kotlin-logging-jvm</artifactId>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -51,6 +51,16 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <!-- Maven assembly plugin is invoked with default setting which we have
+				in parent pom and specifying the class having main method -->
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
@@ -58,7 +68,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.chain.App</mainClass>
+                  <mainClass>com.iluwatar.chain.AppKt</mainClass>
                 </manifest>
               </archive>
             </configuration>

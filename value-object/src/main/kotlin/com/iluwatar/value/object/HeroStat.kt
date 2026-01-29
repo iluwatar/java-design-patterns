@@ -1,0 +1,45 @@
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package com.iluwatar.value.`object`
+
+// ABOUTME: HeroStat is a value object representing a hero's statistics.
+// ABOUTME: Uses a Kotlin data class to provide equals, hashCode, and toString by value semantics.
+
+/**
+ * HeroStat is a value object.
+ *
+ * @see [Value-Based Classes](http://docs.oracle.com/javase/8/docs/api/java/lang/doc-files/ValueBased.html)
+ */
+data class HeroStat(
+    val strength: Int,
+    val intelligence: Int,
+    val luck: Int
+) {
+    companion object {
+        /** Factory method to create a HeroStat instance. */
+        fun valueOf(strength: Int, intelligence: Int, luck: Int): HeroStat =
+            HeroStat(strength, intelligence, luck)
+    }
+}

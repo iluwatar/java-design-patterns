@@ -1,0 +1,66 @@
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+// ABOUTME: Main entry point demonstrating different approaches to dependency injection.
+// ABOUTME: Shows naive, constructor, setter, and Guice-based injection patterns.
+package com.iluwatar.dependency.injection
+
+import com.google.inject.Guice
+
+/**
+ * Dependency Injection pattern deals with how objects handle their dependencies. The pattern
+ * implements so-called inversion of control principle. Inversion of control has two specific rules:
+ * - High-level modules should not depend on low-level modules. Both should depend on abstractions.
+ * - Abstractions should not depend on details. Details should depend on abstractions.
+ *
+ * In this example we show you three different wizards. The first one ([SimpleWizard]) is a
+ * naive implementation violating the inversion of control principle. It depends directly on a
+ * concrete implementation which cannot be changed.
+ *
+ * The second and third wizards([AdvancedWizard] and [AdvancedSorceress]) are more
+ * flexible. They do not depend on any concrete implementation but abstraction. They utilize
+ * Dependency Injection pattern allowing their [Tobacco] dependency to be injected through
+ * constructor ([AdvancedWizard]) or setter ([AdvancedSorceress]). This way, handling
+ * the dependency is no longer the wizard's responsibility. It is resolved outside the wizard class.
+ *
+ * The fourth example takes the pattern a step further. It uses Guice framework for Dependency
+ * Injection. [TobaccoModule] binds a concrete implementation to abstraction. Injector is then
+ * used to create [GuiceWizard] object with correct dependencies.
+ */
+fun main() {
+    val simpleWizard = SimpleWizard()
+    simpleWizard.smoke()
+
+    val advancedWizard = AdvancedWizard(SecondBreakfastTobacco())
+    advancedWizard.smoke()
+
+    val advancedSorceress = AdvancedSorceress()
+    advancedSorceress.tobacco = SecondBreakfastTobacco()
+    advancedSorceress.smoke()
+
+    val injector = Guice.createInjector(TobaccoModule())
+    val guiceWizard = injector.getInstance(GuiceWizard::class.java)
+    guiceWizard.smoke()
+}

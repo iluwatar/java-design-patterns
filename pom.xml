@@ -45,6 +45,11 @@
     <logback.version>1.5.18</logback.version>
     <slf4j.version>2.0.17</slf4j.version>
 
+    <!-- Kotlin -->
+    <kotlin.version>2.1.0</kotlin.version>
+    <kotlin-logging.version>7.0.3</kotlin-logging.version>
+    <mockk.version>1.13.13</mockk.version>
+
     <!-- Other dependencies -->
     <jacoco.version>0.8.13</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
@@ -52,7 +57,6 @@
     <gson.version>2.11.0</gson.version>
     <guice.version>6.0.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
-    <lombok.version>1.18.38</lombok.version>
     <mongo.version>5.4.0</mongo.version>
     <bson.version>5.4.0</bson.version>
     <h2.version>2.3.232</h2.version>
@@ -356,19 +360,66 @@
         <artifactId>h2</artifactId>
         <version>${h2.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-reflect</artifactId>
+        <version>${kotlin.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.github.oshai</groupId>
+        <artifactId>kotlin-logging-jvm</artifactId>
+        <version>${kotlin-logging.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>io.mockk</groupId>
+        <artifactId>mockk-jvm</artifactId>
+        <version>${mockk.version}</version>
+        <scope>test</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
-      <scope>provided</scope>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-stdlib</artifactId>
+      <version>${kotlin.version}</version>
     </dependency>
   </dependencies>
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.jetbrains.kotlin</groupId>
+          <artifactId>kotlin-maven-plugin</artifactId>
+          <version>${kotlin.version}</version>
+          <configuration>
+            <jvmTarget>21</jvmTarget>
+          </configuration>
+          <executions>
+            <execution>
+              <id>compile</id>
+              <goals>
+                <goal>compile</goal>
+              </goals>
+              <configuration>
+                <sourceDirs>
+                  <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
+                </sourceDirs>
+              </configuration>
+            </execution>
+            <execution>
+              <id>test-compile</id>
+              <goals>
+                <goal>test-compile</goal>
+              </goals>
+              <configuration>
+                <sourceDirs>
+                  <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+                </sourceDirs>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -376,14 +427,31 @@
           <configuration>
             <source>21</source>
             <target>21</target>
-            <annotationProcessorPaths>
-              <path>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-              </path>
-            </annotationProcessorPaths>
           </configuration>
+          <executions>
+            <execution>
+              <id>default-compile</id>
+              <phase>none</phase>
+            </execution>
+            <execution>
+              <id>default-testCompile</id>
+              <phase>none</phase>
+            </execution>
+            <execution>
+              <id>java-compile</id>
+              <phase>compile</phase>
+              <goals>
+                <goal>compile</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>java-test-compile</id>
+              <phase>test-compile</phase>
+              <goals>
+                <goal>testCompile</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -489,11 +557,9 @@
           </execution>
         </executions>
         <configuration>
-          <java>
-            <googleJavaFormat>
-              <version>1.17.0</version> <!-- Optional: choose the GJF version -->
-            </googleJavaFormat>
-          </java>
+          <kotlin>
+            <ktlint/>
+          </kotlin>
         </configuration>
       </plugin>
     </plugins>

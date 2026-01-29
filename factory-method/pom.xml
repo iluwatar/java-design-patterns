@@ -35,8 +35,8 @@
   <artifactId>factory-method</artifactId>
   <dependencies>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
+      <groupId>io.github.oshai</groupId>
+      <artifactId>kotlin-logging-jvm</artifactId>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -51,6 +51,14 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
@@ -58,7 +66,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.factory.method.App</mainClass>
+                  <mainClass>com.iluwatar.factory.method.AppKt</mainClass>
                 </manifest>
               </archive>
             </configuration>

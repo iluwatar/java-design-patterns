@@ -35,8 +35,8 @@
   <artifactId>factory</artifactId>
   <dependencies>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
+      <groupId>io.github.oshai</groupId>
+      <artifactId>kotlin-logging-jvm</artifactId>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -50,7 +50,15 @@
   </dependencies>
   <build>
     <plugins>
-      <!-- Maven assembly plugin is invoked with default setting which we have 
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <!-- Maven assembly plugin is invoked with default setting which we have
   in parent pom and specifying the class having main method -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -60,7 +68,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.factory.App</mainClass>
+                  <mainClass>com.iluwatar.factory.AppKt</mainClass>
                 </manifest>
               </archive>
             </configuration>

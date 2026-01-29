@@ -1,0 +1,204 @@
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+// ABOUTME: Main application demonstrating the Caching design pattern with four strategies.
+// ABOUTME: Shows write-through, write-around, write-behind, and cache-aside caching approaches.
+package com.iluwatar.caching
+
+import com.iluwatar.caching.database.DbManagerFactory
+import io.github.oshai.kotlinlogging.KotlinLogging
+
+private val logger = KotlinLogging.logger {}
+
+/** Constant parameter name to use mongoDB. */
+private const val USE_MONGO_DB = "--mongo"
+
+/**
+ * The Caching pattern describes how to avoid expensive re-acquisition of resources by not releasing
+ * the resources immediately after their use. The resources retain their identity, are kept in some
+ * fast-access storage, and are re-used to avoid having to acquire them again. There are four main
+ * caching strategies/techniques in this pattern; each with their own pros and cons. They are
+ * `write-through` which writes data to the cache and DB in a single transaction,
+ * `write-around` which writes data immediately into the DB instead of the cache,
+ * `write-behind` which writes data into the cache initially whilst the data is only written
+ * into the DB when the cache is full, and `cache-aside` which pushes the responsibility
+ * of keeping the data synchronized in both data sources to the application itself. The
+ * `read-through` strategy is also included in the mentioned four strategies -- returns data
+ * from the cache to the caller **if** it exists **else** queries from DB and stores it into
+ * the cache for future use. These strategies determine when the data in the cache should be written
+ * back to the backing store (i.e. Database) and help keep both data sources
+ * synchronized/up-to-date. This pattern can improve performance and also helps to
+ * maintain consistency between data held in the cache and the data in the underlying data store.
+ *
+ * In this example, the user account ([UserAccount]) entity is used as the underlying
+ * application data. The cache itself is implemented as an internal (Java) data structure. It adopts
+ * a Least-Recently-Used (LRU) strategy for evicting data from itself when its full. The four
+ * strategies are individually tested. The testing of the cache is restricted towards saving and
+ * querying of user accounts from the underlying data store ([DbManager]). The main class (
+ * [App]) is not aware of the underlying mechanics of the application (i.e. save and query) and
+ * whether the data is coming from the cache or the DB (i.e. separation of concern). The AppManager
+ * ([AppManager]) handles the transaction of data to-and-from the underlying data store
+ * (depending on the preferred caching policy/strategy).
+ *
+ * `App --> AppManager --> CacheStore/LRUCache/CachingPolicy --> DBManager`
+ *
+ * There are 2 ways to launch the application. - to use "in Memory" database. - to use the
+ * MongoDb as a database
+ *
+ * To run the application with "in Memory" database, just launch it without parameters Example:
+ * 'java -jar app.jar'
+ *
+ * To run the application with MongoDb you need to be installed the MongoDb in your system, or to
+ * launch it in the docker container. You may launch docker container from the root of current
+ * module with command: 'docker-compose up' Then you can start the application with parameter
+ * --mongo Example: 'java -jar app.jar --mongo'
+ *
+ * @see CacheStore
+ * @see LruCache
+ * @see CachingPolicy
+ */
+class App(
+    isMongo: Boolean,
+) {
+    /** Application manager. */
+    private val appManager: AppManager
+
+    init {
+        val dbManager = DbManagerFactory.initDb(isMongo)
+        appManager = AppManager(dbManager)
+        appManager.initDb()
+    }
+
+    /** Read-through and write-through. */
+    fun useReadAndWriteThroughStrategy() {
+        logger.info { "# CachingPolicy.THROUGH" }
+        appManager.initCachingPolicy(CachingPolicy.THROUGH)
+
+        val userAccount1 = UserAccount("001", "John", "He is a boy.")
+
+        appManager.save(userAccount1)
+        logger.info { appManager.printCacheContent() }
+        appManager.find("001")
+        appManager.find("001")
+    }
+
+    /** Read-through and write-around. */
+    fun useReadThroughAndWriteAroundStrategy() {
+        logger.info { "# CachingPolicy.AROUND" }
+        appManager.initCachingPolicy(CachingPolicy.AROUND)
+
+        var userAccount2 = UserAccount("002", "Jane", "She is a girl.")
+
+        appManager.save(userAccount2)
+        logger.info { appManager.printCacheContent() }
+        appManager.find("002")
+        logger.info { appManager.printCacheContent() }
+        userAccount2 = appManager.find("002")!!
+        userAccount2.userName = "Jane G."
+        appManager.save(userAccount2)
+        logger.info { appManager.printCacheContent() }
+        appManager.find("002")
+        logger.info { appManager.printCacheContent() }
+        appManager.find("002")
+    }
+
+    /** Read-through and write-behind. */
+    fun useReadThroughAndWriteBehindStrategy() {
+        logger.info { "# CachingPolicy.BEHIND" }
+        appManager.initCachingPolicy(CachingPolicy.BEHIND)
+
+        val userAccount3 = UserAccount("003", "Adam", "He likes food.")
+        val userAccount4 = UserAccount("004", "Rita", "She hates cats.")
+        val userAccount5 = UserAccount("005", "Isaac", "He is allergic to mustard.")
+
+        appManager.save(userAccount3)
+        appManager.save(userAccount4)
+        appManager.save(userAccount5)
+        logger.info { appManager.printCacheContent() }
+        appManager.find("003")
+        logger.info { appManager.printCacheContent() }
+        val userAccount6 = UserAccount("006", "Yasha", "She is an only child.")
+        appManager.save(userAccount6)
+        logger.info { appManager.printCacheContent() }
+        appManager.find("004")
+        logger.info { appManager.printCacheContent() }
+    }
+
+    /** Cache-Aside. */
+    fun useCacheAsideStrategy() {
+        logger.info { "# CachingPolicy.ASIDE" }
+        appManager.initCachingPolicy(CachingPolicy.ASIDE)
+        logger.info { appManager.printCacheContent() }
+
+        val userAccount3 = UserAccount("003", "Adam", "He likes food.")
+        val userAccount4 = UserAccount("004", "Rita", "She hates cats.")
+        val userAccount5 = UserAccount("005", "Isaac", "He is allergic to mustard.")
+        appManager.save(userAccount3)
+        appManager.save(userAccount4)
+        appManager.save(userAccount5)
+
+        logger.info { appManager.printCacheContent() }
+        appManager.find("003")
+        logger.info { appManager.printCacheContent() }
+        appManager.find("004")
+        logger.info { appManager.printCacheContent() }
+    }
+}
+
+/**
+ * Check the input parameters.
+ *
+ * @param args input params
+ * @return true if there is "--mongo" parameter in arguments
+ */
+private fun isDbMongo(args: Array<String>): Boolean = args.any { it == USE_MONGO_DB }
+
+/**
+ * Program entry point.
+ *
+ * @param args command line args
+ */
+fun main(args: Array<String>) {
+    // VirtualDB (instead of MongoDB) was used in running the JUnit tests
+    // and the App class to avoid Maven compilation errors. Set flag to
+    // true to run the tests with MongoDB (provided that MongoDB is
+    // installed and socket connection is open).
+    val isDbMongo = isDbMongo(args)
+    if (isDbMongo) {
+        logger.info { "Using the Mongo database engine to run the application." }
+    } else {
+        logger.info { "Using the 'in Memory' database to run the application." }
+    }
+    val app = App(isDbMongo)
+    app.useReadAndWriteThroughStrategy()
+    val splitLine = "=============================================="
+    logger.info { splitLine }
+    app.useReadThroughAndWriteAroundStrategy()
+    logger.info { splitLine }
+    app.useReadThroughAndWriteBehindStrategy()
+    logger.info { splitLine }
+    app.useCacheAsideStrategy()
+    logger.info { splitLine }
+}

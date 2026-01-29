@@ -35,8 +35,8 @@
   <artifactId>caching</artifactId>
   <dependencies>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
+      <groupId>io.github.oshai</groupId>
+      <artifactId>kotlin-logging-jvm</artifactId>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -48,8 +48,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
+      <groupId>io.mockk</groupId>
+      <artifactId>mockk-jvm</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -70,6 +70,14 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
@@ -84,7 +92,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.caching.App</mainClass>
+                  <mainClass>com.iluwatar.caching.AppKt</mainClass>
                 </manifest>
               </archive>
             </configuration>

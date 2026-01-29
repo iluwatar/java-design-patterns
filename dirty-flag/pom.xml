@@ -33,16 +33,10 @@
     <version>1.26.0-SNAPSHOT</version>
   </parent>
   <artifactId>dirty-flag</artifactId>
-  <version>1.26.0-SNAPSHOT</version>
-  <name>dirty-flag</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
   <dependencies>
     <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
+      <groupId>io.github.oshai</groupId>
+      <artifactId>kotlin-logging-jvm</artifactId>
     </dependency>
     <dependency>
       <groupId>ch.qos.logback</groupId>
@@ -57,6 +51,14 @@
   <build>
     <plugins>
       <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
+      <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <executions>
@@ -64,7 +66,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.dirtyflag.App</mainClass>
+                  <mainClass>com.iluwatar.dirtyflag.AppKt</mainClass>
                 </manifest>
               </archive>
             </configuration>

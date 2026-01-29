@@ -1,0 +1,60 @@
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package com.iluwatar.composite
+
+// ABOUTME: Factory class that creates composite message structures from Word and Letter objects.
+// ABOUTME: Provides pre-built messages from orcs and elves as Sentence composites.
+
+/** Messenger. */
+class Messenger {
+    fun messageFromOrcs(): LetterComposite {
+        val words =
+            listOf(
+                Word('W', 'h', 'e', 'r', 'e'),
+                Word('t', 'h', 'e', 'r', 'e'),
+                Word('i', 's'),
+                Word('a'),
+                Word('w', 'h', 'i', 'p'),
+                Word('t', 'h', 'e', 'r', 'e'),
+                Word('i', 's'),
+                Word('a'),
+                Word('w', 'a', 'y'),
+            )
+        return Sentence(words)
+    }
+
+    fun messageFromElves(): LetterComposite {
+        val words =
+            listOf(
+                Word('M', 'u', 'c', 'h'),
+                Word('w', 'i', 'n', 'd'),
+                Word('p', 'o', 'u', 'r', 's'),
+                Word('f', 'r', 'o', 'm'),
+                Word('y', 'o', 'u', 'r'),
+                Word('m', 'o', 'u', 't', 'h'),
+            )
+        return Sentence(words)
+    }
+}

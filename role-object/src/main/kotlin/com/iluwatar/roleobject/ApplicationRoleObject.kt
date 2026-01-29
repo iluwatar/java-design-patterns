@@ -1,0 +1,86 @@
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+package com.iluwatar.roleobject
+
+// ABOUTME: Entry point demonstrating the Role Object pattern with dynamic role attachment.
+// ABOUTME: Shows creating customers with Borrower and Investor roles, then using role-specific operations.
+
+import io.github.oshai.kotlinlogging.KotlinLogging
+
+private val logger = KotlinLogging.logger {}
+
+/**
+ * The Role Object pattern suggests to model context-specific views of an object as separate role
+ * objects which are dynamically attached to and removed from the core object. We call the resulting
+ * composite object structure, consisting of the core and its role objects, a subject. A subject
+ * often plays several roles and the same role is likely to be played by different subjects. As an
+ * example consider two different customers playing the role of borrower and investor, respectively.
+ * Both roles could as well be played by a single [Customer] object. The common superclass for
+ * customer-specific roles is provided by [CustomerRole], which also supports the [Customer]
+ * interface.
+ *
+ * The [CustomerRole] class is abstract and not meant to be instantiated. Concrete
+ * subclasses of [CustomerRole], for example [BorrowerRole] or [InvestorRole],
+ * define and implement the interface for specific roles. It is only these subclasses which are
+ * instantiated at runtime. The [BorrowerRole] class defines the context-specific view of
+ * [Customer] objects as needed by the loan department. It defines additional operations to
+ * manage the customer's credits and securities. Similarly, the [InvestorRole] class adds
+ * operations specific to the investment department's view of customers. A client like the loan
+ * application may either work with objects of the [CustomerRole] class, using the interface
+ * class [Customer], or with objects of concrete [CustomerRole] subclasses. Suppose the
+ * loan application knows a particular [Customer] instance through its [Customer]
+ * interface. The loan application may want to check whether the [Customer] object plays the
+ * role of Borrower. To this end it calls [Customer.hasRole] with a suitable role
+ * specification. For the purpose of our example, let's assume we can name roles with enum. If the
+ * [Customer] object can play the role named "Borrower," the loan application will ask it to
+ * return a reference to the corresponding object. The loan application may now use this reference
+ * to call Borrower-specific operations.
+ */
+fun main() {
+    val customer = Customer.newCustomer(Role.BORROWER, Role.INVESTOR)
+
+    logger.info { "New customer created : $customer" }
+
+    val hasBorrowerRole = customer.hasRole(Role.BORROWER)
+    logger.info { "Customer has a borrower role - $hasBorrowerRole" }
+    val hasInvestorRole = customer.hasRole(Role.INVESTOR)
+    logger.info { "Customer has an investor role - $hasInvestorRole" }
+
+    customer.getRole(Role.INVESTOR, InvestorRole::class.java)?.apply {
+        amountToInvest = 1000
+        name = "Billy"
+    }
+    customer.getRole(Role.BORROWER, BorrowerRole::class.java)?.apply {
+        name = "Johny"
+    }
+
+    customer.getRole(Role.INVESTOR, InvestorRole::class.java)
+        ?.invest()
+        ?.let { logger.info { it } }
+
+    customer.getRole(Role.BORROWER, BorrowerRole::class.java)
+        ?.borrow()
+        ?.let { logger.info { it } }
+}

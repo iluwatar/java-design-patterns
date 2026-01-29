@@ -39,6 +39,16 @@
   <artifactId>monolithic-architecture</artifactId>
 
   <dependencies>
+    <!-- Kotlin Logging -->
+    <dependency>
+      <groupId>io.github.oshai</groupId>
+      <artifactId>kotlin-logging-jvm</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+    </dependency>
+
     <!-- Spring Boot Starter Web -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -49,6 +59,12 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <!-- Kotlin Reflect for Spring -->
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-reflect</artifactId>
     </dependency>
 
     <!-- H2 Database -->
@@ -72,16 +88,42 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Mockito for Unit Testing -->
+    <!-- MockK for Unit Testing -->
     <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
+      <groupId>io.mockk</groupId>
+      <artifactId>mockk-jvm</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
+      <plugin>
+        <groupId>org.jetbrains.kotlin</groupId>
+        <artifactId>kotlin-maven-plugin</artifactId>
+        <configuration>
+          <compilerPlugins>
+            <plugin>spring</plugin>
+            <plugin>jpa</plugin>
+          </compilerPlugins>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-allopen</artifactId>
+            <version>${kotlin.version}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-maven-noarg</artifactId>
+            <version>${kotlin.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
@@ -90,7 +132,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.monolithic.EcommerceApp</mainClass>
+                  <mainClass>com.iluwatar.monolithic.EcommerceAppKt</mainClass>
                 </manifest>
               </archive>
               <descriptorRefs>
@@ -103,5 +145,3 @@
     </plugins>
   </build>
 </project>
-
-

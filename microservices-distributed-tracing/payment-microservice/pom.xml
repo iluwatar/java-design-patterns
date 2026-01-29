@@ -37,6 +37,22 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <configuration>
+                    <compilerPlugins>
+                        <plugin>spring</plugin>
+                    </compilerPlugins>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
@@ -44,7 +60,7 @@
                         <configuration>
                             <archive>
                                 <manifest>
-                                    <mainClass>com.iluwatar.payment.microservice.com.iluwatar.product.microservice.Main</mainClass>
+                                    <mainClass>com.iluwatar.payment.microservice.MainKt</mainClass>
                                 </manifest>
                             </archive>
                         </configuration>
