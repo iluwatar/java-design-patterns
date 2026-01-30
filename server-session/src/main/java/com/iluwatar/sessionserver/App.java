@@ -29,8 +29,11 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.time.Instant;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -57,6 +60,11 @@ public class App {
   private static Map<String, Instant> sessionCreationTimes = new HashMap<>();
   private static final long SESSION_EXPIRATION_TIME = 10000;
 
+  // Scheduler for session expiration task
+  private static ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+  private static volatile boolean running = true;
+  private static final CountDownLatch shutdownLatch = new CountDownLatch(1);
+
   /**
    * Main entry point.
    *
@@ -78,39 +86,64 @@ public class App {
     sessionExpirationTask();
 
     LOGGER.info("Server started. Listening on port 8080...");
+    // Wait for shutdown signal
+    try {
+      shutdownLatch.await();
+    } catch (InterruptedException e) {
+      LOGGER.error("Main thread interrupted", e);
+      Thread.currentThread().interrupt();
+    }
   }
 
   private static void sessionExpirationTask() {
-    new Thread(
-            () -> {
-              while (true) {
-                try {
-                  LOGGER.info("Session expiration checker started...");
-                  Thread.sleep(SESSION_EXPIRATION_TIME); // Sleep for expiration time
-                  Instant currentTime = Instant.now();
-                  synchronized (sessions) {
-                    synchronized (sessionCreationTimes) {
-                      Iterator<Map.Entry<String, Instant>> iterator =
-                          sessionCreationTimes.entrySet().iterator();
-                      while (iterator.hasNext()) {
-                        Map.Entry<String, Instant> entry = iterator.next();
-                        if (entry
-                            .getValue()
-                            .plusMillis(SESSION_EXPIRATION_TIME)
-                            .isBefore(currentTime)) {
-                          sessions.remove(entry.getKey());
-                          iterator.remove();
-                        }
-                      }
-                    }
-                  }
-                  LOGGER.info("Session expiration checker finished!");
-                } catch (InterruptedException e) {
-                  LOGGER.error("An error occurred: ", e);
-                  Thread.currentThread().interrupt();
+    if (!running) {
+      return;
+    }
+    try {
+      LOGGER.info("Session expiration checker started...");
+      Instant currentTime = Instant.now();
+
+      // Use removeIf for efficient removal without explicit synchronization
+      // ConcurrentHashMap handles thread safety internally
+      sessionCreationTimes
+          .entrySet()
+          .removeIf(
+              entry -> {
+                if (entry.getValue().plusMillis(SESSION_EXPIRATION_TIME).isBefore(currentTime)) {
+                  sessions.remove(entry.getKey());
+                  LOGGER.debug("Expired session: {}", entry.getKey());
+                  return true;
                 }
-              }
-            })
-        .start();
+                return false;
+              });
+
+      LOGGER.info("Session expiration checker finished! Active sessions: {}", sessions.size());
+    } catch (Exception e) {
+      LOGGER.error("An error occurred during session expiration check: ", e);
+    }
+  }
+
+  /**
+   * Gracefully shuts down the session expiration scheduler. This method is called by the shutdown
+   * hook.
+   */
+  private static void shutdown() {
+    LOGGER.info("Shutting down session expiration scheduler...");
+    running = false;
+    scheduler.shutdown();
+
+    try {
+      if (!scheduler.awaitTermination(5, TimeUnit.SECONDS)) {
+        LOGGER.warn("Scheduler did not terminate gracefully, forcing shutdown");
+        scheduler.shutdownNow();
+      }
+    } catch (InterruptedException e) {
+      LOGGER.warn("Shutdown interrupted, forcing immediate shutdown");
+      scheduler.shutdownNow();
+      Thread.currentThread().interrupt();
+    }
+
+    shutdownLatch.countDown();
+    LOGGER.info("Session expiration scheduler shut down complete");
   }
 }
