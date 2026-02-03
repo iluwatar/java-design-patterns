@@ -7,29 +7,24 @@ permissions:
 
 on:
   pull_request_target: # Handle forked repository PRs in the base repository context
-    types: [opened, synchronize]
-  pull_request_review_comment: # Handle review comments
-    types: [created]
+    types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
   review:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check required secrets
-        run: |
-          if [ -z "${{ secrets.LLM_API_KEY }}" ]; then
-            echo "Error: LLM_API_KEY secret is not configured"
-            exit 1
-          fi
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Check out PR code
-        uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.sha }}
-
-      - name: Run AI Reviewer
+      - name: Run AI code reviewer
         uses: presubmit/ai-reviewer@latest
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
-          LLM_MODEL: "gemini-1.5-flash-latest"  # ✅ updated model version
+          LLM_PROVIDER: ai-sdk
+          LLM_MODEL: gemini-1.5-flash-latest  # ✅ Updated model
+          REVIEW_SUMMARY: "true"
+          MAX_TOKENS: "4096"
+          TEMPERATURE: "0.2"
+
+      - name: Print completion message
+        run: echo "✅ AI code review completed successfully!"
