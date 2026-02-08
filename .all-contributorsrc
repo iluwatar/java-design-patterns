@@ -3539,6 +3539,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "naman-sriv",
+      "name": "Naman Srivastava",
+      "avatar_url": "https://avatars.githubusercontent.com/u/82610773?v=4",
+      "profile": "https://github.com/naman-sriv",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
