@@ -71,7 +71,6 @@
     <sonar.projectName>Java Design Patterns</sonar.projectName>
   </properties>
   <modules>
-
     <module>abstract-document</module>
     <module>abstract-factory</module>
     <module>active-object</module>
@@ -244,11 +243,11 @@
     <module>update-method</module>
     <module>value-object</module>
     <module>version-number</module>
+    <module>view-helper</module>
     <module>virtual-proxy</module>
     <module>visitor</module>
     <module>backpressure</module>
     <module>actor-model</module>
-
   </modules>
   <repositories>
     <repository>
