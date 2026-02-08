@@ -48,7 +48,7 @@
     <!-- Other dependencies -->
     <jacoco.version>0.8.13</jacoco.version>
     <commons-dbcp.version>1.4</commons-dbcp.version>
-    <htmlunit.version>4.7.0</htmlunit.version>
+    <htmlunit.version>4.17.0</htmlunit.version>
     <gson.version>2.11.0</gson.version>
     <guice.version>6.0.0</guice.version>
     <system-lambda.version>1.1.0</system-lambda.version>
@@ -106,6 +106,7 @@
     <module>converter</module>
     <module>curiously-recurring-template-pattern</module>
     <module>currying</module>
+      <module>dao-factory</module>
     <module>data-access-object</module>
     <module>data-bus</module>
     <module>data-locality</module>
@@ -166,6 +167,7 @@
     <module>microservices-distributed-tracing</module>
     <module>microservices-idempotent-consumer</module>
     <module>microservices-log-aggregation</module>
+    <module>microservices-self-registration</module>
     <module>model-view-controller</module>
     <module>model-view-intent</module>
     <module>model-view-presenter</module>
@@ -230,6 +232,7 @@
     <module>table-module</module>
     <module>template-method</module>
     <module>templateview</module>
+    <module>thread-pool-executor</module>
     <module>throttling</module>
     <module>tolerant-reader</module>
     <module>trampoline</module>

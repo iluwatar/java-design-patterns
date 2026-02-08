@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-386-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-388-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -573,8 +573,10 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/ssrijan-007-sys"><img src="https://avatars.githubusercontent.com/u/137605821?v=4?s=100" width="100px;" alt="ssrijan-007-sys"/><br /><sub><b>ssrijan-007-sys</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ssrijan-007-sys" title="Code">💻</a></td>
     </tr>
     <tr>
-      <td align="center" valign="top" width="16.66%"><a href="https://github.com/e5LA"><img src="https://avatars.githubusercontent.com/u/208197507?v=4?s=100" width="100px;" alt="e5LA"/><br /><sub><b>e5LA</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=e5LA" title="Code">💻</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/e5LA"><img src="https://avatars.githubusercontent.com/u/208197507?v=4?s=100" width="100px;" alt="e5LA"/><br /><sub><b>e5LA</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=e5LA" title="Code">💻</a> <a href="https://github.com/iluwatar/java-design-patterns/commits?author=e5LA" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="16.66%"><a href="http://maziyar-gerami.github.io/portfolio/"><img src="https://avatars.githubusercontent.com/u/122622721?v=4?s=100" width="100px;" alt="Maziyar Gerami"/><br /><sub><b>Maziyar Gerami</b></sub></a><br /><a href="#translation-maziyar-gerami" title="Translation">🌍</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/yybmion"><img src="https://avatars.githubusercontent.com/u/113106136?v=4?s=100" width="100px;" alt="yoobin_mion"/><br /><sub><b>yoobin_mion</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=yybmion" title="Code">💻</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://ronodhirsoumik.github.io"><img src="https://avatars.githubusercontent.com/u/46843689?v=4?s=100" width="100px;" alt="Soumik Sarker"/><br /><sub><b>Soumik Sarker</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=ronodhirSoumik" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>

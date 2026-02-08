@@ -1,0 +1,74 @@
+@startuml
+package com.iluwatar.daofactory {
+    class App {
+        {static} void main(String[] args)
+    }
+
+    class Customer<T> {
+        T id
+        String name
+    }
+
+    interface CustomerDAO<ID> {
+        void save(Customer<ID> customer)
+        void update(Customer<ID> customer)
+        void delete(ID id)
+        List<Customer<ID>> findAll()
+        Optional<Customer<ID>> findById(ID id)
+        void deleteSchema()
+    }
+
+    abstract class DAOFactory {
+    {static} DAOFactory getDataSource(DataSourceType dataType)
+    {abstract} CustomerDAO createCustomerDAO()
+    }
+
+    enum DataSourceType {
+        H2
+        Mongo
+        FlatFile
+    }
+
+    class FlatFileCustomerDAO implements CustomerDAO<Long> {
+            void save(Customer<Long> customer)
+            void update(Customer<Long> customer)
+            void delete(Long id)
+            List<Customer<Long>> findAll()
+            Optional<Customer<Long>> findById(Long id)
+            void deleteSchema()
+    }
+
+    class H2CustomerDAO implements CustomerDAO<Long> {
+                    void save(Customer<Long> customer)
+                    void update(Customer<Long> customer)
+                    void delete(Long id)
+                    List<Customer<Long>> findAll()
+                    Optional<Customer<Long>> findById(Long id)
+                    void deleteSchema()
+    }
+
+    class FlatFileDataSourceFactory extends DAOFactory {
+        CustomerDAO createCustomerDAO()
+    }
+
+    class H2DataSourceFactory extends DAOFactory {
+        CustomerDAO createCustomerDAO()
+    }
+
+    class MongoCustomerDAO implements CustomerDAO<ObjectId> {
+                    void save(Customer<ObjectId> customer)
+                    void update(Customer<ObjectId> customer)
+                    void delete(ObjectId id)
+                    List<Customer<ObjectId>> findAll()
+                    Optional<Customer<ObjectId>> findById(ObjectId id)
+                    void deleteSchema()
+    }
+    class MongoDataSourceFactory extends DAOFactory {
+        CustomerDAO createCustomerDAO()
+    }
+
+    DataSourceType ..+ DAOFactory
+    DAOFactory ..+ App
+    App --> Customer
+ }
+@enduml
