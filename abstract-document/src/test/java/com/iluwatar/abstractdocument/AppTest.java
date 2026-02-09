@@ -39,6 +39,13 @@ class AppTest {
    */
   @Test
   void shouldExecuteAppWithoutException() {
-    assertDoesNotThrow(() -> App.main(null));
+    // existing check
+    assertDoesNotThrow(() -> App.main((String[]) null));
+
+    // added check: empty args should also not throw
+    assertDoesNotThrow(
+      () -> App.main(new String[]{}),
+      "App should run without exceptions when args array is empty"
+     );
   }
 }
