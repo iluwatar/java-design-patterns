@@ -42,7 +42,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-webmvc</artifactId>
-        <version>6.2.5</version>
+        <version>7.0.3</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
