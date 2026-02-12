@@ -59,6 +59,7 @@ public class Cart {
    * @return the total price of the products in the cart.
    */
   public double getTotalPrice() {
-    return product.getPrice() * quantity;
+        int getTotPrice = product.getPrice() * quantity;
+        return getTotPrice;
   }
 }
