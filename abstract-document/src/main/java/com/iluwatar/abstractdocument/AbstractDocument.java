@@ -24,7 +24,6 @@
  */
 package com.iluwatar.abstractdocument;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -39,7 +38,7 @@ public abstract class AbstractDocument implements Document {
   protected AbstractDocument(Map<String, Object> properties) {
     Objects.requireNonNull(properties, "properties map is required");
     this.documentProperties = properties;
-  }
+  } // indentation fixed
 
   @Override
   public Void put(String key, Object value) {
@@ -52,15 +51,19 @@ public abstract class AbstractDocument implements Document {
     return documentProperties.get(key);
   }
 
+  @SuppressWarnings("unchecked")
   @Override
   public <T> Stream<T> children(String key, Function<Map<String, Object>, T> childConstructor) {
-    return Stream.ofNullable(get(key))
-        .filter(Objects::nonNull)
-        .map(el -> (List<Map<String, Object>>) el)
-        .findAny()
-        .stream()
-        .flatMap(Collection::stream)
-        .map(childConstructor);
+    Object value = get(key);
+    if (value instanceof List<?>) {
+      return ((List<?>) value)
+          .stream()
+              .filter(
+                  e -> e instanceof Map) // Only keeping items that are actually maps before casting
+              .map(e -> (Map<String, Object>) e)
+              .map(childConstructor);
+    }
+    return Stream.empty();
   }
 
   @Override
