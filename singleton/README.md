@@ -39,6 +39,51 @@ Sequence diagram
 
 ## Programmatic Example of Singleton Pattern in Java
 
+### 1. Eager Initialization
+
+The instance is created at class loading time. Thread-safe but may waste memory if never used.
+
+```java
+public final class EagerInitializedSingleton {
+    private static final EagerInitializedSingleton INSTANCE = new EagerInitializedSingleton();
+    
+    private EagerInitializedSingleton() {
+        if (INSTANCE != null) {
+            throw new IllegalStateException("Singleton already initialized");
+        }
+    }
+    
+    public static EagerInitializedSingleton getInstance() {
+        return INSTANCE;
+    }
+}
+```
+
+### 2. Lazy Initialization
+
+The instance is created only when first requested. Memory efficient but requires synchronization.
+
+```java
+public final class LazyInitializedSingleton {
+    private static LazyInitializedSingleton instance;
+    
+    private LazyInitializedSingleton() {
+        if (instance != null) {
+            throw new IllegalStateException("Singleton already initialized");
+        }
+    }
+    
+    public static synchronized LazyInitializedSingleton getInstance() {
+        if (instance == null) {
+            instance = new LazyInitializedSingleton();
+        }
+        return instance;
+    }
+}
+```
+
+### 3. Enum Singleton (Recommended)
+
 Joshua Bloch, Effective Java 2nd Edition p.18
 
 > A single-element enum type is the best way to implement a singleton
@@ -49,7 +94,7 @@ public enum EnumIvoryTower {
 }
 ```
 
-Then in order to use:
+Usage example:
 
 ```java
     var enumIvoryTower1 = EnumIvoryTower.INSTANCE;
