@@ -24,21 +24,32 @@
  */
 package com.iluwatar.logaggregation;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import java.time.LocalDateTime;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+/**
+ * Unit tests for LogAggregator class.
+ *
+ * <p>Tests the event-driven log aggregation functionality including threshold-based flushing,
+ * scheduled periodic flushing, and graceful shutdown behavior.
+ */
 @ExtendWith(MockitoExtension.class)
 class LogAggregatorTest {
 
   @Mock private CentralLogStore centralLogStore;
+
   private LogAggregator logAggregator;
 
   @BeforeEach
@@ -46,23 +57,131 @@ class LogAggregatorTest {
     logAggregator = new LogAggregator(centralLogStore, LogLevel.INFO);
   }
 
+  @AfterEach
+  void tearDown() throws InterruptedException {
+    if (logAggregator != null && logAggregator.isRunning()) {
+      logAggregator.stop();
+      logAggregator.awaitShutdown();
+    }
+  }
+
   @Test
-  void whenThreeInfoLogsAreCollected_thenCentralLogStoreShouldStoreAllOfThem() {
+  void whenThreeInfoLogsAreCollected_thenCentralLogStoreShouldStoreAllOfThem()
+      throws InterruptedException {
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Sample log message 1"));
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Sample log message 2"));
 
+    assertEquals(2, logAggregator.getLogCount());
     verifyNoInteractionsWithCentralLogStore();
 
     logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Sample log message 3"));
 
+    Thread.sleep(1000);
+
     verifyCentralLogStoreInvokedTimes(3);
+    assertEquals(0, logAggregator.getLogCount());
   }
 
   @Test
-  void whenDebugLogIsCollected_thenNoLogsShouldBeStored() {
+  void whenDebugLogIsCollected_thenNoLogsShouldBeStored() throws InterruptedException {
     logAggregator.collectLog(createLogEntry(LogLevel.DEBUG, "Sample debug log message"));
 
+    assertEquals(0, logAggregator.getLogCount());
+    assertEquals(0, logAggregator.getBufferSize());
+
+    Thread.sleep(500);
+
     verifyNoInteractionsWithCentralLogStore();
+  }
+
+  @Test
+  void whenTwoLogsCollected_thenBufferShouldContainThem() {
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Message 1"));
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Message 2"));
+
+    assertEquals(2, logAggregator.getLogCount());
+    assertEquals(2, logAggregator.getBufferSize());
+
+    verifyNoInteractionsWithCentralLogStore();
+  }
+
+  @Test
+  void whenScheduledFlushOccurs_thenBufferedLogsShouldBeStored() throws InterruptedException {
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Scheduled flush test"));
+
+    assertEquals(1, logAggregator.getLogCount());
+    verifyNoInteractionsWithCentralLogStore();
+
+    Thread.sleep(6000);
+
+    verifyCentralLogStoreInvokedTimes(1);
+    assertEquals(0, logAggregator.getLogCount());
+  }
+
+  @Test
+  void whenLogAggregatorStopped_thenRemainingLogsShouldBeStored() throws InterruptedException {
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Final message 1"));
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Final message 2"));
+
+    assertEquals(2, logAggregator.getLogCount());
+    verifyNoInteractionsWithCentralLogStore();
+
+    logAggregator.stop();
+    logAggregator.awaitShutdown();
+
+    verifyCentralLogStoreInvokedTimes(2);
+    assertEquals(0, logAggregator.getLogCount());
+    assertFalse(logAggregator.isRunning());
+  }
+
+  @Test
+  void whenLogLevelBelowThreshold_thenLogShouldBeFiltered() {
+    logAggregator.collectLog(createLogEntry(LogLevel.DEBUG, "Debug message"));
+
+    assertEquals(0, logAggregator.getLogCount());
+    assertEquals(0, logAggregator.getBufferSize());
+    verifyNoInteractionsWithCentralLogStore();
+  }
+
+  @Test
+  void whenLogLevelAtOrAboveThreshold_thenLogShouldBeAccepted() {
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Info message"));
+    logAggregator.collectLog(createLogEntry(LogLevel.ERROR, "Error message"));
+
+    assertEquals(2, logAggregator.getLogCount());
+    assertEquals(2, logAggregator.getBufferSize());
+  }
+
+  @Test
+  void whenNullLogLevelProvided_thenLogShouldBeSkipped() {
+    LogEntry nullLevelEntry =
+        new LogEntry("ServiceA", null, "Null level message", LocalDateTime.now());
+
+    logAggregator.collectLog(nullLevelEntry);
+
+    assertEquals(0, logAggregator.getLogCount());
+    verifyNoInteractionsWithCentralLogStore();
+  }
+
+  @Test
+  void whenLogAggregatorIsShutdown_thenNewLogsShouldBeRejected() throws InterruptedException {
+    logAggregator.stop();
+    logAggregator.awaitShutdown();
+
+    assertFalse(logAggregator.isRunning());
+
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Post-shutdown message"));
+
+    assertEquals(0, logAggregator.getLogCount());
+    verifyNoInteractionsWithCentralLogStore();
+  }
+
+  @Test
+  void testBasicFunctionality() throws InterruptedException {
+    assertTrue(logAggregator.isRunning());
+
+    logAggregator.collectLog(createLogEntry(LogLevel.INFO, "Basic test"));
+    assertEquals(1, logAggregator.getLogCount());
   }
 
   private static LogEntry createLogEntry(LogLevel logLevel, String message) {

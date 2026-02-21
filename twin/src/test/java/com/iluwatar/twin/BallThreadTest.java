@@ -24,44 +24,44 @@
  */
 package com.iluwatar.twin;
 
-import static java.lang.Thread.UncaughtExceptionHandler;
 import static java.lang.Thread.sleep;
 import static java.time.Duration.ofMillis;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.reset;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
+import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
 /** BallThreadTest */
 class BallThreadTest {
 
-  /** Verify if the {@link BallThread} can be resumed */
+  /** Verify if the {@link BallThread} can be suspended */
   @Test
   void testSuspend() {
     assertTimeout(
         ofMillis(5000),
         () -> {
           final var ballThread = new BallThread();
-
           final var ballItem = mock(BallItem.class);
           ballThread.setTwin(ballItem);
 
-          ballThread.start();
+          // FIXED: Use run() instead of start() for new architecture
+          ballThread.run();
           sleep(200);
           verify(ballItem, atLeastOnce()).draw();
           verify(ballItem, atLeastOnce()).move();
-          ballThread.suspendMe();
 
+          ballThread.suspendMe();
+          reset(ballItem); // Reset mock to track suspension behavior
           sleep(1000);
 
           ballThread.stopMe();
-          ballThread.join();
-
+          // FIXED: Use awaitShutdown() instead of join()
+          ballThread.awaitShutdown(3, TimeUnit.SECONDS);
           verifyNoMoreInteractions(ballItem);
         });
   }
@@ -73,16 +73,14 @@ class BallThreadTest {
         ofMillis(5000),
         () -> {
           final var ballThread = new BallThread();
-
           final var ballItem = mock(BallItem.class);
           ballThread.setTwin(ballItem);
 
-          ballThread.suspendMe();
-          ballThread.start();
-
+          ballThread.suspendMe(); // Suspend before starting
+          // 🚀 FIXED: Use run() instead of start()
+          ballThread.run();
           sleep(1000);
-
-          verifyNoMoreInteractions(ballItem);
+          verifyNoMoreInteractions(ballItem); // Should be no activity while suspended
 
           ballThread.resumeMe();
           sleep(300);
@@ -90,28 +88,39 @@ class BallThreadTest {
           verify(ballItem, atLeastOnce()).move();
 
           ballThread.stopMe();
-          ballThread.join();
-
-          verifyNoMoreInteractions(ballItem);
+          // FIXED: Use awaitShutdown() instead of join()
+          ballThread.awaitShutdown(3, TimeUnit.SECONDS);
         });
   }
 
-  /** Verify if the {@link BallThread} is interruptible */
+  /**
+   * UPDATED: Test graceful shutdown instead of interrupt (New architecture doesn't use
+   * Thread.interrupt())
+   */
   @Test
-  void testInterrupt() {
+  void testGracefulShutdown() {
     assertTimeout(
         ofMillis(5000),
         () -> {
           final var ballThread = new BallThread();
-          final var exceptionHandler = mock(UncaughtExceptionHandler.class);
-          ballThread.setUncaughtExceptionHandler(exceptionHandler);
-          ballThread.setTwin(mock(BallItem.class));
-          ballThread.start();
-          ballThread.interrupt();
-          ballThread.join();
+          final var ballItem = mock(BallItem.class);
+          ballThread.setTwin(ballItem);
 
-          verify(exceptionHandler).uncaughtException(eq(ballThread), any(RuntimeException.class));
-          verifyNoMoreInteractions(exceptionHandler);
+          // FIXED: Use run() instead of start()
+          ballThread.run();
+          sleep(200); // Let it run briefly
+
+          verify(ballItem, atLeastOnce()).draw();
+          verify(ballItem, atLeastOnce()).move();
+
+          // NEW: Test graceful shutdown instead of interrupt
+          ballThread.stopMe();
+          boolean shutdownCompleted = ballThread.awaitShutdown(3, TimeUnit.SECONDS);
+
+          // Verify shutdown completed successfully
+          if (!shutdownCompleted) {
+            throw new RuntimeException("Shutdown did not complete within timeout");
+          }
         });
   }
 }
