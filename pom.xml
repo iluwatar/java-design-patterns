@@ -216,6 +216,7 @@
     <module>service-locator</module>
     <module>service-stub</module>
     <module>service-to-worker</module>
+    <module>server-side-service-discovery</module>
     <module>session-facade</module>
     <module>sharding</module>
     <module>single-table-inheritance</module>
