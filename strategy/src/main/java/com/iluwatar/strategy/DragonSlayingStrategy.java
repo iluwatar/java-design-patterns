@@ -26,7 +26,12 @@ package com.iluwatar.strategy;
 
 /** Strategy interface. */
 @FunctionalInterface
+/**
+ * Strategy interface for slaying a dragon.
+ */
 public interface DragonSlayingStrategy {
-
+  /**
+   * Execute the dragon slaying strategy.
+   */
   void execute();
 }
