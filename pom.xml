@@ -191,6 +191,7 @@
     <module>partial-response</module>
     <module>pipeline</module>
     <module>poison-pill</module>
+    <module>polling-publisher</module>
     <module>presentation-model</module>
     <module>private-class-data</module>
     <module>producer-consumer</module>
