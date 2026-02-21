@@ -65,6 +65,11 @@ public class DataBus {
    *
    * @param event The event
    */
+
+  /**
+   * Publishes an event to all subscribed members.
+   * @param event The data event to be sent.
+   */
   public void publish(final DataType event) {
     event.setDataBus(this);
     listeners.forEach(listener -> listener.accept(event));
