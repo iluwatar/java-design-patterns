@@ -41,6 +41,9 @@ Hopefully, you find the object-oriented solutions presented on this site useful 
 
 # How to Contribute
 
+This is my first open source contribution — by Keerthana A
+
+
 If you are willing to contribute to the project you will find the relevant information in our [developer wiki](https://github.com/iluwatar/java-design-patterns/wiki). We will help you and answer your questions in the [Gitter chatroom](https://gitter.im/iluwatar/java-design-patterns).
 
 # The Book
