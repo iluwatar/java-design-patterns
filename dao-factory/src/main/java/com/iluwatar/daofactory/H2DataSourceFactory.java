@@ -22,51 +22,27 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.publish.subscribe.model;
+package com.iluwatar.daofactory;
 
-import com.iluwatar.publish.subscribe.subscriber.Subscriber;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CopyOnWriteArraySet;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import javax.sql.DataSource;
+import org.h2.jdbcx.JdbcDataSource;
 
-/** This class represents a Topic that topic name and subscribers. */
-@Getter
-@Setter
-@RequiredArgsConstructor
-public class Topic {
+/** H2DataSourceFactory concrete factory. */
+public class H2DataSourceFactory extends DAOFactory {
+  private static final String DB_URL = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1";
+  private static final String USER = "sa";
+  private static final String PASS = "";
 
-  private final String topicName;
-  private final Set<Subscriber> subscribers = new CopyOnWriteArraySet<>();
-
-  /**
-   * Add a subscriber to the list of subscribers.
-   *
-   * @param subscriber subscriber to add
-   */
-  public void addSubscriber(Subscriber subscriber) {
-    subscribers.add(subscriber);
+  @Override
+  public CustomerDAO createCustomerDAO() {
+    return new H2CustomerDAO(createDataSource());
   }
 
-  /**
-   * Remove a subscriber from the list of subscribers.
-   *
-   * @param subscriber subscriber to remove
-   */
-  public void removeSubscriber(Subscriber subscriber) {
-    subscribers.remove(subscriber);
-  }
-
-  /**
-   * Publish a message to subscribers.
-   *
-   * @param message message with content to publish
-   */
-  public void publish(Message message) {
-    for (Subscriber subscriber : subscribers) {
-      CompletableFuture.runAsync(() -> subscriber.onMessage(message));
-    }
+  private DataSource createDataSource() {
+    var dataSource = new JdbcDataSource();
+    dataSource.setURL(DB_URL);
+    dataSource.setUser(USER);
+    dataSource.setPassword(PASS);
+    return dataSource;
   }
 }

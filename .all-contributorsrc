@@ -3530,6 +3530,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "ronodhirSoumik",
+      "name": "Soumik Sarker",
+      "avatar_url": "https://avatars.githubusercontent.com/u/46843689?v=4",
+      "profile": "https://ronodhirsoumik.github.io",
+      "contributions": [
+        "doc"
+      ]
+    },
+    {
+      "login": "naman-sriv",
+      "name": "Naman Srivastava",
+      "avatar_url": "https://avatars.githubusercontent.com/u/82610773?v=4",
+      "profile": "https://github.com/naman-sriv",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "letdtcode",
+      "name": "Thanh Nguyen Duc",
+      "avatar_url": "https://avatars.githubusercontent.com/u/92111552?v=4",
+      "profile": "https://github.com/letdtcode",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,

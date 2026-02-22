@@ -22,51 +22,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.publish.subscribe.model;
+package com.iluwatar.daofactory;
 
-import com.iluwatar.publish.subscribe.subscriber.Subscriber;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CopyOnWriteArraySet;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
-/** This class represents a Topic that topic name and subscribers. */
-@Getter
-@Setter
-@RequiredArgsConstructor
-public class Topic {
+/** FlatFileDataSourceFactory concrete factory. */
+public class FlatFileDataSourceFactory extends DAOFactory {
+  private static final String FILE_PATH =
+      System.getProperty("user.home") + "/Desktop/customer.json";
 
-  private final String topicName;
-  private final Set<Subscriber> subscribers = new CopyOnWriteArraySet<>();
-
-  /**
-   * Add a subscriber to the list of subscribers.
-   *
-   * @param subscriber subscriber to add
-   */
-  public void addSubscriber(Subscriber subscriber) {
-    subscribers.add(subscriber);
-  }
-
-  /**
-   * Remove a subscriber from the list of subscribers.
-   *
-   * @param subscriber subscriber to remove
-   */
-  public void removeSubscriber(Subscriber subscriber) {
-    subscribers.remove(subscriber);
-  }
-
-  /**
-   * Publish a message to subscribers.
-   *
-   * @param message message with content to publish
-   */
-  public void publish(Message message) {
-    for (Subscriber subscriber : subscribers) {
-      CompletableFuture.runAsync(() -> subscriber.onMessage(message));
-    }
+  @Override
+  public CustomerDAO<Long> createCustomerDAO() {
+    Path filePath = Paths.get(FILE_PATH);
+    Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+    return new FlatFileCustomerDAO(filePath, gson);
   }
 }
