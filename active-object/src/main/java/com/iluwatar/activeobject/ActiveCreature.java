@@ -1,5 +1,5 @@
 /*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL.
  *
  * The MIT License
  * Copyright © 2014-2022 Ilkka Seppälä
@@ -22,6 +22,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package com.iluwatar.activeobject;
 
 import java.util.concurrent.BlockingQueue;
@@ -29,88 +30,109 @@ import java.util.concurrent.LinkedBlockingQueue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/** ActiveCreature class is the base of the active object example. */
+/**
+ * 🧠 The ActiveCreature class represents an "Active Object" pattern.
+ * Each creature has its own thread and request queue.
+ * Instead of performing actions directly, we submit them as Runnables to its queue.
+ * This helps separate method execution from method invocation (asynchronous behavior).
+ */
 public abstract class ActiveCreature {
 
+  // Logger to print activity messages
   private static final Logger logger = LoggerFactory.getLogger(ActiveCreature.class.getName());
 
-  private BlockingQueue<Runnable> requests;
+  // Queue to store tasks (Runnables) that the creature will execute
+  private final BlockingQueue<Runnable> requests;
 
-  private String name;
+  // Name of the creature
+  private final String name;
 
-  private Thread thread; // Thread of execution.
+  // Thread on which this creature executes its actions
+  private final Thread thread;
 
-  private int status; // status of the thread of execution.
+  // Status of the thread (0 = OK, non-zero = error/interrupted)
+  private int status;
 
-  /** Constructor and initialization. */
+  /**
+   * 🏗️ Constructor initializes creature name, status, and starts its own thread.
+   * The thread continuously takes Runnables from the queue and executes them.
+   */
   protected ActiveCreature(String name) {
     this.name = name;
     this.status = 0;
     this.requests = new LinkedBlockingQueue<>();
-    thread =
-        new Thread(
-            () -> {
-              boolean infinite = true;
-              while (infinite) {
-                try {
-                  requests.take().run();
-                } catch (InterruptedException e) {
-                  if (this.status != 0) {
-                    logger.error("Thread was interrupted. --> {}", e.getMessage());
-                  }
-                  infinite = false;
-                  Thread.currentThread().interrupt();
-                }
-              }
-            });
+
+    // Creating and starting a new thread for this creature
+    thread = new Thread(() -> {
+      boolean running = true;
+      while (running) {
+        try {
+          // Take next task from the queue and execute it
+          requests.take().run();
+        } catch (InterruptedException e) {
+          // If thread interrupted, log and stop the loop
+          if (this.status != 0) {
+            logger.error("Thread was interrupted. --> {}", e.getMessage());
+          }
+          running = false;
+          Thread.currentThread().interrupt();
+        }
+      }
+    });
+
+    // Start the creature's background thread
     thread.start();
   }
 
   /**
-   * Eats the porridge.
-   *
-   * @throws InterruptedException due to firing a new Runnable.
+   * 🍲 The creature eats asynchronously.
+   * Instead of executing immediately, a Runnable is added to the queue.
    */
   public void eat() throws InterruptedException {
-    requests.put(
-        () -> {
-          logger.info("{} is eating!", name());
-          logger.info("{} has finished eating!", name());
-        });
+    requests.put(() -> {
+      logger.info("{} is eating!", name());
+      try {
+        Thread.sleep(1000); // simulate eating delay
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      }
+      logger.info("{} has finished eating!", name());
+    });
   }
 
   /**
-   * Roam the wastelands.
-   *
-   * @throws InterruptedException due to firing a new Runnable.
+   * 🚶 The creature roams asynchronously.
    */
   public void roam() throws InterruptedException {
-    requests.put(() -> logger.info("{} has started to roam in the wastelands.", name()));
+    requests.put(() -> {
+      logger.info("{} has started to roam in the wastelands.", name());
+      try {
+        Thread.sleep(1500); // simulate roaming delay
+      } catch (InterruptedException e) {
+        Thread.currentThread().interrupt();
+      }
+      logger.info("{} has stopped roaming.", name());
+    });
   }
 
   /**
-   * Returns the name of the creature.
-   *
-   * @return the name of the creature.
+   * 📛 Returns the name of the creature.
    */
   public String name() {
     return this.name;
   }
 
   /**
-   * Kills the thread of execution.
-   *
-   * @param status of the thread of execution. 0 == OK, the rest is logging an error.
+   * 💀 Kills the thread of execution.
+   * @param status 0 = OK, other values indicate errors or manual stop.
    */
   public void kill(int status) {
     this.status = status;
-    this.thread.interrupt();
+    this.thread.interrupt(); // stops the creature's thread
   }
 
   /**
-   * Returns the status of the thread of execution.
-   *
-   * @return the status of the thread of execution.
+   * 📊 Returns the status of the creature's thread.
    */
   public int getStatus() {
     return this.status;
