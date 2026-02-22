@@ -22,51 +22,31 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.publish.subscribe.model;
 
-import com.iluwatar.publish.subscribe.subscriber.Subscriber;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CopyOnWriteArraySet;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+package com.iluwatar.viewhelper;
 
-/** This class represents a Topic that topic name and subscribers. */
-@Getter
-@Setter
-@RequiredArgsConstructor
-public class Topic {
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
-  private final String topicName;
-  private final Set<Subscriber> subscribers = new CopyOnWriteArraySet<>();
-
+/** The main application class that sets up and runs the View Helper pattern demo. */
+public class App {
   /**
-   * Add a subscriber to the list of subscribers.
+   * The entry point of the application.
    *
-   * @param subscriber subscriber to add
+   * @param args the command line arguments
    */
-  public void addSubscriber(Subscriber subscriber) {
-    subscribers.add(subscriber);
-  }
+  public static void main(String[] args) {
+    // Raw Product data (no formatting, no UI tags)
+    var product =
+        new Product(
+            "Design patterns book", new BigDecimal("18.90"), LocalDate.of(2025, 4, 19), true);
 
-  /**
-   * Remove a subscriber from the list of subscribers.
-   *
-   * @param subscriber subscriber to remove
-   */
-  public void removeSubscriber(Subscriber subscriber) {
-    subscribers.remove(subscriber);
-  }
+    // Create view, viewHelper and viewHelper
+    var helper = new ProductViewHelper();
+    var view = new ConsoleProductView();
+    var controller = new ProductController(helper, view);
 
-  /**
-   * Publish a message to subscribers.
-   *
-   * @param message message with content to publish
-   */
-  public void publish(Message message) {
-    for (Subscriber subscriber : subscribers) {
-      CompletableFuture.runAsync(() -> subscriber.onMessage(message));
-    }
+    // Handle “request”
+    controller.handle(product);
   }
 }

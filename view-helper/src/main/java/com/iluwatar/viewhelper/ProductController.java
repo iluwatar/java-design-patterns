@@ -22,51 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.publish.subscribe.model;
+package com.iluwatar.viewhelper;
 
-import com.iluwatar.publish.subscribe.subscriber.Subscriber;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CopyOnWriteArraySet;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+/**
+ * Controller delegates a {@link Product} to {@link ProductViewHelper} and then to {@link
+ * ConsoleProductView}.
+ */
+public class ProductController {
 
-/** This class represents a Topic that topic name and subscribers. */
-@Getter
-@Setter
-@RequiredArgsConstructor
-public class Topic {
+  private final ViewHelper<Product, ProductViewModel> viewHelper;
+  private final View<ProductViewModel> view;
 
-  private final String topicName;
-  private final Set<Subscriber> subscribers = new CopyOnWriteArraySet<>();
-
-  /**
-   * Add a subscriber to the list of subscribers.
-   *
-   * @param subscriber subscriber to add
-   */
-  public void addSubscriber(Subscriber subscriber) {
-    subscribers.add(subscriber);
+  public ProductController(
+      ViewHelper<Product, ProductViewModel> viewHelper, View<ProductViewModel> view) {
+    this.viewHelper = viewHelper;
+    this.view = view;
   }
 
   /**
-   * Remove a subscriber from the list of subscribers.
-   *
-   * @param subscriber subscriber to remove
+   * Passes the product to the helper for formatting and then forwards formatted product to the
+   * view.
    */
-  public void removeSubscriber(Subscriber subscriber) {
-    subscribers.remove(subscriber);
-  }
-
-  /**
-   * Publish a message to subscribers.
-   *
-   * @param message message with content to publish
-   */
-  public void publish(Message message) {
-    for (Subscriber subscriber : subscribers) {
-      CompletableFuture.runAsync(() -> subscriber.onMessage(message));
-    }
+  public void handle(Product product) {
+    view.render(viewHelper.prepare(product));
   }
 }

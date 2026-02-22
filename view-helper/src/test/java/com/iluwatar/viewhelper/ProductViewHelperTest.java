@@ -22,51 +22,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.publish.subscribe.model;
+package com.iluwatar.viewhelper;
 
-import com.iluwatar.publish.subscribe.subscriber.Subscriber;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CopyOnWriteArraySet;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/** This class represents a Topic that topic name and subscribers. */
-@Getter
-@Setter
-@RequiredArgsConstructor
-public class Topic {
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-  private final String topicName;
-  private final Set<Subscriber> subscribers = new CopyOnWriteArraySet<>();
+class ProductViewHelperTest {
 
-  /**
-   * Add a subscriber to the list of subscribers.
-   *
-   * @param subscriber subscriber to add
-   */
-  public void addSubscriber(Subscriber subscriber) {
-    subscribers.add(subscriber);
+  private ProductViewHelper helper;
+
+  @BeforeEach
+  void setUp() {
+    helper = new ProductViewHelper();
   }
 
-  /**
-   * Remove a subscriber from the list of subscribers.
-   *
-   * @param subscriber subscriber to remove
-   */
-  public void removeSubscriber(Subscriber subscriber) {
-    subscribers.remove(subscriber);
+  @Test
+  void shouldFormatProductWithoutDiscount() {
+    var product = new Product("X", new BigDecimal("10.00"), LocalDate.of(2025, 1, 1), false);
+    ProductViewModel viewModel = helper.prepare(product);
+
+    assertEquals("X", viewModel.name());
+    assertEquals("$10.00", viewModel.price());
+    assertEquals("2025-01-01", viewModel.releasedDate());
   }
 
-  /**
-   * Publish a message to subscribers.
-   *
-   * @param message message with content to publish
-   */
-  public void publish(Message message) {
-    for (Subscriber subscriber : subscribers) {
-      CompletableFuture.runAsync(() -> subscriber.onMessage(message));
-    }
+  @Test
+  void shouldFormatProductWithDiscount() {
+    var product = new Product("X", new BigDecimal("10.00"), LocalDate.of(2025, 1, 1), true);
+    ProductViewModel viewModel = helper.prepare(product);
+
+    assertEquals("X ON SALE", viewModel.name()); // locale follows JVM default
   }
 }

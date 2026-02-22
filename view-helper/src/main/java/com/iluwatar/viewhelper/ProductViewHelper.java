@@ -22,51 +22,24 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.publish.subscribe.model;
+package com.iluwatar.viewhelper;
 
-import com.iluwatar.publish.subscribe.subscriber.Subscriber;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CopyOnWriteArraySet;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import static java.time.format.DateTimeFormatter.ISO_DATE;
+import static java.util.Locale.US;
 
-/** This class represents a Topic that topic name and subscribers. */
-@Getter
-@Setter
-@RequiredArgsConstructor
-public class Topic {
+import java.text.NumberFormat;
 
-  private final String topicName;
-  private final Set<Subscriber> subscribers = new CopyOnWriteArraySet<>();
+/** Formats a {@link Product} into a {@link ProductViewModel}. */
+public class ProductViewHelper implements ViewHelper<Product, ProductViewModel> {
 
-  /**
-   * Add a subscriber to the list of subscribers.
-   *
-   * @param subscriber subscriber to add
-   */
-  public void addSubscriber(Subscriber subscriber) {
-    subscribers.add(subscriber);
-  }
+  private static final String DISCOUNT_TAG = " ON SALE";
 
-  /**
-   * Remove a subscriber from the list of subscribers.
-   *
-   * @param subscriber subscriber to remove
-   */
-  public void removeSubscriber(Subscriber subscriber) {
-    subscribers.remove(subscriber);
-  }
+  @Override
+  public ProductViewModel prepare(Product product) {
+    var displayName = product.name() + (product.discounted() ? DISCOUNT_TAG : "");
+    var priceWithCurrency = NumberFormat.getCurrencyInstance(US).format(product.price());
+    var formattedDate = product.releaseDate().format(ISO_DATE);
 
-  /**
-   * Publish a message to subscribers.
-   *
-   * @param message message with content to publish
-   */
-  public void publish(Message message) {
-    for (Subscriber subscriber : subscribers) {
-      CompletableFuture.runAsync(() -> subscriber.onMessage(message));
-    }
+    return new ProductViewModel(displayName, priceWithCurrency, formattedDate);
   }
 }

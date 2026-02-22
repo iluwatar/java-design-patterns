@@ -22,51 +22,33 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.publish.subscribe.model;
+package com.iluwatar.daofactory;
 
-import com.iluwatar.publish.subscribe.subscriber.Subscriber;
-import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CopyOnWriteArraySet;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 
-/** This class represents a Topic that topic name and subscribers. */
-@Getter
-@Setter
-@RequiredArgsConstructor
-public class Topic {
+import org.junit.jupiter.api.Test;
 
-  private final String topicName;
-  private final Set<Subscriber> subscribers = new CopyOnWriteArraySet<>();
+/** {@link DAOFactory} */
+class DAOFactoryTest {
 
-  /**
-   * Add a subscriber to the list of subscribers.
-   *
-   * @param subscriber subscriber to add
-   */
-  public void addSubscriber(Subscriber subscriber) {
-    subscribers.add(subscriber);
+  @Test
+  void verifyH2CustomerDAOCreation() {
+    var daoFactory = DAOFactoryProvider.getDataSource(DataSourceType.H2);
+    var customerDAO = daoFactory.createCustomerDAO();
+    assertInstanceOf(H2CustomerDAO.class, customerDAO);
   }
 
-  /**
-   * Remove a subscriber from the list of subscribers.
-   *
-   * @param subscriber subscriber to remove
-   */
-  public void removeSubscriber(Subscriber subscriber) {
-    subscribers.remove(subscriber);
+  @Test
+  void verifyMongoCustomerDAOCreation() {
+    var daoFactory = DAOFactoryProvider.getDataSource(DataSourceType.MONGO);
+    var customerDAO = daoFactory.createCustomerDAO();
+    assertInstanceOf(MongoCustomerDAO.class, customerDAO);
   }
 
-  /**
-   * Publish a message to subscribers.
-   *
-   * @param message message with content to publish
-   */
-  public void publish(Message message) {
-    for (Subscriber subscriber : subscribers) {
-      CompletableFuture.runAsync(() -> subscriber.onMessage(message));
-    }
+  @Test
+  void verifyFlatFileCustomerDAOCreation() {
+    var daoFactory = DAOFactoryProvider.getDataSource(DataSourceType.FLAT_FILE);
+    var customerDAO = daoFactory.createCustomerDAO();
+    assertInstanceOf(FlatFileCustomerDAO.class, customerDAO);
   }
 }
