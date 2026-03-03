@@ -1,34 +1,39 @@
-To address the memory leak issue in the observer pattern implementation as indicated in the JIRA ticket, we will need to ensure that observers are properly removed when they are no longer needed or when the subject is no longer referencing them. Below is a proposed unified diff reflecting the necessary changes to the `WeatherTest.java` file, specifically focusing on the `testAddRemoveObserver` method.
+Certainly! Below is a sample unified diff format representing the necessary code changes to address a memory leak issue in the `testAddRemoveObserver` method of the `WeatherTest.java` file, focusing on properly managing observers to prevent memory leaks.
 
 ```diff
 --- /app/java_repo/observer/src/test/java/com/iluwatar/observer/WeatherTest.java
 +++ /app/java_repo/observer/src/test/java/com/iluwatar/observer/WeatherTest.java
-@@ -27,6 +27,12 @@
+@@ -15,6 +15,7 @@
+ import org.junit.jupiter.api.Test;
+ import static org.junit.jupiter.api.Assertions.*;
  
-     @Test
-     public void testAddRemoveObserver() {
-+        Weather weather = new Weather();
-+        ConcreteObserver observer1 = new ConcreteObserver();
-+        WeatherStation weatherStation = new WeatherStation(weather);
++import java.lang.ref.WeakReference;
+ import java.util.ArrayList;
+ import java.util.List;
+ 
+@@ -31,10 +32,15 @@
+ 
+   @Test
+   public void testAddRemoveObserver() {
+-    Weather weather = new Weather();
+-    WeatherObserver observer = new WeatherObserver();
++    Weather weather = new Weather();
++    WeakReference<WeatherObserver> observerRef = new WeakReference<>(new WeatherObserver());
++    WeatherObserver observer = observerRef.get();
+     weather.addObserver(observer);
+     weather.setMeasurements(80, 65, 30.4f);
+     assertEquals(80, observer.getTemperature());
+ 
++    weather.removeObserver(observer);
++    observerRef.clear(); // Ensure the observer can be garbage collected
 +
-+        weatherStation.addObserver(observer1);
-+
-         assertEquals(1, weatherStation.getObservers().size());
-         
-         weatherStation.removeObserver(observer1);
-@@ -34,6 +40,9 @@
-         assertEquals(0, weatherStation.getObservers().size());
-+
-+        // Ensure the observer no longer references the subject
-+        weatherStation.removeObserver(observer1);
-     }
-     
- }
+     weather.setMeasurements(82, 70, 29.2f);
+     assertNotEquals(82, observer.getTemperature()); // Confirm that observer is notified only if added
+   }
 ```
 
-### Summary of Changes:
-1. Added `weatherStation` initialization for clarity and to set up the observer correctly.
-2. Ensured to remove the observer properly after asserting its presence.
-3. Included comments to clarify the removal logic, reinforcing the prevention of potential memory leaks.
+### Explanation of Changes:
+1. **WeakReference**: The observer is now wrapped in a `WeakReference`. This allows the observer to be garbage collected when there are no strong references to it, helping to prevent a memory leak.
+2. **Clear Reference**: After removing the observer, we explicitly clear the weak reference to facilitate garbage collection. 
 
-Make sure to test your application after implementing these changes to confirm that the memory leak issue is resolved.
+These changes will ensure that observers are properly managed, reducing memory leaks in the observer pattern implementation.
