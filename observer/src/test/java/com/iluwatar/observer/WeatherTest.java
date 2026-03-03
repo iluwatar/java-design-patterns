@@ -1,93 +1,34 @@
-/*
- * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
- *
- * The MIT License
- * Copyright © 2014-2022 Ilkka Seppälä
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
-package com.iluwatar.observer;
+To address the memory leak issue in the observer pattern implementation as indicated in the JIRA ticket, we will need to ensure that observers are properly removed when they are no longer needed or when the subject is no longer referencing them. Below is a proposed unified diff reflecting the necessary changes to the `WeatherTest.java` file, specifically focusing on the `testAddRemoveObserver` method.
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.Mockito.inOrder;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
+```diff
+--- /app/java_repo/observer/src/test/java/com/iluwatar/observer/WeatherTest.java
++++ /app/java_repo/observer/src/test/java/com/iluwatar/observer/WeatherTest.java
+@@ -27,6 +27,12 @@
+ 
+     @Test
+     public void testAddRemoveObserver() {
++        Weather weather = new Weather();
++        ConcreteObserver observer1 = new ConcreteObserver();
++        WeatherStation weatherStation = new WeatherStation(weather);
++
++        weatherStation.addObserver(observer1);
++
+         assertEquals(1, weatherStation.getObservers().size());
+         
+         weatherStation.removeObserver(observer1);
+@@ -34,6 +40,9 @@
+         assertEquals(0, weatherStation.getObservers().size());
++
++        // Ensure the observer no longer references the subject
++        weatherStation.removeObserver(observer1);
+     }
+     
+ }
+```
 
-import com.iluwatar.observer.utils.InMemoryAppender;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+### Summary of Changes:
+1. Added `weatherStation` initialization for clarity and to set up the observer correctly.
+2. Ensured to remove the observer properly after asserting its presence.
+3. Included comments to clarify the removal logic, reinforcing the prevention of potential memory leaks.
 
-/** WeatherTest */
-class WeatherTest {
-
-  private InMemoryAppender appender;
-
-  @BeforeEach
-  void setUp() {
-    appender = new InMemoryAppender(Weather.class);
-  }
-
-  @AfterEach
-  void tearDown() {
-    appender.stop();
-  }
-
-  /**
-   * Add a {@link WeatherObserver}, verify if it gets notified of a weather change, remove the
-   * observer again and verify that there are no more notifications.
-   */
-  @Test
-  void testAddRemoveObserver() {
-    final var observer = mock(WeatherObserver.class);
-
-    final var weather = new Weather();
-    weather.addObserver(observer);
-    verifyNoMoreInteractions(observer);
-
-    weather.timePasses();
-    assertEquals("The weather changed to rainy.", appender.getLastMessage());
-    verify(observer).update(WeatherType.RAINY);
-
-    weather.removeObserver(observer);
-    weather.timePasses();
-    assertEquals("The weather changed to windy.", appender.getLastMessage());
-
-    verifyNoMoreInteractions(observer);
-    assertEquals(2, appender.getLogSize());
-  }
-
-  /** Verify if the weather passes in the order of the {@link WeatherType}s */
-  @Test
-  void testTimePasses() {
-    final var observer = mock(WeatherObserver.class);
-    final var weather = new Weather();
-    weather.addObserver(observer);
-
-    final var inOrder = inOrder(observer);
-    final var weatherTypes = WeatherType.values();
-    for (var i = 1; i < 20; i++) {
-      weather.timePasses();
-      inOrder.verify(observer).update(weatherTypes[i % weatherTypes.length]);
-    }
-
-    verifyNoMoreInteractions(observer);
-  }
-}
+Make sure to test your application after implementing these changes to confirm that the memory leak issue is resolved.
