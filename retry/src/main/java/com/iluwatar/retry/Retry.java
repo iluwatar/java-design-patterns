@@ -30,6 +30,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Decorates {@link BusinessOperation business operation} with "retry" capabilities.
@@ -43,6 +46,8 @@ public final class Retry<T> implements BusinessOperation<T> {
   private final AtomicInteger attempts;
   private final Predicate<Exception> test;
   private final List<Exception> errors;
+  private static final ScheduledExecutorService scheduler =
+      Executors.newSingleThreadScheduledExecutor();
 
   /**
    * Ctor.
@@ -95,9 +100,9 @@ public final class Retry<T> implements BusinessOperation<T> {
         }
 
         try {
-          Thread.sleep(this.delay);
-        } catch (InterruptedException f) {
-          // ignore
+          scheduler.schedule(() -> {}, this.delay, TimeUnit.MILLISECONDS).get();
+        } catch (Exception ex) {
+          Thread.currentThread().interrupt();
         }
       }
     } while (true);

@@ -25,8 +25,8 @@
 package com.iluwatar.logaggregation;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +44,8 @@ public class LogAggregator {
   private final CentralLogStore centralLogStore;
   private final ConcurrentLinkedQueue<LogEntry> buffer = new ConcurrentLinkedQueue<>();
   private final LogLevel minLogLevel;
-  private final ExecutorService executorService = Executors.newSingleThreadExecutor();
+  private final ScheduledExecutorService executorService =
+      Executors.newSingleThreadScheduledExecutor();
   private final AtomicInteger logCount = new AtomicInteger(0);
 
   /**
@@ -104,16 +105,6 @@ public class LogAggregator {
   }
 
   private void startBufferFlusher() {
-    executorService.execute(
-        () -> {
-          while (!Thread.currentThread().isInterrupted()) {
-            try {
-              Thread.sleep(5000); // Flush every 5 seconds.
-              flushBuffer();
-            } catch (InterruptedException e) {
-              Thread.currentThread().interrupt();
-            }
-          }
-        });
+    executorService.scheduleAtFixedRate(this::flushBuffer, 5, 5, TimeUnit.SECONDS);
   }
 }

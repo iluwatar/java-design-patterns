@@ -103,7 +103,8 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
           var delay = Math.min(testDelay, this.maxDelay);
           Thread.sleep(delay);
         } catch (InterruptedException f) {
-          // ignore
+          Thread.currentThread().interrupt();
+          throw new BusinessException(f.getMessage());
         }
       }
     } while (true);

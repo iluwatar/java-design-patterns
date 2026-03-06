@@ -47,7 +47,7 @@ public class App {
     ballItem.setTwin(ballThread);
     ballThread.setTwin(ballItem);
 
-    ballThread.start();
+    Thread.ofVirtual().start(ballThread);
 
     waiting();
 

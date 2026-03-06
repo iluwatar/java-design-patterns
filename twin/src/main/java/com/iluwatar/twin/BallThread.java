@@ -26,13 +26,14 @@ package com.iluwatar.twin;
 
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import java.util.concurrent.*;
 
 /**
  * This class is a UI thread for drawing the {@link BallItem}, and provide the method for suspend
  * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
  */
 @Slf4j
-public class BallThread extends Thread {
+public class BallThread implements Runnable {
 
   @Setter private BallItem twin;
 
