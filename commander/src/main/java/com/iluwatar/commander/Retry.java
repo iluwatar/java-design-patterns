@@ -56,7 +56,8 @@ public class Retry<T> {
   }
 
   private static final SecureRandom RANDOM = new SecureRandom();
-  private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+  private static final ScheduledExecutorService scheduler =
+      Executors.newSingleThreadScheduledExecutor();
 
   private final Operation op;
   private final HandleErrorIssue<T> handleError;
