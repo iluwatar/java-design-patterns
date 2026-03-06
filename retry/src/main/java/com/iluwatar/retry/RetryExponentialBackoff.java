@@ -104,7 +104,7 @@ public final class RetryExponentialBackoff<T> implements BusinessOperation<T> {
           Thread.sleep(delay);
         } catch (InterruptedException f) {
           Thread.currentThread().interrupt();
-          throw new BusinessException("Retry interrupted");
+          throw new BusinessException(f.getMessage());
         }
       }
     } while (true);
