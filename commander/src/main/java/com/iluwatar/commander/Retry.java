@@ -28,6 +28,9 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
@@ -53,6 +56,7 @@ public class Retry<T> {
   }
 
   private static final SecureRandom RANDOM = new SecureRandom();
+  private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
   private final Operation op;
   private final HandleErrorIssue<T> handleError;
@@ -98,9 +102,23 @@ public class Retry<T> {
           long testDelay =
               (long) Math.pow(2, this.attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
           long delay = Math.min(testDelay, this.maxDelay);
-          Thread.sleep(delay);
-        } catch (InterruptedException f) {
-          // ignore
+          scheduler.schedule(() -> perform(list, obj), delay, TimeUnit.MILLISECONDS);
+          return;
+        } catch (Exception j) {
+          this.errors.add(j);
+
+          if (this.attempts.incrementAndGet() >= this.maxAttempts || !this.test.test(j)) {
+            this.handleError.handleIssue(obj, j);
+            return;
+          }
+
+          long testDelay =
+              (long) Math.pow(2, this.attempts.intValue()) * 1000 + RANDOM.nextInt(1000);
+
+          long delay = Math.min(testDelay, this.maxDelay);
+
+          scheduler.schedule(() -> perform(list, obj), delay, TimeUnit.MILLISECONDS);
+          return;
         }
       }
     } while (true);

@@ -83,10 +83,13 @@ public class App {
 
     LOGGER.info("Server started. Listening on port 8080...");
 
-    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-      LOGGER.info("Shutting down scheduler...");
-      scheduler.shutdown();
-    }));
+    Runtime.getRuntime()
+        .addShutdownHook(
+            new Thread(
+                () -> {
+                  LOGGER.info("Shutting down scheduler...");
+                  scheduler.shutdown();
+                }));
   }
 
   private static void sessionExpirationTask() {
