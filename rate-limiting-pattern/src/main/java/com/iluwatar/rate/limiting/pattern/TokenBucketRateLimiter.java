@@ -82,7 +82,7 @@ public class TokenBucketRateLimiter implements RateLimiter {
     synchronized boolean tryConsume() {
       refillIfNeeded();
 
-      if(tokens.get() <= 0) {
+      if (tokens.get() <= 0) {
         return false;
       }
 
@@ -92,7 +92,7 @@ public class TokenBucketRateLimiter implements RateLimiter {
 
     private void refillIfNeeded() {
       long now = System.currentTimeMillis();
-      if(now - lastRefillTime >= 1000) {
+      if (now - lastRefillTime >= 1000) {
         tokens.set(capacity);
         lastRefillTime = now;
       }

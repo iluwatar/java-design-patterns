@@ -104,7 +104,7 @@ public final class App {
       Thread.currentThread().interrupt();
     } finally {
       running.set(false);
-      if(tb != null) {
+      if (tb != null) {
         tb.shutdown();
       }
       shutdownExecutor(executor, "mainExecutor");
