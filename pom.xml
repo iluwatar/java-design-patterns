@@ -482,19 +482,9 @@
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>
         <version>2.44.4</version> <!-- Use latest version -->
-        <executions>
-          <execution>
-            <goals>
-              <goal>check</goal>     <!-- Run to check formatting -->
-              <goal>apply</goal>     <!-- Run to format automatically -->
-            </goals>
-          </execution>
-        </executions>
         <configuration>
           <java>
-            <googleJavaFormat>
-              <version>1.17.0</version> <!-- Optional: choose the GJF version -->
-            </googleJavaFormat>
+            <googleJavaFormat/>
           </java>
         </configuration>
       </plugin>

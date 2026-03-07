@@ -33,7 +33,8 @@ class FinderTest {
 
   @Test
   void contains() {
-    var example = """
+    var example =
+        """
         the first one
         the second one\s
         """;

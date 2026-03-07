@@ -32,7 +32,7 @@ import lombok.extern.slf4j.Slf4j;
  * and resume. It holds the reference of {@link BallItem} to delegate the draw task.
  */
 @Slf4j
-public class BallThread extends Thread {
+public class BallThread implements Runnable {
 
   @Setter private BallItem twin;
 

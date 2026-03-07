@@ -51,7 +51,7 @@ class BallThreadTest {
           final var ballItem = mock(BallItem.class);
           ballThread.setTwin(ballItem);
 
-          ballThread.start();
+          Thread vt = Thread.ofVirtual().start(ballThread);
           sleep(200);
           verify(ballItem, atLeastOnce()).draw();
           verify(ballItem, atLeastOnce()).move();
@@ -60,7 +60,7 @@ class BallThreadTest {
           sleep(1000);
 
           ballThread.stopMe();
-          ballThread.join();
+          vt.join();
 
           verifyNoMoreInteractions(ballItem);
         });
@@ -78,7 +78,7 @@ class BallThreadTest {
           ballThread.setTwin(ballItem);
 
           ballThread.suspendMe();
-          ballThread.start();
+          Thread vt = Thread.ofVirtual().start(ballThread);
 
           sleep(1000);
 
@@ -90,7 +90,7 @@ class BallThreadTest {
           verify(ballItem, atLeastOnce()).move();
 
           ballThread.stopMe();
-          ballThread.join();
+          vt.join();
 
           verifyNoMoreInteractions(ballItem);
         });
@@ -104,13 +104,14 @@ class BallThreadTest {
         () -> {
           final var ballThread = new BallThread();
           final var exceptionHandler = mock(UncaughtExceptionHandler.class);
-          ballThread.setUncaughtExceptionHandler(exceptionHandler);
-          ballThread.setTwin(mock(BallItem.class));
-          ballThread.start();
-          ballThread.interrupt();
-          ballThread.join();
 
-          verify(exceptionHandler).uncaughtException(eq(ballThread), any(RuntimeException.class));
+          ballThread.setTwin(mock(BallItem.class));
+          Thread vt = Thread.ofVirtual().start(ballThread);
+          vt.setUncaughtExceptionHandler(exceptionHandler);
+          vt.interrupt();
+          vt.join();
+
+          verify(exceptionHandler).uncaughtException(eq(vt), any(RuntimeException.class));
           verifyNoMoreInteractions(exceptionHandler);
         });
   }
