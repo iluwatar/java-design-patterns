@@ -24,7 +24,10 @@
  */
 package com.iluwatar.singleton;
 
-/** Singleton class. Eagerly initialized static instance guarantees thread safety. */
+/**
+ * Singleton class. Eagerly initialized static instance guarantees thread
+ * safety.
+ */
 public final class IvoryTower {
 
   /** Private constructor so nobody can instantiate the class. */
@@ -42,6 +45,11 @@ public final class IvoryTower {
    * To be called by user to obtain instance of the class.
    *
    * @return instance of the singleton.
+   */
+
+  /**
+   * Returns the single instance of IvoryTower.
+   * Ensures that only one instance exists throughout the application.
    */
   public static IvoryTower getInstance() {
     return INSTANCE;
