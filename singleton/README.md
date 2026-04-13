@@ -19,6 +19,12 @@ tag:
 
 Ensure a Java class only has one instance, and provide a global point of access to this singleton instance.
 
+### Simple Explanation
+
+The Singleton pattern ensures that a class has only one instance and provides a global point of access to it.
+
+In real-world applications, it is commonly used for managing shared resources like database connections, logging systems, or configuration settings.
+
 ## Detailed Explanation of Singleton Pattern with Real-World Examples
 
 Real-world example
@@ -111,3 +117,4 @@ Trade-offs:
 * [Head First Design Patterns: Building Extensible and Maintainable Object-Oriented Software](https://amzn.to/49NGldq)
 * [Java Design Patterns: A Hands-On Experience with Real-World Examples](https://amzn.to/3yhh525)
 * [Refactoring to Patterns](https://amzn.to/3VOO4F5)
+
