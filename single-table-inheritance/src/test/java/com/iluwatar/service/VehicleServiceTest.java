@@ -27,6 +27,7 @@ package com.iluwatar.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -73,10 +74,10 @@ class VehicleServiceTest {
 
  @AfterEach
  void tearDown() {
-   vehicleService.deleteVehicle(savedCar);
-   vehicleService.deleteVehicle(savedTruck);
-   vehicleService.deleteVehicle(savedTrain);
-   vehicleService.deleteVehicle(savedFreighter);
+   if (savedCar != null) vehicleService.deleteVehicle(savedCar);
+   if (savedTruck != null) vehicleService.deleteVehicle(savedTruck);
+   if (savedTrain != null) vehicleService.deleteVehicle(savedTrain);
+   if (savedFreighter != null) vehicleService.deleteVehicle(savedFreighter);
  }
 
 
@@ -117,7 +118,8 @@ class VehicleServiceTest {
  @Test
  void getVehicle_shouldReturnCorrectVehicleById() {
    Vehicle fetched = vehicleService.getVehicle(savedCar.getVehicleId());
-   assertTrue(fetched != null);
+
+   assertNotNull(fetched);
    assertInstanceOf(Car.class, fetched);
    assertEquals(savedCar.getVehicleId(), fetched.getVehicleId());
  }
@@ -133,7 +135,7 @@ class VehicleServiceTest {
  @Test
  void getAllVehicles_shouldReturnAllSavedVehicles() {
    List<Vehicle> all = vehicleService.getAllVehicles();
-   assertTrue(all != null);
+   assertNotNull(all);
    // At minimum the 4 vehicles saved in @BeforeEach must be present
    assertTrue_containsId(all, savedCar.getVehicleId());
    assertTrue_containsId(all, savedTruck.getVehicleId());
