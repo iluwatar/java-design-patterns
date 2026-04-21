@@ -44,7 +44,7 @@ Sequence diagram
 The main class in our Java Iterator Design Pattern example is the `TreasureChest` that contains items. This demonstrates how to implement and use iterators for efficient collection traversal in Java.
 
 ```java
-public class TreasureChest {
+public class TreasureChest implements Iterable<Item> { //marking Iterable or overriding to get Iterator<Item>
 
   private final List<Item> items;
 
@@ -61,8 +61,8 @@ public class TreasureChest {
         new Item(ItemType.WEAPON, "Steel halberd"),
         new Item(ItemType.WEAPON, "Dagger of poison"));
   }
-
-  public Iterator<Item> iterator(ItemType itemType) {
+@Override //method which have to be overriden if this implements Iterable interface in java
+  public Iterator<Item> iterator(ItemType itemType) {  
     return new TreasureChestItemIterator(this, itemType);
   }
 
