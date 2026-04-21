@@ -51,6 +51,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class VehicleServiceTest {
 
+ private static final double DELTA = 0.001;
 
  @Autowired private VehicleService vehicleService;
 
@@ -109,7 +110,7 @@ class VehicleServiceTest {
  void saveVehicle_shouldPersistFreighterWithCorrectType() {
    assertTrue(savedFreighter.getVehicleId() > 0);
    assertInstanceOf(Freighter.class, savedFreighter);
-   assertEquals(8130.0, ((Freighter) savedFreighter).getFlightLength());
+   assertEquals(8130.0, ((Freighter) savedFreighter).getFlightLength(), DELTA);
  }
 
 
