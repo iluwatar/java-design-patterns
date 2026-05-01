@@ -24,7 +24,11 @@
  */
 package com.iluwatar.daofactory;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -32,6 +36,7 @@ import java.util.List;
 import org.bson.types.ObjectId;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InOrder;
 
 /** {@link App} */
 class AppTest {
@@ -55,8 +60,22 @@ class AppTest {
 
     App.performCreateCustomer(mockLongCustomerDAO, List.of(c1, c2));
 
+    InOrder inOrder = inOrder(mockLongCustomerDAO);
+
     verify(mockLongCustomerDAO).save(c1);
     verify(mockLongCustomerDAO).save(c2);
+
+    verify(mockLongCustomerDAO, times(2)).save(any());
+    verify(mockLongCustomerDAO).findAll();
+  }
+
+  @Test
+  void testPerformCreateCustomerWithEmptyList() {
+    when(mockLongCustomerDAO.findAll()).thenReturn(List.of());
+
+    App.performCreateCustomer(mockLongCustomerDAO, List.of());
+
+    verify(mockLongCustomerDAO, never()).save(any());
     verify(mockLongCustomerDAO).findAll();
   }
 
