@@ -26,6 +26,8 @@ package com.iluwatar.singleton;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import static org.junit.jupiter.api.Assertions.assertSame;
+
 import org.junit.jupiter.api.Test;
 
 /** EnumIvoryTowerTest */
@@ -43,5 +45,13 @@ class EnumIvoryTowerTest extends SingletonTest<EnumIvoryTower> {
     // Java does not allow Enum instantiation
     // http://docs.oracle.com/javase/specs/jls/se7/html/jls-8.html#jls-8.9
     assertThrows(ReflectiveOperationException.class, EnumIvoryTower.class::getDeclaredConstructor);
+    
+    
+}
+@Test
+void testEnumSingletonIdentity() {
+  var instance1 = EnumIvoryTower.INSTANCE;
+  var instance2 = EnumIvoryTower.INSTANCE;
+  assertSame(instance1, instance2, "Enum singleton instances should be identical");
   }
 }
