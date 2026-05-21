@@ -1,0 +1,15 @@
+@startuml
+actor Client
+participant Controller
+participant ViewHelper
+participant View
+participant Product
+participant ProductViewModel
+
+Client -> Controller : handle(product)
+Controller -> ViewHelper : prepare(product)
+ViewHelper -> Product : access data
+ViewHelper -> ProductViewModel : return formatted view model
+Controller -> View : render(viewModel)
+View -> Console : display output
+@enduml
