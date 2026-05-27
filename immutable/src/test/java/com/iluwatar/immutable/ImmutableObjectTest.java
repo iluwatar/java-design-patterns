@@ -32,4 +32,21 @@ class ImmutableObjectTest {
         
         assertNotSame(obj1, obj2);
     }
+    
+    @Test
+    void testEquality() {
+        ImmutableObject obj1 = 
+            new ImmutableObject("A", 1, "a@gmail.com");
+        ImmutableObject obj2 = 
+            new ImmutableObject("A", 1, "a@gmail.com");
+        
+        assertEquals(obj1, obj2);
+    }
+
+    @Test
+    void testNullName() {
+        assertThrows(NullPointerException.class, () -> {
+            new ImmutableObject(null, 1, "a@gmail.com");
+        });
+    }
 }

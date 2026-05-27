@@ -1,4 +1,5 @@
 package com.iluwatar.immutable;
+import java.util.Objects;
 
 /**
  * Immutable Object pattern.
@@ -14,9 +15,9 @@ public final class ImmutableObject {
             final String name,
             final int age,
             final String email) {
-        this.name = name;
+    	this.name = Objects.requireNonNull(name, "name cannot be null");
         this.age = age;
-        this.email = email;
+        this.email = Objects.requireNonNull(email, "email cannot be null");
     }
 
     public String getName() { return name; }
@@ -30,5 +31,20 @@ public final class ImmutableObject {
             + ", age=" + age
             + ", email='" + email + '\''
             + '}';
+    }
+    
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ImmutableObject)) return false;
+        ImmutableObject that = (ImmutableObject) o;
+        return age == that.age
+            && Objects.equals(name, that.name)
+            && Objects.equals(email, that.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age, email);
     }
 }
