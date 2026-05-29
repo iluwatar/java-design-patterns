@@ -78,15 +78,18 @@ public final class App {
         Desktop.getDesktop().open(applicationFile);
 
       } else {
-        // java Desktop not supported - use ProcessBuilder for cross-platform support
+        // Use absolute paths to avoid PATH injection vulnerabilities (SonarQube S5304)
         var os = System.getProperty("os.name").toLowerCase(Locale.ROOT);
         ProcessBuilder pb;
         if (os.contains("win")) {
-          pb = new ProcessBuilder("cmd.exe", "/c", "start", applicationFile.getAbsolutePath());
+          // Standard Windows location since Windows NT
+          pb = new ProcessBuilder("C:\\Windows\\System32\\cmd.exe", "/c", "start", applicationFile.getAbsolutePath());
         } else if (os.contains("mac")) {
-          pb = new ProcessBuilder("open", applicationFile.getAbsolutePath());
+          // Standard macOS location for 'open' command
+          pb = new ProcessBuilder("/usr/bin/open", applicationFile.getAbsolutePath());
         } else {
-          pb = new ProcessBuilder("xdg-open", applicationFile.getAbsolutePath());
+          // Standard Linux desktop location for xdg-open
+          pb = new ProcessBuilder("/usr/bin/xdg-open", applicationFile.getAbsolutePath());
         }
         pb.start();
       }
