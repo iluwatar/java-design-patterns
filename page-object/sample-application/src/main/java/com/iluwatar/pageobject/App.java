@@ -27,6 +27,7 @@ package com.iluwatar.pageobject;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.util.Locale;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -77,8 +78,17 @@ public final class App {
         Desktop.getDesktop().open(applicationFile);
 
       } else {
-        // java Desktop not supported - above unlikely to work for Windows so try instead...
-        Runtime.getRuntime().exec(new String[]{"cmd.exe", "/c", "start", applicationFile.getAbsolutePath()});
+        // java Desktop not supported - use ProcessBuilder for cross-platform support
+        var os = System.getProperty("os.name").toLowerCase(Locale.ROOT);
+        ProcessBuilder pb;
+        if (os.contains("win")) {
+          pb = new ProcessBuilder("cmd.exe", "/c", "start", applicationFile.getAbsolutePath());
+        } else if (os.contains("mac")) {
+          pb = new ProcessBuilder("open", applicationFile.getAbsolutePath());
+        } else {
+          pb = new ProcessBuilder("xdg-open", applicationFile.getAbsolutePath());
+        }
+        pb.start();
       }
 
     } catch (IOException ex) {
