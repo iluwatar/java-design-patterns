@@ -83,7 +83,12 @@ public final class App {
         ProcessBuilder pb;
         if (os.contains("win")) {
           // Standard Windows location since Windows NT
-          pb = new ProcessBuilder("C:\\Windows\\System32\\cmd.exe", "/c", "start", applicationFile.getAbsolutePath());
+          pb =
+              new ProcessBuilder(
+                  "C:\\Windows\\System32\\cmd.exe",
+                  "/c",
+                  "start",
+                  applicationFile.getAbsolutePath());
         } else if (os.contains("mac")) {
           // Standard macOS location for 'open' command
           pb = new ProcessBuilder("/usr/bin/open", applicationFile.getAbsolutePath());
