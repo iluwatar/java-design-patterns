@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-399-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-400-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -592,6 +592,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/avivdon"><img src="https://avatars.githubusercontent.com/u/74790003?v=4?s=100" width="100px;" alt="avivdon"/><br /><sub><b>avivdon</b></sub></a><br /><a href="#security-avivdon" title="Security">🛡️</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/quantdevv"><img src="https://avatars.githubusercontent.com/u/56085648?v=4?s=100" width="100px;" alt="Aditya Kumawat"/><br /><sub><b>Aditya Kumawat</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=quantdevv" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/devch37"><img src="https://avatars.githubusercontent.com/u/72903623?v=4?s=100" width="100px;" alt="devch37"/><br /><sub><b>devch37</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=devch37" title="Code">💻</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/HY-love-sleep"><img src="https://avatars.githubusercontent.com/u/73268470?v=4?s=100" width="100px;" alt="HY-love-sleep"/><br /><sub><b>HY-love-sleep</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=HY-love-sleep" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
