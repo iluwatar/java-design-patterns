@@ -3602,6 +3602,15 @@
       "contributions": [
         "security"
       ]
+    },
+    {
+      "login": "jackmisbach",
+      "name": "jackmisbach",
+      "avatar_url": "https://avatars.githubusercontent.com/u/183796460?v=4",
+      "profile": "https://github.com/jackmisbach",
+      "contributions": [
+        "security"
+      ]
     }
   ],
   "contributorsPerLine": 6,
