@@ -26,6 +26,9 @@ package com.iluwatar.callback;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -39,19 +42,44 @@ class CallbackTest {
   private Integer callingCount = 0;
 
   @Test
-  void test() {
-    Callback callback = () -> callingCount++;
-
+  void testSynchronousCallback() {
+    var counter = new AtomicInteger();
+    Callback callback = counter::incrementAndGet;
     var task = new SimpleTask();
 
-    assertEquals(Integer.valueOf(0), callingCount, "Initial calling count of 0");
-
+    assertEquals(0, counter.get(), "Initial count should be 0");
     task.executeWith(callback);
-
-    assertEquals(Integer.valueOf(1), callingCount, "Callback called once");
-
+    assertEquals(1, counter.get(), "Callback should be called once");
     task.executeWith(callback);
+    assertEquals(2, counter.get(), "Callback should be called twice");
+  }
 
-    assertEquals(Integer.valueOf(2), callingCount, "Callback called twice");
+  @Test
+  void testAsynchronousCallback() {
+    var task = new SimpleTask();
+
+    var counter1 = new AtomicInteger();
+    final CompletableFuture<Void> future1 = new CompletableFuture<>();
+    Callback callback1 =
+        () -> {
+          counter1.incrementAndGet();
+          future1.complete(null);
+        };
+    var f1 = task.executeAsyncWith(callback1);
+    future1.orTimeout(1, TimeUnit.SECONDS).join();
+    f1.join();
+    assertEquals(1, counter1.get(), "Async callback should increment once");
+
+    var counter2 = new AtomicInteger();
+    final CompletableFuture<Void> future2 = new CompletableFuture<>();
+    Callback callback2 =
+        () -> {
+          counter2.incrementAndGet();
+          future2.complete(null);
+        };
+    var f2 = task.executeAsyncWith(callback2);
+    future2.orTimeout(1, TimeUnit.SECONDS).join();
+    f2.join();
+    assertEquals(1, counter2.get(), "Async callback should increment once again");
   }
 }
