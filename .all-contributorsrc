@@ -3584,6 +3584,15 @@
       "contributions": [
         "security"
       ]
+    },
+    {
+      "login": "north-echo",
+      "name": "Christopher Lusk",
+      "avatar_url": "https://avatars.githubusercontent.com/u/122107484?v=4",
+      "profile": "http://www.northecho.dev",
+      "contributions": [
+        "security"
+      ]
     }
   ],
   "contributorsPerLine": 6,
