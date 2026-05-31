@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-396-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-397-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -587,6 +587,9 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="http://www.northecho.dev"><img src="https://avatars.githubusercontent.com/u/122107484?v=4?s=100" width="100px;" alt="Christopher Lusk"/><br /><sub><b>Christopher Lusk</b></sub></a><br /><a href="#security-north-echo" title="Security">🛡️</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/dagecko"><img src="https://avatars.githubusercontent.com/u/6371704?v=4?s=100" width="100px;" alt="dagecko"/><br /><sub><b>dagecko</b></sub></a><br /><a href="#security-dagecko" title="Security">🛡️</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/jackmisbach"><img src="https://avatars.githubusercontent.com/u/183796460?v=4?s=100" width="100px;" alt="jackmisbach"/><br /><sub><b>jackmisbach</b></sub></a><br /><a href="#security-jackmisbach" title="Security">🛡️</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/avivdon"><img src="https://avatars.githubusercontent.com/u/74790003?v=4?s=100" width="100px;" alt="avivdon"/><br /><sub><b>avivdon</b></sub></a><br /><a href="#security-avivdon" title="Security">🛡️</a></td>
     </tr>
   </tbody>
 </table>
