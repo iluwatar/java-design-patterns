@@ -3593,6 +3593,15 @@
       "contributions": [
         "security"
       ]
+    },
+    {
+      "login": "dagecko",
+      "name": "dagecko",
+      "avatar_url": "https://avatars.githubusercontent.com/u/6371704?v=4",
+      "profile": "https://github.com/dagecko",
+      "contributions": [
+        "security"
+      ]
     }
   ],
   "contributorsPerLine": 6,
