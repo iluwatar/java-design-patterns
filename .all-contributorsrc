@@ -3620,6 +3620,15 @@
       "contributions": [
         "security"
       ]
+    },
+    {
+      "login": "quantdevv",
+      "name": "Aditya Kumawat",
+      "avatar_url": "https://avatars.githubusercontent.com/u/56085648?v=4",
+      "profile": "https://github.com/quantdevv",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
