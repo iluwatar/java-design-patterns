@@ -3656,6 +3656,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "QuantumRange",
+      "name": "QuantumRange",
+      "avatar_url": "https://avatars.githubusercontent.com/u/49843948?v=4",
+      "profile": "https://github.com/QuantumRange",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 6,
