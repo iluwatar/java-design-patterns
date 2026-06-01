@@ -146,6 +146,7 @@
     <module>half-sync-half-async</module>
     <module>health-check</module>
     <module>hexagonal-architecture</module>
+    <module>immutable-object</module>
     <module>identity-map</module>
     <module>intercepting-filter</module>
     <module>interpreter</module>
@@ -250,6 +251,7 @@
     <module>backpressure</module>
     <module>actor-model</module>
     <module>rate-limiting-pattern</module>
+    <module>immutable-object</module>
   </modules>
   <repositories>
     <repository>
