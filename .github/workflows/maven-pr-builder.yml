@@ -13,6 +13,7 @@ jobs:
 
     name: Build on JDK 21
     runs-on: ubuntu-22.04
+    if: github.event.pull_request.head.repo.full_name == github.repository
     steps:
 
       - name: Checkout Code
