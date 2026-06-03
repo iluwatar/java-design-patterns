@@ -3692,6 +3692,15 @@
       "contributions": [
         "security"
       ]
+    },
+    {
+      "login": "rranjangupta",
+      "name": "Raju Gupta",
+      "avatar_url": "https://avatars.githubusercontent.com/u/64011583?v=4",
+      "profile": "https://www.rajugupta.com/portfolio/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
