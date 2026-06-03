@@ -82,8 +82,9 @@ public class ImperativeProgramming {
    */
   public static List<Car> getSedanCarsOwnedSortedByDate(List<Person> persons) {
     return persons.stream()
+        .map(Person::cars)
         // Get all cars owned by each person
-        .flatMap(person -> person.cars().stream())
+        .flatMap(List::stream)
         .filter(car -> Category.SEDAN.equals(car.category()))
         .sorted(Comparator.comparingInt(Car::year))
         .toList();
