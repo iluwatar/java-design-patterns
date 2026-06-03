@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-405-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-406-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -600,6 +600,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/Dhiraj-birajdar"><img src="https://avatars.githubusercontent.com/u/114354331?v=4?s=100" width="100px;" alt="Dhiraj Birajdar"/><br /><sub><b>Dhiraj Birajdar</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Dhiraj-birajdar" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/sieberss"><img src="https://avatars.githubusercontent.com/u/178474619?v=4?s=100" width="100px;" alt="Stefan Siebers"/><br /><sub><b>Stefan Siebers</b></sub></a><br /><a href="#translation-sieberss" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://orbisappsec.com/"><img src="https://avatars.githubusercontent.com/u/242526317?v=4?s=100" width="100px;" alt="OrbisAI Security"/><br /><sub><b>OrbisAI Security</b></sub></a><br /><a href="#security-orbisai0security" title="Security">🛡️</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://www.rajugupta.com/portfolio/"><img src="https://avatars.githubusercontent.com/u/64011583?v=4?s=100" width="100px;" alt="Raju Gupta"/><br /><sub><b>Raju Gupta</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=rranjangupta" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
