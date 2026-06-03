@@ -3674,6 +3674,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "sieberss",
+      "name": "Stefan Siebers",
+      "avatar_url": "https://avatars.githubusercontent.com/u/178474619?v=4",
+      "profile": "https://github.com/sieberss",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
