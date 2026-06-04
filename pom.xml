@@ -147,6 +147,7 @@
     <module>health-check</module>
     <module>hexagonal-architecture</module>
     <module>identity-map</module>
+    <module>immutable</module>
     <module>intercepting-filter</module>
     <module>interpreter</module>
     <module>iterator</module>
