@@ -84,4 +84,40 @@ class ImmutableUserTest {
 
     assertThrows(UnsupportedOperationException.class, () -> user.getRoles().add("editor"));
   }
+
+  @Test
+  void withNameReturnsNewObjectWithUpdatedName() {
+    var original = new ImmutableUser("Alice", 30, List.of("admin"));
+    var updated = original.withName("Bob");
+
+    assertEquals("Bob", updated.getName());
+    assertEquals(30, updated.getAge());
+    assertEquals(original.getRoles(), updated.getRoles());
+  }
+
+  @Test
+  void withNameDoesNotMutateOriginal() {
+    var original = new ImmutableUser("Alice", 30, List.of("admin"));
+    original.withName("Bob");
+
+    assertEquals("Alice", original.getName());
+  }
+
+  @Test
+  void withRolesReturnsNewObjectWithUpdatedRoles() {
+    var original = new ImmutableUser("Alice", 30, List.of("admin"));
+    var updated = original.withRoles(List.of("viewer", "editor"));
+
+    assertEquals(List.of("viewer", "editor"), updated.getRoles());
+    assertEquals("Alice", updated.getName());
+    assertEquals(30, updated.getAge());
+  }
+
+  @Test
+  void withRolesDoesNotMutateOriginal() {
+    var original = new ImmutableUser("Alice", 30, List.of("admin"));
+    original.withRoles(List.of("viewer"));
+
+    assertEquals(List.of("admin"), original.getRoles());
+  }
 }

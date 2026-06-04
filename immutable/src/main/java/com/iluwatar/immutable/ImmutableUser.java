@@ -80,6 +80,16 @@ public final class ImmutableUser {
   }
 
   /**
+   * Returns a new {@link ImmutableUser} identical to this one but with the given name.
+   *
+   * @param newName the new name value
+   * @return a new instance with the updated name
+   */
+  public ImmutableUser withName(String newName) {
+    return new ImmutableUser(newName, this.age, this.roles);
+  }
+
+  /**
    * Returns a new {@link ImmutableUser} identical to this one but with the given age.
    *
    * @param newAge the new age value
@@ -87,6 +97,16 @@ public final class ImmutableUser {
    */
   public ImmutableUser withAge(int newAge) {
     return new ImmutableUser(this.name, newAge, this.roles);
+  }
+
+  /**
+   * Returns a new {@link ImmutableUser} identical to this one but with the given roles.
+   *
+   * @param newRoles the new roles; copied defensively
+   * @return a new instance with the updated roles
+   */
+  public ImmutableUser withRoles(List<String> newRoles) {
+    return new ImmutableUser(this.name, this.age, newRoles);
   }
 
   @Override
