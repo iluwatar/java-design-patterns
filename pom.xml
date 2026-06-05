@@ -39,7 +39,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <!-- Spring Boot related dependencies. Keep these in sync! -->
-    <spring-boot.version>3.4.4</spring-boot.version>
+    <spring-boot.version>3.4.5</spring-boot.version>
     <junit.version>5.11.4</junit.version>
     <mockito.version>5.14.2</mockito.version>
     <logback.version>1.5.18</logback.version>
