@@ -22,53 +22,52 @@
 package com.iluwatar.bulkhead;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BackgroundServiceTest {
 
-    private BackgroundService backgroundService;
+  private BackgroundService backgroundService;
 
-    @BeforeEach
-    void setUp() {
-        backgroundService = new BackgroundService(2);
-    }
+  @BeforeEach
+  void setUp() {
+    backgroundService = new BackgroundService(2);
+  }
 
-    @AfterEach
-    void tearDown() {
-        backgroundService.shutdown();
-    }
+  @AfterEach
+  void tearDown() {
+    backgroundService.shutdown();
+  }
 
-    @Test
-    void shouldAcceptBackgroundTask() {
-        assertThat(
-                backgroundService.submitTask(
-                        new Task("bg-job-1", TaskType.BACKGROUND_PROCESSING, 0)))
-                .isTrue();
-    }
+  @Test
+  void shouldAcceptBackgroundTask() {
+    assertThat(
+            backgroundService.submitTask(new Task("bg-job-1", TaskType.BACKGROUND_PROCESSING, 0)))
+        .isTrue();
+  }
 
-    @Test
-    void shouldRejectWhenBulkheadIsFull() {
-        for (int i = 0; i < 22; i++) {
-            backgroundService.submitTask(new Task("bg-" + i, TaskType.BACKGROUND_PROCESSING, 5000));
-        }
-        assertThat(
-                backgroundService.submitTask(
-                        new Task("overflow", TaskType.BACKGROUND_PROCESSING, 100)))
-                .isFalse();
+  @Test
+  void shouldRejectWhenBulkheadIsFull() {
+    for (int i = 0; i < 22; i++) {
+      backgroundService.submitTask(new Task("bg-" + i, TaskType.BACKGROUND_PROCESSING, 5000));
     }
+    assertThat(
+            backgroundService.submitTask(new Task("overflow", TaskType.BACKGROUND_PROCESSING, 100)))
+        .isFalse();
+  }
 
-    @Test
-    void overloadShouldNotAffectUserService() {
-        var userService = new UserService(2);
-        try {
-            for (int i = 0; i < 25; i++) {
-                backgroundService.submitTask(new Task("bg-" + i, TaskType.BACKGROUND_PROCESSING, 3000));
-            }
-            assertThat(userService.submitTask(new Task("user-req", TaskType.USER_REQUEST, 0))).isTrue();
-        } finally {
-            userService.shutdown();
-        }
+  @Test
+  void overloadShouldNotAffectUserService() {
+    var userService = new UserService(2);
+    try {
+      for (int i = 0; i < 25; i++) {
+        backgroundService.submitTask(new Task("bg-" + i, TaskType.BACKGROUND_PROCESSING, 3000));
+      }
+      assertThat(userService.submitTask(new Task("user-req", TaskType.USER_REQUEST, 0))).isTrue();
+    } finally {
+      userService.shutdown();
     }
+  }
 }

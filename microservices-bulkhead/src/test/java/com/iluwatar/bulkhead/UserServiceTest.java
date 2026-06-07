@@ -22,39 +22,40 @@
 package com.iluwatar.bulkhead;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class UserServiceTest {
 
-    private UserService userService;
+  private UserService userService;
 
-    @BeforeEach
-    void setUp() {
-        userService = new UserService(2);
-    }
+  @BeforeEach
+  void setUp() {
+    userService = new UserService(2);
+  }
 
-    @AfterEach
-    void tearDown() {
-        userService.shutdown();
-    }
+  @AfterEach
+  void tearDown() {
+    userService.shutdown();
+  }
 
-    @Test
-    void shouldAcceptUserRequestTask() {
-        assertThat(userService.submitTask(new Task("user-req-1", TaskType.USER_REQUEST, 0))).isTrue();
-    }
+  @Test
+  void shouldAcceptUserRequestTask() {
+    assertThat(userService.submitTask(new Task("user-req-1", TaskType.USER_REQUEST, 0))).isTrue();
+  }
 
-    @Test
-    void shouldIsolateFromOverloadedOtherService() {
-        var backgroundService = new BackgroundService(1);
-        try {
-            for (int i = 0; i < 25; i++) {
-                backgroundService.submitTask(new Task("bg-" + i, TaskType.BACKGROUND_PROCESSING, 3000));
-            }
-            assertThat(userService.submitTask(new Task("critical", TaskType.USER_REQUEST, 0))).isTrue();
-        } finally {
-            backgroundService.shutdown();
-        }
+  @Test
+  void shouldIsolateFromOverloadedOtherService() {
+    var backgroundService = new BackgroundService(1);
+    try {
+      for (int i = 0; i < 25; i++) {
+        backgroundService.submitTask(new Task("bg-" + i, TaskType.BACKGROUND_PROCESSING, 3000));
+      }
+      assertThat(userService.submitTask(new Task("critical", TaskType.USER_REQUEST, 0))).isTrue();
+    } finally {
+      backgroundService.shutdown();
     }
+  }
 }

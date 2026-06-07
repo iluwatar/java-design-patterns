@@ -22,22 +22,23 @@
 package com.iluwatar.bulkhead;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 class TaskTypeTest {
 
-    @Test
-    void shouldHaveTwoValues() {
-        assertThat(TaskType.values()).hasSize(2);
-    }
+  @Test
+  void shouldHaveTwoValues() {
+    assertThat(TaskType.values()).hasSize(2);
+  }
 
-    @Test
-    void shouldContainUserRequest() {
-        assertThat(TaskType.valueOf("USER_REQUEST")).isEqualTo(TaskType.USER_REQUEST);
-    }
+  @Test
+  void shouldContainUserRequest() {
+    assertThat(TaskType.valueOf("USER_REQUEST")).isEqualTo(TaskType.USER_REQUEST);
+  }
 
-    @Test
-    void shouldContainBackgroundProcessing() {
-        assertThat(TaskType.valueOf("BACKGROUND_PROCESSING")).isEqualTo(TaskType.BACKGROUND_PROCESSING);
-    }
+  @Test
+  void shouldContainBackgroundProcessing() {
+    assertThat(TaskType.valueOf("BACKGROUND_PROCESSING")).isEqualTo(TaskType.BACKGROUND_PROCESSING);
+  }
 }

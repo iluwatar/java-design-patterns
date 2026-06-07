@@ -25,8 +25,8 @@ import org.junit.jupiter.api.Test;
 
 class AppTest {
 
-    @Test
-    void shouldRunWithoutException() throws Exception {
-        App.main(new String[]{});
-    }
+  @Test
+  void shouldRunWithoutException() throws Exception {
+    App.main(new String[] {});
+  }
 }

@@ -22,58 +22,59 @@
 package com.iluwatar.bulkhead;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class BulkheadServiceTest {
 
-    private UserService service;
+  private UserService service;
 
-    @BeforeEach
-    void setUp() {
-        service = new UserService(2);
-    }
+  @BeforeEach
+  void setUp() {
+    service = new UserService(2);
+  }
 
-    @AfterEach
-    void tearDown() {
-        service.shutdown();
-    }
+  @AfterEach
+  void tearDown() {
+    service.shutdown();
+  }
 
-    @Test
-    void shouldAcceptTaskWhenCapacityAvailable() {
-        var task = new Task("task-1", TaskType.USER_REQUEST, 0);
-        assertThat(service.submitTask(task)).isTrue();
-    }
+  @Test
+  void shouldAcceptTaskWhenCapacityAvailable() {
+    var task = new Task("task-1", TaskType.USER_REQUEST, 0);
+    assertThat(service.submitTask(task)).isTrue();
+  }
 
-    @Test
-    void shouldRejectTaskWhenBulkheadIsFull() {
-        for (int i = 0; i < 12; i++) {
-            service.submitTask(new Task("blocker-" + i, TaskType.USER_REQUEST, 5000));
-        }
-        assertThat(service.submitTask(new Task("overflow", TaskType.USER_REQUEST, 100))).isFalse();
+  @Test
+  void shouldRejectTaskWhenBulkheadIsFull() {
+    for (int i = 0; i < 12; i++) {
+      service.submitTask(new Task("blocker-" + i, TaskType.USER_REQUEST, 5000));
     }
+    assertThat(service.submitTask(new Task("overflow", TaskType.USER_REQUEST, 100))).isFalse();
+  }
 
-    @Test
-    void shouldReportActiveThreadCount() throws InterruptedException {
-        service.submitTask(new Task("t1", TaskType.USER_REQUEST, 500));
-        service.submitTask(new Task("t2", TaskType.USER_REQUEST, 500));
-        Thread.sleep(100);
-        assertThat(service.getActiveThreads()).isGreaterThanOrEqualTo(0);
-    }
+  @Test
+  void shouldReportActiveThreadCount() throws InterruptedException {
+    service.submitTask(new Task("t1", TaskType.USER_REQUEST, 500));
+    service.submitTask(new Task("t2", TaskType.USER_REQUEST, 500));
+    Thread.sleep(100);
+    assertThat(service.getActiveThreads()).isGreaterThanOrEqualTo(0);
+  }
 
-    @Test
-    void shouldReportQueueSize() throws InterruptedException {
-        service.submitTask(new Task("t1", TaskType.USER_REQUEST, 2000));
-        service.submitTask(new Task("t2", TaskType.USER_REQUEST, 2000));
-        service.submitTask(new Task("queued", TaskType.USER_REQUEST, 2000));
-        Thread.sleep(100);
-        assertThat(service.getQueueSize()).isGreaterThanOrEqualTo(0);
-    }
+  @Test
+  void shouldReportQueueSize() throws InterruptedException {
+    service.submitTask(new Task("t1", TaskType.USER_REQUEST, 2000));
+    service.submitTask(new Task("t2", TaskType.USER_REQUEST, 2000));
+    service.submitTask(new Task("queued", TaskType.USER_REQUEST, 2000));
+    Thread.sleep(100);
+    assertThat(service.getQueueSize()).isGreaterThanOrEqualTo(0);
+  }
 
-    @Test
-    void shutdownShouldCompleteWithoutError() {
-        service.submitTask(new Task("t", TaskType.USER_REQUEST, 0));
-        service.shutdown();
-    }
+  @Test
+  void shutdownShouldCompleteWithoutError() {
+    service.submitTask(new Task("t", TaskType.USER_REQUEST, 0));
+    service.shutdown();
+  }
 }

@@ -22,32 +22,33 @@
 package com.iluwatar.bulkhead;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 class TaskTest {
 
-    @Test
-    void shouldReturnCorrectName() {
-        var task = new Task("my-task", TaskType.USER_REQUEST, 100);
-        assertThat(task.getName()).isEqualTo("my-task");
-    }
+  @Test
+  void shouldReturnCorrectName() {
+    var task = new Task("my-task", TaskType.USER_REQUEST, 100);
+    assertThat(task.getName()).isEqualTo("my-task");
+  }
 
-    @Test
-    void shouldReturnCorrectType() {
-        var task = new Task("t", TaskType.BACKGROUND_PROCESSING, 50);
-        assertThat(task.getType()).isEqualTo(TaskType.BACKGROUND_PROCESSING);
-    }
+  @Test
+  void shouldReturnCorrectType() {
+    var task = new Task("t", TaskType.BACKGROUND_PROCESSING, 50);
+    assertThat(task.getType()).isEqualTo(TaskType.BACKGROUND_PROCESSING);
+  }
 
-    @Test
-    void shouldReturnCorrectDuration() {
-        var task = new Task("t", TaskType.USER_REQUEST, 250);
-        assertThat(task.getDurationMs()).isEqualTo(250);
-    }
+  @Test
+  void shouldReturnCorrectDuration() {
+    var task = new Task("t", TaskType.USER_REQUEST, 250);
+    assertThat(task.getDurationMs()).isEqualTo(250);
+  }
 
-    @Test
-    void toStringShouldContainNameTypeAndDuration() {
-        var task = new Task("my-task", TaskType.USER_REQUEST, 100);
-        var str = task.toString();
-        assertThat(str).contains("my-task").contains("USER_REQUEST").contains("100");
-    }
+  @Test
+  void toStringShouldContainNameTypeAndDuration() {
+    var task = new Task("my-task", TaskType.USER_REQUEST, 100);
+    var str = task.toString();
+    assertThat(str).contains("my-task").contains("USER_REQUEST").contains("100");
+  }
 }
