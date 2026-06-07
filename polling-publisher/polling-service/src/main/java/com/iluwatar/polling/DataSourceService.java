@@ -44,9 +44,22 @@ public class DataSourceService {
   private final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
 
   /** Constructor & Scheduler to push random data. */
+  @org.springframework.beans.factory.annotation.Autowired
   public DataSourceService(DataRepository repository) {
+    this(repository, true);
+  }
+
+  /**
+   * Constructor with option to start the scheduler.
+   *
+   * @param repository the data repository
+   * @param startScheduler true to start the data generation scheduler
+   */
+  public DataSourceService(DataRepository repository, boolean startScheduler) {
     this.repository = repository;
-    scheduleDataGeneration();
+    if (startScheduler) {
+      scheduleDataGeneration();
+    }
   }
 
   private void scheduleDataGeneration() {
@@ -77,5 +90,10 @@ public class DataSourceService {
 
   public Map<Integer, String> getAllData() {
     return repository.findAll();
+  }
+
+  @javax.annotation.PreDestroy
+  public void shutdown() {
+    scheduler.shutdown();
   }
 }

@@ -40,7 +40,7 @@ class AppTest {
 
   @Test
   void testMain() {
-    assertDoesNotThrow(() -> App.main(new String[] {}));
+    assertDoesNotThrow(() -> App.main(new String[] {"test"}));
   }
 
   @Test

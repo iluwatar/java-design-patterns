@@ -4,8 +4,10 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Token Bucket rate limiter implementation. Allows requests to proceed as long as there are tokens
- * available in the bucket. Tokens are added at a fixed interval up to a defined capacity.
+ * Token Bucket rate limiter implementation. Allows requests to proceed as long
+ * as there are tokens
+ * available in the bucket. Tokens are added at a fixed interval up to a defined
+ * capacity.
  */
 public class TokenBucketRateLimiter implements RateLimiter {
   private final int capacity;
@@ -14,10 +16,22 @@ public class TokenBucketRateLimiter implements RateLimiter {
   private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
   public TokenBucketRateLimiter(int capacity, int refillRate) {
+    this(capacity, refillRate, 1, TimeUnit.SECONDS);
+  }
+
+  /**
+   * Constructor with custom refill interval.
+   *
+   * @param capacity       token bucket capacity
+   * @param refillRate     token refill rate
+   * @param refillInterval refill interval value
+   * @param timeUnit       refill interval time unit
+   */
+  public TokenBucketRateLimiter(
+      int capacity, int refillRate, long refillInterval, TimeUnit timeUnit) {
     this.capacity = capacity;
     this.refillRate = refillRate;
-    // Refill tokens in all buckets every second
-    scheduler.scheduleAtFixedRate(this::refillBuckets, 1, 1, TimeUnit.SECONDS);
+    scheduler.scheduleAtFixedRate(this::refillBuckets, refillInterval, refillInterval, timeUnit);
   }
 
   @Override
@@ -39,7 +53,10 @@ public class TokenBucketRateLimiter implements RateLimiter {
     buckets.forEach((k, b) -> b.refill(refillRate));
   }
 
-  /** Inner class that represents the bucket holding tokens for each service-operation. */
+  /**
+   * Inner class that represents the bucket holding tokens for each
+   * service-operation.
+   */
   private static class TokenBucket {
     private final int capacity;
     private final AtomicInteger tokens;
@@ -52,13 +69,19 @@ public class TokenBucketRateLimiter implements RateLimiter {
     boolean tryConsume() {
       while (true) {
         int current = tokens.get();
-        if (current <= 0) return false;
-        if (tokens.compareAndSet(current, current - 1)) return true;
+        if (current <= 0)
+          return false;
+        if (tokens.compareAndSet(current, current - 1))
+          return true;
       }
     }
 
     void refill(int amount) {
       tokens.getAndUpdate(current -> Math.min(current + amount, capacity));
     }
+  }
+
+  public void shutdown() {
+    scheduler.shutdown();
   }
 }

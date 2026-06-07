@@ -43,6 +43,11 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 public class App {
   /** Program entry point. */
   public static void main(String[] args) {
-    SpringApplication.run(App.class, args);
+    var context = SpringApplication.run(App.class, args);
+    if (args.length > 0 && "test".equals(args[0])) {
+      // Close the context immediately during tests to prevent Tomcat/background threads from
+      // hanging the JVM
+      context.close();
+    }
   }
 }

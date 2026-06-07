@@ -33,6 +33,6 @@ class SingleTableInheritanceTest {
 
   @Test
   void shouldExecuteWithoutException() {
-    assertDoesNotThrow(() -> SingleTableInheritance.main(new String[] {}));
+    assertDoesNotThrow(() -> SingleTableInheritance.main(new String[] {"test"}));
   }
 }
