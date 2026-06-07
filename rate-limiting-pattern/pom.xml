@@ -13,8 +13,6 @@
     <artifactId>rate-limiter</artifactId>
 
     <properties>
-        <maven.compiler.source>22</maven.compiler.source>
-        <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.jupiter.version>5.11.1</junit.jupiter.version>
         <junit.platform.version>1.11.1</junit.platform.version>
