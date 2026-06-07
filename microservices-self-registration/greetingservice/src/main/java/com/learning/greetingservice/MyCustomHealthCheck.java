@@ -32,7 +32,9 @@ public class MyCustomHealthCheck implements HealthIndicator {
   public Health health() {
     if (isHealthy) {
       log.info("Health check successful, service is UP");
-      return Health.up().withDetail("message", "Service is running and scheduled checks are OK").build();
+      return Health.up()
+          .withDetail("message", "Service is running and scheduled checks are OK")
+          .build();
     } else {
       log.warn("Health check failed, service is DOWN");
       return Health.down().withDetail("error", "Scheduled health checks failed").build();

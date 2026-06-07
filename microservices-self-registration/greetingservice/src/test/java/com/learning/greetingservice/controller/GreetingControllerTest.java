@@ -16,21 +16,23 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @ActiveProfiles("test")
 class GreetingControllerTest {
 
-  @Autowired
-  private MockMvc mockMvc;
+  @Autowired private MockMvc mockMvc;
 
   @Test
-  void shouldReturnGreeting() throws Exception{
-    mockMvc.perform(MockMvcRequestBuilders.get("/greeting")
-            .accept(MediaType.TEXT_PLAIN))
+  void shouldReturnGreeting() throws Exception {
+    mockMvc
+        .perform(MockMvcRequestBuilders.get("/greeting").accept(MediaType.TEXT_PLAIN))
         .andExpect(MockMvcResultMatchers.status().isOk())
         .andExpect(MockMvcResultMatchers.content().string("Hello"));
   }
 
   @Test
-  void shouldReturnHealthStatusUp() throws Exception{
-    mockMvc.perform(MockMvcRequestBuilders.get("/actuator/health"))
+  void shouldReturnHealthStatusUp() throws Exception {
+    mockMvc
+        .perform(MockMvcRequestBuilders.get("/actuator/health"))
         .andExpect(MockMvcResultMatchers.status().isOk())
-        .andExpect(MockMvcResultMatchers.content().string(org.hamcrest.Matchers.containsString("\"status\":\"UP\"")));
+        .andExpect(
+            MockMvcResultMatchers.content()
+                .string(org.hamcrest.Matchers.containsString("\"status\":\"UP\"")));
   }
 }

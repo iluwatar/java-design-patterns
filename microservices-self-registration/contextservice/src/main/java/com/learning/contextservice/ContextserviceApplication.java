@@ -10,8 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class ContextserviceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ContextserviceApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(ContextserviceApplication.class, args);
+  }
 }

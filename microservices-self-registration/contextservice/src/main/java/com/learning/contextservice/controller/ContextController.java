@@ -13,7 +13,8 @@ public class ContextController {
   private final String userRegion;
 
   @Autowired
-  public ContextController(GreetingServiceClient greetingServiceClient, @Value("${user.region}") String userRegion) {
+  public ContextController(
+      GreetingServiceClient greetingServiceClient, @Value("${user.region}") String userRegion) {
     this.greetingServiceClient = greetingServiceClient;
     this.userRegion = userRegion;
   }
@@ -21,6 +22,6 @@ public class ContextController {
   @GetMapping("/context")
   public String getContext() {
     String greeting = greetingServiceClient.getGreeting();
-    return "The Greeting Service says: "+greeting+" from "+userRegion;
+    return "The Greeting Service says: " + greeting + " from " + userRegion;
   }
 }

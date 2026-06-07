@@ -4,10 +4,8 @@ import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Token Bucket rate limiter implementation. Allows requests to proceed as long
- * as there are tokens
- * available in the bucket. Tokens are added at a fixed interval up to a defined
- * capacity.
+ * Token Bucket rate limiter implementation. Allows requests to proceed as long as there are tokens
+ * available in the bucket. Tokens are added at a fixed interval up to a defined capacity.
  */
 public class TokenBucketRateLimiter implements RateLimiter {
   private final int capacity;
@@ -22,10 +20,10 @@ public class TokenBucketRateLimiter implements RateLimiter {
   /**
    * Constructor with custom refill interval.
    *
-   * @param capacity       token bucket capacity
-   * @param refillRate     token refill rate
+   * @param capacity token bucket capacity
+   * @param refillRate token refill rate
    * @param refillInterval refill interval value
-   * @param timeUnit       refill interval time unit
+   * @param timeUnit refill interval time unit
    */
   public TokenBucketRateLimiter(
       int capacity, int refillRate, long refillInterval, TimeUnit timeUnit) {
@@ -53,10 +51,7 @@ public class TokenBucketRateLimiter implements RateLimiter {
     buckets.forEach((k, b) -> b.refill(refillRate));
   }
 
-  /**
-   * Inner class that represents the bucket holding tokens for each
-   * service-operation.
-   */
+  /** Inner class that represents the bucket holding tokens for each service-operation. */
   private static class TokenBucket {
     private final int capacity;
     private final AtomicInteger tokens;
@@ -69,10 +64,8 @@ public class TokenBucketRateLimiter implements RateLimiter {
     boolean tryConsume() {
       while (true) {
         int current = tokens.get();
-        if (current <= 0)
-          return false;
-        if (tokens.compareAndSet(current, current - 1))
-          return true;
+        if (current <= 0) return false;
+        if (tokens.compareAndSet(current, current - 1)) return true;
       }
     }
 

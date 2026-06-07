@@ -7,7 +7,6 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
@@ -21,29 +20,31 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 @Import(TestConfig.class)
 class ContextControllerTest {
 
-  @Autowired
-  private MockMvc mockMvc;
+  @Autowired private MockMvc mockMvc;
 
-  @MockitoBean
-  private GreetingServiceClient greetingServiceClient;
+  @MockitoBean private GreetingServiceClient greetingServiceClient;
 
   @Value("${user.region}")
   private String userRegion;
 
   @Test
-  void shouldReturnContextGreeting() throws Exception{
+  void shouldReturnContextGreeting() throws Exception {
     Mockito.when(greetingServiceClient.getGreeting()).thenReturn("Mocked Hello");
 
-    mockMvc.perform(MockMvcRequestBuilders.get("/context")
-        .accept(MediaType.TEXT_PLAIN))
+    mockMvc
+        .perform(MockMvcRequestBuilders.get("/context").accept(MediaType.TEXT_PLAIN))
         .andExpect(MockMvcResultMatchers.status().isOk())
-        .andExpect(MockMvcResultMatchers.content().string("The Greeting Service says: Mocked Hello from Chennai, Tamil Nadu, India"));
+        .andExpect(
+            MockMvcResultMatchers.content()
+                .string("The Greeting Service says: Mocked Hello from Chennai, Tamil Nadu, India"));
   }
 
   @Test
   void shouldReturnContextServiceHealthStatusUp() throws Exception {
-    mockMvc.perform(MockMvcRequestBuilders.get("/actuator/health"))
+    mockMvc
+        .perform(MockMvcRequestBuilders.get("/actuator/health"))
         .andExpect(MockMvcResultMatchers.status().isOk())
-        .andExpect(MockMvcResultMatchers.content().string(Matchers.containsString("\"status\":\"UP\"")));
+        .andExpect(
+            MockMvcResultMatchers.content().string(Matchers.containsString("\"status\":\"UP\"")));
   }
 }

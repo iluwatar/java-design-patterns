@@ -10,8 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan("com.learning.greetingservice.controller")
 public class GreetingserviceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GreetingserviceApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(GreetingserviceApplication.class, args);
+  }
 }

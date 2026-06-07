@@ -1,10 +1,11 @@
 package com.learning.contextservice;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.actuate.health.Health;
-import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.boot.actuate.health.Status;
-import static org.junit.jupiter.api.Assertions.*;
+import org.springframework.test.util.ReflectionTestUtils;
 
 class MyCustomHealthCheckTest {
 
@@ -16,7 +17,8 @@ class MyCustomHealthCheckTest {
     Health health = healthCheck.health();
     assertEquals(Status.UP, health.getStatus());
     assertTrue(health.getDetails().containsKey("message"));
-    assertEquals("Service is running and scheduled checks are OK", health.getDetails().get("message"));
+    assertEquals(
+        "Service is running and scheduled checks are OK", health.getDetails().get("message"));
   }
 
   @Test
@@ -29,5 +31,4 @@ class MyCustomHealthCheckTest {
     assertTrue(health.getDetails().containsKey("error"));
     assertEquals("Scheduled health checks failed", health.getDetails().get("error"));
   }
-
 }
