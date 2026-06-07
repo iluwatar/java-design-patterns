@@ -33,10 +33,6 @@ Wikipedia says
 
 > In object-oriented and functional programming, an immutable object (unchangeable object) is an object whose state cannot be modified after it is created. This is in contrast to a mutable object (changeable object), which can be modified after it is created.
 
-Class diagram
-
-![Immutable class diagram](./etc/immutable.urm.puml)
-
 ## Programmatic Example of Immutable Pattern in Java
 
 The core of the pattern is `ImmutableUser`. All fields are `final`, the mutable `roles` list is defensively copied via `List.copyOf`, and "mutation" is expressed by returning a new instance.
