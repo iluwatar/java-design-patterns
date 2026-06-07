@@ -18,7 +18,9 @@ tag:
 
 ## Intent of Strategy Design Pattern
 
-Define a family of algorithms in Java, encapsulate each one, and make them interchangeable to enhance software development using the Strategy design pattern. Strategy lets the algorithm vary independently of the clients that use it.
+Define a family of algorithms, encapsulate each one, and make them interchangeable. The Strategy pattern allows behavior to be selected at runtime, enabling an object to switch between different algorithms without modifying its code.
+
+By separating algorithms from the clients that use them, the Strategy pattern promotes flexibility, reduces conditional logic, and makes applications easier to maintain and extend.
 
 ## Detailed Explanation of Strategy Pattern with Real-World Examples
 
