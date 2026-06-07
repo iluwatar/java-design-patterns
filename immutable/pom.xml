@@ -28,11 +28,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
-    <artifactId>java-design-patterns</artifactId>
     <groupId>com.iluwatar</groupId>
+    <artifactId>java-design-patterns</artifactId>
     <version>1.26.0-SNAPSHOT</version>
   </parent>
-  <artifactId>event-sourcing</artifactId>
+  <artifactId>immutable</artifactId>
   <dependencies>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -48,14 +48,10 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-        <groupId>com.fasterxml.jackson.core</groupId>
-        <artifactId>jackson-core</artifactId>
-        <version>2.21.4</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.18.3</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <build>
@@ -68,7 +64,7 @@
             <configuration>
               <archive>
                 <manifest>
-                  <mainClass>com.iluwatar.event.sourcing.App</mainClass>
+                  <mainClass>com.iluwatar.immutable.App</mainClass>
                 </manifest>
               </archive>
             </configuration>
