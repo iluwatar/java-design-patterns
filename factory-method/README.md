@@ -31,6 +31,9 @@ Real-world example
 In plain words
 
 > It provides a way to delegate the instantiation logic to child classes.
+> 
+> Imagine a messaging app that can send notifications by Email, SMS, or Push Notifications.
+> The user only asks to send a message. The Factory Method chooses and creates the correct notification service.
 
 Wikipedia says
 
