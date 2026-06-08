@@ -56,7 +56,7 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
-        <version>3.4.4</version>
+        <version>4.0.6</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
