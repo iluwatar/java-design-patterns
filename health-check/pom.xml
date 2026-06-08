@@ -61,7 +61,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>6.4.4.Final</version>
+            <version>7.4.0.Final</version>
         </dependency>
         <dependency>
             <groupId>jakarta.xml.bind</groupId>
