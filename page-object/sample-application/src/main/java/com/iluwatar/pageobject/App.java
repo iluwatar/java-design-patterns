@@ -83,9 +83,13 @@ public final class App {
         ProcessBuilder pb;
         if (os.contains("win")) {
           // Empty string title arg prevents cmd start treating a quoted path as the window title
+          var systemRoot = System.getenv("SystemRoot");
+          if (systemRoot == null) {
+            systemRoot = "C:\\Windows";
+          }
           pb =
               new ProcessBuilder(
-                  "C:\\Windows\\System32\\cmd.exe",
+                  systemRoot + "\\System32\\cmd.exe",
                   "/c",
                   "start",
                   "",
