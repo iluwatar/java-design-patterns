@@ -40,9 +40,9 @@ public class CommandServiceImpl implements CommandService {
   private Author getAuthorByUsername(String username) {
     Author author;
     try (var session = sessionFactory.openSession()) {
-      var query = session.createQuery("from Author where username=:username");
+      var query = session.createQuery("from Author where username=:username", Author.class);
       query.setParameter("username", username);
-      author = (Author) query.uniqueResult();
+      author = query.uniqueResult();
     }
     if (author == null) {
       HibernateUtil.getSessionFactory().close();
@@ -54,9 +54,9 @@ public class CommandServiceImpl implements CommandService {
   private Book getBookByTitle(String title) {
     Book book;
     try (var session = sessionFactory.openSession()) {
-      var query = session.createQuery("from Book where title=:title");
+      var query = session.createQuery("from Book where title=:title", Book.class);
       query.setParameter("title", title);
-      book = (Book) query.uniqueResult();
+      book = query.uniqueResult();
     }
     if (book == null) {
       HibernateUtil.getSessionFactory().close();
@@ -70,7 +70,7 @@ public class CommandServiceImpl implements CommandService {
     var author = new Author(username, name, email);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.save(author);
+      session.persist(author);
       session.getTransaction().commit();
     }
   }
@@ -81,7 +81,7 @@ public class CommandServiceImpl implements CommandService {
     var book = new Book(title, price, author);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.save(book);
+      session.persist(book);
       session.getTransaction().commit();
     }
   }
@@ -92,7 +92,7 @@ public class CommandServiceImpl implements CommandService {
     author.setName(name);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.update(author);
+      session.merge(author);
       session.getTransaction().commit();
     }
   }
@@ -103,7 +103,7 @@ public class CommandServiceImpl implements CommandService {
     author.setUsername(newUsername);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.update(author);
+      session.merge(author);
       session.getTransaction().commit();
     }
   }
@@ -114,7 +114,7 @@ public class CommandServiceImpl implements CommandService {
     author.setEmail(email);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.update(author);
+      session.merge(author);
       session.getTransaction().commit();
     }
   }
@@ -125,7 +125,7 @@ public class CommandServiceImpl implements CommandService {
     book.setTitle(newTitle);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.update(book);
+      session.merge(book);
       session.getTransaction().commit();
     }
   }
@@ -136,7 +136,7 @@ public class CommandServiceImpl implements CommandService {
     book.setPrice(price);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.update(book);
+      session.merge(book);
       session.getTransaction().commit();
     }
   }
