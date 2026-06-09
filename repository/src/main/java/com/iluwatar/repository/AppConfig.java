@@ -26,7 +26,7 @@ package com.iluwatar.repository;
 
 import java.util.List;
 import java.util.Properties;
-import javax.sql.DataSource;
+import jakarta.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.jpa.HibernatePersistenceProvider;

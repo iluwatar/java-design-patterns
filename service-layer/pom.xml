@@ -57,11 +57,6 @@
       <version>4.0.5</version>
     </dependency>
     <dependency>
-      <groupId>javax.xml.bind</groupId>
-      <artifactId>jaxb-api</artifactId>
-      <version>2.4.0-b180830.0359</version>
-    </dependency>
-    <dependency>
       <groupId>jakarta.persistence</groupId>
       <artifactId>jakarta.persistence-api</artifactId>
       <version>3.2.0</version>

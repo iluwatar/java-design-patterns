@@ -25,7 +25,7 @@
 package com.iluwatar.domainmodel;
 
 import java.sql.SQLException;
-import javax.sql.DataSource;
+import jakarta.sql.DataSource;
 import org.h2.jdbcx.JdbcDataSource;
 
 public class TestUtils {

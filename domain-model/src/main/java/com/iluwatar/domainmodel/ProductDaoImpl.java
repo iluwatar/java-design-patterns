@@ -30,7 +30,7 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
-import javax.sql.DataSource;
+import jakarta.sql.DataSource;
 import org.joda.money.Money;
 
 /** Implementations for database transactions of Product. */

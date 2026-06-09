@@ -33,7 +33,7 @@ import java.util.Spliterators;
 import java.util.function.Consumer;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-import javax.sql.DataSource;
+import jakarta.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 
 /** Implementation of database operations for Hotel class. */

@@ -24,7 +24,7 @@
  */
 package com.iluwatar.daofactory;
 
-import javax.sql.DataSource;
+import jakarta.sql.DataSource;
 import org.h2.jdbcx.JdbcDataSource;
 
 /** H2DataSourceFactory concrete factory. */

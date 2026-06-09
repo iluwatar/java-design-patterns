@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import javax.sql.DataSource;
+import jakarta.sql.DataSource;
 import org.joda.money.CurrencyUnit;
 import org.joda.money.Money;
 import org.junit.jupiter.api.AfterEach;

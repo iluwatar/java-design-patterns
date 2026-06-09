@@ -26,7 +26,7 @@ package com.iluwatar.tablemodule;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.sql.DataSource;
+import jakarta.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 
 /**

@@ -26,7 +26,7 @@ package com.iluwatar.serializedentity;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.sql.DataSource;
+import jakarta.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 import org.h2.jdbcx.JdbcDataSource;
 
