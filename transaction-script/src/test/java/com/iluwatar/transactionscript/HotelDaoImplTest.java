@@ -35,7 +35,7 @@ import static org.mockito.Mockito.mock;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import jakarta.sql.DataSource;
+import javax.sql.DataSource;
 import org.h2.jdbcx.JdbcDataSource;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;

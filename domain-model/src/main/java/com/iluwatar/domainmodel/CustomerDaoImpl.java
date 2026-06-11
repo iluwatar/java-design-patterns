@@ -29,7 +29,7 @@ import static org.joda.money.CurrencyUnit.USD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
-import jakarta.sql.DataSource;
+import javax.sql.DataSource;
 import org.joda.money.Money;
 
 /** Implementations for database operations of Customer. */

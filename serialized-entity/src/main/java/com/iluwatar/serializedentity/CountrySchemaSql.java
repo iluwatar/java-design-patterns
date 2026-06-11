@@ -32,7 +32,7 @@ import java.io.ObjectOutputStream;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import jakarta.sql.DataSource;
+import javax.sql.DataSource;
 import lombok.extern.slf4j.Slf4j;
 
 /** Country Schema SQL Class. */
