@@ -96,7 +96,7 @@ public class QueryServiceImpl implements QueryService {
               "SELECT count(b.title)"
                   + " FROM  Book b, Author a"
                   + " where b.author_id = a.id and a.username=:username",
-                  Long.class);
+              Long.class);
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
       bookcount = BigInteger.valueOf(sqlQuery.uniqueResult());
     }
