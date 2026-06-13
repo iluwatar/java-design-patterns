@@ -48,7 +48,8 @@ public class QueryServiceImpl implements QueryService {
       Query<Author> sqlQuery =
           session.createQuery(
               "select new com.iluwatar.cqrs.dto.Author(a.name, a.email, a.username)"
-                  + " from com.iluwatar.cqrs.domain.model.Author a where a.username=:username");
+                  + " from com.iluwatar.cqrs.domain.model.Author a where a.username=:username",
+              Author.class);
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
       authorDto = sqlQuery.uniqueResult();
     }
@@ -62,7 +63,8 @@ public class QueryServiceImpl implements QueryService {
       Query<Book> sqlQuery =
           session.createQuery(
               "select new com.iluwatar.cqrs.dto.Book(b.title, b.price)"
-                  + " from com.iluwatar.cqrs.domain.model.Book b where b.title=:title");
+                  + " from com.iluwatar.cqrs.domain.model.Book b where b.title=:title",
+              Book.class);
       sqlQuery.setParameter("title", title);
       bookDto = sqlQuery.uniqueResult();
     }
@@ -77,7 +79,8 @@ public class QueryServiceImpl implements QueryService {
           session.createQuery(
               "select new com.iluwatar.cqrs.dto.Book(b.title, b.price)"
                   + " from com.iluwatar.cqrs.domain.model.Author a, com.iluwatar.cqrs.domain.model.Book b "
-                  + "where b.author.id = a.id and a.username=:username");
+                  + "where b.author.id = a.id and a.username=:username",
+              Book.class);
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
       bookDtos = sqlQuery.list();
     }
@@ -92,9 +95,10 @@ public class QueryServiceImpl implements QueryService {
           session.createNativeQuery(
               "SELECT count(b.title)"
                   + " FROM  Book b, Author a"
-                  + " where b.author_id = a.id and a.username=:username");
+                  + " where b.author_id = a.id and a.username=:username",
+              Long.class);
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
-      bookcount = (BigInteger) sqlQuery.uniqueResult();
+      bookcount = BigInteger.valueOf(sqlQuery.uniqueResult());
     }
     return bookcount;
   }
@@ -103,8 +107,8 @@ public class QueryServiceImpl implements QueryService {
   public BigInteger getAuthorsCount() {
     BigInteger authorcount;
     try (var session = sessionFactory.openSession()) {
-      var sqlQuery = session.createNativeQuery("SELECT count(id) from Author");
-      authorcount = (BigInteger) sqlQuery.uniqueResult();
+      var sqlQuery = session.createNativeQuery("SELECT count(id) from Author", Long.class);
+      authorcount = BigInteger.valueOf(sqlQuery.uniqueResult());
     }
     return authorcount;
   }

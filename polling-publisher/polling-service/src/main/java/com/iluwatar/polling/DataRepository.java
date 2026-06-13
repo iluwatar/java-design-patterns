@@ -25,9 +25,9 @@
 
 package com.iluwatar.polling;
 
+import jakarta.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
-import javax.annotation.PostConstruct;
 import org.springframework.stereotype.Repository;
 
 /** Data repository to keep or store data. */
