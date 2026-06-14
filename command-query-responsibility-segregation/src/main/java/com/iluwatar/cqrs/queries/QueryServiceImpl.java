@@ -28,6 +28,7 @@ import com.iluwatar.cqrs.constants.AppConstants;
 import com.iluwatar.cqrs.dto.Author;
 import com.iluwatar.cqrs.dto.Book;
 import com.iluwatar.cqrs.util.HibernateUtil;
+import jakarta.persistence.NoResultException;
 import java.math.BigInteger;
 import java.util.List;
 import org.hibernate.SessionFactory;
@@ -43,7 +44,6 @@ public class QueryServiceImpl implements QueryService {
 
   @Override
   public Author getAuthorByUsername(String username) {
-    Author authorDto;
     try (var session = sessionFactory.openSession()) {
       Query<Author> sqlQuery =
           session.createQuery(
@@ -51,14 +51,16 @@ public class QueryServiceImpl implements QueryService {
                   + " from com.iluwatar.cqrs.domain.model.Author a where a.username=:username",
               Author.class);
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
-      authorDto = sqlQuery.uniqueResult();
+      try {
+        return sqlQuery.getSingleResult();
+      } catch (NoResultException e) {
+        return null;
+      }
     }
-    return authorDto;
   }
 
   @Override
   public Book getBook(String title) {
-    Book bookDto;
     try (var session = sessionFactory.openSession()) {
       Query<Book> sqlQuery =
           session.createQuery(
@@ -66,9 +68,12 @@ public class QueryServiceImpl implements QueryService {
                   + " from com.iluwatar.cqrs.domain.model.Book b where b.title=:title",
               Book.class);
       sqlQuery.setParameter("title", title);
-      bookDto = sqlQuery.uniqueResult();
+      try {
+        return sqlQuery.getSingleResult();
+      } catch (NoResultException e) {
+        return null;
+      }
     }
-    return bookDto;
   }
 
   @Override
@@ -89,7 +94,6 @@ public class QueryServiceImpl implements QueryService {
 
   @Override
   public BigInteger getAuthorBooksCount(String username) {
-    BigInteger bookcount;
     try (var session = sessionFactory.openSession()) {
       var sqlQuery =
           session.createNativeQuery(
@@ -98,18 +102,23 @@ public class QueryServiceImpl implements QueryService {
                   + " where b.author_id = a.id and a.username=:username",
               Long.class);
       sqlQuery.setParameter(AppConstants.USER_NAME, username);
-      bookcount = BigInteger.valueOf(sqlQuery.uniqueResult());
+      try {
+        return BigInteger.valueOf(sqlQuery.getSingleResult());
+      } catch (NoResultException e) {
+        return BigInteger.ZERO;
+      }
     }
-    return bookcount;
   }
 
   @Override
   public BigInteger getAuthorsCount() {
-    BigInteger authorcount;
     try (var session = sessionFactory.openSession()) {
       var sqlQuery = session.createNativeQuery("SELECT count(id) from Author", Long.class);
-      authorcount = BigInteger.valueOf(sqlQuery.uniqueResult());
+      try {
+        return BigInteger.valueOf(sqlQuery.getSingleResult());
+      } catch (NoResultException e) {
+        return BigInteger.ZERO;
+      }
     }
-    return authorcount;
   }
 }

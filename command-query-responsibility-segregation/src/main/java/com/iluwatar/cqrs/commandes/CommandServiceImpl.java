@@ -27,6 +27,7 @@ package com.iluwatar.cqrs.commandes;
 import com.iluwatar.cqrs.domain.model.Author;
 import com.iluwatar.cqrs.domain.model.Book;
 import com.iluwatar.cqrs.util.HibernateUtil;
+import jakarta.persistence.NoResultException;
 import org.hibernate.SessionFactory;
 
 /**
@@ -38,31 +39,29 @@ public class CommandServiceImpl implements CommandService {
   private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
   private Author getAuthorByUsername(String username) {
-    Author author;
     try (var session = sessionFactory.openSession()) {
       var query = session.createQuery("from Author where username=:username", Author.class);
       query.setParameter("username", username);
-      author = query.uniqueResult();
+      try {
+        return query.getSingleResult();
+      } catch (NoResultException e) {
+        HibernateUtil.getSessionFactory().close();
+        throw new NullPointerException("Author " + username + " doesn't exist!");
+      }
     }
-    if (author == null) {
-      HibernateUtil.getSessionFactory().close();
-      throw new NullPointerException("Author " + username + " doesn't exist!");
-    }
-    return author;
   }
 
   private Book getBookByTitle(String title) {
-    Book book;
     try (var session = sessionFactory.openSession()) {
       var query = session.createQuery("from Book where title=:title", Book.class);
       query.setParameter("title", title);
-      book = query.uniqueResult();
+      try {
+        return query.getSingleResult();
+      } catch (NoResultException e) {
+        HibernateUtil.getSessionFactory().close();
+        throw new NullPointerException("Book " + title + " doesn't exist!");
+      }
     }
-    if (book == null) {
-      HibernateUtil.getSessionFactory().close();
-      throw new NullPointerException("Book " + title + " doesn't exist!");
-    }
-    return book;
   }
 
   @Override
