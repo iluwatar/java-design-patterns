@@ -25,6 +25,7 @@
 package com.iluwatar.factory;
 
 import java.util.function.Supplier;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -36,4 +37,15 @@ public enum CoinType {
   GOLD(GoldCoin::new);
 
   private final Supplier<Coin> constructor;
+
+  @Getter(AccessLevel.NONE)
+  private Coin instance;
+
+  /** Returns singleton instance of this coin type. */
+  public Coin getInstance() {
+    if (instance == null) {
+      instance = constructor.get();
+    }
+    return instance;
+  }
 }

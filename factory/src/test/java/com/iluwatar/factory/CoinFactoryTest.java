@@ -30,9 +30,21 @@ import org.junit.jupiter.api.Test;
 
 class CoinFactoryTest {
 
-  @Test
-  void shouldReturnGoldCoinInstance() {
-    final var goldCoin = CoinFactory.getCoin(CoinType.GOLD);
-    assertTrue(goldCoin instanceof GoldCoin);
-  }
-}
+	  @Test
+	  void shouldReturnCopperCoinInstance() {
+	    final var copperCoin = CoinType.COPPER.getInstance();
+	    assertTrue(copperCoin instanceof CopperCoin);
+	  }
+
+	  @Test
+	  void shouldReturnGoldCoinInstance() {
+	    final var goldCoin = CoinType.GOLD.getInstance();
+	    assertTrue(goldCoin instanceof GoldCoin);
+	  }
+
+	  @Test
+	  void shouldReturnSameInstanceEachTime() {
+	    assertSame(CoinType.GOLD.getInstance(), CoinType.GOLD.getInstance());
+	    assertSame(CoinType.COPPER.getInstance(), CoinType.COPPER.getInstance());
+	  }
+	}

@@ -40,8 +40,8 @@ public class App {
   /** Program main entry point. */
   public static void main(String[] args) {
     LOGGER.info("The alchemist begins his work.");
-    var coin1 = CoinFactory.getCoin(CoinType.COPPER);
-    var coin2 = CoinFactory.getCoin(CoinType.GOLD);
+    var coin1 = CoinType.COPPER.getInstance();
+    var coin2 = CoinType.GOLD.getInstance();
     LOGGER.info(coin1.getDescription());
     LOGGER.info(coin2.getDescription());
   }
