@@ -45,8 +45,7 @@ public class CommandServiceImpl implements CommandService {
       try {
         return query.getSingleResult();
       } catch (NoResultException e) {
-        HibernateUtil.getSessionFactory().close();
-        throw new NullPointerException("Author " + username + " doesn't exist!");
+        throw new IllegalArgumentException("Author " + username + " doesn't exist!");
       }
     }
   }
@@ -58,8 +57,7 @@ public class CommandServiceImpl implements CommandService {
       try {
         return query.getSingleResult();
       } catch (NoResultException e) {
-        HibernateUtil.getSessionFactory().close();
-        throw new NullPointerException("Book " + title + " doesn't exist!");
+        throw new IllegalArgumentException("Book " + title + " doesn't exist!");
       }
     }
   }
