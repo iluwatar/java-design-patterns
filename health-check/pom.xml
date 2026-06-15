@@ -101,7 +101,7 @@
         <dependency>
             <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
-            <version>5.5.1</version>
+            <version>6.0.0</version>
             <scope>test</scope>
         </dependency>
 
