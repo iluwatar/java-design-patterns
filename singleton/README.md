@@ -37,6 +37,17 @@ Sequence diagram
 
 ![Singleton Pattern sequence diagram](./etc/singleton-sequence-diagram.png)
 
+## Singleton Implementation Comparison (for eager and lazy initialization)
+
+| Feature | Eager Initialization | Thread-Safe Lazy Initialization |
+|----------|----------|----------|
+| Object Creation | During class loading | First call to `getInstance()` |
+| Thread Safe | Yes | Yes |
+| Synchronization Required | No | Yes |
+| Memory Usage | Higher | Lower |
+| Performance | Faster access | Slight synchronization overhead |
+| Complexity | Simple | Moderate |
+
 ## Programmatic Example of Singleton Pattern in Java
 
 Joshua Bloch, Effective Java 2nd Edition p.18
