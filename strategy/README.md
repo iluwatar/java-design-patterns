@@ -24,11 +24,11 @@ Define a family of algorithms in Java, encapsulate each one, and make them inter
 
 Real-world example
 
-> A practical real-world example of the Strategy design pattern in Java is evident in car navigation systems, where algorithm flexibility is paramount. Different navigation algorithms (such as shortest route, fastest route, and scenic route) can be used to determine the best path from one location to another. Each algorithm encapsulates a specific strategy for calculating the route. The user (client) can switch between these algorithms based on their preferences without changing the navigation system itself. This allows for flexible and interchangeable navigation strategies within the same system. 
+> A practical real-world example of the Strategy design pattern in Java is evident in car navigation systems, where algorithm flexibility is paramount. Different navigation algorithms (such as shortest-route, fastest-route, and scenic-route) can be used to determine the best path from one location to another. Each algorithm encapsulates a specific strategy for calculating the route. The user (client) can switch between these algorithms based on their preferences without changing the navigation system itself. This allows for flexible and interchangeable navigation strategies within the same system. 
 
 In plain words
 
-> Strategy pattern allows choosing the best-suited algorithm at runtime.
+> The strategy pattern allows the selection of the best-suited algorithm at runtime.
 
 Wikipedia says
 
@@ -42,7 +42,7 @@ Flowchart
 
 Slaying dragons is a dangerous job. With experience, it becomes easier. Veteran dragonslayers have developed different fighting strategies against different types of dragons.
 
-Let's explore how to implement the `DragonSlayingStrategy` interface in Java, demonstrating various Strategy pattern applications.
+This example demonstrates how to implement the `DragonSlayingStrategy` interface in Java and illustrates several applications of the Strategy pattern.
 
 ```java
 @FunctionalInterface
@@ -187,6 +187,26 @@ Use the Strategy pattern when:
 * There are multiple related classes that differ only in their behavior.
 * An algorithm uses data that clients shouldn't know about.
 * A class defines many behaviors and these appear as multiple conditional statements in its operations.
+
+## When not to use the Strategy Pattern in Java
+
+Avoid using the Strategy pattern when:
+
+* There is only one algorithm and no foreseeable need for alternative implementations.
+* The behavior is unlikely to change, making additional strategy classes unnecessary.
+* Runtime selection or switching of algorithms is not required.
+* The added abstraction would increase complexity without providing meaningful flexibility.
+
+## Real-World Applications
+
+The Strategy Pattern is commonly used in:
+
+* Payment gateways that support multiple payment methods such as Credit Card, UPI, and PayPal.
+* Route planning systems that offer shortest, fastest, or scenic route calculations.
+* Sorting utilities that allow different sorting algorithms to be selected at runtime.
+* Authentication systems that support multiple login mechanisms such as OAuth, SAML, or username/password authentication.
+* E-commerce platforms that apply different discount calculation strategies based on customer type or promotional campaigns.
+* Recommendation engines that use different recommendation algorithms depending on user preferences or business requirements.
 
 ## Strategy Pattern Java Tutorials
 
