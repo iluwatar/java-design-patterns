@@ -26,51 +26,50 @@
  */
 package com.iluwatar.onion.domain.model;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 import com.iluwatar.onion.domain.exception.DomainException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class CategoryTest {
 
-    @Test
-    @DisplayName("Should create category with valid data")
-    void shouldCreateCategoryWithValidData() {
-        // Arrange & Act
-        var category = new Category(1L, "Professional");
+  @Test
+  @DisplayName("Should create category with valid data")
+  void shouldCreateCategoryWithValidData() {
+    // Arrange & Act
+    var category = new Category(1L, "Professional");
 
-        // Assert
-        assertNotNull(category);
-        assertEquals(1L, category.getId());
-        assertEquals("Professional", category.getType());
-    }
+    // Assert
+    assertNotNull(category);
+    assertEquals(1L, category.getId());
+    assertEquals("Professional", category.getType());
+  }
 
-    @Test
-    @DisplayName("Should create category with null id")
-    void shouldCreateCategoryWithNullId() {
-        // Arrange & Act
-        var category = new Category(null, "Personal");
+  @Test
+  @DisplayName("Should create category with null id")
+  void shouldCreateCategoryWithNullId() {
+    // Arrange & Act
+    var category = new Category(null, "Personal");
 
-        // Assert
-        assertNull(category.getId());
-        assertEquals("Personal", category.getType());
-    }
+    // Assert
+    assertNull(category.getId());
+    assertEquals("Personal", category.getType());
+  }
 
-    @Test
-    @DisplayName("Should throw exception when type is null")
-    void shouldThrowExceptionWhenTypeIsNull() {
-        // Act & Assert
-        var exception = assertThrows(DomainException.class, () -> new Category(1L, null));
-        assertTrue(exception.getMessage().contains("Type is null or empty"));
-    }
+  @Test
+  @DisplayName("Should throw exception when type is null")
+  void shouldThrowExceptionWhenTypeIsNull() {
+    // Act & Assert
+    var exception = assertThrows(DomainException.class, () -> new Category(1L, null));
+    assertTrue(exception.getMessage().contains("Type is null or empty"));
+  }
 
-    @Test
-    @DisplayName("Should throw exception when type is empty")
-    void shouldThrowExceptionWhenTypeIsEmpty() {
-        // Act & Assert
-        var exception = assertThrows(DomainException.class, () -> new Category(1L, ""));
-        assertTrue(exception.getMessage().contains("Type is null or empty"));
-    }
+  @Test
+  @DisplayName("Should throw exception when type is empty")
+  void shouldThrowExceptionWhenTypeIsEmpty() {
+    // Act & Assert
+    var exception = assertThrows(DomainException.class, () -> new Category(1L, ""));
+    assertTrue(exception.getMessage().contains("Type is null or empty"));
+  }
 }
-

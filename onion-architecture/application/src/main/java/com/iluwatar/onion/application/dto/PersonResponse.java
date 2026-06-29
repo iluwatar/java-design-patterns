@@ -26,12 +26,12 @@
  */
 package com.iluwatar.onion.application.dto;
 
-public record PersonResponse(Long id,
-                             String firstName,
-                             String lastName,
-                             int age,
-                             String phoneNumber,
-                             String email,
-                             Long categoryId,
-                             String categoryType) {
-}
+public record PersonResponse(
+    Long id,
+    String firstName,
+    String lastName,
+    int age,
+    String phoneNumber,
+    String email,
+    Long categoryId,
+    String categoryType) {}

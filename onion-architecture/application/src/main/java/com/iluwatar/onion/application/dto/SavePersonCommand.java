@@ -26,12 +26,12 @@
  */
 package com.iluwatar.onion.application.dto;
 
-public record SavePersonCommand(String firstName,
-                                String lastName,
-                                int age,
-                                String phoneNumber,
-                                String email,
-                                String address,
-                                Long categoryId,
-                                String categoryType) {
-}
+public record SavePersonCommand(
+    String firstName,
+    String lastName,
+    int age,
+    String phoneNumber,
+    String email,
+    String address,
+    Long categoryId,
+    String categoryType) {}
