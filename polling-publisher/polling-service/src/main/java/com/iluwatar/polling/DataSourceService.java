@@ -25,6 +25,7 @@
 
 package com.iluwatar.polling;
 
+import jakarta.annotation.PreDestroy;
 import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.Executors;
@@ -92,7 +93,7 @@ public class DataSourceService {
     return repository.findAll();
   }
 
-  @javax.annotation.PreDestroy
+  @PreDestroy
   public void shutdown() {
     scheduler.shutdown();
   }

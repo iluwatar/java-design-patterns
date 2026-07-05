@@ -27,6 +27,7 @@ package com.iluwatar.cqrs.commandes;
 import com.iluwatar.cqrs.domain.model.Author;
 import com.iluwatar.cqrs.domain.model.Book;
 import com.iluwatar.cqrs.util.HibernateUtil;
+import jakarta.persistence.NoResultException;
 import org.hibernate.SessionFactory;
 
 /**
@@ -38,31 +39,27 @@ public class CommandServiceImpl implements CommandService {
   private final SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
 
   private Author getAuthorByUsername(String username) {
-    Author author;
     try (var session = sessionFactory.openSession()) {
-      var query = session.createQuery("from Author where username=:username");
+      var query = session.createQuery("from Author where username=:username", Author.class);
       query.setParameter("username", username);
-      author = (Author) query.uniqueResult();
+      try {
+        return query.getSingleResult();
+      } catch (NoResultException e) {
+        throw new IllegalArgumentException("Author " + username + " doesn't exist!");
+      }
     }
-    if (author == null) {
-      HibernateUtil.getSessionFactory().close();
-      throw new NullPointerException("Author " + username + " doesn't exist!");
-    }
-    return author;
   }
 
   private Book getBookByTitle(String title) {
-    Book book;
     try (var session = sessionFactory.openSession()) {
-      var query = session.createQuery("from Book where title=:title");
+      var query = session.createQuery("from Book where title=:title", Book.class);
       query.setParameter("title", title);
-      book = (Book) query.uniqueResult();
+      try {
+        return query.getSingleResult();
+      } catch (NoResultException e) {
+        throw new IllegalArgumentException("Book " + title + " doesn't exist!");
+      }
     }
-    if (book == null) {
-      HibernateUtil.getSessionFactory().close();
-      throw new NullPointerException("Book " + title + " doesn't exist!");
-    }
-    return book;
   }
 
   @Override
@@ -70,7 +67,7 @@ public class CommandServiceImpl implements CommandService {
     var author = new Author(username, name, email);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.save(author);
+      session.persist(author);
       session.getTransaction().commit();
     }
   }
@@ -81,7 +78,7 @@ public class CommandServiceImpl implements CommandService {
     var book = new Book(title, price, author);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.save(book);
+      session.persist(book);
       session.getTransaction().commit();
     }
   }
@@ -92,7 +89,7 @@ public class CommandServiceImpl implements CommandService {
     author.setName(name);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.update(author);
+      session.merge(author);
       session.getTransaction().commit();
     }
   }
@@ -103,7 +100,7 @@ public class CommandServiceImpl implements CommandService {
     author.setUsername(newUsername);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.update(author);
+      session.merge(author);
       session.getTransaction().commit();
     }
   }
@@ -114,7 +111,7 @@ public class CommandServiceImpl implements CommandService {
     author.setEmail(email);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.update(author);
+      session.merge(author);
       session.getTransaction().commit();
     }
   }
@@ -125,7 +122,7 @@ public class CommandServiceImpl implements CommandService {
     book.setTitle(newTitle);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.update(book);
+      session.merge(book);
       session.getTransaction().commit();
     }
   }
@@ -136,7 +133,7 @@ public class CommandServiceImpl implements CommandService {
     book.setPrice(price);
     try (var session = sessionFactory.openSession()) {
       session.beginTransaction();
-      session.update(book);
+      session.merge(book);
       session.getTransaction().commit();
     }
   }
