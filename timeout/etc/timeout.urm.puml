@@ -1,0 +1,37 @@
+@startuml
+package com.iluwatar.timeout {
+  
+  class TimeoutException {
+    + TimeoutException(message: String)
+    + TimeoutException(message: String, cause: Throwable)
+  }
+  
+  class TimeoutHandler {
+    - executor: ExecutorService
+    + TimeoutHandler()
+    + execute(task: Callable<T>, timeout: long, unit: TimeUnit): T
+    + shutdown(): void
+  }
+  
+  class App {
+    + {static} main(args: String[]): void
+  }
+  
+  TimeoutHandler ..> TimeoutException : throws
+  App ..> TimeoutHandler : uses
+  App ..> TimeoutException : catches
+}
+
+note right of TimeoutHandler
+  Executes tasks with timeout constraints.
+  Uses ExecutorService to run tasks
+  asynchronously and enforce time limits.
+end note
+
+note right of TimeoutException
+  Custom exception thrown when
+  an operation exceeds its
+  timeout duration.
+end note
+
+@enduml
