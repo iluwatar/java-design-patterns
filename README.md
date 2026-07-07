@@ -608,6 +608,7 @@ This project is licensed under the terms of the MIT license.
     <tr>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/SrGiuliano77"><img src="https://avatars.githubusercontent.com/u/128543464?v=4?s=100" width="100px;" alt="Giuliano Oliveira"/><br /><sub><b>Giuliano Oliveira</b></sub></a><br /><a href="#translation-SrGiuliano77" title="Translation">🌍</a></td>
     </tr>
+    <td align="center" valign="top" width="16.66%"><a href="https://github.com/aayushk2107"><img src="https://avatars.githubusercontent.com/u/254232086?v=4" width="100px;" alt="Aayush Kumar"/><br /><sub><b>Aayush Kumar</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=aayushk2107" title="Documentation">📖</a></td>
   </tbody>
 </table>
 
