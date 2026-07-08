@@ -33,7 +33,7 @@ import java.util.Map;
 public final class InMemorySupplierService implements SupplierService {
 
   /** Supplier records stored in memory, keyed by product name. */
-  private final Map<String, List<SupplierRecord>> recordsByProductId;
+  private final Map<String, List<SupplierRecord>> recordsByProductName;
 
   /**
    * Creates the service with a fixed backing map of supplier records, keyed by product name.
@@ -41,11 +41,11 @@ public final class InMemorySupplierService implements SupplierService {
    * @param records the supplier data this service serves
    */
   public InMemorySupplierService(final Map<String, List<SupplierRecord>> records) {
-    this.recordsByProductId = records;
+    this.recordsByProductName = records;
   }
 
   @Override
-  public List<SupplierRecord> getSupplierRecords(final String productId) {
-    return recordsByProductId.getOrDefault(productId, List.of());
+  public List<SupplierRecord> getSupplierRecords(final String productName) {
+    return recordsByProductName.getOrDefault(productName, List.of());
   }
 }

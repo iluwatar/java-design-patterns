@@ -36,8 +36,8 @@ public interface SupplierService {
   /**
    * Retrieves supplier stock records for a product.
    *
-   * @param productId identifier of the product to check stock for
+   * @param productName name of the product to check stock for
    * @return the list of supplier stock records for the product
    */
-  List<SupplierRecord> getSupplierRecords(String productId);
+  List<SupplierRecord> getSupplierRecords(String productName);
 }
