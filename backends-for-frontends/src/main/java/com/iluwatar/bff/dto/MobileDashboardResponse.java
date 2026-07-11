@@ -36,9 +36,4 @@ import java.util.List;
  * @param recentOrderSummaries short human-readable summaries of the user's most recent orders
  */
 public record MobileDashboardResponse(
-    String greeting, int cartItemCount, double cartTotalUsd, List<String> recentOrderSummaries) {
-  /** No additional validation required. */
-  public MobileDashboardResponse {
-    // no-op
-  }
-}
+    String greeting, int cartItemCount, double cartTotalUsd, List<String> recentOrderSummaries) {}

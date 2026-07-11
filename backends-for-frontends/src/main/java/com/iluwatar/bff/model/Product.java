@@ -32,9 +32,4 @@ package com.iluwatar.bff.model;
  * @param name display name of the product
  * @param priceUsd unit price in US dollars
  */
-public record Product(String id, String name, double priceUsd) {
-  /** No additional validation required. */
-  public Product {
-    // no-op
-  }
-}
+public record Product(String id, String name, double priceUsd) {}

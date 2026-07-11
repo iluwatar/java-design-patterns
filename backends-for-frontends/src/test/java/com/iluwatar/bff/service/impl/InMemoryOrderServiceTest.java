@@ -8,8 +8,7 @@
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * copies of the Software is furnished to do so, subject to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
@@ -22,13 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.bff.model;
+package com.iluwatar.bff.service.impl;
 
-/**
- * A past order returned by the order service API.
- *
- * @param id order identifier
- * @param productName name of the ordered product
- * @param status current fulfillment status, e.g. "DELIVERED", "IN_TRANSIT"
- */
-public record Order(String id, String productName, String status) {}
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.iluwatar.bff.model.Order;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Test;
+
+/** Tests for {@link InMemoryOrderService}. */
+class InMemoryOrderServiceTest {
+
+  private static final String USER_ID = "u-1";
+
+  @Test
+  void shouldReturnOrdersForKnownUser() {
+    var order = new Order("o-1", "Headphones", "DELIVERED");
+    var service = new InMemoryOrderService(Map.of(USER_ID, List.of(order)));
+
+    var orders = service.getOrders(USER_ID);
+
+    assertEquals(1, orders.size());
+    assertEquals(order, orders.get(0));
+  }
+
+  @Test
+  void shouldReturnEmptyListForUnknownUser() {
+    var service = new InMemoryOrderService(Map.of());
+
+    var orders = service.getOrders("unknown-user");
+
+    assertTrue(orders.isEmpty());
+  }
+}

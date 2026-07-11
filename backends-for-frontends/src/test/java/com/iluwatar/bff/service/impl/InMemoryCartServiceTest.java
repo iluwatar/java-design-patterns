@@ -8,8 +8,7 @@
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * copies of the Software is furnished to do so, subject to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
@@ -22,13 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.bff.model;
+package com.iluwatar.bff.service.impl;
 
-/**
- * A past order returned by the order service API.
- *
- * @param id order identifier
- * @param productName name of the ordered product
- * @param status current fulfillment status, e.g. "DELIVERED", "IN_TRANSIT"
- */
-public record Order(String id, String productName, String status) {}
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.iluwatar.bff.model.CartItem;
+import com.iluwatar.bff.model.Product;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Test;
+
+/** Tests for {@link InMemoryCartService}. */
+class InMemoryCartServiceTest {
+
+  private static final String USER_ID = "u-1";
+
+  @Test
+  void shouldReturnCartItemsForKnownUser() {
+    var product = new Product("p-1", "Headphones", 49.99);
+    var item = new CartItem(product, 2);
+    var service = new InMemoryCartService(Map.of(USER_ID, List.of(item)));
+
+    var cart = service.getCart(USER_ID);
+
+    assertEquals(1, cart.size());
+    assertEquals(item, cart.get(0));
+  }
+
+  @Test
+  void shouldReturnEmptyListForUnknownUser() {
+    var service = new InMemoryCartService(Map.of());
+
+    var cart = service.getCart("unknown-user");
+
+    assertTrue(cart.isEmpty());
+  }
+}

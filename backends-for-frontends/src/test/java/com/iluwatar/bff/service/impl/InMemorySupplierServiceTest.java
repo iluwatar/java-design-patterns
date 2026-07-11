@@ -8,8 +8,7 @@
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
+ * copies of the Software is furnished to do so, subject to the following conditions:
  *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
@@ -22,13 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.iluwatar.bff.model;
+package com.iluwatar.bff.service.impl;
 
-/**
- * A past order returned by the order service API.
- *
- * @param id order identifier
- * @param productName name of the ordered product
- * @param status current fulfillment status, e.g. "DELIVERED", "IN_TRANSIT"
- */
-public record Order(String id, String productName, String status) {}
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import com.iluwatar.bff.model.SupplierRecord;
+import java.util.List;
+import java.util.Map;
+import org.junit.jupiter.api.Test;
+
+/** Tests for {@link InMemorySupplierService}. */
+class InMemorySupplierServiceTest {
+
+  private static final String PRODUCT_NAME = "Headphones";
+
+  @Test
+  void shouldReturnSupplierRecordsForKnownProductName() {
+    var record = new SupplierRecord("p-1", "Acme Audio", 30);
+    var service = new InMemorySupplierService(Map.of(PRODUCT_NAME, List.of(record)));
+
+    var records = service.getSupplierRecords(PRODUCT_NAME);
+
+    assertEquals(1, records.size());
+    assertEquals(record, records.get(0));
+  }
+
+  @Test
+  void shouldReturnEmptyListForUnknownProductName() {
+    var service = new InMemorySupplierService(Map.of());
+
+    var records = service.getSupplierRecords("unknown-product");
+
+    assertTrue(records.isEmpty());
+  }
+}

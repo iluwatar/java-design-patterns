@@ -32,9 +32,4 @@ package com.iluwatar.bff.model;
  * @param displayName human-readable name of the user
  * @param loyaltyTier loyalty program tier, e.g. "GOLD", "SILVER", "STANDARD"
  */
-public record User(String id, String displayName, String loyaltyTier) {
-  /** No additional validation required. */
-  public User {
-    // no-op
-  }
-}
+public record User(String id, String displayName, String loyaltyTier) {}

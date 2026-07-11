@@ -32,9 +32,4 @@ package com.iluwatar.bff.model;
  * @param supplierName name of the supplying vendor
  * @param stockLevel units currently available from this supplier
  */
-public record SupplierRecord(String productId, String supplierName, int stockLevel) {
-  /** No additional validation required. */
-  public SupplierRecord {
-    // no-op
-  }
-}
+public record SupplierRecord(String productId, String supplierName, int stockLevel) {}

@@ -39,9 +39,4 @@ public record DesktopDashboardResponse(
     String greeting,
     String loyaltyTier,
     List<String> orderStatuses,
-    List<String> supplierStockSummaries) {
-  /** No additional validation required. */
-  public DesktopDashboardResponse {
-    // no-op
-  }
-}
+    List<String> supplierStockSummaries) {}
