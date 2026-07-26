@@ -74,4 +74,11 @@ class SumTaskTest {
     long expected = 1_000_000L * 1_000_001L / 2;
     assertEquals(expected, result);
   }
+
+  @Test
+  void shouldThrowExceptionWhenStartGreaterThanEnd() {
+      long[] numbers = {1, 2, 3, 4, 5};
+
+      assertThrows(IllegalArgumentException.class, () -> new SumTask(numbers, 4, 2));
+  }
 }

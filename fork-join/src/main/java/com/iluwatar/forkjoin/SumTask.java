@@ -35,6 +35,9 @@ public class SumTask extends RecursiveTask<Long> {
    * @param end     the ending index (exclusive)
    */
   public SumTask(long[] numbers, int start, int end) {
+    if (start > end) {
+        throw new IllegalArgumentException("start (" + start + ") must not be greater than end (" + end + ")");
+    }
     this.numbers = numbers;
     this.start = start;
     this.end = end;
