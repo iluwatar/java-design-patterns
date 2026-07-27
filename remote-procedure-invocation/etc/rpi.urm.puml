@@ -1,0 +1,18 @@
+@startuml
+package com.iluwatar.rpi {
+  class App {
+    + main(args : String[]) {static}
+  }
+  class RpiService {
+    + greet(name : String) : String
+  }
+  class RpiClient {
+    - restTemplate : RestTemplate
+    - baseUrl : String
+    + RpiClient(restTemplate : RestTemplate, baseUrl : String)
+    + greet(name : String) : String
+  }
+}
+
+RpiClient ..> RpiService : <<HTTP GET /greet>>
+@enduml
