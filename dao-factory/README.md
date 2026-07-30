@@ -19,7 +19,7 @@ tag:
 
 ## Intent of Data Access Object Factory Design Pattern
 
-The DAO Factory combines the Data Access Object and Abstract Factory patterns to seperate business logic from data access logic, while increasing flexibility when switching between different data sources.
+The DAO Factory combines the Data Access Object and Abstract Factory patterns to separate business logic from data access logic, while increasing flexibility when switching between different data sources.
 
 ## Detailed Explanation of Data Access Object Factory Pattern with Real-World Examples
 
