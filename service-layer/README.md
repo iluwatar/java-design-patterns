@@ -20,7 +20,7 @@ tag:
 
 The Service Layer pattern is crucial for Java developers focusing on building robust application architectures that separate business processes from user interface concerns.
 
-The pattern encapsulate business logic in a distinct layer to promote separation of concerns and to provide a well-defined API for the presentation layer.
+The pattern encapsulates business logic in a distinct layer to promote separation of concerns and to provide a well-defined API for the presentation layer.
 
 ## Detailed Explanation of Service Layer Pattern with Real-World Examples
 
