@@ -86,7 +86,7 @@ public interface CustomerDAO<T> {
 }
 ```
 
-Here is the implementations
+Here are the implementations
 
 ``` java
 @Slf4j
