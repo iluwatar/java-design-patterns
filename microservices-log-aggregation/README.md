@@ -137,7 +137,7 @@ In this example, the `LogProducer` services generate logs of different levels. T
 
 ## Real-World Applications of Microservices Log Aggregation Pattern in Java
 
-* ava applications using frameworks like Log4j2 or SLF4J with centralized log management tools such as the ELK stack or Splunk benefit from microservices log aggregation.
+* Java applications using frameworks like Log4j2 or SLF4J with centralized log management tools such as the ELK stack or Splunk benefit from microservices log aggregation.
 * Microservices architectures where each service outputs logs that are aggregated into a single system to provide a unified view of the system’s health and behavior.
 
 ## Benefits and Trade-offs of Microservices Log Aggregation Pattern
