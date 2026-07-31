@@ -37,7 +37,7 @@ In [Patterns of Enterprise Application Architecture](https://amzn.to/3WfKBPR) Ma
 
 > If you’ll pardon the unresistable pun, I see [Null Object](https://java-design-patterns.com/patterns/null-object/) as special case of Special Case.
 
-Sequnce diagram
+Sequence diagram
 
 ![Special Case sequence diagram](./etc/special-case-sequence-diagram.png)
 
