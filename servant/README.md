@@ -136,7 +136,7 @@ In this example, the `Servant` class provides services to the `Royalty` objects.
 
 ## When to Use the Servant Pattern in Java
 
-* Use the Servant pattern when you need to provide a common functionality to a group of classes without polluding their class definitions, perfect for enhancing Java application architecture.
+* Use the Servant pattern when you need to provide a common functionality to a group of classes without polluting their class definitions, perfect for enhancing Java application architecture.
 * Suitable when the operations performed on the objects are not the primary responsibility of the objects themselves.
 
 ## Real-World Applications of Servant Pattern in Java
