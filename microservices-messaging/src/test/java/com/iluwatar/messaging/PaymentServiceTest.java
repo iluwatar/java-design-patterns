@@ -102,4 +102,15 @@ class PaymentServiceTest {
         },
         "Should handle multiple messages without error");
   }
+
+  @Test
+  void testHandleMessagesWhenInterrupted() {
+    Thread.currentThread().interrupt();
+    paymentService.handleMessage(new Message("Order Created: ORDER-001"));
+    org.junit.jupiter.api.Assertions.assertTrue(Thread.interrupted());
+
+    Thread.currentThread().interrupt();
+    paymentService.handleMessage(new Message("Order Cancelled: ORDER-001"));
+    org.junit.jupiter.api.Assertions.assertTrue(Thread.interrupted());
+  }
 }

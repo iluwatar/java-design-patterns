@@ -26,57 +26,92 @@ package com.iluwatar.messaging;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.MockConsumer;
+import org.apache.kafka.clients.consumer.OffsetResetStrategy;
+import org.apache.kafka.common.TopicPartition;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Unit tests for {@link KafkaMessageConsumer}. Note: These tests verify basic functionality without
- * requiring a Kafka instance. For integration tests with Kafka, use embedded Kafka or
- * testcontainers.
+ * Unit tests for {@link KafkaMessageConsumer}.
  */
 class KafkaMessageConsumerTest {
 
+  private MockConsumer<String, String> mockConsumer;
+  private KafkaMessageConsumer kafkaMessageConsumer;
+  private AtomicBoolean handlerCalled;
+
+  @BeforeEach
+  void setUp() {
+    mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
+    handlerCalled = new AtomicBoolean(false);
+    kafkaMessageConsumer = new KafkaMessageConsumer(
+        mockConsumer,
+        "test-topic",
+        msg -> handlerCalled.set(true));
+  }
+
   @Test
   void testConsumerCanBeInstantiated() {
-    // Arrange & Act & Assert
-    // Note: Don't actually create consumer in unit test as it requires Kafka
-    assertNotNull(KafkaMessageConsumer.class, "KafkaMessageConsumer class should exist");
+    assertNotNull(kafkaMessageConsumer, "KafkaMessageConsumer should be instantiated");
   }
 
   @Test
-  void testConsumerImplementsRunnable() {
-    // Arrange & Act & Assert
-    var interfaces = KafkaMessageConsumer.class.getInterfaces();
-    for (var i : interfaces) {
-      if (i.equals(Runnable.class)) {
-        break;
+  void testRunProcessesValidMessageAndStops() throws Exception {
+    ObjectMapper mapper = new ObjectMapper().registerModule(new JavaTimeModule());
+    Message msg = new Message("Order Created: 123");
+    String jsonStr = mapper.writeValueAsString(msg);
+
+    TopicPartition tp = new TopicPartition("test-topic", 0);
+    mockConsumer.updateBeginningOffsets(new HashMap<>() {
+      {
+        put(tp, 0L);
       }
-    }
-    assertNotNull(interfaces, "Should have interfaces");
-    // Note: Runnable is implemented for threading
+    });
+
+    mockConsumer.schedulePollTask(() -> {
+      mockConsumer.rebalance(Collections.singletonList(tp));
+      mockConsumer.addRecord(new ConsumerRecord<>("test-topic", 0, 0L, "key", jsonStr));
+    });
+
+    mockConsumer.schedulePollTask(() -> kafkaMessageConsumer.stop());
+
+    kafkaMessageConsumer.run();
+
+    assertTrue(handlerCalled.get(), "Handler should have been invoked");
+    assertTrue(mockConsumer.closed(), "Consumer should be closed");
   }
 
   @Test
-  void testConsumerImplementsAutoCloseable() {
-    // Arrange & Act & Assert
-    var interfaces = KafkaMessageConsumer.class.getInterfaces();
-    for (var i : interfaces) {
-      if (i.equals(AutoCloseable.class)) {
-        break;
+  void testRunHandlesInvalidJsonMessage() {
+    TopicPartition tp = new TopicPartition("test-topic", 0);
+    mockConsumer.updateBeginningOffsets(new HashMap<>() {
+      {
+        put(tp, 0L);
       }
-    }
-    assertNotNull(interfaces, "Should have interfaces");
-    // Note: AutoCloseable is implemented
+    });
+
+    mockConsumer.schedulePollTask(() -> {
+      mockConsumer.rebalance(Collections.singletonList(tp));
+      mockConsumer.addRecord(new ConsumerRecord<>("test-topic", 0, 0L, "key", "{invalid json"));
+    });
+
+    mockConsumer.schedulePollTask(() -> kafkaMessageConsumer.stop());
+
+    assertDoesNotThrow(() -> kafkaMessageConsumer.run());
+    assertTrue(mockConsumer.closed(), "Consumer should be closed");
   }
 
   @Test
-  void testConsumerClassHasStopMethod() {
-    // Arrange & Act & Assert
-    assertDoesNotThrow(
-        () -> {
-          var method = KafkaMessageConsumer.class.getDeclaredMethod("stop");
-          assertNotNull(method, "stop method should exist");
-        },
-        "KafkaMessageConsumer should have stop method");
+  void testCloseStopsConsumer() {
+    assertDoesNotThrow(() -> kafkaMessageConsumer.close());
   }
 }

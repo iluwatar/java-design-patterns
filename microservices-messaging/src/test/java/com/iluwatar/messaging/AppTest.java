@@ -32,17 +32,7 @@ import org.junit.jupiter.api.Test;
 class AppTest {
 
   @Test
-  void testMainMethodDoesNotThrowException() {
-    // Note: This test requires a running Kafka instance
-    // In a real scenario, we would use embedded Kafka for testing
-    // For now, we just verify the method can be called without compilation errors
-
-    // Act & Assert
-    assertDoesNotThrow(
-        () -> {
-          // Main method requires Kafka to be running, so we don't actually call it in unit tests
-          // This is a placeholder to ensure the class structure is correct
-        },
-        "App should be instantiable");
+  void testAppConstructor() {
+    assertDoesNotThrow(() -> new App());
   }
 }

@@ -30,7 +30,7 @@ import java.time.Duration;
 import java.util.Collections;
 import java.util.Properties;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Consumer;
+import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
@@ -41,10 +41,10 @@ import org.slf4j.LoggerFactory;
 /** Kafka message consumer that subscribes to topics and processes messages. */
 public class KafkaMessageConsumer implements AutoCloseable, Runnable {
   private static final Logger LOGGER = LoggerFactory.getLogger(KafkaMessageConsumer.class);
-  private final KafkaConsumer<String, String> consumer;
+  private final Consumer<String, String> consumer;
   private final ObjectMapper objectMapper;
   private final String topic;
-  private final Consumer<Message> messageHandler;
+  private final java.util.function.Consumer<Message> messageHandler;
   private final AtomicBoolean running = new AtomicBoolean(true);
 
   /**
@@ -56,7 +56,26 @@ public class KafkaMessageConsumer implements AutoCloseable, Runnable {
    * @param messageHandler handler for received messages
    */
   public KafkaMessageConsumer(
-      String bootstrapServers, String groupId, String topic, Consumer<Message> messageHandler) {
+      String bootstrapServers,
+      String groupId,
+      String topic,
+      java.util.function.Consumer<Message> messageHandler) {
+    this(createDefaultConsumer(bootstrapServers, groupId), topic, messageHandler);
+  }
+
+  KafkaMessageConsumer(
+      Consumer<String, String> consumer,
+      String topic,
+      java.util.function.Consumer<Message> messageHandler) {
+    this.consumer = consumer;
+    this.objectMapper = new ObjectMapper();
+    this.objectMapper.registerModule(new JavaTimeModule());
+    this.topic = topic;
+    this.messageHandler = messageHandler;
+  }
+
+  private static Consumer<String, String> createDefaultConsumer(
+      String bootstrapServers, String groupId) {
     Properties props = new Properties();
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
     props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
@@ -64,12 +83,7 @@ public class KafkaMessageConsumer implements AutoCloseable, Runnable {
     props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
     props.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
     props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, "true");
-
-    this.consumer = new KafkaConsumer<>(props);
-    this.objectMapper = new ObjectMapper();
-    this.objectMapper.registerModule(new JavaTimeModule());
-    this.topic = topic;
-    this.messageHandler = messageHandler;
+    return new KafkaConsumer<>(props);
   }
 
   @Override

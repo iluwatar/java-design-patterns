@@ -24,48 +24,61 @@
  */
 package com.iluwatar.messaging;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.apache.kafka.clients.producer.MockProducer;
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
- * Unit tests for {@link KafkaMessageProducer}. Note: These tests verify basic functionality without
- * requiring a Kafka instance. For integration tests with Kafka, use embedded Kafka or
- * testcontainers.
+ * Unit tests for {@link KafkaMessageProducer}.
  */
 class KafkaMessageProducerTest {
 
+  private MockProducer<String, String> mockProducer;
+  private KafkaMessageProducer kafkaMessageProducer;
+
+  @BeforeEach
+  void setUp() {
+    mockProducer = new MockProducer<>(true, new StringSerializer(), new StringSerializer());
+    kafkaMessageProducer = new KafkaMessageProducer(mockProducer);
+  }
+
   @Test
   void testProducerCanBeInstantiated() {
-    // Arrange & Act & Assert
-    // Note: Don't actually create producer in unit test as it requires Kafka
-    // This test just verifies the class structure is correct
-    assertNotNull(KafkaMessageProducer.class, "KafkaMessageProducer class should exist");
+    assertNotNull(kafkaMessageProducer, "KafkaMessageProducer should be instantiated");
   }
 
   @Test
-  void testProducerClassHasPublishMethod() {
-    // Arrange & Act & Assert
-    assertDoesNotThrow(
-        () -> {
-          var method =
-              KafkaMessageProducer.class.getDeclaredMethod("publish", String.class, Message.class);
-          assertNotNull(method, "publish method should exist");
-        },
-        "KafkaMessageProducer should have publish method");
+  void testPublishMessageSuccess() {
+    Message message = new Message("Test Order");
+
+    assertDoesNotThrow(() -> kafkaMessageProducer.publish("test-topic", message));
+    assertEquals(1, mockProducer.history().size());
+    assertEquals("test-topic", mockProducer.history().get(0).topic());
+    assertEquals(message.getId(), mockProducer.history().get(0).key());
   }
 
   @Test
-  void testProducerImplementsAutoCloseable() {
-    // Arrange & Act & Assert
-    var interfaces = KafkaMessageProducer.class.getInterfaces();
-    for (var i : interfaces) {
-      if (i.equals(AutoCloseable.class)) {
-        break;
-      }
+  void testPublishMessageErrorCallback() {
+    MockProducer<String, String> failingProducer =
+        new MockProducer<>(false, new StringSerializer(), new StringSerializer());
+    try (KafkaMessageProducer producerWithError = new KafkaMessageProducer(failingProducer)) {
+      Message message = new Message("Test Order");
+
+      assertDoesNotThrow(() -> producerWithError.publish("test-topic", message));
+      assertEquals(1, failingProducer.history().size());
+      failingProducer.errorNext(new RuntimeException("Kafka publish error"));
     }
-    assertNotNull(interfaces, "Should have interfaces");
-    // Note: AutoCloseable is implemented
+  }
+
+  @Test
+  void testClose() {
+    assertDoesNotThrow(() -> kafkaMessageProducer.close());
+    assertTrue(mockProducer.closed());
   }
 }

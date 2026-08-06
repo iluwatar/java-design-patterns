@@ -24,27 +24,26 @@
  */
 package com.iluwatar.messaging;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
+import org.apache.kafka.clients.producer.MockProducer;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /** Unit tests for {@link OrderService}. Tests follow Arrange-Act-Assert pattern. */
 class OrderServiceTest {
 
-  private KafkaMessageProducer mockProducer;
+  private MockProducer<String, String> mockKafkaProducer;
+  private KafkaMessageProducer messageProducer;
   private OrderService orderService;
 
   @BeforeEach
   void setUp() {
-    // Arrange - Create mock producer to avoid Kafka dependency
-    mockProducer = mock(KafkaMessageProducer.class);
-    orderService = new OrderService(mockProducer);
+    mockKafkaProducer = new MockProducer<>(true, new StringSerializer(), new StringSerializer());
+    messageProducer = new KafkaMessageProducer(mockKafkaProducer);
+    orderService = new OrderService(messageProducer);
   }
 
   @Test
@@ -56,7 +55,7 @@ class OrderServiceTest {
     assertDoesNotThrow(() -> orderService.createOrder(orderId));
 
     // Assert
-    verify(mockProducer, times(1)).publish(eq("order-topic"), any(Message.class));
+    assertEquals(1, mockKafkaProducer.history().size());
   }
 
   @Test
@@ -68,7 +67,7 @@ class OrderServiceTest {
     assertDoesNotThrow(() -> orderService.updateOrder(orderId));
 
     // Assert
-    verify(mockProducer, times(1)).publish(eq("order-topic"), any(Message.class));
+    assertEquals(1, mockKafkaProducer.history().size());
   }
 
   @Test
@@ -80,7 +79,7 @@ class OrderServiceTest {
     assertDoesNotThrow(() -> orderService.cancelOrder(orderId));
 
     // Assert
-    verify(mockProducer, times(1)).publish(eq("order-topic"), any(Message.class));
+    assertEquals(1, mockKafkaProducer.history().size());
   }
 
   @Test
@@ -94,7 +93,7 @@ class OrderServiceTest {
     orderService.cancelOrder(orderId);
 
     // Assert
-    verify(mockProducer, times(3)).publish(eq("order-topic"), any(Message.class));
+    assertEquals(3, mockKafkaProducer.history().size());
   }
 
   @Test
@@ -105,6 +104,6 @@ class OrderServiceTest {
     orderService.createOrder("ORDER-003");
 
     // Assert
-    verify(mockProducer, times(3)).publish(eq("order-topic"), any(Message.class));
+    assertEquals(3, mockKafkaProducer.history().size());
   }
 }
