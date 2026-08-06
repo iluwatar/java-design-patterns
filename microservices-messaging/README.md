@@ -170,7 +170,35 @@ Sequence Diagram
 
 ![Microservices Messaging sequence_diagram](./etc/microservices-messaging-sequence-diagram.png)
 
+## How to Run the Application
 
+### Option 1: Automated Script (Recommended)
+
+Run the helper script from the module directory, which automatically starts Kafka via Docker Compose (if Docker is installed and Kafka is not already running) and launches the application:
+
+* **Windows (PowerShell)**:
+  ```powershell
+  powershell -ExecutionPolicy Bypass -File .\run-app.ps1
+  ```
+* **Linux / macOS**:
+  ```bash
+  ./run-app.sh
+  ```
+
+### Option 2: Docker Compose
+
+Start the Kafka container manually via Docker Compose and run the application:
+
+```bash
+# Start Kafka container on port 9092
+docker compose up -d
+
+# Run the application
+../mvnw compile exec:java -Dexec.mainClass="com.iluwatar.messaging.App"
+
+# Stop Kafka container when finished
+docker compose down
+```
 
 ## When to Use the Microservices Messaging Pattern in Java
 
