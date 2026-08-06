@@ -24,9 +24,6 @@
  */
 package com.iluwatar.messaging;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -34,10 +31,10 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-/**
- * Unit tests for {@link OrderService}.
- * Tests follow Arrange-Act-Assert pattern.
- */
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+/** Unit tests for {@link OrderService}. Tests follow Arrange-Act-Assert pattern. */
 class OrderServiceTest {
 
   private KafkaMessageProducer mockProducer;

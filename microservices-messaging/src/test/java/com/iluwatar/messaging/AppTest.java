@@ -24,14 +24,11 @@
  */
 package com.iluwatar.messaging;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
-/**
- * Unit tests for {@link App}.
- * Tests main application entry point.
- */
+import org.junit.jupiter.api.Test;
+
+/** Unit tests for {@link App}. Tests main application entry point. */
 class AppTest {
 
   @Test
@@ -41,9 +38,11 @@ class AppTest {
     // For now, we just verify the method can be called without compilation errors
 
     // Act & Assert
-    assertDoesNotThrow(() -> {
-      // Main method requires Kafka to be running, so we don't actually call it in unit tests
-      // This is a placeholder to ensure the class structure is correct
-    }, "App should be instantiable");
+    assertDoesNotThrow(
+        () -> {
+          // Main method requires Kafka to be running, so we don't actually call it in unit tests
+          // This is a placeholder to ensure the class structure is correct
+        },
+        "App should be instantiable");
   }
 }

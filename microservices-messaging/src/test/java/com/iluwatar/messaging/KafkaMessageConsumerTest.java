@@ -24,15 +24,15 @@
  */
 package com.iluwatar.messaging;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.Test;
+
 /**
- * Unit tests for {@link KafkaMessageConsumer}.
- * Note: These tests verify basic functionality without requiring a Kafka instance.
- * For integration tests with Kafka, use embedded Kafka or testcontainers.
+ * Unit tests for {@link KafkaMessageConsumer}. Note: These tests verify basic functionality without
+ * requiring a Kafka instance. For integration tests with Kafka, use embedded Kafka or
+ * testcontainers.
  */
 class KafkaMessageConsumerTest {
 
@@ -40,17 +40,16 @@ class KafkaMessageConsumerTest {
   void testConsumerCanBeInstantiated() {
     // Arrange & Act & Assert
     // Note: Don't actually create consumer in unit test as it requires Kafka
-    assertNotNull(KafkaMessageConsumer.class,
-        "KafkaMessageConsumer class should exist");
+    assertNotNull(KafkaMessageConsumer.class, "KafkaMessageConsumer class should exist");
   }
 
   @Test
   void testConsumerImplementsRunnable() {
     // Arrange & Act & Assert
     var interfaces = KafkaMessageConsumer.class.getInterfaces();
-      for (var i : interfaces) {
+    for (var i : interfaces) {
       if (i.equals(Runnable.class)) {
-          break;
+        break;
       }
     }
     assertNotNull(interfaces, "Should have interfaces");
@@ -61,9 +60,9 @@ class KafkaMessageConsumerTest {
   void testConsumerImplementsAutoCloseable() {
     // Arrange & Act & Assert
     var interfaces = KafkaMessageConsumer.class.getInterfaces();
-      for (var i : interfaces) {
+    for (var i : interfaces) {
       if (i.equals(AutoCloseable.class)) {
-          break;
+        break;
       }
     }
     assertNotNull(interfaces, "Should have interfaces");
@@ -73,9 +72,11 @@ class KafkaMessageConsumerTest {
   @Test
   void testConsumerClassHasStopMethod() {
     // Arrange & Act & Assert
-    assertDoesNotThrow(() -> {
-      var method = KafkaMessageConsumer.class.getDeclaredMethod("stop");
-      assertNotNull(method, "stop method should exist");
-    }, "KafkaMessageConsumer should have stop method");
+    assertDoesNotThrow(
+        () -> {
+          var method = KafkaMessageConsumer.class.getDeclaredMethod("stop");
+          assertNotNull(method, "stop method should exist");
+        },
+        "KafkaMessageConsumer should have stop method");
   }
 }

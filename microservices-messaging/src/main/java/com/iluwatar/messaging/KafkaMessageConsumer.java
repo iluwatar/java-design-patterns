@@ -26,21 +26,19 @@ package com.iluwatar.messaging;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.time.Duration;
+import java.util.Collections;
+import java.util.Properties;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.time.Duration;
-import java.util.Collections;
-import java.util.Properties;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Consumer;
 
-/**
- * Kafka message consumer that subscribes to topics and processes messages.
- */
+/** Kafka message consumer that subscribes to topics and processes messages. */
 public class KafkaMessageConsumer implements AutoCloseable, Runnable {
   private static final Logger LOGGER = LoggerFactory.getLogger(KafkaMessageConsumer.class);
   private final KafkaConsumer<String, String> consumer;
@@ -53,12 +51,12 @@ public class KafkaMessageConsumer implements AutoCloseable, Runnable {
    * Creates a new Kafka message consumer.
    *
    * @param bootstrapServers Kafka bootstrap servers
-   * @param groupId          consumer group ID
-   * @param topic            topic to subscribe to
-   * @param messageHandler   handler for received messages
+   * @param groupId consumer group ID
+   * @param topic topic to subscribe to
+   * @param messageHandler handler for received messages
    */
-  public KafkaMessageConsumer(String bootstrapServers, String groupId, String topic,
-                              Consumer<Message> messageHandler) {
+  public KafkaMessageConsumer(
+      String bootstrapServers, String groupId, String topic, Consumer<Message> messageHandler) {
     Properties props = new Properties();
     props.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
     props.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
@@ -82,15 +80,16 @@ public class KafkaMessageConsumer implements AutoCloseable, Runnable {
 
       while (running.get()) {
         ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
-        records.forEach(record -> {
-          try {
-            Message message = objectMapper.readValue(record.value(), Message.class);
-            LOGGER.info("Received message from topic '{}': {}", topic, message.getId());
-            messageHandler.accept(message);
-          } catch (Exception e) {
-            LOGGER.error("Error processing message: {}", e.getMessage(), e);
-          }
-        });
+        records.forEach(
+            record -> {
+              try {
+                Message message = objectMapper.readValue(record.value(), Message.class);
+                LOGGER.info("Received message from topic '{}': {}", topic, message.getId());
+                messageHandler.accept(message);
+              } catch (Exception e) {
+                LOGGER.error("Error processing message: {}", e.getMessage(), e);
+              }
+            });
       }
     } catch (Exception e) {
       LOGGER.error("Consumer error: {}", e.getMessage(), e);
@@ -100,9 +99,7 @@ public class KafkaMessageConsumer implements AutoCloseable, Runnable {
     }
   }
 
-  /**
-   * Stops the consumer.
-   */
+  /** Stops the consumer. */
   public void stop() {
     running.set(false);
   }

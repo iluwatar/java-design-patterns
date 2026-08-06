@@ -24,34 +24,36 @@
  */
 package com.iluwatar.messaging;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The Microservices Messaging pattern enables asynchronous communication between services through
  * Apache Kafka. This example demonstrates how services can communicate without tight coupling.
  *
  * <p>In this example:
+ *
  * <ul>
- *   <li>OrderService acts as a message producer, publishing order events to Kafka</li>
- *   <li>InventoryService, PaymentService, and NotificationService act as consumers</li>
- *   <li>Apache Kafka acts as the message broker, routing messages between services</li>
+ *   <li>OrderService acts as a message producer, publishing order events to Kafka
+ *   <li>InventoryService, PaymentService, and NotificationService act as consumers
+ *   <li>Apache Kafka acts as the message broker, routing messages between services
  * </ul>
  *
  * <p>Key benefits demonstrated:
+ *
  * <ul>
- *   <li>Loose coupling - services don't directly depend on each other</li>
- *   <li>Asynchronous processing - producers don't wait for consumers</li>
- *   <li>Scalability - multiple consumers can process messages independently</li>
- *   <li>Resilience - if one consumer fails, others continue processing</li>
- *   <li>Message persistence - Kafka stores messages for reliability</li>
+ *   <li>Loose coupling - services don't directly depend on each other
+ *   <li>Asynchronous processing - producers don't wait for consumers
+ *   <li>Scalability - multiple consumers can process messages independently
+ *   <li>Resilience - if one consumer fails, others continue processing
+ *   <li>Message persistence - Kafka stores messages for reliability
  * </ul>
  *
- * <p><b>Prerequisites:</b> This example requires a running Kafka instance.
- * Start Kafka locally:
+ * <p><b>Prerequisites:</b> This example requires a running Kafka instance. Start Kafka locally:
+ *
  * <pre>
  * # Start Zookeeper
  * bin/zookeeper-server-start.sh config/zookeeper.properties
@@ -84,15 +86,20 @@ public class App {
     NotificationService notificationService = new NotificationService();
 
     // Create Kafka consumers
-    KafkaMessageConsumer inventoryConsumer = new KafkaMessageConsumer(
-        BOOTSTRAP_SERVERS, "inventory-group", "order-topic", inventoryService::handleMessage);
+    KafkaMessageConsumer inventoryConsumer =
+        new KafkaMessageConsumer(
+            BOOTSTRAP_SERVERS, "inventory-group", "order-topic", inventoryService::handleMessage);
 
-    KafkaMessageConsumer paymentConsumer = new KafkaMessageConsumer(
-        BOOTSTRAP_SERVERS, "payment-group", "order-topic", paymentService::handleMessage);
+    KafkaMessageConsumer paymentConsumer =
+        new KafkaMessageConsumer(
+            BOOTSTRAP_SERVERS, "payment-group", "order-topic", paymentService::handleMessage);
 
-    KafkaMessageConsumer notificationConsumer = new KafkaMessageConsumer(
-        BOOTSTRAP_SERVERS, "notification-group", "order-topic",
-        notificationService::handleMessage);
+    KafkaMessageConsumer notificationConsumer =
+        new KafkaMessageConsumer(
+            BOOTSTRAP_SERVERS,
+            "notification-group",
+            "order-topic",
+            notificationService::handleMessage);
 
     // Start consumers in separate threads
     ExecutorService executor = Executors.newFixedThreadPool(3);

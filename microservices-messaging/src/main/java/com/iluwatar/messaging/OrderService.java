@@ -27,9 +27,7 @@ package com.iluwatar.messaging;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * OrderService is a message producer that publishes order-related messages using Kafka.
- */
+/** OrderService is a message producer that publishes order-related messages using Kafka. */
 public class OrderService {
   private static final Logger LOGGER = LoggerFactory.getLogger(OrderService.class);
   private static final String ORDER_TOPIC = "order-topic";

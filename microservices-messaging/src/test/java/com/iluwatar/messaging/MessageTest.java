@@ -24,21 +24,20 @@
  */
 package com.iluwatar.messaging;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import java.time.LocalDateTime;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.time.LocalDateTime;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 /**
- * Unit tests for {@link Message}.
- * Tests follow FIRST principles: Fast, Isolated, Repeatable, Self-validating, Timely.
+ * Unit tests for {@link Message}. Tests follow FIRST principles: Fast, Isolated, Repeatable,
+ * Self-validating, Timely.
  */
 class MessageTest {
 
@@ -81,7 +80,8 @@ class MessageTest {
     var afterCreation = LocalDateTime.now();
 
     // Assert
-    assertTrue(message.getTimestamp().isAfter(beforeCreation.minusSeconds(1))
+    assertTrue(
+        message.getTimestamp().isAfter(beforeCreation.minusSeconds(1))
             && message.getTimestamp().isBefore(afterCreation.plusSeconds(1)),
         "Timestamp should be close to creation time");
   }
@@ -112,8 +112,8 @@ class MessageTest {
     // Assert
     assertNotNull(deserializedMessage, "Deserialized message should not be null");
     assertEquals(originalMessage.getId(), deserializedMessage.getId(), "IDs should match");
-    assertEquals(originalMessage.getContent(), deserializedMessage.getContent(),
-        "Content should match");
+    assertEquals(
+        originalMessage.getContent(), deserializedMessage.getContent(), "Content should match");
   }
 
   @Test
@@ -160,7 +160,6 @@ class MessageTest {
     var message = new Message(specialContent);
 
     // Assert
-    assertEquals(specialContent, message.getContent(),
-        "Special characters should be preserved");
+    assertEquals(specialContent, message.getContent(), "Special characters should be preserved");
   }
 }

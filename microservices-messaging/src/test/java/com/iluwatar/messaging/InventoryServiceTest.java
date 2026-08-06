@@ -24,15 +24,15 @@
  */
 package com.iluwatar.messaging;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 /**
- * Unit tests for {@link InventoryService}.
- * Tests service behavior with various message types without Kafka dependencies.
+ * Unit tests for {@link InventoryService}. Tests service behavior with various message types
+ * without Kafka dependencies.
  */
 class InventoryServiceTest {
 
@@ -55,7 +55,8 @@ class InventoryServiceTest {
     var message = new Message("Order Created: ORDER-001");
 
     // Act & Assert
-    assertDoesNotThrow(() -> inventoryService.handleMessage(message),
+    assertDoesNotThrow(
+        () -> inventoryService.handleMessage(message),
         "Should handle order created message without error");
   }
 
@@ -65,7 +66,8 @@ class InventoryServiceTest {
     var message = new Message("Order Cancelled: ORDER-001");
 
     // Act & Assert
-    assertDoesNotThrow(() -> inventoryService.handleMessage(message),
+    assertDoesNotThrow(
+        () -> inventoryService.handleMessage(message),
         "Should handle order cancelled message without error");
   }
 
@@ -75,7 +77,8 @@ class InventoryServiceTest {
     var message = new Message("Order Updated: ORDER-001");
 
     // Act & Assert
-    assertDoesNotThrow(() -> inventoryService.handleMessage(message),
+    assertDoesNotThrow(
+        () -> inventoryService.handleMessage(message),
         "Should handle order updated message without error");
   }
 
@@ -85,17 +88,20 @@ class InventoryServiceTest {
     var message = new Message("Unknown Event: ORDER-001");
 
     // Act & Assert
-    assertDoesNotThrow(() -> inventoryService.handleMessage(message),
+    assertDoesNotThrow(
+        () -> inventoryService.handleMessage(message),
         "Should handle unknown message without error");
   }
 
   @Test
   void testHandleMultipleMessages() {
     // Act & Assert
-    assertDoesNotThrow(() -> {
-      inventoryService.handleMessage(new Message("Order Created: ORDER-001"));
-      inventoryService.handleMessage(new Message("Order Updated: ORDER-001"));
-      inventoryService.handleMessage(new Message("Order Cancelled: ORDER-001"));
-    }, "Should handle multiple messages without error");
+    assertDoesNotThrow(
+        () -> {
+          inventoryService.handleMessage(new Message("Order Created: ORDER-001"));
+          inventoryService.handleMessage(new Message("Order Updated: ORDER-001"));
+          inventoryService.handleMessage(new Message("Order Cancelled: ORDER-001"));
+        },
+        "Should handle multiple messages without error");
   }
 }

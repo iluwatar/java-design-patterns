@@ -26,17 +26,15 @@ package com.iluwatar.messaging;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.util.Properties;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.Properties;
 
-/**
- * Kafka message producer that publishes messages to Kafka topics.
- */
+/** Kafka message producer that publishes messages to Kafka topics. */
 public class KafkaMessageProducer implements AutoCloseable {
   private static final Logger LOGGER = LoggerFactory.getLogger(KafkaMessageProducer.class);
   private final KafkaProducer<String, String> producer;
@@ -63,7 +61,7 @@ public class KafkaMessageProducer implements AutoCloseable {
   /**
    * Publishes a message to a Kafka topic.
    *
-   * @param topic   the topic to publish to
+   * @param topic the topic to publish to
    * @param message the message to publish
    */
   public void publish(String topic, Message message) {
@@ -71,14 +69,20 @@ public class KafkaMessageProducer implements AutoCloseable {
       String json = objectMapper.writeValueAsString(message);
       ProducerRecord<String, String> record = new ProducerRecord<>(topic, message.getId(), json);
 
-      producer.send(record, (metadata, exception) -> {
-        if (exception != null) {
-          LOGGER.error("Failed to publish message to topic {}: {}", topic, exception.getMessage());
-        } else {
-          LOGGER.info("Published message to topic '{}' [partition={}, offset={}]",
-              topic, metadata.partition(), metadata.offset());
-        }
-      });
+      producer.send(
+          record,
+          (metadata, exception) -> {
+            if (exception != null) {
+              LOGGER.error(
+                  "Failed to publish message to topic {}: {}", topic, exception.getMessage());
+            } else {
+              LOGGER.info(
+                  "Published message to topic '{}' [partition={}, offset={}]",
+                  topic,
+                  metadata.partition(),
+                  metadata.offset());
+            }
+          });
 
     } catch (Exception e) {
       LOGGER.error("Error serializing message: {}", e.getMessage(), e);

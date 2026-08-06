@@ -24,15 +24,15 @@
  */
 package com.iluwatar.messaging;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.Test;
+
 /**
- * Unit tests for {@link KafkaMessageProducer}.
- * Note: These tests verify basic functionality without requiring a Kafka instance.
- * For integration tests with Kafka, use embedded Kafka or testcontainers.
+ * Unit tests for {@link KafkaMessageProducer}. Note: These tests verify basic functionality without
+ * requiring a Kafka instance. For integration tests with Kafka, use embedded Kafka or
+ * testcontainers.
  */
 class KafkaMessageProducerTest {
 
@@ -41,27 +41,28 @@ class KafkaMessageProducerTest {
     // Arrange & Act & Assert
     // Note: Don't actually create producer in unit test as it requires Kafka
     // This test just verifies the class structure is correct
-    assertNotNull(KafkaMessageProducer.class,
-        "KafkaMessageProducer class should exist");
+    assertNotNull(KafkaMessageProducer.class, "KafkaMessageProducer class should exist");
   }
 
   @Test
   void testProducerClassHasPublishMethod() {
     // Arrange & Act & Assert
-    assertDoesNotThrow(() -> {
-      var method = KafkaMessageProducer.class.getDeclaredMethod(
-          "publish", String.class, Message.class);
-      assertNotNull(method, "publish method should exist");
-    }, "KafkaMessageProducer should have publish method");
+    assertDoesNotThrow(
+        () -> {
+          var method =
+              KafkaMessageProducer.class.getDeclaredMethod("publish", String.class, Message.class);
+          assertNotNull(method, "publish method should exist");
+        },
+        "KafkaMessageProducer should have publish method");
   }
 
   @Test
   void testProducerImplementsAutoCloseable() {
     // Arrange & Act & Assert
     var interfaces = KafkaMessageProducer.class.getInterfaces();
-      for (var i : interfaces) {
+    for (var i : interfaces) {
       if (i.equals(AutoCloseable.class)) {
-          break;
+        break;
       }
     }
     assertNotNull(interfaces, "Should have interfaces");

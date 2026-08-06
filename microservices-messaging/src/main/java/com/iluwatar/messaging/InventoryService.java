@@ -28,14 +28,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * InventoryService is a message consumer that processes inventory-related messages from Kafka.
- * It listens to order events and updates inventory accordingly.
+ * InventoryService is a message consumer that processes inventory-related messages from Kafka. It
+ * listens to order events and updates inventory accordingly.
  *
  * <p>This service runs in its own Kafka consumer group (inventory-group) which allows it to:
+ *
  * <ul>
- *   <li>Process messages independently from other services</li>
- *   <li>Scale horizontally by adding more instances to the consumer group</li>
- *   <li>Resume from last committed offset if the service restarts</li>
+ *   <li>Process messages independently from other services
+ *   <li>Scale horizontally by adding more instances to the consumer group
+ *   <li>Resume from last committed offset if the service restarts
  * </ul>
  */
 public class InventoryService {
@@ -47,8 +48,8 @@ public class InventoryService {
    * @param message the message to process
    */
   public void handleMessage(Message message) {
-    LOGGER.info("Inventory Service received message [{}]: {}",
-        message.getId(), message.getContent());
+    LOGGER.info(
+        "Inventory Service received message [{}]: {}", message.getId(), message.getContent());
 
     if (message.getContent().contains("Order Created")) {
       updateInventory(message);

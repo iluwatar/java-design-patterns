@@ -24,15 +24,15 @@
  */
 package com.iluwatar.messaging;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 /**
- * Unit tests for {@link NotificationService}.
- * Tests service behavior with various message types without Kafka dependencies.
+ * Unit tests for {@link NotificationService}. Tests service behavior with various message types
+ * without Kafka dependencies.
  */
 class NotificationServiceTest {
 
@@ -55,7 +55,8 @@ class NotificationServiceTest {
     var message = new Message("Order Created: ORDER-001");
 
     // Act & Assert
-    assertDoesNotThrow(() -> notificationService.handleMessage(message),
+    assertDoesNotThrow(
+        () -> notificationService.handleMessage(message),
         "Should handle order created message without error");
   }
 
@@ -65,7 +66,8 @@ class NotificationServiceTest {
     var message = new Message("Order Updated: ORDER-001");
 
     // Act & Assert
-    assertDoesNotThrow(() -> notificationService.handleMessage(message),
+    assertDoesNotThrow(
+        () -> notificationService.handleMessage(message),
         "Should handle order updated message without error");
   }
 
@@ -75,7 +77,8 @@ class NotificationServiceTest {
     var message = new Message("Order Cancelled: ORDER-001");
 
     // Act & Assert
-    assertDoesNotThrow(() -> notificationService.handleMessage(message),
+    assertDoesNotThrow(
+        () -> notificationService.handleMessage(message),
         "Should handle order cancelled message without error");
   }
 
@@ -85,27 +88,32 @@ class NotificationServiceTest {
     var message = new Message("Unknown Event: ORDER-001");
 
     // Act & Assert
-    assertDoesNotThrow(() -> notificationService.handleMessage(message),
+    assertDoesNotThrow(
+        () -> notificationService.handleMessage(message),
         "Should handle unknown message without error");
   }
 
   @Test
   void testHandleAllMessageTypes() {
     // Act & Assert
-    assertDoesNotThrow(() -> {
-      notificationService.handleMessage(new Message("Order Created: ORDER-001"));
-      notificationService.handleMessage(new Message("Order Updated: ORDER-001"));
-      notificationService.handleMessage(new Message("Order Cancelled: ORDER-001"));
-    }, "Should handle all message types without error");
+    assertDoesNotThrow(
+        () -> {
+          notificationService.handleMessage(new Message("Order Created: ORDER-001"));
+          notificationService.handleMessage(new Message("Order Updated: ORDER-001"));
+          notificationService.handleMessage(new Message("Order Cancelled: ORDER-001"));
+        },
+        "Should handle all message types without error");
   }
 
   @Test
   void testHandleMultipleOrdersSequentially() {
     // Act & Assert
-    assertDoesNotThrow(() -> {
-      notificationService.handleMessage(new Message("Order Created: ORDER-001"));
-      notificationService.handleMessage(new Message("Order Created: ORDER-002"));
-      notificationService.handleMessage(new Message("Order Created: ORDER-003"));
-    }, "Should handle multiple orders sequentially without error");
+    assertDoesNotThrow(
+        () -> {
+          notificationService.handleMessage(new Message("Order Created: ORDER-001"));
+          notificationService.handleMessage(new Message("Order Created: ORDER-002"));
+          notificationService.handleMessage(new Message("Order Created: ORDER-003"));
+        },
+        "Should handle multiple orders sequentially without error");
   }
 }

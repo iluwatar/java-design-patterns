@@ -26,13 +26,11 @@ package com.iluwatar.messaging;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
 import java.time.LocalDateTime;
 import java.util.UUID;
+import lombok.Getter;
 
-/**
- * Represents a message exchanged between services.
- */
+/** Represents a message exchanged between services. */
 @Getter
 public class Message {
   private final String id;
@@ -50,9 +48,7 @@ public class Message {
     this.timestamp = LocalDateTime.now();
   }
 
-  /**
-   * JSON constructor for deserialization.
-   */
+  /** JSON constructor for deserialization. */
   @JsonCreator
   public Message(
       @JsonProperty("id") String id,
@@ -65,10 +61,15 @@ public class Message {
 
   @Override
   public String toString() {
-    return "Message{" +
-        "id='" + id + '\'' +
-        ", content='" + content + '\'' +
-        ", timestamp=" + timestamp +
-        '}';
+    return "Message{"
+        + "id='"
+        + id
+        + '\''
+        + ", content='"
+        + content
+        + '\''
+        + ", timestamp="
+        + timestamp
+        + '}';
   }
 }
