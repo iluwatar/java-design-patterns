@@ -43,21 +43,7 @@ jobs:
 
       # Start Kafka Docker Service for microservices-messaging
       - name: Start Kafka Docker Service
-        run: docker compose -f microservices-messaging/docker-compose.yml up -d
-
-      - name: Wait for Kafka Readiness
-        run: |
-          retry=0
-          until docker exec kafka-messaging-demo kafka-topics --bootstrap-server localhost:9092 --list 2>/dev/null || [ $retry -eq 20 ]; do
-            echo "[INFO] Waiting for Kafka to become ready on port 9092..."
-            sleep 2
-            retry=$((retry+1))
-          done
-          if [ $retry -eq 20 ]; then
-            echo "[ERROR] Kafka did not become ready within timeout."
-            exit 1
-          fi
-          echo "[INFO] Kafka is ready!"
+        run: docker compose -f microservices-messaging/docker-compose.yml up -d --wait
 
       # Some tests need screen access
       - name: Install xvfb
