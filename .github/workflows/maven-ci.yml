@@ -48,7 +48,7 @@ jobs:
       - name: Wait for Kafka Readiness
         run: |
           retry=0
-          until docker exec kafka-messaging-demo kafka-topics.sh --bootstrap-server localhost:9092 --list 2>/dev/null || [ $retry -eq 20 ]; do
+          until docker exec kafka-messaging-demo kafka-topics --bootstrap-server localhost:9092 --list 2>/dev/null || [ $retry -eq 20 ]; do
             echo "[INFO] Waiting for Kafka to become ready on port 9092..."
             sleep 2
             retry=$((retry+1))
