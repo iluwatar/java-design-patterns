@@ -41,6 +41,24 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
+      # Start Kafka Docker Service for microservices-messaging
+      - name: Start Kafka Docker Service
+        run: docker compose -f microservices-messaging/docker-compose.yml up -d
+
+      - name: Wait for Kafka Readiness
+        run: |
+          retry=0
+          until docker exec kafka-messaging-demo kafka-topics.sh --bootstrap-server localhost:9092 --list 2>/dev/null || [ $retry -eq 20 ]; do
+            echo "[INFO] Waiting for Kafka to become ready on port 9092..."
+            sleep 2
+            retry=$((retry+1))
+          done
+          if [ $retry -eq 20 ]; then
+            echo "[ERROR] Kafka did not become ready within timeout."
+            exit 1
+          fi
+          echo "[INFO] Kafka is ready!"
+
       # Some tests need screen access
       - name: Install xvfb
         run: sudo apt-get install -y xvfb
@@ -51,6 +69,10 @@ jobs:
           # These two env variables are needed for sonar analysis
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+      - name: Stop Kafka Docker Service
+        if: always()
+        run: docker compose -f microservices-messaging/docker-compose.yml down
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
