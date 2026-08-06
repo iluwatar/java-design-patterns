@@ -445,6 +445,7 @@
                 <exclude>src/test/resources/**</exclude>
                 <exclude>src/main/resources/**</exclude>
                 <exclude>checkstyle-suppressions.xml</exclude>
+                <exclude>**/*.ps1</exclude>
               </excludes>
             </licenseSet>
           </licenseSets>
