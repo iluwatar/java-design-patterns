@@ -40,9 +40,7 @@ import org.apache.kafka.common.TopicPartition;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for {@link KafkaMessageConsumer}.
- */
+/** Unit tests for {@link KafkaMessageConsumer}. */
 class KafkaMessageConsumerTest {
 
   private MockConsumer<String, String> mockConsumer;

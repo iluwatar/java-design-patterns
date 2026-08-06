@@ -24,8 +24,8 @@
  */
 package com.iluwatar.messaging;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -34,9 +34,7 @@ import org.apache.kafka.common.serialization.StringSerializer;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-/**
- * Unit tests for {@link KafkaMessageProducer}.
- */
+/** Unit tests for {@link KafkaMessageProducer}. */
 class KafkaMessageProducerTest {
 
   private MockProducer<String, String> mockProducer;
