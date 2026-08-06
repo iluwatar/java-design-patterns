@@ -51,10 +51,8 @@ class KafkaMessageConsumerTest {
   void setUp() {
     mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
     handlerCalled = new AtomicBoolean(false);
-    kafkaMessageConsumer = new KafkaMessageConsumer(
-        mockConsumer,
-        "test-topic",
-        msg -> handlerCalled.set(true));
+    kafkaMessageConsumer =
+        new KafkaMessageConsumer(mockConsumer, "test-topic", msg -> handlerCalled.set(true));
   }
 
   @Test
@@ -69,16 +67,18 @@ class KafkaMessageConsumerTest {
     String jsonStr = mapper.writeValueAsString(msg);
 
     TopicPartition tp = new TopicPartition("test-topic", 0);
-    mockConsumer.updateBeginningOffsets(new HashMap<>() {
-      {
-        put(tp, 0L);
-      }
-    });
+    mockConsumer.updateBeginningOffsets(
+        new HashMap<>() {
+          {
+            put(tp, 0L);
+          }
+        });
 
-    mockConsumer.schedulePollTask(() -> {
-      mockConsumer.rebalance(Collections.singletonList(tp));
-      mockConsumer.addRecord(new ConsumerRecord<>("test-topic", 0, 0L, "key", jsonStr));
-    });
+    mockConsumer.schedulePollTask(
+        () -> {
+          mockConsumer.rebalance(Collections.singletonList(tp));
+          mockConsumer.addRecord(new ConsumerRecord<>("test-topic", 0, 0L, "key", jsonStr));
+        });
 
     mockConsumer.schedulePollTask(() -> kafkaMessageConsumer.stop());
 
@@ -91,16 +91,19 @@ class KafkaMessageConsumerTest {
   @Test
   void testRunHandlesInvalidJsonMessage() {
     TopicPartition tp = new TopicPartition("test-topic", 0);
-    mockConsumer.updateBeginningOffsets(new HashMap<>() {
-      {
-        put(tp, 0L);
-      }
-    });
+    mockConsumer.updateBeginningOffsets(
+        new HashMap<>() {
+          {
+            put(tp, 0L);
+          }
+        });
 
-    mockConsumer.schedulePollTask(() -> {
-      mockConsumer.rebalance(Collections.singletonList(tp));
-      mockConsumer.addRecord(new ConsumerRecord<>("test-topic", 0, 0L, "key", "{invalid json"));
-    });
+    mockConsumer.schedulePollTask(
+        () -> {
+          mockConsumer.rebalance(Collections.singletonList(tp));
+          mockConsumer.addRecord(
+              new ConsumerRecord<>("test-topic", 0, 0L, "key", "{invalid json"));
+        });
 
     mockConsumer.schedulePollTask(() -> kafkaMessageConsumer.stop());
 
