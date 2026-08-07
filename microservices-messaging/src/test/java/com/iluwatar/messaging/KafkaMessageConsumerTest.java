@@ -101,8 +101,7 @@ class KafkaMessageConsumerTest {
     mockConsumer.schedulePollTask(
         () -> {
           mockConsumer.rebalance(Collections.singletonList(tp));
-          mockConsumer.addRecord(
-              new ConsumerRecord<>("test-topic", 0, 0L, "key", "{invalid json"));
+          mockConsumer.addRecord(new ConsumerRecord<>("test-topic", 0, 0L, "key", "{invalid json"));
         });
 
     mockConsumer.schedulePollTask(() -> kafkaMessageConsumer.stop());

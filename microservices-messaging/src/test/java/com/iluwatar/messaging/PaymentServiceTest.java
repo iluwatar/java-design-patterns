@@ -89,8 +89,7 @@ class PaymentServiceTest {
 
     // Act & Assert
     assertDoesNotThrow(
-        () -> paymentService.handleMessage(message),
-        "Should handle unknown message without error");
+        () -> paymentService.handleMessage(message), "Should handle unknown message without error");
   }
 
   @Test
