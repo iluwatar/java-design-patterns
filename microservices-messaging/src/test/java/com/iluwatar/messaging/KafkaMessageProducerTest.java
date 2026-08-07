@@ -65,13 +65,17 @@ class KafkaMessageProducerTest {
   void testPublishMessageErrorCallback() {
     MockProducer<String, String> failingProducer =
         new MockProducer<>(false, new StringSerializer(), new StringSerializer());
-    try (KafkaMessageProducer producerWithError = new KafkaMessageProducer(failingProducer)) {
-      Message message = new Message("Test Order");
+    KafkaMessageProducer producerWithError = new KafkaMessageProducer(failingProducer);
+    Message message = new Message("Test Order");
 
-      assertDoesNotThrow(() -> producerWithError.publish("test-topic", message));
-      assertEquals(1, failingProducer.history().size());
-      failingProducer.errorNext(new RuntimeException("Kafka publish error"));
-    }
+    assertDoesNotThrow(() -> producerWithError.publish("test-topic", message));
+    assertEquals(1, failingProducer.history().size());
+
+    // Trigger error callback BEFORE closing so the exception != null branch is covered
+    failingProducer.errorNext(new RuntimeException("Kafka publish error"));
+
+    assertDoesNotThrow(() -> producerWithError.close());
+    assertTrue(failingProducer.closed());
   }
 
   @Test

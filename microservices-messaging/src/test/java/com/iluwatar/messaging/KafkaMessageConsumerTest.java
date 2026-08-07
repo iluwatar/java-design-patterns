@@ -51,8 +51,7 @@ class KafkaMessageConsumerTest {
   void setUp() {
     mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
     handlerCalled = new AtomicBoolean(false);
-    kafkaMessageConsumer =
-        new KafkaMessageConsumer(mockConsumer, "test-topic", msg -> handlerCalled.set(true));
+    kafkaMessageConsumer = new KafkaMessageConsumer(mockConsumer, "test-topic", msg -> handlerCalled.set(true));
   }
 
   @Test
@@ -113,5 +112,25 @@ class KafkaMessageConsumerTest {
   @Test
   void testCloseStopsConsumer() {
     assertDoesNotThrow(() -> kafkaMessageConsumer.close());
+  }
+
+  @Test
+  void testRunWhenAlreadyStopped() {
+    // Stop the consumer before run() so the while loop exits immediately
+    kafkaMessageConsumer.stop();
+
+    // run() should complete without processing any records
+    assertDoesNotThrow(() -> kafkaMessageConsumer.run());
+    assertTrue(mockConsumer.closed(), "Consumer should be closed even when stopped before run");
+  }
+
+  @Test
+  void testRunHandlesConsumerException() {
+    // Schedule a WakeupException during poll to trigger the outer catch block
+    mockConsumer.schedulePollTask(() -> mockConsumer.wakeup());
+
+    // run() must not propagate the exception
+    assertDoesNotThrow(() -> kafkaMessageConsumer.run());
+    assertTrue(mockConsumer.closed(), "Consumer should be closed after exception");
   }
 }
