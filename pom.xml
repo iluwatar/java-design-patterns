@@ -498,7 +498,7 @@
         <configuration>
           <java>
             <googleJavaFormat>
-              <version>1.27.0</version> <!-- Optional: choose the GJF version -->
+              <version>1.17.0</version> <!-- Optional: choose the GJF version -->
             </googleJavaFormat>
           </java>
         </configuration>
