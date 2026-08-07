@@ -69,23 +69,21 @@ public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
   private static final String BOOTSTRAP_SERVERS = "localhost:9092";
 
+  /** Sleep duration between operations in milliseconds. Package-private for testing. */
+  static long sleepMs = 2000;
+
   /**
    * Program entry point.
    *
    * @param args command line arguments
    */
   public static void main(String[] args) throws InterruptedException {
-    LOGGER.info("Starting Microservices Messaging Pattern with Apache Kafka");
-
-    // Create Kafka producer
     KafkaMessageProducer producer = new KafkaMessageProducer(BOOTSTRAP_SERVERS);
 
-    // Create consumer services
     InventoryService inventoryService = new InventoryService();
     PaymentService paymentService = new PaymentService();
     NotificationService notificationService = new NotificationService();
 
-    // Create Kafka consumers
     KafkaMessageConsumer inventoryConsumer =
         new KafkaMessageConsumer(
             BOOTSTRAP_SERVERS, "inventory-group", "order-topic", inventoryService::handleMessage);
@@ -101,6 +99,25 @@ public class App {
             "order-topic",
             notificationService::handleMessage);
 
+    run(producer, inventoryConsumer, paymentConsumer, notificationConsumer);
+  }
+
+  /**
+   * Runs the Microservices Messaging Pattern demonstration.
+   *
+   * @param producer the Kafka message producer
+   * @param inventoryConsumer the inventory service consumer
+   * @param paymentConsumer the payment service consumer
+   * @param notificationConsumer the notification service consumer
+   */
+  static void run(
+      KafkaMessageProducer producer,
+      KafkaMessageConsumer inventoryConsumer,
+      KafkaMessageConsumer paymentConsumer,
+      KafkaMessageConsumer notificationConsumer)
+      throws InterruptedException {
+    LOGGER.info("Starting Microservices Messaging Pattern with Apache Kafka");
+
     // Start consumers in separate threads
     ExecutorService executor = Executors.newFixedThreadPool(3);
     executor.submit(inventoryConsumer);
@@ -108,7 +125,7 @@ public class App {
     executor.submit(notificationConsumer);
 
     // Give consumers time to subscribe
-    Thread.sleep(2000);
+    Thread.sleep(sleepMs);
 
     // Create producer service
     OrderService orderService = new OrderService(producer);
@@ -117,17 +134,17 @@ public class App {
     LOGGER.info("\n=== Creating Order ===");
     orderService.createOrder("ORDER-001");
 
-    Thread.sleep(2000);
+    Thread.sleep(sleepMs);
 
     LOGGER.info("\n=== Updating Order ===");
     orderService.updateOrder("ORDER-001");
 
-    Thread.sleep(2000);
+    Thread.sleep(sleepMs);
 
     LOGGER.info("\n=== Cancelling Order ===");
     orderService.cancelOrder("ORDER-001");
 
-    Thread.sleep(2000);
+    Thread.sleep(sleepMs);
 
     // Cleanup
     LOGGER.info("\nShutting down...");

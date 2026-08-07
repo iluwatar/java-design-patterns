@@ -83,4 +83,11 @@ class KafkaMessageProducerTest {
     assertDoesNotThrow(() -> kafkaMessageProducer.close());
     assertTrue(mockProducer.closed());
   }
+
+  @Test
+  void testPublishNullMessageCatchesException() {
+    // Passing null causes message.getId() to throw NPE, which is caught by the
+    // catch(Exception e) block — covering the "Error serializing message" log branch.
+    assertDoesNotThrow(() -> kafkaMessageProducer.publish("test-topic", null));
+  }
 }

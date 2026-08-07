@@ -51,7 +51,8 @@ class KafkaMessageConsumerTest {
   void setUp() {
     mockConsumer = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
     handlerCalled = new AtomicBoolean(false);
-    kafkaMessageConsumer = new KafkaMessageConsumer(mockConsumer, "test-topic", msg -> handlerCalled.set(true));
+    kafkaMessageConsumer =
+        new KafkaMessageConsumer(mockConsumer, "test-topic", msg -> handlerCalled.set(true));
   }
 
   @Test

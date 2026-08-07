@@ -25,14 +25,61 @@
 package com.iluwatar.messaging;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.apache.kafka.clients.consumer.MockConsumer;
+import org.apache.kafka.clients.consumer.OffsetResetStrategy;
+import org.apache.kafka.clients.producer.MockProducer;
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /** Unit tests for {@link App}. Tests main application entry point. */
 class AppTest {
 
+  @BeforeEach
+  void setUp() {
+    // Speed up sleeps so tests finish instantly
+    App.sleepMs = 0;
+  }
+
+  @AfterEach
+  void tearDown() {
+    // Restore default so other contexts are unaffected
+    App.sleepMs = 2000;
+  }
+
   @Test
   void testAppConstructor() {
-    assertDoesNotThrow(() -> new App());
+    assertNotNull(new App(), "App should be instantiable");
+  }
+
+  @Test
+  void testRunWithMockObjects() {
+    // Build mock-backed producer and consumers — no Kafka broker required
+    MockProducer<String, String> mockProducer =
+        new MockProducer<>(true, new StringSerializer(), new StringSerializer());
+    KafkaMessageProducer producer = new KafkaMessageProducer(mockProducer);
+
+    MockConsumer<String, String> mc1 = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
+    MockConsumer<String, String> mc2 = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
+    MockConsumer<String, String> mc3 = new MockConsumer<>(OffsetResetStrategy.EARLIEST);
+
+    KafkaMessageConsumer inventoryConsumer =
+        new KafkaMessageConsumer(mc1, "order-topic", msg -> {});
+    KafkaMessageConsumer paymentConsumer = new KafkaMessageConsumer(mc2, "order-topic", msg -> {});
+    KafkaMessageConsumer notificationConsumer =
+        new KafkaMessageConsumer(mc3, "order-topic", msg -> {});
+
+    // Stop consumers immediately so their poll loops exit right away in the executor threads
+    inventoryConsumer.stop();
+    paymentConsumer.stop();
+    notificationConsumer.stop();
+
+    // sleepMs == 0, so all Thread.sleep(sleepMs) return instantly — full run() coverage
+    assertDoesNotThrow(
+        () -> App.run(producer, inventoryConsumer, paymentConsumer, notificationConsumer),
+        "App.run() should complete without throwing");
   }
 }
