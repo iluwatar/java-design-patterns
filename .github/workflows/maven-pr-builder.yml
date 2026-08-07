@@ -33,20 +33,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-      
 
-      # Start Kafka Docker Service for microservices-messaging
-      - name: Start Kafka Docker Service
-        run: docker compose -f microservices-messaging/docker-compose.yml up -d --wait
-
       # Some tests need screen access
       - name: Install xvfb
         run: sudo apt-get install -y xvfb
 
       - name: Build with Maven
         run: xvfb-run ./mvnw clean verify
-
-      - name: Stop Kafka Docker Service
-        if: always()
-        run: docker compose -f microservices-messaging/docker-compose.yml down
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5

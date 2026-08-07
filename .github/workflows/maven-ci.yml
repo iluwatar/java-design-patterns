@@ -41,10 +41,6 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
 
-      # Start Kafka Docker Service for microservices-messaging
-      - name: Start Kafka Docker Service
-        run: docker compose -f microservices-messaging/docker-compose.yml up -d --wait
-
       # Some tests need screen access
       - name: Install xvfb
         run: sudo apt-get install -y xvfb
@@ -55,10 +51,6 @@ jobs:
           # These two env variables are needed for sonar analysis
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-      - name: Stop Kafka Docker Service
-        if: always()
-        run: docker compose -f microservices-messaging/docker-compose.yml down
 
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v5
