@@ -3737,6 +3737,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "arnabnandy7",
+      "name": "Arnab Nandy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/5053648?v=4",
+      "profile": "https://github.com/arnabnandy-cognizant",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 6,
