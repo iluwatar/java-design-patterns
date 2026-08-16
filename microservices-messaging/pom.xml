@@ -41,7 +41,7 @@
     <version>1.26.0-SNAPSHOT</version>
 
     <properties>
-        <kafka.version>3.6.1</kafka.version>
+        <kafka.version>3.9.2</kafka.version>
     </properties>
 
     <dependencies>
