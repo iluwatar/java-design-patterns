@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-411-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-412-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -609,6 +609,7 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/SrGiuliano77"><img src="https://avatars.githubusercontent.com/u/128543464?v=4?s=100" width="100px;" alt="Giuliano Oliveira"/><br /><sub><b>Giuliano Oliveira</b></sub></a><br /><a href="#translation-SrGiuliano77" title="Translation">🌍</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://www.priyanshu-portfolio.co.in"><img src="https://avatars.githubusercontent.com/u/222148451?v=4?s=100" width="100px;" alt="Priyanshu"/><br /><sub><b>Priyanshu</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=priyanshuvishwakarma273403" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/arnabnandy-cognizant"><img src="https://avatars.githubusercontent.com/u/5053648?v=4?s=100" width="100px;" alt="Arnab Nandy"/><br /><sub><b>Arnab Nandy</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=arnabnandy7" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/MohamedMBG"><img src="https://avatars.githubusercontent.com/u/123114744?v=4?s=100" width="100px;" alt="BAGHDAD Mohamed"/><br /><sub><b>BAGHDAD Mohamed</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=MohamedMBG" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
