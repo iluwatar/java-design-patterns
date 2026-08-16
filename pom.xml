@@ -170,6 +170,7 @@
     <module>microservices-idempotent-consumer</module>
     <module>microservices-log-aggregation</module>
     <module>microservices-self-registration</module>
+    <module>microservices-messaging</module>
     <module>model-view-controller</module>
     <module>model-view-intent</module>
     <module>model-view-presenter</module>
@@ -453,6 +454,7 @@
                 <exclude>src/test/resources/**</exclude>
                 <exclude>src/main/resources/**</exclude>
                 <exclude>checkstyle-suppressions.xml</exclude>
+                <exclude>**/*.ps1</exclude>
               </excludes>
             </licenseSet>
           </licenseSets>
