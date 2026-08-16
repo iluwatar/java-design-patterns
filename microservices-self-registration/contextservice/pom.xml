@@ -70,7 +70,7 @@
             <plugin>
                 <groupId>com.diffplug.spotless</groupId>
                 <artifactId>spotless-maven-plugin</artifactId>
-                <version>2.44.4</version>
+                <version>3.8.0</version>
                 <executions>
                     <execution>
                         <goals>
