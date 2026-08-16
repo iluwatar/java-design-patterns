@@ -80,6 +80,7 @@
     <module>anti-corruption-layer</module>
     <module>arrange-act-assert</module>
     <module>async-method-invocation</module>
+    <module>backends-for-frontends</module>
     <module>balking</module>
     <module>bloc</module>
     <module>bridge</module>
