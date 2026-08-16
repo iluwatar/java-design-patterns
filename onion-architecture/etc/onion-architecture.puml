@@ -1,0 +1,237 @@
+@startuml onion-architecture
+
+skinparam packageStyle rectangle
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam defaultFontSize 11
+skinparam classAttributeIconSize 0
+skinparam ArrowColor #444444
+skinparam ArrowThickness 1.2
+
+skinparam package {
+  BackgroundColor<<domain>>         #FFF9C4
+  BorderColor<<domain>>             #F9A825
+  FontColor<<domain>>               #5D4037
+  FontStyle<<domain>>               bold
+}
+
+skinparam package {
+  BackgroundColor<<application>>    #C8E6C9
+  BorderColor<<application>>        #388E3C
+  FontColor<<application>>          #1B5E20
+  FontStyle<<application>>          bold
+}
+
+skinparam package {
+  BackgroundColor<<infrastructure>> #BBDEFB
+  BorderColor<<infrastructure>>     #1976D2
+  FontColor<<infrastructure>>       #0D47A1
+  FontStyle<<infrastructure>>       bold
+}
+
+' ─────────────────────────────────────────────────────────────────────────────
+' DOMAIN LAYER (innermost)
+' ─────────────────────────────────────────────────────────────────────────────
+package "Domain Layer" <<domain>> {
+
+  package "model" {
+    class Person {
+      - id : Long
+      - firstName : String
+      - lastName : String
+      - age : int
+      - phoneNumber : String
+      - email : String
+      - category : Category
+      + getId() : Long
+      + getFirstName() : String
+      + getLastName() : String
+      + getAge() : int
+      + getPhoneNumber() : String
+      + getEmail() : String
+      + getCategory() : Category
+    }
+
+    class Category {
+      - id : Long
+      - type : String
+      + getId() : Long
+      + getType() : String
+    }
+  }
+
+  package "repository" {
+    interface PersonRepository {
+      + findById(id : Long) : Optional<Person>
+      + findByFirstName(firstName : String) : Optional<Person>
+      + findByLastName(lastName : String) : Optional<Person>
+      + findAll() : Optional<List<Person>>
+      + save(person : Person) : Person
+      + deleteById(id : Long) : boolean
+    }
+  }
+
+  package "exception" {
+    class DomainException {
+      + DomainException(message : String)
+    }
+  }
+}
+
+' ─────────────────────────────────────────────────────────────────────────────
+' APPLICATION LAYER
+' ─────────────────────────────────────────────────────────────────────────────
+package "Application Layer" <<application>> {
+
+  package "usecase" {
+    class SavePersonUseCase {
+      - repository : PersonRepository
+      + SavePersonUseCase(repository : PersonRepository)
+      + execute(command : SavePersonCommand) : PersonResponse
+    }
+
+    class GetPersonUseCase {
+      - repository : PersonRepository
+      + GetPersonUseCase(repository : PersonRepository)
+      + execute(id : Long) : PersonResponse
+      + executeAll() : List<PersonResponse>
+    }
+  }
+
+  package "dto" {
+    class SavePersonCommand <<record>> {
+      firstName : String
+      lastName : String
+      age : int
+      phoneNumber : String
+      email : String
+      address : String
+      categoryId : Long
+      categoryType : String
+    }
+
+    class PersonResponse <<record>> {
+      id : Long
+      firstName : String
+      lastName : String
+      age : int
+      phoneNumber : String
+      email : String
+      categoryId : Long
+      categoryType : String
+    }
+  }
+}
+
+' ─────────────────────────────────────────────────────────────────────────────
+' INFRASTRUCTURE LAYER (outermost)
+' ─────────────────────────────────────────────────────────────────────────────
+package "Infrastructure Layer" <<infrastructure>> {
+
+  package "web" {
+    class PersonController {
+      - savePersonUseCase : SavePersonUseCase
+      - getPersonUseCase : GetPersonUseCase
+      + getPerson(id : Long) : ResponseEntity<PersonResponse>
+      + getAllPersons() : ResponseEntity<List<PersonResponse>>
+      + savePerson(command : SavePersonCommand) : ResponseEntity<PersonResponse>
+    }
+  }
+
+  package "persistence" {
+    class PersonRepositoryAdapter {
+      - repository : SpringDataPersonRepository
+      + findById(id : Long) : Optional<Person>
+      + findByFirstName(firstName : String) : Optional<Person>
+      + findByLastName(lastName : String) : Optional<Person>
+      + findAll() : Optional<List<Person>>
+      + save(person : Person) : Person
+      + deleteById(id : Long) : boolean
+    }
+
+    interface SpringDataPersonRepository {
+      + findByFirstName(firstName : String) : Optional<JpaPersonEntity>
+      + findByLastName(lastName : String) : Optional<JpaPersonEntity>
+    }
+
+    class JpaPersonEntity {
+      - id : Long
+      - firstName : String
+      - lastName : String
+      - age : int
+      - phoneNumber : String
+      - email : String
+      - category : JpaCategoryEntity
+    }
+
+    class JpaCategoryEntity {
+      - id : Long
+      - type : String
+    }
+  }
+
+  package "config" {
+    class ApplicationConfig <<@Configuration>> {
+      + savePersonUseCase(repo : PersonRepository) : SavePersonUseCase
+      + getPersonUseCase(repo : PersonRepository) : GetPersonUseCase
+    }
+
+    class Application <<@SpringBootApplication>> {
+      + main(args : String[])
+    }
+  }
+}
+
+' ─────────────────────────────────────────────────────────────────────────────
+' DOMAIN: internal relationships
+' ─────────────────────────────────────────────────────────────────────────────
+Person "1" *-- "1" Category : has
+Person ..> DomainException : <<throws>>
+Category ..> DomainException : <<throws>>
+
+' ─────────────────────────────────────────────────────────────────────────────
+' APPLICATION → DOMAIN
+' ─────────────────────────────────────────────────────────────────────────────
+SavePersonUseCase --> PersonRepository : uses
+SavePersonUseCase ..> Person : creates
+SavePersonUseCase ..> Category : creates
+SavePersonUseCase ..> PersonResponse : returns
+SavePersonUseCase ..> SavePersonCommand : receives
+
+GetPersonUseCase --> PersonRepository : uses
+GetPersonUseCase ..> PersonResponse : returns
+
+' ─────────────────────────────────────────────────────────────────────────────
+' INFRASTRUCTURE → APPLICATION / DOMAIN
+' ─────────────────────────────────────────────────────────────────────────────
+PersonController --> SavePersonUseCase : delegates to
+PersonController --> GetPersonUseCase : delegates to
+PersonController ..> DomainException : catches
+
+PersonRepositoryAdapter ..|> PersonRepository : implements
+PersonRepositoryAdapter --> SpringDataPersonRepository : uses
+PersonRepositoryAdapter ..> JpaPersonEntity : maps
+PersonRepositoryAdapter ..> JpaCategoryEntity : maps
+PersonRepositoryAdapter ..> Person : maps to / from
+PersonRepositoryAdapter ..> Category : maps to / from
+
+SpringDataPersonRepository --> JpaPersonEntity : manages
+JpaPersonEntity "1" *-- "1" JpaCategoryEntity : contains
+
+ApplicationConfig ..> SavePersonUseCase : <<@Bean>>
+ApplicationConfig ..> GetPersonUseCase : <<@Bean>>
+ApplicationConfig --> PersonRepository : injects
+
+legend right
+  <b>Layer dependency rule</b>
+  Infrastructure  →  Application  →  Domain
+  Outer layers depend on inner layers.
+  Domain has NO external dependencies.
+  ----
+  <color:#F9A825>■</color> Domain Layer
+  <color:#388E3C>■</color> Application Layer
+  <color:#1976D2>■</color> Infrastructure Layer
+endlegend
+
+@enduml
+

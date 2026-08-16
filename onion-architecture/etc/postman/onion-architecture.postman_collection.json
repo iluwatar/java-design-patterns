@@ -1,0 +1,83 @@
+{
+  "info": {
+    "_postman_id": "79aca374-7080-46c1-938f-89b327a84d6a",
+    "name": "onion-architecture",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51221021",
+    "_collection_link": "https://go.postman.co/collection/51221021-79aca374-7080-46c1-938f-89b327a84d6a?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "savePerson",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"number1\": 5,\r\n        \"number2\": 3,\r\n        \"operation\": \"multiply\"\r\n      }"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/persons",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "persons"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getPersons",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n        \"number1\": 5,\r\n        \"number2\": 3,\r\n        \"operation\": \"multiply\"\r\n      }"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/persons",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "persons"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getPersonById",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/persons/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "persons",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
