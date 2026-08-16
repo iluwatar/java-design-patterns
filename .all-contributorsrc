@@ -3746,6 +3746,15 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "MohamedMBG",
+      "name": "BAGHDAD Mohamed",
+      "avatar_url": "https://avatars.githubusercontent.com/u/123114744?v=4",
+      "profile": "https://github.com/MohamedMBG",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 6,
