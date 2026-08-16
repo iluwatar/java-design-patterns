@@ -208,6 +208,7 @@
     <module>resource-acquisition-is-initialization</module>
     <module>retry</module>
     <module>role-object</module>
+    <module>rule-engine</module>
     <module>saga</module>
     <module>separated-interface</module>
     <module>serialized-entity</module>
