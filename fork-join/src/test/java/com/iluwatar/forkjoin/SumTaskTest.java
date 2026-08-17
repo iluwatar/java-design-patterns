@@ -1,6 +1,8 @@
 package com.iluwatar.forkjoin;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 import java.util.concurrent.ForkJoinPool;
 import java.util.stream.LongStream;
