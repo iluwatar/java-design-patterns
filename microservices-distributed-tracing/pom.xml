@@ -52,7 +52,7 @@
         <dependency>
             <groupId>io.zipkin.reporter2</groupId>
             <artifactId>zipkin-reporter-brave</artifactId>
-            <version>3.5.0</version>
+            <version>3.5.3</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
