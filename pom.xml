@@ -371,6 +371,11 @@
         <artifactId>h2</artifactId>
         <version>${h2.version}</version>
       </dependency>
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>6.2.11</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
   <dependencies>
