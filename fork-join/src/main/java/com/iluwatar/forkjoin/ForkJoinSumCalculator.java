@@ -3,21 +3,18 @@ package com.iluwatar.forkjoin;
 import java.util.concurrent.ForkJoinPool;
 
 /**
- * ForkJoinSumCalculator provides a convenient API to sum an array of numbers using
- * the Fork/Join framework. It creates a {@link ForkJoinPool}, submits a {@link SumTask},
- * and returns the computed sum.
+ * ForkJoinSumCalculator provides a convenient API to sum an array of numbers using the Fork/Join
+ * framework. It creates a {@link ForkJoinPool}, submits a {@link SumTask}, and returns the computed
+ * sum.
  *
- * The pool manages a set of worker threads that process subtasks in parallel.
- * Idle threads can "steal" work from busy threads, maximizing CPU utilization.
- *
+ * <p>The pool manages a set of worker threads that process subtasks in parallel. Idle threads can
+ * "steal" work from busy threads, maximizing CPU utilization.
  */
 public class ForkJoinSumCalculator {
 
   private final ForkJoinPool pool;
 
-  /**
-   * Creates a calculator using the common ForkJoinPool (uses all available CPU cores).
-   */
+  /** Creates a calculator using the common ForkJoinPool (uses all available CPU cores). */
   public ForkJoinSumCalculator() {
     this.pool = ForkJoinPool.commonPool();
   }

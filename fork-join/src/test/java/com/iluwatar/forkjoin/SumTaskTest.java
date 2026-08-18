@@ -3,7 +3,6 @@ package com.iluwatar.forkjoin;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
 import java.util.concurrent.ForkJoinPool;
 import java.util.stream.LongStream;
 import org.junit.jupiter.api.Test;
@@ -79,8 +78,8 @@ class SumTaskTest {
 
   @Test
   void shouldThrowExceptionWhenStartGreaterThanEnd() {
-      long[] numbers = {1, 2, 3, 4, 5};
+    long[] numbers = {1, 2, 3, 4, 5};
 
-      assertThrows(IllegalArgumentException.class, () -> new SumTask(numbers, 4, 2));
+    assertThrows(IllegalArgumentException.class, () -> new SumTask(numbers, 4, 2));
   }
 }
