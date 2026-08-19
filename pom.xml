@@ -139,6 +139,7 @@
     <module>fluent-interface</module>
     <module>flux</module>
     <module>flyweight</module>
+    <module>fork-join</module>
     <module>front-controller</module>
     <module>function-composition</module>
     <module>game-loop</module>
