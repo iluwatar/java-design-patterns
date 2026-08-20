@@ -32,6 +32,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -51,6 +52,14 @@ class WriteAheadLogTest {
   @AfterEach
   void tearDown() {
     if (tempFile != null && tempFile.exists()) {
+      if (tempFile.isDirectory()) {
+        File[] files = tempFile.listFiles();
+        if (files != null) {
+          for (File f : files) {
+            f.delete();
+          }
+        }
+      }
       tempFile.delete();
     }
   }
@@ -94,5 +103,32 @@ class WriteAheadLogTest {
     List<LogEntry> entries = wal.readAll();
     assertNotNull(entries);
     assertTrue(entries.isEmpty());
+  }
+
+  @Test
+  void testReadAllIOExceptionHandling() throws IOException {
+    File dir = Files.createTempDirectory("wal_dir_test").toFile();
+    WriteAheadLog dirWal = new WriteAheadLog(dir);
+
+    List<LogEntry> entries = dirWal.readAll();
+    assertNotNull(entries);
+    assertTrue(entries.isEmpty());
+
+    dir.delete();
+  }
+
+  @Test
+  void testClearIOExceptionHandling() throws IOException {
+    File dir = Files.createTempDirectory("wal_nonempty_dir_test").toFile();
+    File child = new File(dir, "child.txt");
+    child.createNewFile();
+
+    WriteAheadLog dirWal = new WriteAheadLog(dir);
+    dirWal.clear();
+
+    assertTrue(dir.exists());
+
+    child.delete();
+    dir.delete();
   }
 }
