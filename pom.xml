@@ -252,6 +252,7 @@
     <module>view-helper</module>
     <module>virtual-proxy</module>
     <module>visitor</module>
+    <module>write-ahead-log</module>
     <module>backpressure</module>
     <module>actor-model</module>
     <module>rate-limiting-pattern</module>
