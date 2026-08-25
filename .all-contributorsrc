@@ -3791,6 +3791,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "zanarellidev",
+      "name": "zanarelli",
+      "avatar_url": "https://avatars.githubusercontent.com/u/268068569?v=4",
+      "profile": "https://github.com/zanarellidev",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
