@@ -6,7 +6,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=iluwatar_java-design-patterns&metric=coverage)](https://sonarcloud.io/dashboard?id=iluwatar_java-design-patterns)
 [![Join the chat at https://gitter.im/iluwatar/java-design-patterns](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/iluwatar/java-design-patterns?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-414-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-415-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 <br/>
@@ -612,6 +612,9 @@ This project is licensed under the terms of the MIT license.
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/MohamedMBG"><img src="https://avatars.githubusercontent.com/u/123114744?v=4?s=100" width="100px;" alt="BAGHDAD Mohamed"/><br /><sub><b>BAGHDAD Mohamed</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=MohamedMBG" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/AnveshSrivastava"><img src="https://avatars.githubusercontent.com/u/170334970?v=4?s=100" width="100px;" alt="Anvesh Srivastava"/><br /><sub><b>Anvesh Srivastava</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=AnveshSrivastava" title="Code">💻</a></td>
       <td align="center" valign="top" width="16.66%"><a href="https://github.com/Mukul-Howale"><img src="https://avatars.githubusercontent.com/u/110479646?v=4?s=100" width="100px;" alt="Mukul Howale"/><br /><sub><b>Mukul Howale</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=Mukul-Howale" title="Code">💻</a></td>
+    </tr>
+    <tr>
+      <td align="center" valign="top" width="16.66%"><a href="https://github.com/SandhyaDevadiga"><img src="https://avatars.githubusercontent.com/u/128058717?v=4?s=100" width="100px;" alt="Sandhya"/><br /><sub><b>Sandhya</b></sub></a><br /><a href="https://github.com/iluwatar/java-design-patterns/commits?author=SandhyaDevadiga" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
