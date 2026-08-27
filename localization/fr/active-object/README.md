@@ -121,7 +121,7 @@ Désormais, nous pouvons créer plusieurs créatures telles que des orques, leur
 
 ## Diagramme de classe
 
-![alt text](../../../active-object/etc/active-object.urm.png "Active Object class diagram")
+![alt text](./etc/active-object.urm.png "Active Object class diagram")
 
 ## Tutoriels
 

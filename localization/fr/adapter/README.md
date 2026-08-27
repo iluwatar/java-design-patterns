@@ -92,7 +92,7 @@ captain.row();
 ```
 
 ## Diagramme des classes
-![alt text](../../../adapter/etc/adapter.urm.png "Adapter class diagram")
+![alt text](./etc/adapter.urm.png "Adapter class diagram")
 
 ## Application
 Utiliser le pattron de conception adapter lorsque

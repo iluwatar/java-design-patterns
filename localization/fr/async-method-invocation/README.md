@@ -148,7 +148,7 @@ Voici la sortie de la console du programme.
 
 # Diagramme de classes
 
-![alt text](../../../async-method-invocation/etc/async-method-invocation.png "Async Method Invocation")
+![alt text](./etc/async-method-invocation.png "Async Method Invocation")
 
 ## Application
 

@@ -193,7 +193,7 @@ The item's glow fades.
 
 ## Diagramme de classes
 
-![alt text](../../../bridge/etc/bridge.urm.png "Bridge class diagram")
+![alt text](./etc/bridge.urm.png "Bridge class diagram")
 
 ## Application
 

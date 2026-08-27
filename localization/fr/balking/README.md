@@ -114,7 +114,7 @@ Voici la sortie de la console du programme.
 
 ## Diagramme de classe
 
-![alt text](../../../balking/etc/balking.png "Balking")
+![alt text](./etc/balking.png "Balking")
 
 ## Application
 

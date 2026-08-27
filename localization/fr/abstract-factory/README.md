@@ -176,7 +176,7 @@ public static class FactoryMaker {
 
 ## Diagramme de classes
 
-![alt text](../../../abstract-factory/etc/abstract-factory.urm.png "Abstract Factory class diagram")
+![alt text](./etc/abstract-factory.urm.png "Abstract Factory class diagram")
 
 
 ## Application
