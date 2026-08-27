@@ -244,6 +244,7 @@
     <module>tolerant-reader</module>
     <module>trampoline</module>
     <module>transaction-script</module>
+    <module>transactional-outbox</module>
     <module>twin</module>
     <module>type-object</module>
     <module>unit-of-work</module>
