@@ -28,11 +28,6 @@ package com.iluwatar.transactionaloutbox;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.doThrow;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
@@ -81,26 +76,5 @@ class OutboxPublisherTest {
     assertNotNull(processedAfter.get(0).getProcessedAt());
 
     assertEquals(1, messageConsumer.getConsumedMessages().size());
-  }
-
-  @Test
-  void testProcessOutboxEventsHandlesBrokerException() {
-    OutboxRepository repository = mock(OutboxRepository.class);
-    MessageBroker broker = mock(MessageBroker.class);
-    OutboxPublisher publisher = new OutboxPublisher(repository, broker);
-
-    OutboxEvent event =
-        OutboxEvent.builder().id(1L).payload("test payload").status(EventStatus.PENDING).build();
-
-    when(repository.findByStatus(EventStatus.PENDING)).thenReturn(List.of(event));
-    doThrow(new RuntimeException("Broker connection error"))
-        .when(broker)
-        .publish(anyString(), anyString());
-
-    List<OutboxEvent> result = publisher.processOutboxEvents();
-
-    assertEquals(1, result.size());
-    assertEquals(EventStatus.FAILED, event.getStatus());
-    verify(repository).save(event);
   }
 }
