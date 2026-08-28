@@ -26,6 +26,7 @@
 package com.iluwatar.transactionaloutbox;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,7 +54,7 @@ public class OrderService {
    */
   @Transactional
   public Order createOrder(String customerName, String productName, double amount) {
-    var now = LocalDateTime.now();
+    var now = LocalDateTime.now(ZoneOffset.UTC);
 
     var order =
         Order.builder()

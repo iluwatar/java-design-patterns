@@ -26,23 +26,26 @@
 package com.iluwatar.transactionaloutbox;
 
 import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 /** Background publisher polling PENDING outbox events and dispatching to message broker. */
 @Component
-@RequiredArgsConstructor
 public class OutboxPublisher {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(OutboxPublisher.class);
 
   private final OutboxRepository outboxRepository;
   private final MessageBroker messageBroker;
+
+  public OutboxPublisher(OutboxRepository outboxRepository, MessageBroker messageBroker) {
+    this.outboxRepository = outboxRepository;
+    this.messageBroker = messageBroker;
+  }
 
   /**
    * Periodically polls pending outbox events from database and dispatches them to the message
@@ -58,7 +61,6 @@ public class OutboxPublisher {
    *
    * @return list of processed outbox events
    */
-  @Transactional
   public List<OutboxEvent> processOutboxEvents() {
     List<OutboxEvent> pendingEvents = outboxRepository.findByStatus(EventStatus.PENDING);
     if (pendingEvents.isEmpty()) {
@@ -71,7 +73,7 @@ public class OutboxPublisher {
       try {
         messageBroker.publish("order-events", event.getPayload());
         event.setStatus(EventStatus.PROCESSED);
-        event.setProcessedAt(LocalDateTime.now());
+        event.setProcessedAt(LocalDateTime.now(ZoneOffset.UTC));
         outboxRepository.save(event);
         LOGGER.info("Successfully published outbox event ID [{}]", event.getId());
       } catch (Exception e) {
