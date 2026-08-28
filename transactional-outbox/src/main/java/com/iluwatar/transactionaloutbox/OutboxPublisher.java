@@ -47,10 +47,17 @@ public class OutboxPublisher {
   /**
    * Periodically polls pending outbox events from database and dispatches them to the message
    * broker.
+   */
+  @Scheduled(fixedDelay = 5000)
+  public void publishOutboxEvents() {
+    processOutboxEvents();
+  }
+
+  /**
+   * Process pending outbox events from the database and dispatch them to the message broker.
    *
    * @return list of processed outbox events
    */
-  @Scheduled(fixedDelay = 5000)
   @Transactional
   public List<OutboxEvent> processOutboxEvents() {
     List<OutboxEvent> pendingEvents = outboxRepository.findByStatus(EventStatus.PENDING);
