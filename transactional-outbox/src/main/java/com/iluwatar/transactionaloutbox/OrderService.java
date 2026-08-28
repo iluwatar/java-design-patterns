@@ -27,15 +27,17 @@ package com.iluwatar.transactionaloutbox;
 
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 /** Service responsible for managing orders and writing outbox events atomically. */
-@Slf4j
 @Service
 @RequiredArgsConstructor
 public class OrderService {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(OrderService.class);
 
   private final OrderRepository orderRepository;
   private final OutboxRepository outboxRepository;

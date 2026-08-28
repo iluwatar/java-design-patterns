@@ -28,16 +28,18 @@ package com.iluwatar.transactionaloutbox;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 /** Background publisher polling PENDING outbox events and dispatching to message broker. */
-@Slf4j
 @Component
 @RequiredArgsConstructor
 public class OutboxPublisher {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(OutboxPublisher.class);
 
   private final OutboxRepository outboxRepository;
   private final MessageBroker messageBroker;

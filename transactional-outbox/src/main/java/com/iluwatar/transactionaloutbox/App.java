@@ -26,7 +26,8 @@
 package com.iluwatar.transactionaloutbox;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -40,11 +41,12 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * business entity update. A background polling process then dispatches pending outbox events to a
  * message broker.
  */
-@Slf4j
 @EnableScheduling
 @SpringBootApplication
 @RequiredArgsConstructor
 public class App implements CommandLineRunner {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
 
   private final OrderService orderService;
   private final OutboxPublisher outboxPublisher;
