@@ -59,7 +59,7 @@ This project is licensed under the terms of the MIT license.
 <table>
   <tr>
     <td align="center" width="32%">
-      <a href="https://serpapi.com/">
+      <a href="https://serpapi.com/?utm_source=javadesignpatterns">
         <picture>
           <source media="(prefers-color-scheme: dark)" srcset="assets/banner-wide-white.svg">
           <source media="(prefers-color-scheme: light)" srcset="assets/banner-wide-black.svg">
@@ -68,7 +68,7 @@ This project is licensed under the terms of the MIT license.
       </a>
     </td>
     <td valign="middle">
-      <h3><a href="https://serpapi.com/">SerpApi</a></h3>
+      <h3><a href="https://serpapi.com/?utm_source=javadesignpatterns">SerpApi</a></h3>
       <p>SerpApi is the world’s leading provider of search data, pioneering APIs that turn search engine results into structured, developer-ready information.</p>
     </td>
   </tr>
