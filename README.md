@@ -61,7 +61,7 @@ This project is licensed under the terms of the MIT license.
     <td align="center" width="32%">
       <a href="https://serpapi.com/?utm_source=javadesignpatterns">
         <picture>
-          <source media="(prefers-color-scheme: dark)" srcset="assets/banner-wide-white.svg">
+          <source media="(prefers-color-scheme: dark)" srcset="assets/banner-wide.svg">
           <source media="(prefers-color-scheme: light)" srcset="assets/banner-wide-black.svg">
           <img src="assets/banner-wide-black.svg" width="280" alt="SerpApi logo">
         </picture>
