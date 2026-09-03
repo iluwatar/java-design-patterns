@@ -54,6 +54,26 @@ The project contributors can get the book for free. Contact the maintainer via [
 
 This project is licensed under the terms of the MIT license.
 
+# Supporters
+
+<table>
+  <tr>
+    <td align="center" width="32%">
+      <a href="https://serpapi.com/?utm_source=javadesignpatterns">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="assets/banner-wide.svg">
+          <source media="(prefers-color-scheme: light)" srcset="assets/banner-wide-black.svg">
+          <img src="assets/banner-wide-black.svg" width="280" alt="SerpApi logo">
+        </picture>
+      </a>
+    </td>
+    <td valign="middle">
+      <h3><a href="https://serpapi.com/?utm_source=javadesignpatterns">SerpApi</a></h3>
+      <p>SerpApi is the world’s leading provider of search data, pioneering APIs that turn search engine results into structured, developer-ready information.</p>
+    </td>
+  </tr>
+</table>
+
 # Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
