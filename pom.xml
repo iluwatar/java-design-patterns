@@ -260,6 +260,7 @@
     <module>rate-limiting-pattern</module>
     <module>fallback</module>
     <module>onion-architecture</module>
+    <module>service-oriented-architecture</module>
   </modules>
   <repositories>
     <repository>
