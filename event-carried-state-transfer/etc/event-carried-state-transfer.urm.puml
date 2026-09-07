@@ -1,0 +1,99 @@
+@startuml
+package com.iluwatar.eventcarriedstatetransfer {
+  class CustomerState {
+    - customerId : String
+    - name : String
+    - shippingAddress : String
+    - creditLimit : BigDecimal
+    - version : long
+    + CustomerState(customerId : String, name : String, shippingAddress : String, creditLimit : BigDecimal, version : long)
+    + customerId() : String
+    + name() : String
+    + shippingAddress() : String
+    + creditLimit() : BigDecimal
+    + version() : long
+    + withShippingAddress(newAddress : String) : CustomerState
+    + withCreditLimit(newLimit : BigDecimal) : CustomerState
+  }
+  class CustomerUpdatedEvent {
+    - eventId : long
+    - occurredAt : Instant
+    - state : CustomerState
+    + CustomerUpdatedEvent(eventId : long, occurredAt : Instant, state : CustomerState)
+    + eventId() : long
+    + occurredAt() : Instant
+    + state() : CustomerState
+  }
+  interface EventListener<E> {
+    + onEvent(event : E) : void {abstract}
+  }
+  class EventBus {
+    - listeners : Map<Class<?>, List<EventListener<?>>>
+    + EventBus()
+    + subscribe(eventType : Class<E>, listener : EventListener<? super E>) : void
+    + publish(event : Object) : void
+  }
+  class CustomerService {
+    - customers : Map<String, CustomerState>
+    - bus : EventBus
+    - eventSequence : long
+    - online : boolean
+    + CustomerService(bus : EventBus)
+    + register(customerId : String, name : String, shippingAddress : String, creditLimit : BigDecimal) : CustomerState
+    + changeShippingAddress(customerId : String, newAddress : String) : CustomerState
+    + changeCreditLimit(customerId : String, newLimit : BigDecimal) : CustomerState
+    + findCustomer(customerId : String) : Optional<CustomerState>
+    + shutdown() : void
+    + restart() : void
+    + isOnline() : boolean
+  }
+  class CustomerReplica {
+    - customers : Map<String, CustomerState>
+    + CustomerReplica()
+    + apply(event : CustomerUpdatedEvent) : boolean
+    + find(customerId : String) : Optional<CustomerState>
+    + size() : int
+  }
+  class OrderService {
+    - replica : CustomerReplica
+    - orderSequence : long
+    + OrderService(bus : EventBus)
+    + placeOrder(customerId : String, amount : BigDecimal) : Order
+    + replica() : CustomerReplica
+  }
+  class Order {
+    - orderId : String
+    - customerId : String
+    - shippingAddress : String
+    - amount : BigDecimal
+    + Order(orderId : String, customerId : String, shippingAddress : String, amount : BigDecimal)
+    + orderId() : String
+    + customerId() : String
+    + shippingAddress() : String
+    + amount() : BigDecimal
+  }
+  class OrderRejectedException {
+    + OrderRejectedException(message : String)
+  }
+  class App {
+    + App()
+    + main(args : String[]) : void
+  }
+}
+CustomerUpdatedEvent --> CustomerState
+EventBus --> "*" EventListener
+CustomerService --> EventBus
+CustomerService --> "*" CustomerState
+CustomerService ..> CustomerUpdatedEvent : publishes
+CustomerReplica --> "*" CustomerState
+CustomerReplica ..> CustomerUpdatedEvent : applies
+OrderService --> CustomerReplica
+OrderService ..> EventListener : adapts the replica
+OrderService ..> EventBus : subscribes
+OrderService ..> Order : creates
+OrderService ..> OrderRejectedException : throws
+OrderRejectedException --|> RuntimeException
+App ..> EventBus
+App ..> CustomerService
+App ..> OrderService
+@enduml
