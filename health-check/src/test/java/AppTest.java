@@ -33,6 +33,6 @@ class AppTest {
   /** Entry point */
   @Test
   void shouldExecuteApplicationWithoutException() {
-    assertDoesNotThrow(() -> App.main(new String[] {}));
+    assertDoesNotThrow(() -> App.main(new String[] {"test"}));
   }
 }

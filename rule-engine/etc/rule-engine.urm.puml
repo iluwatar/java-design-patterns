@@ -1,0 +1,61 @@
+@startuml
+package com.iluwatar.ruleengine {
+  interface Rule<T> {
+    + name() : String {abstract}
+    + evaluate(context : T) : boolean {abstract}
+    + execute(context : T) : void {abstract}
+  }
+  class RuleEngine<T> {
+    - rules : List<Rule<T>>
+    + RuleEngine(rules : List<Rule<T>>)
+    + run(context : T) : RuleEngineResult
+    + rules() : List<Rule<T>>
+  }
+  class RuleEngineResult {
+    + RuleEngineResult(approved : boolean, passedRules : List<String>, failedRules : List<String>)
+    + approved() : boolean
+    + passedRules() : List<String>
+    + failedRules() : List<String>
+  }
+  class LoanApplication {
+    + LoanApplication(age : int, monthlyIncome : double, loanAmount : double, creditScore : int)
+    + age() : int
+    + monthlyIncome() : double
+    + loanAmount() : double
+    + creditScore() : int
+  }
+  class MinimumAgeRule {
+    - minimumAge : int
+    + MinimumAgeRule(minimumAge : int)
+    + name() : String
+    + evaluate(context : LoanApplication) : boolean
+    + execute(context : LoanApplication) : void
+  }
+  class MinimumIncomeRule {
+    - minimumIncome : double
+    + MinimumIncomeRule(minimumIncome : double)
+    + name() : String
+    + evaluate(context : LoanApplication) : boolean
+    + execute(context : LoanApplication) : void
+  }
+  class CreditScoreRule {
+    - minimumScore : int
+    + CreditScoreRule(minimumScore : int)
+    + name() : String
+    + evaluate(context : LoanApplication) : boolean
+    + execute(context : LoanApplication) : void
+  }
+  class App {
+    + App()
+    + main(args : String[]) : void
+  }
+}
+RuleEngine --> "*" Rule
+RuleEngine ..> RuleEngineResult
+MinimumAgeRule ..|> Rule
+MinimumIncomeRule ..|> Rule
+CreditScoreRule ..|> Rule
+MinimumAgeRule ..> LoanApplication
+MinimumIncomeRule ..> LoanApplication
+CreditScoreRule ..> LoanApplication
+@enduml

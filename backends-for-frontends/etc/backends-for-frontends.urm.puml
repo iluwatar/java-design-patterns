@@ -1,0 +1,130 @@
+@startuml
+package com.iluwatar.bff {
+  class App {
+    - LOGGER : Logger {static}
+    - USER_ID : String {static}
+    - PRODUCT_ID : String {static}
+    - DEMO_PRICE_USD : double {static}
+    - DEMO_STOCK_LEVEL : int {static}
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.bff.bff {
+  interface ClientBff<T> {
+    + getDashboard(userId : String) : T {abstract}
+  }
+  class DesktopBff {
+    - authService : AuthService
+    - orderService : OrderService
+    - supplierService : SupplierService
+    + DesktopBff(auth : AuthService, orders : OrderService, suppliers : SupplierService)
+    + getDashboard(userId : String) : DesktopDashboardResponse
+  }
+  class MobileBff {
+    - MAX_RECENT_ORDERS : int {static}
+    - authService : AuthService
+    - cartService : CartService
+    - orderService : OrderService
+    + MobileBff(auth : AuthService, cart : CartService, orders : OrderService)
+    + getDashboard(userId : String) : MobileDashboardResponse
+  }
+}
+package com.iluwatar.bff.dto {
+  class DesktopDashboardResponse {
+    - greeting : String
+    - loyaltyTier : String
+    - orderStatuses : List<String>
+    - supplierStockSummaries : List<String>
+    + DesktopDashboardResponse(greeting : String, loyaltyTier : String, orderStatuses : List<String>, supplierStockSummaries : List<String>)
+  }
+  class MobileDashboardResponse {
+    - greeting : String
+    - cartItemCount : int
+    - cartTotalUsd : double
+    - recentOrderSummaries : List<String>
+    + MobileDashboardResponse(greeting : String, cartItemCount : int, cartTotalUsd : double, recentOrderSummaries : List<String>)
+  }
+}
+package com.iluwatar.bff.model {
+  class CartItem {
+    - product : Product
+    - quantity : int
+    + CartItem(product : Product, quantity : int)
+    + lineTotal() : double
+  }
+  class Order {
+    - id : String
+    - productName : String
+    - status : String
+    + Order(id : String, productName : String, status : String)
+  }
+  class Product {
+    - id : String
+    - name : String
+    - priceUsd : double
+    + Product(id : String, name : String, priceUsd : double)
+  }
+  class SupplierRecord {
+    - productId : String
+    - supplierName : String
+    - stockLevel : int
+    + SupplierRecord(productId : String, supplierName : String, stockLevel : int)
+  }
+  class User {
+    - id : String
+    - displayName : String
+    - loyaltyTier : String
+    + User(id : String, displayName : String, loyaltyTier : String)
+  }
+}
+package com.iluwatar.bff.service {
+  interface AuthService {
+    + getUser(userId : String) : User {abstract}
+  }
+  interface CartService {
+    + getCart(userId : String) : List<CartItem> {abstract}
+  }
+  interface OrderService {
+    + getOrders(userId : String) : List<Order> {abstract}
+  }
+  interface SupplierService {
+    + getSupplierRecords(productId : String) : List<SupplierRecord> {abstract}
+  }
+}
+package com.iluwatar.bff.service.impl {
+  class InMemoryAuthService {
+    - users : Map<String, User>
+    + InMemoryAuthService(userData : Map<String, User>)
+    + getUser(userId : String) : User
+  }
+  class InMemoryCartService {
+    - cartsByUserId : Map<String, List<CartItem>>
+    + InMemoryCartService(carts : Map<String, List<CartItem>>)
+    + getCart(userId : String) : List<CartItem>
+  }
+  class InMemoryOrderService {
+    - ordersByUserId : Map<String, List<Order>>
+    + InMemoryOrderService(orders : Map<String, List<Order>>)
+    + getOrders(userId : String) : List<Order>
+  }
+  class InMemorySupplierService {
+    - recordsByProductId : Map<String, List<SupplierRecord>>
+    + InMemorySupplierService(records : Map<String, List<SupplierRecord>>)
+    + getSupplierRecords(productId : String) : List<SupplierRecord>
+  }
+}
+DesktopBff ..|> ClientBff
+MobileBff ..|> ClientBff
+DesktopBff --> "-authService" AuthService
+DesktopBff --> "-orderService" OrderService
+DesktopBff --> "-supplierService" SupplierService
+MobileBff --> "-authService" AuthService
+MobileBff --> "-cartService" CartService
+MobileBff --> "-orderService" OrderService
+InMemoryAuthService ..|> AuthService
+InMemoryCartService ..|> CartService
+InMemoryOrderService ..|> OrderService
+InMemorySupplierService ..|> SupplierService
+CartItem --> "-product" Product
+@enduml

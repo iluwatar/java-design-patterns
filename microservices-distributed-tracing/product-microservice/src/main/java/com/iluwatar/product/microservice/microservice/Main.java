@@ -72,6 +72,11 @@ public class Main {
    * @param args command line args
    */
   public static void main(String[] args) {
-    SpringApplication.run(Main.class, args);
+    var context = SpringApplication.run(Main.class, args);
+    if (args.length > 0 && "test".equals(args[0])) {
+      // Close the context immediately during tests to prevent Tomcat/background threads from
+      // hanging the JVM
+      context.close();
+    }
   }
 }
