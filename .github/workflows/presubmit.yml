@@ -25,3 +25,4 @@ jobs:
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
                   LLM_API_KEY: ${{ secrets.LLM_API_KEY }}
+                  # LLM_MODEL removed to avoid model-specific schema/validation issues
