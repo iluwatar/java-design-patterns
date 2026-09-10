@@ -186,7 +186,7 @@ the result of filtered query is [But we loved with a love that was more than lov
 ## 適用性
 在以下情況下使用組合器模式：
 
-- 您可以從更簡單的值建立更復雜的值，但具有相同的型別（它們的組合）
+- 你可以從更簡單的值建立更復雜的值，但具有相同的型別（它們的組合）
 
 ## 好處
 

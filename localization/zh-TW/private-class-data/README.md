@@ -124,4 +124,4 @@ immutableStew.mix();  // Mixing the immutable stew we find: 2 potatoes, 4 carrot
 
 在以下情況下使用私有類資料模式
 
-* 您要阻止對類資料成員的寫訪問。
+* 你要阻止對類資料成員的寫訪問。

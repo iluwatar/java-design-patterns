@@ -101,17 +101,17 @@ tag:
     * 比如，最簡單的方式是使用命令l `aws cloudfront create-distribution --origin-domain-name my-static-website-jh34jsjmg.s3.amazonaws.com --default-root-object index.html`
     * 也支援JSON格式的配置 比如使用 `--distribution-config file://dist-config.json` 來傳遞分發的配置檔案引數
     * 命令的舒勇將顯示準確的分配配置項，包括包括可用於測試的生成的 CloudFront 域名，例如 `d2k3xwnaqa8nqx.cloudfront.net`
-    * CloudFormation 分發部署需要一些時間，但一旦完成，您的網站就會從全球各地的資料中心提供服務！
+    * CloudFormation 分發部署需要一些時間，但一旦完成，你的網站就會從全球各地的資料中心提供服務！
 
-13. 就是這樣！ 您已經實現了一個靜態網站，其內容分發網路以閃電般的速度在世界各地提供服務。
+13. 就是這樣！ 你已經實現了一個靜態網站，其內容分發網路以閃電般的速度在世界各地提供服務。
 
-    * 要更新網站，您需要更新 S3 儲存桶中的物件並使 CloudFront 分配中的物件無效
+    * 要更新網站，你需要更新 S3 儲存桶中的物件並使 CloudFront 分配中的物件無效
     * 要從 AWS CLI 執行此操作，請參閱 [this reference](https://docs.aws.amazon.com/cli/latest/reference/cloudfront/create-invalidation.html)
-    * 您可能想要做的進一步開發是透過 https 提供內容併為您的站點新增域名
+    * 你可能想要做的進一步開發是透過 https 提供內容併為你的站點新增域名
 
 ## 適用性
 
-當您想要執行以下操作時，請使用靜態內容託管模式：
+當你想要執行以下操作時，請使用靜態內容託管模式：
 
 * 最小化包含一些靜態資源的網站和應用程式的託管成本。
 * 使用靜態內容構建全球可用的網站

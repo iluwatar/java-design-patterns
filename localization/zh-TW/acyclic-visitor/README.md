@@ -129,7 +129,7 @@ public class ConfigureForUnixVisitor implements ZoomVisitor {
 
 * 需要在現有層次結構中新增新功能而無需更改或影響該層次結構時。
 * 當某些功能在層次結構上執行，但不屬於層次結構本身時。 例如 ConfigureForDOS / ConfigureForUnix / ConfigureForX問題。
-* 當您需要根據物件的型別對物件執行非常不同的操作時。
+* 當你需要根據物件的型別對物件執行非常不同的操作時。
 * 當訪問的類層次結構將經常使用元素類的新派生進行擴充套件時。
 * 當重新編譯，重新連結，重新測試或重新分發派生元素非常昂貴時。
 

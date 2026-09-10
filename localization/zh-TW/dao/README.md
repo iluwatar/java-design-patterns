@@ -153,8 +153,8 @@ customerDao.getAllCustomers(): java.util.stream.ReferencePipeline$Head@6ec8211c
 
 在以下情況下，請使用資料訪問物件：:
 
-* 當您要鞏固如何訪問資料層時。
-* 當您要避免編寫多個資料檢索/持久層時。
+* 當你要鞏固如何訪問資料層時。
+* 當你要避免編寫多個資料檢索/持久層時。
 
 ## 鳴謝
 
