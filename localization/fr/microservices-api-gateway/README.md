@@ -142,7 +142,7 @@ public class ApiGateway {
 ```
 
 ## Diagramme de clqsses
-![alt text](../../../api-gateway/etc/api-gateway.png "API Gateway")
+![alt text](./etc/api-gateway.png "API Gateway")
 
 ## Application
 
