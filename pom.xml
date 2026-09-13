@@ -260,6 +260,7 @@
     <module>rate-limiting-pattern</module>
     <module>fallback</module>
     <module>onion-architecture</module>
+    <module>microservices-load-shedding</module>
   </modules>
   <repositories>
     <repository>

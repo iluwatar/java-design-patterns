@@ -1,0 +1,90 @@
+@startuml
+package com.iluwatar.loadshedding {
+  enum Priority {
+    + CRITICAL {static}
+    + NORMAL {static}
+    + LOW {static}
+    + valueOf(name : String) : Priority {static}
+    + values() : Priority[] {static}
+  }
+  class Request {
+    + Request(id : String, priority : Priority, description : String)
+    + id() : String
+    + priority() : Priority
+    + description() : String
+  }
+  class Response {
+    + Response(requestId : String, status : Status, message : String)
+    + requestId() : String
+    + status() : Status
+    + message() : String
+    + accepted(request : Request, result : String) : Response {static}
+    + rejected(request : Request, reason : String) : Response {static}
+  }
+  enum Status {
+    + ACCEPTED {static}
+    + REJECTED {static}
+    + valueOf(name : String) : Status {static}
+    + values() : Status[] {static}
+  }
+  class LoadShedException {
+    - requestId : String
+    - priority : Priority
+    + LoadShedException(request : Request, inFlight : int, limit : int)
+    + getRequestId() : String
+    + getPriority() : Priority
+  }
+  class LoadShedder {
+    - maxInFlight : int
+    - limits : Map<Priority, Integer>
+    - inFlight : AtomicInteger
+    - accepted : LongAdder
+    - shed : Map<Priority, LongAdder>
+    + LoadShedder(maxInFlight : int, lowPriorityLimit : int, criticalReserve : int)
+    + acquire(request : Request) : int
+    + release() : void
+    + getMaxInFlight() : int
+    + getInFlight() : int
+    + getAccepted() : long
+    + getShed(priority : Priority) : long
+    + getTotalShed() : long
+  }
+  interface RequestHandler {
+    + handle(request : Request) : String {abstract}
+  }
+  class ShedGuardedService {
+    - name : String
+    - shedder : LoadShedder
+    - handler : RequestHandler
+    + ShedGuardedService(name : String, shedder : LoadShedder, handler : RequestHandler)
+    + handle(request : Request) : Response
+  }
+  class App {
+    + App()
+    + main(args : String[]) : void {static}
+    ~ simulatedPaymentProvider(paymentSlow : AtomicBoolean, paymentRecovered : CountDownLatch, entered : Semaphore, recoveryTimeout : Duration) : RequestHandler {static}
+    ~ awaitEntered(entered : Semaphore, count : int, timeout : Duration) : void {static}
+    ~ result(future : Future<Response>, timeout : Duration) : Response {static}
+    ~ shutdown(executor : ExecutorService, timeout : Duration) : void {static}
+    ~ report(response : Response) : void {static}
+  }
+}
+Response +-- Status
+Request --> Priority
+Response --> Status
+Response ..> Request
+LoadShedException --> Priority
+LoadShedException ..> Request
+LoadShedder ..> Priority
+LoadShedder ..> Request
+LoadShedder ..> LoadShedException
+RequestHandler ..> Request
+ShedGuardedService --> LoadShedder
+ShedGuardedService --> RequestHandler
+ShedGuardedService ..> Request
+ShedGuardedService ..> Response
+ShedGuardedService ..> LoadShedException
+App ..> LoadShedder
+App ..> ShedGuardedService
+App ..> RequestHandler
+@enduml
