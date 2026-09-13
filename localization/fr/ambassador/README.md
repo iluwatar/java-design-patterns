@@ -172,7 +172,7 @@ Service result: -1
 
 ## Class diagram
 
-![alt text](../../../ambassador/etc/ambassador.urm.png "Ambassador class diagram")
+![alt text](./etc/ambassador.urm.png "Ambassador class diagram")
 
 ## Application
 

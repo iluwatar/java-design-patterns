@@ -168,7 +168,7 @@ Enfin, voici comment nous construisons et utilisons la "voiture" dans un exemple
 
 ## Diagramme de classes
 
-![alt text](../../../abstract-document/etc/abstract-document.png "Abstract Document Traits and Domain")
+![alt text](./etc/abstract-document.png "Abstract Document Traits and Domain")
 
 ## Application
 
