@@ -3800,6 +3800,15 @@
       "contributions": [
         "translation"
       ]
+    },
+    {
+      "login": "kaizencode-art",
+      "name": "KaizenCode",
+      "avatar_url": "https://avatars.githubusercontent.com/u/206610174?v=4",
+      "profile": "http://blog.kaizensphere.dev",
+      "contributions": [
+        "translation"
+      ]
     }
   ],
   "contributorsPerLine": 6,
