@@ -1,0 +1,76 @@
+@startuml
+package com.iluwatar.scattergather {
+  class RateRequest {
+    + RateRequest(city : String, checkIn : LocalDate, nights : int)
+    + city() : String
+    + checkIn() : LocalDate
+    + nights() : int
+  }
+  class RateQuote {
+    + RateQuote(provider : String, total : BigDecimal)
+    + provider() : String
+    + total() : BigDecimal
+  }
+  interface RateProvider {
+    + name() : String {abstract}
+    + quote(request : RateRequest) : RateQuote {abstract}
+  }
+  class InMemoryRateProvider {
+    - name : String
+    - nightlyRate : BigDecimal
+    + InMemoryRateProvider(name : String, nightlyRate : BigDecimal)
+    + name() : String
+    + quote(request : RateRequest) : RateQuote
+  }
+  class DelayedRateProvider {
+    - delegate : RateProvider
+    - delay : Duration
+    + DelayedRateProvider(delegate : RateProvider, delay : Duration)
+    + name() : String
+    + quote(request : RateRequest) : RateQuote
+  }
+  class FailingRateProvider {
+    - name : String
+    + FailingRateProvider(name : String)
+    + name() : String
+    + quote(request : RateRequest) : RateQuote
+  }
+  interface Aggregator<R> {
+    + aggregate(replies : List<RateQuote>) : R {abstract}
+    + cheapestQuote() : Aggregator<Optional<RateQuote>> {static}
+  }
+  class PendingReply {
+    + PendingReply(provider : RateProvider, reply : CompletableFuture<RateQuote>)
+    + provider() : RateProvider
+    + reply() : CompletableFuture<RateQuote>
+  }
+  class ScatterGather {
+    - executor : ExecutorService
+    - timeout : Duration
+    - shutdownGrace : Duration
+    + ScatterGather(executor : ExecutorService, timeout : Duration)
+    ~ ScatterGather(executor : ExecutorService, timeout : Duration, shutdownGrace : Duration)
+    + scatter(request : RateRequest, providers : List<RateProvider>) : List<PendingReply>
+    + gather(pending : List<PendingReply>) : List<RateQuote>
+    + scatterGather(request : RateRequest, providers : List<RateProvider>, aggregator : Aggregator<R>) : R
+    + close() : void
+  }
+  class App {
+    + App()
+    + main(args : String[]) : void
+    ~ reportBestOffer(best : Optional<RateQuote>) : void {static}
+  }
+}
+InMemoryRateProvider ..|> RateProvider
+DelayedRateProvider ..|> RateProvider
+DelayedRateProvider --> RateProvider
+FailingRateProvider ..|> RateProvider
+RateProvider ..> RateRequest
+RateProvider ..> RateQuote
+PendingReply --> RateProvider
+PendingReply ..> RateQuote
+ScatterGather +-- PendingReply
+ScatterGather ..> Aggregator
+ScatterGather ..> RateProvider
+App ..> ScatterGather
+@enduml
