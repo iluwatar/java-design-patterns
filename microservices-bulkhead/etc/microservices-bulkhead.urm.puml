@@ -1,0 +1,53 @@
+@startuml
+package com.iluwatar.bulkhead {
+  interface RemoteService {
+    + call(request : String) : String {abstract}
+  }
+  class Bulkhead {
+    - name : String
+    - maxConcurrentCalls : int
+    - maxQueueSize : int
+    - executor : ThreadPoolExecutor
+    - rejectedCalls : AtomicLong
+    + Bulkhead(name : String, maxConcurrentCalls : int, maxQueueSize : int)
+    + submit(task : Callable<T>) : Future<T>
+    + getName() : String
+    + getMaxConcurrentCalls() : int
+    + getMaxQueueSize() : int
+    + getActiveCalls() : int
+    + getQueuedCalls() : int
+    + getRejectedCalls() : long
+    + shutdown() : void
+    + close() : void
+  }
+  class BulkheadFullException {
+    - bulkheadName : String
+    + BulkheadFullException(bulkheadName : String)
+    + getBulkheadName() : String
+  }
+  class PaymentService {
+    - latency : Duration
+    + PaymentService(latency : Duration)
+    + call(request : String) : String
+  }
+  class InventoryService {
+    + InventoryService()
+    + call(request : String) : String
+  }
+  class App {
+    - PAYMENT_LATENCY : Duration {static}
+    - WAIT_TIMEOUT : Duration {static}
+    + App()
+    + main(args : String[]) : void {static}
+  }
+}
+Bulkhead ..|> AutoCloseable
+BulkheadFullException --|> RuntimeException
+PaymentService ..|> RemoteService
+InventoryService ..|> RemoteService
+Bulkhead ..> BulkheadFullException
+App ..> Bulkhead
+App ..> PaymentService
+App ..> InventoryService
+App ..> BulkheadFullException
+@enduml
