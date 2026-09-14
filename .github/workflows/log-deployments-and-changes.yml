@@ -1,0 +1,38 @@
+name: Log deployments and changes example
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  demonstrate:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Build example
+        run: ./mvnw -B -pl microservices-log-deployments-and-changes -am package
+
+      - name: Run simulated deployment and change pipeline
+        shell: bash
+        run: |
+          set -o pipefail
+          java -jar microservices-log-deployments-and-changes/target/microservices-log-deployments-and-changes-1.26.0-SNAPSHOT.jar 2>&1 | tee deployment-events.log
+
+      - name: Preserve timeline and alerts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-events
+          path: deployment-events.log
+          if-no-files-found: warn

@@ -170,6 +170,7 @@
     <module>microservices-distributed-tracing</module>
     <module>microservices-idempotent-consumer</module>
     <module>microservices-log-aggregation</module>
+    <module>microservices-log-deployments-and-changes</module>
     <module>microservices-self-registration</module>
     <module>microservices-messaging</module>
     <module>model-view-controller</module>
