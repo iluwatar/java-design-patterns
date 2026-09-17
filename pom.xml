@@ -213,6 +213,7 @@
     <module>role-object</module>
     <module>rule-engine</module>
     <module>saga</module>
+    <module>scatter-gather</module>
     <module>separated-interface</module>
     <module>serialized-entity</module>
     <module>serialized-lob</module>
