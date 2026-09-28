@@ -1,0 +1,101 @@
+@startuml
+title Microkernel Architecture - Class Structure
+
+top to bottom direction
+skinparam classAttributeIconSize 0
+skinparam linetype ortho
+skinparam nodesep 35
+skinparam ranksep 45
+
+package "Application" {
+  class App {
+    +main(args: String[]): void
+  }
+
+  class CommandLineInterface {
+    -kernel: MicroKernel
+    -catalog: PluginCatalog
+    +run(): void
+  }
+
+  class PluginCatalog {
+    -catalog: Map~String, Supplier~Plugin~~
+    +getAvailablePlugins(): List~String~
+    +createPlugin(description: String): Plugin
+  }
+}
+
+package "Kernel" {
+  class MicroKernel {
+    -registry: PluginRegistry
+    -ipcRouter: IpcRouter
+    -documentBuffer: StringBuilder
+    +loadPlugin(plugin: Plugin): void
+    +startPlugin(name: String): void
+    +unloadPlugin(name: String): void
+    +transformDocumentWithPlugin(name: String): String
+  }
+
+  class PluginRegistry {
+    -plugins: Map~String, Plugin~
+    +register(plugin: Plugin): void
+    +deregister(name: String): void
+    +getPlugin(name: String): Plugin
+  }
+
+  class IpcRouter {
+    -registry: PluginRegistry
+    +sendMessage(message: Message): String
+  }
+}
+
+package "Plugin API" {
+  interface Plugin {
+    +getName(): String
+    +initialize(router: IpcRouter): void
+    +onStart(): void
+    +onStop(): void
+    +handleMessage(message: Message): String
+  }
+
+  abstract class AbstractOnDemandPlugin
+  abstract class AbstractLifecyclePlugin
+}
+
+package "Built-in Plugins" {
+  class UppercasePlugin
+  class RemoveSpacesPlugin
+  class JavaLanguagePlugin
+  class NeonThemePlugin
+}
+
+class Message <<record>> {
+  sender: String
+  recipient: String
+  action: String
+  payload: String
+}
+
+App --> CommandLineInterface
+CommandLineInterface --> MicroKernel
+CommandLineInterface --> PluginCatalog
+PluginCatalog ..> Plugin : creates
+
+MicroKernel --> PluginRegistry : registers / removes by name
+MicroKernel --> IpcRouter : sends messages
+IpcRouter --> PluginRegistry : looks up recipient
+PluginRegistry "1" --> "0..*" Plugin : maps names to instances
+IpcRouter ..> Plugin : dispatches resolved instance
+
+AbstractOnDemandPlugin ..|> Plugin
+AbstractLifecyclePlugin ..|> Plugin
+UppercasePlugin --|> AbstractOnDemandPlugin
+RemoveSpacesPlugin --|> AbstractOnDemandPlugin
+JavaLanguagePlugin --|> AbstractOnDemandPlugin
+NeonThemePlugin --|> AbstractLifecyclePlugin
+
+MicroKernel ..> Message : creates
+IpcRouter ..> Message : routes
+Plugin ..> Message : handles
+
+@enduml

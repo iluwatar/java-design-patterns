@@ -164,6 +164,7 @@
     <module>mediator</module>
     <module>memento</module>
     <module>metadata-mapping</module>
+    <module>microkernel-architecture</module>
     <module>microservices-aggregrator</module>
     <module>microservices-api-gateway</module>
     <module>microservices-client-side-ui-composition</module>

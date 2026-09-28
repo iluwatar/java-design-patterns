@@ -1,0 +1,57 @@
+@startuml
+' Force straight 90-degree lines
+skinparam linetype ortho
+
+' Drastically increase separation to prevent text overlapping
+skinparam nodesep 160
+skinparam ranksep 160
+skinparam padding 12
+
+' Mimic the standard Java Design Patterns (URM) color scheme
+skinparam rectangle {
+    BackgroundColor #FEFECE
+    BorderColor #A80036
+    BorderThickness 1.5
+    FontColor #000000
+    RoundCorner 8
+}
+
+skinparam arrow {
+    Color #A80036
+    Thickness 1.5
+    FontColor #444444
+    FontSize 12
+}
+
+rectangle "Plugin catalog" as Catalog
+rectangle "Command-line interface" as CLI
+rectangle "Microkernel" as Kernel
+rectangle "Plugin registry" as Registry
+rectangle "IPC router" as Router
+rectangle "Installed plugin instance" as Plugin
+
+' --- LEVEL 1 & 2: User Interface to Core ---
+Catalog -right-> CLI : new plugin\ninstance
+CLI -left-> Catalog : list or\ncreate
+
+' NEW: Show the Catalog as the factory for Plugins
+Catalog -down-> Plugin : instantiates\n(factory)
+
+CLI -down-> Kernel : request document transform\ninstall, start, or remove
+Kernel -up-> CLI : updated document\n& status
+
+' --- LEVEL 2 & 3: Core to Internal Services ---
+Kernel -down-> Registry : register or deregister\nby name
+Kernel -down-> Router : message with\nrecipient name
+Router -up-> Kernel : result or\ndelivery error
+
+' --- LEVEL 3: Internal Service Communication ---
+Router -left-> Registry : look up\nrecipient
+Registry -right-> Router : matching plugin\nreference
+
+' --- LEVEL 3 & 4: Services to Plugin ---
+Registry -down-> Plugin : stores and\nresolves by name
+Router -down-> Plugin : dispatch if\nstarted
+Plugin -up-> Router : transformation\nresult
+
+@enduml
