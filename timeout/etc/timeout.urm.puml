@@ -1,0 +1,52 @@
+@startuml
+package com.iluwatar.timeout {
+  class TimeoutPolicy <<record>> {
+    - serviceName : String
+    - timeout : Duration
+    + TimeoutPolicy(serviceName : String, timeout : Duration)
+    + of(serviceName : String, millis : long) : TimeoutPolicy {static}
+    + serviceName() : String
+    + timeout() : Duration
+  }
+  class TimeoutMetrics {
+    - timeouts : ConcurrentMap<String, AtomicInteger>
+    + TimeoutMetrics()
+    + recordTimeout(serviceName : String) : void
+    + timeoutCount(serviceName : String) : int
+    + snapshot() : SortedMap<String, Integer>
+  }
+  class TimeoutExecutor {
+    - executor : ExecutorService
+    - metrics : TimeoutMetrics
+    + TimeoutExecutor()
+    + TimeoutExecutor(executor : ExecutorService)
+    + execute(policy : TimeoutPolicy, call : Callable<T>, fallback : Supplier<T>) : T
+    + metrics() : TimeoutMetrics
+    + close() : void
+  }
+  class ServiceCallException {
+    + ServiceCallException(serviceName : String, cause : Throwable)
+  }
+  class DownstreamService {
+    - name : String
+    - latency : Duration
+    - items : List<String>
+    + DownstreamService(name : String, latency : Duration, items : List<String>)
+    + name() : String
+    + fetch() : List<String>
+  }
+  class App {
+    - POPULAR_ITEMS : List<String> {static}
+    + main(args : String[]) : void
+    ~ call(executor : TimeoutExecutor, policy : TimeoutPolicy, service : DownstreamService, fallback : List<String>) : List<String> {static}
+  }
+}
+ServiceCallException --|> RuntimeException
+TimeoutExecutor --> TimeoutMetrics
+TimeoutExecutor ..> TimeoutPolicy
+TimeoutExecutor ..> ServiceCallException
+App ..> TimeoutPolicy
+App ..> TimeoutExecutor
+App ..> TimeoutMetrics
+App ..> DownstreamService
+@enduml
