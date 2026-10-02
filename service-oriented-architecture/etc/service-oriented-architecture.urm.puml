@@ -1,0 +1,120 @@
+@startuml
+package com.iluwatar.soa {
+  interface Service {
+    + name() : String {abstract}
+    + handle(request : ServiceRequest) : ServiceResponse {abstract}
+  }
+  class ServiceRequest {
+    + ServiceRequest(service : String, operation : String, payload : Map<String, Object>, credential : String)
+    + ServiceRequest(service : String, operation : String, payload : Map<String, Object>)
+    + service() : String
+    + operation() : String
+    + payload() : Map<String, Object>
+    + credential() : String
+    + param(key : String, type : Class<T>) : T
+  }
+  class ServiceResponse {
+    + ServiceResponse(success : boolean, body : Object, message : String)
+    + success() : boolean
+    + body() : Object
+    + message() : String
+    + ok(body : Object) : ServiceResponse {static}
+    + error(message : String) : ServiceResponse {static}
+  }
+  class ServiceRegistry {
+    - services : Map<String, Service>
+    + ServiceRegistry()
+    + register(service : Service) : void
+    + lookup(name : String) : Optional<Service>
+    + serviceNames() : Set<String>
+  }
+  class ServiceBus {
+    - registry : ServiceRegistry
+    - policy : AccessPolicy
+    + ServiceBus(registry : ServiceRegistry)
+    + ServiceBus(registry : ServiceRegistry, policy : AccessPolicy)
+    + send(request : ServiceRequest) : ServiceResponse
+  }
+  class AccessPolicy {
+    - validCredentials : Set<String>
+    - protectedServices : Set<String>
+    + AccessPolicy(validCredentials : Set<String>, protectedServices : Set<String>)
+    + permitAll() : AccessPolicy {static}
+    + allows(request : ServiceRequest) : boolean
+  }
+  class Customer {
+    + Customer(id : String, name : String)
+    + id() : String
+    + name() : String
+  }
+  class CustomerService {
+    + NAME : String {static}
+    - customers : Map<String, Customer>
+    + CustomerService()
+    + CustomerService(customers : Map<String, Customer>)
+    + name() : String
+    + handle(request : ServiceRequest) : ServiceResponse
+    - getCustomer(customerId : String) : ServiceResponse
+  }
+  class InventoryService {
+    + NAME : String {static}
+    - stock : Map<String, Integer>
+    + InventoryService()
+    + InventoryService(initialStock : Map<String, Integer>)
+    + name() : String
+    + handle(request : ServiceRequest) : ServiceResponse
+    - checkStock(sku : String, quantity : int) : ServiceResponse
+    - reserve(sku : String, quantity : int) : ServiceResponse
+    - release(sku : String, quantity : int) : ServiceResponse
+  }
+  class PaymentService {
+    + NAME : String {static}
+    - creditLimit : double
+    - sequence : AtomicInteger
+    + PaymentService()
+    + PaymentService(creditLimit : double)
+    + name() : String
+    + handle(request : ServiceRequest) : ServiceResponse
+    - charge(customerId : String, amount : double) : ServiceResponse
+  }
+  class OrderService {
+    + NAME : String {static}
+    - bus : ServiceBus
+    - sequence : AtomicInteger
+    + OrderService(bus : ServiceBus)
+    + name() : String
+    + handle(request : ServiceRequest) : ServiceResponse
+    - placeOrder(request : ServiceRequest) : ServiceResponse
+  }
+  class OrderConfirmation {
+    + OrderConfirmation(orderId : String, customerId : String, customerName : String, sku : String, quantity : int, paymentReference : String)
+    + orderId() : String
+    + customerId() : String
+    + customerName() : String
+    + sku() : String
+    + quantity() : int
+    + paymentReference() : String
+  }
+  class App {
+    + App()
+    + main(args : String[]) : void
+  }
+}
+CustomerService ..|> Service
+InventoryService ..|> Service
+PaymentService ..|> Service
+OrderService ..|> Service
+ServiceBus --> ServiceRegistry
+ServiceBus --> AccessPolicy
+AccessPolicy ..> ServiceRequest
+ServiceRegistry --> "*" Service
+OrderService --> ServiceBus
+OrderService +-- OrderConfirmation
+OrderService ..> OrderConfirmation
+CustomerService ..> Customer
+ServiceBus ..> ServiceRequest
+ServiceBus ..> ServiceResponse
+App ..> ServiceBus
+App ..> ServiceRegistry
+App ..> AccessPolicy
+@enduml
