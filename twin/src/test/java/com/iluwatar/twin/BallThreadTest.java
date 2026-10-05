@@ -114,4 +114,56 @@ class BallThreadTest {
           verifyNoMoreInteractions(exceptionHandler);
         });
   }
+
+  /** Verify if the BallThread can be stopped while suspended */
+  @Test
+  void testStopWhileSuspended() {
+    assertTimeout(
+        ofMillis(5000),
+        () -> {
+          final var ballThread = new BallThread();
+
+          final var ballItem = mock(BallItem.class);
+          ballThread.setTwin(ballItem);
+
+          ballThread.suspendMe();
+          ballThread.start();
+
+          assertTimeout(
+              ofMillis(1000),
+              () -> {
+                while (ballThread.getState() != Thread.State.WAITING) {
+                  Thread.yield();
+                }
+              });
+
+          ballThread.stopMe();
+          ballThread.join();
+
+          verifyNoMoreInteractions(ballItem);
+        });
+  }
+
+  /** Verify if the BallThread exits gracefully when interrupted while suspended */
+  @Test
+  void testInterruptWhileSuspended() {
+    assertTimeout(
+        ofMillis(5000),
+        () -> {
+          final var ballThread = new BallThread();
+
+          final var ballItem = mock(BallItem.class);
+          ballThread.setTwin(ballItem);
+
+          ballThread.suspendMe();
+          ballThread.start();
+
+          sleep(200);
+
+          ballThread.interrupt();
+          ballThread.join();
+
+          verifyNoMoreInteractions(ballItem);
+        });
+  }
 }

@@ -40,14 +40,28 @@ public class BallThread extends Thread {
 
   private volatile boolean isRunning = true;
 
+  private final Object lock = new Object();
+
   /** Run the thread. */
   public void run() {
 
     while (isRunning) {
-      if (!isSuspended) {
+      synchronized (lock) {
+        while (isSuspended && isRunning) {
+          try {
+            lock.wait();
+          } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return;
+          }
+        }
+      }
+
+      if (isRunning) {
         twin.draw();
         twin.move();
       }
+
       try {
         Thread.sleep(250);
       } catch (InterruptedException e) {
@@ -57,17 +71,25 @@ public class BallThread extends Thread {
   }
 
   public void suspendMe() {
-    isSuspended = true;
+    synchronized (lock) {
+      isSuspended = true;
+    }
     LOGGER.info("Begin to suspend BallThread");
   }
 
   public void resumeMe() {
-    isSuspended = false;
+    synchronized (lock) {
+      isSuspended = false;
+      lock.notify();
+    }
     LOGGER.info("Begin to resume BallThread");
   }
 
   public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
+    synchronized (lock) {
+      isRunning = false;
+      isSuspended = false;
+      lock.notify();
+    }
   }
 }
