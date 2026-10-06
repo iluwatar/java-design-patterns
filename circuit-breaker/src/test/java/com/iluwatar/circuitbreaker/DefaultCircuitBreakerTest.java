@@ -25,7 +25,9 @@
 package com.iluwatar.circuitbreaker;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.concurrent.atomic.AtomicInteger;
 import org.junit.jupiter.api.Test;
 
 /** Circuit Breaker test */
@@ -34,24 +36,24 @@ class DefaultCircuitBreakerTest {
   // long timeout, int failureThreshold, long retryTimePeriod
   @Test
   void testEvaluateState() {
-    var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 100);
+    var circuitBreaker = new DefaultCircuitBreaker(null, 1, 1, 60_000_000_000L);
     // Right now, failureCount<failureThreshold, so state should be closed
-    assertEquals(circuitBreaker.getState(), "CLOSED");
+    assertEquals("CLOSED", circuitBreaker.getState());
     circuitBreaker.failureCount = 4;
     circuitBreaker.lastFailureTime = System.nanoTime();
     circuitBreaker.evaluateState();
     // Since failureCount>failureThreshold, and lastFailureTime is nearly equal to current time,
+    // the retry period has not elapsed yet, so state should be open
+    assertEquals("OPEN", circuitBreaker.getState());
+    // Since failureCount>failureThreshold, and lastFailureTime is older than the retry period,
     // state should be half-open
-    assertEquals(circuitBreaker.getState(), "HALF_OPEN");
-    // Since failureCount>failureThreshold, and lastFailureTime is much lesser current time,
-    // state should be open
-    circuitBreaker.lastFailureTime = System.nanoTime() - 1000 * 1000 * 1000 * 1000;
+    circuitBreaker.lastFailureTime = System.nanoTime() - 120_000_000_000L;
     circuitBreaker.evaluateState();
-    assertEquals(circuitBreaker.getState(), "OPEN");
+    assertEquals("HALF_OPEN", circuitBreaker.getState());
     // Now set it back again to closed to test idempotency
     circuitBreaker.failureCount = 0;
     circuitBreaker.evaluateState();
-    assertEquals(circuitBreaker.getState(), "CLOSED");
+    assertEquals("CLOSED", circuitBreaker.getState());
   }
 
   @Test
@@ -78,5 +80,26 @@ class DefaultCircuitBreakerTest {
     var serviceStartTime = System.nanoTime() - 60 * 1000 * 1000 * 1000;
     var response = circuitBreaker.attemptRequest();
     assertEquals(response, "Remote Success");
+  }
+
+  @Test
+  void testOpenCircuitReturnsCachedResponseWithoutCallingService() throws RemoteServiceException {
+    var calls = new AtomicInteger();
+    RemoteService failingService =
+        new RemoteService() {
+          @Override
+          public String call() throws RemoteServiceException {
+            throw new RemoteServiceException("Failure #" + calls.incrementAndGet());
+          }
+        };
+    var circuitBreaker = new DefaultCircuitBreaker(failingService, 1, 1, 60_000_000_000L);
+
+    // The first failure reaches the threshold and opens the circuit
+    assertThrows(RemoteServiceException.class, circuitBreaker::attemptRequest);
+
+    // While open, the cached failure response is returned without calling the service again
+    assertEquals("Failure #1", circuitBreaker.attemptRequest());
+    assertEquals(1, calls.get());
+    assertEquals("OPEN", circuitBreaker.getState());
   }
 }
