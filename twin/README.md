@@ -88,17 +88,24 @@ public class BallItem extends GameItem {
 public class BallThread extends Thread {
   @Setter
   private BallItem twin;
+  private final Object lock = new Object();
   private volatile boolean isSuspended;
   private volatile boolean isRunning = true;
 
   public void run() {
     while (isRunning) {
-      if (!isSuspended) {
-        twin.draw();
-        twin.move();
-      }
       try {
-        Thread.sleep(250);
+        synchronized (lock) {
+          // Wait to be notified instead of polling, so resuming takes effect immediately.
+          while (isSuspended && isRunning) {
+            lock.wait();
+          }
+        }
+        if (isRunning) {
+          twin.draw();
+          twin.move();
+          Thread.sleep(250);
+        }
       } catch (InterruptedException e) {
         throw new RuntimeException(e);
       }
@@ -106,18 +113,26 @@ public class BallThread extends Thread {
   }
 
   public void suspendMe() {
-    isSuspended = true;
+    synchronized (lock) {
+      isSuspended = true;
+    }
     LOGGER.info("Begin to suspend BallThread");
   }
 
   public void resumeMe() {
-    isSuspended = false;
+    synchronized (lock) {
+      isSuspended = false;
+      lock.notifyAll();
+    }
     LOGGER.info("Begin to resume BallThread");
   }
 
   public void stopMe() {
-    this.isRunning = false;
-    this.isSuspended = true;
+    synchronized (lock) {
+      this.isRunning = false;
+      this.isSuspended = true;
+      lock.notifyAll();
+    }
   }
 }
 ```
