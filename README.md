@@ -11,8 +11,7 @@
 
 <br/>
 
-Read in different language : [**zh**](localization/zh/README.md),  [**zh-TW**](localization/zh-TW/README.md)
-,[**ko**](localization/ko/README.md), [**fr**](localization/fr/README.md), [**tr**](localization/tr/README.md), [**ar**](localization/ar/README.md), [**es**](localization/es/README.md), [**pt**](localization/pt/README.md), [**id**](localization/id/README.md), [**ru**](localization/ru/README.md), [**de**](localization/de/README.md), [**ja**](localization/ja/README.md), [**vi**](localization/vi/README.md), [**bn**](localization/bn/README.md), [**np**](localization/ne/README.md), [**it**](localization/it/README.md), [**da**](localization/da/README.md)
+Read in different language : [**ar**](localization/ar/README.md), [**bn**](localization/bn/README.md), [**da**](localization/da/README.md), [**de**](localization/de/README.md), [**el**](localization/el/README.md), [**es**](localization/es/README.md), [**fr**](localization/fr/README.md), [**hi**](localization/hi/README.md), [**id**](localization/id/README.md), [**it**](localization/it/README.md), [**ja**](localization/ja/README.md), [**ko**](localization/ko/README.md), [**mr**](localization/mr/README.md), [**ne**](localization/ne/README.md), [**pt**](localization/pt/README.md), [**ru**](localization/ru/README.md), [**si**](localization/si/README.md), [**tr**](localization/tr/README.md), [**ur**](localization/ur/README.md), [**vi**](localization/vi/README.md), [**zh**](localization/zh/README.md), [**zh-TW**](localization/zh-TW/README.md)
 <br/>
 
 # Introduction
