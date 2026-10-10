@@ -68,21 +68,21 @@ public class Message {
 }
 ```
 
-The `MessageBroker` acts as the intermediary that routes messages between producers and consumers.
+Apache Kafka acts as the message broker that routes messages between producers and consumers. The `KafkaMessageProducer` class wraps a Kafka `Producer`, serializes each `Message` to JSON and publishes it to a topic.
 
 ```java
-public class MessageBroker {
-  private final Map subscribers = new ConcurrentHashMap<>();
+public class KafkaMessageProducer implements AutoCloseable {
+  private final Producer<String, String> producer;
+  private final ObjectMapper objectMapper;
 
-  public void subscribe(String topic, Consumer handler) {
-    subscribers.computeIfAbsent(topic, k -> new ArrayList<>()).add(handler);
+  public KafkaMessageProducer(String bootstrapServers) {
+    this(createDefaultProducer(bootstrapServers));
   }
 
   public void publish(String topic, Message message) {
-    List<Consumer> handlers = subscribers.get(topic);
-    if (handlers != null) {
-      handlers.forEach(handler -> handler.accept(message));
-    }
+    String json = objectMapper.writeValueAsString(message);
+    ProducerRecord<String, String> record = new ProducerRecord<>(topic, message.getId(), json);
+    producer.send(record, (metadata, exception) -> { /* handle result */ });
   }
 }
 ```
@@ -92,16 +92,19 @@ The `OrderService` is a message producer that publishes order messages.
 ```java
 public class OrderService {
   private static final Logger LOGGER = LoggerFactory.getLogger(OrderService.class);
-  private final MessageBroker broker;
+  private static final String ORDER_TOPIC = "order-topic";
 
-  public OrderService(MessageBroker broker) {
-    this.broker = broker;
+  private final KafkaMessageProducer producer;
+
+  public OrderService(KafkaMessageProducer producer) {
+    this.producer = producer;
   }
 
   public void createOrder(String orderId) {
+    LOGGER.info("Creating order: {}", orderId);
     Message message = new Message("Order Created: " + orderId);
-    broker.publish("order-topic", message);
-    LOGGER.info("Published order message: {}", orderId);
+    producer.publish(ORDER_TOPIC, message);
+    LOGGER.info("Order creation message published for: {}", orderId);
   }
 }
 ```
@@ -137,33 +140,52 @@ The `main` application demonstrates the messaging pattern in action.
 ```java
 public class App {
   private static final Logger LOGGER = LoggerFactory.getLogger(App.class);
+  private static final String BOOTSTRAP_SERVERS = "localhost:9092";
 
   public static void main(String[] args) throws InterruptedException {
-    final MessageBroker broker = new MessageBroker();
+    KafkaMessageProducer producer = new KafkaMessageProducer(BOOTSTRAP_SERVERS);
 
-    final InventoryService inventoryService = new InventoryService();
-    final PaymentService paymentService = new PaymentService();
+    InventoryService inventoryService = new InventoryService();
+    PaymentService paymentService = new PaymentService();
+    NotificationService notificationService = new NotificationService();
 
-    broker.subscribe("order-topic", inventoryService::handleMessage);
-    broker.subscribe("order-topic", paymentService::handleMessage);
+    KafkaMessageConsumer inventoryConsumer =
+        new KafkaMessageConsumer(
+            BOOTSTRAP_SERVERS, "inventory-group", "order-topic", inventoryService::handleMessage);
+    KafkaMessageConsumer paymentConsumer =
+        new KafkaMessageConsumer(
+            BOOTSTRAP_SERVERS, "payment-group", "order-topic", paymentService::handleMessage);
+    KafkaMessageConsumer notificationConsumer =
+        new KafkaMessageConsumer(
+            BOOTSTRAP_SERVERS,
+            "notification-group",
+            "order-topic",
+            notificationService::handleMessage);
 
-    final OrderService orderService = new OrderService(broker);
-
-    orderService.createOrder("ORDER-123");
-
-    Thread.sleep(1000);
+    run(producer, inventoryConsumer, paymentConsumer, notificationConsumer);
   }
 }
 ```
 
-Console output:
+Console output (abridged, message ids omitted):
 
 ```
-Published order message: ORDER-123
-Inventory Service received: Order Created: ORDER-123
-Updating inventory...
-Payment Service received: Order Created: ORDER-123
-Processing payment...
+Starting Microservices Messaging Pattern with Apache Kafka
+=== Creating Order ===
+Creating order: ORDER-001
+Order creation message published for: ORDER-001
+Inventory Service received message [<id>]: Order Created: ORDER-001
+Updating inventory for message: <id>
+Inventory updated successfully for: Order Created: ORDER-001
+Payment Service received message [<id>]: Order Created: ORDER-001
+Processing payment for message: <id>
+Payment processed successfully for: Order Created: ORDER-001
+Notification Service received message [<id>]: Order Created: ORDER-001
+Sending order confirmation for message: <id>
+Order confirmation sent successfully for: Order Created: ORDER-001
+...
+Shutting down...
+Microservices Messaging Pattern demonstration completed
 ```
 
 Sequence Diagram
