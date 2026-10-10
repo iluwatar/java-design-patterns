@@ -35,63 +35,72 @@ Flowchart
 
 ## Programmatic Example of Double-Checked Locking Pattern in Java
 
-The Double-Checked Locking pattern is used in the `HolderThreadSafe` class to ensure that the `Heavy` object is only created once, even when accessed from multiple threads.  Here's how it works:
+The Double-Checked Locking pattern is used in the `Inventory` class to ensure that no more items than the inventory size are stored, even when `addItem` is called from multiple threads. Here's how it works:
 
-1. Check if the object is initialized (first check): If it is, return it immediately.
+1. Check if the inventory has room (first check): If it does not, return immediately without acquiring the lock.
 
 ```java
-if (heavy == null) {
+if (items.size() < inventorySize) {
   // ...
 }
 ```
 
-2. Synchronize the block of code where the object is created: This ensures that only one thread can create the object.
+2. Acquire the lock: This ensures that only one thread at a time proceeds to add an item.
 
 ```java
-synchronized (this) {
-  // ...
+lock.lock();
+```
+
+3. Check again if the inventory has room. If another thread has filled the inventory by the time the current thread acquires the lock, the item is not added.
+
+```java
+if (items.size() < inventorySize) {
+  items.add(item);
 }
 ```
 
-3. Check again if the object is initialized. If another thread has already created the object by the time the current thread enters the synchronized block, return the created object.
+4. Release the lock and return whether the item was added.
 
 ```java
-if (heavy == null) {
-  heavy = new Heavy();
-}
+lock.unlock();
+return true;
 ```
 
-4. Return the created object.
+Here's the complete code for the `Inventory` class:
 
 ```java
-return heavy;
-```
+public class Inventory {
 
-Here's the complete code for the `HolderThreadSafe` class:
+  private final int inventorySize;
+  private final List<Item> items;
+  private final Lock lock;
 
-```java
-public class HolderThreadSafe {
-
-  private Heavy heavy;
-
-  public HolderThreadSafe() {
-    LOGGER.info("Holder created");
+  public Inventory(int inventorySize) {
+    this.inventorySize = inventorySize;
+    this.items = new ArrayList<>(inventorySize);
+    this.lock = new ReentrantLock();
   }
 
-  public synchronized Heavy getHeavy() {
-    if (heavy == null) {
-      synchronized (this) {
-        if (heavy == null) {
-          heavy = new Heavy();
+  public boolean addItem(Item item) {
+    if (items.size() < inventorySize) {
+      lock.lock();
+      try {
+        if (items.size() < inventorySize) {
+          items.add(item);
+          var thread = Thread.currentThread();
+          LOGGER.info("{}: items.size()={}, inventorySize={}", thread, items.size(), inventorySize);
+          return true;
         }
+      } finally {
+        lock.unlock();
       }
     }
-    return heavy;
+    return false;
   }
 }
 ```
 
-In this code, the `Heavy` object is only created when the `getHeavy` method is called for the first time. This is known as lazy initialization. The double-checked locking pattern is used to ensure that the `Heavy` object is only created once, even when the `getHeavy` method is called from multiple threads simultaneously.
+In this code, the lock is only acquired when the inventory is not already obviously full, which is the first check. The second check inside the locked section guarantees that the inventory size is never exceeded, even when the `addItem` method is called from multiple threads simultaneously. This is known as double-checked locking.
 
 ## When to Use the Double-Checked Locking Pattern in Java
 
