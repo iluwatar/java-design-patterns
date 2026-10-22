@@ -93,6 +93,11 @@ class CustomerTableGatewayTest {
   }
 
   @Test
+  void findAllShouldReturnEmptyWhenTableHasNoRows() throws SQLException {
+    assertTrue(gateway.findAll().isEmpty());
+  }
+
+  @Test
   void updateShouldPersistNewValuesAndReportMissingRows() throws SQLException {
     gateway.insert(new Customer(1, "Alice", "Smith"));
 

@@ -39,7 +39,7 @@ import org.slf4j.LoggerFactory;
  *
  * <p>Unlike a Row Data Gateway, one instance of this class can operate on any row in the table.
  */
-public class CustomerTableGateway {
+public final class CustomerTableGateway {
 
   /** SQL statement for creating the schema used by this example. */
   public static final String CREATE_SCHEMA_SQL =
