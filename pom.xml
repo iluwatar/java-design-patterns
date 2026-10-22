@@ -262,6 +262,7 @@
     <module>onion-architecture</module>
     <module>microservices-bulkhead</module>
     <module>microservices-load-shedding</module>
+    <module>table-data-gateway</module>
   </modules>
   <repositories>
     <repository>
@@ -321,6 +322,12 @@
         <groupId>com.github.stefanbirkner</groupId>
         <artifactId>system-lambda</artifactId>
         <version>${system-lambda.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
       <dependency>

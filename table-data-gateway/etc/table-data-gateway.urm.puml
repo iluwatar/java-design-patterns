@@ -1,0 +1,27 @@
+@startuml
+package com.iluwatar.tabledatagateway {
+  class App {
+    - DB_URL : String {static}
+    - LOGGER : Logger {static}
+    + main(args : String[]) {static}
+  }
+  class Customer <<record>> {
+    + id : int
+    + firstName : String
+    + lastName : String
+  }
+  class CustomerTableGateway {
+    + CREATE_SCHEMA_SQL : String {static}
+    + DELETE_SCHEMA_SQL : String {static}
+    - dataSource : DataSource
+    + CustomerTableGateway(dataSource : DataSource)
+    + insert(customer : Customer) : int
+    + findById(id : int) : Optional<Customer>
+    + findAll() : List<Customer>
+    + update(customer : Customer) : int
+    + delete(id : int) : int
+  }
+}
+App --> CustomerTableGateway
+CustomerTableGateway --> Customer
+@enduml
