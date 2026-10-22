@@ -262,6 +262,7 @@
     <module>onion-architecture</module>
     <module>microservices-bulkhead</module>
     <module>microservices-load-shedding</module>
+    <module>table-data-gateway</module>
   </modules>
   <repositories>
     <repository>
