@@ -193,7 +193,7 @@ The Circuit Breaker pattern is applicable:
 * Cloud-based services to gracefully handle the failure of external services
 * E-commerce platforms to manage high volumes of transactions and dependency on external APIs
 * Microservices architectures for maintaining system stability and responsiveness
-* [Spring Circuit Breaker module](https://spring.io/guides/gs/cloud-circuit-breaker)
+* [Spring Cloud Circuit Breaker](https://docs.spring.io/spring-cloud-circuitbreaker/reference/)
 * [Netflix Hystrix API](https://github.com/Netflix/Hystrix)
 
 ## Benefits and Trade-offs of Circuit Breaker Pattern
