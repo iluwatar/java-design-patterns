@@ -230,7 +230,6 @@ Trade-offs:
 
 ## References and Credits
 
-* [Load Shedding pattern (microservices.io)](https://microservices.io/patterns/reliability/load-shedding.html)
 * [Site Reliability Engineering, chapter Handling Overload (Google)](https://sre.google/sre-book/handling-overload/)
 * [Release It! Design and Deploy Production-Ready Software (Michael T. Nygard)](https://www.amazon.com/gp/product/1680502395)
 * [Using load shedding to avoid overload (Amazon Builders' Library)](https://aws.amazon.com/builders-library/using-load-shedding-to-avoid-overload/)

@@ -91,7 +91,7 @@ The Fallback pattern is applicable:
 
 ## Real-World Applications of Fallback Pattern in Java
 
-* [Resilience4j Fallback mechanism](https://resilience4j.readme.io/docs/fallback)
+* [Resilience4j Fallback mechanism](https://resilience4j.readme.io/docs/getting-started-3)
 * [Netflix Hystrix Fallback](https://github.com/Netflix/Hystrix/wiki/How-To-Use#Fallback)
 * Spring Cloud Circuit Breaker integrations
 
