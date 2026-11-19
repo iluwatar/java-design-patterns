@@ -103,6 +103,7 @@
     <module>composite</module>
     <module>composite-entity</module>
     <module>composite-view</module>
+    <module>composition-root</module>
     <module>context-object</module>
     <module>converter</module>
     <module>curiously-recurring-template-pattern</module>
