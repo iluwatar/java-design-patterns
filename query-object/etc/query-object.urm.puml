@@ -1,0 +1,70 @@
+@startuml
+package com.iluwatar.queryobject {
+  class App {
+    + App()
+    ~ catalog() : List<Book> {static}
+    - log(query : Query<Book>, books : List<Book>) {static}
+    + main(args : String[]) {static}
+  }
+  class Book {
+    - title : String
+    - author : String
+    - genre : Genre
+    - year : int
+    - price : double
+    + Book(title : String, author : String, genre : Genre, year : int, price : double)
+  }
+  enum Genre {
+    + FANTASY {static}
+    + HISTORY {static}
+    + MYSTERY {static}
+    + SCIENCE_FICTION {static}
+  }
+  interface Criterion<T> {
+    + matches(candidate : T) : boolean {abstract}
+    + describe() : String {abstract}
+    + and(other : Criterion<T>) : Criterion<T>
+    + or(other : Criterion<T>) : Criterion<T>
+    + not() : Criterion<T>
+    + of(field : String, operator : Operator, value : V, extractor : Function<T, V>) : Criterion<T> {static}
+    + of(description : String, predicate : Predicate<T>) : Criterion<T> {static}
+  }
+  enum Operator {
+    + AT_MOST {static}
+    + EQUALS {static}
+    + GREATER_THAN {static}
+    - symbol : String
+    + symbol() : String
+    + test(actual : V, expected : V) : boolean
+  }
+  class BookCriteria {
+    - BookCriteria()
+    + author(author : String) : Criterion<Book> {static}
+    + genre(genre : Genre) : Criterion<Book> {static}
+    + priceAtMost(price : double) : Criterion<Book> {static}
+    + publishedAfter(year : int) : Criterion<Book> {static}
+  }
+  class Query<T> {
+    - criteria : Map<String, Criterion<T>>
+    - orderDescription : String
+    - order : Comparator<T>
+    - limit : Integer
+    + Query<T>()
+    + where(name : String, criterion : Criterion<T>) : Query<T>
+    + remove(name : String) : Query<T>
+    + orderBy(description : String, comparator : Comparator<T>) : Query<T>
+    + limit(maxResults : int) : Query<T>
+    + execute(source : Collection<T>) : List<T>
+    + describe() : String
+    - matchesAll(candidate : T) : boolean
+  }
+}
+Book -->  "-genre" Genre
+Query --> "-criteria *" Criterion
+BookCriteria ..> Criterion : creates
+App ..> Query : builds and executes
+App ..> BookCriteria
+Criterion ..> Operator
+BookCriteria ..> Book
+App ..> Book : creates
+@enduml
