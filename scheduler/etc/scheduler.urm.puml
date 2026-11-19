@@ -1,0 +1,81 @@
+@startuml
+package com.iluwatar.scheduler {
+  interface Task {
+    + getId() : int {abstract}
+    + getPriority() : int {abstract}
+    + getRemainingTime() : int {abstract}
+    + isComplete() : boolean {abstract}
+    + execute(deltaTime : int) {abstract}
+  }
+  abstract class AbstractTask {
+    - id : int
+    - totalExecutionTime : int
+    - priority : int
+    - elapsedTime : int
+    # AbstractTask(id : int, totalExecutionTime : int, priority : int)
+    + execute(deltaTime : int)
+    # doWork(units : int) {abstract}
+  }
+  class SimpleTask {
+    + SimpleTask(id : int, totalExecutionTime : int, priority : int)
+    # doWork(units : int)
+  }
+  class SumTask {
+    - sum : long
+    + SumTask(id : int, n : int, priority : int)
+    + getSum() : long
+    # doWork(units : int)
+  }
+  interface Trigger {
+    + fires(time : int) : boolean {abstract}
+  }
+  class TimeTrigger {
+    + TimeTrigger(time : int)
+  }
+  class IntervalTrigger {
+    + IntervalTrigger(start : int, period : int)
+  }
+  class ConditionTrigger {
+    - condition : BooleanSupplier
+    - fired : boolean
+    + ConditionTrigger(condition : BooleanSupplier)
+  }
+  class ScheduledJob {
+    + ScheduledJob(trigger : Trigger, taskFactory : Supplier<Task>)
+    + at(time : int, task : Task) : ScheduledJob {static}
+  }
+  interface TaskScheduler {
+    + scheduleTask(task : Task) {abstract}
+    + update(deltaTime : int) {abstract}
+  }
+  class FirstComeFirstServedScheduler
+  class PriorityScheduler
+  class RoundRobinScheduler
+  class ShortestRemainingTimeFirstScheduler
+  class Simulator {
+    - deltaTime : int
+    - simulateTime : int
+    + Simulator(scheduler : TaskScheduler, jobs : List<ScheduledJob>, deltaTime : int, simulateTime : int)
+    + simulate() : Map<Integer, Integer>
+  }
+  class App {
+    + main(args : String[]) {static}
+  }
+}
+AbstractTask ..|> Task
+SimpleTask --|> AbstractTask
+SumTask --|> AbstractTask
+TimeTrigger ..|> Trigger
+IntervalTrigger ..|> Trigger
+ConditionTrigger ..|> Trigger
+FirstComeFirstServedScheduler ..|> TaskScheduler
+PriorityScheduler ..|> TaskScheduler
+RoundRobinScheduler ..|> TaskScheduler
+ShortestRemainingTimeFirstScheduler ..|> TaskScheduler
+ScheduledJob --> "-trigger" Trigger
+ScheduledJob ..> Task : creates
+TaskScheduler ..> Task : runs
+Simulator --> "-scheduler" TaskScheduler
+Simulator --> "-jobs" ScheduledJob
+App ..> Simulator
+@enduml
