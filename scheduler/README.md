@@ -1,101 +1,266 @@
 ---
-title: Scheduler Pattern
-category: Creational
+title: "Scheduler Pattern in Java: Deciding When and in Which Order Tasks Run"
+shortTitle: Scheduler
+description: "Learn the Scheduler pattern in Java: separate the work (tasks), the moment it becomes ready (triggers) and the order it runs in (scheduling strategies). Includes FCFS, priority, round robin and shortest-remaining-time-first schedulers with time, interval and condition triggers."
+category: Behavioral
 language: en
-tag: 
-  - Generic
+tag:
+  - Decoupling
+  - Extensibility
+  - Performance
+  - Resource management
 ---
 
-## Name
-Scheduler Design Pattern
+## Also known as
 
-## Intent
-The Scheduler Design Pattern is used to manage and coordinate the execution of tasks or jobs in a system. It provides a mechanism for scheduling and executing tasks at specific times, intervals, or in response to certain events. This pattern is especially useful when dealing with asynchronous operations, background processing, and resource allocation.
+* Job Scheduler
+* Task Scheduler
 
-## Explanation
+## Intent of Scheduler Design Pattern
 
-### Real-world example
-> Think of a restaurant kitchen with various dishes to be prepared – the chef is like a scheduler who ensures that each dish is cooked at the right time and served to customers without letting the kitchen become chaotic or the food getting cold.
+Manage the execution of tasks that compete for a limited resource. The pattern keeps three concerns apart: the task that holds the work, the trigger that decides when a task becomes ready, and the scheduler that decides which ready task runs next and for how long.
 
-### In plain words
-> The Scheduler Design Pattern ensures your tasks get done at the right time and order.
+## Detailed Explanation of Scheduler Pattern with Real-World Examples
 
-### Wikipedia says
-> In computing, scheduling is the action of assigning resources to perform tasks. The resources may be processors, network links or expansion cards. The tasks may be threads, processes or data flows.
+Real-world example
 
-> The scheduling activity is carried out by a process called scheduler. Schedulers are often designed so as to keep all computer resources busy (as in load balancing), allow multiple users to share system resources effectively, or to achieve a target quality-of-service.
+> A restaurant kitchen has one chef and many orders. Orders arrive when guests sit down (a fixed time), the bread is baked every morning (an interval), and the dessert is plated only once the main course has left the kitchen (a condition). The head chef does not cook any of them; they decide which order the cook works on next, whether that is the oldest order, the VIP table, a few minutes on each dish in turn, or the dish that is nearly done.
 
-> Scheduling is fundamental to computation itself, and an intrinsic part of the execution model of a computer system; the concept of scheduling makes it possible to have computer multitasking with a single central processing unit (CPU).
+In plain words
 
-### Programmatic example
-In our demo, we will have a class `Task` with following attributes:
+> The Scheduler pattern decides which piece of work runs next, so the work itself does not have to know about timing or about the other work waiting for the same resource.
+
+Wikipedia says
+
+> In computing, scheduling is the action of assigning resources to perform tasks. The resources may be processors, network links or expansion cards. The tasks may be threads, processes or data flows. The scheduling activity is carried out by a mechanism called a scheduler.
+
+Flowchart
+
+```mermaid
+flowchart TD
+    A[Clock tick] --> B{Any trigger fires?}
+    B -- yes --> C[Create task from job and hand it to the scheduler]
+    C --> D
+    B -- no --> D[Scheduler picks the next task by its strategy]
+    D --> E[Run the task for one time slice]
+    E --> F{Task complete?}
+    F -- yes --> G[Record completion time]
+    F -- no --> H[Keep the task queued]
+    G --> A
+    H --> A
+```
+
+![Scheduler class diagram](./etc/scheduler.urm.png)
+
+## Programmatic Example of Scheduler Pattern in Java
+
+The example models a single worker that runs tasks in time slices, the way an operating system shares one CPU between processes. It has four parts, matching the elements of the pattern.
+
+**Task.** A `Task` is the unit of work. The scheduler only needs to know its id, its priority, how much time it still needs and whether it is done.
+
 ```java
-public class Task {
-  int id;
-  int totalExecutionTime;
-  int priority = 0;
+public interface Task {
+  int getId();
+  int getPriority();
+  int getRemainingTime();
+  boolean isComplete();
+  void execute(int deltaTime);
 }
 ```
-And a `Scheduler` class which will be responsible for scheduling the tasks:
+
+`AbstractTask` keeps the time accounting, so a concrete task only implements the work done in one slice. `SimpleTask` only reports its progress, while `SumTask` computes `1 + 2 + ... + n` one number per time unit, so its work can be paused and resumed between slices.
+
+```java
+public abstract class AbstractTask implements Task {
+  // id, totalExecutionTime, priority and elapsedTime fields
+
+  @Override
+  public void execute(int deltaTime) {
+    if (isComplete()) {
+      throw new IllegalStateException("Task " + id + " is already complete");
+    }
+    var units = Math.min(deltaTime, getRemainingTime());
+    doWork(units);
+    elapsedTime += units;
+  }
+
+  protected abstract void doWork(int units);
+}
+
+public class SumTask extends AbstractTask {
+  @Getter private long sum;
+  private int next = 1;
+
+  @Override
+  protected void doWork(int units) {
+    for (var i = 0; i < units; i++) {
+      sum += next++;
+    }
+  }
+}
+```
+
+**Trigger.** A `Trigger` decides when a job hands a new task to the scheduler. `TimeTrigger` fires once at a fixed time, `IntervalTrigger` fires repeatedly like a cron job, and `ConditionTrigger` fires once, the first time a condition becomes true.
+
+```java
+public interface Trigger {
+  boolean fires(int time);
+}
+
+public record IntervalTrigger(int start, int period) implements Trigger {
+  @Override
+  public boolean fires(int time) {
+    return time >= start && (time - start) % period == 0;
+  }
+}
+```
+
+A `ScheduledJob` pairs a trigger with a task factory. The factory is needed because a repeating trigger must create a fresh task each time it fires.
+
+```java
+public record ScheduledJob(Trigger trigger, Supplier<Task> taskFactory) {
+  public static ScheduledJob at(int time, Task task) {
+    return new ScheduledJob(new TimeTrigger(time), () -> task);
+  }
+}
+```
+
+**Scheduler.** `TaskScheduler` is the strategy that decides which ready task runs next.
+
 ```java
 public interface TaskScheduler {
   void scheduleTask(Task task);
+  void update(int deltaTime);
 }
 ```
-Base on the strategy of the scheduler, we can have different implementations of `TaskScheduler` interface. For example, a `PriorityScheduler` which will schedule the tasks based on their priority:
+
+There are four implementations:
+
+* `FirstComeFirstServedScheduler` runs each task to completion in arrival order.
+* `PriorityScheduler` always runs the task with the highest priority, so an arriving high-priority task preempts the running one.
+* `RoundRobinScheduler` gives every task one time slice in turn.
+* `ShortestRemainingTimeFirstScheduler` runs the task closest to completion.
+
 ```java
-public class PriorityScheduler implements TaskScheduler {
-  private final Queue<Task> taskQueue =
-      new PriorityQueue<>(
-          (task1, task2) -> {
-            if (task2.priority != task1.priority) {
-              return task2.priority - task1.priority;
-            }
-            return task1.id - task2.id;
-          });
+public class RoundRobinScheduler implements TaskScheduler {
+  private final Queue<Task> taskQueue = new ArrayDeque<>();
 
   @Override
   public void scheduleTask(Task task) {
     taskQueue.add(task);
   }
+
+  @Override
+  public void update(int deltaTime) {
+    var task = taskQueue.poll();
+    if (task == null) {
+      return;
+    }
+    task.execute(deltaTime);
+    if (!task.isComplete()) {
+      taskQueue.add(task);
+    }
+  }
 }
 ```
 
-## Class diagram
-![Scheduler Pattern](etc/scheduler.png)
+**Execution context.** The `Simulator` advances a clock, fires the triggers, hands new tasks to the scheduler, lets the scheduler run one slice and records when each task completes.
 
-## Applicability
-The Scheduler Design Pattern is applicable in various scenarios, including but not limited to:
+```java
+public Map<Integer, Integer> simulate() {
+  Map<Integer, Integer> completedAt = new LinkedHashMap<>();
+  List<Task> running = new ArrayList<>();
+  for (var time = 0; time < simulateTime; time += deltaTime) {
+    for (var job : jobs) {
+      if (job.trigger().fires(time)) {
+        var task = job.taskFactory().get();
+        running.add(task);
+        scheduler.scheduleTask(task);
+      }
+    }
+    scheduler.update(deltaTime);
+    // record and drop the tasks that completed in this slice
+  }
+  return completedAt;
+}
+```
 
-- **Task Queue Management**: When you need to manage a queue of tasks to be executed, ensuring tasks are executed in a specific order, on specific resources, or with certain priorities.
+`App` runs one workload through every scheduler. The workload uses all three trigger types: a backup (task 1) and a sum (task 2) arrive at fixed times, a report (tasks 101 and up) repeats every 10 time units, and a cleanup (task 3) starts only once the backup is complete.
 
-- **Background Processing**: In applications requiring background jobs, such as processing user requests asynchronously, sending emails, or performing periodic maintenance tasks.
+```java
+static List<ScheduledJob> workload() {
+  var backup = new SimpleTask(1, 5, 1);
+  var reportIds = new AtomicInteger(100);
+  return List.of(
+      ScheduledJob.at(0, backup),
+      ScheduledJob.at(1, new SumTask(2, 4, 3)),
+      new ScheduledJob(
+          new IntervalTrigger(2, 10), () -> new SimpleTask(reportIds.incrementAndGet(), 2, 2)),
+      new ScheduledJob(new ConditionTrigger(backup::isComplete), () -> new SimpleTask(3, 3)));
+}
 
-- **Resource Allocation**: For managing shared resources, like database connections or thread pools, to ensure fair allocation among competing tasks.
+public static void main(String[] args) {
+  List<TaskScheduler> schedulers =
+      List.of(
+          new FirstComeFirstServedScheduler(),
+          new PriorityScheduler(),
+          new RoundRobinScheduler(),
+          new ShortestRemainingTimeFirstScheduler());
+  for (var scheduler : schedulers) {
+    var completedAt = new Simulator(scheduler, workload(), 1, 30).simulate();
+    LOGGER.info("{} completed tasks at: {}", scheduler.getClass().getSimpleName(), completedAt);
+  }
+}
+```
 
-- **Real-time Systems**: In systems where tasks need to be executed at precise times or in response to specific events, such as in real-time simulations or monitoring systems.
+The same tasks finish in a different order under each strategy. Each entry maps a task id to the time it completed:
 
-## Known uses
-The Scheduler Design Pattern is used in various software applications and frameworks, including:
+```
+FirstComeFirstServedScheduler completed tasks at: {1=5, 2=9, 101=11, 3=14, 102=16, 103=24}
+PriorityScheduler completed tasks at: {2=5, 101=7, 1=11, 102=14, 3=16, 103=24}
+RoundRobinScheduler completed tasks at: {101=8, 1=10, 2=11, 3=15, 102=16, 103=24}
+ShortestRemainingTimeFirstScheduler completed tasks at: {101=4, 1=7, 3=10, 2=14, 102=16, 103=24}
+```
 
-- Operating systems for managing processes.
-- Java: The Java `ScheduledExecutorService` class is an implementation of the Scheduler Design Pattern, allowing the scheduling of tasks at fixed rate or with fixed delay.
+## When to Use the Scheduler Pattern in Java
 
-## Consequences
-The Scheduler Design Pattern offers several advantages:
-- **Flexibility**: It allows for dynamic scheduling of tasks, making it adaptable to changing requirements.
-- **Efficiency**: Tasks can be optimized for resource utilization, and parallel execution can be managed effectively.
-- **Maintainability**: Separating scheduling logic from task execution simplifies maintenance and debugging.
+* Many tasks compete for a limited resource, such as a thread, a CPU, a connection or a device, and the order in which they run matters.
+* Work must start at a given time, repeat on an interval, or wait for an event or for other work to finish.
+* The scheduling policy should be changeable without touching the tasks, for example to favour throughput, fairness, latency or business priority.
 
-However, it also has some potential drawbacks:
-- **Complexity**: Implementing a scheduler can be complex, especially in systems with intricate scheduling requirements.
-- **Overhead**: Maintaining a scheduler adds some overhead to the system.
+## Real-World Applications of Scheduler Pattern in Java
 
+* `java.util.concurrent.ScheduledExecutorService` runs tasks after a delay or at a fixed rate.
+* [Quartz Scheduler](https://www.quartz-scheduler.org/) separates `Job`, `Trigger` and `Scheduler` in the same way as this example.
+* Spring's `@Scheduled` and `TaskScheduler` run methods on cron expressions, fixed rates or fixed delays.
+* `ForkJoinPool` and the virtual-thread scheduler of the JVM decide which runnable task gets a carrier thread next.
+* Operating system process schedulers use the FCFS, priority, round robin and shortest-remaining-time-first policies shown here.
 
-## Related patterns
-The Scheduler Design Pattern is related to other design patterns, including:
-- **Observer Pattern**: When tasks need to be scheduled in response to specific events or changes in the system, the Observer Pattern can be used in conjunction with the Scheduler Pattern.
-- **Command Pattern**: Tasks to be executed by the scheduler can often be encapsulated using the Command Pattern, allowing for easy parameterization and queuing.
+## Benefits and Trade-offs of Scheduler Pattern
 
-## Credits
-- [Wikipedia: Scheduling (computing)](https://en.wikipedia.org/wiki/Scheduling_(computing))
+Benefits:
+
+* Tasks, triggers and scheduling policies vary independently, so a new policy or a new kind of task needs no change elsewhere.
+* Centralises the decision about which work runs, which makes resource usage predictable and easy to tune.
+* Supports time-based, periodic and event-driven work through one mechanism.
+
+Trade-offs:
+
+* Every policy favours something: FCFS lets a long task block short ones, priority scheduling can starve low-priority tasks, round robin adds switching overhead and SRTF needs to know how long a task will take.
+* Preemption requires tasks that can stop and resume safely between time slices.
+* The scheduler is a central component; if it is slow or fails, all scheduled work is affected.
+
+## Related Java Design Patterns
+
+* [Strategy](../strategy): each scheduling policy is a strategy behind the `TaskScheduler` interface.
+* [Command](../command): a task encapsulates a request so that it can be queued and run later.
+* [Thread Pool Executor](../thread-pool-executor): a pool of worker threads is the resource a scheduler often hands tasks to.
+* [Producer-Consumer](../producer-consumer): triggers produce tasks and the scheduler consumes them.
+* [Game Loop](../game-loop): advances a clock and updates the world each tick, much like the simulator here.
+
+## References and Credits
+
+* [Scheduling (computing) (Wikipedia)](https://en.wikipedia.org/wiki/Scheduling_(computing))
+* [Operating Systems: Three Easy Pieces, chapters on scheduling (Remzi and Andrea Arpaci-Dusseau)](https://pages.cs.wisc.edu/~remzi/OSTEP/)
+* [Quartz Scheduler documentation](https://www.quartz-scheduler.org/documentation/)
+* [ScheduledExecutorService (Java SE 21 API)](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/ScheduledExecutorService.html)

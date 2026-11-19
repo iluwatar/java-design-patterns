@@ -1,56 +1,91 @@
+/*
+ * This project is licensed under the MIT license. Module model-view-viewmodel is using ZK framework licensed under LGPL (see lgpl-3.0.txt).
+ *
+ * The MIT License
+ * Copyright © 2014-2022 Ilkka Seppälä
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 package com.iluwatar.scheduler;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import lombok.RequiredArgsConstructor;
 
-/** Simulate scheduler schedule tasks. */
-@RequiredArgsConstructor
-public class Simulator implements PropertyChangeListener {
+/**
+ * The execution context: advances a clock, fires the triggers of each job, hands the created tasks
+ * to the scheduler and records when each task completes.
+ */
+public class Simulator {
   private final TaskScheduler scheduler;
-
-  /** Map time to tasks that need to be scheduled at that time. */
-  private final Map<Integer, List<Task>> tasks;
-
+  private final List<ScheduledJob> jobs;
   private final int deltaTime;
   private final int simulateTime;
-  private final LinkedHashMap<Integer, Integer> taskCompletedOrder = new LinkedHashMap<>();
-  private int elapsedTime = 0;
 
   /**
-   * Simulate scheduler schedule tasks, then return a LinkedHashMap present the completed order of
-   * tasks, which map task id to the time it completed.
+   * Create a simulator.
+   *
+   * @param scheduler the scheduling strategy under test
+   * @param jobs the jobs whose triggers create tasks; jobs firing at the same time are scheduled in
+   *     list order
+   * @param deltaTime time units the scheduler runs per step
+   * @param simulateTime total time units to simulate
+   */
+  public Simulator(
+      TaskScheduler scheduler, List<ScheduledJob> jobs, int deltaTime, int simulateTime) {
+    if (deltaTime <= 0) {
+      throw new IllegalArgumentException("Delta time must be positive");
+    }
+    this.scheduler = scheduler;
+    this.jobs = List.copyOf(jobs);
+    this.deltaTime = deltaTime;
+    this.simulateTime = simulateTime;
+  }
+
+  /**
+   * Run the simulation.
+   *
+   * @return task ids in the order they completed, each mapped to the time it completed
    */
   public Map<Integer, Integer> simulate() {
-    while (elapsedTime < simulateTime) {
-      if (tasks.containsKey(elapsedTime)) {
-        for (Task task : tasks.get(elapsedTime)) {
-          task.getSupport().addPropertyChangeListener(this);
+    Map<Integer, Integer> completedAt = new LinkedHashMap<>();
+    List<Task> running = new ArrayList<>();
+    for (var time = 0; time < simulateTime; time += deltaTime) {
+      for (var job : jobs) {
+        if (job.trigger().fires(time)) {
+          var task = job.taskFactory().get();
+          running.add(task);
           scheduler.scheduleTask(task);
         }
       }
       scheduler.update(deltaTime);
-      elapsedTime += deltaTime;
+      var finishedAt = time + deltaTime;
+      running.removeIf(
+          task -> {
+            if (task.isComplete()) {
+              completedAt.put(task.getId(), finishedAt);
+              return true;
+            }
+            return false;
+          });
     }
-    return taskCompletedOrder;
-  }
-
-  @Override
-  public void propertyChange(PropertyChangeEvent evt) {
-    if (Task.COMPLETE_PROPERTY.equals(evt.getPropertyName())) {
-      onTaskComplete(evt);
-    }
-  }
-
-  private void onTaskComplete(PropertyChangeEvent evt) {
-    Task task = (Task) evt.getSource();
-    /*
-      elapsedTime is updated after task dispatch complete event to simulator,
-      so we need to add deltaTime
-    */
-    taskCompletedOrder.put(task.getId(), elapsedTime + deltaTime);
+    return completedAt;
   }
 }
