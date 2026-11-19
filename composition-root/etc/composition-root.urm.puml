@@ -1,0 +1,71 @@
+@startuml
+package com.iluwatar.compositionroot {
+  class App {
+    + main(args : String[]) {static}
+  }
+  interface ProductCatalog {
+    + unitPriceInCents(sku : String) : long {abstract}
+  }
+  class InMemoryProductCatalog {
+    - pricesInCents : Map<String, Long>
+    + InMemoryProductCatalog(pricesInCents : Map<String, Long>)
+    + unitPriceInCents(sku : String) : long
+  }
+  interface OrderRepository {
+    + save(order : Order) {abstract}
+    + findAll() : List<Order> {abstract}
+  }
+  class InMemoryOrderRepository {
+    - orders : List<Order>
+    + save(order : Order)
+    + findAll() : List<Order>
+  }
+  interface Notifier {
+    + send(customer : String, message : String) {abstract}
+  }
+  class LoggingNotifier {
+    + send(customer : String, message : String)
+  }
+  class PricingService {
+    - catalog : ProductCatalog
+    + PricingService(catalog : ProductCatalog)
+    + priceInCents(sku : String, quantity : int) : long
+  }
+  class OrderService {
+    - pricing : PricingService
+    - repository : OrderRepository
+    - notifier : Notifier
+    - nextId : AtomicInteger
+    + OrderService(pricing : PricingService, repository : OrderRepository, notifier : Notifier)
+    + placeOrder(customer : String, sku : String, quantity : int) : Order
+  }
+  class SalesReport {
+    - repository : OrderRepository
+    + SalesReport(repository : OrderRepository)
+    + orderCount() : int
+    + revenueInCents() : long
+  }
+  class Order <<record>> {
+    + id : int
+    + customer : String
+    + sku : String
+    + quantity : int
+    + totalInCents : long
+  }
+}
+InMemoryProductCatalog ..|> ProductCatalog
+InMemoryOrderRepository ..|> OrderRepository
+LoggingNotifier ..|> Notifier
+PricingService --> "-catalog" ProductCatalog
+OrderService --> "-pricing" PricingService
+OrderService --> "-repository" OrderRepository
+OrderService --> "-notifier" Notifier
+SalesReport --> "-repository" OrderRepository
+OrderService ..> Order : creates
+App ..> InMemoryProductCatalog : creates
+App ..> InMemoryOrderRepository : creates
+App ..> LoggingNotifier : creates
+App ..> PricingService : creates
+App ..> OrderService : creates
+App ..> SalesReport : creates
+@enduml
