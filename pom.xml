@@ -88,6 +88,7 @@
     <module>business-delegate</module>
     <module>bytecode</module>
     <module>caching</module>
+    <module>caching-filter</module>
     <module>callback</module>
     <module>chain-of-responsibility</module>
     <module>circuit-breaker</module>
