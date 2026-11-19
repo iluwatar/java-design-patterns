@@ -142,6 +142,7 @@
     <module>fork-join</module>
     <module>front-controller</module>
     <module>function-composition</module>
+    <module>functional-core-imperative-shell</module>
     <module>game-loop</module>
     <module>gateway</module>
     <module>guarded-suspension</module>

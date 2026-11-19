@@ -1,0 +1,70 @@
+@startuml
+package com.iluwatar.functionalcoreimperativeshell {
+  class App {
+    + App()
+    + main(args : String[]) {static}
+  }
+}
+package com.iluwatar.functionalcoreimperativeshell.core {
+  class Member <<record>> {
+    + name : String
+    + finesCents : long
+    + newMember(name : String) : Member {static}
+    + withFineAdded(fineCents : long) : Member
+  }
+  class Loan <<record>> {
+    + id : String
+    + memberName : String
+    + title : String
+    + dueDate : LocalDate
+  }
+  class ReturnOutcome <<record>> {
+    + member : Member
+    + daysLate : long
+    + fineCents : long
+    + borrowingBlocked : boolean
+  }
+  class LibraryRules {
+    + LOAN_PERIOD_DAYS : int {static}
+    + DAILY_FINE_CENTS : long {static}
+    + MAX_FINE_CENTS : long {static}
+    + BORROWING_LIMIT_CENTS : long {static}
+    - LibraryRules()
+    + canBorrow(member : Member) : boolean {static}
+    + lend(loanId : String, member : Member, title : String, today : LocalDate) : Loan {static}
+    + fineFor(daysLate : long) : long {static}
+    + settleReturn(member : Member, loan : Loan, returnedOn : LocalDate) : ReturnOutcome {static}
+  }
+}
+package com.iluwatar.functionalcoreimperativeshell.shell {
+  class LibraryStore {
+    - members : Map<String, Member>
+    - loans : Map<String, Loan>
+    - loanSequence : int
+    + findMember(name : String) : Optional<Member>
+    + saveMember(member : Member)
+    + nextLoanId() : String
+    + findLoan(id : String) : Optional<Loan>
+    + saveLoan(loan : Loan)
+    + removeLoan(id : String)
+    + openLoanCount() : int
+  }
+  class LibraryService {
+    - LOGGER : Logger {static}
+    - store : LibraryStore
+    - clock : Clock
+    + LibraryService(store : LibraryStore, clock : Clock)
+    + register(name : String) : Member
+    + borrow(memberName : String, title : String) : Optional<Loan>
+    + returnBook(loanId : String) : ReturnOutcome
+  }
+}
+ReturnOutcome -->  "-member" Member
+LibraryService -->  "-store" LibraryStore
+LibraryService ..> LibraryRules : asks for decisions
+LibraryRules ..> Loan : creates
+LibraryRules ..> ReturnOutcome : creates
+LibraryStore o-- Member
+LibraryStore o-- Loan
+App ..> LibraryService
+@enduml
