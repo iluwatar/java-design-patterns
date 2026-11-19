@@ -1,0 +1,73 @@
+@startuml
+package com.iluwatar.cachingfilter {
+  class App {
+    - TIME_TO_LIVE : Duration {static}
+    + App()
+    + main(args : String[]) {static}
+    - send(chain : FilterChain, request : Request) {static}
+  }
+  class Request <<record>> {
+    + method : String
+    + path : String
+    + get(path : String) : Request {static}
+  }
+  class Response <<record>> {
+    + OK : int {static}
+    + NOT_FOUND : int {static}
+    + status : int
+    + body : String
+  }
+  interface Handler {
+    + handle(request : Request) : Response {abstract}
+  }
+  interface Filter {
+    + filter(request : Request, chain : FilterChain) : Response {abstract}
+  }
+  class FilterChain {
+    - filters : List<Filter>
+    - target : Handler
+    - position : int
+    + FilterChain(filters : List<Filter>, target : Handler)
+    + proceed(request : Request) : Response
+  }
+  class CachingFilter {
+    - time : InstantSource
+    - store : CacheStore
+    + CachingFilter(time : InstantSource, store : CacheStore)
+    + filter(request : Request, chain : FilterChain) : Response
+  }
+  class CacheStore {
+    - timeToLive : Duration
+    - entries : Map<Request, Entry>
+    + CacheStore(timeToLive : Duration)
+    + get(request : Request, now : Instant) : Optional<Response>
+    + put(request : Request, response : Response, now : Instant)
+    + removePath(path : String)
+    + size() : int
+  }
+  class Entry <<record>> {
+    + response : Response
+    + expiresAt : Instant
+  }
+  class ProductCatalog {
+    - products : Map<String, String>
+    - lookups : int
+    + ProductCatalog(products : Map<String, String>)
+    + getLookups() : int
+    + handle(request : Request) : Response
+  }
+}
+CachingFilter ..|> Filter
+ProductCatalog ..|> Handler
+FilterChain --> "-filters" Filter
+FilterChain --> "-target" Handler
+CachingFilter --> "-store" CacheStore
+CacheStore +-- Entry
+CacheStore --> "-entries" Entry
+App ..> FilterChain
+App ..> CachingFilter
+App ..> CacheStore
+App ..> ProductCatalog
+Filter ..> Request
+Filter ..> Response
+@enduml
