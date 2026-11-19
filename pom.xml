@@ -153,6 +153,7 @@
     <module>intercepting-filter</module>
     <module>interpreter</module>
     <module>iterator</module>
+    <module>layer-supertype</module>
     <module>layered-architecture</module>
     <module>lazy-loading</module>
     <module>leader-election</module>

@@ -1,0 +1,54 @@
+@startuml
+package com.iluwatar.layersupertype {
+  abstract class DomainObject {
+    - id : Long
+    + getId() : Long
+    + isNew() : boolean
+    ~ assignId(newId : long)
+    + equals(o : Object) : boolean
+    + hashCode() : int
+  }
+  class Customer {
+    - name : String
+    - email : String
+    + Customer(name : String, email : String)
+    + getName() : String
+    + getEmail() : String
+    + setEmail(email : String)
+  }
+  class Product {
+    - name : String
+    - price : BigDecimal
+    + Product(name : String, price : BigDecimal)
+    + getName() : String
+    + getPrice() : BigDecimal
+  }
+  abstract class "Repository<T extends DomainObject>" as Repository {
+    - store : Map<Long, T>
+    - nextId : long
+    + save(object : T) : T
+    + findById(id : long) : Optional<T>
+    + findAll() : List<T>
+    + delete(object : T) : boolean
+    # findWhere(condition : Predicate<T>) : List<T>
+  }
+  class CustomerRepository {
+    + findByEmail(email : String) : Optional<Customer>
+  }
+  class ProductRepository {
+    + findCheaperThan(price : BigDecimal) : List<Product>
+  }
+  class App {
+    + main(args : String[]) {static}
+  }
+}
+Customer --|> DomainObject
+Product --|> DomainObject
+CustomerRepository --|> Repository
+ProductRepository --|> Repository
+Repository ..> DomainObject : assigns id
+CustomerRepository ..> Customer
+ProductRepository ..> Product
+App ..> CustomerRepository
+App ..> ProductRepository
+@enduml
