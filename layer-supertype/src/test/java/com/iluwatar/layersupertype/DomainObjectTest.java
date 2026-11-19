@@ -87,7 +87,7 @@ class DomainObjectTest {
     var second = new Customer("Alice", "alice@example.com");
     assertEquals(first, first);
     assertNotEquals(first, second);
-    assertNotEquals(null, first);
+    assertFalse(first.equals(null));
   }
 
   @Test
