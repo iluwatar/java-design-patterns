@@ -15,7 +15,7 @@ tag:
 
 ## Mục đích của mẫu thiết kế Ambassador
 
-Mẫu Ambassador trong Java giúp chuyển giao các chức năng chung như giám sát (monitoring), ghi log và định tuyến (routing) từ một tài nguyên dùng chung sang một instance service hỗ trợ, qua đó nâng cao hiệu năng và khả năng bảo trì trong các hệ thống phân tán.
+Mẫu Ambassador trong Java giúp chuyển giao các chức năng chung như giám sát (monitoring), ghi log và định tuyến (routing) từ một tài nguyên dùng chung sang một instance của service hỗ trợ (helper service), qua đó nâng cao hiệu năng và khả năng bảo trì trong các hệ thống phân tán.
 
 ## Giải thích chi tiết mẫu Ambassador kèm ví dụ thực tế
 
@@ -213,7 +213,7 @@ Lợi ích:
 * Triển khai Service Mesh: Trong kiến trúc service mesh như Istio hay Linkerd, mẫu Ambassador thường được dùng dưới dạng sidecar proxy để xử lý giao tiếp giữa các service. Điều này bao gồm các tác vụ như service discovery, định tuyến, cân bằng tải (load balancing), telemetry (metrics và tracing) và bảo mật (xác thực và phân quyền).
 * API Gateway: API gateway có thể dùng mẫu Ambassador để đóng gói các chức năng chung như giới hạn tần suất (rate limiting), cache, định hình yêu cầu (request shaping) và xác thực. Nhờ đó các backend service có thể tập trung vào logic nghiệp vụ cốt lõi mà không bị đè nặng bởi các mối quan tâm xuyên suốt này.
 * Ghi log và giám sát: Một Ambassador có thể tổng hợp log và metrics từ nhiều service rồi chuyển tiếp chúng tới các công cụ giám sát tập trung như Prometheus hoặc ELK Stack (Elasticsearch, Logstash, Kibana). Điều này đơn giản hóa việc thiết lập ghi log và giám sát cho từng service, đồng thời cung cấp một cái nhìn thống nhất về tình trạng của hệ thống.
-* Bảo mật: Các chức năng liên quan đến bảo mật như SSL/TLS termination, xác minh danh tính và mã hóa có thể được một Ambassador quản lý. Điều này đảm bảo các service áp dụng thực hành bảo mật nhất quán và giảm khả năng xảy ra sự cố bảo mật do cấu hình sai.
+* Bảo mật: Các chức năng liên quan đến bảo mật như SSL/TLS termination, xác minh danh tính và mã hóa có thể được một Ambassador quản lý. Điều này đảm bảo các service áp dụng thực hành bảo mật nhất quán và giảm khả năng bị xâm phạm bảo mật do cấu hình sai.
 * Khả năng phục hồi (resilience): Ambassador có thể triển khai các mẫu resilience như circuit breaker, retry và timeout. Ví dụ, thư viện Hystrix của Netflix có thể được dùng bên trong một Ambassador để ngăn lỗi lan truyền dây chuyền (cascading failures) trong hệ sinh thái microservices.
 * Database Proxy: Ambassador có thể đóng vai trò proxy cho các kết nối cơ sở dữ liệu, cung cấp các chức năng như connection pooling, tách đọc/ghi cho các bản sao (replica) và cache truy vấn. Điều này giảm bớt đáng kể độ phức tạp cho các service ứng dụng.
 * Tích hợp hệ thống legacy: Trong các tình huống microservices hiện đại cần giao tiếp với hệ thống legacy, một Ambassador có thể làm trung gian để chuyển đổi giao thức, xử lý các phép biến đổi cần thiết và áp dụng các thực hành bảo mật hiện đại, giúp quá trình tích hợp dễ dàng hơn.
