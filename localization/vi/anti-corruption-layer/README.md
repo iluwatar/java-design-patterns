@@ -30,11 +30,11 @@ Anti-Corruption Layer (ACL) là một mẫu thiết kế quan trọng trong phá
 
 Ví dụ thực tế
 
-> Ví dụ này cho thấy cách Anti-Corruption Layer đảm bảo việc tích hợp liền mạch giữa legacy system và các nền tảng hiện đại, điều rất quan trọng để giữ vững tính toàn vẹn của business logic trong quá trình chuyển đổi hệ thống.
+> Ví dụ này cho thấy cách Anti-Corruption Layer đảm bảo việc tích hợp liền mạch giữa hệ thống legacy và các nền tảng hiện đại, điều rất quan trọng để giữ vững tính toàn vẹn của business logic trong quá trình chuyển đổi hệ thống.
 > 
-> Hãy tưởng tượng một công ty bán lẻ lớn đang chuyển hệ thống quản lý kho hàng từ một phần mềm legacy cũ sang một nền tảng mới hiện đại. Legacy system đã được sử dụng hàng chục năm và chứa các quy tắc nghiệp vụ phức tạp cùng các định dạng dữ liệu không tương thích với hệ thống mới. Thay vì kết nối trực tiếp hệ thống mới với hệ thống legacy, công ty triển khai một Anti-Corruption Layer (ACL).
+> Hãy tưởng tượng một công ty bán lẻ lớn đang chuyển hệ thống quản lý kho hàng từ một phần mềm legacy sang một nền tảng mới hiện đại. Hệ thống legacy đã được sử dụng hàng chục năm và chứa các quy tắc nghiệp vụ phức tạp cùng các định dạng dữ liệu không tương thích với hệ thống mới. Thay vì kết nối trực tiếp hệ thống mới với hệ thống legacy, công ty triển khai một Anti-Corruption Layer (ACL).
 > 
-> ACL đóng vai trò trung gian, chuyển đổi và điều chỉnh dữ liệu giữa hai hệ thống. Khi hệ thống mới yêu cầu dữ liệu kho hàng, ACL chuyển yêu cầu sang định dạng mà legacy system hiểu được, lấy dữ liệu về, rồi chuyển ngược lại sang định dạng phù hợp với hệ thống mới. Cách tiếp cận này giúp hệ thống mới không bị ảnh hưởng bởi những phức tạp của legacy system, ngăn dữ liệu và business logic bị sai lệch, đồng thời giúp quá trình chuyển đổi diễn ra suôn sẻ.
+> ACL đóng vai trò trung gian, chuyển đổi và điều chỉnh dữ liệu giữa hai hệ thống. Khi hệ thống mới yêu cầu dữ liệu kho hàng, ACL chuyển yêu cầu sang định dạng mà hệ thống legacy hiểu được, lấy dữ liệu về, rồi chuyển ngược lại sang định dạng phù hợp với hệ thống mới. Cách tiếp cận này giúp hệ thống mới không bị ảnh hưởng bởi những phức tạp của hệ thống legacy, ngăn dữ liệu và business logic bị sai lệch, đồng thời giúp quá trình chuyển đổi diễn ra suôn sẻ.
 
 Nói đơn giản
 
@@ -141,9 +141,9 @@ public class LegacyShop {
 
 Sử dụng mẫu này khi:
 
-* Việc migration được lên kế hoạch thực hiện qua nhiều giai đoạn, nhưng vẫn cần duy trì tích hợp giữa hệ thống mới và legacy system
+* Việc migration được lên kế hoạch thực hiện qua nhiều giai đoạn, nhưng vẫn cần duy trì tích hợp giữa hệ thống mới và hệ thống legacy
 * Hai hoặc nhiều subsystem có ngữ nghĩa khác nhau nhưng vẫn cần giao tiếp với nhau
-* Khi tích hợp với legacy system hoặc hệ thống bên ngoài mà việc tích hợp trực tiếp có thể làm "ô nhiễm" domain model của hệ thống mới
+* Khi tích hợp với hệ thống legacy hoặc hệ thống bên ngoài mà việc tích hợp trực tiếp có thể làm "ô nhiễm" domain model của hệ thống mới
 * Trong các tình huống mà các subsystem khác nhau bên trong một hệ thống lớn hơn sử dụng định dạng hoặc cấu trúc dữ liệu khác nhau
 * Khi cần đảm bảo loose coupling giữa các subsystem hoặc dịch vụ bên ngoài khác nhau để dễ bảo trì và mở rộng hơn
 
@@ -155,7 +155,7 @@ Sử dụng mẫu này khi:
 ## Ứng dụng thực tế của mẫu Anti-Corruption Layer trong Java
 
 * Kiến trúc microservices, nơi các dịch vụ riêng lẻ phải giao tiếp với nhau mà không bị phụ thuộc chặt chẽ vào schema dữ liệu của nhau
-* Tích hợp hệ thống doanh nghiệp, đặc biệt khi tích hợp các hệ thống hiện đại với legacy system
+* Tích hợp hệ thống doanh nghiệp, đặc biệt khi tích hợp các hệ thống hiện đại với hệ thống legacy
 * Trong các bounded context của Domain-Driven Design (DDD), để giữ tính toàn vẹn của domain model khi tương tác với các hệ thống hoặc subsystem bên ngoài
 
 ## Lợi ích và đánh đổi của mẫu Anti-Corruption Layer
