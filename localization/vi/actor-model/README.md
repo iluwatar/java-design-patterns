@@ -174,7 +174,7 @@ public class App {
 - Hỗ trợ tính đồng thời cao
 - Dễ dàng mở rộng trên nhiều thread hoặc nhiều máy
 - Cô lập lỗi và khả năng phục hồi
-- Đảm bảo thứ tự message trong từng actor
+- Thứ tự message được giữ nguyên trong từng actor
 
 ### ⚠️ Đánh đổi
 - Khó debug hơn do hành vi bất đồng bộ
